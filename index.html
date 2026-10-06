@@ -238,7 +238,7 @@
   //  - 낱말의 앞 2글자가 들어 있으면 거의 맞은 것으로 치고, 같은 뜻의 흔한 말(세일=할인 등)도 인정
   var SYN = [['세일','할인'],['아끼','절약'],['아껴','절약'],['레시피','조리법'],['시속','시간당'],['상품','물품'],['제품','물품'],
              ['개학','등교'],['탁자','테이블'],['엄마','어머니'],['아빠','아버지'],['안으로','실내'],['담을','추가'],['담아','추가'],
-             ['고르','선택'],['빨리','신속'],['즉시','곧'],['바로','즉시'],['직장','일하는'],['근무','일하는'],['정원','마당'],['뜰','마당'],['베프','친한'],['베프','친구'],['베프','가장'],['단짝','친한'],['단짝','친구'],['단짝','가장']];
+             ['고르','선택'],['빨리','신속'],['즉시','곧'],['바로','즉시'],['직장','일하는'],['근무','일하는'],['정원','마당'],['뜰','마당'],['뜻입니','뜻인가'],['뜻인가','뜻입니'],['베프','친한'],['베프','친구'],['베프','가장'],['단짝','친한'],['단짝','친구'],['단짝','가장']];
   var STOPCH = '이가은는을를에의도로와과만께';
   function norm(s){ return String(s).toLowerCase().replace(/[^가-힣a-z0-9]/g,''); }
   function scoreDetail(spoken, answer){
@@ -345,7 +345,17 @@
     rec.onstart = function(){ listening = true; $('micBtn').textContent = '듣는 중... 다 말하면 누르세요'; $('micBtn').className = 'big red'; if (!baseText) $('heard').textContent = '...'; };
     rec.onresult = function(e){
       alts = [];
-      for (var j=0;j<5;j++){ var tj = ''; for (var i=0;i<e.results.length;i++){ var rr = e.results[i]; tj += (rr[j] || rr[0]).transcript; } alts.push((baseText ? baseText + ' ' : '') + tj); }
+      for (var j=0;j<5;j++){
+        var segs = [];
+        for (var i=0;i<e.results.length;i++){
+          var rr = e.results[i], t = (rr[j] || rr[0]).transcript.trim(); if (!t) continue;
+          var last = segs.length ? segs[segs.length-1] : '';
+          if (last && t.indexOf(last) === 0) segs[segs.length-1] = t;       // 폰이 같은 말을 점점 길게 되풀이해 주는 경우 → 가장 긴 것만
+          else if (last && last.indexOf(t) === 0) {}                         // 더 짧은 되풀이는 무시
+          else segs.push(t);
+        }
+        alts.push((baseText ? baseText + ' ' : '') + segs.join(' '));
+      }
       finalText = alts[0]; lastHeard = alts[0]; $('heard').textContent = alts[0];
       clearTimeout(silT);
       silT = setTimeout(function(){ wantStop = true; try { rec.stop(); } catch(e){} }, silenceMs());
