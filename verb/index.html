@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>동사형 말하기 테스트</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="동사형 말하기 테스트">
+<meta property="og:description" content="동남비타민영어학원 · 동사를 바꿔서 문장 전체를 영어로 말해요">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#f8f9fa; font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif; color:#2c3e50; padding:16px; }
+  .wrap { max-width:720px; margin:0 auto; background:#fff; border-radius:20px; padding:28px 24px; box-shadow:0 4px 20px rgba(0,0,0,.1); }
+  h1 { font-size:26px; margin:0 0 4px; text-align:center; }
+  .sub { text-align:center; color:#666; font-size:15px; margin-bottom:22px; }
+  label { display:block; font-size:15px; font-weight:bold; margin:16px 0 6px; }
+  input[type=text] { width:100%; padding:13px 14px; font:inherit; font-size:18px; border:2px solid #e9ecef; border-radius:12px; outline:none; background:#fff; }
+  input:focus { border-color:#f39c12; }
+  .opts { display:flex; gap:8px; flex-wrap:wrap; }
+  .lrow { margin-bottom:10px; } .lrow .lname { font-size:14px; color:#888; margin:6px 0 4px; }
+  .op.sm { padding:10px 8px; font-size:15px; min-width:70px; } .op small { display:block; font-size:11px; font-weight:normal; color:#999; margin-top:2px; }
+  .op.on small { color:#7a6a3a; }
+  .op { flex:1 1 auto; min-width:90px; padding:14px 10px; border:2px solid #e9ecef; background:#fff; border-radius:14px; font:inherit; font-size:18px; font-weight:bold; color:#666; cursor:pointer; }
+  .op.on { border-color:#f39c12; background:#fff3cd; color:#2c3e50; }
+  .hint { background:#e9ecef; border-radius:12px; padding:12px 14px; font-size:14px; color:#555; margin-top:14px; line-height:1.6; }
+  .err { color:#b02a37; font-size:14px; margin-top:10px; min-height:20px; }
+  button.big { width:100%; padding:16px; border:0; border-radius:14px; background:#f39c12; color:#fff; font:inherit; font-size:20px; font-weight:bold; cursor:pointer; margin-top:10px; }
+  button.big:disabled { background:#ccc; cursor:default; }
+  button.big.blue { background:#3498db; } button.big.red { background:#e74c3c; } button.big.gray { background:#6c757d; }
+  button.hintbtn { width:100%; padding:11px; margin-top:10px; border:2px dashed #b5bcc4; border-radius:12px; background:#fff; color:#555; font:inherit; font-size:16px; cursor:pointer; }
+  .screen { display:none; } .screen.on { display:block; }
+  .progress { text-align:center; font-size:15px; color:#666; margin-bottom:10px; }
+  .card { border:2px solid #e9ecef; border-radius:16px; padding:26px 18px; text-align:center; font-size:23px; line-height:1.9; font-weight:bold; }
+  .bl { display:inline-block; padding:0 8px; margin:0 2px; border-bottom:3px solid #f39c12; background:#fff3cd; border-radius:6px; font-size:19px; color:#b26a00; }
+  .kobox { margin-top:10px; padding:12px 14px; background:#eef7ff; border-radius:12px; font-size:16px; line-height:1.6; color:#2a5d84; display:none; }
+  .timer { text-align:center; font-size:20px; font-weight:bold; color:#3498db; height:30px; margin-top:8px; }
+  .timer.low { color:#e74c3c; }
+  .heard { margin-top:10px; padding:14px; background:#f8f9fa; border-radius:12px; font-size:17px; min-height:52px; }
+  .heard b { color:#888; font-size:13px; display:block; margin-bottom:4px; }
+  .result { margin-top:14px; padding:18px; border-radius:14px; text-align:center; font-size:22px; font-weight:bold; display:none; }
+  .result.ok { background:#d4edda; color:#1e7a3a; display:block; }
+  .result.no { background:#f8d7da; color:#b02a37; display:block; }
+  .cmp { font-size:16px; font-weight:normal; margin-top:10px; text-align:left; line-height:1.8; color:#333; }
+  .cmp b.l { display:block; color:#888; font-size:13px; }
+  .ok-w { color:#1e7a3a; font-weight:bold; } .no-w { color:#b02a37; font-weight:bold; text-decoration:underline; }
+  .cmp .pct { color:#888; font-size:14px; margin-top:4px; }
+  .final { padding:22px 16px; border-radius:16px; text-align:center; font-size:24px; font-weight:bold; margin-bottom:14px; line-height:1.5; }
+  .final.bad { background:#f8d7da; color:#b02a37; }
+  .final.good { background:#d4edda; color:#1e7a3a; }
+  .meta { text-align:center; font-size:15px; color:#555; margin-bottom:14px; line-height:1.7; }
+  .item { border:2px solid #e9ecef; border-radius:12px; padding:12px 14px; margin-bottom:10px; font-size:17px; line-height:1.7; }
+  .item.x { border-color:#f5c2c7; background:#fff8f8; }
+  .item .tag { font-weight:bold; margin-right:6px; }
+  .item .ko { color:#555; font-size:15px; margin-top:4px; }
+  .item .say { color:#333; font-size:14px; margin-top:6px; padding:8px 10px; background:#f8f9fa; border-radius:8px; line-height:1.5; }
+  .item .say b { color:#888; font-size:12px; margin-right:4px; }
+  .write { margin:18px 0 8px; font-size:18px; font-weight:bold; text-align:center; }
+  .foot { text-align:center; margin-top:22px; font-size:13px; color:#999; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>동사형 말하기 테스트</h1>
+  <div class="sub">동사를 알맞게 바꿔서, 문장 전체를 영어로 말해요</div>
+
+  <div class="screen on" id="sStart">
+    <label for="name">이름</label>
+    <input type="text" id="name" placeholder="이름을 입력하세요" autocomplete="off">
+    <div id="lvBox"><label>학교급</label><div class="opts" id="lvOpts"></div></div>
+    <div id="scBox" style="display:none"><label>학교 · 교재</label><div class="opts" id="scOpts"></div></div>
+    <div id="lsBox" style="display:none"><label>과 · 파트 (여러 개 선택 가능)</label><div class="opts" id="lsOpts"></div></div>
+    <label>문제 수</label>
+    <div class="opts" id="nOpts"></div>
+    <div class="err" id="err"></div>
+    <button class="big" id="startBtn">시험 시작</button>
+    <div class="opts" style="margin-top:6px">
+      <button type="button" class="op" id="histBtn">📒 내 기록</button>
+      <button type="button" class="op" id="wrongBtn">📝 오답노트 <span id="wc"></span></button>
+    </div>
+    <div class="hint" id="rule"></div>
+  </div>
+
+  <div class="screen" id="sTest">
+    <div class="progress" id="prog"></div>
+    <div class="card" id="card"></div>
+    <button class="hintbtn" id="hintBtn">힌트: 한글 보기</button>
+    <div class="kobox" id="koBox"></div>
+    <div class="timer" id="timer"></div>
+    <button class="big blue" id="micBtn" disabled>말하기 시작</button>
+    <div class="heard"><b>인식된 내 말</b><span id="heard">-</span></div>
+    <div class="result" id="result"></div>
+    <button class="big" id="retryBtn" style="display:none">다시 말하기</button>
+    <button class="big" id="nextBtn" style="display:none">다음 문장</button>
+  </div>
+
+  <div class="screen" id="sHist">
+    <div class="write" style="margin-top:0">📒 내 기록</div>
+    <div class="meta" style="font-size:13px;color:#888">이 폰의 이 브라우저에만 저장돼요. 인터넷 사용기록을 지우면 사라져요.</div>
+    <div id="histList"></div>
+    <button class="big gray" id="histBack">처음으로</button>
+  </div>
+
+  <div class="screen" id="sWrong">
+    <div class="write" style="margin-top:0">📝 오답노트</div>
+    <div class="meta" style="font-size:13px;color:#888">틀린 문장이 쌓여요. 나중에 힌트 없이 맞히면 목록에서 빠져요.</div>
+    <div id="wrongList"></div>
+    <button class="big" id="wrongTest">오답노트 문장으로 시험 보기</button>
+    <button class="big gray" id="wrongBack">처음으로</button>
+  </div>
+
+  <div class="screen" id="sEnd">
+    <div class="final" id="final"></div>
+    <div class="meta" id="meta"></div>
+    <div id="list"></div>
+    <div id="writeBox"></div>
+    <button class="big gray" id="againBtn">처음으로</button>
+  </div>
+
+  <div class="foot">동남 비타민영어클리닉</div>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var Q = new URLSearchParams(location.search);
+  var NQ    = parseInt(Q.get('n')) || 8;                 // 기본 문제 수 (5·8·10 중 고름)
+  var COV   = parseInt(Q.get('cov')) || 50;               // 빈칸 밖 단어를 이만큼(%)은 말해야 '문장 전체'로 인정
+  var RETRY = Q.has('retry') ? parseInt(Q.get('retry')) : 1;
+  var KO0   = Q.get('ko') === '1';                        // 1이면 처음부터 한글을 보여줌(쉬운 모드)
+  var TIME  = Q.has('time') ? parseInt(Q.get('time')) : -1;
+  var SOUND = Q.get('sound') === '1';
+  var V = window.VERB || { levels: [] };
+  var PKEY = 'verb_oral_profile_v1';
+  var NOPTS = [5, 8, 10];
+  function penFor(n){ if (Q.get('pen')) return parseInt(Q.get('pen')); return n <= 3 ? 2 : Math.max(2, Math.round(n * 0.35)); }
+
+  var sel = { lv: -1, sc: -1, ls: {}, n: NQ };   // ls: 선택한 과·파트 {"과번호:파트번호": true}
+  function esc(s){ return String(s).replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
+  function show(id){ ['sStart','sTest','sEnd','sHist','sWrong'].forEach(function(s){ $(s).classList.toggle('on', s === id); }); window.scrollTo(0,0); }
+  function shuffle(a){ a = a.slice(); for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+  function stamp(){
+    var d = new Date(), w = ['일','월','화','수','목','금','토'][d.getDay()];
+    return (d.getMonth()+1) + '/' + d.getDate() + '(' + w + ') ' + ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+  }
+
+  /* ---------- 메뉴 (학교급 → 학교 → 과) ---------- */
+  function mk(parent, label, on, fn){
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'op' + (on ? ' on' : ''); b.textContent = label; b.onclick = fn; parent.appendChild(b); return b;
+  }
+  var levels = V.levels.filter(function(l){ return l.schools && l.schools.length; });
+  function drawLv(){
+    $('lvOpts').innerHTML = '';
+    levels.forEach(function(l, i){ mk($('lvOpts'), l.name, sel.lv === i, function(){ sel.lv = i; sel.sc = -1; sel.ls = {}; drawAll(); }); });
+    if (levels.length === 1 && sel.lv < 0){ sel.lv = 0; }
+    $('lvBox').style.display = levels.length > 1 ? '' : 'none';
+  }
+  function drawSc(){
+    $('scOpts').innerHTML = '';
+    if (sel.lv < 0){ $('scBox').style.display = 'none'; return; }
+    var ss = levels[sel.lv].schools;
+    if (ss.length === 1 && sel.sc < 0) sel.sc = 0;
+    ss.forEach(function(s, i){ mk($('scOpts'), s.name, sel.sc === i, function(){ sel.sc = i; sel.ls = {}; drawAll(); }); });
+    $('scBox').style.display = '';
+  }
+  function drawLs(){
+    $('lsOpts').innerHTML = '';
+    if (sel.lv < 0 || sel.sc < 0){ $('lsBox').style.display = 'none'; return; }
+    levels[sel.lv].schools[sel.sc].lessons.forEach(function(L, li){
+      var row = document.createElement('div'); row.className = 'lrow';
+      var nm = document.createElement('div'); nm.className = 'lname'; nm.textContent = L.name + ' · 전체 ' + L.items.length + '문장'; row.appendChild(nm);
+      var bx = document.createElement('div'); bx.className = 'opts'; row.appendChild(bx);
+      var parts = L.parts || [{ name: '전체', n: L.items.length }];
+      var allOn = parts.every(function(p, pi){ return sel.ls[li + ':' + pi]; });
+      var b = mk(bx, '과 전체', allOn, function(){ parts.forEach(function(p, pi){ if (allOn) delete sel.ls[li + ':' + pi]; else sel.ls[li + ':' + pi] = true; }); drawAll(); }); b.classList.add('sm');
+      if (L.parts) L.parts.forEach(function(p, pi){
+        var pb = mk(bx, p.name, !!sel.ls[li + ':' + pi], function(){ if (sel.ls[li + ':' + pi]) delete sel.ls[li + ':' + pi]; else sel.ls[li + ':' + pi] = true; drawAll(); });
+        pb.classList.add('sm'); pb.innerHTML = esc(p.name) + '<small>' + p.n + '문장</small>'; pb.title = p.title || '';
+      });
+      $('lsOpts').appendChild(row);
+    });
+    $('lsBox').style.display = '';
+  }
+  function drawN(){
+    $('nOpts').innerHTML = '';
+    var opts = NOPTS.indexOf(NQ) >= 0 ? NOPTS : NOPTS.concat([NQ]).sort(function(a,b){ return a-b; });
+    opts.forEach(function(n){ mk($('nOpts'), n + '문제', sel.n === n, function(){ sel.n = n; drawAll(); }); });
+  }
+  function drawRule(){
+    var n = sel.n, pen = penFor(n);
+    $('rule').innerHTML = '선택한 과에서 ' + n + '문장이 랜덤으로 뽑혀요. 괄호 안 동사를 알맞게 바꿔서 <b>문장 전체를 영어로</b> 말하세요.'
+      + '<br>막히면 <b>힌트: 한글 보기</b>를 누를 수 있어요(힌트를 쓴 문장은 결과에 표시돼요).'
+      + '<br>' + pen + '개 이상 틀리면 오늘의 문장을 다시 쓰고 가요.'
+      + (RETRY ? '<br>문장마다 다시 말하기 ' + RETRY + '번 기회가 있어요.' : '');
+  }
+  function drawAll(){ drawLv(); drawSc(); drawLs(); drawN(); drawRule(); $('err').textContent = ''; }
+  try { var p0 = JSON.parse(localStorage.getItem(PKEY) || '{}'); if (p0.name) $('name').value = p0.name; } catch(e){}
+  drawAll();
+
+  /* ---------- 문장 분석 ---------- */
+  var CONTR = { "it's":"it is","he's":"he is","she's":"she is","that's":"that is","there's":"there is","what's":"what is","who's":"who is","here's":"here is",
+                "we're":"we are","didn't":"did not","you're":"you are","they're":"they are","i'm":"i am","can't":"can not","cannot":"can not","won't":"will not","don't":"do not","doesn't":"does not","isn't":"is not","aren't":"are not" };
+  function tok(s){
+    s = String(s).toLowerCase().replace(/[’‘`]/g, "'").replace(/[^a-z0-9' ]+/g, ' ');
+    var out = [];
+    s.split(/\s+/).forEach(function(w){
+      w = w.replace(/^'+|'+$/g, ''); if (!w) return;
+      if (CONTR[w]) CONTR[w].split(' ').forEach(function(x){ out.push(x); }); else out.push(w);
+    });
+    return out;
+  }
+  // "…we ___[be] going ___[see] some…" → 빈칸 정답을 채운 정답 문장 + 빈칸 위치 정보
+  function parse(it){
+    var parts = it.en.split(/___\[[^\]]*\]/), hints = (it.en.match(/___\[[^\]]*\]/g) || []).map(function(h){ return h.slice(4, -1); });
+    var tokens = [], blanks = [];
+    for (var i=0;i<parts.length;i++){
+      tokens = tokens.concat(tok(parts[i]));
+      if (i < it.ans.length){ var a = tok(it.ans[i]); blanks.push({ s: tokens.length, e: tokens.length + a.length, phrase: a, label: it.ans[i], hint: hints[i] }); tokens = tokens.concat(a); }
+    }
+    var isB = {}; blanks.forEach(function(b){ for (var k=b.s;k<b.e;k++) isB[k] = 1; });
+    var rest = []; tokens.forEach(function(t, k){ if (!isB[k]) rest.push(t); });
+    return { tokens: tokens, blanks: blanks, rest: rest };
+  }
+  function countPhrase(arr, ph){
+    var c = 0; for (var i=0;i+ph.length<=arr.length;i++){ var ok = true; for (var j=0;j<ph.length;j++) if (arr[i+j] !== ph[j]){ ok = false; break; } if (ok) c++; } return c;
+  }
+  // 한 번의 인식 결과를 채점: 바꿔야 하는 동사(빈칸)는 엄격히, 나머지 단어는 느슨하게
+  function gradeOne(spoken, pz){
+    var sp = tok(spoken), hit = [];
+    pz.blanks.forEach(function(b){
+      var need = countPhrase(pz.tokens, b.phrase), have = countPhrase(sp, b.phrase);
+      hit.push(have >= need);
+    });
+    var set = {}; sp.forEach(function(w){ set[w] = 1; });
+    var got = 0; pz.rest.forEach(function(w){ if (set[w]) got++; });
+    var cov = pz.rest.length ? Math.round(got * 100 / pz.rest.length) : 100;
+    var nh = hit.filter(Boolean).length;
+    return { hit: hit, nh: nh, cov: cov, pass: nh === hit.length && cov >= COV };
+  }
+  function gradeBest(list, pz){
+    var best = null, bt = '';
+    list.forEach(function(t){
+      var g = gradeOne(t, pz), key = (g.pass ? 1000 : 0) + g.nh * 10 + g.cov / 10;
+      if (!best || key > best.key){ best = g; best.key = key; bt = t; }
+    });
+    return { g: best || gradeOne('', pz), text: bt };
+  }
+  window.__grade = function(spoken, it){ return gradeOne(spoken, parse(it)); };   // 테스트용
+
+  /* ---------- 소리 (기본 꺼짐) ---------- */
+  var AC = window.AudioContext || window.webkitAudioContext, ac = null;
+  function tone(f, s, d, ty){ if (!SOUND || !AC) return; if (!ac) ac = new AC(); var o = ac.createOscillator(), g = ac.createGain(); o.type = ty || 'sine'; o.frequency.value = f; o.connect(g); g.connect(ac.destination); var t = ac.currentTime + s; g.gain.setValueAtTime(.25, t); g.gain.exponentialRampToValueAtTime(.001, t + d); o.start(t); o.stop(t + d); }
+  function dingdong(){ tone(880,0,.35); tone(660,.3,.6); }
+  function ddang(){ tone(150,0,.5,'sawtooth'); tone(120,.15,.6,'sawtooth'); }
+
+  /* ---------- 이 폰에 기록 저장 (서버 없음) ---------- */
+  var HKEY = 'verb_hist_v1', WKEY = 'verb_wrong_v1';
+  function ld(k, d){ try { var v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch(e){ return d; } }
+  function sv(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch(e){ return false; } }
+  function allItems(){ var out = []; levels.forEach(function(lv){ lv.schools.forEach(function(sc){ sc.lessons.forEach(function(L){ L.items.forEach(function(it, k){ out.push({ school: sc.name, lesson: L.name, n: k + 1, it: it }); }); }); }); }); return out; }
+  function findItem(en){ var a = allItems(); for (var i=0;i<a.length;i++) if (a[i].it.en === en) return a[i]; return null; }
+  function toPick(f){ var it = f.it; return { lesson: f.lesson, n: f.n, ko: it.ko, en: it.en, ans: it.ans, why: it.why, star: it.star, pz: parse(it) }; }
+  function saveRecord(){
+    var h = ld(HKEY, []);
+    h.unshift({ t: stamp(), name: prof.name, school: prof.school, lessons: prof.lessons, n: prof.n,
+                wrong: results.filter(function(r){ return !r.ok; }).length, hints: results.filter(function(r){ return r.hint; }).length,
+                items: results.map(function(r){ return { en: r.en, lesson: r.lesson, n: r.n, ok: r.ok, hint: r.hint, say: (r.log[r.log.length-1] || {}).t || '' }; }) });
+    sv(HKEY, h.slice(0, 40));
+    var w = ld(WKEY, {});
+    results.forEach(function(r){
+      if (!r.ok){ var o = w[r.en] || { c: 0 }; o.c++; o.t = stamp(); o.lesson = r.lesson; o.n = r.n; w[r.en] = o; }
+      else if (!r.hint && w[r.en]) delete w[r.en];
+    });
+    sv(WKEY, w); drawWc();
+  }
+  function drawWc(){ var c = Object.keys(ld(WKEY, {})).length; $('wc').textContent = c ? '(' + c + ')' : ''; }
+  drawWc();
+  function filledEn(en, ans){ var parts = en.split(/___\[[^\]]*\]/), h = ''; for (var i=0;i<parts.length;i++){ h += esc(parts[i]); if (i < ans.length) h += '<b style="color:#1e7a3a">' + esc(ans[i]) + '</b>'; } return h; }
+  function whyHTML(it){ if (!it.why) return ''; var h = '<div class="say" style="background:#fff8e1"><b>왜 이 형태?</b>'; it.ans.forEach(function(x, i){ h += '<div><span style="color:#1e7a3a;font-weight:bold">' + esc(x) + '</span> — ' + esc(it.why[i] || '') + '</div>'; }); return h + '</div>'; }
+  function drawHist(){
+    var h = ld(HKEY, []), out = '';
+    if (!h.length) out = '<div class="item">아직 기록이 없어요. 시험을 보면 여기에 쌓여요.</div>';
+    h.forEach(function(x){
+      out += '<details class="item ' + (x.wrong ? 'x' : '') + '"><summary><b>' + esc(x.t) + '</b> · ' + esc(x.lessons) + '<br>' + x.n + '문장 중 ' + x.wrong + '개 틀림' + (x.hints ? ' · 힌트 ' + x.hints : '') + '</summary>';
+      x.items.forEach(function(i){
+        var f = findItem(i.en), body = f ? filledEn(f.it.en, f.it.ans) : esc(i.en);
+        out += '<div style="margin-top:8px"><span class="tag">' + (i.ok ? '○' : '×') + ' ' + esc(i.lesson) + ' ' + i.n + '번</span>' + (i.hint ? '<span style="color:#3498db;font-size:13px">[힌트]</span> ' : '') + body
+             + (f && !i.ok ? '<div class="ko">' + esc(f.it.ko) + '</div>' + whyHTML(f.it) : '') + (i.say ? '<div class="say"><b>말한 것</b>' + esc(i.say) + '</div>' : '') + '</div>';
+      });
+      out += '</details>';
+    });
+    $('histList').innerHTML = out; show('sHist');
+  }
+  function drawWrong(){
+    var w = ld(WKEY, {}), keys = Object.keys(w), out = '';
+    if (!keys.length) out = '<div class="item">오답노트가 비어 있어요. 틀린 문장이 생기면 여기에 쌓여요.</div>';
+    keys.forEach(function(en){
+      var f = findItem(en); if (!f) return;
+      out += '<div class="item x"><span class="tag">' + esc(f.lesson) + ' ' + f.n + '번</span><span style="color:#999;font-size:13px">(' + w[en].c + '번 틀림)</span><br>' + filledEn(f.it.en, f.it.ans)
+          + '<div class="ko">' + esc(f.it.ko) + '</div>' + whyHTML(f.it) + '<button type="button" class="op sm" data-en="' + esc(en).replace(/"/g,'&quot;') + '" style="margin-top:8px">알았어요 (목록에서 빼기)</button></div>';
+    });
+    $('wrongList').innerHTML = out;
+    $('wrongList').querySelectorAll('button[data-en]').forEach(function(b){ b.onclick = function(){ var ww = ld(WKEY, {}); delete ww[b.getAttribute('data-en')]; sv(WKEY, ww); drawWc(); drawWrong(); }; });
+    $('wrongTest').style.display = keys.length ? '' : 'none'; show('sWrong');
+  }
+  $('histBtn').onclick = drawHist; $('wrongBtn').onclick = drawWrong;
+  $('histBack').onclick = $('wrongBack').onclick = function(){ show('sStart'); };
+  $('wrongTest').onclick = function(){
+    var w = ld(WKEY, {}), pool = [];
+    Object.keys(w).forEach(function(en){ var f = findItem(en); if (f) pool.push(toPick(f)); });
+    if (!pool.length) return;
+    begin(pool, $('name').value.trim() || '학생', '오답노트', '오답노트');
+  };
+
+  /* ---------- 시험 진행 ---------- */
+  var picks = [], idx = -1, cur = null, results = [], tries = 0, graded = false, timerId = null, left = 0, attemptLog = [], prof = {}, hintUsed = false, lastHeard = '';
+  function wordCount(){ return cur ? cur.pz.tokens.length : 12; }
+  function limitSec(){ if (TIME >= 0) return TIME; return Math.min(80, Math.max(30, 18 + Math.round(wordCount() * 2))); }
+  function silenceMs(){ return Math.min(7000, 3500 + wordCount() * 80); }
+
+  $('startBtn').onclick = function(){
+    var name = $('name').value.trim(), err = $('err');
+    if (!name){ err.textContent = '이름을 입력하세요.'; return; }
+    if (sel.lv < 0 || sel.sc < 0){ err.textContent = '학교급과 학교·교재를 선택하세요.'; return; }
+    if (!Object.keys(sel.ls).length){ err.textContent = '과나 파트를 하나 이상 선택하세요.'; return; }
+    var sch = levels[sel.lv].schools[sel.sc], pool = [], names = [];
+    sch.lessons.forEach(function(L, li){
+      var chosen = [];
+      (L.parts || [{ name: '전체' }]).forEach(function(p, pi){ if (sel.ls[li + ':' + pi]) chosen.push(pi); });
+      if (!chosen.length) return;
+      names.push(L.name + (L.parts && chosen.length < L.parts.length ? ' ' + chosen.map(function(pi){ return L.parts[pi].name.replace('파트 ',''); }).join('') : ''));
+      L.items.forEach(function(it, k){
+        if (L.parts && chosen.indexOf(it.part) < 0) return;
+        pool.push({ lesson: L.name, n: k + 1, ko: it.ko, en: it.en, ans: it.ans, why: it.why, star: it.star, pz: parse(it) });
+      });
+    });
+    if (Q.get('star') === '1'){ var st = pool.filter(function(x){ return x.star; }); if (st.length >= 3) pool = st; }
+    try { localStorage.setItem(PKEY, JSON.stringify({ name: name })); } catch(e){}
+    begin(pool, name, sch.name, names.join(' · '));
+  };
+  function begin(pool, name, school, label){
+    var n = Math.min(sel.n, pool.length);
+    prof = { name: name, school: school, lessons: (label === school ? '' : label), n: n, pen: penFor(n) };
+    picks = shuffle(pool).slice(0, n); idx = -1; cur = null; results = [];
+    $('result').className = 'result'; $('heard').textContent = '-'; $('timer').textContent = '';
+    $('nextBtn').style.display = 'none'; $('retryBtn').style.display = 'none';
+    show('sTest'); showNext();
+  }
+  function cardHTML(it){
+    var parts = it.en.split(/___\[[^\]]*\]/), hints = (it.en.match(/___\[[^\]]*\]/g) || []).map(function(h){ return h.slice(4, -1); }), h = '';
+    for (var i=0;i<parts.length;i++){ h += esc(parts[i]); if (i < hints.length) h += '<span class="bl">( ' + esc(hints[i]) + ' )</span>'; }
+    return h;
+  }
+  function showNext(){
+    if (idx + 1 >= picks.length) return;
+    idx++; cur = picks[idx]; tries = 0; graded = false; attemptLog = []; hintUsed = KO0;
+    $('result').className = 'result'; $('heard').textContent = '-';
+    $('card').innerHTML = cardHTML(cur);
+    $('koBox').textContent = cur.ko; $('koBox').style.display = KO0 ? 'block' : 'none';
+    $('hintBtn').style.display = KO0 ? 'none' : '';
+    $('prog').textContent = (idx+1) + ' / ' + prof.n + ' 문장 · ' + prof.school + ' ' + prof.lessons;
+    beginAttempt();
+  }
+  $('hintBtn').onclick = function(){ hintUsed = true; $('koBox').style.display = 'block'; $('hintBtn').style.display = 'none'; };
+  function beginAttempt(){
+    graded = false; $('micBtn').disabled = false; $('heard').textContent = '-'; $('retryBtn').style.display = 'none';
+    var LIM = limitSec();
+    if (LIM){
+      left = LIM; $('timer').className = 'timer'; $('timer').textContent = left + '초'; clearInterval(timerId);
+      timerId = setInterval(function(){ left--; $('timer').textContent = left > 0 ? left + '초' : '시간 끝'; if (left <= 5) $('timer').className = 'timer low'; if (left <= 0){ clearInterval(timerId); onTimeUp(); } }, 1000);
+    }
+  }
+  function stopTimer(){ clearInterval(timerId); }
+  function onTimeUp(){
+    if (graded) return;
+    wantStop = true;
+    if (listening && rec){ try { rec.stop(); } catch(e){} setTimeout(function(){ if (!graded) doGrade(); }, 600); } else doGrade();
+  }
+
+  function sentenceMarked(g){
+    // 정답 문장에 빈칸 정답을 색으로 표시 (맞음=초록, 틀림=빨강 밑줄)
+    var it = cur, parts = it.en.split(/___\[[^\]]*\]/), h = '';
+    for (var i=0;i<parts.length;i++){ h += esc(parts[i]); if (i < it.ans.length) h += '<span class="' + (g.hit[i] ? 'ok-w' : 'no-w') + '">' + esc(it.ans[i]) + '</span>'; }
+    return h;
+  }
+  function cmpBox(spoken, g, showAns){
+    var h = '<div class="cmp"><div><b class="l">내가 말한 것</b>' + (spoken ? esc(spoken) : '(인식된 말 없음)') + '</div>';
+    if (showAns) h += '<div><b class="l">정답 문장 · ' + esc(cur.lesson) + ' ' + cur.n + '번</b>' + sentenceMarked(g) + '</div>';
+    h += '<div class="pct">바꿔야 할 동사 ' + g.nh + '/' + g.hit.length + ' 맞음 · 문장 말한 정도 ' + g.cov + '% (기준 ' + COV + '%)</div></div>';
+    return h;
+  }
+  function finishAttempt(g, spoken){
+    if (graded) return; graded = true; stopTimer(); $('micBtn').disabled = true; $('timer').textContent = '';
+    attemptLog.push({ t: spoken || '', nh: g.nh, tot: g.hit.length, cov: g.cov });
+    var r = $('result');
+    if (g.pass){ r.className = 'result ok'; r.innerHTML = '딩동! 맞았어요' + cmpBox(spoken, g, true); dingdong(); record(true); }
+    else if (tries < RETRY){
+      tries++;
+      var why = (g.nh === g.hit.length) ? '동사는 맞았어요! 문장 전체를 말해 보세요' : '땡! 한 번 더 말해 봐요';
+      r.className = 'result no'; r.innerHTML = why + '<div class="cmp" style="text-align:center">(남은 기회 ' + (RETRY - tries + 1) + '번)</div>' + cmpBox(spoken, g, false); ddang();
+      $('retryBtn').style.display = '';
+    } else { r.className = 'result no'; r.innerHTML = '땡! 틀렸어요' + cmpBox(spoken, g, true); ddang(); record(false); }
+  }
+  function record(ok){
+    results[idx] = { lesson: cur.lesson, n: cur.n, en: cur.en, ans: cur.ans, ko: cur.ko, why: cur.why, ok: ok, hint: hintUsed, log: attemptLog.slice() };
+    $('retryBtn').style.display = 'none'; $('nextBtn').style.display = '';
+    $('nextBtn').textContent = (idx + 1 >= picks.length) ? '결과 보기' : '다음 문장';
+  }
+  $('retryBtn').onclick = function(){ $('result').className = 'result'; beginAttempt(); };
+  $('nextBtn').onclick = function(){ $('nextBtn').style.display = 'none'; if (idx + 1 >= picks.length){ finish(); return; } showNext(); };
+
+  function filled(r){ var parts = r.en.split(/___\[[^\]]*\]/), h = ''; for (var i=0;i<parts.length;i++){ h += esc(parts[i]); if (i < r.ans.length) h += '<b style="color:#1e7a3a">' + esc(r.ans[i]) + '</b>'; } return h; }
+  function whyBox(r){
+    if (!r.why) return '';
+    var h = '<div class="say" style="background:#fff8e1"><b>왜 이 형태?</b>';
+    r.ans.forEach(function(x, i){ h += '<div><span style="color:#1e7a3a;font-weight:bold">' + esc(x) + '</span> — ' + esc(r.why[i] || '') + '</div>'; });
+    return h + '</div>';
+  }
+  function finish(){
+    var wrong = results.filter(function(r){ return !r.ok; }).length, f = $('final'), hints = results.filter(function(r){ return r.hint; }).length;
+    if (wrong >= prof.pen){ f.className = 'final bad'; f.innerHTML = prof.n + '문장 중 ' + wrong + '개 틀림<br>오늘의 ' + prof.n + '문장을<br>전부 다시 쓰고 가요'; }
+    else { f.className = 'final good'; f.innerHTML = '통과!<br>' + prof.n + '문장 중 ' + wrong + '개 틀림'; }
+    $('meta').innerHTML = '<b>' + esc(prof.name) + '</b> · ' + esc(prof.school) + ' ' + esc(prof.lessons) + '<br>' + stamp() + ' · 힌트 사용 ' + hints + '문장';
+    var html = '';
+    results.forEach(function(r){
+      var say = '';
+      r.log.forEach(function(l, k){
+        say += '<div class="say"><b>' + (r.log.length > 1 ? (k+1) + '차 ' : '') + '말한 것</b>' + (l.t ? esc(l.t) : '(인식된 말 없음)') + ' <span style="color:#999">(동사 ' + l.nh + '/' + l.tot + ' · 문장 ' + l.cov + '%)</span></div>';
+      });
+      html += '<div class="item ' + (r.ok ? '' : 'x') + '"><span class="tag">' + (r.ok ? '○' : '×') + ' ' + esc(r.lesson) + ' ' + r.n + '번</span>' + (r.hint ? '<span style="color:#3498db;font-size:13px">[힌트 사용]</span> ' : '') + filled(r) + '<div class="ko">' + esc(r.ko) + '</div>' + (r.ok ? '' : whyBox(r)) + say + '</div>';
+    });
+    $('list').innerHTML = html;
+    if (wrong >= prof.pen){
+      var w = '<div class="write">공책에 이 ' + prof.n + '문장을 다시 쓰세요</div>';
+      results.forEach(function(r){ w += '<div class="item"><b>' + esc(r.lesson) + ' ' + r.n + '번</b> ' + filled(r) + '<div class="ko">' + esc(r.ko) + '</div></div>'; });
+      $('writeBox').innerHTML = w;
+    } else $('writeBox').innerHTML = '';
+    saveRecord();
+    show('sEnd'); if (window.__releaseMic) window.__releaseMic();
+  }
+  $('againBtn').onclick = function(){ show('sStart'); };
+
+  /* ---------- 음성 인식 (영어) ---------- */
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition, rec = null, listening = false;
+  if (!SR) $('micBtn').textContent = '이 브라우저는 음성 인식이 안 돼요 (크롬을 쓰세요)';
+  var wantStop = false, silT = null, finalText = '', alts = [], errored = false, handlersSet = false, micAsked = false;
+  function doGrade(){
+    if (finalText.trim()){
+      var b = gradeBest(alts.length ? alts : [finalText], cur.pz);
+      $('heard').textContent = b.text; finishAttempt(b.g, b.text);
+    } else {
+      finishAttempt(gradeOne('', cur.pz), lastHeard || '');
+    }
+  }
+  function ensureMic(cb){
+    if (micAsked || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ cb(); return; }
+    micAsked = true;
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(function(st){ try { st.getTracks().forEach(function(t){ t.stop(); }); } catch(e){} setTimeout(cb, 400); }).catch(function(){ cb(); });
+  }
+  function setHandlers(){
+    if (handlersSet) return; handlersSet = true;
+    rec.lang = 'en-US'; rec.interimResults = true; rec.maxAlternatives = 5; rec.continuous = true;
+    rec.onstart = function(){ listening = true; $('micBtn').textContent = '듣는 중... 다 말하면 누르세요'; $('micBtn').className = 'big red'; $('heard').textContent = '...'; };
+    rec.onresult = function(e){
+      alts = [];
+      for (var j=0;j<5;j++){
+        var segs = [];
+        for (var i=0;i<e.results.length;i++){
+          var rr = e.results[i], t = (rr[j] || rr[0]).transcript.trim(); if (!t) continue;
+          var last = segs.length ? segs[segs.length-1] : '';
+          if (last && t.indexOf(last) === 0) segs[segs.length-1] = t;
+          else if (last && last.indexOf(t) === 0) {}
+          else segs.push(t);
+        }
+        alts.push(segs.join(' '));
+      }
+      finalText = alts[0]; lastHeard = alts[0]; $('heard').textContent = alts[0];
+      clearTimeout(silT); silT = setTimeout(function(){ wantStop = true; try { rec.stop(); } catch(e){} }, silenceMs());
+    };
+    rec.onerror = function(e){
+      if (e.error === 'no-speech' && finalText.trim()) return;
+      if (e.error === 'aborted') return;
+      errored = true; wantStop = true; listening = false; $('micBtn').textContent = '말하기 시작'; $('micBtn').className = 'big blue';
+      $('heard').textContent = (e.error === 'not-allowed' || e.error === 'service-not-allowed') ? '마이크 허용이 필요해요. 주소창 왼쪽 자물쇠에서 마이크를 허용하세요.' : ('인식 오류: ' + e.error + ' (다시 눌러 주세요)');
+    };
+    rec.onend = function(){
+      listening = false; clearTimeout(silT);
+      $('micBtn').textContent = '말하기 시작'; $('micBtn').className = 'big blue';
+      if (graded || errored) return;
+      if (finalText.trim()) doGrade(); else $('heard').textContent = '소리가 안 들렸어요. 다시 눌러 말해 주세요.';
+    };
+  }
+  function startRec(){ if (!rec) rec = new SR(); setHandlers(); finalText = ''; alts = []; errored = false; try { rec.start(); } catch(e){} }
+  $('micBtn').onclick = function(){
+    if (!SR || !cur || graded) return;
+    if (listening){ wantStop = true; try { rec.stop(); } catch(e){} return; }
+    wantStop = false; lastHeard = ''; ensureMic(startRec);
+  };
+  window.__releaseMic = function(){};
+})();
+</script>
+</body>
+</html>
