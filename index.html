@@ -51,6 +51,8 @@
   .item.x { border-color:#f5c2c7; background:#fff8f8; }
   .item .tag { font-weight:bold; margin-right:6px; }
   .item .ko { color:#555; font-size:15px; margin-top:4px; }
+  .item .say { color:#333; font-size:14px; margin-top:6px; padding:8px 10px; background:#f8f9fa; border-radius:8px; line-height:1.5; }
+  .item .say b { color:#888; font-size:12px; margin-right:4px; }
   .write { margin:18px 0 8px; font-size:18px; font-weight:bold; text-align:center; }
   .teacher { margin-top:10px; display:none; gap:8px; justify-content:center; flex-wrap:wrap; align-items:center; font-size:14px; color:#888; }
   .foot { text-align:center; margin-top:22px; font-size:13px; color:#999; }
@@ -146,7 +148,7 @@
   document.querySelectorAll('.bk').forEach(function(x){ x.onclick = function(){ setBook(x.dataset.b); }; });
   try { var p = JSON.parse(localStorage.getItem(PKEY) || '{}'); if (p.name) $('name').value = p.name; if (p.book) setBook(p.book); if (p.from) $('from').value = p.from; if (p.to) $('to').value = p.to; } catch(e){}
 
-  var picks = [], idx = -1, cur = null, results = [], tries = 0, graded = false, timerId = null, left = 0;
+  var attemptLog = [], picks = [], idx = -1, cur = null, results = [], tries = 0, graded = false, timerId = null, left = 0;
   var prof = {};
 
   function show(id){ ['sStart','sTest','sEnd'].forEach(function(s){ $(s).classList.toggle('on', s === id); }); window.scrollTo(0,0); }
@@ -203,7 +205,7 @@
     if (idx + 1 >= picks.length) return;
     $('micBtn').disabled = true;
     $('result').className = 'result'; $('heard').textContent = '-'; $('teacherRow').style.display = 'none';
-    idx++; cur = picks[idx]; tries = 0; graded = false;
+    idx++; cur = picks[idx]; tries = 0; graded = false; attemptLog = [];
     var c = $('card'); c.className = 'card'; c.textContent = cur.en;
     $('prog').textContent = (idx+1) + ' / ' + NQ + ' 문장 · ' + prof.book + ' ' + prof.from + '~' + prof.to + '번';
     $('spinBtn').style.display = 'none';
@@ -277,7 +279,7 @@
     return h + '</div>';
   }
   function finishAttempt(pass, sc, spoken){
-    if (graded) return; graded = true; stopTimer(); $('micBtn').disabled = true; $('timer').textContent = '';
+    if (graded) return; graded = true; stopTimer(); attemptLog.push({ t: spoken || '', sc: sc }); $('micBtn').disabled = true; $('timer').textContent = '';
     var r = $('result');
     if (pass){
       r.className = 'result ok'; r.innerHTML = '딩동! 맞았어요' + cmpBox(spoken, sc, true); dingdong();
@@ -295,7 +297,7 @@
     if (TEACHER) $('teacherRow').style.display = 'flex';
   }
   function record(ok){
-    results[idx] = { n:cur.n, en:cur.en, ko:cur.ko, ok:ok };
+    results[idx] = { n:cur.n, en:cur.en, ko:cur.ko, ok:ok, log: attemptLog.slice() };
     $('retryBtn').style.display = 'none';
     $('nextBtn').style.display = '';
     $('nextBtn').textContent = (idx + 1 >= picks.length) ? '결과 보기' : '다음 문장';
@@ -318,7 +320,13 @@
     $('meta').innerHTML = '<b>' + esc(prof.name) + '</b> · ' + esc(prof.book) + ' ' + prof.from + '~' + prof.to + '번<br>' + stamp();
     var html = '';
     results.forEach(function(r){
-      html += '<div class="item ' + (r.ok ? '' : 'x') + '"><span class="tag">' + (r.ok ? '○' : '×') + ' ' + r.n + '번</span>' + esc(r.en) + '<div class="ko">' + esc(r.ko) + '</div></div>';
+      var say = '';
+      (r.log || []).forEach(function(l, k){
+        var label = (r.log.length > 1 ? (k+1) + '차 ' : '') + '말한 것';
+        if (l.sc === -1) say += '<div class="say"><b>선생님 확인</b>' + (r.ok ? '맞음으로 변경' : '틀림으로 변경') + '</div>';
+        else say += '<div class="say"><b>' + label + '</b>' + (l.t ? esc(l.t) : '(인식된 말 없음)') + ' <span style="color:#999">(일치 ' + l.sc + '%)</span></div>';
+      });
+      html += '<div class="item ' + (r.ok ? '' : 'x') + '"><span class="tag">' + (r.ok ? '○' : '×') + ' ' + prof.book + ' ' + r.n + '번</span>' + esc(r.en) + '<div class="ko"><b style="color:#888;font-size:12px">정답</b> ' + esc(r.ko) + '</div>' + say + '</div>';
     });
     $('list').innerHTML = html;
     if (wrong >= PEN){
