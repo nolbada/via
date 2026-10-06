@@ -9,128 +9,153 @@
   body { margin:0; background:#f8f9fa; font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif; color:#2c3e50; padding:16px; }
   .wrap { max-width:720px; margin:0 auto; background:#fff; border-radius:20px; padding:28px 24px; box-shadow:0 4px 20px rgba(0,0,0,.1); }
   h1 { font-size:26px; margin:0 0 4px; text-align:center; }
-  .sub { text-align:center; color:#666; font-size:15px; margin-bottom:20px; }
-  .tabs { display:flex; gap:8px; margin-bottom:18px; }
-  .tab { flex:1; padding:11px; border:2px solid #e9ecef; background:#fff; border-radius:12px; font:inherit; font-weight:bold; font-size:16px; color:#666; cursor:pointer; }
-  .tab.on { border-color:#f39c12; background:#fff3cd; color:#2c3e50; }
-  .panel { display:none; } .panel.on { display:block; }
-  textarea { width:100%; min-height:220px; padding:12px; font:inherit; font-size:15px; border:2px solid #e9ecef; border-radius:12px; resize:vertical; }
-  .row { display:flex; gap:12px; flex-wrap:wrap; margin:12px 0; align-items:center; font-size:15px; }
-  .row input[type=number] { width:70px; padding:8px; font:inherit; font-size:16px; border:2px solid #e9ecef; border-radius:10px; }
-  .hint { background:#e9ecef; border-radius:12px; padding:12px 14px; font-size:14px; color:#555; margin-bottom:12px; line-height:1.6; }
-  button.big { width:100%; padding:16px; border:0; border-radius:14px; background:#f39c12; color:#fff; font:inherit; font-size:20px; font-weight:bold; cursor:pointer; margin-top:8px; }
+  .sub { text-align:center; color:#666; font-size:15px; margin-bottom:22px; }
+  label { display:block; font-size:15px; font-weight:bold; margin:14px 0 6px; }
+  input[type=text], input[type=number], select { width:100%; padding:13px 14px; font:inherit; font-size:18px; border:2px solid #e9ecef; border-radius:12px; outline:none; background:#fff; }
+  input:focus, select:focus { border-color:#f39c12; }
+  .books { display:flex; gap:8px; }
+  .bk { flex:1; padding:16px 0; border:2px solid #e9ecef; background:#fff; border-radius:14px; font:inherit; font-size:20px; font-weight:bold; color:#666; cursor:pointer; }
+  .bk.on { border-color:#f39c12; background:#fff3cd; color:#2c3e50; }
+  .bkinfo { text-align:center; color:#888; font-size:14px; margin-top:8px; }
+  .two { display:flex; gap:10px; align-items:center; }
+  .two span { font-size:20px; color:#888; }
+  .hint { background:#e9ecef; border-radius:12px; padding:12px 14px; font-size:14px; color:#555; margin-top:14px; line-height:1.6; }
+  .err { color:#b02a37; font-size:14px; margin-top:10px; min-height:20px; }
+  button.big { width:100%; padding:16px; border:0; border-radius:14px; background:#f39c12; color:#fff; font:inherit; font-size:20px; font-weight:bold; cursor:pointer; margin-top:10px; }
   button.big:disabled { background:#ccc; cursor:default; }
-  button.big.blue { background:#3498db; } button.big.red { background:#e74c3c; }
+  button.big.blue { background:#3498db; } button.big.red { background:#e74c3c; } button.big.gray { background:#6c757d; }
   .small { padding:9px 16px; border:2px solid #e9ecef; background:#fff; border-radius:10px; font:inherit; font-size:14px; cursor:pointer; }
+  .screen { display:none; } .screen.on { display:block; }
   .progress { text-align:center; font-size:15px; color:#666; margin-bottom:10px; }
   .card { border:2px solid #e9ecef; border-radius:16px; padding:28px 18px; text-align:center; min-height:130px; display:flex; align-items:center; justify-content:center; font-size:26px; line-height:1.5; font-weight:bold; }
   .card.spin { color:#bbb; }
-  .heard { margin-top:14px; padding:14px; background:#f8f9fa; border-radius:12px; font-size:17px; min-height:52px; }
+  .timer { text-align:center; font-size:20px; font-weight:bold; color:#3498db; height:30px; margin-top:8px; }
+  .timer.low { color:#e74c3c; }
+  .heard { margin-top:10px; padding:14px; background:#f8f9fa; border-radius:12px; font-size:17px; min-height:52px; }
   .heard b { color:#888; font-size:13px; display:block; margin-bottom:4px; }
   .result { margin-top:14px; padding:18px; border-radius:14px; text-align:center; font-size:22px; font-weight:bold; display:none; }
   .result.ok { background:#d4edda; color:#1e7a3a; display:block; }
   .result.no { background:#f8d7da; color:#b02a37; display:block; }
-  .ans { font-size:15px; font-weight:normal; margin-top:8px; color:#444; }
-  .log { margin-top:16px; font-size:15px; }
-  .log div { padding:8px 4px; border-bottom:1px solid #eee; }
-  .final { margin-top:16px; padding:20px; border-radius:14px; text-align:center; font-size:22px; font-weight:bold; background:#fff3cd; }
+  .ans { font-size:16px; font-weight:normal; margin-top:8px; color:#444; line-height:1.6; }
+  .final { padding:22px 16px; border-radius:16px; text-align:center; font-size:24px; font-weight:bold; margin-bottom:14px; line-height:1.5; }
   .final.bad { background:#f8d7da; color:#b02a37; }
   .final.good { background:#d4edda; color:#1e7a3a; }
+  .meta { text-align:center; font-size:15px; color:#555; margin-bottom:14px; line-height:1.7; }
+  .item { border:2px solid #e9ecef; border-radius:12px; padding:12px 14px; margin-bottom:10px; font-size:17px; line-height:1.6; }
+  .item.x { border-color:#f5c2c7; background:#fff8f8; }
+  .item .tag { font-weight:bold; margin-right:6px; }
+  .item .ko { color:#555; font-size:15px; margin-top:4px; }
+  .write { margin:18px 0 8px; font-size:18px; font-weight:bold; text-align:center; }
+  .teacher { margin-top:10px; display:none; gap:8px; justify-content:center; flex-wrap:wrap; align-items:center; font-size:14px; color:#888; }
   .foot { text-align:center; margin-top:22px; font-size:13px; color:#999; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>즉석 말하기 룰렛 테스트</h1>
-  <div class="sub">룰렛이 뽑은 영어 문장을 한국어로 해석해서 말하세요</div>
+  <div class="sub">내가 해석해 온 문장, 진짜 내 실력인지 확인해요</div>
 
-  <div class="tabs">
-    <button class="tab on" data-p="test">테스트</button>
-    <button class="tab" data-p="setup">문장 설정 (선생님)</button>
+  <!-- 1. 시작 화면 -->
+  <div class="screen on" id="sStart">
+    <label for="name">이름</label>
+    <input type="text" id="name" placeholder="이름을 입력하세요" autocomplete="off">
+    <label for="book">책</label>
+    <input type="hidden" id="book" value="">
+    <div class="books" id="books">
+      <button type="button" class="bk" data-b="기본">기본</button>
+      <button type="button" class="bk" data-b="발전">발전</button>
+      <button type="button" class="bk" data-b="심화">심화</button>
+      <button type="button" class="bk" data-b="고교">고교</button>
+    </div>
+    <div class="bkinfo" id="bkinfo">책을 선택하세요</div>
+    <label>오늘 해석해 온 번호</label>
+    <div class="two">
+      <input type="number" id="from" inputmode="numeric" placeholder="시작">
+      <span>~</span>
+      <input type="number" id="to" inputmode="numeric" placeholder="끝">
+    </div>
+    <div class="err" id="err"></div>
+    <button class="big" id="startBtn">시험 시작</button>
+    <div class="hint" id="rule"></div>
   </div>
 
-  <div class="panel on" id="test">
-    <div class="progress" id="prog">문장 설정에서 문장을 넣고 시작하세요</div>
+  <!-- 2. 시험 화면 -->
+  <div class="screen" id="sTest">
+    <div class="progress" id="prog"></div>
     <div class="card spin" id="card">룰렛 돌리기를 누르세요</div>
+    <div class="timer" id="timer"></div>
     <button class="big" id="spinBtn">룰렛 돌리기</button>
     <button class="big blue" id="micBtn" disabled>말하기 시작</button>
     <div class="heard"><b>인식된 내 말</b><span id="heard">-</span></div>
     <div class="result" id="result"></div>
-    <div class="row" id="teacherRow" style="display:none;justify-content:center">
-      <span style="color:#888">인식이 이상하면 선생님이 직접:</span>
+    <div class="teacher" id="teacherRow">
+      <span>선생님 확인용:</span>
       <button class="small" id="forceOk">맞음으로 바꾸기</button>
       <button class="small" id="forceNo">틀림으로 바꾸기</button>
     </div>
+    <button class="big" id="retryBtn" style="display:none">다시 말하기</button>
     <button class="big" id="nextBtn" style="display:none">다음 문장</button>
-    <div class="log" id="log"></div>
-    <div class="final" id="final" style="display:none"></div>
-    <button class="big" id="resetBtn" style="display:none;background:#6c757d">처음부터 다시</button>
   </div>
 
-  <div class="panel" id="setup">
-    <div class="hint">
-      한 줄에 하나씩, <b>영어 문장 | 한글 해석</b> 형태로 넣으세요. 가운데 세로선(|)으로 구분합니다.<br>
-      예) I want to read a book. | 나는 책을 읽고 싶다.<br>
-      해석은 선생님이 정한 정답입니다. 학생이 말한 내용과 비교해서 맞았는지 판정해요.
-    </div>
-    <textarea id="data" placeholder="영어 문장 | 한글 해석"></textarea>
-    <div class="row">
-      <label>시험 문장 수 <input type="number" id="nq" value="3" min="1" max="20"></label>
-      <label>통과 기준(%) <input type="number" id="th" value="60" min="10" max="100"></label>
-      <label>틀린 개수가 이 이상이면 페널티 <input type="number" id="pen" value="2" min="1" max="20"></label>
-    </div>
-    <div class="row"><label>페널티 문구 <input type="text" id="penText" value="오늘의 3문장 오답노트 쓰기" style="width:260px;padding:8px;font:inherit;border:2px solid #e9ecef;border-radius:10px"></label></div>
-    <button class="big" id="saveBtn">저장하고 테스트 시작</button>
-    <div class="hint" style="margin-top:12px">저장한 내용은 이 기기의 이 브라우저에만 남습니다. 폰을 바꾸면 다시 넣어야 해요. 이 페이지 주소를 아는 사람은 누구나 열 수 있으니 저작권이 있는 교재 문장은 넣지 마세요.</div>
+  <!-- 3. 결과 화면 -->
+  <div class="screen" id="sEnd">
+    <div class="final" id="final"></div>
+    <div class="meta" id="meta"></div>
+    <div id="list"></div>
+    <div id="writeBox"></div>
+    <button class="big gray" id="againBtn">처음으로</button>
   </div>
 
   <div class="foot">동남 비타민영어클리닉</div>
 </div>
 
+<script src="data.js"></script>
 <script>
 (function(){
   var $ = function(id){ return document.getElementById(id); };
-  var KEY = 'oral_roulette_v1';
-  var cfg = { items: [], nq: 3, th: 60, pen: 2, penText: '오늘의 3문장 오답노트 쓰기' };
-  try { var s = localStorage.getItem(KEY); if (s) cfg = Object.assign(cfg, JSON.parse(s)); } catch(e){}
+  var Q = new URLSearchParams(location.search);
+  var NQ    = parseInt(Q.get('n'))     || 3;    // 뽑는 문장 수
+  var TH    = parseInt(Q.get('th'))    || 60;   // 통과 기준(%)
+  var PEN   = parseInt(Q.get('pen'))   || 2;    // 이 개수 이상 틀리면 벌칙
+  var TIME  = Q.has('time') ? parseInt(Q.get('time')) : 20; // 제한시간(초), 0이면 없음
+  var RETRY = Q.has('retry') ? parseInt(Q.get('retry')) : 1; // 문장당 다시 말하기 횟수
+  var TEACHER = Q.get('t') === '1';
+  var BOOKS = window.BOOKS || {};
+  var PKEY = 'oral_roulette_profile_v2';
 
-  var order = [], idx = -1, wrong = 0, done = 0, cur = null, graded = false, lastPass = null;
+  $('rule').innerHTML = '번호 범위 안에서 ' + NQ + '문장이 랜덤으로 뽑혀요. 영어 문장이 나오면 <b>한국어 해석</b>을 말하세요.'
+    + (TIME ? '<br>문장마다 ' + TIME + '초 안에 말해야 해요.' : '')
+    + '<br>' + PEN + '개 이상 틀리면 오늘의 ' + NQ + '문장을 전부 다시 쓰고 가요.'
+    + (RETRY ? '<br>문장마다 다시 말하기 ' + RETRY + '번 기회가 있어요.' : '');
 
-  function save(){ try { localStorage.setItem(KEY, JSON.stringify(cfg)); } catch(e){} }
-  function parse(txt){
-    return txt.split('\n').map(function(l){ var p = l.split('|'); return p.length>=2 ? {en:p[0].trim(), ko:p.slice(1).join('|').trim()} : null; })
-      .filter(function(x){ return x && x.en && x.ko; });
+  // 저장된 프로필
+  function setBook(b){
+    $('book').value = b || '';
+    document.querySelectorAll('.bk').forEach(function(x){ x.classList.toggle('on', x.dataset.b === b); });
+    var n = (BOOKS[b] || []).length;
+    $('bkinfo').textContent = b ? (b + ': 1~' + n + '번') : '책을 선택하세요';
+    $('err').textContent = '';
   }
-  function fillSetup(){
-    $('data').value = cfg.items.map(function(i){ return i.en + ' | ' + i.ko; }).join('\n');
-    $('nq').value = cfg.nq; $('th').value = cfg.th; $('pen').value = cfg.pen; $('penText').value = cfg.penText;
-  }
+  document.querySelectorAll('.bk').forEach(function(x){ x.onclick = function(){ setBook(x.dataset.b); }; });
+  try { var p = JSON.parse(localStorage.getItem(PKEY) || '{}'); if (p.name) $('name').value = p.name; if (p.book) setBook(p.book); if (p.from) $('from').value = p.from; if (p.to) $('to').value = p.to; } catch(e){}
+
+  var picks = [], idx = -1, cur = null, results = [], tries = 0, graded = false, timerId = null, left = 0;
+  var prof = {};
+
+  function show(id){ ['sStart','sTest','sEnd'].forEach(function(s){ $(s).classList.toggle('on', s === id); }); window.scrollTo(0,0); }
+  function esc(s){ return String(s).replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
   function shuffle(a){ a = a.slice(); for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
-
-  // 탭
-  document.querySelectorAll('.tab').forEach(function(t){
-    t.onclick = function(){
-      document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('on'); });
-      document.querySelectorAll('.panel').forEach(function(x){ x.classList.remove('on'); });
-      t.classList.add('on'); $(t.dataset.p).classList.add('on');
-    };
-  });
-
-  function newRound(){
-    order = shuffle(cfg.items).slice(0, Math.min(cfg.nq, cfg.items.length));
-    idx = -1; wrong = 0; done = 0; cur = null; graded = false;
-    $('log').innerHTML = ''; $('final').style.display = 'none'; $('resetBtn').style.display = 'none';
-    $('result').className = 'result'; $('heard').textContent = '-';
-    $('card').className = 'card spin'; $('card').textContent = cfg.items.length ? '룰렛 돌리기를 누르세요' : '문장 설정 탭에서 문장을 먼저 넣어 주세요';
-    $('spinBtn').style.display = ''; $('spinBtn').disabled = !cfg.items.length;
-    $('micBtn').disabled = true; $('nextBtn').style.display = 'none'; $('teacherRow').style.display = 'none';
-    $('prog').textContent = cfg.items.length ? ('0 / ' + order.length + ' 문장') : '문장 설정에서 문장을 넣고 시작하세요';
+  function stamp(){
+    var d = new Date(), w = ['일','월','화','수','목','금','토'][d.getDay()];
+    var hh = ('0'+d.getHours()).slice(-2), mm = ('0'+d.getMinutes()).slice(-2);
+    return (d.getMonth()+1) + '/' + d.getDate() + '(' + w + ') ' + hh + ':' + mm;
   }
 
   // 소리
   var AC = window.AudioContext || window.webkitAudioContext, ac = null;
+  var SOUND = Q.get('sound') !== '0';   // 링크 끝에 ?sound=0 을 붙이면 모든 소리 끔
   function tone(freq, start, dur, type){
-    if (!AC) return; if (!ac) ac = new AC();
+    if (!SOUND || !AC) return; if (!ac) ac = new AC();
     var o = ac.createOscillator(), g = ac.createGain();
     o.type = type || 'sine'; o.frequency.value = freq; o.connect(g); g.connect(ac.destination);
     var t = ac.currentTime + start; g.gain.setValueAtTime(0.25, t); g.gain.exponentialRampToValueAtTime(0.001, t + dur);
@@ -139,26 +164,73 @@
   function dingdong(){ tone(880,0,.35); tone(660,.3,.6); }
   function ddang(){ tone(150,0,.5,'sawtooth'); tone(120,.15,.6,'sawtooth'); }
 
+  // 시작
+  $('startBtn').onclick = function(){
+    var name = $('name').value.trim(), book = $('book').value, f = parseInt($('from').value), t = parseInt($('to').value);
+    var arr = BOOKS[book], err = $('err');
+    if (!name){ err.textContent = '이름을 입력하세요.'; return; }
+    if (!book){ err.textContent = '책(기본·발전·심화·고교)을 눌러 선택하세요.'; return; }
+    if (!arr){ err.textContent = '문장 데이터를 불러오지 못했어요. 새로고침 해 보세요.'; return; }
+    if (!f || !t || f > t){ err.textContent = '번호 범위를 정확히 입력하세요. (예: 221 ~ 230)'; return; }
+    if (f < 1 || t > arr.length){ err.textContent = book + '은 1~' + arr.length + '번까지 있어요.'; return; }
+    if (t - f + 1 < NQ){ err.textContent = '범위에 문장이 ' + NQ + '개는 있어야 해요.'; return; }
+    if (t - f + 1 > 60){ err.textContent = '범위가 너무 넓어요. 60문장 이내로 입력하세요.'; return; }
+    err.textContent = '';
+    prof = { name: name, book: book, from: f, to: t };
+    try { localStorage.setItem(PKEY, JSON.stringify(prof)); } catch(e){}
+    var nums = []; for (var i=f;i<=t;i++) nums.push(i);
+    picks = shuffle(nums).slice(0, NQ).map(function(n){ return { n:n, en:arr[n-1][0], ko:arr[n-1][1] }; });
+    idx = -1; cur = null; results = [];
+    $('card').className = 'card spin'; $('card').textContent = '룰렛 돌리기를 누르세요';
+    $('result').className = 'result'; $('heard').textContent = '-'; $('timer').textContent = '';
+    $('spinBtn').style.display = ''; $('spinBtn').disabled = false;
+    $('micBtn').disabled = true; $('nextBtn').style.display = 'none'; $('retryBtn').style.display = 'none';
+    $('teacherRow').style.display = 'none';
+    $('prog').textContent = '0 / ' + NQ + ' 문장 · ' + book + ' ' + f + '~' + t + '번';
+    show('sTest');
+  };
+
   // 룰렛
   $('spinBtn').onclick = function(){
-    if (idx + 1 >= order.length) return;
+    if (idx + 1 >= picks.length) return;
     $('spinBtn').disabled = true; $('micBtn').disabled = true;
     $('result').className = 'result'; $('heard').textContent = '-'; $('teacherRow').style.display = 'none';
-    var n = 0, c = $('card'); c.className = 'card spin';
-    var timer = setInterval(function(){
-      c.textContent = cfg.items[Math.floor(Math.random()*cfg.items.length)].en; n++;
-      tone(300 + (n%5)*80, 0, .05);
+    var arr = BOOKS[prof.book], n = 0, c = $('card'); c.className = 'card spin';
+    var spin = setInterval(function(){
+      var r = prof.from + Math.floor(Math.random() * (prof.to - prof.from + 1));
+      c.textContent = arr[r-1][0]; n++;
       if (n > 18){
-        clearInterval(timer); idx++; cur = order[idx]; graded = false;
-        c.className = 'card'; c.textContent = cur.en; dingdong();
-        $('prog').textContent = (idx+1) + ' / ' + order.length + ' 문장';
-        $('micBtn').disabled = false; $('spinBtn').style.display = 'none';
+        clearInterval(spin); idx++; cur = picks[idx]; tries = 0; graded = false;
+        c.className = 'card'; c.textContent = cur.en;
+        $('prog').textContent = (idx+1) + ' / ' + NQ + ' 문장 · ' + prof.book + ' ' + prof.from + '~' + prof.to + '번';
+        $('spinBtn').style.display = 'none';
+        beginAttempt();
       }
     }, 90);
   };
 
+  function beginAttempt(){
+    graded = false; $('micBtn').disabled = false; $('heard').textContent = '-';
+    $('retryBtn').style.display = 'none';
+    if (TIME){
+      left = TIME; $('timer').className = 'timer'; $('timer').textContent = left + '초';
+      clearInterval(timerId);
+      timerId = setInterval(function(){
+        left--; $('timer').textContent = left > 0 ? left + '초' : '시간 끝';
+        if (left <= 5) $('timer').className = 'timer low';
+        if (left <= 0){ clearInterval(timerId); onTimeUp(); }
+      }, 1000);
+    }
+  }
+  function stopTimer(){ clearInterval(timerId); }
+  function onTimeUp(){
+    if (graded) return;
+    if (listening && rec){ try { rec.stop(); } catch(e){} setTimeout(function(){ if (!graded) finishAttempt(false, 0, lastHeard); }, 600); }
+    else finishAttempt(false, 0, lastHeard);
+  }
+
   // 판정: 정답 글자 2개 묶음이 말한 내용에 얼마나 들어있나
-  function norm(s){ return s.toLowerCase().replace(/[^가-힣a-z0-9]/g,''); }
+  function norm(s){ return String(s).toLowerCase().replace(/[^가-힣a-z0-9]/g,''); }
   function bigrams(s){ var r = []; for (var i=0;i<s.length-1;i++) r.push(s.substr(i,2)); return r; }
   function score(spoken, answer){
     var a = norm(answer), sp = norm(spoken); if (!a || !sp) return 0;
@@ -166,59 +238,76 @@
     var hit = 0; bg.forEach(function(b){ if (sp.indexOf(b) >= 0) hit++; });
     return Math.round(hit / bg.length * 100);
   }
-  function grade(spoken){
-    if (graded) return; graded = true;
-    var sc = score(spoken, cur.ko), pass = sc >= cfg.th;
-    showResult(pass, sc, spoken);
-  }
-  function showResult(pass, sc, spoken){
-    lastPass = pass;
-    var r = $('result');
-    r.className = 'result ' + (pass ? 'ok' : 'no');
-    r.innerHTML = (pass ? '딩동! 맞았어요' : '땡! 다시 확인해요') + '<div class="ans">정답 해석: ' + esc(cur.ko) + (sc!=null ? ' (일치 ' + sc + '%)' : '') + '</div>';
-    pass ? dingdong() : ddang();
-    $('teacherRow').style.display = 'flex'; $('micBtn').disabled = true;
-    var row = $('log').querySelector('[data-i="'+idx+'"]');
-    if (!row){ row = document.createElement('div'); row.dataset.i = idx; $('log').appendChild(row); }
-    row.textContent = (idx+1) + '번  ' + cur.en + '  →  ' + (pass ? '맞음' : '틀림');
-    row.dataset.pass = pass ? '1' : '0';
-    $('nextBtn').style.display = '';
-    $('nextBtn').textContent = (idx + 1 >= order.length) ? '결과 보기' : '다음 문장';
-  }
-  function esc(s){ return s.replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
 
-  $('forceOk').onclick = function(){ if (cur) showResult(true, null, ''); };
-  $('forceNo').onclick = function(){ if (cur) showResult(false, null, ''); };
+  var lastHeard = '';
+  function finishAttempt(pass, sc, spoken){
+    if (graded) return; graded = true; stopTimer(); $('micBtn').disabled = true; $('timer').textContent = '';
+    var r = $('result');
+    if (pass){
+      r.className = 'result ok'; r.innerHTML = '딩동! 맞았어요'; dingdong();
+      record(true);
+    } else if (tries < RETRY){
+      tries++;
+      r.className = 'result no'; r.innerHTML = '땡! 한 번 더 말해 봐요<div class="ans">(남은 기회 ' + (RETRY - tries + 1) + '번)</div>'; ddang();
+      $('retryBtn').style.display = '';
+      if (TEACHER) $('teacherRow').style.display = 'flex';
+      return;
+    } else {
+      r.className = 'result no'; r.innerHTML = '땡! 틀렸어요<div class="ans">정답 해석: ' + esc(cur.ko) + '</div>'; ddang();
+      record(false);
+    }
+    if (TEACHER) $('teacherRow').style.display = 'flex';
+  }
+  function record(ok){
+    results[idx] = { n:cur.n, en:cur.en, ko:cur.ko, ok:ok };
+    $('retryBtn').style.display = 'none';
+    $('nextBtn').style.display = '';
+    $('nextBtn').textContent = (idx + 1 >= picks.length) ? '결과 보기' : '다음 문장';
+  }
+  $('retryBtn').onclick = function(){ $('result').className = 'result'; $('teacherRow').style.display = 'none'; beginAttempt(); };
+  $('forceOk').onclick = function(){ graded = false; finishAttempt(true, 100, ''); };
+  $('forceNo').onclick = function(){ graded = false; tries = RETRY; finishAttempt(false, 0, ''); };
 
   $('nextBtn').onclick = function(){
     $('nextBtn').style.display = 'none'; $('teacherRow').style.display = 'none';
-    if (idx + 1 >= order.length){ finish(); return; }
-    $('result').className = 'result'; $('heard').textContent = '-';
+    if (idx + 1 >= picks.length){ finish(); return; }
+    $('result').className = 'result'; $('heard').textContent = '-'; $('timer').textContent = '';
     $('spinBtn').style.display = ''; $('spinBtn').disabled = false;
     $('card').className = 'card spin'; $('card').textContent = '룰렛 돌리기를 누르세요';
   };
+
   function finish(){
-    var w = 0; $('log').querySelectorAll('div').forEach(function(d){ if (d.dataset.pass === '0') w++; });
-    var f = $('final'); f.style.display = 'block';
-    if (w >= cfg.pen){ f.className = 'final bad'; f.innerHTML = order.length + '문장 중 ' + w + '개 틀림<br>페널티: ' + esc(cfg.penText); }
-    else { f.className = 'final good'; f.innerHTML = order.length + '문장 중 ' + w + '개 틀림<br>통과! 수고했어요'; }
-    $('resetBtn').style.display = '';
-    $('card').textContent = '끝!'; $('prog').textContent = '테스트 종료';
+    var wrong = results.filter(function(r){ return !r.ok; }).length;
+    var f = $('final');
+    if (wrong >= PEN){ f.className = 'final bad'; f.innerHTML = NQ + '문장 중 ' + wrong + '개 틀림<br>오늘의 ' + NQ + '문장을<br>전부 다시 쓰고 가요'; }
+    else { f.className = 'final good'; f.innerHTML = '통과!<br>' + NQ + '문장 중 ' + wrong + '개 틀림'; }
+    $('meta').innerHTML = '<b>' + esc(prof.name) + '</b> · ' + esc(prof.book) + ' ' + prof.from + '~' + prof.to + '번<br>' + stamp();
+    var html = '';
+    results.forEach(function(r){
+      html += '<div class="item ' + (r.ok ? '' : 'x') + '"><span class="tag">' + (r.ok ? '○' : '×') + ' ' + r.n + '번</span>' + esc(r.en) + '<div class="ko">' + esc(r.ko) + '</div></div>';
+    });
+    $('list').innerHTML = html;
+    if (wrong >= PEN){
+      var w = '<div class="write">공책에 이 ' + NQ + '문장을 다시 쓰세요</div>';
+      results.forEach(function(r){ w += '<div class="item"><b>' + r.n + '번</b> ' + esc(r.en) + '<div class="ko">' + esc(r.ko) + '</div></div>'; });
+      $('writeBox').innerHTML = w;
+    } else $('writeBox').innerHTML = '';
+    show('sEnd');
   }
-  $('resetBtn').onclick = newRound;
+  $('againBtn').onclick = function(){ show('sStart'); };
 
   // 음성 인식 (한국어)
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition, rec = null, listening = false;
   if (!SR){ $('micBtn').textContent = '이 브라우저는 음성 인식이 안 돼요 (크롬을 쓰세요)'; }
   $('micBtn').onclick = function(){
-    if (!SR || !cur) return;
+    if (!SR || !cur || graded) return;
     if (listening){ try { rec.stop(); } catch(e){} return; }
     rec = new SR(); rec.lang = 'ko-KR'; rec.interimResults = true; rec.maxAlternatives = 1; rec.continuous = false;
-    var finalText = '';
+    var finalText = ''; lastHeard = '';
     rec.onstart = function(){ listening = true; $('micBtn').textContent = '듣는 중... 다 말하면 누르세요'; $('micBtn').className = 'big red'; $('heard').textContent = '...'; };
     rec.onresult = function(e){
       var t = ''; for (var i=0;i<e.results.length;i++){ t += e.results[i][0].transcript; }
-      finalText = t; $('heard').textContent = t;
+      finalText = t; lastHeard = t; $('heard').textContent = t;
     };
     rec.onerror = function(e){
       listening = false; $('micBtn').textContent = '말하기 시작'; $('micBtn').className = 'big blue';
@@ -226,26 +315,12 @@
     };
     rec.onend = function(){
       listening = false; $('micBtn').textContent = '말하기 시작'; $('micBtn').className = 'big blue';
-      if (finalText.trim()) grade(finalText);
-      else if (!graded) $('heard').textContent = '소리가 안 들렸어요. 다시 눌러 말해 주세요.';
+      if (graded) return;
+      if (finalText.trim()){ var sc = score(finalText, cur.ko); finishAttempt(sc >= TH, sc, finalText); }
+      else $('heard').textContent = '소리가 안 들렸어요. 다시 눌러 말해 주세요.';
     };
     try { rec.start(); } catch(e){}
   };
-
-  $('saveBtn').onclick = function(){
-    var items = parse($('data').value);
-    if (!items.length){ alert('문장이 없어요. "영어 문장 | 한글 해석" 형태로 한 줄씩 넣어 주세요.'); return; }
-    cfg.items = items;
-    cfg.nq = Math.max(1, parseInt($('nq').value) || 3);
-    cfg.th = Math.min(100, Math.max(10, parseInt($('th').value) || 60));
-    cfg.pen = Math.max(1, parseInt($('pen').value) || 2);
-    cfg.penText = $('penText').value.trim() || '오답노트 쓰기';
-    save();
-    document.querySelector('.tab[data-p="test"]').click();
-    newRound();
-  };
-
-  fillSetup(); newRound();
 })();
 </script>
 </body>
