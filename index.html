@@ -54,7 +54,6 @@
   .item .say { color:#333; font-size:14px; margin-top:6px; padding:8px 10px; background:#f8f9fa; border-radius:8px; line-height:1.5; }
   .item .say b { color:#888; font-size:12px; margin-right:4px; }
   .write { margin:18px 0 8px; font-size:18px; font-weight:bold; text-align:center; }
-  .teacher { margin-top:10px; display:none; gap:8px; justify-content:center; flex-wrap:wrap; align-items:center; font-size:14px; color:#888; }
   .foot { text-align:center; margin-top:22px; font-size:13px; color:#999; }
 </style>
 </head>
@@ -96,11 +95,6 @@
     <button class="big blue" id="micBtn" disabled>말하기 시작</button>
     <div class="heard"><b>인식된 내 말</b><span id="heard">-</span></div>
     <div class="result" id="result"></div>
-    <div class="teacher" id="teacherRow">
-      <span>선생님 확인용:</span>
-      <button class="small" id="forceOk">맞음으로 바꾸기</button>
-      <button class="small" id="forceNo">틀림으로 바꾸기</button>
-    </div>
     <button class="big" id="retryBtn" style="display:none">다시 말하기</button>
     <button class="big" id="nextBtn" style="display:none">다음 문장</button>
   </div>
@@ -194,7 +188,6 @@
     $('result').className = 'result'; $('heard').textContent = '-'; $('timer').textContent = '';
     $('spinBtn').style.display = 'none';
     $('micBtn').disabled = true; $('nextBtn').style.display = 'none'; $('retryBtn').style.display = 'none';
-    $('teacherRow').style.display = 'none';
     $('prog').textContent = '0 / ' + NQ + ' 문장 · ' + book + ' ' + f + '~' + t + '번';
     show('sTest');
     showNext();
@@ -204,8 +197,7 @@
   function showNext(){
     if (idx + 1 >= picks.length) return;
     $('micBtn').disabled = true;
-    $('result').className = 'result'; $('heard').textContent = '-'; $('teacherRow').style.display = 'none';
-    idx++; cur = picks[idx]; tries = 0; graded = false; attemptLog = [];
+    $('result').className = 'result'; $('heard').textContent = '-';    idx++; cur = picks[idx]; tries = 0; graded = false; attemptLog = [];
     var c = $('card'); c.className = 'card'; c.textContent = cur.en;
     $('prog').textContent = (idx+1) + ' / ' + NQ + ' 문장 · ' + prof.book + ' ' + prof.from + '~' + prof.to + '번';
     $('spinBtn').style.display = 'none';
@@ -288,13 +280,11 @@
       tries++;
       r.className = 'result no'; r.innerHTML = '땡! 한 번 더 말해 봐요<div class="ans">(남은 기회 ' + (RETRY - tries + 1) + '번)</div>' + cmpBox(spoken, sc, TEACHER); ddang();
       $('retryBtn').style.display = '';
-      if (TEACHER) $('teacherRow').style.display = 'flex';
       return;
     } else {
       r.className = 'result no'; r.innerHTML = '땡! 틀렸어요' + cmpBox(spoken, sc, true); ddang();
       record(false);
     }
-    if (TEACHER) $('teacherRow').style.display = 'flex';
   }
   function record(ok){
     results[idx] = { n:cur.n, en:cur.en, ko:cur.ko, ok:ok, log: attemptLog.slice() };
@@ -302,13 +292,10 @@
     $('nextBtn').style.display = '';
     $('nextBtn').textContent = (idx + 1 >= picks.length) ? '결과 보기' : '다음 문장';
   }
-  $('retryBtn').onclick = function(){ $('result').className = 'result'; $('teacherRow').style.display = 'none'; beginAttempt(); };
-  $('forceOk').onclick = function(){ graded = false; finishAttempt(true, -1, ''); };
-  $('forceNo').onclick = function(){ graded = false; tries = RETRY; finishAttempt(false, -1, ''); };
+  $('retryBtn').onclick = function(){ $('result').className = 'result'; beginAttempt(); };
 
   $('nextBtn').onclick = function(){
-    $('nextBtn').style.display = 'none'; $('teacherRow').style.display = 'none';
-    if (idx + 1 >= picks.length){ finish(); return; }
+    $('nextBtn').style.display = 'none';    if (idx + 1 >= picks.length){ finish(); return; }
     showNext();
   };
 
@@ -323,8 +310,7 @@
       var say = '';
       (r.log || []).forEach(function(l, k){
         var label = (r.log.length > 1 ? (k+1) + '차 ' : '') + '말한 것';
-        if (l.sc === -1) say += '<div class="say"><b>선생님 확인</b>' + (r.ok ? '맞음으로 변경' : '틀림으로 변경') + '</div>';
-        else say += '<div class="say"><b>' + label + '</b>' + (l.t ? esc(l.t) : '(인식된 말 없음)') + ' <span style="color:#999">(일치 ' + l.sc + '%)</span></div>';
+        say += '<div class="say"><b>' + label + '</b>' + (l.t ? esc(l.t) : '(인식된 말 없음)') + ' <span style="color:#999">(일치 ' + l.sc + '%)</span></div>';
       });
       html += '<div class="item ' + (r.ok ? '' : 'x') + '"><span class="tag">' + (r.ok ? '○' : '×') + ' ' + prof.book + ' ' + r.n + '번</span>' + esc(r.en) + '<div class="ko"><b style="color:#888;font-size:12px">정답</b> ' + esc(r.ko) + '</div>' + say + '</div>';
     });
