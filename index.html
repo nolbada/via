@@ -380,9 +380,7 @@
     rec.onend = function(){
       listening = false; clearTimeout(silT);
       if (graded) { $('micBtn').textContent = '말하기 시작'; $('micBtn').className = 'big blue'; return; }
-      if (!wantStop && !errored && finalText.trim()){   // 브라우저가 중간에 끊었으면 이어서 계속 듣기
-        baseText = finalText; try { rec.start(); return; } catch(e){}
-      }
+      // (끊겼을 때 자동으로 다시 시작하지 않는다: 시작할 때마다 마이크 허용창이 또 뜨기 때문)
       $('micBtn').textContent = '말하기 시작'; $('micBtn').className = 'big blue';
       if (errored) return;
       if (finalText.trim()){
