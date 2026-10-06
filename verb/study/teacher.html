@@ -25,6 +25,11 @@ table{border-collapse:collapse;width:100%;font-size:15px}td{border:1px solid var
 .row{display:flex;gap:8px}.row button{flex:1}
 .o{background:#2f9e44!important}.x{background:#e03131!important}
 .hint{font-size:13px;color:var(--sub)}
+.jrow{display:flex;align-items:flex-start;gap:6px;font-size:15px}.jb{margin-left:auto;flex:none;white-space:nowrap}
+.jo.on{background:#2f9e44!important;color:#fff;border-color:#2f9e44}.jx.on{background:#e03131!important;color:#fff;border-color:#e03131}
+.stick{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px;display:flex;align-items:center;gap:10px;justify-content:space-between;margin:10px -12px -80px}
+.rs{font-size:17px}.rs .w1{margin:8px 0;padding:8px 10px;border-radius:8px;background:#fff5f5;border:1px solid #ffc9c9;font-size:15px}.rs .w1 b{color:var(--ok)}
+.nm{width:130px!important;display:inline-block!important;margin:0 4px!important;padding:5px 8px!important;font-size:16px!important}
 @media print{.noprint{display:none!important}body{background:#fff}.card{break-inside:avoid;border-color:#999}}
 </style></head><body><div class="w">
 <h1>동사형 선생님용 (시험지 모드)</h1>
@@ -56,9 +61,11 @@ table{border-collapse:collapse;width:100%;font-size:15px}td{border:1px solid var
 var LS=VERB.levels[0].schools[0].lessons;
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 var li=0,picked={};
+var KEY='verb_teacher_v1',ST={};try{ST=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){}
+function saveSet(){try{ST.li=li;ST.p=ST.p||{};ST.p[li]=Object.keys(picked).map(Number);ST.shuf=$('shuf').checked;ST.hko=$('hko').checked;localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}}
 var $=function(i){return document.getElementById(i)};
 LS.forEach(function(L,i){var o=document.createElement('option');o.value=i;o.textContent='동아(윤) 중2 · '+L.name+' ('+L.items.length+'문장)';$('ls').appendChild(o)});
-$('ls').onchange=function(){li=+$('ls').value;picked={};draw()};
+$('ls').onchange=function(){li=+$('ls').value;picked={};((ST.p&&ST.p[li])||[]).forEach(function(i){picked[i]=1});draw()};
 function draw(){
   var g=$('grid');g.innerHTML='';
   LS[li].items.forEach(function(it,i){
@@ -66,7 +73,7 @@ function draw(){
     b.onclick=function(){if(picked[i])delete picked[i];else picked[i]=1;draw()};g.appendChild(b)});
   var ks=Object.keys(picked).map(Number).sort(function(a,b){return a-b});
   $('txt').value=compress(ks.map(function(x){return x+1}));
-  $('cnt').textContent='선택: '+ks.length+'문장';
+  $('cnt').textContent='선택: '+ks.length+'문장 (마지막 설정은 이 폰에 기억돼요)';saveSet();
 }
 function compress(a){var r=[],i=0;while(i<a.length){var j=i;while(j+1<a.length&&a[j+1]==a[j]+1)j++;r.push(j>i+1?a[i]+'-'+a[j]:a.slice(i,j+1).join(','));i=j+1}return r.join(',')}
 $('txt').onchange=function(){
@@ -113,12 +120,40 @@ function fin(){
   $('again').onclick=function(){Q=ng.map(function(n){return n-1});if(!Q.length)return;qi=0;res={};showQ()};
   $('back').onclick=function(){$('test').style.display='none';$('setup').style.display='block'};
 }
+var SR={};
+function todayK(){var d=new Date(),w=['일','월','화','수','목','금','토'][d.getDay()];return (d.getMonth()+1)+'/'+d.getDate()+'('+w+')'}
 $('sheet').onclick=function(){
   var ks=sel();if(!ks.length){alert('번호를 먼저 선택하세요');return}
-  var h='<div class="noprint"><button class="g" id="sb">◀ 돌아가기</button><button class="b" onclick="print()">🖨 인쇄</button></div><h3>'+LS[li].name+' 동사형 선생님용 답안지</h3>';
-  ks.forEach(function(i){var it=LS[li].items[i];h+='<div class="card"><b>'+(i+1)+'.</b> '+esc(it.ko)+detail(it)+'</div>'});
+  SR={};showSheet(ks)};
+function showSheet(ks){
+  var h='<div class="noprint"><button class="g" id="sb">◀ 돌아가기</button><button class="g" onclick="print()">🖨 인쇄</button></div><h3>'+esc(LS[li].name)+' 동사형 답안지 · '+ks.length+'문장</h3>';
+  ks.forEach(function(i){var it=LS[li].items[i];
+    h+='<div class="card"><div class="jrow"><span><b>'+(i+1)+'.</b> '+esc(it.ko)+'</span><span class="jb noprint"><button class="g jo" data-i="'+i+'" data-v="1">⭕</button><button class="g jx" data-i="'+i+'" data-v="0">❌</button></span></div>'+detail(it)+'</div>'});
+  h+='<div class="stick noprint"><span id="jcnt"></span><button class="b" id="fin2">결과 만들기</button></div>';
   $('sheetv').innerHTML=h;$('sheetv').style.display='block';$('setup').style.display='none';
+  function cnt(){var o=0,x=0;ks.forEach(function(i){if(SR[i]===1)o++;else if(SR[i]===0)x++});$('jcnt').textContent='⭕ '+o+' · ❌ '+x+' · 미채점 '+(ks.length-o-x)}
+  Array.prototype.forEach.call($('sheetv').querySelectorAll('.jo,.jx'),function(b){
+    b.onclick=function(){var i=+b.getAttribute('data-i'),v=+b.getAttribute('data-v');
+      if(SR[i]===v)delete SR[i];else SR[i]=v;
+      var row=b.parentNode;row.querySelector('.jo').className='g jo'+(SR[i]===1?' on':'');row.querySelector('.jx').className='g jx'+(SR[i]===0?' on':'');cnt()}});
   $('sb').onclick=function(){$('sheetv').style.display='none';$('setup').style.display='block'};
-};
+  $('fin2').onclick=function(){showResult(ks)};cnt();window.scrollTo(0,0);
+}
+function showResult(ks){
+  var ok=0,ng=[];ks.forEach(function(i){if(SR[i]===1)ok++;else if(SR[i]===0)ng.push(i)});
+  var un=ks.length-ok-ng.length;
+  var h='<div class="card rs"><h3>동사형 테스트 결과</h3><div>이름<input type="text" class="nm" id="nm" placeholder="이름"> · '+esc(LS[li].name)+' · '+todayK()+'</div>'
+   +'<div style="margin:8px 0">⭕ 통과 '+ok+'개 · ❌ 재시험 '+ng.length+'개 (총 '+ks.length+'문장'+(un?', 미채점 '+un:'')+')</div>'
+   +'<div><b>❌ 틀린 번호:</b> '+(ng.length?ng.map(function(i){return i+1}).join(', ')+'번':'없음 👏')+'</div>';
+  ng.forEach(function(i){var it=LS[li].items[i];h+='<div class="w1"><b>'+(i+1)+'.</b> '+answ(it)+'<br><span class="hint">'+esc(it.ko)+'</span></div>'});
+  h+='</div><div class="noprint"><div class="hint">이 화면을 캡처해서 학생에게 보내 주세요. 이름은 위 칸에 입력하면 됩니다.</div><button class="g" id="rb">◀ 채점 화면으로</button><button class="g" id="rh">처음으로</button></div>';
+  $('sheetv').innerHTML=h;window.scrollTo(0,0);
+  $('rb').onclick=function(){showSheet(ks);Array.prototype.forEach.call($('sheetv').querySelectorAll('.jrow'),function(r){var b=r.querySelector('.jo'),i=+b.getAttribute('data-i');r.querySelector('.jo').className='g jo'+(SR[i]===1?' on':'');r.querySelector('.jx').className='g jx'+(SR[i]===0?' on':'')});$('jcnt')&&0};
+  $('rh').onclick=function(){$('sheetv').style.display='none';$('setup').style.display='block'};
+}
+// 설정 복원
+if(ST.li!=null&&LS[ST.li]){li=ST.li;$('ls').value=li;((ST.p&&ST.p[li])||[]).forEach(function(i){picked[i]=1})}
+if(ST.shuf!=null)$('shuf').checked=!!ST.shuf;if(ST.hko!=null)$('hko').checked=!!ST.hko;
+$('shuf').onchange=saveSet;$('hko').onchange=saveSet;
 draw();
 </script></body></html>
