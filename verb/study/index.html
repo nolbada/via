@@ -117,7 +117,7 @@ function renderExam(){
   var box=document.getElementById('list');box.innerHTML='<div class="exbar">📝 시험모드 — '+LS[cur].name+' · 괄호 안 동사를 알맞은 형태로 바꿔 말해 보세요. (정답은 연습모드에서 확인)</div>';
   LS[cur].items.forEach(function(it,i){
     var d=document.createElement('div');d.className='it';
-    d.innerHTML='<div class="hd"><div class="no">'+(i+1)+'</div><div class="tx">'+blankHTML(it)+'<div class="ko">'+esc(it.ko)+'</div></div></div>';
+    d.innerHTML='<div class="hd"><div class="no">'+(i+1)+'</div><div class="tx">'+blankHTML(it)+'</div></div>';
     box.appendChild(d)});
 }
 render();
