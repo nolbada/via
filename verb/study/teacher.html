@@ -143,9 +143,8 @@ function showResult(ks){
   var ok=0,ng=[];ks.forEach(function(i){if(SR[i]===1)ok++;else if(SR[i]===0)ng.push(i)});
   var un=ks.length-ok-ng.length;
   var h='<div class="card rs"><h3>동사형 테스트 결과</h3><div>이름<input type="text" class="nm" id="nm" placeholder="이름"> · '+esc(LS[li].name)+' · '+todayK()+'</div>'
-   +'<div style="margin:8px 0">⭕ 통과 '+ok+'개 · ❌ 재시험 '+ng.length+'개 (총 '+ks.length+'문장'+(un?', 미채점 '+un:'')+')</div>'
-   +'<div><b>❌ 틀린 번호:</b> '+(ng.length?ng.map(function(i){return i+1}).join(', ')+'번':'없음 👏')+'</div>';
-  ng.forEach(function(i){var it=LS[li].items[i];h+='<div class="w1"><b>'+(i+1)+'.</b> '+answ(it)+'<br><span class="hint">'+esc(it.ko)+'</span></div>'});
+   +'<div style="margin:8px 0">⭕ '+ok+'개 · ❌ '+ng.length+'개 (총 '+ks.length+'문장'+(un?', 미채점 '+un:'')+')</div>'
+   +'<div><b>❌ 틀린 번호:</b> '+(ng.length?ng.map(function(i){return (i+1)+'번'}).join(' '):'없음 👏')+'</div>';
   h+='</div><div class="noprint"><div class="hint">이 화면을 캡처해서 학생에게 보내 주세요. 이름은 위 칸에 입력하면 됩니다.</div><button class="g" id="rb">◀ 채점 화면으로</button><button class="g" id="rh">처음으로</button></div>';
   $('sheetv').innerHTML=h;window.scrollTo(0,0);
   $('rb').onclick=function(){showSheet(ks);Array.prototype.forEach.call($('sheetv').querySelectorAll('.jrow'),function(r){var b=r.querySelector('.jo'),i=+b.getAttribute('data-i');r.querySelector('.jo').className='g jo'+(SR[i]===1?' on':'');r.querySelector('.jx').className='g jx'+(SR[i]===0?' on':'')});$('jcnt')&&0};
