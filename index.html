@@ -339,11 +339,15 @@
   if (!SR){ $('micBtn').textContent = '이 브라우저는 음성 인식이 안 돼요 (크롬을 쓰세요)'; }
   var wantStop = false, silT = null, baseText = '', finalText = '', alts = [], errored = false, micStream = null, handlersSet = false;
   function silenceMs(){ var n = cur ? cur.ko.replace(/\([^)]*\)/g,'').replace(/\s/g,'').length : 20; return Math.min(6000, 2500 + n * 50); }
-  // 마이크 허용창이 자꾸 뜨지 않게: 마이크 연결을 한 번만 열어 두고 시험이 끝날 때까지 계속 쓴다
+  // 마이크 허용창이 자꾸 뜨지 않게: 허용 확인은 처음 한 번만 한다
+  var micAsked = false;
   function ensureMic(cb){
-    if (micStream && micStream.active){ cb(); return; }
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ cb(); return; }
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(function(st){ micStream = st; cb(); }).catch(function(){ cb(); });
+    if (micAsked || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ cb(); return; }
+    micAsked = true;   // 허용 확인은 처음 한 번만, 확인 직후 바로 닫는다 (열어 둔 채로 두면 폰에서 음성 인식이 소리를 못 받음)
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(function(st){
+      try { st.getTracks().forEach(function(t){ t.stop(); }); } catch(e){}
+      setTimeout(cb, 400);
+    }).catch(function(){ cb(); });
   }
   function releaseMic(){ try { if (micStream) micStream.getTracks().forEach(function(t){ t.stop(); }); } catch(e){} micStream = null; }
   function setHandlers(){
