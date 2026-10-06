@@ -120,14 +120,15 @@
   var NQ    = parseInt(Q.get('n'))     || 3;    // 뽑는 문장 수
   var TH    = parseInt(Q.get('th'))    || 65;   // 통과 기준(%)
   var PEN   = parseInt(Q.get('pen'))   || 2;    // 이 개수 이상 틀리면 벌칙
-  var TIME  = Q.has('time') ? parseInt(Q.get('time')) : 20; // 제한시간(초), 0이면 없음
+  var TIME  = Q.has('time') ? parseInt(Q.get('time')) : -1; // 제한시간(초), 0이면 없음, 안 쓰면 문장 길이에 맞춰 자동
+  function limitSec(){ if (TIME >= 0) return TIME; var n = cur ? cur.ko.replace(/\([^)]*\)/g,'').replace(/\s/g,'').length : 20; return Math.min(75, Math.max(25, 15 + Math.round(n * 1.1))); }
   var RETRY = Q.has('retry') ? parseInt(Q.get('retry')) : 1; // 문장당 다시 말하기 횟수
   var TEACHER = Q.get('t') === '1';
   var BOOKS = window.BOOKS || {};
   var PKEY = 'oral_roulette_profile_v2';
 
   $('rule').innerHTML = '번호 범위 안에서 ' + NQ + '문장이 랜덤으로 뽑혀요. 영어 문장이 나오면 <b>한국어 해석</b>을 말하세요.'
-    + (TIME ? '<br>문장마다 ' + TIME + '초 안에 말해야 해요.' : '')
+    + (TIME !== 0 ? '<br>문장이 길수록 말할 시간도 더 길게 주어져요.' : '')
     + '<br>' + PEN + '개 이상 틀리면 오늘의 ' + NQ + '문장을 전부 다시 쓰고 가요.'
     + (RETRY ? '<br>문장마다 다시 말하기 ' + RETRY + '번 기회가 있어요.' : '');
 
@@ -215,8 +216,9 @@
   function beginAttempt(){
     graded = false; $('micBtn').disabled = false; $('heard').textContent = '-';
     $('retryBtn').style.display = 'none';
-    if (TIME){
-      left = TIME; $('timer').className = 'timer'; $('timer').textContent = left + '초';
+    var LIM = limitSec();
+    if (LIM){
+      left = LIM; $('timer').className = 'timer'; $('timer').textContent = left + '초';
       clearInterval(timerId);
       timerId = setInterval(function(){
         left--; $('timer').textContent = left > 0 ? left + '초' : '시간 끝';
@@ -228,7 +230,7 @@
   function stopTimer(){ clearInterval(timerId); }
   function onTimeUp(){
     if (graded) return;
-    if (listening && rec){ try { rec.stop(); } catch(e){} setTimeout(function(){ if (!graded) finishAttempt(false, 0, lastHeard); }, 600); }
+    wantStop = true; if (listening && rec){ try { rec.stop(); } catch(e){} setTimeout(function(){ if (!graded) finishAttempt(false, 0, lastHeard); }, 600); }
     else finishAttempt(false, 0, lastHeard);
   }
 
@@ -335,24 +337,32 @@
   // 음성 인식 (한국어)
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition, rec = null, listening = false;
   if (!SR){ $('micBtn').textContent = '이 브라우저는 음성 인식이 안 돼요 (크롬을 쓰세요)'; }
-  $('micBtn').onclick = function(){
-    if (!SR || !cur || graded) return;
-    if (listening){ try { rec.stop(); } catch(e){} return; }
-    rec = new SR(); rec.lang = 'ko-KR'; rec.interimResults = true; rec.maxAlternatives = 5; rec.continuous = false;
-    var finalText = '', alts = []; lastHeard = '';
-    rec.onstart = function(){ listening = true; $('micBtn').textContent = '듣는 중... 다 말하면 누르세요'; $('micBtn').className = 'big red'; $('heard').textContent = '...'; };
+  var wantStop = false, silT = null, baseText = '';
+  function silenceMs(){ var n = cur ? cur.ko.replace(/\([^)]*\)/g,'').replace(/\s/g,'').length : 20; return Math.min(6000, 2500 + n * 50); }
+  function startRec(){
+    var finalText = baseText, alts = [], errored = false;
+    rec = new SR(); rec.lang = 'ko-KR'; rec.interimResults = true; rec.maxAlternatives = 5; rec.continuous = true;
+    rec.onstart = function(){ listening = true; $('micBtn').textContent = '듣는 중... 다 말하면 누르세요'; $('micBtn').className = 'big red'; if (!baseText) $('heard').textContent = '...'; };
     rec.onresult = function(e){
       alts = [];
-      for (var j=0;j<5;j++){ var tj = ''; for (var i=0;i<e.results.length;i++){ var rr = e.results[i]; tj += (rr[j] || rr[0]).transcript; } alts.push(tj); }
+      for (var j=0;j<5;j++){ var tj = ''; for (var i=0;i<e.results.length;i++){ var rr = e.results[i]; tj += (rr[j] || rr[0]).transcript; } alts.push((baseText ? baseText + ' ' : '') + tj); }
       finalText = alts[0]; lastHeard = alts[0]; $('heard').textContent = alts[0];
+      clearTimeout(silT);
+      silT = setTimeout(function(){ wantStop = true; try { rec.stop(); } catch(e){} }, silenceMs());
     };
     rec.onerror = function(e){
-      listening = false; $('micBtn').textContent = '말하기 시작'; $('micBtn').className = 'big blue';
+      if (e.error === 'no-speech' && finalText.trim()) return;
+      errored = true; wantStop = true; listening = false; $('micBtn').textContent = '말하기 시작'; $('micBtn').className = 'big blue';
       $('heard').textContent = (e.error === 'not-allowed') ? '마이크 허용이 필요해요. 주소창 왼쪽 자물쇠에서 마이크를 허용하세요.' : ('인식 오류: ' + e.error + ' (다시 눌러 주세요)');
     };
     rec.onend = function(){
-      listening = false; $('micBtn').textContent = '말하기 시작'; $('micBtn').className = 'big blue';
-      if (graded) return;
+      listening = false; clearTimeout(silT);
+      if (graded) { $('micBtn').textContent = '말하기 시작'; $('micBtn').className = 'big blue'; return; }
+      if (!wantStop && !errored && finalText.trim()){   // 브라우저가 중간에 끊었으면 이어서 계속 듣기
+        baseText = finalText; try { startRec(); return; } catch(e){}
+      }
+      $('micBtn').textContent = '말하기 시작'; $('micBtn').className = 'big blue';
+      if (errored) return;
       if (finalText.trim()){
         var best = finalText, sc = score(finalText, cur.ko);
         alts.forEach(function(t){ var x = score(t, cur.ko); if (x > sc){ sc = x; best = t; } });
@@ -362,6 +372,12 @@
       else $('heard').textContent = '소리가 안 들렸어요. 다시 눌러 말해 주세요.';
     };
     try { rec.start(); } catch(e){}
+  }
+  $('micBtn').onclick = function(){
+    if (!SR || !cur || graded) return;
+    if (listening){ wantStop = true; try { rec.stop(); } catch(e){} return; }
+    wantStop = false; baseText = ''; lastHeard = '';
+    startRec();
   };
 })();
 </script>
