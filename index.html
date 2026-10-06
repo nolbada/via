@@ -157,7 +157,7 @@
 
   // 소리
   var AC = window.AudioContext || window.webkitAudioContext, ac = null;
-  var SOUND = Q.get('sound') !== '0';   // 링크 끝에 ?sound=0 을 붙이면 모든 소리 끔
+  var SOUND = Q.get('sound') === '1';   // 기본은 소리 없음 (민망하지 않게). 링크 끝에 ?sound=1 을 붙이면 딩동/땡 소리가 나옴
   function tone(freq, start, dur, type){
     if (!SOUND || !AC) return; if (!ac) ac = new AC();
     var o = ac.createOscillator(), g = ac.createGain();
@@ -187,31 +187,26 @@
     idx = -1; cur = null; results = [];
     $('card').className = 'card spin'; $('card').textContent = '룰렛 돌리기를 누르세요';
     $('result').className = 'result'; $('heard').textContent = '-'; $('timer').textContent = '';
-    $('spinBtn').style.display = ''; $('spinBtn').disabled = false;
+    $('spinBtn').style.display = 'none';
     $('micBtn').disabled = true; $('nextBtn').style.display = 'none'; $('retryBtn').style.display = 'none';
     $('teacherRow').style.display = 'none';
     $('prog').textContent = '0 / ' + NQ + ' 문장 · ' + book + ' ' + f + '~' + t + '번';
     show('sTest');
+    showNext();
   };
 
-  // 룰렛
-  $('spinBtn').onclick = function(){
+  // 다음 문장을 바로 보여 준다 (돌아가는 연출 없음)
+  function showNext(){
     if (idx + 1 >= picks.length) return;
-    $('spinBtn').disabled = true; $('micBtn').disabled = true;
+    $('micBtn').disabled = true;
     $('result').className = 'result'; $('heard').textContent = '-'; $('teacherRow').style.display = 'none';
-    var arr = BOOKS[prof.book], n = 0, c = $('card'); c.className = 'card spin';
-    var spin = setInterval(function(){
-      var r = prof.from + Math.floor(Math.random() * (prof.to - prof.from + 1));
-      c.textContent = arr[r-1][0]; n++;
-      if (n > 18){
-        clearInterval(spin); idx++; cur = picks[idx]; tries = 0; graded = false;
-        c.className = 'card'; c.textContent = cur.en;
-        $('prog').textContent = (idx+1) + ' / ' + NQ + ' 문장 · ' + prof.book + ' ' + prof.from + '~' + prof.to + '번';
-        $('spinBtn').style.display = 'none';
-        beginAttempt();
-      }
-    }, 90);
-  };
+    idx++; cur = picks[idx]; tries = 0; graded = false;
+    var c = $('card'); c.className = 'card'; c.textContent = cur.en;
+    $('prog').textContent = (idx+1) + ' / ' + NQ + ' 문장 · ' + prof.book + ' ' + prof.from + '~' + prof.to + '번';
+    $('spinBtn').style.display = 'none';
+    beginAttempt();
+  }
+  $('spinBtn').onclick = showNext;
 
   function beginAttempt(){
     graded = false; $('micBtn').disabled = false; $('heard').textContent = '-';
@@ -273,7 +268,7 @@
   var lastHeard = '';
   function cmpBox(spoken, sc, showAns){
     var h = '<div class="cmp"><div><b>내가 말한 것</b> ' + (spoken ? esc(spoken) : '(직접 확인)') + '</div>';
-    if (showAns) h += '<div><b>정답 해석</b> ' + esc(cur.ko) + '</div>';
+    if (showAns) h += '<div><b>정답 해석 · ' + esc(prof.book) + ' ' + cur.n + '번</b>' + esc(cur.ko) + '</div>';
     if (spoken){ var d = scoreDetail(spoken, cur.ko); if (d.miss.length && showAns) h += '<div><b>못 알아들은 말</b> ' + esc(d.miss.join(', ')) + '</div>'; }
     if (sc != null && sc >= 0) h += '<div class="pct">일치 ' + sc + '% (기준 ' + TH + '%)</div>';
     return h + '</div>';
@@ -309,9 +304,7 @@
   $('nextBtn').onclick = function(){
     $('nextBtn').style.display = 'none'; $('teacherRow').style.display = 'none';
     if (idx + 1 >= picks.length){ finish(); return; }
-    $('result').className = 'result'; $('heard').textContent = '-'; $('timer').textContent = '';
-    $('spinBtn').style.display = ''; $('spinBtn').disabled = false;
-    $('card').className = 'card spin'; $('card').textContent = '룰렛 돌리기를 누르세요';
+    showNext();
   };
 
   function finish(){
