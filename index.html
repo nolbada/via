@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>즉석 말하기 룰렛 테스트</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#f8f9fa; font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif; color:#2c3e50; padding:16px; }
+  .wrap { max-width:720px; margin:0 auto; background:#fff; border-radius:20px; padding:28px 24px; box-shadow:0 4px 20px rgba(0,0,0,.1); }
+  h1 { font-size:26px; margin:0 0 4px; text-align:center; }
+  .sub { text-align:center; color:#666; font-size:15px; margin-bottom:20px; }
+  .tabs { display:flex; gap:8px; margin-bottom:18px; }
+  .tab { flex:1; padding:11px; border:2px solid #e9ecef; background:#fff; border-radius:12px; font:inherit; font-weight:bold; font-size:16px; color:#666; cursor:pointer; }
+  .tab.on { border-color:#f39c12; background:#fff3cd; color:#2c3e50; }
+  .panel { display:none; } .panel.on { display:block; }
+  textarea { width:100%; min-height:220px; padding:12px; font:inherit; font-size:15px; border:2px solid #e9ecef; border-radius:12px; resize:vertical; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; margin:12px 0; align-items:center; font-size:15px; }
+  .row input[type=number] { width:70px; padding:8px; font:inherit; font-size:16px; border:2px solid #e9ecef; border-radius:10px; }
+  .hint { background:#e9ecef; border-radius:12px; padding:12px 14px; font-size:14px; color:#555; margin-bottom:12px; line-height:1.6; }
+  button.big { width:100%; padding:16px; border:0; border-radius:14px; background:#f39c12; color:#fff; font:inherit; font-size:20px; font-weight:bold; cursor:pointer; margin-top:8px; }
+  button.big:disabled { background:#ccc; cursor:default; }
+  button.big.blue { background:#3498db; } button.big.red { background:#e74c3c; }
+  .small { padding:9px 16px; border:2px solid #e9ecef; background:#fff; border-radius:10px; font:inherit; font-size:14px; cursor:pointer; }
+  .progress { text-align:center; font-size:15px; color:#666; margin-bottom:10px; }
+  .card { border:2px solid #e9ecef; border-radius:16px; padding:28px 18px; text-align:center; min-height:130px; display:flex; align-items:center; justify-content:center; font-size:26px; line-height:1.5; font-weight:bold; }
+  .card.spin { color:#bbb; }
+  .heard { margin-top:14px; padding:14px; background:#f8f9fa; border-radius:12px; font-size:17px; min-height:52px; }
+  .heard b { color:#888; font-size:13px; display:block; margin-bottom:4px; }
+  .result { margin-top:14px; padding:18px; border-radius:14px; text-align:center; font-size:22px; font-weight:bold; display:none; }
+  .result.ok { background:#d4edda; color:#1e7a3a; display:block; }
+  .result.no { background:#f8d7da; color:#b02a37; display:block; }
+  .ans { font-size:15px; font-weight:normal; margin-top:8px; color:#444; }
+  .log { margin-top:16px; font-size:15px; }
+  .log div { padding:8px 4px; border-bottom:1px solid #eee; }
+  .final { margin-top:16px; padding:20px; border-radius:14px; text-align:center; font-size:22px; font-weight:bold; background:#fff3cd; }
+  .final.bad { background:#f8d7da; color:#b02a37; }
+  .final.good { background:#d4edda; color:#1e7a3a; }
+  .foot { text-align:center; margin-top:22px; font-size:13px; color:#999; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>즉석 말하기 룰렛 테스트</h1>
+  <div class="sub">룰렛이 뽑은 영어 문장을 한국어로 해석해서 말하세요</div>
+
+  <div class="tabs">
+    <button class="tab on" data-p="test">테스트</button>
+    <button class="tab" data-p="setup">문장 설정 (선생님)</button>
+  </div>
+
+  <div class="panel on" id="test">
+    <div class="progress" id="prog">문장 설정에서 문장을 넣고 시작하세요</div>
+    <div class="card spin" id="card">룰렛 돌리기를 누르세요</div>
+    <button class="big" id="spinBtn">룰렛 돌리기</button>
+    <button class="big blue" id="micBtn" disabled>말하기 시작</button>
+    <div class="heard"><b>인식된 내 말</b><span id="heard">-</span></div>
+    <div class="result" id="result"></div>
+    <div class="row" id="teacherRow" style="display:none;justify-content:center">
+      <span style="color:#888">인식이 이상하면 선생님이 직접:</span>
+      <button class="small" id="forceOk">맞음으로 바꾸기</button>
+      <button class="small" id="forceNo">틀림으로 바꾸기</button>
+    </div>
+    <button class="big" id="nextBtn" style="display:none">다음 문장</button>
+    <div class="log" id="log"></div>
+    <div class="final" id="final" style="display:none"></div>
+    <button class="big" id="resetBtn" style="display:none;background:#6c757d">처음부터 다시</button>
+  </div>
+
+  <div class="panel" id="setup">
+    <div class="hint">
+      한 줄에 하나씩, <b>영어 문장 | 한글 해석</b> 형태로 넣으세요. 가운데 세로선(|)으로 구분합니다.<br>
+      예) I want to read a book. | 나는 책을 읽고 싶다.<br>
+      해석은 선생님이 정한 정답입니다. 학생이 말한 내용과 비교해서 맞았는지 판정해요.
+    </div>
+    <textarea id="data" placeholder="영어 문장 | 한글 해석"></textarea>
+    <div class="row">
+      <label>시험 문장 수 <input type="number" id="nq" value="3" min="1" max="20"></label>
+      <label>통과 기준(%) <input type="number" id="th" value="60" min="10" max="100"></label>
+      <label>틀린 개수가 이 이상이면 페널티 <input type="number" id="pen" value="2" min="1" max="20"></label>
+    </div>
+    <div class="row"><label>페널티 문구 <input type="text" id="penText" value="오늘의 3문장 오답노트 쓰기" style="width:260px;padding:8px;font:inherit;border:2px solid #e9ecef;border-radius:10px"></label></div>
+    <button class="big" id="saveBtn">저장하고 테스트 시작</button>
+    <div class="hint" style="margin-top:12px">저장한 내용은 이 기기의 이 브라우저에만 남습니다. 폰을 바꾸면 다시 넣어야 해요. 이 페이지 주소를 아는 사람은 누구나 열 수 있으니 저작권이 있는 교재 문장은 넣지 마세요.</div>
+  </div>
+
+  <div class="foot">동남 비타민영어클리닉</div>
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = 'oral_roulette_v1';
+  var cfg = { items: [], nq: 3, th: 60, pen: 2, penText: '오늘의 3문장 오답노트 쓰기' };
+  try { var s = localStorage.getItem(KEY); if (s) cfg = Object.assign(cfg, JSON.parse(s)); } catch(e){}
+
+  var order = [], idx = -1, wrong = 0, done = 0, cur = null, graded = false, lastPass = null;
+
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(cfg)); } catch(e){} }
+  function parse(txt){
+    return txt.split('\n').map(function(l){ var p = l.split('|'); return p.length>=2 ? {en:p[0].trim(), ko:p.slice(1).join('|').trim()} : null; })
+      .filter(function(x){ return x && x.en && x.ko; });
+  }
+  function fillSetup(){
+    $('data').value = cfg.items.map(function(i){ return i.en + ' | ' + i.ko; }).join('\n');
+    $('nq').value = cfg.nq; $('th').value = cfg.th; $('pen').value = cfg.pen; $('penText').value = cfg.penText;
+  }
+  function shuffle(a){ a = a.slice(); for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+
+  // 탭
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.onclick = function(){
+      document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('on'); });
+      document.querySelectorAll('.panel').forEach(function(x){ x.classList.remove('on'); });
+      t.classList.add('on'); $(t.dataset.p).classList.add('on');
+    };
+  });
+
+  function newRound(){
+    order = shuffle(cfg.items).slice(0, Math.min(cfg.nq, cfg.items.length));
+    idx = -1; wrong = 0; done = 0; cur = null; graded = false;
+    $('log').innerHTML = ''; $('final').style.display = 'none'; $('resetBtn').style.display = 'none';
+    $('result').className = 'result'; $('heard').textContent = '-';
+    $('card').className = 'card spin'; $('card').textContent = cfg.items.length ? '룰렛 돌리기를 누르세요' : '문장 설정 탭에서 문장을 먼저 넣어 주세요';
+    $('spinBtn').style.display = ''; $('spinBtn').disabled = !cfg.items.length;
+    $('micBtn').disabled = true; $('nextBtn').style.display = 'none'; $('teacherRow').style.display = 'none';
+    $('prog').textContent = cfg.items.length ? ('0 / ' + order.length + ' 문장') : '문장 설정에서 문장을 넣고 시작하세요';
+  }
+
+  // 소리
+  var AC = window.AudioContext || window.webkitAudioContext, ac = null;
+  function tone(freq, start, dur, type){
+    if (!AC) return; if (!ac) ac = new AC();
+    var o = ac.createOscillator(), g = ac.createGain();
+    o.type = type || 'sine'; o.frequency.value = freq; o.connect(g); g.connect(ac.destination);
+    var t = ac.currentTime + start; g.gain.setValueAtTime(0.25, t); g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    o.start(t); o.stop(t + dur);
+  }
+  function dingdong(){ tone(880,0,.35); tone(660,.3,.6); }
+  function ddang(){ tone(150,0,.5,'sawtooth'); tone(120,.15,.6,'sawtooth'); }
+
+  // 룰렛
+  $('spinBtn').onclick = function(){
+    if (idx + 1 >= order.length) return;
+    $('spinBtn').disabled = true; $('micBtn').disabled = true;
+    $('result').className = 'result'; $('heard').textContent = '-'; $('teacherRow').style.display = 'none';
+    var n = 0, c = $('card'); c.className = 'card spin';
+    var timer = setInterval(function(){
+      c.textContent = cfg.items[Math.floor(Math.random()*cfg.items.length)].en; n++;
+      tone(300 + (n%5)*80, 0, .05);
+      if (n > 18){
+        clearInterval(timer); idx++; cur = order[idx]; graded = false;
+        c.className = 'card'; c.textContent = cur.en; dingdong();
+        $('prog').textContent = (idx+1) + ' / ' + order.length + ' 문장';
+        $('micBtn').disabled = false; $('spinBtn').style.display = 'none';
+      }
+    }, 90);
+  };
+
+  // 판정: 정답 글자 2개 묶음이 말한 내용에 얼마나 들어있나
+  function norm(s){ return s.toLowerCase().replace(/[^가-힣a-z0-9]/g,''); }
+  function bigrams(s){ var r = []; for (var i=0;i<s.length-1;i++) r.push(s.substr(i,2)); return r; }
+  function score(spoken, answer){
+    var a = norm(answer), sp = norm(spoken); if (!a || !sp) return 0;
+    var bg = bigrams(a); if (!bg.length) return sp.indexOf(a) >= 0 ? 100 : 0;
+    var hit = 0; bg.forEach(function(b){ if (sp.indexOf(b) >= 0) hit++; });
+    return Math.round(hit / bg.length * 100);
+  }
+  function grade(spoken){
+    if (graded) return; graded = true;
+    var sc = score(spoken, cur.ko), pass = sc >= cfg.th;
+    showResult(pass, sc, spoken);
+  }
+  function showResult(pass, sc, spoken){
+    lastPass = pass;
+    var r = $('result');
+    r.className = 'result ' + (pass ? 'ok' : 'no');
+    r.innerHTML = (pass ? '딩동! 맞았어요' : '땡! 다시 확인해요') + '<div class="ans">정답 해석: ' + esc(cur.ko) + (sc!=null ? ' (일치 ' + sc + '%)' : '') + '</div>';
+    pass ? dingdong() : ddang();
+    $('teacherRow').style.display = 'flex'; $('micBtn').disabled = true;
+    var row = $('log').querySelector('[data-i="'+idx+'"]');
+    if (!row){ row = document.createElement('div'); row.dataset.i = idx; $('log').appendChild(row); }
+    row.textContent = (idx+1) + '번  ' + cur.en + '  →  ' + (pass ? '맞음' : '틀림');
+    row.dataset.pass = pass ? '1' : '0';
+    $('nextBtn').style.display = '';
+    $('nextBtn').textContent = (idx + 1 >= order.length) ? '결과 보기' : '다음 문장';
+  }
+  function esc(s){ return s.replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
+
+  $('forceOk').onclick = function(){ if (cur) showResult(true, null, ''); };
+  $('forceNo').onclick = function(){ if (cur) showResult(false, null, ''); };
+
+  $('nextBtn').onclick = function(){
+    $('nextBtn').style.display = 'none'; $('teacherRow').style.display = 'none';
+    if (idx + 1 >= order.length){ finish(); return; }
+    $('result').className = 'result'; $('heard').textContent = '-';
+    $('spinBtn').style.display = ''; $('spinBtn').disabled = false;
+    $('card').className = 'card spin'; $('card').textContent = '룰렛 돌리기를 누르세요';
+  };
+  function finish(){
+    var w = 0; $('log').querySelectorAll('div').forEach(function(d){ if (d.dataset.pass === '0') w++; });
+    var f = $('final'); f.style.display = 'block';
+    if (w >= cfg.pen){ f.className = 'final bad'; f.innerHTML = order.length + '문장 중 ' + w + '개 틀림<br>페널티: ' + esc(cfg.penText); }
+    else { f.className = 'final good'; f.innerHTML = order.length + '문장 중 ' + w + '개 틀림<br>통과! 수고했어요'; }
+    $('resetBtn').style.display = '';
+    $('card').textContent = '끝!'; $('prog').textContent = '테스트 종료';
+  }
+  $('resetBtn').onclick = newRound;
+
+  // 음성 인식 (한국어)
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition, rec = null, listening = false;
+  if (!SR){ $('micBtn').textContent = '이 브라우저는 음성 인식이 안 돼요 (크롬을 쓰세요)'; }
+  $('micBtn').onclick = function(){
+    if (!SR || !cur) return;
+    if (listening){ try { rec.stop(); } catch(e){} return; }
+    rec = new SR(); rec.lang = 'ko-KR'; rec.interimResults = true; rec.maxAlternatives = 1; rec.continuous = false;
+    var finalText = '';
+    rec.onstart = function(){ listening = true; $('micBtn').textContent = '듣는 중... 다 말하면 누르세요'; $('micBtn').className = 'big red'; $('heard').textContent = '...'; };
+    rec.onresult = function(e){
+      var t = ''; for (var i=0;i<e.results.length;i++){ t += e.results[i][0].transcript; }
+      finalText = t; $('heard').textContent = t;
+    };
+    rec.onerror = function(e){
+      listening = false; $('micBtn').textContent = '말하기 시작'; $('micBtn').className = 'big blue';
+      $('heard').textContent = (e.error === 'not-allowed') ? '마이크 허용이 필요해요. 주소창 왼쪽 자물쇠에서 마이크를 허용하세요.' : ('인식 오류: ' + e.error + ' (다시 눌러 주세요)');
+    };
+    rec.onend = function(){
+      listening = false; $('micBtn').textContent = '말하기 시작'; $('micBtn').className = 'big blue';
+      if (finalText.trim()) grade(finalText);
+      else if (!graded) $('heard').textContent = '소리가 안 들렸어요. 다시 눌러 말해 주세요.';
+    };
+    try { rec.start(); } catch(e){}
+  };
+
+  $('saveBtn').onclick = function(){
+    var items = parse($('data').value);
+    if (!items.length){ alert('문장이 없어요. "영어 문장 | 한글 해석" 형태로 한 줄씩 넣어 주세요.'); return; }
+    cfg.items = items;
+    cfg.nq = Math.max(1, parseInt($('nq').value) || 3);
+    cfg.th = Math.min(100, Math.max(10, parseInt($('th').value) || 60));
+    cfg.pen = Math.max(1, parseInt($('pen').value) || 2);
+    cfg.penText = $('penText').value.trim() || '오답노트 쓰기';
+    save();
+    document.querySelector('.tab[data-p="test"]').click();
+    newRound();
+  };
+
+  fillSetup(); newRound();
+})();
+</script>
+</body>
+</html>
