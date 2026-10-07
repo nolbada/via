@@ -48,7 +48,7 @@ table{border-collapse:collapse;width:100%;font-size:15px}td{border:1px solid var
 <div class="card noprint">
  <label><input type="checkbox" id="shuf"> 선택한 번호를 섞어서 출제 (끄면 번호순)</label><br>
  <label><input type="checkbox" id="hko" checked> 문제에 한글 해석 보이기</label>
- <div style="margin-top:8px"><button class="b" id="go">시험 시작</button><button class="g" id="sheet">답안지 전체 보기·인쇄</button></div>
+ <div style="margin-top:8px"><button class="b" id="go">시험 시작</button><button class="g" id="sheet">답안지 전체 보기</button></div>
  <div class="hint" id="cnt"></div>
 </div>
 </div>
@@ -116,7 +116,7 @@ function nx(){if(qi<Q.length-1){qi++;showQ()}else fin()}
 function fin(){$('test').style.display='none';$('setup').style.display='block'}
 $('sheet').onclick=function(){
   var ks=sel();if(!ks.length){alert('번호를 먼저 선택하세요');return}
-  var h='<div class="noprint"><button class="g" id="sb">◀ 돌아가기</button><button class="b" onclick="print()">🖨 인쇄</button></div><h3>'+esc(LS[li].name)+' 동사형 선생님용 답안지</h3>';
+  var h='<div class="noprint"><button class="g" id="sb">◀ 돌아가기</button></div><h3>'+esc(LS[li].name)+' 동사형 선생님용 답안지</h3>';
   ks.forEach(function(i){var it=LS[li].items[i];h+='<div class="card"><b>'+(i+1)+'.</b> '+esc(it.ko)+detail(it)+'</div>'});
   $('sheetv').innerHTML=h;$('sheetv').style.display='block';$('setup').style.display='none';
   $('sb').onclick=function(){$('sheetv').style.display='none';$('setup').style.display='block'};
