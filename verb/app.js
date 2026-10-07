@@ -61,7 +61,8 @@ function render(){
       box.appendChild(d);
     });
   });
-  if(!n)box.innerHTML='<div class="stat hint">'+(onlyWrong?'기록된 틀린 문장이 없어요. 👏':onlyStar?'아직 ★ 별표한 문장이 없어요. 어려운 문장 오른쪽 ☆를 눌러 보세요.':'문장이 없습니다.')+'</div>';
+  [['wrong',onlyWrong,'❌ 이 단원 틀린 문장 모두 해제'],['stars',onlyStar,'☆ 이 단원 별표 모두 해제']].forEach(function(c){if(!n||!c[1])return;var cb=document.createElement('button');cb.textContent=c[2];cb.style.cssText='margin:8px 8px 8px 0;padding:8px 12px;border:1px solid #bbb;background:#fff;border-radius:10px;font-size:14px';cb.onclick=function(){if(!confirm('이 단원의 '+(c[0]=='wrong'?'틀린 문장 표시':'별표')+'를 모두 해제할까요?'))return;var pre=LS[cur].name+':';Object.keys(S[c[0]]).forEach(function(k){if(k.indexOf(pre)===0)delete S[c[0]][k]});save();render()};box.insertBefore(cb,box.firstChild)});
+if(!n)box.innerHTML='<div class="stat hint">'+(onlyWrong?'기록된 틀린 문장이 없어요. 👏':onlyStar?'아직 ★ 별표한 문장이 없어요. 어려운 문장 오른쪽 ☆를 눌러 보세요.':'문장이 없습니다.')+'</div>';
   var st=document.getElementById('stat');st.innerHTML='';
   if(showStat){
     var tot=0,td=S.secs[today()]||0;for(var d2 in S.secs)tot+=S.secs[d2];
