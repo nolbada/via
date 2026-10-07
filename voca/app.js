@@ -194,12 +194,12 @@ App.prototype.home=function(){
   '<button class="mode" data-m="sort"><strong>뜻 분류 던지기</strong><span>답을 고른 뒤에야 뜻이 나온다</span><b class="go">시작</b></button>'+
   '<button class="mode trap" data-m="broken"><strong>고장 난 문장</strong><span>교과서 문장 속 바뀐 단어를 찾는다</span><b class="go">시작</b></button></section>'+
   (rec?'<section class="panel"><h2>최근 걸릴 뻔한 낚시</h2><ul class="miss">'+rec+'</ul></section>':'')+
-  '<section class="panel save"><details><summary>기록 옮기기 (다른 기기·선생님께 보내기)</summary>'+
-  '<p class="note">아래 코드를 복사해 두면 다른 기기에서 붙여넣어 이어 할 수 있어요.</p>'+
+  '<section class="panel save"><details><summary>폰을 바꿨을 때만 열어요 (평소엔 안 눌러도 돼요)</summary>'+
+  '<p class="note">새 폰이나 다른 기기에서 이어 하고 싶을 때만 쓰는 칸이에요. 아래 코드를 복사해 두었다가 새 기기에서 붙여넣으면 이어 할 수 있어요.</p>'+
   '<textarea id="code" readonly></textarea><div class="btnrow"><button class="btn pri" id="cp">코드 복사</button></div>'+
   '<p class="note">다른 기기에서 받은 코드를 붙여넣고 복원하면 이 기기 기록이 바뀝니다.</p>'+
   '<textarea id="in" placeholder="여기에 코드를 붙여넣기"></textarea><div class="btnrow"><button class="btn" id="rs">붙여넣은 코드로 복원</button></div><p class="note" id="msg"></p></details></section>'+
-  '<p class="foot">기록은 이 기기의 브라우저에 저장됩니다.</p></main>';
+  '<p class="foot">푼 기록은 이 기기에 저장되고, 선생님께는 자동으로 전달돼요.</p></main>';
   this.set(html);
   var r=this.root;
   r.querySelector('.tabs').onclick=function(ev){var b=ev.target.closest('button');if(!b)return;self.l=b.getAttribute('data-l');self.st.s.lesson=self.l;self.st.save();self.home()};
