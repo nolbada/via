@@ -208,7 +208,7 @@ App.prototype.home=function(){
     var box=document.createElement('div');box.className='panel';
     box.innerHTML='<h2>이름</h2><input id="nmi" maxlength="12" style="width:100%;font:inherit;padding:9px;border-radius:10px;border:1px solid var(--line);background:var(--soft);color:var(--ink)" value="'+esc(s.name)+'"><div class="btnrow"><button class="btn pri" id="nmok">저장</button></div>';
     r.querySelector('.who').after(box);r.querySelector('#nmi').focus();
-    r.querySelector('#nmok').onclick=function(){s.name=r.querySelector('#nmi').value.trim();self.st.save();self.home()};
+    r.querySelector('#nmok').onclick=function(){s.name=r.querySelector('#nmi').value.trim();self.st.save();self.sync();self.home()};
   };
   var ta=r.querySelector('#code');ta.value=this.st.code(this.id);
   r.querySelector('#cp').onclick=function(){
@@ -257,7 +257,21 @@ App.prototype.next=function(){
 App.prototype.finish=function(ok,nm){ /* 한 문제 끝 */
   this.cnt++;if(ok)this.right++;
   if(nm!=='broken')addToday(this.st.s,this.l);
-  this.st.save();
+  this.st.save();this.sync();
+};
+/* --- 선생님 시트로 자동 기록 (voca/sync.js 에 주소가 있을 때만) --- */
+App.prototype.sync=function(){
+  var self=this,url=window.VOCA_SYNC; if(!url)return;
+  clearTimeout(this._t);
+  this._t=setTimeout(function(){
+    try{
+      var s=self.st.s; if(!s.dev){s.dev=Math.random().toString(36).slice(2,10)+Date.now().toString(36);self.st.save()}
+      var G=self.G,ls=Object.keys(G.L).map(function(l){var L=G.L[l],c=counts(s,L),im=immunity(s,L);
+        return {l:l,n:L.edges.length,c:c,im:im,t:todayN(s,l)}});
+      var body=JSON.stringify({dev:s.dev,name:s.name||'',id:self.id,date:today(),ls:ls,code:self.st.code(self.id)});
+      fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:body,keepalive:true}).catch(function(){});
+    }catch(e){}
+  },1500);
 };
 /* --- 연결 퀴즈 --- */
 App.prototype.quiz=function(){
