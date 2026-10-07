@@ -106,50 +106,21 @@ function showQ(){
   t.innerHTML='<div class="prog">'+LS[li].name+' · '+(qi+1)+' / '+Q.length+'문제 (본문 동사형 '+(Q[qi]+1)+'번)</div>'
    +'<div class="card"><div class="q">'+blanks(it)+'</div>'+($('hko').checked?'<div class="ko">'+esc(it.ko)+'</div>':'')+'<div id="dt" style="display:none">'+detail(it)+'</div></div>'
    +'<div id="a1"><button class="b" id="show">정답·직독직해 보기</button></div>'
-   +'<div id="a2" class="row" style="display:none"><button class="b o" id="o">⭕ 통과</button><button class="b x" id="x">❌ 재시험</button></div>'
+   +'<div id="a2" class="row" style="display:none"><button class="b" id="nx">다음 문제 ▶</button></div>'
    +'<div style="margin-top:10px"><button class="g" id="pv">◀ 이전</button><button class="g" id="skip">건너뛰기 ▶</button><button class="g" id="end">종료</button></div>';
   $('show').onclick=function(){$('dt').style.display='block';$('a1').style.display='none';$('a2').style.display='flex'};
-  $('o').onclick=function(){res[Q[qi]]=1;nx()};$('x').onclick=function(){res[Q[qi]]=0;nx()};
+  $('nx').onclick=nx;
   $('pv').onclick=function(){if(qi>0){qi--;showQ()}};$('skip').onclick=nx;$('end').onclick=fin;
 }
 function nx(){if(qi<Q.length-1){qi++;showQ()}else fin()}
-function fin(){
-  var ok=[],ng=[];Q.forEach(function(q){if(res[q]===1)ok.push(q+1);else if(res[q]===0)ng.push(q+1)});
-  $('test').innerHTML='<div class="card"><h3>결과</h3>⭕ 통과 '+ok.length+'개 : '+(ok.sort(function(a,b){return a-b}).join(', ')||'-')+'<br>❌ 재시험 '+ng.length+'개 : '+(ng.sort(function(a,b){return a-b}).join(', ')||'-')+'</div>'
-   +'<button class="b" id="again">❌ 문장만 다시</button><button class="g" id="back">처음으로</button>';
-  $('again').onclick=function(){Q=ng.map(function(n){return n-1});if(!Q.length)return;qi=0;res={};showQ()};
-  $('back').onclick=function(){$('test').style.display='none';$('setup').style.display='block'};
-}
-var SR={};
-function todayK(){var d=new Date(),w=['일','월','화','수','목','금','토'][d.getDay()];return (d.getMonth()+1)+'/'+d.getDate()+'('+w+')'}
+function fin(){$('test').style.display='none';$('setup').style.display='block'}
 $('sheet').onclick=function(){
   var ks=sel();if(!ks.length){alert('번호를 먼저 선택하세요');return}
-  SR={};showSheet(ks)};
-function showSheet(ks){
-  var h='<div class="noprint"><button class="g" id="sb">◀ 돌아가기</button><button class="g" onclick="print()">🖨 인쇄</button></div><h3>'+esc(LS[li].name)+' 동사형 답안지 · '+ks.length+'문장</h3>';
-  ks.forEach(function(i){var it=LS[li].items[i];
-    h+='<div class="card"><div class="jrow"><span><b>'+(i+1)+'.</b> '+esc(it.ko)+'</span><span class="jb noprint"><button class="g jo" data-i="'+i+'" data-v="1">⭕</button><button class="g jx" data-i="'+i+'" data-v="0">❌</button></span></div>'+detail(it)+'</div>'});
-  h+='<div class="stick noprint"><span id="jcnt"></span><button class="b" id="fin2">결과 만들기</button></div>';
+  var h='<div class="noprint"><button class="g" id="sb">◀ 돌아가기</button><button class="b" onclick="print()">🖨 인쇄</button></div><h3>'+esc(LS[li].name)+' 동사형 선생님용 답안지</h3>';
+  ks.forEach(function(i){var it=LS[li].items[i];h+='<div class="card"><b>'+(i+1)+'.</b> '+esc(it.ko)+detail(it)+'</div>'});
   $('sheetv').innerHTML=h;$('sheetv').style.display='block';$('setup').style.display='none';
-  function cnt(){var o=0,x=0;ks.forEach(function(i){if(SR[i]===1)o++;else if(SR[i]===0)x++});$('jcnt').textContent='⭕ '+o+' · ❌ '+x+' · 미채점 '+(ks.length-o-x)}
-  Array.prototype.forEach.call($('sheetv').querySelectorAll('.jo,.jx'),function(b){
-    b.onclick=function(){var i=+b.getAttribute('data-i'),v=+b.getAttribute('data-v');
-      if(SR[i]===v)delete SR[i];else SR[i]=v;
-      var row=b.parentNode;row.querySelector('.jo').className='g jo'+(SR[i]===1?' on':'');row.querySelector('.jx').className='g jx'+(SR[i]===0?' on':'');cnt()}});
   $('sb').onclick=function(){$('sheetv').style.display='none';$('setup').style.display='block'};
-  $('fin2').onclick=function(){showResult(ks)};cnt();window.scrollTo(0,0);
-}
-function showResult(ks){
-  var ok=0,ng=[];ks.forEach(function(i){if(SR[i]===1)ok++;else if(SR[i]===0)ng.push(i)});
-  var un=ks.length-ok-ng.length;
-  var h='<div class="card rs"><h3>동사형 테스트 결과</h3><div>이름<input type="text" class="nm" id="nm" placeholder="이름"> · '+esc(LS[li].name)+' · '+todayK()+'</div>'
-   +'<div style="margin:8px 0">⭕ '+ok+'개 · ❌ '+ng.length+'개 (총 '+ks.length+'문장'+(un?', 미채점 '+un:'')+')</div>'
-   +'<div><b>❌ 틀린 번호:</b> '+(ng.length?ng.map(function(i){return (i+1)+'번'}).join(' '):'없음 👏')+'</div>';
-  h+='</div><div class="noprint"><div class="hint">이 화면을 캡처해서 학생에게 보내 주세요. 이름은 위 칸에 입력하면 됩니다.</div><button class="g" id="rb">◀ 채점 화면으로</button><button class="g" id="rh">처음으로</button></div>';
-  $('sheetv').innerHTML=h;window.scrollTo(0,0);
-  $('rb').onclick=function(){showSheet(ks);Array.prototype.forEach.call($('sheetv').querySelectorAll('.jrow'),function(r){var b=r.querySelector('.jo'),i=+b.getAttribute('data-i');r.querySelector('.jo').className='g jo'+(SR[i]===1?' on':'');r.querySelector('.jx').className='g jx'+(SR[i]===0?' on':'')});$('jcnt')&&0};
-  $('rh').onclick=function(){$('sheetv').style.display='none';$('setup').style.display='block'};
-}
+};
 // 설정 복원
 if(ST.li!=null&&LS[ST.li]){li=ST.li;$('ls').value=li;((ST.p&&ST.p[li])||[]).forEach(function(i){picked[i]=1})}
 if(ST.shuf!=null)$('shuf').checked=!!ST.shuf;if(ST.hko!=null)$('hko').checked=!!ST.hko;
