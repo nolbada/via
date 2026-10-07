@@ -197,7 +197,7 @@
   function showNext(){
     if (idx + 1 >= picks.length) return;
     $('micBtn').disabled = true;
-    $('result').className = 'result'; $('heard').textContent = '-';    idx++; cur = picks[idx]; tries = 0; graded = false; attemptLog = [];
+    $('result').className = 'result'; $('result').innerHTML = ''; $('heard').textContent = '-';    idx++; cur = picks[idx]; tries = 0; graded = false; attemptLog = [];
     var c = $('card'); c.className = 'card'; c.textContent = cur.en;
     $('prog').textContent = (idx+1) + ' / ' + NQ + ' 문장 · ' + prof.book + ' ' + prof.from + '~' + prof.to + '번';
     $('spinBtn').style.display = 'none';
@@ -206,8 +206,10 @@
   $('spinBtn').onclick = showNext;
 
   function beginAttempt(){
-    graded = false; $('micBtn').disabled = false; $('heard').textContent = '-';
+    attemptNo++; graded = false; $('micBtn').disabled = false; $('heard').textContent = '-';
     $('retryBtn').style.display = 'none';
+    $('result').className = 'result'; $('result').innerHTML = '';
+    lastHeard = ''; baseText = ''; finalText = ''; alts = [];
     var LIM = limitSec();
     if (LIM){
       left = LIM; $('timer').className = 'timer'; $('timer').textContent = left + '초';
@@ -220,9 +222,11 @@
     }
   }
   function stopTimer(){ clearInterval(timerId); }
+  var attemptNo = 0;
   function onTimeUp(){
     if (graded) return;
-    wantStop = true; if (listening && rec){ try { rec.stop(); } catch(e){} setTimeout(function(){ if (!graded) finishAttempt(false, 0, lastHeard); }, 600); }
+    var my = attemptNo;
+    wantStop = true; if (listening && rec){ try { rec.stop(); } catch(e){} setTimeout(function(){ if (!graded && my === attemptNo) finishAttempt(false, 0, lastHeard); }, 600); }
     else finishAttempt(false, 0, lastHeard);
   }
 
@@ -270,6 +274,8 @@
     if (sc != null && sc >= 0) h += '<div class="pct">일치 ' + sc + '% (기준 ' + TH + '%)</div>';
     return h + '</div>';
   }
+  // 마지막 시도가 아닐 때는 정답·일치율·못 알아들은 말을 절대 보여주지 않는다 (내가 말한 것만)
+  function spokenOnly(spoken){ return '<div class="cmp"><div><b>내가 말한 것</b> ' + (spoken ? esc(spoken) : '(인식된 말 없음)') + '</div></div>'; }
   function finishAttempt(pass, sc, spoken){
     if (graded) return; graded = true; stopTimer(); attemptLog.push({ t: spoken || '', sc: sc }); $('micBtn').disabled = true; $('timer').textContent = '';
     var r = $('result');
@@ -278,7 +284,7 @@
       record(true);
     } else if (tries < RETRY){
       tries++;
-      r.className = 'result no'; r.innerHTML = '땡! 한 번 더 말해 봐요<div class="ans">(남은 기회 ' + (RETRY - tries + 1) + '번)</div>' + cmpBox(spoken, sc, TEACHER); ddang();
+      r.className = 'result no'; r.innerHTML = '땡! 한 번 더 말해 봐요<div class="ans">(남은 기회 ' + (RETRY - tries + 1) + '번)</div>' + spokenOnly(spoken); ddang();
       $('retryBtn').style.display = '';
       return;
     } else {
@@ -292,7 +298,7 @@
     $('nextBtn').style.display = '';
     $('nextBtn').textContent = (idx + 1 >= picks.length) ? '결과 보기' : '다음 문장';
   }
-  $('retryBtn').onclick = function(){ $('result').className = 'result'; beginAttempt(); };
+  $('retryBtn').onclick = function(){ beginAttempt(); };
 
   $('nextBtn').onclick = function(){
     $('nextBtn').style.display = 'none';    if (idx + 1 >= picks.length){ finish(); return; }
