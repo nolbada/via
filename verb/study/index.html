@@ -63,7 +63,7 @@ function fmt(s){var m=Math.round(s/60);return m<60?m+'분':Math.floor(m/60)+'시
 var sel=document.getElementById('ls');
 LS.forEach(function(L,i){var o=document.createElement('option');o.value=i;o.textContent='동아(윤) 중2 · '+L.name+' ('+L.items.length+'문장)';sel.appendChild(o)});
 sel.onchange=function(){cur=+sel.value;EX={};done=false;render()};
-var exam=false,done=false,EX={},onlyWrong=false;
+var exam=false,done=false,EX={},onlyWrong=false,rpi=0,showAll=false;
 function key(li,i){return LS[li].name+':'+(i+1)}
 function blankHTML(it){return esc(it.en).replace(/___\[([^\]]*)\]/g,function(m,b){return '<span class="bl">'+esc(b)+'</span>'})}
 function ansHTML(it){var k=0;return esc(it.en).replace(/___\[[^\]]*\]/g,function(){return '<b>'+esc(it.ans[k++])+'</b>'})}
@@ -129,20 +129,30 @@ function renderExam(){
   var f=document.createElement('div');f.className='exfoot';f.innerHTML='<span id="xc"></span><button class="b2" id="xe">시험 종료</button>';box.appendChild(f);
   function cnt(){document.getElementById('xc').textContent='❌ 틀림 '+Object.keys(EX).length+'개'}cnt();
   document.getElementById('xe').onclick=function(){if(!confirm('시험을 끝낼까요? 끝내면 정답과 해설이 열려요.'))return;
-    Object.keys(EX).forEach(function(i){S.wrong[key(+cur,+i)]=1});save();done=true;render();scrollTo(0,0)};
+    Object.keys(EX).forEach(function(i){S.wrong[key(+cur,+i)]=1});save();done=true;rpi=0;showAll=false;render();scrollTo(0,0)};
 }
 function renderResult(){
   document.getElementById('bar').innerHTML='';document.getElementById('stat').innerHTML='';
   var ws=Object.keys(EX).map(Number).sort(function(a,b){return a-b});
+  if(rpi>=ws.length)rpi=0;
+  function whyH(it){return it.why?'<ul class="why">'+it.ans.map(function(a,j){return '<li><b>'+esc(a)+'</b> — '+esc(it.why[j]||'')+'</li>'}).join('')+'</ul>':''}
   var h='<div class="stat"><h3>📝 시험 결과 · '+esc(LS[cur].name)+'</h3>❌ 틀린 문장 '+ws.length+'개 (총 '+LS[cur].items.length+'문장)<br><b>틀린 번호:</b> '+(ws.length?ws.map(function(i){return (i+1)+'번'}).join(' '):'없음 👏')+'</div>'
-   +'<div class="bar"><button id="rr">다시 시험 보기</button><button id="rp">❌ 틀린 문장만 연습하기</button></div>';
-  LS[cur].items.forEach(function(it,i){
-    h+='<div class="it open'+(EX[i]?' wrong':'')+'"><div class="hd"><div class="no">'+(i+1)+'</div><div class="tx">'+ansHTML(it)+'<div class="ko">'+esc(it.ko)+'</div>'+(EX[i]?'<div class="wr">❌ 틀림</div>':'')+'</div></div><div class="dt">'
-     +(it.why?'<ul class="why">'+it.ans.map(function(a,j){return '<li><b>'+esc(a)+'</b> — '+esc(it.why[j]||'')+'</li>'}).join('')+'</ul>':'')
-     +'<div class="sec">직독직해 (끊어 읽기)</div>'+jjHTML(it)+'</div></div>'});
+   +'<div class="bar"><button id="rr">다시 시험 보기</button><button id="rp">❌ 틀린 문장만 연습하기</button><button id="ra">'+(showAll?'오답노트 보기':'전체 해설 보기')+'</button></div>';
+  if(showAll){
+    LS[cur].items.forEach(function(it,i){
+      h+='<div class="it open'+(EX[i]?' wrong':'')+'"><div class="hd"><div class="no">'+(i+1)+'</div><div class="tx">'+ansHTML(it)+'<div class="ko">'+esc(it.ko)+'</div>'+(EX[i]?'<div class="wr">❌ 틀림</div>':'')+'</div></div><div class="dt">'
+       +whyH(it)+'<div class="sec">직독직해 (끊어 읽기)</div>'+jjHTML(it)+'</div></div>'});
+  }else if(ws.length){
+    var k=ws[rpi],it=LS[cur].items[k];
+    h+='<div class="bar" style="justify-content:space-between;align-items:center"><button id="pp"'+(rpi?'':' disabled')+'>◀ 이전</button><b>오답노트 '+(rpi+1)+' / '+ws.length+'</b><button id="pn"'+(rpi<ws.length-1?'':' disabled')+'>다음 ▶</button></div>'
+     +'<div class="it open wrong"><div class="hd"><div class="no">'+(k+1)+'</div><div class="tx" style="font-size:19px">'+ansHTML(it)+'<div class="ko" style="font-size:15px">'+esc(it.ko)+'</div></div></div><div class="dt">'
+     +whyH(it)+'<div class="sec">직독직해 (끊어 읽기)</div>'+jjHTML(it)+'</div></div>';
+  }else{h+='<div class="stat">틀린 문장이 없어요. 👏</div>'}
   document.getElementById('list').innerHTML=h;
-  document.getElementById('rr').onclick=function(){EX={};done=false;render();scrollTo(0,0)};
+  document.getElementById('rr').onclick=function(){EX={};done=false;rpi=0;showAll=false;render();scrollTo(0,0)};
   document.getElementById('rp').onclick=function(){exam=false;done=false;onlyWrong=true;onlyStar=false;render();scrollTo(0,0)};
+  document.getElementById('ra').onclick=function(){showAll=!showAll;render();scrollTo(0,0)};
+  if(document.getElementById('pp')){document.getElementById('pp').onclick=function(){if(rpi>0){rpi--;render();scrollTo(0,0)}};document.getElementById('pn').onclick=function(){if(rpi<ws.length-1){rpi++;render();scrollTo(0,0)}}}
 }
 render();
 </script></body></html>
