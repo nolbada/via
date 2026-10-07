@@ -61,21 +61,29 @@ table{border-collapse:collapse;width:100%;font-size:15px}td{border:1px solid var
 </div>
 <script src="../data/index.js"></script>
 <script>
-var REG=VERBREG,LS=[],CID=null,li=0,picked={};
+var REG=VERBREG,LS=[],CID=null,G=null,li=0,picked={};
 var KEY='verb_teacher_v2',ST={};try{ST=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){}
 var $=function(i){return document.getElementById(i)};
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function uniq(a){return a.filter(function(x,i){return a.indexOf(x)==i})}
 function fill(id,opts,sel){var s=$(id);s.innerHTML='';opts.forEach(function(o){var e=document.createElement('option');e.value=o[0];e.textContent=o[1];s.appendChild(e)});if(sel!=null&&opts.some(function(o){return o[0]==sel}))s.value=sel}
-function saveSet(){try{ST.sel={lv:$('lv').value,gr:$('gr').value,id:CID,li:li};ST.p=ST.p||{};if(CID)ST.p[CID+'|'+li]=Object.keys(picked).map(Number);ST.shuf=$('shuf').checked;ST.hko=$('hko').checked;localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}}
+function saveSet(){try{ST.sel={lv:$('lv').value,gr:$('gr').value,id:CID,ln:LS[li]&&LS[li].name};ST.p=ST.p||{};if(CID&&LS[li])ST.p[CID+'|'+LS[li].name]=Object.keys(picked).map(Number);ST.shuf=$('shuf').checked;ST.hko=$('hko').checked;localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}}
+function grpKey(r){return r.school+'|'+r.pub}
 function onLv(sel){fill('gr',uniq(REG.filter(function(r){return r.level==$('lv').value}).map(function(r){return r.grade})).map(function(g){return [g,g]}),sel);onGr()}
-function onGr(sel){fill('pb',REG.filter(function(r){return r.level==$('lv').value&&r.grade==$('gr').value}).map(function(r){return [r.id,r.pub+' ('+r.school+')']}),sel);onPb()}
-function onPb(L0){
-  var id=$('pb').value;if(!id){LS=[];CID=null;$('ls').innerHTML='';draw();return}
-  var go=function(){CID=id;LS=VERBDATA[id].lessons;fill('ls',LS.map(function(L,i){return [i,L.name+' ('+L.items.length+'문장)']}),L0);li=+$('ls').value||0;loadPicked();draw()};
-  if(window.VERBDATA&&VERBDATA[id])go();else{var s=document.createElement('script');s.src='../data/'+id+'.js';s.onload=go;s.onerror=function(){alert('자료를 불러오지 못했어요')};document.head.appendChild(s)}
+function onGr(sel,LN){var seen={},opts=[];REG.filter(function(r){return r.level==$('lv').value&&r.grade==$('gr').value}).forEach(function(r){var k=grpKey(r);if(!seen[k]){seen[k]=1;opts.push([k,r.pub+' ('+r.school+')'])}});fill('pb',opts,sel);onPb(LN)}
+function onPb(LN){
+  var k=$('pb').value;if(!k){LS=[];CID=null;G=null;$('ls').innerHTML='';return}
+  var rs=REG.filter(function(r){return r.level==$('lv').value&&r.grade==$('gr').value&&grpKey(r)==k});
+  var need=rs.filter(function(r){return !(window.VERBDATA&&VERBDATA[r.id])}),left=need.length;
+  var go=function(){
+    CID=k;G=rs[0];LS=[];rs.forEach(function(r){VERBDATA[r.id].lessons.forEach(function(L){LS.push(L)})});
+    LS.sort(function(a,b){return parseInt(a.name)-parseInt(b.name)});
+    var c=LN!=null?LS.map(function(L){return L.name}).indexOf(LN):0;if(c<0)c=0;
+    fill('ls',LS.map(function(L,i){return [i,L.name+' ('+L.items.length+'문장)']}),c);li=+$('ls').value||0;loadPicked();draw()};
+  if(!left){go();return}
+  need.forEach(function(r){var s=document.createElement('script');s.src='../data/'+r.id+'.js';s.onload=function(){if(--left==0)go()};s.onerror=function(){alert('자료를 불러오지 못했어요')};document.head.appendChild(s)});
 }
-function loadPicked(){picked={};((ST.p&&ST.p[CID+'|'+li])||[]).forEach(function(i){picked[i]=1})}
+function loadPicked(){picked={};((ST.p&&LS[li]&&ST.p[CID+'|'+LS[li].name])||[]).forEach(function(i){picked[i]=1})}
 $('lv').onchange=function(){onLv()};$('gr').onchange=function(){onGr()};$('pb').onchange=function(){onPb()};
 $('ls').onchange=function(){li=+$('ls').value;loadPicked();draw()};
 function draw(){
@@ -115,7 +123,7 @@ $('go').onclick=function(){
   Q=ks;qi=0;res={};$('setup').style.display='none';$('test').style.display='block';showQ()};
 function showQ(){
   var t=$('test'),it=LS[li].items[Q[qi]];
-  t.innerHTML='<div class="prog">'+VERBDATA[CID].grade+' '+VERBDATA[CID].pub+' '+LS[li].name+' · '+(qi+1)+' / '+Q.length+'문제 (본문 동사형 '+(Q[qi]+1)+'번)</div>'
+  t.innerHTML='<div class="prog">'+G.grade+' '+G.pub+' '+LS[li].name+' · '+(qi+1)+' / '+Q.length+'문제 (본문 동사형 '+(Q[qi]+1)+'번)</div>'
    +'<div class="card"><div class="q">'+blanks(it)+'</div>'+($('hko').checked?'<div class="ko">'+esc(it.ko)+'</div>':'')+'<div id="dt" style="display:none">'+detail(it)+'</div></div>'
    +'<div id="a1"><button class="b" id="show">정답·직독직해 보기</button></div>'
    +'<div id="a2" class="row" style="display:none"><button class="b" id="nx">다음 문제 ▶</button></div>'
@@ -128,16 +136,16 @@ function nx(){if(qi<Q.length-1){qi++;showQ()}else fin()}
 function fin(){$('test').style.display='none';$('setup').style.display='block'}
 $('sheet').onclick=function(){
   var ks=sel();if(!ks.length){alert('번호를 먼저 선택하세요');return}
-  var h='<div class="noprint"><button class="g" id="sb">◀ 돌아가기</button></div><h3>'+esc(VERBDATA[CID].grade+' '+VERBDATA[CID].pub+' '+LS[li].name)+' 동사형 선생님용 답안지</h3>';
+  var h='<div class="noprint"><button class="g" id="sb">◀ 돌아가기</button></div><h3>'+esc(G.grade+' '+G.pub+' '+LS[li].name)+' 동사형 선생님용 답안지</h3>';
   ks.forEach(function(i){var it=LS[li].items[i];h+='<div class="card"><b>'+(i+1)+'.</b> '+esc(it.ko)+detail(it)+'</div>'});
   $('sheetv').innerHTML=h;$('sheetv').style.display='block';$('setup').style.display='none';
   $('sb').onclick=function(){$('sheetv').style.display='none';$('setup').style.display='block'};
 };
 // 설정 복원
-fill('lv',uniq(REG.map(function(r){return r.level})).map(function(x){return [x,x]}),ST.sel&&ST.sel.lv);
-(function(){var s=ST.sel||{};fill('gr',uniq(REG.filter(function(r){return r.level==$('lv').value}).map(function(r){return r.grade})).map(function(g){return [g,g]}),s.gr);
-fill('pb',REG.filter(function(r){return r.level==$('lv').value&&r.grade==$('gr').value}).map(function(r){return [r.id,r.pub+' ('+r.school+')']}),s.id);
-if(s.li!=null)li=s.li;onPb(li)})();
+(function(){var s=ST.sel||{};
+fill('lv',uniq(REG.map(function(r){return r.level})).map(function(x){return [x,x]}),s.lv);
+fill('gr',uniq(REG.filter(function(r){return r.level==$('lv').value}).map(function(r){return r.grade})).map(function(g){return [g,g]}),s.gr);
+onGr(s.id,s.ln)})();
 if(ST.shuf!=null)$('shuf').checked=!!ST.shuf;if(ST.hko!=null)$('hko').checked=!!ST.hko;
 $('shuf').onchange=saveSet;$('hko').onchange=saveSet;
 </script></body></html>
