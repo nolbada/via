@@ -60,8 +60,8 @@ function home(){
  <div class="wy"><b>간격 복습</b>틀린 단어는 내일, 맞힌 단어는 3일 · 7일 · 14일 뒤에 다시 만나요. 잊을 만할 때 다시 보면 오래 남아요.</div>
  <div class="wy"><b>꺼내 쓰기</b>보고 읽는 대신 직접 골라서 기억을 꺼내요. 읽기만 하는 것보다 기억에 더 오래 남는다고 알려져 있어요.</div>
  <div class="wy"><b>검증된 문제만</b>교재에 실린 단어와 문제만 써요. 정답이 하나로 확인된 것만 넣고, 애매한 문제는 뺐어요.</div></div>
- <button class="btn" data-go="next" style="color:#999;font-size:14px">내일로 넘기기 (테스트용)</button>
- <button class="btn" data-go="reset" style="color:#999;font-size:14px">기록 지우기 (테스트용)</button>`;
+ ${/[?&]t=1/.test(location.search)?`<button class="btn" data-go="next" style="color:#999;font-size:14px">내일로 넘기기 (선생님 테스트용)</button>
+ <button class="btn" data-go="reset" style="color:#999;font-size:14px">기록 지우기 (선생님 테스트용)</button>`:''}`;
  $.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const g=b.dataset.go;if(g==='next'){S.off=(S.off||0)+1;save();home();return;}if(g==='reset'){if(confirm('이 폰/브라우저의 풀이 기록을 모두 지울까요?')){S={log:[],weak:{},lv:{},tipSeen:0,sr:{}};save();home();}return;}g==='stats'?stats():g==='daily'?startDaily():start(g);});
 }
 // ---------- 오늘의 20문제: 뷔페식 골라담기 (이미 담은 문제는 제외, 틀린 문제만 다시) ----------
