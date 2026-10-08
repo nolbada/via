@@ -47,8 +47,8 @@ function home(){
  const met=Object.keys(S.sr).length,grad=Object.values(S.sr).filter(e=>e.done).length,dn=dueWords().length;
  $.innerHTML=`<h1>보카링크 VOCA LINK</h1><div class="sub">${DAYTXT} · 동남비타민영어학원</div>
  <div class="stats"><div><b>${met}</b><span>지금까지 만난 단어</span></div><div><b>${dn}</b><span>복습할 때가 된 단어</span></div><div><b>${grad}</b><span>완전히 외운 단어</span></div></div>
- <div class="today">${done?'내일 구성':'오늘 구성'} ${[['c-new','오늘부터 1일',P.n],['c-weak','왜 자꾸 날 잊어?',P.w],['c-rev','우리 만났었지?',P.r]].filter(a=>a[2]>0).map(a=>`<b class="${a[0]}">${a[1]} ${a[2]}</b>`).join(' · ')}</div>
- ${done?'<button class="btn" disabled style="opacity:.6">오늘 20문제 끝! 내일 만나요</button>':'<button class="btn pri" data-go="daily">오늘의 20문제</button>'}
+ <div class="today">${done?'다음 구성':'오늘 구성'} ${[['c-new','오늘부터 1일',P.n],['c-weak','왜 자꾸 날 잊어?',P.w],['c-rev','우리 만났었지?',P.r]].filter(a=>a[2]>0).map(a=>`<b class="${a[0]}">${a[1]} ${a[2]}</b>`).join(' · ')}</div>
+ ${done?'<button class="btn" disabled style="opacity:.6">오늘 20문제 끝! 다음에 또 만나요</button>':'<button class="btn pri" data-go="daily">오늘의 20문제</button>'}
  <button class="btn" data-go="stats">내 기록</button>
  <div class="card why"><h2>하루 20문제는 이렇게 짜여요</h2>
  <div class="sub" style="margin-bottom:8px">첫날은 20문제가 모두 새 단어예요. 둘째 날부터 아래 세 가지가 섞여 나와요.</div>
@@ -355,7 +355,9 @@ function rW24w(){
 
 // ---------- ⑥ 고장 난 문장
 function rBroken(){
- const x=cur.d,has=!!x.bad,toks=strip(x.en).split(/\s+/);
+ let x=cur.d;
+ if(x.bad&&x.orig){if(cur.cl===undefined)cur.cl=Math.random()<0.4;if(cur.cl)x={en:x.orig,ko:x.ko,orig:x.orig,kind:'정상',why:'원래 문장 그대로예요. 이 문장에는 틀린 곳이 없어요.',memo:{}};}
+ const has=!!x.bad,toks=strip(x.en).split(/\s+/);
  frame(`<div class="card">
  <div class="sub">아래 영어 문장에 <b>틀린 곳</b>이 있을까요?</div>
  <div class="sent" id="sent">${toks.map((t,i)=>`<span class="w" data-i="${i}">${esc(t)}</span>`).join(' ')}</div>
