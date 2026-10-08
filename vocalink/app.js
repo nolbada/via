@@ -47,10 +47,11 @@ function home(){
  const met=Object.keys(S.sr).length,grad=Object.values(S.sr).filter(e=>e.done).length,dn=dueWords().length;
  $.innerHTML=`<h1>보카링크 VOCA LINK</h1><div class="sub">${DAYTXT} · 동남비타민영어학원</div>
  <div class="stats"><div><b>${met}</b><span>지금까지 만난 단어</span></div><div><b>${dn}</b><span>복습할 때가 된 단어</span></div><div><b>${grad}</b><span>완전히 외운 단어</span></div></div>
- <div class="today">오늘 구성 <b class="c-new">오늘부터 1일 ${P.n}</b> · <b class="c-weak">왜 자꾸 날 잊어? ${P.w}</b> · <b class="c-rev">우리 만났었지? ${P.r}</b></div>
+ <div class="today">오늘 구성 ${[['c-new','오늘부터 1일',P.n],['c-weak','왜 자꾸 날 잊어?',P.w],['c-rev','우리 만났었지?',P.r]].filter(a=>a[2]>0).map(a=>`<b class="${a[0]}">${a[1]} ${a[2]}</b>`).join(' · ')}</div>
  <button class="btn pri" data-go="daily">오늘의 20문제</button>
  <button class="btn" data-go="stats">내 기록</button>
  <div class="card why"><h2>하루 20문제는 이렇게 짜여요</h2>
+ <div class="sub" style="margin-bottom:8px">첫날은 20문제가 모두 새 단어예요. 둘째 날부터 아래 세 가지가 섞여 나와요.</div>
  <div class="wy"><b class="c-new">오늘부터 1일</b>새 단어예요. 처음 하는 날은 20문제, 다음 날부터는 매일 6문제예요.</div>
  <div class="wy"><b class="c-weak">왜 자꾸 날 잊어?</b>틀렸던 단어(오답)가 돌아와요. 3~6문제예요.</div>
  <div class="wy"><b class="c-rev">우리 만났었지?</b>앞에서 본 단어(누적 복습)예요. 복습할 때가 된 단어가 나머지를 채워요. 뒤로 갈수록 이 비중이 커져요.</div></div>
