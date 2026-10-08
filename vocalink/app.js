@@ -43,12 +43,12 @@ const NAME={judge:'짝 판별',poly1:'다의어 뜻 찾기',poly2:'다의어 뜻
 let Q=[],cur=null,total=0,doneN=0,round=null,answered=false;
 
 function home(){
- const wk=weakIds().length,P=plan();
+ const wk=weakIds().length,done=S.doneDay===dayNo(),P=plan(done?1:0);
  const met=Object.keys(S.sr).length,grad=Object.values(S.sr).filter(e=>e.done).length,dn=dueWords().length;
  $.innerHTML=`<h1>보카링크 VOCA LINK</h1><div class="sub">${DAYTXT} · 동남비타민영어학원</div>
  <div class="stats"><div><b>${met}</b><span>지금까지 만난 단어</span></div><div><b>${dn}</b><span>복습할 때가 된 단어</span></div><div><b>${grad}</b><span>완전히 외운 단어</span></div></div>
- <div class="today">오늘 구성 ${[['c-new','오늘부터 1일',P.n],['c-weak','왜 자꾸 날 잊어?',P.w],['c-rev','우리 만났었지?',P.r]].filter(a=>a[2]>0).map(a=>`<b class="${a[0]}">${a[1]} ${a[2]}</b>`).join(' · ')}</div>
- <button class="btn pri" data-go="daily">오늘의 20문제</button>
+ <div class="today">${done?'내일 구성':'오늘 구성'} ${[['c-new','오늘부터 1일',P.n],['c-weak','왜 자꾸 날 잊어?',P.w],['c-rev','우리 만났었지?',P.r]].filter(a=>a[2]>0).map(a=>`<b class="${a[0]}">${a[1]} ${a[2]}</b>`).join(' · ')}</div>
+ ${done?'<button class="btn" disabled style="opacity:.6">오늘 20문제 끝! 내일 만나요</button>':'<button class="btn pri" data-go="daily">오늘의 20문제</button>'}
  <button class="btn" data-go="stats">내 기록</button>
  <div class="card why"><h2>하루 20문제는 이렇게 짜여요</h2>
  <div class="sub" style="margin-bottom:8px">첫날은 20문제가 모두 새 단어예요. 둘째 날부터 아래 세 가지가 섞여 나와요.</div>
@@ -60,14 +60,16 @@ function home(){
  <div class="wy"><b>간격 복습</b>틀린 단어는 내일, 맞힌 단어는 3일 · 7일 · 14일 뒤에 다시 만나요. 잊을 만할 때 다시 보면 오래 남아요.</div>
  <div class="wy"><b>꺼내 쓰기</b>보고 읽는 대신 직접 골라서 기억을 꺼내요. 읽기만 하는 것보다 기억에 더 오래 남는다고 알려져 있어요.</div>
  <div class="wy"><b>검증된 문제만</b>교재에 실린 단어와 문제만 써요. 정답이 하나로 확인된 것만 넣고, 애매한 문제는 뺐어요.</div></div>
+ <button class="btn" data-go="next" style="color:#999;font-size:14px">내일로 넘기기 (테스트용)</button>
  <button class="btn" data-go="reset" style="color:#999;font-size:14px">기록 지우기 (테스트용)</button>`;
- $.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const g=b.dataset.go;if(g==='reset'){if(confirm('이 폰/브라우저의 풀이 기록을 모두 지울까요?')){S={log:[],weak:{},lv:{},tipSeen:0,sr:{}};save();home();}return;}g==='stats'?stats():g==='daily'?startDaily():start(g);});
+ $.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const g=b.dataset.go;if(g==='next'){S.off=(S.off||0)+1;save();home();return;}if(g==='reset'){if(confirm('이 폰/브라우저의 풀이 기록을 모두 지울까요?')){S={log:[],weak:{},lv:{},tipSeen:0,sr:{}};save();home();}return;}g==='stats'?stats():g==='daily'?startDaily():start(g);});
 }
 // ---------- 오늘의 20문제: 뷔페식 골라담기 (이미 담은 문제는 제외, 틀린 문제만 다시) ----------
 const QUOTA={judge:3,poly1:1,poly2:3,deriv:3,w24:6,broken:3};
 const QSUM=Object.values(QUOTA).reduce((a,b)=>a+b,0);
 // ---- 간격 복습(라이트너): 틀리면 내일, 맞히면 3일→7일→14일 뒤에 다시. 3번 연속 이어서 맞히면 졸업 ----
-const dayNo=()=>Math.floor((Date.now()+9*36e5)/864e5);
+let SHIFT=0;
+const dayNo=()=>Math.floor((Date.now()+9*36e5)/864e5)+SHIFT+(S.off||0);
 const GAP=[1,3,7,14],DUE_MAX=6;
 // ---- 단어 단위 간격 복습: 처음 만난 단어는 맞히면 3일 뒤, 틀리면 내일. 복습에서 맞히면 간격 3→7→14일, 틀리면 다시 내일 ----
 // 고장 난 문장이 어떤 단어를 공부시키는지 직접 지정
@@ -96,7 +98,8 @@ function pastWrong(wp,have){ // 예전에 한 번이라도 틀렸고 아직 졸�
  const id2w={};Object.keys(wp).forEach(w=>wp[w].forEach(i=>id2w[i.id]=w));
  const cnt={};S.log.forEach(l=>{if(!l.ok&&id2w[l.id])cnt[id2w[l.id]]=(cnt[id2w[l.id]]||0)+1;});
  return Object.keys(cnt).filter(w=>S.sr[w]&&!S.sr[w].done&&!(have&&have.has(w))).sort((a,b)=>cnt[b]-cnt[a]);}
-function plan(){ // 홈에 보여 줄 오늘 구성 (startDaily와 같은 규칙)
+function plan(sh){SHIFT=sh||0;try{return planRaw();}finally{SHIFT=0;}}
+function planRaw(){ // 홈에 보여 줄 구성 (startDaily와 같은 규칙). plan(1)=내일 기준
  const N=20,wp=wordPool(),due=dueWords().filter(w=>wp[w]);
  if(!Object.keys(S.sr).length)return{n:20,w:0,r:0};
  const wd=due.filter(w=>S.sr[w].wrong),rd=due.length-wd.length;
@@ -383,7 +386,7 @@ function cardsHtml(){
  return `<div class="card"><h2>틀린 카드 ${round.cards.length}개 — 종이 PART2에 옮겨 써요</h2>${round.cards.map(c=>`<div class="sb">${c}</div>`).join('')}</div>`;
 }
 function summary(){
- tick();const secs=actSec;S.totalSec=(S.totalSec||0)+secs;save();
+ tick();const secs=actSec;S.totalSec=(S.totalSec||0)+secs;if(round.mode==='daily')S.doneDay=dayNo();save();
  const w24=round.mode==='w24';
  $.innerHTML=`<h1>한 판 끝!</h1><div class="card"><div style="font-size:30px;font-weight:800">처음에 맞힌 개수 ${round.firstOk} / ${round.firstN}</div>
  <div class="sub">이번 사용시간 <b>${fmtT(secs)}</b> (딴 데 다녀온 시간·멈춰 있던 시간은 빼요)</div>
