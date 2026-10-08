@@ -356,7 +356,7 @@ function rW24w(){
 // ---------- ⑥ 고장 난 문장
 function rBroken(){
  let x=cur.d;
- if(x.bad&&x.orig){if(cur.cl===undefined)cur.cl=Math.random()<0.4;if(cur.cl)x={en:x.orig,ko:x.ko,orig:x.orig,kind:'정상',why:'원래 문장 그대로예요. 이 문장에는 틀린 곳이 없어요.',memo:{}};}
+ if(x.bad&&x.orig){if(cur.cl===undefined)cur.cl=false;if(cur.cl)x={en:x.orig,ko:x.ko,orig:x.orig,kind:'정상',why:'원래 문장 그대로예요. 이 문장에는 틀린 곳이 없어요.',memo:{}};}
  const has=!!x.bad,toks=strip(x.en).split(/\s+/);
  frame(`<div class="card">
  <div class="sub">아래 영어 문장에 <b>틀린 곳</b>이 있을까요?</div>
