@@ -249,7 +249,7 @@ function rPoly1(){
   record(ok,{missed:missed.length,wrong:wrong.length});
   let h=ok?`<b>${p.word}</b>의 뜻 ${p.senses.length}개를 모두 찾았어요!`:`<b>${p.word}</b>의 뜻은 ${p.senses.length}개예요.`;
   if(missed.length)h+=`<div class="sub" style="margin-top:6px">놓친 뜻 </div>`+missed.map(s=>exBlock(p.word,s,s.sense)).join('');
-  if(wrong.length)h+=`<div class="sub" style="margin-top:6px">잘못 누른 뜻은 다른 단어의 뜻이에요 </div>`+wrong.map(w=>{const i=senseInfo[w];return exBlock(i.word,i,w);}).join('');
+  if(wrong.length)h+=`<div class="sub" style="margin-top:6px">잘못 누른 뜻은 다른 단어의 뜻이에요 </div>`+wrong.map(w=>{const i=senseInfo[w];return i?exBlock(i.word,i,w):'';}).join('');
   afterAnswer(ok,h,['뜻이 여러 개인 줄 몰랐어요','뜻 자체를 몰랐어요','다른 단어 뜻과 헷갈렸어요','그냥 찍었어요']);
  };
 }
