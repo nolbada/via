@@ -121,7 +121,7 @@ function startDaily(){
  // 한 단어에 문제 하나를 배정 (아직 안 푼 유형 우선, 유형별 하루 상한 적용)
  const add=(w,th,force)=>{if(have.has(w))return false;const its=wp[w],lf=its.filter(i=>!logged.has(i.id));
   let cand=shuffle(lf.length?lf:its);if(!force)cand=cand.filter(i=>(used[i.t]||0)<CAP[i.t]);
-  if(!cand.length)return false;const it=cand[0];used[it.t]=(used[it.t]||0)+1;have.add(w);out.push([it,th]);return true;};
+  if(!cand.length)return false;let it=cand[0];if(it.t==='judge'){const wantNR=Math.random()>=0.7,m=cand.find(i=>i.t==='judge'&&((i.d.rel==='관계없음')===wantNR));if(m)it=m;}used[it.t]=(used[it.t]||0)+1;have.add(w);out.push([it,th]);return true;};
  const take=(arr,n,th,force)=>{let c=0;for(let k=0;k<arr.length&&c<n;k++){if(add(arr[k],th,force)){arr.splice(k,1);k--;c++;}}return c;};
  // 구성: 첫 만남 6(복습이 몰리면 최소 3, 맨 첫날만 20) + 틀린 단어 최대 6 + 나머지는 시기가 된 복습. 다의어 2유형은 첫 만남에 매일 포함
  const first=!Object.keys(S.sr).length,NEWQ=first?N:Math.max(3,Math.min(6,N-Math.min(weak.length,WEAK_MAX)-rev.length));
