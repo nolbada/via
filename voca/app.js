@@ -42,12 +42,14 @@ function build(B){
       while(st.length){var x=st.pop();(adj[x]||[]).forEach(function(n){if(comp[n.o]===undefined){comp[n.o]=cid;st.push(n.o)}})}
       cid++;
     });
+    var clash={};((B.clash||{})[l]||[]).forEach(function(p){(clash[p[0]]=clash[p[0]]||{})[p[1]]=1;(clash[p[1]]=clash[p[1]]||{})[p[0]]=1});
     var pool=Object.keys(adj);
-    G.L[l]={no:l,title:ls.title,edges:edges,adj:adj,comp:comp,pool:pool,hubs:hubs,
+    G.L[l]={no:l,title:ls.title,edges:edges,adj:adj,comp:comp,pool:pool,hubs:hubs,clash:clash,
       broken:B.broken.filter(function(b){return String(b.l)===l&&B.words[b.gl]&&B.words[b.bl]})};
   });
   return G;
 }
+function JB(G,w,a,b){var k=G.words[w],c=k.charCodeAt(k.length-1);return (c>=0xAC00&&c<=0xD7A3&&((c-0xAC00)%28)!==0)?a:b}
 function W(G,w,jo){   /* 단어(뜻) + 조사. jo: '은는' '이가' '과와' '을를' 중 하나 */
   var k=G.words[w],s='<b class="v">'+esc(w)+'</b>('+esc(k)+')';
   if(!jo)return s;
@@ -110,6 +112,7 @@ function decoys(G,L,X,correct,n){
   for(var i=0;i<pool.length&&out.length<n;i++){
     var w=pool[i];
     if(w===X||w===correct||L.comp[w]===cx)continue;
+    if(L.clash&&L.clash[X]&&L.clash[X][w])continue;
     var k=G.words[w]; if(!k||kos[k])continue;
     if(out.some(function(o){return G.words[o]===k}))continue;
     out.push(w);
@@ -131,7 +134,7 @@ function makeSort(G,s,L){
   var h=rnd(Object.keys(L.hubs).filter(function(w){return L.adj[w]}));
   var ds=decoys(G,L,h,null,1); if(!ds.length)return null;
   var from=(L.adj[ds[0]]||[])[0];
-  return {kind:'sort',X:h,Y:ds[0],ans:'N',from:from?from.o:null};
+  return {kind:'sort',X:h,Y:ds[0],ans:'N',from:from?from.o:null,fromT:from?from.t:null,fromHub:from?from.e.hub:null};
 }
 function pickBroken(s,L,used){
   var arr=L.broken.filter(function(b){return !used[b.l+':'+b.n+':'+b.g]});
@@ -148,6 +151,10 @@ function relLine(G,X,Y,t,asked){
   if(t==='A') return asked==='hub' ? W(G,Y,'은는')+' '+W(G,X)+'의 반의어입니다.' : W(G,X)+'의 반대말은 '+W(G,Y)+'입니다.';
   return asked==='hub' ? W(G,Y,'은는')+' '+W(G,X,'과와')+' 뜻이 비슷한 유의어입니다.' : W(G,X,'과와')+' 뜻이 비슷한 말은 '+W(G,Y)+'입니다.';
 }
+function relF(G,X,Y,t){
+  var sym=t==='A'?'\u2194':(t==='S'?'=':'\u2715');
+  return '<span class="fm"><span class="fw"><b class="v">'+esc(X)+'</b> '+esc(G.words[X])+'</span><span class="sym s'+t+'">'+sym+'</span><span class="fw"><b class="v">'+esc(Y)+'</b> '+esc(G.words[Y])+'</span></span>';
+}
 function srcBlock(G,l,hub){
   if(!hub||!hub.n||!hub.story)return '';
   var sn=G.B.sents[l][String(hub.n)];
@@ -161,14 +168,15 @@ function App(G,id,root){
   var first=G.B.lessons[0].no; this.l=String(this.st.s.lesson||first);
   this.home();
 }
+App.prototype.totalQ=function(no){var G=this.G,l=String(no),L=G.L[l];return this.listFor('all',no).length+L.broken.length+L.edges.length};
 App.prototype.L=function(){return this.G.L[this.l]};
 App.prototype.set=function(h){this.root.innerHTML=h};
 App.prototype.home=function(){
   var self=this,G=this.G,s=this.st.s,L=this.L();
   var c=counts(s,L),tot=L.edges.length,n=Math.min(QUOTA,todayN(s,this.l));
-  var im=immunity(s,L);
+  var im=immunity(s,L),bs=0,es=0;L.broken.forEach(function(x){var r=s.broken[x.l+':'+x.n+':'+x.g];if(r&&r.tr)bs++});L.edges.forEach(function(e){if(level(s,e)>0)es++});
   var tabs=G.B.lessons.map(function(ls){
-    return '<button role="tab" data-l="'+ls.no+'" aria-selected="'+(String(ls.no)===self.l)+'">'+ls.no+'과<small>'+esc(ls.title)+'</small></button>';
+    return '<button role="tab" data-l="'+ls.no+'" aria-selected="'+(String(ls.no)===self.l)+'">'+ls.no+'과<small>'+esc(ls.title)+'</small><small class="tot">전체 '+self.totalQ(ls.no)+'문항</small></button>';
   }).join('');
   var q='';for(var i=0;i<QUOTA;i++)q+='<i'+(i<n?' class="on"':'')+'></i>';
   var stack='',leg='';
@@ -176,33 +184,36 @@ App.prototype.home=function(){
     stack+='<i style="width:'+(tot?c[i]/tot*100:0)+'%;background:'+LV_COL[i]+'"></i>';
     leg+='<div><b>'+c[i]+'</b><span class="dot" style="background:'+LV_COL[i]+'"></span>'+LV_NAME[i]+'</div>';
   }
-  var rec=s.recent.filter(function(r){return String(r.l)===self.l}).slice(0,3).map(function(r){return self.recentLine(r)}).filter(Boolean).join('');
+  var recA=s.recent.filter(function(r){return String(r.l)===self.l}).map(function(r){return self.recentLine(r)}).filter(Boolean),rec=recA.join(''),recN=recA.length;
   var html='<main class="wrap">'+
-  '<header><div class="brand">동남비타민영어학원</div><h1>주성고 어휘 <em>함정</em> 피하기</h1>'+
-  '<p class="sub">'+esc(G.B.book)+' · 학교 쌤의 낚시에 놀아나지 않는다</p></header>'+
+  '<header><div class="brand">동남비타민영어학원</div><h1>'+esc(G.B.school||'')+' <em>어휘 함정</em> 피하기</h1>'+
+  '<p class="sub">'+esc(G.B.book)+'</p></header>'+
   '<div class="who"><button class="chip" id="nm">'+(s.name?esc(s.name):'이름 적기')+'</button><span class="chip">'+dateLabel()+'</span></div>'+
   '<div class="tabs" role="tablist" aria-label="단원 선택">'+tabs+'</div>'+
-  '<section class="panel"><h2>오늘의 몫 <span>'+dateLabel()+'</span></h2>'+
-  '<div class="big"><b>'+n+'</b><span>/ '+QUOTA+'개 연결을 마쳤다</span></div><div class="quota" aria-hidden="true">'+q+'</div>'+
-  '<p class="note">'+(n>=QUOTA?'오늘 몫을 다 했다.':(QUOTA-n)+'개 남았다. 이것만 하면 오늘 몫은 끝.')+'</p></section>'+
-  '<section class="panel"><h2>낚시 면역률 <span>풀어 본 문장 중 최근에 맞힌 비율</span></h2>'+
-  '<div class="immune"><b>'+(im===null?'-':im+'%')+'</b><div class="bar"><i style="width:'+(im||0)+'%"></i></div></div></section>'+
-  '<section class="panel"><h2>연결 진도 <span>전체 '+tot+'개</span></h2><div class="stack">'+stack+'</div><div class="legend">'+leg+'</div>'+
-  '<p class="note">같은 연결을 서로 다른 날 두 번 연속 맞히면 정복. 거꾸로 묻는 문제도 맞혀야 합니다.</p></section>'+
-  '<section class="modes" aria-label="오늘 할 활동">'+
-  '<button class="mode" data-m="quiz"><strong>연결 퀴즈</strong><span>유의어·반의어를 거꾸로도 묻는다</span><b class="go">시작</b></button>'+
-  '<button class="mode" data-m="sort"><strong>뜻 분류 던지기</strong><span>답을 고른 뒤에야 뜻이 나온다</span><b class="go">시작</b></button>'+
-  '<button class="mode trap" data-m="broken"><strong>고장 난 문장</strong><span>교과서 문장 속 바뀐 단어를 찾는다</span><b class="go">시작</b></button></section>'+
-  (rec?'<section class="panel"><h2>최근 걸릴 뻔한 낚시</h2><ul class="miss">'+rec+'</ul></section>':'')+
-  '<section class="panel save"><details><summary>폰을 바꿨을 때만 열어요 (평소엔 안 눌러도 돼요)</summary>'+
-  '<p class="note">새 폰이나 다른 기기에서 이어 하고 싶을 때만 쓰는 칸이에요. 아래 코드를 복사해 두었다가 새 기기에서 붙여넣으면 이어 할 수 있어요.</p>'+
+  '<h3 class="grp">본문 내용 · 총 '+(self.prog('all',this.l).tot+L.broken.length)+'문항 <span>파트(❶❷❸…) 단위로 묻습니다</span></h3>'+
+  '<section class="modes">'+
+  (G.B.flow&&G.B.flow.length?'<button class="mode" data-m="flow"><strong>흐름 핵심어 순서 ('+self.prog('flow',this.l).seen+'/'+self.prog('flow',this.l).tot+')</strong><span>'+self.progLine('flow')+'</span><b class="go">'+self.goLabel('flow')+'</b></button>':'')+
+  (G.B.summ&&G.B.summ.length?'<button class="mode" data-m="summ"><strong>요약문 완성 ('+self.prog('summ',this.l).seen+'/'+self.prog('summ',this.l).tot+')</strong><span>'+self.progLine('summ')+'</span><b class="go">'+self.goLabel('summ')+'</b></button>':'')+
+  '<button class="mode trap" data-m="broken"><strong>고장 난 문장 ('+bs+'/'+L.broken.length+')</strong><span>교과서 문장 속 바뀐 단어를 찾는다</span><b class="go">시작</b></button>'+
+  '</section>'+
+  '<h3 class="grp">어휘 연결 · '+es+'/'+L.edges.length+' <span>같은 어휘 '+L.edges.length+'개를 연결로 한 번, 분류로 또 한 번 잡아줍니다</span></h3>'+
+  '<section class="modes">'+
+  '<button class="mode" data-m="quiz"><strong>연결 퀴즈 ('+es+'/'+L.edges.length+')</strong><span>유의어·반의어를 거꾸로도 묻는다</span><b class="go">시작</b></button>'+
+  '<button class="mode" data-m="sort"><strong>뜻 분류 던지기 ('+es+'/'+L.edges.length+')</strong><span>답을 고른 뒤에야 뜻이 나온다</span><b class="go">시작</b></button>'+
+  '</section>'+
+  '<h3 class="grp">내 기록 <span>이 단원 전체 문항 기준</span></h3>'+
+  (function(){var p=self.prog('all',self.l),T=self.totalQ(self.l),sn=p.seen+bs+es,pc=T?Math.round(sn/T*100):0;return '<section class="panel score"><h2>내 진도 <span>'+self.l+'과 전체 '+T+'문항 중</span></h2><div class="immune"><b>'+sn+'</b><div class="bar"><i style="width:'+pc+'%"></i></div></div>'+(p.wrong?'<p class="note">틀린 문제 '+p.wrong+'개</p><div class="btnrow"><button class="btn pri" id="wr">틀린 문제만 다시 풀기 ('+p.wrong+')</button></div>':'')+'</section>'})()+
+  (rec?'<section class="panel score"><details class="recd"><summary><b>함정에 빠진 포인트 ('+recN+')</b> <span>최근에 틀린 문제 · 눌러서 펼치기</span></summary><ul class="miss">'+rec+'</ul></details></section>':'')+
+  '<section class="panel save"><details><summary>기록 옮기기 (다른 기기·선생님께 보내기)</summary>'+
+  '<p class="note">아래 코드를 복사해 두면 다른 기기에서 붙여넣어 이어 할 수 있어요.</p>'+
   '<textarea id="code" readonly></textarea><div class="btnrow"><button class="btn pri" id="cp">코드 복사</button></div>'+
   '<p class="note">다른 기기에서 받은 코드를 붙여넣고 복원하면 이 기기 기록이 바뀝니다.</p>'+
   '<textarea id="in" placeholder="여기에 코드를 붙여넣기"></textarea><div class="btnrow"><button class="btn" id="rs">붙여넣은 코드로 복원</button></div><p class="note" id="msg"></p></details></section>'+
-  '<p class="foot">푼 기록은 이 기기에 저장되고, 선생님께는 자동으로 전달돼요.</p></main>';
+  '<p class="foot">기록은 이 기기의 브라우저에 저장됩니다.</p></main>';
   this.set(html);
   var r=this.root;
   r.querySelector('.tabs').onclick=function(ev){var b=ev.target.closest('button');if(!b)return;self.l=b.getAttribute('data-l');self.st.s.lesson=self.l;self.st.save();self.home()};
+  var wr=r.querySelector('#wr');if(wr)wr.onclick=function(){self.run('wrong')};
   r.querySelectorAll('.mode').forEach(function(b){b.onclick=function(){self.run(b.getAttribute('data-m'))}});
   r.querySelector('#nm').onclick=function(){
     var box=document.createElement('div');box.className='panel';
@@ -228,8 +239,12 @@ App.prototype.recentLine=function(r){
     var b=L.broken.filter(function(x){return x.n===r.n&&x.g===r.g})[0]; if(!b)return '';
     return '<li><div class="tag">'+r.l+'과 · '+r.n+'번 문장</div>'+esc(b.why)+'</li>';
   }
+  if(r.k==='f'){var g=G.B.flow.filter(function(x){return x.id===r.id})[0]; if(!g)return '';
+    return '<li><div class="tag">'+r.l+'과 · 흐름 순서</div>'+esc(g.scope)+'</li>';}
+  if(r.k==='s'){var m=G.B.summ.filter(function(x){return x.id===r.id})[0]; if(!m)return '';
+    return '<li><div class="tag">'+r.l+'과 · 요약문</div>'+esc(m.k)+'</li>';}
   var e=L.edges.filter(function(x){return x.id===r.id})[0]; if(!e)return '';
-  return '<li><div class="tag">연결 오답</div>'+relLine(G,e.b,e.a,e.t,'hub')+'</li>';
+  return '<li><div class="tag">연결 오답</div>'+relF(G,e.b,e.a,e.t)+'</li>';
 };
 App.prototype.pushRecent=function(o){
   var s=this.st.s;o.at=Date.now();
@@ -247,12 +262,25 @@ App.prototype.shell=function(label,body){
 App.prototype.end=function(){
   var self=this;
   this.shell('한 판 끝','<div class="card done"><div class="tagline">ROUND END</div><div class="score">'+this.right+' / '+this.cnt+'</div>'+
-   '<div>틀린 건 다음 판에 먼저 다시 나옵니다. 오늘의 몫은 '+Math.min(QUOTA,todayN(this.st.s,this.l))+'/'+QUOTA+'.</div><button class="next" id="ag">한 판 더</button></div>');
+   '<div>틀린 건 다음 판에 먼저 다시 나옵니다. </div><button class="next" id="ag">한 판 더</button></div>');
   this.root.querySelector('#ag').onclick=function(){self.run(self.mode)};
+  if(this.mode==='wrong'||this.mode==='all'){
+    var ag=this.root.querySelector('#ag'),done=this.listFor('all',this.l).every(function(x){var d=self.st.s.done||{};return d[x.id]&&d[x.id].ok});
+    if(this.mode==='wrong'||done){ag.textContent='처음으로';ag.onclick=function(){self.home()};
+      var dv=this.root.querySelector('.card.done div:nth-child(3)');if(dv)dv.textContent=this.mode==='wrong'?'다시 풀 틀린 문제를 모두 풀었어요. 아직 틀린 건 홈에서 다시 볼 수 있어요.':'이 단원 본문 내용 문제를 모두 맞혔어요.'}
+  }
 };
 App.prototype.next=function(){
-  if(this.cnt>=ROUND){this.end();return}
-  if(this.mode==='quiz')this.quiz();else if(this.mode==='sort')this.sort();else this.broken();
+  if(this.cnt>=this.rounds()){this.end();return}
+  if(this.mode==='all'||this.mode==='wrong'){
+    var L=this.listFor('all',this.l),d=this.st.s.done||{};
+    var left=L.filter(function(x){return !d[x.id]||!d[x.id].ok});
+    if(this.mode==='wrong')left=L.filter(function(x){return d[x.id]&&!d[x.id].ok});
+    if(!left.length&&(this.cnt>0||this.mode==='wrong')){this.end();return}
+    var it=this.pickItem(left.length?left:L);this.forced=it;
+    if(it.steps)this.flowQ();else this.summ();return;
+  }
+  if(this.mode==='quiz')this.quiz();else if(this.mode==='sort')this.sort();else if(this.mode==='flow')this.flowQ();else if(this.mode==='summ')this.summ();else this.broken();
 };
 App.prototype.finish=function(ok,nm){ /* 한 문제 끝 */
   this.cnt++;if(ok)this.right++;
@@ -294,8 +322,8 @@ App.prototype.quiz=function(){
       if(ww===q.Y)x.classList.add('ok');else if(ww===w)x.classList.add('no');
     });
     self.root.querySelector('.hub .k').innerHTML=esc(G.words[q.X]);self.root.querySelector('.hub .k').classList.remove('hide');
-    var msg=(ok?'정답! ':'아쉬워요. ')+relLine(G,q.X,q.Y,q.e.t,asked);
-    if(!ok)msg+='<br>고른 '+W(G,w,'은는')+' '+W(G,q.X,'과와')+' 관계가 없는 말이에요.';
+    var msg=(ok?'정답! ':'아쉬워요. ')+'<div class="fml">'+relF(G,q.X,q.Y,q.e.t)+'</div>';
+    if(!ok)msg+='<div class="fml">'+relF(G,q.X,w,'N')+'</div>';
     self.root.querySelector('#fb').innerHTML='<div class="fb '+(ok?'ok':'no')+'">'+msg+'</div>'+srcBlock(G,self.l,q.e.hub)+'<button class="next" id="nx">다음</button>';
     var nx=self.root.querySelector('#nx');nx.onclick=function(){self.next()};nx.focus();
   }});
@@ -307,7 +335,7 @@ App.prototype.sort=function(){
   if(!q){this.end();return}
   this.shell('뜻 분류 던지기 '+(this.cnt+1)+' / '+ROUND,'<div class="card"><div class="hub"><div class="w">'+esc(q.X)+'</div><div class="k hide">&nbsp;</div></div>'+
    '<div class="chipbox"><div class="q">이 단어는 '+esc(q.X)+'와(과)</div><div class="c">'+esc(q.Y)+'</div><div class="k hide">&nbsp;</div></div>'+
-   '<div class="choices three" id="ch"><button class="S" data-a="S"><span class="mark">=</span>비슷한 뜻<small>유의어</small></button><button class="A" data-a="A"><span class="mark">≠</span>반대 뜻<small>반의어</small></button><button class="N" data-a="N"><span class="mark">✕</span>상관없음<small>관계 없음</small></button></div><div id="fb"></div></div>');
+   '<div class="choices three" id="ch"><button class="S" data-a="S"><span class="mark">=</span>비슷한 뜻<small>유의어</small></button><button class="A" data-a="A"><span class="mark">↔</span>반대 뜻<small>반의어</small></button><button class="N" data-a="N"><span class="mark">✕</span>상관없음<small>관계 없음</small></button></div><div id="fb"></div></div>');
   this.root.querySelectorAll('#ch button').forEach(function(b){b.onclick=function(){
     var a=b.getAttribute('data-a'),ok=a===q.ans;
     if(q.e)mark(s,q.e.id,'f',ok);
@@ -317,9 +345,9 @@ App.prototype.sort=function(){
     var ks=self.root.querySelectorAll('.k');ks[0].innerHTML=esc(G.words[q.X]);ks[1].innerHTML=esc(G.words[q.Y]);
     ks[0].classList.remove('hide');ks[1].classList.remove('hide');
     var msg=ok?'정답! ':'아쉬워요. ';
-    if(q.ans==='N'){msg+=W(G,q.Y,'은는')+' '+W(G,q.X,'과와')+' 관계가 없는 말입니다.'+(q.from?' ('+W(G,q.Y,'은는')+' '+W(G,q.from)+' 쪽 연결이에요)':'')}
-    else msg+=relLine(G,q.X,q.Y,q.ans,'hub');
-    self.root.querySelector('#fb').innerHTML='<div class="fb '+(ok?'ok':'no')+'">'+msg+'</div>'+(q.e?srcBlock(G,self.l,q.e.hub):'')+'<button class="next" id="nx">다음</button>';
+    msg+='<div class="fml">'+relF(G,q.X,q.Y,q.ans)+'</div>';
+    if(q.ans==='N'&&q.from)msg+='<div class="fml sub">'+relF(G,q.Y,q.from,q.fromT)+'</div>';
+    self.root.querySelector('#fb').innerHTML='<div class="fb '+(ok?'ok':'no')+'">'+msg+'</div>'+(q.e?srcBlock(G,self.l,q.e.hub):srcBlock(G,self.l,L.hubs[q.X])+(q.fromHub?srcBlock(G,self.l,q.fromHub):''))+'<button class="next" id="nx">다음</button>';
     var nx=self.root.querySelector('#nx');nx.onclick=function(){self.next()};nx.focus();
   }});
 };
@@ -337,23 +365,141 @@ App.prototype.broken=function(){
   var sn=G.B.sents[this.l][String(b.n)], toks=sn.e.split(' '), hit=-1, bad=null;
   for(var i=0;i<toks.length;i++){var sw=swap(toks[i],b.g,b.b);if(sw){hit=i;bad=sw;break}}
   if(hit<0){this.next();return}
-  var html=toks.map(function(t,i){return '<button data-i="'+i+'">'+esc(i===hit?bad:t)+'</button>'}).join(' ');
+  var altI={};(b.alt||[]).forEach(function(a){toks.forEach(function(t,i){var m=/^([^A-Za-z]*)(.*?)([^A-Za-z]*)$/.exec(t);if(i!==hit&&m[2]===a)altI[i]=1})});
+  var html=toks.map(function(t,i){return i===hit?bad.split(' ').map(function(p){return '<button data-i="'+i+'">'+esc(p)+'</button>'}).join(' '):'<button data-i="'+i+'">'+esc(t)+'</button>'}).join(' ');
   this.shell('고장 난 문장 '+(this.cnt+1)+' / '+ROUND,'<div class="card"><div>교과서 문장인데 <b>한 단어가 다른 뜻으로 바뀌어</b> 있어요. 어디일까요?</div>'+
    '<div class="sent" id="sent">'+html+'</div><div id="fb"></div></div>');
   var key=b.l+':'+b.n+':'+b.g;
   this.root.querySelectorAll('#sent button').forEach(function(x){x.onclick=function(){
-    var ok=+x.getAttribute('data-i')===hit;
+    var ci=+x.getAttribute('data-i'),ok=ci===hit||!!altI[ci];
     var r=s.broken[key]=s.broken[key]||{tr:0,last:false};r.tr++;r.last=ok;
     self.finish(ok,'broken');
     if(!ok)self.pushRecent({k:'b',l:self.l,n:b.n,g:b.g});
     var btns=[].slice.call(self.root.querySelectorAll('#sent button'));
     btns.forEach(function(y){y.disabled=true});
-    btns[hit].classList.add('hit'); if(!ok)x.classList.add('miss');
+    btns.forEach(function(y){if(+y.getAttribute('data-i')===hit)y.classList.add('hit')}); if(!ok)x.classList.add('miss'); else if(ci!==hit)x.classList.add('hit');
     var truth=toks.map(function(t,i){return i===hit?'<mark>'+esc(t)+'</mark>':esc(t)}).join(' ');
-    self.root.querySelector('#fb').innerHTML='<div class="fb '+(ok?'ok':'no')+'">'+(ok?'정답! ':'아쉬워요. ')+'바뀐 단어는 '+W(G,b.bl)+'이고, 원래는 '+W(G,b.gl)+'였어요.</div>'+
+    self.root.querySelector('#fb').innerHTML='<div class="fb '+(ok?'ok':'no')+'">'+(ok?(ci!==hit?'이 단어를 고쳐도 말이 되는 문장이라 정답으로 인정해요. ':'정답! '):'아쉬워요. ')+'바뀐 단어는 '+W(G,b.bl)+JB(G,b.bl,'이고','고')+', 원래는 '+W(G,b.gl)+JB(G,b.gl,'이었어요','였어요')+'.</div>'+
      '<div class="truebox"><div class="tagline">진짜 문장 · 교과서 '+self.l+'과 '+b.n+'번</div><div>'+truth+'</div><div class="ko">'+esc(sn.k)+'</div></div>'+
      '<div class="trapbox"><div class="tagline">학교 선생님이 이렇게 뒤통수 칠 수 있어요</div>'+esc(b.why)+'</div>'+
      '<button class="next" id="nx">다음 문장</button>';
+    var nx=self.root.querySelector('#nx');nx.onclick=function(){self.next()};nx.focus();
+  }});
+};
+
+/* ---------- 제목·주제 낚시 / 요약문 완성 ---------- */
+function evBlock(G,l,ev){
+  return '<details class="evd"><summary>근거 문장 보기 ('+ev.map(function(n){return n+'번'}).join(', ')+')</summary>'+ev.map(function(n){
+    var sn=G.B.sents[l][String(n)];return sn?'<div class="en">'+n+'. '+esc(sn.e)+'</div><div class="ko">'+esc(sn.k)+'</div>':''}).join('')+'</details>';
+}
+App.prototype.listFor=function(m,l){var B=this.G.B;var L=m==='flow'?B.flow:(m==='summ'?B.summ:(B.flow||[]).concat(B.summ||[]));return (L||[]).filter(function(x){return x.l===+l})};
+App.prototype.prog=function(m,l){
+  var d=(this.st.s.done=this.st.s.done||{}),L=this.listFor(m,l),seen=0,wrong=0;
+  L.forEach(function(x){var r=d[x.id];if(r){seen++;if(!r.ok)wrong++}});
+  return {tot:L.length,seen:seen,wrong:wrong};
+};
+App.prototype.pickItem=function(L){
+  /* 안 푼 문제 먼저 -> 틀린 문제 -> 맞힌 문제(복습). 같은 문제가 연달아 나오지 않게 */
+  var d=(this.st.s.done=this.st.s.done||{}),last=this.lastId;
+  var c=L.filter(function(x){return x.id!==last||L.length===1});
+  var a=c.filter(function(x){return !d[x.id]}); if(a.length)return rnd(a);
+  a=c.filter(function(x){return !d[x.id].ok}); if(a.length)return rnd(a);
+  return rnd(c);
+};
+App.prototype.markDone=function(id,ok){
+  var d=(this.st.s.done=this.st.s.done||{});var r=d[id]=d[id]||{n:0};
+  r.n++;r.ok=!!ok;r.at=Date.now();this.lastId=id;this.st.save();
+};
+App.prototype.progLine=function(m){
+  var p=this.prog(m,this.l);
+  if(!p.seen)return '아직 안 풀었어요';
+  if(p.seen>=p.tot)return '모두 풀었어요'+(p.wrong?' · 틀린 '+p.wrong+'개 다시':' · 전부 맞힘, 복습 중');
+  return p.seen+'/'+p.tot+' 풀어 봄'+(p.wrong?' · 틀린 '+p.wrong+'개':'')+' · 이어서 풀기';
+};
+App.prototype.goLabel=function(m){var p=this.prog(m,this.l);return p.seen&&p.seen<p.tot?'이어서':(p.seen?'복습':'시작')};
+App.prototype.rounds=function(){
+  var l=+this.l,B=this.G.B;
+  if(this.mode==='flow'||this.mode==='summ'||this.mode==='all'||this.mode==='wrong')return Infinity;
+  return ROUND;
+};
+App.prototype.flowQ=function(){
+  var self=this,G=this.G,l=+this.l;
+  var it=this.forced||this.pickItem(this.listFor('flow',l));this.forced=null;
+  var st=it.steps,pg=this.prog((this.mode==='all'||this.mode==='wrong')?'all':'flow',l);
+  var order=shuffle(st.map(function(x,i){return i}));
+  var chips=order.map(function(i){return '<button class="chip2" data-i="'+i+'"><b>'+esc(st[i].en)+'</b><span>'+esc(st[i].ko)+'</span></button>'}).join('');
+  this.shell((this.mode==='all'?l+'과 본문 내용 문제 · ':(this.mode==='wrong'?l+'과 틀린 문제 다시 풀기 · ':''))+'흐름 핵심어 순서 · '+pg.seen+'/'+pg.tot+' 풀어 봄',
+    '<div class="card"><div class="tagline">'+l+'과 · '+esc(it.scope)+'</div><div class="qline"><b>글의 흐름 순서대로 핵심어를 눌러 보세요.</b></div>'+
+    '<ol class="slots" id="slots"></ol><div class="pool" id="pool">'+chips+'</div>'+
+    '<div class="btnrow"><button class="btn" id="undo">되돌리기</button><button class="btn pri" id="ck" disabled>확인</button></div><div id="fb"></div></div>');
+  var placed=[],card=this.root.querySelector('.card');
+  var qline=card.querySelector('.qline'),kof=document.createElement('button');
+  kof.className='btn';kof.id='kof';qline.insertAdjacentElement('afterend',kof);
+  function setKo(on){card.classList.toggle('koon',!!on);kof.textContent=on?'한글 가리기':'한글 함께보기';self.st.s.koOpen=!!on;self.st.save()}
+  setKo(!!this.st.s.koOpen);
+  kof.onclick=function(){setKo(!card.classList.contains('koon'))};
+  function draw(){
+    self.root.querySelector('#slots').innerHTML=placed.map(function(i,k){return '<li><b>'+(k+1)+'</b> '+esc(st[i].en)+' <small>'+esc(st[i].ko)+'</small></li>'}).join('');
+    self.root.querySelectorAll('#pool .chip2').forEach(function(b){var k=placed.indexOf(+b.getAttribute('data-i'));b.disabled=k>=0;b.classList.toggle('used',k>=0);if(k>=0)b.setAttribute('data-no',k+1);else b.removeAttribute('data-no')});
+    self.root.querySelector('#ck').disabled=placed.length<st.length;
+  }
+  this.root.querySelectorAll('#pool .chip2').forEach(function(b){b.onclick=function(){placed.push(+b.getAttribute('data-i'));draw()}});
+  this.root.querySelector('#undo').onclick=function(){placed.pop();draw()};
+  this.root.querySelector('#ck').onclick=function(){
+    var res=placed.map(function(i,k){return i===k}),ok=res.every(Boolean);
+    self.finish(ok,'broken');self.markDone(it.id,ok);
+    if(!ok)self.pushRecent({k:'f',l:String(l),id:it.id});
+    self.root.querySelectorAll('#pool .chip2,#undo,#ck').forEach(function(b){b.disabled=true});
+    self.root.querySelector('#pool').className='pool off';self.root.querySelector('#undo').style.display='none';self.root.querySelector('#ck').style.display='none';
+    self.root.querySelector('#slots').innerHTML=placed.map(function(i,k){return '<li class="'+(res[k]?'hit':'miss')+'"><b>'+(k+1)+'</b> '+esc(st[i].en)+' <small>'+esc(st[i].ko)+'</small></li>'}).join('');
+    var chain=st.map(function(x){return '<span class="cl"><b>'+esc(x.en)+'</b> ('+esc(x.ko)+')</span>'}).join('<span class="ar"> → </span>');
+    card.classList.add('koon');kof.style.display='none';
+    var cards=st.map(function(x,k){
+      var sn=G.B.sents[String(l)][String(x.n)];
+      return '<details class="step"><summary><b>'+(k+1)+'</b> '+esc(x.en)+' <small>'+esc(x.ko)+'</small></summary><div class="line">'+esc(x.line)+' <span class="rg">('+esc(x.r)+'번 문장)</span></div>'+
+        '<div class="en">'+x.n+'. '+esc(sn.e)+'</div><div class="ko">'+esc(sn.k)+'</div></details>'}).join('');
+    self.root.querySelector('#fb').innerHTML='<div class="fb '+(ok?'ok':'no')+'">'+(ok?'정답! 흐름을 순서대로 떠올렸어요.':'아쉬워요. 빨간 칸이 순서가 틀린 곳이에요.')+'</div>'+
+      '<div class="truebox"><div class="tagline">흐름 한 줄</div><div class="chain">'+chain+'</div></div>'+
+      '<div class="tagline" style="margin-top:10px">눌러서 뒤집어 보기 · 핵심어 뒤에 숨은 내용</div>'+cards+'<button class="next" id="nx">다음</button>';
+    var nx=self.root.querySelector('#nx');nx.onclick=function(){self.next()};nx.focus();
+  };
+};
+App.prototype.partOf=function(l,n){var P=(this.G.B.parts||{})[String(l)]||[];for(var i=0;i<P.length;i++)if(n>=P[i][0]&&n<=P[i][1])return P[i][2];return ''};
+App.prototype.summ=function(){
+  var self=this,G=this.G,l=+this.l,R=this.rounds();
+  var m=this.forced||this.pickItem(this.listFor('summ',l));this.forced=null;
+  var lab=['A','B'],cir=['①','②','③','④','⑤'];
+  var opts=shuffle(m.opts);
+  var text=esc(m.e).replace(/\(([AB])\)/g,'<b class="blank">($1)</b>');
+  var two=opts[0].p.length===2;
+  var html=opts.map(function(o,i){
+    return '<button class="opt" data-i="'+i+'"><span class="no">'+cir[i]+'</span><span class="tx">'+o.p.map(function(w){return esc(w[0])}).join(two?'  –  ':'')+'</span><span class="kor pre">'+o.p.map(function(w,k){return (two?'('+lab[k]+') ':'')+'<b class="v">'+esc(w[0])+'</b> '+esc(w[2])}).join(' / ')+'</span></button>'}).join('');
+  var T=(G.B.tales||{})[String(l)]||{},ps=[];
+  m.ev.forEach(function(n){var p=self.partOf(l,n);if(p&&ps.indexOf(p)<0)ps.push(p)});
+  var tl=ps.map(function(p){return '본문 '+p+(T[p]?' \u300c'+esc(T[p].t)+'\u300d':'')}).join(' + ');
+  var tale=ps.map(function(p){return T[p]?'<div class="tale"><div class="tagline">이야기꾼 · 본문 '+p+' '+esc(T[p].t)+'</div><p>'+esc(T[p].s).replace(/([A-Za-z][A-Za-z\'\-, ]*[A-Za-z!])( \([^)]*\))/g,'<b>$1</b>$2')+'</p></div>':''}).join('');
+  var pg=this.prog((this.mode==='all'||this.mode==='wrong')?'all':'summ',l);
+  this.shell((this.mode==='all'?l+'과 본문 내용 문제 · ':(this.mode==='wrong'?l+'과 틀린 문제 다시 풀기 · ':''))+'요약문 완성 · '+pg.seen+'/'+pg.tot+' 풀어 봄','<div class="card"><div class="tagline">'+l+'과 '+tl+' · 빈칸에 들어갈 말로 가장 알맞은 것은?</div>'+
+    (two?'<div class="tagline">(A) – (B) 순서</div>':'')+'<div class="btnrow"><button class="btn" id="kot">한글 펼치기</button></div><div class="sumtx">'+text+'</div><div class="kobox" id="kobox">'+esc(m.kb||m.k)+'</div><div class="optlist" id="ol">'+html+'</div><div id="fb"></div></div>');
+  var done=false,card=this.root.querySelector('.card'),kot=this.root.querySelector('#kot');
+  function setKo(on){card.classList.toggle('koon',!!on);kot.textContent=on?'한글 가리기':'한글 펼치기';self.st.s.koOpen=!!on;self.st.save()}
+  setKo(!!this.st.s.koOpen);
+  kot.onclick=function(){setKo(!card.classList.contains('koon'))};
+  this.root.querySelectorAll('#ol .opt').forEach(function(b){b.onclick=function(){
+    if(done)return;done=true;
+    var pick=opts[+b.getAttribute('data-i')],ok=!!pick.c;
+    self.finish(ok,'broken');self.markDone(m.id,ok);
+    if(!ok)self.pushRecent({k:'s',l:String(l),id:m.id});
+    self.root.querySelectorAll('#ol .opt').forEach(function(y,i){
+      var o=opts[i];y.disabled=true;
+      if(o.c)y.classList.add('hit');else if(y===b)y.classList.add('miss');
+    });
+    card.classList.add('koon');kot.style.display='none';self.root.querySelector('#kobox').style.display='none';
+    var full=esc(m.e),ci=opts.filter(function(o){return o.c})[0];
+    ci.p.forEach(function(w,k){full=full.replace('('+lab[k]+')','<mark>'+esc(w[0])+'</mark>')});
+    self.root.querySelector('#fb').innerHTML='<div class="fb '+(ok?'ok':'no')+'">'+(ok?'정답!':'아쉬워요. 정답은 '+cir[opts.indexOf(ci)]+'번이에요.')+'</div>'+
+     '<div class="truebox"><div class="tagline">완성된 요약문</div><div>'+full+'</div><div class="ko">'+esc(m.k)+'</div></div>'+tale+
+     evBlock(G,String(l),m.ev)+'<button class="next" id="nx">다음</button>';
     var nx=self.root.querySelector('#nx');nx.onclick=function(){self.next()};nx.focus();
   }});
 };
