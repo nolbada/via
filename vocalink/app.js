@@ -277,7 +277,7 @@ function rDeriv(){
  const lvTxt=['① 고르기','② 첫 글자 힌트','③ 직접 쓰기'][lv];
  let body=`<div class="card"><div class="lv">${lvTxt}</div><div class="sent">${esc(sent).replace('_____','<b>_____</b>')}</div>`;
  if(lv===0){
-  const rt=x.root||'compete',pick=shuffle(D.family.filter(f=>(f.root||'compete')===rt).map(f=>f.w).filter(w=>w!==x.ans)).slice(0,3);
+  const rt=x.root||'compete',pick=shuffle(D.family.filter(f=>(f.root||'compete')===rt).map(f=>f.w).filter(w=>w!==x.ans&&!(x.excl||[]).includes(w))).slice(0,3);
   body+=shuffle([x.ans,...pick]).map(o=>`<button class="btn" data-o="${o}">${o}</button>`).join('');
  }else{
   body+=`<div class="sub">${lv===1?`첫 글자: <b>${x.ans[0]}</b> · ${x.ans.length}글자 · ${x.root||'compete'} 가족`:`${x.root||'compete'} 가족 중 알맞은 모양을 써요`}</div>
