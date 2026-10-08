@@ -352,7 +352,7 @@ function rW24w(){
 // ---------- ⑥ 고장 난 문장
 function rBroken(){
  const x=cur.d,has=!!x.bad,toks=strip(x.en).split(/\s+/);
- frame(`<div class="card"><div class="sub">뜻은 이거예요 </div><div class="ko">${esc(strip(x.ko))}</div>
+ frame(`<div class="card">
  <div class="sub">아래 영어 문장에 <b>틀린 곳</b>이 있을까요?</div>
  <div class="sent" id="sent">${toks.map((t,i)=>`<span class="w" data-i="${i}">${esc(t)}</span>`).join(' ')}</div>
  <div class="row" id="yn"><button class="btn" data-y="1">틀린 곳 있음</button><button class="btn" data-y="0">없음</button></div>
