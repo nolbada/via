@@ -166,7 +166,7 @@ function start(mode){
  let pool;
  if(mode==='weak'){const ids=new Set(weakIds());pool=allItems().filter(i=>ids.has(i.id));}
  else{
-  pool=shuffle(poolOf(mode));
+  pool=shuffle(poolOf(mode));if(mode==='judge'){const re=pool.filter(i=>i.d.rel!=='관계없음'),nr=pool.filter(i=>i.d.rel==='관계없음');pool=shuffle([...re,...nr.slice(0,Math.round(re.length*3/7))]);}
   if(mode==='w24'){pool=pool.slice(0,24);const ws=shuffle(D.w24).slice(0,3).map(x=>({t:'w24w',id:'WW-'+x.w,d:x}));
    pool=shuffle(pool);[9,15,21].forEach((pos,k)=>pool.splice(pos+k,0,ws[k]));}
   else if(mode==='poly1')pool=pool.slice(0,5);
