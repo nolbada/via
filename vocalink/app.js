@@ -138,13 +138,15 @@ function startDaily(){
  const gotW=take(weak,WEAK_MAX,'weak');
  if(!first&&gotW<WEAK_MIN)take(pastWrong(wp,have),WEAK_MIN-gotW,'weak',true);
  take(rev,N-out.length,'review');
+ // 복습할 때가 된 단어가 모자라면, 새 단어가 아니라 앞에서 만난 단어(아직 때가 안 된 것, 곧 올 순서)로 채움
+ let ndN=0;if(out.length<N){const t0=dayNo(),nd=Object.keys(S.sr).filter(w=>wp[w]&&!S.sr[w].done&&S.sr[w].due>t0).sort((a,b)=>S.sr[a].due-S.sr[b].due);ndN=take(nd,N-out.length,'review');if(out.length<N)ndN+=take(nd,N-out.length,'review',true);}
  take(fresh,N-out.length,'new');
  // 새 단어가 모자라면 복습 대기 단어로, 그래도 모자라면 상한을 풀고 채움
  if(out.length<N)take(weak,N-out.length,'weak');
  if(out.length<N)take(rev,N-out.length,'review');
  if(out.length<N)take(fresh,N-out.length,'new',true);
  const newTotal=out.filter(o=>o[1]==='new').length+fresh.length;
- const dueN=out.filter(o=>o[1]!=='new').length;
+ const dueN=out.filter(o=>o[1]!=='new').length-ndN;
  let review=0;
  if(out.length<N){const rest=shuffle(keys.filter(w=>!have.has(w)));for(const w of rest){if(out.length>=N)break;if(add(w,'review',true))review++;}}
  const TH={new:['오늘부터 1일','오늘 처음 만나는 단어예요.'],review:['우리 만났었지?','앞에서 본 적 있는 단어예요. 기억나는지 확인해요.'],weak:['왜 자꾸 날 잊어?','틀렸던 단어가 돌아왔어요. 이번엔 내 걸로 만들어요.']};
