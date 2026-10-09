@@ -38,3 +38,4 @@ input.t{width:100%;font-size:20px;padding:12px;border:1.5px solid var(--line);bo
 
 .wy b.c-new,.pick b.c-new{color:#1f6f5c}.wy b.c-weak,.pick b.c-weak{color:#c0392b}.wy b.c-rev,.pick b.c-rev{color:#2a5db0}
 .today{font-size:14px;color:var(--sub);margin:4px 0 10px}.today b{margin-right:2px}
+body{word-break:keep-all;overflow-wrap:break-word}
