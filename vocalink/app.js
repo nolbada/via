@@ -17,7 +17,7 @@ let lastAct=Date.now(),actSec=0;
 const IDLE=30000;
 const tick=()=>{const n=Date.now();if(!document.hidden){actSec+=Math.min(n-lastAct,IDLE)/1000;}lastAct=n;};
 ['pointerdown','keydown','touchstart','scroll'].forEach(e=>addEventListener(e,tick,{passive:true}));
-document.addEventListener('visibilitychange',()=>{if(document.hidden){tick();}else{lastAct=Date.now();}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){actSec+=Math.min(Date.now()-lastAct,IDLE)/1000;lastAct=Date.now();}else{lastAct=Date.now();}});
 const fmtT=s=>{s=Math.round(s);return s>=60?Math.floor(s/60)+'분 '+(s%60)+'초':s+'초';};
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;};
