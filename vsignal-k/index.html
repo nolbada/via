@@ -279,7 +279,8 @@ function rvCard(){
 function home(){
   S=null;C=null;Q=null;
   var d17=REVD,b=store.best[d17];
-  var lessonCard='<h2>1. 수업 · 진도 파트</h2><button class="quizbtn" data-act="start" data-day="'+d17+'" style="margin-top:0"><b>Day '+d17+' 수업</b><span>'+days[d17].length+'문장 연습 + 마무리 퀴즈'+''+'</span></button>';
+  var cu=store.cur&&store.cur.day===d17&&store.cur.res&&(store.cur.i>0||store.cur.quiz)?store.cur:null;
+  var lessonCard='<h2>1. 수업 · 진도 파트</h2>'+(cu?'<button class="quizbtn" data-act="resume" data-day="'+d17+'" style="margin-top:0"><b>Day '+d17+' 수업 이어서 하기</b><span>'+(cu.quiz?'문장 연습은 끝났어요. 마무리 퀴즈부터':days[d17].length+'문장 중 '+(cu.i+1)+'번째 문장부터')+'</span></button><button class="ghost" data-act="start" data-day="'+d17+'" style="width:100%;margin-top:8px">처음부터 다시 하기</button>':'<button class="quizbtn" data-act="start" data-day="'+d17+'" style="margin-top:0"><b>Day '+d17+' 수업</b><span>'+days[d17].length+'문장 연습 + 마무리 퀴즈'+''+'</span></button>');
   var dp='<div class="card" style="margin-bottom:10px"><label style="font-size:16px"><b>오늘 하는 Day</b> : <select id="daypick" style="font-size:17px;padding:4px 8px">'+Array.apply(null,Array(64)).map(function(_,q){return '<option value="'+(q+1)+'"'+((q+1)===REVD?' selected':'')+'>'+(q+1<=32?'K1 ':'K2 ')+(q+1)+'</option>';}).join('')+'</select></label></div>';
   app.innerHTML='<div class="top"><div class="brand">V SIGNAL K<small>뜻 연결 · 문장성분 · 어순배열</small></div></div>'
    +'<h1>오늘 할 것을 골라요</h1>'+dp
@@ -288,11 +289,18 @@ function home(){
    +'<p class="foot">동남비타민영어학원 · V SIGNAL K1·K2 정답본 기준</p>';
   window.scrollTo(0,0);
 }
-function startDay(d){
+function startDay(d,resume){
+  var c=store.cur;
+  if(resume&&c&&c.day===d&&c.res){
+    S={day:d,list:days[d],i:Math.min(c.i,days[d].length-1),sum:c.sum||0,res:c.res};
+    if(c.quiz){startQuiz(d);return;}
+    startSentence();return;
+  }
   S={day:d,list:days[d],i:0,sum:0,res:[]};
   startSentence();
 }
 function startSentence(){
+  store.cur={day:S.day,i:S.i,sum:S.sum,res:S.res};save();
   var s=S.list[S.i],n=s.ch.length,idx=[];
   for(var k=0;k<n;k++)idx.push(k);
   var pool=shuffle(idx),tries=0;
@@ -421,6 +429,7 @@ function finishDay(){
 }
 var Q=null;
 function startQuiz(day){
+  if(S&&day){store.cur={day:S.day,i:S.i,sum:S.sum,res:S.res,quiz:true};save();}
   var done=Object.keys(store.best).map(Number);
   var pool=day?days[day].filter(function(x){return !x.m;}):DATA.filter(function(x){return !done.length||done.indexOf(x.d)>=0;});
   Q={i:0,sum:0,day:day||null,list:shuffle(pool).slice(0,5).map(function(s){
@@ -918,6 +927,7 @@ function finishQuiz(){
   var redo=S.res.filter(function(r){return r.mis>0;}).sort(function(a,b){return b.mis-a.mis;}).map(function(r){return r.n;});
   var prev=store.best[S.day];
   if(!prev||total<prev.mis)store.best[S.day]={mis:total};
+  store.cur=null;
   save();
   addHist({k:'lesson',d:S.day,m:total,p:total<=CUT});
   S.fin={total:total,sm:sm,qm:qm,redo:redo,pass:total<=CUT};
@@ -972,6 +982,7 @@ app.addEventListener('click',function(e){
       save();}renderRv();return;}
   if(a==='rvdonex'){var sx=rvState();sx.extra[Number(t.getAttribute('data-i'))].done=true;save();var yx=window.scrollY;renderRv();window.scrollTo(0,yx);return;}
   if(a==='rvdone'){var s2=rvState();s2.items[Number(t.getAttribute('data-i'))].done=true;save();var y2=window.scrollY;renderRv();window.scrollTo(0,y2);return;}
+  if(a==='resume'){startDay(Number(t.getAttribute('data-day')),true);return;}
   if(a==='start'||a==='startnext'){startDay(Number(t.getAttribute('data-day')));return;}
   if(a==='again'){startDay(S.day);return;}
   if(a==='quiz'){var qd=t.getAttribute('data-day');startQuiz(qd?Number(qd):null);return;}
