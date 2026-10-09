@@ -47,11 +47,13 @@ let Q=[],cur=null,total=0,doneN=0,round=null,answered=false;
 
 function home(){
  const wk=weakIds().length,done=S.doneDay===dayNo(),P=plan(done?1:0);
+ if(S.sess&&(done||S.sess.day!==dayNo()||!(S.sess.q&&S.sess.q.length))){delete S.sess;save();}
+ const rs=S.sess||null;
  const met=Object.keys(S.sr).length,grad=Object.values(S.sr).filter(e=>e.done).length,dn=dueWords().length;
  $.innerHTML=`<h1>보카링크 VOCA LINK</h1><div class="sub">${DAYTXT} · 동남비타민영어학원</div>
  <div class="stats"><div><b>${met}</b><span>지금까지 만난 단어</span></div><div><b>${dn}</b><span>복습할 때가 된 단어</span></div><div><b>${grad}</b><span>완전히 외운 단어</span></div></div>
  <div class="today">${done?'다음 구성':'오늘 구성'} ${[['c-new','오늘부터 1일',P.n],['c-weak','왜 자꾸 날 잊어?',P.w],['c-rev','우리 만났었지?',P.r]].filter(a=>a[2]>0).map(a=>`<b class="${a[0]}">${a[1]} ${a[2]}</b>`).join(' · ')}</div>
- ${done?'<button class="btn" disabled style="opacity:.6">오늘 20문제 끝! 다음에 또 만나요</button>':'<button class="btn pri" data-go="daily">오늘의 20문제</button>'}
+ ${done?'<button class="btn" disabled style="opacity:.6">오늘 20문제 끝! 다음에 또 만나요</button>':''+(rs?`<button class="btn pri" data-go="resume">이어서 풀기 (${rs.doneN}/${rs.total})</button><button class="btn" data-go="daily">처음부터 새로 시작</button>`:'<button class="btn pri" data-go="daily">오늘의 20문제</button>')}
  <button class="btn" data-go="stats">내 기록</button>
  <div class="card why"><h2>하루 20문제는 이렇게 짜여요</h2>
  <div class="sub" style="margin-bottom:8px">첫날은 20문제가 모두 새 단어예요. 둘째 날부터 아래 세 가지가 섞여 나와요.</div>
@@ -65,7 +67,7 @@ function home(){
  <div class="wy"><b>검증된 문제만</b>교재에 실린 단어와 문제만 써요. 정답이 하나로 확인된 것만 넣고, 애매한 문제는 뺐어요.</div></div>
  ${/[?&]t=1/.test(location.search)?`<button class="btn" data-go="next" style="color:#999;font-size:14px">내일로 넘기기 (선생님 테스트용)</button>
  <button class="btn" data-go="reset" style="color:#999;font-size:14px">기록 지우기 (선생님 테스트용)</button>`:''}`;
- $.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const g=b.dataset.go;if(g==='next'){S.off=(S.off||0)+1;save();home();return;}if(g==='reset'){if(confirm('이 폰/브라우저의 풀이 기록을 모두 지울까요?')){S={log:[],weak:{},lv:{},tipSeen:0,sr:{}};save();home();}return;}g==='stats'?stats():g==='daily'?startDaily():start(g);});
+ $.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const g=b.dataset.go;if(g==='next'){S.off=(S.off||0)+1;save();home();return;}if(g==='reset'){if(confirm('이 폰/브라우저의 풀이 기록을 모두 지울까요?')){S={log:[],weak:{},lv:{},tipSeen:0,sr:{}};save();home();}return;}g==='stats'?stats():g==='resume'?resumeDaily():g==='daily'?startDaily():start(g);});
 }
 // ---------- 오늘의 20문제: 뷔페식 골라담기 (이미 담은 문제는 제외, 틀린 문제만 다시) ----------
 const QUOTA={judge:3,poly1:1,poly2:3,deriv:3,w24:6,broken:3};
@@ -153,7 +155,7 @@ function startDaily(){
  out.forEach(o=>{o[0].tag=TH[o[1]][0]+' — '+TH[o[1]][1];o[0].th=o[1];});
  const TO={new:0,review:1,weak:2};
  const pool=[0,1,2].flatMap(n=>shuffle(out.filter(o=>TO[o[1]]===n))).map(o=>o[0]);
- newRound('daily');Q=pool;total=Q.length;doneN=0;
+ newRound('daily');delete S.sess;Q=pool;total=Q.length;doneN=0;
  const pend=Object.values(S.sr).some(e=>!e.done);
  const none=newTotal===0&&dueN===0&&!pend,wait=newTotal===0&&dueN===0&&pend;
  if(newTotal<N||none){
@@ -167,6 +169,18 @@ function startDaily(){
  next();
 }
 function newRound(mode){tick();actSec=0;round={mode,okN:0,wrongN:0,firstOk:0,firstN:0,cards:[]};}
+// ---- 이어서 풀기: 오늘의 20문제를 풀다 나가면 남은 문제를 저장해 두었다가 그대로 이어서 풉니다 ----
+function mkSess(withCur){const q=(withCur&&cur?[cur]:[]).concat(Q);
+ return{day:dayNo(),q:q.map(i=>({t:i.t,id:i.id,tag:i.tag,th:i.th,r:i.r})),doneN,total,
+  round:{okN:round.okN,wrongN:round.wrongN,firstOk:round.firstOk,firstN:round.firstN,cards:round.cards},sec:(S.sess&&S.sess.sec)||0};}
+function resumeDaily(){
+ const ss=S.sess;if(!ss||!ss.q||!ss.q.length)return startDaily();
+ const m={};allItems().forEach(i=>{m[i.t+'|'+i.id]=i;});
+ const q=[];ss.q.forEach(p=>{const b=m[p.t+'|'+p.id];if(b){if(p.tag)b.tag=p.tag;if(p.th)b.th=p.th;if(p.r)b.r=p.r;q.push(b);}});
+ if(!q.length){delete S.sess;save();return startDaily();}
+ newRound('daily');Object.assign(round,ss.round||{});round.mode='daily';
+ Q=q;total=ss.total||q.length;doneN=Math.min(ss.doneN||0,total);next();
+}
 function start(mode){
  let pool;
  if(mode==='weak'){const ids=new Set(weakIds());pool=allItems().filter(i=>ids.has(i.id));}
@@ -179,11 +193,11 @@ function start(mode){
  }
  newRound(mode);Q=(mode==='w24')?pool:shuffle(pool);total=Q.length;doneN=0;next();
 }
-function next(){if(!Q.length)return summary();cur=Q.shift();answered=false;render();}
+function next(){if(!Q.length)return summary();cur=Q.shift();answered=false;if(round&&round.mode==='daily'){S.sess=mkSess(true);save();}render();}
 function frame(inner){
  $.innerHTML=`<div class="top"><button class="back" id="bk">← 그만하기</button><span class="sub">${doneN}/${total}</span></div>
  <div class="bar"><i style="width:${total?doneN/total*100:0}%"></i></div>${cur&&cur.tag?`<div class="pick"><b class="${({'오늘부터 1일':'c-new','왜 자꾸 날 잊어?':'c-weak','우리 만났었지?':'c-rev'})[cur.tag.split(' — ')[0]]||''}">${cur.tag.split(' — ')[0]}</b>${cur.tag.split(' — ').slice(1).join(' — ')}</div>`:''}${inner}`;
- document.getElementById('bk').onclick=()=>{tick();S.totalSec=(S.totalSec||0)+actSec;actSec=0;save();home();};
+ document.getElementById('bk').onclick=()=>{tick();S.totalSec=(S.totalSec||0)+actSec;if(S.sess&&round&&round.mode==='daily')S.sess.sec=(S.sess.sec||0)+actSec;actSec=0;save();home();};
 }
 function render(){({judge:rJudge,broken:rBroken,deriv:rDeriv,poly1:rPoly1,poly2:rPoly2,w24:rW24,w24w:rW24w})[cur.t]();}
 
@@ -208,6 +222,7 @@ function record(correct,extra,silentNext){
  if(correct){round.okN++;if(S.weak[cur.id]>0)S.weak[cur.id]-=1;doneN++;}
  else{round.wrongN++;S.weak[cur.id]=2;cur.r=(cur.r||0)+1;
   if(cur.r<=2){cur.tag='방금 틀렸어요 — 바로 한 번 더!';Q.splice(Math.min(3,Q.length),0,cur);}else doneN++;}
+ if(round.mode==='daily')S.sess=mkSess(false);
  save();
 }
 function afterAnswer(correct,html){
@@ -393,7 +408,7 @@ function cardsHtml(){
  return `<div class="card"><h2>틀린 카드 ${round.cards.length}개 — 종이 PART2에 옮겨 써요</h2>${round.cards.map(c=>`<div class="sb">${c}</div>`).join('')}</div>`;
 }
 function summary(){
- tick();const secs=actSec;S.totalSec=(S.totalSec||0)+secs;if(round.mode==='daily')S.doneDay=dayNo();save();
+ tick();const prev=(round.mode==='daily'&&S.sess&&S.sess.sec)||0,secs=actSec+prev;S.totalSec=(S.totalSec||0)+actSec;if(round.mode==='daily'){delete S.sess;S.doneDay=dayNo();}save();
  const w24=round.mode==='w24';
  $.innerHTML=`<h1>한 판 끝!</h1><div class="card"><div style="font-size:30px;font-weight:800">처음에 맞힌 개수 ${round.firstOk} / ${round.firstN}</div>
  <div class="sub">이번 사용시간 <b>${fmtT(secs)}</b> (딴 데 다녀온 시간·멈춰 있던 시간은 빼요)</div>
