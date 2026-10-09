@@ -1,8 +1,11 @@
 (function(){
 "use strict";
 const DAYS=Object.keys(window.VL_DATA).map(Number).sort((a,b)=>a-b);
+const hk=s=>{let h=7;for(const c of String(s))h=(h*31+c.charCodeAt(0))%100003;return h%100;};
 const D=(()=>{const m={judge:[],broken:[],deriv:[],family:[],conf:[],w24:[],poly:[]};
  DAYS.forEach(n=>{const d=window.VL_DATA[n];Object.keys(m).forEach(k=>{(d[k]||[]).forEach(x=>{x._day=n;m[k].push(x);});});});
+ m.judge=m.judge.filter(x=>x.rel!=='관계없음'||hk(x.id)<75);
+ m.broken=m.broken.filter(x=>(x.bad&&x.orig)||hk(x.id)<80);
  const d1=window.VL_DATA[DAYS[0]];['tip','tipex','tipq','mention'].forEach(k=>{m[k]=d1[k];});return m;})();
 const DAYTXT=DAYS.length>1?'DAY '+DAYS[0]+'~'+DAYS[DAYS.length-1]:'DAY '+DAYS[0];
 const $=document.getElementById('app');
@@ -178,7 +181,7 @@ function next(){if(!Q.length)return summary();cur=Q.shift();answered=false;rende
 function frame(inner){
  $.innerHTML=`<div class="top"><button class="back" id="bk">← 그만하기</button><span class="sub">${doneN}/${total}</span></div>
  <div class="bar"><i style="width:${total?doneN/total*100:0}%"></i></div>${cur&&cur.tag?`<div class="pick"><b class="${({'오늘부터 1일':'c-new','왜 자꾸 날 잊어?':'c-weak','우리 만났었지?':'c-rev'})[cur.tag.split(' — ')[0]]||''}">${cur.tag.split(' — ')[0]}</b>${cur.tag.split(' — ').slice(1).join(' — ')}</div>`:''}${inner}`;
- document.getElementById('bk').onclick=home;
+ document.getElementById('bk').onclick=()=>{tick();S.totalSec=(S.totalSec||0)+actSec;actSec=0;save();home();};
 }
 function render(){({judge:rJudge,broken:rBroken,deriv:rDeriv,poly1:rPoly1,poly2:rPoly2,w24:rW24,w24w:rW24w})[cur.t]();}
 
@@ -393,7 +396,7 @@ function summary(){
  $.innerHTML=`<h1>한 판 끝!</h1><div class="card"><div style="font-size:30px;font-weight:800">처음에 맞힌 개수 ${round.firstOk} / ${round.firstN}</div>
  <div class="sub">이번 사용시간 <b>${fmtT(secs)}</b> (딴 데 다녀온 시간·멈춰 있던 시간은 빼요)</div>
  ${w24?`<div class="fb ok">종이 PART2 「오늘의 어휘력 체크」 <b>1차</b> 칸에 <b>${round.firstOk}</b> 를 적어요.</div>`:''}
- <div class="sub">틀린 문제는 '틀렸던 문제 다시 풀기'에 모여 있어요.</div></div>
+ <div class="sub">틀린 문제는 내일부터 '왜 자꾸 날 잊어?'로 다시 돌아와요.</div></div>
  ${cardsHtml()}<button class="btn pri" id="h">처음으로</button>`;document.getElementById('h').onclick=home;
 }
 function stats(){
