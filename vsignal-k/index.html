@@ -279,13 +279,13 @@ function rvCard(){
 function home(){
   S=null;C=null;Q=null;
   var d17=REVD,b=store.best[d17];
-  var cu=store.cur&&store.cur.day===d17&&store.cur.res&&(store.cur.i>0||store.cur.quiz)?store.cur:null;
+  var cu=store.cur&&store.cur.day===d17&&store.cur.res&&(store.cur.i>0||store.cur.quiz||store.cur.c)?store.cur:null;
   var lessonCard='<h2>1. 수업 · 진도 파트</h2>'+(cu?'<button class="quizbtn" data-act="resume" data-day="'+d17+'" style="margin-top:0"><b>Day '+d17+' 수업 이어서 하기</b><span>'+(cu.quiz?'문장 연습은 끝났어요. 마무리 퀴즈부터':days[d17].length+'문장 중 '+(cu.i+1)+'번째 문장부터')+'</span></button><button class="ghost" data-act="start" data-day="'+d17+'" style="width:100%;margin-top:8px">처음부터 다시 하기</button>':'<button class="quizbtn" data-act="start" data-day="'+d17+'" style="margin-top:0"><b>Day '+d17+' 수업</b><span>'+days[d17].length+'문장 연습 + 마무리 퀴즈'+''+'</span></button>');
   var dp='<div class="card" style="margin-bottom:10px"><label style="font-size:16px"><b>오늘 하는 Day</b> : <select id="daypick" style="font-size:17px;padding:4px 8px">'+Array.apply(null,Array(64)).map(function(_,q){return '<option value="'+(q+1)+'"'+((q+1)===REVD?' selected':'')+'>'+(q+1<=32?'K1 ':'K2 ')+(q+1)+'</option>';}).join('')+'</select></label></div>';
   app.innerHTML='<div class="top"><div class="brand">V SIGNAL K<small>뜻 연결 · 문장성분 · 어순배열</small></div></div>'
    +'<h1>오늘 할 것을 골라요</h1>'+dp
    +'<p class="banner">수업과 복습은 따로 하는 두 가지예요. 복습은 수업 다음 날처럼 다른 때에 해요.</p>'
-   +lessonCard+rvCard()+'<h2>3. 보충 · 교재 Part 3</h2><button class="quizbtn" data-act="trk" style="margin-top:0"><b>트랙 연습 · Pop quiz</b><span>시험기간·보충·추가 수업 때 쓰는 코너</span></button>'+'<button class="ghost" style="width:100%;margin-top:14px" data-act="hist">내 기록'+(cumLine()?' · '+histStats().lp+'회 통과':'')+'</button>'
+   +lessonCard+rvCard()+'<h2>3. 보충 · 교재 Part 3</h2><button class="quizbtn" data-act="trk" style="margin-top:0"><b>트랙 연습 · Pop quiz</b><span>'+((store.pop&&store.pop.stage===0)?'풀던 Pop quiz가 있어요':'시험기간·보충·추가 수업 때 쓰는 코너')+'</span></button>'+'<button class="ghost" style="width:100%;margin-top:14px" data-act="hist">내 기록'+(cumLine()?' · '+histStats().lp+'회 통과':'')+'</button>'
    +'<p class="foot">동남비타민영어학원 · V SIGNAL K1·K2 정답본 기준</p>';
   window.scrollTo(0,0);
 }
@@ -293,7 +293,14 @@ function startDay(d,resume){
   var c=store.cur;
   if(resume&&c&&c.day===d&&c.res){
     S={day:d,list:days[d],i:Math.min(c.i,days[d].length-1),sum:c.sum||0,res:c.res};
-    if(c.quiz){startQuiz(d);return;}
+    if(c.quiz){
+      if(c.q&&c.q.list&&c.q.list.length){
+        var ql=c.q.list.map(function(it){var s=days[d].filter(function(x){return x.n===it.n;})[0];return s?{s:s,k:it.k,mist:it.mist||0,done:!!it.done,bad:it.bad||{},got:it.got||0}:null;});
+        if(ql.every(function(x){return x;})){Q={i:c.q.i,sum:c.q.sum||0,day:c.q.day||d,list:ql};renderQ();return;}
+      }
+      startQuiz(d);return;
+    }
+    if(c.c){C=c.c;C.s=S.list[S.i];C.flash=null;C.fly=null;C.flyFrom=null;render();window.scrollTo(0,0);return;}
     startSentence();return;
   }
   S={day:d,list:days[d],i:0,sum:0,res:[]};
@@ -313,7 +320,13 @@ function startSentence(){
   render();window.scrollTo(0,0);
 }
 function score(m,hint,mx){mx=mx||10;var v=Math.max(0,mx-2*m);return hint?Math.min(v,Math.floor(mx/2)):v;}
-function render(){
+function snap(){
+  if(!S||!C||C.counted||Q)return;
+  var o={};for(var k in C){if(k==='s'||k==='flyFrom'||k==='fly')continue;o[k]=C[k];}
+  store.cur={day:S.day,i:S.i,sum:S.sum,res:S.res,c:o};save();
+}
+function render(){render0();snap();}
+function render0(){
   if(!S){home();return;}
   var s=C.s;
   var steps=(s.m?['1 뜻','2 어순']:['1 뜻·성분','2 어순']).map(function(t,i){
@@ -438,6 +451,10 @@ function startQuiz(day){
   renderQ();
 }
 function renderQ(){
+  renderQ0();
+  if(Q&&S&&Q.i<Q.list.length){store.cur={day:S.day,i:S.list.length,sum:S.sum,res:S.res,quiz:true,q:{i:Q.i,sum:Q.sum,day:Q.day,list:Q.list.map(function(it){return {n:it.s.n,k:it.k,mist:it.mist,done:it.done,bad:it.bad,got:it.got};})}};save();}
+}
+function renderQ0(){
   if(Q.i>=Q.list.length){finishQuiz();return;}
   var it=Q.list[Q.i],s=it.s,c=s.ch[it.k];
   var sent=s.ch.map(function(x,k){
@@ -891,6 +908,7 @@ function popMake(tr){
 function renderPopList(){
   var pg=trkProg(),h='<div class="top"><button class="back" data-act="trk">뒤로</button><div class="ttl">Pop quiz 목록</div></div>'
    +'<div class="card"><p class="hint" style="margin:0">내가 배운 Day '+pg+'까지의 단어로 '+POP_N+'문제를 풀어요. 책을 보지 않고 풀어요. 틀린 단어 '+(POP_OK+1)+'개부터는 추가 숙제가 나와요.</p></div>';
+  if(store.pop&&store.pop.stage===0)h+='<button class="quizbtn" data-act="popresume" style="margin-top:10px"><b>풀던 Pop quiz 이어서 하기</b><span>'+(store.pop.tr?'Track '+store.pop.tr:'전체 트랙')+' · '+store.pop.qs.filter(function(q){return q.pick!==null;}).length+' / '+store.pop.qs.length+'문제 골랐어요</span></button>';
   [0].concat(Object.keys(TRK.tracks).map(Number)).forEach(function(t){
     var n=TRK.items.filter(function(o){return o.d<=pg&&(!t||o.t===t);}).length;
     h+='<button class="quizbtn" data-act="popgo" data-tr="'+t+'"'+(n<2?' disabled style="opacity:.45"':'')+'><b>'+(t?'Track '+t+' '+esc(TRK.tracks[t]):'전체 트랙')+'</b><span>단어 '+n+'개 중에서</span></button>';
@@ -968,6 +986,7 @@ app.addEventListener('click',function(e){
   if(a==='trkx'){var tx=trkState(),ox=tx.items[Number(t.getAttribute('data-i'))];ox.show=true;ox.done=true;save();var yq=window.scrollY;renderTrk();window.scrollTo(0,yq);return;}
   if(a==='trkr'){var tr2=rvState(),or=tr2.trk[Number(t.getAttribute('data-i'))];or.show=true;or.done=true;save();var yr=window.scrollY;renderRv();window.scrollTo(0,yr);return;}
   if(a==='poplist'){renderPopList();return;}
+  if(a==='popresume'){renderPop();return;}
   if(a==='popgo'){var np=popMake(Number(t.getAttribute('data-tr')));if(np){store.pop=np;save();renderPop();}return;}
   if(a==='poppick'){var PP=store.pop;PP.qs[Number(t.getAttribute('data-i'))].pick=Number(t.getAttribute('data-k'));save();var yp=window.scrollY;renderPop();window.scrollTo(0,yp);return;}
   if(a==='popsubmit'){var P2=store.pop;if(P2&&P2.qs.every(function(q){return q.pick!==null;})){P2.stage=1;P2.t=Date.now();save();renderPop();}return;}
