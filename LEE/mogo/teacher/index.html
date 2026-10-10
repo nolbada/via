@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>학생 검사 화면</title>
+<style>
+:root{--bg:#f6f5f1;--fg:#1f2328;--mut:#6b7280;--line:#dcd9cf;--card:#fff;--ok:#1d6b45;--warn:#9a6700;--bad:#b42318;--okb:#e5f3ec;--warnb:#fbf0d6;--badb:#fbe4e1;--acc:#1f4e5f}
+@media(prefers-color-scheme:dark){:root{--bg:#15181b;--fg:#e7e9ea;--mut:#9aa3ab;--line:#2c3237;--card:#1d2226;--ok:#6fcf9b;--warn:#e3b341;--bad:#ff8a80;--okb:#16301f;--warnb:#3a2f10;--badb:#3d1a17;--acc:#7cc4dc}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 "Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;padding-inline:16px;padding-block:20px 40px}
+.w{max-width:760px;margin:0 auto}
+h1{font-size:20px;margin:0 0 4px}
+.sub{color:var(--mut);font-size:13px;margin:0 0 16px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+select,input,button{font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0}
+button{cursor:pointer;background:var(--acc);color:#fff;border-color:var(--acc)}
+button.g{background:var(--card);color:var(--fg);border-color:var(--line)}
+.sum{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.sum div{flex:1 1 90px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.sum b{display:block;font-size:20px;font-variant-numeric:tabular-nums}
+.sum span{font-size:12px;color:var(--mut)}
+.row{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}
+.nm{font-weight:700}
+.nm small{font-weight:400;color:var(--mut);margin-left:6px}
+.when{color:var(--mut);font-size:13px}
+.cnt{font-variant-numeric:tabular-nums;text-align:right}
+.tag{justify-self:end;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px}
+.t-ok{background:var(--okb);color:var(--ok)}.t-warn{background:var(--warnb);color:var(--warn)}.t-bad{background:var(--badb);color:var(--bad)}.t-none{background:var(--line);color:var(--mut)}
+.msg{color:var(--mut);padding:16px 0}
+.err{color:var(--bad)}
+footer{margin-top:24px;color:var(--mut);font-size:12px;text-align:center}
+.pw{max-width:320px;margin:60px auto;display:grid;gap:10px}
+</style>
+</head>
+<body>
+<div class="w" id="app"></div>
+<footer>동남비타민영어학원</footer>
+<script>
+var URL_="https://script.google.com/macros/s/AKfycbx6-9BxiMD-sQVatPFYtrh_1poHS-CtFIQ53hn3Xaj5fkS-aVIkEoLv5yMGV0F4LOn_gg/exec";
+var KEY="mogo-teacher-pw",DAY=86400000,rows=[],filt={tab:"",tc:"",sort:"stale"};
+var WD=["일","월","화","수","목","금","토"];
+function lsGet(){try{return localStorage.getItem(KEY)||""}catch(e){return ""}}
+function lsSet(v){try{v?localStorage.setItem(KEY,v):localStorage.removeItem(KEY)}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function two(n){return(n<10?"0":"")+n}
+function startOf(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()}
+function fmt(ts){var d=new Date(ts);return(d.getMonth()+1)+"/"+d.getDate()+"("+WD[d.getDay()]+") "+two(d.getHours())+":"+two(d.getMinutes())}
+function ago(ts){if(!ts)return -1;return Math.round((startOf(new Date())-startOf(new Date(ts)))/DAY)}
+function status(n){
+  if(n<0)return{t:"기록 없음",c:"t-none",r:99999};
+  if(n===0)return{t:"오늘 함",c:"t-ok",r:0};
+  if(n<=2)return{t:n+"일 전",c:"t-ok",r:n};
+  if(n<=4)return{t:n+"일째 안 함",c:"t-warn",r:n};
+  return{t:n+"일째 안 함 (밀림)",c:"t-bad",r:n};
+}
+function loginUI(msg){
+  document.getElementById("app").innerHTML='<div class="pw"><h1>학생 검사 화면</h1><p class="sub">선생님용입니다. 비밀번호를 입력해요.</p><input id="pw" type="password" placeholder="비밀번호" autocomplete="current-password"><button id="go" type="button">열기</button>'+(msg?'<div class="err">'+esc(msg)+'</div>':'')+'</div>';
+  var go=function(){var v=document.getElementById("pw").value.trim();if(v)load(v)};
+  document.getElementById("go").onclick=go;
+  document.getElementById("pw").onkeydown=function(e){if(e.key==="Enter")go()};
+}
+function load(pw){
+  document.getElementById("app").innerHTML='<p class="msg">불러오는 중</p>';
+  fetch(URL_+"?act=list&tpin="+encodeURIComponent(pw)).then(function(r){return r.json()}).then(function(j){
+    if(!j||!j.ok){lsSet("");loginUI(j&&j.err==="tpin"?"비밀번호가 맞지 않아요.":"불러오지 못했어요.");return}
+    lsSet(pw);rows=j.rows||[];render();
+  }).catch(function(){loginUI("불러오지 못했어요. 인터넷을 확인해요.")});
+}
+function uniq(k){var o={};rows.forEach(function(r){if(r[k])o[r[k]]=1});return Object.keys(o)}
+function render(){
+  var tabs=uniq("tab"),tcs=uniq("tc");
+  var L=rows.filter(function(r){return(!filt.tab||r.tab===filt.tab)&&(!filt.tc||r.tc===filt.tc)}).map(function(r){var n=ago(r.ts);return{r:r,n:n,s:status(n)}});
+  L.sort(function(a,b){return filt.sort==="stale"?(b.s.r-a.s.r)||a.r.name.localeCompare(b.r.name,"ko"):a.r.name.localeCompare(b.r.name,"ko")});
+  var c={bad:0,warn:0,ok:0};L.forEach(function(x){if(x.s.c==="t-bad"||x.s.c==="t-none")c.bad++;else if(x.s.c==="t-warn")c.warn++;else c.ok++});
+  var h='<h1>학생 검사 화면</h1><p class="sub">오늘 '+fmt(Date.now()).split(" ")[0]+' 기준 · 학생이 앱에서 마지막으로 체크한 시각이에요</p>';
+  h+='<div class="bar"><select id="ft">'+'<option value="">모든 묶음</option>'+tabs.map(function(t){return'<option'+(t===filt.tab?" selected":"")+'>'+esc(t)+'</option>'}).join("")+'</select>';
+  h+='<select id="fc"><option value="">모든 담당</option>'+tcs.map(function(t){return'<option'+(t===filt.tc?" selected":"")+'>'+esc(t)+'</option>'}).join("")+'</select>';
+  h+='<select id="fs"><option value="stale"'+(filt.sort==="stale"?" selected":"")+'>오래 안 한 순</option><option value="name"'+(filt.sort==="name"?" selected":"")+'>이름순</option></select>';
+  h+='<button class="g" id="rf" type="button">새로고침</button></div>';
+  h+='<div class="sum"><div><b>'+c.bad+'</b><span>밀림 (5일 이상)</span></div><div><b>'+c.warn+'</b><span>주의 (3~4일)</span></div><div><b>'+c.ok+'</b><span>잘 하는 중</span></div></div>';
+  if(!L.length)h+='<p class="msg">아직 연결한 학생이 없어요.</p>';
+  L.forEach(function(x){var r=x.r;
+    h+='<div class="row"><div class="nm">'+esc(r.name)+'<small>'+esc(r.tab)+(r.tc?" · "+esc(r.tc):"")+'</small></div><div class="cnt">체크 '+r.cnt+'개</div><div class="when">'+(r.ts?'마지막 '+fmt(r.ts):'기록 없음')+'</div><span class="tag '+x.s.c+'">'+x.s.t+'</span></div>';
+  });
+  document.getElementById("app").innerHTML=h;
+  document.getElementById("ft").onchange=function(){filt.tab=this.value;render()};
+  document.getElementById("fc").onchange=function(){filt.tc=this.value;render()};
+  document.getElementById("fs").onchange=function(){filt.sort=this.value;render()};
+  document.getElementById("rf").onclick=function(){load(lsGet())};
+}
+var pw0=lsGet();pw0?load(pw0):loginUI();
+</script>
+</body>
+</html>
