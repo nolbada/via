@@ -252,6 +252,7 @@ var css='\
 .bk-w.no{border-color:var(--bad);background:var(--bad-bg)}\
 .bk-w.on{border-color:#f97316;background:#ffedd5;color:#7c2d12}\
 .bk-w.dim{opacity:.45}\
+.bk-w.glue:not(.ok):not(.no){background:#2563eb;border:3px solid #1e3a8a;color:#fff;font-weight:700;padding:0 5px}\
 .bk-w.new{background:#fde047;color:#14202b;border-color:#fde047}\
 .bk-ch{display:inline-block;border-radius:8px;padding:0 8px;margin:2px;font-family:var(--en);border:1.5px solid transparent}\
 .bk-ch.n{background:var(--surface);border-color:var(--line)}\
@@ -409,7 +410,7 @@ function sentHtml(s){
 function wordsHtml(s){
   var b=cur(),fam=s.fam||null,famOn=fam&&(L.done||L.sel.indexOf(s.ans[0])>=0);
   function btn(i){
-    var c='bk-w'+(L.sel.indexOf(i)>=0?' sel':(famOn&&fam.indexOf(i)>=0?' fam':''))+(L.res&&L.res[i]?' '+L.res[i]:(s.keep&&s.keep.indexOf(i)>=0&&L.sel.indexOf(i)<0?' ok':''));
+    var c='bk-w'+(L.sel.indexOf(i)>=0?(fam?' sel glue':' sel'):(famOn&&fam.indexOf(i)>=0?' fam':''))+(L.res&&L.res[i]?' '+L.res[i]:(s.keep&&s.keep.indexOf(i)>=0&&L.sel.indexOf(i)<0?' ok':''));
     return '<button class="'+c+'" data-act="bk-w" data-i="'+i+'">'+esc(b.words[i])+'</button> ';
   }
   if(fam&&L.done&&s.famg&&s.famg.length>1){
