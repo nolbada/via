@@ -250,3 +250,13 @@ h1{font-weight:800}
 
 .ckrow{display:flex;align-items:center;gap:6px;margin:6px 2px 0;font-size:12.5px;color:var(--tc)}
 .ckrow i{font-style:normal;font-weight:800;background:var(--tc-bg);color:var(--tc);border-radius:999px;padding:2px 11px}
+/* 미니모고 날짜 진도 · 매 수업 리마인드 */
+.mnban{border:1px solid var(--line);background:var(--soft);border-radius:12px;padding:10px 14px;margin:8px 0;display:grid;gap:4px}
+.mnban .tch b{color:var(--ink);font-size:14px}
+.mnban .tcn{font-weight:800;font-variant-numeric:tabular-nums;color:var(--ink)}
+.rmban{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;border:1px dashed var(--line);border-radius:12px;padding:8px 14px;margin:8px 0;font-size:13px}
+.rmban b{font-size:12.5px}
+.rmban small{flex-basis:100%;font-size:11.5px;color:var(--muted)}
+.it.mn .nm{cursor:default}
+.it.mn .nm::after{display:none}
+.mnl{font-size:10.5px;font-weight:700;border:1px solid var(--line);color:var(--muted);border-radius:4px;padding:0 5px;white-space:nowrap}

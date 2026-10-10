@@ -57,6 +57,26 @@ var REVIEW_PLAN=[
  [['rv3a','시험 직전 마무리: 26년 10월 모의고사','range'],['rv3b','동사형 시험모드 한 번','verb'],['rv3c','어휘 틀린 문제 다시']],
  [['rv4a','약한 지문 다시','range'],['rv4b','동사형 틀린 문장만 마지막 확인','verb']]
 ];
+/* ---------- 학생별 설정(index.html): 미니모고(학원 활동) 날짜 진도 + 매 수업 리마인드 ---------- */
+var MINI=window.MOGO_MINI||null,REMIND=window.MOGO_REMIND||null;
+function pdate(t){var a=String(t).split('-');return new Date(+a[0],+a[1]-1,+a[2])}
+function mseed(k){return !!(window.MOGO_MINI_DONE&&window.MOGO_MINI_DONE.indexOf(k)>=0)}
+function mdone(k){return isDone(k)||mseed(k)}
+function miniRows(s){
+  var h='';(s.mini||[]).forEach(function(x){
+    var on=mdone(x.k),late=!on&&dayDiff(pdate(x.date),TODAY)>0;
+    h+='<div class="it mn'+(on?' done':'')+'"><button class="cb" type="button"'+(mseed(x.k)?' aria-disabled="true"':' data-a="chk" data-k="'+x.k+'"')+' aria-pressed="'+on+'" aria-label="완료 표시"></button><div class="im"><span class="nm"><span class="nt">'+esc(x.label)+'</span><span class="mnl">학원 활동</span>'+(late?'<span class="tcl late">밀림</span>':'')+'</span>'+(x.sub?'<span class="s">'+esc(x.sub)+'</span>':'')+'</div></div>';
+  });return h;
+}
+function miniBanner(){
+  if(!MINI||!MINI.length)return '';
+  var n=MINI.length,d=0;MINI.forEach(function(x){if(mdone(x.k))d++});
+  return '<div class="mnban"><div class="tch"><b>미니모고 · 학원에서 하는 활동</b><span class="tcn">'+d+'/'+n+'</span></div><div class="tcrow">수업마다 1회차씩, '+n+'차는 '+dstr(pdate(MINI[n-1].date))+'까지 끝내요. 학원에서 끝낸 뒤 체크해요.</div></div>';
+}
+function remindBanner(){
+  if(!REMIND||!REMIND.length)return '';
+  return '<div class="rmban"><b>매 수업 잊지 말기</b><span>'+REMIND.map(function(t){return esc(t)}).join(' · ')+'</span><small>체크 없이 기억만 해요</small></div>';
+}
 function buildPlan(){
   var order=[];GORDER.forEach(function(g){ofGroup(g).forEach(function(m){if(g==='g2610'&&!m.ready)return;order.push(m)})});
   var sess=[],d=START;
@@ -77,7 +97,13 @@ function buildPlan(){
     if(DL[g])prev=win[win.length-1];
   });
   /* 말하기 검사: 공부한 수업의 다음 수업에 받음 (릴레이). 마지막 수업에서 공부한 것은 같은 날 공부 직후. 파이널 주간으로 안 넘어감 */
-  sess.forEach(function(s){s.chk=[]});
+  sess.forEach(function(s){s.chk=[];s.mini=[]});
+  if(MINI)MINI.forEach(function(x){
+    var dd=pdate(x.date),tgt=null,i2;
+    for(i2=0;i2<sess.length;i2++){if(dayDiff(sess[i2].date,dd)===0){tgt=sess[i2];break}}
+    if(!tgt){if(mseed(x.k))return;for(i2=0;i2<sess.length;i2++){if(sess[i2].date>=dd){tgt=sess[i2];break}}if(!tgt)tgt=sess[0]}
+    tgt.mini.push(x);
+  });
   var CK=window.MOGO_CHECK||null;
   function ckIdx(i){if(!CK)return Math.min(i+1,sess.length-1);for(var j=i+1;j<sess.length;j++)if(CK.indexOf(sess[j].date.getDay())>=0)return j;for(var j2=sess.length-1;j2>=0;j2--)if(CK.indexOf(sess[j2].date.getDay())>=0)return j2;return Math.min(i+1,sess.length-1)}
   sess.forEach(function(s,i){s.items.forEach(function(m){if(m.ready&&hasVerb(m))sess[ckIdx(i)].chk.push(m)})});
@@ -217,9 +243,23 @@ function qs(o){return Object.keys(o).map(function(k){return k+'='+encodeURICompo
 function countDone(){return Object.keys(S.done).length}
 function schedPush(){if(!SYNC||!S.acct)return;clearTimeout(pushT);pushT=setTimeout(push,2500)}
 function setSyncMsg(m){syncMsg=m;var e=document.getElementById('syncst');if(e)e.textContent=m}
+/* ---------- 계획 대비 밀림 (선생님 검사 화면용): 오늘까지 해야 할 숙제 수와 못한 수 ---------- */
+function planStats(){
+  var du=0,lt=0;
+  try{
+    var plan=buildPlan();
+    plan.study.concat(plan.review).forEach(function(s){
+      var df=dayDiff(s.date,TODAY);if(df<0)return;
+      function add(ok){du++;if(!ok&&df>0)lt++}
+      if(s.type==='review'){s.rv.forEach(function(x){add(isDone(x.k))})}
+      else{s.items.forEach(function(m){if(m.ready)add(pstat(m)==='done')});(s.mini||[]).forEach(function(x){add(mdone(x.k))})}
+    });
+  }catch(e){return null}
+  return {du:du,lt:lt};
+}
 function push(){
   if(!SYNC||!S.acct)return;
-  fetch(SYNC+'?'+qs({act:'put',scope:SCOPE,name:S.acct.name,pin:S.acct.pin,ts:S.ts||Date.now(),cnt:countDone(),tc:window.MOGO_TEACHER||'',data:exportCode()}))
+  var ps=planStats()||{};fetch(SYNC+'?'+qs({act:'put',lt:ps.lt===undefined?'':ps.lt,du:ps.du===undefined?'':ps.du,scope:SCOPE,name:S.acct.name,pin:S.acct.pin,ts:S.ts||Date.now(),cnt:countDone(),tc:window.MOGO_TEACHER||'',data:exportCode()}))
    .then(function(r){return r.json()}).then(function(j){setSyncMsg(j&&j.ok?'저장됨 '+stamp():(j&&j.err==='pin'?'이 이름은 다른 번호로 이미 있어요':'저장하지 못했어요. 인터넷을 확인해요'))}).catch(function(){setSyncMsg('저장하지 못했어요. 인터넷을 확인해요')});
 }
 function pull(first){
@@ -253,7 +293,7 @@ function exportCode(){
   var st=[];Object.keys(S.stars).forEach(function(k){if(!S.stars[k])return;var p=k.split(':'),ix=SLI[p[0]],n=+p[1];if(ix!==undefined&&n>=1&&n<=63)st.push([ix,n])});
   st=st.slice(0,255);b+=bits(st.length,8);st.forEach(function(x){b+=bits(x[0],7)+bits(x[1],6)});
   SL.forEach(function(sid){b+=(sid&&S.done[sid+':t'])?'1':'0'});
-  while(b.length%6)b+='0';
+  for(i=1;i<=12;i++)b+=S.done['mn'+i]?'1':'0';while(b.length%6)b+='0';
   var o='';for(i=0;i<b.length;i+=6)o+=B64[parseInt(b.substr(i,6),2)];
   return 'M2.'+o;
 }
@@ -276,6 +316,7 @@ function importCode(c,replace){
   for(i=0;i<cnt&&p+13<=b.length;i++){var ix=parseInt(b.substr(p,7),2),n=parseInt(b.substr(p+7,6),2);p+=13;if(SL[ix])ns[SL[ix]+':'+n]=1}
   if(replace)S.stars=ns;else for(var k2 in ns)S.stars[k2]=1;
   if(b.length-p>=SL.length){SL.forEach(function(sid){var on=b[p++]==='1';if(sid){var tk2=sid+':t';if(on&&!S.done[tk2]){S.done[tk2]=1;add++}else if(!on&&replace&&S.done[tk2])delete S.done[tk2]}})}
+  if(b.length-p>=12){for(i=1;i<=12;i++){var mk='mn'+i,mon=b[p++]==='1';if(mon&&!S.done[mk]){S.done[mk]=1;add++}else if(!mon&&replace&&S.done[mk])delete S.done[mk]}}
   if(days.length)S.days=days;
   if(li<1023){var sid2=SL[Math.floor(li/8)],t2=LT[li%8];if(sid2&&t2!==undefined)S.last={id:sid2,tab:t2}}
   save(replace?1:0);return add;
@@ -311,7 +352,7 @@ function sessHTML(s){
   var df=dayDiff(s.date,TODAY),isToday=df===0,left=0,late,tcLate=false;
   if(s.type==='review')s.rv.forEach(function(x){if(!isDone(x.k))left++});
   else s.items.forEach(function(m){if(!m.ready||pstat(m)!=='done')left++});
-  late=df>0&&left>0&&(s.type==='review'||s.items.some(function(m){return m.ready}));
+  (s.mini||[]).forEach(function(x){if(!mdone(x.k))left++});late=df>0&&left>0&&(s.type==='review'||s.items.some(function(m){return m.ready})||!!(s.mini&&s.mini.length));
   if(s.chk)tcLate=df>0&&s.chk.some(function(m){return !isDone(tcKey(m))});
   var h='<div class="sess'+(isToday?' today':'')+(s.type==='review'?' rev':'')+'"><div class="dt"><b>'+(s.date.getMonth()+1)+'/'+s.date.getDate()+'</b><span>'+WD[s.date.getDay()]+'요일</span>'+(isToday?'<em>오늘</em>':late?'<em class="late">밀린 숙제</em>':tcLate?'<em class="late tcl2">밀린 검사</em>':'')+'</div><div class="items">';
   if(s.type==='review'){
@@ -319,8 +360,8 @@ function sessHTML(s){
       var on=isDone(x.k);
       h+='<div class="it'+(on?' done':'')+'"><button class="cb" type="button" data-a="chk" data-k="'+x.k+'" aria-pressed="'+on+'" aria-label="완료 표시"></button><div class="im"><span class="nm" style="cursor:default"><span class="nt">'+esc(x.label)+'</span></span>'+(x.go?'<button class="lk" type="button" data-a="hv" data-v="'+(x.go==='verb'?'verb':'range')+'">열기</button>':'')+'</div></div>';
     });
-  }else if(!s.items.length&&!(s.chk&&s.chk.length)){h+='<div class="free">'+(s.date>=new Date(2026,10,1)?'모의고사 몰입 기간: 26년 10월 모의고사 지문은 10/20(화) 시험 후 공지되면 여기에 채워져요. 그때까지 밀린 숙제와 3·4과 복습':'예비 시간: 밀린 숙제 따라잡기, 틀린 어휘 · 동사형 다시 풀기')+'</div>'}
-  else{s.items.forEach(function(m){h+=itemHTML(m)});if(s.chk)s.chk.forEach(function(m){h+=tcHTML(m,df)})}
+  }else if(!s.items.length&&!(s.chk&&s.chk.length)){h+=miniRows(s);if(!(s.mini&&s.mini.length))h+='<div class="free">'+(s.date>=new Date(2026,10,1)?'모의고사 몰입 기간: 26년 10월 모의고사 지문은 10/20(화) 시험 후 공지되면 여기에 채워져요. 그때까지 밀린 숙제와 3·4과 복습':'예비 시간: 밀린 숙제 따라잡기, 틀린 어휘 · 동사형 다시 풀기')+'</div>'}
+  else{h+=miniRows(s);s.items.forEach(function(m){h+=itemHTML(m)});if(s.chk)s.chk.forEach(function(m){h+=tcHTML(m,df)})}
   return h+'</div></div>';
 }
 function vcN(id){return (S.vc[id]&&S.vc[id].n)||0}
@@ -336,10 +377,10 @@ function viewSched(){
   var curW=Math.max(0,Math.floor(dayDiff(WK0,TODAY)/7));
   h+='<div class="sbar"><div class="set"><span>수업 요일</span>'+WD.map(function(w,i){return '<button type="button" data-a="day" data-d="'+i+'" class="'+(S.days.indexOf(i)>=0?'on':'')+'">'+w+'</button>'}).join('')+'</div><button class="closeall" type="button" data-a="closeall">모두 닫기</button></div>';
   if(window.MOGO_CHECK)h+='<div class="ckrow"><span>학원 검사 가능 요일</span>'+WD.map(function(w,i){return window.MOGO_CHECK.indexOf(i)>=0?'<i>'+w+'</i>':''}).join('')+'</div>';
-  h+=tcBanner(plan);
+  h+=miniBanner()+remindBanner()+tcBanner(plan);
   keys.forEach(function(w){
     var list=weeks[w],a=list[0].date,b=list[list.length-1].date,n=0,dn=0,cn=0,cd=0;
-    list.forEach(function(s){if(s.type==='review')s.rv.forEach(function(x){n++;if(isDone(x.k))dn++});else{s.items.forEach(function(m){n++;if(m.ready&&pstat(m)==='done')dn++});(s.chk||[]).forEach(function(m){cn++;if(isDone(tcKey(m)))cd++})}});
+    list.forEach(function(s){if(s.type==='review')s.rv.forEach(function(x){n++;if(isDone(x.k))dn++});else{(s.mini||[]).forEach(function(x){n++;if(mdone(x.k))dn++});s.items.forEach(function(m){n++;if(m.ready&&pstat(m)==='done')dn++});(s.chk||[]).forEach(function(m){cn++;if(isDone(tcKey(m)))cd++})}});
     var hasRev=list.some(function(s){return s.type==='review'});
     var openNow=(S.open['w'+w]!==undefined)?S.open['w'+w]:(w===curW||(curW>keys[keys.length-1]&&w===keys[keys.length-1]));
     h+='<details class="wk" data-w="w'+w+'"'+(openNow?' open':'')+'><summary><span class="wt">'+(w>=8?'시험 주간':(w+1)+'주차')+(hasRev?'<span class="rv">최종점검</span>':'')+'<small>'+dstr(a)+' ~ '+dstr(b)+'</small></span><span class="cnt">'+dn+'/'+n+(cn?'<i class="tcc">검사 '+cd+'/'+cn+'</i>':'')+'</span></summary>'+list.map(sessHTML).join('')+'</details>';
