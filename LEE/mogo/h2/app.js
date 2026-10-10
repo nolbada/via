@@ -273,11 +273,21 @@ function viewSched(){
   h+='<div class="note">시험 전날 11/30(월)은 새 공부 없이 틀린 것만 훑어요. 체크한 항목은 줄이 그어져요. 못 끝낸 날은 밀린 숙제로 남아요. 학교 표시는 학교 수업에서 다룬 지문이에요.</div>';
   return h;
 }
+var RG='';
+var GFULL={tb:['교과서','NE능률 영어II 4과'],g2410:['24년 10월','고2 모의고사'],g23:['23년 11월','고2 모의고사'],g22:['22년 11월','고2 모의고사'],g2610:['26년 10월','고2 모의고사']};
 function viewRange(){
-  var h='<div class="bms">';
-  GORDER.forEach(function(g){var L=ofGroup(g),rd=L.filter(function(m){return m.ready}).length;h+='<button type="button" class="bm'+(S.bm===g?' on':'')+'" data-a="bm" data-g="'+g+'">'+GBM[g][0]+' '+GBM[g][1]+'<small>'+rd+'/'+L.length+'</small></button>'});
-  h+='</div><div class="shelf">';
-  ofGroup(S.bm).forEach(function(m){
+  var h='';
+  if(!RG||!GFULL[RG]){
+    h+='<div class="note" style="margin:2px 2px 8px">먼저 범위를 고르고, 그 안에서 지문을 골라요.</div><div class="shelf one">';
+    GORDER.forEach(function(g){
+      var L=ofGroup(g),rd=L.filter(function(m){return m.ready}),dn=rd.filter(function(m){return pstat(m)==='done'}).length;
+      var sc=L.filter(function(m){return m.lesson}).length;
+      h+='<button class="prow" type="button" data-a="rg" data-g="'+g+'"><span><b>'+GFULL[g][0]+'</b><span class="d">'+GFULL[g][1]+' · '+L.length+'지문'+(sc?' · 학교 '+sc:'')+(rd.length<L.length?(g==='g2610'?' · 시험 후 추가':' · 준비 중 '+(L.length-rd.length)):'')+'</span></span><span class="vcn">'+(rd.length?dn+'/'+rd.length:'예정')+' ›</span></button>';
+    });
+    return h+'</div>';
+  }
+  h+='<div class="navrow" style="margin:0 0 8px"><button class="ghostbtn" type="button" data-a="rg" data-g="">‹ 범위 선택</button></div><div class="note" style="margin:0 2px 8px"><b>'+GFULL[RG][0]+'</b> '+GFULL[RG][1]+'</div><div class="shelf one">';
+  ofGroup(RG).forEach(function(m){
     if(m.ready)h+='<button class="prow" type="button" data-go="p/'+m.id+'"><span><b>'+esc(m.short)+schoolTag(m)+'</b><span class="d">'+esc(m.sub)+'</span></span><span>'+badge(m)+'</span></button>';
     else h+='<div class="prow off"><span><b>'+esc(m.short)+(m.lesson?'<span class="sch">학교</span>':'')+'</b><span class="d">'+(m.group==='g2610'?'모의고사 지문은 추후 공지 후 추가돼요':'준비 중')+'</span></span></div>';
   });
@@ -294,15 +304,15 @@ function viewVerbTab(){
 function viewHome(){
   var ready=M.filter(function(m){return m.ready}),dn=ready.filter(function(m){return pstat(m)==='done'}).length;
   var dd=dayDiff(TODAY,EXAM);
-  var h='<div class="top"><div class="toprow"><div><div class="brand">동남비타민영어학원</div><h1>'+TITLE+'</h1></div>'+(dd>=0?'<span class="dday">D-'+dd+'</span>':'')+'</div>'
+  var h='<div class="top"><div class="toprow"><div><div class="brand">동남비타민영어학원</div><h1>'+TITLE+'</h1></div>'+'<div class="ddcol">'+(dd>=0?'<span class="dday">D-'+dd+'</span>':'')+'<span class="tapa" aria-label="전체 지문 중 타파한 지문"><b>'+dn+'</b>/'+M.length+' 타파</span></div></div>'
    +'<div class="meta">영어II 2학기 기말고사 12/1(화) · 주 3회 2시간 기준 진도표</div>'
-   +'<div class="bar" role="img" aria-label="진행률"><i style="width:'+(ready.length?Math.round(dn/ready.length*100):0)+'%"></i></div>'
-   +'<div class="note">완료한 지문 '+dn+' / '+ready.length+'</div></div>';
+   +'<div class="bar" role="img" aria-label="진행률"><i style="width:'+(M.length?Math.round(dn/M.length*100):0)+'%"></i></div>'
+   +'<div class="note">지문 1개 완료 = 본문·어휘·문법 모두 체크 (시험 직전 마무리는 제외)</div></div>';
   if(S.last&&BYID[S.last.id]&&BYID[S.last.id].ready&&TABN[S.last.tab]&&S.last.tab!=='undefined'){
     var lm=BYID[S.last.id];h+='<button class="resume" type="button" data-go="p/'+lm.id+'/'+S.last.tab+((S.last.tab===1||S.last.tab===3)?'/0':'')+'"><small>마지막으로 하던 곳</small><b>'+esc(lm.short)+' · '+TABN[S.last.tab]+'</b><span>이어서 하기</span></button>';
   }
   if(S.hv!=='verb')h+=verbBanner();
-  h+='<div class="hvtabs" role="tablist">'+[['sched','스케줄로 보기'],['range','진도범위로 보기'],['verb','동사형 시험 대비']].map(function(x){return '<button type="button" role="tab" class="'+(S.hv===x[0]?'on':'')+'" aria-selected="'+(S.hv===x[0])+'" data-a="hv" data-v="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
+  h+='<div class="hvtabs" role="tablist">'+[['sched','플래너로'],['range','범위별로'],['verb','동사형 시험 대비']].map(function(x){return '<button type="button" role="tab" class="'+(S.hv===x[0]?'on':'')+'" aria-selected="'+(S.hv===x[0])+'" data-a="hv" data-v="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
   h+=S.hv==='range'?viewRange():(S.hv==='verb'?viewVerbTab():viewSched());
   var acctUI='';if(SYNC){acctUI=S.acct?'<div class="note"><b>'+esc(S.acct.name)+'</b> 님으로 자동 저장 중 · <span id="syncst">'+esc(syncMsg||'')+'</span></div><div class="cd"><button type="button" class="btn sm" data-a="acct-now">지금 동기화</button><button type="button" class="btn sm ghost" data-a="acct-out">연결 해제</button></div>':'<p class="note"><b>이름과 번호 4자리</b>를 한 번 입력하면 폰·태블릿 어디서 열어도 같은 기록이 이어져요. 같은 이름이 있으면 이름 뒤에 B나 학교를 붙여요.</p><div class="cd"><input id="acn" placeholder="이름 (예: 홍길동)" autocomplete="off"><input id="acp" placeholder="번호 4자리" inputmode="numeric" maxlength="4" style="max-width:96px"><button type="button" class="btn sm" data-a="acct-in">연결</button></div><div class="note" id="syncst" role="status">'+esc(syncMsg||'')+'</div>'}
   h+='<details class="wk syncbox" data-w="sync"'+((S.open.sync||(SYNC&&!S.acct))?' open':'')+'><summary><span class="wt">'+(SYNC?'기록 저장 · 다른 기기에서 이어하기':'다른 기기로 기록 옮기기')+'<small>폰에서 하던 것을 태블릿에서 이어서</small></span></summary><div class="sx">'+acctUI+(SYNC?'<div class="sec" style="margin:4px 0 0">코드로 옮기기 (자동 저장을 안 쓸 때)</div>':'')+'<p class="note">1) 지금 쓰던 기기에서 아래 코드를 복사해 카톡 나에게 보내요.<br>2) 다른 기기에서 이 앱을 열고 코드를 붙여넣어 불러와요.<br>체크한 것, 별표, 마지막 위치, 수업 요일이 옮겨져요. 두 기기 기록은 합쳐져요.</p><div class="cd"><input id="mycode" readonly value="'+esc(exportCode())+'" aria-label="내 기록 코드"><button type="button" class="btn sm" data-a="copy">복사</button></div><div class="cd"><input id="incode" placeholder="여기에 코드 붙여넣기" aria-label="기록 코드 붙여넣기"><button type="button" class="btn sm" data-a="imp">불러오기</button></div><div class="note" id="smsg" role="status"></div></div></details>';
@@ -426,7 +436,7 @@ app.addEventListener('click',function(e){
     var k=t.dataset.k;if(S.done[k])delete S.done[k];else S.done[k]=1;save();
     if(atHome())render();else t.setAttribute('aria-pressed',S.done[k]?'true':'false');
   }else if(a==='pdone'){togglePass(t.dataset.id);render()}
-  else if(a==='hv'){S.hv=t.dataset.v;save(1);if(atHome())render();else go('home')}
+  else if(a==='hv'){if(t.dataset.v==='range')RG='';S.hv=t.dataset.v;save(1);if(atHome())render();else go('home')}
   else if(a==='vcp'){
     var vid=t.dataset.id,c=S.vc[vid]=S.vc[vid]||{n:0,last:''};c.n++;c.last=todayKey();save();
     var vn=document.getElementById('vcn');if(vn)vn.textContent='누적 연습 '+c.n+'회';
@@ -446,7 +456,7 @@ app.addEventListener('click',function(e){
     var iv=document.getElementById('incode').value,r=importCode(iv);
     if(r===null){document.getElementById('smsg').textContent='코드가 올바르지 않아요. 처음부터 끝까지 복사했는지 확인해요.';return}
     S.open.sync=true;save();render();var m2=document.getElementById('smsg');if(m2)m2.textContent='불러왔어요. 새로 체크된 항목 '+r+'개';
-  }else if(a==='bm'){S.bm=t.dataset.g;save(1);render()}
+  }else if(a==='bm'){S.bm=t.dataset.g;save(1);render()}else if(a==='rg'){RG=t.dataset.g||'';render();window.scrollTo(0,0)}
   else if(a==='day'){
     var d=+t.dataset.d,ix=S.days.indexOf(d);
     if(ix>=0){if(S.days.length>1)S.days.splice(ix,1)}else S.days.push(d);
