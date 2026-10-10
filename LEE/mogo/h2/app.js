@@ -124,7 +124,7 @@ function sentRow(P,n){
     if(i)h+='<span class="sl">/</span>';
     h+='<button class="ck" type="button" data-a="ck" aria-expanded="false"><span class="en">'+fmt(c[0])+'</span><span class="ko">'+esc(c[1])+chunkWhy(P,c[0])+'</span></button>';
   });
-  h+='</div><div class="sbtn"><button type="button" data-a="tr" data-t="ko" aria-expanded="false">해석</button><button type="button" data-a="tr" data-t="story" aria-expanded="false">이 문장, 결국 이 얘기</button></div>';
+  h+='</div><div class="sbtn"><button type="button" data-a="tr" aria-expanded="false">해석 · 이 문장, 결국 이 얘기</button></div>';
   h+='<div class="blk ko" hidden>'+esc(s.ko)+'</div><div class="blk story" hidden>'+esc(s.story)+'</div></div>';
   return h;
 }
@@ -413,8 +413,8 @@ app.addEventListener('click',function(e){
   var a=t.dataset.a;
   if(a==='ck'){var o=t.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false')}
   else if(a==='tr'){
-    var box=t.closest('.srow'),blk=box.querySelector('.blk.'+t.dataset.t),sh=blk.hidden;
-    blk.hidden=!sh;t.setAttribute('aria-expanded',sh?'true':'false');t.classList.toggle('on',sh);
+    var box=t.closest('.srow'),bl=box.querySelectorAll('.blk'),sh=bl[0].hidden;
+    [].forEach.call(bl,function(b){b.hidden=!sh});t.setAttribute('aria-expanded',sh?'true':'false');t.classList.toggle('on',sh);
   }else if(a==='allx'){
     var card=t.closest('.card'),show=t.dataset.s!=='1';
     [].forEach.call(card.querySelectorAll('.ck'),function(c){c.classList.toggle('open',show);c.setAttribute('aria-expanded',show?'true':'false')});
