@@ -29,6 +29,7 @@ button.g{background:var(--card);color:var(--fg);border-color:var(--line)}
 .tag{justify-self:end;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px}
 .t-ok{background:var(--okb);color:var(--ok)}.t-warn{background:var(--warnb);color:var(--warn)}.t-bad{background:var(--badb);color:var(--bad)}.t-none{background:var(--line);color:var(--mut)}
 .msg{color:var(--mut);padding:16px 0}
+.lt{font-weight:700}.lt-ok{color:var(--ok)}.lt-warn{color:var(--warn)}.lt-bad{color:var(--bad)}
 .err{color:var(--bad)}
 footer{margin-top:24px;color:var(--mut);font-size:12px;text-align:center}
 .pw{max-width:320px;margin:60px auto;display:grid;gap:10px}
@@ -75,17 +76,17 @@ function uniq(k){var o={};rows.forEach(function(r){if(k==="tc"){tcList(r.tc).for
 function render(){
   var tabs=uniq("tab"),tcs=uniq("tc");
   var L=rows.filter(function(r){return(!filt.tab||r.tab===filt.tab)&&(!filt.tc||tcList(r.tc).indexOf(filt.tc)>=0)}).map(function(r){var n=ago(r.ts);return{r:r,n:n,s:status(n)}});
-  L.sort(function(a,b){return filt.sort==="stale"?(b.s.r-a.s.r)||a.r.name.localeCompare(b.r.name,"ko"):a.r.name.localeCompare(b.r.name,"ko")});
-  var c={bad:0,warn:0,ok:0};L.forEach(function(x){if(x.s.c==="t-bad"||x.s.c==="t-none")c.bad++;else if(x.s.c==="t-warn")c.warn++;else c.ok++});
+  L.sort(function(a,b){if(filt.sort==="late"){return (b.r.lt-a.r.lt)||(b.s.r-a.s.r)||a.r.name.localeCompare(b.r.name,"ko")}return filt.sort==="stale"?(b.s.r-a.s.r)||a.r.name.localeCompare(b.r.name,"ko"):a.r.name.localeCompare(b.r.name,"ko")});
+  var c={bad:0,warn:0,ok:0,lt:0};L.forEach(function(x){if(x.r.lt>0)c.lt++;if(x.s.c==="t-bad"||x.s.c==="t-none")c.bad++;else if(x.s.c==="t-warn")c.warn++;else c.ok++});
   var h='<h1>학생 검사 화면</h1><p class="sub">오늘 '+fmt(Date.now()).split(" ")[0]+' 기준 · 학생이 앱에서 마지막으로 체크한 시각이에요 · 갱신 '+two(new Date(lastOk).getHours())+':'+two(new Date(lastOk).getMinutes())+'</p>';
   h+='<div class="bar"><select id="ft">'+'<option value="">모든 묶음</option>'+tabs.map(function(t){return'<option'+(t===filt.tab?" selected":"")+'>'+esc(t)+'</option>'}).join("")+'</select>';
   h+='<select id="fc"><option value="">모든 담당</option>'+tcs.map(function(t){return'<option'+(t===filt.tc?" selected":"")+'>'+esc(t)+'</option>'}).join("")+'</select>';
-  h+='<select id="fs"><option value="stale"'+(filt.sort==="stale"?" selected":"")+'>오래 안 한 순</option><option value="name"'+(filt.sort==="name"?" selected":"")+'>이름순</option></select>';
+  h+='<select id="fs"><option value="stale"'+(filt.sort==="stale"?" selected":"")+'>오래 안 한 순</option><option value="late"'+(filt.sort==="late"?" selected":"")+'>밀린 숙제 많은 순</option><option value="name"'+(filt.sort==="name"?" selected":"")+'>이름순</option></select>';
   h+='<button class="g" id="rf" type="button">새로고침</button></div>';
-  h+='<div class="sum"><div><b>'+c.bad+'</b><span>밀림 (5일 이상)</span></div><div><b>'+c.warn+'</b><span>주의 (3~4일)</span></div><div><b>'+c.ok+'</b><span>잘 하는 중</span></div></div>';
+  h+='<div class="sum"><div><b>'+c.bad+'</b><span>밀림 (5일 이상)</span></div><div><b>'+c.warn+'</b><span>주의 (3~4일)</span></div><div><b>'+c.ok+'</b><span>잘 하는 중</span></div><div><b>'+c.lt+'</b><span>계획보다 밀린 학생</span></div></div>';
   if(!L.length)h+='<p class="msg">아직 연결한 학생이 없어요.</p>';
   L.forEach(function(x){var r=x.r;
-    h+='<div class="row"><div class="nm">'+esc(r.name)+'<small>'+esc(r.tab)+(r.tc?" · "+esc(r.tc):"")+'</small></div><div class="cnt">체크 '+r.cnt+'개</div><div class="when">'+(r.ts?'마지막 '+fmt(r.ts):'기록 없음')+'</div><span class="tag '+x.s.c+'">'+x.s.t+'</span></div>';
+    h+='<div class="row"><div class="nm">'+esc(r.name)+'<small>'+esc(r.tab)+(r.tc?" · "+esc(r.tc):"")+'</small></div><div class="cnt">체크 '+r.cnt+'개</div><div class="when">'+(r.ts?'마지막 '+fmt(r.ts):'기록 없음')+(r.du>0&&r.lt>=0?' · <span class="lt '+(r.lt===0?'lt-ok':(r.lt<3?'lt-warn':'lt-bad'))+'">'+(r.lt===0?'계획대로 진행':'밀린 숙제 '+r.lt+'개')+'</span> (오늘까지 '+r.du+'개)':'')+'</div><span class="tag '+x.s.c+'">'+x.s.t+'</span></div>';
   });
   document.getElementById("app").innerHTML=h;
   document.getElementById("ft").onchange=function(){filt.tab=this.value;render()};
