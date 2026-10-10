@@ -139,7 +139,7 @@ h1{font-weight:800}
 .tabs.t3{grid-template-columns:repeat(3,1fr)}.tabs.t4{grid-template-columns:repeat(4,1fr)}.tabs.t5{grid-template-columns:repeat(5,1fr)}
 .tabs button{font-size:12.5px}
 .sechd{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.04em;margin:8px 2px -4px}
-.exitrow{display:grid;grid-template-columns:2fr 1fr;gap:8px}
+.exitrow{display:grid;grid-template-columns:1fr 1fr;gap:8px}.exitrow .nxbtn,.exitrow .homebig:only-child{grid-column:1/-1}.exitrow .btn{min-height:46px}
 .homebig{background:var(--accent);color:var(--accent-ink);border:0;font-weight:800}
 .vcrow{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-size:13.5px}
 .vcrow .btn{min-height:40px;font-size:14px;flex:none}
@@ -241,3 +241,9 @@ h1{font-weight:800}
 .nmh{font-size:11.5px;color:var(--muted)}
 .nmrow.done{margin-top:4px}
 .nmedit{border:0;background:none;color:var(--muted);font-size:11.5px;text-decoration:underline;cursor:pointer;padding:2px 0}
+
+.upbtn{background:var(--soft);color:var(--accent);border:2px solid var(--accent);border-radius:999px;padding:0 16px 0 12px;min-height:40px;font-weight:800;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;flex:none}
+.upbtn::before{content:"";width:8px;height:8px;border:solid currentColor;border-width:0 0 2.5px 2.5px;transform:rotate(45deg);margin-left:3px}
+.crumb{font-size:13px;color:var(--muted);min-width:0}.crumb b{color:var(--fg,inherit)}.crd{display:inline}
+.navrow{flex-wrap:wrap}
+@media(max-width:420px){.crd{display:none}}

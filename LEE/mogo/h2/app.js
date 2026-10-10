@@ -152,9 +152,15 @@ function nav(prev,next,lock,label){
   if(next)h+='<button class="btn" type="button" data-go="'+next+'"'+(lock?' data-lock disabled':'')+'>'+(label||'다음')+'</button>';
   return h+'</div>';
 }
+function upInfo(id){
+  var m=BYID[id],g=m&&m.group;
+  if(S.hv==='range'&&g&&GFULL[g])return {g:g,label:GFULL[g][0]+' 목록으로',sub:true};
+  if(S.hv==='verb')return {g:'',label:'동사형 목록으로',sub:true};
+  return {g:'',label:'진도표로',sub:false};
+}
 function head(P,step){
-  var m=BYID[P.id];
-  var h='<header class="phd"><div class="navrow"><button class="homebtn" type="button" data-go="home">진도표로</button>'+(step!==0?'<button class="ghostbtn" type="button" data-go="p/'+P.id+'">지문 메뉴</button>':'')+'</div><h1 class="ptitle">'+esc(m.short)+'</h1>'+(m.sub?'<p class="psub">'+esc(m.sub)+'</p>':'')+'<div class="chips">';
+  var m=BYID[P.id],u=upInfo(P.id);
+  var h='<header class="phd"><div class="navrow"><button class="homebtn" type="button" data-a="uplist" data-g="'+u.g+'">'+u.label+'</button>'+(u.sub?'<button class="ghostbtn" type="button" data-a="uplist" data-g="" data-top="1">진도표</button>':'')+(step!==0?'<button class="ghostbtn" type="button" data-go="p/'+P.id+'">지문 메뉴</button>':'')+'</div><h1 class="ptitle">'+esc(m.short)+'</h1>'+(m.sub?'<p class="psub">'+esc(m.sub)+'</p>':'')+'<div class="chips">';
   if(P.textbook)h+='<span class="chip">교과서</span>';
   if(P.lesson&&!P.textbook)h+='<span class="chip sch2">학교</span>';
   if(!P.textbook)h+='<span class="chip">아잉카 · 이그잼포유 분석 종합</span>';
@@ -170,7 +176,15 @@ function markRow(P,t,text){
   var on=isDone(P.id+':'+t);
   return '<div class="mark-done"><span>'+esc(text)+'</span><button class="chk" type="button" data-a="chk" data-k="'+P.id+':'+t+'" aria-pressed="'+on+'" aria-label="완료 표시"></button></div>';
 }
-function exitRow(P){return '<div class="exitrow"><button class="btn homebig" type="button" data-go="home">진도표로 돌아가기</button><button class="btn ghost" type="button" data-go="p/'+P.id+'">지문 메뉴</button></div>'}
+function nextOf(id){
+  var m=BYID[id],L;
+  if(S.hv==='range'&&m)L=ofGroup(m.group).filter(function(x){return x.ready});
+  else if(S.hv==='verb')L=M.filter(function(x){return x.ready&&hasVerb(x)});
+  else{L=[];try{buildPlan().study.forEach(function(se){se.items.forEach(function(x){if(x.ready&&L.indexOf(x)<0)L.push(x)})})}catch(e){}}
+  var k=-1;L.forEach(function(x,q){if(x.id===id)k=q});
+  return (k>=0&&k<L.length-1)?L[k+1]:null;
+}
+function exitRow(P){var u=upInfo(P.id),nx=nextOf(P.id);return '<div class="exitrow">'+(nx?'<button class="btn homebig nxbtn" type="button" data-go="p/'+nx.id+'">다음 지문: '+esc(nx.short)+' &rsaquo;</button>':'')+'<button class="btn '+(nx?'ghost':'homebig')+'" type="button" data-a="uplist" data-g="'+u.g+'">'+u.label+'</button>'+(u.sub?'<button class="btn ghost" type="button" data-a="uplist" data-g="" data-top="1">진도표로</button>':'')+'<button class="btn ghost" type="button" data-go="p/'+P.id+'">지문 메뉴</button></div>'}
 function markDone(id,t){if(!S.done[id+':'+t]){S.done[id+':'+t]=1;save()}}
 
 /* ---------- 자동 동기화 (구글 시트, GitHub Pages 배포에서만) ---------- */
@@ -322,7 +336,7 @@ function viewRange(){
     });
     return h+'</div>';
   }
-  h+='<div class="navrow" style="margin:0 0 8px"><button class="ghostbtn" type="button" data-a="rg" data-g="">‹ 범위 선택</button></div><div class="note" style="margin:0 2px 8px"><b>'+GFULL[RG][0]+'</b> '+GFULL[RG][1]+'</div><div class="shelf one">';
+  h+='<div class="navrow" style="margin:0 0 8px"><button class="upbtn" type="button" data-a="rg" data-g="">범위 선택으로</button><span class="crumb">범위 선택 &rsaquo; <b>'+GFULL[RG][0]+'</b> <span class="crd">'+GFULL[RG][1]+'</span></span></div><div class="shelf one">';
   ofGroup(RG).forEach(function(m){
     if(m.ready)h+='<button class="prow" type="button" data-go="p/'+m.id+'"><span><b>'+esc(m.short)+schoolTag(m)+'</b><span class="d">'+esc(m.sub)+'</span></span><span>'+badge(m)+'</span></button>';
     else h+='<div class="prow off"><span><b>'+esc(m.short)+(m.lesson?'<span class="sch">학교</span>':'')+'</b><span class="d">'+(m.group==='g2610'?'모의고사 지문은 추후 공지 후 추가돼요':'준비 중')+'</span></span></div>';
@@ -521,7 +535,7 @@ app.addEventListener('click',function(e){
     var iv=document.getElementById('incode').value,r=importCode(iv);
     if(r===null){document.getElementById('smsg').textContent='코드가 올바르지 않아요. 처음부터 끝까지 복사했는지 확인해요.';return}
     S.open.sync=true;save();render();var m2=document.getElementById('smsg');if(m2)m2.textContent='불러왔어요. 새로 체크된 항목 '+r+'개';
-  }else if(a==='bm'){S.bm=t.dataset.g;save(1);render()}else if(a==='rg'){RG=t.dataset.g||'';render();window.scrollTo(0,0)}
+  }else if(a==='bm'){S.bm=t.dataset.g;save(1);render()}else if(a==='rg'){RG=t.dataset.g||'';render();window.scrollTo(0,0)}else if(a==='uplist'){if(t.dataset.top){S.hv='sched';save(1)}else if(S.hv==='range')RG=t.dataset.g||'';go('home')}
   else if(a==='day'){
     var d=+t.dataset.d,ix=S.days.indexOf(d);
     if(ix>=0){if(S.days.length>1)S.days.splice(ix,1)}else S.days.push(d);
