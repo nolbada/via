@@ -15,7 +15,7 @@ function shuffle(a){var b=a.slice(),i,j,t;for(i=b.length-1;i>0;i--){j=Math.floor
 function foot(){return '<div class="foot">동남비타민영어학원</div>'}
 
 /* ---------- 지문 목록 ---------- */
-var GORDER=['tb','g2410','g23','g22','g2610'];
+var GORDER=['tb','g2410','g2610','g23','g22'];
 var GSHORT={tb:'교과서 4과 파트 ',g2410:'24년 10월 ',g23:'23년 11월 ',g22:'22년 11월 ',g2610:'26년 10월 '};
 var GBM={tb:['교과서','4과'],g2410:['24년','10월'],g23:['23년','11월'],g22:['22년','11월'],g2610:['26년','10월']};
 var M=window.MANIFEST.slice();
