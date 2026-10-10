@@ -1,9 +1,9 @@
 (function(){
 'use strict';
 var app=document.getElementById('app');
-function who(){return (S.acct&&S.acct.name)||S.name||''}
+function who(){return (S.acct&&S.acct.name)||window.MOGO_NAME||S.name||''}
 function ttl(){return '주성고2 '+(who()?who()+' ':'')+'(2학기 기말 대비)'}
-var KEY='mogo26-h2-v2';
+var KEY='mogo26-h2-v2'+(window.MOGO_NAME?'-'+window.MOGO_NAME:'');
 var S={done:{},days:[2,4,6],bm:'tb',hv:'sched',open:{},seen:{},stars:{},vc:{}};
 try{var raw=JSON.parse(localStorage.getItem(KEY)||'{}');for(var k in raw)S[k]=raw[k]}catch(e){}
 ['done','open','seen','stars','vc'].forEach(function(k){if(!S[k]||typeof S[k]!=='object')S[k]={}});
@@ -340,7 +340,7 @@ function viewHome(){
   var dd=dayDiff(TODAY,EXAM);
   var h='<div class="top"><div class="toprow"><div><div class="brand">동남비타민영어학원</div><h1>'+esc(ttl())+'</h1></div>'+'<div class="ddcol">'+(dd>=0?'<span class="dday">D-'+dd+'</span>':'')+'<span class="tapa" aria-label="전체 지문 중 타파한 지문"><b>'+dn+'</b>/'+M.length+' 타파</span></div></div>'
    +'<div class="meta">영어II 2학기 기말고사 12/1(화) · 주 3회 2시간 기준 진도표</div>'
-   +(who()?(S.acct?'':'<div class="nmrow done"><button type="button" class="nmedit" data-a="nm-edit">이름 바꾸기</button></div>'):'<div class="nmrow"><input id="nmin" placeholder="내 이름 (예: 민지민)" autocomplete="off" maxlength="12" aria-label="내 이름"><button type="button" class="btn sm" data-a="nm-set">확인</button><span class="nmh">이름을 넣으면 제목에 나와요</span></div>')
+   +(who()?((S.acct||window.MOGO_NAME)?'':'<div class="nmrow done"><button type="button" class="nmedit" data-a="nm-edit">이름 바꾸기</button></div>'):'<div class="nmrow"><input id="nmin" placeholder="내 이름 (예: 민지민)" autocomplete="off" maxlength="12" aria-label="내 이름"><button type="button" class="btn sm" data-a="nm-set">확인</button><span class="nmh">이름을 넣으면 제목에 나와요</span></div>')
    +'<div class="bar" role="img" aria-label="진행률"><i style="width:'+(M.length?Math.round(dn/M.length*100):0)+'%"></i></div>'
    +'<div class="note">지문 1개 완료 = 본문·어휘·문법 모두 체크 (시험 직전 마무리는 제외)</div></div>';
   if(S.last&&BYID[S.last.id]&&BYID[S.last.id].ready&&TABN[S.last.tab]&&S.last.tab!=='undefined'){
@@ -350,7 +350,7 @@ function viewHome(){
   h+='<div class="hvtabs" role="tablist">'+[['sched','플래너로'],['range','범위별로'],['verb','동사형 시험 대비']].map(function(x){return '<button type="button" role="tab" class="'+(S.hv===x[0]?'on':'')+'" aria-selected="'+(S.hv===x[0])+'" data-a="hv" data-v="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
   h+=S.hv==='range'?viewRange():(S.hv==='verb'?viewVerbTab():viewSched());
   var acctUI='';if(GATE){acctUI='<div class="note"><b>'+esc(S.acct?S.acct.name:'')+'</b> 님으로 자동 저장 중 · <span id="syncst">'+esc(syncMsg||'')+'</span></div><div class="cd"><button type="button" class="btn sm" data-a="acct-now">지금 동기화</button><button type="button" class="btn sm ghost" data-a="acct-out">다른 학생으로 로그인</button></div>'}
-  else if(SYNC){acctUI=S.acct?'<div class="note"><b>'+esc(S.acct.name)+'</b> 님으로 자동 저장 중 · <span id="syncst">'+esc(syncMsg||'')+'</span></div><div class="cd"><button type="button" class="btn sm" data-a="acct-now">지금 동기화</button><button type="button" class="btn sm ghost" data-a="acct-out">연결 해제</button></div>':'<p class="note"><b>이름과 번호 4자리</b>를 한 번 입력하면 폰·태블릿 어디서 열어도 같은 기록이 이어져요. 같은 이름이 있으면 이름 뒤에 B나 학교를 붙여요.</p><div class="cd"><input id="acn" placeholder="이름 (예: 홍길동)" autocomplete="off"><input id="acp" placeholder="번호 4자리" inputmode="numeric" maxlength="4" style="max-width:96px"><button type="button" class="btn sm" data-a="acct-in">연결</button></div><div class="note" id="syncst" role="status">'+esc(syncMsg||'')+'</div>'}
+  else if(SYNC){acctUI=S.acct?'<div class="note"><b>'+esc(S.acct.name)+'</b> 님으로 자동 저장 중 · <span id="syncst">'+esc(syncMsg||'')+'</span></div><div class="cd"><button type="button" class="btn sm" data-a="acct-now">지금 동기화</button><button type="button" class="btn sm ghost" data-a="acct-out">연결 해제</button></div>':'<p class="note"><b>'+(window.MOGO_NAME?'번호 4자리':'이름과 번호 4자리')+'</b>를 한 번 입력하면 폰·태블릿 어디서 열어도 같은 기록이 이어져요. 같은 이름이 있으면 이름 뒤에 B나 학교를 붙여요.</p><div class="cd"><input id="acn" placeholder="이름 (예: 홍길동)" autocomplete="off"'+(window.MOGO_NAME?' value="'+esc(window.MOGO_NAME)+'" readonly':'')+'><input id="acp" placeholder="번호 4자리" inputmode="numeric" maxlength="4" style="max-width:96px"><button type="button" class="btn sm" data-a="acct-in">연결</button></div><div class="note" id="syncst" role="status">'+esc(syncMsg||'')+'</div>'}
   h+='<details class="wk syncbox" data-w="sync"'+((S.open.sync||(SYNC&&!S.acct))?' open':'')+'><summary><span class="wt">'+(SYNC?'기록 저장 · 다른 기기에서 이어하기':'다른 기기로 기록 옮기기')+'<small>폰에서 하던 것을 태블릿에서 이어서</small></span></summary><div class="sx">'+acctUI+(SYNC?'<div class="sec" style="margin:4px 0 0">코드로 옮기기 (자동 저장을 안 쓸 때)</div>':'')+'<p class="note">1) 지금 쓰던 기기에서 아래 코드를 복사해 카톡 나에게 보내요.<br>2) 다른 기기에서 이 앱을 열고 코드를 붙여넣어 불러와요.<br>체크한 것, 별표, 마지막 위치, 수업 요일이 옮겨져요. 두 기기 기록은 합쳐져요.</p><div class="cd"><input id="mycode" readonly value="'+esc(exportCode())+'" aria-label="내 기록 코드"><button type="button" class="btn sm" data-a="copy">복사</button></div><div class="cd"><input id="incode" placeholder="여기에 코드 붙여넣기" aria-label="기록 코드 붙여넣기"><button type="button" class="btn sm" data-a="imp">불러오기</button></div><div class="note" id="smsg" role="status"></div></div></details>';
   return h+foot();
 }
