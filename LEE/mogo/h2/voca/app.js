@@ -63,7 +63,9 @@ function Store(id){
   this.key='voca:'+id; this.s=newState();
   try{var r=localStorage.getItem(this.key); if(r){var o=JSON.parse(r); if(o&&o.v===1)this.s=o}}catch(e){}
 }
-Store.prototype.save=function(){try{localStorage.setItem(this.key,JSON.stringify(this.s))}catch(e){}};
+Store.prototype.save=function(){try{
+  if(this.G){var s=this.s,ne=0,es=0,G=this.G;Object.keys(G.L).forEach(function(l){G.L[l].edges.forEach(function(e){ne++;if(level(s,e)>0)es++})});s.ne=ne;s.es=es;s.all2=ne>0&&es>=ne}
+  localStorage.setItem(this.key,JSON.stringify(this.s))}catch(e){}};
 Store.prototype.code=function(id){return 'V1.'+btoa(unescape(encodeURIComponent(JSON.stringify({id:id,s:this.s}))))};
 function decode(code){
   code=String(code).trim(); if(code.indexOf('V1.')!==0)throw new Error('형식이 달라요');
@@ -164,7 +166,7 @@ function srcBlock(G,l,hub){
 
 /* ---------- 화면 ---------- */
 function App(G,id,root){
-  this.G=G;this.id=id;this.root=root;this.st=new Store(id);
+  this.G=G;this.id=id;this.root=root;this.st=new Store(id);this.st.G=G;this.st.save();
   var first=G.B.lessons[0].no; this.l=String(this.st.s.lesson||first);
   this.home();
 }
