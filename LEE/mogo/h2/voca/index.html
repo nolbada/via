@@ -8,10 +8,14 @@
 </head>
 <body>
 <div id="app"></div>
+<script src="../sync.js"></script>
+<script src="../gate.js"></script>
 <script>
 (function(){var hp=(location.hash||'').replace('#','').split('/'),id=hp[0];window.VMODE=hp[1]||'';
-if(!/^[A-Za-z0-9_-]+$/.test(id)){document.getElementById('app').textContent='지문을 먼저 골라 주세요.';return}
-document.write('<script src="data/'+id+'.js"><\/script><script>var VID="'+id+'";<\/script><script src="app.js"><\/script>');})();
+var box=document.getElementById('app')||document.body;
+if(!/^[A-Za-z0-9_-]+$/.test(id)){box.textContent='지문을 먼저 골라 주세요.';return}
+document.write('<script src="'+MOGO.src('voca',id)+'"><\/script>');
+document.write('<script>(function(){var id="'+id+'",box=document.getElementById("app")||document.body;if(window.VOCADATA&&VOCADATA[id]){window.VID=id;var a=document.createElement("script");a.src="app.js";document.body.appendChild(a)}else{box.textContent="로그인이 필요해요. 첫 화면(진도표)에서 이름과 번호를 입력해요."}})()<\/script>');})();
 </script>
 </body>
 </html>
