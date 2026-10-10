@@ -6,6 +6,7 @@ function ttl(){return '주성고2 '+(who()?who()+' ':'')+'(2학기 기말 대비
 var KEY='mogo26-h2-v2'+(window.MOGO_NAME?'-'+window.MOGO_NAME:'');
 var S={done:{},days:(window.MOGO_DAYS||[2,4,6]).slice(),bm:'tb',hv:'sched',open:{},seen:{},stars:{},vc:{}};
 try{var raw=JSON.parse(localStorage.getItem(KEY)||'{}');for(var k in raw)S[k]=raw[k]}catch(e){}
+if(window.MOGO_DAYS&&!S.daysCustom)S.days=window.MOGO_DAYS.slice();
 ['done','open','seen','stars','vc'].forEach(function(k){if(!S[k]||typeof S[k]!=='object')S[k]={}});
 var GATE=!!(window.MOGO&&MOGO.on),gateMsg='';
 if(GATE){var cr0=MOGO.cred();S.acct=cr0?{name:cr0.n,pin:cr0.p}:null}
@@ -37,7 +38,7 @@ function menuTabs(m){var a=reqTabs(m).concat(['f']);if(hasVerb(m))a.push(4);retu
 function isDone(k){return !!S.done[k]}
 function pstat(m){var r=reqTabs(m),n=0;r.forEach(function(t){if(S.done[m.id+':'+t])n++});if(n===r.length)return 'done';return (n>0||S.seen[m.id])?'prog':''}
 function badge(m){var s=pstat(m);return s==='done'?'<span class="stt done">완료</span>':(s==='prog'?'<span class="stt prog">진행 중</span>':'')}
-function schoolTag(m){return (m.lesson&&!m.tb)?'<span class="sch">학교</span>':''}
+function schoolTag(m){return (m.lesson&&!m.tb)?'<span class="sch">학교 수업</span>':''}
 function togglePass(id){var m=BYID[id],all=pstat(m)==='done';reqTabs(m).forEach(function(t){var k=id+':'+t;if(all)delete S.done[k];else S.done[k]=1});if(!all)S.seen[id]=1;save()}
 
 /* ---------- 날짜·진도표 ---------- */
@@ -312,6 +313,7 @@ function viewSched(){
   var keys=Object.keys(weeks).map(Number).sort(function(a,b){return a-b});
   var curW=Math.max(0,Math.floor(dayDiff(START,TODAY)/7));
   h+='<div class="sbar"><div class="set"><span>수업 요일</span>'+WD.map(function(w,i){return '<button type="button" data-a="day" data-d="'+i+'" class="'+(S.days.indexOf(i)>=0?'on':'')+'">'+w+'</button>'}).join('')+'</div><button class="closeall" type="button" data-a="closeall">모두 닫기</button></div>';
+  if(window.MOGO_CHECK)h+='<div class="ckrow"><span>학원 검사 가능 요일</span>'+WD.map(function(w,i){return window.MOGO_CHECK.indexOf(i)>=0?'<i>'+w+'</i>':''}).join('')+'</div>';
   h+=tcBanner(plan);
   keys.forEach(function(w){
     var list=weeks[w],a=list[0].date,b=list[list.length-1].date,n=0,dn=0,cn=0,cd=0;
@@ -345,9 +347,9 @@ function viewRange(){
 }
 function viewVerbTab(){
   var vl=M.filter(function(m){return m.ready&&hasVerb(m)}),tot=0;vl.forEach(function(m){tot+=vcN(m.id)});
-  var h='<div class="vintro"><b>동사형은 학원에서 말하기 시험으로 봐요</b><p>한 번에 외워지지 않아요. 틈날 때마다 조금씩 반복해요. 연습을 마칠 때마다 횟수가 쌓여요. 누적 <b>'+tot+'회</b></p></div><div class="shelf one">';
+  var h='<div class="vintro"><b>동사형은 학원에서 말하기 시험으로 봐요</b><p>시험 범위는 학교 수업 여부와 상관없이 아래 전체 지문이에요. 선생님이 이 중에서 골라 검사해요. 한 번에 외워지지 않아요. 틈날 때마다 조금씩 반복해요. 연습을 마칠 때마다 횟수가 쌓여요. 누적 <b>'+tot+'회</b></p></div><div class="shelf one">';
   vl.forEach(function(m){
-    h+='<button class="prow" type="button" data-go="p/'+m.id+'/4"><span><b>'+esc(m.short)+schoolTag(m)+'</b><span class="d">'+esc(m.sub)+'</span></span><span class="vcn">'+(isDone(tcKey(m))?'<span class="tcl">검사 완료</span> ':'')+(vcN(m.id)?vcN(m.id)+'회':'0회')+'</span></button>';
+    h+='<button class="prow" type="button" data-go="p/'+m.id+'/4"><span><b>'+esc(m.short)+'</b><span class="d">'+esc(m.sub)+'</span></span><span class="vcn">'+(isDone(tcKey(m))?'<span class="tcl">검사 완료</span> ':'')+(vcN(m.id)?vcN(m.id)+'회':'0회')+'</span></button>';
   });
   return h+'</div>';
 }
@@ -538,7 +540,7 @@ app.addEventListener('click',function(e){
   }else if(a==='bm'){S.bm=t.dataset.g;save(1);render()}else if(a==='rg'){RG=t.dataset.g||'';render();window.scrollTo(0,0)}else if(a==='uplist'){if(t.dataset.top){S.hv='sched';save(1)}else if(S.hv==='range')RG=t.dataset.g||'';go('home')}
   else if(a==='day'){
     var d=+t.dataset.d,ix=S.days.indexOf(d);
-    if(ix>=0){if(S.days.length>1)S.days.splice(ix,1)}else S.days.push(d);
+    S.daysCustom=1;if(ix>=0){if(S.days.length>1)S.days.splice(ix,1)}else S.days.push(d);
     S.days.sort(function(x,y){return x-y});save();render();
   }
 });
