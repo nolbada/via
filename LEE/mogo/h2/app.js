@@ -24,8 +24,8 @@ M.forEach(function(m){
   var pm=/\((.+)\)\s*$/.exec(m.label||'');m.sub=m.tb?(pm?pm[1]:m.topic):(m.topic||'');
 });
 function ofGroup(g){return M.filter(function(m){return m.group===g}).sort(function(a,b){return (a.lesson===b.lesson?0:(a.lesson?-1:1))||a.no-b.no})}
-var TABN={1:'본문+내용이해',2:'어휘 함정 피하기',3:'문법 포인트',f:'시험 직전 마무리',4:'동사형 말하기 시험'};
-var TSHORT={1:'내용이해',2:'어휘',3:'문법',f:'마무리',4:'동사형'};
+var TABN={1:'본문+내용이해',2:'어휘 함정 피하기',3:'문법 포인트',f:'시험 직전 마무리 (파이널 주간)',4:'동사형 말하기 시험'};
+var TSHORT={1:'내용이해',2:'어휘',3:'문법',f:'파이널 주간',4:'동사형'};
 var WGT={tb:4,core:3,light:2,chart:1.5};
 function tier(m){return m.tb?'tb':m.lesson?'core':(m.kind&&m.kind!=='text')?'chart':'light'}
 function reqTabs(m){var t=tier(m);return (t==='tb'||t==='core')?[1,2,3]:[1,2]}
@@ -329,7 +329,7 @@ function viewMenu(P){
   reqTabs(m).forEach(function(t,i){
     h+='<button type="button" class="stepcard" data-go="p/'+P.id+'/'+t+((t===1||t===3)?'/0':'')+'"><span class="no">'+(i+1)+'</span><span><b>'+TABN[t]+'</b><span class="d">'+D[t]+'</span>'+(isDone(P.id+':'+t)?'<span class="ok">완료</span>':'')+'</span></button>';
   });
-  h+='<div class="sechd">시험 직전 마무리</div><button type="button" class="stepcard" data-go="p/'+P.id+'/f"><span class="no">&#10003;</span><span><b>'+TABN.f+'</b><span class="d">'+D.f+'</span>'+(isDone(P.id+':f')?'<span class="ok">완료</span>':'')+'</span></button>';
+  h+='<div class="sechd">시험 직전 마무리 (파이널 주간에 해요)</div><button type="button" class="stepcard" data-go="p/'+P.id+'/f"><span class="no">&#10003;</span><span><b>'+TABN.f+'</b><span class="d">'+D.f+'</span>'+(isDone(P.id+':f')?'<span class="ok">완료</span>':'')+'</span></button>';
   if(hasVerb(m))h+='<div class="sechd">동사형 말하기 시험 (학원 시험)</div><button type="button" class="stepcard" data-go="p/'+P.id+'/4"><span class="no">&#9654;</span><span><b>'+TABN[4]+'</b><span class="d">'+D[4]+'</span></span></button>';
   return h+foot();
 }
