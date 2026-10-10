@@ -225,3 +225,19 @@ h1{font-weight:800}
 .tcrow{font-size:13px;line-height:1.5}
 .tcrow.sm{font-size:11.5px;color:var(--muted)}
 .tcrow .tcb2{color:var(--bad)}
+/* 홈 탭 3개: 각각 다른 색 */
+:root{--t1:#1F5F7A;--t2:#2E7D5B;--t3:#B5472F;--t-ink:#FFFFFF}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--t1:#6BB8D3;--t2:#68C79A;--t3:#F08A72;--t-ink:#10181D}}
+:root[data-theme="dark"]{--t1:#6BB8D3;--t2:#68C79A;--t3:#F08A72;--t-ink:#10181D}
+.hvtabs{background:transparent;padding:0;gap:6px}
+.hvtabs button{border:2px solid var(--tc0);color:var(--tc0);background:var(--card);font-size:13.5px;font-weight:800;border-radius:11px;min-height:48px}
+.hvtabs button[data-v=sched]{--tc0:var(--t1)}
+.hvtabs button[data-v=range]{--tc0:var(--t2)}
+.hvtabs button[data-v=verb]{--tc0:var(--t3)}
+.hvtabs button.on{background:var(--tc0);color:var(--t-ink);box-shadow:0 2px 6px rgba(0,0,0,.18)}
+/* 이름 입력 */
+.nmrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0 0}
+.nmrow input{flex:1 1 140px;min-width:0;max-width:200px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:var(--card);color:var(--ink)}
+.nmh{font-size:11.5px;color:var(--muted)}
+.nmrow.done{margin-top:4px}
+.nmedit{border:0;background:none;color:var(--muted);font-size:11.5px;text-decoration:underline;cursor:pointer;padding:2px 0}

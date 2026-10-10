@@ -1,7 +1,8 @@
 (function(){
 'use strict';
 var app=document.getElementById('app');
-var TITLE='26년 주성고2 (2학기 기말 대비)';
+function who(){return (S.acct&&S.acct.name)||S.name||''}
+function ttl(){return '주성고2 '+(who()?who()+' ':'')+'(2학기 기말 대비)'}
 var KEY='mogo26-h2-v2';
 var S={done:{},days:[2,4,6],bm:'tb',hv:'sched',open:{},seen:{},stars:{},vc:{}};
 try{var raw=JSON.parse(localStorage.getItem(KEY)||'{}');for(var k in raw)S[k]=raw[k]}catch(e){}
@@ -337,8 +338,9 @@ function viewVerbTab(){
 function viewHome(){
   var ready=M.filter(function(m){return m.ready}),dn=ready.filter(function(m){return pstat(m)==='done'}).length;
   var dd=dayDiff(TODAY,EXAM);
-  var h='<div class="top"><div class="toprow"><div><div class="brand">동남비타민영어학원</div><h1>'+TITLE+'</h1></div>'+'<div class="ddcol">'+(dd>=0?'<span class="dday">D-'+dd+'</span>':'')+'<span class="tapa" aria-label="전체 지문 중 타파한 지문"><b>'+dn+'</b>/'+M.length+' 타파</span></div></div>'
+  var h='<div class="top"><div class="toprow"><div><div class="brand">동남비타민영어학원</div><h1>'+esc(ttl())+'</h1></div>'+'<div class="ddcol">'+(dd>=0?'<span class="dday">D-'+dd+'</span>':'')+'<span class="tapa" aria-label="전체 지문 중 타파한 지문"><b>'+dn+'</b>/'+M.length+' 타파</span></div></div>'
    +'<div class="meta">영어II 2학기 기말고사 12/1(화) · 주 3회 2시간 기준 진도표</div>'
+   +(who()?(S.acct?'':'<div class="nmrow done"><button type="button" class="nmedit" data-a="nm-edit">이름 바꾸기</button></div>'):'<div class="nmrow"><input id="nmin" placeholder="내 이름 (예: 민지민)" autocomplete="off" maxlength="12" aria-label="내 이름"><button type="button" class="btn sm" data-a="nm-set">확인</button><span class="nmh">이름을 넣으면 제목에 나와요</span></div>')
    +'<div class="bar" role="img" aria-label="진행률"><i style="width:'+(M.length?Math.round(dn/M.length*100):0)+'%"></i></div>'
    +'<div class="note">지문 1개 완료 = 본문·어휘·문법 모두 체크 (시험 직전 마무리는 제외)</div></div>';
   if(S.last&&BYID[S.last.id]&&BYID[S.last.id].ready&&TABN[S.last.tab]&&S.last.tab!=='undefined'){
@@ -422,12 +424,13 @@ function gateText(e){
 }
 function gateOut(e){MOGO.clear();S.acct=null;S.synced=false;save(1);gateMsg=gateText(e);render()}
 function viewLogin(){
-  return '<div class="top"><div class="toprow"><div><div class="brand">동남비타민영어학원</div><h1>'+TITLE+'</h1></div></div><div class="meta">처음 한 번만 이름과 번호를 입력해요</div></div>'
+  return '<div class="top"><div class="toprow"><div><div class="brand">동남비타민영어학원</div><h1>'+esc(ttl())+'</h1></div></div><div class="meta">처음 한 번만 이름과 번호를 입력해요</div></div>'
    +'<div class="card"><h2>학생 확인</h2><p class="note">선생님이 알려 준 <b>이름</b>과 <b>번호 4자리</b>를 입력해요. 입력하면 폰, 태블릿 어디서 열어도 같은 기록이 이어져요.</p>'
    +'<div class="cd"><input id="gn" placeholder="이름" autocomplete="off"><input id="gp" placeholder="번호 4자리" inputmode="numeric" maxlength="4" style="max-width:110px"><button type="button" class="btn sm" data-a="gate-in">열기</button></div>'
    +'<div class="note" id="gmsg" role="status" style="color:var(--trap)">'+esc(gateMsg||'')+'</div></div>'+foot();
 }
 function render(){
+  try{document.title=ttl()}catch(e){}
   if(GATE&&!MOGO.cred()){app.innerHTML=viewLogin();window.scrollTo(0,0);return}
   var hs=(location.hash||'#home').replace('#','').split('/');
   if(hs[0]!=='p'||!BYID[hs[1]]||!BYID[hs[1]].ready){app.innerHTML=viewHome();window.scrollTo(0,0);return}
@@ -480,6 +483,9 @@ app.addEventListener('click',function(e){
   }else if(a==='chk'){
     var k=t.dataset.k;if(S.done[k])delete S.done[k];else S.done[k]=1;save();
     if(atHome())render();else t.setAttribute('aria-pressed',S.done[k]?'true':'false');
+  }else if(a==='nm-set'){
+    var nv=(document.getElementById('nmin').value||'').trim().slice(0,12);if(!nv)return;S.name=nv;save(1);render();
+  }else if(a==='nm-edit'){S.name='';save(1);render();
   }else if(a==='tchk'){
     var tid=t.dataset.id,tk=tid+':t';
     if(S.done[tk])delete S.done[tk];else if(pstat(BYID[tid])==='done')S.done[tk]=1;else return;
@@ -521,7 +527,7 @@ app.addEventListener('click',function(e){
   }
 });
 window.addEventListener('hashchange',render);
-document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target&&(e.target.id==='gp'||e.target.id==='gn')){var b=app.querySelector('[data-a="gate-in"]');if(b)b.click()}});
+document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target&&(e.target.id==='gp'||e.target.id==='gn')){var b=app.querySelector('[data-a="gate-in"]');if(b)b.click()}else if(e.key==='Enter'&&e.target&&e.target.id==='nmin'){var b2=app.querySelector('[data-a="nm-set"]');if(b2)b2.click()}});
 render();
 if(SYNC&&S.acct)pull(!S.synced);
 })();
