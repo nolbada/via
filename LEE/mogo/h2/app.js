@@ -173,7 +173,19 @@ function head(P,step){
   }
   return h;
 }
+function vocaSt(id){try{var o=JSON.parse(localStorage.getItem('voca:'+id)||'null');return o&&o.v===1?o:null}catch(e){return null}}
+function syncVoca(){
+  var ch=false;
+  M.forEach(function(m){if(!m.ready||S.done[m.id+':2'])return;var v=vocaSt(m.id);if(v&&v.all2){S.done[m.id+':2']=1;ch=true}});
+  if(ch)save();
+}
 function markRow(P,t,text){
+  if(t===2){
+    var v=vocaSt(P.id),on2=isDone(P.id+':2');
+    if(!v||v.ne!==0){
+      return '<div class="mark-done auto"><span>'+(on2?'어휘 완료. 연결 문제를 모두 풀어서 자동으로 기록됐어요':'연결 퀴즈나 뜻 분류로 연결 문제를 한 번씩 모두 풀면 자동으로 완료돼요'+(v&&v.ne?' (지금 '+(v.es||0)+'/'+v.ne+')':''))+'</span></div>';
+    }
+  }
   var on=isDone(P.id+':'+t);
   return '<div class="mark-done"><span>'+esc(text)+'</span><button class="chk" type="button" data-a="chk" data-k="'+P.id+':'+t+'" aria-pressed="'+on+'" aria-label="완료 표시"></button></div>';
 }
@@ -449,6 +461,7 @@ function viewLogin(){
 }
 function render(){
   try{document.title=ttl()}catch(e){}
+  try{syncVoca()}catch(e){}
   if(GATE&&!MOGO.cred()){app.innerHTML=viewLogin();window.scrollTo(0,0);return}
   var hs=(location.hash||'#home').replace('#','').split('/');
   if(hs[0]!=='p'||!BYID[hs[1]]||!BYID[hs[1]].ready){app.innerHTML=viewHome();window.scrollTo(0,0);return}
