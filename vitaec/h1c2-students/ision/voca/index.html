@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>어휘 함정 피하기</title>
+<link rel="stylesheet" href="../../../h1c2/voca/app.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="../../../h1c2/sync.js"></script>
+<script src="../../../h1c2/gate.js"></script>
+<script>
+(function(){var hp=(location.hash||'').replace('#','').split('/'),id=hp[0];window.VMODE=hp[1]||'';
+var box=document.getElementById('app')||document.body;
+if(!/^[A-Za-z0-9_-]+$/.test(id)){box.textContent='지문을 먼저 골라 주세요.';return}
+document.write('<script src="'+MOGO.src('voca',id)+'"><\/script>');
+document.write('<script>(function(){var id="'+id+'",box=document.getElementById("app")||document.body;if(window.VOCADATA&&VOCADATA[id]){window.VID=id;var a=document.createElement("script");a.src="../../../h1c2/voca/app.js";document.body.appendChild(a)}else{box.textContent="로그인이 필요해요. 첫 화면(진도표)에서 이름과 번호를 입력해요."}})()<\/script>');})();
+</script>
+</body>
+</html>
