@@ -4,7 +4,7 @@ var app=document.getElementById('app');
 function who(){return (S.acct&&S.acct.name)||window.MOGO_NAME||S.name||''}
 function ttl(){return '주성고2 '+(who()?who()+' ':'')+'(2학기 기말 대비)'}
 var KEY='mogo26-h2-v2'+(window.MOGO_NAME?'-'+window.MOGO_NAME:'');
-var S={done:{},days:[2,4,6],bm:'tb',hv:'sched',open:{},seen:{},stars:{},vc:{}};
+var S={done:{},days:(window.MOGO_DAYS||[2,4,6]).slice(),bm:'tb',hv:'sched',open:{},seen:{},stars:{},vc:{}};
 try{var raw=JSON.parse(localStorage.getItem(KEY)||'{}');for(var k in raw)S[k]=raw[k]}catch(e){}
 ['done','open','seen','stars','vc'].forEach(function(k){if(!S[k]||typeof S[k]!=='object')S[k]={}});
 var GATE=!!(window.MOGO&&MOGO.on),gateMsg='';
@@ -67,7 +67,9 @@ function buildPlan(){
   });
   /* 말하기 검사: 공부한 수업의 다음 수업에 받음 (릴레이). 마지막 수업에서 공부한 것은 같은 날 공부 직후. 파이널 주간으로 안 넘어감 */
   sess.forEach(function(s){s.chk=[]});
-  sess.forEach(function(s,i){s.items.forEach(function(m){if(m.ready&&hasVerb(m))sess[Math.min(i+1,sess.length-1)].chk.push(m)})});
+  var CK=window.MOGO_CHECK||null;
+  function ckIdx(i){if(!CK)return Math.min(i+1,sess.length-1);for(var j=i+1;j<sess.length;j++)if(CK.indexOf(sess[j].date.getDay())>=0)return j;for(var j2=sess.length-1;j2>=0;j2--)if(CK.indexOf(sess[j2].date.getDay())>=0)return j2;return Math.min(i+1,sess.length-1)}
+  sess.forEach(function(s,i){s.items.forEach(function(m){if(m.ready&&hasVerb(m))sess[ckIdx(i)].chk.push(m)})});
   var rv=[],ri=0;d=REVIEW;
   while(d<EXAM){if(S.days.indexOf(d.getDay())>=0){var it=REVIEW_PLAN[Math.min(ri,REVIEW_PLAN.length-1)];rv.push({date:d,type:'review',rv:it.map(function(x){return {k:x[0],label:x[1],go:x[2]||''}})});ri++}d=addDays(d,1)}
   return {study:sess,review:rv};
@@ -266,7 +268,7 @@ function tcBanner(plan){
   return '<div class="tcban"><div class="tch"><b>말하기 검사 (선생님께 받는 것)</b><span class="tcn">'+st.done+'/'+st.N+'</span></div>'
    +'<div class="tcrow">오늘까지 받아야 할 검사 <b>'+st.due+'개</b> 중 <b>'+st.dueDone+'개</b> 받음'+(st.behind?' · <b class="tcb2">'+st.behind+'개 밀림</b>':(st.today?' · 오늘 받을 것 '+st.today+'개':' · 밀린 것 없음'))+'</div>'
    +(st.blocked?'<div class="tcrow sm">밀린 것 중 '+st.blocked+'개는 공부가 아직 안 끝나서 못 받고 있어요. 공부를 먼저 끝내야 검사를 받을 수 있어요.</div>':'')
-   +'<div class="tcrow sm">전체 '+st.N+'개를 파이널 주간 전('+dstr(lastD)+'까지)에 모두 받도록 수업마다 나눴어요. 공부한 지문은 다음 수업에서 검사를 받고, 마지막 수업에서 공부한 지문은 공부 직후에 받아요. 보라색 칸이 선생님 검사예요.</div></div>';
+   +(window.MOGO_CHECK?'<div class="tcrow sm">학원에서 검사받는 요일: <b>'+window.MOGO_CHECK.map(function(d){return WD[d]}).join('·')+'</b> (다른 요일 숙제는 스스로 공부하고, 검사는 다음 검사 요일에 한꺼번에 받아요)</div>':'')+'<div class="tcrow sm">전체 '+st.N+'개를 파이널 주간 전('+dstr(lastD)+'까지)에 모두 받도록 수업마다 나눴어요. 공부한 지문은 다음 수업에서 검사를 받고, 마지막 수업에서 공부한 지문은 공부 직후에 받아요. 보라색 칸이 선생님 검사예요.</div></div>';
 }
 function sessHTML(s){
   var df=dayDiff(s.date,TODAY),isToday=df===0,left=0,late,tcLate=false;
