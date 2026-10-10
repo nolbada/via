@@ -154,8 +154,7 @@ function head(P,step){
   var h='<header class="phd"><div class="navrow"><button class="homebtn" type="button" data-go="home">진도표로</button>'+(step!==0?'<button class="ghostbtn" type="button" data-go="p/'+P.id+'">지문 메뉴</button>':'')+'</div><h1 class="ptitle">'+esc(m.short)+'</h1>'+(m.sub?'<p class="psub">'+esc(m.sub)+'</p>':'')+'<div class="chips">';
   if(P.textbook)h+='<span class="chip">교과서</span>';
   if(P.lesson&&!P.textbook)h+='<span class="chip sch2">학교</span>';
-  if(P.qtype&&P.qtype!=='교과서')h+='<span class="chip">'+esc(P.qtype)+'</span>';
-  if(P.rate)h+='<span class="chip">오답률 '+P.rate+'%</span>';
+  if(!P.textbook)h+='<span class="chip">아잉카 · 이그잼포유 분석 종합</span>';
   h+='</div></header>';
   if(step!==0){
     h+='<div class="tabs t'+menuTabs(m).length+'">';
