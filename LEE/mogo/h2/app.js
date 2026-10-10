@@ -6,6 +6,8 @@ var KEY='mogo26-h2-v2';
 var S={done:{},days:[2,4,6],bm:'tb',hv:'sched',open:{},seen:{},stars:{},vc:{}};
 try{var raw=JSON.parse(localStorage.getItem(KEY)||'{}');for(var k in raw)S[k]=raw[k]}catch(e){}
 ['done','open','seen','stars','vc'].forEach(function(k){if(!S[k]||typeof S[k]!=='object')S[k]={}});
+var GATE=!!(window.MOGO&&MOGO.on),gateMsg='';
+if(GATE){var cr0=MOGO.cred();S.acct=cr0?{name:cr0.n,pin:cr0.p}:null}
 function save(keep){if(!keep)S.ts=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(!keep)schedPush()}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function fmt(s){return esc(s).replace(/\[\[(.+?)\]\]/g,'<span class="sig">$1</span>').replace(/\{\{(.+?)\}\}/g,'<span class="cw">$1</span>')}
@@ -62,6 +64,9 @@ function buildPlan(){
     while(si<sess.length-1&&sess[si].used+w>cap&&sess[si].used>0)si++;
     sess[si].items.push(m);sess[si].used+=w;
   });
+  /* 말하기 검사: 공부한 수업의 다음 수업에 받음 (릴레이). 마지막 수업에서 공부한 것은 같은 날 공부 직후. 파이널 주간으로 안 넘어감 */
+  sess.forEach(function(s){s.chk=[]});
+  sess.forEach(function(s,i){s.items.forEach(function(m){if(m.ready&&hasVerb(m))sess[Math.min(i+1,sess.length-1)].chk.push(m)})});
   var rv=[],ri=0;d=REVIEW;
   while(d<EXAM){if(S.days.indexOf(d.getDay())>=0){var it=REVIEW_PLAN[Math.min(ri,REVIEW_PLAN.length-1)];rv.push({date:d,type:'review',rv:it.map(function(x){return {k:x[0],label:x[1],go:x[2]||''}})});ri++}d=addDays(d,1)}
   return {study:sess,review:rv};
@@ -70,8 +75,12 @@ function buildPlan(){
 /* ---------- 지문 데이터 ---------- */
 function loadP(id,cb){
   if(window.MG&&window.MG[id]){cb(window.MG[id]);return}
-  var sc=document.createElement('script');sc.src='data/'+id+'.js';
-  sc.onload=function(){cb(window.MG[id])};
+  var sc=document.createElement('script');sc.src=MOGO.src('data',id);window.MOGO_DENY='';
+  sc.onload=function(){
+    if(window.MG&&window.MG[id]){cb(window.MG[id]);return}
+    if(GATE&&window.MOGO_DENY){gateOut(window.MOGO_DENY);return}
+    sc.onerror();
+  };
   sc.onerror=function(){app.innerHTML='<div class="card"><h2>불러오지 못했어요</h2><p class="muted">인터넷 연결을 확인하고 다시 눌러 주세요.</p><button class="btn homebig" data-go="home">진도표로</button></div>'};
   document.head.appendChild(sc);
 }
@@ -204,6 +213,7 @@ function exportCode(){
   RVK.forEach(function(k){b+=S.done[k]?'1':'0'});
   var st=[];Object.keys(S.stars).forEach(function(k){if(!S.stars[k])return;var p=k.split(':'),ix=SLI[p[0]],n=+p[1];if(ix!==undefined&&n>=1&&n<=63)st.push([ix,n])});
   st=st.slice(0,255);b+=bits(st.length,8);st.forEach(function(x){b+=bits(x[0],7)+bits(x[1],6)});
+  SL.forEach(function(sid){b+=(sid&&S.done[sid+':t'])?'1':'0'});
   while(b.length%6)b+='0';
   var o='';for(i=0;i<b.length;i+=6)o+=B64[parseInt(b.substr(i,6),2)];
   return 'M2.'+o;
@@ -226,6 +236,7 @@ function importCode(c,replace){
   var cnt=parseInt(b.substr(p,8),2);p+=8;var ns={};
   for(i=0;i<cnt&&p+13<=b.length;i++){var ix=parseInt(b.substr(p,7),2),n=parseInt(b.substr(p+7,6),2);p+=13;if(SL[ix])ns[SL[ix]+':'+n]=1}
   if(replace)S.stars=ns;else for(var k2 in ns)S.stars[k2]=1;
+  if(b.length-p>=SL.length){SL.forEach(function(sid){var on=b[p++]==='1';if(sid){var tk2=sid+':t';if(on&&!S.done[tk2]){S.done[tk2]=1;add++}else if(!on&&replace&&S.done[tk2])delete S.done[tk2]}})}
   if(days.length)S.days=days;
   if(li<1023){var sid2=SL[Math.floor(li/8)],t2=LT[li%8];if(sid2&&t2!==undefined)S.last={id:sid2,tab:t2}}
   save(replace?1:0);return add;
@@ -236,19 +247,41 @@ function itemHTML(m){
   return '<div class="it'+(st==='done'?' done':'')+'">'+(ok?'<button class="cb" type="button" data-a="pdone" data-id="'+m.id+'" aria-pressed="'+(st==='done')+'" aria-label="완료 표시"></button>':'<span class="cb off"></span>')
    +'<div class="im">'+(ok?'<button class="nm" type="button" data-go="p/'+m.id+'">':'<div class="nm pend">')+'<span class="nt">'+esc(m.short)+'</span>'+schoolTag(m)+badge(m)+(ok?'</button>':'<span class="pd">준비 중</span></div>')+(m.sub&&ok?'<span class="s">'+esc(m.sub)+'</span>':'')+'</div></div>';
 }
+function tcKey(m){return m.id+':t'}
+function tcHTML(m,df){
+  var on=isDone(tcKey(m)),ok=pstat(m)==='done',lock=!on&&!ok;
+  return '<div class="it tc'+(on?' done':'')+(lock?' lock':'')+'"><button class="cb tcb" type="button" data-a="tchk" data-id="'+m.id+'" aria-pressed="'+on+'" aria-label="말하기 검사 완료 표시"'+(lock?' aria-disabled="true"':'')+'></button><div class="im"><span class="nm" style="cursor:default"><span class="nt">말하기 검사: '+esc(m.short)+'</span><span class="tcl">선생님 검사</span>'+(!on&&df>0?'<span class="tcl late">밀림</span>':'')+'</span>'+(lock?'<span class="s">공부(본문·어휘·문법)를 먼저 끝내면 검사를 받을 수 있어요</span>':(on?'':'<span class="s">공부 끝! 선생님께 동사형 말하기 검사를 받아요</span>'))+'</div></div>';
+}
+function tcStats(plan){
+  var st={N:0,done:0,due:0,dueDone:0,behind:0,blocked:0,today:0};
+  plan.study.forEach(function(s){(s.chk||[]).forEach(function(m){
+    var d=isDone(tcKey(m))?1:0,df=dayDiff(s.date,TODAY);st.N++;st.done+=d;
+    if(df>=0){st.due++;st.dueDone+=d;if(!d){if(df>0){st.behind++;if(pstat(m)!=='done')st.blocked++}else st.today++}}
+  })});
+  return st;
+}
+function tcBanner(plan){
+  var st=tcStats(plan);if(!st.N)return '';
+  var lastD=plan.study[plan.study.length-1].date;
+  return '<div class="tcban"><div class="tch"><b>말하기 검사 (선생님께 받는 것)</b><span class="tcn">'+st.done+'/'+st.N+'</span></div>'
+   +'<div class="tcrow">오늘까지 받아야 할 검사 <b>'+st.due+'개</b> 중 <b>'+st.dueDone+'개</b> 받음'+(st.behind?' · <b class="tcb2">'+st.behind+'개 밀림</b>':(st.today?' · 오늘 받을 것 '+st.today+'개':' · 밀린 것 없음'))+'</div>'
+   +(st.blocked?'<div class="tcrow sm">밀린 것 중 '+st.blocked+'개는 공부가 아직 안 끝나서 못 받고 있어요. 공부를 먼저 끝내야 검사를 받을 수 있어요.</div>':'')
+   +'<div class="tcrow sm">전체 '+st.N+'개를 파이널 주간 전('+dstr(lastD)+'까지)에 모두 받도록 수업마다 나눴어요. 공부한 지문은 다음 수업에서 검사를 받고, 마지막 수업에서 공부한 지문은 공부 직후에 받아요. 보라색 칸이 선생님 검사예요.</div></div>';
+}
 function sessHTML(s){
-  var df=dayDiff(s.date,TODAY),isToday=df===0,left=0,late;
+  var df=dayDiff(s.date,TODAY),isToday=df===0,left=0,late,tcLate=false;
   if(s.type==='review')s.rv.forEach(function(x){if(!isDone(x.k))left++});
   else s.items.forEach(function(m){if(!m.ready||pstat(m)!=='done')left++});
   late=df>0&&left>0&&(s.type==='review'||s.items.some(function(m){return m.ready}));
-  var h='<div class="sess'+(isToday?' today':'')+(s.type==='review'?' rev':'')+'"><div class="dt"><b>'+(s.date.getMonth()+1)+'/'+s.date.getDate()+'</b><span>'+WD[s.date.getDay()]+'요일</span>'+(isToday?'<em>오늘</em>':late?'<em class="late">밀린 숙제</em>':'')+'</div><div class="items">';
+  if(s.chk)tcLate=df>0&&s.chk.some(function(m){return !isDone(tcKey(m))});
+  var h='<div class="sess'+(isToday?' today':'')+(s.type==='review'?' rev':'')+'"><div class="dt"><b>'+(s.date.getMonth()+1)+'/'+s.date.getDate()+'</b><span>'+WD[s.date.getDay()]+'요일</span>'+(isToday?'<em>오늘</em>':late?'<em class="late">밀린 숙제</em>':tcLate?'<em class="late tcl2">밀린 검사</em>':'')+'</div><div class="items">';
   if(s.type==='review'){
     s.rv.forEach(function(x){
       var on=isDone(x.k);
       h+='<div class="it'+(on?' done':'')+'"><button class="cb" type="button" data-a="chk" data-k="'+x.k+'" aria-pressed="'+on+'" aria-label="완료 표시"></button><div class="im"><span class="nm" style="cursor:default"><span class="nt">'+esc(x.label)+'</span></span>'+(x.go?'<button class="lk" type="button" data-a="hv" data-v="'+(x.go==='verb'?'verb':'range')+'">열기</button>':'')+'</div></div>';
     });
-  }else if(!s.items.length){h+='<div class="free">예비 시간: 밀린 숙제 따라잡기, 틀린 어휘 · 동사형 다시 풀기</div>'}
-  else s.items.forEach(function(m){h+=itemHTML(m)});
+  }else if(!s.items.length&&!(s.chk&&s.chk.length)){h+='<div class="free">예비 시간: 밀린 숙제 따라잡기, 틀린 어휘 · 동사형 다시 풀기</div>'}
+  else{s.items.forEach(function(m){h+=itemHTML(m)});if(s.chk)s.chk.forEach(function(m){h+=tcHTML(m,df)})}
   return h+'</div></div>';
 }
 function vcN(id){return (S.vc[id]&&S.vc[id].n)||0}
@@ -263,12 +296,13 @@ function viewSched(){
   var keys=Object.keys(weeks).map(Number).sort(function(a,b){return a-b});
   var curW=Math.max(0,Math.floor(dayDiff(START,TODAY)/7));
   h+='<div class="sbar"><div class="set"><span>수업 요일</span>'+WD.map(function(w,i){return '<button type="button" data-a="day" data-d="'+i+'" class="'+(S.days.indexOf(i)>=0?'on':'')+'">'+w+'</button>'}).join('')+'</div><button class="closeall" type="button" data-a="closeall">모두 닫기</button></div>';
+  h+=tcBanner(plan);
   keys.forEach(function(w){
-    var list=weeks[w],a=list[0].date,b=list[list.length-1].date,n=0,dn=0;
-    list.forEach(function(s){if(s.type==='review')s.rv.forEach(function(x){n++;if(isDone(x.k))dn++});else s.items.forEach(function(m){n++;if(m.ready&&pstat(m)==='done')dn++})});
+    var list=weeks[w],a=list[0].date,b=list[list.length-1].date,n=0,dn=0,cn=0,cd=0;
+    list.forEach(function(s){if(s.type==='review')s.rv.forEach(function(x){n++;if(isDone(x.k))dn++});else{s.items.forEach(function(m){n++;if(m.ready&&pstat(m)==='done')dn++});(s.chk||[]).forEach(function(m){cn++;if(isDone(tcKey(m)))cd++})}});
     var hasRev=list.some(function(s){return s.type==='review'});
     var openNow=(S.open['w'+w]!==undefined)?S.open['w'+w]:(w===curW||(curW>keys[keys.length-1]&&w===keys[keys.length-1]));
-    h+='<details class="wk" data-w="w'+w+'"'+(openNow?' open':'')+'><summary><span class="wt">'+(w>=7?'시험 주간':(w+1)+'주차')+(hasRev?'<span class="rv">최종점검</span>':'')+'<small>'+dstr(a)+' ~ '+dstr(b)+'</small></span><span class="cnt">'+dn+'/'+n+'</span></summary>'+list.map(sessHTML).join('')+'</details>';
+    h+='<details class="wk" data-w="w'+w+'"'+(openNow?' open':'')+'><summary><span class="wt">'+(w>=7?'시험 주간':(w+1)+'주차')+(hasRev?'<span class="rv">최종점검</span>':'')+'<small>'+dstr(a)+' ~ '+dstr(b)+'</small></span><span class="cnt">'+dn+'/'+n+(cn?'<i class="tcc">검사 '+cd+'/'+cn+'</i>':'')+'</span></summary>'+list.map(sessHTML).join('')+'</details>';
   });
   h+='<div class="note">시험 전날 11/30(월)은 새 공부 없이 틀린 것만 훑어요. 체크한 항목은 줄이 그어져요. 못 끝낸 날은 밀린 숙제로 남아요. 학교 표시는 학교 수업에서 다룬 지문이에요.</div>';
   return h;
@@ -297,7 +331,7 @@ function viewVerbTab(){
   var vl=M.filter(function(m){return m.ready&&hasVerb(m)}),tot=0;vl.forEach(function(m){tot+=vcN(m.id)});
   var h='<div class="vintro"><b>동사형은 학원에서 말하기 시험으로 봐요</b><p>한 번에 외워지지 않아요. 틈날 때마다 조금씩 반복해요. 연습을 마칠 때마다 횟수가 쌓여요. 누적 <b>'+tot+'회</b></p></div><div class="shelf one">';
   vl.forEach(function(m){
-    h+='<button class="prow" type="button" data-go="p/'+m.id+'/4"><span><b>'+esc(m.short)+schoolTag(m)+'</b><span class="d">'+esc(m.sub)+'</span></span><span class="vcn">'+(vcN(m.id)?vcN(m.id)+'회':'0회')+'</span></button>';
+    h+='<button class="prow" type="button" data-go="p/'+m.id+'/4"><span><b>'+esc(m.short)+schoolTag(m)+'</b><span class="d">'+esc(m.sub)+'</span></span><span class="vcn">'+(isDone(tcKey(m))?'<span class="tcl">검사 완료</span> ':'')+(vcN(m.id)?vcN(m.id)+'회':'0회')+'</span></button>';
   });
   return h+'</div>';
 }
@@ -314,7 +348,8 @@ function viewHome(){
   if(S.hv!=='verb')h+=verbBanner();
   h+='<div class="hvtabs" role="tablist">'+[['sched','플래너로'],['range','범위별로'],['verb','동사형 시험 대비']].map(function(x){return '<button type="button" role="tab" class="'+(S.hv===x[0]?'on':'')+'" aria-selected="'+(S.hv===x[0])+'" data-a="hv" data-v="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
   h+=S.hv==='range'?viewRange():(S.hv==='verb'?viewVerbTab():viewSched());
-  var acctUI='';if(SYNC){acctUI=S.acct?'<div class="note"><b>'+esc(S.acct.name)+'</b> 님으로 자동 저장 중 · <span id="syncst">'+esc(syncMsg||'')+'</span></div><div class="cd"><button type="button" class="btn sm" data-a="acct-now">지금 동기화</button><button type="button" class="btn sm ghost" data-a="acct-out">연결 해제</button></div>':'<p class="note"><b>이름과 번호 4자리</b>를 한 번 입력하면 폰·태블릿 어디서 열어도 같은 기록이 이어져요. 같은 이름이 있으면 이름 뒤에 B나 학교를 붙여요.</p><div class="cd"><input id="acn" placeholder="이름 (예: 홍길동)" autocomplete="off"><input id="acp" placeholder="번호 4자리" inputmode="numeric" maxlength="4" style="max-width:96px"><button type="button" class="btn sm" data-a="acct-in">연결</button></div><div class="note" id="syncst" role="status">'+esc(syncMsg||'')+'</div>'}
+  var acctUI='';if(GATE){acctUI='<div class="note"><b>'+esc(S.acct?S.acct.name:'')+'</b> 님으로 자동 저장 중 · <span id="syncst">'+esc(syncMsg||'')+'</span></div><div class="cd"><button type="button" class="btn sm" data-a="acct-now">지금 동기화</button><button type="button" class="btn sm ghost" data-a="acct-out">다른 학생으로 로그인</button></div>'}
+  else if(SYNC){acctUI=S.acct?'<div class="note"><b>'+esc(S.acct.name)+'</b> 님으로 자동 저장 중 · <span id="syncst">'+esc(syncMsg||'')+'</span></div><div class="cd"><button type="button" class="btn sm" data-a="acct-now">지금 동기화</button><button type="button" class="btn sm ghost" data-a="acct-out">연결 해제</button></div>':'<p class="note"><b>이름과 번호 4자리</b>를 한 번 입력하면 폰·태블릿 어디서 열어도 같은 기록이 이어져요. 같은 이름이 있으면 이름 뒤에 B나 학교를 붙여요.</p><div class="cd"><input id="acn" placeholder="이름 (예: 홍길동)" autocomplete="off"><input id="acp" placeholder="번호 4자리" inputmode="numeric" maxlength="4" style="max-width:96px"><button type="button" class="btn sm" data-a="acct-in">연결</button></div><div class="note" id="syncst" role="status">'+esc(syncMsg||'')+'</div>'}
   h+='<details class="wk syncbox" data-w="sync"'+((S.open.sync||(SYNC&&!S.acct))?' open':'')+'><summary><span class="wt">'+(SYNC?'기록 저장 · 다른 기기에서 이어하기':'다른 기기로 기록 옮기기')+'<small>폰에서 하던 것을 태블릿에서 이어서</small></span></summary><div class="sx">'+acctUI+(SYNC?'<div class="sec" style="margin:4px 0 0">코드로 옮기기 (자동 저장을 안 쓸 때)</div>':'')+'<p class="note">1) 지금 쓰던 기기에서 아래 코드를 복사해 카톡 나에게 보내요.<br>2) 다른 기기에서 이 앱을 열고 코드를 붙여넣어 불러와요.<br>체크한 것, 별표, 마지막 위치, 수업 요일이 옮겨져요. 두 기기 기록은 합쳐져요.</p><div class="cd"><input id="mycode" readonly value="'+esc(exportCode())+'" aria-label="내 기록 코드"><button type="button" class="btn sm" data-a="copy">복사</button></div><div class="cd"><input id="incode" placeholder="여기에 코드 붙여넣기" aria-label="기록 코드 붙여넣기"><button type="button" class="btn sm" data-a="imp">불러오기</button></div><div class="note" id="smsg" role="status"></div></div></details>';
   return h+foot();
 }
@@ -383,7 +418,18 @@ function viewS3(P,i){
 }
 
 /* ---------- 라우팅 ---------- */
+function gateText(e){
+  return e==='out'?'수강 중인 학생만 이용할 수 있어요. 선생님께 문의해요.':e==='lock'?'여러 번 틀려서 잠시 잠겼어요. 15분 뒤에 다시 해요.':e==='net'?'연결하지 못했어요. 인터넷을 확인하고 다시 해요.':'이름 또는 번호가 맞지 않아요. 다시 확인해요.';
+}
+function gateOut(e){MOGO.clear();S.acct=null;S.synced=false;save(1);gateMsg=gateText(e);render()}
+function viewLogin(){
+  return '<div class="top"><div class="toprow"><div><div class="brand">동남비타민영어학원</div><h1>'+TITLE+'</h1></div></div><div class="meta">처음 한 번만 이름과 번호를 입력해요</div></div>'
+   +'<div class="card"><h2>학생 확인</h2><p class="note">선생님이 알려 준 <b>이름</b>과 <b>번호 4자리</b>를 입력해요. 입력하면 폰, 태블릿 어디서 열어도 같은 기록이 이어져요.</p>'
+   +'<div class="cd"><input id="gn" placeholder="이름" autocomplete="off"><input id="gp" placeholder="번호 4자리" inputmode="numeric" maxlength="4" style="max-width:110px"><button type="button" class="btn sm" data-a="gate-in">열기</button></div>'
+   +'<div class="note" id="gmsg" role="status" style="color:var(--trap)">'+esc(gateMsg||'')+'</div></div>'+foot();
+}
 function render(){
+  if(GATE&&!MOGO.cred()){app.innerHTML=viewLogin();window.scrollTo(0,0);return}
   var hs=(location.hash||'#home').replace('#','').split('/');
   if(hs[0]!=='p'||!BYID[hs[1]]||!BYID[hs[1]].ready){app.innerHTML=viewHome();window.scrollTo(0,0);return}
   var id=hs[1],tab=hs[2],i=hs[3]==='s'?'s':(parseInt(hs[3],10)||0),m=BYID[id];
@@ -435,6 +481,10 @@ app.addEventListener('click',function(e){
   }else if(a==='chk'){
     var k=t.dataset.k;if(S.done[k])delete S.done[k];else S.done[k]=1;save();
     if(atHome())render();else t.setAttribute('aria-pressed',S.done[k]?'true':'false');
+  }else if(a==='tchk'){
+    var tid=t.dataset.id,tk=tid+':t';
+    if(S.done[tk])delete S.done[tk];else if(pstat(BYID[tid])==='done')S.done[tk]=1;else return;
+    save();render();
   }else if(a==='pdone'){togglePass(t.dataset.id);render()}
   else if(a==='hv'){if(t.dataset.v==='range')RG='';S.hv=t.dataset.v;save(1);if(atHome())render();else go('home')}
   else if(a==='vcp'){
@@ -446,7 +496,15 @@ app.addEventListener('click',function(e){
     var an=(document.getElementById('acn').value||'').trim(),ap=(document.getElementById('acp').value||'').trim();
     if(!an||!/^\d{4}$/.test(ap)){setSyncMsg('이름과 숫자 4자리를 입력해요');return}
     S.acct={name:an,pin:ap};S.synced=false;S.open.sync=true;save(1);pull(true);
-  }else if(a==='acct-out'){S.acct=null;S.synced=false;save(1);setSyncMsg('');render()}
+  }else if(a==='gate-in'){
+    var gn=(document.getElementById('gn').value||'').trim(),gp=(document.getElementById('gp').value||'').trim(),gm=document.getElementById('gmsg');
+    if(!gn||!/^\d{4}$/.test(gp)){gm.textContent='이름과 숫자 4자리를 입력해요.';return}
+    gm.textContent='확인하는 중';t.disabled=true;
+    MOGO.login(gn,gp,function(r){
+      if(r&&r.ok){MOGO.set(gn,gp);S.acct={name:gn,pin:gp};S.synced=false;gateMsg='';save(1);render();pull(true)}
+      else{gateMsg=gateText(r&&r.err);render()}
+    });
+  }else if(a==='acct-out'){if(GATE){gateOut('');gateMsg='';render();return}S.acct=null;S.synced=false;save(1);setSyncMsg('');render()}
   else if(a==='acct-now'){S.synced=true;pull(false)}
   else if(a==='copy'){
     var mc=document.getElementById('mycode'),sm=document.getElementById('smsg');mc.value=exportCode();mc.select();
@@ -464,6 +522,7 @@ app.addEventListener('click',function(e){
   }
 });
 window.addEventListener('hashchange',render);
+document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target&&(e.target.id==='gp'||e.target.id==='gn')){var b=app.querySelector('[data-a="gate-in"]');if(b)b.click()}});
 render();
 if(SYNC&&S.acct)pull(!S.synced);
 })();
