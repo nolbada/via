@@ -43,6 +43,7 @@ function shuffled(len,seed){
 }
 function gname(g){return '본문 '+SECS[g.si].key+' · '+(g.a+1)+'~'+g.b+'번 문장'}
 function list(){
+  HUB.last.clear('order');
   var h='<h1>내용 순서배열</h1><p class="sub">'+esc(META.grade)+' '+esc(META.pub)+' '+esc(META.lesson)+(TEACH?' · 선생님용(정답 번호 표시)':'')+'</p>';
   h+='<div class="rule"><p>섞인 문장을 글의 흐름에 맞게 순서대로 눌러 배열하세요.</p><p>영역마다 문장이 많아서 5문장 안팎으로 나눴어요.</p><p>요약문 완성은 준비 중이에요.</p></div><div class="menu">';
   GROUPS.forEach(function(g,k){
@@ -55,6 +56,7 @@ function list(){
   window.scrollTo(0,0);
 }
 function play(k){
+  HUB.last.set('order',{k:k});
   var g=GROUPS[k],sents=SECS[g.si].sents.slice(g.a,g.b),n=sents.length,order=shuffled(n,k+7),mine=[],checked=false;
   function draw(){
     var h='<div class="rnav"><button id="tl">목록</button><div class="t"><b>묶음 '+(k+1)+'</b>'+esc(gname(g))+'</div><button id="pv"'+(k===0?' disabled':'')+'>이전</button><button id="nx"'+(k===GROUPS.length-1?' disabled':'')+'>다음</button></div>';
@@ -89,7 +91,14 @@ function play(k){
   }
   draw();window.scrollTo(0,0);
 }
-list();
+(function(){
+  var L=HUB.last.get('order');
+  list();
+  if(L&&GROUPS[L.k]){
+    play(L.k);
+    HUB.last.toast('마지막으로 하던 묶음 '+(L.k+1)+'번에서 이어서 열었어요','처음부터',function(){list()});
+  }
+})();
 })();
 </script>
 </body></html>
