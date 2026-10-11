@@ -89,7 +89,7 @@ function bmText(m){
   return SECS[b.si].key+' '+(b.i+1)+'번 문장';
 }
 function regions(){
-  V={view:'regions'};
+  V={view:'regions'};HUB.last.stop();
   var m=MODE,st=mst(m),res=RES[m],submitted=SUB[m],N=totalOf(m);
   var h='<h1>'+esc(modeName(m))+'</h1>';
   if(APP.modes.length>1)h+='<div class="ask"><a href="#" id="back">다른 코너 고르기</a></div>';
@@ -187,7 +187,7 @@ function openRegion(si,focusI){
   var k=selCount(m);
   if(!submitted)setFoot('<div class="info"><b>표시 '+k+' / '+N+'개</b><small>이 영역 '+secSel(m,si)+'개</small></div><button id="sub">제출하기</button>');
   else setFoot('<div class="info"><b>점수 '+res.score+' / '+N+'</b><small>이 영역 찾음 '+res.perSec[si].found+' / '+secTotal(m,si)+'</small></div><button class="ghost" id="redo">다시 풀기</button>');
-  document.getElementById('tolist').onclick=function(){regions()};
+  document.getElementById('tolist').onclick=function(){HUB.last.clear(APP.step);regions()};
   document.getElementById('pv').onclick=function(){if(si>0)openRegion(si-1)};
   document.getElementById('nx').onclick=function(){if(si<SECS.length-1)openRegion(si+1)};
   app.querySelectorAll('[data-bm]').forEach(function(b){b.onclick=function(){
@@ -207,9 +207,18 @@ function openRegion(si,focusI){
     }});
   }
   wireCommon();
+  if(!submitted){HUB.last.set(APP.step,{m:m,si:si,a:focusI!=null?focusI:0});HUB.last.track(APP.step,'.sent',function(){return {m:MODE,si:SI}})}
   var fi=(focusI!=null)?focusI:(st.bm&&st.bm.si===si?st.bm.i:null);
   if(fi!=null){var el=document.getElementById('s'+fi);if(el)setTimeout(function(){el.scrollIntoView({block:'center'})},30)}else window.scrollTo(0,0);
 }
 home();
 if(APP.modes.length===1)openMode(APP.modes[0].key);
+(function(){
+  var L=HUB.last.get(APP.step);
+  if(L&&L.m&&SECS[L.si]&&APP.modes.some(function(x){return x.key===L.m})){
+    MODE=L.m;SUB[L.m]=false;RES[L.m]=null;
+    openRegion(L.si,L.a||0);
+    HUB.last.toast('마지막으로 보던 곳(본문 '+SECS[L.si].key+' · '+((L.a||0)+1)+'번 문장)에서 이어서 열었어요','처음부터',function(){HUB.last.clear(APP.step);regions()});
+  }
+})();
 })();
