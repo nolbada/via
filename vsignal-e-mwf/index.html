@@ -799,7 +799,7 @@ function dayGrid(from,to,cur){
 var TAB='cover';
 var HW=(function(){
 /* ===== 설정 (선생님이 바꾸는 곳) ===== */
-var SHEET_URL='';          /* 구글 Apps Script 웹앱 주소. 비워 두면 자동 전송 없이 인증 카드만 써요 */
+var SHEET_URL='https://script.google.com/macros/s/AKfycbw4vZOCwTj2i5r7NQCbA1CtdOtD6CPEP4p5oG1TxiEyv4Z8erxyw1q7T60ceL31KrA_/exec';          /* 구글 Apps Script 웹앱 주소. 비워 두면 자동 전송 없이 인증 카드만 써요 */
 var TPIN='2019';           /* 교재 확인용 선생님 번호 */
 /* ==================================== */
 var NAMES=['임건호','정해윤','이지성','류아인','이하은','김윤슬','박대환','김시원'];
@@ -807,7 +807,7 @@ var XR={"1": [[1, "E1-D01-2"], [2, "E1-D01-6"]], "2": [[3, "E1-D02-1"], [4, "E1-
 var DOW=['일','월','화','수','목','금','토'];
 var SCH=[];
 var HOLDS=[];
-function pday(x){var m=/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/.exec(String(x||''));return m?Math.floor(Date.UTC(+m[1],+m[2]-1,+m[3])/864e5):null;}
+function pday(x){x=String(x||'').trim();var m=/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})/.exec(x);if(m)return Math.floor(Date.UTC(+m[1],+m[2]-1,+m[3])/864e5);var t=Date.parse(x);return isNaN(t)?null:Math.floor((t+9*36e5)/864e5);}
 function rebuild(){
  var nm=(store&&store.hw&&store.hw.name)||'';
  var hs=HOLDS.filter(function(h){return !h.name||h.name===nm;});
