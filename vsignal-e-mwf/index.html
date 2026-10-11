@@ -246,7 +246,7 @@ input,select,textarea{font-size:16px}
 .hw-b:not(.g){border-color:#12935f;color:#12935f}
 .hw-x{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .hw-tb{display:flex;flex-direction:column}
-.hw-r{display:grid;grid-template-columns:34px 1.5fr 34px repeat(4,1fr);align-items:center;text-align:center;gap:2px;padding:8px 2px;border:0;border-top:1px solid var(--line);background:none;color:inherit;font:inherit;font-size:13.5px;width:100%}
+.hw-r{display:grid;grid-template-columns:30px 1.5fr 30px repeat(5,1fr);align-items:center;text-align:center;gap:2px;padding:8px 2px;border:0;border-top:1px solid var(--line);background:none;color:inherit;font:inherit;font-size:13.5px;width:100%}
 .hw-r.hd{font-size:12px;color:var(--muted);font-weight:700;border-top:0}
 button.hw-r{cursor:pointer}.hw-r.on{background:rgba(18,147,95,.12)}.hw-r.td span:nth-child(2){font-weight:700;color:#12935f}
 .hw-r .y{color:#12935f;font-weight:700}.hw-r .l{color:#c0392b;font-weight:700}.hw-r .na{color:var(--muted)}.hw-r .e{display:inline-block;width:12px;height:12px;border:1.5px dashed var(--line);border-radius:50%}
@@ -811,13 +811,16 @@ function wqS(){try{return JSON.parse(localStorage.getItem('vsig-e-mwf-wq-v1'))||
 function lessonDone(n){if(store.best&&store.best[n])return true;return (store.hist||[]).some(function(x){return x.k==='lesson'&&x.d===n;});}
 function rvDone(n){return (store.hist||[]).some(function(x){return x.k==='rv'&&x.d===n;});}
 function wordDone(i){var dd=wqS().dd||{},a=dnum(SCH[i].t),b=i<31?dnum(SCH[i+1].t):a+3;for(var k in dd){var v=Number(k);if(v>=a&&v<b)return true;}return false;}
-function xrList(n){return XR[n]||[];}
-function xrDone(n){var d=(store.brk&&store.brk.done)||{};var L=xrList(n);return L.length>0&&L.every(function(p){return !!d[p[1]];});}
+function rvHas(n){try{return RV.some(function(r){return r.day===n;});}catch(e){return n>2;}}
+function isFri(i){return i%3===2;}
+function xrWeek(i){var L=[];if(!isFri(i))return L;for(var k=i-2;k<=i;k++){(XR[SCH[k].n]||[]).forEach(function(p){L.push(p);});}return L;}
+function xrDone(i){var d=(store.brk&&store.brk.done)||{};var L=xrWeek(i);return L.every(function(p){return !!d[p[1]];});}
 function bookDone(n){return !!hw().book[n];}
 function tasks(i){var n=SCH[i].n,T=[];
  T.push({k:'day',t:'오늘 7문장',s:'Day '+n+' 수업 + 마무리 퀴즈',ok:lessonDone(n),go:'day'});
  T.push({k:'word',t:'단어 복습',s:'오늘 문제 풀기',ok:wordDone(i),go:'word'});
- if(n>1)T.push({k:'rv',t:'누적 복습',s:'Day '+n+' 7문제',ok:rvDone(n),go:'rv'});
+ if(rvHas(n))T.push({k:'rv',t:'누적 복습',s:'Day '+n+' 7문제 + 책에 해석 쓰기',ok:rvDone(n),go:'rv'});
+ var XL=xrWeek(i);if(XL.length)T.push({k:'xray',t:'문장 엑스레이 (이번 주)',s:XL.map(function(p){return p[0]+'번';}).join(', '),ok:xrDone(i),go:'xray'});
  T.push({k:'book',t:'교재 Day '+n,s:'책에 직접 쓰기 (다 쓰면 눌러서 체크)',ok:bookDone(n),go:'book'});
  return T;}
 function sessDone(i){return tasks(i).every(function(x){return x.ok;});}
@@ -829,15 +832,13 @@ function render(){
  var o='<div class="card" style="margin-bottom:10px"><label style="font-size:15px"><b>이름</b> <select id="hwname" style="font-size:16px;padding:4px 8px"><option value="">선택</option>'+NAMES.map(function(x){return '<option'+(x===h.name?' selected':'')+'>'+x+'</option>';}).join('')+'</select></label></div>';
  var head=(isT?'오늘 숙제':(t<0&&f===0?'첫 숙제':'선택한 회차'))+' · '+n+'회차';
  o+='<div class="card" style="margin-bottom:10px"><h2 style="margin-top:0">'+head+'</h2><p class="hint" style="margin:0 0 8px">'+lbl(f)+' · 교재 Day '+n+(t<0?' · 10/12(월)부터 시작해요':'')+'</p>'+T.map(function(x){return row(f,x);}).join('');
- var X=xrList(n);
- if(X.length)o+='<div class="hw-x"><b>도전(선택)</b> 문장 엑스레이 '+X.map(function(p){return p[0]+'번';}).join(', ')+(xrDone(n)?' · 완료':'')+' <button class="hw-b g" data-act="hw-go" data-go="xray" data-i="'+f+'">열기</button></div>';
  if(!isT&&t>=0)o+='<button class="ghost" style="width:100%;margin-top:10px" data-act="hw-today">오늘 회차로 돌아가기</button>';
  o+='</div>';
  var dn=0;for(var i=0;i<32;i++)if(sessDone(i))dn++;
- o+='<div class="card" style="margin-bottom:10px"><h2 style="margin-top:0">숙제 진도표 <small class="hint">· '+dn+' / 32회차 완료</small></h2><div class="hw-tb"><div class="hw-r hd"><span>회차</span><span>날짜</span><span>Day</span><span>7문장</span><span>단어</span><span>복습</span><span>교재</span></div>';
+ o+='<div class="card" style="margin-bottom:10px"><h2 style="margin-top:0">숙제 진도표 <small class="hint">· '+dn+' / 32회차 완료</small></h2><div class="hw-tb"><div class="hw-r hd"><span>회차</span><span>날짜</span><span>Day</span><span>7문장</span><span>단어</span><span>복습</span><span>교재</span><span>엑스레이</span></div>';
  for(var i=0;i<32;i++){var m=SCH[i].n,late=(i<t),ck=function(v,na){return na?'<span class="na">-</span>':(v?'<span class="y">✓</span>':(late?'<span class="l">!</span>':'<span class="e"></span>'));};
-  o+='<button class="hw-r'+(i===f?' on':'')+(i===t?' td':'')+'" data-act="hw-sel" data-i="'+i+'"><span>'+m+'</span><span>'+lbl(i)+'</span><span>'+m+'</span>'+ck(lessonDone(m))+ck(wordDone(i))+ck(rvDone(m),m===1)+ck(bookDone(m))+'</button>';}
- o+='</div><p class="hint" style="margin:8px 0 0">! 표시는 밀린 숙제예요. 줄을 누르면 그 회차 숙제를 볼 수 있어요.</p></div>';
+  o+='<button class="hw-r'+(i===f?' on':'')+(i===t?' td':'')+'" data-act="hw-sel" data-i="'+i+'"><span>'+m+'</span><span>'+lbl(i)+'</span><span>'+m+'</span>'+ck(lessonDone(m))+ck(wordDone(i))+ck(rvDone(m),!rvHas(m))+ck(bookDone(m))+ck(xrDone(i),!isFri(i)||!xrWeek(i).length)+'</button>';}
+ o+='</div><p class="hint" style="margin:8px 0 0">월·수·금마다 7문장, 단어, 누적 복습, 교재를 해요. 금요일에는 그 주 문장 엑스레이가 더해져요. ! 표시는 밀린 숙제예요. 줄을 누르면 그 회차 숙제를 볼 수 있어요.</p></div>';
  o+='<button class="ghost" style="width:100%" data-act="hw-copy">내 숙제 현황 복사 (선생님께 보내기)</button><div id="hwmsg"></div>';
  app.innerHTML=SHELLBAR()+o+'<p class="foot">V SIGNAL E1 · 월수금 숙제 진도표 · 32회차(10/12~12/23)</p>';
  window.scrollTo(0,0);
@@ -850,7 +851,7 @@ function act(a,t){
  if(a==='hw-go'){var g=t.getAttribute('data-go'),i=Number(t.getAttribute('data-i'));store.sel=SCH[i].n;h.cur=i;save();TAB=g;home();return;}
  if(a==='hw-copy'){
   var L=[(h.name||'(이름 미선택)')+' 숙제 현황 '+new Date(Date.now()+9*36e5).toISOString().slice(0,10)],tt=todayIdx();
-  for(var i=0;i<32;i++){if(i>tt&&tt>=0)break;var n=SCH[i].n;L.push(n+'회차 '+lbl(i)+' 7문장'+(lessonDone(n)?'O':'X')+' 단어'+(wordDone(i)?'O':'X')+(n>1?' 복습'+(rvDone(n)?'O':'X'):'')+' 교재'+(bookDone(n)?'O':'X'));}
+  for(var i=0;i<32;i++){if(i>tt&&tt>=0)break;var n=SCH[i].n;L.push(n+'회차 '+lbl(i)+' 7문장'+(lessonDone(n)?'O':'X')+' 단어'+(wordDone(i)?'O':'X')+(rvHas(n)?' 복습'+(rvDone(n)?'O':'X'):'')+' 교재'+(bookDone(n)?'O':'X')+(isFri(i)&&xrWeek(i).length?' 엑스레이'+(xrDone(i)?'O':'X'):''));}
   var txt=L.join('\n'),m=document.getElementById('hwmsg');
   var ok=function(){m.innerHTML='<p class="msg ok" style="margin-top:8px">복사했어요. 카톡에 붙여 넣어 보내요.</p>';};
   var ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();
