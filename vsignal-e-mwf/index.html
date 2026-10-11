@@ -875,7 +875,7 @@ function payload(i){var h=hw(),T=tasks(i),P={name:h.name,n:SCH[i].n,date:lbl(i),
  T.forEach(function(x){P.t[x.k]={ok:x.ev.ok?1:0,ts:x.ev.ts||0,mis:x.ev.mis==null?'':x.ev.mis,sec:Math.round(x.sec||0),conf:x.ev.conf?1:0};P.tot+=Math.round(x.sec||0);});
  P.code=code(JSON.stringify(P));return P;}
 function sync(force){
- if(!SHEET_URL)return;var h=hw();if(!h.name)return;var tI=todayIdx();if(tI<0)return;
+ if(!SHEET_URL)return;var h=hw();if(!h.name)return;var tI=todayIdx();if(tI<0)tI=0;
  for(var i=0;i<=tI&&i<32;i++){var P=payload(i);var any=Object.keys(P.t).some(function(k){return P.t[k].ok||P.t[k].sec>0;});if(!any)continue;
   var sig=JSON.stringify(P);if(!force&&h.sent[i]===sig)continue;
   (function(i,sig,P){try{fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(P)}).then(function(){hw().sent[i]=sig;save();}).catch(function(){});}catch(e){}})(i,sig,P);}
