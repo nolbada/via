@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>본문 읽기 · 어색한 곳 찾기 · 능률(민) 3과</title>
+<style>
+:root{--ink:#1b1b1f;--sub:#5d6068;--line:#d9dbe1;--bg:#fff;--soft:#f5f6f8;--pri:#1f4e79;--ok:#1b6e3c;--no:#b3261e;--mark:#fff3bf;--sel:#dbe7f5}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR","Malgun Gothic","맑은 고딕",sans-serif;font-size:19px;line-height:1.8;-webkit-tap-highlight-color:rgba(31,78,121,.15)}
+.w{max-width:720px;margin:0 auto;padding:0 16px 80px}
+h1{font-size:21px;margin:20px 0 2px;line-height:1.4}
+h2{font-size:18px;margin:14px 0 4px;line-height:1.4}
+.sub{color:var(--sub);font-size:15px;margin:0 0 14px}
+button{font:inherit;color:inherit;cursor:pointer}
+.menu button{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:14px 16px;margin:0 0 10px}
+.menu button b{display:block}
+.menu button span{color:var(--sub);font-size:15px}
+.menu button:hover{border-color:var(--pri)}
+.rule{background:var(--soft);border-radius:10px;padding:10px 14px;font-size:16px;margin:0 0 14px}
+.rule p{margin:2px 0}
+.sample{background:var(--mark);padding:6px 10px;border-radius:8px;font-size:15px;margin:0 0 14px}
+.foot{margin-top:30px;color:var(--sub);font-size:14px;text-align:center}
+
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:2px solid var(--pri);padding:8px 0}
+.bar .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.bar .info{font-size:16px}
+.bar .info small{color:var(--sub);font-size:14px}
+.bar button{border:0;background:var(--pri);color:#fff;border-radius:9px;padding:8px 16px;font-size:17px;font-weight:700}
+.bar button.ghost{background:var(--bg);color:var(--pri);border:1px solid var(--pri);font-weight:400}
+.bar .btns{display:flex;gap:8px;flex:none}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:15px;color:var(--sub);margin:10px 0 0}
+.top button{border:0;background:none;color:var(--pri);font-size:15px;text-decoration:underline;padding:4px}
+.ask{font-size:16px;color:var(--sub);margin:0 0 8px}
+
+.sent{display:flex;gap:10px;padding:8px 4px;border-bottom:1px solid #eceef2}
+.sent .n{flex:none;width:28px;height:28px;border-radius:14px;background:#e5e8ee;color:#333;font-size:14px;text-align:center;line-height:28px;margin-top:4px}
+.sent .t{flex:1;min-width:0}
+.wd{padding:2px 1px;border-radius:5px;cursor:pointer}
+.wd:hover{background:#eef1f6}
+.wd.sel{background:var(--sel);box-shadow:inset 0 -2px 0 var(--pri)}
+.done .wd{cursor:default}
+.done .wd:hover{background:none}
+.wd.ok{background:var(--mark);font-weight:700;box-shadow:inset 0 -2px 0 #c9a400}
+.wd.miss{background:#fde7e5;font-weight:700;box-shadow:inset 0 -2px 0 var(--no)}
+.wd.wrong{color:#8a8f98;text-decoration:line-through}
+
+.note{margin:8px 0 4px;padding:10px 12px;border-left:4px solid var(--pri);background:var(--soft);font-size:17px;line-height:1.7}
+.note.found{border-left-color:#c9a400}
+.note.lost{border-left-color:var(--no)}
+.note .tag{font-size:14px;font-weight:700;margin:0 0 2px}
+.note.found .tag{color:#7a6200}.note.lost .tag{color:var(--no)}
+.note .swap{font-size:18px;font-weight:700;margin:2px 0}
+.note .ln{margin:3px 0}
+.note .orig{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.note .orig .en{font-size:17px}.note .orig .ko{color:var(--sub);font-size:16px}
+details.full{margin:16px 0}
+details.full summary{cursor:pointer;font-weight:700;padding:8px 0}
+details.full .s{margin:8px 0}
+details.full .en{font-size:17px}details.full .ko{color:var(--sub);font-size:16px}
+</style>
+</head>
+<body>
+<div class="w" id="app"></div>
+<script>
+var Q=new URLSearchParams(location.search),BID=Q.get('b'),LNO=Q.get('l'),VER=Q.get('v')||'';
+var app=document.getElementById('app');
+function fail(m){app.innerHTML='<div class="w"><h1>자료를 불러오지 못했어요</h1><p class="sub">'+m+'</p></div>'}
+(function(){
+  if(!BID||!LNO){fail('주소가 올바르지 않아요. 선생님께 링크를 다시 받아 주세요.');return}
+  var s=document.createElement('script');
+  s.src='../../books/'+encodeURIComponent(BID)+'/L'+encodeURIComponent(LNO)+'.js'+(VER?'?v='+encodeURIComponent(VER):'');
+  s.onload=function(){var R=(window.TFDATA||{})[BID+'|'+LNO];if(!R){fail('자료가 비어 있어요.');return}boot(R)};
+  s.onerror=function(){fail('이 과의 자료가 아직 없어요.')};
+  document.head.appendChild(s);
+})();
+function boot(RAW){
+var META=RAW.meta;
+document.title='어색한 곳 찾기 · '+META.pub+' '+META.lesson;
+var D={secs:RAW.secs.map(function(s,i){return {key:s.key,title:s.title,sents:s.sents,swaps:RAW.find.filter(function(w){return w.s===i}).sort(function(a,b){return a.n-b.n})}})};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var S={si:null,sel:{},submitted:false,result:null,best:{}};
+
+function tokenize(text){var re=/\S+/g,m,o=[];while((m=re.exec(text)))o.push({w:m[0],s:m.index,e:m.index+m[0].length});return o}
+/* 문장 i(0부터)의 화면용 문장과 바뀐 토큰 번호 */
+function build(sec,i){
+  var en=sec.sents[i].en,sw=null,k;
+  for(k=0;k<sec.swaps.length;k++)if(sec.swaps[k].n===i+1)sw=sec.swaps[k];
+  var text=en,from=-1,to=-1;
+  if(sw){var idx=en.indexOf(sw.orig);text=en.slice(0,idx)+sw.neu+en.slice(idx+sw.orig.length);from=idx;to=idx+sw.neu.length}
+  var toks=tokenize(text),bad=[];
+  toks.forEach(function(t,ti){if(sw&&t.s<to&&t.e>from)bad.push(ti)});
+  return {toks:toks,bad:bad,sw:sw};
+}
+
+function home(){
+  var h='<h1>본문 읽기 · 어색한 곳 찾기</h1><p class="sub">'+esc(META.grade)+' '+esc(META.pub)+' '+esc(META.lesson)+' · '+esc(META.school)+' '+esc(META.term)+'</p>'+
+   '<div class="rule"><p>본문을 읽어 내려가면서, 내용이 이상하게 바뀐 곳을 눌러 표시하세요.</p><p>단어나 표현이 바뀐 곳이에요. 문법 오류는 없어요.</p><p>다 표시했으면 제출하세요. 제출하기 전에는 해석과 정답을 볼 수 없어요.</p></div><div class="menu">';
+  D.secs.forEach(function(s,i){
+    var b=S.best[i];
+    h+='<button data-s="'+i+'"><b>본문 '+s.key+' · 어색한 곳 '+s.swaps.length+'군데</b><span>'+esc(s.title)+(b?' · 지난 결과 '+b.a+'/'+s.swaps.length+' (잘못 누름 '+b.w+')':'')+'</span></button>';
+  });
+  h+='</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
+  app.innerHTML=h;
+  app.querySelectorAll('.menu button').forEach(function(b){b.onclick=function(){start(+b.getAttribute('data-s'))}});
+}
+function start(si){S.si=si;S.sel={};S.submitted=false;S.result=null;render();window.scrollTo(0,0)}
+function selCount(){return Object.keys(S.sel).length}
+
+function grade(sec){
+  var found=0,missed=[],okSw=[],wrong=0,spanKeys={};
+  sec.sents.forEach(function(s,i){
+    var b=build(sec,i);
+    b.bad.forEach(function(ti){spanKeys[i+':'+ti]=1});
+    if(b.sw){
+      var hit=b.bad.some(function(ti){return S.sel[i+':'+ti]});
+      if(hit){found++;okSw.push(b.sw.n)}else missed.push(b.sw.n);
+    }
+  });
+  Object.keys(S.sel).forEach(function(k){if(!spanKeys[k])wrong++});
+  return {a:found,w:wrong,ok:okSw,miss:missed};
+}
+function render(){
+  var sec=D.secs[S.si],N=sec.swaps.length,res=S.result;
+  var h='<div class="top"><span>본문 '+sec.key+'</span><button id="home">처음으로</button></div>';
+  h+='<div class="bar"><div class="row">';
+  if(!S.submitted){
+    h+='<div class="info"><b>선택 '+selCount()+'개</b> <small>어색한 곳은 '+N+'군데</small></div><div class="btns"><button id="sub">제출하기</button></div>';
+  }else{
+    var perfect=res.a===N&&res.w===0;
+    h+='<div class="info"><b>'+res.a+' / '+N+' 찾았어요</b> <small>잘못 누른 곳 '+res.w+'개'+(perfect?' · 모두 정확해요':'')+'</small></div><div class="btns"><button class="ghost" id="redo">다시 풀기</button>'+
+      (S.si+1<D.secs.length?'<button id="nxt">다음 본문</button>':'')+'</div>';
+  }
+  h+='</div></div><h2>'+esc(sec.title)+'</h2>';
+  if(!S.submitted)h+='<p class="ask">어색한 곳을 눌러 표시하세요. 다시 누르면 취소돼요.</p>';
+  h+='<div id="pas"'+(S.submitted?' class="done"':'')+'>';
+  sec.sents.forEach(function(s,i){
+    var b=build(sec,i),words='';
+    b.toks.forEach(function(t,ti){
+      var key=i+':'+ti,isBad=b.bad.indexOf(ti)>=0,cls='wd';
+      if(!S.submitted){if(S.sel[key])cls+=' sel'}
+      else{
+        if(isBad){cls+=(res.ok.indexOf(b.sw.n)>=0?' ok':' miss')}
+        else if(S.sel[key])cls+=' wrong';
+      }
+      words+='<span class="'+cls+'" data-k="'+key+'">'+esc(t.w)+'</span> ';
+    });
+    h+='<div class="sent"><span class="n">'+(i+1)+'</span><span class="t">'+words;
+    if(S.submitted&&b.sw){
+      var found=res.ok.indexOf(b.sw.n)>=0;
+      h+='<div class="note '+(found?'found':'lost')+'"><div class="tag">'+(found?'찾았어요':'놓쳤어요')+' · '+esc(b.sw.kind)+'</div>'+
+        '<div class="swap">'+esc(b.sw.neu)+' → '+esc(b.sw.orig)+'</div>';
+      b.sw.lines.forEach(function(l){h+='<div class="ln">'+esc(l)+'</div>'});
+      h+='<div class="orig"><div class="en">'+esc(s.en)+'</div><div class="ko">'+esc(s.ko)+'</div></div></div>';
+    }
+    h+='</span></div>';
+  });
+  h+='</div>';
+  if(S.submitted){
+    h+='<details class="full"><summary>원래 본문과 해석 전체 보기</summary>';
+    sec.sents.forEach(function(s,i){h+='<div class="s"><div class="en"><b>'+(i+1)+'</b> '+esc(s.en)+'</div><div class="ko">'+esc(s.ko)+'</div></div>'});
+    h+='</details>';
+  }
+  app.innerHTML=h;
+  wire();
+}
+function wire(){
+  var $=function(s){return app.querySelector(s)};
+  $('#home').onclick=function(){home();window.scrollTo(0,0)};
+  if(!S.submitted){
+    app.querySelectorAll('.wd').forEach(function(w){w.onclick=function(){
+      var k=w.getAttribute('data-k');
+      if(S.sel[k]){delete S.sel[k];w.classList.remove('sel')}else{S.sel[k]=1;w.classList.add('sel')}
+      app.querySelector('.bar .info b').textContent='선택 '+selCount()+'개';
+    }});
+    $('#sub').onclick=function(){
+      var sec=D.secs[S.si];
+      S.result=grade(sec);S.submitted=true;
+      var b=S.best[S.si];
+      if(!b||S.result.a>b.a||(S.result.a===b.a&&S.result.w<b.w))S.best[S.si]={a:S.result.a,w:S.result.w};
+      render();window.scrollTo(0,0);
+    };
+  }else{
+    $('#redo').onclick=function(){start(S.si)};
+    var nx=$('#nxt');if(nx)nx.onclick=function(){start(S.si+1)};
+  }
+}
+home();
+}
+</script>
+</body>
+</html>
