@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f766e">
-<title>문장 엑스레이 · 비타민영어클리닉</title>
+<title>V SIGNAL X-RAY</title>
 <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;900&family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* Layout: one narrow column, phone-first. Home = Day grid; Play = 3-step card (order, role, meaning); roles are color-coded. */
@@ -229,6 +229,25 @@ h2{font-size:15px;margin:22px 0 10px;color:var(--muted);letter-spacing:.04em}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 button,select,a,.day,.tile,.opt{touch-action:manipulation}
 input,select,textarea{font-size:16px}
+</style>
+<style id="cover-css">
+body.cv-on{background:#04101a}
+.cv-scene{min-height:calc(100vh - 36px);min-height:calc(100dvh - 36px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 0}
+.cv{position:relative;z-index:2;width:min(100%,calc((100vh - 230px)*.7132));width:min(100%,calc((100dvh - 230px)*.7132));aspect-ratio:900/1262;border-radius:3px 8px 8px 3px;background:radial-gradient(ellipse at 50% 38%,#12506f 0%,#0a2c42 52%,#04101a 100%);box-shadow:0 18px 40px rgba(0,0,0,.55),inset 5px 0 8px rgba(0,0,0,.35),inset 1px 0 0 rgba(255,255,255,.12);color:#fff;overflow:hidden;container-type:inline-size}
+.cv::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(150,230,255,.05) 0 1px,transparent 1px 5px);pointer-events:none}
+.cv-fr{position:absolute;inset:5.2% 7.4%;border:1.5px solid rgba(255,255,255,.85);pointer-events:none;z-index:1}
+.cv-k{position:absolute;left:0;right:0;top:11.2%;text-align:center;font-weight:700;font-size:3.5cqw;letter-spacing:.42em;color:rgba(190,235,250,.9);padding-left:.42em}
+.cv-t{position:absolute;left:0;right:0;top:15.6%;text-align:center;font-family:'Lexend','Arial Black',system-ui,sans-serif;font-weight:700;font-size:14.5cqw;letter-spacing:.01em;line-height:1;background:linear-gradient(180deg,#f4f6fa 0%,#fff 40%,#a9b2c2 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cv-svg{position:absolute;left:14%;width:72%;top:32%}
+.cv-s{position:absolute;left:0;right:0;top:77%;text-align:center;font-weight:700;font-size:4.4cqw;letter-spacing:.01em}
+.cv-s2{position:absolute;left:0;right:0;top:81.2%;text-align:center;font-weight:500;font-size:3.3cqw;color:rgba(190,235,250,.9)}
+.cv-ln{position:absolute;left:42.5%;width:15%;top:85.6%;height:0;border-top:1.5px solid rgba(255,255,255,.85)}
+.cv-a{position:absolute;left:0;right:0;top:88.2%;text-align:center;font-weight:700;font-size:4.2cqw}
+.cv-rib{position:relative;z-index:1;display:flex;justify-content:center;width:min(100%,calc((100vh - 230px)*.7132));width:min(100%,calc((100dvh - 230px)*.7132));margin-top:-10px}
+.cv-r{position:relative;width:46%;border:0;height:84px;padding:20px 2px 18px;font-family:inherit;font-weight:700;font-size:15px;line-height:1.25;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#06202f;background:#bfe9f5;cursor:pointer;clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);transition:transform .15s}
+.cv-r i{position:absolute;top:0;left:0;right:0;height:12px;background:rgba(0,0,0,.14)}
+.cv-r:active{transform:translateY(6px)}
+.cv-h{margin:14px 0 0;color:rgba(200,235,248,.88);font-size:13px;font-weight:500;text-align:center}
 </style>
 </head>
 <body>
@@ -554,7 +573,7 @@ function choose(){
   window.scrollTo(0,0);
 }
 function listView(){
-  var bs=bstore(),h='<div class="top"><div class="ttl" style="text-align:left">'+LABEL+'</div><div class="pts"><b>'+Object.keys(bs.done).length+'</b> / '+BRICKS.length+'</div></div>'+
+  var bs=bstore(),h='<div class="top"><button class="back" data-act="xc-cover" style="margin-right:10px">표지</button><div class="ttl" style="text-align:left">'+LABEL+'</div><div class="pts"><b>'+Object.keys(bs.done).length+'</b> / '+BRICKS.length+'</div></div>'+
    '<p class="lead">문장 100개의 뼈대와 꾸밈을 하나씩 분석해서 채워 보세요. 순서는 마음대로 골라도 돼요.</p><p class="lead bk-lg"><span class="bk-stm">\u2605</span> 표시는 구조가 복잡한 도전 문장이에요.</p><h2>정밀분석</h2><div class="days">';
   BRICKS.forEach(function(b,i){
     var d=bs.done[kk(b)];
@@ -704,8 +723,47 @@ var KEY='xray-v1',store={};
 try{store=JSON.parse(localStorage.getItem(KEY))||{};}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}}
 var app=document.getElementById('app');
+var XC={
+ svg:function(){
+  var bars='',y0=0;
+  /* X-ray plate: sentence skeleton (word blocks) with a scan window */
+  var rows=[[0,0,2],[1,0,3],[2,0,1]];
+  return '<svg viewBox="0 0 600 470" class="cv-svg" aria-hidden="true"><defs>'
+   +'<linearGradient id="xs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9dde6"/><stop offset=".42" stop-color="#fff"/><stop offset=".62" stop-color="#c3c8d3"/><stop offset="1" stop-color="#8f96a6"/></linearGradient>'
+   +'<linearGradient id="xg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fe3ff" stop-opacity=".0"/><stop offset=".5" stop-color="#7fe3ff" stop-opacity=".55"/><stop offset="1" stop-color="#7fe3ff" stop-opacity="0"/></linearGradient>'
+   +'<pattern id="xp" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M14 0H0V14" fill="none" stroke="#fff" stroke-width="1.3" opacity=".7"/></pattern></defs>'
+   /* X made of two silver bars */
+   +'<polygon points="60,20 170,20 340,230 285,300" fill="url(#xs)"/>'
+   +'<polygon points="60,450 170,450 340,240 285,170" fill="url(#xs)" opacity=".92"/>'
+   +'<polygon points="540,20 430,20 285,200 340,270" fill="url(#xs)"/>'
+   +'<polygon points="540,450 430,450 285,280 340,210" fill="url(#xs)" opacity=".92"/>'
+   +'<polygon points="445,62 492,62 366,205 331,205" fill="#082a3f" stroke="#fff" stroke-width="3"/>'
+   +'<polygon points="445,62 492,62 366,205 331,205" fill="url(#xp)"/>'
+   /* scan beam */
+   +'<rect x="0" y="212" width="600" height="46" fill="url(#xg)"/>'
+   +'<line x1="0" y1="235" x2="600" y2="235" stroke="#9fefff" stroke-width="2" opacity=".9"/>'
+   +'</svg>';
+ },
+ saved:function(){try{var o=JSON.parse(localStorage.getItem('xray-v1'))||{};return Object.keys((o.brk&&o.brk.done)||{}).length;}catch(e){return 0;}},
+ show:function(){
+  document.body.classList.add('cv-on');
+  try{document.querySelector('meta[name=theme-color]').setAttribute('content','#04101a');}catch(x){}
+  var n=XC.saved();
+  app.innerHTML='<div class="cv-scene"><div class="cv"><div class="cv-fr"></div><div class="cv-k">V SIGNAL</div><div class="cv-t">X-RAY</div>'+XC.svg()
+   +'<div class="cv-s">문장 엑스레이 | 정밀분석 100</div><div class="cv-s2">뼈대 · 꾸밈 · 절을 직접 눌러 분석한다</div><div class="cv-ln"></div><div class="cv-a">비타민영어클리닉 학원</div></div>'
+   +'<div class="cv-rib"><button class="cv-r" data-act="xc-open"><i></i><span>정밀분석</span><span>100문장</span></button></div>'
+   +'<p class="cv-h">'+(n?'지금까지 '+n+' / 100 완료':'버튼을 눌러 시작해요')+'</p></div>';
+  window.scrollTo(0,0);
+ },
+ open:function(){
+  document.body.classList.remove('cv-on');
+  try{document.querySelector('meta[name=theme-color]').setAttribute('content','#0f766e');}catch(x){}
+  BRK.start();
+ }
+};
+app.addEventListener('click',function(e){var t=e.target.closest('[data-act]');if(!t)return;var a=t.getAttribute('data-act');if(a==='xc-open'){e.stopPropagation();XC.open();}else if(a==='xc-cover'){e.stopPropagation();XC.show();}},true);
 BRK.init(app,function(){return store;},save);
-BRK.start();
+XC.show();
 })();
 </script>
 </body>
