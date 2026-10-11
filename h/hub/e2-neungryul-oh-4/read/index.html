@@ -26,6 +26,7 @@ var SECS=RAW.secs,META=RAW.meta,KEY='hub_'+BID+'_read';
 var ST=HUB.get(KEY)||{done:{},fs:19,hide:false,bm:null};
 function save(){HUB.put(KEY,ST);var n=Object.keys(ST.done).filter(function(k){return ST.done[k]}).length;HUB.setStep('read',{done:n===SECS.length,count:n,N:SECS.length})}
 function list(){
+  HUB.last.clear('read');
   var h='<h1>좌본문우해석</h1><p class="sub">'+esc(META.grade)+' '+esc(META.pub)+' '+esc(META.lesson)+' · '+esc(META.school)+' '+esc(META.term)+'</p>';
   h+='<div class="rule"><p>영어와 해석을 나란히 읽어요. 영역을 골라 들어가세요.</p><p>다 읽은 영역은 안에서 읽음 표시를 눌러 두면 허브에 기록돼요.</p></div><div class="menu">';
   SECS.forEach(function(s,i){h+='<button data-s="'+i+'" class="'+(ST.done[i]?'done':'')+'"><b>본문 '+esc(s.key)+' <span class="stat">'+(ST.done[i]?'읽음':'')+'</span></b><span>'+esc(s.title)+' · '+s.sents.length+'문장</span></button>'});
@@ -53,8 +54,17 @@ function open(si){
   app.querySelectorAll('[data-ko]').forEach(function(k){k.onclick=function(){if(ST.hide)k.classList.toggle('show')}});
   document.getElementById('dn').onclick=function(){ST.done[si]=!ST.done[si];save();open(si)};
   window.scrollTo(0,0);
+  HUB.last.set('read',{si:si,a:0});HUB.last.track('read','.rd',function(){return {si:si}});
 }
-list();
+(function(){
+  var L=HUB.last.get('read');
+  list();
+  if(L&&SECS[L.si]){
+    open(L.si);
+    setTimeout(function(){HUB.last.scrollTo('.rd',L.a||0)},40);
+    HUB.last.toast('마지막으로 보던 곳(본문 '+SECS[L.si].key+' · '+((L.a||0)+1)+'번 문장)에서 이어서 열었어요','처음부터',function(){HUB.last.clear('read');list()});
+  }
+})();
 })();
 </script>
 </body></html>
