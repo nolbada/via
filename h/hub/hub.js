@@ -15,13 +15,14 @@ var BARCSS='#hubbar{position:fixed;top:0;left:0;right:0;height:46px;z-index:50;b
 HUB.bar=function(step,opt){
   opt=opt||{};
   var c=HUB.cfg;if(!c)return;
-  var st=c.steps,idx=-1,k;
+  var all=c.steps,st=all.filter(function(x){return !x.test}),idx=-1,k,cur=null;
+  for(k=0;k<all.length;k++)if(all[k].k===step)cur=all[k];
   for(k=0;k<st.length;k++)if(st[k].k===step)idx=k;
   var prev=null,next=null;
   for(k=idx-1;k>=0;k--)if(st[k].href){prev=st[k];break}
   for(k=idx+1;k<st.length;k++)if(st[k].href){next=st[k];break}
   var d=document.createElement('div');d.id='hubbar';
-  var lab=idx>=0?('<b>'+(idx+1)+'/'+st.length+'</b> '+st[idx].name):c.title;
+  var lab=idx>=0?('<b>'+(idx+1)+'/'+st.length+'</b> '+st[idx].name):(cur?('<b>시험 대비</b> '+cur.name):c.title);
   d.innerHTML='<a class="home" href="'+HUB.hubUrl()+'">허브</a>'+
    '<a class="nv'+(prev?'':' off')+'" '+(prev?'href="'+BASE+prev.href+'"':'')+'>이전</a>'+
    '<span class="lb">'+lab+'</span>'+
