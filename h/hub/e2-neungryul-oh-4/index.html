@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>영어2 능률(오) 4과 · 학습 순서</title>
+<link rel="stylesheet" href="../hub.css">
+</head><body>
+<div class="w" id="app"></div>
+<script src="steps.js"></script>
+<script src="../hub.js"></script>
+<script>
+(function(){
+var HUB=window.HUB,esc=HUB.esc,C=HUB.cfg,app=document.getElementById('app');
+function stat(s){
+  var st=HUB.stepState(s.k);
+  if(!s.href)return {t:'준비 중',cls:'off'};
+  if(s.k==='read'&&st.count!=null)return {t:st.count+' / '+st.N+' 영역',cls:st.done?'done':''};
+  if(s.k==='order'&&st.count!=null)return {t:st.count+' / '+st.N+' 묶음',cls:st.done?'done':''};
+  if((s.k==='content'||s.k==='grammar')&&st.done){var b=st.best||{},p=[];for(var m in b)p.push(({find:'',core:'중심 ',basic:'기본 ',high:'고득점 '}[m]||m)+b[m]);return {t:'최고 '+p.join(' · '),cls:'done'}}
+  return {t:'',cls:''};
+}
+var h='<h1>'+esc(C.title)+'</h1><p class="sub">'+esc(C.sub)+'</p>';
+h+='<div class="rule"><p>숙제는 위에서부터 순서대로 하세요.</p><p>각 단계 화면 맨 위에서 허브로 돌아오거나 이전 단계와 다음 단계로 바로 갈 수 있어요.</p></div><div class="menu">';
+C.steps.forEach(function(s,i){
+  var st=stat(s);
+  var tag=s.href?'a':'div';
+  h+='<'+tag+' class="card '+st.cls+'"'+(s.href?' href="'+HUB.base+s.href+'"':'')+'><b>'+(i+1)+'. '+esc(s.name)+' <span class="stat">'+esc(st.t)+'</span></b><span>'+esc(s.desc)+'</span></'+tag+'>';
+});
+h+='</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
+app.innerHTML=h;
+})();
+</script>
+</body></html>
