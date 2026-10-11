@@ -16,17 +16,29 @@ function stat(s){
   if(!s.href)return {t:'준비 중',cls:'off'};
   if(s.k==='read'&&st.count!=null)return {t:st.count+' / '+st.N+' 영역',cls:st.done?'done':''};
   if(s.k==='order'&&st.count!=null)return {t:st.count+' / '+st.N+' 묶음',cls:st.done?'done':''};
-  if((s.k==='content'||s.k==='grammar')&&st.done){var b=st.best||{},p=[];for(var m in b)p.push(({find:'',core:'중심 ',basic:'기본 ',high:'고득점 '}[m]||m)+b[m]);return {t:'최고 '+p.join(' · '),cls:'done'}}
+  if((s.k==='content'||s.k==='grammar')&&st.done){var b=st.best||{},p=[];for(var m in b)p.push(({find:'',core:'중심 ',basic:'기본 ',high:'고득점 '}[m]||'')+b[m]+'점');return {t:'최고 '+p.join(' · '),cls:'done'}}
   return {t:'',cls:''};
 }
-var h='<h1>'+esc(C.title)+'</h1><p class="sub">'+esc(C.sub)+'</p>';
-h+='<div class="rule"><p>숙제는 위에서부터 순서대로 하세요.</p><p>각 단계 화면 맨 위에서 허브로 돌아오거나 이전 단계와 다음 단계로 바로 갈 수 있어요.</p></div><div class="menu">';
-C.steps.forEach(function(s,i){
-  var st=stat(s);
+var HW=C.steps.filter(function(s){return !s.test}),TS=C.steps.filter(function(s){return s.test});
+var done=0,cur=-1;
+HW.forEach(function(s,i){var st=stat(s);s._st=st;if(st.cls==='done')done++;else if(cur<0&&s.href)cur=i});
+var tot=HW.filter(function(s){return s.href}).length;
+var h='<div class="hh"><span class="bd">'+esc(C.lesson||'')+'</span><h1>'+esc(C.title)+'</h1><p>'+esc(C.sub)+'</p></div>';
+if(TS.length){
+  TS.forEach(function(s){
+    var n=0,dy=0;try{var V=JSON.parse(localStorage.getItem('verb_study_'+C.bid+'_v1'))||{};for(var q in (V.views||{}))n+=V.views[q];for(var q2 in (V.secs||{}))if(V.secs[q2]>0)dy++}catch(e){}
+    h+='<a class="dock" href="'+HUB.base+s.href+'"><span class="dk-ic">V</span><span class="dk-bd"><span class="dk-t">'+esc(s.name)+'</span><span class="dk-s">숙제와 별개로, 시험 전까지 계속 반복해요</span><span class="dk-m"><i>상시 열림</i>'+(n?'<i>누적 '+n+'회 확인</i><i>'+dy+'일 연습</i>':'')+'<i>선생님 검사</i></span></span><span class="dk-go">연습<br>하기</span></a>';
+  });
+}
+h+='<div class="sh">숙제 순서</div><div class="hp"><div class="bar"><i style="width:'+Math.round(done/tot*100)+'%"></i></div><div class="tx"><span><b>'+done+'</b> / '+tot+' 단계 완료</span><span>위에서부터 차례로</span></div></div><div class="sl">';
+HW.forEach(function(s,i){
+  var st=s._st,cls=!s.href?'off':(st.cls==='done'?'ok':(i===cur?'go':''));
+  var pill=!s.href?'준비 중':(st.cls==='done'?'완료':(i===cur?'지금 할 차례':''));
   var tag=s.href?'a':'div';
-  h+='<'+tag+' class="card '+st.cls+'"'+(s.href?' href="'+HUB.base+s.href+'"':'')+'><b>'+(i+1)+'. '+esc(s.name)+' <span class="stat">'+esc(st.t)+'</span></b><span>'+esc(s.desc)+'</span></'+tag+'>';
+  h+='<'+tag+' class="st '+cls+'"'+(s.href?' href="'+HUB.base+s.href+'"':'')+'><span class="no">'+(st.cls==='done'?'&#10003;':(i+1))+'</span><span class="bd2"><b><span>'+esc(s.name)+'</span>'+(pill?'<span class="pill">'+pill+'</span>':'')+'</b><span class="ds">'+esc(s.desc)+(st.t?' · '+esc(st.t):'')+'</span></span></'+tag+'>';
 });
-h+='</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
+h+='</div>';
+h+='<div class="tip">각 단계 화면 맨 위의 허브 버튼으로 이 화면에 돌아오고, 이전·다음 버튼으로 바로 옮겨 갈 수 있어요.</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
 app.innerHTML=h;
 })();
 </script>
