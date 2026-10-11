@@ -106,4 +106,11 @@ function renderExam(){
     Object.keys(EX).forEach(function(i){S.wrong[key(+cur,+i)]=1});save();var n=Object.keys(EX).length;EX={};exam=false;done=false;onlyWrong=false;onlyStar=false;render();scrollTo(0,0);document.getElementById('list').insertAdjacentHTML('afterbegin','<div class="stat hint">'+(n?'✅ 시험 종료! 표시한 '+n+'문장은 위쪽 "❌ 틀린 문장만"에 모였어요.':'✅ 시험 종료! 모두 맞았어요 👏')+'</div>')};
 }
 function renderResult(){exam=false;done=false;render()}
+(function(){
+var L=S.last,st=null;
+function toast(msg,lab,fn){var d=document.createElement('div');d.style.cssText='position:fixed;left:12px;right:12px;bottom:16px;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px;border-radius:14px;background:#1b2a3c;color:#fff;font-size:14px;line-height:1.5;box-shadow:0 8px 24px rgba(0,0,0,.25)';d.innerHTML='<span></span><button type="button" style="flex:none;border:0;border-radius:10px;background:rgba(255,255,255,.18);color:#fff;font-size:13.5px;font-weight:700;padding:6px 12px"></button>';d.firstChild.textContent=msg;d.lastChild.textContent=lab;d.lastChild.onclick=function(){d.remove();fn()};document.body.appendChild(d);setTimeout(function(){if(d.parentNode)d.remove()},9000)}
+if(L&&LS[L.li]&&(L.pt<0||LS[L.li].parts[L.pt])&&L.i!=null){cur=L.li;pt=L.pt;sel.value=cur}else L=null;
 render();
+if(L){var e=document.querySelector('[data-i="'+L.i+'"]');if(e){e.scrollIntoView({block:'start'});scrollBy(0,-60);if(L.i>0)toast('마지막으로 보던 곳('+LS[L.li].name+' '+(L.i+1)+'번 문장)에서 이어서 열었어요','처음부터',function(){delete S.last;save();pt=0;render();scrollTo(0,0)})}}
+addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(function(){if(exam||onlyStar||onlyWrong||showStat)return;var els=document.querySelectorAll('#list .it[data-i]'),k;for(k=0;k<els.length;k++)if(els[k].getBoundingClientRect().bottom>70)break;if(k>=els.length)k=els.length-1;if(k<0)return;S.last={li:+cur,pt:pt,i:+els[k].getAttribute('data-i')};save()},300)},{passive:true});
+})();
