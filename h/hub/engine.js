@@ -119,7 +119,7 @@ function regions(){
 function routeBox(m,res){
   var N=res.N,need=Math.ceil(N*0.8),steps=HUB.cfg.steps,nx=null,k;
   if(APP.kind==='find'){
-    for(k=0;k<steps.length;k++)if(steps[k].k===APP.step){var j;for(j=k+1;j<steps.length;j++)if(steps[j].href){nx=steps[j];break}}
+    for(k=0;k<steps.length;k++)if(steps[k].k===APP.step){var j;for(j=k+1;j<steps.length;j++)if(steps[j].href&&!steps[j].test){nx=steps[j];break}}
     return '<div class="route"><p class="big">내용 확인 끝</p><p>영역별로 열어서 해설을 읽고, 놓친 곳을 다시 확인하세요.</p>'+(nx?'<a class="go" href="'+HUB.base+nx.href+'">다음 단계: '+esc(nx.name)+'</a>':'')+'</div>';
   }
   if(m==='core'){
