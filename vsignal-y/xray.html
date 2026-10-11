@@ -104,7 +104,7 @@ span.w2{cursor:default}
 .ck{font-family:inherit;font-size:16px}
 .seg{display:flex;gap:8px}.seg button{flex:1;height:46px;border-radius:12px;border:1.5px solid var(--ln);background:var(--sf);color:var(--fg);font-size:16px;font-weight:700;cursor:pointer}.seg button.on{background:var(--ac);border-color:var(--ac);color:var(--corefg)}
 .row{display:flex;align-items:center;gap:10px;width:100%;min-height:52px;padding:8px 0;border:none;border-bottom:1px solid var(--ln);background:none;color:var(--fg);text-align:left;cursor:pointer;font-family:inherit}
-.row:last-child{border-bottom:none}.rn{flex:0 0 34px;font-weight:700;color:var(--ac);font-size:17px;text-align:center}.rt2{flex:1;min-width:0}.rs{display:block;font-size:12px;color:var(--mu);margin-top:2px;font-family:inherit}.rt{flex:1;font-size:15px;line-height:1.4;font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rm{flex:0 0 36px;font-size:12px;color:var(--mu);text-align:right}.rm.on{color:var(--ok);font-weight:700}
+.row:last-child{border-bottom:none}.rn{flex:0 0 34px;font-weight:700;color:var(--ac);font-size:17px;text-align:center}.rt2{flex:1;min-width:0}.stm{display:block;font-size:13px;line-height:1;color:#d97706}.rs{display:block;font-size:12px;color:var(--mu);margin-top:2px;font-family:inherit}.rt{flex:1;font-size:15px;line-height:1.4;font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rm{flex:0 0 36px;font-size:12px;color:var(--mu);text-align:right}.rm.on{color:var(--ok);font-weight:700}
 .wk{border-bottom:2px dotted #8794a3;cursor:pointer}.wks{border-bottom:2px solid #16a34a;font-weight:700}
 .wkd{margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(120,140,160,.15);font-size:15px;line-height:1.5}.wkm{font-size:13px;opacity:.8}.wsf{font-weight:400;opacity:.75}.wguide{margin:10px 0;padding:10px 12px;border-radius:10px;background:rgba(120,140,160,.15);font-size:14px;line-height:1.6}
 </style></head><body><div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px 0;font-size:14px"><a href="./" style="color:var(--ac);text-decoration:none;padding:6px 0">&larr; Y단계 홈</a><a id="wlink" href="words.html" style="color:var(--ac);text-decoration:none;font-weight:700;padding:6px 0">내 단어장</a></div><div class="wrap" id="app"></div>
@@ -159,13 +159,14 @@ const SUBS={"형용사절":[["주격 관계대명사","빠진 자리가 주어: 
 "명사절":[["주어","That he won is true."],["목적어","I know (that) he won."],["보어","The fact is that he won."],["전치사의 목적어","I agree with what he said."],["동격","the fact that he won"]]};
 let D=550,KO=0,cur,ni,steps,si,got,wr,ph,opened,done,GL,fnd,gh;
 function adv(fn){const tag=cur.id+'|'+ni+'|'+si+'|'+ph;setTimeout(()=>{if(cur&&tag==cur.id+'|'+ni+'|'+si+'|'+ph)fn()},D)}
+const STARS=new Set(["63-4", "7-3", "12-3", "10-2", "1-3", "39-3", "33-1", "23-5", "64-4", "57-5", "59-6", "46-3"]);
 let TAB=location.hash=='#adv'?'심화':'기본';
 function home(){
   const L=S.filter(s=>s.lv==TAB),dn=L.filter(s=>R[s.id]&&R[s.id].done).length;
-  let h='<h1>'+TAB+' 문장 분석</h1><p class="sub">문장 속 동사를 먼저 찾고, 절을 한 겹씩 열어 분석합니다. '+TAB+' '+L.length+'문장.</p><div class="wguide">밑줄 점선이 보이는 단어를 한 번 누르면 내 단어장에 담깁니다. 다시 누르면 빠집니다. 직접 입력하는 기능은 없습니다. 담긴 단어는 다음 날부터 정해진 간격으로 복습 순서가 돌아옵니다.</div>';
+  let h='<h1>'+TAB+' 문장 분석</h1><p class="sub">문장 속 동사를 먼저 찾고, 절을 한 겹씩 열어 분석합니다. '+TAB+' '+L.length+'문장.'+(TAB=='심화'?' ★는 절이 여러 겹 얽힌 도전 문장입니다.':'')+'</p><div class="wguide">밑줄 점선이 보이는 단어를 한 번 누르면 내 단어장에 담깁니다. 다시 누르면 빠집니다. 직접 입력하는 기능은 없습니다. 담긴 단어는 다음 날부터 정해진 간격으로 복습 순서가 돌아옵니다.</div>';
   h+='<p class="small" style="margin:10px 2px 8px">푼 문장 '+dn+' / '+L.length+'</p><div class="card" style="padding:4px 12px">';
   L.forEach((s,k)=>{const d=R[s.id]&&R[s.id].done;
-    h+='<button class="row" onclick="play(\''+s.id+'\')"><span class="rn">'+(k+1)+'</span><span class="rt2"><span class="rt">'+esc(s.tok.join(' '))+'</span><span class="rs">출처 '+s.id+'</span></span><span class="rm'+(d?' on':'')+'">'+(d?'완료':'')+'</span></button>'});
+    h+='<button class="row" onclick="play(\''+s.id+'\')"><span class="rn">'+(k+1)+(STARS.has(s.id)&&s.lv=='심화'?'<b class="stm">★</b>':'')+'</span><span class="rt2"><span class="rt">'+esc(s.tok.join(' '))+'</span><span class="rs">출처 '+s.id+'</span></span><span class="rm'+(d?' on':'')+'">'+(d?'완료':'')+'</span></button>'});
   h+='</div>';
   const all=Object.values(R).filter(r=>r.done);
   if(all.length)h+='<div class="card"><p class="day">내 기록</p><div class="small">푼 문장 '+all.length+'개 / 전부 한 번에 맞힌 문장 '+all.filter(r=>r.wr===0).length+'개</div><button class="reset" onclick="resetAll()">기록 지우기</button></div>';
@@ -177,7 +178,7 @@ function stepsOf(n){
 function play(id){KO=0;cur=S.find(s=>s.id==id);TAB=cur.lv;wr=0;ph='verb';opened={};done={};ni=0;si=0;fnd={};
   GL=[];cur.nodes.forEach(n=>n.G.forEach(g=>GL.push(g)));R[id]=R[id]||{};drawVerb('')}
 function stage(k){const a=['동사','주절','절 열기','준동사'];return '<div class="stg">'+a.map((x,i)=>'<div class="'+(i<k?'ok':i==k?'on':'')+'">'+(i+1)+' '+x+'</div>').join('')+'</div>'}
-function head(k){return '<div class="top"><button class="back" onclick="home()">&lt; 목록</button><span class="small">'+(S.filter(x=>x.lv==cur.lv).indexOf(cur)+1)+'번 · 출처 '+cur.id+(k==2?' · 절 '+ni+'/'+(cur.nodes.length-1):'')+'</span></div>'+stage(k)+'<p class="ko1">'+(KO?esc(cur.ko.join(' ')):'<button class="reset" style="margin:0" onclick="KO=1;redraw()">우리말 뜻 보기</button>')+'</p>'}
+function head(k){return '<div class="top"><button class="back" onclick="home()">&lt; 목록</button><span class="small">'+(S.filter(x=>x.lv==cur.lv).indexOf(cur)+1)+'번'+(STARS.has(cur.id)&&cur.lv=='심화'?' ★':'')+' · 출처 '+cur.id+(k==2?' · 절 '+ni+'/'+(cur.nodes.length-1):'')+'</span></div>'+stage(k)+'<p class="ko1">'+(KO?esc(cur.ko.join(' ')):'<button class="reset" style="margin:0" onclick="KO=1;redraw()">우리말 뜻 보기</button>')+'</p>'}
 function redraw(){if(ph=='verb')drawVerb('');else if(ph=='nf')drawNF('');else if(ph=='nfq')drawNFQ();else draw()}
 const VB=()=>{const f=new Set();GL.forEach(g=>g.forEach(i=>f.add(i)));return f};
 /* 1단계: 동사 찾기 - 누르는 즉시 판정 */
@@ -364,7 +365,7 @@ function finSent(){
   return h}
 function fin(){
   ph='fin';R[cur.id].done=true;R[cur.id].wr=wr;save();
-  let h='<div class="top"><button class="back" onclick="home()">&lt; 목록</button><span class="small">'+(S.filter(x=>x.lv==cur.lv).indexOf(cur)+1)+'번 · 출처 '+cur.id+'</span></div><div class="card"><span class="pill">완성</span><p class="q">'+(wr==0?'모두 한 번에 맞혔습니다.':'틀린 횟수 '+wr+'번')+'</p>'+finSent()+'<div class="tree">';
+  let h='<div class="top"><button class="back" onclick="home()">&lt; 목록</button><span class="small">'+(S.filter(x=>x.lv==cur.lv).indexOf(cur)+1)+'번'+(STARS.has(cur.id)&&cur.lv=='심화'?' ★':'')+' · 출처 '+cur.id+'</span></div><div class="card"><span class="pill">완성</span><p class="q">'+(wr==0?'모두 한 번에 맞혔습니다.':'틀린 횟수 '+wr+'번')+'</p>'+finSent()+'<div class="tree">';
   cur.nodes.forEach((n,k)=>{
     let d=depthOf(k);let txt='';for(let i=n.a;i<n.b;i++){if(!n.own.includes(i))continue;txt+=((cur.em||[]).includes(i)?'\u0001'+cur.tok[i]+'\u0002':cur.tok[i])+' '}
     const lab=n.kind?(n.kind+' · '+n.sub):'주절 · '+n.form+'형식';
