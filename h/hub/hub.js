@@ -20,7 +20,7 @@ HUB.bar=function(step,opt){
   for(k=0;k<st.length;k++)if(st[k].k===step)idx=k;
   var prev=null,next=null;
   for(k=idx-1;k>=0;k--)if(st[k].href){prev=st[k];break}
-  for(k=idx+1;k<st.length;k++)if(st[k].href){next=st[k];break}
+  if(idx>=0)for(k=idx+1;k<st.length;k++)if(st[k].href){next=st[k];break}
   var d=document.createElement('div');d.id='hubbar';
   var lab=idx>=0?('<b>'+(idx+1)+'/'+st.length+'</b> '+st[idx].name):(cur?('<b>시험 대비</b> '+cur.name):c.title);
   d.innerHTML='<a class="home" href="'+HUB.hubUrl()+'">허브</a>'+
@@ -31,6 +31,35 @@ HUB.bar=function(step,opt){
   if(opt.sticky)d.className='st';
   document.body.insertBefore(d,document.body.firstChild);
   if(!opt.sticky)document.body.classList.add('hasbar');
+};
+HUB.last={
+  key:function(step){return 'hub_'+HUB.cfg.bid+'_last_'+step},
+  get:function(step){return get(this.key(step))},
+  set:function(step,o){o=o||{};o.ts=Date.now();put(this.key(step),o)},
+  clear:function(step){this.stop();try{localStorage.removeItem(this.key(step))}catch(e){}},
+  stop:function(){if(this._h){window.removeEventListener('scroll',this._h);this._h=null}},
+  track:function(step,sel,base){
+    var me=this,t=null;me.stop();
+    me._h=function(){clearTimeout(t);t=setTimeout(function(){
+      var els=document.querySelectorAll(sel),i;
+      for(i=0;i<els.length;i++)if(els[i].getBoundingClientRect().bottom>70)break;
+      if(i>=els.length)i=els.length-1;
+      if(i<0)return;
+      var o=base();o.a=i;me.set(step,o);
+    },250)};
+    window.addEventListener('scroll',me._h,{passive:true});
+  },
+  scrollTo:function(sel,a){
+    var els=document.querySelectorAll(sel),el=els[a];
+    if(el){el.scrollIntoView({block:'start'});window.scrollBy(0,-58)}
+  },
+  toast:function(msg,label,fn){
+    var d=document.createElement('div');d.className='toast';
+    d.innerHTML='<span>'+HUB.esc(msg)+'</span><button type="button">'+HUB.esc(label)+'</button>';
+    d.querySelector('button').onclick=function(){d.remove();fn()};
+    document.body.appendChild(d);
+    setTimeout(function(){if(d.parentNode)d.remove()},9000);
+  }
 };
 HUB.esc=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')};
 window.HUB=HUB;
