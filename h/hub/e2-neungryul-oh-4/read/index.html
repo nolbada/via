@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>좌본문우해석 · 영어2 능률(오) 4과</title>
+<link rel="stylesheet" href="../../hub.css">
+<style>
+.rd{display:grid;grid-template-columns:1fr 1fr;gap:0 14px;padding:8px 0;border-bottom:1px solid #eceef2}
+.rd .en{font-size:var(--fs,19px)}.rd .ko{font-size:calc(var(--fs,19px) - 2px);color:var(--sub)}
+.rd .no{color:var(--pri);font-weight:700;margin-right:4px}
+@media (max-width:560px){.rd{grid-template-columns:1fr}.rd .ko{margin-top:2px}}
+.hide .ko{visibility:hidden}.hide .ko.show{visibility:visible}
+.tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.tools label{font-size:16px}
+</style>
+</head><body>
+<div class="w" id="app"></div>
+<script src="../steps.js"></script>
+<script src="../../../books/e2-neungryul-oh-4/L4.js"></script>
+<script src="../../hub.js"></script>
+<script>
+(function(){
+var HUB=window.HUB,esc=HUB.esc,app=document.getElementById('app');
+var BID='e2-neungryul-oh-4',RAW=TFDATA[BID+'|4'];HUB.bar('read');
+var SECS=RAW.secs,META=RAW.meta,KEY='hub_'+BID+'_read';
+var ST=HUB.get(KEY)||{done:{},fs:19,hide:false,bm:null};
+function save(){HUB.put(KEY,ST);var n=Object.keys(ST.done).filter(function(k){return ST.done[k]}).length;HUB.setStep('read',{done:n===SECS.length,count:n,N:SECS.length})}
+function list(){
+  var h='<h1>좌본문우해석</h1><p class="sub">'+esc(META.grade)+' '+esc(META.pub)+' '+esc(META.lesson)+' · '+esc(META.school)+' '+esc(META.term)+'</p>';
+  h+='<div class="rule"><p>영어와 해석을 나란히 읽어요. 영역을 골라 들어가세요.</p><p>다 읽은 영역은 안에서 읽음 표시를 눌러 두면 허브에 기록돼요.</p></div><div class="menu">';
+  SECS.forEach(function(s,i){h+='<button data-s="'+i+'" class="'+(ST.done[i]?'done':'')+'"><b>본문 '+esc(s.key)+' <span class="stat">'+(ST.done[i]?'읽음':'')+'</span></b><span>'+esc(s.title)+' · '+s.sents.length+'문장</span></button>'});
+  h+='</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
+  app.innerHTML=h;
+  app.querySelectorAll('[data-s]').forEach(function(b){b.onclick=function(){open(+b.getAttribute('data-s'))}});
+  document.getElementById('foot')&&document.getElementById('foot').remove();window.scrollTo(0,0);
+}
+function open(si){
+  var s=SECS[si];
+  var h='<div class="rnav"><button id="tl">영역 목록</button><div class="t"><b>본문 '+esc(s.key)+'</b>'+esc(s.title.split(' · ')[0])+'</div><button id="pv"'+(si===0?' disabled':'')+'>이전</button><button id="nx"'+(si===SECS.length-1?' disabled':'')+'>다음</button></div>';
+  h+='<div class="tools"><span class="sz"><button id="fm">가-</button><button id="fp">가+</button></span><label class="chk"><input type="checkbox" id="hd"'+(ST.hide?' checked':'')+'> 해석 가리기 (눌러서 보기)</label></div>';
+  h+='<div id="rds"'+(ST.hide?' class="hide"':'')+' style="--fs:'+ST.fs+'px">';
+  s.sents.forEach(function(x,i){h+='<div class="rd"><div class="en"><span class="no">'+(i+1)+'</span>'+esc(x.en)+'</div><div class="ko" data-ko="1">'+esc(x.ko)+'</div></div>'});
+  h+='</div>';
+  app.innerHTML=h;
+  var f=document.getElementById('foot');if(!f){f=document.createElement('div');f.id='foot';document.body.appendChild(f)}
+  f.innerHTML='<div class="info"><b>'+(ST.done[si]?'읽음 표시됨':'다 읽었나요?')+'</b></div><button id="dn"'+(ST.done[si]?' class="ghost"':'')+'>'+(ST.done[si]?'읽음 취소':'다 읽었어요')+'</button>';
+  document.getElementById('tl').onclick=list;
+  document.getElementById('pv').onclick=function(){if(si>0)open(si-1)};
+  document.getElementById('nx').onclick=function(){if(si<SECS.length-1)open(si+1)};
+  document.getElementById('fm').onclick=function(){ST.fs=Math.max(15,ST.fs-1);save();document.getElementById('rds').style.setProperty('--fs',ST.fs+'px')};
+  document.getElementById('fp').onclick=function(){ST.fs=Math.min(26,ST.fs+1);save();document.getElementById('rds').style.setProperty('--fs',ST.fs+'px')};
+  document.getElementById('hd').onchange=function(){ST.hide=this.checked;save();document.getElementById('rds').className=ST.hide?'hide':''};
+  app.querySelectorAll('[data-ko]').forEach(function(k){k.onclick=function(){if(ST.hide)k.classList.toggle('show')}});
+  document.getElementById('dn').onclick=function(){ST.done[si]=!ST.done[si];save();open(si)};
+  window.scrollTo(0,0);
+}
+list();
+})();
+</script>
+</body></html>
