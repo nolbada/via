@@ -28,7 +28,8 @@
 .fb p{margin:3px 0}
 .fb .ko{color:var(--sub)}
 .fb .lab{display:inline-block;min-width:54px;font-weight:700;color:var(--pri)}
-.tools2{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:8px 0}
+.stem{margin-top:6px;font-size:16px}
+.op mark{background:#fff0b8;padding:0 2px;border-radius:3px}
 </style>
 </head><body>
 <div class="w" id="app"></div>
@@ -56,43 +57,58 @@ function stat(k){
   return {N:a.length,n:n,r:r};
 }
 function pr(a){return a.map(function(x){return esc(x[0])+' <span class="bs">'+esc(x[1])+'</span>'}).join(' · ')}
-function sentHTML(it,shown){
-  var e=it.en,mid=e[1];
-  if(it.c==='fam'||it.c==='conf'){
-    var fill=shown?it.opts[it.ans]:'';
-    mid='<span class="bl'+(shown?' on':'')+'">'+esc(fill)+'</span>'+(it.c==='fam'&&!shown?' <span class="bs">('+esc(it.base)+')</span>':'');
-    if(it.c==='fam'&&shown)mid+=' <span class="bs">('+esc(it.base)+')</span>';
-    return esc(e[0])+mid+esc(e[2]);
-  }
+function stemHTML(it){
+  if(it.c==='syn'||it.c==='ant')return '<div class="stem"><b>'+esc(it.w)+'</b> <span class="bs">'+esc(it.wg)+'</span></div>';
+  if(it.c==='poly')return '<div class="stem"><b>'+esc(it.w)+'</b></div>';
+  return '';
+}
+function sentHTML(it){
+  var e=it.en;
   return esc(e[0])+'<span class="tg">'+esc(e[1])+'</span>'+esc(e[2]);
 }
 function optHTML(it,k){
   var sel=ST.ans[it.id],done=sel!=null||TEACH,cls='op';
   if(done){if(k===it.ans)cls+=' right';else if(sel===k)cls+=' mine';else cls+=' dim'}
   var g='';
-  if(it.gl&&(ST.gl||done))g='<span class="g">'+esc(it.gl[k][1])+'</span>';
+  if(it.c==='trap'){
+    var v=it.vars[k],t=v.text;
+    if(done){t=esc(t.slice(0,v.p))+'<mark>'+esc(v.new)+'</mark>'+esc(t.slice(v.p+v.new.length))}
+    else t=esc(t);
+    return '<button class="'+cls+'" data-q="'+it.id+'" data-o="'+k+'"><span class="lt">'+LT[k]+'</span>'+t+'</button>';
+  }
+  if(it.gl&&done)g='<span class="g">'+esc(it.gl[k][1])+'</span>';
   return '<button class="'+cls+'" data-q="'+it.id+'" data-o="'+k+'"><span class="lt">'+LT[k]+'</span>'+esc(it.opts[k])+g+'</button>';
+}
+function noteLine(lemma,surf,nt){
+  return nt?'<p><span class="lab">모양</span>'+esc(surf)+': '+esc(nt)+'</p>':'';
 }
 function fbHTML(it){
   var sel=ST.ans[it.id],ok=sel===it.ans,h='<div class="fb">';
   if(!TEACH)h+='<div class="res '+(ok?'ok':'re')+'">'+(ok?'정답이에요':'다시 확인해 봐요')+'</div>';
-  h+='<p><span class="lab">정답</span><b>'+esc(it.opts[it.ans])+'</b>'+(it.gl&&it.gl[it.ans]&&it.gl[it.ans][1]?' <span class="bs">'+esc(it.gl[it.ans][1])+'</span>':'')+'</p>';
+  if(it.c==='trap'){
+    h+='<p><span class="lab">정답</span><b>'+LT[it.ans]+'</b></p>';
+    it.vars.forEach(function(v,k){
+      var same=v.rel==='syn';
+      h+='<p><b>'+LT[k]+'</b> '+esc(v.o)+' <span class="bs">'+esc(v.og)+'</span> &rarr; '+esc(v.s)+' <span class="bs">'+esc(v.sg)+'</span> <b>'+(same?'(유의어: 뜻이 같아요)':'(반의어: 뜻이 반대예요)')+'</b></p>';
+      var n1=v.onote?esc(v.old)+': '+esc(v.onote):'',n2=v.snote?esc(v.new)+': '+esc(v.snote):'';
+      if(n1||n2)h+='<p class="bs">'+[n1,n2].filter(Boolean).join(' · ')+'</p>';
+    });
+    h+='<p><span class="lab">원문</span>'+esc(it.vars[it.ans].text)+'</p><p class="ko">'+esc(it.vars[it.ans].ko)+'</p></div>';
+    return h;
+  }
   if(it.c==='syn'||it.c==='ant'){
     var I=it.info;
-    h+='<p><span class="lab">단어</span>'+esc(I.w)+' <span class="bs">'+esc(I.g)+'</span></p>';
+    h+='<p><span class="lab">정답</span><b>'+esc(it.opts[it.ans])+'</b> <span class="bs">'+esc(it.gl[it.ans][1])+'</span></p>';
+    h+='<p><span class="lab">단어</span><b>'+esc(I.w)+'</b> <span class="bs">'+esc(I.g)+'</span></p>';
+    h+=noteLine(I.w,it.en[1],it.form);
     if(I.syn.length)h+='<p><span class="lab">유의어</span>'+pr(I.syn)+'</p>';
     if(I.ant.length)h+='<p><span class="lab">반의어</span>'+pr(I.ant)+'</p>';
   }
-  if(it.c==='fam'){
-    h+='<p><span class="lab">가족</span>'+it.fam.map(function(x){return esc(x[0])+' <span class="bs">['+esc(x[1].split('/').map(function(p){return POS[p]||p}).join('/'))+'] '+esc(x[2].replace(/^\[[^\]]*\]\s*/,''))+'</span>'}).join(' · ')+'</p>';
-    var ex=it.opts.filter(function(o){return !it.fam.some(function(x){return x[0]===o})});
-    if(ex.length)h+='<p><span class="lab">비슷한 말</span>'+ex.map(function(o){var g=it.gl[it.opts.indexOf(o)][1];return esc(o)+' <span class="bs">'+esc(g)+'</span> (다른 단어)'}).join(' · ')+'</p>';
-  }
-  if(it.c==='conf'){
-    h+='<p><span class="lab">뜻 비교</span>'+it.gl.map(function(x){return esc(x[0])+' <span class="bs">'+esc(x[1])+'</span>'}).join(' · ')+'</p>';
-  }
   if(it.c==='poly'){
-    h+='<p><span class="lab">모든 뜻</span>'+it.opts.map(esc).join(' / ')+'</p><p class="bs">앞쪽에 나오는 대표 뜻으로만 읽으면 틀리기 쉬운 단어예요.</p>';
+    h+='<p><span class="lab">정답</span><b>'+esc(it.opts[it.ans])+'</b></p>';
+    h+=noteLine(it.w,it.en[1],it.form);
+    h+='<p><span class="lab">모든 뜻</span>'+it.opts.map(function(o,j){return (j===it.ans?'<b>'+esc(o)+'</b>':esc(o))}).join(' / ')+'</p>';
+    h+='<p class="bs">'+(it.src==='T'?'본문에 나온 문장이에요. 앞쪽 대표 뜻으로만 읽으면 틀리기 쉬워요.':'활동지에 있는 예문이에요.')+'</p>';
   }
   h+='<p class="ko">'+esc(it.ko)+'</p></div>';
   return h;
@@ -101,7 +117,7 @@ function home(){
   HUB.last.clear('vocab');
   var n=0;ITEMS.forEach(function(it){if(ST.ans[it.id]!=null)n++});
   var h='<h1>어휘</h1><p class="sub">영어2 능률(오) 4과 · 금천고 · 청석고 · 주성고'+(TEACH?' · 선생님용(정답 표시)':'')+'</p>';
-  h+='<div class="rule"><p>본문에 나온 단어로 유의어, 반의어, 다의어, 파생어, 혼동어를 익혀요.</p><p>문제를 풀면 바로 정답과 해설이 나와요. 코너 순서는 상관없어요.</p></div><div class="menu">';
+  h+='<div class="rule"><p>본문에 나온 단어로 단어 함정, 유의어, 반의어, 다의어를 익혀요.</p><p>문제를 풀면 바로 정답과 해설이 나와요. 코너 순서는 상관없어요.</p></div><div class="menu">';
   CORN.forEach(function(c,i){
     var s=stat(c.k),dn=s.n===s.N;
     h+='<button data-c="'+c.k+'" class="'+(dn?'done':'')+'"><b>'+esc(c.name)+' <span class="stat">'+(s.n?(s.n+' / '+s.N+' 풀음 · 정답 '+s.r):'')+'</span></b><span>'+esc(c.desc)+' · '+s.N+'문제</span></button>';
@@ -118,11 +134,10 @@ function corner(k,onlyWrong){
   if(onlyWrong)list=list.filter(function(it){return ST.ans[it.id]!=null&&ST.ans[it.id]!==it.ans});
   HUB.last.set('vocab',{k:k,w:onlyWrong?1:0,a:0});
   var h='<div class="rnav"><button id="tl">코너 목록</button><div class="t"><b>'+esc(c.name)+'</b>'+esc(c.desc)+'</div><button id="pv"'+(ci===0?' disabled':'')+'>이전</button><button id="nx"'+(ci===CORN.length-1?' disabled':'')+'>다음</button></div>';
-  h+='<div class="tools2"><label class="chk"><input type="checkbox" id="gl"'+(ST.gl?' checked':'')+'> 선택지 한글 뜻 보기</label></div>';
   if(onlyWrong&&!list.length)h+='<p class="ask">다시 풀 문제가 없어요.</p>';
   list.forEach(function(it,i){
     var sel=ST.ans[it.id],done=sel!=null||TEACH;
-    h+='<div class="qs" id="q'+it.id+'"><div class="qh"><span class="qn">'+(byC(k).indexOf(it)+1)+'</span><div class="qt">'+sentHTML(it,done)+'</div></div><div class="ask">'+esc(it.q)+'</div><div class="ops">';
+    h+='<div class="qs" id="q'+it.id+'"><div class="qh"><span class="qn">'+(byC(k).indexOf(it)+1)+'</span><div class="qt">'+(it.c==='trap'?'본문 문장 4개 중에서 골라요.':sentHTML(it)+stemHTML(it))+'</div></div><div class="ask">'+esc(it.q)+'</div><div class="ops">';
     it.opts.forEach(function(o,j){h+=optHTML(it,j)});
     h+='</div>'+(done?fbHTML(it):'')+'</div>';
   });
@@ -134,7 +149,6 @@ function corner(k,onlyWrong){
   document.getElementById('tl').onclick=function(){f.remove();home()};
   document.getElementById('pv').onclick=function(){if(ci>0)corner(CORN[ci-1].k)};
   document.getElementById('nx').onclick=function(){if(ci<CORN.length-1)corner(CORN[ci+1].k)};
-  document.getElementById('gl').onchange=function(){ST.gl=this.checked;save();var y=scrollY;corner(k,onlyWrong);scrollTo(0,y)};
   var rw=document.getElementById('rw');if(rw)rw.onclick=function(){
     byC(k).forEach(function(it){if(ST.ans[it.id]!=null&&ST.ans[it.id]!==it.ans)delete ST.ans[it.id]});
     save();corner(k);
