@@ -28,7 +28,7 @@ var h='<div class="hh"><span class="bd">'+esc(C.lesson||'')+'</span><h1>'+esc(C.
 if(TS.length){
   TS.forEach(function(s){
     var n=0,dy=0;try{var V=JSON.parse(localStorage.getItem('verb_study_'+C.bid+'_v1'))||{};for(var q in (V.views||{}))n+=V.views[q];for(var q2 in (V.secs||{}))if(V.secs[q2]>0)dy++}catch(e){}
-    h+='<a class="dock" href="'+HUB.base+s.href+'"><span class="dk-ic">V</span><span class="dk-bd"><span class="dk-t">'+esc(s.name)+'</span><span class="dk-s">숙제와 별개로, 시험 전까지 계속 반복해요</span><span class="dk-m"><i>상시 열림</i>'+(n?'<i>누적 '+n+'회 확인</i><i>'+dy+'일 연습</i>':'')+'<i>선생님 검사</i></span></span><span class="dk-go">연습<br>하기</span></a>';
+    h+='<a class="dock" href="'+HUB.base+s.href+'"><span class="dk-ic">V</span><span class="dk-bd"><span class="dk-t">'+esc(s.name)+'</span><span class="dk-s">최소 2회독 할 것</span></span><span class="dk-go">연습<br>하기</span></a>';
   });
 }
 h+='<div class="sh">숙제 순서</div><div class="hp"><div class="bar"><i style="width:'+Math.round(done/tot*100)+'%"></i></div><div class="tx"><span><b>'+done+'</b> / '+tot+' 단계 완료</span><span>위에서부터 차례로</span></div></div><div class="sl">';
