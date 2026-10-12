@@ -10,4 +10,13 @@
 <script src="../data/c2-neungryul-oh-34.js"></script>
 <script>var VID="c2-neungryul-oh-34";</script>
 <script src="../app.js"></script>
+<script>
+(function(){
+var K='verb_hub_c2-neungryul-oh-34',m=/[?&]hub=([34])/.exec(location.search),n=m?m[1]:null;
+try{if(n)localStorage.setItem(K,n);else n=localStorage.getItem(K)}catch(e){}
+if(n!=='3'&&n!=='4')n='4';
+function ld(src,cb){var s=document.createElement('script');s.src=src;s.onload=cb;document.body.appendChild(s)}
+ld('../hub/c2-neungryul-oh-'+n+'/steps.js',function(){ld('../hub/hub.js',function(){HUB.bar('verb',{sticky:true})})});
+})();
+</script>
 </body></html>
