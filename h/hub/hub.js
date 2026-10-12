@@ -61,6 +61,8 @@ HUB.last={
     setTimeout(function(){if(d.parentNode)d.remove()},9000);
   }
 };
+HUB.weak={key:function(){return 'hub_'+HUB.cfg.bid+'_weak'},get:function(){return get(this.key())||{}},has:function(c){return !!this.get()[c]},toggle:function(c){var w=this.get();if(w[c])delete w[c];else w[c]=1;put(this.key(),w);return !!w[c]},label:function(on){return on?'약점노트에 담김':'약점노트에 담기'},btn:function(c){var on=this.has(c);return '<button type="button" class="wkb'+(on?' on':'')+'" data-w="'+c+'">'+this.label(on)+'</button>'}};
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.wkb');if(!b)return;var on=HUB.weak.toggle(b.getAttribute('data-w'));b.classList.toggle('on',on);b.textContent=HUB.weak.label(on)});
 HUB.esc=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')};
 window.HUB=HUB;
 })();
