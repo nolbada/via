@@ -29,6 +29,7 @@
 .fb .ko{color:var(--sub)}
 .fb .lab{display:inline-block;min-width:54px;font-weight:700;color:var(--pri)}
 .stem{margin-top:6px;font-size:16px}
+.grp{margin:18px 0 6px;padding:8px 12px;border-left:4px solid var(--pri);background:var(--soft);border-radius:6px;font-size:15px;line-height:1.5}.grp b{margin-right:6px}
 .op mark{background:#fff0b8;padding:0 2px;border-radius:3px}
 </style>
 </head><body>
@@ -43,14 +44,16 @@ var BID='e2-neungryul-oh-4',D=VOCDATA[BID+'|4'],KEY='hub_'+BID+'_vocab';
 var TEACH=new URLSearchParams(location.search).get('t')==='1';
 HUB.bar('vocab');
 var ST=HUB.get(KEY)||{ans:{},gl:false};
-var CORN=D.corners,ITEMS=D.items,LT=['A','B','C','D','E'];
+var ITEMS=D.items,CORN=[],GN={},LT=['A','B','C','D','E'];
+D.corners.forEach(function(g){GN[g.k]=g});
+(function(){var NP=4;for(var p=0;p<NP;p++){var a=[];D.corners.forEach(function(g){var r=ITEMS.filter(function(it){return it.c===g.k}),N=r.length;r.slice(Math.floor(p*N/NP),Math.floor((p+1)*N/NP)).forEach(function(it){a.push(it)})});CORN.push({k:'p'+p,name:'어휘 '+'①②③④'.charAt(p),desc:'단어 함정, 유의어, 반의어, 다의어가 섞여 있어요.',items:a})}})();
 var POS={n:'명',v:'동',a:'형',adv:'부'};
 function save(){
   HUB.put(KEY,ST);
   var n=0;ITEMS.forEach(function(it){if(ST.ans[it.id]!=null)n++});
   HUB.setStep('vocab',{done:n===ITEMS.length,count:n,N:ITEMS.length});
 }
-function byC(k){return ITEMS.filter(function(it){return it.c===k})}
+function byC(k){var c=CORN.filter(function(x){return x.k===k})[0];return c?c.items:[]}
 function stat(k){
   var a=byC(k),n=0,r=0;
   a.forEach(function(it){var v=ST.ans[it.id];if(v!=null){n++;if(v===it.ans)r++}});
@@ -117,7 +120,7 @@ function home(){
   HUB.last.clear('vocab');
   var n=0;ITEMS.forEach(function(it){if(ST.ans[it.id]!=null)n++});
   var h='<h1>어휘</h1><p class="sub">영어2 능률(오) 4과 · 금천고 · 청석고 · 주성고'+(TEACH?' · 선생님용(정답 표시)':'')+'</p>';
-  h+='<div class="rule"><p>본문에 나온 단어로 단어 함정, 유의어, 반의어, 다의어를 익혀요.</p><p>문제를 풀면 바로 정답과 해설이 나와요. 코너 순서는 상관없어요.</p></div><div class="menu">';
+  h+='<div class="rule"><p><b>하루 최소 한 묶음(약 35문제)</b>씩 풀어요. 위에서부터 차례로 하면 돼요.</p><p>한 묶음에 단어 함정, 유의어, 반의어, 다의어가 골고루 섞여 있어요. 문제를 풀면 바로 정답과 해설이 나와요.</p></div><div class="menu">';
   CORN.forEach(function(c,i){
     var s=stat(c.k),dn=s.n===s.N;
     h+='<button data-c="'+c.k+'" class="'+(dn?'done':'')+'"><b>'+esc(c.name)+' <span class="stat">'+(s.n?(s.n+' / '+s.N+' 풀음 · 정답 '+s.r):'')+'</span></b><span>'+esc(c.desc)+' · '+s.N+'문제</span></button>';
@@ -133,10 +136,11 @@ function corner(k,onlyWrong){
   var c=CORN[ci],list=byC(k);
   if(onlyWrong)list=list.filter(function(it){return ST.ans[it.id]!=null&&ST.ans[it.id]!==it.ans});
   HUB.last.set('vocab',{k:k,w:onlyWrong?1:0,a:0});
-  var h='<div class="rnav"><button id="tl">코너 목록</button><div class="t"><b>'+esc(c.name)+'</b>'+esc(c.desc)+'</div><button id="pv"'+(ci===0?' disabled':'')+'>이전</button><button id="nx"'+(ci===CORN.length-1?' disabled':'')+'>다음</button></div>';
+  var h='<div class="rnav"><button id="tl">묶음 목록</button><div class="t"><b>'+esc(c.name)+'</b>'+esc(c.desc)+'</div><button id="pv"'+(ci===0?' disabled':'')+'>이전</button><button id="nx"'+(ci===CORN.length-1?' disabled':'')+'>다음</button></div>';
   if(onlyWrong&&!list.length)h+='<p class="ask">다시 풀 문제가 없어요.</p>';
   list.forEach(function(it,i){
     var sel=ST.ans[it.id],done=sel!=null||TEACH;
+    if(!i||list[i-1].c!==it.c)h+='<div class="grp"><b>'+esc(GN[it.c].name)+'</b> '+esc(GN[it.c].desc)+'</div>';
     h+='<div class="qs" id="q'+it.id+'"><div class="qh"><span class="qn">'+(byC(k).indexOf(it)+1)+'</span><div class="qt">'+(it.c==='trap'?'본문 문장 4개 중에서 골라요.':sentHTML(it)+stemHTML(it))+'</div></div><div class="ask">'+esc(it.q)+'</div><div class="ops">';
     it.opts.forEach(function(o,j){h+=optHTML(it,j)});
     h+='</div>'+(done?fbHTML(it):'')+'</div>';
