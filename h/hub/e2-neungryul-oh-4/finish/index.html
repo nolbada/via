@@ -147,7 +147,7 @@ function card(w){
   var it=w.it,mn=w.bad&&w.sel!=null?' · 내 답 <span class="mine">'+LT[w.sel]+'</span>':'';
   if(w.k==='voc'){
     if(it.c==='trap'){
-      h+='본문과 뜻이 달라진 문장은?';
+      h+=esc(it.q||'본문과 뜻이 달라진 문장은?');
       it.vars.forEach(function(v,k){h+='<div class="vr"><b>'+LT[k]+'</b> '+esc(v.text)+'</div>'});
       h+='<div class="a">정답 <b>'+LT[it.ans]+'</b>'+mn+'</div><div class="ko">원문: '+esc((function(v){return v.text.slice(0,v.p)+v.old+v.text.slice(v.p+v.new.length)})(it.vars[it.ans]))+'</div><div class="ko">'+esc(it.vars[it.ans].ko)+'</div>';
       var v=it.vars[it.ans];h+='<div class="ko">바뀐 단어: '+esc(v.o)+' ('+esc(v.og)+') → '+esc(v.s)+' ('+esc(v.sg)+')</div>';
@@ -157,11 +157,12 @@ function card(w){
       h+='<b>'+esc(it.w)+'</b> <span class="bs">'+esc(it.wg)+'</span> ('+(it.c==='syn'?'뜻이 가까운 것':'뜻이 반대인 것')+')<div class="a">'+(w.bad?'내 답 <span class="mine">'+esc(it.opts[w.sel])+'</span> → ':'')+'정답 <b>'+esc(it.opts[it.ans])+'</b> <span class="bs">'+esc(it.gl[it.ans][1])+'</span></div><div class="ko">'+esc(it.en.join(''))+'<br>'+esc(it.ko)+'</div>';
     }
   }else if(w.k==='gra'){
-    h+=esc(it.en)+'<div class="a">고친 답 <b>'+esc(it.fx)+'</b>'+(w.a&&w.a.f?' · 내 답 <span class="mine">'+esc(w.a.f)+'</span>':'')+'</div><div class="ko">'+esc(it.tag)+' · '+esc(it.ru)+'</div><div class="ko">'+esc(it.ko)+'</div>';
+    h+=esc(it.en)+'<div class="a">'+(it.fx?'고친 답 <b>'+esc(it.fx)+'</b>'+(w.a&&w.a.f?' · 내 답 <span class="mine">'+esc(w.a.f)+'</span>':''):'<b>이상 없는 문장</b>이에요')+'</div>'+(it.tag?'<div class="ko">'+esc(it.tag)+' · '+esc(it.ru)+'</div>':'')+'<div class="ko">'+esc(it.ko)+'</div>';
   }else{
     h+=esc(it.en)+'<div class="a">'+(it.sp?'고친 답 <b>'+esc(it.fx)+'</b>'+(w.a&&w.a.f?' · 내 답 <span class="mine">'+esc(w.a.f)+'</span>':''):'<b>이상 없는 문장</b>이에요')+'</div>';
     if(it.orig_en)h+='<div class="ko">원문: '+esc(it.orig_en)+'</div>';
-    h+='<div class="ko">'+(it.ru||[]).map(esc).join('<br>')+'</div><div class="ko">'+esc(it.ko)+'</div>';
+    if(it.t==='st'&&it.sp&&it.fixed)h+='<div class="ko">바르게 고친 문장: '+esc(it.fixed)+'</div>';
+    h+='<div class="ko">'+(it.ru||[]).map(esc).join('<br>')+'</div><div class="ko">'+(it.t==='st'&&it.sp?'(틀린 문장의 해석) ':'')+esc(it.ko)+'</div>';
   }
   var back={voc:'../vocab/',gra:'../grammar/',con:'../content/'}[w.k];
   h+='<div class="hint">눌러서 답 보기</div><div class="row"><a href="'+back+'">해당 단계로</a><button data-c="'+w.k+w.id+'">확인함</button></div></div>';
