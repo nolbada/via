@@ -12,18 +12,34 @@
 .hide .ko{visibility:hidden}.hide .ko.show{visibility:visible}
 .tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}
 .tools label{font-size:16px}
+.op{margin:10px 0 12px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
+.op b{display:block;margin-bottom:4px;color:var(--pri)}
+.op ul{margin:0;padding-left:20px;font-size:16px;line-height:1.7}
+.cq{margin:16px 0 8px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.cq .h{font-size:14px;font-weight:700;color:var(--pri);margin-bottom:4px}
+.cq .q{font-size:17px;font-weight:700;margin:2px 0 8px;line-height:1.55}
+.cq .o{display:block;width:100%;text-align:left;margin:6px 0;padding:11px 12px;border:2px solid var(--line);border-radius:10px;background:var(--bg);font:inherit;font-size:16px;color:var(--ink)}
+.cq .o.ok{border-color:var(--ok);background:#eaf6ee}.cq .o.no{border-color:#d6a24a;background:#fff6e6}
+.cq .fb2{margin-top:8px;font-size:15px;line-height:1.65}
+.cq .fb2 .res{font-weight:700;margin-bottom:2px}
+.cq .ev{margin:6px 0;padding-left:10px;border-left:3px solid #c9d6e6}
+.cq .ev .k{color:var(--sub)}
+.cq .wdl{font-size:14px;color:var(--sub);line-height:1.7}
+.cq .wdl b{color:var(--ink)}
 </style>
 </head><body>
 <div class="w" id="app"></div>
 <script src="../steps.js"></script>
 <script src="../../../books/e2-neungryul-oh-4/L4.js"></script>
+<script src="extra.js"></script>
 <script src="../../hub.js"></script>
 <script>
 (function(){
 var HUB=window.HUB,esc=HUB.esc,app=document.getElementById('app');
 var BID='e2-neungryul-oh-4',RAW=TFDATA[BID+'|4'];HUB.bar('read');
 var SECS=RAW.secs,META=RAW.meta,KEY='hub_'+BID+'_read';
-var ST=HUB.get(KEY)||{done:{},fs:19,hide:false,bm:null};
+var ST=HUB.get(KEY)||{done:{},fs:19,hide:false,bm:null};ST.q=ST.q||{};
+var X=(window.READX&&READX[BID+'|4'])||[],PERM=[[1,0,2],[2,1,0],[0,2,1],[1,2,0],[2,0,1],[1,0,2],[0,2,1]];
 function save(){HUB.put(KEY,ST);var n=Object.keys(ST.done).filter(function(k){return ST.done[k]}).length;HUB.setStep('read',{done:n===SECS.length,count:n,N:SECS.length})}
 function list(){
   HUB.last.clear('read');
@@ -35,13 +51,31 @@ function list(){
   app.querySelectorAll('[data-s]').forEach(function(b){b.onclick=function(){open(+b.getAttribute('data-s'))}});
   document.getElementById('foot')&&document.getElementById('foot').remove();window.scrollTo(0,0);
 }
+function cqHTML(si,x){
+  var P=PERM[si%PERM.length],sel=ST.q[si],h='<div class="cq"><div class="h">확인 문제</div><div class="q">'+esc(x.q)+'</div>';
+  P.forEach(function(oi){
+    var c='o';if(sel!=null){if(oi===x.a)c+=' ok';else if(oi===sel)c+=' no'}
+    h+='<button type="button" class="'+c+'" data-o="'+oi+'"'+(sel!=null?' disabled':'')+'>'+esc(x.o[oi])+'</button>';
+  });
+  if(sel!=null){
+    var S=SECS[si],good=sel===x.a;
+    h+='<div class="fb2"><div class="res">'+(good?'정답이에요':'다시 확인해 봐요. 정답은 초록색이에요')+'</div><div>'+esc(x.why)+'</div>';
+    x.ev.forEach(function(n){var t=S.sents[n-1];h+='<div class="ev"><b>'+n+'.</b> '+esc(t.en)+'<div class="k">'+esc(t.ko)+'</div></div>'});
+    h+='<div class="wdl">'+x.wd.map(function(w){return '<div><b>'+esc(w[0])+'</b> '+esc(w[1])+'</div>'}).join('')+'</div>';
+    h+='<div class="act2"><button type="button" id="rq" class="ghost">다시 풀기</button></div></div>';
+  }
+  return h+'</div>';
+}
 function open(si){
   var s=SECS[si];
   var h='<div class="rnav"><button id="tl">영역 목록</button><div class="t"><b>본문 '+esc(s.key)+'</b>'+esc(s.title.split(' · ')[0])+'</div><button id="pv"'+(si===0?' disabled':'')+'>이전</button><button id="nx"'+(si===SECS.length-1?' disabled':'')+'>다음</button></div>';
   h+='<div class="tools"><span class="sz"><button id="fm">가-</button><button id="fp">가+</button></span><label class="chk"><input type="checkbox" id="hd"'+(ST.hide?' checked':'')+'> 해석 가리기 (눌러서 보기)</label></div>';
+  var x=X[si];
+  if(x)h+='<div class="op"><b>먼저 큰 그림</b><ul>'+x.sum.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul></div>';
   h+='<div id="rds"'+(ST.hide?' class="hide"':'')+' style="--fs:'+ST.fs+'px">';
   s.sents.forEach(function(x,i){h+='<div class="rd"><div class="en"><span class="no">'+(i+1)+'</span>'+esc(x.en)+'</div><div class="ko" data-ko="1">'+esc(x.ko)+'</div></div>'});
   h+='</div>';
+  if(x)h+=cqHTML(si,x);
   app.innerHTML=h;
   var f=document.getElementById('foot');if(!f){f=document.createElement('div');f.id='foot';document.body.appendChild(f)}
   f.innerHTML='<div class="info"><b>'+(ST.done[si]?'읽음 표시됨':'다 읽었나요?')+'</b></div><button id="dn"'+(ST.done[si]?' class="ghost"':'')+'>'+(ST.done[si]?'읽음 취소':'다 읽었어요')+'</button>';
@@ -52,6 +86,8 @@ function open(si){
   document.getElementById('fp').onclick=function(){ST.fs=Math.min(26,ST.fs+1);save();document.getElementById('rds').style.setProperty('--fs',ST.fs+'px')};
   document.getElementById('hd').onchange=function(){ST.hide=this.checked;save();document.getElementById('rds').className=ST.hide?'hide':''};
   app.querySelectorAll('[data-ko]').forEach(function(k){k.onclick=function(){if(ST.hide)k.classList.toggle('show')}});
+  app.querySelectorAll('[data-o]').forEach(function(b){b.onclick=function(){ST.q[si]=+b.getAttribute('data-o');save();var y=scrollY;open(si);scrollTo(0,y)}});
+  var rq=document.getElementById('rq');if(rq)rq.onclick=function(){delete ST.q[si];save();var y=scrollY;open(si);scrollTo(0,y)};
   document.getElementById('dn').onclick=function(){ST.done[si]=!ST.done[si];save();open(si)};
   window.scrollTo(0,0);
   HUB.last.set('read',{si:si,a:0});HUB.last.track('read','.rd',function(){return {si:si}});
