@@ -26,7 +26,11 @@
 .sq{cursor:pointer}
 .sq .sl{line-height:1.8;color:#2a6496}
 .sq.on .sl{padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid #e2e8f0;font-weight:700}
-.sq:not(.on) .e,.sq:not(.on) .k,.sq:not(.on) .nt,.sq:not(.on) .ez{display:none}
+.sq:not(.on) .e,.sq:not(.on) .k,.sq:not(.on) .nt,.sq:not(.on) .ez,.sq:not(.on) .pr{display:none}
+.pn{color:#c2571a;font-weight:700;font-size:.92em}
+.sq .pr{margin-top:8px;padding:8px 10px;background:#fff4ea;border-left:3px solid #e07a1f;border-radius:4px;line-height:1.7}
+.sq .pr i{display:block;font-style:normal;font-size:12px;font-weight:700;color:#c2571a;margin-bottom:2px}
+.sq .pr span{color:#6b5a48;font-size:.9em}
 .sq .hint{margin-top:8px;font-size:13px;font-weight:700;color:#2a6496;text-align:center;padding:6px;border:1px dashed #8ab4d4;border-radius:8px}
 .sq.on .hint{display:none}
 .tools #all{padding:6px 12px;border:1px solid #8ab4d4;background:#fff;color:#2a6496;border-radius:8px;font-size:14px;font-weight:700}
@@ -58,6 +62,7 @@
 <script src="../steps.js"></script>
 <script src="../../../books/e2-neungryul-oh-4/L4.js"></script>
 <script src="extra.js"></script>
+<script src="pron.js"></script>
 <script src="../../../data/e2-neungryul-oh-4.js"></script>
 <script src="../../hub.js"></script>
 <script>
@@ -104,6 +109,12 @@ function cqHTML(si,x){
   }
   return h+'</div>';
 }
+function annot(text,ents){
+  var out='',cur=0,i,e,p;
+  for(i=0;i<ents.length;i++){e=ents[i];p=text.indexOf(e.k,cur);if(p<0)continue;
+    out+=esc(text.slice(cur,p+e.k.length))+'<span class="pn">(='+esc(e.n)+')</span>';cur=p+e.k.length}
+  return out+esc(text.slice(cur));
+}
 function open(si){
   var s=SECS[si];
   var h='<div class="rnav"><button id="tl">영역 목록</button><div class="t"><b>본문 '+esc(s.key)+'</b>'+esc(s.title.split(' · ')[0])+'</div><button id="pv"'+(si===0?' disabled':'')+'>이전</button><button id="nx"'+(si===SECS.length-1?' disabled':'')+'>다음</button></div>';
@@ -111,12 +122,12 @@ function open(si){
   var x=X[si];
   h+='<div id="rds" style="--fs:'+ST.fs+'px">';
   s.sents.forEach(function(t,i){
-    var j=JJ[nrm(t.en)];
+    var j=JJ[nrm(t.en)],PR=(window.PRON&&PRON[si+'.'+i])||[];
     h+='<div class="rd sq" style="font-size:var(--fs)"><span class="no">'+(i+1)+'</span><button type="button" class="bk">책갈피</button>';
     h+='<div class="sl">'+esc(j&&j.e.length===j.k.length?j.e.join(' / '):t.en)+'</div>';
-    if(j&&j.e.length===j.k.length){j.e.forEach(function(e,k){h+='<div class="e">'+esc(e)+'</div><div class="k">&#8627; '+esc(j.k[k])+'</div>'})}
+    if(j&&j.e.length===j.k.length){j.e.forEach(function(e,k){h+='<div class="e">'+esc(e)+'</div><div class="k">&#8627; '+annot(j.k[k],PR.filter(function(q){return q[1]===k&&q[2]}).map(function(q){return {k:q[2],n:q[3]}}))+'</div>'})}
     else h+='<div class="e">'+esc(t.en)+'</div>';
-    h+='<div class="nt"><i>이어 읽으면</i>'+esc(t.ko)+'</div>'+(EASY[si]&&EASY[si][i]?'<div class="ez"><i>쉽게 말하면</i>'+esc(EASY[si][i])+'</div>':'')+'<div class="hint">슬래시대로 읽고 뜻을 떠올려 본 뒤, 눌러서 펼치기</div></div>';
+    h+='<div class="nt"><i>이어 읽으면</i>'+annot(t.ko,PR.filter(function(q){return q[5]}).map(function(q){return {k:q[5],n:q[3]}}))+'</div>'+(PR.length?(function(){var seen={},r='';PR.forEach(function(q){var key=q[0]+'|'+q[3];if(seen[key])return;seen[key]=1;r+='<div><b>'+esc(q[0])+'</b> = '+esc(q[3])+' <span>('+esc(q[4])+')</span></div>'});return '<div class="pr"><i>대명사가 가리키는 것</i>'+r+'</div>'})():'')+(EASY[si]&&EASY[si][i]?'<div class="ez"><i>쉽게 말하면</i>'+esc(EASY[si][i])+'</div>':'')+'<div class="hint">슬래시대로 읽고 뜻을 떠올려 본 뒤, 눌러서 펼치기</div></div>';
   });
   h+='</div>';
   h+='<div class="gist"><b>결국 이 얘기</b><p>'+esc(GIST[si]||'')+'</p></div>';
