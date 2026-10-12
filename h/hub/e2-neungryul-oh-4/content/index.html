@@ -2,15 +2,221 @@
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
-<title>내용 어색한 곳 찾기 · 영어2 능률(오) 4과</title>
+<title>내용 · 영어2 능률(오) 4과</title>
 <link rel="stylesheet" href="../../hub.css">
+<style>
+.qs{margin:10px 0 18px;padding:14px 14px 12px;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 1px 3px rgba(20,40,70,.06)}
+.qs .qh{display:flex;gap:10px;align-items:flex-start}
+.qs .qn{flex:none;width:30px;height:30px;border-radius:15px;background:#e5e8ee;font-weight:700;font-size:14px;text-align:center;line-height:30px}
+.qs .qt{flex:1;font-size:18px;line-height:2.05}
+.tk{display:inline;padding:3px 2px;margin:0;border:0;background:none;font:inherit;color:inherit;border-radius:6px;cursor:pointer}
+.tk.sel{background:#dbe7f5;box-shadow:0 0 0 2px #9db9d8}
+.tk.err{background:#fff0b8;font-weight:700}
+.tk.mine{background:#ffe3c2;box-shadow:0 0 0 2px #e0a050}
+.qs .ko{margin:6px 0 2px;color:var(--sub);font-size:15px;line-height:1.6}
+.qs .wd{margin:6px 0 4px;font-size:14px;line-height:1.7;color:var(--sub)}
+.qs .wd b{color:var(--ink);font-weight:700}
+.qs .wd span{display:inline-block;margin-right:10px}
+.qs .bs{color:var(--sub);font-size:14px;font-weight:400}
+.qs .ask{margin:8px 0 6px;font-size:15px}
+.act{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.act input{flex:1;min-width:140px;font-size:17px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-family:inherit}
+.act button{font-size:16px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-family:inherit}
+.act button.go{background:var(--pri);border-color:var(--pri);color:#fff;font-weight:700}
+.act .hint{flex:1 1 100%;font-size:14px;color:var(--sub)}
+.fb{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--soft);font-size:16px;line-height:1.7}
+.fb .res{font-weight:700;margin-bottom:2px}
+.fb .res.ok{color:var(--ok)}.fb .res.re{color:#8a5a00}
+.fb p{margin:4px 0}
+.fb .lab{display:inline-block;min-width:54px;font-weight:700;color:var(--pri)}
+.fb mark{background:#fff0b8;padding:0 2px;border-radius:3px}
+.fb .ko{color:var(--sub)}
+.fb .gl{font-size:15px}
+.fb .gl .bs{display:block;margin-left:54px}
+.cx{color:var(--sub);font-size:15px;line-height:1.7;margin:2px 0}
+.cx.tg{color:var(--ink);font-size:18px;line-height:2.05;margin:4px 0}
+.cx .cl{display:block;font-size:13px;color:#8a93a3}
+.fb .ev{margin:4px 0 8px;padding-left:10px;border-left:3px solid #c9d6e6}
+.fb .ev .k{color:var(--sub)}
+.fb .pt{margin:4px 0 8px;padding-left:10px;border-left:3px solid #c9d6e6}
+</style>
 </head><body>
 <div class="w" id="app"></div>
 <script src="../steps.js"></script>
 <script src="../../../books/e2-neungryul-oh-4/L4.js"></script>
 <script src="../../hub.js"></script>
+<script src="data_a.js"></script>
+<script src="data_b.js"></script>
 <script>
-window.APP={kind:'find',step:'content',bid:'e2-neungryul-oh-4',lno:'4',title:'내용 어색한 곳 찾기',rule:['본문을 영역별로 읽어 내려가면서, 내용이 이상하게 바뀐 곳을 눌러 표시하세요.','단어나 표현이 바뀐 곳이에요. 문법 오류는 없어요.','점수는 찾은 개수에서 잘못 누른 개수를 뺀 값이에요. 마구 누르면 점수가 깎여요.','제출하기 전에는 해석과 정답을 볼 수 없어요.'],modes:[{key:'find',name:'내용 어색한 곳 찾기',desc:'본문 전체를 읽고 이상한 곳을 찾아요.'}]};
+(function(){
+var HUB=window.HUB,esc=HUB.esc,app=document.getElementById('app');
+var BID='e2-neungryul-oh-4',D=CNDATA[BID+'|4'],SECS_=TFDATA[BID+'|4'].secs,KEY='hub_'+BID+'_content';
+var TEACH=new URLSearchParams(location.search).get('t')==='1';
+HUB.bar('content');
+var ST=HUB.get(KEY)||{ans:{}};
+var CORN=D.corners,ITEMS=D.items,SEL={};
+function save(){
+  HUB.put(KEY,ST);
+  var n=0;ITEMS.forEach(function(it){if(ST.ans[it.id])n++});
+  HUB.setStep('content',{done:n===ITEMS.length,count:n,N:ITEMS.length});
+}
+function byC(k){return ITEMS.filter(function(it){return it.k===k})}
+function stat(k){
+  var a=byC(k),n=0,r=0;
+  a.forEach(function(it){var v=ST.ans[it.id];if(v){n++;if(v.r==='ok')r++}});
+  return {N:a.length,n:n,r:r};
+}
+function norm(s){return String(s||'').toLowerCase().replace(/[’‘]/g,"'").replace(/[.,;:!?"]+$/,'').replace(/^["]+/,'').replace(/\s+/g,' ').trim()}
+function toks(it){
+  var re=/\S+/g,m,o=[];
+  while((m=re.exec(it.en)))o.push({t:m[0],s:m.index,e:m.index+m[0].length});
+  return o;
+}
+function inSpan(it,t){return it.sp&&t.s<it.sp[1]&&t.e>it.sp[0]}
+function cor(it){return it.sp?it.en.slice(0,it.sp[0])+it.fx+it.en.slice(it.sp[1]):it.en}
+function corHTML(it){
+  return esc(it.en.slice(0,it.sp[0]))+'<mark>'+esc(it.fx)+'</mark>'+esc(it.en.slice(it.sp[1]));
+}
+function sentHTML(it,a,done){
+  var T=toks(it),h='',sel=SEL[it.id];
+  T.forEach(function(t,i){
+    var c='tk';
+    if(done){
+      if(inSpan(it,t))c+=' err';
+      else if(a&&a.s===i&&a.s>=0)c+=' mine';
+    }else if(sel===i)c+=' sel';
+    h+=(i?' ':'')+(done?'<span class="'+c+'">'+esc(t.t)+'</span>':'<button type="button" class="'+c+'" data-q="'+it.id+'" data-t="'+i+'">'+esc(t.t)+'</button>');
+  });
+  return h;
+}
+function wdHTML(it,done){
+  var seen={},h='',tl=it.en.toLowerCase();
+  function add(w,g){var k=w.toLowerCase();if(seen[k]||!g)return;seen[k]=1;h+='<span><b>'+esc(w)+'</b> '+esc(g)+'</span>'}
+  (it.wd||[]).forEach(function(x){
+    if(!done&&it.t==='st'&&it.sp){var key=x[0].toLowerCase().split(' ')[0].slice(0,4);if(tl.indexOf(key)<0)return}
+    add(x[0],x[1])});
+  return h?'<div class="wd">'+h+'</div>':'';
+}
+function glHTML(it){
+  var h='';
+  (it.wd||[]).forEach(function(x){if(x[2])h+='<p class="gl"><span class="lab">단어</span><b>'+esc(x[0])+'</b> <span class="bs">'+esc(x[1])+'</span><span class="bs">'+esc(x[2])+'</span></p>'});
+  if(it.ow)h+='<p class="gl"><span class="lab">원래 단어</span><b>'+esc(it.ow[0])+'</b> <span class="bs">'+esc(it.ow[1])+'</span></p>';
+  return h;
+}
+function fbHTML(it,a){
+  var h='<div class="fb">';
+  if(!TEACH){
+    var rr=a.r==='ok'?['ok','정답이에요']:(a.r==='sp'?['re','틀린 곳은 찾았어요. 고친 답을 확인해 봐요']:['re','다시 확인해 봐요']);
+    h+='<div class="res '+rr[0]+'">'+rr[1]+'</div>';
+  }
+  if(it.sp){
+    if(it.t==='sw'){h+='<p><span class="lab">본문</span>'+esc(it.orig_en)+'</p>'}
+    else{h+='<p><span class="lab">정답</span>'+esc(it.fixed)+'</p>'}
+    h+='<p><span class="lab">고치기</span><b>'+esc(it.en.slice(it.sp[0],it.sp[1]))+'</b> &rarr; <b>'+esc(it.fx)+'</b></p>';
+    h+='<p><span class="lab">종류</span>'+esc(it.tag)+'</p>';
+    h+='<p class="pt">'+it.ru.map(esc).join('<br>')+'</p>';
+  }else{
+    h+='<p><span class="lab">정답</span>이 문장은 본문 내용과 같아요. 고칠 곳이 없어요.</p>';
+    if(it.ru&&it.ru.length)h+='<p class="pt">'+it.ru.map(esc).join('<br>')+'</p>';
+  }
+  if(it.t==='st'){
+    var S=SECS_[+it.k.slice(1)].sents;
+    h+='<p><span class="lab">근거</span>본문의 이 문장들을 보면 돼요.</p>';
+    it.ev.forEach(function(n){var q=S[n-1];if(q)h+='<div class="ev"><b>'+n+'.</b> '+esc(q.en)+'<div class="k">'+esc(q.ko)+'</div></div>'});
+  }
+  h+=glHTML(it);
+  h+='<p class="ko">'+esc(it.t==='sw'?it.ko:it.ko)+'</p>';
+  if(it.t==='sw'){
+    if(it.pre)h+='<p class="ko cl2">앞 문장: '+esc(it.prek)+'</p>';
+    if(it.nx)h+='<p class="ko cl2">뒤 문장: '+esc(it.nxk)+'</p>';
+  }
+  h+='</div>';
+  return h;
+}
+function actHTML(it){
+  var sel=SEL[it.id],T=toks(it),h='<div class="act">';
+  if(sel!=null){
+    h+='<span class="hint"><b>'+esc(T[sel].t)+'</b> 자리를 어떻게 고칠까요? 바뀌는 말만 쓰면 돼요.</span><input type="text" id="fx'+it.id+'" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="고친 형태"><button type="button" class="go" data-ok="'+it.id+'">확인</button>';
+  }else{
+    h+='<span class="hint">어색하거나 본문과 다른 곳이 있으면 그 단어를 눌러 보세요. 없으면 아래 버튼을 눌러요.</span>';
+  }
+  h+='<button type="button" data-no="'+it.id+'">이상 없음</button></div>';
+  return h;
+}
+function home(){
+  HUB.last.clear('content');
+  var h='<h1>내용</h1><p class="sub">영어2 능률(오) 4과 · 금천고 · 청석고 · 주성고'+(TEACH?' · 선생님용(정답 표시)':'')+'</p>';
+  h+='<div class="rule"><p>밑줄이 없어요. 이 과 본문 내용과 다른 곳을 직접 찾아요.</p><p>두 종류가 섞여 있어요. 첫째, 본문 문장의 단어 하나가 다른 뜻으로 바뀐 문장이에요. 회색 앞뒤 문장을 보고 흐름에 어색한 곳을 찾아요. 둘째, 본문 내용을 영어로 설명한 문장인데 본문과 다른 곳이 있어요.</p><p>틀린 곳을 누르고 본문에 맞게 고쳐 써요. 틀린 곳이 없는 문장도 섞여 있어요. 그때는 &lsquo;이상 없음&rsquo;을 눌러요.</p><p>단어 뜻은 문장 아래에 있어요. 해설에서는 단어를 원래 모양(원형)으로 풀어서 설명해요.</p></div><div class="menu">';
+  CORN.forEach(function(c){
+    var s=stat(c.k),dn=s.n===s.N;
+    h+='<button data-c="'+c.k+'" class="'+(dn?'done':'')+'"><b>'+esc(c.name)+' <span class="stat">'+(s.n?(s.n+' / '+s.N+' 풀음 · 정답 '+s.r):'')+'</span></b><span>'+esc(c.desc)+' · '+s.N+'문제</span></button>';
+  });
+  h+='</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
+  app.innerHTML=h;
+  var f=document.getElementById('foot');if(f)f.remove();
+  app.querySelectorAll('[data-c]').forEach(function(b){b.onclick=function(){corner(b.getAttribute('data-c'))}});
+  window.scrollTo(0,0);
+}
+function corner(k,onlyWrong){
+  var ci=0;CORN.forEach(function(c,i){if(c.k===k)ci=i});
+  var c=CORN[ci],list=byC(k),all=byC(k);
+  if(onlyWrong)list=list.filter(function(it){var a=ST.ans[it.id];return a&&a.r!=='ok'});
+  HUB.last.set('content',{k:k,w:onlyWrong?1:0,a:0});
+  var h='<div class="rnav"><button id="tl">코너 목록</button><div class="t"><b>'+esc(c.name)+'</b>'+esc(c.desc)+'</div><button id="pv"'+(ci===0?' disabled':'')+'>이전</button><button id="nx"'+(ci===CORN.length-1?' disabled':'')+'>다음</button></div>';
+  if(onlyWrong&&!list.length)h+='<p class="ask">다시 풀 문제가 없어요.</p>';
+  list.forEach(function(it){
+    var a=ST.ans[it.id],done=!!a||TEACH;
+    h+='<div class="qs" id="q'+it.id+'"><div class="qh"><span class="qn">'+(all.indexOf(it)+1)+'</span><div class="qt">'+(it.t==='sw'&&it.pre?'<div class="cx"><span class="cl">앞 문장</span>'+esc(it.pre)+'</div>':'')+'<div class="cx tg">'+sentHTML(it,a,done)+'</div>'+(it.t==='sw'&&it.nx?'<div class="cx"><span class="cl">뒤 문장</span>'+esc(it.nx)+'</div>':'')+'</div></div>'+wdHTML(it,done);
+    h+=done?fbHTML(it,a||{r:'ok'}):actHTML(it);
+    h+='</div>';
+  });
+  app.innerHTML=h;
+  var s=stat(k);
+  var f=document.getElementById('foot');if(!f){f=document.createElement('div');f.id='foot';document.body.appendChild(f)}
+  var wrongN=all.filter(function(it){var a=ST.ans[it.id];return a&&a.r!=='ok'}).length;
+  f.innerHTML='<div class="info"><b>'+s.n+' / '+s.N+' 풀었어요</b><small>정답 '+s.r+'개'+(wrongN?' · 다시 볼 문제 '+wrongN+'개':'')+'</small></div>'+(wrongN&&!onlyWrong?'<button id="rw">틀린 문제만 다시</button>':(onlyWrong?'<button id="all" class="ghost">전체 보기</button>':''));
+  document.getElementById('tl').onclick=function(){f.remove();home()};
+  document.getElementById('pv').onclick=function(){if(ci>0)corner(CORN[ci-1].k)};
+  document.getElementById('nx').onclick=function(){if(ci<CORN.length-1)corner(CORN[ci+1].k)};
+  var rw=document.getElementById('rw');if(rw)rw.onclick=function(){
+    all.forEach(function(it){var a=ST.ans[it.id];if(a&&a.r!=='ok'){delete ST.ans[it.id];delete SEL[it.id]}});
+    save();corner(k);
+  };
+  var al=document.getElementById('all');if(al)al.onclick=function(){corner(k)};
+  if(!TEACH){
+    function item(id){return ITEMS.filter(function(x){return x.id===id})[0]}
+    function redo(y,focusId){corner(k,onlyWrong);scrollTo(0,y);if(focusId){var i=document.getElementById('fx'+focusId);if(i)i.focus({preventScroll:true})}}
+    app.querySelectorAll('.tk[data-q]').forEach(function(b){b.onclick=function(){
+      var id=+b.getAttribute('data-q');if(ST.ans[id])return;
+      SEL[id]=+b.getAttribute('data-t');redo(scrollY,id);
+    }});
+    app.querySelectorAll('[data-no]').forEach(function(b){b.onclick=function(){
+      var id=+b.getAttribute('data-no'),it=item(id);if(ST.ans[id])return;
+      ST.ans[id]={s:-1,f:'',r:it.sp?'no':'ok'};delete SEL[id];save();redo(scrollY);
+    }});
+    function submit(id){
+      var it=item(id),i=document.getElementById('fx'+id);if(ST.ans[id]||SEL[id]==null)return;
+      var T=toks(it),t=T[SEL[id]],v=i?i.value:'';
+      if(!norm(v)){if(i)i.focus();return}
+      var r='no';
+      if(it.sp){if(inSpan(it,t)){r=([it.fx].concat(it.alt||[]).some(function(z){return norm(z)===norm(v)}))?'ok':'sp'}}
+      ST.ans[id]={s:SEL[id],f:v,r:r};delete SEL[id];save();redo(scrollY);
+    }
+    app.querySelectorAll('[data-ok]').forEach(function(b){b.onclick=function(){submit(+b.getAttribute('data-ok'))}});
+    app.querySelectorAll('.act input').forEach(function(i){i.onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();submit(+i.id.slice(2))}}});
+  }
+  HUB.last.track('content','.qs',function(){return {k:k,w:onlyWrong?1:0}});
+  window.scrollTo(0,0);
+}
+(function(){
+  var L=HUB.last.get('content');
+  home();
+  if(L&&L.k&&CORN.some(function(c){return c.k===L.k})){
+    corner(L.k,false);
+    setTimeout(function(){HUB.last.scrollTo('.qs',L.a||0)},40);
+    HUB.last.toast('마지막으로 풀던 곳('+CORN.filter(function(c){return c.k===L.k})[0].name+' · '+((L.a||0)+1)+'번)에서 이어서 열었어요','처음부터',function(){var f=document.getElementById('foot');if(f)f.remove();home()});
+  }
+})();
+})();
 </script>
-<script src="../../engine.js"></script>
 </body></html>
