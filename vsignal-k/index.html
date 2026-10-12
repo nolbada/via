@@ -899,6 +899,7 @@ function recCard(kind){
     h+='<div class="rec-t">Day '+S.day+' 수업</div><div class="rec-d">'+dateLbl()+' '+timeLbl()+'</div>'
      +'<div class="rec-big '+(f.pass?'ok':'no')+'">'+(f.pass?'통과':'다시')+'</div>'
      +'<div class="rec-l">실수 '+f.total+'개'+(f.total?' (-'+(2*f.total)+'점)':'')+' · 문장 연습 '+f.sm+' · 마무리 퀴즈 '+f.qm+'</div>'
+     +'<div class="rec-q">통과 기준 : 실수 '+CUT+'개 이하 · '+(CUT+1)+'개부터 "다시"</div>'
      +(f.pass?'':'<div class="rec-l">'+(f.redo.length?'다음 수업 때 다시: 책 '+f.redo.join(', ')+'번 문장':'다음 수업 때 다시: Day '+S.day)+'</div>');
   }else{
     var st=rvState(),oks=st.items.filter(function(it){return it.ok;}).length,all=st.items.length+(st.extra||[]).length;
