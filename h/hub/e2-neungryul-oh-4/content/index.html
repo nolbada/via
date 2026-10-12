@@ -168,7 +168,7 @@ function corner(k,onlyWrong){
     var a=ST.ans[it.id],done=!!a||TEACH;
     h+='<div class="qs" id="q'+it.id+'"><div class="qh"><span class="qn">'+(all.indexOf(it)+1)+'</span><div class="qt">'+(it.t==='sw'&&it.pre?'<div class="cx"><span class="cl">앞 문장</span>'+esc(it.pre)+'</div>':'')+'<div class="cx tg">'+sentHTML(it,a,done)+'</div>'+(it.t==='sw'&&it.nx?'<div class="cx"><span class="cl">뒤 문장</span>'+esc(it.nx)+'</div>':'')+'</div></div>'+wdHTML(it,done);
     h+=done?fbHTML(it,a||{r:'ok'}):actHTML(it);
-    h+='</div>';
+    h+='<div class="wkr">'+HUB.weak.btn('con'+it.id)+'</div></div>';
   });
   app.innerHTML=h;
   var s=stat(k);
