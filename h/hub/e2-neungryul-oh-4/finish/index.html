@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>시험 직전 마무리 · 영어2 능률(오) 4과</title>
+<link rel="stylesheet" href="../../hub.css">
+<style>
+.sn{font-size:19px;line-height:2.1;margin:8px 0 14px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.sn .bk{display:inline-block;min-width:74px;text-align:center;padding:0 8px;margin:0 2px;border-bottom:3px solid var(--pri);color:var(--pri);font-weight:700}
+.sn .bk.ok{color:var(--ok);border-color:var(--ok)}.sn .bk.no{color:#b26a00;border-color:#d6a24a;background:#fff6e6}
+.bb{margin:10px 0 4px;font-size:15px;color:var(--sub);font-weight:700}
+.os{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.os button{font:inherit;font-size:17px;padding:11px 8px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.os button.sel{border-color:var(--pri);background:#eaf2fb}
+.os button.right{border-color:var(--ok);background:#eaf6ee}.os button.mine{border-color:#d6a24a;background:#fff6e6}
+.os button:disabled{opacity:1}
+.fbk{margin-top:12px;font-size:15px;line-height:1.7}
+.fbk .res{font-weight:700;margin-bottom:4px}
+.fbk .g{margin:4px 0;padding-left:10px;border-left:3px solid #c9d6e6}
+.fbk .bs,.bs{color:var(--sub);font-size:14px}
+.wl{font-size:14px;line-height:1.75;color:var(--sub)}.wl b{color:var(--ink)}
+.cd{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0;background:#fff;font-size:16px;line-height:1.65}
+.cd .tg{display:inline-block;font-size:12px;font-weight:700;color:var(--pri);background:#eaf2fb;border-radius:6px;padding:1px 7px;margin-bottom:4px}
+.cd .a{margin-top:4px}.cd .a b{color:var(--ok)}
+.cd .ko{color:var(--sub);font-size:14px}
+.cd .mine{color:#b26a00}
+.cd .row{display:flex;gap:8px;margin-top:8px}
+.cd .row button,.cd .row a{font:inherit;font-size:14px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);text-decoration:none}
+.flt{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.flt button{font:inherit;font-size:14px;padding:6px 10px;border:1px solid var(--line);border-radius:16px;background:var(--bg);color:var(--ink)}
+.flt button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+</style>
+</head><body>
+<div class="w" id="app"></div>
+<script src="../steps.js"></script>
+<script src="../../../books/e2-neungryul-oh-4/L4.js"></script>
+<script src="../../hub.js"></script>
+<script src="sum.js"></script>
+<script src="../vocab/data.js"></script>
+<script src="../grammar/data.js"></script>
+<script src="../content/data_a.js"></script>
+<script src="../content/data_b.js"></script>
+<script>
+(function(){
+var HUB=window.HUB,esc=HUB.esc,app=document.getElementById('app');
+var BID='e2-neungryul-oh-4',SUM=SUMDATA[BID+'|4'],GM=SUMDATA.G,KS='hub_'+BID+'_sum',KW='hub_'+BID+'_wrongclear';
+HUB.bar('order');
+var ST=HUB.get(KS)||{r:{}},CL=HUB.get(KW)||{};
+var VD=VOCDATA[BID+'|4'],GD=GRDATA[BID+'|4'],CD=CNDATA[BID+'|4'];
+var RAW=TFDATA[BID+'|4'];
+function saveS(){HUB.put(KS,ST);sync()}
+function ordN(){var o=HUB.get('hub_'+BID+'_order')||{done:{}};return Object.keys(o.done||{}).filter(function(k){return o.done[k]}).length}
+function ordTotal(){var t=0;RAW.secs.forEach(function(s){var n=s.sents.length,per=n<=5?n:(n<=10?Math.ceil(n/2):Math.ceil(n/3));t+=Math.ceil(n/per)});return t}
+function sumN(){return Object.keys(ST.r).length}
+function sync(){var N=SUM.length+ordTotal(),n=sumN()+ordN();HUB.setStep('order',{done:n===N,count:n,N:N})}
+function wrongs(){
+  var L=[],a,v=HUB.get('hub_'+BID+'_vocab')||{ans:{}},g=HUB.get('hub_'+BID+'_grammar')||{ans:{}},c=HUB.get('hub_'+BID+'_content')||{ans:{}},rd=HUB.get('hub_'+BID+'_read')||{q:{}};
+  SUM.forEach(function(s){var r=ST.r[s.id];if(r&&!r.ok)L.push({k:'sum',id:s.id,s:s})});
+  VD.items.forEach(function(it){var x=v.ans[it.id];if(x!=null&&x!==it.ans)L.push({k:'voc',id:it.id,it:it,sel:x})});
+  GD.items.forEach(function(it){var x=g.ans[it.id];if(x&&x.r!=='ok')L.push({k:'gra',id:it.id,it:it,a:x})});
+  CD.items.forEach(function(it){var x=c.ans[it.id];if(x&&x.r!=='ok')L.push({k:'con',id:it.id,it:it,a:x})});
+  return L.filter(function(w){return !CL[w.k+w.id]});
+}
+var FLT='all';
+function home(){
+  HUB.last.clear('finish');sync();
+  var w=wrongs();
+  var h='<h1>시험 직전 마무리</h1><p class="sub">'+esc(RAW.meta.grade)+' '+esc(RAW.meta.pub)+' '+esc(RAW.meta.lesson)+' · '+esc(RAW.meta.school)+' '+esc(RAW.meta.term)+'</p>';
+  h+='<div class="rule"><p>요약문을 완성하면서 어휘를 한 번 더 잡아요.</p><p>순서배열로 본문 흐름을 확인하고, 마지막에 틀린 문제 모음으로 약한 곳만 다시 봐요.</p></div><div class="menu">';
+  h+='<button data-m="sum" class="'+(sumN()===SUM.length?'done':'')+'"><b>요약문 완성 <span class="stat">'+(sumN()?sumN()+' / '+SUM.length+' 풀음':'')+'</span></b><span>빈칸에 알맞은 단어를 골라요 · '+SUM.length+'문항</span></button>';
+  h+='<a class="card" href="../order/"><b>내용 순서배열 <span class="stat">'+(ordN()?ordN()+' / '+ordTotal()+' 완료':'')+'</span></b><span>섞인 문장을 글의 흐름대로 배열해요 · '+ordTotal()+'묶음</span></a>';
+  h+='<button data-m="wr"><b>틀린 문제 모음 <span class="stat">'+(w.length?w.length+'개':'')+'</span></b><span>어휘·어법·내용·요약에서 틀린 문제만 다시 봐요</span></button>';
+  h+='</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
+  app.innerHTML=h;var f=document.getElementById('foot');if(f)f.remove();
+  app.querySelectorAll('[data-m]').forEach(function(b){b.onclick=function(){var m=b.getAttribute('data-m');if(m==='sum')slist();else wr()}});
+  window.scrollTo(0,0);
+}
+function slist(){
+  HUB.last.set('finish',{v:'sl'});
+  var h='<div class="rnav"><button id="bk">처음</button><div class="t"><b>요약문 완성</b>7문항</div></div><div class="menu">';
+  SUM.forEach(function(s,i){var r=ST.r[s.id];h+='<button data-s="'+i+'" class="'+(r&&r.ok?'done':'')+'"><b>요약 '+(i+1)+' <span class="stat">'+(r?(r.ok?'정답':'다시 확인'):'')+'</span></b><span>'+esc(s.tag)+'</span></button>'});
+  h+='</div>';app.innerHTML=h;
+  document.getElementById('bk').onclick=home;
+  app.querySelectorAll('[data-s]').forEach(function(b){b.onclick=function(){play(+b.getAttribute('data-s'))}});
+  window.scrollTo(0,0);
+}
+function play(i){
+  HUB.last.set('finish',{v:'sp',i:i});
+  var s=SUM[i],r=ST.r[s.id],sel=r?r.sel.slice():[null,null,null],done=!!r;
+  function sent(){
+    var t=esc(s.en);
+    s.bl.forEach(function(b,k){
+      var v=sel[k],cls='bk'+(done?(sel[k]===b.a?' ok':' no'):''),txt=v==null?'('+b.L+')':esc(b.o[v]);
+      t=t.replace('{'+b.L+'}','<span class="'+cls+'">'+txt+'</span>');
+    });return t;
+  }
+  function draw(){
+    var h='<div class="rnav"><button id="tl">요약 목록</button><div class="t"><b>요약 '+(i+1)+'</b>'+esc(s.tag)+'</div><button id="pv"'+(i===0?' disabled':'')+'>이전</button><button id="nx"'+(i===SUM.length-1?' disabled':'')+'>다음</button></div>';
+    h+='<p class="bs">빈칸 '+s.bl.length+'개에 알맞은 단어를 하나씩 골라요.</p><div class="sn" id="sn">'+sent()+'</div>';
+    s.bl.forEach(function(b,k){
+      h+='<div class="bb">('+b.L+')</div><div class="os">';
+      b.o.forEach(function(w,j){
+        var c='';
+        if(done){if(j===b.a)c='right';else if(sel[k]===j)c='mine'}else if(sel[k]===j)c='sel';
+        h+='<button type="button" class="'+c+'" data-k="'+k+'" data-j="'+j+'"'+(done?' disabled':'')+'>'+esc(w)+'</button>';
+      });
+      h+='</div>';
+    });
+    if(!done){h+='<div class="act2"><button type="button" id="ck"'+(sel.indexOf(null)>=0?' disabled':'')+'>확인</button></div>'}
+    else{
+      var ok=r.ok;
+      h+='<div class="fbk"><div class="res">'+(ok?'모두 정답이에요':'다시 확인해 봐요. 초록색이 정답이에요')+'</div>';
+      h+='<div class="g"><b>완성된 요약</b><br>'+esc(s.en.replace(/\{([ABC])\}/g,function(m,L){var b=s.bl[L.charCodeAt(0)-65];return b.o[b.a]}))+'<div class="bs">'+esc(s.ko)+'</div></div>';
+      s.bl.forEach(function(b,k){
+        h+='<div class="g"><b>('+b.L+') 보기 뜻</b>'+b.o.map(function(w,j){var x=GM[w.toLowerCase()];return '<div><b'+(j===b.a?' style="color:var(--ok)"':'')+'>'+esc(w)+'</b> '+esc(x[0])+(x[1]?' <span class="bs">'+esc(x[1])+'</span>':'')+'</div>'}).join('')+'</div>';
+      });
+      h+='<div class="g"><b>본문 근거</b>';
+      s.ev.forEach(function(e){var t=RAW.secs[e[0]].sents[e[1]-1];h+='<div style="margin:4px 0"><span class="bs">본문 '+esc(RAW.secs[e[0]].key)+' '+e[1]+'번</span> '+esc(t.en)+'<div class="bs">'+esc(t.ko)+'</div></div>'});
+      h+='</div><div class="g"><b>요약문 속 단어</b><div class="wl">'+s.wd.map(function(w){var x=GM[w.toLowerCase()];return '<div><b>'+esc(w)+'</b> '+esc(x[0])+(x[1]?' <span class="bs">('+esc(x[1])+')</span>':'')+'</div>'}).join('')+'</div></div>';
+      h+='<p class="bs">출처: '+esc(s.src)+'</p><div class="act2"><button type="button" id="rq" class="ghost">다시 풀기</button></div></div>';
+    }
+    app.innerHTML=h;
+    document.getElementById('tl').onclick=slist;
+    document.getElementById('pv').onclick=function(){if(i>0)play(i-1)};
+    document.getElementById('nx').onclick=function(){if(i<SUM.length-1)play(i+1)};
+    app.querySelectorAll('[data-k]').forEach(function(b){b.onclick=function(){if(done)return;sel[+b.getAttribute('data-k')]=+b.getAttribute('data-j');var y=scrollY;draw();scrollTo(0,y)}});
+    var ck=document.getElementById('ck');if(ck)ck.onclick=function(){
+      var ok=s.bl.every(function(b,k){return sel[k]===b.a});
+      ST.r[s.id]={sel:sel.slice(),ok:ok};r=ST.r[s.id];done=true;saveS();draw();
+      document.getElementById('sn').scrollIntoView({block:'start'});window.scrollBy(0,-58);
+    };
+    var rq=document.getElementById('rq');if(rq)rq.onclick=function(){delete ST.r[s.id];saveS();play(i)};
+    if(!document.getElementById('ck')&&!done)window.scrollTo(0,0);
+  }
+  draw();window.scrollTo(0,0);
+}
+var NM={sum:'요약',voc:'어휘',gra:'어법',con:'내용'};
+function card(w){
+  var h='<div class="cd"><span class="tg">'+NM[w.k]+'</span><br>';
+  if(w.k==='sum'){
+    var s=w.s,r=ST.r[s.id];
+    h+=esc(s.tag)+'<div class="a">';
+    s.bl.forEach(function(b,k){if(r.sel[k]!==b.a)h+='('+b.L+') 내 답 <span class="mine">'+esc(b.o[r.sel[k]])+'</span> → 정답 <b>'+esc(b.o[b.a])+'</b> <span class="bs">'+esc(GM[b.o[b.a].toLowerCase()][0])+'</span><br>'});
+    h+='</div><div class="ko">'+esc(s.en.replace(/\{([ABC])\}/g,function(m,L){var b=s.bl[L.charCodeAt(0)-65];return b.o[b.a]}))+'</div>';
+    h+='<div class="row"><button data-p="'+i2(w)+'">다시 풀기</button><button data-c="'+w.k+w.id+'">확인함</button></div></div>';return h;
+  }
+  var it=w.it;
+  if(w.k==='voc'){
+    if(it.c==='trap'){
+      var v=it.vars[w.sel];
+      h+='내가 고른 문장: <span class="mine">'+esc(v.text)+'</span><div class="a">원문: <b>'+esc(it.vars[it.ans].text)+'</b></div><div class="ko">'+esc(it.vars[it.ans].ko)+'</div>';
+      h+='<div class="ko">바뀐 단어: '+esc(v.o)+' ('+esc(v.og)+') → '+esc(v.s)+' ('+esc(v.sg)+')</div>';
+    }else if(it.c==='poly'){
+      h+=esc(it.en[0])+'<b>'+esc(it.en[1])+'</b>'+esc(it.en[2])+'<div class="a">내 답 <span class="mine">'+esc(it.opts[w.sel])+'</span> → 정답 <b>'+esc(it.opts[it.ans])+'</b></div><div class="ko">'+esc(it.ko)+'</div>';
+    }else{
+      h+='<b>'+esc(it.w)+'</b> <span class="bs">'+esc(it.wg)+'</span> ('+(it.c==='syn'?'뜻이 가까운 것':'뜻이 반대인 것')+')<div class="a">내 답 <span class="mine">'+esc(it.opts[w.sel])+'</span> → 정답 <b>'+esc(it.opts[it.ans])+'</b> <span class="bs">'+esc(it.gl[it.ans][1])+'</span></div><div class="ko">'+esc(it.en.join(''))+'<br>'+esc(it.ko)+'</div>';
+    }
+  }else if(w.k==='gra'){
+    h+=esc(it.en)+'<div class="a">고친 답 <b>'+esc(it.fx)+'</b>'+(w.a.f?' · 내 답 <span class="mine">'+esc(w.a.f)+'</span>':'')+'</div><div class="ko">'+esc(it.tag)+' · '+esc(it.ru)+'</div><div class="ko">'+esc(it.ko)+'</div>';
+  }else{
+    h+=esc(it.en)+'<div class="a">'+(it.sp?'고친 답 <b>'+esc(it.fx)+'</b>'+(w.a.f?' · 내 답 <span class="mine">'+esc(w.a.f)+'</span>':''):'<b>이상 없는 문장</b>이에요')+'</div>';
+    if(it.orig_en)h+='<div class="ko">원문: '+esc(it.orig_en)+'</div>';
+    h+='<div class="ko">'+(it.ru||[]).map(esc).join('<br>')+'</div><div class="ko">'+esc(it.ko)+'</div>';
+  }
+  var back={voc:'../vocab/',gra:'../grammar/',con:'../content/'}[w.k];
+  h+='<div class="row"><a href="'+back+'">해당 단계로</a><button data-c="'+w.k+w.id+'">확인함</button></div></div>';
+  return h;
+}
+function i2(w){for(var i=0;i<SUM.length;i++)if(SUM[i].id===w.id)return i;return 0}
+function wr(){
+  HUB.last.set('finish',{v:'wr'});
+  var L=wrongs(),cnt={all:L.length,sum:0,voc:0,gra:0,con:0};L.forEach(function(w){cnt[w.k]++});
+  var h='<div class="rnav"><button id="bk">처음</button><div class="t"><b>틀린 문제 모음</b>'+L.length+'개</div></div>';
+  h+='<p class="bs">이 기기에서 풀며 틀린 문제가 모여요. 다시 확인했으면 "확인함"을 눌러 치워요.</p><div class="flt">';
+  [['all','전체'],['sum','요약'],['voc','어휘'],['gra','어법'],['con','내용']].forEach(function(f){h+='<button data-f="'+f[0]+'" class="'+(FLT===f[0]?'on':'')+'">'+f[1]+' '+cnt[f[0]]+'</button>'});
+  h+='</div>';
+  var sh=L.filter(function(w){return FLT==='all'||w.k===FLT});
+  if(!sh.length)h+='<div class="rule"><p>'+(L.length?'이 종류에는 틀린 문제가 없어요.':'아직 틀린 문제가 없어요. 어휘·어법·내용·요약을 풀고 나서 다시 와 보세요.')+'</p></div>';
+  sh.forEach(function(w){h+=card(w)});
+  app.innerHTML=h;
+  document.getElementById('bk').onclick=home;
+  app.querySelectorAll('[data-f]').forEach(function(b){b.onclick=function(){FLT=b.getAttribute('data-f');wr()}});
+  app.querySelectorAll('[data-c]').forEach(function(b){b.onclick=function(){CL[b.getAttribute('data-c')]=1;HUB.put(KW,CL);var y=scrollY;wr();scrollTo(0,y)}});
+  app.querySelectorAll('[data-p]').forEach(function(b){b.onclick=function(){play(+b.getAttribute('data-p'))}});
+  window.scrollTo(0,0);
+}
+var L=HUB.last.get('finish');
+home();
+if(L&&L.v==='sp'&&SUM[L.i])play(L.i);else if(L&&L.v==='sl')slist();else if(L&&L.v==='wr')wr();
+})();
+</script>
+</body></html>
