@@ -287,7 +287,7 @@ function totalPts(){var t=0;for(var k in store.best)t+=store.best[k].pts||0;retu
 function badge(role){return '<span class="badge role-'+CLS[role]+'">'+(LBL[role]||role)+'</span>';}
 var S=null,C=null;
 
-var CUT=2;var PASSPCT=85;
+var CUT=2;var PASSPCT=90;
 function sumArr(a){return a.reduce(function(x,y){return x+y;},0);}
 function misNow(){
   var n=S?S.res.reduce(function(x,r){return x+r.mis;},0):0;
