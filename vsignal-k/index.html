@@ -287,7 +287,7 @@ function totalPts(){var t=0;for(var k in store.best)t+=store.best[k].pts||0;retu
 function badge(role){return '<span class="badge role-'+CLS[role]+'">'+(LBL[role]||role)+'</span>';}
 var S=null,C=null;
 
-var CUT=2;
+var CUT=2;var PASSPCT=85;
 function sumArr(a){return a.reduce(function(x,y){return x+y;},0);}
 function misNow(){
   var n=S?S.res.reduce(function(x,r){return x+r.mis;},0):0;
@@ -898,8 +898,9 @@ function recCard(kind){
     var f=S.fin;
     h+='<div class="rec-t">Day '+S.day+' 수업</div><div class="rec-d">'+dateLbl()+' '+timeLbl()+'</div>'
      +'<div class="rec-big '+(f.pass?'ok':'no')+'">'+(f.pass?'통과':'다시')+'</div>'
-     +'<div class="rec-l">실수 '+f.total+'개'+(f.total?' (-'+(2*f.total)+'점)':'')+' · 문장 연습 '+f.sm+' · 마무리 퀴즈 '+f.qm+'</div>'
-     +'<div class="rec-q">통과 기준 : 실수 '+CUT+'개 이하 · '+(CUT+1)+'개부터 "다시"</div>'
+     +'<div class="rec-l">정답률 '+f.pct+'% · 실수 '+f.total+'개</div>'
+     +'<div class="rec-q">문장 연습 실수 '+f.sm+' · 마무리 퀴즈 실수 '+f.qm+'</div>'
+     +'<div class="rec-q">통과 기준 : 정답률 '+PASSPCT+'% 이상 (고른 것 중 맞힌 비율)</div>'
      +(f.pass?'':'<div class="rec-l">'+(f.redo.length?'다음 수업 때 다시: 책 '+f.redo.join(', ')+'번 문장':'다음 수업 때 다시: Day '+S.day)+'</div>');
   }else{
     var st=rvState(),oks=st.items.filter(function(it){return it.ok;}).length,all=st.items.length+(st.extra||[]).length;
@@ -1021,12 +1022,15 @@ function finishQuiz(){
   if(!prev||total<prev.mis)store.best[S.day]={mis:total};
   store.cur=null;
   save();
-  addHist({k:'lesson',d:S.day,m:total,p:total<=CUT});
+  var okN=Q.list.length;
+  S.res.forEach(function(r){var s1=days[S.day].filter(function(x){return x.n===r.n;})[0];if(s1)okN+=s1.ch.filter(function(c){return !!c.k;}).length+(s1.m?0:s1.ch.length)+s1.ch.length;});
+  var pct=Math.round(100*okN/(okN+total)),passed=pct>=PASSPCT;
+  addHist({k:'lesson',d:S.day,m:total,p:passed});
   var wl={};
   S.res.forEach(function(r){if(r.mis>0){var s0=days[S.day].filter(function(x){return x.n===r.n;})[0];if(s0)wl[r.n]={s:s0,sm:r.mis,qm:0,qc:[]};}});
   Q.list.forEach(function(it){if(it.mist>0){var o=wl[it.s.n]||(wl[it.s.n]={s:it.s,sm:0,qm:0,qc:[]});o.qm+=it.mist;o.qc.push(it.k);}});
   var wrong=Object.keys(wl).map(Number).sort(function(a,b){return a-b;}).map(function(k){return wl[k];});
-  S.fin={total:total,sm:sm,qm:qm,redo:redo,pass:total<=CUT,wrong:wrong};
+  S.fin={total:total,sm:sm,qm:qm,redo:redo,pass:passed,pct:pct,wrong:wrong};
   renderFin();
 }
 function wrongHtml(w){
