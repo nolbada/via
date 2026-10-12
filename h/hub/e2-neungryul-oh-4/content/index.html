@@ -125,7 +125,7 @@ function fbHTML(it,a){
     it.ev.forEach(function(n){var q=S[n-1];if(q)h+='<div class="ev"><b>'+n+'.</b> '+esc(q.en)+'<div class="k">'+esc(q.ko)+'</div></div>'});
   }
   h+=glHTML(it);
-  h+='<p class="ko">'+esc(it.t==='sw'?it.ko:it.ko)+'</p>';
+  h+='<p class="ko">'+(it.t==='st'&&it.sp?'(틀린 문장의 해석) ':'')+esc(it.ko)+'</p>';
   if(it.t==='sw'){
     if(it.pre)h+='<p class="ko cl2">앞 문장: '+esc(it.prek)+'</p>';
     if(it.nx)h+='<p class="ko cl2">뒤 문장: '+esc(it.nxk)+'</p>';
