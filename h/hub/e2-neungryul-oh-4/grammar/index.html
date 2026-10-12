@@ -104,7 +104,7 @@ function fbHTML(it,a){
   }
   if(it.sp){
     h+='<p><span class="lab">정답</span>'+corHTML(it)+'</p>';
-    h+='<p><span class="lab">고치기</span><b>'+esc(it.en.slice(it.sp[0],it.sp[1]))+'</b> &rarr; <b>'+esc(it.fx)+'</b></p>';
+    h+='<p><span class="lab">고치기</span><b>'+esc(it.en.slice(it.sp[0],it.sp[1]))+'</b> &rarr; <b>'+esc(it.fx)+'</b></p>'+(it.alt&&it.alt.length?'<p><span class="lab">다른 정답</span>'+it.alt.map(esc).join(', ')+'</p>':'');
     h+='<p><span class="lab">포인트</span>'+esc(it.tag)+'</p>';
     h+='<p class="pt">'+esc(it.ru)+'</p>';
     if(it.wr)h+='<p><span class="lab">왜 틀려요</span>'+esc(it.wr)+'</p>';
@@ -185,7 +185,7 @@ function corner(k,onlyWrong){
       var T=toks(it),t=T[SEL[id]],v=i?i.value:'';
       if(!norm(v)){if(i)i.focus();return}
       var r='no';
-      if(it.sp){if(inSpan(it,t)){r=(norm(v)===norm(it.fx))?'ok':'sp'}}
+      if(it.sp){if(inSpan(it,t)){r=([it.fx].concat(it.alt||[]).some(function(z){return norm(z)===norm(v)}))?'ok':'sp'}}
       ST.ans[id]={s:SEL[id],f:v,r:r};delete SEL[id];save();redo(scrollY);
     }
     app.querySelectorAll('[data-ok]').forEach(function(b){b.onclick=function(){submit(+b.getAttribute('data-ok'))}});
