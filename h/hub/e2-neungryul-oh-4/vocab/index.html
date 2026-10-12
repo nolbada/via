@@ -96,7 +96,7 @@ function fbHTML(it){
       var n1=v.onote?esc(v.old)+': '+esc(v.onote):'',n2=v.snote?esc(v.new)+': '+esc(v.snote):'';
       if(n1||n2)h+='<p class="bs">'+[n1,n2].filter(Boolean).join(' · ')+'</p>';
     });
-    h+='<p><span class="lab">원문</span>'+esc(it.vars[it.ans].text)+'</p><p class="ko">'+esc(it.vars[it.ans].ko)+'</p></div>';
+    h+='<p><span class="lab">원문</span>'+(function(v){return esc(v.text.slice(0,v.p))+'<mark>'+esc(v.old)+'</mark>'+esc(v.text.slice(v.p+v.new.length))})(it.vars[it.ans])+'</p><p class="ko">'+esc(it.vars[it.ans].ko)+'</p></div>';
     return h;
   }
   if(it.c==='syn'||it.c==='ant'){
