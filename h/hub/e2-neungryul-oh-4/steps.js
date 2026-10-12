@@ -10,5 +10,12 @@ window.HUBCFG={
   {k:'vocab',name:'어휘',desc:'단어 함정, 유의어, 반의어, 다의어를 익혀요.',href:'hub/e2-neungryul-oh-4/vocab/'},
   {k:'order',name:'시험 직전 마무리',desc:'요약문 완성 7문항, 내용 순서배열, 그리고 어휘·어법·내용에서 틀린 문제 모음이에요.',href:'hub/e2-neungryul-oh-4/finish/'},
   {k:'verb',name:'동사형 말하기 시험 대비',test:true,desc:'학원에서 꼭 시험으로 봐요. 연습모드로 충분히 익힌 뒤 선생님께 검사를 받아요.',href:'e2-neungryul-oh-4/'}
- ]
+ ],
+ mock:[
+  {name:'2022년 11월 모의고사',desc:'자료가 올라오면 이 자리에 열려요.'},
+  {name:'2023년 11월 모의고사',desc:'자료가 올라오면 이 자리에 열려요.'},
+  {name:'2024년 10월 모의고사',desc:'자료가 올라오면 이 자리에 열려요.'},
+  {name:'2026년 10월 모의고사',desc:'시험 범위 공지 후 이 자리에 열려요.'}
+ ],
+ plan:'hub/e2-neungryul-oh-4/plan/'
 };
