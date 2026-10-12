@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>내용 순서배열 · 공통영어2 능률(오) 3과</title>
+<link rel="stylesheet" href="../../hub.css">
+<style>
+.pk{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;background:var(--bg);font-size:18px;line-height:1.7;cursor:pointer;display:flex;gap:10px}
+.pk .no{flex:none;width:28px;height:28px;border-radius:14px;background:#e5e8ee;text-align:center;line-height:28px;font-size:14px;margin-top:3px}
+.pk.used{opacity:.35;pointer-events:none}
+.pk .ko{color:var(--sub);font-size:16px;display:block}
+.mine{border:2px dashed var(--pri);border-radius:10px;padding:6px 10px;min-height:54px;margin:10px 0;background:#f8fbfe}
+.mine .pk{border-color:var(--pri);background:#fff}
+.mine .no{background:var(--pri);color:#fff}
+.ok{border-color:var(--ok)!important}.bad{border-color:var(--no)!important}
+.mk{font-weight:700;margin-right:6px}
+.t-ans{font-size:13px;color:var(--no);font-weight:700;margin-left:6px}
+</style>
+</head><body>
+<div class="w" id="app"></div>
+<script src="../steps.js"></script>
+<script src="../../../books/c2-neungryul-oh-34/L3.js"></script>
+<script src="../../hub.js"></script>
+<script>
+(function(){
+var HUB=window.HUB,esc=HUB.esc,app=document.getElementById('app');
+var BID='c2-neungryul-oh-3',RAW=TFDATA['c2-neungryul-oh-34|3'],SECS=RAW.secs,META=RAW.meta,KEY='hub_'+BID+'_order';
+var TEACH=new URLSearchParams(location.search).get('t')==='1';
+HUB.bar('order');
+var ST=HUB.get(KEY)||{done:{},ko:false};
+var SUMN=4,GROUPS=[];
+SECS.forEach(function(s,si){
+  var n=s.sents.length,per=n<=5?n:(n<=10?Math.ceil(n/2):Math.ceil(n/3)),a=0;
+  while(a<n){var b=Math.min(n,a+per);GROUPS.push({si:si,a:a,b:b});a=b}
+});
+function save(){HUB.put(KEY,ST);var n=Object.keys(ST.done).filter(function(k){return ST.done[k]}).length;var sm=HUB.get('hub_'+BID+'_sum')||{r:{}},sn=Object.keys(sm.r||{}).length;HUB.setStep('order',{done:n+sn===GROUPS.length+SUMN,count:n+sn,N:GROUPS.length+SUMN})}
+function seeded(seed){var x=seed*9301+49297;return function(){x=(x*9301+49297)%233280;return x/233280}}
+function shuffled(len,seed){
+  var idx=[],i;for(i=0;i<len;i++)idx.push(i);
+  var r=seeded(seed),t=0;
+  do{for(i=len-1;i>0;i--){var j=Math.floor(r()*(i+1)),x=idx[i];idx[i]=idx[j];idx[j]=x}t++}while(len>1&&idx.every(function(v,k){return v===k})&&t<5);
+  return idx;
+}
+function gname(g){return '본문 '+SECS[g.si].key+' · '+(g.a+1)+'~'+g.b+'번 문장'}
+function list(){
+  HUB.last.clear('order');
+  var h='<h1>내용 순서배열</h1><p class="sub">'+esc(META.grade)+' '+esc(META.pub)+' '+esc(META.lesson)+(TEACH?' · 선생님용(정답 번호 표시)':'')+'</p>';
+  h+='<div class="rule"><p>섞인 문장을 글의 흐름에 맞게 순서대로 눌러 배열하세요.</p><p>영역마다 문장이 많아서 5문장 안팎으로 나눴어요.</p><p>요약문 완성과 틀린 문제 모음은 앞 화면(시험 직전 마무리)에 있어요.</p></div><div class="menu">';
+  GROUPS.forEach(function(g,k){
+    h+='<button data-g="'+k+'" class="'+(ST.done[k]?'done':'')+'"><b>묶음 '+(k+1)+' <span class="stat">'+(ST.done[k]?'완료':'')+'</span></b><span>'+esc(gname(g))+' · '+esc(SECS[g.si].title.split(' · ')[0])+'</span></button>';
+  });
+  h+='</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
+  app.innerHTML=h;
+  var f=document.getElementById('foot');if(f)f.remove();
+  app.querySelectorAll('[data-g]').forEach(function(b){b.onclick=function(){play(+b.getAttribute('data-g'))}});
+  window.scrollTo(0,0);
+}
+function play(k){
+  HUB.last.set('order',{k:k});
+  var g=GROUPS[k],sents=SECS[g.si].sents.slice(g.a,g.b),n=sents.length,order=shuffled(n,k+7),mine=[],checked=false;
+  function draw(){
+    var h='<div class="rnav"><button id="tl">목록</button><div class="t"><b>묶음 '+(k+1)+'</b>'+esc(gname(g))+'</div><button id="pv"'+(k===0?' disabled':'')+'>이전</button><button id="nx"'+(k===GROUPS.length-1?' disabled':'')+'>다음</button></div>';
+    h+='<div class="tools" style="margin:8px 0"><label class="chk"><input type="checkbox" id="ko"'+(ST.ko?' checked':'')+'> 한글 해석도 보기</label></div>';
+    h+='<p class="ask">'+(checked?'결과를 확인하세요.':'글의 흐름 순서대로 문장을 눌러요. 위에 쌓인 문장을 누르면 빠져요.')+'</p><div class="mine" id="mine">';
+    mine.forEach(function(oi,pos){
+      var cls='pk';if(checked)cls+=(oi===pos?' ok':' bad');
+      h+='<div class="'+cls+'" data-rm="'+pos+'"><span class="no">'+(pos+1)+'</span><span>'+(checked?'<span class="mk" style="color:'+(oi===pos?'var(--ok)':'var(--no)')+'">'+(oi===pos?'맞음':'다름')+'</span>':'')+esc(sents[oi].en)+(ST.ko?'<span class="ko">'+esc(sents[oi].ko)+'</span>':'')+'</span></div>';
+    });
+    h+='</div>';
+    if(!checked){
+      order.forEach(function(oi){
+        var used=mine.indexOf(oi)>=0;
+        h+='<div class="pk'+(used?' used':'')+'" data-p="'+oi+'"><span class="no">'+(TEACH?(oi+1):'·')+'</span><span>'+esc(sents[oi].en)+(ST.ko?'<span class="ko">'+esc(sents[oi].ko)+'</span>':'')+'</span></div>';
+      });
+    }else{
+      h+='<div class="sec">정답 순서</div>';
+      sents.forEach(function(s,i){h+='<div class="pk" style="cursor:default"><span class="no">'+(i+1)+'</span><span>'+esc(s.en)+'<span class="ko">'+esc(s.ko)+'</span></span></div>'});
+    }
+    app.innerHTML=h;
+    var f=document.getElementById('foot');if(!f){f=document.createElement('div');f.id='foot';document.body.appendChild(f)}
+    if(!checked)f.innerHTML='<div class="info"><b>'+mine.length+' / '+n+'개 배열</b></div><button id="ck"'+(mine.length===n?'':' disabled style="opacity:.4"')+'>확인하기</button>';
+    else{var c=mine.filter(function(oi,pos){return oi===pos}).length;f.innerHTML='<div class="info"><b>'+c+' / '+n+'개 제자리</b></div><button id="rt" class="ghost">다시 하기</button>'}
+    document.getElementById('tl').onclick=list;
+    document.getElementById('pv').onclick=function(){if(k>0)play(k-1)};
+    document.getElementById('nx').onclick=function(){if(k<GROUPS.length-1)play(k+1)};
+    document.getElementById('ko').onchange=function(){ST.ko=this.checked;save();draw()};
+    app.querySelectorAll('[data-p]').forEach(function(e){e.onclick=function(){mine.push(+e.getAttribute('data-p'));draw()}});
+    app.querySelectorAll('[data-rm]').forEach(function(e){e.onclick=function(){if(checked)return;mine.splice(+e.getAttribute('data-rm'),1);draw()}});
+    var ck=document.getElementById('ck');if(ck)ck.onclick=function(){if(mine.length!==n)return;checked=true;if(mine.every(function(oi,pos){return oi===pos})){ST.done[k]=true;save()}draw();window.scrollTo(0,0)};
+    var rt=document.getElementById('rt');if(rt)rt.onclick=function(){play(k)};
+  }
+  draw();window.scrollTo(0,0);
+}
+(function(){
+  var L=HUB.last.get('order');
+  list();
+  if(L&&GROUPS[L.k]){
+    play(L.k);
+    HUB.last.toast('마지막으로 하던 묶음 '+(L.k+1)+'번에서 이어서 열었어요','처음부터',function(){list()});
+  }
+})();
+})();
+</script>
+</body></html>
