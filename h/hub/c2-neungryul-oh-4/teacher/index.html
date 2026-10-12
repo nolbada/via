@@ -50,7 +50,7 @@ function setup(){
   h+='<div class="row"><button id="all">전체</button><button id="none">해제</button><button id="rnd">랜덤</button><select id="rn"><option>5</option><option selected>8</option><option>10</option></select>개</div>';
   h+='<div class="row"><label class="chk"><input type="checkbox" id="shuf"'+(ST.shuf?' checked':'')+'> 섞어서 출제</label><label class="chk"><input type="checkbox" id="ko"'+(ST.ko?' checked':'')+'> 문제에 한글 해석 보이기</label></div>';
   h+='<div class="row"><button class="p" id="go">시험 시작</button><button id="sheet">답안지 보기</button></div><p class="hint" id="cnt">선택 '+n+'문장</p>';
-  h+='<div class="sec">학생용 링크</div><div class="lk"><a href="'+HUB.hubUrl()+'">학생 허브</a><a href="'+HUB.url('hub/'+BID+'/content/')+'">내용 어색한 곳 찾기</a><a href="'+HUB.url('hub/'+BID+'/grammar/')+'">문법 어색한 곳 찾기</a><a href="'+HUB.url('teacher/')+'">동사형 선생님용 (공통영어2 선택)</a></div>';
+  h+='<div class="sec">학생용 링크</div><div class="lk"><a href="'+HUB.hubUrl()+'">학생 허브</a><a href="'+HUB.url('hub/'+BID+'/content/')+'">내용 어색한 곳 찾기</a><a href="'+HUB.url('hub/'+BID+'/grammar/')+'">문법 어색한 곳 찾기</a><a href="'+HUB.url('hub/'+BID+'/vocab/?t=1')+'">어휘 (정답 표시)</a><a href="'+HUB.url('teacher/')+'">동사형 선생님용 (공통영어2 선택)</a></div>';
   app.innerHTML=h;
   var f=document.getElementById('foot');if(f)f.remove();
   app.querySelectorAll('[data-m]').forEach(function(b){b.onclick=function(){ST.mode=b.getAttribute('data-m');save();setup()}});
