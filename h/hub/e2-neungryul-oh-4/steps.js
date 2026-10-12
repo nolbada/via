@@ -1,8 +1,8 @@
 window.HUBCFG={
  bid:'e2-neungryul-oh-4',
- title:'영어2 능률(오)',
- lesson:'4과',
- sub:'금천고 · 청석고 · 주성고 · 2학기 기말고사',
+ title:'주성고2 2학기 기말대비',
+ lesson:'영어2 능률(오) 4과',
+ sub:'',
  steps:[
   {k:'read',name:'좌본문우해석',desc:'영어와 해석을 나란히 읽어요.',href:'hub/e2-neungryul-oh-4/read/'},
   {k:'content',name:'내용',desc:'밑줄 없는 문장에서 본문과 다른 곳을 찾아 고쳐요. 이상 없는 문장도 섞여 있어요.',href:'hub/e2-neungryul-oh-4/content/'},
