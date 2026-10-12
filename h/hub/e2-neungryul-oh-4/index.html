@@ -15,7 +15,7 @@ function stat(s){
   var st=HUB.stepState(s.k);
   if(!s.href)return {t:'준비 중',cls:'off'};
   if(s.k==='read'&&st.count!=null)return {t:st.count+' / '+st.N+' 영역',cls:st.done?'done':''};
-  if((s.k==='vocab'||s.k==='grammar')&&st.count!=null)return {t:st.count+' / '+st.N+' 문제',cls:st.done?'done':''};
+  if((s.k==='vocab'||s.k==='grammar'||s.k==='content')&&st.count!=null)return {t:st.count+' / '+st.N+' 문제',cls:st.done?'done':''};
   if(s.k==='order'&&st.count!=null)return {t:st.count+' / '+st.N+' 묶음',cls:st.done?'done':''};
   if((s.k==='content'||s.k==='grammar')&&st.done){var b=st.best||{},p=[];for(var m in b)p.push(({find:'',core:'중심 ',basic:'기본 ',high:'고득점 '}[m]||'')+b[m]+'점');return {t:'최고 '+p.join(' · '),cls:'done'}}
   return {t:'',cls:''};
