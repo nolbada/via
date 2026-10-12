@@ -154,7 +154,7 @@ function corner(k,onlyWrong){
     var a=ST.ans[it.id],done=!!a||TEACH;
     h+='<div class="qs" id="q'+it.id+'"><div class="qh"><span class="qn">'+(all.indexOf(it)+1)+'</span><div class="qt">'+sentHTML(it,a,done)+'</div></div><div class="ko">'+esc(it.ko)+'</div>'+wdHTML(it);
     h+=done?fbHTML(it,a||{r:'ok'}):actHTML(it);
-    h+='</div>';
+    h+='<div class="wkr">'+HUB.weak.btn('gra'+it.id)+'</div></div>';
   });
   app.innerHTML=h;
   var s=stat(k);
