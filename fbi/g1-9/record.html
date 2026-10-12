@@ -26,8 +26,8 @@ function draw(){
   if(!sets.length)h+='<div class="small" style="margin-top:6px">아직 기록이 없어요. 문제 풀이 코너에서 OMR을 제출하면 여기에 남아요.</div>';
   sets.forEach(k=>{const m=O[k],n=Object.keys(m.marks).length;
     h+='<div style="margin-top:10px"><b>'+esc(m.label||k)+'</b> ';
-    if(!m.sub)h+='<span class="small">OMR 입력 중 '+n+' / 10</span> <a class="small" href="omr.html">이어서 하기</a>';
-    else{const w=m.wrong||[];h+='<span class="bdg '+(w.length?'':'g')+'">'+m.score+' / 10</span>'+(w.length?'<div class="small" style="margin-top:4px">틀린 문제를 누르면 해설이 열려요.</div>'+w.map(no=>'<a class="lk" href="omr.html#exp='+no+'">'+no+'번</a>').join(''):'<span class="small">전부 맞았어요.</span>')}
+    if(!m.sub)h+='<span class="small">OMR 입력 중 ('+n+'문제 입력)</span> <a class="small" href="omr.html">이어서 하기</a>';
+    else{const w=m.wrong||[];h+='<span class="bdg '+(w.length?'':'g')+'">'+m.score+' / '+(m.total||7)+'</span>'+(w.length?'<div class="small" style="margin-top:4px">틀린 문제를 누르면 해설이 열려요.</div>'+w.map(no=>'<a class="lk" href="omr.html#exp='+no+'">'+no+'번</a>').join(''):'<span class="small">전부 맞았어요.</span>')}
     h+='</div>'});
   h+='</div>';
   /* 단어 */
