@@ -16,8 +16,12 @@
 .gist{margin:14px 0;padding:12px 14px;border-radius:12px;background:#eef6ee;border:1px solid #bcd9bf}
 .gist b{display:block;color:var(--ok);margin-bottom:4px;font-size:15px}
 .gist p{margin:0;font-size:17px;line-height:1.7}
-.hk .yk:not(.show),.hn .np:not(.show),.hg p:not(.show),.ho:not(.show){color:transparent!important;background:#eee8cf!important;cursor:pointer}
-.hn .np:not(.show) .no,.ho:not(.show) .no{color:transparent!important}
+.sq{margin:10px 0;padding:12px 14px;border:1px solid var(--line);border-left:4px solid #8ab4d4;border-radius:10px;background:#fff}
+.sq .no{display:inline-block;min-width:24px;text-align:center;border-radius:12px;background:#e8eef7;color:var(--pri);font-weight:700;font-size:13px;line-height:24px;margin-bottom:6px}
+.sq .e{color:#2a6496;line-height:1.7}
+.sq .k{color:#4a6a86;line-height:1.7;padding-left:1.4em;margin-bottom:6px}
+.sq .nt{margin-top:8px;padding-top:8px;border-top:1px dashed #cfd9e6;line-height:1.7}
+.sq .nt i{display:block;font-style:normal;font-size:12px;font-weight:700;color:#2a6496;margin-bottom:2px}
 .sb{font:inherit;font-size:13px;margin-left:8px;padding:2px 9px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--sub)}
 .tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}
 .tools label{font-size:16px}
@@ -88,17 +92,16 @@ function cqHTML(si,x){
 function open(si){
   var s=SECS[si];
   var h='<div class="rnav"><button id="tl">영역 목록</button><div class="t"><b>본문 '+esc(s.key)+'</b>'+esc(s.title.split(' · ')[0])+'</div><button id="pv"'+(si===0?' disabled':'')+'>이전</button><button id="nx"'+(si===SECS.length-1?' disabled':'')+'>다음</button></div>';
-  h+='<div class="tools"><span class="sz"><button id="fm">가-</button><button id="fp">가+</button></span><label class="chk"><input type="checkbox" id="hk"'+(ST.hk?' checked':'')+'> 해석 가리기 (가려진 곳을 누르면 그 줄만 열려요)</label></div>';
+  h+='<div class="tools"><span class="sz"><button id="fm">가-</button><button id="fp">가+</button></span></div>';
   var x=X[si];
-  h+='<div id="rds" class="'+(ST.hk?'hk hn':'')+'" style="--fs:'+ST.fs+'px"><div class="jh">직독직해 (끊어 읽기)</div>';
+  h+='<div id="rds" style="--fs:'+ST.fs+'px">';
   s.sents.forEach(function(t,i){
     var j=JJ[nrm(t.en)];
-    h+='<div class="rd jn"><span class="no">'+(i+1)+'</span></div><table class="jt rd2">';
-    if(j&&j.e.length===j.k.length){j.e.forEach(function(e,k){h+='<tr><td>'+esc(e)+'</td><td class="k yk" data-i="'+i+'">'+esc(j.k[k])+'</td></tr>'})}
-    else h+='<tr><td>'+esc(t.en)+'</td><td class="k yk" data-i="'+i+'">'+esc(t.ko)+'</td></tr>';
-    h+='</table>';
+    h+='<div class="rd sq" style="font-size:var(--fs)"><span class="no">'+(i+1)+'</span>';
+    if(j&&j.e.length===j.k.length){j.e.forEach(function(e,k){h+='<div class="e">'+esc(e)+'</div><div class="k">&#8627; '+esc(j.k[k])+'</div>'})}
+    else h+='<div class="e">'+esc(t.en)+'</div>';
+    h+='<div class="nt"><i>이어 읽으면</i>'+esc(t.ko)+'</div></div>';
   });
-  h+='<div class="nat"><div class="jh" style="margin-top:0">자연스러운 해석</div>'+s.sents.map(function(t,i){return '<p class="np" data-i="'+i+'"><span class="no">'+(i+1)+'</span>'+esc(t.ko)+'</p>'}).join('')+'</div>';
   h+='</div>';
   h+='<div class="gist"><b>결국 이 얘기</b><p>'+esc(GIST[si]||'')+'</p></div>';
   if(x)h+=cqHTML(si,x);
@@ -110,9 +113,6 @@ function open(si){
   document.getElementById('nx').onclick=function(){if(si<SECS.length-1)open(si+1)};
   document.getElementById('fm').onclick=function(){ST.fs=Math.max(15,ST.fs-1);save();document.getElementById('rds').style.setProperty('--fs',ST.fs+'px')};
   document.getElementById('fp').onclick=function(){ST.fs=Math.min(26,ST.fs+1);save();document.getElementById('rds').style.setProperty('--fs',ST.fs+'px')};
-  document.getElementById('hk').onchange=function(){ST.hk=this.checked;save();var r=document.getElementById('rds');r.classList.toggle('hk',this.checked);r.classList.toggle('hn',this.checked);app.querySelectorAll('.show,.ho').forEach(function(e){e.classList.remove('show','ho')})};
-  function tog(els){var hid=els.some(function(e){return getComputedStyle(e).color==='rgba(0, 0, 0, 0)'});els.forEach(function(e){e.classList.toggle('show',hid);e.classList.toggle('ho',!hid)})}
-  app.querySelectorAll('.yk,.np').forEach(function(k){k.onclick=function(){tog([k])}});
 
   app.querySelectorAll('[data-o]').forEach(function(b){b.onclick=function(){ST.q[si]=+b.getAttribute('data-o');save();var y=scrollY;open(si);scrollTo(0,y)}});
   var rq=document.getElementById('rq');if(rq)rq.onclick=function(){delete ST.q[si];save();var y=scrollY;open(si);scrollTo(0,y)};
