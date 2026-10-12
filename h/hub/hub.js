@@ -64,5 +64,76 @@ HUB.last={
 HUB.weak={key:function(){return 'hub_'+HUB.cfg.bid+'_weak'},get:function(){return get(this.key())||{}},has:function(c){return !!this.get()[c]},toggle:function(c){var w=this.get();if(w[c])delete w[c];else w[c]=1;put(this.key(),w);return !!w[c]},label:function(on){return on?'약점노트에 담김':'약점노트에 담기'},btn:function(c){var on=this.has(c);return '<button type="button" class="wkb'+(on?' on':'')+'" data-w="'+c+'">'+this.label(on)+'</button>'}};
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.wkb');if(!b)return;var on=HUB.weak.toggle(b.getAttribute('data-w'));b.classList.toggle('on',on);b.textContent=HUB.weak.label(on)});
 HUB.esc=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')};
+
+/* 기록 동기화: 구글 시트(Apps Script) — 학생번호+이름이 키 */
+HUB.sync=(function(){
+var S={},UK='hub_sync_user',MK='hub_sync_meta',busy=false;
+function pre(){return ['hub_'+HUB.cfg.bid+'_','verb_study_'+HUB.cfg.bid+'_']}
+function mine(k){var p=pre(),i;for(i=0;i<p.length;i++)if(k.indexOf(p[i])===0)return true;return false}
+function keys(){var o=[],i,k;for(i=0;i<localStorage.length;i++){k=localStorage.key(i);if(k&&mine(k))o.push(k)}return o}
+function norm(v){try{return JSON.stringify(JSON.parse(v))}catch(e){return null}}
+function user(){return get(UK)}
+function url(){return HUB.cfg&&HUB.cfg.sync}
+function post(body,keep){return fetch(url(),{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body),keepalive:!!keep}).then(function(r){return r.json()}).then(function(r){if(!r||!r.ok)throw new Error('sync');return r})}
+function changed(first){var meta=get(MK)||{},ch={},sent={};keys().forEach(function(k){var n=norm(localStorage.getItem(k));if(n===null)return;if(meta[k]!==n){ch[k]={v:JSON.parse(n),t:first?1:Date.now()};sent[k]=n}});return {ch:ch,sent:sent}}
+function run(apply,first,keep){
+  var u=user();if(!u||!url())return Promise.resolve(false);
+  var c=changed(first);
+  return post({act:'put',id:u.id,data:c.ch},keep).then(function(r){
+    var meta=get(MK)||{},k,rl=false,rem=r.data||{};
+    for(k in c.sent)meta[k]=c.sent[k];
+    for(k in rem){
+      var s=JSON.stringify(rem[k].v);
+      if(apply&&norm(localStorage.getItem(k))!==s){try{localStorage.setItem(k,s);rl=true}catch(e){}}
+      if(apply||meta[k]===undefined||c.sent[k]!==undefined)meta[k]=s;
+    }
+    put(MK,meta);
+    try{localStorage.setItem('hub_sync_at',String(Date.now()))}catch(e){}
+    return rl;
+  });
+}
+function wipe(){keys().forEach(function(k){try{localStorage.removeItem(k)}catch(e){}});try{localStorage.removeItem(MK)}catch(e){}}
+S.user=user;
+S.login=function(num,name){
+  var prev=user(),id=String(num).replace(/\s+/g,'')+'|'+String(name).replace(/\s+/g,'');
+  if(prev&&prev.id===id)return Promise.resolve(false);
+  var p=prev?run(false):Promise.resolve();
+  return p.then(function(){
+    if(prev)wipe();
+    put(UK,{id:id,num:String(num).replace(/\s+/g,''),name:String(name).replace(/\s+/g,'')});
+    try{localStorage.removeItem(MK)}catch(e){}
+    return run(true,!prev).catch(function(e){try{localStorage.removeItem(UK)}catch(x){}throw e});
+  });
+};
+S.logout=function(){return run(false).then(function(){wipe();try{localStorage.removeItem(UK)}catch(e){}})};
+S.mount=function(el){
+  if(!url())return;
+  var u=user(),d=document.createElement('div');d.className='sy';
+  if(u){
+    d.innerHTML='<div class="sy-t"><b>'+HUB.esc(u.name)+'</b> 님의 기록이 저장되고 있어요</div><div class="sy-s">폰을 바꿔도 같은 이름으로 들어오면 이어져요. 학원 공용 폰은 끝날 때 아래 버튼을 눌러 주세요.</div><button type="button" class="sy-b2">다른 이름으로</button><div class="sy-m"></div>';
+    d.querySelector('.sy-b2').onclick=function(){var b=this,m=d.querySelector('.sy-m');b.disabled=true;m.textContent='저장하는 중...';S.logout().then(function(){location.reload()},function(){b.disabled=false;m.textContent='저장이 안 됐어요. 인터넷을 확인하고 다시 눌러 주세요.'})};
+  }else{
+    d.innerHTML='<div class="sy-t">이름을 넣으면 기록이 이어져요</div><div class="sy-s">폰을 바꾸거나 다른 폰에서 열어도 같은 번호와 이름으로 들어오면 풀던 곳부터 이어서 할 수 있어요.</div><div class="sy-f"><input class="sy-n1" inputmode="numeric" placeholder="학생번호" value="6900"><input class="sy-n2" placeholder="이름"><button type="button" class="sy-b">시작</button></div><div class="sy-m"></div>';
+    d.querySelector('.sy-b').onclick=function(){
+      var b=this,m=d.querySelector('.sy-m'),n1=d.querySelector('.sy-n1').value,n2=d.querySelector('.sy-n2').value;
+      if(!/\S/.test(n1)||!/\S/.test(n2)){m.textContent='번호와 이름을 모두 적어 주세요.';return}
+      b.disabled=true;m.textContent='기록을 불러오는 중...';
+      S.login(n1,n2).then(function(){location.reload()},function(){b.disabled=false;m.textContent='연결이 안 됐어요. 인터넷을 확인하고 다시 눌러 주세요.'});
+    };
+  }
+  el.appendChild(d);
+};
+function auto(){
+  if(!user()||!url())return;
+  run(true).then(function(rl){
+    if(rl){var t=Number(sessionStorage.getItem('hub_sync_rl')||0);if(Date.now()-t>20000){try{sessionStorage.setItem('hub_sync_rl',String(Date.now()))}catch(e){}location.reload()}}
+  }).catch(function(){});
+  setInterval(function(){if(!document.hidden)run(false).catch(function(){})},30000);
+  document.addEventListener('visibilitychange',function(){if(document.hidden)run(false,false,true).catch(function(){})});
+  window.addEventListener('pagehide',function(){run(false,false,true).catch(function(){})});
+}
+auto();
+return S;
+})();
 window.HUB=HUB;
 })();
