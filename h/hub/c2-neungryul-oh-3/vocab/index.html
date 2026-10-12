@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>어휘 · 공통영어2 능률(오) 3과</title>
+<link rel="stylesheet" href="../../hub.css">
+<style>
+.qs{margin:10px 0 18px;padding:14px 14px 12px;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 1px 3px rgba(20,40,70,.06)}
+.qs .qh{display:flex;gap:10px;align-items:flex-start}
+.qs .qn{flex:none;width:30px;height:30px;border-radius:15px;background:#e5e8ee;font-weight:700;font-size:14px;text-align:center;line-height:30px}
+.qs .qt{flex:1;font-size:18px;line-height:1.75}
+.qs .tg{font-weight:700;border-bottom:3px solid var(--pri);padding:0 1px}
+.qs .bl{display:inline-block;min-width:78px;border-bottom:2px solid var(--ink);text-align:center;font-weight:700}
+.qs .bl.on{color:var(--ok);border-color:var(--ok)}
+.qs .bs{color:var(--sub);font-size:14px;font-weight:400}
+.qs .ask{margin:8px 0 6px;font-size:15px}
+.ops{display:grid;gap:8px;margin-top:8px}
+.op{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 12px;font-size:17px;line-height:1.5;color:var(--ink);font-family:inherit}
+.op .g{display:block;color:var(--sub);font-size:14px;margin-top:1px}
+.op .lt{display:inline-block;width:22px;color:var(--sub);font-weight:700}
+.op.pick{border-color:var(--pri);box-shadow:0 0 0 2px #dbe7f5}
+.op.right{border-color:var(--ok);background:#eaf5ee;font-weight:700}
+.op.mine{border-color:#c98a1b;background:#fff6e0}
+.op.dim{opacity:.6}
+.fb{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--soft);font-size:16px;line-height:1.7}
+.fb .res{font-weight:700;margin-bottom:2px}
+.fb .res.ok{color:var(--ok)}.fb .res.re{color:#8a5a00}
+.fb p{margin:3px 0}
+.fb .ko{color:var(--sub)}
+.fb .lab{display:inline-block;min-width:54px;font-weight:700;color:var(--pri)}
+.stem{margin-top:6px;font-size:16px}
+.grp{margin:18px 0 6px;padding:8px 12px;border-left:4px solid var(--pri);background:var(--soft);border-radius:6px;font-size:15px;line-height:1.5}.grp b{margin-right:6px}
+.op mark{background:#fff0b8;padding:0 2px;border-radius:3px}
+</style>
+</head><body>
+<div class="w" id="app"></div>
+<script src="../steps.js"></script>
+<script src="../../hub.js"></script>
+<script src="data.js"></script>
+<script>
+(function(){
+var HUB=window.HUB,esc=HUB.esc,app=document.getElementById('app');
+var BID='c2-neungryul-oh-3',D=VOCDATA[BID+'|3'],KEY='hub_'+BID+'_vocab';
+var TEACH=new URLSearchParams(location.search).get('t')==='1';
+HUB.bar('vocab');
+var ST=HUB.get(KEY)||{ans:{},gl:false};
+var ITEMS=D.items,CORN=[],GN={},LT=['A','B','C','D','E'];
+D.corners.forEach(function(g){GN[g.k]=g});
+(function(){var NP=4;for(var p=0;p<NP;p++){var a=[];D.corners.forEach(function(g){var r=ITEMS.filter(function(it){return it.c===g.k}),N=r.length;r.slice(Math.floor(p*N/NP),Math.floor((p+1)*N/NP)).forEach(function(it){a.push(it)})});CORN.push({k:'p'+p,name:'어휘 '+'①②③④'.charAt(p),desc:'단어 함정, 유의어, 반의어, 다의어가 섞여 있어요.',items:a})}})();
+var POS={n:'명',v:'동',a:'형',adv:'부'};
+function save(){
+  HUB.put(KEY,ST);
+  var n=0;ITEMS.forEach(function(it){if(ST.ans[it.id]!=null)n++});
+  HUB.setStep('vocab',{done:n===ITEMS.length,count:n,N:ITEMS.length});
+}
+function byC(k){var c=CORN.filter(function(x){return x.k===k})[0];return c?c.items:[]}
+function stat(k){
+  var a=byC(k),n=0,r=0;
+  a.forEach(function(it){var v=ST.ans[it.id];if(v!=null){n++;if(v===it.ans)r++}});
+  return {N:a.length,n:n,r:r};
+}
+function pr(a){return a.map(function(x){return esc(x[0])+' <span class="bs">'+esc(x[1])+'</span>'}).join(' · ')}
+function stemHTML(it){
+  if(it.c==='syn'||it.c==='ant')return '<div class="stem"><b>'+esc(it.w)+'</b> <span class="bs">'+esc(it.wg)+'</span></div>';
+  if(it.c==='poly')return '<div class="stem"><b>'+esc(it.w)+'</b></div>';
+  return '';
+}
+function sentHTML(it){
+  var e=it.en;
+  return esc(e[0])+'<span class="tg">'+esc(e[1])+'</span>'+esc(e[2]);
+}
+function optHTML(it,k){
+  var sel=ST.ans[it.id],done=sel!=null||TEACH,cls='op';
+  if(done){if(k===it.ans)cls+=' right';else if(sel===k)cls+=' mine';else cls+=' dim'}
+  var g='';
+  if(it.c==='trap'){
+    var v=it.vars[k],t=v.text;
+    if(done){t=esc(t.slice(0,v.p))+'<mark>'+esc(v.new)+'</mark>'+esc(t.slice(v.p+v.new.length))}
+    else t=esc(t);
+    return '<button class="'+cls+'" data-q="'+it.id+'" data-o="'+k+'"><span class="lt">'+LT[k]+'</span>'+t+'</button>';
+  }
+  if(it.gl&&done)g='<span class="g">'+esc(it.gl[k][1])+'</span>';
+  return '<button class="'+cls+'" data-q="'+it.id+'" data-o="'+k+'"><span class="lt">'+LT[k]+'</span>'+esc(it.opts[k])+g+'</button>';
+}
+function noteLine(lemma,surf,nt){
+  return nt?'<p><span class="lab">모양</span>'+esc(surf)+': '+esc(nt)+'</p>':'';
+}
+function fbHTML(it){
+  var sel=ST.ans[it.id],ok=sel===it.ans,h='<div class="fb">';
+  if(!TEACH)h+='<div class="res '+(ok?'ok':'re')+'">'+(ok?'정답이에요':'다시 확인해 봐요')+'</div>';
+  if(it.c==='trap'){
+    h+='<p><span class="lab">정답</span><b>'+LT[it.ans]+'</b></p>';
+    it.vars.forEach(function(v,k){
+      var same=v.rel==='syn';
+      h+='<p><b>'+LT[k]+'</b> '+esc(v.o)+' <span class="bs">'+esc(v.og)+'</span> &rarr; '+esc(v.s)+' <span class="bs">'+esc(v.sg)+'</span> <b>'+(same?'(유의어: 뜻이 같아요)':'(반의어: 뜻이 반대예요)')+'</b></p>';
+      var n1=v.onote?esc(v.old)+': '+esc(v.onote):'',n2=v.snote?esc(v.new)+': '+esc(v.snote):'';
+      if(n1||n2)h+='<p class="bs">'+[n1,n2].filter(Boolean).join(' · ')+'</p>';
+    });
+    h+='<p><span class="lab">바뀐 문장</span>'+esc(it.vars[it.ans].text)+'</p><p><span class="lab">본문 원문</span>'+esc(it.vars[it.ans].orig)+'</p><p class="ko">'+esc(it.vars[it.ans].ko)+'</p></div>';
+    return h;
+  }
+  if(it.c==='syn'||it.c==='ant'){
+    var I=it.info;
+    h+='<p><span class="lab">정답</span><b>'+esc(it.opts[it.ans])+'</b> <span class="bs">'+esc(it.gl[it.ans][1])+'</span></p>';
+    h+='<p><span class="lab">단어</span><b>'+esc(I.w)+'</b> <span class="bs">'+esc(I.g)+'</span></p>';
+    h+=noteLine(I.w,it.en[1],it.form);
+    if(I.syn.length)h+='<p><span class="lab">유의어</span>'+pr(I.syn)+'</p>';
+    if(I.ant.length)h+='<p><span class="lab">반의어</span>'+pr(I.ant)+'</p>';
+  }
+  if(it.c==='poly'){
+    h+='<p><span class="lab">정답</span><b>'+esc(it.opts[it.ans])+'</b></p>';
+    h+=noteLine(it.w,it.en[1],it.form);
+    h+='<p><span class="lab">모든 뜻</span>'+it.opts.map(function(o,j){return (j===it.ans?'<b>'+esc(o)+'</b>':esc(o))}).join(' / ')+'</p>';
+    h+='<p class="bs">'+(it.src==='T'?'본문에 나온 문장이에요. 앞쪽 대표 뜻으로만 읽으면 틀리기 쉬워요.':'활동지에 있는 예문이에요.')+'</p>';
+  }
+  h+='<p class="ko">'+esc(it.ko)+'</p></div>';
+  return h;
+}
+function home(){
+  HUB.last.clear('vocab');
+  var n=0;ITEMS.forEach(function(it){if(ST.ans[it.id]!=null)n++});
+  var h='<h1>어휘</h1><p class="sub">공통영어2 능률(오) 3과'+(TEACH?' · 선생님용(정답 표시)':'')+'</p>';
+  h+='<div class="rule"><p><b>하루 최소 한 묶음(약 45문제)</b>씩 풀어요. 위에서부터 차례로 하면 돼요.</p><p>한 묶음에 단어 함정, 유의어, 반의어, 다의어가 골고루 섞여 있어요. 문제를 풀면 바로 정답과 해설이 나와요.</p><p>유의어와 반의어는 사전에서 실제로 짝으로 나오는 단어 하나만 정답이에요. 뜻이 비슷해 보여도 사전에 짝으로 없으면 정답이 아니에요.</p><p>다의어는 단어의 대표 뜻이 아니라 문장 속에서 쓰인 뜻을 골라요. 해설에 그 단어의 모든 뜻이 나와요.</p></div><div class="menu">';
+  CORN.forEach(function(c,i){
+    var s=stat(c.k),dn=s.n===s.N;
+    h+='<button data-c="'+c.k+'" class="'+(dn?'done':'')+'"><b>'+esc(c.name)+' <span class="stat">'+(s.n?(s.n+' / '+s.N+' 풀음 · 정답 '+s.r):'')+'</span></b><span>'+esc(c.desc)+' · '+s.N+'문제</span></button>';
+  });
+  h+='</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
+  app.innerHTML=h;
+  var f=document.getElementById('foot');if(f)f.remove();
+  app.querySelectorAll('[data-c]').forEach(function(b){b.onclick=function(){corner(b.getAttribute('data-c'))}});
+  window.scrollTo(0,0);
+}
+function corner(k,onlyWrong){
+  var ci=0;CORN.forEach(function(c,i){if(c.k===k)ci=i});
+  var c=CORN[ci],list=byC(k);
+  if(onlyWrong)list=list.filter(function(it){return ST.ans[it.id]!=null&&ST.ans[it.id]!==it.ans});
+  HUB.last.set('vocab',{k:k,w:onlyWrong?1:0,a:0});
+  var h='<div class="rnav"><button id="tl">묶음 목록</button><div class="t"><b>'+esc(c.name)+'</b>'+esc(c.desc)+'</div><button id="pv"'+(ci===0?' disabled':'')+'>이전</button><button id="nx"'+(ci===CORN.length-1?' disabled':'')+'>다음</button></div>';
+  if(onlyWrong&&!list.length)h+='<p class="ask">다시 풀 문제가 없어요.</p>';
+  list.forEach(function(it,i){
+    var sel=ST.ans[it.id],done=sel!=null||TEACH;
+    if(!i||list[i-1].c!==it.c)h+='<div class="grp"><b>'+esc(GN[it.c].name)+'</b> '+esc(GN[it.c].desc)+'</div>';
+    h+='<div class="qs" id="q'+it.id+'"><div class="qh"><span class="qn">'+(byC(k).indexOf(it)+1)+'</span><div class="qt">'+(it.c==='trap'?'본문 문장 4개 중에서 골라요.':sentHTML(it)+stemHTML(it))+'</div></div><div class="ask">'+esc(it.q)+'</div><div class="ops">';
+    it.opts.forEach(function(o,j){h+=optHTML(it,j)});
+    h+='</div>'+(done?fbHTML(it):'')+'<div class="wkr">'+HUB.weak.btn('voc'+it.id)+'</div></div>';
+  });
+  app.innerHTML=h;
+  var s=stat(k);
+  var f=document.getElementById('foot');if(!f){f=document.createElement('div');f.id='foot';document.body.appendChild(f)}
+  var wrongN=byC(k).filter(function(it){return ST.ans[it.id]!=null&&ST.ans[it.id]!==it.ans}).length;
+  f.innerHTML='<div class="info"><b>'+s.n+' / '+s.N+' 풀었어요</b><small>정답 '+s.r+'개'+(wrongN?' · 다시 볼 문제 '+wrongN+'개':'')+'</small></div>'+(wrongN&&!onlyWrong?'<button id="rw">틀린 문제만 다시</button>':(onlyWrong?'<button id="all" class="ghost">전체 보기</button>':''));
+  document.getElementById('tl').onclick=function(){f.remove();home()};
+  document.getElementById('pv').onclick=function(){if(ci>0)corner(CORN[ci-1].k)};
+  document.getElementById('nx').onclick=function(){if(ci<CORN.length-1)corner(CORN[ci+1].k)};
+  var rw=document.getElementById('rw');if(rw)rw.onclick=function(){
+    byC(k).forEach(function(it){if(ST.ans[it.id]!=null&&ST.ans[it.id]!==it.ans)delete ST.ans[it.id]});
+    save();corner(k);
+  };
+  var al=document.getElementById('all');if(al)al.onclick=function(){corner(k)};
+  if(!TEACH)app.querySelectorAll('.op').forEach(function(b){b.onclick=function(){
+    var id=+b.getAttribute('data-q'),it=ITEMS.filter(function(x){return x.id===id})[0];
+    if(ST.ans[id]!=null)return;
+    ST.ans[id]=+b.getAttribute('data-o');save();
+    var y=scrollY;corner(k,onlyWrong);scrollTo(0,y);
+  }});
+  HUB.last.track('vocab','.qs',function(){return {k:k,w:onlyWrong?1:0}});
+  window.scrollTo(0,0);
+}
+(function(){
+  var L=HUB.last.get('vocab');
+  home();
+  if(L&&L.k&&CORN.some(function(c){return c.k===L.k})){
+    corner(L.k,false);
+    setTimeout(function(){HUB.last.scrollTo('.qs',L.a||0)},40);
+    HUB.last.toast('마지막으로 풀던 곳('+CORN.filter(function(c){return c.k===L.k})[0].name+' · '+((L.a||0)+1)+'번)에서 이어서 열었어요','처음부터',function(){var f=document.getElementById('foot');if(f)f.remove();home()});
+  }
+})();
+})();
+</script>
+</body></html>
