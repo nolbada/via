@@ -48,12 +48,12 @@ function osave(){try{localStorage.setItem(OK,JSON.stringify(O))}catch(e){}setLas
 const $=document.getElementById('app'),CN=['①','②','③','④','⑤'];
 const SID=DATA.set;O[SID]=O[SID]||{marks:{},sub:false};const M=O[SID];
 let view=M.sub?'score':'sheet',cur=0,list=null,showKo={},showP=false,openAlt=false;
-const items=DATA.items.filter(x=>x.no>=4),qOf=it=>it.alt||it;
+const items=DATA.items,qOf=it=>it.alt||it;
 function sheet(){
   const n=items.filter(x=>M.marks[x.no]).length;
-  let h='<div class="nav"><a href="./">&larr; FBI 홈</a><span class="small">'+esc(DATA.label)+'</span></div><h1>OMR 답안 입력</h1><p class="sub">1~3번은 수업 시간에 함께 풀어요. 수업이 끝난 뒤 혼자 푼 4~10번 답만 눌러 입력하세요. 나갔다 들어와도 입력한 답이 남아 있어요. 모두 입력하면 제출할 수 있어요.</p><div class="card"><ul class="omr">';
+  let h='<div class="nav"><a href="./">&larr; FBI 홈</a><span class="small">'+esc(DATA.label)+'</span></div><h1>OMR 답안 입력</h1><p class="sub">시험지에서 푼 1~10번 답을 눌러 입력하세요. 나갔다 들어와도 입력한 답이 남아 있어요. 모두 입력하면 제출할 수 있어요.</p><div class="card"><ul class="omr">';
   items.forEach(it=>{h+='<li><div class="r"><span class="n">'+it.no+'</span>'+CN.map(c=>'<button class="bub '+(M.marks[it.no]==c?'on':'')+'" onclick="mark('+it.no+',\''+c+'\')">'+c+'</button>').join('')+'</div>';
-    if(it.alt){h+='<div class="small" style="margin-top:6px">'+esc(it.notice)+'</div><button class="link" onclick="openAlt=!openAlt;sheet()">'+(openAlt?'문제 접기':'이 번호의 문제 보기')+'</button>';
+    if(it.alt){h+='<div style="margin-top:8px;padding:10px 12px;border:2px solid var(--bad);border-radius:10px;background:var(--badbg)"><b style="color:var(--bad)">'+it.no+'번 문제가 바뀌었어요</b><div class="small" style="margin-top:4px">책이 구버전(1쇄)이라면 시험지의 '+it.no+'번이 아래 문제와 달라요. 먼저 열어서 확인하고 풀어 보세요.</div></div><button class="link" onclick="openAlt=!openAlt;sheet()">'+(openAlt?'문제 접기':'바뀐 '+it.no+'번 문제 열어보기')+'</button>';
       if(openAlt){const q=it.alt;h+='<div class="stem">'+esc(q.stem)+'</div>'+(q.sentence?'<div class="sent">'+esc(q.sentence)+'<div class="small">'+esc(q.sentence_ko)+'</div></div>':'')+q.choices.map((c,i)=>'<div class="ch" style="border-color:var(--ln)"><b>'+CN[i]+'</b>'+esc(c.en)+'<span class="ko">'+esc(c.ko)+'</span></div>').join('')+'<div class="small">지문은 책의 31번 지문과 같아요.</div>'}}
     h+='</li>'});
   h+='</ul></div><p class="small" style="text-align:center">'+n+' / '+items.length+' 입력</p><button class="btn" '+(n>=items.length?'':'disabled')+' onclick="submit()">제출하고 점수 보기</button>';
