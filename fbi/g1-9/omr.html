@@ -63,6 +63,7 @@ function submit(){if(!confirm('제출할까요? 제출하면 답을 바꿀 수 �
 function ok(it){const q=qOf(it),m=M.marks[it.no];return m==q.answer||(q.also&&q.also.indexOf(m)>=0&&!it.alt)}
 function score(){
   const s=items.filter(ok).length,w=items.filter(it=>!ok(it));
+  M.wrong=w.map(x=>x.no);M.score=s;M.label=DATA.label;try{localStorage.setItem(OK,JSON.stringify(O))}catch(e){}
   let h='<div class="nav"><a href="./">&larr; FBI 홈</a><span class="small">'+esc(DATA.label)+'</span></div><h1>점수</h1><div class="card"><div style="font-size:34px;font-weight:700">'+s+' <span style="font-size:18px;color:var(--mu)">/ 10</span></div><div class="small">'+(w.length?'틀린 문제 '+w.length+'개. 해설을 보고 오늘 오답노트를 써 보세요.':'전부 맞았어요.')+'</div></div>'
    +'<div class="card"><ul class="res">'+items.map((it,i)=>'<li onclick="openExp('+i+',null)"><span>'+it.no+'번 · '+esc(qOf(it).type)+'</span><span class="tg '+(ok(it)?'t-cum':'t-wr')+'">'+(ok(it)?'맞음':'틀림')+'</span></li>').join('')+'</ul></div>';
   if(w.length)h+='<button class="btn" onclick="openExp('+items.indexOf(w[0])+',\'wr\')">틀린 문제 해설 보기</button>';
@@ -87,6 +88,6 @@ function exp(){
   h+='<div style="display:flex;gap:8px;margin-top:12px">'+(pos>0?'<button class="btn sec" style="margin-top:0;flex:1" onclick="openExp('+L[pos-1]+','+(list?'\'wr\'':'null')+')">이전</button>':'')+(pos<L.length-1?'<button class="btn" style="margin-top:0;flex:1" onclick="openExp('+L[pos+1]+','+(list?'\'wr\'':'null')+')">다음 문제</button>':'<button class="btn" style="margin-top:0;flex:1" onclick="view=\'score\';render();window.scrollTo(0,0)">점수로 돌아가기</button>')+'</div>';
   $.innerHTML=h+'</div>'}
 function render(){if(view=='sheet')sheet();else if(view=='score')score();else exp()}
-if(M.sub&&O.last!=null){}
-render();
+const mh=location.hash.match(/^#exp=(\d+)/),mi=mh&&M.sub?items.findIndex(x=>x.no==+mh[1]):-1;
+if(mi>=0)openExp(mi,null);else render();
 </script></body></html>
