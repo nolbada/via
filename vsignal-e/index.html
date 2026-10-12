@@ -144,6 +144,8 @@ h2{font-size:15px;margin:22px 0 10px;color:var(--muted);letter-spacing:.04em}
 .hint{margin:12px 0 0;padding:10px 12px;background:var(--bg);border-radius:10px;font-size:15px}
 .msg{margin:12px 0 0;padding:10px 12px;border-radius:10px;font-size:15px;font-weight:700}
 .msg.ok{background:var(--good-bg);color:var(--good)}
+.bememo{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:#fff4d6;border:2px solid #f0b429;color:#5b3d00;font-size:14.5px;line-height:1.55}.bememo b.t{display:block;font-size:15.5px;margin-bottom:4px}.bememo .pr{display:inline-block;margin:2px 4px 2px 0;padding:2px 8px;border-radius:8px;background:#fff;border:1px solid #f0b429;font-weight:800}.bememo .x{color:#c0392b;text-decoration:line-through;font-weight:700}
+.today{text-align:left;margin:12px 0 4px;border-top:1px dashed var(--line);padding-top:10px}.tdh{font-size:14px;font-weight:800;margin-bottom:6px}.tdi{margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}.tdn{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:2px}.tdk{font-size:13px;color:var(--muted);margin-top:4px}.tdko{font-size:15px;font-weight:700;margin-top:3px}.tdm{margin-top:5px;font-size:12.5px;color:#7a4b00;background:#fff4d6;border-radius:8px;padding:4px 8px}
 .msg.no{background:var(--bad-bg);color:var(--bad)}
 .r2{padding:12px 0;border-top:1px solid var(--line)}
 .r2:first-of-type{border-top:0}
@@ -232,7 +234,7 @@ h2{font-size:15px;margin:22px 0 10px;color:var(--muted);letter-spacing:.04em}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 button,select,a,.day,.tile,.opt{touch-action:manipulation}
 input,select,textarea{font-size:16px}
-.dgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}.dg{padding:8px 0;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;font:inherit;font-size:14px;cursor:pointer}.dg.ok{background:var(--good-bg);border-color:var(--good)}.dg.on{border-color:var(--accent);background:var(--accent);color:var(--accent-fg);font-weight:700}u.sig{text-decoration:underline;text-decoration-thickness:2.5px;text-underline-offset:3px;font-weight:700}
+.dgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}.dg{padding:8px 0;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;font:inherit;font-size:14px;cursor:pointer}.dg small.dd{display:block;font-size:10px;line-height:1.1;margin-top:1px;color:var(--good);font-weight:700}.dg.on small.dd{color:inherit}.dg.ok{background:var(--good-bg);border-color:var(--good)}.dg.on{border-color:var(--accent);background:var(--accent);color:var(--accent-fg);font-weight:700}u.sig{text-decoration:underline;text-decoration-thickness:2.5px;text-underline-offset:3px;font-weight:700}
 </style>
 <style id="qa-css">@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .day.bk-star{background:#3b3216;border-color:#a8801f}:root:not([data-theme="light"]) .day.bk-star .dn,:root:not([data-theme="light"]) .day.bk-star .bk-ds{color:#fef3c7}:root:not([data-theme="light"]) .day.bk-star.done{background:#12382a;border-color:#2f8f6b}:root:not([data-theme="light"]) .day.bk-star.done .dn,:root:not([data-theme="light"]) .day.bk-star.done .bk-ds{color:#d1fae5}}:root[data-theme="dark"] .day.bk-star{background:#3b3216;border-color:#a8801f}:root[data-theme="dark"] .day.bk-star .dn,:root[data-theme="dark"] .day.bk-star .bk-ds{color:#fef3c7}</style>
 <style id="shell-css">
@@ -770,10 +772,16 @@ function curDay(){
   if(store.sel&&days[store.sel])return store.sel;
   return dayList[0];
 }
+function lessonDate(d){var h=store.hist||[];for(var i=h.length-1;i>=0;i--){if(h[i].k==='lesson'&&h[i].d===d){var x=new Date(h[i].t);return (x.getMonth()+1)+'/'+x.getDate();}}return '';}
+function viewDay(d){
+  var dt=lessonDate(d);
+  app.innerHTML='<div class="top"><button class="back" data-act="home">목록</button><div class="ttl">Day '+d+' 다시보기</div></div><div class="card"><p class="hint" style="margin:0">내 기록은 그대로예요. 문장과 분석만 다시 봐요.'+(dt?' (공부한 날 '+dt+')':'')+'</p>'+todayHtml(days[d],'Day '+d+' 문장 · 오답노트에 옮겨 써요')+'</div><button class="primary" style="margin-top:12px" data-act="home">목록으로</button>';
+  window.scrollTo(0,0);
+}
 function dayGrid(from,to,cur){
   var h='';for(var d=from;d<=to;d++){
     if(!days[d])continue;
-    h+='<button class="dg'+(d===cur?' on':'')+(store.best[d]?' ok':'')+'" data-act="selday" data-day="'+d+'">'+d+'</button>';
+    h+='<button class="dg'+(d===cur?' on':'')+(store.best[d]?' ok':'')+'" data-act="selday" data-day="'+d+'">'+d+(store.best[d]?'<small class="dd">'+(lessonDate(d)||'\u2713')+'</small>':'')+'</button>';
   }
   return h;
 }
@@ -801,6 +809,7 @@ function dayTab(){
   var d17=curDay(),b=store.best[d17];
   var cu=store.cur&&store.cur.day===d17&&store.cur.res&&(store.cur.i>0||store.cur.quiz||store.cur.c)?store.cur:null;
   var lessonCard='<h2>오늘 7문장 · Day '+d17+'</h2><p class="hint" style="margin:0 0 10px">통과 기준 : 정답률 90% 이상. 못 넘으면 결과 화면에 "한번 더"가 나와요.</p>'+(cu?'<button class="quizbtn" data-act="resume" data-day="'+d17+'" style="margin-top:0"><b>Day '+d17+' 이어서 하기</b><span>'+(cu.quiz?'문장 연습은 끝났어요. 마무리 퀴즈부터':days[d17].length+'문장 중 '+(cu.i+1)+'번째 문장부터')+'</span></button><button class="ghost" data-act="start" data-day="'+d17+'" style="width:100%;margin-top:8px">처음부터 다시 하기</button>':'<button class="quizbtn" data-act="start" data-day="'+d17+'" style="margin-top:0"><b>Day '+d17+' 시작</b><span>'+days[d17].length+'문장 연습 + 마무리 퀴즈'+(b?' · 지난 기록 있음':'')+'</span></button>');
+  if(b)lessonCard+='<button class="ghost" data-act="view" data-day="'+d17+'" style="width:100%;margin-top:8px">Day '+d17+' 다시보기 (기록은 그대로)</button>';
   app.innerHTML=SHELLBAR()+'<div class="card" style="margin-bottom:10px">'+lessonCard+'</div>'+dayPick(d17)+'<button class="ghost" style="width:100%;margin-top:14px" data-act="hist">내 기록'+(cumLine()?' · '+histStats().lp+'회 통과':'')+'</button><p class="foot">V SIGNAL E단계</p>';
   window.scrollTo(0,0);
 }
@@ -906,6 +915,17 @@ function kRow3(){
   idx.sort(function(x,y){return kpos(C.s.ko,C.s.ch[x].k)-kpos(C.s.ko,C.s.ch[y].k);});
   return '<div class="krow"><span class="klbl">우리말 해석</span><div class="kflow">'+(idx.length?idx.map(function(k){return '<span class="kblk">'+esc(C.s.ch[k].k)+'</span>';}).join(''):'<span class="kdone">해석이 모두 내려왔어요</span>')+'</div></div>';
 }
+function beMemo(s,compact){
+  var ps=[];
+  for(var i=0;i<s.ch.length;i++){
+    var c=s.ch[i];if(c.r!=='동사')continue;
+    var j=i+1;while(j<s.ch.length&&s.ch[j].r==='수식어'&&s.ch[j].t.split(' ').length<=2)j++;
+    if(j<s.ch.length&&s.ch[j].r==='보어')ps.push(c.t.replace(/[.,?]$/,'')+' '+s.ch[j].t.replace(/[.,?]$/,''));
+  }
+  if(!ps.length)return '';
+  if(compact)return '<div class="tdm">\u26A0\uFE0F 합쳐서 해석: '+ps.map(function(x){return '<b>'+esc(x)+'</b>';}).join(', ')+' (동강동강 끊어 읽지 않기)</div>';
+  return '<div class="bememo"><b class="t">\u26A0\uFE0F 꼭 기억하세요: 동사와 보어는 합쳐서 해석해요!</b>이 문장은 성분 연습을 위해 어쩔 수 없이 동사와 보어를 나눠 놓았어요. 하지만 해석할 때는 <b>절대 동강동강 끊어 읽지 말고, 하나로 합쳐서</b> 읽어야 해요.<br>'+ps.map(function(x){return '<span class="pr">'+esc(x)+'</span>';}).join('')+'<br><span class="x">\uc544\ud508 \uc600\ub2e4</span> \u274C &nbsp; <b>was sick = \uc544\ud330\ub2e4</b> \u2B55 &nbsp;(\ub098\ub220 \ub193\uc558\uc5b4\ub3c4 \ub73b\uc740 \ud558\ub098!)<br>\uc704 \ubb38\uc7a5\uc758 \uc6b0\ub9ac\ub9d0 \ud574\uc11d\ub3c4 \ud55c \ubc88\uc5d0 \uc77d\uc5b4 \ubcf4\uc138\uc694.</div>';
+}
 function v1(){
   var h='<p class="ask">우리말 어순을 보고, 영어에서는 어떤 순서로 올지 찾아 쌓아요. 제자리를 찾으면 그 뜻이 아래로 내려와요</p>'+kRow3()+stage3Html();
   h+='<div class="pool">'+C.pool.map(function(ci){return tile(ci,0,false);}).join('')+'</div>';
@@ -955,7 +975,7 @@ function vA(){
       return '<button class="opt'+(b?' bad':'')+'"'+(b?' disabled':'')+' data-act="roleA" data-k="'+cur+'" data-r="'+r+'">'+(LBL[r]||r)+'</button>';
     }).join('')+'</div></div>';
   }
-  if(C.done2)h+='<p class="msg ok">'+(s.m?'뜻 완성':'뜻과 성분 완성')+'.</p><button class="primary" data-act="next">다음 단계: 어순</button>';
+  if(C.done2)h+='<p class="msg ok">'+(s.m?'뜻 완성':'뜻과 성분 완성')+'.</p>'+beMemo(s)+'<button class="primary" data-act="next">다음 단계: 어순</button>';
   return h;
 }
 function v4(){
@@ -970,7 +990,7 @@ function v4(){
     if(c.a)parts.push('꾸미는 대상: '+esc(c.a.replace(/\s*수식$/,'')));
     return '<li><span>'+esc(c.t)+'</span> '+parts.join(' · ')+'</li>';
   }).join('')+'</ul>';
-  h+='<p class="gain">이번 문장 '+(sumArr(C.mist)?'실수 <b>'+sumArr(C.mist)+'</b>개':'실수 없음')+'</p>';
+  h+=beMemo(s);h+='<p class="gain">이번 문장 '+(sumArr(C.mist)?'실수 <b>'+sumArr(C.mist)+'</b>개':'실수 없음')+'</p>';
   h+='<button class="primary" data-act="next">'+(S.i+1<S.list.length?'다음 문장':'Day 결과 보기')+'</button>';
   return h;
 }
@@ -1369,6 +1389,16 @@ function rvWrong(st){
   var seen={};out=out.filter(function(o){if(seen[o.n])return false;seen[o.n]=1;return true;});
   out.sort(function(a,b){return a.n-b.n;});return out;
 }
+function todayHtml(L0,ttl){
+  var L=L0||(S&&S.list)||[];if(!L.length)return '';
+  var h='<div class="today"><div class="tdh">'+(ttl||'\uc624\ub298\uc758 \ubb38\uc7a5 \u00b7 \uc624\ub2f5\ub178\ud2b8\uc5d0 \uc61b\uaca8 \uc368\uc694')+'</div>';
+  L.forEach(function(s){
+    h+='<div class="tdi"><div class="tdn">\ucc45 '+s.n+'\ubc88</div><div class="sent">'+s.ch.map(function(c){return '<span class="blk role-'+CLS[c.r]+'"><b>'+sig(c)+'</b><small>'+(LBL[c.r]||c.r)+'</small></span>';}).join('')+'</div>'
+     +'<div class="tdk">'+s.ch.filter(function(c){return c.k;}).map(function(c){return esc(c.k);}).join(' / ')+'</div>'
+     +'<div class="tdko">'+esc(s.ko)+'</div>'+beMemo(s,true)+'</div>';
+  });
+  return h+'</div>';
+}
 function recCard(kind){
   var h='<div class="rec"><div class="rec-h">V SIGNAL E · 동남비타민영어학원</div>';
   if(kind==='lesson'){
@@ -1390,6 +1420,7 @@ function recCard(kind){
      +((st.trk&&st.trk.some(function(o){return o.done;}))?'<div class="rec-q" style="color:var(--good);font-weight:700">보너스 Part 3 '+st.trk.filter(function(o){return o.done;}).length+' / '+st.trk.length+' : '+st.trk.filter(function(o){return o.done;}).map(function(o){var it0=TRK.items[o.k];return 'Track '+it0.t+' Day '+it0.d+' '+esc(it0.w);}).join(', ')+'</div>':'');
   }
   var c=cumLine();
+  if(kind==='lesson')h+=todayHtml();
   return h+(c?'<div class="rec-c">'+c+'</div>':'')+'<div class="rec-f">이 화면을 캡처해서 선생님과 부모님께 보여 드려요</div></div>';
 }
 function renderHist(){
@@ -1523,6 +1554,7 @@ app.addEventListener('click',function(e){
   var t=e.target.closest('[data-act]');if(!t)return;
   var a=t.getAttribute('data-act');
   if(a==='home'){home();return;}
+  if(a==='view'){viewDay(Number(t.getAttribute('data-day')));return;}
   if(a==='tab'){TAB=t.getAttribute('data-tab');home();return;}
   if(a==='selday'){store.sel=Number(t.getAttribute('data-day'));save();home();return;}
   if(a==='wipe'){store={best:{}};HCONF=false;save();home();return;}
