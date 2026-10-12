@@ -206,7 +206,14 @@ function wire(){
       S.result=grade(S.tier);S.submitted=true;
       var b=S.best[S.tier];
       if(selCount()>0){if(!b||S.result.score>b.score)S.best[S.tier]={score:S.result.score};
-      HUB.put(KEY,{best:S.best});var nb=Object.keys(S.best).length;HUB.setStep('grammar',{done:nb===3,count:nb,N:3});}
+      var M=(HUB.get(KEY)||{}).miss||{},KWC='hub_c2-neungryul-oh-4_wrongclear',CLR=HUB.get(KWC)||{};
+      Object.keys(S.result.found).forEach(function(k){
+        var m=k.match(/^(\d+):(\d+):(.*)$/),mk=S.tier+':'+m[1]+':'+(+m[2]+1)+':'+m[3];
+        if(S.result.found[k])delete M[mk];
+        else{M[mk]=1;D.tiers[S.tier].forEach(function(x,i){if(x.s===+m[1]&&x.n===+m[2]+1&&(x.orig+'|'+x.neu)===m[3])delete CLR['gra'+S.tier+i]})}
+      });
+      HUB.put(KWC,CLR);
+      HUB.put(KEY,{best:S.best,miss:M});var nb=Object.keys(S.best).length;HUB.setStep('grammar',{done:nb===3,count:nb,N:3});}
       render();window.scrollTo(0,0);
     };
   }else{
