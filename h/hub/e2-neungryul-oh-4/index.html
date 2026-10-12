@@ -39,6 +39,12 @@ HW.forEach(function(s,i){
   h+='<'+tag+' class="st '+cls+'"'+(s.href?' href="'+HUB.base+s.href+'"':'')+'><span class="no">'+(st.cls==='done'?'&#10003;':(i+1))+'</span><span class="bd2"><b><span>'+esc(s.name)+'</span>'+(pill?'<span class="pill">'+pill+'</span>':'')+'</b><span class="ds">'+esc(s.desc)+(st.t?' · '+esc(st.t):'')+'</span></span></'+tag+'>';
 });
 h+='</div>';
+if(C.mock&&C.mock.length){
+  h+='<div class="sh">모의고사</div><div class="sl">';
+  C.mock.forEach(function(m){h+='<div class="st off"><span class="no">&#8226;</span><span class="bd2"><b><span>'+esc(m.name)+'</span><span class="pill">준비 중</span></b><span class="ds">'+esc(m.desc)+'</span></span></div>'});
+  h+='</div>';
+}
+if(C.plan)h+='<a href="'+HUB.base+C.plan+'" style="display:block;margin:14px 0;padding:12px 14px;border:1px solid #d9e2ec;border-radius:12px;background:#fff;color:#2a6496;font-weight:700;text-decoration:none">기말 대비 일정 보기</a>';
 h+='<div class="tip">각 단계 화면 맨 위의 허브 버튼으로 이 화면에 돌아오고, 이전·다음 버튼으로 바로 옮겨 갈 수 있어요.</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
 app.innerHTML=h;
 })();
