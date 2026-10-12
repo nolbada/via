@@ -17,6 +17,8 @@ window.HUBCFG={
   {name:'2024년 10월 모의고사',desc:'자료가 올라오면 이 자리에 열려요.'},
   {name:'2026년 10월 모의고사',desc:'시험 범위 공지 후 이 자리에 열려요.'}
  ],
+ notice:['10/17(토)은 학원 수업이 없어요','10/20(화)은 10월 모의고사예요'],
+ noticeUntil:'2026-10-21',
  plan:'hub/e2-neungryul-oh-4/plan/',
  sync:'https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec'
 };
