@@ -143,7 +143,7 @@ function corner(k,onlyWrong){
     if(!i||list[i-1].c!==it.c)h+='<div class="grp"><b>'+esc(GN[it.c].name)+'</b> '+esc(GN[it.c].desc)+'</div>';
     h+='<div class="qs" id="q'+it.id+'"><div class="qh"><span class="qn">'+(byC(k).indexOf(it)+1)+'</span><div class="qt">'+(it.c==='trap'?'본문 문장 4개 중에서 골라요.':sentHTML(it)+stemHTML(it))+'</div></div><div class="ask">'+esc(it.q)+'</div><div class="ops">';
     it.opts.forEach(function(o,j){h+=optHTML(it,j)});
-    h+='</div>'+(done?fbHTML(it):'')+'</div>';
+    h+='</div>'+(done?fbHTML(it):'')+'<div class="wkr">'+HUB.weak.btn('voc'+it.id)+'</div></div>';
   });
   app.innerHTML=h;
   var s=stat(k);
