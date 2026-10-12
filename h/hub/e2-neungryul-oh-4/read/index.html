@@ -24,7 +24,9 @@
 .sq .ez{margin-top:8px;padding:8px 10px;background:#eaf6f3;border-left:3px solid #2a9d8f;border-radius:4px;line-height:1.7}
 .sq .ez i{display:block;font-style:normal;font-size:12px;font-weight:700;color:#1f7a6f;margin-bottom:2px}
 .sq{cursor:pointer}
-.sq:not(.on) .k,.sq:not(.on) .nt,.sq:not(.on) .ez{display:none}
+.sq .sl{line-height:1.8;color:#2a6496}
+.sq.on .sl{display:none}
+.sq:not(.on) .e,.sq:not(.on) .k,.sq:not(.on) .nt,.sq:not(.on) .ez{display:none}
 .sq .hint{margin-top:8px;font-size:13px;font-weight:700;color:#2a6496;text-align:center;padding:6px;border:1px dashed #8ab4d4;border-radius:8px}
 .sq.on .hint{display:none}
 .tools #all{padding:6px 12px;border:1px solid #8ab4d4;background:#fff;color:#2a6496;border-radius:8px;font-size:14px;font-weight:700}
@@ -106,9 +108,10 @@ function open(si){
   s.sents.forEach(function(t,i){
     var j=JJ[nrm(t.en)];
     h+='<div class="rd sq" style="font-size:var(--fs)"><span class="no">'+(i+1)+'</span>';
+    h+='<div class="sl">'+esc(j&&j.e.length===j.k.length?j.e.join(' / '):t.en)+'</div>';
     if(j&&j.e.length===j.k.length){j.e.forEach(function(e,k){h+='<div class="e">'+esc(e)+'</div><div class="k">&#8627; '+esc(j.k[k])+'</div>'})}
     else h+='<div class="e">'+esc(t.en)+'</div>';
-    h+='<div class="nt"><i>이어 읽으면</i>'+esc(t.ko)+'</div>'+(EASY[si]&&EASY[si][i]?'<div class="ez"><i>쉽게 말하면</i>'+esc(EASY[si][i])+'</div>':'')+'<div class="hint">직독직해 해 보고, 눌러서 답 확인</div></div>';
+    h+='<div class="nt"><i>이어 읽으면</i>'+esc(t.ko)+'</div>'+(EASY[si]&&EASY[si][i]?'<div class="ez"><i>쉽게 말하면</i>'+esc(EASY[si][i])+'</div>':'')+'<div class="hint">슬래시대로 읽고 뜻을 떠올려 본 뒤, 눌러서 펼치기</div></div>';
   });
   h+='</div>';
   h+='<div class="gist"><b>결국 이 얘기</b><p>'+esc(GIST[si]||'')+'</p></div>';
