@@ -85,7 +85,6 @@ span.w2{cursor:default}
 .dp1{background:var(--c1)}.dp2{background:var(--c2)}.dp3{background:var(--c3)}
 .tn.kd0,.tn.kd1,.tn.kd2{border-color:var(--cb);border-left-width:7px;color:var(--fg)}
 .kdb{border-left:7px solid var(--cb)}
-.pairw{position:relative;display:flex;justify-content:space-between;gap:60px;margin:12px 0}.pcol{display:flex;flex-direction:column;justify-content:space-around;gap:14px;flex:1;z-index:2}.psv{position:absolute;left:0;top:0;width:100%;height:100%;z-index:1;pointer-events:none}.pb2{min-height:52px;padding:8px 10px;border-radius:12px;border:2px solid var(--ln);background:var(--sf);color:var(--fg);font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;text-align:center}.pb2 i{display:block;font-style:normal;font-size:12px;color:var(--mu);font-weight:600}.pb2.sel{border-color:var(--ac);background:var(--acbg)}.pb2.okpick{border-color:var(--ok);background:var(--okbg)}
 .tb{display:inline-block;padding:1px 9px;border-radius:99px;font-size:12px;font-weight:800;color:#fff;background:#7c3aed}.tb.rel{background:#ea580c}.secH{font-size:13px;font-weight:800;color:var(--mu);margin:14px 0 4px}
 .bdr{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
 .bd{display:inline-flex;flex-direction:column;align-items:center;padding:4px 10px;border-radius:10px;border:1.5px solid var(--ln);background:var(--sf);font-weight:700;font-size:15px;line-height:1.3}
@@ -143,7 +142,7 @@ function home(){
   cur=null;$.innerHTML=h;window.scrollTo(0,0)}
 function resetAll(){if(confirm("기록을 모두 지울까요?")){R={};save();home()}}
 function stepsOf(n){
-  if(!n.kind){if(!n.form)return [{t:'S'}];const st0=n.form2?[{t:'S'},{t:'form',p:1},{t:'form',p:2}]:[{t:'S'},{t:'form'}];if(n.sk&&n.sk.length>1)st0.push({t:'pair'});return st0}
+  if(!n.kind)return n.form?(n.form2?[{t:'S'},{t:'form',p:1},{t:'form',p:2}]:[{t:'S'},{t:'form'}]):[{t:'S'}];
   const st=[{t:'kind'},{t:'sub'}];if(n.kind=='형용사절')st.push({t:'anc'});st.push({t:'S'});return st}
 function play(id){KO=0;cur=S.find(s=>s.id==id);TAB=cur.lv;wr=0;ph='verb';opened={};done={};ni=0;si=0;fnd={};
   GL=[];cur.nodes.forEach(n=>n.G.forEach(g=>GL.push(g)));R[id]=R[id]||{};drawVerb('')}
@@ -262,34 +261,8 @@ function draw(){
   else if(s.t=='anc'){q='이 절이 꾸미는 말을 누르세요.';body=anyH(n)}
   else if(s.t=='S'){q=n.kind?'노란 절의 주어를 누르세요.':'문장의 뼈대에서 주어를 누르세요.';body=sentH(n,true,!n.kind)}
   else if(s.t=='form'){q=s.p?(s.p==1?'첫 번째 동사('+txtOf(n.G[0])+')가 만드는 뼈대는 몇 형식일까요?':'이어진 두 번째 동사('+txtOf(n.G[1])+')가 만드는 뼈대는 몇 형식일까요?'):'이 뼈대는 누구와 닮은꼴일까요?';body=sentH(n,false,true)+formCards()}
-  else if(s.t=='pair'){q='닮은꼴 문장과 줄로 이어 보세요. 이 문장의 덩어리와 같은 역할의 낱말을 짝지어요.';body=pairH(n)}
   else{q=!n.kind?'주절의 동사를 누르세요.':'노란 절에서 and로 이어진 동사를 모두 누르세요.';body=sentH(n,true)}
-  $.innerHTML=head(n.kind?2:1)+'<div class="card"><span class="pill">'+pillTxt+'</span><p class="q">'+esc(q)+'</p>'+body+'<div id="fb"></div></div>';window.scrollTo(0,0);if(s.t=='pair')pairInit()}
-/* 짝짓기: 이 문장의 덩어리와 닮은꼴 문장의 낱말을 줄로 잇기 */
-const EXF={1:[['I','S'],['sleep','V']],2:[['I','S'],['am','V'],['happy','C']],3:[['I','S'],['like','V'],['apples','O']],4:[['I','S'],['give','V'],['him','O'],['a book','O']],5:[['I','S'],['make','V'],['him','O'],['happy','C']]};
-let PL=[],PR=[],psel=null,pdn={};
-function pairH(n){
-  const cnt={};PL=n.sk.map(x=>{const k=cnt[x.r]||0;cnt[x.r]=k+1;return {t:runsOf(x.g),key:x.r+k}});
-  const c2={};PR=EXF[n.form].map(e=>{const k=c2[e[1]]||0;c2[e[1]]=k+1;const key=e[1]+k;const lab=e[1]=='S'?'주어':e[1]=='V'?'동사':e[1]=='C'?(n.form==5?'목적격보어':'보어'):(n.form==4?['간접목적어','직접목적어'][k]:'목적어');return {w:e[0],key:key,lab:lab}}).filter(e=>PL.some(l=>l.key==e.key)).reverse();
-  psel=null;pdn={};
-  const f=FORMS[n.form-1];
-  return '<div class="small" style="margin-bottom:6px">'+f[0]+' 닮은꼴: <b>'+esc(f[1])+'</b> '+esc(f[2])+'</div><div class="pairw" id="pw"><svg id="psv" class="psv"></svg><div class="pcol">'+PL.map((l,i)=>'<button class="pb2" data-l="'+i+'">'+esc(l.t)+'</button>').join('')+'</div><div class="pcol">'+PR.map((r,i)=>'<button class="pb2 pr3" data-r="'+i+'">'+esc(r.w)+'<i>'+r.lab+'</i></button>').join('')+'</div></div>'}
-function pairInit(){
-  const pw=document.getElementById('pw');
-  pw.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{if(b.disabled)return;psel=+b.dataset.l;pw.querySelectorAll('[data-l]').forEach(x=>x.classList.toggle('sel',x===b));document.getElementById('fb').innerHTML=''});
-  pw.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{
-    if(b.disabled)return;
-    if(psel==null){document.getElementById('fb').innerHTML='<div class="msg n">왼쪽 문장 덩어리를 먼저 누르세요.</div>';return}
-    const L=PL[psel],R2=PR[+b.dataset.r],lb=pw.querySelector('[data-l="'+psel+'"]');
-    if(L.key==R2.key){
-      const pr=pw.getBoundingClientRect(),a=lb.getBoundingClientRect(),c=b.getBoundingClientRect();
-      const ln=document.createElementNS('http://www.w3.org/2000/svg','line');
-      ln.setAttribute('x1',a.right-pr.left);ln.setAttribute('y1',a.top+a.height/2-pr.top);ln.setAttribute('x2',c.left-pr.left);ln.setAttribute('y2',c.top+c.height/2-pr.top);ln.setAttribute('stroke','#0f766e');ln.setAttribute('stroke-width','3');ln.setAttribute('stroke-linecap','round');
-      document.getElementById('psv').appendChild(ln);
-      lb.classList.remove('sel');lb.classList.add('okpick');lb.disabled=true;b.classList.add('okpick');b.disabled=true;pdn[psel]=1;psel=null;
-      if(Object.keys(pdn).length==PL.length){document.getElementById('fb').innerHTML='<div class="msg g">맞았습니다. 이 문장의 덩어리가 닮은꼴 문장의 자리와 하나씩 짝이 맞아요.</div>';adv(nextStep)}
-      else document.getElementById('fb').innerHTML='<div class="msg g">짝이 맞았어요. 다음 덩어리를 이어 보세요.</div>'}
-    else{wr++;lb.classList.remove('sel');psel=null;document.getElementById('fb').innerHTML='<div class="msg n">짝이 달라요. 이 덩어리가 문장에서 어떤 역할인지 다시 생각해 보세요.</div>'}})}
+  $.innerHTML=head(n.kind?2:1)+'<div class="card"><span class="pill">'+pillTxt+'</span><p class="q">'+esc(q)+'</p>'+body+'<div id="fb"></div></div>';window.scrollTo(0,0)}
 const FORMS=[["1형식","I sleep.","나는 잔다.","S + V"],["2형식","I am happy.","나는 행복하다.","S + V + 보어 · I = happy"],["3형식","I like apples.","나는 사과를 좋아한다.","S + V + 목적어 · I ≠ apples"],["4형식","I give him a book.","나는 그에게 책을 준다.","S + V + 간접목적어 + 직접목적어 · him ≠ a book"],["5형식","I make him happy.","나는 그를 행복하게 만든다.","S + V + 목적어 + 목적격보어 · him = happy"]];
 function formCards(){return '<div class="chunks" style="margin-top:12px">'+FORMS.map((f,k)=>'<button class="ck" onclick="pickform(this,'+(k+1)+')"><b>'+f[0]+'</b> &nbsp;'+f[1]+'<span class="hint">'+f[2]+'</span><span class="hint">'+f[3]+'</span></button>').join('')+'</div>'}
 function pickform(el,k){const n=cur.nodes[ni],st=steps[si];if(k==(st.p==2?n.form2:n.form)){el.classList.add("okpick");good()}else{el.classList.add("wrong");el.disabled=true;bad()}}
