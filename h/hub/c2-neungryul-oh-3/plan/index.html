@@ -22,14 +22,49 @@ h1{font-size:22px;margin:4px 0 6px}.sub{color:var(--sub);font-size:14px;margin:0
 .rm{margin-top:8px;padding:8px 12px;background:#fff4ea;border:1px dashed #f0c9a6;border-radius:8px;color:var(--wa);font-size:14px}.rm b{margin-right:6px}
 .ct{font-size:13px;font-weight:400;color:var(--sub)}.fin{border-left:4px solid var(--wa)}
 .foot{text-align:center;color:var(--sub);font-size:13px;margin-top:24px}
+.tl{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.td{display:flex;align-items:center;gap:10px;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);text-decoration:none;font-size:15px}
+.ck{flex:none;width:22px;height:22px;border-radius:6px;border:2px solid #aab9c8;background:#fff;color:#fff;font-size:15px;line-height:18px;text-align:center;font-weight:700}
+.tn{font-weight:700}.tm{color:var(--sub);font-size:13px;flex:1;min-width:0}.tp{flex:none;font-size:13px;color:var(--pt);font-weight:700}
+.td.dn{background:#f1f5f8}.td.dn .ck{background:var(--pt);border-color:var(--pt)}.td.dn .tn{text-decoration:line-through;color:var(--sub)}.td.dn .tm,.td.dn .tp{color:var(--sub);opacity:.75}
+.td.ts .ck{width:auto;padding:0 6px;border-color:var(--wa);background:#fff4ea;color:var(--wa);font-size:12px}.td.ts{border-color:#f0c9a6}
+.tc{font-size:12px;color:var(--sub);margin:8px 0 0}
 </style></head><body><div class="hb"><a href="../">허브</a></div><div class="w">
 <h1>기말 대비 일정</h1>
 <p class="sub">공통영어2 · 월·수·토 수업 기준, 대략의 틀이에요</p>
 <div class="rule"><p>하루에 하는 양은 탄력적으로 해도 돼요. 대신 주간 단위 마감 일정은 꼭 지켜요.</p></div>
-<section class="wk"><div class="bn"><span class="no">1</span>4과 <span class="ct">수업 5회 안에</span> <a class="go" href="../../c2-neungryul-oh-4/">4과 열기</a></div><div class="ds"><span class="d">10/12(월) ~ 10/21(수)</span><span class="d t">말하기 시험<i>10/19(월)</i></span></div><div class="rm"><b>10/17(토)</b> 수업이 없어요</div></section>
+<section class="wk"><div class="bn"><span class="no">1</span>4과 <span class="ct">수업 5회 안에</span> <a class="go" href="../../c2-neungryul-oh-4/">4과 열기</a></div><div class="ds"><span class="d">10/12(월) ~ 10/21(수)</span><span class="d t">말하기 시험<i>10/19(월)</i></span></div><div class="rm"><b>10/17(토)</b> 수업이 없어요</div><div class="tl" data-b="c2-neungryul-oh-4"></div></section>
 <section class="wk fin"><div class="bn">전국 모의고사</div><div class="ds"><span class="d t">10/20(화)</span></div></section>
-<section class="wk"><div class="bn"><span class="no">2</span>3과 <span class="ct">수업 5회 안에</span> <a class="go" href="../../c2-neungryul-oh-3/">3과 열기</a></div><div class="ds"><span class="d">10/24(토) ~ 11/2(월)</span><span class="d t">말하기 시험<i>11/2(월)</i></span></div></section>
+<section class="wk"><div class="bn"><span class="no">2</span>3과 <span class="ct">수업 5회 안에</span> <a class="go" href="../../c2-neungryul-oh-3/">3과 열기</a></div><div class="ds"><span class="d">10/24(토) ~ 11/2(월)</span><span class="d t">말하기 시험<i>11/2(월)</i></span></div><div class="tl" data-b="c2-neungryul-oh-3"></div></section>
 <section class="wk"><div class="bn"><span class="no">3</span>모의고사 <span class="ct">수업 10회 안에</span></div><div class="ds"><span class="d">11/4(수) ~ 11/25(수)</span></div><div class="nt">모의고사 기록은 따로 관리해요</div></section>
-<section class="wk fin"><div class="bn">파이널 총정리 <span class="ct">수업 2회</span></div><div class="ds"><span class="d">11/28(토)</span><span class="d">11/30(월)</span></div><div class="nt">시험 직전 마무리(요약문 완성, 내용 순서배열, 약점노트)는 이때 해요</div><div class="nt">11/26(목)은 예비일 · 12/1(화) 기말고사 시작</div></section>
+<section class="wk fin"><div class="bn">파이널 총정리 <span class="ct">수업 2회</span></div><div class="ds"><span class="d">11/28(토)</span><span class="d">11/30(월)</span></div><div class="nt">시험 직전 마무리(요약문 완성, 내용 순서배열, 약점노트)는 이때 해요</div><div class="tl" data-b="fin"></div><div class="nt">11/26(목)은 예비일 · 12/1(화) 기말고사 시작</div></section>
 <div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>
-</div></body></html>
+</div><script>
+(function(){
+var U={
+ 'c2-neungryul-oh-4':{n:7,t:'4과',v:138,sec:'❶~❼'},
+ 'c2-neungryul-oh-3':{n:6,t:'3과',v:182,sec:'❶~❻'}
+};
+function st(b,k){try{return JSON.parse(localStorage.getItem('hub_'+b+'_step_'+k))||{}}catch(e){return {}}}
+function row(href,name,memo,prog,done,test){
+  return '<a class="td'+(done?' dn':'')+(test?' ts':'')+'" href="'+href+'"><span class="ck">'+(test?'시험':(done?'✓':''))+'</span><span class="tn">'+name+'</span><span class="tm">'+memo+'</span><span class="tp">'+prog+'</span></a>';
+}
+function unit(b){
+  var u=U[b],r=st(b,'read'),c=st(b,'content'),g=st(b,'grammar'),v=st(b,'vocab'),h='../../'+b+'/';
+  function f(o,N){return (o.count||0)+' / '+N}
+  return row(h+'read/','좌본문우해석','본문 '+u.sec+' · '+u.n+'개',f(r,u.n),!!r.done)+
+   row(h+'content/','내용','본문 '+u.sec+' · '+u.n+'개 영역',f(c,u.n),!!c.done)+
+   row(h+'grammar/','문법','중심 · 기본 · 고득점 3단계',f(g,3),!!g.done)+
+   row(h+'vocab/','어휘','①~④ 네 묶음 · '+u.v+'문제',f(v,u.v),!!v.done)+
+   row('../../../c2-neungryul-oh-34/?hub='+b.slice(-1),'동사형 말하기 시험','연습 후 선생님께 검사','',false,true)+
+   '<p class="tc">순서는 자유예요. 끝낸 항목은 체크되고 줄이 그어져요.</p>';
+}
+function fin(){
+  var o=st('c2-neungryul-oh-4','order'),o3=st('c2-neungryul-oh-3','order');
+  return '<a class="td'+(o.done?' dn':'')+'" href="../../c2-neungryul-oh-4/finish/"><span class="ck">'+(o.done?'✓':'')+'</span><span class="tn">4과 시험 직전 마무리</span><span class="tm">요약문·순서배열·약점노트</span><span class="tp">'+(o.N?(o.count||0)+' / '+o.N:'')+'</span></a>'+
+   '<a class="td'+(o3.done?' dn':'')+'" href="../../c2-neungryul-oh-3/finish/"><span class="ck">'+(o3.done?'✓':'')+'</span><span class="tn">3과 시험 직전 마무리</span><span class="tm">요약문·순서배열·약점노트</span><span class="tp">'+(o3.N?(o3.count||0)+' / '+o3.N:'')+'</span></a>';
+}
+document.querySelectorAll('.tl').forEach(function(el){var b=el.getAttribute('data-b');el.innerHTML=b==='fin'?fin():unit(b)});
+})();
+</script>
+</body></html>
