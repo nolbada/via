@@ -743,7 +743,7 @@ function joinCh(a,f){var o='';a.forEach(function(c,i){o+=(i&&!c.g?' ':'')+f(c,i)
 function badge(role){return '<span class="badge role-'+CLS[role]+'">'+(LBL[role]||role)+'</span>';}
 var S=null,C=null;
 
-var CUT=3;
+var CUT=0.9;
 function sumArr(a){return a.reduce(function(x,y){return x+y;},0);}
 function misNow(){
   var n=S?S.res.reduce(function(x,r){return x+r.mis;},0):0;
@@ -1375,7 +1375,7 @@ function recCard(kind){
     var f=S.fin;
     h+='<div class="rec-t">Day '+S.day+' 수업</div><div class="rec-d">'+dateLbl()+' '+timeLbl()+'</div>'
      +'<div class="rec-big '+(f.pass?'ok':'no')+'">'+(f.pass?'통과':'한번 더')+'</div>'
-     +'<div class="rec-l">'+Math.max(0,100-5*f.total)+'점 · 실수 '+f.total+'개 · 문장 연습 '+f.sm+' · 마무리 퀴즈 '+f.qm+'</div><div class="rec-l" style="font-size:13px;color:var(--muted)">통과 기준 : 85점 이상 (실수 하나당 -5점)</div>'
+     +'<div class="rec-l">정답률 '+Math.floor((f.acc==null?1:f.acc)*100)+'% · 실수 '+f.total+'개 · 문장 연습 '+f.sm+' · 마무리 퀴즈 '+f.qm+'</div><div class="rec-l" style="font-size:13px;color:var(--muted)">통과 기준 : 정답률 90% 이상</div>'
      +(f.pass?'':'<div class="rec-l">'+(f.redo.length?'다음 수업 때 한번 더: 책 '+f.redo.join(', ')+'번 문장':'다음 수업 때 한번 더: Day '+S.day)+'</div>');
   }else{
     var st=rvState(),oks=st.items.filter(function(it){return it.ok;}).length,all=st.items.length+(st.extra||[]).length;
@@ -1499,8 +1499,9 @@ function finishQuiz(){
   if(!prev||total<prev.mis)store.best[S.day]={mis:total};
   store.cur=null;
   save();
-  addHist({k:'lesson',d:S.day,m:total,p:total<=CUT});
-  S.fin={total:total,sm:sm,qm:qm,redo:redo,pass:total<=CUT,wrong:wrong};
+  var okN=S.res.reduce(function(x,r){return x+(r.ok||0);},0)+Q.list.length,acc=okN+total?okN/(okN+total):1,pass=acc>=CUT;
+  addHist({k:'lesson',d:S.day,m:total,p:pass});
+  S.fin={total:total,sm:sm,qm:qm,redo:redo,pass:pass,acc:acc,wrong:wrong};
   renderFin();
 }
 function renderFin(){
@@ -1514,7 +1515,7 @@ function renderFin(){
   window.scrollTo(0,0);
 }
 function placeE(k,el){
-  C.flyFrom=el?el.getBoundingClientRect():null;C.fly=k;C.matched[k]=true;C.selE=null;C.nxWrong=0;C.nx++;C.msg=null;
+  C.okc=(C.okc||0)+1;C.flyFrom=el?el.getBoundingClientRect():null;C.fly=k;C.matched[k]=true;C.selE=null;C.nxWrong=0;C.nx++;C.msg=null;
   if(C.nx>=C.n){C.done3=true;C.sc[0]=score(C.mist[0],false,6);C.sc[2]=score(C.mist[2],false,10);}
 }
 function afterFlash(){setTimeout(function(){if(C){C.flash=null;render();}},600);}
@@ -1574,7 +1575,7 @@ app.addEventListener('click',function(e){
     var ci=Number(t.getAttribute('data-i')),pp=C.placed.length;
     if(s.ch[ci].t===s.ch[pp].t){
       C.flyFrom=t.getBoundingClientRect();C.fly=pp;
-      C.pool.splice(C.pool.indexOf(ci),1);C.placed.push(pp);C.wrong=false;C.w3=0;C.k2[pp]=true;C.lastDrop=pp;C.dropShown=false;
+      C.okc=(C.okc||0)+1;C.pool.splice(C.pool.indexOf(ci),1);C.placed.push(pp);C.wrong=false;C.w3=0;C.k2[pp]=true;C.lastDrop=pp;C.dropShown=false;
       if(C.placed.length===C.n){C.done1=true;C.sc[3]=score(C.mist[3],false,s.m?15:10);}
     }else{C.mist[3]++;C.w3++;C.wrong=true;C.flash={b:ci};afterFlash();}
   }
@@ -1583,7 +1584,7 @@ app.addEventListener('click',function(e){
     if(C.ph==='K'){
       var cu=curK();
       if(s.ch[kk2].k===s.ch[cu].k){
-        C.kdone[cu]=true;C.lastDrop=cu;C.dropShown=false;
+        C.okc=(C.okc||0)+1;C.kdone[cu]=true;C.lastDrop=cu;C.dropShown=false;
         if(curK()<0){if(s.m){C.done2=true;C.sc[1]=0;C.sc[2]=score(C.mist[2],false,15);}else{C.ph='R';C.lastDrop=null;}}
       }else{C.mist[2]++;C.flash={k:kk2};C.msg='뜻이 달라요. 빛나는 블록의 뜻을 다시 찾아 보세요.';afterFlash();}
     }
@@ -1591,7 +1592,7 @@ app.addEventListener('click',function(e){
   else if(a==='roleA'&&!C.done2){
     var kr=Number(t.getAttribute('data-k')),rr=t.getAttribute('data-r');
     if(s.ch[kr].r===rr){
-      C.roles[kr]=rr;C.msg=null;
+      C.okc=(C.okc||0)+1;C.roles[kr]=rr;C.msg=null;
       if(C.roles.every(function(x){return x;})){C.done2=true;C.sc[1]=score(C.mist[1],false,10);C.sc[2]=score(C.mist[2],false,10);}
     }else{C.bad[kr][rr]=true;C.mist[1]++;if(s.ch[kr].r==='수식어'||rr==='수식어')C.msg='가려 봐도 문장이 말이 돼? 말이 되면 꾸밈말, 구멍이 나면 뼈대.';}
   }
@@ -1599,7 +1600,7 @@ app.addEventListener('click',function(e){
     if(C.step<2){C.step++;}
     else{
       S.sum+=C.sc[0]+C.sc[1]+C.sc[2]+C.sc[3];
-      S.res.push({n:S.list[S.i].n,mis:sumArr(C.mist)});C.counted=true;
+      S.res.push({n:S.list[S.i].n,mis:sumArr(C.mist),ok:C.okc||0});C.counted=true;
       S.i++;
       if(S.i>=S.list.length){finishDay();return;}
       startSentence();return;
