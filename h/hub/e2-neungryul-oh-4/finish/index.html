@@ -149,7 +149,7 @@ function card(w){
     if(it.c==='trap'){
       h+='본문과 뜻이 달라진 문장은?';
       it.vars.forEach(function(v,k){h+='<div class="vr"><b>'+LT[k]+'</b> '+esc(v.text)+'</div>'});
-      h+='<div class="a">정답 <b>'+LT[it.ans]+'</b>'+mn+'</div><div class="ko">원문: '+esc(it.vars[it.ans].text)+'</div><div class="ko">'+esc(it.vars[it.ans].ko)+'</div>';
+      h+='<div class="a">정답 <b>'+LT[it.ans]+'</b>'+mn+'</div><div class="ko">원문: '+esc((function(v){return v.text.slice(0,v.p)+v.old+v.text.slice(v.p+v.new.length)})(it.vars[it.ans]))+'</div><div class="ko">'+esc(it.vars[it.ans].ko)+'</div>';
       var v=it.vars[it.ans];h+='<div class="ko">바뀐 단어: '+esc(v.o)+' ('+esc(v.og)+') → '+esc(v.s)+' ('+esc(v.sg)+')</div>';
     }else if(it.c==='poly'){
       h+=esc(it.en[0])+'<b>'+esc(it.en[1])+'</b>'+esc(it.en[2])+'<div class="a">'+(w.bad?'내 답 <span class="mine">'+esc(it.opts[w.sel])+'</span> → ':'')+'정답 <b>'+esc(it.opts[it.ans])+'</b></div><div class="ko">'+esc(it.ko)+'</div>';
