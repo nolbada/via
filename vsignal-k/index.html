@@ -897,11 +897,11 @@ function recCard(kind){
   if(kind==='lesson'){
     var f=S.fin;
     h+='<div class="rec-t">Day '+S.day+' 수업</div><div class="rec-d">'+dateLbl()+' '+timeLbl()+'</div>'
-     +'<div class="rec-big '+(f.pass?'ok':'no')+'">'+(f.pass?'통과':'다시')+'</div>'
+     +'<div class="rec-big '+(f.pass?'ok':'no')+'">'+(f.pass?'통과':'한번 더')+'</div>'
      +'<div class="rec-l">정답률 '+f.pct+'% · 실수 '+f.total+'개</div>'
      +'<div class="rec-q">문장 연습 실수 '+f.sm+' · 마무리 퀴즈 실수 '+f.qm+'</div>'
      +'<div class="rec-q">통과 기준 : 정답률 '+PASSPCT+'% 이상 (고른 것 중 맞힌 비율)</div>'
-     +(f.pass?'':'<div class="rec-l">'+(f.redo.length?'다음 수업 때 다시: 책 '+f.redo.join(', ')+'번 문장':'다음 수업 때 다시: Day '+S.day)+'</div>');
+     +(f.pass?'':'<div class="rec-l">'+(f.redo.length?'다음 수업 때 한번 더: 책 '+f.redo.join(', ')+'번 문장':'다음 수업 때 한번 더: Day '+S.day)+'</div>');
   }else{
     var st=rvState(),oks=st.items.filter(function(it){return it.ok;}).length,all=st.items.length+(st.extra||[]).length;
     var doneN=st.items.filter(function(it){return it.done;}).length+(st.extra||[]).filter(function(x){return x.done;}).length;
@@ -926,7 +926,7 @@ function renderHist(){
   out+='<div class="card" style="margin-top:12px"><p class="klbl">지난 기록</p>';
   if(!h.length)out+='<p class="hint" style="margin:0">아직 기록이 없어요.</p>';
   h.slice(0,40).forEach(function(x){
-    var txt=x.k==='lesson'?'Day '+x.d+' 수업 · '+(x.p?'통과':'다시')+' · 실수 '+x.m+'개':'누적복습 Day '+x.d+' · 퀴즈 '+x.o+' / '+x.n;
+    var txt=x.k==='lesson'?'Day '+x.d+' 수업 · '+(x.p?'통과':'한번 더')+' · 실수 '+x.m+'개':'누적복습 Day '+x.d+' · 퀴즈 '+x.o+' / '+x.n;
     out+='<div class="hrow"><span>'+dateLbl(x.t)+' '+timeLbl(x.t)+'</span><b>'+txt+'</b></div>';
   });
   out+='</div>';
