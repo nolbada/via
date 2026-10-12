@@ -181,7 +181,11 @@ function wire(){
       S.result=grade(sec);S.submitted=true;
       var b=S.best[S.si];
       if(selCount()>0){if(!b||S.result.a>b.a||(S.result.a===b.a&&S.result.w<b.w))S.best[S.si]={a:S.result.a,w:S.result.w};
-      HUB.put(KEY,{best:S.best});var nb=Object.keys(S.best).length;HUB.setStep('content',{done:nb===D.secs.length,count:nb,N:D.secs.length});}
+      var M=(HUB.get(KEY)||{}).miss||{},KWC='hub_c2-neungryul-oh-4_wrongclear',CLR=HUB.get(KWC)||{};
+      S.result.miss.forEach(function(n){M[S.si+':'+n]=1;RAW.find.forEach(function(x,i){if(x.s===S.si&&x.n===n)delete CLR['conf'+i]})});
+      S.result.ok.forEach(function(n){delete M[S.si+':'+n]});
+      HUB.put(KWC,CLR);
+      HUB.put(KEY,{best:S.best,miss:M});var nb=Object.keys(S.best).length;HUB.setStep('content',{done:nb===D.secs.length,count:nb,N:D.secs.length});}
       render();window.scrollTo(0,0);
     };
   }else{
