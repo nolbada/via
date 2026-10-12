@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>주성고1 2학기 기말대비</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="주성고1 2학기 기말대비">
+<meta property="og:description" content="공통영어2 능률(오) 3과부터 기말고사까지 · 여기를 눌러 시작하세요.">
+<link rel="stylesheet" href="../hub.css">
+</head><body>
+<div class="w" id="app"></div>
+<script src="steps.js"></script>
+<script src="../hub.js"></script>
+<script>
+(function(){
+var HUB=window.HUB,esc=HUB.esc,C=HUB.cfg,app=document.getElementById('app');
+function stat(s){
+  var st=HUB.stepState(s.k);
+  if(!s.href)return {t:'준비 중',cls:'off'};
+  if(s.k==='read'&&st.count!=null)return {t:st.count+' / '+st.N+' 영역',cls:st.done?'done':''};
+  if(s.k==='content'&&st.count!=null)return {t:st.count+' / '+st.N+' 영역',cls:st.done?'done':''};
+  if(s.k==='grammar'&&st.count!=null)return {t:st.count+' / '+st.N+' 단계',cls:st.done?'done':''};
+  if(s.k==='vocab'&&st.count!=null)return {t:st.count+' / '+st.N+' 문제',cls:st.done?'done':''};
+  if(s.k==='order'&&st.count!=null)return {t:st.count+' / '+st.N+' 개',cls:st.done?'done':''};
+  if((s.k==='content'||s.k==='grammar')&&st.done){var b=st.best||{},p=[];for(var m in b)p.push(({find:'',core:'중심 ',basic:'기본 ',high:'고득점 '}[m]||'')+b[m]+'점');return {t:'최고 '+p.join(' · '),cls:'done'}}
+  return {t:'',cls:''};
+}
+var HW=C.steps.filter(function(s){return !s.test}),TS=C.steps.filter(function(s){return s.test});
+var done=0,cur=-1;
+HW.forEach(function(s,i){var st=stat(s);s._st=st;if(st.cls==='done')done++;else if(cur<0&&s.href)cur=i});
+var tot=HW.filter(function(s){return s.href}).length;
+var h='<div class="hh"><span class="bd">'+esc(C.lesson||'')+'</span><h1>'+esc(C.title)+'</h1><p>'+esc(C.sub)+'</p></div>';
+if(TS.length){
+  TS.forEach(function(s){
+    var n=0,dy=0;try{var V=JSON.parse(localStorage.getItem('verb_study_'+(C.vbid||C.bid)+'_v1'))||{};for(var q in (V.views||{}))n+=V.views[q];for(var q2 in (V.secs||{}))if(V.secs[q2]>0)dy++}catch(e){}
+    h+='<a class="dock" href="'+HUB.base+s.href+'"><span class="dk-ic">V</span><span class="dk-bd"><span class="dk-t">'+esc(s.name)+'</span><span class="dk-s">최소 2회독 할 것</span></span><span class="dk-go">연습<br>하기</span></a>';
+  });
+}
+if(C.notice&&(!C.noticeUntil||new Date()<new Date(C.noticeUntil+'T00:00:00+09:00'))){h+='<div style="margin:0 0 14px;padding:12px 14px;border:2px solid #e08a4b;border-radius:12px;background:#fff4ea;color:#8a3c0c;font-weight:700;font-size:15px;line-height:1.6"><div style="font-size:12px;margin-bottom:2px">알림</div>'+C.notice.map(esc).join('<br>')+'</div>'}
+h+='<div class="sh">숙제 순서</div><div class="hp"><div class="bar"><i style="width:'+Math.round(done/tot*100)+'%"></i></div><div class="tx"><span><b>'+done+'</b> / '+tot+' 단계 완료</span><span>위에서부터 차례로</span></div></div><div class="sl">';
+HW.forEach(function(s,i){
+  var st=s._st,cls=!s.href?'off':(st.cls==='done'?'ok':(i===cur?'go':''));
+  var pill=!s.href?'준비 중':(st.cls==='done'?'완료':(i===cur?'지금 할 차례':''));
+  var tag=s.href?'a':'div';
+  h+='<'+tag+' class="st '+cls+'"'+(s.href?' href="'+HUB.base+s.href+'"':'')+'><span class="no">'+(st.cls==='done'?'&#10003;':(i+1))+'</span><span class="bd2"><b><span>'+esc(s.name)+'</span>'+(pill?'<span class="pill">'+pill+'</span>':'')+'</b><span class="ds">'+esc(s.desc)+(st.t?' · '+esc(st.t):'')+'</span></span></'+tag+'>';
+});
+h+='</div>';
+if(C.mock&&C.mock.length){
+  h+='<div class="sh">모의고사</div><div class="sl">';
+  C.mock.forEach(function(m){h+='<div class="st off"><span class="no">&#8226;</span><span class="bd2"><b><span>'+esc(m.name)+'</span><span class="pill">준비 중</span></b><span class="ds">'+esc(m.desc)+'</span></span></div>'});
+  h+='</div>';
+}
+if(C.plan)h+='<a href="'+HUB.base+C.plan+'" style="display:block;margin:14px 0;padding:12px 14px;border:1px solid #d9e2ec;border-radius:12px;background:#fff;color:#2a6496;font-weight:700;text-decoration:none">기말 대비 일정 보기</a>';
+h+='<div class="tip">각 단계 화면 맨 위의 허브 버튼으로 이 화면에 돌아오고, 이전·다음 버튼으로 바로 옮겨 갈 수 있어요.</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
+app.innerHTML=h;
+var shd=app.querySelector('.sh');if(shd&&HUB.sync){var sw=document.createElement('div');sw.style.marginTop='16px';shd.parentNode.insertBefore(sw,shd);HUB.sync.mount(sw)}
+})();
+</script>
+</body></html>
