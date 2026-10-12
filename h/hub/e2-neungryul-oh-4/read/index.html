@@ -23,6 +23,11 @@
 .sq .nt{margin-top:8px;padding-top:8px;border-top:1px dashed #cfd9e6;line-height:1.7}
 .sq .ez{margin-top:8px;padding:8px 10px;background:#eaf6f3;border-left:3px solid #2a9d8f;border-radius:4px;line-height:1.7}
 .sq .ez i{display:block;font-style:normal;font-size:12px;font-weight:700;color:#1f7a6f;margin-bottom:2px}
+.sq{cursor:pointer}
+.sq:not(.on) .k,.sq:not(.on) .nt,.sq:not(.on) .ez{display:none}
+.sq .hint{margin-top:8px;font-size:13px;font-weight:700;color:#2a6496;text-align:center;padding:6px;border:1px dashed #8ab4d4;border-radius:8px}
+.sq.on .hint{display:none}
+.tools #all{padding:6px 12px;border:1px solid #8ab4d4;background:#fff;color:#2a6496;border-radius:8px;font-size:14px;font-weight:700}
 .sq .nt i{display:block;font-style:normal;font-size:12px;font-weight:700;color:#2a6496;margin-bottom:2px}
 .sb{font:inherit;font-size:13px;margin-left:8px;padding:2px 9px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--sub)}
 .tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}
@@ -95,7 +100,7 @@ function cqHTML(si,x){
 function open(si){
   var s=SECS[si];
   var h='<div class="rnav"><button id="tl">영역 목록</button><div class="t"><b>본문 '+esc(s.key)+'</b>'+esc(s.title.split(' · ')[0])+'</div><button id="pv"'+(si===0?' disabled':'')+'>이전</button><button id="nx"'+(si===SECS.length-1?' disabled':'')+'>다음</button></div>';
-  h+='<div class="tools"><span class="sz"><button id="fm">가-</button><button id="fp">가+</button></span></div>';
+  h+='<div class="tools"><span class="sz"><button id="fm">가-</button><button id="fp">가+</button></span><button id="all">전체 열기</button></div>';
   var x=X[si];
   h+='<div id="rds" style="--fs:'+ST.fs+'px">';
   s.sents.forEach(function(t,i){
@@ -103,7 +108,7 @@ function open(si){
     h+='<div class="rd sq" style="font-size:var(--fs)"><span class="no">'+(i+1)+'</span>';
     if(j&&j.e.length===j.k.length){j.e.forEach(function(e,k){h+='<div class="e">'+esc(e)+'</div><div class="k">&#8627; '+esc(j.k[k])+'</div>'})}
     else h+='<div class="e">'+esc(t.en)+'</div>';
-    h+='<div class="nt"><i>이어 읽으면</i>'+esc(t.ko)+'</div>'+(EASY[si]&&EASY[si][i]?'<div class="ez"><i>쉽게 말하면</i>'+esc(EASY[si][i])+'</div>':'')+'</div>';
+    h+='<div class="nt"><i>이어 읽으면</i>'+esc(t.ko)+'</div>'+(EASY[si]&&EASY[si][i]?'<div class="ez"><i>쉽게 말하면</i>'+esc(EASY[si][i])+'</div>':'')+'<div class="hint">직독직해 해 보고, 눌러서 답 확인</div></div>';
   });
   h+='</div>';
   h+='<div class="gist"><b>결국 이 얘기</b><p>'+esc(GIST[si]||'')+'</p></div>';
@@ -117,6 +122,10 @@ function open(si){
   document.getElementById('fm').onclick=function(){ST.fs=Math.max(15,ST.fs-1);save();document.getElementById('rds').style.setProperty('--fs',ST.fs+'px')};
   document.getElementById('fp').onclick=function(){ST.fs=Math.min(26,ST.fs+1);save();document.getElementById('rds').style.setProperty('--fs',ST.fs+'px')};
 
+  var cards=app.querySelectorAll('.sq'),ab=document.getElementById('all');
+  function sync(){var n=0;cards.forEach(function(c){if(c.classList.contains('on'))n++});ab.textContent=n===cards.length?'전체 닫기':'전체 열기'}
+  cards.forEach(function(c){c.onclick=function(){c.classList.toggle('on');sync()}});
+  ab.onclick=function(){var on=ab.textContent==='전체 열기';cards.forEach(function(c){c.classList.toggle('on',on)});sync()};
   app.querySelectorAll('[data-o]').forEach(function(b){b.onclick=function(){ST.q[si]=+b.getAttribute('data-o');save();var y=scrollY;open(si);scrollTo(0,y)}});
   var rq=document.getElementById('rq');if(rq)rq.onclick=function(){delete ST.q[si];save();var y=scrollY;open(si);scrollTo(0,y)};
   document.getElementById('dn').onclick=function(){ST.done[si]=!ST.done[si];save();open(si)};
