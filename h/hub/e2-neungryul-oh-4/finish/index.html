@@ -25,6 +25,7 @@
 .cd .ko{color:var(--sub);font-size:14px}
 .cd .mine{color:#b26a00}
 .cd .row{display:flex;gap:8px;margin-top:8px}
+.cd.hd{cursor:pointer}.cd.hd:not(.on) .a,.cd.hd:not(.on) .ko{display:none}.cd .hint{margin-top:8px;font-size:13px;font-weight:700;color:var(--pri);text-align:center;padding:5px;border:1px dashed #8ab4d4;border-radius:8px}.cd.on .hint{display:none}.cd .vr{margin:3px 0;font-size:15px}
 .cd .row button,.cd .row a{font:inherit;font-size:14px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);text-decoration:none}
 .flt{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
 .flt button{font:inherit;font-size:14px;padding:6px 10px;border:1px solid var(--line);border-radius:16px;background:var(--bg);color:var(--ink)}
@@ -54,22 +55,21 @@ function ordTotal(){var t=0;RAW.secs.forEach(function(s){var n=s.sents.length,pe
 function sumN(){return Object.keys(ST.r).length}
 function sync(){var N=SUM.length+ordTotal(),n=sumN()+ordN();HUB.setStep('order',{done:n===N,count:n,N:N})}
 function wrongs(){
-  var L=[],a,v=HUB.get('hub_'+BID+'_vocab')||{ans:{}},g=HUB.get('hub_'+BID+'_grammar')||{ans:{}},c=HUB.get('hub_'+BID+'_content')||{ans:{}},rd=HUB.get('hub_'+BID+'_read')||{q:{}};
-  SUM.forEach(function(s){var r=ST.r[s.id];if(r&&!r.ok)L.push({k:'sum',id:s.id,s:s})});
-  VD.items.forEach(function(it){var x=v.ans[it.id];if(x!=null&&x!==it.ans)L.push({k:'voc',id:it.id,it:it,sel:x})});
-  GD.items.forEach(function(it){var x=g.ans[it.id];if(x&&x.r!=='ok')L.push({k:'gra',id:it.id,it:it,a:x})});
-  CD.items.forEach(function(it){var x=c.ans[it.id];if(x&&x.r!=='ok')L.push({k:'con',id:it.id,it:it,a:x})});
-  return L.filter(function(w){return !CL[w.k+w.id]});
+  var L=[],W=HUB.weak.get(),v=HUB.get('hub_'+BID+'_vocab')||{ans:{}},g=HUB.get('hub_'+BID+'_grammar')||{ans:{}},c=HUB.get('hub_'+BID+'_content')||{ans:{}};
+  VD.items.forEach(function(it){var x=v.ans[it.id],bad=x!=null&&x!==it.ans,st=!!W['voc'+it.id];if(bad||st)L.push({k:'voc',id:it.id,it:it,sel:x,bad:bad,star:st})});
+  GD.items.forEach(function(it){var x=g.ans[it.id],bad=!!x&&x.r!=='ok',st=!!W['gra'+it.id];if(bad||st)L.push({k:'gra',id:it.id,it:it,a:x,bad:bad,star:st})});
+  CD.items.forEach(function(it){var x=c.ans[it.id],bad=!!x&&x.r!=='ok',st=!!W['con'+it.id];if(bad||st)L.push({k:'con',id:it.id,it:it,a:x,bad:bad,star:st})});
+  return L.filter(function(w){return w.star||!CL[w.k+w.id]});
 }
-var FLT='all';
+var FLT='all',LT=['A','B','C','D','E'];
 function home(){
   HUB.last.clear('finish');sync();
   var w=wrongs();
   var h='<h1>시험 직전 마무리</h1><p class="sub">'+esc(RAW.meta.grade)+' '+esc(RAW.meta.pub)+' '+esc(RAW.meta.lesson)+' · '+esc(RAW.meta.school)+' '+esc(RAW.meta.term)+'</p>';
-  h+='<div class="rule"><p>요약문을 완성하면서 어휘를 한 번 더 잡아요.</p><p>순서배열로 본문 흐름을 확인하고, 마지막에 틀린 문제 모음으로 약한 곳만 다시 봐요.</p></div><div class="menu">';
+  h+='<div class="rule"><p>요약문을 완성하면서 어휘를 한 번 더 잡아요.</p><p>순서배열로 본문 흐름을 확인하고, 마지막에 약점노트로 약한 곳만 다시 봐요.</p></div><div class="menu">';
   h+='<button data-m="sum" class="'+(sumN()===SUM.length?'done':'')+'"><b>요약문 완성 <span class="stat">'+(sumN()?sumN()+' / '+SUM.length+' 풀음':'')+'</span></b><span>빈칸에 알맞은 단어를 골라요 · '+SUM.length+'문항</span></button>';
   h+='<a class="card" href="../order/"><b>내용 순서배열 <span class="stat">'+(ordN()?ordN()+' / '+ordTotal()+' 완료':'')+'</span></b><span>섞인 문장을 글의 흐름대로 배열해요 · '+ordTotal()+'묶음</span></a>';
-  h+='<button data-m="wr"><b>틀린 문제 모음 <span class="stat">'+(w.length?w.length+'개':'')+'</span></b><span>어휘·어법·내용·요약에서 틀린 문제만 다시 봐요</span></button>';
+  h+='<button data-m="wr"><b>약점노트 <span class="stat">'+(w.length?w.length+'개':'')+'</span></b><span>어휘·어법·내용에서 틀렸거나 직접 담은 문제만 다시 봐요</span></button>';
   h+='</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
   app.innerHTML=h;var f=document.getElementById('foot');if(f)f.remove();
   app.querySelectorAll('[data-m]').forEach(function(b){b.onclick=function(){var m=b.getAttribute('data-m');if(m==='sum')slist();else wr()}});
@@ -136,7 +136,7 @@ function play(i){
 }
 var NM={sum:'요약',voc:'어휘',gra:'어법',con:'내용'};
 function card(w){
-  var h='<div class="cd"><span class="tg">'+NM[w.k]+'</span><br>';
+  var h='<div class="cd hd"><span class="tg">'+NM[w.k]+'</span><br>';
   if(w.k==='sum'){
     var s=w.s,r=ST.r[s.id];
     h+=esc(s.tag)+'<div class="a">';
@@ -144,44 +144,45 @@ function card(w){
     h+='</div><div class="ko">'+esc(s.en.replace(/\{([ABC])\}/g,function(m,L){var b=s.bl[L.charCodeAt(0)-65];return b.o[b.a]}))+'</div>';
     h+='<div class="row"><button data-p="'+i2(w)+'">다시 풀기</button><button data-c="'+w.k+w.id+'">확인함</button></div></div>';return h;
   }
-  var it=w.it;
+  var it=w.it,mn=w.bad&&w.sel!=null?' · 내 답 <span class="mine">'+LT[w.sel]+'</span>':'';
   if(w.k==='voc'){
     if(it.c==='trap'){
-      var v=it.vars[w.sel];
-      h+='내가 고른 문장: <span class="mine">'+esc(v.text)+'</span><div class="a">원문: <b>'+esc(it.vars[it.ans].text)+'</b></div><div class="ko">'+esc(it.vars[it.ans].ko)+'</div>';
-      h+='<div class="ko">바뀐 단어: '+esc(v.o)+' ('+esc(v.og)+') → '+esc(v.s)+' ('+esc(v.sg)+')</div>';
+      h+='본문과 뜻이 달라진 문장은?';
+      it.vars.forEach(function(v,k){h+='<div class="vr"><b>'+LT[k]+'</b> '+esc(v.text)+'</div>'});
+      h+='<div class="a">정답 <b>'+LT[it.ans]+'</b>'+mn+'</div><div class="ko">원문: '+esc(it.vars[it.ans].text)+'</div><div class="ko">'+esc(it.vars[it.ans].ko)+'</div>';
+      var v=it.vars[it.ans];h+='<div class="ko">바뀐 단어: '+esc(v.o)+' ('+esc(v.og)+') → '+esc(v.s)+' ('+esc(v.sg)+')</div>';
     }else if(it.c==='poly'){
-      h+=esc(it.en[0])+'<b>'+esc(it.en[1])+'</b>'+esc(it.en[2])+'<div class="a">내 답 <span class="mine">'+esc(it.opts[w.sel])+'</span> → 정답 <b>'+esc(it.opts[it.ans])+'</b></div><div class="ko">'+esc(it.ko)+'</div>';
+      h+=esc(it.en[0])+'<b>'+esc(it.en[1])+'</b>'+esc(it.en[2])+'<div class="a">'+(w.bad?'내 답 <span class="mine">'+esc(it.opts[w.sel])+'</span> → ':'')+'정답 <b>'+esc(it.opts[it.ans])+'</b></div><div class="ko">'+esc(it.ko)+'</div>';
     }else{
-      h+='<b>'+esc(it.w)+'</b> <span class="bs">'+esc(it.wg)+'</span> ('+(it.c==='syn'?'뜻이 가까운 것':'뜻이 반대인 것')+')<div class="a">내 답 <span class="mine">'+esc(it.opts[w.sel])+'</span> → 정답 <b>'+esc(it.opts[it.ans])+'</b> <span class="bs">'+esc(it.gl[it.ans][1])+'</span></div><div class="ko">'+esc(it.en.join(''))+'<br>'+esc(it.ko)+'</div>';
+      h+='<b>'+esc(it.w)+'</b> <span class="bs">'+esc(it.wg)+'</span> ('+(it.c==='syn'?'뜻이 가까운 것':'뜻이 반대인 것')+')<div class="a">'+(w.bad?'내 답 <span class="mine">'+esc(it.opts[w.sel])+'</span> → ':'')+'정답 <b>'+esc(it.opts[it.ans])+'</b> <span class="bs">'+esc(it.gl[it.ans][1])+'</span></div><div class="ko">'+esc(it.en.join(''))+'<br>'+esc(it.ko)+'</div>';
     }
   }else if(w.k==='gra'){
-    h+=esc(it.en)+'<div class="a">고친 답 <b>'+esc(it.fx)+'</b>'+(w.a.f?' · 내 답 <span class="mine">'+esc(w.a.f)+'</span>':'')+'</div><div class="ko">'+esc(it.tag)+' · '+esc(it.ru)+'</div><div class="ko">'+esc(it.ko)+'</div>';
+    h+=esc(it.en)+'<div class="a">고친 답 <b>'+esc(it.fx)+'</b>'+(w.a&&w.a.f?' · 내 답 <span class="mine">'+esc(w.a.f)+'</span>':'')+'</div><div class="ko">'+esc(it.tag)+' · '+esc(it.ru)+'</div><div class="ko">'+esc(it.ko)+'</div>';
   }else{
-    h+=esc(it.en)+'<div class="a">'+(it.sp?'고친 답 <b>'+esc(it.fx)+'</b>'+(w.a.f?' · 내 답 <span class="mine">'+esc(w.a.f)+'</span>':''):'<b>이상 없는 문장</b>이에요')+'</div>';
+    h+=esc(it.en)+'<div class="a">'+(it.sp?'고친 답 <b>'+esc(it.fx)+'</b>'+(w.a&&w.a.f?' · 내 답 <span class="mine">'+esc(w.a.f)+'</span>':''):'<b>이상 없는 문장</b>이에요')+'</div>';
     if(it.orig_en)h+='<div class="ko">원문: '+esc(it.orig_en)+'</div>';
     h+='<div class="ko">'+(it.ru||[]).map(esc).join('<br>')+'</div><div class="ko">'+esc(it.ko)+'</div>';
   }
   var back={voc:'../vocab/',gra:'../grammar/',con:'../content/'}[w.k];
-  h+='<div class="row"><a href="'+back+'">해당 단계로</a><button data-c="'+w.k+w.id+'">확인함</button></div></div>';
+  h+='<div class="hint">눌러서 답 보기</div><div class="row"><a href="'+back+'">해당 단계로</a><button data-c="'+w.k+w.id+'">확인함</button></div></div>';
   return h;
 }
 function i2(w){for(var i=0;i<SUM.length;i++)if(SUM[i].id===w.id)return i;return 0}
 function wr(){
   HUB.last.set('finish',{v:'wr'});
   var L=wrongs(),cnt={all:L.length,sum:0,voc:0,gra:0,con:0};L.forEach(function(w){cnt[w.k]++});
-  var h='<div class="rnav"><button id="bk">처음</button><div class="t"><b>틀린 문제 모음</b>'+L.length+'개</div></div>';
-  h+='<p class="bs">이 기기에서 풀며 틀린 문제가 모여요. 다시 확인했으면 "확인함"을 눌러 치워요.</p><div class="flt">';
-  [['all','전체'],['sum','요약'],['voc','어휘'],['gra','어법'],['con','내용']].forEach(function(f){h+='<button data-f="'+f[0]+'" class="'+(FLT===f[0]?'on':'')+'">'+f[1]+' '+cnt[f[0]]+'</button>'});
+  var h='<div class="rnav"><button id="bk">처음</button><div class="t"><b>약점노트</b>'+L.length+'개</div></div>';
+  h+='<p class="bs">이 기기에서 틀린 문제와 직접 담은 문제가 모여요. 답을 먼저 떠올려 본 뒤 눌러서 확인하고, 다 외웠으면 "확인함"을 눌러 치워요.</p><div class="flt">';
+  [['all','전체'],['voc','어휘'],['gra','어법'],['con','내용']].forEach(function(f){h+='<button data-f="'+f[0]+'" class="'+(FLT===f[0]?'on':'')+'">'+f[1]+' '+cnt[f[0]]+'</button>'});
   h+='</div>';
   var sh=L.filter(function(w){return FLT==='all'||w.k===FLT});
-  if(!sh.length)h+='<div class="rule"><p>'+(L.length?'이 종류에는 틀린 문제가 없어요.':'아직 틀린 문제가 없어요. 어휘·어법·내용·요약을 풀고 나서 다시 와 보세요.')+'</p></div>';
+  if(!sh.length)h+='<div class="rule"><p>'+(L.length?'이 종류에는 틀린 문제가 없어요.':'아직 약점노트에 담긴 문제가 없어요. 어휘·어법·내용을 풀다가 틀리거나, 문제 아래 "약점노트에 담기"를 눌러 보세요.')+'</p></div>';
   sh.forEach(function(w){h+=card(w)});
   app.innerHTML=h;
   document.getElementById('bk').onclick=home;
   app.querySelectorAll('[data-f]').forEach(function(b){b.onclick=function(){FLT=b.getAttribute('data-f');wr()}});
-  app.querySelectorAll('[data-c]').forEach(function(b){b.onclick=function(){CL[b.getAttribute('data-c')]=1;HUB.put(KW,CL);var y=scrollY;wr();scrollTo(0,y)}});
-  app.querySelectorAll('[data-p]').forEach(function(b){b.onclick=function(){play(+b.getAttribute('data-p'))}});
+  app.querySelectorAll('[data-c]').forEach(function(b){b.onclick=function(){var cc=b.getAttribute('data-c'),WW=HUB.weak.get();CL[cc]=1;HUB.put(KW,CL);delete WW[cc];HUB.put(HUB.weak.key(),WW);var y=scrollY;wr();scrollTo(0,y)}});
+  app.querySelectorAll('.cd').forEach(function(c){c.onclick=function(e){if(e.target.closest('button,a'))return;c.classList.toggle('on')}});
   window.scrollTo(0,0);
 }
 var L=HUB.last.get('finish');
