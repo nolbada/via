@@ -85,6 +85,7 @@ span.w2{cursor:default}
 .dp1{background:var(--c1)}.dp2{background:var(--c2)}.dp3{background:var(--c3)}
 .tn.kd0,.tn.kd1,.tn.kd2{border-color:var(--cb);border-left-width:7px;color:var(--fg)}
 .kdb{border-left:7px solid var(--cb)}
+.tb{display:inline-block;padding:1px 9px;border-radius:99px;font-size:12px;font-weight:800;color:#fff;background:#7c3aed}.tb.rel{background:#ea580c}.secH{font-size:13px;font-weight:800;color:var(--mu);margin:14px 0 4px}
 .bdr{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
 .bd{display:inline-flex;flex-direction:column;align-items:center;padding:4px 10px;border-radius:10px;border:1.5px solid var(--ln);background:var(--sf);font-weight:700;font-size:15px;line-height:1.3}
 .bd i{font-style:normal;font-size:11px;font-weight:600;color:var(--mu)}
@@ -305,7 +306,16 @@ function noteVis(n){
   if(n.host)h+='<div class="bdr">'+bd(n.host,'hostb')+'</div>';
   if(n.G&&n.G.length>1)h+='<div class="bdr">'+n.G.map((g,k)=>(k?'<span class="pp">and</span>':'')+bd(txtOf(g),'vbd','동사')).join('')+'</div>';
   if(n.kind=='부사절'&&n.sub=='결과'&&(cur.em||[]).length)h+='<div class="bdr">'+bd(txtOf(cur.em),'em2','so ~')+'<span class="pp">…</span>'+bd('that + 절','kd2 dp1','결과')+'</div>';
+  if(thatKind(n))h+=thatCmp(n);
   return h}
+function thatKind(n){const w=cur.tok[n.a].toLowerCase().replace(/[^a-z]/g,'');if(w!='that')return 0;if(n.sub=='동격')return 1;if(n.kind=='형용사절')return 2;return 0}
+function thatCmp(n){
+  const k=thatKind(n);
+  const card=(on,badge,cls,parts,ko,tip)=>'<div class="cs '+(on?'on':'off')+'"><div class="bdr"><span class="tb '+cls+'">'+badge+'</span>'+parts+'</div><div class="small">'+ko+'</div><div class="small"><b>'+tip+'</b></div></div>';
+  return '<div class="secH">헷갈리는 that 비교</div><div class="cmp">'
+   +card(k==1,'동격','','<span class="bd">the fact<i>앞 명사</i></span><span class="pp">+</span><span class="bd kd0 dp1">that<i>접속사</i></span><span class="pp">+</span><span class="bd">he won<i>완전한 문장</i></span>','the fact that he won = 그가 이겼다는 사실','that 뒤가 완전함. 빠진 자리가 없어요.')
+   +card(k==2,'관계대명사','rel','<span class="bd">the book<i>선행사</i></span><span class="pp">+</span><span class="bd kd1 dp1">that<i>관계대명사</i></span><span class="pp">+</span><span class="bd">I read ___<i>목적어가 빠짐</i></span>','the book that I read = 내가 읽은 책','that 뒤에 빠진 자리가 있어요. that이 그 자리를 채워요.')
+   +'</div><div class="small">구별법: that 뒤에 주어, 목적어가 다 있으면 동격이고, 하나가 비어 있으면 관계대명사예요.</div>'}
 function noteRest(n){const m=n.note.match(/형식입니다\.\s*/);return m?n.note.slice(m.index+m[0].length):n.note}
 function mainVis(n){
   if(!n.sk)return '';
