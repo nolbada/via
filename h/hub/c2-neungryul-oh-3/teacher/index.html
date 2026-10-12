@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>선생님용 정답기 · 공통영어2 능률(오) 3과</title>
+<link rel="stylesheet" href="../../hub.css">
+<style>
+.g{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
+.g button{min-width:52px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-size:16px}
+.g button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.row button,.row select{padding:8px 14px;border:1px solid var(--pri);border-radius:9px;background:var(--bg);color:var(--pri);font-size:16px}
+.row button.p{background:var(--pri);color:#fff;font-weight:700}
+.q{font-size:21px;line-height:1.9;margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:10px}
+.q .ko{font-size:17px;color:var(--sub);margin-top:8px}
+.ans b.sw{background:var(--mark);padding:0 3px;border-radius:4px}
+.lk a{display:block;margin:6px 0;font-size:17px}
+.hint{font-size:15px;color:var(--sub)}
+</style>
+</head><body>
+<div class="w" id="app"></div>
+<script src="../steps.js"></script>
+<script src="../../../books/c2-neungryul-oh-34/L3.js"></script>
+<script src="../../hub.js"></script>
+<script>HUB.bar('teacher');</script>
+<script>
+(function(){
+var HUB=window.HUB,esc=HUB.esc,app=document.getElementById('app');
+var BID='c2-neungryul-oh-3',RAW=TFDATA['c2-neungryul-oh-34|3'],SECS=RAW.secs,META=RAW.meta,KEY='hub_teacher_'+BID;
+var MODES=[['find','내용 어색한 곳',RAW.find],['basic','문법 기본문제',RAW.tiers.basic],['core','문법 중심문제',RAW.tiers.core],['high','문법 고득점문제',RAW.tiers.high]];
+var ST=HUB.get(KEY)||{mode:'find',sel:{},shuf:false,ko:true};
+function save(){HUB.put(KEY,ST)}
+function items(){var m=ST.mode,r=[];MODES.forEach(function(x){if(x[0]===m)r=x[2].slice()});r.sort(function(a,b){return a.s-b.s||a.n-b.n});return r}
+function label(w){return (w.s+1)+'-'+w.n}
+function posOf(en,w){var p=-1,k;for(k=0;k<=(w.occ||0);k++)p=en.indexOf(w.orig,p+1);return p}
+function wrongText(w){var en=SECS[w.s].sents[w.n-1].en,p=posOf(en,w);return en.slice(0,p)+w.neu+en.slice(p+w.orig.length)}
+function rightHTML(w){var en=SECS[w.s].sents[w.n-1].en,p=posOf(en,w);return esc(en.slice(0,p))+'<b class="sw">'+esc(w.orig)+'</b>'+esc(en.slice(p+w.orig.length))}
+function wrongHTML(w){var en=SECS[w.s].sents[w.n-1].en,p=posOf(en,w);return esc(en.slice(0,p))+'<b class="sw">'+esc(w.neu)+'</b>'+esc(en.slice(p+w.orig.length))}
+function setup(){
+  var its=items(),h='<h1>선생님용 정답기</h1><p class="sub">'+esc(META.grade)+' '+esc(META.pub)+' '+esc(META.lesson)+' · 학생에게 주지 마세요</p>';
+  h+='<div class="row">'+MODES.map(function(x){return '<button data-m="'+x[0]+'" class="'+(ST.mode===x[0]?'p':'')+'">'+x[1]+' '+x[2].length+'</button>'}).join('')+'</div>';
+  h+='<p class="hint">출제할 문장을 누르세요. 번호는 영역-문장 번호예요. (예: 3-5 = 본문 3영역 5번 문장)</p>';
+  var cur=-1;
+  its.forEach(function(w,i){
+    if(w.s!==cur){if(cur>=0)h+='</div>';cur=w.s;h+='<div class="sec">본문 '+esc(SECS[w.s].key)+' · '+esc(SECS[w.s].title.split(' · ')[0])+' <button class="mini" data-all="'+w.s+'" style="margin-left:8px;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:2px 10px;font-size:14px">영역 전체</button></div><div class="g">'}
+    h+='<button data-i="'+i+'" class="'+(ST.sel[ST.mode+':'+label(w)]?'on':'')+'">'+label(w)+'</button>';
+  });
+  if(cur>=0)h+='</div>';
+  var n=its.filter(function(w){return ST.sel[ST.mode+':'+label(w)]}).length;
+  h+='<div class="row"><button id="all">전체</button><button id="none">해제</button><button id="rnd">랜덤</button><select id="rn"><option>5</option><option selected>8</option><option>10</option></select>개</div>';
+  h+='<div class="row"><label class="chk"><input type="checkbox" id="shuf"'+(ST.shuf?' checked':'')+'> 섞어서 출제</label><label class="chk"><input type="checkbox" id="ko"'+(ST.ko?' checked':'')+'> 문제에 한글 해석 보이기</label></div>';
+  h+='<div class="row"><button class="p" id="go">시험 시작</button><button id="sheet">답안지 보기</button></div><p class="hint" id="cnt">선택 '+n+'문장</p>';
+  h+='<div class="sec">학생용 링크</div><div class="lk"><a href="'+HUB.hubUrl()+'">학생 허브</a><a href="'+HUB.url('hub/'+BID+'/content/')+'">내용 어색한 곳 찾기</a><a href="'+HUB.url('hub/'+BID+'/grammar/')+'">문법 어색한 곳 찾기</a><a href="'+HUB.url('hub/'+BID+'/vocab/?t=1')+'">어휘 (정답 표시)</a><a href="'+HUB.url('teacher/')+'">동사형 선생님용 (공통영어2 선택)</a></div>';
+  app.innerHTML=h;
+  var f=document.getElementById('foot');if(f)f.remove();
+  app.querySelectorAll('[data-m]').forEach(function(b){b.onclick=function(){ST.mode=b.getAttribute('data-m');save();setup()}});
+  app.querySelectorAll('[data-i]').forEach(function(b){b.onclick=function(){var w=its[+b.getAttribute('data-i')],k=ST.mode+':'+label(w);if(ST.sel[k])delete ST.sel[k];else ST.sel[k]=1;save();setup()}});
+  app.querySelectorAll('[data-all]').forEach(function(b){b.onclick=function(){var s=+b.getAttribute('data-all');its.forEach(function(w){if(w.s===s)ST.sel[ST.mode+':'+label(w)]=1});save();setup()}});
+  document.getElementById('all').onclick=function(){its.forEach(function(w){ST.sel[ST.mode+':'+label(w)]=1});save();setup()};
+  document.getElementById('none').onclick=function(){its.forEach(function(w){delete ST.sel[ST.mode+':'+label(w)]});save();setup()};
+  document.getElementById('rnd').onclick=function(){
+    var n=+document.getElementById('rn').value,idx=its.map(function(_,i){return i}),i,j,t;
+    for(i=idx.length-1;i>0;i--){j=Math.floor(Math.random()*(i+1));t=idx[i];idx[i]=idx[j];idx[j]=t}
+    its.forEach(function(w){delete ST.sel[ST.mode+':'+label(w)]});
+    idx.slice(0,n).forEach(function(i){ST.sel[ST.mode+':'+label(its[i])]=1});save();setup()};
+  document.getElementById('shuf').onchange=function(){ST.shuf=this.checked;save()};
+  document.getElementById('ko').onchange=function(){ST.ko=this.checked;save()};
+  document.getElementById('go').onclick=function(){
+    var q=its.filter(function(w){return ST.sel[ST.mode+':'+label(w)]});
+    if(!q.length){alert('문장을 먼저 선택하세요');return}
+    if(ST.shuf){var i,j,t;for(i=q.length-1;i>0;i--){j=Math.floor(Math.random()*(i+1));t=q[i];q[i]=q[j];q[j]=t}}
+    ask(q,0,false)};
+  document.getElementById('sheet').onclick=function(){
+    var q=its.filter(function(w){return ST.sel[ST.mode+':'+label(w)]});if(!q.length)q=its;sheet(q)};
+}
+function ask(q,k,show){
+  var w=q[k],s=SECS[w.s].sents[w.n-1];
+  var h='<div class="rnav"><button id="bk">처음</button><div class="t"><b>'+(k+1)+' / '+q.length+'</b>본문 '+label(w)+'</div><button id="pv"'+(k===0?' disabled':'')+'>이전</button><button id="nx"'+(k===q.length-1?' disabled':'')+'>다음</button></div>';
+  h+='<p class="hint">학생에게 "어디가 이상해?"라고 물어보세요.</p><div class="q">'+esc(wrongText(w))+(ST.ko?'<div class="ko">'+esc(s.ko)+'</div>':'')+'</div>';
+  if(show){
+    h+='<div class="note found"><div class="tag">'+esc(w.kind)+'</div><div class="swap">'+esc(w.neu)+' → '+esc(w.orig)+'</div>'+w.lines.map(function(l){return '<div class="ln">'+esc(l)+'</div>'}).join('')+'<div class="orig"><div class="en">'+rightHTML(w)+'</div><div class="ko">'+esc(s.ko)+'</div></div></div>';
+  }
+  app.innerHTML=h;
+  var f=document.getElementById('foot');if(!f){f=document.createElement('div');f.id='foot';document.body.appendChild(f)}
+  f.innerHTML='<div class="info"><b>'+(k+1)+' / '+q.length+'</b></div><button id="rv">'+(show?'정답 가리기':'정답 보기')+'</button>';
+  document.getElementById('bk').onclick=setup;
+  document.getElementById('pv').onclick=function(){if(k>0)ask(q,k-1,false)};
+  document.getElementById('nx').onclick=function(){if(k<q.length-1)ask(q,k+1,false)};
+  document.getElementById('rv').onclick=function(){ask(q,k,!show)};
+  window.scrollTo(0,0);
+}
+function sheet(q){
+  var h='<div class="rnav"><button id="bk">처음</button><div class="t"><b>답안지</b>'+q.length+'문장</div></div>';
+  q.forEach(function(w){
+    var s=SECS[w.s].sents[w.n-1];
+    h+='<div class="note found" style="margin:14px 0"><div class="tag">본문 '+label(w)+' · '+esc(w.kind)+'</div><div class="ln">문제: '+wrongHTML(w)+'</div><div class="swap">'+esc(w.neu)+' → '+esc(w.orig)+'</div>'+w.lines.map(function(l){return '<div class="ln">'+esc(l)+'</div>'}).join('')+'<div class="orig"><div class="en">'+rightHTML(w)+'</div><div class="ko">'+esc(s.ko)+'</div></div></div>';
+  });
+  app.innerHTML=h;var f=document.getElementById('foot');if(f)f.remove();
+  document.getElementById('bk').onclick=setup;window.scrollTo(0,0);
+}
+setup();
+})();
+</script>
+</body></html>
