@@ -800,7 +800,7 @@ function cover(){
 function dayTab(){
   var d17=curDay(),b=store.best[d17];
   var cu=store.cur&&store.cur.day===d17&&store.cur.res&&(store.cur.i>0||store.cur.quiz||store.cur.c)?store.cur:null;
-  var lessonCard='<h2>오늘 7문장 · Day '+d17+'</h2>'+(cu?'<button class="quizbtn" data-act="resume" data-day="'+d17+'" style="margin-top:0"><b>Day '+d17+' 이어서 하기</b><span>'+(cu.quiz?'문장 연습은 끝났어요. 마무리 퀴즈부터':days[d17].length+'문장 중 '+(cu.i+1)+'번째 문장부터')+'</span></button><button class="ghost" data-act="start" data-day="'+d17+'" style="width:100%;margin-top:8px">처음부터 다시 하기</button>':'<button class="quizbtn" data-act="start" data-day="'+d17+'" style="margin-top:0"><b>Day '+d17+' 시작</b><span>'+days[d17].length+'문장 연습 + 마무리 퀴즈'+(b?' · 지난 기록 있음':'')+'</span></button>');
+  var lessonCard='<h2>오늘 7문장 · Day '+d17+'</h2><p class="hint" style="margin:0 0 10px">통과 기준 : 정답률 90% 이상. 못 넘으면 결과 화면에 "한번 더"가 나와요.</p>'+(cu?'<button class="quizbtn" data-act="resume" data-day="'+d17+'" style="margin-top:0"><b>Day '+d17+' 이어서 하기</b><span>'+(cu.quiz?'문장 연습은 끝났어요. 마무리 퀴즈부터':days[d17].length+'문장 중 '+(cu.i+1)+'번째 문장부터')+'</span></button><button class="ghost" data-act="start" data-day="'+d17+'" style="width:100%;margin-top:8px">처음부터 다시 하기</button>':'<button class="quizbtn" data-act="start" data-day="'+d17+'" style="margin-top:0"><b>Day '+d17+' 시작</b><span>'+days[d17].length+'문장 연습 + 마무리 퀴즈'+(b?' · 지난 기록 있음':'')+'</span></button>');
   app.innerHTML=SHELLBAR()+'<div class="card" style="margin-bottom:10px">'+lessonCard+'</div>'+dayPick(d17)+'<button class="ghost" style="width:100%;margin-top:14px" data-act="hist">내 기록'+(cumLine()?' · '+histStats().lp+'회 통과':'')+'</button><p class="foot">V SIGNAL E단계</p>';
   window.scrollTo(0,0);
 }
