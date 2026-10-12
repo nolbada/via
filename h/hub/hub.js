@@ -68,7 +68,7 @@ HUB.esc=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').
 /* 기록 동기화: 구글 시트(Apps Script) — 학생번호+이름이 키 */
 HUB.sync=(function(){
 var S={},UK='hub_sync_user',MK='hub_sync_meta',busy=false;
-function pre(){return ['hub_'+HUB.cfg.bid+'_','verb_study_'+HUB.cfg.bid+'_']}
+function pre(){return ['hub_'+HUB.cfg.bid+'_','verb_study_'+(HUB.cfg.vbid||HUB.cfg.bid)+'_']}
 function mine(k){var p=pre(),i;for(i=0;i<p.length;i++)if(k.indexOf(p[i])===0)return true;return false}
 function keys(){var o=[],i,k;for(i=0;i<localStorage.length;i++){k=localStorage.key(i);if(k&&mine(k))o.push(k)}return o}
 function norm(v){try{return JSON.stringify(JSON.parse(v))}catch(e){return null}}
