@@ -13,7 +13,7 @@ window.HUBCFG={
   {k:'verb',name:'동사형 말하기 시험',test:true,desc:'학원에서 꼭 시험으로 봐요. 연습모드로 충분히 익힌 뒤 선생님께 검사를 받아요.',href:'c2-neungryul-oh-34/'}
  ],
  mock:[],
- notice:['10/17(토)은 학원 수업이 없어요','10/20(화)은 10월 모의고사예요'],
+ notice:['10/17(토)은 학원 수업이 없어요','10/20(화)은 전국 모의고사예요'],
  noticeUntil:'2026-10-21',
  plan:'hub/c2-neungryul-oh-4/plan/',
  sync:'https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec'
