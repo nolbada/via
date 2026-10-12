@@ -34,6 +34,7 @@ if(TS.length){
     h+='<a class="dock" href="'+HUB.base+s.href+'"><span class="dk-ic">V</span><span class="dk-bd"><span class="dk-t">'+esc(s.name)+'</span><span class="dk-s">최소 2회독 할 것</span></span><span class="dk-go">연습<br>하기</span></a>';
   });
 }
+if(C.notice&&(!C.noticeUntil||new Date()<new Date(C.noticeUntil+'T00:00:00+09:00'))){h+='<div style="margin:0 0 14px;padding:12px 14px;border:2px solid #e08a4b;border-radius:12px;background:#fff4ea;color:#8a3c0c;font-weight:700;font-size:15px;line-height:1.6"><div style="font-size:12px;margin-bottom:2px">알림</div>'+C.notice.map(esc).join('<br>')+'</div>'}
 h+='<div class="sh">숙제 순서</div><div class="hp"><div class="bar"><i style="width:'+Math.round(done/tot*100)+'%"></i></div><div class="tx"><span><b>'+done+'</b> / '+tot+' 단계 완료</span><span>위에서부터 차례로</span></div></div><div class="sl">';
 HW.forEach(function(s,i){
   var st=s._st,cls=!s.href?'off':(st.cls==='done'?'ok':(i===cur?'go':''));
