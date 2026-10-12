@@ -173,8 +173,8 @@ function openDay(d){const D=DAYS.find(x=>x.d==d);
  D.s.forEach(q=>{if(isDone(q.id)||q===first||ST[q.id])show(D,q.id)});
  $.querySelectorAll('.sb').forEach(b=>b.onclick=()=>{const id=b.dataset.s;const c=document.getElementById('sc-'+id);if(c.hidden)show(D,id);c.scrollIntoView({behavior:'smooth',block:'start'})});
  wireStamp(D)}
-function scoreHtml(D){const m=D.s.reduce((a,q)=>a+((S[q.id]&&S[q.id].m)||0),0),sc=Math.max(0,100-5*m),ok=sc>=85;
- return '<div class="scr"><div class="scb '+(ok?'ok':'no')+'">'+sc+'점 · '+(ok?'통과':'한번 더')+'</div><div class="scl">실수 '+m+'개</div><div class="scl sm">통과 기준 : 85점 이상 (실수 하나당 -5점)</div></div>'}
+function scoreHtml(D){const m=D.s.reduce((a,q)=>a+((S[q.id]&&S[q.id].m)||0),0),T=D.s.reduce((a,q)=>a+((S[q.id]&&S[q.id].t)||0),0),acc=T?Math.max(0,(T-m)/T):1,ok=acc>=0.9;
+ return '<div class="scr"><div class="scb '+(ok?'ok':'no')+'">정답률 '+Math.floor(acc*100)+'% · '+(ok?'통과':'한번 더')+'</div><div class="scl">실수 '+m+'개</div><div class="scl sm">통과 기준 : 정답률 90% 이상</div></div>'}
 function wrongHtml(D){const L=D.s.filter(q=>S[q.id]&&S[q.id].w);
  if(!L.length)return '<div class="wbox"><div class="wt">오늘 틀린 문장</div><p class="wnone">오늘 틀린 문장이 없습니다. 모두 잘 해냈어요.</p></div>';
  return '<div class="wbox"><div class="wt">오늘 틀린 문장 '+L.length+'개</div><p class="wsub">오답 노트에 영어 문장과 해석을 옮겨 적으세요.</p>'+L.map(q=>'<div class="wrow"><span class="wn">'+q.n+'번</span><div><div class="wen">'+esc(q.en.replace(/ \/ /g,' '))+'</div><div class="wko">'+esc(q.nat||q.ko)+'</div>'+(S[q.id].r?'<div class="wwhy">틀린 부분: '+esc(S[q.id].r)+'</div>':'')+'</div></div>').join('')+'</div>'}
@@ -226,7 +226,7 @@ function wire(D,s,st,c){const id=s.id;
  const chk=()=>{const rv=q('.rv');if(!rv)return;const ok=st.g.size>=1;rv.disabled=!ok;rv.classList.toggle('dis',!ok);const lk=q('.lk');if(lk)lk.style.display=ok?'none':''};
  qa('.gp[data-g]').forEach(b=>b.onclick=()=>{const i=+b.dataset.g;st.g.has(i)?st.g.delete(i):st.g.add(i);b.classList.toggle('on');chk();if(st.g.size==NG)setTimeout(()=>{if(!st.r&&st.p==1&&st.g.size==NG){st.r=true;show(D,id)}},450)});chk();
  const rv=q('.rv');if(rv)rv.onclick=()=>{st.r=true;show(D,id)};
- const dn=q('.dn');if(dn)dn.onclick=()=>{const AVs=new Set(VB[id]||[]),As=ans(s);let vm=0,gm=0;AVs.forEach(i=>{if(!st.v.has(i))vm++});st.v.forEach(i=>{if(!AVs.has(i))vm++});As.forEach(i=>{if(!st.g.has(i))gm++});const bad=vm>0||gm>=2;const pv=S[id]||{};S[id]={s:1,m:Math.max(pv.m||0,vm+gm),w:(pv.w||bad)?1:0,r:[vm?'동사':'',gm>=2?'끊어 읽기':''].filter(Boolean).join(', ')||pv.r||''};save();st.done=true;show(D,id);
+ const dn=q('.dn');if(dn)dn.onclick=()=>{const AVs=new Set(VB[id]||[]),As=ans(s);let vm=0,gm=0;AVs.forEach(i=>{if(!st.v.has(i))vm++});st.v.forEach(i=>{if(!AVs.has(i))vm++});As.forEach(i=>{if(!st.g.has(i))gm++});const bad=vm>0||gm>=2;const pv=S[id]||{};S[id]={s:1,t:NV+NG,m:Math.max(pv.m||0,vm+gm),w:(pv.w||bad)?1:0,r:[vm?'동사':'',gm>=2?'끊어 읽기':''].filter(Boolean).join(', ')||pv.r||''};save();st.done=true;show(D,id);
   const nb=document.querySelector('.sb[data-s="'+id+'"]');if(nb)nb.classList.add('done');
   const nxt=D.s.find(q2=>!isDone(q2.id));
   if(nxt){show(D,nxt.id);document.getElementById('sc-'+nxt.id).scrollIntoView({behavior:'smooth',block:'start'})}
