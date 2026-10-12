@@ -45,7 +45,7 @@ function gname(g){return '본문 '+SECS[g.si].key+' · '+(g.a+1)+'~'+g.b+'번 �
 function list(){
   HUB.last.clear('order');
   var h='<h1>내용 순서배열</h1><p class="sub">'+esc(META.grade)+' '+esc(META.pub)+' '+esc(META.lesson)+(TEACH?' · 선생님용(정답 번호 표시)':'')+'</p>';
-  h+='<div class="rule"><p>섞인 문장을 글의 흐름에 맞게 순서대로 눌러 배열하세요.</p><p>영역마다 문장이 많아서 5문장 안팎으로 나눴어요.</p><p>요약문 완성과 틀린 문제 모음은 앞 화면(시험 직전 마무리)에 있어요.</p></div><div class="menu">';
+  h+='<div class="rule"><p>섞인 문장을 교과서 본문 순서 그대로 눌러 배열하세요.</p><p>영역마다 문장이 많아서 5문장 안팎으로 나눴어요.</p><p>요약문 완성과 틀린 문제 모음은 앞 화면(시험 직전 마무리)에 있어요.</p></div><div class="menu">';
   GROUPS.forEach(function(g,k){
     h+='<button data-g="'+k+'" class="'+(ST.done[k]?'done':'')+'"><b>묶음 '+(k+1)+' <span class="stat">'+(ST.done[k]?'완료':'')+'</span></b><span>'+esc(gname(g))+' · '+esc(SECS[g.si].title.split(' · ')[0])+'</span></button>';
   });
