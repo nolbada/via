@@ -40,6 +40,8 @@ function draw(){
   h+='<div class="card"><b>문장 분석</b>';
   h+=xs.length?'<div style="margin-top:6px">'+xs.map(k=>'<div style="padding:6px 0;border-bottom:1px solid var(--ln)"><a href="xray.html#play='+encodeURIComponent(k)+'" style="color:var(--fg);text-decoration:none"><b>'+esc(k)+'</b></a> <span class="bdg '+(X[k].wr?'':'g')+'">'+(X[k].wr?'실수 '+X[k].wr+'번':'한 번에 완료')+'</span></div>').join('')+'</div>':'<div class="small" style="margin-top:6px">아직 푼 문장이 없어요.</div>';
   h+='</div>';
+  let ST=[];try{ST=JSON.parse(localStorage.getItem('fbi_xray_star_v1')||'[]')}catch(e){}
+  if(ST.length)h+='<div class="card"><b>내 문장 '+ST.length+'개</b><div class="small">별표(★)로 담아 둔 문장이에요. 누르면 바로 풀 수 있어요.</div><div style="margin-top:6px">'+ST.map(k=>'<a class="lk" style="border-color:var(--ac);background:var(--acbg)" href="xray.html#play='+encodeURIComponent(k)+'">'+esc(k)+'</a>').join('')+'</div></div>';
   $.innerHTML=h;
   document.querySelectorAll('.sb').forEach(b=>b.onclick=()=>{toggleStar(decodeURIComponent(b.dataset.w));draw()})}
 draw();
