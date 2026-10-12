@@ -25,11 +25,15 @@
 .sq .ez i{display:block;font-style:normal;font-size:12px;font-weight:700;color:#1f7a6f;margin-bottom:2px}
 .sq{cursor:pointer}
 .sq .sl{line-height:1.8;color:#2a6496}
-.sq.on .sl{display:none}
+.sq.on .sl{padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid #e2e8f0;font-weight:700}
 .sq:not(.on) .e,.sq:not(.on) .k,.sq:not(.on) .nt,.sq:not(.on) .ez{display:none}
 .sq .hint{margin-top:8px;font-size:13px;font-weight:700;color:#2a6496;text-align:center;padding:6px;border:1px dashed #8ab4d4;border-radius:8px}
 .sq.on .hint{display:none}
 .tools #all{padding:6px 12px;border:1px solid #8ab4d4;background:#fff;color:#2a6496;border-radius:8px;font-size:14px;font-weight:700}
+.sq .bk{float:right;margin:-2px 0 0 8px;padding:4px 10px;border:1px solid #c9a36b;background:#fff;color:#8a5a14;border-radius:8px;font-size:13px;font-weight:700}
+.sq.bm{border-left-color:#e07a1f;background:#fffaf2}
+.sq.bm .bk{background:#e07a1f;color:#fff;border-color:#e07a1f}
+#bmgo{display:block;width:100%;margin:10px 0;padding:12px;border:0;border-radius:10px;background:#e07a1f;color:#fff;font-size:16px;font-weight:700}
 .sq .nt i{display:block;font-style:normal;font-size:12px;font-weight:700;color:#2a6496;margin-bottom:2px}
 .sb{font:inherit;font-size:13px;margin-left:8px;padding:2px 9px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--sub)}
 .tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}
@@ -77,11 +81,12 @@ function save(){HUB.put(KEY,ST);var n=Object.keys(ST.done).filter(function(k){re
 function list(){
   HUB.last.clear('read');
   var h='<h1>좌본문우해석</h1><p class="sub">'+esc(META.grade)+' '+esc(META.pub)+' '+esc(META.lesson)+' · '+esc(META.school)+' '+esc(META.term)+'</p>';
-  h+='<div class="rule"><p>영어를 덩어리로 끊어 읽고, 한글 덩어리와 나란히 맞춰 봐요. 그다음 자연스러운 해석과 \"결국 이 얘기\"를 읽어요.</p><p>다 읽은 영역은 안에서 읽음 표시를 눌러 두면 허브에 기록돼요.</p></div><div class="menu">';
+  h+='<div class="rule"><p>영어를 덩어리로 끊어 읽고, 한글 덩어리와 나란히 맞춰 봐요. 그다음 자연스러운 해석과 \"결국 이 얘기\"를 읽어요.</p><p>다 읽은 영역은 안에서 읽음 표시를 눌러 두면 허브에 기록돼요.</p><p>문장 오른쪽의 책갈피를 눌러 두면, 나중에 목록에서 그 문장부터 이어 읽을 수 있어요.</p></div>'+(ST.bm&&SECS[ST.bm.si]?'<button id="bmgo">책갈피에서 이어 읽기 · 본문 '+esc(SECS[ST.bm.si].key)+' '+(ST.bm.i+1)+'번 문장</button>':'')+'<div class="menu">';
   SECS.forEach(function(s,i){h+='<button data-s="'+i+'" class="'+(ST.done[i]?'done':'')+'"><b>본문 '+esc(s.key)+' <span class="stat">'+(ST.done[i]?'읽음':'')+'</span></b><span>'+esc(s.title)+' · '+s.sents.length+'문장</span></button>'});
   h+='</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
   app.innerHTML=h;
   app.querySelectorAll('[data-s]').forEach(function(b){b.onclick=function(){open(+b.getAttribute('data-s'))}});
+  var bg=document.getElementById('bmgo');if(bg)bg.onclick=function(){var b=ST.bm;open(b.si);setTimeout(function(){var c=document.querySelectorAll('.sq')[b.i];if(c)c.scrollIntoView({block:'start'})},60)};
   document.getElementById('foot')&&document.getElementById('foot').remove();window.scrollTo(0,0);
 }
 function cqHTML(si,x){
@@ -107,7 +112,7 @@ function open(si){
   h+='<div id="rds" style="--fs:'+ST.fs+'px">';
   s.sents.forEach(function(t,i){
     var j=JJ[nrm(t.en)];
-    h+='<div class="rd sq" style="font-size:var(--fs)"><span class="no">'+(i+1)+'</span>';
+    h+='<div class="rd sq" style="font-size:var(--fs)"><span class="no">'+(i+1)+'</span><button type="button" class="bk">책갈피</button>';
     h+='<div class="sl">'+esc(j&&j.e.length===j.k.length?j.e.join(' / '):t.en)+'</div>';
     if(j&&j.e.length===j.k.length){j.e.forEach(function(e,k){h+='<div class="e">'+esc(e)+'</div><div class="k">&#8627; '+esc(j.k[k])+'</div>'})}
     else h+='<div class="e">'+esc(t.en)+'</div>';
@@ -128,6 +133,9 @@ function open(si){
   var cards=app.querySelectorAll('.sq'),ab=document.getElementById('all');
   function sync(){var n=0;cards.forEach(function(c){if(c.classList.contains('on'))n++});ab.textContent=n===cards.length?'전체 닫기':'전체 열기'}
   cards.forEach(function(c){c.onclick=function(){c.classList.toggle('on');sync()}});
+  function mark(){cards.forEach(function(c,i){var on=!!(ST.bm&&ST.bm.si===si&&ST.bm.i===i);c.classList.toggle('bm',on);c.querySelector('.bk').textContent=on?'책갈피 해제':'책갈피'})}
+  cards.forEach(function(c,i){c.querySelector('.bk').onclick=function(e){e.stopPropagation();var on=ST.bm&&ST.bm.si===si&&ST.bm.i===i;ST.bm=on?null:{si:si,i:i};save();mark()}});
+  mark();
   ab.onclick=function(){var on=ab.textContent==='전체 열기';cards.forEach(function(c){c.classList.toggle('on',on)});sync()};
   app.querySelectorAll('[data-o]').forEach(function(b){b.onclick=function(){ST.q[si]=+b.getAttribute('data-o');save();var y=scrollY;open(si);scrollTo(0,y)}});
   var rq=document.getElementById('rq');if(rq)rq.onclick=function(){delete ST.q[si];save();var y=scrollY;open(si);scrollTo(0,y)};
