@@ -156,7 +156,7 @@ function stampHtml(d,v){return '<div class="stp"><div class="stt">Day '+d+' 7문
 const wordsOf=s=>s.en.replace(/ \/ /g,' ').split(' ');
 function ans(s){const parts=s.en.split(' / ');const G=new Set();let c=0;parts.forEach((p,i)=>{c+=p.split(' ').length;if(i<parts.length-1)G.add(c-1)});return G}
 function home(){const dn=DAYS.filter(D=>S['D'+D.d]).length;
- let h='<h1>오늘의 7문장</h1><p class="sub">책 Day의 7문장을 스스로 슬래시로 끊고 해석한 뒤 정답을 맞춰 봅니다. 1번부터 7번까지 차례로 동사 치기, 슬래시를 하고 정답을 확인합니다. cf. 문장을 만나면 노트 정리가 이어집니다. 완성 '+dn+'/'+DAYS.length+'일.</p><div class="card"><div class="chips">';
+ let h='<h1>오늘의 7문장</h1><p class="sub">책 Day의 7문장을 스스로 슬래시로 끊고 해석한 뒤 정답을 맞춰 봅니다. 1번부터 7번까지 차례로 동사 치기, 슬래시를 하고 정답을 확인합니다. cf. 문장을 만나면 노트 정리가 이어집니다. 통과 기준은 정답률 90% 이상이고, 못 넘으면 결과 화면에 "한번 더"가 나옵니다. 완성 '+dn+'/'+DAYS.length+'일.</p><div class="card"><div class="chips">';
  h+=DAYS.map(D=>{const k=D.s.filter(s=>S[s.id]&&S[s.id].s).length;return '<button class="chip'+(S['D'+D.d]?' done':'')+'" data-d="'+D.d+'">'+D.d+'<small>'+(S['D'+D.d]?'완료':k+'/7')+'</small></button>'}).join('')+'</div></div>';
  $.innerHTML=h;$.querySelectorAll('.chip').forEach(b=>b.onclick=()=>openDay(+b.dataset.d));window.scrollTo(0,0)}
 let ST={};
