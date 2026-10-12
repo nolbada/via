@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>문법 · 공통영어2 능률(오) 3과</title>
+<style>
+:root{--ink:#1b1b1f;--sub:#5d6068;--line:#d9dbe1;--bg:#fff;--soft:#f5f6f8;--pri:#1f4e79;--ok:#1b6e3c;--no:#b3261e;--mark:#fff3bf;--sel:#dbe7f5}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR","Malgun Gothic","맑은 고딕",sans-serif;font-size:19px;line-height:1.8;-webkit-tap-highlight-color:rgba(31,78,121,.15)}
+.w{max-width:720px;margin:0 auto;padding:0 16px 80px}
+h1{font-size:21px;margin:20px 0 2px;line-height:1.4}
+h2{font-size:18px;margin:14px 0 4px;line-height:1.4}
+.sub{color:var(--sub);font-size:15px;margin:0 0 14px}
+button{font:inherit;color:inherit;cursor:pointer}
+.menu button{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:14px 16px;margin:0 0 10px}
+.menu button b{display:block}
+.menu button span{color:var(--sub);font-size:15px}
+.menu button:hover{border-color:var(--pri)}
+.rule{background:var(--soft);border-radius:10px;padding:10px 14px;font-size:16px;margin:0 0 14px}
+.rule p{margin:2px 0}
+.sample{background:var(--mark);padding:6px 10px;border-radius:8px;font-size:15px;margin:0 0 14px}
+.foot{margin-top:30px;color:var(--sub);font-size:14px;text-align:center}
+
+.bar{position:sticky;top:46px;z-index:5;background:var(--bg);border-bottom:2px solid var(--pri);padding:8px 0}
+.bar .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.bar .info{font-size:16px}
+.bar .info small{color:var(--sub);font-size:14px}
+.bar button{border:0;background:var(--pri);color:#fff;border-radius:9px;padding:8px 16px;font-size:17px;font-weight:700}
+.bar button.ghost{background:var(--bg);color:var(--pri);border:1px solid var(--pri);font-weight:400}
+.bar .btns{display:flex;gap:8px;flex:none}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:15px;color:var(--sub);margin:10px 0 0}
+.top button{border:0;background:none;color:var(--pri);font-size:15px;text-decoration:underline;padding:4px}
+.ask{font-size:16px;color:var(--sub);margin:0 0 8px}
+
+.sent{display:flex;gap:10px;padding:8px 4px;border-bottom:1px solid #eceef2}
+.sent .n{flex:none;width:28px;height:28px;border-radius:14px;background:#e5e8ee;color:#333;font-size:14px;text-align:center;line-height:28px;margin-top:4px}
+.sent .t{flex:1;min-width:0}
+.wd{padding:2px 1px;border-radius:5px;cursor:pointer}
+.wd:hover{background:#eef1f6}
+.wd.sel{background:var(--sel);box-shadow:inset 0 -2px 0 var(--pri)}
+.done .wd{cursor:default}
+.done .wd:hover{background:none}
+.wd.ok{background:var(--mark);font-weight:700;box-shadow:inset 0 -2px 0 #c9a400}
+.wd.miss{background:#fde7e5;font-weight:700;box-shadow:inset 0 -2px 0 var(--no)}
+.wd.wrong{color:#8a8f98;text-decoration:line-through}
+
+.note{margin:8px 0 4px;padding:10px 12px;border-left:4px solid var(--pri);background:var(--soft);font-size:17px;line-height:1.7}
+.note.found{border-left-color:#c9a400}
+.note.lost{border-left-color:var(--no)}
+.note .tag{font-size:14px;font-weight:700;margin:0 0 2px}
+.note.found .tag{color:#7a6200}.note.lost .tag{color:var(--no)}
+.note .swap{font-size:18px;font-weight:700;margin:2px 0}
+.note .ln{margin:3px 0}
+.note .orig{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.note .orig .en{font-size:17px}.note .orig .ko{color:var(--sub);font-size:16px}
+details.full{margin:16px 0}
+details.full summary{cursor:pointer;font-weight:700;padding:8px 0}
+details.full .s{margin:8px 0}
+details.full .en{font-size:17px}details.full .ko{color:var(--sub);font-size:16px}
+.route{margin:12px 0;padding:12px 14px;border:2px solid var(--pri);border-radius:10px;background:#f3f7fb}
+.route p{margin:2px 0;font-size:17px}
+.route .big{font-size:19px;font-weight:700}
+.route button{display:block;width:100%;text-align:center;margin-top:8px;border:0;background:var(--pri);color:#fff;border-radius:9px;padding:11px;font-size:17px;font-weight:700}
+.route button.ghost{background:var(--bg);color:var(--pri);border:1px solid var(--pri);font-weight:400}
+.sec{margin:22px 0 4px;padding:6px 0;border-bottom:2px solid var(--line);font-size:18px;font-weight:700}
+.menu button em{font-style:normal;color:var(--pri);font-size:14px;margin-left:6px}
+</style>
+</head>
+<body>
+<div class="w" id="app"></div>
+<script src="../steps.js"></script>
+<script src="../../hub.js"></script>
+<script>
+var BID='c2-neungryul-oh-34',LNO='3',VER='';
+var app=document.getElementById('app');
+function fail(m){app.innerHTML='<div class="w"><h1>자료를 불러오지 못했어요</h1><p class="sub">'+m+'</p></div>'}
+(function(){
+  if(!BID||!LNO){fail('주소가 올바르지 않아요. 선생님께 링크를 다시 받아 주세요.');return}
+  var s=document.createElement('script');
+  s.src='../../../books/'+encodeURIComponent(BID)+'/L'+encodeURIComponent(LNO)+'.js'+(VER?'?v='+encodeURIComponent(VER):'');
+  s.onload=function(){var R=(window.TFDATA||{})[BID+'|'+LNO];if(!R){fail('자료가 비어 있어요.');return}boot(R)};
+  s.onerror=function(){fail('이 과의 자료가 아직 없어요.')};
+  document.head.appendChild(s);
+})();
+function boot(RAW){
+var META=RAW.meta;var KEY="hub_c2-neungryul-oh-3_grammar";HUB.bar("grammar",{sticky:true});
+document.title='문법 3단계 · '+META.pub+' '+META.lesson;
+var D={secs:RAW.secs,tiers:RAW.tiers};
+var app=document.getElementById('app');
+var NAME={core:'중심문제',basic:'기본문제',high:'고득점문제'};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var S={tier:null,sel:{},submitted:false,result:null,best:(HUB.get(KEY)||{}).best||{}};
+function tokenize(text){var re=/\S+/g,m,o=[];while((m=re.exec(text)))o.push({w:m[0],s:m.index,e:m.index+m[0].length});return o}
+function swapsOf(tier,si,n){return D.tiers[tier].filter(function(w){return w.s===si&&w.n===n})}
+function posOf(en,w){var p=-1,k;for(k=0;k<=w.occ;k++)p=en.indexOf(w.orig,p+1);return p}
+function build(tier,si,i){
+  var en=D.secs[si].sents[i].en,sws=swapsOf(tier,si,i+1),reps=[],text='',cur=0,spans=[];
+  sws.forEach(function(w){reps.push({p:posOf(en,w),w:w})});
+  reps.sort(function(a,b){return a.p-b.p});
+  reps.forEach(function(r){text+=en.slice(cur,r.p);var f=text.length;text+=r.w.neu;spans.push({w:r.w,from:f,to:text.length});cur=r.p+r.w.orig.length});
+  text+=en.slice(cur);
+  var toks=tokenize(text);
+  spans.forEach(function(sp){sp.bad=[];toks.forEach(function(t,ti){if(t.s<sp.to&&t.e>sp.from)sp.bad.push(ti)})});
+  return {toks:toks,spans:spans};
+}
+function total(tier){return D.tiers[tier].length}
+function home(){
+  var h='<h1>문법 · 틀린 곳 찾기</h1><p class="sub">'+esc(META.grade)+' '+esc(META.pub)+' '+esc(META.lesson)+' · '+esc(META.school)+' '+esc(META.term)+'</p>'+
+   '<div class="rule"><p>본문 전체를 읽어 내려가면서, 문법이 틀린 곳을 눌러 표시하세요.</p><p>내용은 본문 그대로예요. 단어 하나의 형태가 틀리게 바뀌어 있어요.</p><p>점수는 찾은 개수에서 잘못 누른 개수를 뺀 값이에요. 마구 누르면 점수가 깎여요.</p><p>제출하기 전에는 해석과 정답을 볼 수 없어요.</p></div><div class="menu">';
+  ['core','basic','high'].forEach(function(t){
+    var b=S.best[t];
+    h+='<button data-t="'+t+'"><b>'+NAME[t]+' · 틀린 곳 '+total(t)+'군데</b><span>'+({core:'먼저 푸는 코너예요. 본문 전체를 읽고 찾아요.',basic:'기본 문법을 차근차근 다지는 코너예요.',high:'한 문장 속 함정까지 파고드는 코너예요.'}[t])+(b?' · 지난 점수 '+b.score+' / '+total(t):'')+'</span></button>';
+  });
+  h+='</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
+  app.innerHTML=h;
+  app.querySelectorAll('.menu button').forEach(function(b){b.onclick=function(){start(b.getAttribute('data-t'))}});
+}
+function start(t){S.tier=t;S.sel={};S.submitted=false;S.result=null;render();window.scrollTo(0,0)}
+function selCount(){return Object.keys(S.sel).length}
+function grade(tier){
+  var found={},spanKeys={},foundN=0,wrong=0,si,i;
+  D.secs.forEach(function(sec,si){sec.sents.forEach(function(s,i){
+    var b=build(tier,si,i);
+    b.spans.forEach(function(sp){
+      sp.bad.forEach(function(ti){spanKeys[si+':'+i+':'+ti]=1});
+      var hit=sp.bad.some(function(ti){return S.sel[si+':'+i+':'+ti]});
+      found[si+':'+i+':'+sp.w.orig+'|'+sp.w.neu]=hit;if(hit)foundN++;
+    });
+  })});
+  Object.keys(S.sel).forEach(function(k){if(!spanKeys[k])wrong++});
+  var N=total(tier);
+  return {found:found,foundN:foundN,wrong:wrong,score:Math.max(0,foundN-wrong),N:N};
+}
+function render(){
+  var tier=S.tier,N=total(tier),res=S.result;
+  var h='<div class="top"><span>'+NAME[tier]+'</span><button id="home">처음으로</button></div>';
+  h+='<div class="bar"><div class="row">';
+  if(!S.submitted){
+    h+='<div class="info"><b id="cnt"></b> <small id="rem"></small></div><div class="btns"><button id="sub">제출하기</button></div>';
+  }else{
+    h+='<div class="info"><b>점수 '+res.score+' / '+N+'</b> <small>찾은 곳 '+res.foundN+'개 · 잘못 누른 곳 '+res.wrong+'개</small></div><div class="btns"><button class="ghost" id="redo">다시 풀기</button></div>';
+  }
+  h+='</div></div>';
+  if(S.submitted)h+=routeBox(tier,res);
+  if(!S.submitted)h+='<p class="ask">문법이 틀린 곳을 눌러 표시하세요. 다시 누르면 취소돼요.</p>';
+  h+='<div id="pas"'+(S.submitted?' class="done"':'')+'>';
+  D.secs.forEach(function(sec,si){
+    h+='<div class="sec">본문 '+sec.key+' · '+esc(sec.title)+'</div>';
+    sec.sents.forEach(function(s,i){
+      var b=build(tier,si,i),words='',spanOf={};
+      b.spans.forEach(function(sp,k){sp.bad.forEach(function(ti){spanOf[ti]=sp})});
+      b.toks.forEach(function(t,ti){
+        var key=si+':'+i+':'+ti,cls='wd',sp=spanOf[ti];
+        if(!S.submitted){if(S.sel[key])cls+=' sel'}
+        else{
+          if(sp){cls+=(res.found[si+':'+i+':'+sp.w.orig+'|'+sp.w.neu]?' ok':' miss')}
+          else if(S.sel[key])cls+=' wrong';
+        }
+        words+='<span class="'+cls+'" data-k="'+key+'">'+esc(t.w)+'</span> ';
+      });
+      h+='<div class="sent"><span class="n">'+(i+1)+'</span><span class="t">'+words;
+      if(S.submitted&&b.spans.length){
+        b.spans.forEach(function(sp){
+          var f=res.found[si+':'+i+':'+sp.w.orig+'|'+sp.w.neu];
+          h+='<div class="note '+(f?'found':'lost')+'"><div class="tag">'+(f?'찾았어요':'놓쳤어요')+' · '+esc(sp.w.kind)+'</div><div class="swap">'+esc(sp.w.neu)+' → '+esc(sp.w.orig)+'</div>';
+          sp.w.lines.forEach(function(l){h+='<div class="ln">'+esc(l)+'</div>'});
+          h+='</div>';
+        });
+        h+='<div class="note"><div class="orig" style="margin:0;padding:0;border:0"><div class="en">'+esc(s.en)+'</div><div class="ko">'+esc(s.ko)+'</div></div></div>';
+      }
+      h+='</span></div>';
+    });
+  });
+  h+='</div>';
+  app.innerHTML=h;
+  wire();
+}
+function updateCount(){
+  var N=total(S.tier),k=selCount(),c=document.getElementById('cnt'),r=document.getElementById('rem');
+  if(!c)return;
+  c.textContent='선택 '+k+' / '+N+'개';
+  r.textContent=k<N?'앞으로 '+(N-k)+'개 더 선택':(k===N?'다 골랐어요. 확인 후 제출하세요':(k-N)+'개 더 골랐어요');
+}
+function routeBox(tier,res){
+  var N=res.N,need=Math.ceil(N*0.8);
+  if(tier==='core'){
+    var up=res.score>=need;
+    return '<div class="route"><p class="big">'+(up?'고득점문제에 도전해 보세요':'기본문제로 먼저 다져 볼까요')+'</p><p>'+(up?'중심 내용을 잘 잡았어요. 한 단계 더 깊은 함정에 도전해 보세요.':'놓친 부분을 기본 문법부터 차근차근 짚어 봐요. 다지고 나면 중심문제에 다시 도전해요.')+'</p>'+
+      '<button data-go="'+(up?'high':'basic')+'">'+(up?'고득점문제 시작':'기본문제 시작')+'</button><button class="ghost" data-go="'+(up?'basic':'high')+'">'+(up?'기본문제로 가기':'고득점문제로 가기')+'</button></div>';
+  }
+  return '<div class="route"><p class="big">'+NAME[tier]+' 끝</p><p>해설을 읽고 놓친 곳을 다시 확인한 뒤 중심문제에 다시 도전해 보세요.</p><button data-go="core">중심문제 다시 도전</button></div>';
+}
+function wire(){
+  var $=function(s){return app.querySelector(s)};
+  $('#home').onclick=function(){home();window.scrollTo(0,0)};
+  if(!S.submitted){
+    updateCount();
+    app.querySelectorAll('.wd').forEach(function(w){w.onclick=function(){
+      var k=w.getAttribute('data-k');
+      if(S.sel[k]){delete S.sel[k];w.classList.remove('sel')}else{S.sel[k]=1;w.classList.add('sel')}
+      updateCount();
+    }});
+    $('#sub').onclick=function(){
+      S.result=grade(S.tier);S.submitted=true;
+      var b=S.best[S.tier];
+      if(selCount()>0){if(!b||S.result.score>b.score)S.best[S.tier]={score:S.result.score};
+      var M=(HUB.get(KEY)||{}).miss||{},KWC='hub_c2-neungryul-oh-3_wrongclear',CLR=HUB.get(KWC)||{};
+      Object.keys(S.result.found).forEach(function(k){
+        var m=k.match(/^(\d+):(\d+):(.*)$/),mk=S.tier+':'+m[1]+':'+(+m[2]+1)+':'+m[3];
+        if(S.result.found[k])delete M[mk];
+        else{M[mk]=1;D.tiers[S.tier].forEach(function(x,i){if(x.s===+m[1]&&x.n===+m[2]+1&&(x.orig+'|'+x.neu)===m[3])delete CLR['gra'+S.tier+i]})}
+      });
+      HUB.put(KWC,CLR);
+      HUB.put(KEY,{best:S.best,miss:M});var nb=Object.keys(S.best).length;HUB.setStep('grammar',{done:nb===3,count:nb,N:3});}
+      render();window.scrollTo(0,0);
+    };
+  }else{
+    $('#redo').onclick=function(){start(S.tier)};
+    app.querySelectorAll('[data-go]').forEach(function(b){b.onclick=function(){start(b.getAttribute('data-go'))}});
+  }
+}
+home();
+}
+</script>
+</body>
+</html>
