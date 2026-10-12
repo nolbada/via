@@ -5,10 +5,17 @@
 <title>좌본문우해석 · 영어2 능률(오) 4과</title>
 <link rel="stylesheet" href="../../hub.css">
 <style>
-.rd{display:grid;grid-template-columns:1fr 1fr;gap:0 14px;padding:8px 0;border-bottom:1px solid #eceef2}
-.rd .en{font-size:var(--fs,19px)}.rd .ko{font-size:calc(var(--fs,19px) - 2px);color:var(--sub)}
-.rd .no{color:var(--pri);font-weight:700;margin-right:4px}
-@media (max-width:560px){.rd{grid-template-columns:1fr}.rd .ko{margin-top:2px}}
+.jh{font-size:14px;font-weight:700;color:var(--pri);margin:14px 0 6px}
+.jn{margin:12px 0 4px}.jn .no{display:inline-block;min-width:26px;text-align:center;border-radius:13px;background:#e8eef7;color:var(--pri);font-weight:700;font-size:14px;line-height:26px}
+.jt{width:100%;border-collapse:collapse;table-layout:fixed;font-size:calc(var(--fs,19px) - 2px)}
+.jt td{border:1px solid #d9dee8;padding:6px 8px;vertical-align:top;line-height:1.5;word-break:break-word}
+.jt td.k{background:#fff8dc;color:#3a3320}
+.nat{margin-top:16px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.nat p{margin:6px 0;font-size:calc(var(--fs,19px) - 2px);line-height:1.65}
+.nat .no{color:var(--pri);font-weight:700;margin-right:6px}
+.gist{margin:14px 0;padding:12px 14px;border-radius:12px;background:#eef6ee;border:1px solid #bcd9bf}
+.gist b{display:block;color:var(--ok);margin-bottom:4px;font-size:15px}
+.gist p{margin:0;font-size:17px;line-height:1.7}
 .hide .ko{visibility:hidden}.hide .ko.show{visibility:visible}
 .tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}
 .tools label{font-size:16px}
@@ -32,6 +39,7 @@
 <script src="../steps.js"></script>
 <script src="../../../books/e2-neungryul-oh-4/L4.js"></script>
 <script src="extra.js"></script>
+<script src="../../../data/e2-neungryul-oh-4.js"></script>
 <script src="../../hub.js"></script>
 <script>
 (function(){
@@ -40,11 +48,20 @@ var BID='e2-neungryul-oh-4',RAW=TFDATA[BID+'|4'];HUB.bar('read');
 var SECS=RAW.secs,META=RAW.meta,KEY='hub_'+BID+'_read';
 var ST=HUB.get(KEY)||{done:{},fs:19,hide:false,bm:null};ST.q=ST.q||{};
 var X=(window.READX&&READX[BID+'|4'])||[],PERM=[[1,0,2],[2,1,0],[0,2,1],[1,2,0],[2,0,1],[1,0,2],[0,2,1]];
+var GIST=["노트북을 떨어뜨려서 고장 났는데, 고치자니 돈도 시간도 들고 이미 5년이나 쓴 거라 그냥 새로 살까 고민 중이에요. 근데 그냥 버리면 전자 쓰레기 문제를 키우는 거라는 얘기예요.",
+"전자 쓰레기는 버려진 전자제품이에요. 납 같은 독성 물질이 들어 있어서 몸에도 환경에도 나쁜데, 해마다 더 빨리 늘고 있어요. 그래서 '고쳐 쓰기 쉽게 만들자'는 노력이 시작됐다는 얘기예요.",
+"사람들이 기기를 버리는 건 고치기가 너무 어려워서예요. 그래서 '내 물건이니까 내가 고치든 기술자한테 맡기든 내 맘이다' 하는 법을 만들자는 게 수리할 권리 운동이에요. 요구는 네 가지예요. 정보 공개, 부품과 도구 구하기, 맞춤 소프트웨어 설치 허용, 고치기 쉬운 설계예요.",
+"프랑스는 2021년에 '이 제품 고치기 얼마나 쉬운지'를 0~10점과 색깔로 보여 주게 했어요. 초록에 높은 숫자면 고치기 쉽고, 빨강에 낮은 숫자면 어렵다는 뜻이에요. 사기 전에 미리 알 수 있게 한 거죠.",
+"이 점수 덕분에 소비자는 똑똑하게 고르고, 회사는 고치기 쉬운 제품을 만들게 돼요. 매립지로 가는 쓰레기도 줄고요. 게다가 프랑스 시장에 팔려면 다 붙여야 해서, 다른 나라로도 퍼질 수 있다는 얘기예요.",
+"수리 카페는 사람들이 모여서 고장 난 걸 같이 고치는 곳이에요. 자원봉사 전문가가 조언해 주고 고치는 법도 가르쳐 줘요. 2009년 암스테르담에서 시작해 30개국 넘게 퍼졌고, 쓰레기를 줄이면서 지속 가능한 생각도 키워 준다는 얘기예요.",
+"Liz가 수리가 일상인 세상에 살았다면, 부품을 주문해서 직접 바꾸거나 수리 카페에 가면 끝이었을 거예요. 결국 다 같이 노력하면 전자 쓰레기가 훨씬 줄어서 지구가 더 깨끗하고 건강해진다는 얘기예요."];
+function nrm(t){return String(t).replace(/[^A-Za-z0-9]/g,'').toLowerCase()}
+var JJ={};try{VERBDATA[BID].lessons.forEach(function(L){L.items.forEach(function(it){(it.jj||[]).forEach(function(j){JJ[nrm(j.e.join(' '))]=j})})})}catch(e){}
 function save(){HUB.put(KEY,ST);var n=Object.keys(ST.done).filter(function(k){return ST.done[k]}).length;HUB.setStep('read',{done:n===SECS.length,count:n,N:SECS.length})}
 function list(){
   HUB.last.clear('read');
   var h='<h1>좌본문우해석</h1><p class="sub">'+esc(META.grade)+' '+esc(META.pub)+' '+esc(META.lesson)+' · '+esc(META.school)+' '+esc(META.term)+'</p>';
-  h+='<div class="rule"><p>영어와 해석을 나란히 읽어요. 영역을 골라 들어가세요.</p><p>다 읽은 영역은 안에서 읽음 표시를 눌러 두면 허브에 기록돼요.</p></div><div class="menu">';
+  h+='<div class="rule"><p>영어를 덩어리로 끊어 읽고, 한글 덩어리와 나란히 맞춰 봐요. 그다음 자연스러운 해석과 \"결국 이 얘기\"를 읽어요.</p><p>다 읽은 영역은 안에서 읽음 표시를 눌러 두면 허브에 기록돼요.</p></div><div class="menu">';
   SECS.forEach(function(s,i){h+='<button data-s="'+i+'" class="'+(ST.done[i]?'done':'')+'"><b>본문 '+esc(s.key)+' <span class="stat">'+(ST.done[i]?'읽음':'')+'</span></b><span>'+esc(s.title)+' · '+s.sents.length+'문장</span></button>'});
   h+='</div><div class="foot">단어잡고 구문잡고 · 동남비타민영어학원</div>';
   app.innerHTML=h;
@@ -71,10 +88,17 @@ function open(si){
   var h='<div class="rnav"><button id="tl">영역 목록</button><div class="t"><b>본문 '+esc(s.key)+'</b>'+esc(s.title.split(' · ')[0])+'</div><button id="pv"'+(si===0?' disabled':'')+'>이전</button><button id="nx"'+(si===SECS.length-1?' disabled':'')+'>다음</button></div>';
   h+='<div class="tools"><span class="sz"><button id="fm">가-</button><button id="fp">가+</button></span><label class="chk"><input type="checkbox" id="hd"'+(ST.hide?' checked':'')+'> 해석 가리기 (눌러서 보기)</label></div>';
   var x=X[si];
-  if(x)h+='<div class="op"><b>먼저 큰 그림</b><ul>'+x.sum.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul></div>';
-  h+='<div id="rds"'+(ST.hide?' class="hide"':'')+' style="--fs:'+ST.fs+'px">';
-  s.sents.forEach(function(x,i){h+='<div class="rd"><div class="en"><span class="no">'+(i+1)+'</span>'+esc(x.en)+'</div><div class="ko" data-ko="1">'+esc(x.ko)+'</div></div>'});
+  h+='<div id="rds"'+(ST.hide?' class="hide"':'')+' style="--fs:'+ST.fs+'px"><div class="jh">직독직해 (끊어 읽기)</div>';
+  s.sents.forEach(function(t,i){
+    var j=JJ[nrm(t.en)];
+    h+='<div class="rd jn"><span class="no">'+(i+1)+'</span></div><table class="jt rd2">';
+    if(j&&j.e.length===j.k.length){j.e.forEach(function(e,k){h+='<tr><td>'+esc(e)+'</td><td class="k ko" data-ko="1">'+esc(j.k[k])+'</td></tr>'})}
+    else h+='<tr><td>'+esc(t.en)+'</td><td class="k ko" data-ko="1">'+esc(t.ko)+'</td></tr>';
+    h+='</table>';
+  });
+  h+='<div class="nat"><div class="jh" style="margin-top:0">자연스러운 해석</div>'+s.sents.map(function(t,i){return '<p class="ko" data-ko="1"><span class="no">'+(i+1)+'</span>'+esc(t.ko)+'</p>'}).join('')+'</div>';
   h+='</div>';
+  h+='<div class="gist"><b>결국 이 얘기</b><p>'+esc(GIST[si]||'')+'</p></div>';
   if(x)h+=cqHTML(si,x);
   app.innerHTML=h;
   var f=document.getElementById('foot');if(!f){f=document.createElement('div');f.id='foot';document.body.appendChild(f)}
