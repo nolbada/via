@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>학생 기록 · 선생님용</title>
+<link rel="stylesheet" href="../../hub.css">
+<style>
+.pw{display:flex;gap:8px;margin:12px 0}
+.pw input{flex:1;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:17px;background:var(--bg);color:inherit}
+.pw button,.bt{padding:9px 14px;border:1px solid var(--pri);border-radius:9px;background:var(--bg);color:var(--pri);font-size:16px}
+.pw button.p,.bt.p{background:var(--pri);color:#fff;font-weight:700}
+.bt.d{border-color:#c0392b;color:#c0392b}
+.sum{margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:10px;line-height:1.8}
+.rc{margin:10px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.rc>.h{display:flex;justify-content:space-between;align-items:center;padding:12px;cursor:pointer;gap:8px}
+.rc>.h b{font-size:18px}
+.rc>.h span{font-size:14px;color:var(--sub)}
+.ch{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 12px}
+.ch i{font-style:normal;font-size:14px;padding:3px 8px;border-radius:12px;border:1px solid var(--line);color:var(--sub)}
+.ch i.ok{background:var(--pri);color:#fff;border-color:var(--pri)}
+.ch i.pp{border-color:var(--pri);color:var(--pri)}
+.dt{display:none;padding:10px 12px 12px;border-top:1px solid var(--line);font-size:15px}
+.rc.open .dt{display:block}
+.kr{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:5px 0;border-bottom:1px dashed var(--line)}
+.kr code{font-size:12.5px;word-break:break-all}
+.msg{margin:10px 0;color:var(--sub);font-size:15px}
+</style>
+</head><body>
+<div class="w" id="app"></div>
+<script src="../steps.js"></script>
+<script src="../../hub.js"></script>
+<script>HUB.bar('records');</script>
+<script>
+(function(){
+var HUB=window.HUB,esc=HUB.esc,C=HUB.cfg,BID=C.bid,URL=C.sync,app=document.getElementById('app');
+var PK='hub_admin_pw',pw='',DATA={};
+try{pw=localStorage.getItem(PK)||''}catch(e){}
+function post(b){b.pw=pw;return fetch(URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
+var DAY=['일','월','화','수','목','금','토'];
+function fd(t){var d=new Date(t);return (d.getMonth()+1)+'/'+d.getDate()+'('+DAY[d.getDay()]+') '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)}
+function mine(k){return k.indexOf('hub_'+BID+'_')===0||k.indexOf('verb_study_'+(C.vbid||BID)+'_')===0}
+function head(){return '<h1>'+esc(C.title)+'</h1><div class="sub">'+esc(C.lesson)+' · 학생 기록 (선생님용)</div>'}
+function login(msg){
+  app.innerHTML=head()+'<div class="pw"><input id="pw" type="password" placeholder="선생님 비밀번호" autocomplete="current-password"><button class="p" id="go">보기</button></div><div class="msg" id="m">'+esc(msg||'')+'</div>';
+  document.getElementById('go').onclick=function(){pw=document.getElementById('pw').value;load()};
+  document.getElementById('pw').onkeydown=function(e){if(e.key==='Enter')document.getElementById('go').onclick()};
+}
+function load(){
+  var m=document.getElementById('m');if(m)m.textContent='불러오는 중...';
+  post({act:'admin_list'}).then(function(r){
+    if(!r.ok){if(r.err==='pw'){try{localStorage.removeItem(PK)}catch(e){}login('비밀번호가 맞지 않아요.')}else login('불러오지 못했어요. 잠시 후 다시 해 주세요.');return}
+    try{localStorage.setItem(PK,pw)}catch(e){}
+    DATA=r.all||{};draw();
+  }).catch(function(){login('연결이 안 됐어요. 인터넷을 확인해 주세요.')});
+}
+function info(id){
+  var d=DATA[id],ks=Object.keys(d).filter(mine),last=0,o={ks:ks,steps:{},verb:null,weak:0,last:0};
+  ks.forEach(function(k){var t=d[k].t;if(t>1&&t>last)last=t});o.last=last;
+  C.steps.forEach(function(s){
+    if(s.k==='verb'){var v=d['verb_study_'+(C.vbid||BID)+'_v1'];if(v&&v.v){var S=v.v;o.verb={views:Object.keys(S.views||{}).length,wrong:Object.keys(S.wrong||{}).length,stars:Object.keys(S.stars||{}).length}}}
+    else{var x=d['hub_'+BID+'_step_'+s.k];if(x&&x.v)o.steps[s.k]=x.v}
+  });
+  var w=d['hub_'+BID+'_weak'];if(w&&w.v)o.weak=Object.keys(w.v).length;
+  return o;
+}
+function draw(){
+  var ids=Object.keys(DATA).filter(function(id){return Object.keys(DATA[id]).some(mine)});
+  var rows=ids.map(function(id){return {id:id,i:info(id)}}).sort(function(a,b){return b.i.last-a.i.last});
+  var h=head()+'<div class="row"><button class="bt p" id="rf">새로고침</button> <button class="bt" id="lo">나가기</button></div>';
+  var sm='<div class="sum"><b>학생 '+rows.length+'명</b><br>';
+  C.steps.forEach(function(s){
+    var n=rows.filter(function(r){return s.k==='verb'?(r.i.verb&&r.i.verb.views>0):(r.i.steps[s.k]&&r.i.steps[s.k].done)}).length;
+    sm+=esc(s.name)+(s.k==='verb'?' 시작 ':' 완료 ')+n+'명<br>';
+  });
+  h+=sm+'</div>';
+  if(!rows.length)h+='<div class="msg">아직 기록이 있는 학생이 없어요.</div>';
+  rows.forEach(function(r,n){
+    var p=r.id.split('|'),i=r.i;
+    h+='<div class="rc" data-n="'+n+'"><div class="h"><div><b>'+esc(p[1]||p[0])+'</b> <span>'+esc(p[0])+'</span></div><span>'+(i.last?'마지막 '+fd(i.last):'')+'</span></div><div class="ch">';
+    C.steps.forEach(function(s){
+      if(s.k==='verb'){h+='<i class="'+(i.verb&&i.verb.views?'pp':'')+'">'+esc(s.name)+' '+(i.verb?'살펴본 '+i.verb.views+' · 틀림 '+i.verb.wrong:'기록 없음')+'</i>';return}
+      var x=i.steps[s.k];
+      h+='<i class="'+(x?(x.done?'ok':'pp'):'')+'">'+esc(s.name)+' '+(x?x.count+'/'+x.N:'-')+'</i>';
+    });
+    h+='<i class="'+(i.weak?'pp':'')+'">약점노트 '+i.weak+'</i></div><div class="dt"><div class="msg">항목을 지우면 이 학생이 새 폰에서 이어받을 때 반영돼요. 쓰던 폰에는 남아 있으니 그 폰에서 "다른 이름으로"를 눌러야 정리돼요.</div>';
+    i.ks.forEach(function(k){h+='<div class="kr"><code>'+esc(k.replace('hub_'+BID+'_','').replace('verb_study_'+(C.vbid||BID)+'_','verb_'))+'</code><button class="bt d" data-id="'+esc(r.id)+'" data-k="'+esc(k)+'">삭제</button></div>'});
+    h+='<div style="margin-top:10px"><button class="bt d" data-id="'+esc(r.id)+'" data-k="">이 학생 기록 전부 삭제</button></div></div></div>';
+  });
+  app.innerHTML=h;
+  document.getElementById('rf').onclick=load;
+  document.getElementById('lo').onclick=function(){try{localStorage.removeItem(PK)}catch(e){}pw='';login('')};
+  [].forEach.call(app.querySelectorAll('.rc>.h'),function(el){el.onclick=function(){el.parentNode.classList.toggle('open')}});
+  [].forEach.call(app.querySelectorAll('button[data-id]'),function(b){b.onclick=function(){
+    var id=b.getAttribute('data-id'),k=b.getAttribute('data-k');
+    if(!confirm(k?'이 항목을 지울까요?':id+' 학생의 이 단원 기록을 전부 지울까요?'))return;
+    b.disabled=true;
+    if(k){post({act:'admin_del',id:id,key:k}).then(load)}
+    else{var ks=Object.keys(DATA[id]).filter(mine),p=Promise.resolve();ks.forEach(function(kk){p=p.then(function(){return post({act:'admin_del',id:id,key:kk})})});p.then(load)}
+  }});
+}
+if(pw)load();else login('');
+})();
+</script>
+</body></html>
