@@ -88,19 +88,19 @@ function cqHTML(si,x){
 function open(si){
   var s=SECS[si];
   var h='<div class="rnav"><button id="tl">영역 목록</button><div class="t"><b>본문 '+esc(s.key)+'</b>'+esc(s.title.split(' · ')[0])+'</div><button id="pv"'+(si===0?' disabled':'')+'>이전</button><button id="nx"'+(si===SECS.length-1?' disabled':'')+'>다음</button></div>';
-  h+='<div class="tools"><span class="sz"><button id="fm">가-</button><button id="fp">가+</button></span><label class="chk"><input type="checkbox" id="hk"'+(ST.hk?' checked':'')+'> 한글 덩어리 가리기</label><label class="chk"><input type="checkbox" id="hn"'+(ST.hn?' checked':'')+'> 자연스러운 해석 가리기</label><label class="chk"><input type="checkbox" id="hg"'+(ST.hg?' checked':'')+'> 결국 이 얘기 가리기</label></div>';
+  h+='<div class="tools"><span class="sz"><button id="fm">가-</button><button id="fp">가+</button></span><label class="chk"><input type="checkbox" id="hk"'+(ST.hk?' checked':'')+'> 해석 가리기 (가려진 곳을 누르면 그 줄만 열려요)</label></div>';
   var x=X[si];
-  h+='<div id="rds" class="'+(ST.hk?'hk ':'')+(ST.hn?'hn':'')+'" style="--fs:'+ST.fs+'px"><div class="jh">직독직해 (끊어 읽기)</div>';
+  h+='<div id="rds" class="'+(ST.hk?'hk hn':'')+'" style="--fs:'+ST.fs+'px"><div class="jh">직독직해 (끊어 읽기)</div>';
   s.sents.forEach(function(t,i){
     var j=JJ[nrm(t.en)];
-    h+='<div class="rd jn"><span class="no">'+(i+1)+'</span><button type="button" class="sb" data-t="'+i+'">이 문장 해석 보기/가리기</button></div><table class="jt rd2">';
+    h+='<div class="rd jn"><span class="no">'+(i+1)+'</span></div><table class="jt rd2">';
     if(j&&j.e.length===j.k.length){j.e.forEach(function(e,k){h+='<tr><td>'+esc(e)+'</td><td class="k yk" data-i="'+i+'">'+esc(j.k[k])+'</td></tr>'})}
     else h+='<tr><td>'+esc(t.en)+'</td><td class="k yk" data-i="'+i+'">'+esc(t.ko)+'</td></tr>';
     h+='</table>';
   });
   h+='<div class="nat"><div class="jh" style="margin-top:0">자연스러운 해석</div>'+s.sents.map(function(t,i){return '<p class="np" data-i="'+i+'"><span class="no">'+(i+1)+'</span>'+esc(t.ko)+'</p>'}).join('')+'</div>';
   h+='</div>';
-  h+='<div class="gist'+(ST.hg?' hg':'')+'"><b>결국 이 얘기</b><p>'+esc(GIST[si]||'')+'</p></div>';
+  h+='<div class="gist"><b>결국 이 얘기</b><p>'+esc(GIST[si]||'')+'</p></div>';
   if(x)h+=cqHTML(si,x);
   app.innerHTML=h;
   var f=document.getElementById('foot');if(!f){f=document.createElement('div');f.id='foot';document.body.appendChild(f)}
@@ -110,14 +110,10 @@ function open(si){
   document.getElementById('nx').onclick=function(){if(si<SECS.length-1)open(si+1)};
   document.getElementById('fm').onclick=function(){ST.fs=Math.max(15,ST.fs-1);save();document.getElementById('rds').style.setProperty('--fs',ST.fs+'px')};
   document.getElementById('fp').onclick=function(){ST.fs=Math.min(26,ST.fs+1);save();document.getElementById('rds').style.setProperty('--fs',ST.fs+'px')};
-  function flag(id,key,cls,el){document.getElementById(id).onchange=function(){ST[key]=this.checked;save();el().classList.toggle(cls,this.checked)}}
-  flag('hk','hk','hk',function(){return document.getElementById('rds')});
-  flag('hn','hn','hn',function(){return document.getElementById('rds')});
-  flag('hg','hg','hg',function(){return document.querySelector('.gist')});
+  document.getElementById('hk').onchange=function(){ST.hk=this.checked;save();var r=document.getElementById('rds');r.classList.toggle('hk',this.checked);r.classList.toggle('hn',this.checked);app.querySelectorAll('.show,.ho').forEach(function(e){e.classList.remove('show','ho')})};
   function tog(els){var hid=els.some(function(e){return getComputedStyle(e).color==='rgba(0, 0, 0, 0)'});els.forEach(function(e){e.classList.toggle('show',hid);e.classList.toggle('ho',!hid)})}
   app.querySelectorAll('.yk,.np').forEach(function(k){k.onclick=function(){tog([k])}});
-  app.querySelectorAll('[data-t]').forEach(function(b){b.onclick=function(){tog([].slice.call(app.querySelectorAll('[data-i="'+b.getAttribute('data-t')+'"]')))}});
-  var gp=app.querySelector('.gist p');if(gp)gp.onclick=function(){tog([gp])};
+
   app.querySelectorAll('[data-o]').forEach(function(b){b.onclick=function(){ST.q[si]=+b.getAttribute('data-o');save();var y=scrollY;open(si);scrollTo(0,y)}});
   var rq=document.getElementById('rq');if(rq)rq.onclick=function(){delete ST.q[si];save();var y=scrollY;open(si);scrollTo(0,y)};
   document.getElementById('dn').onclick=function(){ST.done[si]=!ST.done[si];save();open(si)};
