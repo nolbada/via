@@ -78,6 +78,15 @@
 .rec-q{font-size:13px;color:var(--muted);margin-top:6px}
 .rec-c{font-size:13px;color:var(--muted);margin-top:10px}
 .rec-f{font-size:12px;color:var(--muted);margin-top:12px;border-top:1px dashed var(--line);padding-top:8px}
+.wr{margin-top:14px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px}
+.wr-t{font-size:17px;font-weight:800}
+.wr-s{font-size:13px;color:var(--muted);margin:2px 0 8px}
+.wr-none{font-size:15px;color:var(--muted);margin:6px 0 0}
+.wr-i{border-top:1px solid var(--line);padding:10px 0 2px;margin-top:10px}
+.wr-n{font-size:12px;color:var(--muted)}
+.wr-en{font-size:17px;line-height:1.55;margin-top:4px;font-weight:600}
+.wr-ko{font-size:15px;line-height:1.55;margin-top:4px}
+.wr-q{font-size:13px;color:var(--muted);margin-top:6px}
 .hrow{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
 .hrow span{color:var(--muted);flex:none}
 .hrow b{text-align:right;font-weight:600}
@@ -1012,13 +1021,30 @@ function finishQuiz(){
   store.cur=null;
   save();
   addHist({k:'lesson',d:S.day,m:total,p:total<=CUT});
-  S.fin={total:total,sm:sm,qm:qm,redo:redo,pass:total<=CUT};
+  var wl={};
+  S.res.forEach(function(r){if(r.mis>0){var s0=days[S.day].filter(function(x){return x.n===r.n;})[0];if(s0)wl[r.n]={s:s0,sm:r.mis,qm:0,qc:[]};}});
+  Q.list.forEach(function(it){if(it.mist>0){var o=wl[it.s.n]||(wl[it.s.n]={s:it.s,sm:0,qm:0,qc:[]});o.qm+=it.mist;o.qc.push(it.k);}});
+  var wrong=Object.keys(wl).map(Number).sort(function(a,b){return a-b;}).map(function(k){return wl[k];});
+  S.fin={total:total,sm:sm,qm:qm,redo:redo,pass:total<=CUT,wrong:wrong};
   renderFin();
+}
+function wrongHtml(w){
+  w=w||[];
+  if(!w.length)return '<div class="wr"><div class="wr-t">오늘 틀린 문장</div><p class="wr-none">틀린 문장이 없어요.</p></div>';
+  return '<div class="wr"><div class="wr-t">오늘 틀린 문장 '+w.length+'개</div><div class="wr-s">오답노트에 영어 문장과 해석을 함께 써요</div>'
+   +w.map(function(o){
+     var s=o.s,why=[];
+     if(o.sm)why.push('문장 연습 실수 '+o.sm+'개');
+     if(o.qm)why.push('마무리 퀴즈 실수 '+o.qm+'개');
+     var qc=o.qc.map(function(k){var c=s.ch[k];return '<div class="wr-q">퀴즈에서 틀린 부분 : <b>'+esc(c.t)+'</b> = '+esc(LBL[c.r]||c.r)+(c.k?' ('+esc(c.k)+')':'')+'</div>';}).join('');
+     return '<div class="wr-i"><div class="wr-n">책 '+s.n+'번 · '+why.join(' · ')+'</div><div class="wr-en">'+esc(s.en)+'</div><div class="wr-ko">'+esc(s.ko)+'</div>'+qc+'</div>';
+   }).join('')+'</div>';
 }
 function renderFin(){
   var f=S.fin,nextDay=dayList[dayList.indexOf(S.day)+1];
   app.innerHTML='<div class="top"><button class="back" data-act="home">목록</button><div class="ttl">Day '+S.day+'</div></div>'
    +recCard('lesson')
+   +wrongHtml(f.wrong)
    +'<p class="banner">복습은 목록 화면의 "복습 · 교재 Part 2"에서 할 수 있어요.</p>'
    +'<div class="two" style="margin-top:12px"><button class="ghost" data-act="again">다시 하기</button>'
    +(nextDay?'<button class="primary" data-act="startnext" data-day="'+nextDay+'">Day '+nextDay+' 시작</button>':'<button class="primary" data-act="home">목록으로</button>')+'</div>';
