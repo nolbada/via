@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<title>7과 심화 문장 분석</title>
+<style>
+:root{--bg:#f4f6f8;--sf:#fff;--fg:#14202b;--mu:#566474;--ln:#d9e0e7;--ac:#0f766e;--acbg:#ccfbf1;--ok:#15803d;--okbg:#e3f4e8;--bad:#b91c1c;--badbg:#fde8e8;--warn:#b45309;--warnbg:#fef3c7;--core:#0f766e;--corefg:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#0e141b;--sf:#17212b;--fg:#e6ebf0;--mu:#9aa8b6;--ln:#2a3744;--ac:#2dd4bf;--acbg:#0f3a36;--ok:#4ade80;--okbg:#15301f;--bad:#f87171;--badbg:#3a1d1f;--warn:#fbbf24;--warnbg:#46330a;--core:#2dd4bf;--corefg:#04201d}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding:16px 16px 40px}
+h1{font-size:20px;margin:6px 0 2px}.sub{color:var(--mu);font-size:14px;margin:0 0 14px}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:14px;margin-bottom:12px}
+.day{font-weight:700;margin:0 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-width:44px;height:44px;border-radius:10px;border:1.5px solid var(--ln);background:var(--sf);color:var(--fg);font-size:16px;font-weight:700;cursor:pointer}
+.chip.done{background:var(--acbg);border-color:var(--ac)}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.back{background:none;border:none;color:var(--mu);font-size:15px;cursor:pointer;padding:8px 0}
+.q{font-size:16px;font-weight:700;margin:2px 0 14px}
+.sent{font-size:21px;line-height:2.3;font-family:"Segoe UI",system-ui,-apple-system,Roboto,"Malgun Gothic",sans-serif;letter-spacing:.1px}
+.w{display:inline}
+.gap{display:inline-block;min-width:20px;height:30px;vertical-align:middle;margin:0 1px;border:none;background:none;color:var(--ac);font-size:22px;font-weight:700;cursor:pointer;border-radius:6px;padding:0 2px}
+.gap:before{content:"\00b7";color:var(--ln);font-size:22px}
+.gap.on:before{content:"/";color:var(--ac)}
+.gap.ok:before{content:"/";color:var(--ok)}.gap.miss{background:var(--warnbg)}.gap.miss:before{content:"/";color:var(--warn)}
+.gap.extra{background:var(--badbg)}.gap.extra:before{content:"/";color:var(--bad);text-decoration:line-through}
+.btn{display:block;width:100%;height:50px;border:none;border-radius:12px;background:var(--ac);color:var(--corefg);font-size:17px;font-weight:700;cursor:pointer;margin-top:14px}
+.btn:disabled{opacity:.4}
+.msg{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:15px}
+.msg.g{background:var(--okbg)}.msg.n{background:var(--warnbg)}
+.legend{font-size:13px;color:var(--mu);margin-top:8px}
+.chunks{display:flex;flex-direction:column;gap:8px}
+.ck{text-align:left;border:2px solid var(--ln);background:var(--sf);color:var(--fg);border-radius:12px;padding:10px 12px;font-size:18px;cursor:pointer}
+.ck.sel{border-color:var(--core);background:var(--acbg)}
+.ck.core{background:var(--core);color:var(--corefg);border-color:var(--core)}
+.ck.flesh{opacity:.75}
+.ck.wrong{border-color:var(--bad);background:var(--badbg);color:var(--fg)}
+.ck.missed{border-color:var(--warn);border-style:dashed}
+.ko{display:block;font-family:"Malgun Gothic",sans-serif;font-size:15px;margin-top:3px;opacity:.95}
+.tag{float:right;font-size:12px;font-family:"Malgun Gothic",sans-serif;font-weight:700}
+.sumline{font-size:17px;font-weight:700;margin-top:6px}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;background:var(--acbg);font-size:13px;font-weight:700;margin-bottom:8px}
+.small{font-size:13px;color:var(--mu)}
+.reset{background:none;border:none;color:var(--mu);text-decoration:underline;cursor:pointer;font-size:13px;margin-top:10px}
+.ck.target{border-color:#eab308;background:#fef9c3;color:#14202b;cursor:default}
+.ck.mini{padding:6px 10px;font-size:16px}
+.ck.okpick{border-color:var(--ok);background:var(--okbg)}
+.tree{display:flex;flex-direction:column;gap:6px}
+.tn{padding:8px 10px;border:1.5px solid var(--ln);border-radius:10px;font-family:inherit;font-size:16px;background:var(--sf)}
+.tn.tcore{background:var(--core);color:var(--corefg);border-color:var(--core)}
+.arm{color:var(--mu);margin-right:6px}.tcore .arm{color:inherit}
+.te{font-family:inherit}
+.msg .ko{margin-top:4px}
+.w2{display:inline;border:none;background:none;color:inherit;font:inherit;padding:2px 3px;border-radius:6px;cursor:pointer}
+span.w2{cursor:default}
+.sent{line-height:2.2}
+.hlw{background:#fde047;color:#14202b}
+.okw{background:var(--okbg);outline:2px solid var(--ok)}
+.badw{background:var(--badbg);text-decoration:line-through;opacity:.7}
+.closed{display:inline-block;padding:2px 10px;margin:0 2px;border:1.5px dashed var(--ln);border-radius:8px;color:var(--mu);font-family:'Malgun Gothic',sans-serif;font-size:14px}
+.outw{color:var(--mu);opacity:.75}
+.kidw{background:#fef9c3;color:var(--mu)}
+
+.stg{display:flex;gap:6px;margin:0 0 10px}.stg div{flex:1;text-align:center;font-size:12px;padding:5px 0;border-radius:8px;background:var(--ln);color:var(--mu);font-weight:700}
+.stg div.on{background:var(--ac);color:var(--corefg)}.stg div.ok{background:var(--acbg);color:var(--ac)}
+.ko1{font-size:14px;color:var(--mu);margin:0 0 10px}
+.mask{display:inline-block;min-width:64px;padding:2px 10px;margin:0 3px;border-radius:8px;border:1.5px solid #64748b;font-family:'Malgun Gothic',sans-serif;font-size:14px;font-weight:700;color:#334155;background:repeating-linear-gradient(135deg,#cbd5e1 0 7px,#f1f5f9 7px 14px);vertical-align:middle}
+@media(prefers-color-scheme:dark){.mask{border-color:#94a3b8;color:#e2e8f0;background:repeating-linear-gradient(135deg,#475569 0 7px,#1e293b 7px 14px)}}
+.em{color:#6d28d9;font-weight:800}
+.pat{margin-top:8px}.pth{font-weight:800;margin-bottom:8px}.pr2{display:flex;align-items:flex-start;gap:3px;flex-wrap:wrap}.pp{font-weight:800;padding-top:4px}
+.pb{display:flex;flex-direction:column;align-items:center}.pb b{padding:4px 6px;border-radius:8px;background:var(--sf);border:1.5px solid var(--ln);font-size:14px;white-space:nowrap}.pb i{font-style:normal;font-size:12px;color:var(--mu);margin-top:3px}.pb.cc b{border-color:var(--ac);background:var(--acbg);color:var(--fg)}
+.pr{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;border-top:1px solid var(--ln)}.prt{font-size:18px;flex:1}.prb{display:flex;gap:6px}
+.rb{width:44px;height:44px;border-radius:10px;border:1.5px solid var(--ln);background:var(--sf);color:var(--fg);font-size:16px;font-weight:800;cursor:pointer}
+.rb.ok{background:var(--okbg);border-color:var(--ok)}.rb.no{background:var(--badbg);border-color:var(--bad);opacity:.6}
+@media(prefers-color-scheme:dark){.em{color:#c4b5fd}}
+.vb{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;font-weight:700}
+.sel{background:var(--acbg);outline:2px solid var(--ac)}
+.miss{background:var(--warnbg);outline:2px dashed var(--warn)}
+:root{--n1:#bfdbfe;--n2:#dbeafe;--n3:#eff6ff;--nb:#3b82f6;--a1:#ddd6fe;--a2:#ebe5ff;--a3:#f5f3ff;--ab:#8b5cf6;--v1:#fed7aa;--v2:#ffe6cc;--v3:#fff4e6;--vb:#f97316}
+@media(prefers-color-scheme:dark){:root{--n1:#1f4068;--n2:#1a3354;--n3:#162b47;--nb:#60a5fa;--a1:#3f2d73;--a2:#33265f;--a3:#2a2050;--ab:#a78bfa;--v1:#6b3a12;--v2:#57300f;--v3:#46270f;--vb:#fb923c}}
+.kd0{--c1:var(--n1);--c2:var(--n2);--c3:var(--n3);--cb:var(--nb)}
+.kd1{--c1:var(--a1);--c2:var(--a2);--c3:var(--a3);--cb:var(--ab)}
+.kd2{--c1:var(--v1);--c2:var(--v2);--c3:var(--v3);--cb:var(--vb)}
+.dp1{background:var(--c1)}.dp2{background:var(--c2)}.dp3{background:var(--c3)}
+.tn.kd0,.tn.kd1,.tn.kd2{border-color:var(--cb);border-left-width:7px;color:var(--fg)}
+.kdb{border-left:7px solid var(--cb)}
+.bdr{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
+.bd{display:inline-flex;flex-direction:column;align-items:center;padding:4px 10px;border-radius:10px;border:1.5px solid var(--ln);background:var(--sf);font-weight:700;font-size:15px;line-height:1.3}
+.bd i{font-style:normal;font-size:11px;font-weight:600;color:var(--mu)}
+.bd.kd0,.bd.kd1,.bd.kd2{border-color:var(--cb);color:var(--fg)}
+.bd.skS{border-color:var(--ac)}.bd.skV{border-color:var(--ac);background:var(--acbg)}.bd.skO,.bd.skC{border-color:var(--warn)}
+.bd.hostb{border-style:dashed;border-color:var(--warn);background:var(--warnbg);color:var(--fg)}
+.hostw{border-bottom:3px dashed var(--warn);padding-bottom:4px}.hk{font-weight:700;outline:1.5px dashed var(--warn);outline-offset:1px}.tn.hosttn{border-style:dashed;border-color:var(--warn);background:var(--warnbg);color:var(--fg)}
+.hostt{display:inline-block;margin-top:4px;padding:1px 8px;border:1.5px dashed var(--warn);border-radius:8px;font-size:12px;font-weight:700}
+.fsent{line-height:2.2;margin:8px 0 4px}
+.bd.ing{border-color:#16a34a;background:#dcfce7;color:#14202b}.bd.ppb{border-color:#db2777;background:#fce7f3;color:#14202b}
+@media(prefers-color-scheme:dark){.bd.ing{background:#14532d;color:#e6ebf0}.bd.ppb{background:#4a1d33;color:#e6ebf0}}
+.cmp{display:flex;flex-direction:column;gap:6px;margin:8px 0}.cs{border:1.5px solid var(--ln);border-radius:12px;padding:2px 8px;background:var(--sf)}.cs.off{opacity:.5}.cs.on{border:2px solid var(--ok)}.cs .bdr{margin:6px 0}
+.bd.cc{border-color:var(--ac);background:var(--acbg)}.bd.gapb{border-style:dashed;background:transparent}
+.bd.vbd{border-color:var(--ac);background:var(--acbg)}.bd.em2{border-color:#7c3aed;color:#6d28d9}
+@media(prefers-color-scheme:dark){.bd.em2{color:#c4b5fd;border-color:#a78bfa}}
+.ck .hint{display:block;font-family:'Malgun Gothic',sans-serif;font-size:13px;color:var(--mu);margin-top:2px}
+.ck{font-family:inherit;font-size:16px}
+.seg{display:flex;gap:8px}.seg button{flex:1;height:46px;border-radius:12px;border:1.5px solid var(--ln);background:var(--sf);color:var(--fg);font-size:16px;font-weight:700;cursor:pointer}.seg button.on{background:var(--ac);border-color:var(--ac);color:var(--corefg)}
+.row{display:flex;align-items:center;gap:10px;width:100%;min-height:52px;padding:8px 0;border:none;border-bottom:1px solid var(--ln);background:none;color:var(--fg);text-align:left;cursor:pointer;font-family:inherit}
+.row:last-child{border-bottom:none}.rn{flex:0 0 34px;font-weight:700;color:var(--ac);font-size:17px;text-align:center}.bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:8px;margin-bottom:14px}
+.bk{position:relative;background:var(--sf);border:1.5px solid var(--ln);border-radius:12px;min-height:72px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:var(--fg);font-family:inherit;cursor:pointer}
+.bk .bn{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}.bk .bs{font-size:11px;color:var(--mu);line-height:1.2}.bk .bt{font-size:11px;color:var(--ok);font-weight:700;min-height:14px}
+.bk.star{background:var(--warnbg);border-color:var(--warn)}.bk .bks{position:absolute;top:3px;right:6px;font-size:13px;line-height:1;color:var(--warn)}
+.bk.done{background:var(--okbg);border-color:var(--ok)}
+.rt2{flex:1;min-width:0}.stm{display:block;font-size:13px;line-height:1;color:#d97706}.rs{display:block;font-size:12px;color:var(--mu);margin-top:2px;font-family:inherit}.rt{flex:1;font-size:15px;line-height:1.4;font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rm{flex:0 0 36px;font-size:12px;color:var(--mu);text-align:right}.rm.on{color:var(--ok);font-weight:700}
+.wk{border-bottom:2px dotted #8794a3;cursor:pointer}.wks{border-bottom:2px solid #16a34a;font-weight:700}
+.wkd{margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(120,140,160,.15);font-size:15px;line-height:1.5}.wkm{font-size:13px;opacity:.8}.wsf{font-weight:400;opacity:.75}.wguide{margin:10px 0;padding:10px 12px;border-radius:10px;background:rgba(120,140,160,.15);font-size:14px;line-height:1.6}
+.wlstrip{display:block;margin:0 0 12px;padding:11px 14px;border:2px solid #e0a100;border-radius:12px;background:#fff4d6;color:#5b3d00;font-size:15px;font-weight:800;text-decoration:none}
+</style></head><body><div style="padding:10px 16px 0;font-size:14px"><a href="../" style="color:var(--ac);text-decoration:none;padding:6px 0">&larr; 7과 목록</a></div><div class="wrap" id="app"></div>
+<!--WB:BEGIN--><script>var WD={};var WM={};
+var WBK='tbm2d-l7-wb',WINT=[1,3,7,14,30,60];
+function wbLoad(){try{var o=JSON.parse(localStorage.getItem(WBK)||'null');if(o&&o.w){o.q=o.q||{};return o}}catch(e){}return {v:1,w:{},q:{}}}
+function wbSave(o){try{localStorage.setItem(WBK,JSON.stringify(o))}catch(e){}}
+function wbDay(t){var d=new Date(t||Date.now());d.setHours(0,0,0,0);return d.getTime()}
+function wbDue(box,from){var d=new Date(wbDay(from));d.setDate(d.getDate()+WINT[Math.min(box,WINT.length-1)]);return d.getTime()}
+function wbHas(id){return !!wbLoad().w[id]}
+function wbToggle(id,sent,ix,sid){var o=wbLoad();if(o.w[id]){delete o.w[id];wbSave(o);wbBadge();return false}
+ var e=WD[id];o.w[id]={x:e.x,d:e.d,s:sent,ix:ix,sid:sid,box:0,due:wbDue(0),add:Date.now(),miss:0};wbSave(o);wbBadge();return true}
+function wbEsc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function wbSurf(id,sent,ix){var e=WD[id];if(!sent||!ix)return '';var tk=sent.split(' '),f=ix.map(function(i){return (tk[i]||'').replace(/[^A-Za-z\' -]/g,'')}).join(' ').toLowerCase();return f&&f!==e.t.toLowerCase()?' <span class="wsf">('+wbEsc(f)+')</span>':''}
+function wbInfo(id,sent,ix){var e=WD[id],sf=wbSurf(id,sent,ix);return e.x==='f'?'<b>'+wbEsc(e.t)+'</b>'+sf+' '+wbEsc(e.m):'<b>'+wbEsc(e.t)+'</b>'+sf+' ('+wbEsc(e.p)+') '+wbEsc(e.k)}
+function wbWkd(d){var w='일월화수목금토'[d.getDay()];return (d.getMonth()+1)+'/'+d.getDate()+'('+w+')'}
+function wkBind(root,key,tok){
+ var ms=WM[key];if(!root||!ms||!tok)return;
+ var map={};ms.forEach(function(m){m[0].forEach(function(i){if(map[i]==null)map[i]=m})});
+ if(!Object.keys(map).length)return;
+ var bar=document.createElement('div');bar.className='wkd';bar.innerHTML='밑줄 친 단어는 책에 나온 단어입니다. 한 번 누르면 내 단어장에 담기고, 다시 누르면 빠집니다. 담기는 형태는 원형입니다.';
+ root.parentNode.insertBefore(bar,root.nextSibling);
+ var sent=tok.join(' ');
+ function paint(){root.querySelectorAll('[data-i]').forEach(function(sp){var m=map[+sp.dataset.i];if(m&&wbHas(m[1]))sp.classList.add('wks');else sp.classList.remove('wks')})}
+ root.querySelectorAll('[data-i]').forEach(function(sp){var m=map[+sp.dataset.i];if(!m)return;sp.classList.add('wk');
+  sp.addEventListener('click',function(ev){ev.stopPropagation();var on=wbToggle(m[1],sent,m[0],key);paint();bar.innerHTML=wbInfo(m[1],sent,m[0])+'<br><span class="wkm">'+(on?'내 단어장에 담았습니다.':'내 단어장에서 뺐습니다.')+'</span>'})});
+ paint();
+}
+function wbHashStr(s){var h=0;for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0}return (h>>>0).toString(36)}
+function wbAddQ(it,q){var o=wbLoad(),id=it.k+'|'+wbHashStr(JSON.stringify(q));
+ if(!o.q[id]){o.q[id]={k:it.k,ko:it.ko||'',nos:it.nos||[],q:q,box:0,due:wbDue(0),add:Date.now(),miss:1};
+  var ks=Object.keys(o.q);if(ks.length>300){ks.sort(function(a,b){return o.q[a].add-o.q[b].add});delete o.q[ks[0]]}}
+ else{o.q[id].miss=(o.q[id].miss||0)+1;o.q[id].box=0;o.q[id].due=wbDue(0)}
+ wbSave(o);return id}
+function wbQDone(id,ok){var o=wbLoad(),e=o.q[id];if(!e)return;
+ if(ok){if(e.box>=WINT.length-1){delete o.q[id]}else{e.box++;e.due=wbDue(e.box)}}
+ else{e.box=0;e.miss=(e.miss||0)+1;e.due=wbDue(0)}
+ wbSave(o)}
+function wbBadge(){var el=document.getElementById('wlink');if(el)el.textContent='내 단어장 '+Object.keys(wbLoad().w).length+'개'}
+wbBadge();
+</script><!--WB:END-->
+<script>
+const S=[{"lv": "심화", "id": "7-1", "sec": "파야스 축제 (스페인 발렌시아)", "tok": ["People", "in", "Valencia", "celebrate", "the", "coming", "of", "spring", "with", "the", "Fallas", "festival."], "ch": ["People", "in Valencia", "celebrate", "the coming of spring", "with the Fallas festival."], "ko": ["사람들은", "발렌시아의", "축하한다", "봄의 시작을", "파야스 축제로"], "nodes": [{"id": "m", "a": 0, "b": 12, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "kids": [], "S": [0], "V": [3], "G": [[3]], "form": 3, "note": "People celebrate the coming of spring. 주어 + 동사 + 목적어, 3형식입니다. in Valencia와 with the Fallas festival은 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [3]}, {"r": "O", "g": [4, 5, 6, 7]}], "fl": [1, 2, 8, 9, 10, 11]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {"5": "coming은 the 뒤에 온 명사(시작)예요. 준동사가 아닙니다."}, "note2": ""}, {"lv": "심화", "id": "7-2", "sec": "파야스 축제 (스페인 발렌시아)", "tok": ["This", "festival", "takes", "place", "from", "March", "15", "to", "19."], "ch": ["This festival", "takes place", "from March 15 to 19."], "ko": ["이 축제는", "열린다", "3월 15일부터 19일까지"], "nodes": [{"id": "m", "a": 0, "b": 9, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8], "kids": [], "S": [0, 1], "V": [2, 3], "G": [[2, 3]], "form": 1, "note": "This festival takes place. 주어 + 동사, 1형식입니다. takes place는 \"열리다\"라는 한 덩어리 동사이고, from March 15 to 19는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0, 1]}, {"r": "V", "g": [2, 3]}], "fl": [4, 5, 6, 7, 8]}], "dec": {}, "vn": "takes place는 \"열리다\"라는 뜻의 한 덩어리 동사예요. place는 목적어가 아니라 동사의 일부입니다.", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-3", "sec": "파야스 축제 (스페인 발렌시아)", "tok": ["During", "the", "festival,", "people", "enjoy", "parades", "and", "fireworks."], "ch": ["During the festival,", "people", "enjoy", "parades and fireworks."], "ko": ["축제 기간 동안", "사람들은", "즐긴다", "퍼레이드와 불꽃놀이를"], "nodes": [{"id": "m", "a": 0, "b": 8, "own": [0, 1, 2, 3, 4, 5, 6, 7], "kids": [], "S": [3], "V": [4], "G": [[4]], "form": 3, "note": "People enjoy parades and fireworks. 주어 + 동사 + 목적어, 3형식입니다. During the festival은 꾸미는 말입니다.", "sk": [{"r": "S", "g": [3]}, {"r": "V", "g": [4]}, {"r": "O", "g": [5, 6, 7]}], "fl": [0, 1, 2]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-4", "sec": "파야스 축제 (스페인 발렌시아)", "tok": ["The", "stars", "of", "the", "festival", "are", "fallas,", "giant", "wooden", "statues."], "ch": ["The stars", "of the festival", "are", "fallas,", "giant wooden statues."], "ko": ["주인공은", "축제의", "이다", "파야들", "거대한 나무 조각상인"], "nodes": [{"id": "m", "a": 0, "b": 10, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "kids": [], "S": [0, 1], "V": [5], "G": [[5]], "form": 2, "note": "The stars are fallas. 주어 + 동사 + 보어, 2형식입니다. The stars = fallas, 같은 대상입니다. of the festival은 stars를 꾸미고, giant wooden statues는 fallas를 설명하는 말입니다.", "sk": [{"r": "S", "g": [0, 1]}, {"r": "V", "g": [5]}, {"r": "C", "g": [6]}], "fl": [2, 3, 4, 7, 8, 9]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {"8": "wooden은 \"나무로 된\"이라는 형용사예요. 분사가 아닙니다."}, "note2": ""}, {"lv": "심화", "id": "7-5", "sec": "파야스 축제 (스페인 발렌시아)", "tok": ["You", "can", "find", "hundreds", "of", "them", "all", "over", "the", "city."], "ch": ["You", "can find", "hundreds of them", "all over the city."], "ko": ["당신은", "볼 수 있다", "그것들 수백 개를", "도시 곳곳에서"], "nodes": [{"id": "m", "a": 0, "b": 10, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "kids": [], "S": [0], "V": [1, 2], "G": [[1, 2]], "form": 3, "note": "You can find hundreds of them. 주어 + 동사 + 목적어, 3형식입니다. all over the city는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1, 2]}, {"r": "O", "g": [3, 4, 5]}], "fl": [6, 7, 8, 9]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-6", "sec": "파야스 축제 (스페인 발렌시아)", "tok": ["Surprisingly,", "the", "fallas", "are", "burned", "on", "the", "last", "day", "of", "the", "festival."], "ch": ["Surprisingly,", "the fallas", "are burned", "on the last day of the festival."], "ko": ["놀랍게도", "파야들은", "불태워진다", "축제의 마지막 날에"], "nodes": [{"id": "m", "a": 0, "b": 12, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "kids": [], "S": [1, 2], "V": [3, 4], "G": [[3, 4]], "form": 1, "note": "The fallas are burned. 주어 + 동사, 1형식입니다. 수동태 동사 are burned가 한 덩어리 동사이고 목적어가 없어서 1형식으로 봅니다. Surprisingly와 on the last day of the festival은 꾸미는 말입니다.", "sk": [{"r": "S", "g": [1, 2]}, {"r": "V", "g": [3, 4]}], "fl": [0, 5, 6, 7, 8, 9, 10, 11]}], "dec": {}, "vn": "are burned는 수동태(be + p.p.)라서 둘을 한 덩어리 동사로 눌러요. burned는 따로 분사로 보지 않습니다.", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-7", "sec": "파야스 축제 (스페인 발렌시아)", "tok": ["Burning", "them", "symbolizes", "saying", "goodbye", "to", "old", "things", "and", "hello", "to", "a", "new", "start."], "ch": ["Burning them", "symbolizes", "saying goodbye to old things", "and", "hello to a new start."], "ko": ["그것들을 태우는 것은", "상징한다", "오래된 것들과 작별하는 것을", "그리고", "새로운 시작을 맞이하는 것을"], "nodes": [{"id": "m", "a": 0, "b": 14, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "kids": [], "S": [0, 1], "V": [2], "G": [[2]], "form": 3, "note": "Burning them symbolizes saying goodbye to old things and hello to a new start. 주어 + 동사 + 목적어, 3형식입니다. 주어는 동명사구 Burning them, 목적어는 saying 이하(동명사구)예요.", "sk": [{"r": "S", "g": [0, 1]}, {"r": "V", "g": [2]}, {"r": "O", "g": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]}], "fl": []}], "dec": {"0": "동명사(~하는 것)라서 문장의 동사가 아닙니다.", "3": "동명사(~하는 것)라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "Burning", "t": "ger", "reason": "Burning them은 문장의 주어 자리에 온 동명사구(~하는 것)입니다.", "g": [0]}, {"w": "saying", "t": "ger", "reason": "saying goodbye ... 는 symbolizes의 목적어 자리에 온 동명사구(~하는 것)입니다.", "g": [3]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-8a", "sec": "한여름 축제 (스웨덴)", "tok": ["Winter", "in", "Sweden", "is", "long", "and", "dark,"], "ch": ["Winter", "in Sweden", "is", "long and dark,"], "ko": ["겨울은", "스웨덴의", "상태이다", "길고 어두운"], "nodes": [{"id": "m", "a": 0, "b": 7, "own": [0, 1, 2, 3, 4, 5, 6], "kids": [], "S": [0], "V": [3], "G": [[3]], "form": 2, "note": "Winter is long and dark. 주어 + 동사 + 보어, 2형식입니다. Winter = long and dark, 같은 상태입니다. in Sweden은 Winter를 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [3]}, {"r": "C", "g": [4, 5, 6]}], "fl": [1, 2]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": "7-8a와 7-8b는 원래 so로 이어진 한 문장이에요. 주어와 동사가 서로 다른 두 문장이라서 둘로 나누어 분석해요."}, {"lv": "심화", "id": "7-8b", "sec": "한여름 축제 (스웨덴)", "tok": ["so", "the", "people", "there", "especially", "welcome", "summer."], "ch": ["so", "the people", "there", "especially", "welcome", "summer."], "ko": ["그래서", "사람들은", "그곳의", "특히", "환영한다", "여름을"], "nodes": [{"id": "m", "a": 0, "b": 7, "own": [0, 1, 2, 3, 4, 5, 6], "kids": [], "S": [1, 2], "V": [5], "G": [[5]], "form": 3, "note": "The people welcome summer. 주어 + 동사 + 목적어, 3형식입니다. there는 people을 꾸미고, especially는 welcome을 꾸미는 말입니다.", "sk": [{"r": "S", "g": [1, 2]}, {"r": "V", "g": [5]}, {"r": "O", "g": [6]}], "fl": [3, 4]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": "7-8a와 이어지는 문장이에요. so(그래서)는 앞 문장을 결과로 이어 주는 말이라 뼈대에 넣지 않아요."}, {"lv": "심화", "id": "7-9", "sec": "한여름 축제 (스웨덴)", "tok": ["To", "celebrate", "the", "longest", "day", "of", "the", "year,", "they", "have", "a", "special", "festival."], "ch": ["To celebrate the longest day of the year,", "they", "have", "a special festival."], "ko": ["일 년 중 낮이 가장 긴 날을 기념하기 위해", "그들은", "연다", "특별한 축제를"], "nodes": [{"id": "m", "a": 0, "b": 13, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "kids": [], "S": [8], "V": [9], "G": [[9]], "form": 3, "note": "They have a special festival. 주어 + 동사 + 목적어, 3형식입니다. To celebrate the longest day of the year는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [8]}, {"r": "V", "g": [9]}, {"r": "O", "g": [10, 11, 12]}], "fl": [0, 1, 2, 3, 4, 5, 6, 7]}], "dec": {"0": "to부정사의 일부라서 문장의 동사가 아닙니다.", "1": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "To celebrate", "t": "to", "use": "부사적 용법", "reason": "To celebrate는 \"기념하기 위해\"라는 목적을 나타내므로 부사적 용법입니다.", "g": [0, 1]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-10", "sec": "한여름 축제 (스웨덴)", "tok": ["They", "call", "it", "the", "Midsummer", "festival."], "ch": ["They", "call", "it", "the Midsummer festival."], "ko": ["그들은", "부른다", "그것을", "한여름 축제라고"], "nodes": [{"id": "m", "a": 0, "b": 6, "own": [0, 1, 2, 3, 4, 5], "kids": [], "S": [0], "V": [1], "G": [[1]], "form": 5, "note": "They call it the Midsummer festival. 주어 + 동사 + 목적어 + 목적격보어, 5형식입니다. it = the Midsummer festival, 같은 대상입니다(주술 관계).", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1]}, {"r": "O", "g": [2]}, {"r": "C", "g": [3, 4, 5]}], "fl": []}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-11", "sec": "한여름 축제 (스웨덴)", "tok": ["The", "festival", "starts", "on", "the", "Friday", "evening", "between", "June", "19", "and", "25", "and", "ends", "on", "the", "Sunday."], "ch": ["The festival", "starts", "on the Friday evening between June 19 and 25", "and", "ends", "on the Sunday."], "ko": ["축제는", "시작한다", "6월 19일과 25일 사이의 금요일 저녁에", "그리고", "끝난다", "일요일에"], "nodes": [{"id": "m", "a": 0, "b": 17, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], "kids": [], "S": [0, 1], "V": [2, 13], "G": [[2], [13]], "form": 1, "note": "The festival starts and ends. 주어 + 동사, 1형식입니다. starts와 ends는 and로 이어진 병렬 동사이고 둘 다 1형식이에요. on the Friday evening between June 19 and 25와 on the Sunday는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0, 1]}, {"r": "V", "g": [2]}, {"r": "V", "g": [13]}], "fl": [3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16]}], "dec": {}, "vn": "starts와 ends가 and로 이어진 병렬 동사예요. 둘 다 눌러 주세요.", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-12", "sec": "한여름 축제 (스웨덴)", "tok": ["During", "the", "festival,", "people", "decorate", "a", "tall", "pole", "with", "flowers", "and", "green", "leaves", "and", "enjoy", "traditional", "dances", "around", "it."], "ch": ["During the festival,", "people", "decorate", "a tall pole", "with flowers and green leaves", "and", "enjoy", "traditional dances", "around it."], "ko": ["축제 기간 동안", "사람들은", "장식한다", "높은 기둥을", "꽃과 초록색 잎으로", "그리고", "즐긴다", "전통 춤을", "그 주위에서"], "nodes": [{"id": "m", "a": 0, "b": 19, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], "kids": [], "S": [3], "V": [4, 14], "G": [[4], [14]], "form": 3, "note": "People decorate a tall pole and enjoy traditional dances. 주어 + 동사 + 목적어, 3형식입니다. decorate와 enjoy는 and로 이어진 병렬 동사이고, 둘 다 목적어를 가져 3형식이에요. During the festival, with flowers and green leaves, around it은 꾸미는 말입니다.", "sk": [{"r": "S", "g": [3]}, {"r": "V", "g": [4]}, {"r": "O", "g": [5, 6, 7]}, {"r": "V", "g": [14]}, {"r": "O", "g": [15, 16]}], "fl": [0, 1, 2, 8, 9, 10, 11, 12, 17, 18]}], "dec": {}, "vn": "decorate와 enjoy가 and로 이어진 병렬 동사예요. 둘 다 눌러 주세요.", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-13", "sec": "한여름 축제 (스웨덴)", "tok": ["Because", "the", "sun", "hardly", "sets", "at", "this", "time", "of", "year", "in", "Sweden,", "people", "can", "enjoy", "the", "festival", "all", "night", "long."], "ch": ["Because", "the sun", "hardly sets", "at this time of year", "in Sweden,", "people", "can enjoy", "the festival", "all night long."], "ko": ["~이기 때문에", "해가", "거의 지지 않는다", "일 년 중 이맘때", "스웨덴에서", "사람들은", "즐길 수 있다", "축제를", "밤새도록"], "nodes": [{"id": "m", "a": 0, "b": 20, "own": [12, 13, 14, 15, 16, 17, 18, 19], "kids": [[0, 12]], "S": [12], "V": [13, 14], "G": [[13, 14]], "form": 3, "note": "People can enjoy the festival. 주어 + 동사 + 목적어, 3형식입니다. all night long은 꾸미는 말입니다.", "sk": [{"r": "S", "g": [12]}, {"r": "V", "g": [13, 14]}, {"r": "O", "g": [15, 16]}], "fl": [17, 18, 19]}, {"id": "a", "a": 0, "b": 12, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "kids": [], "S": [1, 2], "V": [4], "G": [[4]], "kind": "부사절", "sub": "이유"}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-14", "sec": "망자의 날 (멕시코)", "tok": ["Many", "Mexicans", "believe", "that", "once", "a", "year", "dead", "people", "come", "back", "home", "to", "meet", "their", "family", "and", "friends."], "ch": ["Many Mexicans", "believe", "that once a year dead people come back home to meet their family and friends."], "ko": ["많은 멕시코 사람들은", "믿는다", "일 년에 한 번 죽은 사람들이 가족과 친구들을 만나기 위해 집으로 돌아온다고"], "nodes": [{"id": "m", "a": 0, "b": 18, "own": [0, 1, 2], "kids": [[3, 18]], "S": [0, 1], "V": [2], "G": [[2]], "form": 3, "note": "Many Mexicans believe that절. 주어 + 동사 + 목적어, 3형식입니다. believe의 목적어는 that으로 시작하는 절 전체예요.", "sk": [{"r": "S", "g": [0, 1]}, {"r": "V", "g": [2]}], "fl": []}, {"id": "a", "a": 3, "b": 18, "own": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], "kids": [], "S": [7, 8], "V": [9, 10], "G": [[9, 10]], "kind": "명사절", "sub": "목적어", "gv": [["believe", "동사"]], "note": "believe 뒤의 that절이 believe의 목적어(믿는 내용) 역할을 합니다."}], "dec": {"12": "to부정사의 일부라서 문장의 동사가 아닙니다.", "13": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "come back은 구동사예요. back은 따로 동사가 아니라 come과 한 덩어리입니다.", "nf": [{"w": "to meet", "t": "to", "use": "부사적 용법", "reason": "to meet their family and friends는 \"만나기 위해\"라는 목적을 나타내므로 부사적 용법입니다.", "g": [12, 13]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-15", "sec": "망자의 날 (멕시코)", "tok": ["They", "call", "this", "day", "the", "Day", "of", "the", "Dead."], "ch": ["They", "call", "this day", "the Day of the Dead."], "ko": ["그들은", "부른다", "이날을", "망자의 날이라고"], "nodes": [{"id": "m", "a": 0, "b": 9, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8], "kids": [], "S": [0], "V": [1], "G": [[1]], "form": 5, "note": "They call this day the Day of the Dead. 주어 + 동사 + 목적어 + 목적격보어, 5형식입니다. this day = the Day of the Dead, 같은 대상입니다(주술 관계).", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1]}, {"r": "O", "g": [2, 3]}, {"r": "C", "g": [4, 5, 6, 7, 8]}], "fl": []}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-16", "sec": "망자의 날 (멕시코)", "tok": ["To", "welcome", "dead", "people,", "Mexicans", "hold", "a", "festival", "on", "November", "1", "and", "2."], "ch": ["To welcome dead people,", "Mexicans", "hold", "a festival", "on November 1 and 2."], "ko": ["죽은 이들을 맞이하기 위해", "멕시코 사람들은", "연다", "축제를", "11월 1일과 2일에"], "nodes": [{"id": "m", "a": 0, "b": 13, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "kids": [], "S": [4], "V": [5], "G": [[5]], "form": 3, "note": "Mexicans hold a festival. 주어 + 동사 + 목적어, 3형식입니다. To welcome dead people과 on November 1 and 2는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [4]}, {"r": "V", "g": [5]}, {"r": "O", "g": [6, 7]}], "fl": [0, 1, 2, 3, 8, 9, 10, 11, 12]}], "dec": {"0": "to부정사의 일부라서 문장의 동사가 아닙니다.", "1": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "To welcome", "t": "to", "use": "부사적 용법", "reason": "To welcome dead people은 \"맞이하기 위해\"라는 목적을 나타내므로 부사적 용법입니다.", "g": [0, 1]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-17", "sec": "망자의 날 (멕시코)", "tok": ["They", "believe", "it", "is", "important", "to", "remember", "dead", "people."], "ch": ["They", "believe", "it is important to remember dead people."], "ko": ["그들은", "믿는다", "죽은 사람들을 기억하는 것이 중요하다고"], "nodes": [{"id": "m", "a": 0, "b": 9, "own": [0, 1], "kids": [[2, 9]], "S": [0], "V": [1], "G": [[1]], "form": 3, "note": "They believe that절. 주어 + 동사 + 목적어, 3형식입니다. believe의 목적어는 that이 생략된 절 전체예요.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1]}], "fl": []}, {"id": "a", "a": 2, "b": 9, "own": [2, 3, 4, 5, 6, 7, 8], "kids": [], "S": [2], "V": [3], "G": [[3]], "kind": "명사절", "sub": "목적어", "gv": [["believe", "동사"]], "om": "that", "note": "believe 뒤에 접속사 that이 생략되어 있고, 이 절이 believe의 목적어입니다."}], "dec": {"5": "to부정사의 일부라서 문장의 동사가 아닙니다.", "6": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "to remember", "t": "to", "use": "명사적 용법", "reason": "to remember dead people은 진짜 주어(진주어)라서 명사적 용법입니다. it은 가짜 주어(가주어)예요.", "g": [5, 6]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-18", "sec": "망자의 날 (멕시코)", "tok": ["So,", "people", "set", "up", "altars", "in", "their", "homes", "and", "have", "big", "parties", "in", "cemeteries."], "ch": ["So,", "people", "set up", "altars", "in their homes", "and", "have", "big parties", "in cemeteries."], "ko": ["그래서", "사람들은", "차린다", "제단을", "집에", "그리고", "연다", "큰 파티를", "묘지에서"], "nodes": [{"id": "m", "a": 0, "b": 14, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "kids": [], "S": [1], "V": [2, 3, 9], "G": [[2, 3], [9]], "form": 3, "note": "People set up altars and have big parties. 주어 + 동사 + 목적어, 3형식입니다. set up과 have는 and로 이어진 병렬 동사이고, 둘 다 목적어를 가져 3형식이에요. in their homes와 in cemeteries는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [1]}, {"r": "V", "g": [2, 3]}, {"r": "O", "g": [4]}, {"r": "V", "g": [9]}, {"r": "O", "g": [10, 11]}], "fl": [5, 6, 7, 12, 13]}], "dec": {}, "vn": "set up은 구동사예요. up은 따로 동사가 아니라 set과 한 덩어리입니다. set up과 have가 and로 이어진 병렬 동사예요.", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-19", "sec": "망자의 날 (멕시코)", "tok": ["In", "some", "areas,", "people", "dress", "up", "like", "skeletons", "and", "hold", "big", "parades."], "ch": ["In some areas,", "people", "dress up", "like skeletons", "and", "hold", "big parades."], "ko": ["일부 지역에서는", "사람들은", "분장한다", "해골처럼", "그리고", "벌인다", "대규모 퍼레이드를"], "nodes": [{"id": "m", "a": 0, "b": 12, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "kids": [], "S": [3], "V": [4, 5, 9], "G": [[4, 5], [9]], "form": 1, "form2": 3, "note": "People dress up and hold big parades. 1형식 + 3형식입니다. dress up은 1형식, hold는 3형식(목적어 big parades)이에요. In some areas와 like skeletons는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [3]}, {"r": "V", "g": [4, 5]}, {"r": "V", "g": [9]}, {"r": "O", "g": [10, 11]}], "fl": [0, 1, 2, 6, 7]}], "dec": {}, "vn": "dress up은 구동사예요. up은 따로 동사가 아니라 dress와 한 덩어리입니다. dress up과 hold가 and로 이어진 병렬 동사예요.", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-20", "sec": "퍼 론디 축제 (미국 알래스카)", "tok": ["At", "the", "end", "of", "February,", "people", "in", "Alaska", "hold", "the", "Fur", "Rondy", "festival,", "one", "of", "the", "biggest", "winter", "festivals", "in", "the", "world."], "ch": ["At the end of February,", "people", "in Alaska", "hold", "the Fur Rondy festival,", "one of the biggest winter festivals in the world."], "ko": ["2월 말에", "사람들은", "알래스카의", "연다", "퍼 론디 축제를", "세계에서 가장 큰 겨울 축제 중 하나인"], "nodes": [{"id": "m", "a": 0, "b": 22, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21], "kids": [], "S": [5], "V": [8], "G": [[8]], "form": 3, "note": "People hold the Fur Rondy festival. 주어 + 동사 + 목적어, 3형식입니다. At the end of February, in Alaska는 꾸미는 말이고, 끝의 one of the biggest winter festivals in the world는 festival을 다시 설명하는 말입니다.", "sk": [{"r": "S", "g": [5]}, {"r": "V", "g": [8]}, {"r": "O", "g": [9, 10, 11, 12]}], "fl": [0, 1, 2, 3, 4, 6, 7, 13, 14, 15, 16, 17, 18, 19, 20, 21]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-21", "sec": "퍼 론디 축제 (미국 알래스카)", "tok": ["During", "this", "festival,", "visitors", "can", "enjoy", "various", "winter", "sports", "and", "Alaskan", "traditional", "games."], "ch": ["During this festival,", "visitors", "can enjoy", "various winter sports and Alaskan traditional games."], "ko": ["이 축제 기간 동안", "방문객들은", "즐길 수 있다", "다양한 겨울 스포츠와 알래스카 전통 게임을"], "nodes": [{"id": "m", "a": 0, "b": 13, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "kids": [], "S": [3], "V": [4, 5], "G": [[4, 5]], "form": 3, "note": "Visitors can enjoy various winter sports and Alaskan traditional games. 주어 + 동사 + 목적어, 3형식입니다. During this festival은 꾸미는 말입니다.", "sk": [{"r": "S", "g": [3]}, {"r": "V", "g": [4, 5]}, {"r": "O", "g": [6, 7, 8, 9, 10, 11, 12]}], "fl": [0, 1, 2]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-22", "sec": "퍼 론디 축제 (미국 알래스카)", "tok": ["They", "can", "also", "enjoy", "many", "special", "events", "such", "as", "the", "Running", "of", "the", "Reindeer."], "ch": ["They", "can also enjoy", "many special events", "such as the Running of the Reindeer."], "ko": ["그들은", "또한 즐길 수 있다", "많은 특별한 행사를", "순록 경주 같은"], "nodes": [{"id": "m", "a": 0, "b": 14, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "kids": [], "S": [0], "V": [1, 3], "G": [[1, 3]], "form": 3, "note": "They can enjoy many special events. 주어 + 동사 + 목적어, 3형식입니다. also와 such as the Running of the Reindeer는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1, 3]}, {"r": "O", "g": [4, 5, 6]}], "fl": [2, 7, 8, 9, 10, 11, 12, 13]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {"10": "the Running of the Reindeer는 하나의 행사 이름이에요. the 뒤에 of가 이어지는 명사라서 동명사(준동사)가 아닙니다."}, "note2": ""}, {"lv": "심화", "id": "7-23", "sec": "퍼 론디 축제 (미국 알래스카)", "tok": ["People", "who", "participate", "in", "this", "race", "wear", "fun", "costumes", "and", "try", "to", "run", "faster", "than", "reindeer."], "ch": ["People", "who participate in this race", "wear", "fun costumes", "and", "try", "to run faster than reindeer."], "ko": ["사람들은", "이 경주에 참가하는", "입는다", "재미있는 복장을", "그리고", "애쓴다", "순록보다 더 빨리 달리려고"], "nodes": [{"id": "m", "a": 0, "b": 16, "own": [0, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "kids": [[1, 6]], "S": [0], "V": [6, 10], "G": [[6], [10]], "form": 3, "note": "People wear fun costumes and try to run. 주어 + 동사 + 목적어, 3형식입니다. wear와 try는 and로 이어진 병렬 동사이고, try의 목적어는 to run이에요. faster than reindeer는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [6]}, {"r": "O", "g": [7, 8]}, {"r": "V", "g": [10]}, {"r": "O", "g": [11, 12]}], "fl": [13, 14, 15]}, {"id": "a", "a": 1, "b": 6, "own": [1, 2, 3, 4, 5], "kids": [], "S": [1], "V": [2], "G": [[2]], "kind": "형용사절", "sub": "주격 관계대명사", "anc": [0], "np": [0], "note": "___ participate in this race 에서 주어 자리(= People)가 비어 있어서 who는 주격 관계대명사입니다."}], "dec": {"11": "to부정사의 일부라서 문장의 동사가 아닙니다.", "12": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "wear와 try가 and로 이어진 병렬 동사예요. 둘 다 눌러 주세요.", "nf": [{"w": "to run", "t": "to", "use": "명사적 용법", "reason": "to run은 try의 목적어(~하는 것)라서 명사적 용법입니다.", "g": [11, 12]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-24", "sec": "퍼 론디 축제 (미국 알래스카)", "tok": ["Is", "it", "possible", "to", "do", "so?"], "ch": ["Is", "it", "possible", "to do so?"], "ko": ["상태입니까", "", "가능한", "그렇게 하는 것이"], "nodes": [{"id": "m", "a": 0, "b": 6, "own": [0, 1, 2, 3, 4, 5], "kids": [], "S": [1], "V": [0], "G": [[0]], "form": 2, "note": "Is it possible? 주어 + 동사 + 보어, 2형식입니다. it은 가짜 주어(가주어)이고, 진짜 주어는 to do so예요. 의문문이라 동사 Is가 맨 앞에 왔어요.", "sk": [{"r": "S", "g": [1]}, {"r": "V", "g": [0]}, {"r": "C", "g": [2]}], "fl": [3, 4, 5]}], "dec": {"3": "to부정사의 일부라서 문장의 동사가 아닙니다.", "4": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "to do", "t": "to", "use": "명사적 용법", "reason": "to do so는 진짜 주어(진주어)라서 명사적 용법입니다. it은 가짜 주어(가주어)예요.", "g": [3, 4]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "7-25", "sec": "퍼 론디 축제 (미국 알래스카)", "tok": ["but", "it", "doesn’t", "matter."], "ch": ["but", "it", "doesn’t matter."], "ko": ["하지만", "그것은", "중요하지 않다"], "nodes": [{"id": "m", "a": 0, "b": 4, "own": [0, 1, 2, 3], "kids": [], "S": [1], "V": [2, 3], "G": [[2, 3]], "form": 1, "note": "It doesn’t matter. 주어 + 동사, 1형식입니다. 여기서 matter는 \"중요하다\"라는 동사이고 목적어가 없어요.", "sk": [{"r": "S", "g": [1]}, {"r": "V", "g": [2, 3]}], "fl": []}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": "Not really,는 앞 질문에 대한 대답이라 동사가 없어서 분석하지 않아요. but은 문장을 이어 주는 말이라 뼈대에 넣지 않아요."}, {"lv": "심화", "id": "7-26", "sec": "퍼 론디 축제 (미국 알래스카)", "tok": ["Everyone", "is", "just", "having", "fun!"], "ch": ["Everyone", "is just having", "fun!"], "ko": ["모두가", "그저 누리고 있다", "즐거움을"], "nodes": [{"id": "m", "a": 0, "b": 5, "own": [0, 1, 2, 3, 4], "kids": [], "S": [0], "V": [1, 3], "G": [[1, 3]], "form": 3, "note": "Everyone is having fun. 주어 + 동사 + 목적어, 3형식입니다. just는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1, 3]}, {"r": "O", "g": [4]}], "fl": [2]}], "dec": {}, "vn": "is having은 진행형(be + -ing)이라서 한 덩어리 동사예요. having은 따로 준동사로 보지 않습니다.", "nf": [], "em": [], "nfx": {}, "note2": ""}];
+const GLOSS={"7-1": [["celebrate", "v. ~을 축하하다, 기념하다", ""], ["coming", "n. 시작, 도래", ""], ["festival", "n. 축제", ""]], "7-2": [["festival", "n. 축제", ""], ["takes place", "열리다, 개최되다", "take place의 3인칭 단수 현재형"]], "7-3": [["festival", "n. 축제", ""], ["parades", "n. 퍼레이드, 행진", "parade의 복수형"], ["fireworks", "n. 불꽃놀이", ""]], "7-4": [["stars", "n. 주인공", "star의 복수형"], ["festival", "n. 축제", ""], ["giant", "a. 거대한", ""], ["wooden", "a. 나무로 된", ""], ["statues", "n. 조각상", "statue의 복수형"]], "7-5": [], "7-6": [["Surprisingly", "adv. 놀랍게도", ""], ["burned", "v. ~을 태우다", "burn의 과거분사 (수동태 are burned)"], ["last", "a. 마지막의, 최종의", ""], ["festival", "n. 축제", ""]], "7-7": [["symbolizes", "v. ~을 상징하다", "symbolize의 3인칭 단수 현재형"], ["saying goodbye to", "~에게 작별 인사를 하다", "say goodbye to의 -ing형(동명사)"], ["hello to", "~에게 인사하다, 안부를 전하다", "saying hello to에서 앞과 같은 saying이 생략됨"]], "7-8a": [], "7-8b": [["especially", "adv. 특히", ""], ["welcome", "v. ~을 환영하다, 반기다", ""]], "7-9": [["celebrate", "v. ~을 축하하다, 기념하다", ""], ["festival", "n. 축제", ""]], "7-10": [["call", "v. ~라고 부르다", ""], ["Midsummer", "n. 한여름", ""], ["festival", "n. 축제", ""]], "7-11": [["festival", "n. 축제", ""], ["between", "A와 B 사이에", "between A and B"], ["ends", "v. 끝나다", "end의 3인칭 단수 현재형"]], "7-12": [["festival", "n. 축제", ""], ["decorate", "v. ~을 장식하다, 꾸미다", ""], ["pole", "n. 기둥, 막대기", ""], ["traditional", "a. 전통의, 전통적인", ""]], "7-13": [["hardly", "adv. 거의 ~ 아니다", ""], ["sets", "v. (해가) 지다", "set의 3인칭 단수 현재형"], ["festival", "n. 축제", ""]], "7-14": [["Mexicans", "n. 멕시코 사람", "Mexican의 복수형"], ["dead", "a. 죽은", ""]], "7-15": [["call", "v. ~라고 부르다", ""]], "7-16": [["welcome", "v. ~을 환영하다, 반기다", ""], ["dead", "a. 죽은", ""], ["Mexicans", "n. 멕시코 사람", "Mexican의 복수형"], ["hold", "v. ~을 개최하다, 열다", ""], ["festival", "n. 축제", ""]], "7-17": [["dead", "a. 죽은", ""]], "7-18": [["set up", "~을 세우다, 설치하다", "set ~ up (목적어가 사이에 오기도 함)"], ["altars", "n. 제단", "altar의 복수형"], ["cemeteries", "n. 묘지", "cemetery의 복수형"]], "7-19": [["areas", "n. 지역", "area의 복수형"], ["dress up", "변장하다", ""], ["skeletons", "n. 해골, 골격", "skeleton의 복수형"], ["hold", "v. ~을 개최하다, 열다", ""], ["parades", "n. 퍼레이드, 행진", "parade의 복수형"]], "7-20": [["At the end of", "~의 말에, ~의 끝에", ""], ["February", "n. 2월", ""], ["hold", "v. ~을 개최하다, 열다", ""], ["festival", "n. 축제", ""], ["festivals", "n. 축제", "festival의 복수형"]], "7-21": [["festival", "n. 축제", ""], ["various", "a. 다양한", ""], ["traditional", "a. 전통의, 전통적인", ""]], "7-22": [["Reindeer", "n. 순록", ""]], "7-23": [["participate in", "~에 참여하다", ""], ["race", "n. 경주, 레이스", ""], ["wear", "v. ~을 입고[쓰고, 신고] 있다", ""], ["costumes", "n. 의상, 복장", "costume의 복수형"], ["reindeer", "n. 순록", ""]], "7-24": [["possible", "a. 가능한", ""]], "7-25": [["matter", "v. 중요하다", ""]], "7-26": []};
+const NAT={"7-1": "발렌시아 사람들은 파야스 축제로 봄의 시작을 축하한다.", "7-2": "이 축제는 3월 15일부터 19일까지 열린다.", "7-3": "축제 기간 동안 사람들은 퍼레이드와 불꽃놀이를 즐긴다.", "7-4": "축제의 주인공은 거대한 나무 조각상인 파야들이다.", "7-5": "도시 곳곳에서 수백 개의 파야들을 볼 수 있다.", "7-6": "놀랍게도, 축제의 마지막 날에는 이 파야들이 불태워진다.", "7-7": "그것들을 태우는 것은 오래된 것들과 작별하고 새로운 시작을 맞이하는 것을 상징한다.", "7-8a": "스웨덴의 겨울은 길고 어두워서 그곳 사람들은 여름을 특히 환영한다.", "7-8b": "스웨덴의 겨울은 길고 어두워서 그곳 사람들은 여름을 특히 환영한다.", "7-9": "일 년 중 낮이 가장 긴 날을 기념하기 위해 그들은 특별한 축제를 연다.", "7-10": "이 축제를 한여름 축제라고 부른다.", "7-11": "축제는 6월 19일과 25일 사이의 금요일 저녁에 시작하여 일요일에 끝난다.", "7-12": "축제 기간 동안 사람들은 꽃과 초록색 잎으로 장대를 장식하고 그 주위를 돌며 전통 춤을 즐긴다.", "7-13": "스웨덴에서 매년 이맘때면 해가 거의 지지 않기 때문에 사람들은 밤새도록 축제를 즐길 수 있다.", "7-14": "많은 멕시코 사람들은 일 년에 한 번 죽은 사람들이 가족과 친구들을 만나기 위해 집으로 돌아온다고 믿는다.", "7-15": "이날을 망자의 날이라고 부른다.", "7-16": "죽은 이들을 맞이하기 위해, 멕시코 사람들은 11월 1일과 2일에 축제를 연다.", "7-17": "그들은 고인을 기억하는 것이 중요하다고 믿는다.", "7-18": "그래서 사람들은 집에 제단을 차리고, 묘지에서 큰 파티를 연다.", "7-19": "일부 지역에서는 사람들이 해골처럼 분장하고 대규모 퍼레이드를 벌인다.", "7-20": "2월 말, 알래스카 사람들은 세계에서 가장 큰 겨울 축제 중 하나인 퍼 론디 축제를 연다.", "7-21": "이 축제 기간 동안 방문객들은 다양한 겨울 스포츠와 알래스카 전통 게임을 즐길 수 있다.", "7-22": "또한, 순록 경주 같은 많은 특별한 행사도 즐길 수 있다.", "7-23": "이 경주에 참가하는 사람들은 재미있는 복장을 입고 순록보다 더 빨리 달리려고 애쓴다.", "7-24": "과연 그럴 수 있을까?", "7-25": "그럴 거 같지는 않지만, 그것은 중요하지 않다.", "7-26": "모두가 그저 즐기고 있을 뿐이다!"};
+var WLK='tbm2d-l7-wl';
+function wlD(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+function wlGet(){try{return JSON.parse(localStorage.getItem(WLK)||'{}')}catch(e){return {}}}
+function wlPut(e){try{var o=wlGet(),k=wlD();Object.keys(o).forEach(function(q){if(q!==k)delete o[q]});var L=(o[k]||[]).filter(function(x){return x.id!==e.id});L.push(e);o[k]=L;var ks=Object.keys(o).sort();while(ks.length>10)delete o[ks.shift()];localStorage.setItem(WLK,JSON.stringify(o))}catch(x){}}
+function wlKey(o){var ks=Object.keys(o).sort().reverse();for(var i=0;i<ks.length;i++)if(o[ks[i]]&&o[ks[i]].length)return ks[i];return ''}
+function wlList(){var o=wlGet(),k=wlKey(o);return k?o[k]:[]}
+function wlN(){return wlList().length}
+function wlStrip(){return ''}
+function wlPut(){}
+const KEY="tbm2d-l7-r";
+let R={};try{R=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(R))}catch(e){}}
+const $=document.getElementById("app");
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const KINDS=[["명사절","~것, ~지 (문장의 한 자리)"],["형용사절","앞 명사를 꾸밈"],["부사절","때·이유·조건 등 덧붙임"]];
+const SUBS={"형용사절":[["주격 관계대명사","빠진 자리가 주어: the man who lives here"],["목적격 관계대명사","빠진 자리가 목적어: the book that I read"],["관계부사","뒤가 완전한 절: the day when I met him"]],
+"부사절":[["시간","when, after, before"],["이유","because, since"],["양보","although, though"],["조건","if, unless"],["결과","so ~ that"],["목적","so that ~ 하도록"],["비교","than, as ~ as"],["대조","while, whereas"]],
+"명사절":[["주어","That he won is true."],["목적어","I know (that) he won."],["보어","The fact is that he won."],["전치사의 목적어","I agree with what he said."],["동격","the fact that he won"]]};
+let D=550,KO=0,cur,ni,steps,si,got,wr,ph,opened,done,GL,fnd,gh,wp={};
+function adv(fn){const tag=cur.id+'|'+ni+'|'+si+'|'+ph;setTimeout(()=>{if(cur&&tag==cur.id+'|'+ni+'|'+si+'|'+ph)fn()},D)}
+const STARS=new Set([]);
+let TAB='심화';
+function home(){
+  const L=S.filter(s=>s.lv==TAB),dn=L.filter(s=>R[s.id]&&R[s.id].done).length;
+  let h='<h1>7과 심화 문장 분석</h1><p class="sub">교과서 본문 · 동사, 절, 준동사 ('+L.length+'문장)</p>';
+  h+='<p class="small" style="margin:10px 2px 8px">푼 문장 '+dn+' / '+L.length+'</p>';
+  let last='';
+  L.forEach((s,k)=>{const r=R[s.id]||{},d=r.done,sec=(s.sec||'');
+    if(sec!==last){if(last!=='')h+='</div>';h+='<p class="small" style="margin:14px 2px 6px;font-weight:700">'+esc(sec)+'</p><div class="bgrid">';last=sec}
+    if(k==0&&sec==='')h+='<div class="bgrid">';
+    h+='<button class="bk'+(d?' done':'')+'" onclick="play(\''+s.id+'\')"><span class="bn">'+(k+1)+'</span><span class="bs">'+s.id+'</span><span class="bt">'+(d?(r.wr?'실수 '+r.wr:'완료'):'')+'</span></button>'});
+  h+='</div>';
+  const all=Object.values(R).filter(r=>r.done);
+  if(all.length)h+='<div class="card"><p class="day">내 기록</p><div class="small">푼 문장 '+all.length+'개 / 전부 한 번에 맞힌 문장 '+all.filter(r=>r.wr===0).length+'개</div><button class="reset" onclick="resetAll()">기록 지우기</button></div>';
+  cur=null;$.innerHTML=h;window.scrollTo(0,0)}
+function resetAll(){if(confirm("기록을 모두 지울까요?")){R={};save();home()}}
+function stepsOf(n){
+  if(!n.kind)return n.form?(n.form2?[{t:'S'},{t:'form',p:1},{t:'form',p:2}]:[{t:'S'},{t:'form'}]):[{t:'S'}];
+  const st=[{t:'kind'},{t:'sub'}];if(n.kind=='형용사절')st.push({t:'anc'});st.push({t:'S'});return st}
+function play(id){KO=0;cur=S.find(s=>s.id==id);TAB=cur.lv;wr=0;wp={};ph='verb';opened={};done={};ni=0;si=0;fnd={};
+  GL=[];cur.nodes.forEach(n=>n.G.forEach(g=>GL.push(g)));R[id]=R[id]||{};drawVerb('')}
+function stage(k){const a=['동사','주절','절 열기','준동사'];return '<div class="stg">'+a.map((x,i)=>'<div class="'+(i<k?'ok':i==k?'on':'')+'">'+(i+1)+' '+x+'</div>').join('')+'</div>'}
+function head(k){return '<div class="top"><button class="back" onclick="home()">&lt; 목록</button><span class="small">'+(S.filter(x=>x.lv==cur.lv).indexOf(cur)+1)+'번'+(STARS.has(cur.id)&&cur.lv=='심화'?' ★':'')+' · 본문 '+cur.id+(k==2?' · 절 '+ni+'/'+(cur.nodes.length-1):'')+'</span></div>'+stage(k)+'<p class="ko1">'+(KO?esc(cur.ko.join(' ')):'<button class="reset" style="margin:0" onclick="KO=1;redraw()">우리말 뜻 보기</button>')+'</p>'}
+function redraw(){if(ph=='verb')drawVerb('');else if(ph=='nf')drawNF('');else if(ph=='nfq')drawNFQ();else draw()}
+const VB=()=>{const f=new Set();GL.forEach(g=>g.forEach(i=>f.add(i)));return f};
+/* 1단계: 동사 찾기 - 누르는 즉시 판정 */
+function drawVerb(msg,fin){
+  let h='<div class="sent">';
+  cur.tok.forEach((w,i)=>{
+    const gi=GL.findIndex(g=>g.includes(i));let c='w2';
+    if(gi>=0&&fnd[gi])c+=' okw vb';
+    h+='<button class="'+c+'" '+(fin?'disabled':'onclick="tv('+i+')"')+'>'+esc(w)+'</button> '});
+  h+='</div>';
+  const nf=Object.keys(fnd).length;
+  const cnt=!fin&&nf?'<p class="small" style="margin:8px 0 0">찾은 동사 '+nf+'개</p>':'';
+  $.innerHTML=head(0)+'<div class="card"><p class="q">동사를 모두 누르세요</p>'+h+cnt+'<div id="fb">'+msg+'</div></div>';window.scrollTo(0,0)}
+function tv(i){
+  const gi=GL.findIndex(g=>g.includes(i));
+  if(gi>=0){fnd[gi]=1;
+    if(Object.keys(fnd).length==GL.length){
+      let m='<div class="msg g">동사를 모두 찾았습니다. 동사 '+GL.length+'개, 절 '+cur.nodes.length+'개.</div>';
+      if(cur.vn)m+='<div class="msg n" style="background:var(--okbg)">'+esc(cur.vn)+'</div><button class="btn" onclick="startMain()">다음</button>';
+      drawVerb(m,true);if(!cur.vn)adv(startMain)}
+    else drawVerb('')}
+  else{miss();drawVerb('<div class="msg n"><b>'+esc(cur.tok[i].replace(/[^A-Za-z\']/g,''))+'</b> '+esc(cur.dec[i]||'동사가 아닙니다.')+'</div>')}}
+
+/* 2단계: 준동사 찾기 + 용법/모양 */
+let NQ=[],nqi=0;
+const nfOf=i=>cur.nf.findIndex(x=>x.g.includes(i));
+const NFN=s=>s.toLowerCase().replace(/[^a-z]/g,'');
+function startNF(){if(!cur.nf.length){fin();return}cur.nodes.forEach((_,k)=>opened[k]=true);ph='nf';fndN={};drawNF('')}
+let fndN={};
+function drawNF(msg,fin){
+  const F=VB();let h='<div class="sent">';
+  cur.tok.forEach((w,i)=>{const gi=nfOf(i);let c='w2';if(F.has(i))c+=' vb';if(gi>=0&&fndN[gi])c+=' okw';
+    h+='<button class="'+c+'" '+(fin?'disabled':'onclick="tn('+i+')"')+'>'+esc(w)+'</button> '});
+  h+='</div>';
+  const nf=Object.keys(fndN).length;
+  const cnt=!fin&&nf?'<p class="small" style="margin:8px 0 0">찾은 준동사 '+nf+'개</p>':'';
+  $.innerHTML=head(3)+'<div class="card"><p class="q">to부정사, 분사, 동명사를 모두 누르세요</p>'+h+cnt+'<div id="fb">'+msg+'</div></div>';window.scrollTo(0,0)}
+function tn(i){
+  const gi=nfOf(i);
+  if(gi>=0){fndN[gi]=1;
+    if(Object.keys(fndN).length==cur.nf.length){
+      const gers=cur.nf.filter(x=>x.t=='ger');
+      let m='<div class="msg g">준동사를 모두 찾았습니다.</div>';
+      gers.forEach(g=>{m+='<div class="msg n" style="background:var(--okbg)"><b>'+esc(g.w)+'</b> '+esc(g.reason)+'</div>'});
+      if(gers.length)m+='<button class="btn" onclick="startNFQ()">다음</button>';
+      drawNF(m,true);if(!gers.length)adv(startNFQ)}
+    else drawNF('')}
+  else if(VB().has(i))drawNF('<div class="msg n" style="background:var(--okbg)">이 동사는 1단계에서 찾았어요.</div>');
+  else{miss();drawNF('<div class="msg n">'+((cur.nfx&&cur.nfx[i])||(NFN(cur.tok[i])=='to'?'이 to는 전치사예요. to부정사가 아닙니다.':'준동사가 아닙니다.'))+'</div>')}}
+function startNFQ(){NQ=cur.nf.filter(x=>x.t!='ger');nqi=0;if(!NQ.length){fin();return}ph='nfq';drawNFQ()}
+function drawNFQ(){
+  const it=NQ[nqi],F=VB();let h='<div class="sent">';
+  cur.tok.forEach((w,i)=>{
+    if(it.t=='part'&&it.g[0]==i){h+='<span class="w2 hlw">('+esc(it.base)+')</span> ';return}
+    let c='w2';if(F.has(i))c+=' vb';if(it.g.includes(i))c+=' hlw';h+='<span class="'+c+'">'+esc(w)+'</span> '});
+  h+='</div>';
+  let q,o;
+  if(it.t=='to'){q='노란 to부정사의 용법은?';o=[["명사적 용법","~하는 것 (주어·목적어·보어)"],["형용사적 용법","앞 명사를 꾸밈 (~할)"],["부사적 용법","목적·정도·이유 등 (~하기 위해)"]]}
+  else{q='( ) 안의 동사를 알맞은 분사 모양으로 바꾸면?';o=[[it.ing,'현재분사 (-ing)'],[it.pp,'과거분사 (p.p.)']]}
+  const body='<div class="chunks" style="margin-top:12px">'+o.map(x=>'<button class="ck" onclick="pickNF(this,\''+x[0]+'\')">'+x[0]+'<span class="hint">'+x[1]+'</span></button>').join('')+'</div>';
+  $.innerHTML=head(3)+'<div class="card"><span class="pill">'+(it.t=='to'?'to부정사':'분사')+' '+(nqi+1)+'/'+NQ.length+'</span><p class="q">'+q+'</p>'+h+body+'<div id="fb"></div></div>';window.scrollTo(0,0)}
+function pickNF(el,v){
+  const it=NQ[nqi];const want=it.t=='to'?it.use:it[it.ans];
+  if(v==want){document.querySelectorAll('.ck').forEach(b=>b.disabled=true);el.classList.add('okpick');
+    document.getElementById('fb').innerHTML='<div class="msg g">맞았습니다. '+(it.pat?patH(it.pat):it.t=='part'?partH(it):useH(it)+(it.rel?relH(it.rel):''))+'<div style="margin-top:8px">'+esc(it.reason)+'</div></div><button class="btn" onclick="nextNFQ()">다음</button>'}
+  else{el.classList.add('wrong');el.disabled=true;miss();document.getElementById('fb').innerHTML='<div class="msg n">다시 골라 보세요.</div>'}}
+const USES=[['명사적 용법','~하는 것',[['want',''],['to read','u']],'읽는 것을 원한다'],['형용사적 용법','앞 명사를 꾸밈',[['time',''],['to read','u']],'읽을 시간'],['부사적 용법','목적·정도·이유',[['came',''],['to read','u']],'읽으려고 왔다']];
+function useH(it){return '<div class="cmp">'+USES.map((u,k)=>'<div class="cs '+(u[0]==it.use?'on':'off')+'"><div class="bdr">'+bd(u[0],'kd'+k+' dp1',u[1])+u[2].map(x=>bd(x[0],x[1]?'kd'+k+' dp2':'')).join('<span class="pp">+</span>')+'<span class="small">'+esc(u[3])+'</span></div></div>').join('')+'</div>'}
+function partH(it){
+  const on=it.ans;
+  const row=(c,lab,sub,cls,tag,ex,ko)=>'<div class="cs '+(on==c?'on':'off')+'"><div class="bdr">'+bd(lab,'',sub)+'<span class="pp">→</span>'+bd(tag,cls)+'</div><div class="bdr">'+ex.map(x=>bd(x[0],x[1])).join('')+'<span class="small">'+esc(ko)+'</span></div></div>';
+  return '<div class="cmp">'+row('ing','능동','직접 ~한다','ing','-ing 현재분사',[['a boy',''],['playing','ing'],['soccer','']],'축구를 하는 소년')+row('pp','수동','~당한다','ppb','p.p. 과거분사',[['a window',''],['broken','ppb'],['by a ball','']],'공에 깨진 창문')+'</div><div class="bdr">'+bd(it.who||'주어','','이 문장')+'<span class="pp">→</span>'+bd(it.w,on=='ing'?'ing':'ppb',on=='ing'?'능동 · -ing':'수동 · p.p.')+'</div>'}
+function relH(r){return '<div class="pat"><div class="pth">'+esc(r.h)+'</div><div class="bdr">'+r.p.map((x,k)=>(k?'<span class="pp">+</span>':'')+bd(x[0],k==r.p.length-1?'kd2 dp2':'kd2 dp1',x[1])).join('')+'<span class="pp">=</span><span class="small" style="font-size:15px;color:var(--fg);font-weight:700">'+esc(r.ko)+'</span></div></div>'}
+function patH(p){return '<div class="pat"><div class="pth">'+esc(p.h)+'</div><div class="bdr">'+p.p.map((x,k)=>(k?'<span class="pp">+</span>':'')+bd(x[0],k==p.p.length-1?'cc':'',x[1])).join('')+'</div></div>'}
+function nextNFQ(){nqi++;if(nqi<NQ.length)drawNFQ();else fin()}
+/* 문장 표시: 열리지 않은 절은 가림판 */
+function hidTop(i){let b=null;cur.nodes.forEach((m,k)=>{if(!opened[k]&&m.a<=i&&i<m.b&&(!b||m.b-m.a>b.b-b.a))b=m});return b}
+function emOn(){return ph=='node'&&steps[si]&&(steps[si].t=='anc'||steps[si].t=='S')}
+function sentH(n,tap,fl){
+  const F=VB();let h='<div class="sent">';let i=0;
+  while(i<cur.tok.length){
+    const hm=hidTop(i);
+    if(hm){h+='<span class="mask">'+esc(cur.tok[hm.a].replace(/[^A-Za-z\']/g,''))+' ...</span> ';i=hm.b;continue}
+    if(fl&&n.fl&&n.fl.includes(i)){let j=i;while(j<cur.tok.length&&n.fl.includes(j)&&!hidTop(j))j++;h+='<span class="mask">가림</span> ';i=j;continue}
+    let c='w2';const own=n.own.includes(i);
+    if(F.has(i))c+=' vb';
+    if(emOn()&&(cur.em||[]).includes(i))c+=' em';
+    const dk=doneKind(i);
+    if(own)c+=' hlw';else if(dk!=null)c+=' kd'+dk.k+' dp'+dk.d;
+    if(got[i])c+=' okw';
+    h+=((tap&&own)?'<button class="'+c+'" onclick="tapw('+i+')">':'<span class="'+c+'">')+esc(cur.tok[i])+((tap&&own)?'</button>':'</span>')+' ';i++}
+  return h+'</div>'}
+function doneKind(i){
+  for(let k=cur.nodes.length-1;k>=0;k--){const m=cur.nodes[k];if(k===ni||!done[k]||!m.kind)continue;if(m.own.includes(i))return {k:['명사절','형용사절','부사절'].indexOf(m.kind),d:Math.min(depthOf(k),3)}}
+  return null}
+function anyH(n){
+  const F=VB();let h='<div class="sent">';let i=0;
+  while(i<cur.tok.length){
+    const hm=hidTop(i);
+    if(hm){h+='<span class="mask">'+esc(cur.tok[hm.a].replace(/[^A-Za-z\']/g,''))+' ...</span> ';i=hm.b;continue}
+    let c='w2';if(n.own.includes(i))c+=' hlw';if(F.has(i))c+=' vb';if(emOn()&&(cur.em||[]).includes(i))c+=' em';if(got[i])c+=' okw';
+    h+='<button class="'+c+'" onclick="tapw('+i+')">'+esc(cur.tok[i])+'</button> ';i++}
+  return h+'</div>'}
+function startMain(){ni=0;ph='main';opened[0]=true;steps=stepsOf(cur.nodes[0]);si=0;got={};gh={};draw()}
+function startNode(){ph='node';opened[ni]=true;steps=stepsOf(cur.nodes[ni]);si=0;got={};gh={};draw()}
+function draw(){
+  const n=cur.nodes[ni],s=steps[si];let q='',body='';
+  const pillTxt=n.kind?(si>0?n.kind:'절 열기'):'주절';
+  if(s.t=='kind'){q='노란 부분은 어떤 절일까요?';body=sentH(n,false)+opts(KINDS)}
+  else if(s.t=='sub'){q=n.kind=='형용사절'?'어떤 관계사일까요? 관계사 뒤에서 빠진 자리를 보세요.':n.kind=='부사절'?'어떤 뜻의 부사절일까요?':'이 절은 문장에서 무슨 자리일까요?';body=sentH(n,false)+opts(SUBS[n.kind])}
+  else if(s.t=='anc'){q='이 절이 꾸미는 말을 누르세요.';body=anyH(n)}
+  else if(s.t=='S'){q=n.kind?'노란 절의 주어를 누르세요.':'문장의 뼈대에서 주어를 누르세요.';body=sentH(n,true,!n.kind)}
+  else if(s.t=='form'){q=s.p?(s.p==1?'첫 번째 동사('+txtOf(n.G[0])+')가 만드는 뼈대는 몇 형식일까요?':'이어진 두 번째 동사('+txtOf(n.G[1])+')가 만드는 뼈대는 몇 형식일까요?'):'이 뼈대는 누구와 닮은꼴일까요?';body=sentH(n,false,true)+formCards()}
+  else{q=!n.kind?'주절의 동사를 누르세요.':'노란 절에서 and로 이어진 동사를 모두 누르세요.';body=sentH(n,true)}
+  $.innerHTML=head(n.kind?2:1)+'<div class="card"><span class="pill">'+pillTxt+'</span><p class="q">'+esc(q)+'</p>'+body+'<div id="fb"></div></div>';window.scrollTo(0,0)}
+const FORMS=[["1형식","I sleep.","나는 잔다.","S + V"],["2형식","I am happy.","나는 행복하다.","S + V + 보어 · I = happy"],["3형식","I like apples.","나는 사과를 좋아한다.","S + V + 목적어 · I ≠ apples"],["4형식","I give him a book.","나는 그에게 책을 준다.","S + V + 간접목적어 + 직접목적어 · him ≠ a book"],["5형식","I make him happy.","나는 그를 행복하게 만든다.","S + V + 목적어 + 목적격보어 · him = happy"]];
+function formCards(){return '<div class="chunks" style="margin-top:12px">'+FORMS.map((f,k)=>'<button class="ck" onclick="pickform(this,'+(k+1)+')"><b>'+f[0]+'</b> &nbsp;'+f[1]+'<span class="hint">'+f[2]+'</span><span class="hint">'+f[3]+'</span></button>').join('')+'</div>'}
+function pickform(el,k){const n=cur.nodes[ni],st=steps[si];if(k==(st.p==2?n.form2:n.form)){el.classList.add("okpick");good()}else{el.classList.add("wrong");el.disabled=true;bad()}}
+function opts(list){return '<div class="chunks" style="margin-top:12px">'+list.map(o=>{const kc=['명사절','형용사절','부사절'].indexOf(o[0]);return '<button class="ck" onclick="pickopt(this,\''+o[0]+'\')">'+o[0]+'<span class="hint">'+o[1]+'</span></button>'}).join('')+'</div>'}
+function pickopt(el,v){
+  const n=cur.nodes[ni],s=steps[si];const want=s.t=='kind'?n.kind:n.sub;
+  if(v==want){el.classList.add("okpick");good()}else{el.classList.add("wrong");el.disabled=true;bad()}}
+function tapw(i){
+  const n=cur.nodes[ni],s=steps[si];
+  if(s.t=='V'){
+    const gi=n.G.findIndex(g=>g.includes(i)||(!n.kind&&n.V.includes(i)));
+    if(gi<0){bad();return}
+    gh[gi]=1;n.G[gi].forEach(x=>got[x]=1);
+    if(Object.keys(gh).length>=n.G.length){draw2ok()}else{draw();document.getElementById("fb").innerHTML='<div class="msg g">하나 찾았습니다. 더 있어요.</div>'}
+    return}
+  const want=s.t=='anc'?(n.np||n.anc):n.S;
+  if(want.includes(i)){want.forEach(x=>got[x]=1);draw2ok()}else bad()}
+function draw2ok(){draw();good()}
+function miss(){wr++;wp[ph]=(wp[ph]||0)+1}
+function bad(){miss();document.getElementById("fb").innerHTML='<div class="msg n">다시 골라 보세요.</div>'}
+function good(){
+  document.querySelectorAll(".ck,.w2").forEach(b=>b.disabled=true);
+  document.querySelectorAll(".sent .w2").forEach(b=>{});
+  document.getElementById("fb").innerHTML='<div class="msg g">맞았습니다.</div>';
+  adv(nextStep)}
+function nextStep(){
+  const n=cur.nodes[ni];
+  if(si<steps.length-1){si++;got={};gh={};draw();return}
+  done[ni]=true;
+  if(n.note){noteScreen();return}
+  advance()}
+const KI=n=>['명사절','형용사절','부사절'].indexOf(n.kind);
+function bd(t,c,sub){return '<span class="bd'+(c?' '+c:'')+'">'+esc(t)+(sub?'<i>'+esc(sub)+'</i>':'')+'</span>'}
+function runsOf(ix){const r=[];let c=[];ix.forEach((i,k)=>{if(k&&i!=ix[k-1]+1){r.push(c);c=[]}c.push(i)});if(c.length)r.push(c);return r.map(txtOf).join(' / ')}
+function txtOf(ix){return ix.map(i=>cur.tok[i]).join(' ').replace(/[^A-Za-z' ]/g,'')}
+function noteVis(n){
+  let h='<div class="bdr">'+bd(n.kind,'kd'+KI(n)+' dp1')+bd(n.sub,'')+'</div>';
+  if(n.kind=='형용사절'&&n.np&&n.sub.indexOf('관계대명사')>0){
+    h+='<div class="bdr">'+bd(cur.tok[n.a].replace(/[^A-Za-z]/g,''),'kd1 dp1',n.sub)+'<span class="pp">가 채우는 자리</span>'+bd('___','gapb',n.sub[0]=='주'?'주어 자리':'목적어 자리')+'<span class="pp">=</span>'+bd(txtOf(n.np),'kd1 dp2','선행사')+'</div>'}
+  if(n.gv){h+='<div class="bdr">'+n.gv.map(g=>bd(g[0],'',g[1])).join('<span class="pp">+</span>')+(n.om?'<span class="pp">+</span>'+bd('('+n.om+')','gapb','생략'):'')+'<span class="pp">+</span>'+bd(n.om?'절':cur.tok[n.a].replace(/[^A-Za-z]/g,'')+' 절','kd0 dp1',n.sub)+'</div>'}
+  if(n.fill)h+='<div class="bdr">'+bd('___','gapb',n.fill[0])+'<span class="pp">←</span>'+bd(n.fill[1],'kd0 dp1','채우는 말')+'</div>';
+  if(n.host)h+='<div class="bdr">'+bd(n.host,'hostb')+'</div>';
+  if(n.G&&n.G.length>1)h+='<div class="bdr">'+n.G.map((g,k)=>(k?'<span class="pp">and</span>':'')+bd(txtOf(g),'vbd','동사')).join('')+'</div>';
+  if(n.kind=='부사절'&&n.sub=='결과'&&(cur.em||[]).length)h+='<div class="bdr">'+bd(txtOf(cur.em),'em2','so ~')+'<span class="pp">…</span>'+bd('that + 절','kd2 dp1','결과')+'</div>';
+  return h}
+function noteRest(n){const m=n.note.match(/형식입니다\.\s*/);return m?n.note.slice(m.index+m[0].length):n.note}
+function mainVis(n){
+  if(!n.sk)return '';
+  const lab={S:'주어',V:'동사',O:'목적어',C:n.form==5?'목적격보어':'보어'};
+  let h='<div class="bdr">'+bd(n.form+'형식'+(n.form2?' + '+n.form2+'형식':''),'cc')+'</div><div class="bdr">'+n.sk.map((x,k)=>(k?'<span class="pp">+</span>':'')+bd(runsOf(x.g),'sk'+x.r,lab[x.r])).join('')+'</div>';
+  return h}
+function noteScreen(){
+  const n=cur.nodes[ni];
+  $.innerHTML=head(n.kind?2:1)+'<div class="card"><span class="pill">정리</span>'+(n.kind?sentH(n,false)+noteVis(n):mainVis(n))+'<p class="q">'+esc(n.kind?n.note:noteRest(n))+'</p><button class="btn" onclick="advance()">'+(ni==cur.nodes.length-1?(cur.nf.length?'다음':'결과 보기'):'다음')+'</button></div>';window.scrollTo(0,0)}
+function advance(){if(ni<cur.nodes.length-1){ni++;startNode()}else startNF()}
+function depthOf(k){let d=0;const n=cur.nodes[k];for(let j=0;j<k;j++){const p=cur.nodes[j];if(p.a<=n.a&&n.b<=p.b)d++}return d}
+function finSent(){
+  let h='<div class="fsent">',kinds={},hs={},he={},hasHost=false;
+  cur.nodes.forEach(n=>{if(n.host&&n.gv&&n.gv[0]){const g=n.gv[0][0].toLowerCase();for(let j=n.a-1;j>=0;j--){if(cur.tok[j].toLowerCase().replace(/[^a-z]/g,'')==g){hs[j]=1;he[n.b-1]=1;hasHost=true;break}}}});
+  let inH=false;
+  cur.tok.forEach((w,i)=>{
+    if(hs[i]){h+='<span class="hostw">';inH=true}
+    let c='w2',k=-1;for(let q=cur.nodes.length-1;q>=0;q--){if(cur.nodes[q].own.includes(i)){k=q;break}}
+    const m=cur.nodes[k];
+    if(m&&m.kind){c+=' kd'+KI(m)+' dp'+Math.min(depthOf(k),3);kinds[m.kind]=1}
+    if((cur.em||[]).includes(i))c+=' em';
+    if(hs[i])c+=' hk';
+    h+='<span class="'+c+'" data-i="'+i+'">'+esc(w)+'</span>'+(he[i]&&inH?'':' ');
+    if(he[i]&&inH){h+='</span> ';inH=false}});
+  h+='</div><div class="bdr">'+bd('주절','cc')+(hasHost?bd('분사구문','hostb'):'')+['명사절','형용사절','부사절'].filter(x=>kinds[x]).map(x=>bd(x,'kd'+['명사절','형용사절','부사절'].indexOf(x)+' dp1')).join('')+'</div>';
+  return h}
+function mkXNote(){
+  const PN={verb:'동사 찾기',main:'주절',node:'절 열기',nf:'준동사',nfq:'준동사'},L=[];
+  Object.keys(wp).forEach(k=>L.push((PN[k]||k)+' 단계에서 '+wp[k]+'번 틀렸습니다.'));
+  if(!L.length)L.push('틀린 횟수 '+wr+'번');
+  const no=S.filter(x=>x.lv==cur.lv).indexOf(cur)+1;
+  let tree='';
+  cur.nodes.forEach((n,k)=>{let txt='';for(let i=n.a;i<n.b;i++){if(!n.own.includes(i))continue;txt+=cur.tok[i]+' '}
+    const lab=n.kind?(n.kind+' · '+n.sub):'주절 · '+n.form+(n.form2?' + '+n.form2:'')+'형식';
+    tree+='<li><b>'+esc(lab)+'</b>: '+esc(txt.trim())+'</li>'});
+  let rows='';cur.ch.forEach((c,i)=>{rows+='<div class="rw"><div class="re">'+esc(c)+'</div><div class="rk">'+esc(cur.ko[i])+'</div></div>'});
+  return {id:'x'+cur.id,src:'xray',title:cur.lv+' 문장 분석 '+no+'번 · 본문 '+cur.id,html:'<p class="sec">틀린 곳</p><ul class="wul">'+L.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><p class="sec">문장 구조</p><ul class="wul">'+tree+'</ul><p class="sec">끊어 읽기와 해석</p>'+rows};
+}
+function fin(){
+  ph='fin';R[cur.id].done=true;R[cur.id].wr=wr;save();if(wr>0)wlPut(mkXNote());
+  let h='<div class="top"><button class="back" onclick="home()">&lt; 목록</button><span class="small">'+(S.filter(x=>x.lv==cur.lv).indexOf(cur)+1)+'번'+(STARS.has(cur.id)&&cur.lv=='심화'?' ★':'')+' · 본문 '+cur.id+'</span></div><div class="card"><span class="pill">완성</span><p class="q">'+(wr==0?'모두 한 번에 맞혔습니다.':'틀린 횟수 '+wr+'번')+'</p>'+finSent()+'<div class="tree">';
+  cur.nodes.forEach((n,k)=>{
+    let d=depthOf(k);let txt='';for(let i=n.a;i<n.b;i++){if(!n.own.includes(i))continue;txt+=((cur.em||[]).includes(i)?'\u0001'+cur.tok[i]+'\u0002':cur.tok[i])+' '}
+    const lab=n.kind?(n.kind+' · '+n.sub):'주절 · '+n.form+(n.form2?' + '+n.form2:'')+'형식';
+    const anc=n.anc?' → '+(n.np||n.anc).map(x=>cur.tok[x]).join(' ').replace(/[^A-Za-z\' ]/g,'')+'을(를) 꾸밈':'';
+    if(n.host){h+='<div class="tn hosttn" style="margin-left:'+(d*16)+'px"><b>'+esc((n.host||'꾸밈구').replace(/ 안의 절$/,''))+'</b> · '+esc(n.gv&&n.gv[0]?n.gv[0][0]:'')+' 로 시작<br><span class="small">아래 절은 이 '+esc((n.host||'꾸밈구').replace(/ 안의 절$/,'').split('(')[0])+' 안에 들어 있음</span></div>';d=d+1}
+    h+='<div class="tn'+(n.kind?' kd'+KI(n)+' dp'+Math.min(d,3):' tcore')+'" style="margin-left:'+(d*16)+'px"><b>'+lab+'</b>'+esc(anc)+'<br><span class="te">'+esc(txt.trim()).replace(/\u0001/g,'<span class="em">').replace(/\u0002/g,'</span>')+'</span></div>'});
+  h+='</div><p class="small" style="margin-top:12px">이 문장을 끊어 읽으면</p><div class="chunks">';
+  cur.ch.forEach((c,i)=>{h+='<div class="ck mini">'+esc(c)+'<span class="ko">'+esc(cur.ko[i])+'</span></div>'});
+  const LL=S.filter(x=>x.lv==cur.lv),nx=LL[LL.indexOf(cur)+1];TAB=cur.lv;
+  h+='</div>'+''+'<button class="btn" onclick="'+(nx?"play('"+nx.id+"')":"home()")+'">'+(nx?'다음 문장':'목록으로')+'</button></div>';$.innerHTML=h;window.scrollTo(0,0);tbExtra()}
+function tbExtra(){
+  const card=document.querySelector('.card');if(!card)return;
+  const btn=card.querySelector('button.btn');let h='';
+  if(NAT[cur.id])h+='<p class="small" style="margin-top:14px">교과서 해석</p><p style="margin:2px 0 0;font-weight:700;line-height:1.6">'+esc(NAT[cur.id])+'</p>';
+  const g=GLOSS[cur.id]||[];
+  if(g.length){h+='<p class="small" style="margin-top:14px">이 문장의 단어</p><div style="line-height:1.7;font-size:15px">'+g.map(x=>'<div><b>'+esc(x[0])+'</b> '+esc(x[1])+(x[2]?' <span class="small">('+esc(x[2])+')</span>':'')+'</div>').join('')+'</div>'}
+  if(cur.note2)h+='<p class="small" style="margin-top:14px">참고</p><p style="margin:2px 0 0;line-height:1.6">'+esc(cur.note2)+'</p>';
+  const d=document.createElement('div');d.innerHTML=h;if(btn)card.insertBefore(d,btn);else card.appendChild(d)}
+home();
+</script></body></html>
