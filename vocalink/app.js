@@ -43,18 +43,58 @@ const allItems=()=>MODES.filter(m=>m[3]).flatMap(m=>m[3]());
 const weakIds=()=>Object.keys(S.weak).filter(k=>S.weak[k]>0);
 const NAME={judge:'짝 판별',poly1:'다의어 뜻 찾기',poly2:'다의어 뜻→문장',deriv:'파생어 사다리',w24:'오답 24',broken:'고장 난 문장',};
 
-let Q=[],cur=null,total=0,doneN=0,round=null,answered=false;
+let Q=[],cur=null,total=0,doneN=0,round=null,answered=false,CURSEL=0;
 
+const COVER_SVG=(()=>{
+ const P={A:[70,120],B:[132,152],C:[194,184],D:[262,236],E:[286,352],F:[410,352],G:[434,236],H:[452,62]};
+ const L=(a,b)=>`<line x1="${P[a][0]}" y1="${P[a][1]}" x2="${P[b][0]}" y2="${P[b][1]}"/>`;
+ const sp=[[56,104,3],[46,88,2.3],[38,72,2.8],[28,58,2],[20,42,2.4],[48,112,1.6],[34,96,1.5],[24,76,1.6],[14,60,1.4],[40,66,1.2],[58,92,1.3],[30,46,1.2],[60,126,1.4]].map(t=>`<circle cx="${t[0]}" cy="${t[1]}" r="${t[2]}" fill="url(#fg)"/>`).join('');
+ const dots=[];for(let i=1;i<=8;i++){const x=434+(452-434)*i/9,y=236-(236-62)*i/9;dots.push(`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(2.2+i*.12).toFixed(1)}" fill="url(#fg)"/>`);}
+ const node=(k,r)=>`<circle cx="${P[k][0]}" cy="${P[k][1]}" r="${r+6}" fill="#f0c060" opacity=".35" filter="url(#gl)"/><circle cx="${P[k][0]}" cy="${P[k][1]}" r="${r}" fill="url(#fg)"/><circle cx="${P[k][0]}" cy="${P[k][1]}" r="${r*.42}" fill="#0b1030"/>`;
+ return `<svg viewBox="0 0 500 390" class="cv-sky" aria-hidden="true"><defs>
+ <linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e3a8"/><stop offset=".45" stop-color="#fff6dc"/><stop offset=".62" stop-color="#e4c07a"/><stop offset="1" stop-color="#b98a3a"/></linearGradient>
+ <pattern id="gp" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M14 0H0V14" fill="none" stroke="#fff" stroke-width="1.3" opacity=".75"/></pattern>
+ <filter id="gl" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="6"/></filter>
+ <radialGradient id="gs"><stop offset="0" stop-color="#fff6d6"/><stop offset=".4" stop-color="#f6c76b" stop-opacity=".85"/><stop offset="1" stop-color="#f0a020" stop-opacity="0"/></radialGradient></defs>
+ <polygon points="${P.D} ${P.E} ${P.F} ${P.G}" fill="#0b1030" stroke="#fff" stroke-width="3"/>
+ <polygon points="${P.D} ${P.E} ${P.F} ${P.G}" fill="url(#gp)"/>
+ <g stroke="url(#fg)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none">${L('A','B')}${L('B','C')}${L('C','D')}${L('D','E')}${L('E','F')}${L('F','G')}${L('D','G')}</g>
+ ${sp}${dots.join('')}
+ ${node('B',13)}${node('C',13)}${node('D',16)}${node('E',16)}${node('F',16)}${node('G',16)}
+ <circle cx="${P.A[0]}" cy="${P.A[1]}" r="22" fill="url(#gs)"/><path d="M70 98L76 114L92 120L76 126L70 142L64 126L48 120L64 114Z" fill="#fff"/>
+ <circle cx="${P.H[0]}" cy="${P.H[1]}" r="46" fill="url(#gs)"/><path d="M452 14L462 52L500 62L462 72L452 110L442 72L404 62L442 52Z" fill="url(#fg)"/><path d="M452 34L457 57L478 62L457 67L452 90L447 67L426 62L447 57Z" fill="#fffaf0"/>
+ </svg>`;
+})();
 function home(){
- const wk=weakIds().length,done=S.doneDay===dayNo(),P=plan(done?1:0);
- if(S.sess&&(done||S.sess.day!==dayNo()||!(S.sess.q&&S.sess.q.length))){delete S.sess;save();}
+ if(S.sess&&(S.sess.day!==dayNo()||!(S.sess.q&&S.sess.q.length))){delete S.sess;save();}
  const rs=S.sess||null;
  const met=Object.keys(S.sr).length,grad=Object.values(S.sr).filter(e=>e.done).length,dn=dueWords().length;
- $.innerHTML=`<h1>보카링크 VOCA LINK</h1><div class="sub">${DAYTXT} · 동남비타민영어학원</div>
- <div class="stats"><div><b>${met}</b><span>지금까지 만난 단어</span></div><div><b>${dn}</b><span>복습할 때가 된 단어</span></div><div><b>${grad}</b><span>완전히 외운 단어</span></div></div>
+ document.body.classList.add('cv-on');
+ $.innerHTML=`<div class="cv-scene"><div class="cv"><div class="cv-fr"></div>
+ <div class="cv-t">VOCA LINK</div><div class="cv-k">보카링크</div>
+ ${COVER_SVG}
+ <div class="cv-s">표제어를 넘어, 관계로 외운다</div></div>
+ <div class="cv-rib">
+ <button class="cv-r r1" data-go="${rs?'resume':'pickday'}"><i></i>${rs?`<span>이어서 풀기</span><span>${rs.sel?'DAY '+rs.sel+' ':''}${rs.doneN}/${rs.total}</span>`:'<span>오늘의</span><span>20문제</span>'}</button>
+ <button class="cv-r r4" data-go="vtest"><i></i><span>1차</span><span>테스트</span></button>
+ <button class="cv-r r2" data-go="stats"><i></i><span>내</span><span>기록</span></button>
+ <button class="cv-r r3" data-go="about"><i></i><span>앱</span><span>구성</span></button>
+ </div>
+ ${rs?'<button class="cv-nw" data-go="pickday">다른 DAY 고르기</button>':''}
+ ${met?`<div class="cv-st"><span>만난 단어 <b>${met}</b></span><span>복습할 단어 <b>${dn}</b></span><span>완전히 외운 단어 <b>${grad}</b></span></div>`:''}
+ ${/[?&]t=1/.test(location.search)?`<div class="cv-tt"><button data-go="next">내일로 넘기기 (선생님 테스트용)</button><button data-go="reset">기록 지우기 (선생님 테스트용)</button></div>`:''}</div>`;
+ $.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const g=b.dataset.go;if(g==='next'){S.off=(S.off||0)+1;save();home();return;}if(g==='reset'){if(confirm('이 폰/브라우저의 풀이 기록을 모두 지울까요?')){S={log:[],weak:{},lv:{},tipSeen:0,sr:{}};save();home();}return;}document.body.classList.remove('cv-on');window.scrollTo(0,0);g==='pickday'?pickDay():g==='vtest'?(window.VLTEST?VLTEST.open($,home):home()):g==='stats'?stats():g==='about'?about():g==='resume'?resumeDaily():g==='daily'?startDaily():start(g);});
+}
+function pickDay(){
+ $.innerHTML=`<div class="top"><button class="back" id="bk">← 처음으로</button></div><h1>DAY 선택</h1><div class="sub">오늘 공부할 DAY를 골라요</div>
+ <div class="vt-grid">${DAYS.map(n=>{const c=(S.dd&&S.dd[n])||0;return `<button class="vt-d${c?' p':''}" data-d="${n}">${n}<small>${c?c+'회':'DAY'}</small></button>`;}).join('')}</div>`;
+ document.getElementById('bk').onclick=home;
+ $.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{window.scrollTo(0,0);startDaily(+b.dataset.d);});
+}
+function about(){
+ const done=false,P=plan(0);
+ $.innerHTML=`<div class="top"><button class="back" id="bk">← 처음으로</button></div><h1>보카링크 VOCA LINK</h1><div class="sub">${DAYTXT}</div>
  <div class="today">${done?'다음 구성':'오늘 구성'} ${[['c-new','오늘부터 1일',P.n],['c-weak','왜 자꾸 날 잊어?',P.w],['c-rev','우리 만났었지?',P.r]].filter(a=>a[2]>0).map(a=>`<b class="${a[0]}">${a[1]} ${a[2]}</b>`).join(' · ')}</div>
- ${done?'<button class="btn" disabled style="opacity:.6">오늘 20문제 끝! 다음에 또 만나요</button>':''+(rs?`<button class="btn pri" data-go="resume">이어서 풀기 (${rs.doneN}/${rs.total})</button><button class="btn" data-go="daily">처음부터 새로 시작</button>`:'<button class="btn pri" data-go="daily">오늘의 20문제</button>')}
- <button class="btn" data-go="stats">내 기록</button>
  <div class="card why"><h2>하루 20문제는 이렇게 짜여요</h2>
  <div class="sub" style="margin-bottom:8px">첫날은 20문제가 모두 새 단어예요. 둘째 날부터 아래 세 가지가 섞여 나와요.</div>
  <div class="wy"><b class="c-new">오늘부터 1일</b>새 단어예요. 처음 하는 날은 20문제, 다음 날부터는 매일 6문제예요.</div>
@@ -64,10 +104,8 @@ function home(){
  <div class="wy"><b>혼자서는 안 하게 되는 복습</b>누적 복습과 틀린 단어 복습을 앱이 알아서 시켜요. 날짜를 기억하거나 고를 필요가 없어요.</div>
  <div class="wy"><b>간격 복습</b>틀린 단어는 내일, 맞힌 단어는 3일 · 7일 · 14일 뒤에 다시 만나요. 잊을 만할 때 다시 보면 오래 남아요.</div>
  <div class="wy"><b>꺼내 쓰기</b>보고 읽는 대신 직접 골라서 기억을 꺼내요. 읽기만 하는 것보다 기억에 더 오래 남는다고 알려져 있어요.</div>
- <div class="wy"><b>검증된 문제만</b>교재에 실린 단어와 문제만 써요. 정답이 하나로 확인된 것만 넣고, 애매한 문제는 뺐어요.</div></div>
- ${/[?&]t=1/.test(location.search)?`<button class="btn" data-go="next" style="color:#999;font-size:14px">내일로 넘기기 (선생님 테스트용)</button>
- <button class="btn" data-go="reset" style="color:#999;font-size:14px">기록 지우기 (선생님 테스트용)</button>`:''}`;
- $.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const g=b.dataset.go;if(g==='next'){S.off=(S.off||0)+1;save();home();return;}if(g==='reset'){if(confirm('이 폰/브라우저의 풀이 기록을 모두 지울까요?')){S={log:[],weak:{},lv:{},tipSeen:0,sr:{}};save();home();}return;}g==='stats'?stats():g==='resume'?resumeDaily():g==='daily'?startDaily():start(g);});
+ <div class="wy"><b>검증된 문제만</b>교재에 실린 단어와 문제만 써요. 정답이 하나로 확인된 것만 넣고, 애매한 문제는 뺐어요.</div></div>`;
+ document.getElementById('bk').onclick=home;
 }
 // ---------- 오늘의 20문제: 뷔페식 골라담기 (이미 담은 문제는 제외, 틀린 문제만 다시) ----------
 const QUOTA={judge:3,poly1:1,poly2:3,deriv:3,w24:6,broken:3};
@@ -111,14 +149,17 @@ function planRaw(){ // 홈에 보여 줄 구성 (startDaily와 같은 규칙). p
  let w=Math.min(6,wd.length);
  if(w<3)w=Math.min(3,wd.length+pastWrong(wp,new Set(wd)).length);
  const n=Math.max(3,Math.min(6,N-w-rd));return{n,w,r:N-n-w};}
-function startDaily(){
+function startDaily(sel){
  const N=20,WEAK_MAX=6,WEAK_MIN=3;
- const wp=wordPool(),keys=Object.keys(wp);
+ CURSEL=sel||0;
+ const wp0=wordPool(),wp={};Object.keys(wp0).forEach(w=>{if(!sel||Math.min(...wp0[w].map(i=>i.d._day||1))<=sel)wp[w]=wp0[w];});
+ const keys=Object.keys(wp);
  const due=dueWords();
  const weak=shuffle(due.filter(w=>S.sr[w].wrong&&wp[w]));
  const rev=shuffle(due.filter(w=>!S.sr[w].wrong&&wp[w]));
  const dayOf=w=>Math.min(...wp[w].map(i=>i.d._day||1)); // 새 단어는 앞 DAY부터 차례로
- const byDay=a=>shuffle(a).sort((x,y)=>dayOf(x)-dayOf(y));
+ const rk=w=>sel?(dayOf(w)===sel?0:1000-dayOf(w)):dayOf(w);
+ const byDay=a=>shuffle(a).sort((x,y)=>rk(x)-rk(y));
  const fresh=byDay(keys.filter(w=>!S.sr[w]));
  const logged=new Set(S.log.map(l=>l.id));
  const CAP={judge:4,poly1:2,poly2:3,deriv:3,w24:4,broken:4},used={};
@@ -171,14 +212,14 @@ function startDaily(){
 function newRound(mode){tick();actSec=0;round={mode,okN:0,wrongN:0,firstOk:0,firstN:0,cards:[]};}
 // ---- 이어서 풀기: 오늘의 20문제를 풀다 나가면 남은 문제를 저장해 두었다가 그대로 이어서 풉니다 ----
 function mkSess(withCur){const q=(withCur&&cur?[cur]:[]).concat(Q);
- return{day:dayNo(),q:q.map(i=>({t:i.t,id:i.id,tag:i.tag,th:i.th,r:i.r})),doneN,total,
+ return{day:dayNo(),sel:CURSEL,q:q.map(i=>({t:i.t,id:i.id,tag:i.tag,th:i.th,r:i.r})),doneN,total,
   round:{okN:round.okN,wrongN:round.wrongN,firstOk:round.firstOk,firstN:round.firstN,cards:round.cards},sec:(S.sess&&S.sess.sec)||0};}
 function resumeDaily(){
  const ss=S.sess;if(!ss||!ss.q||!ss.q.length)return startDaily();
  const m={};allItems().forEach(i=>{m[i.t+'|'+i.id]=i;});
  const q=[];ss.q.forEach(p=>{const b=m[p.t+'|'+p.id];if(b){if(p.tag)b.tag=p.tag;if(p.th)b.th=p.th;if(p.r)b.r=p.r;q.push(b);}});
  if(!q.length){delete S.sess;save();return startDaily();}
- newRound('daily');Object.assign(round,ss.round||{});round.mode='daily';
+ newRound('daily');Object.assign(round,ss.round||{});round.mode='daily';CURSEL=ss.sel||0;
  Q=q;total=ss.total||q.length;doneN=Math.min(ss.doneN||0,total);next();
 }
 function start(mode){
@@ -408,7 +449,7 @@ function cardsHtml(){
  return `<div class="card"><h2>틀린 카드 ${round.cards.length}개 — 종이 PART2에 옮겨 써요</h2>${round.cards.map(c=>`<div class="sb">${c}</div>`).join('')}</div>`;
 }
 function summary(){
- tick();const prev=(round.mode==='daily'&&S.sess&&S.sess.sec)||0,secs=actSec+prev;S.totalSec=(S.totalSec||0)+actSec;if(round.mode==='daily'){delete S.sess;S.doneDay=dayNo();}save();
+ tick();const prev=(round.mode==='daily'&&S.sess&&S.sess.sec)||0,secs=actSec+prev;S.totalSec=(S.totalSec||0)+actSec;if(round.mode==='daily'){delete S.sess;S.doneDay=dayNo();if(CURSEL){S.dd=S.dd||{};S.dd[CURSEL]=(S.dd[CURSEL]||0)+1;}}save();
  const w24=round.mode==='w24';
  $.innerHTML=`<h1>한 판 끝!</h1><div class="card"><div style="font-size:30px;font-weight:800">처음에 맞힌 개수 ${round.firstOk} / ${round.firstN}</div>
  <div class="sub">이번 사용시간 <b>${fmtT(secs)}</b> (딴 데 다녀온 시간·멈춰 있던 시간은 빼요)</div>
