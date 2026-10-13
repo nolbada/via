@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<meta name="robots" content="noindex">
+<title>7과 기본 문장 분석</title>
+<style>
+/* Layout: one narrow column, phone-first. Home = Day grid; Play = 3-step card (order, role, meaning); roles are color-coded. */
+:root{
+  --bg:#f4f6f8; --surface:#ffffff; --fg:#14202b; --muted:#566474; --line:#d9e0e7;
+  --accent:#0f766e; --accent-fg:#ffffff; --good:#15803d; --bad:#b91c1c; --bad-bg:#fde8e8; --good-bg:#e3f4e8;
+  --s-bg:#dbeafe; --s-fg:#1e40af;
+  --v-bg:#dfe5ee; --v-fg:#1e293b;
+  --o-bg:#dcfce7; --o-fg:#166534;
+  --io-bg:#cffafe; --io-fg:#155e75;
+  --do-bg:#ecfccb; --do-fg:#3f6212;
+  --c-bg:#ffedd5; --c-fg:#9a3412;
+  --oc-bg:#fef3c7; --oc-fg:#92400e;
+  --m-bg:#ede9fe; --m-fg:#5b21b6;
+  --cj-bg:#e5e7eb; --cj-fg:#374151;
+  --hl:#fde047;--hlfg:#14202b;
+  --ko:"Gothic A1","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+  --en:"Lexend","Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e141b; --surface:#17212b; --fg:#e6ebf0; --muted:#9aa8b6; --line:#2a3744;
+  --accent:#2dd4bf; --accent-fg:#04201d; --good:#4ade80; --bad:#f87171; --bad-bg:#3a1d1f; --good-bg:#15301f;
+  --s-bg:#1e2f5c; --s-fg:#bfdbfe; --v-bg:#3a4658; --v-fg:#e2e8f0; --o-bg:#14392a; --o-fg:#bbf7d0;
+  --io-bg:#0f3a44; --io-fg:#a5f3fc; --do-bg:#2d3a12; --do-fg:#d9f99d; --c-bg:#4a2410; --c-fg:#fed7aa;
+  --oc-bg:#46330a; --oc-fg:#fde68a; --m-bg:#34235e; --m-fg:#ddd6fe; --cj-bg:#2f3340; --cj-fg:#d1d5db;
+  --hl:#a16207;--hlfg:#fff7d6;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e141b; --surface:#17212b; --fg:#e6ebf0; --muted:#9aa8b6; --line:#2a3744;
+  --accent:#2dd4bf; --accent-fg:#04201d; --good:#4ade80; --bad:#f87171; --bad-bg:#3a1d1f; --good-bg:#15301f;
+  --s-bg:#1e2f5c; --s-fg:#bfdbfe; --v-bg:#3a4658; --v-fg:#e2e8f0; --o-bg:#14392a; --o-fg:#bbf7d0;
+  --io-bg:#0f3a44; --io-fg:#a5f3fc; --do-bg:#2d3a12; --do-fg:#d9f99d; --c-bg:#4a2410; --c-fg:#fed7aa;
+  --oc-bg:#46330a; --oc-fg:#fde68a; --m-bg:#34235e; --m-fg:#ddd6fe; --cj-bg:#2f3340; --cj-fg:#d1d5db;
+  color-scheme:dark}
+*{box-sizing:border-box}
+.cp{margin-top:10px;padding:12px;border:1.5px dashed var(--accent);border-radius:12px;background:var(--bg)}
+.cpl{font-size:12px;font-weight:700;color:var(--muted);margin:0 0 6px}
+.ckv{border:2.5px solid var(--v-fg);border-radius:999px;padding:1px 8px}
+.hlm{background:var(--hl);color:var(--hlfg);padding:1px 3px;border-radius:3px}
+.cpw{font-size:16px;font-weight:700;margin:6px 0 0}
+.rtask{margin-top:12px}
+.cmb{display:block;font-size:12.5px;font-weight:700;color:var(--good);line-height:1.3;margin-top:1px}
+.cflow{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-start}
+.cch{display:flex;flex-direction:column;gap:3px;min-width:0}
+.cen{font-family:var(--en);font-size:15px;font-weight:500;line-height:1.35}
+.cko{font-size:12.5px;font-weight:700;color:var(--good);line-height:1.3;min-height:17px}
+.rtask .mdir{font-size:14px;font-weight:600;line-height:1.5}
+.rtask .cpw{font-size:14px;font-weight:600}
+.rtask .hint{font-size:13px;padding:8px 10px;color:var(--muted)}
+.cflow.tap{cursor:pointer}
+.cflow.tap .cko::after{content:'···';color:var(--muted);font-weight:400;letter-spacing:.12em}
+.rec{border:1.5px solid var(--accent);border-radius:16px;padding:18px 16px;background:var(--card,var(--bg));text-align:center}
+.rec-h{font-size:12px;color:var(--muted);letter-spacing:.02em}
+.rec-t{font-size:20px;font-weight:800;margin-top:6px}
+.rec-d{font-size:14px;color:var(--muted);margin-top:2px}
+.rec-big{font-size:44px;font-weight:800;line-height:1.2;margin:10px 0 6px}
+.rec-big.ok{color:var(--good)}.rec-big.no{color:var(--bad)}
+.rec-l{font-size:15px;margin-top:4px}
+.rec-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0 8px}
+.rec-chip{font-size:13px;padding:3px 9px;border-radius:999px;border:1px solid var(--line)}
+.rec-chip.o{color:var(--good);border-color:var(--good)}.rec-chip.x{color:var(--bad);border-color:var(--bad)}
+.trkrow{display:block;width:100%;text-align:left;margin-top:8px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:inherit;font:inherit;cursor:pointer}
+.trks{margin-top:8px}.trke{font-size:15px;font-weight:600;line-height:1.4}.trkk{font-size:13px;color:var(--good);margin-top:2px}.trkh{font-size:12px;color:var(--muted);margin-top:6px}
+.popq{margin-top:12px}
+.trkrow.on{border-color:var(--good);background:var(--good-bg)}
+.trkrow span{display:block}.trkt{font-size:12px;color:var(--muted)}.trkw{font-size:18px;margin:2px 0}.trkd{font-size:14px}
+.trkchips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.trkchip{padding:6px 10px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);color:inherit;font:inherit;font-size:13px;cursor:pointer}.trkchip.sel{border-color:var(--accent);background:var(--accent);color:var(--accent-fg)}
+.rec-sub{font-size:13px;color:var(--muted);margin-top:2px}
+.rec-big.pend{color:var(--muted);font-size:30px}
+.rec-q{font-size:13px;color:var(--muted);margin-top:6px}
+.rec-c{font-size:13px;color:var(--muted);margin-top:10px}
+.wbox{margin-top:12px}.wrow{padding:10px 0;border-top:1px solid var(--line)}.wrow:first-of-type{border-top:0}.wn{font-size:12px;color:var(--muted)}.wen{font-size:16px;font-weight:600;line-height:1.5;margin-top:2px}.wko{font-size:14px;color:var(--good);line-height:1.5;margin-top:3px}
+.rec-f{font-size:12px;color:var(--muted);margin-top:12px;border-top:1px dashed var(--line);padding-top:8px}
+.hrow{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.hrow span{color:var(--muted);flex:none}
+.hrow b{text-align:right;font-weight:600}
+.rtask.done{opacity:.75}
+body{background:var(--bg);color:var(--fg);font-family:var(--ko);font-size:16px;line-height:1.55;word-break:keep-all}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:640px;margin:0 auto;padding-inline:16px;padding-block:16px 40px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.brand{font-weight:900;letter-spacing:.02em;font-size:17px}
+.brand small{display:block;font-weight:500;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.pts{font-family:var(--en);font-weight:600;font-variant-numeric:tabular-nums;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;white-space:nowrap}
+.pts b{color:var(--accent)}
+h1{font-size:22px;margin:18px 0 6px;text-wrap:balance}
+h2{font-size:15px;margin:22px 0 10px;color:var(--muted);letter-spacing:.04em}
+.lead{color:var(--muted);margin:0 0 4px;font-size:15px}
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:8px}
+.day{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;min-height:64px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.day .dn{font-family:var(--en);font-weight:600;font-size:20px;font-variant-numeric:tabular-nums}
+.day .st{font-size:12px;color:var(--accent);letter-spacing:1px;min-height:18px}
+.day.done{border-color:var(--accent)}
+.foot{margin-top:28px;font-size:13px;color:var(--muted)}
+.back{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-height:44px}
+.ttl{font-weight:700;font-size:17px;text-align:center;flex:1}
+.prog{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.prog i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.pcount{font-size:13px;color:var(--muted);margin-bottom:12px;font-family:var(--en)}
+.steps.two{grid-template-columns:1fr 1fr}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
+.steps div{text-align:center;padding:8px 4px;border-radius:10px;font-size:14px;font-weight:700;border:1px solid var(--line);color:var(--muted);background:var(--surface)}
+.steps div.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.steps div.ok{color:var(--good);border-color:var(--good)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.ask{margin:0 0 12px;font-weight:700;font-size:17px;text-wrap:balance}
+.line{min-height:64px;border:2px dashed var(--line);border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.line .ph{color:var(--muted);font-size:14px;padding-inline:4px}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:52px}
+.tile{font-family:var(--en);font-size:17px;padding:10px 14px;min-height:46px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);overflow-wrap:anywhere;text-align:left}
+.line .tile{background:var(--surface);border-color:var(--accent)}
+.tile.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.tile.good{background:var(--good-bg);border-color:var(--good)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.ghost{background:transparent;border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-height:44px;color:var(--muted)}
+.primary{background:var(--accent);color:var(--accent-fg);border:0;border-radius:12px;padding:12px 20px;min-height:48px;font-weight:700;font-size:16px;width:100%;margin-top:14px}
+.krow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px;padding:10px;background:var(--bg);border-radius:10px;min-height:48px}
+.klbl{font-size:12px;font-weight:700;color:var(--muted);width:100%}
+.kblk{font:inherit;font-size:14px;cursor:pointer;padding:6px 10px;border-radius:8px;background:var(--surface);border:1.5px solid var(--good);color:var(--good);font-size:14px;font-weight:700}
+.kblk.go{box-shadow:0 0 0 2px var(--accent)}
+.rslot{min-height:24px;text-align:center;font-size:13px;font-weight:700;border-radius:6px;padding:2px 6px}
+.minp{width:100%;box-sizing:border-box;padding:12px;font-size:16px;font-family:var(--en);border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:inherit}
+.mission{margin-top:12px}
+.mline{margin:0 0 8px;font-size:15px;line-height:1.5}
+.mdir{margin:0;font-size:15px;font-weight:700}
+.mk{display:inline-block;padding:2px 8px;border-radius:6px;font-size:13px;margin-right:4px}
+.mans{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.msent{margin:0 0 10px;font-family:var(--en);font-size:15px;line-height:1.6}
+.kfull{margin:0;font-size:16px;font-weight:700;line-height:1.5}
+.kflow{display:flex;flex-wrap:wrap;gap:6px}
+.r2.down{animation:slideDown .35s ease both}
+@keyframes slideDown{from{transform:translateY(-14px);opacity:0}to{transform:none;opacity:1}}
+.kslot.wait{border-top-color:var(--accent);min-height:24px}
+.kdone{font-size:13px;color:var(--muted)}
+.hint{margin:12px 0 0;padding:10px 12px;background:var(--bg);border-radius:10px;font-size:15px}
+.msg{margin:12px 0 0;padding:10px 12px;border-radius:10px;font-size:15px;font-weight:700}
+.msg.ok{background:var(--good-bg);color:var(--good)}
+.bememo{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:#fff4d6;border:2px solid #f0b429;color:#5b3d00;font-size:14.5px;line-height:1.55}.bememo b.t{display:block;font-size:15.5px;margin-bottom:4px}.bememo .pr{display:inline-block;margin:2px 4px 2px 0;padding:2px 8px;border-radius:8px;background:#fff;border:1px solid #f0b429;font-weight:800}.bememo .x{color:#c0392b;text-decoration:line-through;font-weight:700}
+.today{text-align:left;margin:12px 0 4px;border-top:1px dashed var(--line);padding-top:10px}.tdh{font-size:14px;font-weight:800;margin-bottom:6px}.tdi{margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}.tdn{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:2px}.tdk{font-size:13px;color:var(--muted);margin-top:4px}.tdko{font-size:15px;font-weight:700;margin-top:3px}.tdm{margin-top:5px;font-size:12.5px;color:#7a4b00;background:#fff4d6;border-radius:8px;padding:4px 8px}
+.notestrip{display:block;width:100%;margin:0 0 12px;padding:11px 14px;border:2px solid #e0a100;border-radius:12px;background:#fff4d6;color:#5b3d00;font:inherit;font-size:15px;font-weight:800;text-align:left;cursor:pointer}.nbox{margin:12px 0 0;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.nbox .nt{font-size:14px;font-weight:800;margin:0 0 6px}.ni{margin:0 0 14px;padding:0 0 12px;border-bottom:1px solid var(--line)}.ni .nn{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:2px}.ni .nen{font-size:16px;font-weight:700;line-height:1.5}.ni .nko{font-size:14px;color:var(--muted);margin-top:2px}.ni ul{margin:8px 0 0;padding:0 0 0 18px;font-size:14px;line-height:1.6}.ni .nd{margin-top:6px;font-size:13px;color:var(--muted);line-height:1.5}.today{text-align:left;margin:12px 0 4px;border-top:1px dashed var(--line);padding-top:10px}.tdh{font-size:14px;font-weight:800;margin-bottom:6px}.tdi{margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}.tdn{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:2px}.tdk{font-size:13px;color:var(--muted);margin-top:4px}.tdko{font-size:15px;font-weight:700;margin-top:3px}.tdm{margin-top:5px;font-size:12.5px;color:#7a4b00;background:#fff4d6;border-radius:8px;padding:4px 8px}.bememo{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:#fff4d6;border:2px solid #f0b429;color:#5b3d00;font-size:14.5px;line-height:1.55}.bememo b.t{display:block;font-size:15.5px;margin-bottom:4px}.bememo .pr{display:inline-block;margin:2px 4px 2px 0;padding:2px 8px;border-radius:8px;background:#fff;border:1px solid #f0b429;font-weight:800}.bememo .x{color:#c0392b;text-decoration:line-through;font-weight:700}
+.msg.no{background:var(--bad-bg);color:var(--bad)}
+.r2{padding:12px 0;border-top:1px solid var(--line)}
+.r2:first-of-type{border-top:0}
+.r2 .chunk{font-family:var(--en);font-size:18px;font-weight:500;margin-bottom:8px;overflow-wrap:anywhere}
+.r2.done{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.r2.done .chunk{margin:0}
+.tgt{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{border:1.5px solid var(--line);background:var(--bg);border-radius:10px;padding:8px 12px;min-height:44px;font-weight:500}
+.opt.bad{text-decoration:line-through;color:var(--bad);border-color:var(--bad);background:var(--bad-bg);opacity:.8}
+.tg{background:var(--accent);color:var(--accent-fg);border-radius:8px;padding:2px 8px;font-weight:600}
+.qsent{font-family:var(--en);font-size:20px;line-height:2.1;margin:6px 0 16px;overflow-wrap:anywhere}
+.qopts{display:flex;flex-wrap:wrap;gap:8px}
+.qopts .opt{min-height:48px;font-size:16px;padding:10px 16px}
+.quizbtn{width:100%;text-align:left;background:var(--surface);border:1.5px solid var(--accent);border-radius:14px;padding:14px 16px;margin:16px 0 4px;min-height:60px}
+.quizbtn b{display:block;font-size:17px;color:var(--accent)}
+.quizbtn span{font-size:14px;color:var(--muted)}
+.badge,.blk{border-radius:8px;font-weight:700}
+.badge{padding:4px 10px;font-size:14px;white-space:nowrap}
+.role-s{background:var(--s-bg);color:var(--s-fg)}.role-v{background:var(--v-bg);color:var(--v-fg)}
+.role-o{background:var(--o-bg);color:var(--o-fg)}.role-io{background:var(--io-bg);color:var(--io-fg)}
+.role-do{background:var(--do-bg);color:var(--do-fg)}.role-c{background:var(--c-bg);color:var(--c-fg)}
+.role-oc{background:var(--oc-bg);color:var(--oc-fg)}.role-m{background:var(--m-bg);color:var(--m-fg)}
+.role-cj{background:var(--cj-bg);color:var(--cj-fg)}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.col{display:flex;flex-direction:column;gap:8px;min-width:0}
+.col h3{margin:0 0 2px;font-size:13px;color:var(--muted)}
+.ml,.mr{border:1.5px solid var(--line);background:var(--bg);border-radius:10px;padding:10px;min-height:52px;text-align:left;overflow-wrap:anywhere;min-width:0}
+.ml{font-family:var(--en);font-size:15px}
+.ml small{display:block;font-family:var(--ko);font-size:13px;margin-top:4px;color:var(--good);font-weight:700}
+.mr{font-size:15px}
+.ml.sel,.mr.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.ml.ok,.mr.ok{border-color:var(--good);background:var(--good-bg)}
+.mr.ok{opacity:.55}
+.ml.bad,.mr.bad{border-color:var(--bad);background:var(--bad-bg)}
+.ml .badge{display:inline-block;margin-bottom:4px;font-size:12px;padding:2px 8px;font-family:var(--ko)}
+.stage{display:flex;flex-wrap:wrap;gap:6px 5px;min-height:74px;padding:10px 8px;margin-bottom:14px;border-radius:14px;background:var(--bg);border:1.5px solid var(--line)}
+.slot{width:44px;height:46px;border:2px dashed var(--line);border-radius:10px}
+.sblk{display:inline-flex;flex-direction:column;padding:5px 8px;border-radius:10px;background:var(--surface);border:1.5px solid var(--good);min-width:0}
+.sblk b{font-family:var(--en);font-weight:500;font-size:15px;overflow-wrap:anywhere}
+.sblk small{font-size:12px;font-weight:700;color:var(--good)}
+.slot.lab{width:auto;min-width:56px;padding:6px 10px;display:inline-flex;align-items:center;justify-content:center}
+.slot.lab small{font-size:13px;color:var(--muted);font-weight:700}
+.slot.next{border-color:var(--accent);background:var(--surface)}
+.tile.hl{box-shadow:0 0 0 4px #f97316;border-color:#f97316;background:#ffedd5;color:#7c2d12}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tile.hl{background:#5a2a0a;color:#ffedd5}}
+.col3{display:flex;flex-direction:column;gap:3px;align-items:stretch;min-width:44px;max-width:100%}
+.col3 .slot{width:auto;min-width:44px;height:46px}
+.kslot{min-height:22px;font-size:12px;font-weight:700;color:var(--good);text-align:center;border-top:2px dashed var(--line);padding-top:4px;line-height:1.3}
+.kslot.filled{border-top-color:transparent}
+@media (prefers-reduced-motion:no-preference){.drop{animation:dropIn .6s .28s both cubic-bezier(.2,.8,.2,1)}@keyframes dropIn{from{transform:translateY(-90px);opacity:0}to{transform:none;opacity:1}}}
+@media (prefers-reduced-motion:no-preference){.hl{animation:pl 1s infinite}@keyframes pl{50%{box-shadow:0 0 0 8px rgba(249,115,22,.25)}}}
+.seq{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 14px}
+.seq .arr{color:var(--muted);font-weight:700}
+.seqlbl{font-size:13px;color:var(--muted);margin-right:4px}
+.banner{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px dashed var(--accent);font-size:14px}
+.sblk.st2 small{color:inherit;opacity:.9}
+.sblk.st2{border-color:transparent}
+.sblk{position:relative}
+.sblk .no{position:absolute;top:-9px;left:-6px;width:20px;height:20px;border-radius:50%;background:var(--ink,#222);color:var(--surface,#fff);font-style:normal;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.sblk.pick{font:inherit;cursor:pointer;color:inherit}
+.sblk.wait{border:2px solid var(--muted);background:var(--surface);color:var(--text,inherit);opacity:1}
+.sblk.wait.now{border:2px solid #f97316;background:#ffedd5;color:#7c2d12;box-shadow:0 0 0 4px rgba(249,115,22,.35)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sblk.wait.now{background:#5a2a0a;color:#ffedd5}}
+.sblk.wait.sel{border:2px solid var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--surface))}
+.sblk.wait b{color:inherit}
+.nth{display:inline-block;font-family:var(--ui,inherit);font-size:12px;font-weight:700;color:var(--accent);margin-right:6px}
+.ml.free{border-style:dashed}
+.ml.free small{color:var(--muted);font-weight:500}
+.sent{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px}
+.blk{display:inline-flex;flex-direction:column;padding:8px 12px}
+.blk b{font-family:var(--en);font-weight:500;font-size:17px;overflow-wrap:anywhere}
+.blk small{font-size:12px;font-weight:700;opacity:.85}
+.kor{font-size:18px;font-weight:700;margin:0 0 12px;text-wrap:balance}
+.notes{margin:0 0 12px;padding:0;list-style:none;font-size:14px;color:var(--muted)}
+.notes li{padding:4px 0}
+.notes span{font-family:var(--en);color:var(--fg)}
+.gain{font-size:15px;margin:0}
+.gain b{font-family:var(--en);font-size:22px;color:var(--accent)}
+.big{font-family:var(--en);font-size:44px;font-weight:600;font-variant-numeric:tabular-nums;margin:6px 0}
+.stars{font-size:28px;color:var(--accent);letter-spacing:4px}
+.center{text-align:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+.two .primary,.two .ghost{margin:0;width:100%}
+@media (prefers-reduced-motion:no-preference){.shake{animation:sh .25s}@keyframes sh{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+button,select,a,.day,.tile,.opt{touch-action:manipulation}
+input,select,textarea{font-size:16px}
+.dgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}.dg{padding:8px 0;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;font:inherit;font-size:14px;cursor:pointer}.dg small.dd{display:block;font-size:9px;line-height:1.1;margin-top:1px;color:var(--good);font-weight:700}.dg.on small.dd{color:inherit}.dg.ok{background:var(--good-bg);border-color:var(--good)}.dg.on{border-color:var(--accent);background:var(--accent);color:var(--accent-fg);font-weight:700}u.sig{text-decoration:underline;text-decoration-thickness:2.5px;text-underline-offset:3px;font-weight:700}
+</style>
+<style>
+.badge.role-s,.badge.role-v,.badge.role-o,.badge.role-io,.badge.role-do,.badge.role-c,.badge.role-oc,.badge.role-m,.badge.role-cj{display:inline-block}
+.klinew{margin:0 0 12px;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:15px;line-height:1.8}
+.klinew .kc{display:inline-block;padding:0 6px;border-radius:6px;margin:0 2px;font-weight:700}
+.gl{margin:14px 0 0;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:14.5px;line-height:1.7}
+.gl .gh{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:2px}
+.gl small{color:var(--muted)}
+.nbox2{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:14.5px;line-height:1.6}
+.sec{margin:16px 2px 8px;font-size:14px;font-weight:700;color:var(--muted)}
+.tback{display:inline-block;margin-bottom:6px;color:var(--accent);text-decoration:none;padding:6px 0;font-size:14px}
+.day.bad .st{color:var(--bad)}
+</style></head>
+<body><div class="wrap" id="app"></div>
+<script>
+(function(){
+"use strict";
+var DATA=[{"id": "7-1", "sec": "파야스 축제 (스페인 발렌시아)", "en": "People in Valencia celebrate the coming of spring with the Fallas festival.", "ko": "발렌시아 사람들은 파야스 축제로 봄의 시작을 축하한다.", "ch": [{"t": "People", "r": "주어", "k": "사람들은"}, {"t": "in Valencia", "r": "수식어", "k": "발렌시아의", "c": "형용사구", "a": "주어(People) 수식"}, {"t": "celebrate", "r": "동사", "k": "축하한다"}, {"t": "the coming of spring", "r": "목적어", "k": "봄의 시작을"}, {"t": "with the Fallas festival.", "r": "수식어", "k": "파야스 축제로", "c": "방법의 부사구", "a": "동사(celebrate) 수식"}], "kord": [1, 0, 4, 3, 2], "note": ""}, {"id": "7-2", "sec": "파야스 축제 (스페인 발렌시아)", "en": "This festival takes place from March 15 to 19.", "ko": "이 축제는 3월 15일부터 19일까지 열린다.", "ch": [{"t": "This festival", "r": "주어", "k": "이 축제는"}, {"t": "takes place", "r": "동사", "k": "열린다"}, {"t": "from March 15 to 19.", "r": "수식어", "k": "3월 15일부터 19일까지", "c": "시간의 부사구", "a": "동사(takes place) 수식"}], "kord": [0, 2, 1], "note": ""}, {"id": "7-3", "sec": "파야스 축제 (스페인 발렌시아)", "en": "During the festival, people enjoy parades and fireworks.", "ko": "축제 기간 동안 사람들은 퍼레이드와 불꽃놀이를 즐긴다.", "ch": [{"t": "During the festival,", "r": "수식어", "k": "축제 기간 동안", "c": "시간의 부사구", "a": "동사(enjoy) 수식"}, {"t": "people", "r": "주어", "k": "사람들은"}, {"t": "enjoy", "r": "동사", "k": "즐긴다"}, {"t": "parades and fireworks.", "r": "목적어", "k": "퍼레이드와 불꽃놀이를"}], "kord": [0, 1, 3, 2], "note": ""}, {"id": "7-4", "sec": "파야스 축제 (스페인 발렌시아)", "en": "The stars of the festival are fallas, giant wooden statues.", "ko": "축제의 주인공은 거대한 나무 조각상인 파야들이다.", "ch": [{"t": "The stars", "r": "주어", "k": "주인공은"}, {"t": "of the festival", "r": "수식어", "k": "축제의", "c": "형용사구", "a": "주어(The stars) 수식"}, {"t": "are", "r": "동사", "k": "이다"}, {"t": "fallas,", "r": "보어", "k": "파야들"}, {"t": "giant wooden statues.", "r": "수식어", "k": "거대한 나무 조각상인", "c": "동격(fallas를 설명)", "a": "보어(fallas) 수식"}], "kord": [1, 0, 4, 3, 2], "note": "fallas와 giant wooden statues는 같은 대상이에요. 뒤의 말이 fallas를 다시 설명해 줘요(동격)."}, {"id": "7-5", "sec": "파야스 축제 (스페인 발렌시아)", "en": "You can find hundreds of them all over the city.", "ko": "도시 곳곳에서 수백 개의 파야들을 볼 수 있다.", "ch": [{"t": "You", "r": "주어", "k": "당신은"}, {"t": "can find", "r": "동사", "k": "볼 수 있다"}, {"t": "hundreds of them", "r": "목적어", "k": "그것들 수백 개를"}, {"t": "all over the city.", "r": "수식어", "k": "도시 곳곳에서", "c": "장소의 부사구", "a": "동사(can find) 수식"}], "kord": [3, 0, 2, 1], "note": "여기서 You는 \"당신\"이 아니라 일반적인 사람들을 말해요. 그래서 자연스러운 해석에서는 빠져요."}, {"id": "7-6", "sec": "파야스 축제 (스페인 발렌시아)", "en": "Surprisingly, the fallas are burned on the last day of the festival.", "ko": "놀랍게도, 축제의 마지막 날에는 이 파야들이 불태워진다.", "ch": [{"t": "Surprisingly,", "r": "수식어", "k": "놀랍게도", "c": "문장 전체를 꾸미는 부사", "a": "문장 전체 수식"}, {"t": "the fallas", "r": "주어", "k": "파야들은"}, {"t": "are burned", "r": "동사", "k": "불태워진다"}, {"t": "on the last day of the festival.", "r": "수식어", "k": "축제의 마지막 날에", "c": "시간의 부사구", "a": "동사(are burned) 수식"}], "kord": [0, 3, 1, 2], "note": "are burned는 \"be + 과거분사\"인 수동태예요. 한 덩어리 동사로 보고, \"~당한다\"로 해석해요."}, {"id": "7-7", "sec": "파야스 축제 (스페인 발렌시아)", "en": "Burning them symbolizes saying goodbye to old things and hello to a new start.", "ko": "그것들을 태우는 것은 오래된 것들과 작별하고 새로운 시작을 맞이하는 것을 상징한다.", "ch": [{"t": "Burning them", "r": "주어", "k": "그것들을 태우는 것은"}, {"t": "symbolizes", "r": "동사", "k": "상징한다"}, {"t": "saying goodbye to old things", "r": "목적어", "k": "오래된 것들과 작별하는 것을"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "hello to a new start.", "r": "목적어", "k": "새로운 시작을 맞이하는 것을", "c": "saying에 이어지는 목적어(saying 생략)"}], "kord": [0, 2, 3, 4, 1], "note": "Burning them(태우는 것)이 주어이고, saying 이하(작별하는 것)가 목적어예요. and 뒤의 hello to a new start는 앞의 saying이 생략된 말이에요."}, {"id": "7-8", "sec": "한여름 축제 (스웨덴)", "en": "Winter in Sweden is long and dark, so the people there especially welcome summer.", "ko": "스웨덴의 겨울은 길고 어두워서 그곳 사람들은 여름을 특히 환영한다.", "ch": [{"t": "Winter", "r": "주어", "k": "겨울은"}, {"t": "in Sweden", "r": "수식어", "k": "스웨덴의", "c": "형용사구", "a": "주어(Winter) 수식"}, {"t": "is", "r": "동사", "k": "상태이다"}, {"t": "long and dark,", "r": "보어", "k": "길고 어두운"}, {"t": "so", "r": "접속사", "k": "그래서"}, {"t": "the people", "r": "주어", "k": "사람들은"}, {"t": "there", "r": "수식어", "k": "그곳의", "c": "형용사 역할", "a": "주어(the people) 수식"}, {"t": "especially", "r": "수식어", "k": "특히", "c": "부사", "a": "동사(welcome) 수식"}, {"t": "welcome", "r": "동사", "k": "환영한다"}, {"t": "summer.", "r": "목적어", "k": "여름을"}], "kord": [1, 0, 3, 2, 4, 6, 5, 7, 9, 8], "note": "so는 \"그래서\"라는 뜻으로, 앞 문장(원인)과 뒤 문장(결과)을 이어 줘요. 그래서 이 문장은 두 개의 문장이 이어진 거예요."}, {"id": "7-9", "sec": "한여름 축제 (스웨덴)", "en": "To celebrate the longest day of the year, they have a special festival.", "ko": "일 년 중 낮이 가장 긴 날을 기념하기 위해 그들은 특별한 축제를 연다.", "ch": [{"t": "To celebrate the longest day of the year,", "r": "수식어", "k": "일 년 중 낮이 가장 긴 날을 기념하기 위해", "c": "목적의 부사구(to부정사)", "a": "동사(have) 수식"}, {"t": "they", "r": "주어", "k": "그들은"}, {"t": "have", "r": "동사", "k": "연다"}, {"t": "a special festival.", "r": "목적어", "k": "특별한 축제를"}], "kord": [0, 1, 3, 2], "note": "have는 여기서 \"가지다\"보다 \"(행사를) 열다\"의 뜻으로 쓰였어요."}, {"id": "7-10", "sec": "한여름 축제 (스웨덴)", "en": "They call it the Midsummer festival.", "ko": "이 축제를 한여름 축제라고 부른다.", "ch": [{"t": "They", "r": "주어", "k": "그들은"}, {"t": "call", "r": "동사", "k": "부른다"}, {"t": "it", "r": "목적어", "k": "그것을"}, {"t": "the Midsummer festival.", "r": "목적격보어", "k": "한여름 축제라고"}], "kord": [0, 2, 3, 1], "note": "it = the Midsummer festival 이에요. 목적어(it)를 설명하는 말이 목적격보어예요."}, {"id": "7-11", "sec": "한여름 축제 (스웨덴)", "en": "The festival starts on the Friday evening between June 19 and 25 and ends on the Sunday.", "ko": "축제는 6월 19일과 25일 사이의 금요일 저녁에 시작하여 일요일에 끝난다.", "ch": [{"t": "The festival", "r": "주어", "k": "축제는"}, {"t": "starts", "r": "동사", "k": "시작한다"}, {"t": "on the Friday evening between June 19 and 25", "r": "수식어", "k": "6월 19일과 25일 사이의 금요일 저녁에", "c": "시간의 부사구", "a": "동사(starts) 수식"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "ends", "r": "동사", "k": "끝난다"}, {"t": "on the Sunday.", "r": "수식어", "k": "일요일에", "c": "시간의 부사구", "a": "동사(ends) 수식"}], "kord": [0, 2, 1, 3, 5, 4], "note": "and는 두 동사 starts와 ends를 이어 줘요. 주어(The festival)는 하나이고 동사가 둘이에요."}, {"id": "7-12", "sec": "한여름 축제 (스웨덴)", "en": "During the festival, people decorate a tall pole with flowers and green leaves and enjoy traditional dances around it.", "ko": "축제 기간 동안 사람들은 꽃과 초록색 잎으로 장대를 장식하고 그 주위를 돌며 전통 춤을 즐긴다.", "ch": [{"t": "During the festival,", "r": "수식어", "k": "축제 기간 동안", "c": "시간의 부사구", "a": "동사(decorate, enjoy) 수식"}, {"t": "people", "r": "주어", "k": "사람들은"}, {"t": "decorate", "r": "동사", "k": "장식한다"}, {"t": "a tall pole", "r": "목적어", "k": "높은 기둥을"}, {"t": "with flowers and green leaves", "r": "수식어", "k": "꽃과 초록색 잎으로", "c": "도구·재료의 부사구", "a": "동사(decorate) 수식"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "enjoy", "r": "동사", "k": "즐긴다"}, {"t": "traditional dances", "r": "목적어", "k": "전통 춤을"}, {"t": "around it.", "r": "수식어", "k": "그 주위에서", "c": "장소의 부사구", "a": "동사(enjoy) 수식"}], "kord": [0, 1, 4, 3, 2, 5, 8, 7, 6], "note": "and는 두 동사 decorate와 enjoy를 이어 줘요. with flowers and green leaves 안의 and는 명사 flowers와 green leaves를 이어요."}, {"id": "7-13", "sec": "한여름 축제 (스웨덴)", "en": "Because the sun hardly sets at this time of year in Sweden, people can enjoy the festival all night long.", "ko": "스웨덴에서 매년 이맘때면 해가 거의 지지 않기 때문에 사람들은 밤새도록 축제를 즐길 수 있다.", "ch": [{"t": "Because", "r": "접속사", "k": "~이기 때문에"}, {"t": "the sun", "r": "주어", "k": "해가"}, {"t": "hardly sets", "r": "동사", "k": "거의 지지 않는다"}, {"t": "at this time of year", "r": "수식어", "k": "일 년 중 이맘때", "c": "시간의 부사구", "a": "동사(sets) 수식"}, {"t": "in Sweden,", "r": "수식어", "k": "스웨덴에서", "c": "장소의 부사구", "a": "동사(sets) 수식"}, {"t": "people", "r": "주어", "k": "사람들은"}, {"t": "can enjoy", "r": "동사", "k": "즐길 수 있다"}, {"t": "the festival", "r": "목적어", "k": "축제를"}, {"t": "all night long.", "r": "수식어", "k": "밤새도록", "c": "시간의 부사구", "a": "동사(can enjoy) 수식"}], "kord": [4, 3, 1, 2, 0, 5, 8, 7, 6], "note": "Because가 이끄는 앞부분(이유)과 뒷부분(결과)이 한 문장이에요. 해석할 때는 \"~이기 때문에\"를 앞 내용 끝에 붙여요."}, {"id": "7-14", "sec": "망자의 날 (멕시코)", "en": "Many Mexicans believe that once a year dead people come back home to meet their family and friends.", "ko": "많은 멕시코 사람들은 일 년에 한 번 죽은 사람들이 가족과 친구들을 만나기 위해 집으로 돌아온다고 믿는다.", "ch": [{"t": "Many Mexicans", "r": "주어", "k": "많은 멕시코 사람들은"}, {"t": "believe", "r": "동사", "k": "믿는다"}, {"t": "that once a year dead people come back home to meet their family and friends.", "r": "목적어", "k": "일 년에 한 번 죽은 사람들이 가족과 친구들을 만나기 위해 집으로 돌아온다고", "c": "믿는 내용(that절 전체)"}], "kord": [0, 2, 1], "note": "believe 뒤의 that절 전체가 \"믿는 내용\"이라서 한 덩어리(목적어)로 봐요. 이 절 안의 구조는 심화 앱에서 자세히 나눠요."}, {"id": "7-15", "sec": "망자의 날 (멕시코)", "en": "They call this day the Day of the Dead.", "ko": "이날을 망자의 날이라고 부른다.", "ch": [{"t": "They", "r": "주어", "k": "그들은"}, {"t": "call", "r": "동사", "k": "부른다"}, {"t": "this day", "r": "목적어", "k": "이날을"}, {"t": "the Day of the Dead.", "r": "목적격보어", "k": "망자의 날이라고"}], "kord": [0, 2, 3, 1], "note": ""}, {"id": "7-16", "sec": "망자의 날 (멕시코)", "en": "To welcome dead people, Mexicans hold a festival on November 1 and 2.", "ko": "죽은 이들을 맞이하기 위해, 멕시코 사람들은 11월 1일과 2일에 축제를 연다.", "ch": [{"t": "To welcome dead people,", "r": "수식어", "k": "죽은 이들을 맞이하기 위해", "c": "목적의 부사구(to부정사)", "a": "동사(hold) 수식"}, {"t": "Mexicans", "r": "주어", "k": "멕시코 사람들은"}, {"t": "hold", "r": "동사", "k": "연다"}, {"t": "a festival", "r": "목적어", "k": "축제를"}, {"t": "on November 1 and 2.", "r": "수식어", "k": "11월 1일과 2일에", "c": "시간의 부사구", "a": "동사(hold) 수식"}], "kord": [0, 1, 4, 3, 2], "note": ""}, {"id": "7-17", "sec": "망자의 날 (멕시코)", "en": "They believe it is important to remember dead people.", "ko": "그들은 고인을 기억하는 것이 중요하다고 믿는다.", "ch": [{"t": "They", "r": "주어", "k": "그들은"}, {"t": "believe", "r": "동사", "k": "믿는다"}, {"t": "it is important to remember dead people.", "r": "목적어", "k": "죽은 사람들을 기억하는 것이 중요하다고", "c": "믿는 내용(생략된 that절)"}], "kord": [0, 2, 1], "note": "believe 뒤에 that이 생략되어 있어요. it is important... 전체가 \"믿는 내용\"이라서 한 덩어리(목적어)로 봐요."}, {"id": "7-18", "sec": "망자의 날 (멕시코)", "en": "So, people set up altars in their homes and have big parties in cemeteries.", "ko": "그래서 사람들은 집에 제단을 차리고, 묘지에서 큰 파티를 연다.", "ch": [{"t": "So,", "r": "접속사", "k": "그래서"}, {"t": "people", "r": "주어", "k": "사람들은"}, {"t": "set up", "r": "동사", "k": "차린다"}, {"t": "altars", "r": "목적어", "k": "제단을"}, {"t": "in their homes", "r": "수식어", "k": "집에", "c": "장소의 부사구", "a": "동사(set up) 수식"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "have", "r": "동사", "k": "연다"}, {"t": "big parties", "r": "목적어", "k": "큰 파티를"}, {"t": "in cemeteries.", "r": "수식어", "k": "묘지에서", "c": "장소의 부사구", "a": "동사(have) 수식"}], "kord": [0, 1, 4, 3, 2, 5, 8, 7, 6], "note": "set up은 \"차리다, 세우다\"라는 한 덩어리 동사예요. have는 여기서 \"(파티를) 열다\"의 뜻이에요."}, {"id": "7-19", "sec": "망자의 날 (멕시코)", "en": "In some areas, people dress up like skeletons and hold big parades.", "ko": "일부 지역에서는 사람들이 해골처럼 분장하고 대규모 퍼레이드를 벌인다.", "ch": [{"t": "In some areas,", "r": "수식어", "k": "일부 지역에서는", "c": "장소의 부사구", "a": "동사(dress up, hold) 수식"}, {"t": "people", "r": "주어", "k": "사람들은"}, {"t": "dress up", "r": "동사", "k": "분장한다"}, {"t": "like skeletons", "r": "수식어", "k": "해골처럼", "c": "방법의 부사구", "a": "동사(dress up) 수식"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "hold", "r": "동사", "k": "벌인다"}, {"t": "big parades.", "r": "목적어", "k": "대규모 퍼레이드를"}], "kord": [0, 1, 3, 2, 4, 6, 5], "note": "dress up은 \"분장하다\"라는 한 덩어리 동사예요. like는 여기서 \"~처럼\"의 뜻인 전치사예요."}, {"id": "7-20", "sec": "퍼 론디 축제 (미국 알래스카)", "en": "At the end of February, people in Alaska hold the Fur Rondy festival, one of the biggest winter festivals in the world.", "ko": "2월 말, 알래스카 사람들은 세계에서 가장 큰 겨울 축제 중 하나인 퍼 론디 축제를 연다.", "ch": [{"t": "At the end of February,", "r": "수식어", "k": "2월 말에", "c": "시간의 부사구", "a": "동사(hold) 수식"}, {"t": "people", "r": "주어", "k": "사람들은"}, {"t": "in Alaska", "r": "수식어", "k": "알래스카의", "c": "형용사구", "a": "주어(people) 수식"}, {"t": "hold", "r": "동사", "k": "연다"}, {"t": "the Fur Rondy festival,", "r": "목적어", "k": "퍼 론디 축제를"}, {"t": "one of the biggest winter festivals in the world.", "r": "수식어", "k": "세계에서 가장 큰 겨울 축제 중 하나인", "c": "동격(축제를 다시 설명)", "a": "목적어(the Fur Rondy festival) 수식"}], "kord": [0, 2, 1, 5, 4, 3], "note": "콤마(,) 뒤의 one of the biggest winter festivals in the world는 앞의 the Fur Rondy festival이 어떤 축제인지 다시 설명해 줘요(동격)."}, {"id": "7-21", "sec": "퍼 론디 축제 (미국 알래스카)", "en": "During this festival, visitors can enjoy various winter sports and Alaskan traditional games.", "ko": "이 축제 기간 동안 방문객들은 다양한 겨울 스포츠와 알래스카 전통 게임을 즐길 수 있다.", "ch": [{"t": "During this festival,", "r": "수식어", "k": "이 축제 기간 동안", "c": "시간의 부사구", "a": "동사(can enjoy) 수식"}, {"t": "visitors", "r": "주어", "k": "방문객들은"}, {"t": "can enjoy", "r": "동사", "k": "즐길 수 있다"}, {"t": "various winter sports and Alaskan traditional games.", "r": "목적어", "k": "다양한 겨울 스포츠와 알래스카 전통 게임을"}], "kord": [0, 1, 3, 2], "note": ""}, {"id": "7-22", "sec": "퍼 론디 축제 (미국 알래스카)", "en": "They can also enjoy many special events such as the Running of the Reindeer.", "ko": "또한, 순록 경주 같은 많은 특별한 행사도 즐길 수 있다.", "ch": [{"t": "They", "r": "주어", "k": "그들은"}, {"t": "can also enjoy", "r": "동사", "k": "또한 즐길 수 있다"}, {"t": "many special events", "r": "목적어", "k": "많은 특별한 행사를"}, {"t": "such as the Running of the Reindeer.", "r": "수식어", "k": "순록 경주 같은", "c": "예시를 드는 형용사구", "a": "목적어(many special events) 수식"}], "kord": [0, 3, 2, 1], "note": "the Running of the Reindeer(순록 경주)는 행사의 이름이에요. 이름 안의 Running은 \"달리는 것\"이 아니라 하나의 이름으로 외워요."}, {"id": "7-23", "sec": "퍼 론디 축제 (미국 알래스카)", "en": "People who participate in this race wear fun costumes and try to run faster than reindeer.", "ko": "이 경주에 참가하는 사람들은 재미있는 복장을 입고 순록보다 더 빨리 달리려고 애쓴다.", "ch": [{"t": "People", "r": "주어", "k": "사람들은"}, {"t": "who participate in this race", "r": "수식어", "k": "이 경주에 참가하는", "c": "형용사절", "a": "주어(People) 수식"}, {"t": "wear", "r": "동사", "k": "입는다"}, {"t": "fun costumes", "r": "목적어", "k": "재미있는 복장을"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "try", "r": "동사", "k": "애쓴다"}, {"t": "to run faster than reindeer.", "r": "목적어", "k": "순록보다 더 빨리 달리려고", "c": "try의 목적어(to부정사)"}], "kord": [1, 0, 3, 2, 4, 6, 5], "note": "who participate in this race는 앞의 People이 어떤 사람들인지 꾸며 줘요. try to run은 \"달리려고 애쓰다\"예요."}, {"id": "7-24", "sec": "퍼 론디 축제 (미국 알래스카)", "en": "Is it possible to do so?", "ko": "과연 그럴 수 있을까?", "ch": [{"t": "Is", "r": "동사", "k": "상태입니까"}, {"t": "it", "r": "주어", "k": "", "c": "가주어(해석하지 않아요)"}, {"t": "possible", "r": "보어", "k": "가능한"}, {"t": "to do so?", "r": "주어", "k": "그렇게 하는 것이", "c": "진주어(진짜 주어)"}], "kord": [3, 2, 0], "note": "it은 가짜 주어(가주어)라서 해석하지 않아요. 진짜 주어는 to do so(그렇게 하는 것)예요."}, {"id": "7-25", "sec": "퍼 론디 축제 (미국 알래스카)", "en": "Not really, but it doesn’t matter.", "ko": "그럴 거 같지는 않지만, 그것은 중요하지 않다.", "ch": [{"t": "Not really,", "r": "수식어", "k": "그렇지는 않아", "c": "앞 질문에 대한 대답", "a": "문장 앞 질문에 답함"}, {"t": "but", "r": "접속사", "k": "하지만"}, {"t": "it", "r": "주어", "k": "그것은"}, {"t": "doesn’t matter.", "r": "동사", "k": "중요하지 않다"}], "kord": [0, 1, 2, 3], "note": "Not really는 앞 문장(Is it possible to do so?)에 대한 대답이에요. \"그렇지는 않아\"라는 뜻이에요."}, {"id": "7-26", "sec": "퍼 론디 축제 (미국 알래스카)", "en": "Everyone is just having fun!", "ko": "모두가 그저 즐기고 있을 뿐이다!", "ch": [{"t": "Everyone", "r": "주어", "k": "모두가"}, {"t": "is just having", "r": "동사", "k": "그저 누리고 있다"}, {"t": "fun!", "r": "목적어", "k": "즐거움을"}], "kord": [0, 2, 1], "note": "have fun은 \"즐기다\"라는 뜻이에요. is having은 \"~하고 있다\"는 진행형이라 한 덩어리 동사예요."}];
+var GLOSS={"7-1": [["celebrate", "v. ~을 축하하다, 기념하다", ""], ["coming", "n. 시작, 도래", ""], ["festival", "n. 축제", ""]], "7-2": [["festival", "n. 축제", ""], ["takes place", "열리다, 개최되다", "take place의 3인칭 단수 현재형"]], "7-3": [["festival", "n. 축제", ""], ["parades", "n. 퍼레이드, 행진", "parade의 복수형"], ["fireworks", "n. 불꽃놀이", ""]], "7-4": [["stars", "n. 주인공", "star의 복수형"], ["festival", "n. 축제", ""], ["giant", "a. 거대한", ""], ["wooden", "a. 나무로 된", ""], ["statues", "n. 조각상", "statue의 복수형"]], "7-5": [], "7-6": [["Surprisingly", "adv. 놀랍게도", ""], ["burned", "v. ~을 태우다", "burn의 과거분사 (수동태 are burned)"], ["last", "a. 마지막의, 최종의", ""], ["festival", "n. 축제", ""]], "7-7": [["symbolizes", "v. ~을 상징하다", "symbolize의 3인칭 단수 현재형"], ["saying goodbye to", "~에게 작별 인사를 하다", "say goodbye to의 -ing형(동명사)"], ["hello to", "~에게 인사하다, 안부를 전하다", "saying hello to에서 앞과 같은 saying이 생략됨"]], "7-8": [["especially", "adv. 특히", ""], ["welcome", "v. ~을 환영하다, 반기다", ""]], "7-9": [["celebrate", "v. ~을 축하하다, 기념하다", ""], ["festival", "n. 축제", ""]], "7-10": [["call", "v. ~라고 부르다", ""], ["Midsummer", "n. 한여름", ""], ["festival", "n. 축제", ""]], "7-11": [["festival", "n. 축제", ""], ["between", "A와 B 사이에", "between A and B"], ["ends", "v. 끝나다", "end의 3인칭 단수 현재형"]], "7-12": [["festival", "n. 축제", ""], ["decorate", "v. ~을 장식하다, 꾸미다", ""], ["pole", "n. 기둥, 막대기", ""], ["traditional", "a. 전통의, 전통적인", ""]], "7-13": [["hardly", "adv. 거의 ~ 아니다", ""], ["sets", "v. (해가) 지다", "set의 3인칭 단수 현재형"], ["festival", "n. 축제", ""]], "7-14": [["Mexicans", "n. 멕시코 사람", "Mexican의 복수형"], ["dead", "a. 죽은", ""]], "7-15": [["call", "v. ~라고 부르다", ""]], "7-16": [["welcome", "v. ~을 환영하다, 반기다", ""], ["dead", "a. 죽은", ""], ["Mexicans", "n. 멕시코 사람", "Mexican의 복수형"], ["hold", "v. ~을 개최하다, 열다", ""], ["festival", "n. 축제", ""]], "7-17": [["dead", "a. 죽은", ""]], "7-18": [["set up", "~을 세우다, 설치하다", "set ~ up (목적어가 사이에 오기도 함)"], ["altars", "n. 제단", "altar의 복수형"], ["cemeteries", "n. 묘지", "cemetery의 복수형"]], "7-19": [["areas", "n. 지역", "area의 복수형"], ["dress up", "변장하다", ""], ["skeletons", "n. 해골, 골격", "skeleton의 복수형"], ["hold", "v. ~을 개최하다, 열다", ""], ["parades", "n. 퍼레이드, 행진", "parade의 복수형"]], "7-20": [["At the end of", "~의 말에, ~의 끝에", ""], ["February", "n. 2월", ""], ["hold", "v. ~을 개최하다, 열다", ""], ["festival", "n. 축제", ""], ["festivals", "n. 축제", "festival의 복수형"]], "7-21": [["festival", "n. 축제", ""], ["various", "a. 다양한", ""], ["traditional", "a. 전통의, 전통적인", ""]], "7-22": [["Reindeer", "n. 순록", ""]], "7-23": [["participate in", "~에 참여하다", ""], ["race", "n. 경주, 레이스", ""], ["wear", "v. ~을 입고[쓰고, 신고] 있다", ""], ["costumes", "n. 의상, 복장", "costume의 복수형"], ["reindeer", "n. 순록", ""]], "7-24": [["possible", "a. 가능한", ""]], "7-25": [["matter", "v. 중요하다", ""]], "7-26": []};
+var KEYS='tbm2d-l7-b';
+var CLS={'주어':'s','동사':'v','목적어':'o','간접목적어':'io','직접목적어':'do','보어':'c','목적격보어':'oc','수식어':'m','접속사':'cj'};
+var ORDER=['주어','동사','목적어','간접목적어','직접목적어','보어','목적격보어','수식어','접속사'];
+var app=document.getElementById('app');
+var store={done:{}};
+try{var o=JSON.parse(localStorage.getItem(KEYS)||'null');if(o&&o.done)store=o;}catch(e){}
+function save(){try{localStorage.setItem(KEYS,JSON.stringify(store));}catch(e){}}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+var I=0,C=null;
+function badge(r){return '<span class="badge role-'+CLS[r]+'">'+r+'</span>';}
+function home(){
+  C=null;
+  var done=0;DATA.forEach(function(s){if(store.done[s.id]!=null)done++;});
+  var h='<a class="tback" href="../">&larr; 7과 목록</a><h1>7과 기본 문장 분석</h1><p class="lead">교과서 본문 · 뜻 잇기, 성분, 어순 ('+DATA.length+'문장)</p><p class="lead" style="margin-top:8px">푼 문장 '+done+' / '+DATA.length+'</p>';
+  var last=null,open=false;
+  DATA.forEach(function(s,k){
+    if(s.sec!==last){if(open)h+='</div>';h+='<div class="sec">'+esc(s.sec||'')+'</div><div class="days">';open=true;last=s.sec;}
+    var d=store.done[s.id];
+    h+='<button class="day'+(d!=null?' done':'')+'" data-act="go" data-i="'+k+'"><span class="dn">'+esc(s.id.replace(/^\d+-/,''))+'</span><span class="st">'+(d==null?'':(d?'실수 '+d:'완료'))+'</span></button>';
+  });
+  if(open)h+='</div>';
+  if(done)h+='<div class="two"><button class="ghost" data-act="reset">기록 지우기</button></div>';
+  app.innerHTML=h;window.scrollTo(0,0);
+}
+function start(i){
+  I=i;var s=DATA[i],n=s.ch.length,idx=[];
+  for(var k=0;k<n;k++)idx.push(k);
+  var pool=shuffle(idx),tries=0;
+  while(tries++<30&&pool.every(function(ci,k){return ci===k;}))pool=shuffle(idx);
+  var kd={};s.ch.forEach(function(c,k){if(!c.k)kd[k]=true;});
+  C={s:s,n:n,step:1,ph:'K',kdone:kd,roles:idx.map(function(){return null;}),bad:idx.map(function(){return {};}),
+     done2:false,placed:[],pool:pool,wrong:false,done1:false,w3:0,mist:0,flash:null,msg:null,lastDrop:null};
+  if(curK()<0)C.ph='R';
+  render();window.scrollTo(0,0);
+}
+function curK(){for(var k=0;k<C.n;k++)if(!C.kdone[k])return k;return -1;}
+function curA(){for(var k=0;k<C.n;k++)if(!C.roles[k])return k;return -1;}
+function render(){
+  var s=C.s;
+  var h='<div class="top"><button class="back" data-act="home">목록</button><div class="ttl">'+esc(s.id)+'</div><div class="pts">실수 <b>'+C.mist+'</b></div></div>'
+   +'<div class="prog"><i style="width:'+(I/DATA.length*100)+'%"></i></div><div class="pcount">문장 '+(I+1)+' / '+DATA.length+'</div>';
+  if(C.step<3)h+='<div class="steps two"><div class="'+(C.step===1?'on':'ok')+'">1 뜻·성분</div><div class="'+(C.step===2?'on':'')+'">2 어순</div></div>';
+  h+='<div class="card">'+(C.step===1?vA():C.step===2?v1():v4())+'</div>';
+  app.innerHTML=h;
+}
+function kordIdx(){return C.s.kord;}
+function vA(){
+  var s=C.s,ph=C.ph,cur=ph==='K'?curK():curA();
+  var ask=ph==='K'?'빛나는 영어 블록의 우리말 뜻을 위에서 골라요':'빛나는 블록의 성분(역할)을 골라요';
+  if(C.done2)ask='뜻과 성분을 모두 붙였어요';
+  var h='<p class="ask">'+ask+'</p>';
+  if(ph==='K'){
+    var idx=kordIdx().filter(function(k){return !C.kdone[k];});
+    if(idx.length)h+='<div class="krow"><span class="klbl">우리말 뜻</span><div class="kflow">'+idx.map(function(k){
+      var bad=C.flash&&C.flash.k===k;
+      return '<button class="kblk go'+(bad?' bad shake':'')+'" data-act="pickK" data-k="'+k+'">'+esc(s.ch[k].k)+'</button>';
+    }).join('')+'</div></div>';
+  }
+  h+='<div class="stage">'+s.ch.map(function(c,k){
+    var r=C.roles[k],kd=C.kdone[k]&&c.k,act=(k===cur&&!C.done2);
+    var top='<div class="kslot'+(kd?' filled'+(k===C.lastDrop?' drop':''):(act&&ph==='K'?' wait':''))+'">'+(kd?esc(c.k):'')+'</div>';
+    var mid=r?'<div class="sblk st2 role-'+CLS[r]+'"><b>'+esc(c.t)+'</b></div>'
+       :'<div class="sblk wait'+(act?' now':'')+'"><b>'+esc(c.t)+'</b></div>';
+    var bot='<div class="rslot'+(r?' role-'+CLS[r]:'')+'">'+(r?esc(r):'')+'</div>';
+    return '<div class="col3">'+top+mid+bot+'</div>';
+  }).join('')+'</div>';
+  if(C.msg)h+='<p class="msg no">'+C.msg+'</p>';
+  if(ph==='R'&&cur>=0){
+    var c0=s.ch[cur],set={'주어':1,'동사':1,'목적어':1,'보어':1,'수식어':1};
+    s.ch.forEach(function(c){set[c.r]=1;});
+    var opts=ORDER.filter(function(r){return set[r];});
+    h+='<div class="r2 down" data-rk="'+cur+'"><div class="chunk">'+esc(c0.t)+(c0.a?'<small class="tgt">꾸미는 대상: '+esc(c0.a.replace(/\s*수식$/,''))+'</small>':'')+'</div><div class="opts">'+opts.map(function(r){
+      var b=C.bad[cur][r];
+      return '<button class="opt'+(b?' bad':'')+'"'+(b?' disabled':'')+' data-act="roleA" data-k="'+cur+'" data-r="'+r+'">'+r+'</button>';
+    }).join('')+'</div></div>';
+  }
+  if(C.done2)h+='<p class="msg ok">뜻과 성분 완성.</p><button class="primary" data-act="next1">다음 단계: 어순</button>';
+  return h;
+}
+function tile(ci){
+  var bad=C.flash&&C.flash.b===ci;
+  var hl=C.w3>=2&&!C.done1&&C.s.ch[ci].t===C.s.ch[C.placed.length].t;
+  return '<button class="tile'+(bad?' bad shake':'')+(hl?' hl':'')+'" data-act="pick" data-i="'+ci+'">'+esc(C.s.ch[ci].t)+'</button>';
+}
+function kRow(){
+  var idx=kordIdx().filter(function(k){return C.placed.indexOf(k)<0;});
+  return '<div class="krow"><span class="klbl">우리말 해석</span><div class="kflow">'+(idx.length?idx.map(function(k){return '<span class="kblk">'+esc(C.s.ch[k].k)+'</span>';}).join(''):'<span class="kdone">해석이 모두 내려왔어요</span>')+'</div></div>';
+}
+function v1(){
+  var s=C.s,p=C.placed.length;
+  var h='<p class="ask">우리말 어순을 보고, 영어에서는 어떤 순서로 올지 찾아 쌓아요</p>'+kRow();
+  h+='<div class="stage">'+s.ch.map(function(c,k){
+    if(k<p)return '<div class="col3"><div class="sblk st2 role-'+CLS[c.r]+'"><b>'+esc(c.t)+'</b></div><div class="kslot filled'+(k===C.lastDrop?' drop':'')+'">'+(c.k?esc(c.k):'')+'</div></div>';
+    return '<div class="col3"><div class="slot'+(k===p?' next':'')+'"></div><div class="kslot"></div></div>';
+  }).join('')+'</div>';
+  h+='<div class="pool">'+C.pool.map(function(ci){return tile(ci);}).join('')+'</div>';
+  if(C.wrong)h+='<p class="msg no">그 블록은 다음 자리에 오지 않아요. 영어에서는 어떤 말이 올까요?</p>';
+  if(C.done1)h+='<p class="msg ok">어순 완성.</p><button class="primary" data-act="next2">완성한 문장 보기</button>';
+  return h;
+}
+function v4(){
+  var s=C.s;
+  var h='<p class="ask">완성한 문장</p><div class="sent">'+s.ch.map(function(c){
+    return '<span class="blk role-'+CLS[c.r]+'"><b>'+esc(c.t)+'</b><small>'+esc(c.r)+'</small></span>';
+  }).join('')+'</div><div class="seq"><span class="seqlbl">영어 어순</span>'+s.ch.map(function(c){return badge(c.r);}).join('<span class="arr">→</span>')+'</div>';
+  h+='<p class="ask" style="font-size:14px;margin:4px 0 6px">우리말 어순으로 읽으면</p><div class="klinew">'+s.kord.map(function(k){var c=s.ch[k];return '<span class="kc role-'+CLS[c.r]+'">'+esc(c.k)+'</span>';}).join('')+'</div>';
+  h+='<p class="kor">'+esc(s.ko)+'</p>';
+  var mods=s.ch.filter(function(c){return c.c||(c.r==='수식어'&&c.a);});
+  if(mods.length)h+='<ul class="notes">'+mods.map(function(c){
+    var p=[];if(c.c)p.push(esc(c.c));if(c.a)p.push('꾸미는 대상: '+esc(c.a.replace(/\s*수식$/,'')));
+    return '<li><span>'+esc(c.t)+'</span> '+p.join(' · ')+'</li>';
+  }).join('')+'</ul>';
+  if(s.note)h+='<div class="nbox2">'+esc(s.note)+'</div>';
+  var g=GLOSS[s.id]||[];
+  if(g.length)h+='<div class="gl"><div class="gh">이 문장의 단어</div>'+g.map(function(x){return '<div><b>'+esc(x[0])+'</b> '+esc(x[1])+(x[2]?' <small>('+esc(x[2])+')</small>':'')+'</div>';}).join('')+'</div>';
+  h+='<p class="gain" style="margin-top:14px">이번 문장 '+(C.mist?'실수 <b>'+C.mist+'</b>개':'실수 없음')+'</p>';
+  h+='<button class="primary" data-act="next">'+(I+1<DATA.length?'다음 문장':'목록으로')+'</button>';
+  return h;
+}
+function finish(){store.done[C.s.id]=C.mist;save();}
+app.addEventListener('click',function(e){
+  var b=e.target.closest('[data-act]');if(!b)return;
+  var a=b.getAttribute('data-act');
+  if(a==='go'){start(+b.getAttribute('data-i'));return;}
+  if(a==='home'){home();return;}
+  if(a==='reset'){if(confirm('기록을 모두 지울까요?')){store={done:{}};save();home();}return;}
+  if(!C)return;
+  var s=C.s;
+  if(a==='pickK'){
+    var kk=+b.getAttribute('data-k'),cu=curK();if(cu<0)return;
+    if(s.ch[kk].k===s.ch[cu].k){C.kdone[cu]=true;C.lastDrop=cu;C.flash=null;C.msg=null;if(curK()<0)C.ph='R';}
+    else{C.mist++;C.flash={k:kk};C.msg=null;}
+    render();return;
+  }
+  if(a==='roleA'){
+    var kr=+b.getAttribute('data-k'),rr=b.getAttribute('data-r');
+    if(s.ch[kr].r===rr){C.roles[kr]=rr;C.msg=null;if(curA()<0)C.done2=true;}
+    else{C.bad[kr][rr]=true;C.mist++;C.msg='아니에요. 다시 골라 보세요.';}
+    render();return;
+  }
+  if(a==='next1'){C.step=2;C.w3=0;C.flash=null;render();window.scrollTo(0,0);return;}
+  if(a==='pick'){
+    var ci=+b.getAttribute('data-i'),pp=C.placed.length;
+    if(s.ch[ci].t===s.ch[pp].t){
+      var at=C.pool.indexOf(ci);C.pool.splice(at,1);C.placed.push(pp);C.lastDrop=pp;C.wrong=false;C.flash=null;C.w3=0;
+      if(C.placed.length===C.n)C.done1=true;
+    }else{C.mist++;C.w3++;C.wrong=true;C.flash={b:ci};}
+    render();return;
+  }
+  if(a==='next2'){C.step=3;finish();render();window.scrollTo(0,0);return;}
+  if(a==='next'){if(I+1<DATA.length)start(I+1);else home();return;}
+});
+home();
+})();
+</script></body></html>
