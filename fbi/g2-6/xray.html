@@ -337,6 +337,8 @@ function mainVis(n){
   if(!n.sk)return '';
   const lab={S:'주어',V:'동사',O:'목적어',C:n.form==5?'목적격보어':'보어'};
   let h='<div class="bdr">'+bd(n.form+'형식'+(n.form2?' + '+n.form2+'형식':''),'cc')+'</div><div class="bdr">'+n.sk.map((x,k)=>(k?'<span class="pp">+</span>':'')+bd(runsOf(x.g),'sk'+x.r,lab[x.r])).join('')+'</div>';
+  const ez=k=>{const f=FORMS[k-1];return f?'<div class="small"><b>'+f[0]+' 쉬운 예</b> '+f[1]+' ('+f[2]+') → '+f[3]+'</div>':''};
+  h+=ez(n.form)+(n.form2&&n.form2!=n.form?ez(n.form2):'');
   return h}
 function noteScreen(){
   const n=cur.nodes[ni];
