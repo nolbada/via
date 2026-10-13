@@ -89,7 +89,7 @@ body.cv-on #app{max-width:none;padding:0}
 .vt-sc{text-align:center}.vt-big{font-size:40px;font-weight:900}
 .vt-pass{color:var(--ok);font-weight:700}.vt-fail{color:var(--bad);font-weight:700}
 .vt-his{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.vt-his button{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:6px 12px;font-size:14px;font-family:inherit;color:var(--ink)}.vt-his button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-
+.wn{padding:6px 14px}.wnr{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line);font-size:18px;line-height:1.6}.wnr:last-child{border-bottom:0}.wnn{flex:none;min-width:26px;color:var(--mut,#8a8f9c);font-weight:700}
 @media (max-width:600px){
 .cv-scene{justify-content:center;padding:10px 0 12px}
 .cv,.cv-rib{width:min(calc(100% - 24px),calc((100vh - 170px)*.7132));width:min(calc(100% - 24px),calc((100dvh - 170px)*.7132))}
