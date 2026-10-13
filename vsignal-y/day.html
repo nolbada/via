@@ -161,7 +161,7 @@ function changes(x){if(rw(x))return '<div class="chg"><span class="cc">구조 �
   return '<div class="chg"><span class="cn">'+(i+1)+'</span><span class="cc">'+tag+'</span> '+A+(A&&B?' &rarr; ':'')+B+((KA||KB)?'<div class="ck">'+KA+(KA&&KB?' &rarr; ':'')+KB+'</div>':'')+'</div>'}).join('')}
 const WD=['일','월','화','수','목','금','토'];
 const p2=n=>String(n).padStart(2,'0');
-function stampHtml(d,v){return '<div class="stp"><div class="stt">Day '+d+' 7문장 노트 완성</div><div class="std">'+v.m+'/'+v.d+'('+v.w+') '+p2(v.h)+':'+p2(v.i)+'</div><div class="small">V SIGNAL Y · 비타민 영어클리닉</div></div>'}
+function stampHtml(d,v){return '<div class="stp"><div class="stt">Day '+d+' 7문장 노트 완성</div><div class="std">'+v.m+'/'+v.d+'('+v.w+') '+p2(v.h)+':'+p2(v.i)+'</div><div class="small">V SIGNAL Y</div></div>'}
 const wordsOf=s=>s.en.replace(/ \/ /g,' ').split(' ');
 function ans(s){const parts=s.en.split(' / ');const G=new Set();let c=0;parts.forEach((p,i)=>{c+=p.split(' ').length;if(i<parts.length-1)G.add(c-1)});return G}
 function home(){const dn=DAYS.filter(D=>S['D'+D.d]).length;
