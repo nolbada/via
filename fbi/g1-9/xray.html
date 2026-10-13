@@ -139,7 +139,7 @@ let TAB='심화';
 function home(){
   let h='';
   if(!SSEL){
-    h='<h1>문장 분석</h1><p class="sub">세트를 고르면 그 지문에서 뽑은 TOP 5 문장이 나와요. 동사를 먼저 찾고, 절을 한 겹씩 열어 분석합니다. 어려운 문장은 별표(★)로 내 문장에 담아 두세요. <span style="font-size:11.5px;font-weight:700;color:var(--warn);background:var(--warnbg);border-radius:6px;padding:1px 6px">원장 검수 전</span></p>';
+    h='<h1>문장 분석</h1><p class="sub">세트를 고르면 그 지문에서 뽑은 TOP 5 문장이 나와요. 동사를 먼저 찾고, 절을 한 겹씩 열어 분석합니다. 어려운 문장은 별표(★)로 내 문장에 담아 두세요.</p>';
     [23,24,25].forEach(y=>{h+='<div class="secT" style="font-size:13px;font-weight:700;color:var(--mu);margin:12px 0 4px">'+y+'년 9월</div><div class="card" style="padding:4px 12px">';
       SETLIST.filter(x=>x.y==y).forEach(x=>{const key=y+'.9-'+x.n,L=S.filter(s=>skOf(s)==key),dn=L.filter(s=>R[s.id]&&R[s.id].done).length;
         h+='<button class="row" '+(L.length?'onclick="SSEL=\''+key+'\';home()"':'style="opacity:.5;cursor:default"')+'><span class="rt">'+x.n+'번</span><span class="small">'+(L.length?(dn+' / '+L.length):'준비 중')+'</span></button>'});
