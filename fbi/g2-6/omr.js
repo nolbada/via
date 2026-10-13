@@ -40,7 +40,7 @@ function passH(q){let h='';DATA.passage.forEach(s=>{const k=q.quote?s.indexOf(q.
 function exp(){
   const it=items[cur],q=qOf(it),m=M.marks[it.no],good=ok(it);
   let h='<div class="nav"><button onclick="view=\'score\';render()">&lt; 점수</button><span class="small">'+esc(DATA.label)+'</span></div><div class="chips">'+items.map((x,i)=>'<button class="chip '+(i==cur?'on ':'')+(ok(x)?'ok':'no')+'" onclick="openExp('+i+','+(list?'\'wr\'':'null')+')">'+x.no+'</button>').join('')+'</div>';
-  h+='<div class="card"><span class="tg t-new">'+it.no+'번 · '+esc(q.type)+'</span>'+(it.alt?'<span class="tg t-wr" style="margin-left:6px">새 문제 · 출처 '+esc(q.src)+'</span><span class="rv">해석 검수 전</span>':'')
+  h+='<div class="card"><span class="tg t-new">'+it.no+'번 · '+esc(q.type)+'</span>'+(it.alt?'<span class="tg t-wr" style="margin-left:6px">새 문제 · 출처 '+esc(q.src)+'</span>':'')
    +(it.notice&&!it.alt?'<div class="note">'+esc(it.notice)+'</div>':'')+v1H(it,false)+'<p class="stem" style="margin-top:10px">'+esc(q.stem)+'</p>'+(q.sentence?'<div class="sent">'+esc(q.sentence)+'<div class="small" style="margin-top:4px">'+esc(q.sentence_ko)+'</div></div>':'')
    +'<div class="verd" style="color:'+(good?'var(--ok)':'var(--bad)')+'">'+(good?'맞았어요. 내 답 '+m.replace(/,/g,', '):'내 답 '+(m||'').replace(/,/g,', ')+' · 정답 '+String(q.answer).replace(/,/g,', '))+'</div>';
   q.choices.forEach((c,i)=>{const lab=CN[i];let cl='ch',tg='';
@@ -49,7 +49,7 @@ function exp(){
     h+='<div class="'+cl+'">'+tg+'<b>'+lab+'</b>'+esc(c.en)+'<span class="ko">'+esc(c.ko)+'</span><span class="why">'+(isAns(q,lab)?'정답입니다.':(c.trap?'<span class="trap">'+esc(c.trap)+'</span>':'')+esc(c.why||''))+'</span>'+(!isAns(q,lab)&&c.int?'<span class="int">출제 의도: '+esc(c.int)+'</span>':'')+'</div>'});
   h+='</div><div class="card"><div class="secT" style="margin-top:0">쉽게 말해</div><div>'+esc(q.basis)+'</div><div class="secT">근거 문장</div><div class="ev"><div class="en">'+esc(q.quote)+'</div><div class="kk">'+esc(q.quote_ko)+'</div></div><button class="link" onclick="showP=!showP;exp()">'+(showP?'지문 접기':'지문에서 근거 위치 보기')+'</button>'+(showP?'<div class="psg">'+passH(q)+'</div>':'')+'</div>';
   const mm=q.memo||it.memo;
-  if(mm&&mm.length)h+='<div class="memo"><h3>즉! 책 해설서 memo에 꼭 적어 두세요</h3><ul style="margin:0;padding-left:18px">'+mm.map(x=>'<li><span class="w">'+esc(x[0])+'</span> '+esc(x[1])+'</li>').join('')+'</ul><div class="small" style="margin-top:8px">오답노트는 이 순서로 써 보세요. 1) 정답과 근거 문장 2) 내가 고른 답이 틀린 이유 3) 위 memo 단어. <span class="rv">검수 전</span></div></div>';
+  if(mm&&mm.length)h+='<div class="memo"><h3>즉! 책 해설서 memo에 꼭 적어 두세요</h3><ul style="margin:0;padding-left:18px">'+mm.map(x=>'<li><span class="w">'+esc(x[0])+'</span> '+esc(x[1])+'</li>').join('')+'</ul><div class="small" style="margin-top:8px">오답노트는 이 순서로 써 보세요. 1) 정답과 근거 문장 2) 내가 고른 답이 틀린 이유 3) 위 memo 단어.</div></div>';
   const L=list||items.map((x,i)=>i),pos=L.indexOf(cur);
   h+='<div style="display:flex;gap:8px;margin-top:12px">'+(pos>0?'<button class="btn sec" style="margin-top:0;flex:1" onclick="openExp('+L[pos-1]+','+(list?'\'wr\'':'null')+')">이전</button>':'')+(pos<L.length-1?'<button class="btn" style="margin-top:0;flex:1" onclick="openExp('+L[pos+1]+','+(list?'\'wr\'':'null')+')">다음 문제</button>':'<button class="btn" style="margin-top:0;flex:1" onclick="view=\'score\';render();window.scrollTo(0,0)">점수로 돌아가기</button>')+'</div>';
   $.innerHTML=h+'</div>'}
