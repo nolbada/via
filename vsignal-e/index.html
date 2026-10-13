@@ -614,7 +614,7 @@ function finish(pass){
   var b=cur(),bs=bstore();
   var prev=bs.done[kk(b)];if(!prev||st.miss<prev.miss){bs.done[kk(b)]={miss:st.miss,at:stamp()};}
   delete bs.prog[kk(b)];bs.last[kk(b)]={miss:st.miss,qm:st.qm,at:stamp(),pass:!!pass,log:JSON.parse(JSON.stringify(st.log))};
-  try{var s0=getStore();if(!s0.wl)s0.wl={};var d0=new Date(),k0=d0.getFullYear()+'-'+('0'+(d0.getMonth()+1)).slice(-2)+'-'+('0'+d0.getDate()).slice(-2),L0=(s0.wl[k0]||[]).filter(function(x){return !(x.kind==='xray'&&x.b===kk(b));});if(Object.keys(st.log).length)L0.push({kind:'xray',b:kk(b),keys:Object.keys(st.log),log:JSON.parse(JSON.stringify(st.log)),key:'xray|'+kk(b)});s0.wl[k0]=L0;var ks0=Object.keys(s0.wl).sort();while(ks0.length>10){delete s0.wl[ks0.shift()];}}catch(e){}
+  try{var s0=getStore();if(!s0.wl)s0.wl={};var d0=new Date(),k0=d0.getFullYear()+'-'+('0'+(d0.getMonth()+1)).slice(-2)+'-'+('0'+d0.getDate()).slice(-2),nw0=Object.keys(st.log).length,L0=(s0.wl[k0]||[]).filter(function(x){return !(x.kind==='xray'&&x.b===kk(b));});if(nw0){Object.keys(s0.wl).forEach(function(q){if(q!==k0)delete s0.wl[q];});L0=(s0.wl[k0]||[]).filter(function(x){return !(x.kind==='xray'&&x.b===kk(b));});L0.push({kind:'xray',b:kk(b),keys:Object.keys(st.log),log:JSON.parse(JSON.stringify(st.log)),key:'xray|'+kk(b)});}s0.wl[k0]=L0;var ks0=Object.keys(s0.wl).sort();while(ks0.length>10){delete s0.wl[ks0.shift()];}}catch(e){}
   saveFn();st.mode='review';review();
 }
 function review(){
@@ -1411,11 +1411,13 @@ function viewDay(d){
 }
 var WDEF={'주어':'문장의 주인이에요. "누가, 무엇이"에 해당해요.','동사':'움직임이나 상태를 나타내요. 문장의 중심이에요.','목적어':'동사가 하는 일을 받는 대상이에요. "~을/를"에 해당해요.','보어':'주어(또는 목적어)가 어떤 상태인지 풀어 주는 말이에요. 빼면 문장이 완성되지 않아요.','수식어':'빼도 문장이 말이 되는 말이에요.','간접목적어':'"~에게"에 해당해요.','직접목적어':'"~을/를"에 해당해요.','목적격보어':'목적어가 어떤 상태인지 풀어 주는 말이에요.','접속사':'말과 말을 이어 줘요.'};
 function wlDate(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
-function wlToday(){return (store.wl&&store.wl[wlDate()])||[];}
+function wlKey(){var w=store.wl||{},ks=Object.keys(w).sort().reverse();for(var i=0;i<ks.length;i++)if(w[ks[i]]&&w[ks[i]].length)return ks[i];return '';}
+function wlToday(){var k=wlKey();return k?store.wl[k]:[];}
+function wlLbl(){var k=wlKey();if(!k)return '';var p=k.split('-'),d=new Date(+p[0],+p[1]-1,+p[2]);return (d.getMonth()+1)+'/'+d.getDate()+'('+'일월화수목금토'[d.getDay()]+')';}
 function logW(e){
   try{
     if(!store.wl)store.wl={};
-    var k=wlDate(),L=store.wl[k]||(store.wl[k]=[]);
+    var k=wlDate();Object.keys(store.wl).forEach(function(q){if(q!==k)delete store.wl[q];});var L=store.wl[k]||(store.wl[k]=[]);
     e.key=[e.day,e.n,e.kind,e.t||'',e.picked||''].join('|');
     for(var i=0;i<L.length;i++)if(L[i].key===e.key)return;
     L.push(e);
@@ -1452,8 +1454,8 @@ function noteLines(g){
 function xrayEntries(){return wlToday().filter(function(e){return e.kind==='xray'&&window.BRK&&BRK.note(e);});}
 function noteHtml(){
   var G=noteGroups(),X=xrayEntries();
-  if(!G.length&&!X.length)return '<div class="nbox"><p class="nt">오늘은 쓸 오답이 없어요.</p><p class="hint" style="margin:0">틀린 문장이 있으면 여기에 노트에 쓸 내용이 정리돼요.</p></div>';
-  var h='<div class="nbox"><p class="nt">오늘 오답노트 '+(G.length+X.length)+'문장</p><p class="hint" style="margin:0 0 10px">아래 내용을 그대로 노트에 옮겨 쓰세요. 쓰고 나서 해석을 소리 내어 읽어요.</p>';
+  if(!G.length&&!X.length)return '<div class="nbox"><p class="nt">쓸 오답이 없어요.</p><p class="hint" style="margin:0">틀린 문장이 있으면 여기에 노트에 쓸 내용이 정리돼요.</p></div>';
+  var h='<div class="nbox"><p class="nt">오답노트 '+(G.length+X.length)+'문장</p><p class="hint" style="margin:0 0 10px">'+wlLbl()+'에 틀린 문장이에요. 새로 틀린 문장이 생기면 이 노트는 새 것으로 바뀌어요. 아래 내용을 그대로 노트에 옮겨 쓰세요. 쓰고 나서 해석을 소리 내어 읽어요.</p>';
   G.forEach(function(g){
     var o=noteLines(g),s=g.s;
     h+='<div class="ni"><div class="nn">Day '+g.day+' · 책 '+s.n+'번</div><div class="nen">'+esc(s.en)+'</div><div class="nko">'+esc(s.ko)+'</div>'
@@ -1465,15 +1467,15 @@ function noteHtml(){
   return h+'</div>';
 }
 function renderNote(){
-  app.innerHTML='<div class="top"><button class="back" data-act="home">목록</button><div class="ttl">오늘 오답노트</div></div>'+noteHtml()+'<button class="primary" style="margin-top:12px" data-act="home">목록으로</button>';
+  app.innerHTML='<div class="top"><button class="back" data-act="home">목록</button><div class="ttl">오답노트</div></div>'+noteHtml()+'<button class="primary" style="margin-top:12px" data-act="home">목록으로</button>';
   window.scrollTo(0,0);
 }
-function noteStrip(){var n=noteGroups().length+xrayEntries().length;return n?'<button class="notestrip" data-act="note">오늘 오답노트 '+n+'문장 쓰러 가기</button>':'';}
+function noteStrip(){var n=noteGroups().length+xrayEntries().length;return n?'<button class="notestrip" data-act="note">오답노트 '+n+'문장 쓰러 가기</button>':'';}
 function noteBlock(d){
   var G=noteGroups().filter(function(g){return g.day===d;});
-  var h='<div class="nbox"><p class="nt">오늘 오답노트</p>';
+  var h='<div class="nbox"><p class="nt">오답노트</p>';
   if(!G.length)h+='<p class="hint" style="margin:0 0 8px">이 Day에서 틀린 문장이 없어요. 오답노트에 쓸 내용이 없어요.</p>';
-  else h+='<p class="hint" style="margin:0 0 8px">틀린 문장 '+G.length+'개. 노트에 쓸 내용이 준비되어 있어요.</p><button class="primary" data-act="note">오늘 오답노트 열기</button>';
+  else h+='<p class="hint" style="margin:0 0 8px">틀린 문장 '+G.length+'개. 노트에 쓸 내용이 준비되어 있어요.</p><button class="primary" data-act="note">오답노트 열기</button>';
   return h+'<button class="ghost" style="width:100%;margin-top:8px" data-act="view" data-day="'+d+'">오늘의 문장 다시보기</button></div>';
 }
 function recCard(kind){
