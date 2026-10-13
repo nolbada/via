@@ -157,9 +157,11 @@ const S=[{"lv": "심화", "id": "1-1", "tok": ["We", "should", "avoid", "spendin
 var WLK='vsig-y-wl-v1';
 function wlD(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
 function wlGet(){try{return JSON.parse(localStorage.getItem(WLK)||'{}')}catch(e){return {}}}
-function wlPut(e){try{var o=wlGet(),k=wlD(),L=(o[k]||[]).filter(function(x){return x.id!==e.id});L.push(e);o[k]=L;var ks=Object.keys(o).sort();while(ks.length>10)delete o[ks.shift()];localStorage.setItem(WLK,JSON.stringify(o))}catch(x){}}
-function wlN(){return (wlGet()[wlD()]||[]).length}
-function wlStrip(){var n=wlN();return n?'<a class="wlstrip" href="note.html">오늘 오답노트 '+n+'문장 쓰러 가기</a>':''}
+function wlPut(e){try{var o=wlGet(),k=wlD();Object.keys(o).forEach(function(q){if(q!==k)delete o[q]});var L=(o[k]||[]).filter(function(x){return x.id!==e.id});L.push(e);o[k]=L;var ks=Object.keys(o).sort();while(ks.length>10)delete o[ks.shift()];localStorage.setItem(WLK,JSON.stringify(o))}catch(x){}}
+function wlKey(o){var ks=Object.keys(o).sort().reverse();for(var i=0;i<ks.length;i++)if(o[ks[i]]&&o[ks[i]].length)return ks[i];return ''}
+function wlList(){var o=wlGet(),k=wlKey(o);return k?o[k]:[]}
+function wlN(){return wlList().length}
+function wlStrip(){var n=wlN();return n?'<a class="wlstrip" href="note.html">오답노트 '+n+'문장 쓰러 가기</a>':''}
 const KEY="vsignalY_clause_v3";
 let R={};try{R=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(R))}catch(e){}}
@@ -401,6 +403,6 @@ function fin(){
   h+='</div><p class="small" style="margin-top:12px">이 문장을 끊어 읽으면</p><div class="chunks">';
   cur.ch.forEach((c,i)=>{h+='<div class="ck mini">'+esc(c)+'<span class="ko">'+esc(cur.ko[i])+'</span></div>'});
   const LL=S.filter(x=>x.lv==cur.lv),nx=LL[LL.indexOf(cur)+1];TAB=cur.lv;
-  h+='</div>'+(wr>0?'<a class="wlstrip" href="note.html" style="margin-top:12px">오늘 오답노트 쓰러 가기</a>':'')+'<button class="btn" onclick="'+(nx?"play('"+nx.id+"')":"home()")+'">'+(nx?'다음 문장':'목록으로')+'</button></div>';$.innerHTML=h;window.scrollTo(0,0);wkBind(document.querySelector('.fsent'),cur.id,cur.tok)}
+  h+='</div>'+(wr>0?'<a class="wlstrip" href="note.html" style="margin-top:12px">오답노트 쓰러 가기</a>':'')+'<button class="btn" onclick="'+(nx?"play('"+nx.id+"')":"home()")+'">'+(nx?'다음 문장':'목록으로')+'</button></div>';$.innerHTML=h;window.scrollTo(0,0);wkBind(document.querySelector('.fsent'),cur.id,cur.tok)}
 home();
 </script></body></html>
