@@ -59,10 +59,19 @@ function entry(n){
  document.getElementById('vg').onclick=()=>submit(n);
  window.scrollTo(0,0);
 }
+// 틀린 문항 -> 오늘의 오답노트 카드 (앱 본체와 같은 목록에 합침)
+function wcard(it){
+ const m=/<u>(.*?)<\/u>/.exec(it.q),tw=m?m[1].replace(/<[^>]+>/g,''):'',key=s=>String(s).toLowerCase().replace(/[^a-z']/g,'');
+ if(it.kind==='poly'){const se=it.senses&&it.senses[it.slot-1];return tw&&se?[key(tw),'<b>'+tw+'</b> = '+se]:null;}
+ const ans=it.opts[it.slot-1],g=it.gloss&&it.gloss[it.slot-1]?it.gloss[it.slot-1][1]:'';
+ if(!ans)return null;
+ return [key(ans),(tw&&/class="tg"/.test(it.q)?'<b>'+tw+'</b> – ':'')+'<b>'+ans+'</b>'+(g?' '+g:'')];
+}
 function submit(n){
  let s=0;D.forEach(it=>{if(pick[it.n]===it.slot)s++;});
  const st=load();delete st.pend;
  add(st,n,{p:D.map(it=>pick[it.n]||0).join(''),s,t:stamp()});save(st);
+ if(window.VLWN)D.forEach(it=>{if(pick[it.n]!==it.slot){const c=wcard(it);if(c)VLWN.add(c[0],c[1]);}});
  const r=st.d[n],all=[r.first].concat(r.re||[]);result(n,all.length-1);
 }
 function explain(it){
