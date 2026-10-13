@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14303f">
+<title>FBI 단어 시험</title>
+<link rel="stylesheet" href="fbi.css">
+</head><body><div class="wrap" id="app"></div>
+<script src="words.js"></script>
+<script>
+const $=document.getElementById('app');
+let S=V.sess&&V.sess.step?V.sess:null;
+const STAR=location.hash=='#star';
+function sess(){V.sess=S;save();setLast({p:'vtest'})}
+function todaySets(){return SETS.filter(s=>V.done[s.id]!=null&&!V.tested[s.id])}
+function pools(own){
+  const t=TODAY(),wr=[],cum=[],fresh=[];
+  Object.keys(ALL).forEach(k=>{if(own.has(k))return;const r=V.w[k];
+    if(!r||!r.seen)fresh.push(k);else if(r.due<=t){(r.miss>0&&r.box<=1?wr:cum).push(k)}});
+  return {wr,cum,fresh}}
+function home(){
+  S=V.sess&&V.sess.step?V.sess:null;
+  const ts=todaySets(),own=new Set();ts.forEach(s=>s.w.forEach(x=>own.add(x[0])));const p=pools(own);
+  let h='<div class="nav"><a href="./">&larr; FBI 홈</a><span class="small">단어 시험</span></div><h1>단어 시험</h1><p class="sub">오늘 단어, 지난 누적 단어, 틀렸던 단어가 한꺼번에 섞여서 나와요.</p>';
+  if(S)h+='<div class="card" style="border-color:var(--co)"><b>풀던 시험이 있어요</b><div class="small">'+({mix:'섞기 단계',quiz:'단어 풀기 '+((S.qi||0)+1)+'/'+(S.deck||[]).length,res:'결과'}[S.step]||'')+'</div><button class="btn" onclick="render()">이어하기</button></div>';
+  h+='<div class="card"><b>오늘 시험 범위</b><div class="legend" style="margin-top:6px">'+(ts.length?ts.map(s=>'<span class="tg t-new">'+esc(s.label)+' 20단어</span>').join(''):'<span class="small">아직 "단어 정답"에서 확인한 세트가 없어요.</span>')+'</div>'
+   +'<div class="legend"><span class="tg t-cum">지난 누적 '+p.cum.length+'</span><span class="tg t-wr">틀렸던 단어 '+p.wr.length+'</span><span class="tg t-fresh">처음 보는 단어 '+p.fresh.length+'</span></div>'
+   +'<div class="small">누적 단어는 1일, 3일, 7일, 14일, 30일 간격으로 돌아와요. 아직 한 번도 안 열어 본 단어도 앱이 끼워 넣어요.</div>'
+   +'<button class="btn" onclick="build(false)">'+(ts.length?'오늘의 단어 시험 시작':'누적·틀린 단어만 시험 보기')+'</button>'
+   +'<button class="btn sec" onclick="build(true)">내 단어장(별표) '+starCount()+'개만 시험 보기</button></div>'
+   +(ts.length?'':'<a class="btn sec" style="text-decoration:none;display:flex;align-items:center;justify-content:center" href="answer.html">단어 정답 코너로 가기</a>');
+  $.innerHTML=h}
+function build(starOnly){
+  let deck;
+  if(starOnly){const st=Object.keys(V.w).filter(w=>V.w[w].star&&ALL[w]);if(!st.length){alert('내 단어장이 비어 있어요. 별표(★)를 눌러 담아 보세요.');return}deck=shuf(st).map(w=>({w,k:'star'}))}
+  else{
+    const ts=todaySets(),own=new Set();ts.forEach(s=>s.w.forEach(x=>own.add(x[0])));const p=pools(own),take=(a,n)=>shuf(a).slice(0,n);
+    deck=[];ts.forEach(s=>s.w.forEach(x=>{const r=V.w[x[0]];deck.push({w:x[0],k:(r&&r.miss>0&&r.box==0)?'wr':'new'})}));
+    deck=deck.concat(take(p.wr,8).map(w=>({w,k:'wr'})),take(p.cum,8).map(w=>({w,k:'cum'})),take(p.fresh,6).map(w=>({w,k:'fresh'})));
+    if(!deck.length){alert('시험 볼 단어가 아직 없어요. 단어 정답 코너를 먼저 해 주세요.');return}
+    ts.forEach(s=>V.tested[s.id]=1);deck=shuf(deck)}
+  S={step:starOnly?'quiz':'mix',deck:deck,mixed:false,qi:0,ans:{},opts:{},right:0,star:starOnly,orig:starOnly?null:deck.filter(d=>d.k=='new').map(d=>d.w)};sess();render()}
+function render(){if(!S||!S.step)home();else if(S.step=='mix')mix();else if(S.step=='quiz')quiz();else res()}
+function mix(){
+  let h='<div class="nav"><button onclick="home()">&lt; 처음</button><span class="small">단어 시험</span></div>';
+  if(!S.mixed){const o=(S.orig||[]).slice(0,20);
+    h+='<h1>섞어 볼까요?</h1><p class="sub">오늘 단어가 다른 단어들과 섞여요.</p><div class="card"><div class="grid" id="g0">'+(o.length?o:Object.keys(ALL).slice(0,12)).map((w,i)=>'<div class="cd n0">'+esc(w)+'</div>').join('')+'</div></div><button class="btn" id="mb" onclick="doMix()">흔들어서 섞기</button>'}
+  else h+=mixed();
+  $.innerHTML=h}
+function mixed(){
+  const cnt={};S.deck.forEach(d=>cnt[d.k]=(cnt[d.k]||0)+1);
+  return '<h1>이렇게 섞였어요</h1><p class="sub">총 '+S.deck.length+'개. 색깔이 단어의 출신이에요.</p><div class="legend">'+['new','cum','wr','fresh'].filter(k=>cnt[k]).map(k=>'<span class="tg t-'+k+'">'+TAGN[k]+' '+cnt[k]+'</span>').join('')+'</div><div class="grid" id="g1">'+S.deck.map(d=>'<div class="cd '+d.k+'">'+esc(d.w)+'<i>'+TAGN[d.k]+'</i></div>').join('')+'</div><button class="btn" onclick="S.step=\'quiz\';S.qi=0;sess();render()">단어 시험 시작</button>'}
+function doMix(){
+  const g=document.getElementById('g0');document.getElementById('mb').disabled=true;g.parentNode.classList.add('shake');
+  setTimeout(()=>{g.querySelectorAll('.cd').forEach(c=>{c.style.transition='transform .5s,opacity .5s';c.style.transform='translate('+((Math.random()-.5)*160)+'px,'+((Math.random()-.5)*200)+'px) rotate('+((Math.random()-.5)*90)+'deg)';c.style.opacity='0'});
+    setTimeout(()=>{S.mixed=true;sess();mix();
+      document.querySelectorAll('#g1 .cd').forEach((c,i)=>{c.style.transform='translate('+((Math.random()-.5)*200)+'px,'+((Math.random()-.5)*260)+'px) rotate('+((Math.random()-.5)*120)+'deg)';c.style.opacity='0';
+        setTimeout(()=>{c.style.transition='transform .6s cubic-bezier(.2,.8,.3,1),opacity .4s';c.style.transform='none';c.style.opacity='1'},40+i*30)})},520)},900)}
+function quiz(){
+  const d=S.deck[S.qi],ko=ALL[d.w],a=S.ans[S.qi];
+  if(!S.opts[S.qi]){const ds=shuf(Object.keys(ALL).filter(w=>w!=d.w&&ALL[w]!=ko)).slice(0,3).map(w=>ALL[w]);S.opts[S.qi]=shuf([ko].concat(ds))}
+  const o=S.opts[S.qi];
+  let h='<div class="nav"><button onclick="home()">&lt; 나가기</button><span class="small">'+(S.qi+1)+' / '+S.deck.length+'</span></div><div class="bar"><div style="width:'+(S.qi/S.deck.length*100)+'%"></div></div><div class="card"><div class="hd"><span class="tg t-'+d.k+'">'+TAGN[d.k]+'</span><button class="star '+(isStar(d.w)?'on':'')+'" onclick="toggleStar(\''+d.w+'\');quiz()" title="내 단어장에 담기">&#9733;</button></div><div class="qw">'+esc(d.w)+'</div>';
+  o.forEach((x,i)=>{let c='ch';if(a!=null){if(x==ko)c+=' ans';else if(i==a)c+=' wr'}h+='<button class="'+c+'" '+(a!=null?'disabled':'onclick="ansQ('+i+')"')+'>'+esc(x)+'</button>'});
+  if(a!=null){const ok=o[a]==ko;h+='<div class="msg '+(ok?'g':'b')+'">'+(ok?'맞았어요.':'틀렸어요. 정답은 <b>'+esc(ko)+'</b>. 이 단어는 다시 돌아와요.')+'</div><div class="small" style="margin-top:6px">외워지지 않으면 오른쪽 위 별표(★)로 내 단어장에 담아 두세요.</div><button class="btn" onclick="nextW()">'+(S.qi<S.deck.length-1?'다음 단어':'결과 보기')+'</button>'}
+  $.innerHTML=h+'</div>'}
+function ansQ(i){const d=S.deck[S.qi],ko=ALL[d.w],ok=S.opts[S.qi][i]==ko,t=TODAY(),r=rec(d.w);r.seen=1;
+  if(ok){r.box=Math.min((r.box||0)+1,WINT.length);r.due=t+WINT[r.box-1];S.right++}else{r.miss=(r.miss||0)+1;r.box=0;r.due=t}
+  S.ans[S.qi]=i;sess();render()}
+function nextW(){if(S.qi<S.deck.length-1)S.qi++;else S.step='res';sess();render()}
+function res(){
+  const wrs=S.deck.filter((d,i)=>S.ans[i]!=null&&S.opts[i][S.ans[i]]!=ALL[d.w]);
+  let h='<div class="nav"><button onclick="home()">&lt; 처음</button><span class="small">단어 시험</span></div><h1>결과</h1><p class="sub">'+S.deck.length+'개 중 '+S.right+'개 맞혔어요.</p>';
+  if(wrs.length)h+='<div class="card"><b>틀린 단어</b><div class="small">내일부터 다시 섞여 돌아와요. 별표(★)로 내 단어장에 담을 수 있어요.</div><ul class="rows">'+wrs.map(d=>'<li class="rw"><div class="l"><span class="w">'+esc(d.w)+'</span><span class="ko" style="font-size:15px;flex:1">'+esc(ALL[d.w])+'</span><button class="star '+(isStar(d.w)?'on':'')+'" onclick="toggleStar(\''+d.w+'\');res()">&#9733;</button></div></li>').join('')+'</ul></div>';
+  else h+='<div class="msg g">전부 맞혔어요.</div>';
+  h+='<button class="btn" onclick="V.sess=null;S=null;save();home()">처음으로</button><a class="btn sec" style="text-decoration:none;display:flex;align-items:center;justify-content:center" href="mywords.html">내 단어장 보기</a>';
+  $.innerHTML=h}
+home();
+if(STAR&&!(S&&S.star))build(true);
+</script></body></html>

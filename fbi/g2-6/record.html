@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14303f">
+<title>FBI 내 기록</title>
+<link rel="stylesheet" href="fbi.css">
+<style>
+.bdg{display:inline-block;font-size:12px;font-weight:700;border-radius:99px;padding:1px 9px;margin-right:6px;background:#fde3dc;color:#9b3a26}
+.bdg.g{background:var(--okbg);color:var(--ok)}
+.lk{display:inline-block;margin:4px 6px 0 0;padding:6px 12px;border-radius:10px;border:1.5px solid var(--bad);background:var(--badbg);color:var(--fg);font-size:14px;font-weight:700;text-decoration:none}
+.wl{list-style:none;margin:0;padding:0}.wl li{display:flex;align-items:center;gap:8px;padding:9px 2px;border-bottom:1px solid var(--ln)}
+.wl .w{font-family:"Segoe UI",system-ui,sans-serif;font-weight:700;font-size:16px;min-width:110px}.wl .m{flex:1;font-size:14.5px;color:var(--mu)}
+.wl .c{font-size:12px;font-weight:700;color:var(--bad)}
+.sb{background:none;border:none;font-size:22px;cursor:pointer;color:#c7ced6}.sb.on{color:#e0a100}
+</style></head><body><div class="wrap" id="app"></div>
+<script src="words.js"></script>
+<script>
+const $=document.getElementById('app');
+function rd(k){try{return JSON.parse(localStorage.getItem(k)||'{}')||{}}catch(e){return {}}}
+function draw(){
+  const O=rd('fbi_g2_omr_v1'),X=rd('fbi_g2_xray_v1');
+  let h='<div class="nav"><a href="./">&larr; FBI 홈</a><span class="small">내 기록</span></div><h1>내 기록</h1><p class="sub">내가 무엇을 틀렸는지 한곳에서 볼 수 있어요. 이 기록은 이 폰(브라우저) 안에만 저장돼요.</p>';
+  /* 문제 풀이 */
+  h+='<div class="card"><b>문제 풀이</b>';
+  const sets=Object.keys(O).filter(k=>O[k]&&O[k].marks);
+  if(!sets.length)h+='<div class="small" style="margin-top:6px">아직 기록이 없어요. 문제 풀이 코너에서 OMR을 제출하면 여기에 남아요.</div>';
+  sets.forEach(k=>{const m=O[k],n=Object.keys(m.marks).length;
+    h+='<div style="margin-top:10px"><b>'+esc(m.label||k)+'</b> ';
+    if(!m.sub)h+='<span class="small">OMR 입력 중 ('+n+'문제 입력)</span> <a class="small" href="omr.html?s='+k+'">이어서 하기</a>';
+    else{const w=m.wrong||[];h+='<span class="bdg '+(w.length?'':'g')+'">'+m.score+' / '+(m.total||10)+'</span>'+(w.length?'<div class="small" style="margin-top:4px">틀린 문제를 누르면 해설이 열려요.</div>'+w.map(no=>'<a class="lk" href="omr.html?s='+k+'#exp='+no+'">'+no+'번</a>').join(''):'<span class="small">전부 맞았어요.</span>')}
+    h+='</div>'});
+  h+='</div>';
+  /* 단어 */
+  const ws=Object.keys(V.w).filter(w=>V.w[w].miss>0&&ALL[w]).sort((a,b)=>V.w[b].miss-V.w[a].miss);
+  h+='<div class="card"><b>틀렸던 단어 '+ws.length+'개</b><div class="small">별표(★)를 누르면 내 단어장에 담겨요.</div>';
+  h+=ws.length?'<ul class="wl">'+ws.map(w=>'<li><span class="w">'+esc(w)+'</span><span class="m">'+esc(ALL[w])+'</span><span class="c">'+V.w[w].miss+'번</span><button class="sb '+(isStar(w)?'on':'')+'" data-w="'+encodeURIComponent(w)+'">&#9733;</button></li>').join('')+'</ul>':'<div class="small" style="margin-top:6px">아직 틀린 단어가 없어요.</div>';
+  h+='</div>';
+  /* 문장 분석 */
+  const xs=Object.keys(X).filter(k=>X[k]&&X[k].done);
+  h+='<div class="card"><b>문장 분석</b>';
+  h+=xs.length?'<div style="margin-top:6px">'+xs.map(k=>'<div style="padding:6px 0;border-bottom:1px solid var(--ln)"><a href="xray.html#play='+encodeURIComponent(k)+'" style="color:var(--fg);text-decoration:none"><b>'+esc(k)+'</b></a> <span class="bdg '+(X[k].wr?'':'g')+'">'+(X[k].wr?'실수 '+X[k].wr+'번':'한 번에 완료')+'</span></div>').join('')+'</div>':'<div class="small" style="margin-top:6px">아직 푼 문장이 없어요.</div>';
+  h+='</div>';
+  let ST=[];try{ST=JSON.parse(localStorage.getItem('fbi_g2_xray_star_v1')||'[]')}catch(e){}
+  if(ST.length)h+='<div class="card"><b>내 문장 '+ST.length+'개</b><div class="small">별표(★)로 담아 둔 문장이에요. 누르면 바로 풀 수 있어요.</div><div style="margin-top:6px">'+ST.map(k=>'<a class="lk" style="border-color:var(--ac);background:var(--acbg)" href="xray.html#play='+encodeURIComponent(k)+'">'+esc(k)+'</a>').join('')+'</div></div>';
+  $.innerHTML=h;
+  document.querySelectorAll('.sb').forEach(b=>b.onclick=()=>{toggleStar(decodeURIComponent(b.dataset.w));draw()})}
+draw();
+</script></body></html>

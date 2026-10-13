@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14303f">
+<title>FBI 단어 정답</title>
+<link rel="stylesheet" href="fbi.css">
+<style>.ar{display:flex;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px solid var(--ln)}.ar .no{width:26px;color:var(--mu);font-size:14px}.ar .w{font-family:"Segoe UI",system-ui,sans-serif;font-size:19px;font-weight:600;width:44%}.ar .k{font-size:16.5px;font-weight:700;flex:1}</style>
+</head><body><div class="wrap" id="app"></div>
+<script src="words.js"></script>
+<script>
+const $=document.getElementById('app');
+function home(){
+  setLast({p:'answer'});
+  let h='<div class="nav"><a href="./">&larr; FBI 홈</a><span class="small">단어 정답</span></div><h1>오늘의 단어 정답</h1><p class="sub">책에서 푼 어휘 3라운드의 답이에요. 책 번호 순서 그대로 나와요.</p>';
+  SETS.forEach((s,i)=>{h+='<button class="setb" onclick="openSet('+i+')"><span>'+esc(s.label)+' · 20단어</span><span class="tg t-new">정답 보기</span></button>'});
+  $.innerHTML=h}
+function openSet(i){
+  const s=SETS[i];V.done[s.id]=TODAY();delete V.tested[s.id];save();setLast({p:'answer'});
+  let h='<div class="nav"><button onclick="home()">&lt; 목록</button><span class="small">'+esc(s.label)+'</span></div><h1>'+esc(s.label)+' 정답</h1><p class="sub">외워지지 않는 단어는 별표(★)를 눌러 두세요. 내 단어장에 담겨요.</p><div class="card">';
+  s.w.forEach((x,k)=>{h+='<div class="ar"><span class="no">'+(k+1)+'</span><span class="w">'+esc(x[0])+'</span><span class="k">'+esc(x[1])+'</span><button class="star '+(isStar(x[0])?'on':'')+'" onclick="toggleStar(\''+x[0]+'\');openSet('+i+')">&#9733;</button></div>'});
+  h+='</div><a class="btn" style="text-decoration:none;display:flex;align-items:center;justify-content:center" href="vtest.html">단어 시험 보러 가기</a>';
+  $.innerHTML=h;window.scrollTo(0,0)}
+home();
+</script></body></html>

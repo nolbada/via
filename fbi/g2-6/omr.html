@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14303f">
+<title>FBI 문제 풀이</title>
+<link rel="stylesheet" href="fbi.css">
+<style>
+.stem{font-size:16.5px;font-weight:700;margin:2px 0 10px;white-space:pre-line}
+.sent{font-family:"Segoe UI",system-ui,sans-serif;font-size:16px;background:var(--acbg);border-radius:10px;padding:10px 12px;margin:0 0 10px}
+.ch{display:block;width:100%;text-align:left;border:2px solid var(--ln);background:var(--sf);color:var(--fg);border-radius:12px;padding:10px 12px;margin:0 0 8px;font-size:16.5px;font-family:"Segoe UI",system-ui,sans-serif}
+.ch b{font-family:"Malgun Gothic",sans-serif;margin-right:6px}
+.ch.ans{border-color:var(--ok);background:var(--okbg)}.ch.wr{border-color:var(--bad);background:var(--badbg)}
+.ch .ko{display:block;font-family:"Malgun Gothic",sans-serif;font-size:14.5px;color:var(--mu);margin-top:3px}
+.ch .why{display:block;font-family:"Malgun Gothic",sans-serif;font-size:14.5px;margin-top:4px}
+.ch .tg2{float:right;font-family:"Malgun Gothic",sans-serif;font-size:12px;font-weight:700}
+.ch:disabled{opacity:1}
+.psg{font-family:"Segoe UI",system-ui,sans-serif;font-size:15.5px;line-height:1.75}
+.psg mark{background:#ffe08a;padding:1px 2px;border-radius:3px}
+.ev{border-left:4px solid var(--co);padding:6px 12px;margin:8px 0;background:#fff6f3;border-radius:0 8px 8px 0}
+.ev .en{font-family:"Segoe UI",system-ui,sans-serif;font-size:15.5px}.ev .kk{font-size:14.5px;color:var(--mu);margin-top:2px}
+.verd{font-size:18px;font-weight:700;margin:4px 0 8px}
+.secT{font-size:13px;font-weight:700;color:var(--mu);margin:12px 0 4px}
+.trap{display:inline-block;font-size:12px;font-weight:700;border-radius:6px;padding:1px 7px;margin-right:6px;background:#fde3dc;color:#9b3a26}
+.int{display:block;font-size:13.5px;color:var(--mu);margin-top:3px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
+.chip{min-width:40px;height:40px;border-radius:10px;border:1.5px solid var(--ln);background:var(--sf);color:var(--fg);font-size:15px;font-weight:700;cursor:pointer;position:relative}
+.chip.on{border-color:var(--nv);box-shadow:0 0 0 2px var(--acbg)}.chip.ok{background:var(--okbg);border-color:var(--ok)}.chip.no{background:var(--badbg);border-color:var(--bad)}
+.omr{list-style:none;margin:0;padding:0}
+.omr li{padding:8px 0;border-bottom:1px solid var(--ln)}
+.omr .r{display:flex;align-items:center;gap:8px}
+.omr .n{width:30px;font-weight:700;font-size:16px}
+.bub{width:44px;height:44px;border-radius:50%;border:2px solid #9aa8b6;background:#fff;font-size:17px;color:var(--mu);cursor:pointer;padding:0}
+.bub.on{background:var(--nv);border-color:var(--nv);color:#fff}
+.flag{font-size:12px;color:var(--warn);background:var(--warnbg);border-radius:6px;padding:1px 6px;margin-left:6px}
+.memo{border:2px solid var(--nv);border-radius:12px;padding:12px;margin-top:12px;background:#fff}
+.memo h3{margin:0 0 6px;font-size:16px}
+.memo li{margin:4px 0;font-size:15.5px}.memo .w{font-family:"Segoe UI",system-ui,sans-serif;font-weight:700}
+.note{margin:10px 0;padding:10px 12px;border-radius:10px;font-size:14.5px;background:var(--warnbg)}
+.rv{display:inline-block;font-size:11.5px;font-weight:700;color:var(--warn);background:var(--warnbg);border-radius:6px;padding:1px 6px;margin-left:6px}
+.link{background:none;border:none;color:var(--ac);font-size:14px;cursor:pointer;padding:6px 0;text-decoration:underline}
+.res{list-style:none;margin:0;padding:0}.res li{display:flex;justify-content:space-between;align-items:center;padding:10px 4px;border-bottom:1px solid var(--ln);cursor:pointer}
+</style></head><body><div class="wrap" id="app"></div>
+<script src="words.js"></script>
+<script src="sets.js"></script>
+<script>
+const SQ=(new URLSearchParams(location.search).get('s')||'').replace(/[^a-z0-9_]/g,'');
+const SOK=SETLIST.some(x=>x.sid==SQ&&x.o);
+if(SOK){document.write('<script src="data/o_'+SQ.split('_')[1]+'.js"><\/script><script src="omr.js"><\/script>')}
+else{
+  let O={};try{O=JSON.parse(localStorage.getItem('fbi_g2_omr_v1')||'{}')}catch(e){}
+  const $=document.getElementById('app');
+  let h='<div class="nav"><a href="./">&larr; FBI 홈</a><span class="small">고2 6월</span></div><h1>문제 풀이</h1><p class="sub">풀 세트를 골라 주세요. 시험지로 10문제를 풀고, 답을 OMR에 입력해요.</p>';
+  [23,24,25].forEach(y=>{
+    h+='<div class="secT">'+y+'년 6월</div><div class="card"><ul class="res">';
+    SETLIST.filter(x=>x.y==y).forEach(x=>{
+      const m=O['g2_'+y+'_'+x.n]||O[x.sid];let st='';
+      if(!x.o)st='<span class="small">준비 중</span>';
+      else if(m&&m.sub)st='<span class="tg t-cum">'+m.score+' / '+(m.total||10)+'</span>';
+      else if(m&&m.marks&&Object.keys(m.marks).length)st='<span class="tg t-new">입력 중</span>';
+      else st='<span class="small">시작하기</span>';
+      h+='<li '+(x.o?'onclick="location.href=\'omr.html?s='+x.sid+'\'"':'style="opacity:.5;cursor:default"')+'><span>'+x.n+'번</span>'+st+'</li>'});
+    h+='</ul></div>'});
+  $.innerHTML=h;
+}
+</script></body></html>

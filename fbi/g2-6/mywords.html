@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14303f">
+<title>FBI 내 단어장</title>
+<link rel="stylesheet" href="fbi.css">
+</head><body><div class="wrap" id="app"></div>
+<script src="words.js"></script>
+<script>
+const $=document.getElementById('app');let mode='list',fi=0,flip=false,deck=[],hide=false;
+function list(){return Object.keys(V.w).filter(w=>V.w[w].star&&ALL[w])}
+function home(){
+  mode='list';setLast({p:'mywords'});const L=list();
+  let h='<div class="nav"><a href="./">&larr; FBI 홈</a><span class="small">내 단어장</span></div><h1>내 단어장</h1><p class="sub">외워지지 않는 단어에 별표(★)를 쳐서 모아 둔 곳이에요. 시험 보기 전에 이것만 한 번 돌려 보세요.</p>';
+  if(!L.length)h+='<div class="card"><div class="small">아직 담긴 단어가 없어요. 단어 정답이나 단어 시험에서 별표(★)를 눌러 보세요.</div></div>';
+  else{
+    h+='<div class="card"><b>별표 단어 '+L.length+'개</b><div class="two"><button class="o" style="color:var(--nv);border-color:var(--nv)" onclick="startFlash()">카드로 돌리기</button><a class="btn" style="margin-top:0;height:42px;font-size:15px;text-decoration:none;display:flex;align-items:center;justify-content:center;flex:1" href="vtest.html#star" onclick="V.sess=null;save()">시험 보기</a></div>'
+     +'<label class="small" style="display:block;margin-top:10px"><input type="checkbox" '+(hide?'checked':'')+' onchange="hide=this.checked;home()"> 뜻 가리고 보기(눌러서 확인)</label>'
+     +'<ul class="rows" style="margin-top:6px">'+L.map(w=>'<li class="rw"><div class="l"><span class="w">'+esc(w)+'</span><span class="ko" style="font-size:15px;flex:1;'+(hide?'color:transparent;background:#e8edf1;border-radius:6px;cursor:pointer':'')+'" onclick="this.style.color=\'inherit\';this.style.background=\'none\'">'+esc(ALL[w])+'</span><button class="star on" onclick="toggleStar(\''+w+'\');home()" title="빼기">&#9733;</button></div><div class="small" style="margin-left:2px">'+esc(FROM[w])+'</div></li>').join('')+'</ul></div>';
+  }
+  $.innerHTML=h}
+function startFlash(){deck=shuf(list());fi=0;flip=false;mode='flash';flash()}
+function flash(){
+  const w=deck[fi];
+  $.innerHTML='<div class="nav"><button onclick="home()">&lt; 목록</button><span class="small">'+(fi+1)+' / '+deck.length+'</span></div><div class="bar"><div style="width:'+(fi/deck.length*100)+'%"></div></div><div class="card flash" onclick="flip=!flip;flash()"><div class="fw">'+esc(w)+'</div>'+(flip?'<div class="fk">'+esc(ALL[w])+'</div>':'<div class="small" style="margin-top:10px">눌러서 뜻 보기</div>')+'</div>'
+   +'<div class="two"><button class="x" onclick="again()">아직 헷갈려요</button><button class="o" onclick="nextF()">외웠어요</button></div><div class="small" style="text-align:center;margin-top:8px">"외웠어요"를 누르면 뒤로 빠지고, "헷갈려요"는 맨 뒤에 다시 나와요.</div>'}
+function again(){deck.push(deck[fi]);nextF()}
+function nextF(){flip=false;if(fi<deck.length-1){fi++;flash()}else{$.innerHTML='<div class="nav"><button onclick="home()">&lt; 목록</button></div><h1>한 바퀴 끝</h1><div class="msg g">별표 단어를 모두 돌렸어요. 시험 보기를 눌러 확인해 보세요.</div><a class="btn" style="text-decoration:none;display:flex;align-items:center;justify-content:center" href="vtest.html#star" onclick="V.sess=null;save()">별표 단어 시험 보기</a><button class="btn sec" onclick="startFlash()">한 번 더 돌리기</button>'}}
+home();
+</script></body></html>
