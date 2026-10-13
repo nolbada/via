@@ -3,6 +3,7 @@ function osave(){try{localStorage.setItem(OK,JSON.stringify(O))}catch(e){}setLas
 const $=document.getElementById('app'),CN=['①','②','③','④','⑤'];
 const DATA=window.FBI_O[SQ],SID=DATA.set;O[SID]=O[SID]||{marks:{},sub:false};const M=O[SID];M.label=DATA.label;
 let view=M.sub?'score':'sheet',cur=0,list=null,showKo={},showP=false,openAlt=true;
+const RF={g1_23_31:[0,1],g1_23_39:[0,1,5],g1_25_31:[3],g1_25_36:[0,2,9]};let rd=false;
 const items=DATA.items,qOf=it=>it.alt||it;
 let openV={};
 function v1H(it,tog){const v=it.v1;if(!v)return '';const hi=v.g<=2,c=hi?'var(--bad)':'var(--warn)',bg=hi?'var(--badbg)':'var(--warnbg)';
@@ -12,9 +13,11 @@ function v1H(it,tog){const v=it.v1;if(!v)return '';const hi=v.g<=2,c=hi?'var(--b
   v.l.forEach(x=>{b+='<div style="margin-top:10px;font-family:\'Segoe UI\',system-ui,sans-serif;font-size:15.5px"><div class="small"><b>'+x[0]+' 책</b></div><div>'+esc(x[1])+'</div><div style="text-align:center;color:var(--mu);font-size:18px;line-height:1.3">&darr;</div><div class="small"><b>'+x[0]+' 앱</b></div><div>'+esc(x[2])+'</div></div>'});
   b+='</div>';
   return tog?b+'<button class="link" onclick="openV['+it.no+']=false;sheet()">접기</button>':b}
+function readScreen(){const ch=RF[SID];let h='<div class="nav"><a href="omr.html">&larr; 세트 목록</a><span class="small">'+esc(DATA.label)+'</span></div><h1>지문 먼저 읽기</h1><p class="sub">이 세트의 지문은 책(2쇄) 기준이라 시험지와 일부 문장이 달라요. 표시한 문장이 달라진 곳이에요. 충분히 읽은 뒤 답을 입력하세요.</p><div class="card" style="line-height:1.85">';DATA.passage.forEach((s,i)=>{h+=(ch.indexOf(i)>=0?'<mark>'+esc(s)+'</mark>':esc(s))+' '});h+='</div><p class="small"><mark>표시</mark> = 시험지 원문과 다른 문장</p><button class="btn" onclick="M.read=true;rd=false;osave();sheet()">다 읽었어요, 답 입력하기</button>';$.innerHTML=h;window.scrollTo(0,0)}
 function sheet(){
+  if(RF[SID]&&(!M.read||rd)){readScreen();return}
   const n=items.filter(x=>M.marks[x.no]&&M.marks[x.no].split(',').length>=(qOf(x).multi||1)).length;
-  let h='<div class="nav"><a href="omr.html">&larr; 세트 목록</a><span class="small">'+esc(DATA.label)+'</span></div><h1>OMR 답안 입력</h1><p class="sub">시험지에서 푼 1~10번 답을 눌러 입력하세요. 나갔다 들어와도 입력한 답이 남아 있어요. 책의 문제가 바뀐 번호에는 새 문제가 나와요. 그 문제를 읽고 답하세요. 모두 입력하면 제출할 수 있어요.</p><p class="small">책의 선지 문구가 고쳐진 번호에는 "책이라면 확인하세요" 표시가 있어요. 눌러서 달라진 곳을 확인하세요. 정답 번호는 같으니 책에서 푼 답을 그대로 입력하면 돼요.</p><div class="card"><ul class="omr">';
+  let h='<div class="nav"><a href="omr.html">&larr; 세트 목록</a><span class="small">'+esc(DATA.label)+'</span></div><h1>OMR 답안 입력</h1>'+(RF[SID]?'<button class="link" onclick="rd=true;sheet()">지문 다시 읽기</button>':'')+'<p class="sub">시험지에서 푼 1~10번 답을 눌러 입력하세요. 나갔다 들어와도 입력한 답이 남아 있어요. 책의 문제가 바뀐 번호에는 새 문제가 나와요. 그 문제를 읽고 답하세요. 모두 입력하면 제출할 수 있어요.</p><p class="small">책의 선지 문구가 고쳐진 번호에는 "책이라면 확인하세요" 표시가 있어요. 눌러서 달라진 곳을 확인하세요. 정답 번호는 같으니 책에서 푼 답을 그대로 입력하면 돼요.</p><div class="card"><ul class="omr">';
   items.forEach(it=>{h+='<li><div class="r"><span class="n">'+it.no+'</span>'+CN.map(c=>'<button class="bub '+(has(it.no,c)?'on':'')+'" onclick="mark('+it.no+',\''+c+'\')">'+c+'</button>').join('')+'</div>';
     if(it.alt){h+='<div style="margin-top:8px;padding:10px 12px;border:2px solid var(--bad);border-radius:10px;background:var(--badbg)"><b style="color:var(--bad)">'+it.no+'번은 책의 문제가 바뀐 번호예요</b><div class="small" style="margin-top:4px">'+esc(it.notice)+'</div></div><button class="link" onclick="openAlt=!openAlt;sheet()">'+(openAlt?'문제 접기':it.no+'번 문제 열어보기')+'</button>';
       if(openAlt){const q=it.alt;h+='<div class="stem">'+esc(q.stem)+'</div>'+(q.sentence?'<div class="sent">'+esc(q.sentence)+'</div>':'')+q.choices.map((c,i)=>'<div class="ch" style="border-color:var(--ln)"><b>'+CN[i]+'</b>'+esc(c.en)+'</div>').join('')+'<div class="small">지문은 책의 같은 세트 지문과 같아요.</div>'}}
