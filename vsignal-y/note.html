@@ -2,7 +2,7 @@
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f766e">
-<title>V시그널 Y단계 - 오늘 오답노트</title>
+<title>V시그널 Y단계 - 오답노트</title>
 <style>
 :root{--bg:#f4f6f8;--sf:#fff;--fg:#14202b;--mu:#566474;--ln:#d9e0e7;--ac:#0f766e;--acbg:#ccfbf1;--ok:#15803d;--okbg:#e3f4e8;--warn:#b45309;--warnbg:#fef3c7;--del:#9f1239;--delbg:#fde8ec;--new:#166534;--newbg:#dcf5e3}
 @media(prefers-color-scheme:dark){:root{--bg:#0e141b;--sf:#17212b;--fg:#e6ebf0;--mu:#9aa8b6;--ln:#2a3744;--ac:#2dd4bf;--acbg:#0f3a36;--ok:#4ade80;--okbg:#15301f;--warn:#fbbf24;--warnbg:#46330a;--del:#fda4af;--delbg:#4a1d28;--new:#86efac;--newbg:#15301f}}
@@ -95,10 +95,10 @@ span.vw{cursor:default}
 const WLK='vsig-y-wl-v1';
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
 function wlD(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
-var L=[];try{L=(JSON.parse(localStorage.getItem(WLK)||'{}')[wlD()])||[]}catch(e){}
-var d=new Date(),wd='일월화수목금토'[d.getDay()];
-var h='<div class="top"><a href="./" style="color:var(--ac);text-decoration:none;padding:6px 0">&larr; Y단계 홈</a></div><h1>오늘 오답노트</h1><p class="sub">'+(d.getMonth()+1)+'/'+d.getDate()+'('+wd+')</p>';
-if(!L.length){h+='<div class="ncard"><p class="ntt">오늘은 쓸 오답이 없습니다.</p><p class="hint" style="margin:0">틀린 문장이 있으면 여기에 노트에 쓸 내용이 정리됩니다.</p></div>'}
-else{h+='<p class="hint">아래 내용을 그대로 노트에 옮겨 쓰세요. 쓰고 나서 해석을 소리 내어 읽습니다. 오늘 '+L.length+'문장.</p>'+L.map(function(e){return '<div class="ncard"><p class="ntt">'+esc(e.title)+'</p>'+e.html+'</div>'}).join('')}
+var L=[],K='';try{var O=JSON.parse(localStorage.getItem(WLK)||'{}'),ks=Object.keys(O).sort().reverse();for(var i=0;i<ks.length;i++)if(O[ks[i]]&&O[ks[i]].length){K=ks[i];L=O[K];break}}catch(e){}
+var q=K?K.split('-'):null,d=q?new Date(+q[0],+q[1]-1,+q[2]):new Date(),wd='일월화수목금토'[d.getDay()];
+var h='<div class="top"><a href="./" style="color:var(--ac);text-decoration:none;padding:6px 0">&larr; Y단계 홈</a></div><h1>오답노트</h1>'+(K?'<p class="sub">'+(d.getMonth()+1)+'/'+d.getDate()+'('+wd+')에 틀린 문장입니다. 새로 틀린 문장이 생기면 이 노트는 새 것으로 바뀝니다.</p>':'');
+if(!L.length){h+='<div class="ncard"><p class="ntt">쓸 오답이 없습니다.</p><p class="hint" style="margin:0">틀린 문장이 있으면 여기에 노트에 쓸 내용이 정리됩니다.</p></div>'}
+else{h+='<p class="hint">아래 내용을 그대로 노트에 옮겨 쓰세요. 쓰고 나서 해석을 소리 내어 읽습니다. 모두 '+L.length+'문장.</p>'+L.map(function(e){return '<div class="ncard"><p class="ntt">'+esc(e.title)+'</p>'+e.html+'</div>'}).join('')}
 document.getElementById('app').innerHTML=h;
 </script></body></html>
