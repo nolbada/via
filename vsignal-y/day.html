@@ -99,9 +99,11 @@ const SF={"9-6":[9],"17-7":[5],"18-6":[4],"20-6":[5],"24-3":[10],"31-7":[13],"32
 var WLK='vsig-y-wl-v1';
 function wlD(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
 function wlGet(){try{return JSON.parse(localStorage.getItem(WLK)||'{}')}catch(e){return {}}}
-function wlPut(e){try{var o=wlGet(),k=wlD(),L=(o[k]||[]).filter(function(x){return x.id!==e.id});L.push(e);o[k]=L;var ks=Object.keys(o).sort();while(ks.length>10)delete o[ks.shift()];localStorage.setItem(WLK,JSON.stringify(o))}catch(x){}}
-function wlN(){return (wlGet()[wlD()]||[]).length}
-function wlStrip(){var n=wlN();return n?'<a class="wlstrip" href="note.html">오늘 오답노트 '+n+'문장 쓰러 가기</a>':''}
+function wlPut(e){try{var o=wlGet(),k=wlD();Object.keys(o).forEach(function(q){if(q!==k)delete o[q]});var L=(o[k]||[]).filter(function(x){return x.id!==e.id});L.push(e);o[k]=L;var ks=Object.keys(o).sort();while(ks.length>10)delete o[ks.shift()];localStorage.setItem(WLK,JSON.stringify(o))}catch(x){}}
+function wlKey(o){var ks=Object.keys(o).sort().reverse();for(var i=0;i<ks.length;i++)if(o[ks[i]]&&o[ks[i]].length)return ks[i];return ''}
+function wlList(){var o=wlGet(),k=wlKey(o);return k?o[k]:[]}
+function wlN(){return wlList().length}
+function wlStrip(){var n=wlN();return n?'<a class="wlstrip" href="note.html">오답노트 '+n+'문장 쓰러 가기</a>':''}
 const KEY='vsig-y-day-v1';
 let S={};try{S=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
@@ -195,8 +197,8 @@ function scoreHtml(D){const m=D.s.reduce((a,q)=>a+((S[q.id]&&S[q.id].m)||0),0),T
 function todayHtml(D){
  return '<div class="tdy"><div class="tdh">오늘의 문장 · 오답노트에 옮겨 써요</div>'+D.s.map(s=>'<div class="tdi"><div class="tdn">'+D.d+'일 · '+s.n+'번</div>'+s.en.split(' / ').map((e,i)=>'<div class="rw"><div class="re">'+esc(e)+'</div><div class="rk">'+esc(s.ko.split(' / ')[i]||'')+'</div></div>').join('')+'<div class="nat"><b>자연스러운 해석</b>'+esc(s.nat)+'</div>'+dnote(s.id)+cfInline(s.id)+'</div>').join('')+'</div>'}
 function noteBlockY(D){
- const ids=new Set(D.s.map(q=>'d'+q.id)),n=(wlGet()[wlD()]||[]).filter(e=>ids.has(e.id)).length;
- return '<div class="wbox"><div class="wt">오늘 오답노트</div>'+(n?'<p class="wsub">틀린 문장 '+n+'개. 노트에 쓸 내용이 준비되어 있습니다.</p><a class="nbtn" href="note.html">오늘 오답노트 열기</a>':(D.s.some(q=>S[q.id]&&S[q.id].w)?'<p class="wnone">오답노트는 푼 날에만 열립니다. 이 Day의 틀린 문장은 오늘 기록에 없습니다.</p>':'<p class="wnone">이 Day에서 틀린 문장이 없습니다. 오답노트에 쓸 내용이 없습니다.</p>'))+'<button class="tgl" id="tg">오늘의 문장 다시보기</button><div id="tgb" hidden>'+todayHtml(D)+'</div></div>'}
+ const ids=new Set(D.s.map(q=>'d'+q.id)),n=wlList().filter(e=>ids.has(e.id)).length;
+ return '<div class="wbox"><div class="wt">오답노트</div>'+(n?'<p class="wsub">틀린 문장 '+n+'개. 노트에 쓸 내용이 준비되어 있습니다.</p><a class="nbtn" href="note.html">오답노트 열기</a>':(D.s.some(q=>S[q.id]&&S[q.id].w)?'<p class="wnone">이 Day의 틀린 문장은 더 최근 오답노트로 바뀌었습니다.</p>':'<p class="wnone">이 Day에서 틀린 문장이 없습니다. 오답노트에 쓸 내용이 없습니다.</p>'))+'<button class="tgl" id="tg">오늘의 문장 다시보기</button><div id="tgb" hidden>'+todayHtml(D)+'</div></div>'}
 function wrongHtml(D){const L=D.s.filter(q=>S[q.id]&&S[q.id].w);
  if(!L.length)return '<div class="wbox"><div class="wt">오늘 틀린 문장</div><p class="wnone">오늘 틀린 문장이 없습니다. 모두 잘 해냈어요.</p></div>';
  return '<div class="wbox"><div class="wt">오늘 틀린 문장 '+L.length+'개</div><p class="wsub">오답 노트에 영어 문장과 해석을 옮겨 적으세요.</p>'+L.map(q=>'<div class="wrow"><span class="wn">'+q.n+'번</span><div><div class="wen">'+esc(q.en.replace(/ \/ /g,' '))+'</div><div class="wko">'+esc(q.nat||q.ko)+'</div>'+(S[q.id].r?'<div class="wwhy">틀린 부분: '+esc(S[q.id].r)+'</div>':'')+'</div></div>').join('')+'</div>'}
