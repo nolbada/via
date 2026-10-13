@@ -40,7 +40,7 @@ body{background:#0c1f2b!important}</style></head><body><div id="app"></div>
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 function lastPos(){try{return JSON.parse(localStorage.getItem('fbi_last')||'null')}catch(e){return null}}
 const L=lastPos();let rs='';
-if(L){const M={answer:['answer.html','단어 정답'],omr:['omr.html','문제 풀이'],vtest:['vtest.html','단어 시험'],mywords:['mywords.html','내 단어장'],xray:['xray.html#play='+encodeURIComponent(L.id||''),'문장 분석 '+(L.id||'')]}[L.p];
+if(L){const M={answer:['answer.html','단어 정답'],omr:['omr.html'+(L.s?'?s='+encodeURIComponent(L.s):''),'문제 풀이'],vtest:['vtest.html','단어 시험'],mywords:['mywords.html','내 단어장'],xray:['xray.html#play='+encodeURIComponent(L.id||''),'문장 분석 '+(L.id||'')]}[L.p];
  if(M)rs='<a class="resume" style="text-decoration:none" href="'+M[0]+'">이어하기 · '+esc(M[1])+'</a>'}
 document.getElementById('app').innerHTML='<div class="cv-scene"><div class="cv"><div class="cv-fr"></div><div class="cv-t">FBI</div>'
  +'<div class="cv-f">Flow · Blank · Insertion</div><div class="cv-k">순서 배열 · 빈칸 추론 · 문장 삽입</div>'
