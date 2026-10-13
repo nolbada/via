@@ -262,6 +262,7 @@ const dlabel=k=>{const p=k.split('-').map(Number),w='일월화수목금토'[new 
 function wnAdd(k,c){S.wn=S.wn||{};const d=dkey(),a=S.wn[d]=S.wn[d]||[];if(!a.some(x=>x.k===k))a.push({k,c});
  const ks=Object.keys(S.wn).sort();while(ks.length>7)delete S.wn[ks.shift()];}
 const wnCount=()=>((S.wn||{})[dkey()]||[]).length;
+window.VLWN={add:(k,c)=>{wnAdd(k,c);save();}};
 function wnote(sel){
  const ks=Object.keys(S.wn||{}).sort().reverse(),d=sel||dkey(),list=(S.wn||{})[d]||[];
  if(ks.indexOf(dkey())<0)ks.unshift(dkey());
