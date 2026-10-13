@@ -2,7 +2,8 @@
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#14303f">
-<title>FBI 모의고사 앱</title>
+<title>FBI 고2 6월</title>
+<meta name="apple-mobile-web-app-title" content="FBI 고2 6월"><meta name="application-name" content="FBI 고2 6월">
 <style>:root{--nv:#14303f;--nvd:#0c1f2b;--nvm:#1d4357;--co:#f79a85}*{box-sizing:border-box}html,body{margin:0}body{background:var(--nvd);font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;min-height:100vh}button{font-family:inherit}
 
 :root{--nv:#14303f;--nvd:#0c1f2b;--nvm:#1d4357;--co:#f79a85;--cod:#e0715a;--bg:#f4f6f8;--sf:#fff;--fg:#14202b;--mu:#566474;--ln:#d9e0e7;--ok:#15803d;--okbg:#e3f4e8;--bad:#b91c1c;--badbg:#fde8e8;--warn:#b45309;--warnbg:#fef3c7;--ac:#1d4357;--acbg:#e1eef5}
@@ -16,7 +17,7 @@ button{font-family:inherit}
 .cv{position:relative;z-index:2;width:min(92%,calc((100vh - 230px)*.7132));width:min(92%,calc((100dvh - 230px)*.7132));aspect-ratio:900/1262;border-radius:3px 8px 8px 3px;background:radial-gradient(ellipse at 50% 32%,var(--nvm) 0%,var(--nv) 55%,var(--nvd) 100%);box-shadow:0 18px 40px rgba(0,0,0,.5),inset 5px 0 8px rgba(0,0,0,.3),inset 1px 0 0 rgba(255,255,255,.1);container-type:inline-size}
 .cv-fr{position:absolute;inset:5.2% 7.4%;border:1.5px solid rgba(247,154,133,.7);pointer-events:none}
 .cv-t{position:absolute;left:0;right:0;top:25%;text-align:center;font-family:'Arial Black','Impact',system-ui,sans-serif;font-weight:900;font-size:30cqw;letter-spacing:.02em;line-height:1;color:transparent;-webkit-text-stroke:.8cqw var(--co)}
-.cv-f{position:absolute;left:0;right:0;top:61%;text-align:center;font-weight:700;font-size:4cqw;color:var(--co);letter-spacing:.02em}
+.cv-g{position:absolute;left:0;right:0;top:53%;text-align:center;font-weight:800;font-size:6.2cqw;color:#fff;letter-spacing:.04em}.cv-f{position:absolute;left:0;right:0;top:61%;text-align:center;font-weight:700;font-size:4cqw;color:var(--co);letter-spacing:.02em}
 .cv-k{position:absolute;left:0;right:0;top:66%;text-align:center;font-weight:700;font-size:4cqw}
 .cv-m{position:absolute;left:0;right:0;top:77%;text-align:center;font-weight:700;font-size:3.7cqw}
 .cv-ln{position:absolute;left:42.5%;width:15%;top:83%;height:0;border-top:1.5px solid rgba(247,154,133,.85)}
@@ -42,7 +43,7 @@ function lastPos(){try{return JSON.parse(localStorage.getItem('fbi_g2_last')||'n
 const L=lastPos();let rs='';
 if(L){const M={answer:['answer.html','단어 정답'],omr:['omr.html'+(L.s?'?s='+encodeURIComponent(L.s):''),'문제 풀이'],vtest:['vtest.html','단어 시험'],mywords:['mywords.html','내 단어장'],xray:['xray.html#play='+encodeURIComponent(L.id||''),'문장 분석 '+(L.id||'')]}[L.p];
  if(M)rs='<a class="resume" style="text-decoration:none" href="'+M[0]+'">이어하기 · '+esc(M[1])+'</a>'}
-document.getElementById('app').innerHTML='<div class="cv-scene"><div class="cv"><div class="cv-fr"></div><div class="cv-t">FBI</div>'
+document.getElementById('app').innerHTML='<div class="cv-scene"><div class="cv"><div class="cv-fr"></div><div class="cv-t">FBI</div><div class="cv-g">고2 6월</div>'
  +'<div class="cv-f">Flow · Blank · Insertion</div><div class="cv-k">순서 배열 · 빈칸 추론 · 문장 삽입</div>'
  +'<div class="cv-m">모의고사로 풀고, 학교 기출로 연결하자!</div><div class="cv-ln"></div><div class="cv-a">비타민영어클리닉 학원</div></div>'
  +'<div class="cv-rib">'
