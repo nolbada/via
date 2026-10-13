@@ -803,7 +803,7 @@ function logoSvg(){return '<svg viewBox="200 410 500 490" class="cv-logo" aria-h
  +'<polygon points="565,500 638,500 493,790 465,725" fill="url(#gp)"/></svg>';}
 function cover(){
   var e=edNo(),d=curDay();applyEd();
-  app.innerHTML='<div class="cv-scene"><div class="cv" style="container-type:inline-size"><div class="cv-fr"></div><div class="cv-t">V SIGNAL</div>'+logoSvg()+'<div class="cv-s">E'+e+' | E STAGE: EVOLVE (The Flow)</div><div class="cv-ln"></div><div class="cv-a">비타민영어클리닉 학원</div></div>'
+  app.innerHTML='<div class="cv-scene"><div class="cv" style="container-type:inline-size"><div class="cv-fr"></div><div class="cv-t">V SIGNAL</div>'+logoSvg()+'<div class="cv-s">E'+e+' | E STAGE: EVOLVE (The Flow)</div><div class="cv-ln"></div></div>'
    +'<div class="cv-rib">'+TABD.map(function(t){return '<button class="cv-r r-'+t[0]+'" data-act="tab" data-tab="'+t[0]+'"><i></i><span>'+t[1]+'</span><span>'+t[2]+'</span></button>';}).join('')+'</div>'
    +'<div style="width:min(92%,420px);margin-top:14px">'+noteStrip()+'</div>'
    +'<p class="cv-h">책갈피를 눌러 펼쳐요 · 지금 Day '+d+'</p></div>';
