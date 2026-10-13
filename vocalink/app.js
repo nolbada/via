@@ -255,11 +255,27 @@ function cardOf(it){
  }
  return null;
 }
+// ---------- 오늘의 오답노트 (종이 오답노트에 옮겨 쓸 목록) ----------
+const kst=()=>new Date(Date.now()+9*36e5);
+const dkey=()=>{const d=kst();return d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0');};
+const dlabel=k=>{const p=k.split('-').map(Number),w='일월화수목금토'[new Date(Date.UTC(p[0],p[1]-1,p[2])).getUTCDay()];return p[1]+'/'+p[2]+'('+w+')';};
+function wnAdd(k,c){S.wn=S.wn||{};const d=dkey(),a=S.wn[d]=S.wn[d]||[];if(!a.some(x=>x.k===k))a.push({k,c});
+ const ks=Object.keys(S.wn).sort();while(ks.length>7)delete S.wn[ks.shift()];}
+const wnCount=()=>((S.wn||{})[dkey()]||[]).length;
+function wnote(sel){
+ const ks=Object.keys(S.wn||{}).sort().reverse(),d=sel||dkey(),list=(S.wn||{})[d]||[];
+ if(ks.indexOf(dkey())<0)ks.unshift(dkey());
+ $.innerHTML=`<div class="top"><button class="back" id="bk">← 처음으로</button></div><h1>${d===dkey()?'오늘의 오답노트':'오답노트'}</h1><div class="sub">${dlabel(d)} · ${list.length}개</div>
+ ${ks.length>1?`<div class="vt-his">${ks.map(k=>`<button data-k="${k}" class="${k===d?'on':''}">${k===dkey()?'오늘':dlabel(k)}</button>`).join('')}</div>`:''}
+ ${list.length?`<div class="card wn">${list.map((x,i)=>`<div class="wnr"><span class="wnn">${i+1}</span><div>${x.c}</div></div>`).join('')}</div>`:'<div class="card"><b>틀린 단어가 없어요.</b></div>'}`;
+ document.getElementById('bk').onclick=home;
+ $.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>wnote(b.dataset.k));
+}
 function record(correct,extra,silentNext){
  const first=cur.r===undefined;
  S.log.push(Object.assign({id:cur.id,t:cur.t,ok:correct?1:0,at:Date.now()},extra||{}));
  if(S.log.length>2000)S.log=S.log.slice(-2000);
- if(first){srUpdate(wordKey(cur),correct);round.firstN++;if(correct)round.firstOk++;else{const c=cardOf(cur);if(c)round.cards.push(c);}}
+ if(first){srUpdate(wordKey(cur),correct);round.firstN++;if(correct)round.firstOk++;else{const c=cardOf(cur);if(c){round.cards.push(c);wnAdd(wordKey(cur),c);}}}
  if(correct){round.okN++;if(S.weak[cur.id]>0)S.weak[cur.id]-=1;doneN++;}
  else{round.wrongN++;S.weak[cur.id]=2;cur.r=(cur.r||0)+1;
   if(cur.r<=2){cur.tag='방금 틀렸어요 — 바로 한 번 더!';Q.splice(Math.min(3,Q.length),0,cur);}else doneN++;}
@@ -455,7 +471,7 @@ function summary(){
  <div class="sub">이번 사용시간 <b>${fmtT(secs)}</b> (딴 데 다녀온 시간·멈춰 있던 시간은 빼요)</div>
  ${w24?`<div class="fb ok">종이 PART2 「오늘의 어휘력 체크」 <b>1차</b> 칸에 <b>${round.firstOk}</b> 를 적어요.</div>`:''}
  <div class="sub">틀린 문제는 내일부터 '왜 자꾸 날 잊어?'로 다시 돌아와요.</div></div>
- ${cardsHtml()}<button class="btn pri" id="h">처음으로</button>`;document.getElementById('h').onclick=home;
+ ${cardsHtml()}${round.cards.length?'<button class="btn" id="wn">오늘의 오답노트 보기</button> ':''}<button class="btn pri" id="h">처음으로</button>`;document.getElementById('h').onclick=home;const wb=document.getElementById('wn');if(wb)wb.onclick=()=>wnote();
 }
 function stats(){
  const by={};S.log.forEach(l=>{const b=by[l.t]=by[l.t]||{n:0,ok:0};b.n++;b.ok+=l.ok;});
@@ -463,9 +479,11 @@ function stats(){
  $.innerHTML=`<div class="top"><button class="back" id="bk">← 처음으로</button></div><h1>내 기록</h1>
  <div class="card"><table><tr><th>영역</th><th>푼 수</th><th>정답률</th></tr>
  ${Object.keys(NAME).map(k=>`<tr><td>${NAME[k]}</td><td>${(by[k]||{n:0}).n}</td><td>${by[k]?Math.round(by[k].ok/by[k].n*100)+'%':'-'}</td></tr>`).join('')}</table></div>
+ <div class="card"><h2>오늘의 오답노트</h2><div class="sub">오늘 틀린 단어 <b>${wnCount()}</b>개</div><button class="btn pri" id="wnb">오답노트 열기</button></div>
  <div class="card"><h2>총 사용시간</h2><div><b>${fmtT(S.totalSec||0)}</b></div></div>
  <div class="card"><h2>선생님께 보내기</h2><div class="sub">아래 버튼으로 복사해서 카톡으로 보내요.</div><button class="btn pri" id="cp">기록 코드 복사</button></div>`;
  document.getElementById('bk').onclick=home;
+ document.getElementById('wnb').onclick=()=>wnote();
  document.getElementById('cp').onclick=()=>{try{navigator.clipboard.writeText(code);document.getElementById('cp').textContent='복사됨!';}catch(e){prompt('복사해 주세요',code);}};
 }
 home();
