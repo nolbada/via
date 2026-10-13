@@ -1479,7 +1479,7 @@ function noteBlock(d){
   return h+'<button class="ghost" style="width:100%;margin-top:8px" data-act="view" data-day="'+d+'">오늘의 문장 다시보기</button></div>';
 }
 function recCard(kind){
-  var h='<div class="rec"><div class="rec-h">V SIGNAL E · 동남비타민영어학원</div>';
+  var h='<div class="rec"><div class="rec-h">V SIGNAL E</div>';
   if(kind==='lesson'){
     var f=S.fin;
     h+='<div class="rec-t">Day '+S.day+' 수업</div><div class="rec-d">'+dateLbl()+' '+timeLbl()+'</div>'
@@ -1538,7 +1538,7 @@ function renderTrk(){
   if(!all&&!isFin)h+='<p class="hint">이 범위에는 아직 뽑을 단어가 없어요. 배운 Day를 늘려 봐요.</p>';
   if(isFin){
     var nS=0;st.items.forEach(function(o){nS+=TRK.items[o.k].s.length;});
-    h+='<div class="rec"><div class="rec-h">V SIGNAL E · 동남비타민영어학원</div><div class="rec-t">보충 · 교재 Part 3</div><div class="rec-d">'+dateLbl(st.fin)+' '+timeLbl(st.fin)+'</div>'
+    h+='<div class="rec"><div class="rec-h">V SIGNAL E</div><div class="rec-t">보충 · 교재 Part 3</div><div class="rec-d">'+dateLbl(st.fin)+' '+timeLbl(st.fin)+'</div>'
      +'<div class="rec-big ok">보충 완료</div><div class="rec-l">단어 '+all+'개 · 문장 '+nS+'개</div>'
      +'<div style="margin-top:8px">'+st.items.map(function(o){var it=TRK.items[o.k];return '<div class="rec-l" style="font-size:14px">Track '+it.t+' · Day '+it.d+' <b>'+esc(it.w)+'</b></div>';}).join('')+'</div>'
      +'<div class="rec-f">이 화면을 캡처해서 선생님과 부모님께 보여 드려요</div></div>';
@@ -1587,7 +1587,7 @@ function renderPop(){
     h+='<button class="primary"'+(all?'':' disabled style="opacity:.45"')+' data-act="popsubmit" style="margin-top:12px">'+(all?'제출':'모두 고르면 제출할 수 있어요')+'</button>';
   }else{
     var wrong=P.qs.filter(function(q){return q.opts[q.pick]!==q.ans;}),pass=wrong.length<=POP_OK;
-    h+='<div class="rec"><div class="rec-h">V SIGNAL E · 동남비타민영어학원</div><div class="rec-t">Pop quiz · '+(P.tr?'Track '+P.tr+' '+esc(TRK.tracks[P.tr]):'전체 트랙')+'</div><div class="rec-sub">교재 Part 3 · Day '+P.day+'까지</div><div class="rec-d">'+dateLbl(P.t)+' '+timeLbl(P.t)+'</div>'
+    h+='<div class="rec"><div class="rec-h">V SIGNAL E</div><div class="rec-t">Pop quiz · '+(P.tr?'Track '+P.tr+' '+esc(TRK.tracks[P.tr]):'전체 트랙')+'</div><div class="rec-sub">교재 Part 3 · Day '+P.day+'까지</div><div class="rec-d">'+dateLbl(P.t)+' '+timeLbl(P.t)+'</div>'
      +'<div class="rec-big '+(pass?'ok':'no')+'">'+(pass?'통과':'추가 숙제')+'</div><div class="rec-l">틀린 것 '+wrong.length+' / '+P.qs.length+'</div>';
     if(!pass){
       var seen={};h+='<div class="rec-l" style="margin-top:8px;text-align:left"><b>추가 숙제</b> · 오늘 틀린 것 공책에 '+PEN_COPIES+'번씩 쓰기 (영어와 우리말)</div>';
