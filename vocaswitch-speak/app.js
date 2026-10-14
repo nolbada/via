@@ -21,6 +21,13 @@
     $('bkinfo').textContent = b ? b : 'UNIT을 선택하세요';
     $('err').textContent = '';
   }
+  (function(){
+    var box = $('books'); box.innerHTML = '';
+    Object.keys(BOOKS).forEach(function(k){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'bk'; b.dataset.b = k;
+      b.textContent = k.replace(/^\D+/, ''); box.appendChild(b);
+    });
+  })();
   document.querySelectorAll('.bk').forEach(function(x){ x.onclick = function(){ setBook(x.dataset.b); }; });
   try { var p = JSON.parse(localStorage.getItem(PKEY) || '{}'); if (p.name) $('name').value = p.name; if (p.book) setBook(p.book); } catch(e){}
 
