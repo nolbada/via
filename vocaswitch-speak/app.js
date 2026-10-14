@@ -215,13 +215,14 @@
       results.forEach(function(r){ w += '<div class="item"><b>' + r.n + '번</b> ' + esc(r.en) + '<div class="ko">' + esc(r.ko) + '</div></div>'; });
       $('writeBox').innerHTML = w;
     } else $('writeBox').innerHTML = '';
+    try{ var lg=JSON.parse(localStorage.getItem(PKEY+'_log')||'[]'); lg.push({t:Date.now(),name:prof.name,unit:prof.book,wrong:wrong,pass:wrong<PEN,picks:results.map(function(r){return r.n;})}); localStorage.setItem(PKEY+'_log',JSON.stringify(lg.slice(-50))); }catch(e){}
     show('sEnd'); if (window.__releaseMic) window.__releaseMic();
   }
   $('againBtn').onclick = function(){ show('sStart'); };
 
   // 음성 인식 (한국어)
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition, rec = null, listening = false;
-  if (!SR){ $('micBtn').textContent = '이 브라우저는 음성 인식이 안 돼요 (크롬을 쓰세요)'; }
+  if (!SR){ $('micBtn').textContent = '이 브라우저는 음성 인식이 안 돼요 (크롬을 쓰세요)'; $('startBtn').disabled = true; $('err').textContent = '이 브라우저는 음성 인식을 지원하지 않아요. 크롬으로 열어 주세요.'; }
   var wantStop = false, silT = null, baseText = '', finalText = '', alts = [], errored = false, micStream = null, handlersSet = false;
   function silenceMs(){ var n = cur ? cur.ko.replace(/\([^)]*\)/g,'').replace(/\s/g,'').length : 20; return Math.min(6000, 2500 + n * 50); }
   // 마이크 허용창이 자꾸 뜨지 않게: 허용 확인은 처음 한 번만 한다
