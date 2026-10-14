@@ -191,6 +191,14 @@ body{touch-action:pan-y pinch-zoom;-webkit-text-size-adjust:100%}
 .ph-grid>div+div{border-left:1px solid var(--line)}
 .ph-grid i{font-style:normal;font-weight:700;font-size:.85rem;color:var(--muted)}
 .ph-grid b{font-size:2.1rem;font-weight:900;line-height:1.1;font-variant-numeric:tabular-nums}
+.mis{display:flex;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--tk);border-radius:12px;padding:12px 14px}
+.mis b{flex:none;background:var(--tk);color:#151415;padding:3px 10px;border-radius:999px;font-size:.78rem;letter-spacing:.04em}
+.mis p{margin:0;font-weight:800;font-size:1rem;line-height:1.4;min-width:0}
+.card>.mis{background:var(--bg)}
+.wl{display:flex;flex-direction:column;gap:2px}
+.wl .mis{margin-bottom:8px;background:var(--bg)}
+.wrow{display:grid;grid-template-columns:48px minmax(0,1fr);gap:0 8px;padding:10px 0;border-bottom:1px solid var(--line)}
+.wrow .no{font-weight:700;font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
@@ -260,6 +268,7 @@ function renderMission(){
   if(!state.t0)state.t0=Date.now();
   var m=M[state.i];
   var card=el('section','card');
+  if(state.i===0&&state.phase==='ask')card.appendChild(el('div','mis','<b>미션 2</b><p>틀린 문제는 책에 번호 체크 + 단어 뜻만</p>'));
   card.appendChild(el('div','prog','<span>미션 '+(state.i+1)+' / '+M.length+'</span><div class="bar"><i style="width:'+(state.i/M.length*100)+'%"></i></div>'));
   card.appendChild(el('h2','word',m.type==='cloze'&&state.phase==='ask'?'빈칸 뜻 고르기':m.w));
   card.appendChild(el('div','pgline','UNIT '+(cur<10?'0':'')+cur+' · '+m.nums.map(function(n){return n+'번'}).join(' ')));
@@ -351,6 +360,7 @@ function renderMemo(){
   var s=MS(u),n=u.cards.length,y=window.pageYOffset;
   var wrap=el('div','memo');
   wrap.appendChild(el('div','mhead','<span class="mk">UNIT '+pad2(cur)+'</span><h2>이것만은 꼭!</h2><p class="msub">핵심 '+n+'가지</p>'));
+  wrap.appendChild(el('div','mis','<b>미션 1</b><p>UNIT '+pad2(cur)+' 여백에 해석 베껴 쓰고 포인트 적기</p>'));
   u.cards.forEach(function(c,i){
     var h='<div class="top2"><span class="nb">'+(i+1)+'</span><p class="tt">'+xs(c.t)+'</p></div><div class="cols"><span>본문</span><span>해석</span></div>';
     c.rows.forEach(function(r){
@@ -364,7 +374,7 @@ function renderMemo(){
     var card=el('section','mc',h);wrap.appendChild(card);
   });
   if(u.egg){wrap.appendChild(el('div','egg2','<label for="fix">#'+u.egg.n+' 문장 어색한 곳 1군데 고쳐 쓰기</label><p class="sent">'+xs(u.egg.wrong)+'</p><input id="fix" type="text" maxlength="80" value="'+xs(s.fix)+'" autocomplete="off">'))}
-  var go=el('div','go','<div class="mis"><b>미션</b><p>UNIT '+pad2(cur)+' 여백에 옮겨 쓰기</p></div>');
+  var go=el('div','go');
   var gb=el('button','primary','스위치 미션 시작');gb.onclick=function(){state.tab='m';render();window.scrollTo(0,0)};
   go.appendChild(gb);wrap.appendChild(go);
   view.appendChild(wrap);
@@ -392,6 +402,11 @@ function renderNote(){
   }
   var photo=el('div','photo','<div class="ph-top"><small>VOCA SWITCH · '+(TRACK==='h'?'HIGH SCHOOL':'CSAT')+'</small><h2>UNIT '+(cur<10?'0':'')+cur+'</h2><span>'+(d.getMonth()+1)+'/'+d.getDate()+'('+dn[d.getDay()]+') '+ftime(d)+'</span></div><div class="ph-grid"><div><i>학습 시간</i><b>'+fdur(state.secs||0)+'</b></div><div><i>첫 시도 정답</i><b>'+state.firstOK+' / '+M.length+'</b></div></div>');
   view.appendChild(photo);
+  var wl=el('div','wl');
+  wl.appendChild(el('div','mis','<b>미션 2</b><p>틀린 문제는 책에 번호 체크 + 단어 뜻만</p>'));
+  if(!items.length)wl.appendChild(el('div','msg ok','틀린 문제 없음'));
+  items.forEach(function(it){wl.appendChild(el('div','wrow','<span class="no">'+it.n+'번</span><span><b class="t">'+it.w+'</b> '+S[it.n][1]+'</span>'))});
+  card.appendChild(wl);
   card.appendChild(memoSummary());
   var b=el('button','primary','해석 코너 열기');
   b.onclick=function(){state.tab='c';render()};
