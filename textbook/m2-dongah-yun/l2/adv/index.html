@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<title>2과 심화 문장 분석</title>
+<style>
+:root{--bg:#f4f6f8;--sf:#fff;--fg:#14202b;--mu:#566474;--ln:#d9e0e7;--ac:#0f766e;--acbg:#ccfbf1;--ok:#15803d;--okbg:#e3f4e8;--bad:#b91c1c;--badbg:#fde8e8;--warn:#b45309;--warnbg:#fef3c7;--core:#0f766e;--corefg:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#0e141b;--sf:#17212b;--fg:#e6ebf0;--mu:#9aa8b6;--ln:#2a3744;--ac:#2dd4bf;--acbg:#0f3a36;--ok:#4ade80;--okbg:#15301f;--bad:#f87171;--badbg:#3a1d1f;--warn:#fbbf24;--warnbg:#46330a;--core:#2dd4bf;--corefg:#04201d}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding:16px 16px 40px}
+h1{font-size:20px;margin:6px 0 2px}.sub{color:var(--mu);font-size:14px;margin:0 0 14px}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:14px;margin-bottom:12px}
+.day{font-weight:700;margin:0 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-width:44px;height:44px;border-radius:10px;border:1.5px solid var(--ln);background:var(--sf);color:var(--fg);font-size:16px;font-weight:700;cursor:pointer}
+.chip.done{background:var(--acbg);border-color:var(--ac)}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.back{background:none;border:none;color:var(--mu);font-size:15px;cursor:pointer;padding:8px 0}
+.q{font-size:16px;font-weight:700;margin:2px 0 14px}
+.sent{font-size:21px;line-height:2.3;font-family:"Segoe UI",system-ui,-apple-system,Roboto,"Malgun Gothic",sans-serif;letter-spacing:.1px}
+.w{display:inline}
+.gap{display:inline-block;min-width:20px;height:30px;vertical-align:middle;margin:0 1px;border:none;background:none;color:var(--ac);font-size:22px;font-weight:700;cursor:pointer;border-radius:6px;padding:0 2px}
+.gap:before{content:"\00b7";color:var(--ln);font-size:22px}
+.gap.on:before{content:"/";color:var(--ac)}
+.gap.ok:before{content:"/";color:var(--ok)}.gap.miss{background:var(--warnbg)}.gap.miss:before{content:"/";color:var(--warn)}
+.gap.extra{background:var(--badbg)}.gap.extra:before{content:"/";color:var(--bad);text-decoration:line-through}
+.btn{display:block;width:100%;height:50px;border:none;border-radius:12px;background:var(--ac);color:var(--corefg);font-size:17px;font-weight:700;cursor:pointer;margin-top:14px}
+.btn:disabled{opacity:.4}
+.msg{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:15px}
+.msg.g{background:var(--okbg)}.msg.n{background:var(--warnbg)}
+.legend{font-size:13px;color:var(--mu);margin-top:8px}
+.chunks{display:flex;flex-direction:column;gap:8px}
+.ck{text-align:left;border:2px solid var(--ln);background:var(--sf);color:var(--fg);border-radius:12px;padding:10px 12px;font-size:18px;cursor:pointer}
+.ck.sel{border-color:var(--core);background:var(--acbg)}
+.ck.core{background:var(--core);color:var(--corefg);border-color:var(--core)}
+.ck.flesh{opacity:.75}
+.ck.wrong{border-color:var(--bad);background:var(--badbg);color:var(--fg)}
+.ck.missed{border-color:var(--warn);border-style:dashed}
+.ko{display:block;font-family:"Malgun Gothic",sans-serif;font-size:15px;margin-top:3px;opacity:.95}
+.tag{float:right;font-size:12px;font-family:"Malgun Gothic",sans-serif;font-weight:700}
+.sumline{font-size:17px;font-weight:700;margin-top:6px}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;background:var(--acbg);font-size:13px;font-weight:700;margin-bottom:8px}
+.small{font-size:13px;color:var(--mu)}
+.reset{background:none;border:none;color:var(--mu);text-decoration:underline;cursor:pointer;font-size:13px;margin-top:10px}
+.ck.target{border-color:#eab308;background:#fef9c3;color:#14202b;cursor:default}
+.ck.mini{padding:6px 10px;font-size:16px}
+.ck.okpick{border-color:var(--ok);background:var(--okbg)}
+.tree{display:flex;flex-direction:column;gap:6px}
+.tn{padding:8px 10px;border:1.5px solid var(--ln);border-radius:10px;font-family:inherit;font-size:16px;background:var(--sf)}
+.tn.tcore{background:var(--core);color:var(--corefg);border-color:var(--core)}
+.arm{color:var(--mu);margin-right:6px}.tcore .arm{color:inherit}
+.te{font-family:inherit}
+.msg .ko{margin-top:4px}
+.w2{display:inline;border:none;background:none;color:inherit;font:inherit;padding:2px 7px;border-radius:6px;cursor:pointer;min-width:30px}
+span.w2{cursor:default}
+.sent{line-height:2.2}
+.hlw{background:#fde047;color:#14202b}
+.okw{background:var(--okbg);outline:2px solid var(--ok)}
+.badw{background:var(--badbg);text-decoration:line-through;opacity:.7}
+.closed{display:inline-block;padding:2px 10px;margin:0 2px;border:1.5px dashed var(--ln);border-radius:8px;color:var(--mu);font-family:'Malgun Gothic',sans-serif;font-size:14px}
+.outw{color:var(--mu);opacity:.75}
+.kidw{background:#fef9c3;color:var(--mu)}
+
+.stg{display:flex;gap:6px;margin:0 0 10px}.stg div{flex:1;text-align:center;font-size:12px;padding:5px 0;border-radius:8px;background:var(--ln);color:var(--mu);font-weight:700}
+.stg div.on{background:var(--ac);color:var(--corefg)}.stg div.ok{background:var(--acbg);color:var(--ac)}
+.ko1{font-size:14px;color:var(--mu);margin:0 0 10px}
+.mask{display:inline-block;min-width:64px;padding:2px 10px;margin:0 3px;border-radius:8px;border:1.5px solid #64748b;font-family:'Malgun Gothic',sans-serif;font-size:14px;font-weight:700;color:#334155;background:repeating-linear-gradient(135deg,#cbd5e1 0 7px,#f1f5f9 7px 14px);vertical-align:middle}
+@media(prefers-color-scheme:dark){.mask{border-color:#94a3b8;color:#e2e8f0;background:repeating-linear-gradient(135deg,#475569 0 7px,#1e293b 7px 14px)}}
+.em{color:#6d28d9;font-weight:800}
+.pat{margin-top:8px}.pth{font-weight:800;margin-bottom:8px}.pr2{display:flex;align-items:flex-start;gap:3px;flex-wrap:wrap}.pp{font-weight:800;padding-top:4px}
+.pb{display:flex;flex-direction:column;align-items:center}.pb b{padding:4px 6px;border-radius:8px;background:var(--sf);border:1.5px solid var(--ln);font-size:14px;white-space:nowrap}.pb i{font-style:normal;font-size:12px;color:var(--mu);margin-top:3px}.pb.cc b{border-color:var(--ac);background:var(--acbg);color:var(--fg)}
+.pr{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;border-top:1px solid var(--ln)}.prt{font-size:18px;flex:1}.prb{display:flex;gap:6px}
+.rb{width:44px;height:44px;border-radius:10px;border:1.5px solid var(--ln);background:var(--sf);color:var(--fg);font-size:16px;font-weight:800;cursor:pointer}
+.rb.ok{background:var(--okbg);border-color:var(--ok)}.rb.no{background:var(--badbg);border-color:var(--bad);opacity:.6}
+@media(prefers-color-scheme:dark){.em{color:#c4b5fd}}
+.vb{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;font-weight:700}
+.sel{background:var(--acbg);outline:2px solid var(--ac)}
+.miss{background:var(--warnbg);outline:2px dashed var(--warn)}
+:root{--n1:#bfdbfe;--n2:#dbeafe;--n3:#eff6ff;--nb:#3b82f6;--a1:#ddd6fe;--a2:#ebe5ff;--a3:#f5f3ff;--ab:#8b5cf6;--v1:#fed7aa;--v2:#ffe6cc;--v3:#fff4e6;--vb:#f97316}
+@media(prefers-color-scheme:dark){:root{--n1:#1f4068;--n2:#1a3354;--n3:#162b47;--nb:#60a5fa;--a1:#3f2d73;--a2:#33265f;--a3:#2a2050;--ab:#a78bfa;--v1:#6b3a12;--v2:#57300f;--v3:#46270f;--vb:#fb923c}}
+.kd0{--c1:var(--n1);--c2:var(--n2);--c3:var(--n3);--cb:var(--nb)}
+.kd1{--c1:var(--a1);--c2:var(--a2);--c3:var(--a3);--cb:var(--ab)}
+.kd2{--c1:var(--v1);--c2:var(--v2);--c3:var(--v3);--cb:var(--vb)}
+.dp1{background:var(--c1)}.dp2{background:var(--c2)}.dp3{background:var(--c3)}
+.tn.kd0,.tn.kd1,.tn.kd2{border-color:var(--cb);border-left-width:7px;color:var(--fg)}
+.kdb{border-left:7px solid var(--cb)}
+.bdr{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
+.bd{display:inline-flex;flex-direction:column;align-items:center;padding:4px 10px;border-radius:10px;border:1.5px solid var(--ln);background:var(--sf);font-weight:700;font-size:15px;line-height:1.3}
+.bd i{font-style:normal;font-size:11px;font-weight:600;color:var(--mu)}
+.bd.kd0,.bd.kd1,.bd.kd2{border-color:var(--cb);color:var(--fg)}
+.bd.skS{border-color:var(--ac)}.bd.skV{border-color:var(--ac);background:var(--acbg)}.bd.skO,.bd.skC{border-color:var(--warn)}
+.bd.hostb{border-style:dashed;border-color:var(--warn);background:var(--warnbg);color:var(--fg)}
+.hostw{border-bottom:3px dashed var(--warn);padding-bottom:4px}.hk{font-weight:700;outline:1.5px dashed var(--warn);outline-offset:1px}.tn.hosttn{border-style:dashed;border-color:var(--warn);background:var(--warnbg);color:var(--fg)}
+.hostt{display:inline-block;margin-top:4px;padding:1px 8px;border:1.5px dashed var(--warn);border-radius:8px;font-size:12px;font-weight:700}
+.fsent{line-height:2.2;margin:8px 0 4px}
+.bd.ing{border-color:#16a34a;background:#dcfce7;color:#14202b}.bd.ppb{border-color:#db2777;background:#fce7f3;color:#14202b}
+@media(prefers-color-scheme:dark){.bd.ing{background:#14532d;color:#e6ebf0}.bd.ppb{background:#4a1d33;color:#e6ebf0}}
+.cmp{display:flex;flex-direction:column;gap:6px;margin:8px 0}.cs{border:1.5px solid var(--ln);border-radius:12px;padding:2px 8px;background:var(--sf)}.cs.off{opacity:.5}.cs.on{border:2px solid var(--ok)}.cs .bdr{margin:6px 0}
+.bd.cc{border-color:var(--ac);background:var(--acbg)}.bd.gapb{border-style:dashed;background:transparent}
+.bd.vbd{border-color:var(--ac);background:var(--acbg)}.bd.em2{border-color:#7c3aed;color:#6d28d9}
+@media(prefers-color-scheme:dark){.bd.em2{color:#c4b5fd;border-color:#a78bfa}}
+.ck .hint{display:block;font-family:'Malgun Gothic',sans-serif;font-size:13px;color:var(--mu);margin-top:2px}
+.ck{font-family:inherit;font-size:16px}
+.seg{display:flex;gap:8px}.seg button{flex:1;height:46px;border-radius:12px;border:1.5px solid var(--ln);background:var(--sf);color:var(--fg);font-size:16px;font-weight:700;cursor:pointer}.seg button.on{background:var(--ac);border-color:var(--ac);color:var(--corefg)}
+.row{display:flex;align-items:center;gap:10px;width:100%;min-height:52px;padding:8px 0;border:none;border-bottom:1px solid var(--ln);background:none;color:var(--fg);text-align:left;cursor:pointer;font-family:inherit}
+.row:last-child{border-bottom:none}.rn{flex:0 0 34px;font-weight:700;color:var(--ac);font-size:17px;text-align:center}.bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:8px;margin-bottom:14px}
+.bk{position:relative;background:var(--sf);border:1.5px solid var(--ln);border-radius:12px;min-height:72px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:var(--fg);font-family:inherit;cursor:pointer}
+.bk .bn{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}.bk .bs{font-size:11px;color:var(--mu);line-height:1.2}.bk .bt{font-size:11px;color:var(--ok);font-weight:700;min-height:14px}
+.bk.star{background:var(--warnbg);border-color:var(--warn)}.bk .bks{position:absolute;top:3px;right:6px;font-size:13px;line-height:1;color:var(--warn)}
+.bk.done{background:var(--okbg);border-color:var(--ok)}
+.rt2{flex:1;min-width:0}.stm{display:block;font-size:13px;line-height:1;color:#d97706}.rs{display:block;font-size:12px;color:var(--mu);margin-top:2px;font-family:inherit}.rt{flex:1;font-size:15px;line-height:1.4;font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rm{flex:0 0 36px;font-size:12px;color:var(--mu);text-align:right}.rm.on{color:var(--ok);font-weight:700}
+.wk{border-bottom:2px dotted #8794a3;cursor:pointer}.wks{border-bottom:2px solid #16a34a;font-weight:700}
+.wkd{margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(120,140,160,.15);font-size:15px;line-height:1.5}.wkm{font-size:13px;opacity:.8}.wsf{font-weight:400;opacity:.75}.wguide{margin:10px 0;padding:10px 12px;border-radius:10px;background:rgba(120,140,160,.15);font-size:14px;line-height:1.6}
+.wlstrip{display:block;margin:0 0 12px;padding:11px 14px;border:2px solid #e0a100;border-radius:12px;background:#fff4d6;color:#5b3d00;font-size:15px;font-weight:800;text-decoration:none}
+</style></head><body><div style="padding:10px 16px 0;font-size:14px"><a href="../" style="color:var(--ac);text-decoration:none;padding:6px 0">&larr; 2과 목록</a></div><div class="wrap" id="app"></div>
+<!--WB:BEGIN--><script>var WD={};var WM={};
+var WBK='tbm2d-l2-wb',WINT=[1,3,7,14,30,60];
+function wbLoad(){try{var o=JSON.parse(localStorage.getItem(WBK)||'null');if(o&&o.w){o.q=o.q||{};return o}}catch(e){}return {v:1,w:{},q:{}}}
+function wbSave(o){try{localStorage.setItem(WBK,JSON.stringify(o))}catch(e){}}
+function wbDay(t){var d=new Date(t||Date.now());d.setHours(0,0,0,0);return d.getTime()}
+function wbDue(box,from){var d=new Date(wbDay(from));d.setDate(d.getDate()+WINT[Math.min(box,WINT.length-1)]);return d.getTime()}
+function wbHas(id){return !!wbLoad().w[id]}
+function wbToggle(id,sent,ix,sid){var o=wbLoad();if(o.w[id]){delete o.w[id];wbSave(o);wbBadge();return false}
+ var e=WD[id];o.w[id]={x:e.x,d:e.d,s:sent,ix:ix,sid:sid,box:0,due:wbDue(0),add:Date.now(),miss:0};wbSave(o);wbBadge();return true}
+function wbEsc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function wbSurf(id,sent,ix){var e=WD[id];if(!sent||!ix)return '';var tk=sent.split(' '),f=ix.map(function(i){return (tk[i]||'').replace(/[^A-Za-z\' -]/g,'')}).join(' ').toLowerCase();return f&&f!==e.t.toLowerCase()?' <span class="wsf">('+wbEsc(f)+')</span>':''}
+function wbInfo(id,sent,ix){var e=WD[id],sf=wbSurf(id,sent,ix);return e.x==='f'?'<b>'+wbEsc(e.t)+'</b>'+sf+' '+wbEsc(e.m):'<b>'+wbEsc(e.t)+'</b>'+sf+' ('+wbEsc(e.p)+') '+wbEsc(e.k)}
+function wbWkd(d){var w='일월화수목금토'[d.getDay()];return (d.getMonth()+1)+'/'+d.getDate()+'('+w+')'}
+function wkBind(root,key,tok){
+ var ms=WM[key];if(!root||!ms||!tok)return;
+ var map={};ms.forEach(function(m){m[0].forEach(function(i){if(map[i]==null)map[i]=m})});
+ if(!Object.keys(map).length)return;
+ var bar=document.createElement('div');bar.className='wkd';bar.innerHTML='밑줄 친 단어는 책에 나온 단어입니다. 한 번 누르면 내 단어장에 담기고, 다시 누르면 빠집니다. 담기는 형태는 원형입니다.';
+ root.parentNode.insertBefore(bar,root.nextSibling);
+ var sent=tok.join(' ');
+ function paint(){root.querySelectorAll('[data-i]').forEach(function(sp){var m=map[+sp.dataset.i];if(m&&wbHas(m[1]))sp.classList.add('wks');else sp.classList.remove('wks')})}
+ root.querySelectorAll('[data-i]').forEach(function(sp){var m=map[+sp.dataset.i];if(!m)return;sp.classList.add('wk');
+  sp.addEventListener('click',function(ev){ev.stopPropagation();var on=wbToggle(m[1],sent,m[0],key);paint();bar.innerHTML=wbInfo(m[1],sent,m[0])+'<br><span class="wkm">'+(on?'내 단어장에 담았습니다.':'내 단어장에서 뺐습니다.')+'</span>'})});
+ paint();
+}
+function wbHashStr(s){var h=0;for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0}return (h>>>0).toString(36)}
+function wbAddQ(it,q){var o=wbLoad(),id=it.k+'|'+wbHashStr(JSON.stringify(q));
+ if(!o.q[id]){o.q[id]={k:it.k,ko:it.ko||'',nos:it.nos||[],q:q,box:0,due:wbDue(0),add:Date.now(),miss:1};
+  var ks=Object.keys(o.q);if(ks.length>300){ks.sort(function(a,b){return o.q[a].add-o.q[b].add});delete o.q[ks[0]]}}
+ else{o.q[id].miss=(o.q[id].miss||0)+1;o.q[id].box=0;o.q[id].due=wbDue(0)}
+ wbSave(o);return id}
+function wbQDone(id,ok){var o=wbLoad(),e=o.q[id];if(!e)return;
+ if(ok){if(e.box>=WINT.length-1){delete o.q[id]}else{e.box++;e.due=wbDue(e.box)}}
+ else{e.box=0;e.miss=(e.miss||0)+1;e.due=wbDue(0)}
+ wbSave(o)}
+function wbBadge(){var el=document.getElementById('wlink');if(el)el.textContent='내 단어장 '+Object.keys(wbLoad().w).length+'개'}
+wbBadge();
+</script><!--WB:END-->
+<script>
+const S=[{"lv": "심화", "id": "2-1", "sec": "문자 메시지와 의사소통", "tok": ["Texting", "is", "the", "main", "way", "of", "communication", "for", "many", "people", "these", "days,", "especially", "for", "teenagers."], "ch": ["Texting", "is", "the main way", "of communication", "for many people", "these days,", "especially for teenagers."], "ko": ["문자 메시지 보내기는", "이다", "주된 방법", "의사소통의", "많은 사람들에게", "요즘", "특히 십 대들에게"], "nodes": [{"id": "m", "a": 0, "b": 15, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "kids": [], "S": [0], "V": [1], "G": [[1]], "form": 2, "note": "Texting is the main way. 주어 + 동사 + 보어, 2형식입니다. Texting = the main way, 같은 대상입니다. of communication, for many people, these days, especially for teenagers는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1]}, {"r": "C", "g": [2, 3, 4]}], "fl": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]}], "dec": {"0": "동명사(~하는 것)라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "Texting", "t": "ger", "reason": "Texting은 문장의 주어 자리에 온 동명사(~하는 것)입니다.", "g": [0]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-2", "sec": "문자 메시지와 의사소통", "tok": ["Do", "you", "want", "to", "know", "how", "you", "can", "communicate", "better", "through", "texting?"], "ch": ["Do", "you", "want", "to know how you can communicate better through texting?"], "ko": ["", "당신은", "원하는가?", "문자 메시지를 통해 어떻게 더 잘 의사소통할 수 있는지 아는 것을"], "nodes": [{"id": "m", "a": 0, "b": 12, "own": [0, 1, 2, 3, 4], "kids": [[5, 12]], "S": [1], "V": [0, 2], "G": [[0, 2]], "form": 3, "note": "You want to know. 주어 + 동사 + 목적어, 3형식입니다. want의 목적어는 to know예요. Do는 질문을 만드는 말입니다.", "sk": [{"r": "S", "g": [1]}, {"r": "V", "g": [0, 2]}, {"r": "O", "g": [3, 4]}], "fl": []}, {"id": "a", "a": 5, "b": 12, "own": [5, 6, 7, 8, 9, 10, 11], "kids": [], "S": [6], "V": [7, 8], "G": [[7, 8]], "kind": "명사절", "sub": "목적어", "gv": [["know", "동사"]], "note": "know 뒤의 how절이 know의 목적어(알고 싶은 내용)입니다. how는 \"어떻게\"라는 뜻의 의문사예요."}], "dec": {"3": "to부정사의 일부라서 문장의 동사가 아닙니다.", "4": "to부정사의 일부라서 문장의 동사가 아닙니다.", "11": "동명사(~하는 것)라서 문장의 동사가 아닙니다."}, "vn": "Do you want은 질문하는 문장이에요. Do는 질문을 만드는 말이라 want와 함께 한 덩어리 동사로 눌러요.", "nf": [{"w": "to know", "t": "to", "use": "명사적 용법", "reason": "to know ...는 want의 목적어(~하는 것)라서 명사적 용법입니다.", "pat": {"h": "want + to부정사", "p": [["want", "동사"], ["to know", "목적어"]]}, "g": [3, 4]}, {"w": "texting", "t": "ger", "reason": "through는 전치사라서 뒤에 -ing가 옵니다. texting은 동명사예요.", "g": [11]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-3", "sec": "문자 메시지와 의사소통", "tok": ["Here", "are", "some", "useful", "tips."], "ch": ["Here", "are", "some useful tips."], "ko": ["여기에", "있다", "몇 가지 유용한 팁이"], "nodes": [{"id": "m", "a": 0, "b": 5, "own": [0, 1, 2, 3, 4], "kids": [], "S": [2, 3, 4], "V": [1], "G": [[1]], "form": 1, "note": "Here are some useful tips. 주어 + 동사, 1형식입니다. 진짜 주어는 some useful tips이고, Here는 \"여기\"라는 뜻의 꾸미는 말입니다.", "sk": [{"r": "V", "g": [1]}, {"r": "S", "g": [2, 3, 4]}], "fl": [0]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-4", "sec": "1. 누구와 이야기하는지 알기", "tok": ["You", "need", "to", "know", "who", "you", "are", "talking", "to."], "ch": ["You", "need", "to know who you are talking to."], "ko": ["당신은", "필요하다", "당신이 누구와 이야기하고 있는지 아는 것이"], "nodes": [{"id": "m", "a": 0, "b": 9, "own": [0, 1, 2, 3], "kids": [[4, 9]], "S": [0], "V": [1], "G": [[1]], "form": 3, "note": "You need to know. 주어 + 동사 + 목적어, 3형식입니다. need의 목적어는 to know예요.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1]}, {"r": "O", "g": [2, 3]}], "fl": []}, {"id": "a", "a": 4, "b": 9, "own": [4, 5, 6, 7, 8], "kids": [], "S": [5], "V": [6, 7], "G": [[6, 7]], "kind": "명사절", "sub": "목적어", "gv": [["know", "동사"]], "note": "know 뒤의 who절이 know의 목적어(알아야 할 내용)입니다. who는 \"누구\"라는 뜻의 의문사이고, talking to의 목적어 자리에서 앞으로 나왔어요."}], "dec": {"2": "to부정사의 일부라서 문장의 동사가 아닙니다.", "3": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "to know", "t": "to", "use": "명사적 용법", "reason": "to know ...는 need의 목적어(~하는 것)라서 명사적 용법입니다.", "pat": {"h": "need + to부정사", "p": [["need", "동사"], ["to know", "목적어"]]}, "g": [2, 3]}], "em": [], "nfx": {"7": "are talking은 진행형(be + -ing)이라서 한 덩어리 동사예요. 준동사가 아닙니다."}, "note2": ""}, {"lv": "심화", "id": "2-5", "sec": "1. 누구와 이야기하는지 알기", "tok": ["Henry", "just", "sent", "the", "following", "text", "message", "to", "his", "mother."], "ch": ["Henry", "just sent", "the following text message", "to his mother."], "ko": ["Henry는", "방금 보냈다", "다음과 같은 문자 메시지를", "자신의 엄마에게"], "nodes": [{"id": "m", "a": 0, "b": 10, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "kids": [], "S": [0], "V": [2], "G": [[2]], "form": 3, "note": "Henry sent the following text message. 주어 + 동사 + 목적어, 3형식입니다. just와 to his mother는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [2]}, {"r": "O", "g": [3, 4, 5, 6]}], "fl": [1, 7, 8, 9]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {"4": "following은 \"다음의\"라는 뜻의 형용사예요. the 뒤에서 message를 꾸미는 말이고, 준동사로 따로 묻지 않아요."}, "note2": ""}, {"lv": "심화", "id": "2-6", "sec": "1. 누구와 이야기하는지 알기", "tok": ["Mom,", "I", "want", "you", "to", "wait", "just", "a", "little", "longer."], "ch": ["Mom,", "I", "want", "you", "to wait just a little longer."], "ko": ["엄마", "저는", "원한다", "엄마가", "조금만 더 기다리기를"], "nodes": [{"id": "m", "a": 0, "b": 10, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "kids": [], "S": [1], "V": [2], "G": [[2]], "form": 5, "note": "I want you to wait. 주어 + 동사 + 목적어 + 목적격보어, 5형식입니다. you가 to wait하는 관계(주술 관계)예요. Mom은 부르는 말이고, just a little longer는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [1]}, {"r": "V", "g": [2]}, {"r": "O", "g": [3]}, {"r": "C", "g": [4, 5]}], "fl": [0, 6, 7, 8, 9]}], "dec": {"4": "to부정사의 일부라서 문장의 동사가 아닙니다.", "5": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "to wait", "t": "to", "use": "명사적 용법", "reason": "to wait ...는 목적격보어 자리라서 명사적 용법입니다.", "pat": {"h": "want + 목적어 + to부정사", "p": [["want", "동사"], ["you", "목적어"], ["to wait", "목적격보어"]]}, "g": [4, 5]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-7", "sec": "1. 누구와 이야기하는지 알기", "tok": ["Do", "you", "think", "Henry’s", "mother", "correctly", "understood", "BRT?"], "ch": ["Do", "you", "think", "Henry’s mother correctly understood BRT?"], "ko": ["", "당신은", "생각하는가?", "Henry의 엄마가 BRT를 정확히 이해했다고"], "nodes": [{"id": "m", "a": 0, "b": 8, "own": [0, 1, 2], "kids": [[3, 8]], "S": [1], "V": [0, 2], "G": [[0, 2]], "form": 3, "note": "You think that절. 주어 + 동사 + 목적어, 3형식입니다. think의 목적어는 that이 생략된 절 전체예요. Do는 질문을 만드는 말입니다.", "sk": [{"r": "S", "g": [1]}, {"r": "V", "g": [0, 2]}], "fl": []}, {"id": "a", "a": 3, "b": 8, "own": [3, 4, 5, 6, 7], "kids": [], "S": [3, 4], "V": [6], "G": [[6]], "kind": "명사절", "sub": "목적어", "gv": [["think", "동사"]], "om": "that", "note": "think 뒤에 접속사 that이 생략되어 있고, 이 절이 think의 목적어(생각하는 내용)입니다."}], "dec": {}, "vn": "Do you think는 질문하는 문장이에요. Do는 질문을 만드는 말이라 think와 함께 한 덩어리 동사로 눌러요.", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-9", "sec": "1. 누구와 이야기하는지 알기", "tok": ["You", "can", "use", "expressions", "like", "BRT", "(be", "right", "there),", "JK", "(just", "kidding),", "or", "LOL", "(laughing", "out", "loud)", "when", "you", "text", "your", "friends."], "ch": ["You", "can use", "expressions", "like BRT (be right there), JK (just kidding), or LOL (laughing out loud)", "when", "you", "text", "your friends."], "ko": ["당신은", "사용할 수 있다", "표현들을", "BRT(곧 갈게), JK(농담이야), 또는 LOL(소리 내어 웃음) 같은", "~할 때", "당신이", "문자 메시지를 보낼", "친구들에게"], "nodes": [{"id": "m", "a": 0, "b": 22, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], "kids": [[17, 22]], "S": [0], "V": [1, 2], "G": [[1, 2]], "form": 3, "note": "You can use expressions. 주어 + 동사 + 목적어, 3형식입니다. like BRT (be right there), JK (just kidding), or LOL (laughing out loud)는 expressions를 꾸미고, when you text your friends는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1, 2]}, {"r": "O", "g": [3]}], "fl": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}, {"id": "a", "a": 17, "b": 22, "own": [17, 18, 19, 20, 21], "kids": [], "S": [18], "V": [19], "G": [[19]], "kind": "부사절", "sub": "시간"}], "dec": {"6": "(be right there)는 BRT의 뜻풀이라서 문장의 동사가 아닙니다.", "11": "(just kidding)은 JK의 뜻풀이라서 문장의 동사가 아닙니다.", "14": "(laughing out loud)는 LOL의 뜻풀이라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [], "em": [], "nfx": {"11": "(just kidding)은 JK의 뜻풀이예요. 약어를 풀어 쓴 말이라서 준동사로 따로 묻지 않아요.", "14": "(laughing out loud)는 LOL의 뜻풀이예요. 약어를 풀어 쓴 말이라서 준동사로 따로 묻지 않아요."}, "note2": ""}, {"lv": "심화", "id": "2-11", "sec": "1. 누구와 이야기하는지 알기", "tok": ["You", "need", "to", "understand", "that", "some", "of", "them", "may", "not", "know", "the", "meanings", "of", "such", "expressions."], "ch": ["You", "need", "to understand that some of them may not know the meanings of such expressions."], "ko": ["당신은", "필요하다", "그들 중 일부가 이런 표현의 의미를 모를 수도 있다는 것을 이해하는 것이"], "nodes": [{"id": "m", "a": 0, "b": 16, "own": [0, 1, 2, 3], "kids": [[4, 16]], "S": [0], "V": [1], "G": [[1]], "form": 3, "note": "You need to understand. 주어 + 동사 + 목적어, 3형식입니다. need의 목적어는 to understand예요.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1]}, {"r": "O", "g": [2, 3]}], "fl": []}, {"id": "a", "a": 4, "b": 16, "own": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "kids": [], "S": [5, 6, 7], "V": [8, 9, 10], "G": [[8, 9, 10]], "kind": "명사절", "sub": "목적어", "gv": [["understand", "동사"]], "note": "understand 뒤의 that절이 understand의 목적어(이해할 내용)입니다."}], "dec": {"2": "to부정사의 일부라서 문장의 동사가 아닙니다.", "3": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "to understand", "t": "to", "use": "명사적 용법", "reason": "to understand ...는 need의 목적어(~하는 것)라서 명사적 용법입니다.", "pat": {"h": "need + to부정사", "p": [["need", "동사"], ["to understand", "목적어"]]}, "g": [2, 3]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-12", "sec": "2. 이모지를 다르게 쓰는 사람들", "tok": ["You", "need", "to", "understand", "that", "people", "use", "emojis", "differently."], "ch": ["You", "need", "to understand that people use emojis differently."], "ko": ["당신은", "필요하다", "사람들이 이모지를 다르게 사용한다는 점을 이해하는 것이"], "nodes": [{"id": "m", "a": 0, "b": 9, "own": [0, 1, 2, 3], "kids": [[4, 9]], "S": [0], "V": [1], "G": [[1]], "form": 3, "note": "You need to understand. 주어 + 동사 + 목적어, 3형식입니다. need의 목적어는 to understand예요.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1]}, {"r": "O", "g": [2, 3]}], "fl": []}, {"id": "a", "a": 4, "b": 9, "own": [4, 5, 6, 7, 8], "kids": [], "S": [5], "V": [6], "G": [[6]], "kind": "명사절", "sub": "목적어", "gv": [["understand", "동사"]], "note": "understand 뒤의 that절이 understand의 목적어(이해할 내용)입니다."}], "dec": {"2": "to부정사의 일부라서 문장의 동사가 아닙니다.", "3": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "to understand", "t": "to", "use": "명사적 용법", "reason": "to understand ...는 need의 목적어(~하는 것)라서 명사적 용법입니다.", "pat": {"h": "need + to부정사", "p": [["need", "동사"], ["to understand", "목적어"]]}, "g": [2, 3]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-13", "sec": "2. 이모지를 다르게 쓰는 사람들", "tok": ["Yesterday,", "Jisu", "gave", "a", "birthday", "gift", "to", "her", "little", "brother", "Jihoo."], "ch": ["Yesterday,", "Jisu", "gave", "a birthday gift", "to her little brother Jihoo."], "ko": ["어제", "지수는", "주었다", "생일 선물을", "그녀의 남동생 지후에게"], "nodes": [{"id": "m", "a": 0, "b": 11, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "kids": [], "S": [1], "V": [2], "G": [[2]], "form": 3, "note": "Jisu gave a birthday gift. 주어 + 동사 + 목적어, 3형식입니다. Yesterday와 to her little brother Jihoo는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [1]}, {"r": "V", "g": [2]}, {"r": "O", "g": [3, 4, 5]}], "fl": [0, 6, 7, 8, 9, 10]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-14", "sec": "2. 이모지를 다르게 쓰는 사람들", "tok": ["Later,", "she", "got", "the", "following", "text", "message."], "ch": ["Later,", "she", "got", "the following text message."], "ko": ["이후에", "그녀는", "받았다", "다음과 같은 문자 메시지를"], "nodes": [{"id": "m", "a": 0, "b": 7, "own": [0, 1, 2, 3, 4, 5, 6], "kids": [], "S": [1], "V": [2], "G": [[2]], "form": 3, "note": "She got the following text message. 주어 + 동사 + 목적어, 3형식입니다. Later는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [1]}, {"r": "V", "g": [2]}, {"r": "O", "g": [3, 4, 5, 6]}], "fl": [0]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {"4": "following은 \"다음의\"라는 뜻의 형용사예요. the 뒤에서 message를 꾸미는 말이고, 준동사로 따로 묻지 않아요."}, "note2": ""}, {"lv": "심화", "id": "2-15", "sec": "2. 이모지를 다르게 쓰는 사람들", "tok": ["I", "loved", "your", "gift."], "ch": ["I", "loved", "your gift."], "ko": ["나는", "아주 좋아했다", "네 선물을"], "nodes": [{"id": "m", "a": 0, "b": 4, "own": [0, 1, 2, 3], "kids": [], "S": [0], "V": [1], "G": [[1]], "form": 3, "note": "I loved your gift. 주어 + 동사 + 목적어, 3형식입니다.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1]}, {"r": "O", "g": [2, 3]}], "fl": []}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-17", "sec": "2. 이모지를 다르게 쓰는 사람들", "tok": ["“Only", "one", "smiling", "face", "(:))?", "I", "guess", "he", "didn’t", "like", "my", "gift,”", "Jisu", "thought."], "ch": ["“Only one smiling face (:))? I guess he didn’t like my gift,”", "Jisu", "thought."], "ko": ["“웃는 얼굴(:))이 하나뿐이네? 내 선물이 마음에 안 들었나 봐.”라고", "지수는", "생각했다"], "nodes": [{"id": "m", "a": 0, "b": 14, "own": [12, 13], "kids": [[0, 12]], "S": [12], "V": [13], "G": [[13]], "form": 3, "note": "Jisu thought 따옴표 안의 말. 주어 + 동사 + 목적어, 3형식입니다. thought의 목적어는 따옴표 안의 말 전체예요.", "sk": [{"r": "S", "g": [12]}, {"r": "V", "g": [13]}], "fl": []}, {"id": "a", "a": 0, "b": 12, "own": [0, 1, 2, 3, 4, 5, 6], "kids": [[7, 12]], "S": [5], "V": [6], "G": [[6]], "kind": "명사절", "sub": "목적어", "note": "따옴표 안의 말 전체가 thought의 목적어(생각한 내용)입니다. 안쪽에서는 I guess가 중심이에요."}, {"id": "b", "a": 7, "b": 12, "own": [7, 8, 9, 10, 11], "kids": [], "S": [7], "V": [8, 9], "G": [[8, 9]], "kind": "명사절", "sub": "목적어", "gv": [["guess", "동사"]], "om": "that", "note": "guess 뒤에 접속사 that이 생략되어 있고, 이 절이 guess의 목적어(짐작하는 내용)입니다."}], "dec": {"2": "분사라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "smiling", "t": "part", "who": "face", "base": "smile", "ing": "smiling", "pp": "smiled", "ans": "ing", "reason": "face가 직접 웃는 능동 관계라서 현재분사 smiling이에요.", "g": [2]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-18", "sec": "2. 이모지를 다르게 쓰는 사람들", "tok": ["When", "we", "talk", "with", "someone,", "we", "use", "not", "only", "words", "but", "also", "facial", "expressions", "and", "body", "language."], "ch": ["When", "we", "talk", "with someone,", "we", "use", "not only words but also facial expressions and body language."], "ko": ["~할 때", "우리가", "이야기할", "누군가와", "우리는", "사용한다", "말뿐만 아니라 얼굴 표정과 몸짓 언어도"], "nodes": [{"id": "m", "a": 0, "b": 17, "own": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], "kids": [[0, 5]], "S": [5], "V": [6], "G": [[6]], "form": 3, "note": "We use not only words but also facial expressions and body language. 주어 + 동사 + 목적어, 3형식입니다. When we talk with someone은 꾸미는 말입니다.", "sk": [{"r": "S", "g": [5]}, {"r": "V", "g": [6]}, {"r": "O", "g": [7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}], "fl": []}, {"id": "a", "a": 0, "b": 5, "own": [0, 1, 2, 3, 4], "kids": [], "S": [1], "V": [2], "G": [[2]], "kind": "부사절", "sub": "시간"}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-19", "sec": "2. 이모지를 다르게 쓰는 사람들", "tok": ["In", "texting,", "we", "use", "emojis", "instead."], "ch": ["In texting,", "we", "use", "emojis", "instead."], "ko": ["문자 메시지를 보낼 때", "우리는", "사용한다", "이모지를", "대신"], "nodes": [{"id": "m", "a": 0, "b": 6, "own": [0, 1, 2, 3, 4, 5], "kids": [], "S": [2], "V": [3], "G": [[3]], "form": 3, "note": "We use emojis. 주어 + 동사 + 목적어, 3형식입니다. In texting과 instead는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [2]}, {"r": "V", "g": [3]}, {"r": "O", "g": [4]}], "fl": [0, 1, 5]}], "dec": {"1": "동명사(~하는 것)라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "texting", "t": "ger", "reason": "In은 전치사라서 뒤에 -ing가 옵니다. texting은 동명사예요.", "g": [1]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-20", "sec": "2. 이모지를 다르게 쓰는 사람들", "tok": ["Sometimes,", "a", "little", "emoji", "like", ":)", "can", "speak", "louder", "than", "many", "words."], "ch": ["Sometimes,", "a little emoji", "like :)", "can speak", "louder than many words."], "ko": ["때때로", "작은 이모지가", ":) 같은", "말할 수 있다", "많은 말보다 더 크게"], "nodes": [{"id": "m", "a": 0, "b": 12, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "kids": [], "S": [1, 2, 3], "V": [6, 7], "G": [[6, 7]], "form": 1, "note": "A little emoji can speak. 주어 + 동사, 1형식입니다. Sometimes, like :), louder than many words는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [1, 2, 3]}, {"r": "V", "g": [6, 7]}], "fl": [0, 4, 5, 8, 9, 10, 11]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-21", "sec": "2. 이모지를 다르게 쓰는 사람들", "tok": ["The", "problem", "is", "that", "not", "everybody", "uses", "emojis", "in", "the", "same", "way."], "ch": ["The problem", "is", "that not everybody uses emojis in the same way."], "ko": ["문제는", "이다", "모든 사람이 이모지를 같은 방식으로 사용하는 것은 아니라는 것"], "nodes": [{"id": "m", "a": 0, "b": 12, "own": [0, 1, 2], "kids": [[3, 12]], "S": [0, 1], "V": [2], "G": [[2]], "form": 2, "note": "The problem is that절. 주어 + 동사 + 보어, 2형식입니다. The problem = that절, 같은 내용입니다.", "sk": [{"r": "S", "g": [0, 1]}, {"r": "V", "g": [2]}], "fl": []}, {"id": "a", "a": 3, "b": 12, "own": [3, 4, 5, 6, 7, 8, 9, 10, 11], "kids": [], "S": [5], "V": [6], "G": [[6]], "kind": "명사절", "sub": "보어", "gv": [["is", "동사"]], "note": "is 뒤의 that절이 The problem의 내용을 설명하는 보어입니다."}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-22a", "sec": "2. 이모지를 다르게 쓰는 사람들", "tok": ["Some", "people", "like", "to", "use", "them", "a", "lot,"], "ch": ["Some people", "like", "to use them a lot,"], "ko": ["어떤 사람들은", "좋아한다", "그것들을 많이 사용하는 것을"], "nodes": [{"id": "m", "a": 0, "b": 8, "own": [0, 1, 2, 3, 4, 5, 6, 7], "kids": [], "S": [0, 1], "V": [2], "G": [[2]], "form": 3, "note": "Some people like to use them. 주어 + 동사 + 목적어, 3형식입니다. like의 목적어는 to use예요. a lot은 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0, 1]}, {"r": "V", "g": [2]}, {"r": "O", "g": [3, 4, 5, 6, 7]}], "fl": []}], "dec": {"3": "to부정사의 일부라서 문장의 동사가 아닙니다.", "4": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "to use", "t": "to", "use": "명사적 용법", "reason": "to use them a lot은 like의 목적어(~하는 것)라서 명사적 용법입니다.", "pat": {"h": "like + to부정사", "p": [["like", "동사"], ["to use", "목적어"]]}, "g": [3, 4]}], "em": [], "nfx": {}, "note2": "2-22a와 2-22b는 원래 and로 이어진 한 문장이에요. 주어가 서로 다른 두 문장이라서 둘로 나누어 분석해요."}, {"lv": "심화", "id": "2-22b", "sec": "2. 이모지를 다르게 쓰는 사람들", "tok": ["and", "some", "don’t."], "ch": ["and", "some", "don’t."], "ko": ["그리고", "어떤 사람들은", "그렇지 않다"], "nodes": [{"id": "m", "a": 0, "b": 3, "own": [0, 1, 2], "kids": [], "S": [1], "V": [2], "G": [[2]], "form": 1, "note": "Some don’t. 주어 + 동사, 1형식입니다. don’t 뒤에 like to use them a lot이 생략되어 있어요.", "sk": [{"r": "S", "g": [1]}, {"r": "V", "g": [2]}], "fl": []}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": "2-22a와 이어지는 문장이에요. and는 문장을 이어 주는 말이라 뼈대에 넣지 않아요. don’t 뒤의 말은 앞 문장과 같아서 생략되었어요."}, {"lv": "심화", "id": "2-23", "sec": "2. 이모지를 다르게 쓰는 사람들", "tok": ["In", "addition,", "the", "same", "emojis", "can", "mean", "different", "things", "to", "different", "people."], "ch": ["In addition,", "the same emojis", "can mean", "different things", "to different people."], "ko": ["게다가", "같은 이모지도", "의미할 수 있다", "다른 것들을", "다른 사람들에게"], "nodes": [{"id": "m", "a": 0, "b": 12, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "kids": [], "S": [2, 3, 4], "V": [5, 6], "G": [[5, 6]], "form": 3, "note": "The same emojis can mean different things. 주어 + 동사 + 목적어, 3형식입니다. In addition과 to different people은 꾸미는 말입니다.", "sk": [{"r": "S", "g": [2, 3, 4]}, {"r": "V", "g": [5, 6]}, {"r": "O", "g": [7, 8]}], "fl": [0, 1, 9, 10, 11]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-24", "sec": "3. 때로는 전화하기", "tok": ["Sometimes,", "you", "need", "to", "pick", "up", "the", "phone."], "ch": ["Sometimes,", "you", "need", "to pick up the phone."], "ko": ["때때로", "당신은", "필요하다", "전화기를 드는 것이"], "nodes": [{"id": "m", "a": 0, "b": 8, "own": [0, 1, 2, 3, 4, 5, 6, 7], "kids": [], "S": [1], "V": [2], "G": [[2]], "form": 3, "note": "You need to pick up the phone. 주어 + 동사 + 목적어, 3형식입니다. need의 목적어는 to pick up the phone이에요. Sometimes는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [1]}, {"r": "V", "g": [2]}, {"r": "O", "g": [3, 4, 5, 6, 7]}], "fl": [0]}], "dec": {"3": "to부정사의 일부라서 문장의 동사가 아닙니다.", "4": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "to pick", "t": "to", "use": "명사적 용법", "reason": "to pick up the phone은 need의 목적어(~하는 것)라서 명사적 용법입니다.", "pat": {"h": "need + to부정사", "p": [["need", "동사"], ["to pick up the phone", "목적어"]]}, "g": [3, 4]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-25", "sec": "3. 때로는 전화하기", "tok": ["Amy", "just", "got", "the", "following", "text", "message", "from", "her", "best", "friend", "Nari."], "ch": ["Amy", "just got", "the following text message", "from her best friend Nari."], "ko": ["Amy는", "방금 받았다", "다음과 같은 문자 메시지를", "그녀의 가장 친한 친구 나리로부터"], "nodes": [{"id": "m", "a": 0, "b": 12, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "kids": [], "S": [0], "V": [2], "G": [[2]], "form": 3, "note": "Amy got the following text message. 주어 + 동사 + 목적어, 3형식입니다. just와 from her best friend Nari는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [2]}, {"r": "O", "g": [3, 4, 5, 6]}], "fl": [1, 7, 8, 9, 10, 11]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {"4": "following은 \"다음의\"라는 뜻의 형용사예요. the 뒤에서 message를 꾸미는 말이고, 준동사로 따로 묻지 않아요."}, "note2": ""}, {"lv": "심화", "id": "2-26", "sec": "3. 때로는 전화하기", "tok": ["Did", "you", "really", "talk", "behind", "my", "back?"], "ch": ["Did", "you", "really", "talk", "behind my back?"], "ko": ["", "네가", "정말", "이야기했니?", "내 뒤에서"], "nodes": [{"id": "m", "a": 0, "b": 7, "own": [0, 1, 2, 3, 4, 5, 6], "kids": [], "S": [1], "V": [0, 3], "G": [[0, 3]], "form": 1, "note": "You talked. 주어 + 동사, 1형식입니다. Did는 질문을 만드는 말이에요. really와 behind my back은 꾸미는 말입니다.", "sk": [{"r": "S", "g": [1]}, {"r": "V", "g": [0, 3]}], "fl": [2, 4, 5, 6]}], "dec": {}, "vn": "Did you talk는 질문하는 문장이에요. Did는 질문을 만드는 말이라 talk와 함께 한 덩어리 동사로 눌러요. behind my back은 동사가 아니라 꾸미는 말입니다.", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-27", "sec": "3. 때로는 전화하기", "tok": ["I", "want", "you", "to", "apologize", "to", "me."], "ch": ["I", "want", "you", "to apologize to me."], "ko": ["나는", "원한다", "네가", "나에게 사과하기를"], "nodes": [{"id": "m", "a": 0, "b": 7, "own": [0, 1, 2, 3, 4, 5, 6], "kids": [], "S": [0], "V": [1], "G": [[1]], "form": 5, "note": "I want you to apologize. 주어 + 동사 + 목적어 + 목적격보어, 5형식입니다. you가 to apologize하는 관계(주술 관계)예요. to me는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1]}, {"r": "O", "g": [2]}, {"r": "C", "g": [3, 4]}], "fl": [5, 6]}], "dec": {"3": "to부정사의 일부라서 문장의 동사가 아닙니다.", "4": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "to apologize", "t": "to", "use": "명사적 용법", "reason": "to apologize to me는 목적격보어 자리라서 명사적 용법입니다.", "pat": {"h": "want + 목적어 + to부정사", "p": [["want", "동사"], ["you", "목적어"], ["to apologize", "목적격보어"]]}, "g": [3, 4]}], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-28a", "sec": "3. 때로는 전화하기", "tok": ["Amy", "wanted", "to", "text", "Nari", "and", "explain", "the", "situation,"], "ch": ["Amy", "wanted", "to text Nari and explain the situation,"], "ko": ["Amy는", "원했다", "나리에게 문자 메시지를 보내고 상황을 설명하기를"], "nodes": [{"id": "m", "a": 0, "b": 9, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8], "kids": [], "S": [0], "V": [1], "G": [[1]], "form": 3, "note": "Amy wanted to text Nari and explain the situation. 주어 + 동사 + 목적어, 3형식입니다. wanted의 목적어는 to text와 explain(앞의 to가 생략된 to부정사)이에요.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1]}, {"r": "O", "g": [2, 3, 4, 5, 6, 7, 8]}], "fl": []}], "dec": {"2": "to부정사의 일부라서 문장의 동사가 아닙니다.", "3": "to부정사의 일부라서 문장의 동사가 아닙니다.", "6": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "to text", "t": "to", "use": "명사적 용법", "reason": "to text Nari는 wanted의 목적어(~하는 것)라서 명사적 용법입니다.", "pat": {"h": "want + to부정사", "p": [["wanted", "동사"], ["to text", "목적어"]]}, "g": [2, 3]}, {"w": "explain", "t": "to", "use": "명사적 용법", "reason": "explain the situation은 and로 이어진 to부정사예요. 앞의 to가 생략되어 있고, wanted의 목적어라서 명사적 용법입니다.", "g": [6]}], "em": [], "nfx": {}, "note2": "2-28a와 2-28b는 원래 but으로 이어진 한 문장이에요. 동사가 서로 다른 두 문장이라서 둘로 나누어 분석해요."}, {"lv": "심화", "id": "2-28b", "sec": "3. 때로는 전화하기", "tok": ["but", "she", "thought", "again."], "ch": ["but", "she", "thought", "again."], "ko": ["하지만", "그녀는", "생각했다", "다시"], "nodes": [{"id": "m", "a": 0, "b": 4, "own": [0, 1, 2, 3], "kids": [], "S": [1], "V": [2], "G": [[2]], "form": 1, "note": "She thought. 주어 + 동사, 1형식입니다. again은 꾸미는 말입니다.", "sk": [{"r": "S", "g": [1]}, {"r": "V", "g": [2]}], "fl": [3]}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": "2-28a와 이어지는 문장이에요. but은 문장을 이어 주는 말이라 뼈대에 넣지 않아요."}, {"lv": "심화", "id": "2-29", "sec": "3. 때로는 전화하기", "tok": ["“Well,", "this", "is", "too", "much", "for", "a", "text,”", "she", "said", "to", "herself", "and", "called", "Nari."], "ch": ["“Well, this is too much for a text,”", "she", "said", "to herself", "and", "called", "Nari."], "ko": ["“음, 이건 문자로 하기엔 너무 큰 일이야.”라고", "그녀는", "말했다", "혼잣말로", "그리고", "전화를 걸었다", "나리에게"], "nodes": [{"id": "m", "a": 0, "b": 15, "own": [8, 9, 10, 11, 12, 13, 14], "kids": [[0, 8]], "S": [8], "V": [9, 13], "G": [[9], [13]], "form": 3, "note": "She said 따옴표 안의 말 and called Nari. 주어 + 동사 + 목적어, 3형식입니다. said와 called는 and로 이어진 병렬 동사이고, 둘 다 목적어를 가져 3형식이에요. said의 목적어는 따옴표 안의 말이고, called의 목적어는 Nari예요. to herself는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [8]}, {"r": "V", "g": [9]}, {"r": "V", "g": [13]}, {"r": "O", "g": [14]}], "fl": [10, 11]}, {"id": "a", "a": 0, "b": 8, "own": [0, 1, 2, 3, 4, 5, 6, 7], "kids": [], "S": [1], "V": [2], "G": [[2]], "kind": "명사절", "sub": "목적어", "note": "따옴표 안의 말 전체가 said의 목적어(말한 내용)입니다."}], "dec": {}, "vn": "said와 called가 and로 이어진 병렬 동사예요. 둘 다 눌러 주세요.", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-30a", "sec": "3. 때로는 전화하기", "tok": ["Texting", "is", "okay", "for", "casual", "situations,"], "ch": ["Texting", "is", "okay", "for casual situations,"], "ko": ["문자 메시지 보내기는", "상태이다", "괜찮은", "일상적인 상황에서는"], "nodes": [{"id": "m", "a": 0, "b": 6, "own": [0, 1, 2, 3, 4, 5], "kids": [], "S": [0], "V": [1], "G": [[1]], "form": 2, "note": "Texting is okay. 주어 + 동사 + 보어, 2형식입니다. Texting = okay, 같은 상태입니다. 주어는 동명사 Texting(문자 메시지 보내기)이에요. for casual situations는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1]}, {"r": "C", "g": [2]}], "fl": [3, 4, 5]}], "dec": {"0": "동명사(~하는 것)라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "Texting", "t": "ger", "reason": "Texting은 문장의 주어 자리에 온 동명사(~하는 것)입니다.", "g": [0]}], "em": [], "nfx": {}, "note2": "2-30a와 2-30b는 원래 but으로 이어진 한 문장이에요. 주어가 서로 다른 두 문장이라서 둘로 나누어 분석해요."}, {"lv": "심화", "id": "2-30b", "sec": "3. 때로는 전화하기", "tok": ["but", "sometimes,", "you", "need", "to", "pick", "up", "the", "phone."], "ch": ["but", "sometimes,", "you", "need", "to pick up the phone."], "ko": ["하지만", "때로는", "당신은", "필요하다", "전화기를 드는 것이"], "nodes": [{"id": "m", "a": 0, "b": 9, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8], "kids": [], "S": [2], "V": [3], "G": [[3]], "form": 3, "note": "You need to pick up the phone. 주어 + 동사 + 목적어, 3형식입니다. need의 목적어는 to pick up the phone이에요. sometimes는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [2]}, {"r": "V", "g": [3]}, {"r": "O", "g": [4, 5, 6, 7, 8]}], "fl": [1]}], "dec": {"4": "to부정사의 일부라서 문장의 동사가 아닙니다.", "5": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "", "nf": [{"w": "to pick", "t": "to", "use": "명사적 용법", "reason": "to pick up the phone은 need의 목적어(~하는 것)라서 명사적 용법입니다.", "pat": {"h": "need + to부정사", "p": [["need", "동사"], ["to pick up the phone", "목적어"]]}, "g": [4, 5]}], "em": [], "nfx": {}, "note2": "2-30a와 이어지는 문장이에요. but은 문장을 이어 주는 말이라 뼈대에 넣지 않아요."}, {"lv": "심화", "id": "2-31", "sec": "3. 때로는 전화하기", "tok": ["This", "is", "because", "misunderstandings", "can", "easily", "happen", "when", "you", "text."], "ch": ["This", "is", "because", "misunderstandings", "can easily happen", "when", "you", "text."], "ko": ["이것은", "이다", "~이기 때문", "오해가", "쉽게 생길 수 있다", "~할 때", "당신이", "문자 메시지를 보낼"], "nodes": [{"id": "m", "a": 0, "b": 10, "own": [0, 1], "kids": [[2, 10]], "S": [0], "V": [1], "G": [[1]], "form": 1, "note": "This is. 주어 + 동사, 1형식입니다. because 이하는 이유를 나타내는 꾸미는 말(부사절)이라서 보어로 보지 않아요.", "sk": [{"r": "S", "g": [0]}, {"r": "V", "g": [1]}], "fl": []}, {"id": "a", "a": 2, "b": 10, "own": [2, 3, 4, 5, 6], "kids": [[7, 10]], "S": [3], "V": [4, 6], "G": [[4, 6]], "kind": "부사절", "sub": "이유"}, {"id": "b", "a": 7, "b": 10, "own": [7, 8, 9], "kids": [], "S": [8], "V": [9], "G": [[9]], "kind": "부사절", "sub": "시간"}], "dec": {}, "vn": "", "nf": [], "em": [], "nfx": {}, "note2": ""}, {"lv": "심화", "id": "2-32", "sec": "3. 때로는 전화하기", "tok": ["Do", "you", "need", "to", "talk", "about", "sensitive", "issues", "with", "your", "friends?"], "ch": ["Do", "you", "need", "to talk about sensitive issues with your friends?"], "ko": ["", "당신은", "필요한가?", "친구들과 민감한 문제에 대해 이야기하는 것이"], "nodes": [{"id": "m", "a": 0, "b": 11, "own": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "kids": [], "S": [1], "V": [0, 2], "G": [[0, 2]], "form": 3, "note": "You need to talk about sensitive issues. 주어 + 동사 + 목적어, 3형식입니다. need의 목적어는 to talk이에요. Do는 질문을 만드는 말이고, with your friends는 꾸미는 말입니다.", "sk": [{"r": "S", "g": [1]}, {"r": "V", "g": [0, 2]}, {"r": "O", "g": [3, 4, 5, 6, 7]}], "fl": [8, 9, 10]}], "dec": {"3": "to부정사의 일부라서 문장의 동사가 아닙니다.", "4": "to부정사의 일부라서 문장의 동사가 아닙니다."}, "vn": "Do you need는 질문하는 문장이에요. Do는 질문을 만드는 말이라 need와 함께 한 덩어리 동사로 눌러요.", "nf": [{"w": "to talk", "t": "to", "use": "명사적 용법", "reason": "to talk about sensitive issues는 need의 목적어(~하는 것)라서 명사적 용법입니다.", "pat": {"h": "need + to부정사", "p": [["need", "동사"], ["to talk", "목적어"]]}, "g": [3, 4]}], "em": [], "nfx": {}, "note2": ""}];
+const GLOSS={"2-1": [["Texting", "v. 문자 메시지를 보내다", "text의 -ing형(동명사)"], ["main", "a. 주된, 가장 중요한", ""], ["way", "n. 방법, 수단, 방식", ""], ["communication", "n. 의사소통", ""], ["these days", "요즘, 오늘날", ""], ["especially", "adv. 특히, 특별히", ""], ["teenagers", "n. 십 대", "teenager의 복수형"]], "2-2": [["communicate", "v. 의사소통하다", ""], ["through", "prep. ~을 통해서", ""], ["texting", "v. 문자 메시지를 보내다", "text의 -ing형(동명사)"]], "2-3": [["useful", "a. 유용한, 도움이 되는", ""], ["tips", "n. 조언", "tip의 복수형"]], "2-4": [], "2-5": [["just", "adv. 막, 방금", ""], ["following", "a. 다음의", ""]], "2-6": [["wait", "v. 기다리다", ""]], "2-7": [["correctly", "adv. 정확하게, 바르게", ""], ["understood", "v. ~을 이해하다", "understand의 과거형 (understand-understood-understood)"]], "2-9": [["expressions", "n. 표현; 표정", "expression의 복수형"], ["right", "adv. 바로, 곧", ""], ["text", "v. 문자 메시지를 보내다", ""], ["kidding", "v. 농담하다", "kid의 -ing형"], ["laughing out loud", "소리 내어 웃다", "laugh out loud의 -ing형"]], "2-11": [["understand", "v. ~을 이해하다", ""], ["meanings", "n. 뜻, 의미", "meaning의 복수형"], ["expressions", "n. 표현; 표정", "expression의 복수형"]], "2-12": [["understand", "v. ~을 이해하다", ""], ["emojis", "n. 이모지", "emoji의 복수형"], ["differently", "adv. 다르게", ""]], "2-13": [["gift", "n. 선물", ""]], "2-14": [["Later", "adv. 나중에, 이후에", ""], ["following", "a. 다음의", ""]], "2-15": [["gift", "n. 선물", ""]], "2-17": [["guess", "v. ~을 추측하다, 짐작하다", ""], ["gift", "n. 선물", ""]], "2-18": [["words", "n. 말, 말한 내용", "word의 복수형"], ["facial expressions", "얼굴 표정", "facial expression의 복수형"], ["body language", "몸짓 언어, 신체 언어", ""]], "2-19": [["texting", "v. 문자 메시지를 보내다", "text의 -ing형(동명사)"], ["emojis", "n. 이모지", "emoji의 복수형"], ["instead", "adv. 대신에", ""]], "2-20": [["Sometimes", "adv. 때때로", ""], ["emoji", "n. 이모지", ""], ["louder", "adv. 크게, 시끄럽게", "loud의 비교급"], ["words", "n. 말, 말한 내용", "word의 복수형"]], "2-21": [["problem", "n. 문제", ""], ["emojis", "n. 이모지", "emoji의 복수형"], ["in the same way", "같은 방법으로", ""]], "2-22a": [], "2-22b": [], "2-23": [["In addition", "게다가", ""], ["emojis", "n. 이모지", "emoji의 복수형"], ["mean", "v. 의미하다", ""]], "2-24": [["Sometimes", "adv. 때때로", ""], ["pick up", "~을 집어 들다", "pick ~ up (목적어가 사이에 오기도 함)"]], "2-25": [["just", "adv. 막, 방금", ""], ["following", "a. 다음의", ""]], "2-26": [["talk behind my back", "~의 뒷담화를 하다, 뒤에서 험담하다", "talk behind one’s back에서 one’s 자리에 my가 쓰임"]], "2-27": [["apologize", "v. 사과하다", ""]], "2-28a": [["text", "v. 문자 메시지를 보내다", ""], ["explain", "v. ~을 설명하다", ""], ["situation", "n. 상황", ""]], "2-28b": [], "2-29": [["said to herself", "혼잣말하다, 마음속으로 생각하다", "say to oneself의 과거형 (say-said-said), oneself 자리에 herself가 쓰임"]], "2-30a": [["Texting", "v. 문자 메시지를 보내다", "text의 -ing형(동명사)"], ["casual", "a. 평상시의, 격식을 차리지 않는", ""], ["situations", "n. 상황", "situation의 복수형"]], "2-30b": [["sometimes", "adv. 때때로", ""], ["pick up", "~을 집어 들다", "pick ~ up (목적어가 사이에 오기도 함)"]], "2-31": [["misunderstandings", "n. 오해", "misunderstanding의 복수형"], ["easily", "adv. 쉽게", ""], ["happen", "v. 생기다, 발생하다", ""], ["text", "v. 문자 메시지를 보내다", ""]], "2-32": [["sensitive", "a. 민감한, 예민한", ""], ["issues", "n. 문제, 이슈", "issue의 복수형"]]};
+const NAT={"2-1": "문자 메시지는 요즘 많은 사람들, 특히 십 대들의 주요 의사소통 수단이다.", "2-2": "문자 메시지를 통해 어떻게 의사소통을 더 잘할 수 있는지 알고 싶은가?", "2-3": "여기 몇 가지 유용한 팁이 있다.", "2-4": "당신이 누구와 이야기하고 있는지 알아야 한다.", "2-5": "Henry는 방금 엄마에게 다음과 같은 문자 메시지를 보냈다.", "2-6": "엄마, 조금만 더 기다려 주세요.", "2-7": "당신은 Henry의 엄마가 BRT를 정확히 이해했다고 생각하는가?", "2-9": "친구들에게 문자 메시지를 보낼 때 BRT(곧 갈게), JK(농담이야), 또는 LOL(소리 내어 웃음) 같은 표현들을 사용할 수 있다.", "2-11": "그들 중 일부는 이런 표현의 의미를 모를 수도 있다는 것을 이해해야 한다.", "2-12": "당신은 사람들이 이모지를 다르게 사용한다는 점을 이해해야 한다.", "2-13": "어제 지수는 남동생 지후에게 생일 선물을 주었다.", "2-14": "이후에, 그녀는 다음과 같은 문자 메시지를 받았다.", "2-15": "선물이 아주 마음에 들었어.", "2-17": "“웃는 얼굴(:))이 하나뿐이네? 내 선물이 마음에 안 들었나 봐.”라고 지수는 생각했다.", "2-18": "우리는 누군가와 대화할 때, 말뿐만 아니라 얼굴 표정과 몸짓 언어도 사용한다.", "2-19": "문자 메시지를 보낼 때, 우리는 대신 이모지를 사용한다.", "2-20": "때때로 :) 같은 작은 이모지가 많은 말보다 더 큰 의미를 말할 수 있다.", "2-21": "문제는 모든 사람이 이모지를 같은 방식으로 사용하는 것은 아니라는 것이다.", "2-22a": "어떤 사람들은 이모지를 많이 사용하는 것을 좋아하고, 어떤 사람들은 그렇지 않다.", "2-22b": "어떤 사람들은 이모지를 많이 사용하는 것을 좋아하고, 어떤 사람들은 그렇지 않다.", "2-23": "게다가 같은 이모지도 사람마다 다른 것을 의미할 수 있다.", "2-24": "때때로 당신은 전화기를 들어야 한다.", "2-25": "Amy는 방금 가장 친한 친구인 나리로부터 다음과 같은 문자 메시지를 받았다.", "2-26": "네가 정말 내 뒷담화를 했니?", "2-27": "나는 네가 나에게 사과하기를 원해.", "2-28a": "Amy는 나리에게 문자 메시지를 보내서 상황을 설명하고 싶었지만, 다시 생각했다.", "2-28b": "Amy는 나리에게 문자 메시지를 보내서 상황을 설명하고 싶었지만, 다시 생각했다.", "2-29": "“음, 이건 문자로 하기엔 너무 큰 일이야.” 그녀는 혼잣말을 하며 나리에게 전화를 걸었다.", "2-30a": "문자 메시지는 일상적인 상황에서는 괜찮지만 때로는 전화를 해야 할 필요가 있다.", "2-30b": "문자 메시지는 일상적인 상황에서는 괜찮지만 때로는 전화를 해야 할 필요가 있다.", "2-31": "문자 메시지를 보낼 때 오해가 쉽게 생길 수 있기 때문이다.", "2-32": "친구들과 민감한 문제에 대해 이야기해야 하는가?"};
+var WLK='tbm2d-l2-wl';
+function wlD(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+function wlGet(){try{return JSON.parse(localStorage.getItem(WLK)||'{}')}catch(e){return {}}}
+function wlPut(e){try{var o=wlGet(),k=wlD();Object.keys(o).forEach(function(q){if(q!==k)delete o[q]});var L=(o[k]||[]).filter(function(x){return x.id!==e.id});L.push(e);o[k]=L;var ks=Object.keys(o).sort();while(ks.length>10)delete o[ks.shift()];localStorage.setItem(WLK,JSON.stringify(o))}catch(x){}}
+function wlKey(o){var ks=Object.keys(o).sort().reverse();for(var i=0;i<ks.length;i++)if(o[ks[i]]&&o[ks[i]].length)return ks[i];return ''}
+function wlList(){var o=wlGet(),k=wlKey(o);return k?o[k]:[]}
+function wlN(){return wlList().length}
+function wlStrip(){return ''}
+function wlPut(){}
+const KEY="tbm2d-l2-r";
+let R={};try{R=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(R))}catch(e){}}
+const $=document.getElementById("app");
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const KINDS=[["명사절","~것, ~지 (문장의 한 자리)"],["형용사절","앞 명사를 꾸밈"],["부사절","때·이유·조건 등 덧붙임"]];
+const SUBS={"형용사절":[["주격 관계대명사","빠진 자리가 주어: the man who lives here"],["목적격 관계대명사","빠진 자리가 목적어: the book that I read"],["관계부사","뒤가 완전한 절: the day when I met him"]],
+"부사절":[["시간","when, after, before"],["이유","because, since"],["양보","although, though"],["조건","if, unless"],["결과","so ~ that"],["목적","so that ~ 하도록"],["비교","than, as ~ as"],["대조","while, whereas"]],
+"명사절":[["주어","That he won is true."],["목적어","I know (that) he won."],["보어","The fact is that he won."],["전치사의 목적어","I agree with what he said."],["동격","the fact that he won"]]};
+let D=550,KO=0,cur,ni,steps,si,got,wr,ph,opened,done,GL,fnd,gh,wp={};
+function adv(fn){const tag=cur.id+'|'+ni+'|'+si+'|'+ph;setTimeout(()=>{if(cur&&tag==cur.id+'|'+ni+'|'+si+'|'+ph)fn()},D)}
+const STARS=new Set([]);
+let TAB='심화';
+function home(){
+  const L=S.filter(s=>s.lv==TAB),dn=L.filter(s=>R[s.id]&&R[s.id].done).length;
+  let h='<h1>2과 심화 문장 분석</h1><p class="sub">교과서 본문 · 동사, 절, 준동사 ('+L.length+'문장)</p>';
+  h+='<p class="small" style="margin:10px 2px 8px">푼 문장 '+dn+' / '+L.length+'</p>';
+  let last='';
+  L.forEach((s,k)=>{const r=R[s.id]||{},d=r.done,sec=(s.sec||'');
+    if(sec!==last){if(last!=='')h+='</div>';h+='<p class="small" style="margin:14px 2px 6px;font-weight:700">'+esc(sec)+'</p><div class="bgrid">';last=sec}
+    if(k==0&&sec==='')h+='<div class="bgrid">';
+    h+='<button class="bk'+(d?' done':'')+'" onclick="play(\''+s.id+'\')"><span class="bn">'+(k+1)+'</span><span class="bs">'+s.id+'</span><span class="bt">'+(d?(r.wr?'실수 '+r.wr:'완료'):'')+'</span></button>'});
+  h+='</div>';
+  const all=Object.values(R).filter(r=>r.done);
+  if(all.length)h+='<div class="card"><p class="day">내 기록</p><div class="small">푼 문장 '+all.length+'개 / 전부 한 번에 맞힌 문장 '+all.filter(r=>r.wr===0).length+'개</div><button class="reset" onclick="resetAll()">기록 지우기</button></div>';
+  cur=null;$.innerHTML=h;window.scrollTo(0,0)}
+function resetAll(){if(confirm("기록을 모두 지울까요?")){R={};save();home()}}
+function stepsOf(n){
+  if(!n.kind)return n.form?(n.form2?[{t:'S'},{t:'form',p:1},{t:'form',p:2}]:[{t:'S'},{t:'form'}]):[{t:'S'}];
+  const st=[{t:'kind'},{t:'sub'}];if(n.kind=='형용사절')st.push({t:'anc'});st.push({t:'S'});return st}
+function play(id){KO=0;cur=S.find(s=>s.id==id);TAB=cur.lv;wr=0;wp={};ph='verb';opened={};done={};ni=0;si=0;fnd={};
+  GL=[];cur.nodes.forEach(n=>n.G.forEach(g=>GL.push(g)));R[id]=R[id]||{};drawVerb('')}
+function stage(k){const a=['동사','주절','절 열기','준동사'];return '<div class="stg">'+a.map((x,i)=>'<div class="'+(i<k?'ok':i==k?'on':'')+'">'+(i+1)+' '+x+'</div>').join('')+'</div>'}
+function head(k){return '<div class="top"><button class="back" onclick="home()">&lt; 목록</button><span class="small">'+(S.filter(x=>x.lv==cur.lv).indexOf(cur)+1)+'번'+(STARS.has(cur.id)&&cur.lv=='심화'?' ★':'')+' · 본문 '+cur.id+(k==2?' · 절 '+ni+'/'+(cur.nodes.length-1):'')+'</span></div>'+stage(k)+'<p class="ko1">'+(KO?esc(cur.ko.join(' ')):'<button class="reset" style="margin:0" onclick="KO=1;redraw()">우리말 뜻 보기</button>')+'</p>'}
+function redraw(){if(ph=='verb')drawVerb('');else if(ph=='nf')drawNF('');else if(ph=='nfq')drawNFQ();else draw()}
+const VB=()=>{const f=new Set();GL.forEach(g=>g.forEach(i=>f.add(i)));return f};
+/* 1단계: 동사 찾기 - 누르는 즉시 판정 */
+function drawVerb(msg,fin){
+  let h='<div class="sent">';
+  cur.tok.forEach((w,i)=>{
+    const gi=GL.findIndex(g=>g.includes(i));let c='w2';
+    if(gi>=0&&fnd[gi])c+=' okw vb';
+    h+='<button class="'+c+'" '+(fin?'disabled':'onclick="tv('+i+')"')+'>'+esc(w)+'</button> '});
+  h+='</div>';
+  const nf=Object.keys(fnd).length;
+  const cnt=!fin&&nf?'<p class="small" style="margin:8px 0 0">찾은 동사 '+nf+'개</p>':'';
+  $.innerHTML=head(0)+'<div class="card"><p class="q">동사를 모두 누르세요</p>'+h+cnt+'<div id="fb">'+msg+'</div></div>';window.scrollTo(0,0)}
+function tv(i){
+  const gi=GL.findIndex(g=>g.includes(i));
+  if(gi>=0){fnd[gi]=1;
+    if(Object.keys(fnd).length==GL.length){
+      let m='<div class="msg g">동사를 모두 찾았습니다. 동사 '+GL.length+'개, 절 '+cur.nodes.length+'개.</div>';
+      if(cur.vn)m+='<div class="msg n" style="background:var(--okbg)">'+esc(cur.vn)+'</div><button class="btn" onclick="startMain()">다음</button>';
+      drawVerb(m,true);if(!cur.vn)adv(startMain)}
+    else drawVerb('')}
+  else{miss();drawVerb('<div class="msg n"><b>'+esc(cur.tok[i].replace(/[^A-Za-z\']/g,''))+'</b> '+esc(cur.dec[i]||'동사가 아닙니다.')+'</div>')}}
+
+/* 2단계: 준동사 찾기 + 용법/모양 */
+let NQ=[],nqi=0;
+const nfOf=i=>cur.nf.findIndex(x=>x.g.includes(i));
+const NFN=s=>s.toLowerCase().replace(/[^a-z]/g,'');
+function startNF(){if(!cur.nf.length){fin();return}cur.nodes.forEach((_,k)=>opened[k]=true);ph='nf';fndN={};drawNF('')}
+let fndN={};
+function drawNF(msg,fin){
+  const F=VB();let h='<div class="sent">';
+  cur.tok.forEach((w,i)=>{const gi=nfOf(i);let c='w2';if(F.has(i))c+=' vb';if(gi>=0&&fndN[gi])c+=' okw';
+    h+='<button class="'+c+'" '+(fin?'disabled':'onclick="tn('+i+')"')+'>'+esc(w)+'</button> '});
+  h+='</div>';
+  const nf=Object.keys(fndN).length;
+  const cnt=!fin&&nf?'<p class="small" style="margin:8px 0 0">찾은 준동사 '+nf+'개</p>':'';
+  $.innerHTML=head(3)+'<div class="card"><p class="q">to부정사, 분사, 동명사를 모두 누르세요</p>'+h+cnt+'<div id="fb">'+msg+'</div></div>';window.scrollTo(0,0)}
+function tn(i){
+  const gi=nfOf(i);
+  if(gi>=0){fndN[gi]=1;
+    if(Object.keys(fndN).length==cur.nf.length){
+      const gers=cur.nf.filter(x=>x.t=='ger');
+      let m='<div class="msg g">준동사를 모두 찾았습니다.</div>';
+      gers.forEach(g=>{m+='<div class="msg n" style="background:var(--okbg)"><b>'+esc(g.w)+'</b> '+esc(g.reason)+'</div>'});
+      if(gers.length)m+='<button class="btn" onclick="startNFQ()">다음</button>';
+      drawNF(m,true);if(!gers.length)adv(startNFQ)}
+    else drawNF('')}
+  else if(VB().has(i))drawNF('<div class="msg n" style="background:var(--okbg)">이 동사는 1단계에서 찾았어요.</div>');
+  else{miss();drawNF('<div class="msg n">'+((cur.nfx&&cur.nfx[i])||(NFN(cur.tok[i])=='to'?'이 to는 전치사예요. to부정사가 아닙니다.':'준동사가 아닙니다.'))+'</div>')}}
+function startNFQ(){NQ=cur.nf.filter(x=>x.t!='ger');nqi=0;if(!NQ.length){fin();return}ph='nfq';drawNFQ()}
+function drawNFQ(){
+  const it=NQ[nqi],F=VB();let h='<div class="sent">';
+  cur.tok.forEach((w,i)=>{
+    if(it.t=='part'&&it.g[0]==i){h+='<span class="w2 hlw">('+esc(it.base)+')</span> ';return}
+    let c='w2';if(F.has(i))c+=' vb';if(it.g.includes(i))c+=' hlw';h+='<span class="'+c+'">'+esc(w)+'</span> '});
+  h+='</div>';
+  let q,o;
+  if(it.t=='to'){q='노란 to부정사의 용법은?';o=[["명사적 용법","~하는 것 (주어·목적어·보어)"],["형용사적 용법","앞 명사를 꾸밈 (~할)"],["부사적 용법","목적·정도·이유 등 (~하기 위해)"]]}
+  else{q='( ) 안의 동사를 알맞은 분사 모양으로 바꾸면?';o=[[it.ing,'현재분사 (-ing)'],[it.pp,'과거분사 (p.p.)']]}
+  const body='<div class="chunks" style="margin-top:12px">'+o.map(x=>'<button class="ck" onclick="pickNF(this,\''+x[0]+'\')">'+x[0]+'<span class="hint">'+x[1]+'</span></button>').join('')+'</div>';
+  $.innerHTML=head(3)+'<div class="card"><span class="pill">'+(it.t=='to'?'to부정사':'분사')+' '+(nqi+1)+'/'+NQ.length+'</span><p class="q">'+q+'</p>'+h+body+'<div id="fb"></div></div>';window.scrollTo(0,0)}
+function pickNF(el,v){
+  const it=NQ[nqi];const want=it.t=='to'?it.use:it[it.ans];
+  if(v==want){document.querySelectorAll('.ck').forEach(b=>b.disabled=true);el.classList.add('okpick');
+    document.getElementById('fb').innerHTML='<div class="msg g">맞았습니다. '+(it.pat?patH(it.pat):it.t=='part'?partH(it):useH(it)+(it.rel?relH(it.rel):''))+'<div style="margin-top:8px">'+esc(it.reason)+'</div></div><button class="btn" onclick="nextNFQ()">다음</button>'}
+  else{el.classList.add('wrong');el.disabled=true;miss();document.getElementById('fb').innerHTML='<div class="msg n">다시 골라 보세요.</div>'}}
+const USES=[['명사적 용법','~하는 것',[['want',''],['to read','u']],'읽는 것을 원한다'],['형용사적 용법','앞 명사를 꾸밈',[['time',''],['to read','u']],'읽을 시간'],['부사적 용법','목적·정도·이유',[['came',''],['to read','u']],'읽으려고 왔다']];
+function useH(it){return '<div class="cmp">'+USES.map((u,k)=>'<div class="cs '+(u[0]==it.use?'on':'off')+'"><div class="bdr">'+bd(u[0],'kd'+k+' dp1',u[1])+u[2].map(x=>bd(x[0],x[1]?'kd'+k+' dp2':'')).join('<span class="pp">+</span>')+'<span class="small">'+esc(u[3])+'</span></div></div>').join('')+'</div>'}
+function partH(it){
+  const on=it.ans;
+  const row=(c,lab,sub,cls,tag,ex,ko)=>'<div class="cs '+(on==c?'on':'off')+'"><div class="bdr">'+bd(lab,'',sub)+'<span class="pp">→</span>'+bd(tag,cls)+'</div><div class="bdr">'+ex.map(x=>bd(x[0],x[1])).join('')+'<span class="small">'+esc(ko)+'</span></div></div>';
+  return '<div class="cmp">'+row('ing','능동','직접 ~한다','ing','-ing 현재분사',[['a boy',''],['playing','ing'],['soccer','']],'축구를 하는 소년')+row('pp','수동','~당한다','ppb','p.p. 과거분사',[['a window',''],['broken','ppb'],['by a ball','']],'공에 깨진 창문')+'</div><div class="bdr">'+bd(it.who||'주어','','이 문장')+'<span class="pp">→</span>'+bd(it.w,on=='ing'?'ing':'ppb',on=='ing'?'능동 · -ing':'수동 · p.p.')+'</div>'}
+function relH(r){return '<div class="pat"><div class="pth">'+esc(r.h)+'</div><div class="bdr">'+r.p.map((x,k)=>(k?'<span class="pp">+</span>':'')+bd(x[0],k==r.p.length-1?'kd2 dp2':'kd2 dp1',x[1])).join('')+'<span class="pp">=</span><span class="small" style="font-size:15px;color:var(--fg);font-weight:700">'+esc(r.ko)+'</span></div></div>'}
+function patH(p){return '<div class="pat"><div class="pth">'+esc(p.h)+'</div><div class="bdr">'+p.p.map((x,k)=>(k?'<span class="pp">+</span>':'')+bd(x[0],k==p.p.length-1?'cc':'',x[1])).join('')+'</div></div>'}
+function nextNFQ(){nqi++;if(nqi<NQ.length)drawNFQ();else fin()}
+/* 문장 표시: 열리지 않은 절은 가림판 */
+function hidTop(i){let b=null;cur.nodes.forEach((m,k)=>{if(!opened[k]&&m.a<=i&&i<m.b&&(!b||m.b-m.a>b.b-b.a))b=m});return b}
+function emOn(){return ph=='node'&&steps[si]&&(steps[si].t=='anc'||steps[si].t=='S')}
+function sentH(n,tap,fl){
+  const F=VB();let h='<div class="sent">';let i=0;
+  while(i<cur.tok.length){
+    const hm=hidTop(i);
+    if(hm){h+='<span class="mask">'+esc(cur.tok[hm.a].replace(/[^A-Za-z\']/g,''))+' ...</span> ';i=hm.b;continue}
+    if(fl&&n.fl&&n.fl.includes(i)){let j=i;while(j<cur.tok.length&&n.fl.includes(j)&&!hidTop(j))j++;h+='<span class="mask">가림</span> ';i=j;continue}
+    let c='w2';const own=n.own.includes(i);
+    if(F.has(i))c+=' vb';
+    if(emOn()&&(cur.em||[]).includes(i))c+=' em';
+    const dk=doneKind(i);
+    if(own)c+=' hlw';else if(dk!=null)c+=' kd'+dk.k+' dp'+dk.d;
+    if(got[i])c+=' okw';
+    h+=((tap&&own)?'<button class="'+c+'" onclick="tapw('+i+')">':'<span class="'+c+'">')+esc(cur.tok[i])+((tap&&own)?'</button>':'</span>')+' ';i++}
+  return h+'</div>'}
+function doneKind(i){
+  for(let k=cur.nodes.length-1;k>=0;k--){const m=cur.nodes[k];if(k===ni||!done[k]||!m.kind)continue;if(m.own.includes(i))return {k:['명사절','형용사절','부사절'].indexOf(m.kind),d:Math.min(depthOf(k),3)}}
+  return null}
+function anyH(n){
+  const F=VB();let h='<div class="sent">';let i=0;
+  while(i<cur.tok.length){
+    const hm=hidTop(i);
+    if(hm){h+='<span class="mask">'+esc(cur.tok[hm.a].replace(/[^A-Za-z\']/g,''))+' ...</span> ';i=hm.b;continue}
+    let c='w2';if(n.own.includes(i))c+=' hlw';if(F.has(i))c+=' vb';if(emOn()&&(cur.em||[]).includes(i))c+=' em';if(got[i])c+=' okw';
+    h+='<button class="'+c+'" onclick="tapw('+i+')">'+esc(cur.tok[i])+'</button> ';i++}
+  return h+'</div>'}
+function startMain(){ni=0;ph='main';opened[0]=true;steps=stepsOf(cur.nodes[0]);si=0;got={};gh={};draw()}
+function startNode(){ph='node';opened[ni]=true;steps=stepsOf(cur.nodes[ni]);si=0;got={};gh={};draw()}
+function draw(){
+  const n=cur.nodes[ni],s=steps[si];let q='',body='';
+  const pillTxt=n.kind?(si>0?n.kind:'절 열기'):'주절';
+  if(s.t=='kind'){q='노란 부분은 어떤 절일까요?';body=sentH(n,false)+opts(KINDS)}
+  else if(s.t=='sub'){q=n.kind=='형용사절'?'어떤 관계사일까요? 관계사 뒤에서 빠진 자리를 보세요.':n.kind=='부사절'?'어떤 뜻의 부사절일까요?':'이 절은 문장에서 무슨 자리일까요?';body=sentH(n,false)+opts(SUBS[n.kind])}
+  else if(s.t=='anc'){q='이 절이 꾸미는 말을 누르세요.';body=anyH(n)}
+  else if(s.t=='S'){q=n.kind?'노란 절의 주어를 누르세요.':'문장의 뼈대에서 주어를 누르세요.';body=sentH(n,true,!n.kind)}
+  else if(s.t=='form'){q=s.p?(s.p==1?'첫 번째 동사('+txtOf(n.G[0])+')가 만드는 뼈대는 몇 형식일까요?':'이어진 두 번째 동사('+txtOf(n.G[1])+')가 만드는 뼈대는 몇 형식일까요?'):'이 뼈대는 누구와 닮은꼴일까요?';body=sentH(n,false,true)+formCards()}
+  else{q=!n.kind?'주절의 동사를 누르세요.':'노란 절에서 and로 이어진 동사를 모두 누르세요.';body=sentH(n,true)}
+  $.innerHTML=head(n.kind?2:1)+'<div class="card"><span class="pill">'+pillTxt+'</span><p class="q">'+esc(q)+'</p>'+body+'<div id="fb"></div></div>';window.scrollTo(0,0)}
+const FORMS=[["1형식","I sleep.","나는 잔다.","S + V"],["2형식","I am happy.","나는 행복하다.","S + V + 보어 · I = happy"],["3형식","I like apples.","나는 사과를 좋아한다.","S + V + 목적어 · I ≠ apples"],["4형식","I give him a book.","나는 그에게 책을 준다.","S + V + 간접목적어 + 직접목적어 · him ≠ a book"],["5형식","I make him happy.","나는 그를 행복하게 만든다.","S + V + 목적어 + 목적격보어 · him = happy"]];
+function formCards(){return '<div class="chunks" style="margin-top:12px">'+FORMS.map((f,k)=>'<button class="ck" onclick="pickform(this,'+(k+1)+')"><b>'+f[0]+'</b> &nbsp;'+f[1]+'<span class="hint">'+f[2]+'</span><span class="hint">'+f[3]+'</span></button>').join('')+'</div>'}
+function pickform(el,k){const n=cur.nodes[ni],st=steps[si];if(k==(st.p==2?n.form2:n.form)){el.classList.add("okpick");good()}else{el.classList.add("wrong");el.disabled=true;bad()}}
+function opts(list){return '<div class="chunks" style="margin-top:12px">'+list.map(o=>{const kc=['명사절','형용사절','부사절'].indexOf(o[0]);return '<button class="ck" onclick="pickopt(this,\''+o[0]+'\')">'+o[0]+'<span class="hint">'+o[1]+'</span></button>'}).join('')+'</div>'}
+function pickopt(el,v){
+  const n=cur.nodes[ni],s=steps[si];const want=s.t=='kind'?n.kind:n.sub;
+  if(v==want){el.classList.add("okpick");good()}else{el.classList.add("wrong");el.disabled=true;bad()}}
+function tapw(i){
+  const n=cur.nodes[ni],s=steps[si];
+  if(s.t=='V'){
+    const gi=n.G.findIndex(g=>g.includes(i)||(!n.kind&&n.V.includes(i)));
+    if(gi<0){bad();return}
+    gh[gi]=1;n.G[gi].forEach(x=>got[x]=1);
+    if(Object.keys(gh).length>=n.G.length){draw2ok()}else{draw();document.getElementById("fb").innerHTML='<div class="msg g">하나 찾았습니다. 더 있어요.</div>'}
+    return}
+  const want=s.t=='anc'?(n.np||n.anc):n.S;
+  if(want.includes(i)){want.forEach(x=>got[x]=1);draw2ok()}else bad()}
+function draw2ok(){draw();good()}
+function miss(){wr++;wp[ph]=(wp[ph]||0)+1}
+function bad(){miss();document.getElementById("fb").innerHTML='<div class="msg n">다시 골라 보세요.</div>'}
+function good(){
+  document.querySelectorAll(".ck,.w2").forEach(b=>b.disabled=true);
+  document.querySelectorAll(".sent .w2").forEach(b=>{});
+  document.getElementById("fb").innerHTML='<div class="msg g">맞았습니다.</div>';
+  adv(nextStep)}
+function nextStep(){
+  const n=cur.nodes[ni];
+  if(si<steps.length-1){si++;got={};gh={};draw();return}
+  done[ni]=true;
+  if(n.note){noteScreen();return}
+  advance()}
+const KI=n=>['명사절','형용사절','부사절'].indexOf(n.kind);
+function bd(t,c,sub){return '<span class="bd'+(c?' '+c:'')+'">'+esc(t)+(sub?'<i>'+esc(sub)+'</i>':'')+'</span>'}
+function runsOf(ix){const r=[];let c=[];ix.forEach((i,k)=>{if(k&&i!=ix[k-1]+1){r.push(c);c=[]}c.push(i)});if(c.length)r.push(c);return r.map(txtOf).join(' / ')}
+function txtOf(ix){return ix.map(i=>cur.tok[i]).join(' ').replace(/[^A-Za-z' ]/g,'')}
+function noteVis(n){
+  let h='<div class="bdr">'+bd(n.kind,'kd'+KI(n)+' dp1')+bd(n.sub,'')+'</div>';
+  if(n.kind=='형용사절'&&n.np&&n.sub.indexOf('관계대명사')>0){
+    const rp0=cur.tok[n.a].replace(/[^A-Za-z]/g,'');const rp=(n.om&&!/^(that|who|whom|which)$/i.test(rp0))?'('+n.om+')':rp0;
+    h+='<div class="bdr">'+bd(rp,n.om&&rp!==rp0?'gapb':'kd1 dp1',n.sub)+'<span class="pp">가 채우는 자리</span>'+bd('___','gapb',n.sub[0]=='주'?'주어 자리':'목적어 자리')+'<span class="pp">=</span>'+bd(txtOf(n.np),'kd1 dp2','선행사')+'</div>'}
+  if(n.gv){h+='<div class="bdr">'+n.gv.map(g=>bd(g[0],'',g[1])).join('<span class="pp">+</span>')+(n.om?'<span class="pp">+</span>'+bd('('+n.om+')','gapb','생략'):'')+'<span class="pp">+</span>'+bd(n.om?'절':cur.tok[n.a].replace(/[^A-Za-z]/g,'')+' 절','kd0 dp1',n.sub)+'</div>'}
+  if(n.fill)h+='<div class="bdr">'+bd('___','gapb',n.fill[0])+'<span class="pp">←</span>'+bd(n.fill[1],'kd0 dp1','채우는 말')+'</div>';
+  if(n.host)h+='<div class="bdr">'+bd(n.host,'hostb')+'</div>';
+  if(n.G&&n.G.length>1)h+='<div class="bdr">'+n.G.map((g,k)=>(k?'<span class="pp">and</span>':'')+bd(txtOf(g),'vbd','동사')).join('')+'</div>';
+  if(n.kind=='부사절'&&n.sub=='결과'&&(cur.em||[]).length)h+='<div class="bdr">'+bd(txtOf(cur.em),'em2','so ~')+'<span class="pp">…</span>'+bd('that + 절','kd2 dp1','결과')+'</div>';
+  return h}
+function noteRest(n){const m=n.note.match(/형식입니다\.\s*/);return m?n.note.slice(m.index+m[0].length):n.note}
+function mainVis(n){
+  if(!n.sk)return '';
+  const lab={S:'주어',V:'동사',O:'목적어',C:n.form==5?'목적격보어':'보어'};
+  let h='<div class="bdr">'+bd(n.form+'형식'+(n.form2?' + '+n.form2+'형식':''),'cc')+'</div><div class="bdr">'+n.sk.map((x,k)=>(k?'<span class="pp">+</span>':'')+bd(runsOf(x.g),'sk'+x.r,lab[x.r])).join('')+'</div>';
+  return h}
+function noteScreen(){
+  const n=cur.nodes[ni];
+  $.innerHTML=head(n.kind?2:1)+'<div class="card"><span class="pill">정리</span>'+(n.kind?sentH(n,false)+noteVis(n):mainVis(n))+'<p class="q">'+esc(n.kind?n.note:noteRest(n))+'</p><button class="btn" onclick="advance()">'+(ni==cur.nodes.length-1?(cur.nf.length?'다음':'결과 보기'):'다음')+'</button></div>';window.scrollTo(0,0)}
+function advance(){if(ni<cur.nodes.length-1){ni++;startNode()}else startNF()}
+function depthOf(k){let d=0;const n=cur.nodes[k];for(let j=0;j<k;j++){const p=cur.nodes[j];if(p.a<=n.a&&n.b<=p.b)d++}return d}
+function finSent(){
+  let h='<div class="fsent">',kinds={},hs={},he={},hasHost=false;
+  cur.nodes.forEach(n=>{if(n.host&&n.gv&&n.gv[0]){const g=n.gv[0][0].toLowerCase();for(let j=n.a-1;j>=0;j--){if(cur.tok[j].toLowerCase().replace(/[^a-z]/g,'')==g){hs[j]=1;he[n.b-1]=1;hasHost=true;break}}}});
+  let inH=false;
+  cur.tok.forEach((w,i)=>{
+    if(hs[i]){h+='<span class="hostw">';inH=true}
+    let c='w2',k=-1;for(let q=cur.nodes.length-1;q>=0;q--){if(cur.nodes[q].own.includes(i)){k=q;break}}
+    const m=cur.nodes[k];
+    if(m&&m.kind){c+=' kd'+KI(m)+' dp'+Math.min(depthOf(k),3);kinds[m.kind]=1}
+    if((cur.em||[]).includes(i))c+=' em';
+    if(hs[i])c+=' hk';
+    h+='<span class="'+c+'" data-i="'+i+'">'+esc(w)+'</span>'+(he[i]&&inH?'':' ');
+    if(he[i]&&inH){h+='</span> ';inH=false}});
+  h+='</div><div class="bdr">'+bd('주절','cc')+(hasHost?bd('분사구문','hostb'):'')+['명사절','형용사절','부사절'].filter(x=>kinds[x]).map(x=>bd(x,'kd'+['명사절','형용사절','부사절'].indexOf(x)+' dp1')).join('')+'</div>';
+  return h}
+function mkXNote(){
+  const PN={verb:'동사 찾기',main:'주절',node:'절 열기',nf:'준동사',nfq:'준동사'},L=[];
+  Object.keys(wp).forEach(k=>L.push((PN[k]||k)+' 단계에서 '+wp[k]+'번 틀렸습니다.'));
+  if(!L.length)L.push('틀린 횟수 '+wr+'번');
+  const no=S.filter(x=>x.lv==cur.lv).indexOf(cur)+1;
+  let tree='';
+  cur.nodes.forEach((n,k)=>{let txt='';for(let i=n.a;i<n.b;i++){if(!n.own.includes(i))continue;txt+=cur.tok[i]+' '}
+    const lab=n.kind?(n.kind+' · '+n.sub):'주절 · '+n.form+(n.form2?' + '+n.form2:'')+'형식';
+    tree+='<li><b>'+esc(lab)+'</b>: '+esc(txt.trim())+'</li>'});
+  let rows='';cur.ch.forEach((c,i)=>{rows+='<div class="rw"><div class="re">'+esc(c)+'</div><div class="rk">'+esc(cur.ko[i])+'</div></div>'});
+  return {id:'x'+cur.id,src:'xray',title:cur.lv+' 문장 분석 '+no+'번 · 본문 '+cur.id,html:'<p class="sec">틀린 곳</p><ul class="wul">'+L.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><p class="sec">문장 구조</p><ul class="wul">'+tree+'</ul><p class="sec">끊어 읽기와 해석</p>'+rows};
+}
+function fin(){
+  ph='fin';R[cur.id].done=true;R[cur.id].wr=wr;save();if(wr>0)wlPut(mkXNote());
+  let h='<div class="top"><button class="back" onclick="home()">&lt; 목록</button><span class="small">'+(S.filter(x=>x.lv==cur.lv).indexOf(cur)+1)+'번'+(STARS.has(cur.id)&&cur.lv=='심화'?' ★':'')+' · 본문 '+cur.id+'</span></div><div class="card"><span class="pill">완성</span><p class="q">'+(wr==0?'모두 한 번에 맞혔습니다.':'틀린 횟수 '+wr+'번')+'</p>'+finSent()+'<div class="tree">';
+  cur.nodes.forEach((n,k)=>{
+    let d=depthOf(k);let txt='';for(let i=n.a;i<n.b;i++){if(!n.own.includes(i))continue;txt+=((cur.em||[]).includes(i)?'\u0001'+cur.tok[i]+'\u0002':cur.tok[i])+' '}
+    const lab=n.kind?(n.kind+' · '+n.sub):'주절 · '+n.form+(n.form2?' + '+n.form2:'')+'형식';
+    const anc=n.anc?' → '+(n.np||n.anc).map(x=>cur.tok[x]).join(' ').replace(/[^A-Za-z\' ]/g,'')+'을(를) 꾸밈':'';
+    if(n.host){h+='<div class="tn hosttn" style="margin-left:'+(d*16)+'px"><b>'+esc((n.host||'꾸밈구').replace(/ 안의 절$/,''))+'</b> · '+esc(n.gv&&n.gv[0]?n.gv[0][0]:'')+' 로 시작<br><span class="small">아래 절은 이 '+esc((n.host||'꾸밈구').replace(/ 안의 절$/,'').split('(')[0])+' 안에 들어 있음</span></div>';d=d+1}
+    h+='<div class="tn'+(n.kind?' kd'+KI(n)+' dp'+Math.min(d,3):' tcore')+'" style="margin-left:'+(d*16)+'px"><b>'+lab+'</b>'+esc(anc)+'<br><span class="te">'+esc(txt.trim()).replace(/\u0001/g,'<span class="em">').replace(/\u0002/g,'</span>')+'</span></div>'});
+  h+='</div><p class="small" style="margin-top:12px">이 문장을 끊어 읽으면</p><div class="chunks">';
+  cur.ch.forEach((c,i)=>{h+='<div class="ck mini">'+esc(c)+'<span class="ko">'+esc(cur.ko[i])+'</span></div>'});
+  const LL=S.filter(x=>x.lv==cur.lv),nx=LL[LL.indexOf(cur)+1];TAB=cur.lv;
+  h+='</div>'+''+'<button class="btn" onclick="'+(nx?"play('"+nx.id+"')":"home()")+'">'+(nx?'다음 문장':'목록으로')+'</button></div>';$.innerHTML=h;window.scrollTo(0,0);tbExtra()}
+function tbExtra(){
+  const card=document.querySelector('.card');if(!card)return;
+  const btn=card.querySelector('button.btn');let h='';
+  if(NAT[cur.id])h+='<p class="small" style="margin-top:14px">교과서 해석</p><p style="margin:2px 0 0;font-weight:700;line-height:1.6">'+esc(NAT[cur.id])+'</p>';
+  const g=GLOSS[cur.id]||[];
+  if(g.length){h+='<p class="small" style="margin-top:14px">이 문장의 단어</p><div style="line-height:1.7;font-size:15px">'+g.map(x=>'<div><b>'+esc(x[0])+'</b> '+esc(x[1])+(x[2]?' <span class="small">('+esc(x[2])+')</span>':'')+'</div>').join('')+'</div>'}
+  if(cur.note2)h+='<p class="small" style="margin-top:14px">참고</p><p style="margin:2px 0 0;line-height:1.6">'+esc(cur.note2)+'</p>';
+  const d=document.createElement('div');d.innerHTML=h;if(btn)card.insertBefore(d,btn);else card.appendChild(d)}
+home();
+</script></body></html>
