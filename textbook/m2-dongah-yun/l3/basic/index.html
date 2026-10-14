@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<meta name="robots" content="noindex">
+<title>3과 기본 문장 분석</title>
+<style>
+/* Layout: one narrow column, phone-first. Home = Day grid; Play = 3-step card (order, role, meaning); roles are color-coded. */
+:root{
+  --bg:#f4f6f8; --surface:#ffffff; --fg:#14202b; --muted:#566474; --line:#d9e0e7;
+  --accent:#0f766e; --accent-fg:#ffffff; --good:#15803d; --bad:#b91c1c; --bad-bg:#fde8e8; --good-bg:#e3f4e8;
+  --s-bg:#dbeafe; --s-fg:#1e40af;
+  --v-bg:#dfe5ee; --v-fg:#1e293b;
+  --o-bg:#dcfce7; --o-fg:#166534;
+  --io-bg:#cffafe; --io-fg:#155e75;
+  --do-bg:#ecfccb; --do-fg:#3f6212;
+  --c-bg:#ffedd5; --c-fg:#9a3412;
+  --oc-bg:#fef3c7; --oc-fg:#92400e;
+  --m-bg:#ede9fe; --m-fg:#5b21b6;
+  --cj-bg:#e5e7eb; --cj-fg:#374151;
+  --hl:#fde047;--hlfg:#14202b;
+  --ko:"Gothic A1","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+  --en:"Lexend","Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e141b; --surface:#17212b; --fg:#e6ebf0; --muted:#9aa8b6; --line:#2a3744;
+  --accent:#2dd4bf; --accent-fg:#04201d; --good:#4ade80; --bad:#f87171; --bad-bg:#3a1d1f; --good-bg:#15301f;
+  --s-bg:#1e2f5c; --s-fg:#bfdbfe; --v-bg:#3a4658; --v-fg:#e2e8f0; --o-bg:#14392a; --o-fg:#bbf7d0;
+  --io-bg:#0f3a44; --io-fg:#a5f3fc; --do-bg:#2d3a12; --do-fg:#d9f99d; --c-bg:#4a2410; --c-fg:#fed7aa;
+  --oc-bg:#46330a; --oc-fg:#fde68a; --m-bg:#34235e; --m-fg:#ddd6fe; --cj-bg:#2f3340; --cj-fg:#d1d5db;
+  --hl:#a16207;--hlfg:#fff7d6;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e141b; --surface:#17212b; --fg:#e6ebf0; --muted:#9aa8b6; --line:#2a3744;
+  --accent:#2dd4bf; --accent-fg:#04201d; --good:#4ade80; --bad:#f87171; --bad-bg:#3a1d1f; --good-bg:#15301f;
+  --s-bg:#1e2f5c; --s-fg:#bfdbfe; --v-bg:#3a4658; --v-fg:#e2e8f0; --o-bg:#14392a; --o-fg:#bbf7d0;
+  --io-bg:#0f3a44; --io-fg:#a5f3fc; --do-bg:#2d3a12; --do-fg:#d9f99d; --c-bg:#4a2410; --c-fg:#fed7aa;
+  --oc-bg:#46330a; --oc-fg:#fde68a; --m-bg:#34235e; --m-fg:#ddd6fe; --cj-bg:#2f3340; --cj-fg:#d1d5db;
+  color-scheme:dark}
+*{box-sizing:border-box}
+.cp{margin-top:10px;padding:12px;border:1.5px dashed var(--accent);border-radius:12px;background:var(--bg)}
+.cpl{font-size:12px;font-weight:700;color:var(--muted);margin:0 0 6px}
+.ckv{border:2.5px solid var(--v-fg);border-radius:999px;padding:1px 8px}
+.hlm{background:var(--hl);color:var(--hlfg);padding:1px 3px;border-radius:3px}
+.cpw{font-size:16px;font-weight:700;margin:6px 0 0}
+.rtask{margin-top:12px}
+.cmb{display:block;font-size:12.5px;font-weight:700;color:var(--good);line-height:1.3;margin-top:1px}
+.cflow{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-start}
+.cch{display:flex;flex-direction:column;gap:3px;min-width:0}
+.cen{font-family:var(--en);font-size:15px;font-weight:500;line-height:1.35}
+.cko{font-size:12.5px;font-weight:700;color:var(--good);line-height:1.3;min-height:17px}
+.rtask .mdir{font-size:14px;font-weight:600;line-height:1.5}
+.rtask .cpw{font-size:14px;font-weight:600}
+.rtask .hint{font-size:13px;padding:8px 10px;color:var(--muted)}
+.cflow.tap{cursor:pointer}
+.cflow.tap .cko::after{content:'···';color:var(--muted);font-weight:400;letter-spacing:.12em}
+.rec{border:1.5px solid var(--accent);border-radius:16px;padding:18px 16px;background:var(--card,var(--bg));text-align:center}
+.rec-h{font-size:12px;color:var(--muted);letter-spacing:.02em}
+.rec-t{font-size:20px;font-weight:800;margin-top:6px}
+.rec-d{font-size:14px;color:var(--muted);margin-top:2px}
+.rec-big{font-size:44px;font-weight:800;line-height:1.2;margin:10px 0 6px}
+.rec-big.ok{color:var(--good)}.rec-big.no{color:var(--bad)}
+.rec-l{font-size:15px;margin-top:4px}
+.rec-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0 8px}
+.rec-chip{font-size:13px;padding:3px 9px;border-radius:999px;border:1px solid var(--line)}
+.rec-chip.o{color:var(--good);border-color:var(--good)}.rec-chip.x{color:var(--bad);border-color:var(--bad)}
+.trkrow{display:block;width:100%;text-align:left;margin-top:8px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:inherit;font:inherit;cursor:pointer}
+.trks{margin-top:8px}.trke{font-size:15px;font-weight:600;line-height:1.4}.trkk{font-size:13px;color:var(--good);margin-top:2px}.trkh{font-size:12px;color:var(--muted);margin-top:6px}
+.popq{margin-top:12px}
+.trkrow.on{border-color:var(--good);background:var(--good-bg)}
+.trkrow span{display:block}.trkt{font-size:12px;color:var(--muted)}.trkw{font-size:18px;margin:2px 0}.trkd{font-size:14px}
+.trkchips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.trkchip{padding:6px 10px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);color:inherit;font:inherit;font-size:13px;cursor:pointer}.trkchip.sel{border-color:var(--accent);background:var(--accent);color:var(--accent-fg)}
+.rec-sub{font-size:13px;color:var(--muted);margin-top:2px}
+.rec-big.pend{color:var(--muted);font-size:30px}
+.rec-q{font-size:13px;color:var(--muted);margin-top:6px}
+.rec-c{font-size:13px;color:var(--muted);margin-top:10px}
+.wbox{margin-top:12px}.wrow{padding:10px 0;border-top:1px solid var(--line)}.wrow:first-of-type{border-top:0}.wn{font-size:12px;color:var(--muted)}.wen{font-size:16px;font-weight:600;line-height:1.5;margin-top:2px}.wko{font-size:14px;color:var(--good);line-height:1.5;margin-top:3px}
+.rec-f{font-size:12px;color:var(--muted);margin-top:12px;border-top:1px dashed var(--line);padding-top:8px}
+.hrow{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.hrow span{color:var(--muted);flex:none}
+.hrow b{text-align:right;font-weight:600}
+.rtask.done{opacity:.75}
+body{background:var(--bg);color:var(--fg);font-family:var(--ko);font-size:16px;line-height:1.55;word-break:keep-all}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:640px;margin:0 auto;padding-inline:16px;padding-block:16px 40px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.brand{font-weight:900;letter-spacing:.02em;font-size:17px}
+.brand small{display:block;font-weight:500;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.pts{font-family:var(--en);font-weight:600;font-variant-numeric:tabular-nums;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;white-space:nowrap}
+.pts b{color:var(--accent)}
+h1{font-size:22px;margin:18px 0 6px;text-wrap:balance}
+h2{font-size:15px;margin:22px 0 10px;color:var(--muted);letter-spacing:.04em}
+.lead{color:var(--muted);margin:0 0 4px;font-size:15px}
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:8px}
+.day{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;min-height:64px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.day .dn{font-family:var(--en);font-weight:600;font-size:20px;font-variant-numeric:tabular-nums}
+.day .st{font-size:12px;color:var(--accent);letter-spacing:1px;min-height:18px}
+.day.done{border-color:var(--accent)}
+.foot{margin-top:28px;font-size:13px;color:var(--muted)}
+.back{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-height:44px}
+.ttl{font-weight:700;font-size:17px;text-align:center;flex:1}
+.prog{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.prog i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.pcount{font-size:13px;color:var(--muted);margin-bottom:12px;font-family:var(--en)}
+.steps.two{grid-template-columns:1fr 1fr}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
+.steps div{text-align:center;padding:8px 4px;border-radius:10px;font-size:14px;font-weight:700;border:1px solid var(--line);color:var(--muted);background:var(--surface)}
+.steps div.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.steps div.ok{color:var(--good);border-color:var(--good)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.ask{margin:0 0 12px;font-weight:700;font-size:17px;text-wrap:balance}
+.line{min-height:64px;border:2px dashed var(--line);border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.line .ph{color:var(--muted);font-size:14px;padding-inline:4px}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:52px}
+.tile{font-family:var(--en);font-size:17px;padding:10px 14px;min-height:46px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);overflow-wrap:anywhere;text-align:left}
+.line .tile{background:var(--surface);border-color:var(--accent)}
+.tile.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.tile.good{background:var(--good-bg);border-color:var(--good)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.ghost{background:transparent;border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-height:44px;color:var(--muted)}
+.primary{background:var(--accent);color:var(--accent-fg);border:0;border-radius:12px;padding:12px 20px;min-height:48px;font-weight:700;font-size:16px;width:100%;margin-top:14px}
+.krow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px;padding:10px;background:var(--bg);border-radius:10px;min-height:48px}
+.klbl{font-size:12px;font-weight:700;color:var(--muted);width:100%}
+.kblk{font:inherit;font-size:14px;cursor:pointer;padding:6px 10px;border-radius:8px;background:var(--surface);border:1.5px solid var(--good);color:var(--good);font-size:14px;font-weight:700}
+.kblk.go{box-shadow:0 0 0 2px var(--accent)}
+.rslot{min-height:24px;text-align:center;font-size:13px;font-weight:700;border-radius:6px;padding:2px 6px}
+.minp{width:100%;box-sizing:border-box;padding:12px;font-size:16px;font-family:var(--en);border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:inherit}
+.mission{margin-top:12px}
+.mline{margin:0 0 8px;font-size:15px;line-height:1.5}
+.mdir{margin:0;font-size:15px;font-weight:700}
+.mk{display:inline-block;padding:2px 8px;border-radius:6px;font-size:13px;margin-right:4px}
+.mans{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.msent{margin:0 0 10px;font-family:var(--en);font-size:15px;line-height:1.6}
+.kfull{margin:0;font-size:16px;font-weight:700;line-height:1.5}
+.kflow{display:flex;flex-wrap:wrap;gap:6px}
+.r2.down{animation:slideDown .35s ease both}
+@keyframes slideDown{from{transform:translateY(-14px);opacity:0}to{transform:none;opacity:1}}
+.kslot.wait{border-top-color:var(--accent);min-height:24px}
+.kdone{font-size:13px;color:var(--muted)}
+.hint{margin:12px 0 0;padding:10px 12px;background:var(--bg);border-radius:10px;font-size:15px}
+.msg{margin:12px 0 0;padding:10px 12px;border-radius:10px;font-size:15px;font-weight:700}
+.msg.ok{background:var(--good-bg);color:var(--good)}
+.bememo{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:#fff4d6;border:2px solid #f0b429;color:#5b3d00;font-size:14.5px;line-height:1.55}.bememo b.t{display:block;font-size:15.5px;margin-bottom:4px}.bememo .pr{display:inline-block;margin:2px 4px 2px 0;padding:2px 8px;border-radius:8px;background:#fff;border:1px solid #f0b429;font-weight:800}.bememo .x{color:#c0392b;text-decoration:line-through;font-weight:700}
+.today{text-align:left;margin:12px 0 4px;border-top:1px dashed var(--line);padding-top:10px}.tdh{font-size:14px;font-weight:800;margin-bottom:6px}.tdi{margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}.tdn{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:2px}.tdk{font-size:13px;color:var(--muted);margin-top:4px}.tdko{font-size:15px;font-weight:700;margin-top:3px}.tdm{margin-top:5px;font-size:12.5px;color:#7a4b00;background:#fff4d6;border-radius:8px;padding:4px 8px}
+.notestrip{display:block;width:100%;margin:0 0 12px;padding:11px 14px;border:2px solid #e0a100;border-radius:12px;background:#fff4d6;color:#5b3d00;font:inherit;font-size:15px;font-weight:800;text-align:left;cursor:pointer}.nbox{margin:12px 0 0;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.nbox .nt{font-size:14px;font-weight:800;margin:0 0 6px}.ni{margin:0 0 14px;padding:0 0 12px;border-bottom:1px solid var(--line)}.ni .nn{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:2px}.ni .nen{font-size:16px;font-weight:700;line-height:1.5}.ni .nko{font-size:14px;color:var(--muted);margin-top:2px}.ni ul{margin:8px 0 0;padding:0 0 0 18px;font-size:14px;line-height:1.6}.ni .nd{margin-top:6px;font-size:13px;color:var(--muted);line-height:1.5}.today{text-align:left;margin:12px 0 4px;border-top:1px dashed var(--line);padding-top:10px}.tdh{font-size:14px;font-weight:800;margin-bottom:6px}.tdi{margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}.tdn{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:2px}.tdk{font-size:13px;color:var(--muted);margin-top:4px}.tdko{font-size:15px;font-weight:700;margin-top:3px}.tdm{margin-top:5px;font-size:12.5px;color:#7a4b00;background:#fff4d6;border-radius:8px;padding:4px 8px}.bememo{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:#fff4d6;border:2px solid #f0b429;color:#5b3d00;font-size:14.5px;line-height:1.55}.bememo b.t{display:block;font-size:15.5px;margin-bottom:4px}.bememo .pr{display:inline-block;margin:2px 4px 2px 0;padding:2px 8px;border-radius:8px;background:#fff;border:1px solid #f0b429;font-weight:800}.bememo .x{color:#c0392b;text-decoration:line-through;font-weight:700}
+.msg.no{background:var(--bad-bg);color:var(--bad)}
+.r2{padding:12px 0;border-top:1px solid var(--line)}
+.r2:first-of-type{border-top:0}
+.r2 .chunk{font-family:var(--en);font-size:18px;font-weight:500;margin-bottom:8px;overflow-wrap:anywhere}
+.r2.done{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.r2.done .chunk{margin:0}
+.tgt{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{border:1.5px solid var(--line);background:var(--bg);border-radius:10px;padding:8px 12px;min-height:44px;font-weight:500}
+.opt.bad{text-decoration:line-through;color:var(--bad);border-color:var(--bad);background:var(--bad-bg);opacity:.8}
+.tg{background:var(--accent);color:var(--accent-fg);border-radius:8px;padding:2px 8px;font-weight:600}
+.qsent{font-family:var(--en);font-size:20px;line-height:2.1;margin:6px 0 16px;overflow-wrap:anywhere}
+.qopts{display:flex;flex-wrap:wrap;gap:8px}
+.qopts .opt{min-height:48px;font-size:16px;padding:10px 16px}
+.quizbtn{width:100%;text-align:left;background:var(--surface);border:1.5px solid var(--accent);border-radius:14px;padding:14px 16px;margin:16px 0 4px;min-height:60px}
+.quizbtn b{display:block;font-size:17px;color:var(--accent)}
+.quizbtn span{font-size:14px;color:var(--muted)}
+.badge,.blk{border-radius:8px;font-weight:700}
+.badge{padding:4px 10px;font-size:14px;white-space:nowrap}
+.role-s{background:var(--s-bg);color:var(--s-fg)}.role-v{background:var(--v-bg);color:var(--v-fg)}
+.role-o{background:var(--o-bg);color:var(--o-fg)}.role-io{background:var(--io-bg);color:var(--io-fg)}
+.role-do{background:var(--do-bg);color:var(--do-fg)}.role-c{background:var(--c-bg);color:var(--c-fg)}
+.role-oc{background:var(--oc-bg);color:var(--oc-fg)}.role-m{background:var(--m-bg);color:var(--m-fg)}
+.role-cj{background:var(--cj-bg);color:var(--cj-fg)}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.col{display:flex;flex-direction:column;gap:8px;min-width:0}
+.col h3{margin:0 0 2px;font-size:13px;color:var(--muted)}
+.ml,.mr{border:1.5px solid var(--line);background:var(--bg);border-radius:10px;padding:10px;min-height:52px;text-align:left;overflow-wrap:anywhere;min-width:0}
+.ml{font-family:var(--en);font-size:15px}
+.ml small{display:block;font-family:var(--ko);font-size:13px;margin-top:4px;color:var(--good);font-weight:700}
+.mr{font-size:15px}
+.ml.sel,.mr.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.ml.ok,.mr.ok{border-color:var(--good);background:var(--good-bg)}
+.mr.ok{opacity:.55}
+.ml.bad,.mr.bad{border-color:var(--bad);background:var(--bad-bg)}
+.ml .badge{display:inline-block;margin-bottom:4px;font-size:12px;padding:2px 8px;font-family:var(--ko)}
+.stage{display:flex;flex-wrap:wrap;gap:6px 5px;min-height:74px;padding:10px 8px;margin-bottom:14px;border-radius:14px;background:var(--bg);border:1.5px solid var(--line)}
+.slot{width:44px;height:46px;border:2px dashed var(--line);border-radius:10px}
+.sblk{display:inline-flex;flex-direction:column;padding:5px 8px;border-radius:10px;background:var(--surface);border:1.5px solid var(--good);min-width:0}
+.sblk b{font-family:var(--en);font-weight:500;font-size:15px;overflow-wrap:anywhere}
+.sblk small{font-size:12px;font-weight:700;color:var(--good)}
+.slot.lab{width:auto;min-width:56px;padding:6px 10px;display:inline-flex;align-items:center;justify-content:center}
+.slot.lab small{font-size:13px;color:var(--muted);font-weight:700}
+.slot.next{border-color:var(--accent);background:var(--surface)}
+.tile.hl{box-shadow:0 0 0 4px #f97316;border-color:#f97316;background:#ffedd5;color:#7c2d12}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tile.hl{background:#5a2a0a;color:#ffedd5}}
+.col3{display:flex;flex-direction:column;gap:3px;align-items:stretch;min-width:44px;max-width:100%}
+.col3 .slot{width:auto;min-width:44px;height:46px}
+.kslot{min-height:22px;font-size:12px;font-weight:700;color:var(--good);text-align:center;border-top:2px dashed var(--line);padding-top:4px;line-height:1.3}
+.kslot.filled{border-top-color:transparent}
+@media (prefers-reduced-motion:no-preference){.drop{animation:dropIn .6s .28s both cubic-bezier(.2,.8,.2,1)}@keyframes dropIn{from{transform:translateY(-90px);opacity:0}to{transform:none;opacity:1}}}
+@media (prefers-reduced-motion:no-preference){.hl{animation:pl 1s infinite}@keyframes pl{50%{box-shadow:0 0 0 8px rgba(249,115,22,.25)}}}
+.seq{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 14px}
+.seq .arr{color:var(--muted);font-weight:700}
+.seqlbl{font-size:13px;color:var(--muted);margin-right:4px}
+.banner{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px dashed var(--accent);font-size:14px}
+.sblk.st2 small{color:inherit;opacity:.9}
+.sblk.st2{border-color:transparent}
+.sblk{position:relative}
+.sblk .no{position:absolute;top:-9px;left:-6px;width:20px;height:20px;border-radius:50%;background:var(--ink,#222);color:var(--surface,#fff);font-style:normal;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.sblk.pick{font:inherit;cursor:pointer;color:inherit}
+.sblk.wait{border:2px solid var(--muted);background:var(--surface);color:var(--text,inherit);opacity:1}
+.sblk.wait.now{border:2px solid #f97316;background:#ffedd5;color:#7c2d12;box-shadow:0 0 0 4px rgba(249,115,22,.35)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sblk.wait.now{background:#5a2a0a;color:#ffedd5}}
+.sblk.wait.sel{border:2px solid var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--surface))}
+.sblk.wait b{color:inherit}
+.nth{display:inline-block;font-family:var(--ui,inherit);font-size:12px;font-weight:700;color:var(--accent);margin-right:6px}
+.ml.free{border-style:dashed}
+.ml.free small{color:var(--muted);font-weight:500}
+.sent{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px}
+.blk{display:inline-flex;flex-direction:column;padding:8px 12px}
+.blk b{font-family:var(--en);font-weight:500;font-size:17px;overflow-wrap:anywhere}
+.blk small{font-size:12px;font-weight:700;opacity:.85}
+.kor{font-size:18px;font-weight:700;margin:0 0 12px;text-wrap:balance}
+.notes{margin:0 0 12px;padding:0;list-style:none;font-size:14px;color:var(--muted)}
+.notes li{padding:4px 0}
+.notes span{font-family:var(--en);color:var(--fg)}
+.gain{font-size:15px;margin:0}
+.gain b{font-family:var(--en);font-size:22px;color:var(--accent)}
+.big{font-family:var(--en);font-size:44px;font-weight:600;font-variant-numeric:tabular-nums;margin:6px 0}
+.stars{font-size:28px;color:var(--accent);letter-spacing:4px}
+.center{text-align:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+.two .primary,.two .ghost{margin:0;width:100%}
+@media (prefers-reduced-motion:no-preference){.shake{animation:sh .25s}@keyframes sh{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+button,select,a,.day,.tile,.opt{touch-action:manipulation}
+input,select,textarea{font-size:16px}
+.dgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}.dg{padding:8px 0;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;font:inherit;font-size:14px;cursor:pointer}.dg small.dd{display:block;font-size:9px;line-height:1.1;margin-top:1px;color:var(--good);font-weight:700}.dg.on small.dd{color:inherit}.dg.ok{background:var(--good-bg);border-color:var(--good)}.dg.on{border-color:var(--accent);background:var(--accent);color:var(--accent-fg);font-weight:700}u.sig{text-decoration:underline;text-decoration-thickness:2.5px;text-underline-offset:3px;font-weight:700}
+</style>
+<style>
+.badge.role-s,.badge.role-v,.badge.role-o,.badge.role-io,.badge.role-do,.badge.role-c,.badge.role-oc,.badge.role-m,.badge.role-cj{display:inline-block}
+.klinew{margin:0 0 12px;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:15px;line-height:1.8}
+.klinew .kc{display:inline-block;padding:0 6px;border-radius:6px;margin:0 2px;font-weight:700}
+.gl{margin:14px 0 0;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:14.5px;line-height:1.7}
+.gl .gh{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:2px}
+.gl small{color:var(--muted)}
+.nbox2{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:14.5px;line-height:1.6}
+.sec{margin:16px 2px 8px;font-size:14px;font-weight:700;color:var(--muted)}
+.tback{display:inline-block;margin-bottom:6px;color:var(--accent);text-decoration:none;padding:6px 0;font-size:14px}
+.day.bad .st{color:var(--bad)}
+</style></head>
+<body><div class="wrap" id="app"></div>
+<script>
+(function(){
+"use strict";
+var DATA=[{"id": "3-1", "sec": "자전거", "en": "Mt. Tambora, a volcano in Indonesia, exploded in 1815.", "ko": "1815년 인도네시아의 화산인 탐보라산이 폭발했다.", "ch": [{"t": "Mt. Tambora,", "r": "주어", "k": "탐보라산이"}, {"t": "a volcano in Indonesia,", "r": "수식어", "k": "인도네시아의 화산인", "c": "동격(Mt. Tambora를 설명)", "a": "주어(Mt. Tambora) 수식"}, {"t": "exploded", "r": "동사", "k": "폭발했다"}, {"t": "in 1815.", "r": "수식어", "k": "1815년에", "c": "시간의 부사구", "a": "동사(exploded) 수식"}], "kord": [3, 1, 0, 2], "note": "Mt. Tambora와 a volcano in Indonesia는 같은 대상이에요. 뒤의 말이 Mt. Tambora를 다시 설명해 줘요(동격)."}, {"id": "3-2", "sec": "자전거", "en": "The explosion created a huge cloud of ash, so crops failed around the world.", "ko": "이 폭발은 거대한 재 구름을 만들었고, 그래서 전 세계적으로 농작물이 자라지 못했다.", "ch": [{"t": "The explosion", "r": "주어", "k": "이 폭발은"}, {"t": "created", "r": "동사", "k": "만들었다"}, {"t": "a huge cloud of ash,", "r": "목적어", "k": "거대한 재 구름을"}, {"t": "so", "r": "접속사", "k": "그래서"}, {"t": "crops", "r": "주어", "k": "농작물이"}, {"t": "failed", "r": "동사", "k": "자라지 못했다"}, {"t": "around the world.", "r": "수식어", "k": "전 세계적으로", "c": "장소의 부사구", "a": "동사(failed) 수식"}], "kord": [0, 2, 1, 3, 4, 6, 5], "note": "so 앞뒤는 주어가 서로 다른 두 문장이에요. so는 \"그래서\"라는 뜻으로 두 문장을 이어 줘요."}, {"id": "3-3", "sec": "자전거", "en": "As a result, people didn’t have enough food to eat.", "ko": "그 결과, 사람들은 먹을 음식이 충분하지 않았다.", "ch": [{"t": "As a result,", "r": "수식어", "k": "그 결과", "c": "결과를 나타내는 부사구", "a": "문장 전체 수식"}, {"t": "people", "r": "주어", "k": "사람들은"}, {"t": "didn’t have", "r": "동사", "k": "가지고 있지 않았다"}, {"t": "enough food", "r": "목적어", "k": "충분한 음식을"}, {"t": "to eat.", "r": "수식어", "k": "먹을", "c": "형용사구(to부정사)", "a": "목적어(enough food) 수식"}], "kord": [0, 1, 4, 3, 2], "note": "to eat은 앞의 enough food를 뒤에서 꾸며 \"먹을\"이라는 뜻이 돼요."}, {"id": "3-4", "sec": "자전거", "en": "Surprisingly, this made traveling difficult.", "ko": "놀랍게도, 이로 인해 이동이 어려워졌다.", "ch": [{"t": "Surprisingly,", "r": "수식어", "k": "놀랍게도", "c": "부사", "a": "문장 전체 수식"}, {"t": "this", "r": "주어", "k": "이것이"}, {"t": "made", "r": "동사", "k": "만들었다"}, {"t": "traveling", "r": "목적어", "k": "이동하는 것을"}, {"t": "difficult.", "r": "목적격보어", "k": "어렵게"}], "kord": [0, 1, 3, 4, 2], "note": "made + 목적어 + 보어는 \"~을 …하게 만들었다\"예요. traveling(이동하는 것)이 어려운 상태가 된 거예요."}, {"id": "3-5", "sec": "자전거", "en": "Why?", "ko": "왜일까?", "ch": [{"t": "Why?", "r": "수식어", "k": "왜일까?", "c": "의문부사", "a": "이유를 묻는 말"}], "kord": [0], "note": "동사가 없는 짧은 질문이에요. 앞 문장의 이유를 묻는 말로 봐요."}, {"id": "3-6", "sec": "자전거", "en": "In those days, people rode horses, but many horses were killed for food.", "ko": "당시, 사람들은 말을 탔는데, 많은 말들이 식용으로 죽임을 당했다.", "ch": [{"t": "In those days,", "r": "수식어", "k": "당시", "c": "시간의 부사구", "a": "동사(rode) 수식"}, {"t": "people", "r": "주어", "k": "사람들은"}, {"t": "rode", "r": "동사", "k": "탔다"}, {"t": "horses,", "r": "목적어", "k": "말을"}, {"t": "but", "r": "접속사", "k": "하지만"}, {"t": "many horses", "r": "주어", "k": "많은 말들이"}, {"t": "were killed", "r": "동사", "k": "죽임을 당했다"}, {"t": "for food.", "r": "수식어", "k": "식용으로", "c": "목적의 부사구", "a": "동사(were killed) 수식"}], "kord": [0, 1, 3, 2, 4, 5, 7, 6], "note": "but 앞뒤는 주어가 서로 다른 두 문장이에요. were killed는 \"be + 과거분사\"인 수동태예요. 한 덩어리 동사로 보고 \"~당했다\"로 해석해요."}, {"id": "3-7", "sec": "자전거", "en": "People needed a new way to travel, and Karl von Drais invented the first bicycle in Germany in 1817.", "ko": "사람들은 이동하기 위한 새로운 수단이 필요했고, 1817년 독일에서 Karl von Drais가 최초의 자전거를 발명했다.", "ch": [{"t": "People", "r": "주어", "k": "사람들은"}, {"t": "needed", "r": "동사", "k": "필요로 했다"}, {"t": "a new way", "r": "목적어", "k": "새로운 수단을"}, {"t": "to travel,", "r": "수식어", "k": "이동하기 위한", "c": "형용사구(to부정사)", "a": "목적어(a new way) 수식"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "Karl von Drais", "r": "주어", "k": "Karl von Drais가"}, {"t": "invented", "r": "동사", "k": "발명했다"}, {"t": "the first bicycle", "r": "목적어", "k": "최초의 자전거를"}, {"t": "in Germany", "r": "수식어", "k": "독일에서", "c": "장소의 부사구", "a": "동사(invented) 수식"}, {"t": "in 1817.", "r": "수식어", "k": "1817년에", "c": "시간의 부사구", "a": "동사(invented) 수식"}], "kord": [0, 3, 2, 1, 4, 9, 8, 5, 7, 6], "note": "and 앞뒤는 주어가 서로 다른 두 문장이에요. to travel은 앞의 a new way를 뒤에서 꾸며 \"이동하기 위한\"이라는 뜻이 돼요."}, {"id": "3-8", "sec": "자전거", "en": "Drais’s bicycle had two wooden wheels but no pedals.", "ko": "Drais의 자전거는 나무로 된 두 개의 바퀴가 있었지만 페달은 없었다.", "ch": [{"t": "Drais’s bicycle", "r": "주어", "k": "Drais의 자전거는"}, {"t": "had", "r": "동사", "k": "가지고 있었다"}, {"t": "two wooden wheels", "r": "목적어", "k": "나무로 된 두 개의 바퀴를"}, {"t": "but", "r": "접속사", "k": "하지만"}, {"t": "no pedals.", "r": "목적어", "k": "페달은 하나도 없는 것을"}], "kord": [0, 2, 3, 4, 1], "note": "had가 but 앞뒤의 두 목적어(two wooden wheels, no pedals)를 모두 가져요. 주어와 동사가 같아서 한 문장으로 봐요."}, {"id": "3-9", "sec": "자전거", "en": "How did it move without pedals?", "ko": "페달 없이 어떻게 움직였을까?", "ch": [{"t": "How", "r": "수식어", "k": "어떻게", "c": "의문부사", "a": "동사(did move) 수식"}, {"t": "did", "r": "동사", "k": "", "c": "의문문을 만드는 조동사(move와 한 덩어리 동사)"}, {"t": "it", "r": "주어", "k": "그것은"}, {"t": "move", "r": "동사", "k": "움직였을까"}, {"t": "without pedals?", "r": "수식어", "k": "페달 없이", "c": "방법의 부사구", "a": "동사(did move) 수식"}], "kord": [4, 0, 2, 3], "note": "의문문에서는 did와 move가 떨어져 있지만 한 덩어리 동사(did move)예요. did는 의문문을 만들기 위한 말이라 따로 해석하지 않아요."}, {"id": "3-10", "sec": "자전거", "en": "Well, riders simply pushed the bicycle forward with their feet.", "ko": "음, 타는 사람들이 단순히 발로 자전거를 앞으로 밀었다.", "ch": [{"t": "Well,", "r": "수식어", "k": "음", "c": "대답을 시작하는 말", "a": "문장 전체 수식"}, {"t": "riders", "r": "주어", "k": "타는 사람들이"}, {"t": "simply", "r": "수식어", "k": "단순히", "c": "부사", "a": "동사(pushed) 수식"}, {"t": "pushed", "r": "동사", "k": "밀었다"}, {"t": "the bicycle", "r": "목적어", "k": "자전거를"}, {"t": "forward", "r": "수식어", "k": "앞으로", "c": "부사", "a": "동사(pushed) 수식"}, {"t": "with their feet.", "r": "수식어", "k": "발로", "c": "도구의 부사구", "a": "동사(pushed) 수식"}], "kord": [0, 1, 2, 6, 4, 5, 3], "note": ""}, {"id": "3-11", "sec": "자전거", "en": "The present-day bicycle is the result of many inventors’ work in the 19th century.", "ko": "오늘날의 자전거는 19세기 많은 발명가들의 노력의 결과이다.", "ch": [{"t": "The present-day bicycle", "r": "주어", "k": "오늘날의 자전거는"}, {"t": "is", "r": "동사", "k": "이다"}, {"t": "the result", "r": "보어", "k": "결과"}, {"t": "of many inventors’ work", "r": "수식어", "k": "많은 발명가들의 노력의", "c": "형용사구", "a": "보어(the result) 수식"}, {"t": "in the 19th century.", "r": "수식어", "k": "19세기의", "c": "형용사구", "a": "명사(work) 수식"}], "kord": [0, 4, 3, 2, 1], "note": "in the 19th century는 앞의 work(노력)를 꾸며서 \"19세기의 노력\"이라는 뜻으로 봐요."}, {"id": "3-12", "sec": "수정액", "en": "Whiteout was invented by Bette Graham.", "ko": "수정액은 Bette Graham에 의해 발명되었다.", "ch": [{"t": "Whiteout", "r": "주어", "k": "수정액은"}, {"t": "was invented", "r": "동사", "k": "발명되었다"}, {"t": "by Bette Graham.", "r": "수식어", "k": "Bette Graham에 의해", "c": "행위자를 나타내는 부사구", "a": "동사(was invented) 수식"}], "kord": [0, 2, 1], "note": "was invented는 \"be + 과거분사\"인 수동태예요. 한 덩어리 동사로 보고 \"~되었다\"로 해석해요."}, {"id": "3-13", "sec": "수정액", "en": "In 1956, Graham was working at a bank in Texas, USA.", "ko": "1956년 Graham은 미국 텍사스의 한 은행에서 일하고 있었다.", "ch": [{"t": "In 1956,", "r": "수식어", "k": "1956년에", "c": "시간의 부사구", "a": "동사(was working) 수식"}, {"t": "Graham", "r": "주어", "k": "Graham은"}, {"t": "was working", "r": "동사", "k": "일하고 있었다"}, {"t": "at a bank", "r": "수식어", "k": "한 은행에서", "c": "장소의 부사구", "a": "동사(was working) 수식"}, {"t": "in Texas, USA.", "r": "수식어", "k": "미국 텍사스의", "c": "형용사구", "a": "명사(a bank) 수식"}], "kord": [0, 1, 4, 3, 2], "note": ""}, {"id": "3-14", "sec": "수정액", "en": "At that time, people had to retype the whole page when they made even a small mistake.", "ko": "그 당시, 사람들은 작은 실수 하나라도 하면 전체 페이지를 다시 입력해야 했다.", "ch": [{"t": "At that time,", "r": "수식어", "k": "그 당시", "c": "시간의 부사구", "a": "동사(had to retype) 수식"}, {"t": "people", "r": "주어", "k": "사람들은"}, {"t": "had to retype", "r": "동사", "k": "다시 입력해야 했다"}, {"t": "the whole page", "r": "목적어", "k": "전체 페이지를"}, {"t": "when", "r": "접속사", "k": "~할 때"}, {"t": "they", "r": "주어", "k": "그들이"}, {"t": "made", "r": "동사", "k": "저질렀다"}, {"t": "even a small mistake.", "r": "목적어", "k": "작은 실수 하나라도"}], "kord": [0, 1, 5, 7, 6, 4, 3, 2], "note": "had to retype은 \"다시 입력해야 했다\"라는 한 덩어리 동사로 봐요. when이 이끄는 절(when ~ mistake)은 \"~할 때\"라는 뜻으로 시간을 나타내요."}, {"id": "3-15", "sec": "수정액", "en": "Graham was a bad typist, so she needed a solution.", "ko": "Graham은 타자 실력이 좋지 않아서 해결책이 필요했다.", "ch": [{"t": "Graham", "r": "주어", "k": "Graham은"}, {"t": "was", "r": "동사", "k": "이었다"}, {"t": "a bad typist,", "r": "보어", "k": "서투른 타자수"}, {"t": "so", "r": "접속사", "k": "그래서"}, {"t": "she", "r": "주어", "k": "그녀는"}, {"t": "needed", "r": "동사", "k": "필요로 했다"}, {"t": "a solution.", "r": "목적어", "k": "해결책을"}], "kord": [0, 2, 1, 3, 4, 6, 5], "note": "so 앞뒤는 주어가 서로 다른 두 문장이에요(Graham, she). she는 Graham을 가리켜요."}, {"id": "3-16", "sec": "수정액", "en": "One day, Graham saw some window painters.", "ko": "어느 날 Graham은 창문을 칠하는 페인트공들을 보았다.", "ch": [{"t": "One day,", "r": "수식어", "k": "어느 날", "c": "시간의 부사구", "a": "동사(saw) 수식"}, {"t": "Graham", "r": "주어", "k": "Graham은"}, {"t": "saw", "r": "동사", "k": "보았다"}, {"t": "some window painters.", "r": "목적어", "k": "창문을 칠하는 페인트공들을"}], "kord": [0, 1, 3, 2], "note": "window painters는 \"창문을 칠하는 페인트공들\"로 풀어서 읽어요."}, {"id": "3-17", "sec": "수정액", "en": "When they made a mistake, they corrected it by simply painting over it.", "ko": "그들은 실수했을 때 단순히 그 위에 페인트를 덧칠하는 것으로 실수를 수정했다.", "ch": [{"t": "When", "r": "접속사", "k": "~할 때"}, {"t": "they", "r": "주어", "k": "그들이"}, {"t": "made", "r": "동사", "k": "저질렀다"}, {"t": "a mistake,", "r": "목적어", "k": "실수를"}, {"t": "they", "r": "주어", "k": "그들은"}, {"t": "corrected", "r": "동사", "k": "수정했다"}, {"t": "it", "r": "목적어", "k": "그것을"}, {"t": "by simply painting over it.", "r": "수식어", "k": "단순히 그 위에 페인트를 덧칠함으로써", "c": "방법의 부사구", "a": "동사(corrected) 수식"}], "kord": [1, 3, 2, 0, 4, 7, 6, 5], "note": "made a mistake는 \"실수하다\"라는 표현이에요. made(저질렀다)와 a mistake(실수를)로 나누어 봐요. 두 번째 it은 앞의 a mistake를 가리켜요."}, {"id": "3-18", "sec": "수정액", "en": "The next day, she made her own white paint and used it to correct her typing mistakes.", "ko": "그다음 날 그녀는 자신만의 흰색 페인트를 만들어 오타를 수정하는 데 사용했다.", "ch": [{"t": "The next day,", "r": "수식어", "k": "그다음 날", "c": "시간의 부사구", "a": "동사(made) 수식"}, {"t": "she", "r": "주어", "k": "그녀는"}, {"t": "made", "r": "동사", "k": "만들었다"}, {"t": "her own white paint", "r": "목적어", "k": "자신만의 흰색 페인트를"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "used", "r": "동사", "k": "사용했다"}, {"t": "it", "r": "목적어", "k": "그것을"}, {"t": "to correct her typing mistakes.", "r": "수식어", "k": "오타를 수정하기 위해", "c": "목적의 부사구(to부정사)", "a": "동사(used) 수식"}], "kord": [0, 1, 3, 2, 4, 7, 6, 5], "note": "typing mistakes는 \"타자 입력 실수\", 즉 오타예요. used it to correct는 \"그것을 수정하기 위해 사용했다\"로 읽어요."}, {"id": "3-19", "sec": "수정액", "en": "Surprisingly, nobody noticed!", "ko": "놀랍게도, 아무도 알아차리지 못했다!", "ch": [{"t": "Surprisingly,", "r": "수식어", "k": "놀랍게도", "c": "부사", "a": "문장 전체 수식"}, {"t": "nobody", "r": "주어", "k": "아무도"}, {"t": "noticed!", "r": "동사", "k": "알아차리지 못했다"}], "kord": [0, 1, 2], "note": ""}, {"id": "3-20", "sec": "수정액", "en": "Soon, everybody at the bank began using it.", "ko": "곧 은행의 모든 사람들이 그것을 사용하기 시작했다.", "ch": [{"t": "Soon,", "r": "수식어", "k": "곧", "c": "부사", "a": "동사(began) 수식"}, {"t": "everybody", "r": "주어", "k": "모든 사람들이"}, {"t": "at the bank", "r": "수식어", "k": "은행의", "c": "형용사구", "a": "주어(everybody) 수식"}, {"t": "began", "r": "동사", "k": "시작했다"}, {"t": "using it.", "r": "목적어", "k": "그것을 사용하는 것을"}], "kord": [0, 2, 1, 4, 3], "note": ""}, {"id": "3-21", "sec": "웹캠", "en": "The first webcam was invented to watch a coffee pot.", "ko": "최초의 웹캠은 커피포트를 지켜보기 위해 발명되었다.", "ch": [{"t": "The first webcam", "r": "주어", "k": "최초의 웹캠은"}, {"t": "was invented", "r": "동사", "k": "발명되었다"}, {"t": "to watch a coffee pot.", "r": "수식어", "k": "커피포트를 지켜보기 위해", "c": "목적의 부사구(to부정사)", "a": "동사(was invented) 수식"}], "kord": [0, 2, 1], "note": "was invented는 \"be + 과거분사\"인 수동태예요. 한 덩어리 동사로 보고 \"~되었다\"로 해석해요."}, {"id": "3-22", "sec": "웹캠", "en": "In 1991, Dr. Quentin Stafford-Fraser and Dr. Paul Jardetzky were working at a computer lab in England.", "ko": "1991년 Quentin Stafford-Fraser 박사와 Paul Jardetzky 박사는 영국의 한 컴퓨터 연구소에서 일하고 있었다.", "ch": [{"t": "In 1991,", "r": "수식어", "k": "1991년에", "c": "시간의 부사구", "a": "동사(were working) 수식"}, {"t": "Dr. Quentin Stafford-Fraser and Dr. Paul Jardetzky", "r": "주어", "k": "Quentin Stafford-Fraser 박사와 Paul Jardetzky 박사는"}, {"t": "were working", "r": "동사", "k": "일하고 있었다"}, {"t": "at a computer lab", "r": "수식어", "k": "한 컴퓨터 연구소에서", "c": "장소의 부사구", "a": "동사(were working) 수식"}, {"t": "in England.", "r": "수식어", "k": "영국의", "c": "형용사구", "a": "명사(a computer lab) 수식"}], "kord": [0, 1, 4, 3, 2], "note": ""}, {"id": "3-23", "sec": "웹캠", "en": "To work better, they needed lots of coffee.", "ko": "일을 더 잘하기 위해, 그들은 많은 양의 커피가 필요했다.", "ch": [{"t": "To work better,", "r": "수식어", "k": "일을 더 잘하기 위해", "c": "목적의 부사구(to부정사)", "a": "동사(needed) 수식"}, {"t": "they", "r": "주어", "k": "그들은"}, {"t": "needed", "r": "동사", "k": "필요로 했다"}, {"t": "lots of coffee.", "r": "목적어", "k": "많은 양의 커피를"}], "kord": [0, 1, 3, 2], "note": ""}, {"id": "3-24", "sec": "웹캠", "en": "However, there was only one coffee machine in the building.", "ko": "하지만 건물에는 커피 머신이 한 대뿐이었다.", "ch": [{"t": "However,", "r": "수식어", "k": "하지만", "c": "접속부사", "a": "문장 전체 수식"}, {"t": "there was", "r": "동사", "k": "있었다"}, {"t": "only one coffee machine", "r": "주어", "k": "커피 머신이 한 대뿐"}, {"t": "in the building.", "r": "수식어", "k": "건물에", "c": "장소의 부사구", "a": "동사(there was) 수식"}], "kord": [0, 3, 2, 1], "note": "there was는 \"~이 있었다\"라는 뜻이고, 뒤의 only one coffee machine이 진짜 주어예요."}, {"id": "3-25", "sec": "웹캠", "en": "So, they had to make many disappointing trips to the empty coffee pot.", "ko": "그래서 그들은 비어 있는 커피포트로 실망스러운 발걸음을 많이 해야 했다.", "ch": [{"t": "So,", "r": "수식어", "k": "그래서", "c": "접속부사", "a": "문장 전체 수식"}, {"t": "they", "r": "주어", "k": "그들은"}, {"t": "had to make", "r": "동사", "k": "해야 했다"}, {"t": "many disappointing trips", "r": "목적어", "k": "실망스러운 발걸음을 많이"}, {"t": "to the empty coffee pot.", "r": "수식어", "k": "비어 있는 커피포트로", "c": "형용사구", "a": "명사(trips) 수식"}], "kord": [0, 1, 4, 3, 2], "note": "had to make는 \"~해야 했다\"라는 한 덩어리 동사로 봐요. make trips는 \"발걸음을 하다(왔다 갔다 하다)\"라는 뜻이에요."}, {"id": "3-26", "sec": "웹캠", "en": "As a solution, the two researchers set up a camera in front of the coffee machine.", "ko": "해결책으로, 두 연구원은 커피 머신 앞에 카메라를 설치했다.", "ch": [{"t": "As a solution,", "r": "수식어", "k": "해결책으로", "c": "자격의 부사구", "a": "동사(set up) 수식"}, {"t": "the two researchers", "r": "주어", "k": "두 연구원은"}, {"t": "set up", "r": "동사", "k": "설치했다"}, {"t": "a camera", "r": "목적어", "k": "카메라를"}, {"t": "in front of the coffee machine.", "r": "수식어", "k": "커피 머신 앞에", "c": "장소의 부사구", "a": "동사(set up) 수식"}], "kord": [0, 1, 4, 3, 2], "note": "set up은 \"설치하다\"라는 한 덩어리 동사(구동사)예요. up을 따로 떼지 않아요."}, {"id": "3-27", "sec": "웹캠", "en": "The camera took pictures of the coffee pot three times a minute.", "ko": "그 카메라는 1분에 세 번씩 커피포트의 사진을 찍었다.", "ch": [{"t": "The camera", "r": "주어", "k": "그 카메라는"}, {"t": "took", "r": "동사", "k": "찍었다"}, {"t": "pictures of the coffee pot", "r": "목적어", "k": "커피포트의 사진을"}, {"t": "three times a minute.", "r": "수식어", "k": "1분에 세 번씩", "c": "횟수의 부사구", "a": "동사(took) 수식"}], "kord": [0, 3, 2, 1], "note": "took pictures of ~는 \"~의 사진을 찍었다\"예요. took(찍었다)과 pictures of the coffee pot(커피포트의 사진을)으로 나누어 봐요."}, {"id": "3-28", "sec": "웹캠", "en": "With special software, all the researchers in the building could see the pictures on their local network.", "ko": "특수 소프트웨어를 사용해 건물에 있는 모든 연구원들이 사내 통신망으로 사진을 볼 수 있었다.", "ch": [{"t": "With special software,", "r": "수식어", "k": "특수 소프트웨어로", "c": "도구의 부사구", "a": "동사(could see) 수식"}, {"t": "all the researchers", "r": "주어", "k": "모든 연구원들이"}, {"t": "in the building", "r": "수식어", "k": "건물에 있는", "c": "형용사구", "a": "주어(all the researchers) 수식"}, {"t": "could see", "r": "동사", "k": "볼 수 있었다"}, {"t": "the pictures", "r": "목적어", "k": "사진을"}, {"t": "on their local network.", "r": "수식어", "k": "사내 통신망으로", "c": "수단의 부사구", "a": "동사(could see) 수식"}], "kord": [0, 2, 1, 5, 4, 3], "note": ""}, {"id": "3-29", "sec": "웹캠", "en": "No more disappointing trips!", "ko": "더 이상 실망스러운 발걸음은 없었다!", "ch": [{"t": "No more disappointing trips!", "r": "주어", "k": "더 이상 실망스러운 발걸음은 없었다"}], "kord": [0], "note": "동사가 없는 짧은 문장이에요. \"There were no more disappointing trips.\"에서 There were가 빠진 문장으로 봐요."}];
+var GLOSS={"3-1": [["volcano", "n. 화산", ""], ["exploded", "v. 폭발하다", "explode의 과거형"]], "3-2": [["explosion", "n. 폭발", ""], ["huge", "a. 거대한", ""], ["cloud", "n. 구름", ""], ["ash", "n. 재, 잿더미", ""], ["crops", "n. (농)작물", "crop의 복수형"], ["failed", "v. (농작물 등이) 자라지 못하다, 흉작이 들다", "fail의 과거형"]], "3-3": [["As a result", "그 결과로, 결과적으로", ""], ["enough", "a. 충분한", ""]], "3-4": [["Surprisingly", "adv. 놀랍게도", ""], ["traveling", "v. 이동하다", "travel의 -ing형(동명사)"]], "3-5": [], "3-6": [["rode", "v. (말 등)을 타다", "ride의 과거형 (ride-rode-ridden)"], ["killed", "v. ~을 죽이다", "kill의 과거분사 (수동태 were killed)"]], "3-7": [["needed", "v. ~을 필요로 하다", "need의 과거형"], ["way", "n. 방법, 수단", ""], ["travel", "v. 이동하다", ""], ["invented", "v. ~을 발명하다", "invent의 과거형 / 과거분사 (수동태 was invented)"], ["Germany", "n. 독일", ""]], "3-8": [["wooden", "a. 나무로 된", ""], ["wheels", "n. 바퀴", "wheel의 복수형"], ["pedals", "n. 페달", "pedal의 복수형"]], "3-9": [["move", "v. 움직이다", ""], ["without", "prep. ~없이", ""], ["pedals", "n. 페달", "pedal의 복수형"]], "3-10": [["riders", "n. 타는 사람", "rider의 복수형"], ["simply", "adv. 단순히", ""], ["pushed", "v. ~을 밀다", "push의 과거형"], ["forward", "adv. 앞으로", ""], ["feet", "n. 발", "foot의 복수형"]], "3-11": [["present-day", "a. 오늘날의, 현대의", ""], ["result", "n. 결과, 결실", ""], ["inventors’", "n. 발명가", "inventor의 복수형 (소유격 inventors’)"], ["century", "n. 세기, 100년", ""]], "3-12": [["Whiteout", "n. 수정액", ""], ["invented", "v. ~을 발명하다", "invent의 과거형 / 과거분사 (수동태 was invented)"]], "3-13": [], "3-14": [["had to", "~해야 한다 (have+to부정사)", "have to의 과거형"], ["retype", "v. ~을 다시 입력하다", ""], ["whole", "a. 전체의", ""], ["made even a small mistake", "실수하다", "make a mistake의 과거형 (make-made-made)"]], "3-15": [["bad", "a. 잘하지 못하는, 서투른", ""], ["typist", "n. 타자수, 타이피스트", ""], ["needed", "v. ~을 필요로 하다", "need의 과거형"], ["solution", "n. 해결책, 해법", ""]], "3-16": [["painters", "n. 페인트공, 도장공", "painter의 복수형"]], "3-17": [["made a mistake", "실수하다", "make a mistake의 과거형 (make-made-made)"], ["corrected", "v. ~을 바로잡다, 정정하다", "correct의 과거형"], ["simply", "adv. 단순히", ""], ["painting over", "~ 위에 덧칠하다", "paint over의 -ing형 (by 뒤라서 동명사)"]], "3-18": [["paint", "v. 페인트칠하다 / n. 페인트", ""], ["correct", "v. ~을 바로잡다, 정정하다", ""], ["mistakes", "n. 실수, 오류", "mistake의 복수형"]], "3-19": [["Surprisingly", "adv. 놀랍게도", ""], ["noticed", "v. 알아차리다", "notice의 과거형"]], "3-20": [["Soon", "adv. 곧, 바로", ""]], "3-21": [["webcam", "n. 웹캠", ""], ["invented", "v. ~을 발명하다", "invent의 과거형 / 과거분사 (수동태 was invented)"], ["watch", "v. ~을 지켜보다", ""], ["pot", "n. 원통형 그릇, 용기", ""]], "3-22": [["lab", "n. 연구소(실), 실험실", ""]], "3-23": [["needed", "v. ~을 필요로 하다", "need의 과거형"]], "3-24": [["However", "adv. 그러나", ""], ["machine", "n. 기계", ""]], "3-25": [["had to", "~해야 한다 (have+to부정사)", "have to의 과거형"], ["disappointing", "a. 실망스러운", ""], ["empty", "a. 비어 있는", ""], ["pot", "n. 원통형 그릇, 용기", ""]], "3-26": [["solution", "n. 해결책, 해법", ""], ["researchers", "n. 연구원", "researcher의 복수형"], ["set up", "~을 설치하다", "set ~ up의 과거형 (set-set-set, 목적어가 사이에 오기도 함)"], ["in front of", "~의 앞에", ""], ["machine", "n. 기계", ""]], "3-27": [["took pictures of", "~의 사진을 찍다", "take a picture of의 과거형 (take-took-taken)"], ["pot", "n. 원통형 그릇, 용기", ""]], "3-28": [["software", "n. 소프트웨어", ""], ["researchers", "n. 연구원", "researcher의 복수형"], ["local", "a. 지역의", ""], ["network", "n. 통신망", ""]], "3-29": [["disappointing", "a. 실망스러운", ""]]};
+var KEYS='tbm2d-l3-b';
+var CLS={'주어':'s','동사':'v','목적어':'o','간접목적어':'io','직접목적어':'do','보어':'c','목적격보어':'oc','수식어':'m','접속사':'cj'};
+var ORDER=['주어','동사','목적어','간접목적어','직접목적어','보어','목적격보어','수식어','접속사'];
+var app=document.getElementById('app');
+var store={done:{}};
+try{var o=JSON.parse(localStorage.getItem(KEYS)||'null');if(o&&o.done)store=o;}catch(e){}
+function save(){try{localStorage.setItem(KEYS,JSON.stringify(store));}catch(e){}}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+var I=0,C=null;
+function badge(r){return '<span class="badge role-'+CLS[r]+'">'+r+'</span>';}
+function home(){
+  C=null;
+  var done=0;DATA.forEach(function(s){if(store.done[s.id]!=null)done++;});
+  var h='<a class="tback" href="../">&larr; 3과 목록</a><h1>3과 기본 문장 분석</h1><p class="lead">교과서 본문 · 뜻 잇기, 성분, 어순 ('+DATA.length+'문장)</p><p class="lead" style="margin-top:8px">푼 문장 '+done+' / '+DATA.length+'</p>';
+  var last=null,open=false;
+  DATA.forEach(function(s,k){
+    if(s.sec!==last){if(open)h+='</div>';h+='<div class="sec">'+esc(s.sec||'')+'</div><div class="days">';open=true;last=s.sec;}
+    var d=store.done[s.id];
+    h+='<button class="day'+(d!=null?' done':'')+'" data-act="go" data-i="'+k+'"><span class="dn">'+esc(s.id.replace(/^\d+-/,''))+'</span><span class="st">'+(d==null?'':(d?'실수 '+d:'완료'))+'</span></button>';
+  });
+  if(open)h+='</div>';
+  if(done)h+='<div class="two"><button class="ghost" data-act="reset">기록 지우기</button></div>';
+  app.innerHTML=h;window.scrollTo(0,0);
+}
+function start(i){
+  I=i;var s=DATA[i],n=s.ch.length,idx=[];
+  for(var k=0;k<n;k++)idx.push(k);
+  var pool=shuffle(idx),tries=0;
+  while(tries++<30&&pool.every(function(ci,k){return ci===k;}))pool=shuffle(idx);
+  var kd={};s.ch.forEach(function(c,k){if(!c.k)kd[k]=true;});
+  C={s:s,n:n,step:1,ph:'K',kdone:kd,roles:idx.map(function(){return null;}),bad:idx.map(function(){return {};}),
+     done2:false,placed:[],pool:pool,wrong:false,done1:false,w3:0,mist:0,flash:null,msg:null,lastDrop:null};
+  if(curK()<0)C.ph='R';
+  render();window.scrollTo(0,0);
+}
+function curK(){for(var k=0;k<C.n;k++)if(!C.kdone[k])return k;return -1;}
+function curA(){for(var k=0;k<C.n;k++)if(!C.roles[k])return k;return -1;}
+function render(){
+  var s=C.s;
+  var h='<div class="top"><button class="back" data-act="home">목록</button><div class="ttl">'+esc(s.id)+'</div><div class="pts">실수 <b>'+C.mist+'</b></div></div>'
+   +'<div class="prog"><i style="width:'+(I/DATA.length*100)+'%"></i></div><div class="pcount">문장 '+(I+1)+' / '+DATA.length+'</div>';
+  if(C.step<3)h+='<div class="steps two"><div class="'+(C.step===1?'on':'ok')+'">1 뜻·성분</div><div class="'+(C.step===2?'on':'')+'">2 어순</div></div>';
+  h+='<div class="card">'+(C.step===1?vA():C.step===2?v1():v4())+'</div>';
+  app.innerHTML=h;
+}
+function kordIdx(){return C.s.kord;}
+function vA(){
+  var s=C.s,ph=C.ph,cur=ph==='K'?curK():curA();
+  var ask=ph==='K'?'빛나는 영어 블록의 우리말 뜻을 위에서 골라요':'빛나는 블록의 성분(역할)을 골라요';
+  if(C.done2)ask='뜻과 성분을 모두 붙였어요';
+  var h='<p class="ask">'+ask+'</p>';
+  if(ph==='K'){
+    var idx=kordIdx().filter(function(k){return !C.kdone[k];});
+    if(idx.length)h+='<div class="krow"><span class="klbl">우리말 뜻</span><div class="kflow">'+idx.map(function(k){
+      var bad=C.flash&&C.flash.k===k;
+      return '<button class="kblk go'+(bad?' bad shake':'')+'" data-act="pickK" data-k="'+k+'">'+esc(s.ch[k].k)+'</button>';
+    }).join('')+'</div></div>';
+  }
+  h+='<div class="stage">'+s.ch.map(function(c,k){
+    var r=C.roles[k],kd=C.kdone[k]&&c.k,act=(k===cur&&!C.done2);
+    var top='<div class="kslot'+(kd?' filled'+(k===C.lastDrop?' drop':''):(act&&ph==='K'?' wait':''))+'">'+(kd?esc(c.k):'')+'</div>';
+    var mid=r?'<div class="sblk st2 role-'+CLS[r]+'"><b>'+esc(c.t)+'</b></div>'
+       :'<div class="sblk wait'+(act?' now':'')+'"><b>'+esc(c.t)+'</b></div>';
+    var bot='<div class="rslot'+(r?' role-'+CLS[r]:'')+'">'+(r?esc(r):'')+'</div>';
+    return '<div class="col3">'+top+mid+bot+'</div>';
+  }).join('')+'</div>';
+  if(C.msg)h+='<p class="msg no">'+C.msg+'</p>';
+  if(ph==='R'&&cur>=0){
+    var c0=s.ch[cur],set={'주어':1,'동사':1,'목적어':1,'보어':1,'수식어':1};
+    s.ch.forEach(function(c){set[c.r]=1;});
+    var opts=ORDER.filter(function(r){return set[r];});
+    h+='<div class="r2 down" data-rk="'+cur+'"><div class="chunk">'+esc(c0.t)+(c0.a?'<small class="tgt">꾸미는 대상: '+esc(c0.a.replace(/\s*수식$/,''))+'</small>':'')+'</div><div class="opts">'+opts.map(function(r){
+      var b=C.bad[cur][r];
+      return '<button class="opt'+(b?' bad':'')+'"'+(b?' disabled':'')+' data-act="roleA" data-k="'+cur+'" data-r="'+r+'">'+r+'</button>';
+    }).join('')+'</div></div>';
+  }
+  if(C.done2)h+='<p class="msg ok">뜻과 성분 완성.</p><button class="primary" data-act="next1">다음 단계: 어순</button>';
+  return h;
+}
+function tile(ci){
+  var bad=C.flash&&C.flash.b===ci;
+  var hl=C.w3>=2&&!C.done1&&C.s.ch[ci].t===C.s.ch[C.placed.length].t;
+  return '<button class="tile'+(bad?' bad shake':'')+(hl?' hl':'')+'" data-act="pick" data-i="'+ci+'">'+esc(C.s.ch[ci].t)+'</button>';
+}
+function kRow(){
+  var idx=kordIdx().filter(function(k){return C.placed.indexOf(k)<0;});
+  return '<div class="krow"><span class="klbl">우리말 해석</span><div class="kflow">'+(idx.length?idx.map(function(k){return '<span class="kblk">'+esc(C.s.ch[k].k)+'</span>';}).join(''):'<span class="kdone">해석이 모두 내려왔어요</span>')+'</div></div>';
+}
+function v1(){
+  var s=C.s,p=C.placed.length;
+  var h='<p class="ask">우리말 어순을 보고, 영어에서는 어떤 순서로 올지 찾아 쌓아요</p>'+kRow();
+  h+='<div class="stage">'+s.ch.map(function(c,k){
+    if(k<p)return '<div class="col3"><div class="sblk st2 role-'+CLS[c.r]+'"><b>'+esc(c.t)+'</b></div><div class="kslot filled'+(k===C.lastDrop?' drop':'')+'">'+(c.k?esc(c.k):'')+'</div></div>';
+    return '<div class="col3"><div class="slot'+(k===p?' next':'')+'"></div><div class="kslot"></div></div>';
+  }).join('')+'</div>';
+  h+='<div class="pool">'+C.pool.map(function(ci){return tile(ci);}).join('')+'</div>';
+  if(C.wrong)h+='<p class="msg no">그 블록은 다음 자리에 오지 않아요. 영어에서는 어떤 말이 올까요?</p>';
+  if(C.done1)h+='<p class="msg ok">어순 완성.</p><button class="primary" data-act="next2">완성한 문장 보기</button>';
+  return h;
+}
+function v4(){
+  var s=C.s;
+  var h='<p class="ask">완성한 문장</p><div class="sent">'+s.ch.map(function(c){
+    return '<span class="blk role-'+CLS[c.r]+'"><b>'+esc(c.t)+'</b><small>'+esc(c.r)+'</small></span>';
+  }).join('')+'</div><div class="seq"><span class="seqlbl">영어 어순</span>'+s.ch.map(function(c){return badge(c.r);}).join('<span class="arr">→</span>')+'</div>';
+  h+='<p class="ask" style="font-size:14px;margin:4px 0 6px">우리말 어순으로 읽으면</p><div class="klinew">'+s.kord.map(function(k){var c=s.ch[k];return '<span class="kc role-'+CLS[c.r]+'">'+esc(c.k)+'</span>';}).join('')+'</div>';
+  h+='<p class="kor">'+esc(s.ko)+'</p>';
+  var mods=s.ch.filter(function(c){return c.c||(c.r==='수식어'&&c.a);});
+  if(mods.length)h+='<ul class="notes">'+mods.map(function(c){
+    var p=[];if(c.c)p.push(esc(c.c));if(c.a)p.push('꾸미는 대상: '+esc(c.a.replace(/\s*수식$/,'')));
+    return '<li><span>'+esc(c.t)+'</span> '+p.join(' · ')+'</li>';
+  }).join('')+'</ul>';
+  if(s.note)h+='<div class="nbox2">'+esc(s.note)+'</div>';
+  var g=GLOSS[s.id]||[];
+  if(g.length)h+='<div class="gl"><div class="gh">이 문장의 단어</div>'+g.map(function(x){return '<div><b>'+esc(x[0])+'</b> '+esc(x[1])+(x[2]?' <small>('+esc(x[2])+')</small>':'')+'</div>';}).join('')+'</div>';
+  h+='<p class="gain" style="margin-top:14px">이번 문장 '+(C.mist?'실수 <b>'+C.mist+'</b>개':'실수 없음')+'</p>';
+  h+='<button class="primary" data-act="next">'+(I+1<DATA.length?'다음 문장':'목록으로')+'</button>';
+  return h;
+}
+function finish(){store.done[C.s.id]=C.mist;save();}
+app.addEventListener('click',function(e){
+  var b=e.target.closest('[data-act]');if(!b)return;
+  var a=b.getAttribute('data-act');
+  if(a==='go'){start(+b.getAttribute('data-i'));return;}
+  if(a==='home'){home();return;}
+  if(a==='reset'){if(confirm('기록을 모두 지울까요?')){store={done:{}};save();home();}return;}
+  if(!C)return;
+  var s=C.s;
+  if(a==='pickK'){
+    var kk=+b.getAttribute('data-k'),cu=curK();if(cu<0)return;
+    if(s.ch[kk].k===s.ch[cu].k){C.kdone[cu]=true;C.lastDrop=cu;C.flash=null;C.msg=null;if(curK()<0)C.ph='R';}
+    else{C.mist++;C.flash={k:kk};C.msg=null;}
+    render();return;
+  }
+  if(a==='roleA'){
+    var kr=+b.getAttribute('data-k'),rr=b.getAttribute('data-r');
+    if(s.ch[kr].r===rr){C.roles[kr]=rr;C.msg=null;if(curA()<0)C.done2=true;}
+    else{C.bad[kr][rr]=true;C.mist++;C.msg='아니에요. 다시 골라 보세요.';}
+    render();return;
+  }
+  if(a==='next1'){C.step=2;C.w3=0;C.flash=null;render();window.scrollTo(0,0);return;}
+  if(a==='pick'){
+    var ci=+b.getAttribute('data-i'),pp=C.placed.length;
+    if(s.ch[ci].t===s.ch[pp].t){
+      var at=C.pool.indexOf(ci);C.pool.splice(at,1);C.placed.push(pp);C.lastDrop=pp;C.wrong=false;C.flash=null;C.w3=0;
+      if(C.placed.length===C.n)C.done1=true;
+    }else{C.mist++;C.w3++;C.wrong=true;C.flash={b:ci};}
+    render();return;
+  }
+  if(a==='next2'){C.step=3;finish();render();window.scrollTo(0,0);return;}
+  if(a==='next'){if(I+1<DATA.length)start(I+1);else home();return;}
+});
+home();
+})();
+</script></body></html>
