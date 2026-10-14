@@ -158,7 +158,7 @@ function home(){
   cur=null;$.innerHTML=h;window.scrollTo(0,0)}
 function resetAll(){if(confirm("기록을 모두 지울까요?")){R={};save();home()}}
 function stepsOf(n){
-  if(!n.kind)return n.form?(n.form2?[{t:'S'},{t:'form',p:1},{t:'form',p:2}]:[{t:'S'},{t:'form'}]):[{t:'S'}];
+  if(!n.kind){const s0=(n.S&&n.S.length)?[{t:'S'}]:[];return n.form?(n.form2?s0.concat([{t:'form',p:1},{t:'form',p:2}]):s0.concat([{t:'form'}])):[{t:'S'}]}
   const st=[{t:'kind'},{t:'sub'}];if(n.kind=='형용사절')st.push({t:'anc'});st.push({t:'S'});return st}
 function play(id){KO=0;cur=S.find(s=>s.id==id);SSEL=skOf(cur);TAB=cur.lv;wr=0;ph='verb';opened={};done={};ni=0;si=0;fnd={};
   GL=[];cur.nodes.forEach(n=>n.G.forEach(g=>GL.push(g)));R[id]=R[id]||{};try{localStorage.setItem('fbi_last',JSON.stringify({p:'xray',id:id}))}catch(e){}drawVerb('')}
@@ -171,19 +171,22 @@ function drawVerb(msg,fin){
   let h='<div class="sent">';
   cur.tok.forEach((w,i)=>{
     const gi=GL.findIndex(g=>g.includes(i));let c='w2';
-    if(gi>=0&&fnd[gi])c+=' okw vb';
+    if(gi>=0&&fnd[gi])c+=' okw vb';else if(gi<0){const gz=gxOf(i);if(gz>=0&&fnd[gz])c+=' okw'}
     h+='<button class="'+c+'" '+(fin?'disabled':'onclick="tv('+i+')"')+'>'+esc(w)+'</button> '});
   h+='</div>';
   const nf=Object.keys(fnd).length;
   const cnt=!fin&&nf?'<p class="small" style="margin:8px 0 0">찾은 동사 '+nf+'개</p>':'';
   $.innerHTML=head(0)+'<div class="card"><p class="q">동사를 모두 누르세요</p>'+h+cnt+'<div id="fb">'+msg+'</div></div>';window.scrollTo(0,0)}
+function gxOf(i){let off=0;for(let k=0;k<cur.nodes.length;k++){const n=cur.nodes[k];if(n.gx&&n.gx[i]!=null)return off+n.gx[i];off+=n.G.length}return -1}
 function tv(i){
-  const gi=GL.findIndex(g=>g.includes(i));
+  let gi=GL.findIndex(g=>g.includes(i));if(gi<0)gi=gxOf(i);
   if(gi>=0){fnd[gi]=1;
     if(Object.keys(fnd).length==GL.length){
       let m='<div class="msg g">동사를 모두 찾았습니다. 동사 '+GL.length+'개, 절 '+cur.nodes.length+'개.</div>';
-      if(cur.vn)m+='<div class="msg n" style="background:var(--okbg)">'+esc(cur.vn)+'</div><button class="btn" onclick="startMain()">다음</button>';
-      drawVerb(m,true);if(!cur.vn)adv(startMain)}
+      if(cur.vn)m+='<div class="msg n" style="background:var(--okbg)">'+esc(cur.vn)+'</div>';
+      if(cur.memo)m+='<div style="margin-top:8px"><button class="reset" style="margin:0" onclick="this.style.display=\'none\';document.getElementById(\'memo\').style.display=\'block\'">memo</button><div id="memo" class="msg n" style="display:none;margin-top:8px;white-space:pre-line">'+esc(cur.memo)+'</div></div>';
+      if(cur.vn||cur.memo)m+='<button class="btn" onclick="startMain()">다음</button>';
+      drawVerb(m,true);if(!cur.vn&&!cur.memo)adv(startMain)}
     else drawVerb('')}
   else{wr++;drawVerb('<div class="msg n"><b>'+esc(cur.tok[i].replace(/[^A-Za-z\']/g,''))+'</b> '+esc(cur.dec[i]||'동사가 아닙니다.')+'</div>')}}
 
@@ -211,7 +214,7 @@ function tn(i){
       if(gers.length)m+='<button class="btn" onclick="startNFQ()">다음</button>';
       drawNF(m,true);if(!gers.length)adv(startNFQ)}
     else drawNF('')}
-  else if(VB().has(i))drawNF('<div class="msg n" style="background:var(--okbg)">이 동사는 1단계에서 찾았어요.</div>');
+  else if(VB().has(i)||gxOf(i)>=0)drawNF('<div class="msg n" style="background:var(--okbg)">이 동사는 1단계에서 찾았어요.</div>');
   else{wr++;drawNF('<div class="msg n">'+(NFN(cur.tok[i])=='to'?'이 to는 전치사예요. to부정사가 아닙니다.':'준동사가 아닙니다.')+'</div>')}}
 function startNFQ(){NQ=cur.nf.filter(x=>x.t!='ger');nqi=0;if(!NQ.length){fin();return}ph='nfq';drawNFQ()}
 function drawNFQ(){
@@ -335,8 +338,9 @@ function thatCmp(n){
 function noteRest(n){const m=n.note.match(/형식입니다\.\s*/);return m?n.note.slice(m.index+m[0].length):n.note}
 function mainVis(n){
   if(!n.sk)return '';
-  const lab={S:'주어',V:'동사',O:'목적어',C:n.form==5?'목적격보어':'보어'};
-  let h='<div class="bdr">'+bd(n.form+'형식'+(n.form2?' + '+n.form2+'형식':''),'cc')+'</div><div class="bdr">'+n.sk.map((x,k)=>(k?'<span class="pp">+</span>':'')+bd(runsOf(x.g),'sk'+x.r,lab[x.r])).join('')+'</div>';
+  const lab={S:'주어',V:'동사',O:'목적어'};let vi=-1;
+  const lbl=x=>{if(x.r=='V')vi++;if(x.r!='C')return lab[x.r];return ((vi<=0?n.form:(n.form2||n.form))==5)?'목적격보어':'보어'};
+  let h='<div class="bdr">'+bd(n.form+'형식'+(n.form2?' + '+n.form2+'형식':''),'cc')+'</div><div class="bdr">'+n.sk.map((x,k)=>(k?'<span class="pp">+</span>':'')+bd(runsOf(x.g),'sk'+x.r,lbl(x))).join('')+'</div>';
   const ez=k=>{const f=FORMS[k-1];return f?'<div class="small"><b>'+f[0]+' 쉬운 예</b> '+f[1]+' ('+f[2]+') → '+f[3]+'</div>':''};
   h+=ez(n.form)+(n.form2&&n.form2!=n.form?ez(n.form2):'');
   return h}
