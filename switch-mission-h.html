@@ -199,6 +199,7 @@ body{touch-action:pan-y pinch-zoom;-webkit-text-size-adjust:100%}
 .wl .mis{margin-bottom:8px;background:var(--bg)}
 .wrow{display:grid;grid-template-columns:48px minmax(0,1fr);gap:0 8px;padding:10px 0;border-bottom:1px solid var(--line)}
 .wrow .no{font-weight:700;font-variant-numeric:tabular-nums}
+.mis ul{margin:0;padding-left:18px;font-weight:800;font-size:1rem;line-height:1.55;min-width:0}
 </style>
 </head>
 <body>
@@ -360,7 +361,7 @@ function renderMemo(){
   var s=MS(u),n=u.cards.length,y=window.pageYOffset;
   var wrap=el('div','memo');
   wrap.appendChild(el('div','mhead','<span class="mk">UNIT '+pad2(cur)+'</span><h2>이것만은 꼭!</h2><p class="msub">핵심 '+n+'가지</p>'));
-  wrap.appendChild(el('div','mis','<b>미션 1</b><p>교재 여백에 해석 쓰기 + 포인트 적기</p>'));
+  wrap.appendChild(el('div','mis','<b>미션 1</b><ul><li>교재에 해석 쓰기</li><li>여백에 포인트 적기</li></ul>'));
   u.cards.forEach(function(c,i){
     var h='<div class="top2"><span class="nb">'+(i+1)+'</span><p class="tt">'+xs(c.t)+'</p></div><div class="cols"><span>본문</span><span>해석</span></div>';
     c.rows.forEach(function(r){
