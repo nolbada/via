@@ -304,7 +304,7 @@ function draw(){
   if(s.t=='kind'){q='노란 부분은 어떤 절일까요?';body=sentH(n,false)+opts(KINDS)}
   else if(s.t=='sub'){q=n.kind=='형용사절'?'어떤 관계사일까요? 관계사 뒤에서 빠진 자리를 보세요.':n.kind=='부사절'?'어떤 뜻의 부사절일까요?':'이 절은 문장에서 무슨 자리일까요?';body=sentH(n,false)+opts(SUBS[n.kind])}
   else if(s.t=='anc'){q='이 절이 꾸미는 말을 누르세요.';body=anyH(n)}
-  else if(s.t=='S'){q=n.kind?'노란 절의 주어를 누르세요.':'문장의 뼈대에서 주어를 누르세요.';body=sentH(n,true,!n.kind)}
+  else if(s.t=='S'){q=n.kind?'노란 절의 주어에서 핵심 명사(대명사)를 누르세요.':'문장의 뼈대에서 주어의 핵심 명사(대명사)를 누르세요.';body=sentH(n,true,!n.kind)}
   else if(s.t=='form'){q=s.p?(s.p==1?'첫 번째 동사('+txtOf(n.G[0])+')가 만드는 뼈대는 몇 형식일까요?':'이어진 두 번째 동사('+txtOf(n.G[1])+')가 만드는 뼈대는 몇 형식일까요?'):'이 뼈대는 누구와 닮은꼴일까요?';body=sentH(n,false,true)+formCards()}
   else{q=!n.kind?'주절의 동사를 누르세요.':'노란 절에서 and로 이어진 동사를 모두 누르세요.';body=sentH(n,true)}
   $.innerHTML=head(n.kind?2:1)+'<div class="card"><span class="pill">'+pillTxt+'</span><p class="q">'+esc(q)+'</p>'+body+'<div id="fb"></div></div>';window.scrollTo(0,0)}
@@ -324,7 +324,13 @@ function tapw(i){
     if(Object.keys(gh).length>=n.G.length){draw2ok()}else{draw();document.getElementById("fb").innerHTML='<div class="msg g">하나 찾았습니다. 더 있어요.</div>'}
     return}
   const want=s.t=='anc'?(n.np||n.anc):n.S;
-  if(want.includes(i)){want.forEach(x=>got[x]=1);draw2ok()}else bad()}
+  if(want.includes(i)){want.forEach(x=>got[x]=1);draw2ok()}else if(s.t=='S'&&preMod(n,i)){modHint(n,i)}else bad()}
+const SUBW=['when','because','that','if','although','while','as','since','after','before','which','who','whom','whose','and','but','or','so','than','whether','though','even','how','what','where','wherever','whenever','whatever','why','until','unless','once','whereas','in','case','however'];
+function preMod(n,i){const h=Math.min.apply(null,n.S);if(!(i<h&&h-i<=3))return false;const F=VB();
+  for(let x=i;x<h;x++){const w=cur.tok[x];if(!n.own.includes(x)||F.has(x)||/[,;:.]$/.test(w)||SUBW.indexOf(w.toLowerCase())>=0)return false}
+  return true}
+function modHint(n,i){const h=Math.min.apply(null,n.S);const cl=x=>cur.tok[x].replace(/[^A-Za-z']/g,'');
+  document.getElementById("fb").innerHTML='<div class="msg n">핵심 명사를 눌러요. '+esc(cur.tok.slice(i,h+1).map(w=>w.replace(/[^A-Za-z\']/g,'')).join(' '))+'에서 핵심 명사는 '+esc(cl(h))+' 하나예요.</div>'}
 function draw2ok(){draw();good()}
 function miss(){wr++;wp[ph]=(wp[ph]||0)+1}
 function bad(){miss();document.getElementById("fb").innerHTML='<div class="msg n">다시 골라 보세요.</div>'}
