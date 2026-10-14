@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 6</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 6 · What's in Your School Survival Kit?</h1><div class="sub">여러분의 학교 생존 키트에는 무엇이 있나요? · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":"Ms. Seo · 자기소개","en":"Hello, everyone! Welcomes to my class!","ko":"안녕하세요, 여러분! 제 수업에 오신 것을 환영합니다!","ok":false,"foot":[],"fixes":[{"wrong":"Welcomes","right":"Welcome","partial":false,"at":[2],"point":"명령문: 명령문은 동사원형으로 시작합니다 (Welcomes → Welcome).","topic":"명령문","memo":"명령문은 동사원형으로 시작합니다 (Welcomes → Welcome)."}]},{"n":2,"tag":null,"en":"I is Ms. Seo, you English teacher.","ko":"저는 여러분의 영어 선생님인 서 선생님이에요.","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"am","partial":false,"at":[1],"point":"be동사의 긍정문: 주어 I에는 be동사 am을 사용합니다.","topic":"be동사의 긍정문","memo":"주어 I에는 be동사 am을 사용합니다."},{"wrong":"you","right":"your","partial":false,"at":[4],"point":"인칭대명사의 격: 명사(English teacher) 앞에는 소유격 your를 사용합니다.","topic":"인칭대명사의 격","memo":"명사(English teacher) 앞에는 소유격 your를 사용합니다."}]},{"n":3,"tag":null,"en":"Today are a first day of middle school.","ko":"오늘은 중학교 첫날이네요.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[1],"point":"수일치: 주어 Today(단수)에는 be동사 is를 사용합니다.","topic":"수일치","memo":"주어 Today(단수)에는 be동사 is를 사용합니다."},{"wrong":"a","right":"the","partial":false,"at":[2],"point":"관사: 서수 first 앞에는 정관사 the를 사용합니다.","topic":"관사","memo":"서수 first 앞에는 정관사 the를 사용합니다."}]},{"n":4,"tag":null,"en":"Is you nervous?","ko":"긴장되나요?","ok":false,"foot":[],"fixes":[{"wrong":"Is","right":"Are","partial":false,"at":[0],"point":"be동사의 의문문: 주어 you에는 be동사 are를 사용합니다.","topic":"be동사의 의문문","memo":"주어 you에는 be동사 are를 사용합니다."}]},{"n":5,"tag":null,"en":"I’m also nervous, but I feels okay in this box.","ko":"저도 긴장되지만, 이 상자가 있어서 괜찮아요.","ok":false,"foot":[],"fixes":[{"wrong":"feels","right":"feel","partial":false,"at":[5],"point":"일반동사의 긍정문: 주어 I는 동사 원형 feel을 사용합니다.","topic":"일반동사의 긍정문","memo":"주어 I는 동사 원형 feel을 사용합니다."},{"wrong":"in","right":"with","partial":false,"at":[7],"point":"기본전치사: '~한 상태라서 괜찮다'는 be okay with로 표현합니다.","topic":"기본전치사","memo":"'~한 상태라서 괜찮다'는 be okay with로 표현합니다."}]},{"n":6,"tag":null,"en":"This box are my school survival kit.","ko":"이 상자는 저의 학교 생존 키트예요.","ok":false,"foot":["1survival kit 생존 키트"],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[2],"point":"수일치: 주어 This box(단수)에는 be동사 is를 사용합니다.","topic":"수일치","memo":"주어 This box(단수)에는 be동사 is를 사용합니다."}]},{"n":7,"tag":null,"en":"I has many things in it.","ko":"저는 이 안에 많은 것을 가지고 있답니다.","ok":false,"foot":[],"fixes":[{"wrong":"has","right":"have","partial":false,"at":[1],"point":"일반동사의 긍정문: 주어 I는 동사원형 have를 사용합니다.","topic":"일반동사의 긍정문","memo":"주어 I는 동사원형 have를 사용합니다."}]},{"n":8,"tag":null,"en":"First, I have a sticky notes.","ko":"첫째로, 붙임쪽지를 가지고 있어요.","ok":false,"foot":[],"fixes":[{"wrong":"a","right":"some","partial":false,"at":[3],"point":"어휘/수량표현: 복수명사 notes를 꾸밀 때는 a 대신 some을 사용합니다.","topic":"어휘/수량표현","memo":"복수명사 notes를 꾸밀 때는 a 대신 some을 사용합니다."}]},{"n":9,"tag":null,"en":"I use them on the first day.","ko":"저는 그것들을 첫날에 사용한답니다.","ok":true,"foot":[],"fixes":[]},{"n":10,"tag":null,"en":"I write you names and remember them.","ko":"저는 여러분의 이름을 적어서 기억해요.","ok":false,"foot":[],"fixes":[{"wrong":"you","right":"your","partial":false,"at":[2],"point":"인칭대명사의 격: 명사(names) 앞에는 소유격 your를 사용합니다.","topic":"인칭대명사의 격","memo":"명사(names) 앞에는 소유격 your를 사용합니다."}]},{"n":11,"tag":null,"en":"Next, I have a candy.","ko":"다음으로 사탕을 가지고 있어요.","ok":false,"foot":[],"fixes":[{"wrong":"a","right":"some","partial":false,"at":[3],"point":"어휘: candy는 셀 수 없는 명사이므로 부정관사 a 대신 some을 사용합니다.","topic":"어휘","memo":"candy는 셀 수 없는 명사이므로 부정관사 a 대신 some을 사용합니다."}]},{"n":12,"tag":null,"en":"These is for you.","ko":"이것들은 여러분을 위한 거예요.","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"are","partial":false,"at":[1],"point":"수일치: 주어 These(복수)에는 be동사 are를 사용합니다.","topic":"수일치","memo":"주어 These(복수)에는 be동사 are를 사용합니다."}]},{"n":13,"tag":null,"en":"They’re sweetly, like you smiles.","ko":"그것들은 여러분의 미소처럼 달콤하답니다.","ok":false,"foot":[],"fixes":[{"wrong":"sweetly","right":"sweet","partial":false,"at":[1],"point":"부사 vs 형용사: be동사(are)의 보어 자리에는 형용사 sweet를 사용합니다.","topic":"부사 vs 형용사","memo":"be동사(are)의 보어 자리에는 형용사 sweet를 사용합니다."},{"wrong":"you","right":"your","partial":false,"at":[3],"point":"인칭대명사의 격: 명사(smiles) 앞에는 소유격 your를 사용합니다.","topic":"인칭대명사의 격","memo":"명사(smiles) 앞에는 소유격 your를 사용합니다."}]},{"n":14,"tag":"Ms. Seo · 질문","en":"Now, what does you want in your school survival kit?","ko":"이제, 여러분의 학교 생존 키트에는 무엇을 원하나요?","ok":false,"foot":[],"fixes":[{"wrong":"does","right":"do","partial":false,"at":[2],"point":"일반동사의 의문문: 주어 you에는 do를 사용합니다.","topic":"일반동사의 의문문","memo":"주어 you에는 do를 사용합니다."}]},{"n":15,"tag":"소민(Somin)","en":"A mirror! I look on a mirror and say, “Just be you!”","ko":"거울이요! 저는 거울을 보고 “그냥 너답게 해!”라고 말해요.","ok":false,"foot":[],"fixes":[{"wrong":"on","right":"in","partial":false,"at":[4],"point":"기본전치사: '거울을 보다'는 look in the mirror로 표현합니다.","topic":"기본전치사","memo":"'거울을 보다'는 look in the mirror로 표현합니다."},{"wrong":"a","right":"the","partial":false,"at":[5],"point":"관사: 앞에서 언급된 특정한 대상 (거울)에는 정관사 the를 사용합니다.","topic":"관사","memo":"앞에서 언급된 특정한 대상 (거울)에는 정관사 the를 사용합니다."}]},{"n":16,"tag":"지원(Jiwon)","en":"For me, a stress ball. I hold the ball tight.","ko":"저에게는, 스트레스 푸는 공이요. 저는 공을 꽉 쥐어요.","ok":false,"foot":["1stress ball 스트레스 푸는 공"],"fixes":[{"wrong":"tight","right":"tightly","partial":false,"at":[9],"point":"부사 vs 형용사: 동사 hold를 꾸미는 것은 부사 tightly입니다.","topic":"부사 vs 형용사","memo":"동사 hold를 꾸미는 것은 부사 tightly입니다."}]},{"n":17,"tag":null,"en":"Then my stress go away.","ko":"그러면 스트레스가 사라져요.","ok":false,"foot":[],"fixes":[{"wrong":"go","right":"goes","partial":false,"at":[3],"point":"수일치: 주어 stress(3인칭 단수)에는 동사에 -s를 붙인 goes를 사용합니다.","topic":"수일치","memo":"주어 stress(3인칭 단수)에는 동사에 -s를 붙인 goes를 사용합니다."}]},{"n":18,"tag":"Mike","en":"An eraser! It erase my mistakes.","ko":"지우개요! 그것은 저의 실수를 지워 줘요.","ok":false,"foot":[],"fixes":[{"wrong":"erase","right":"erases","partial":false,"at":[3],"point":"수일치: 주어 It(3인칭 단수)에는 동사에 -s를 붙인 erases를 사용합니다.","topic":"수일치","memo":"주어 It(3인칭 단수)에는 동사에 -s를 붙인 erases를 사용합니다."}]},{"n":19,"tag":null,"en":"I starts all over again!","ko":"저는 처음부터 다시 시작해요!","ok":false,"foot":[],"fixes":[{"wrong":"starts","right":"start","partial":false,"at":[1],"point":"일반동사의 긍정문: 주어 I는 동사원형 start를 사용합니다.","topic":"일반동사의 긍정문","memo":"주어 I는 동사원형 start를 사용합니다."}]},{"n":20,"tag":"Emily","en":"I need an Band-Aid!","ko":"저는 반창고가 필요해요!","ok":false,"foot":["1Band-Aid 반창고"],"fixes":[{"wrong":"an","right":"a","partial":false,"at":[2],"point":"관사: Band-Aid는 자음 발음 [b]로 시작하므로 부정관사 a를 사용합니다.","topic":"관사","memo":"Band-Aid는 자음 발음 [b]로 시작하므로 부정관사 a를 사용합니다."}]},{"n":21,"tag":null,"en":"My feelings gets hurting sometimes.","ko":"저의 감정이 때때로 상처 받아요.","ok":false,"foot":[],"fixes":[{"wrong":"gets","right":"get","partial":false,"at":[2],"point":"수일치: 주어 feelings(복수)에는 동사원형 get을 사용합니다.","topic":"수일치","memo":"주어 feelings(복수)에는 동사원형 get을 사용합니다."},{"wrong":"hurting","right":"hurt","partial":false,"at":[3],"point":"감정형용사: 감정을 느끼는 대상 (feelings)에는 -ed형 hurt를 사용합니다.","topic":"감정형용사","memo":"감정을 느끼는 대상 (feelings)에는 -ed형 hurt를 사용합니다."}]},{"n":22,"tag":null,"en":"But with the Band-Aid, I are okay.","ko":"그러나 이 반창고가 있어서, 저는 괜찮아요.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"am","partial":false,"at":[5],"point":"be동사의 긍정문: 주어 I에는 be동사 am을 사용합니다.","topic":"be동사의 긍정문","memo":"주어 I에는 be동사 am을 사용합니다."}]},{"n":23,"tag":"Ms. Seo · 마무리","en":"Great! Now makes your own survival kit.","ko":"좋아요! 이제 여러분 자신의 생존 키트를 만들어 보세요.","ok":false,"foot":[],"fixes":[{"wrong":"makes","right":"make","partial":false,"at":[2],"point":"명령문: 명령문은 동사원형으로 시작합니다 (makes → make).","topic":"명령문","memo":"명령문은 동사원형으로 시작합니다 (makes → make)."}]},{"n":24,"tag":null,"en":"Let’s have a great year!","ko":"좋은 한 해를 보내도록 합시다!","ok":true,"foot":[],"fixes":[]}];var RNUM=6;var TITLE_EN="What's in Your School Survival Kit?";var PASS_EN=["What's in Your School Survival Kit?","Hello, everyone! Welcome to my class! I’m Ms. Seo, your English teacher. Today is the first day of middle school. Are you nervous? I’m also nervous, but I feel okay with this box.","This box is my school survival kit. I have many things in it. First, I have some sticky notes. I use them on the first day. I write your names and remember them. Next, I have some candy. These are for you. They’re sweet, like your smiles.","Ms. Seo: Now, what do you want in your school survival kit?","Somin: A mirror! I look in the mirror and say, “Just be you!”","Jiwon: For me, a stress ball. I hold the ball tightly. Then my stress goes away.","Mike: An eraser! It erases my mistakes. I start all over again!","Emily: I need a Band-Aid! My feelings get hurt sometimes. But with the Band-Aid, I’m okay.","Ms. Seo: Great! Now make your own survival kit. Let’s have a great year!"];var PASS_KO=["여러분의 학교 생존 키트에는 무엇이 있나요?","안녕하세요, 여러분! 제 수업에 오신 것을 환영합니다! 저는 여러분의 영어 선생님인 서 선생님이에요. 오늘은 중학교 첫날이네요. 긴장되나요? 저도 긴장되지만, 이 상자가 있어서 괜찮아요.","이 상자는 저의 학교 생존 키트예요. 저는 이 안에 많은 것을 가지고 있답니다. 첫째로, 붙임쪽지를 가지고 있어요. 저는 그것들을 첫날에 사용한답니다. 저는 여러분의 이름을 적어서 기억해요. 다음으로 사탕을 가지고 있어요. 이것들은 여러분을 위한 거예요. 그것들은 여러분의 미소처럼 달콤하답니다.","서 선생님: 이제, 여러분의 학교 생존 키트에는 무엇을 원하나요?","소민: 거울이요! 저는 거울을 보고 “그냥 너답게 해!”라고 말해요.","지원: 저에게는, 스트레스 푸는 공이요. 저는 공을 꽉 쥐어요. 그러면 스트레스가 사라져요.","Mike: 지우개요! 그것은 저의 실수를 지워 줘요. 저는 처음부터 다시 시작해요!","Emily: 저는 반창고가 필요해요! 저의 감정이 때때로 상처 받아요. 그러나 이 반창고가 있어서, 저는 괜찮아요.","서 선생님: 좋아요! 이제 여러분 자신의 생존 키트를 만들어 보세요. 좋은 한 해를 보내도록 합시다!"];var DLG=[["B","Hi, I’m Dylan. Nice to meet you.","안녕, 나는 Dylan이야. 만나서 반가워."],["G","Nice to meet you, too. I’m Yuna from Class 2. What class are you in?","나도 만나서 반가워. 나는 2반의 Yuna야. 너는 몇 반이니?"],["B","I’m in Class 5. What kind of movies do you like?","나는 5반이야. 너는 어떤 종류의 영화를 좋아하니?"],["G","I like action movies. Do you like them, too?","나는 액션 영화를 좋아해. 너도 그것들을 좋아하니?"],["B","No, I don’t. I like comedies.","아니, 안 좋아해. 나는 코미디 영화를 좋아해."],["G","What’s your favorite movie?","네가 가장 좋아하는 영화는 뭐니?"],["B","My favorite movie is Kung Fu Panda. How about you?","내가 가장 좋아하는 영화는 Kung Fu Panda야. 너는 어때?"],["G","I love Wonder Woman.","나는 Wonder Woman을 정말 좋아해."]];var BQ=[{"n":1,"q":"Yuna는 몇 반인가요?","o":["1반","2반","3반","4반","5반"],"a":1,"ev":["I’m Yuna from Class 2.","나는 2반의 Yuna야."],"why":"from Class 2는 '2반 소속'이라는 뜻이에요. 5반은 Dylan이에요.","ans":"2반","memo":["Yuna의 반 = 2반","I’m Yuna from Class 2. (나는 2반의 Yuna야.)"]},{"n":2,"q":"Dylan이 좋아하는 영화 종류는 무엇인가요?","o":["액션 영화","공포 영화","코미디 영화","판타지 영화","로맨스 영화"],"a":2,"ev":["No, I don’t. I like comedies.","아니, 안 좋아해. 나는 코미디 영화를 좋아해."],"why":"액션 영화는 Yuna가 좋아하는 종류예요. Dylan은 comedies라고 했어요.","ans":"코미디 영화","memo":["Dylan이 좋아하는 영화 = 코미디","No, I don’t. I like comedies. (아니, 안 좋아해. 나는 코미디 영화를 좋아해.)"]},{"n":3,"q":"Yuna가 Dylan에게 물어본 것은 무엇인가요?","o":["어느 반인지","어느 학교인지","몇 살인지","어디 사는지","이름이 뭔지"],"a":0,"ev":["What class are you in?","너는 몇 반이니?"],"why":"What class는 '몇 반'을 묻는 말이에요.","ans":"어느 반인지","memo":["Yuna의 질문 = Dylan이 몇 반인지","What class are you in? (너는 몇 반이니?)"]},{"n":4,"q":"Dylan이 가장 좋아하는 영화는 무엇인가요?","o":["Wonder Woman","Kung Fu Panda","Frozen","Toy Story","Spider-Man"],"a":1,"ev":["My favorite movie is Kung Fu Panda.","내가 가장 좋아하는 영화는 Kung Fu Panda야."],"why":"Wonder Woman은 Yuna가 좋아하는 영화예요.","ans":"Kung Fu Panda","memo":["Dylan의 가장 좋아하는 영화 = Kung Fu Panda","My favorite movie is Kung Fu Panda. (내가 가장 좋아하는 영화는 Kung Fu Panda야.)"]},{"n":5,"q":"Yuna가 정말 좋아한다고 말한 영화는 무엇인가요?","o":["Kung Fu Panda","Frozen","Toy Story","Spider-Man","Wonder Woman"],"a":4,"ev":["I love Wonder Woman.","나는 Wonder Woman을 정말 좋아해."],"why":"love는 '아주 좋아하다'예요. Kung Fu Panda는 Dylan의 영화예요.","ans":"Wonder Woman","memo":["Yuna가 좋아하는 영화 = Wonder Woman","I love Wonder Woman. (나는 Wonder Woman을 정말 좋아해.)"]}];var DQ=[{"n":6,"q":"서 선생님이 붙임쪽지로 하는 일은 무엇인가요?","o":["학생들 이름을 적어서 기억한다","시험 점수를 적는다","숙제를 알려 준다","교실 규칙을 붙인다","학생들에게 편지를 쓴다"],"a":0,"ev":["I write your names and remember them.","저는 여러분의 이름을 적어서 기억해요."],"why":"sticky notes는 '붙임쪽지'예요. 첫날에 이름을 적어 기억하려고 사용해요.","ans":"학생들 이름을 적어서 기억한다","memo":["붙임쪽지의 쓰임 = 학생 이름을 적어 기억하기","I write your names and remember them. (저는 여러분의 이름을 적어서 기억해요.)"]},{"n":7,"q":"서 선생님이 사탕을 가지고 있는 이유로 알맞은 것은?","o":["선생님이 먹으려고","학생들을 위해서","상을 주려고","시험이 끝나서","수업 준비물이어서"],"a":1,"ev":["These are for you.","이것들은 여러분을 위한 거예요."],"why":"for you는 '너희를 위한'이라는 뜻이고, you는 학생들이에요.","ans":"학생들을 위해서","memo":["사탕의 주인 = 학생들을 위한 것","These are for you. (이것들은 여러분을 위한 거예요.)"]},{"n":8,"q":"Jiwon이 스트레스 공을 쓰면 어떻게 되나요?","o":["공이 터진다","스트레스가 사라진다","잠이 온다","실수를 지운다","친구가 생긴다"],"a":1,"ev":["I hold the ball tightly. / Then my stress goes away.","저는 공을 꽉 쥐어요. / 그러면 스트레스가 사라져요."],"why":"go away는 '사라지다'예요. 실수를 지우는 것은 Mike의 지우개예요.","ans":"스트레스가 사라진다","memo":["스트레스 공의 효과 = 스트레스가 사라짐","I hold the ball tightly. / Then my stress goes away. (저는 공을 꽉 쥐어요. / 그러면 스트레스가 사라져요.)"]},{"n":9,"q":"Mike가 지우개를 원하는 이유는 무엇인가요?","o":["그림을 그리려고","친구와 나누려고","선생님께 드리려고","점수를 올리려고","실수를 지우고 처음부터 다시 시작하려고"],"a":4,"ev":["It erases my mistakes. / I start all over again!","그것은 저의 실수를 지워 줘요. / 저는 처음부터 다시 시작해요!"],"why":"erases는 동사 erase(지우다)에 -s가 붙은 모양이에요. all over again은 '처음부터 다시'예요.","ans":"실수를 지우고 처음부터 다시 시작하려고","memo":["지우개의 쓰임 = 실수를 지우고 다시 시작","It erases my mistakes. / I start all over again! (그것은 저의 실수를 지워 줘요. / 저는 처음부터 다시 시작해요!)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["Somin은 거울을 보고 말한다.","Jiwon은 공을 꽉 쥔다.","Mike는 지우개로 실수를 지운다고 말한다.","서 선생님은 중학교 첫날에 긴장했다.","Emily는 반창고가 있어도 계속 기분이 나쁘다고 말한다."],"a":4,"ev":["But with the Band-Aid, I’m okay.","그러나 이 반창고가 있어서, 저는 괜찮아요."],"why":"Emily는 반창고가 있으면 괜찮다(okay)고 했어요. 계속 기분이 나쁘다는 말은 본문과 반대예요.","ans":"Emily는 반창고가 있어도 계속 기분이 나쁘다고 말한다.","memo":["불일치 = Emily는 반창고 덕분에 괜찮음","But with the Band-Aid, I’m okay. (그러나 이 반창고가 있어서, 저는 괜찮아요.)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

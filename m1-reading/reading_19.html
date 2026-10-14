@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 19</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 19 · Log in to School Club Activities</h1><div class="sub">학교 동아리 활동에 로그인해 봐 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":null,"en":"Today is the school club day.","ko":"오늘은 학교 동아리의 날이다.","ok":true,"foot":[],"fixes":[]},{"n":2,"tag":null,"en":"You can see that club members is doing funny activities now.","ko":"너는 동아리 회원들이 지금 재미있는 활동을 하고 있는 것을 볼 수 있어.","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"are","partial":false,"at":[6],"point":"접속사 that: that절의 주어 club members(복수)에 맞춰 동사 are 사용","topic":"접속사 that","memo":"that절의 주어 club members(복수)에 맞춰 동사 are 사용"},{"wrong":"funny","right":"fun","partial":false,"at":[8],"point":"어휘: '재미있는'이라는 뜻으로 활동을 꾸밀 때는 fun(형용사) 사용 (funny는 '우스꽝스러운'이라는 뜻)","topic":"어휘","memo":"'재미있는'이라는 뜻으로 활동을 꾸밀 때는 fun(형용사) 사용"}]},{"n":3,"tag":null,"en":"Let's meeting them!","ko":"그들을 만나 보자!","ok":false,"foot":[],"fixes":[{"wrong":"meeting","right":"meet","partial":false,"at":[1],"point":"명령문: Let's 뒤에는 동사원형 사용 (meeting → meet)","topic":"명령문","memo":"Let's 뒤에는 동사원형 사용 (meeting → meet)"}]},{"n":4,"tag":"예지 · 로봇 동아리","en":"Does you like robots?","ko":"너는 로봇을 좋아하니?","ok":false,"foot":[],"fixes":[{"wrong":"Does","right":"Do","partial":false,"at":[0],"point":"일반동사 의문문: 주어 you에는 조동사 Do 사용 (Does가 아님)","topic":"일반동사 의문문","memo":"주어 you에는 조동사 Do 사용"}]},{"n":5,"tag":null,"en":"I'm Yeji from the robot club, We Makers.","ko":"나는 로봇 동아리 We Makers의 예지야.","ok":true,"foot":[],"fixes":[]},{"n":6,"tag":null,"en":"My club members teach programming and builds robots.","ko":"우리 동아리 회원들은 프로그래밍을 배우고 로봇을 만들어.","ok":false,"foot":["1programming 프로그래밍(코딩 작업)"],"fixes":[{"wrong":"teach","right":"learn","partial":false,"at":[3],"point":"어휘: '배우다'라는 뜻은 learn, '가르치다'는 teach","topic":"어휘","memo":"'배우다'라는 뜻은 learn, '가르치다'는 teach"},{"wrong":"builds","right":"build","partial":false,"at":[6],"point":"수일치: 주어 members(복수)에 맞춰 동사원형 build 사용","topic":"수일치","memo":"주어 members(복수)에 맞춰 동사원형 build 사용"}]},{"n":7,"tag":null,"en":"Right now, we is testing our robots.","ko":"지금 우리는 우리의 로봇을 테스트하는 중이야.","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"are","partial":false,"at":[3],"point":"수일치: 주어 we에 맞는 be동사 are 사용 (현재진행형)","topic":"수일치","memo":"주어 we에 맞는 be동사 are 사용 (현재진행형)"}]},{"n":8,"tag":null,"en":"This is Jake spider robot.","ko":"이것은 Jake의 거미 로봇이야.","ok":false,"foot":["1spider 거미"],"fixes":[{"wrong":"Jake","right":"Jake's","partial":false,"at":[2],"point":"소유격: 'Jake의'라는 의미를 나타낼 때는 소유격 Jake's 사용","topic":"소유격","memo":"'Jake의'라는 의미를 나타낼 때는 소유격 Jake's 사용"}]},{"n":9,"tag":null,"en":"Watches out!","ko":"조심해!","ok":false,"foot":[],"fixes":[{"wrong":"Watches","right":"Watch","partial":false,"at":[0],"point":"명령문: 주어 없이 동사원형으로 문장을 시작 (Watches → Watch)","topic":"명령문","memo":"주어 없이 동사원형으로 문장을 시작 (Watches → Watch)"}]},{"n":10,"tag":null,"en":"What fast his robot are running away!","ko":"그의 로봇이 정말 빨리 도망치고 있어!","ok":false,"foot":[],"fixes":[{"wrong":"What","right":"How","partial":false,"at":[0],"point":"감탄문: 뒤에 형용사/부사(fast)가 올 때는 How 사용 (What은 명사와 함께 씀)","topic":"감탄문","memo":"뒤에 형용사/부사(fast)가 올 때는 How 사용 (What은 명사와 함께 씀)"},{"wrong":"are","right":"is","partial":false,"at":[4],"point":"수일치: 주어 his robot(단수)에 맞는 be동사 is 사용 (현재진행형)","topic":"수일치","memo":"주어 his robot(단수)에 맞는 be동사 is 사용 (현재진행형)"}]},{"n":11,"tag":"Brian · 웹툰 동아리","en":"Hi! Me am Brian.","ko":"안녕! 나는 Brian이야.","ok":false,"foot":[],"fixes":[{"wrong":"Me","right":"I","partial":false,"at":[1],"point":"인칭대명사: 주어 자리에는 주격 I 사용 (목적격 me가 아님)","topic":"인칭대명사","memo":"주어 자리에는 주격 I 사용"}]},{"n":12,"tag":null,"en":"This is Dream and Draw, and my club members makes webtoons.","ko":"이곳은 Dream and Draw이고, 우리 동아리 회원들은 웹툰을 만들어.","ok":false,"foot":[],"fixes":[{"wrong":"makes","right":"make","partial":false,"at":[9],"point":"수일치: 주어 members(복수)에는 동사원형 make 사용","topic":"수일치","memo":"주어 members(복수)에는 동사원형 make 사용"}]},{"n":13,"tag":null,"en":"Mina is writing a story, and I am draw pictures.","ko":"미나는 이야기를 쓰고 있고, 나는 그림을 그리고 있어.","ok":false,"foot":[],"fixes":[{"wrong":"draw","right":"drawing","partial":false,"at":[8],"point":"현재진행형: be동사(am) 뒤에는 v-ing 형태 drawing 사용","topic":"현재진행형","memo":"be동사(am) 뒤에는 v-ing 형태 drawing 사용"}]},{"n":14,"tag":null,"en":"I want using a painting app for my pictures.","ko":"나는 내 그림을 위해 그림 그리기 앱을 사용하고 싶어.","ok":false,"foot":[],"fixes":[{"wrong":"using","right":"to use","partial":false,"at":[2],"point":"to부정사의 명사적 용법: want의 목적어로 to+동사원형 사용 (동명사 using이 아님)","topic":"to부정사의 명사적 용법","memo":"want의 목적어로 to+동사원형 사용"}]},{"n":15,"tag":null,"en":"With this app, I can using many kinds of brushes and colors.","ko":"이 앱으로 나는 다양한 붓과 색상을 사용할 수 있어.","ok":false,"foot":["1brushes 붓"],"fixes":[{"wrong":"using","right":"use","partial":false,"at":[5],"point":"조동사 can 뒤에는 동사원형 사용 (using → use)","topic":"조동사 can 뒤에는 동사원형 사용 (using → use)","memo":""}]},{"n":16,"tag":null,"en":"My club members will posting our new webtoons on our social media site this Friday.","ko":"우리 동아리 회원들은 이번 주 금요일에 우리의 새로운 웹툰을 소셜 미디어 사이트에 게시할 거야.","ok":false,"foot":[],"fixes":[{"wrong":"posting","right":"post","partial":false,"at":[4],"point":"조동사 will 뒤에는 동사원형 사용 (posting → post)","topic":"조동사 will 뒤에는 동사원형 사용 (posting → post)","memo":""}]},{"n":17,"tag":null,"en":"Why doesn't you visit our social media site and reading our webtoons?","ko":"우리 소셜 미디어 사이트에 방문해서 우리의 웹툰을 읽어 보는 게 어때?","ok":false,"foot":[],"fixes":[{"wrong":"doesn't","right":"don't","partial":false,"at":[1],"point":"의문사가 있는 의문문: 주어 you에는 조동사 don't 사용 (doesn't가 아님)","topic":"의문사가 있는 의문문","memo":"주어 you에는 조동사 don't 사용"},{"wrong":"reading","right":"read","partial":false,"at":[9],"point":"병렬구조: and로 연결된 동사원형 visit, read를 병렬로 사용 (reading이 아님)","topic":"병렬구조","memo":"and로 연결된 동사원형 visit, read를 병렬로 사용"}]},{"n":18,"tag":"하윤 · 음악 동아리","en":"Welcome to my club, New Voice. I are Hayun.","ko":"우리 동아리 New Voice에 온 걸 환영해. 나는 하윤이야.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"am","partial":false,"at":[7],"point":"수일치: 주어 I에 맞는 be동사 am 사용","topic":"수일치","memo":"주어 I에 맞는 be동사 am 사용"}]},{"n":19,"tag":null,"en":"My club members sings songs and perform together.","ko":"우리 동아리 회원들은 함께 노래를 부르고 공연을 해.","ok":false,"foot":[],"fixes":[{"wrong":"sings","right":"sing","partial":false,"at":[3],"point":"수일치: 주어 members(복수)에는 동사원형 sing 사용","topic":"수일치","memo":"주어 members(복수)에는 동사원형 sing 사용"}]},{"n":20,"tag":null,"en":"My club are practicing for a globally music project now.","ko":"나의 동아리는 지금 세계적인 음악 프로젝트를 위해 연습하고 있어.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[2],"point":"수일치: 주어 club(단수)에 맞는 be동사 is 사용 (현재진행형)","topic":"수일치","memo":"주어 club(단수)에 맞는 be동사 is 사용 (현재진행형)"},{"wrong":"globally","right":"global","partial":false,"at":[6],"point":"품사: 명사(project)를 꾸미는 것은 형용사 global 사용 (부사 globally가 아님)","topic":"품사","memo":"명사(project)를 꾸미는 것은 형용사 global 사용"}]},{"n":21,"tag":null,"en":"We is going to make a music video with Melodia, a sing club in Singapore.","ko":"우리는 싱가포르에 있는 노래 동아리인 Melodia와 함께 뮤직비디오를 만들 거야.","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"are","partial":false,"at":[1],"point":"be going to: 주어 We(복수)에 맞는 be동사 are 사용","topic":"be going to","memo":"주어 We(복수)에 맞는 be동사 are 사용"},{"wrong":"sing","right":"singing","partial":false,"at":[11],"point":"어휘/어법: '노래하는 동아리'는 현재분사 singing club 사용 (동사원형 sing이 아님)","topic":"어휘/어법","memo":"'노래하는 동아리'는 현재분사 singing club 사용"}]},{"n":22,"tag":null,"en":"Melodia and New Voice are not in the same country, but we can creating one beautiful sound.","ko":"Melodia와 New Voice는 같은 나라에 있지 않지만, 우리는 하나의 아름다운 소리를 만들 수 있어.","ok":false,"foot":[],"fixes":[{"wrong":"creating","right":"create","partial":false,"at":[13],"point":"조동사 can 뒤에는 동사원형 사용 (creating → create)","topic":"조동사 can 뒤에는 동사원형 사용 (creating → create)","memo":""}]}];var RNUM=19;var TITLE_EN="Log in to School Club Activities";var PASS_EN=["Log in to School Club Activities","Today is the school club day. Club members are doing fun activities now. Let’s meet them!","Do you like robots? I’m Yeji from the robot club, We Makers. My club members learn programming and build robots. Right now, we are testing our robots. This is Jake’s spider robot. Watch out! His robot is running away!","Hi! I’m Brian. This is Dream and Draw, and my club members make webtoons. Mina is writing a story, and I am drawing pictures. I use a painting app for my pictures. With this app, I can use many kinds of brushes and colors. My club members will post our new webtoons on our social media site this Friday. Why don’t you visit our social media site and read our webtoons?","Welcome to my club, New Voice. I’m Hayun. My club members sing songs and perform together. My club is practicing for a global music project now. We will make a music video with Melodia, a singing club in Singapore. Melodia and New Voice are not in the same country, but we can create one beautiful sound."];var PASS_KO=["학교 동아리 활동에 로그인해 봐","오늘은 학교 동아리의 날이다. 동아리 회원들은 지금 재미있는 활동을 하고 있다. 그들을 만나 보자!","너는 로봇을 좋아하니? 나는 로봇 동아리 We Makers의 예지야. 우리 동아리 회원들은 프로그래밍을 배우고 로봇을 만들어. 지금 우리는 우리의 로봇을 테스트하는 중이야. 이것은 Jake의 거미 로봇이야. 조심해! 그의 로봇이 도망치고 있어!","안녕! 나는 Brian이야. 이곳은 Dream and Draw이고, 우리 동아리 회원들은 웹툰을 만들어. 미나는 이야기를 쓰고 있고, 나는 그림을 그리고 있어. 나는 내 그림을 위해 그림 그리기 앱을 사용해. 이 앱으로 나는 다양한 붓과 색상을 사용할 수 있어. 우리 동아리 회원들은 이번 주 금요일에 우리의 새로운 웹툰을 소셜 미디어 사이트에 게시할 거야. 우리 소셜 미디어 사이트에 방문해서 우리의 웹툰을 읽어 보는 게 어때?","우리 동아리 New Voice에 온 걸 환영해. 나는 하윤이야. 우리 동아리 회원들은 함께 노래를 부르고 공연을 해. 나의 동아리는 지금 세계적인 음악 프로젝트를 위해 연습하고 있어. 우리는 싱가포르에 있는 노래 동아리인 Melodia와 함께 뮤직비디오를 만들 거야. Melodia와 New Voice는 같은 나라에 있지 않지만, 우리는 하나의 아름다운 소리를 만들 수 있어."];var DLG=[["James","I like webtoons. I’m going to join the webtoon club.","나는 웹툰을 좋아해. 나는 웹툰 동아리에 가입할 거야."],["Eunji","That’s nice, James! I also like them very much.","잘됐다, James! 나도 웹툰을 정말 좋아해."],["James","Why don’t you join the webtoon club with me, Eunji?","나랑 같이 웹툰 동아리에 가입하는 게 어때, 은지야?"],["Eunji","Actually, I’m going to join the dance club.","사실 나는 춤 동아리에 가입할 거야."],["James","Oh, are you good at dancing?","아, 너 춤을 잘 춰?"],["Eunji","Not really, but I like it a lot.","그렇진 않지만, 나는 그걸 정말 좋아해."]];var BQ=[{"n":1,"q":"James가 가입하려는 동아리는 무엇인가요?","o":["춤 동아리","웹툰 동아리","노래 동아리","로봇 동아리","미술 동아리"],"a":1,"ev":["I’m going to join the webtoon club.","나는 웹툰 동아리에 가입할 거야."],"why":"be going to는 '~할 예정'이라는 뜻이에요.","ans":"웹툰 동아리","memo":["James의 동아리 = 웹툰 동아리","I’m going to join the webtoon club. (나는 웹툰 동아리에 가입할 거야.)"]},{"n":2,"q":"Eunji가 가입하려는 동아리는 무엇인가요?","o":["춤 동아리","웹툰 동아리","요리 동아리","농구 동아리","음악 동아리"],"a":0,"ev":["Actually, I’m going to join the dance club.","사실 나는 춤 동아리에 가입할 거야."],"why":"James의 제안과 달리 Eunji는 춤 동아리를 택했어요.","ans":"춤 동아리","memo":["Eunji의 동아리 = 춤 동아리","Actually, I’m going to join the dance club. (사실 나는 춤 동아리에 가입할 거야.)"]},{"n":3,"q":"James가 Eunji에게 제안한 것은 무엇인가요?","o":["함께 춤 동아리에 가입하기","웹툰 그려 주기","웹툰 같이 읽기","함께 웹툰 동아리에 가입하기","동아리 소개해 주기"],"a":3,"ev":["Why don’t you join the webtoon club with me, Eunji?","나랑 같이 웹툰 동아리에 가입하는 게 어때, 은지야?"],"why":"Why don’t you ~?는 제안하는 표현이에요.","ans":"함께 웹툰 동아리에 가입하기","memo":["James의 제안 = 함께 웹툰 동아리 가입","Why don’t you join the webtoon club with me, Eunji? (나랑 같이 웹툰 동아리에 가입하는 게 어때, 은지야?)"]},{"n":4,"q":"Eunji는 춤에 대해 어떻게 말했나요?","o":["아주 잘 추고 많이 좋아한다","잘 추지만 별로 안 좋아한다","아주 잘 추지는 않지만 많이 좋아한다","잘 추지도 않고 좋아하지도 않는다","한 번도 춰 본 적이 없다"],"a":2,"ev":["Not really, but I like it a lot.","그렇진 않지만, 나는 그걸 정말 좋아해."],"why":"Not really는 '그렇진 않아'라는 뜻이고, 뒤에 like it a lot이 이어져요.","ans":"아주 잘 추지는 않지만 많이 좋아한다","memo":["Eunji와 춤 = 잘하진 않지만 매우 좋아함","Not really, but I like it a lot. (그렇진 않지만, 나는 그걸 정말 좋아해.)"]},{"n":5,"q":"Eunji는 웹툰에 대해 어떻게 생각하나요?","o":["웹툰을 매우 좋아한다","웹툰을 좋아하지 않는다","웹툰을 그려 본 적이 있다","웹툰 동아리에 이미 가입했다","웹툰을 조금 좋아한다"],"a":0,"ev":["I also like them very much.","나도 웹툰을 정말 좋아해."],"why":"them은 webtoons예요.","ans":"웹툰을 매우 좋아한다","memo":["Eunji와 웹툰 = 매우 좋아함","I also like them very much. (나도 웹툰을 정말 좋아해.)"]}];var DQ=[{"n":6,"q":"Yeji의 로봇 동아리 이름은 무엇인가요?","o":["Dream and Draw","New Voice","We Makers","Melodia","Robot Kids"],"a":2,"ev":["I’m Yeji from the robot club, We Makers.","나는 로봇 동아리 We Makers의 예지야."],"why":"Dream and Draw는 Brian, New Voice는 Hayun의 동아리예요.","ans":"We Makers","memo":["예지의 동아리 = 로봇 동아리 We Makers","I’m Yeji from the robot club, We Makers. (나는 로봇 동아리 We Makers의 예지야.)"]},{"n":7,"q":"Yeji의 동아리 회원들은 지금 무엇을 하고 있나요?","o":["로봇을 팔고 있다","로봇을 시험하고 있다","웹툰을 그리고 있다","노래를 부르고 있다","뮤직비디오를 만들고 있다"],"a":1,"ev":["Right now, we are testing our robots.","지금 우리는 우리의 로봇을 시험하고 있다."],"why":"test는 '시험하다'라는 뜻이에요.","ans":"로봇을 시험하고 있다","memo":["예지 동아리의 지금 활동 = 로봇 시험","Right now, we are testing our robots. (지금 우리는 우리의 로봇을 시험하고 있다.)"]},{"n":8,"q":"Brian의 동아리에서 Mina는 무엇을 하고 있나요?","o":["이야기를 쓰고 있다","그림을 그리고 있다","웹툰을 올리고 있다","노래를 하고 있다","앱을 만들고 있다"],"a":0,"ev":["Mina is writing a story, and I am drawing pictures.","Mina는 이야기를 쓰고 있고, 나는 그림을 그리고 있다."],"why":"그림을 그리는 사람은 Mina가 아니라 Brian이에요.","ans":"이야기를 쓰고 있다","memo":["Mina의 일 = 이야기 쓰기(그림은 Brian)","Mina is writing a story, and I am drawing pictures. (Mina는 이야기를 쓰고 있고, 나는 그림을 그리고 있다.)"]},{"n":9,"q":"Hayun의 동아리 회원들은 무엇을 하나요?","o":["로봇을 만든다","웹툰을 그린다","프로그래밍을 배운다","노래하고 함께 공연한다","그림 앱을 만든다"],"a":3,"ev":["My club members sing songs and perform together.","나의 동아리 회원들은 노래하고 함께 공연한다."],"why":"sing songs는 '노래를 부르다'라는 뜻이에요.","ans":"노래하고 함께 공연한다","memo":["Hayun 동아리의 활동 = 노래하고 공연하기","My club members sing songs and perform together. (나의 동아리 회원들은 노래하고 함께 공연한다.)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["Melodia와 New Voice는 같은 나라에 있다","Jake의 거미 로봇이 도망가고 있다","Brian은 그림에 그림 그리기 앱을 사용한다","Brian의 동아리는 이번 금요일에 새 웹툰을 올릴 것이다","New Voice는 글로벌 음악 프로젝트를 연습하고 있다"],"a":0,"ev":["Melodia and New Voice are not in the same country","Melodia와 New Voice는 같은 나라에 있지 않다"],"why":"원문은 not in the same country, 즉 서로 다른 나라에 있다는 뜻이에요.","ans":"Melodia와 New Voice는 같은 나라에 있다","memo":["Melodia와 New Voice = 서로 다른 나라(같은 나라 아님)","Melodia and New Voice are not in the same country (Melodia와 New Voice는 같은 나라에 있지 않다)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 59</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 59 · Joys of Working in Nature</h1><div class="sub">자연에서 일하는 즐거움 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":null,"en":"Some people love to working in nature.","ko":"어떤 사람들은 자연에서 일하는 것을 아주 좋아한다.","ok":false,"foot":[],"fixes":[{"wrong":"to working","right":"to work","partial":false,"at":[3],"point":"to부정사의 명사적 용법: love의 목적어로 쓰이는 to부정사는 'to+동사원형 (to work)' 형태로 사용","topic":"to부정사의 명사적 용법","memo":"love의 목적어로 쓰이는 to부정사는 'to+동사원형 (to work)' 형태로 사용"}]},{"n":2,"tag":null,"en":"They work in the sea, mountains, or even in the Arctic.","ko":"그들은 바다, 산, 심지어 북극에서도 일한다.","ok":true,"foot":[],"fixes":[]},{"n":3,"tag":null,"en":"Let's meeting them and listen to their stories.","ko":"그들을 만나 보고 그들의 이야기를 들어 보자.","ok":false,"foot":[],"fixes":[{"wrong":"meeting","right":"meet","partial":false,"at":[1],"point":"Let's(=Let us) 뒤에는 동사원형을 사용 (meet)","topic":"Let's(=Let us) 뒤에는 동사원형을 사용 (meet)","memo":""}]},{"n":4,"tag":"Nari · 해녀","en":"I is Nari. I am an haenyeo in Geoje.","ko":"저는 나리입니다. 저는 거제의 해녀입니다.","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"am","partial":false,"at":[1],"point":"수일치: 주어 I에는 be동사 am을 사용","topic":"수일치","memo":"주어 I에는 be동사 am을 사용"},{"wrong":"an haenyeo","right":"a haenyeo","partial":false,"at":[5],"point":"관사: haenyeo는 자음 발음[h]으로 시작하므로 부정관사 a 사용","topic":"관사","memo":"haenyeo는 자음 발음[h]으로 시작하므로 부정관사 a 사용"}]},{"n":5,"tag":null,"en":"I dive in the water and collecting seafood.","ko":"저는 물에 잠수해서 해산물을 채집합니다.","ok":false,"foot":[],"fixes":[{"wrong":"collecting","right":"collect","partial":false,"at":[6],"point":"병렬구조: and로 연결된 두 동사 (dive, collect)는 같은 형태(동사원형)로 사용","topic":"병렬구조","memo":"and로 연결된 두 동사 (dive, collect)는 같은 형태(동사원형)로 사용"}]},{"n":6,"tag":null,"en":"In the morning, I checks the tide and the weather.","ko":"아침에, 저는 조수와 날씨를 확인합니다.","ok":false,"foot":["1tide 조수, 밀물과 썰물"],"fixes":[{"wrong":"checks","right":"check","partial":false,"at":[4],"point":"수일치: 주어가 I(1인칭)이므로 동사에 -(e)s를 붙이지 않음","topic":"수일치","memo":"주어가 I(1인칭)이므로 동사에 -(e)s를 붙이지 않음"}]},{"n":7,"tag":null,"en":"I wear a diving suit and swim glasses to work in the water.","ko":"저는 물속에서 일하기 위해 잠수복을 입고 수경을 씁니다.","ok":false,"foot":[],"fixes":[{"wrong":"swim glasses","right":"swimming glasses","partial":false,"at":[6],"point":"동명사: 명사(glasses)를 꾸며 '~하기 위한'의 의미를 나타낼 때는 동명사 swimming 사용","topic":"동명사","memo":"명사(glasses)를 꾸며 '~하기 위한'의 의미를 나타낼 때는 동명사 swimming 사용"}]},{"n":8,"tag":null,"en":"I love diving and spend time in the beautiful sea.","ko":"저는 잠수하는 것과 아름다운 바다에서 시간을 보내는 것을 아주 좋아합니다.","ok":false,"foot":[],"fixes":[{"wrong":"spend","right":"spending","partial":false,"at":[4],"point":"동명사: love 뒤에 연결된 두 동작 (diving, spending)은 형태를 통일하여 동명사로 사용","topic":"동명사","memo":"love 뒤에 연결된 두 동작 (diving, spending)은 형태를 통일하여 동명사로 사용"}]},{"n":9,"tag":null,"en":"I don't collect too many seafood.","ko":"저는 너무 많은 해산물을 채집하지 않습니다.","ok":false,"foot":[],"fixes":[{"wrong":"many","right":"much","partial":false,"at":[4],"point":"어휘: seafood는 셀 수 없는 명사이므로 many 대신 much 사용","topic":"어휘","memo":"seafood는 셀 수 없는 명사이므로 many 대신 much 사용"}]},{"n":10,"tag":null,"en":"This sounds well for the ocean.","ko":"이것은 바다에 좋은 것 같습니다.","ok":false,"foot":[],"fixes":[{"wrong":"well","right":"good","partial":false,"at":[2],"point":"2형식 감각동사: sound 뒤에는 형용사 good을 보어로 사용 (well은 부사)","topic":"2형식 감각동사","memo":"sound 뒤에는 형용사 good을 보어로 사용 (well은 부사)"}]},{"n":11,"tag":null,"en":"These days, when I dives in the water, I see a lot of trashes, so I pick it up.","ko":"요즘은, 제가 물속에서 잠수할 때 쓰레기가 많이 보여서 그것을 줍습니다.","ok":false,"foot":[],"fixes":[{"wrong":"dives","right":"dive","partial":false,"at":[4],"point":"접속사 when이 이끄는 절의 주어가 I이므로 동사원형 dive 사용","topic":"접속사 when이 이끄는 절의 주어가 I이므로 동사원형 dive 사용","memo":""},{"wrong":"trashes","right":"trash","partial":false,"at":[13],"point":"어휘: trash는 셀 수 없는 명사이므로 복수형(trashes) 사용 불가","topic":"어휘","memo":"trash는 셀 수 없는 명사이므로 복수형(trashes) 사용 불가"}]},{"n":12,"tag":null,"en":"I believe that we should cares about the ocean.","ko":"저는 우리가 바다에 신경을 써야 한다고 믿습니다.","ok":false,"foot":[],"fixes":[{"wrong":"should cares","right":"should care","partial":false,"at":[4],"point":"조동사 should 뒤에는 동사원형을 사용 (care)","topic":"조동사 should 뒤에는 동사원형을 사용 (care)","memo":""}]},{"n":13,"tag":"Jihan · 수의사","en":"My name are Jihan. I am a vet at the wild animals care center in Jirisan.","ko":"제 이름은 지한입니다. 저는 지리산 야생 동물 보호 센터의 수의사입니다.","ok":false,"foot":["1vet 수의사"],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[2],"point":"수일치: 주어 My name(단수)에 맞춰 be동사 is 사용","topic":"수일치","memo":"주어 My name(단수)에 맞춰 be동사 is 사용"},{"wrong":"animals","right":"animal","partial":false,"at":[11],"point":"복합명사: 명사가 다른 명사를 꾸밀 때는 단수형(animal) 사용","topic":"복합명사","memo":"명사가 다른 명사를 꾸밀 때는 단수형(animal) 사용"}]},{"n":14,"tag":null,"en":"I take care of sick wild animals in the center and send they back to their homes.","ko":"저는 센터의 아픈 야생 동물을 돌보고 그들을 집으로 돌려보냅니다.","ok":false,"foot":[],"fixes":[{"wrong":"they","right":"them","partial":false,"at":[12],"point":"인칭대명사 격: 동사 send의 목적어 자리이므로 목적격 대명사 them 사용","topic":"인칭대명사 격","memo":"동사 send의 목적어 자리이므로 목적격 대명사 them 사용"}]},{"n":15,"tag":null,"en":"Also, I often climb the mountain to look at wild animals like bears.","ko":"또한 저는 곰과 같은 야생 동물을 돌보기 위해 자주 산을 오릅니다.","ok":false,"foot":[],"fixes":[{"wrong":"look at","right":"look after","partial":false,"at":[7],"point":"어휘: look after(돌보다)와 look at(보다)을 구별 — 문맥상 '돌보다'의 의미인 look after 사용","topic":"어휘","memo":"look after(돌보다)와 look at(보다)을 구별 — 문맥상 '돌보다'의 의미인 look after 사용"}]},{"n":16,"tag":null,"en":"I feel proudly of my job.","ko":"저는 제 직업이 자랑스럽습니다.","ok":false,"foot":[],"fixes":[{"wrong":"proudly","right":"proud","partial":false,"at":[2],"point":"2형식 감각동사: feel 뒤에는 형용사 proud를 보어로 사용 (proudly는 부사)","topic":"2형식 감각동사","memo":"feel 뒤에는 형용사 proud를 보어로 사용 (proudly는 부사)"}]},{"n":17,"tag":null,"en":"I think that protect wild animals is important.","ko":"저는 야생 동물을 보호하는 것이 중요하다고 생각합니다.","ok":false,"foot":[],"fixes":[{"wrong":"protect","right":"protecting","partial":false,"at":[3],"point":"동명사: that절의 주어 자리이므로 동명사 protecting 사용","topic":"동명사","memo":"that절의 주어 자리이므로 동명사 protecting 사용"}]},{"n":18,"tag":null,"en":"We should keeps an eye on them and their homes to living together.","ko":"우리는 함께 살아가기 위해 그들과 그들의 서식처를 계속 지켜보아야합니다.","ok":false,"foot":[],"fixes":[{"wrong":"should keeps","right":"should keep","partial":false,"at":[1],"point":"조동사 should 뒤에는 동사원형 사용 (keep)","topic":"조동사 should 뒤에는 동사원형 사용 (keep)","memo":""},{"wrong":"to living","right":"to live","partial":false,"at":[10],"point":"to부정사의 부사적 용법: '~하기 위해'라는 목적은 to+동사원형(to live)으로 표현 (to living은 잘못된 형태)","topic":"to부정사의 부사적 용법","memo":"'~하기 위해'라는 목적은 to+동사원형(to live)으로 표현 (to living은 잘못된 형태)"}]},{"n":19,"tag":"Eun · 극지 과학자","en":"My name is Eun, and I am a Arctic scientist.","ko":"제 이름은 은이고, 저는 극지 과학자입니다.","ok":false,"foot":[],"fixes":[{"wrong":"a Arctic","right":"an Arctic","partial":false,"at":[7],"point":"관사: Arctic은 모음 발음으로 시작하므로 부정관사 an 사용","topic":"관사","memo":"Arctic은 모음 발음으로 시작하므로 부정관사 an 사용"}]},{"n":20,"tag":null,"en":"Last winter, I was work at the Arctic Dasan Station in Norway when a big storm come.","ko":"지난겨울, 노르웨이의 북극 다산 과학 기지에서 일하고 있을 때 큰 폭풍이 왔습니다.","ok":false,"foot":[],"fixes":[{"wrong":"was work","right":"was working","partial":false,"at":[3],"point":"과거진행형: was/were+동사ing 형태로 사용 (was working)","topic":"과거진행형","memo":"was/were+동사ing 형태로 사용 (was working)"},{"wrong":"come","right":"came","partial":false,"at":[16],"point":"when이 이끄는 절도 과거 시제이므로 과거형 came 사용","topic":"when이 이끄는 절도 과거 시제이므로 과거형 came 사용","memo":""}]},{"n":21,"tag":null,"en":"I study the soil, seawater, and ices in the Arctic.","ko":"저는 북극의 토양, 바닷물, 얼음을 연구합니다.","ok":false,"foot":[],"fixes":[{"wrong":"ices","right":"ice","partial":false,"at":[6],"point":"어휘: ice는 셀 수 없는 명사이므로 복수형 사용 불가","topic":"어휘","memo":"ice는 셀 수 없는 명사이므로 복수형 사용 불가"}]},{"n":22,"tag":null,"en":"I often travels on the specially ship, Araon.","ko":"저는 특별한 배인 아라온호를 타고 자주 이동합니다.","ok":false,"foot":[],"fixes":[{"wrong":"travels","right":"travel","partial":false,"at":[2],"point":"수일치: 주어가 I(1인칭)이므로 동사에 -(e)s를 붙이지 않음","topic":"수일치","memo":"주어가 I(1인칭)이므로 동사에 -(e)s를 붙이지 않음"},{"wrong":"specially","right":"special","partial":false,"at":[5],"point":"형용사/부사 구분: 명사 ship을 꾸밀 때는 형용사 special 사용 (specially는 부사)","topic":"형용사/부사 구분","memo":"명사 ship을 꾸밀 때는 형용사 special 사용 (specially는 부사)"}]},{"n":23,"tag":null,"en":"This ship is stronger than other ships.","ko":"이 배는 다른 배보다 더 튼튼합니다.","ok":true,"foot":[],"fixes":[]},{"n":24,"tag":null,"en":"It can breaks thick ice across the ocean.","ko":"그것은 바다를 가로질러 두꺼운 얼음을 깰 수 있습니다.","ok":false,"foot":["1thick 두꺼운"],"fixes":[{"wrong":"can breaks","right":"can break","partial":false,"at":[1],"point":"조동사 can 뒤에는 동사원형을 사용 (break)","topic":"조동사 can 뒤에는 동사원형을 사용 (break)","memo":""}]},{"n":25,"tag":null,"en":"Thanks for Araon, I can collect seawater samples.","ko":"아라온호 덕분에 저는 바닷물 표본을 채집할 수 있습니다.","ok":false,"foot":["1sample 표본"],"fixes":[{"wrong":"Thanks for","right":"Thanks to","partial":false,"at":[0],"point":"어휘: '~ 덕분에'라는 의미는 thanks to를 사용 (thanks for는 감사하는 대상/이유에 사용)","topic":"어휘","memo":"'~ 덕분에'라는 의미는 thanks to를 사용 (thanks for는 감사하는 대상/이유에 사용)"}]},{"n":26,"tag":null,"en":"The Arctic Ocean have the answers to a climate crisis.","ko":"북극해는 기후 위기에 대한 해답을 가지고 있습니다.","ok":false,"foot":["1climate crisis 기후 위기"],"fixes":[{"wrong":"have","right":"has","partial":false,"at":[3],"point":"수일치: 주어 The Arctic Ocean(단수)에 맞춰 동사 has 사용","topic":"수일치","memo":"주어 The Arctic Ocean(단수)에 맞춰 동사 has 사용"},{"wrong":"a climate crisis","right":"the climate crisis","partial":false,"at":[7],"point":"관사: 앞서 언급되어 특정하게 알려진 대상이므로 정관사 the 사용","topic":"관사","memo":"앞서 언급되어 특정하게 알려진 대상이므로 정관사 the 사용"}]},{"n":27,"tag":null,"en":"I hope to helping the Earth with my work.","ko":"저는 제 일이 지구를 도울 수 있기를 바랍니다.","ok":false,"foot":[],"fixes":[{"wrong":"to helping","right":"to help","partial":false,"at":[2],"point":"to부정사의 명사적 용법: hope의 목적어로 쓰이는 to부정사는 'to+동사원형(to help)' 형태로 사용","topic":"to부정사의 명사적 용법","memo":"hope의 목적어로 쓰이는 to부정사는 'to+동사원형(to help)' 형태로 사용"}]}];var RNUM=59;var TITLE_EN="Joys of Working in Nature";var PASS_EN=["Joys of Working in Nature","Some people love to work in nature. They work in the sea, mountains, or even in the Arctic. Let’s meet them and listen to their stories.","I am Nari. I am a haenyeo in Geoje. I dive in the water and collect seafood. In the morning, I check the tide and the weather. I wear a diving suit and swimming glasses to work in the water. I love diving and spending time in the beautiful sea. I don’t collect too much seafood. This is good for the ocean. These days, I see a lot of trash in the water, so I pick up the trash. I believe that we should care about the ocean.","My name is Jihan. I am a vet at the wild animal care center in Jirisan. I take care of sick wild animals in the center and send them back to their homes. Also, I often climb the mountain to look after wild animals like bears. I’m proud of my job. I think that protecting wild animals is important. We should keep an eye on them and their homes to live together.","My name is Eun, and I am an Arctic scientist. I work at the Arctic Dasan Station in Norway. I study the soil, seawater, and ice in the Arctic. I often travel on the special ship, Araon. This ship is stronger than other ships. It can break thick ice across the ocean. Thanks to Araon, I can collect seawater samples. The Arctic Ocean has the answers to the climate crisis. I hope that my work can help the Earth."];var PASS_KO=["자연에서 일하는 즐거움","어떤 사람들은 자연에서 일하는 것을 아주 좋아한다. 그들은 바다, 산, 심지어 북극에서도 일한다. 그들을 만나 보고 그들의 이야기를 들어 보자.","저는 나리입니다. 저는 거제의 해녀입니다. 저는 물에 잠수해서 해산물을 채집합니다. 아침에, 저는 조수와 날씨를 확인합니다. 저는 물속에서 일하기 위해 잠수복을 입고 수경을 씁니다. 저는 잠수하는 것과 아름다운 바다에서 시간을 보내는 것을 아주 좋아합니다. 저는 너무 많은 해산물을 채집하지 않습니다. 이것이 바다에 좋습니다. 요즘은 물속에 쓰레기가 많이 보여서 쓰레기를 줍습니다. 저는 우리가 바다에 신경을 써야 한다고 믿습니다.","제 이름은 지한입니다. 저는 지리산 야생 동물 보호 센터의 수의사입니다. 저는 센터의 아픈 야생 동물을 돌보고 그들을 집으로 돌려보냅니다. 또한 저는 곰과 같은 야생 동물을 돌보기 위해 자주 산을 오릅니다. 저는 제 직업이 자랑스럽습니다. 저는 야생 동물을 보호하는 것이 중요하다고 생각합니다. 우리는 함께 살아가기 위해 그들과 그들의 서식처를 계속 지켜보아야 합니다.","제 이름은 은이고, 저는 극지 과학자입니다. 저는 노르웨이의 북극 다산 과학 기지에서 일합니다. 저는 북극의 토양, 바닷물, 얼음을 연구합니다. 저는 특별한 배인 아라온호를 타고 자주 이동합니다. 이 배는 다른 배보다 더 튼튼합니다. 그것은 바다를 가로질러 두꺼운 얼음을 깰 수 있습니다. 아라온호 덕분에 저는 바닷물 표본을 채집할 수 있습니다. 북극해는 기후 위기에 대한 해답을 가지고 있습니다. 저는 제 일이 지구를 도울 수 있기를 바랍니다."];var DLG=[["Jinsu","Did you see this movie, Amy?","이 영화 봤니, Amy?"],["Amy","I didn’t see it. What’s it about, Jinsu?","못 봤어. 그건 무엇에 관한 거니, Jinsu?"],["Jinsu","It’s about wild animals in deserts.","사막의 야생동물에 관한 거야."],["Amy","I’m interested in making movies about nature.","나는 자연에 관한 영화를 만드는 데 관심이 있어."],["Jinsu","Then you should learn from movie directors. The director, Linda Han, is giving a speech in the main hall.","그럼 너는 영화감독에게서 배워야 해. 감독인 Linda Han이 대강당에서 연설을 하고 있어."],["Amy","Great. Let’s go together.","좋아. 같이 가자."],["Jinsu","Okay.","좋아."]];var BQ=[{"n":1,"q":"Jinsu가 말한 영화는 무엇에 관한 것인가요?","o":["사막의 야생동물","바다 속 물고기","북극의 얼음","숲속의 나무","우주 여행"],"a":0,"ev":["It’s about wild animals in deserts.","사막의 야생동물에 관한 거야."],"why":"What’s it about?에 대한 대답이에요. wild animals는 '야생동물', deserts는 '사막'이에요.","ans":"사막의 야생동물","memo":["영화 내용 = 사막의 야생동물","It’s about wild animals in deserts. (사막의 야생동물에 관한 거야.)"]},{"n":2,"q":"Amy는 이 영화를 본 적이 있나요?","o":["봤고 아주 좋아한다","봤지만 재미없었다","보지 못했다","Jinsu와 함께 봤다","두 번 봤다"],"a":2,"ev":["I didn’t see it.","못 봤어."],"why":"didn’t see는 '보지 않았다'는 뜻이에요.","ans":"보지 못했다","memo":["Amy와 영화 = 보지 못함","I didn’t see it. (못 봤어.)"]},{"n":3,"q":"Amy가 관심 있어 하는 것은 무엇인가요?","o":["동물을 돌보는 것","자연에 관한 영화를 만드는 것","연설을 하는 것","사막을 여행하는 것","영화를 보는 것"],"a":1,"ev":["I’m interested in making movies about nature.","나는 자연에 관한 영화를 만드는 데 관심이 있어."],"why":"be interested in은 '~에 관심이 있다'예요.","ans":"자연에 관한 영화를 만드는 것","memo":["Amy의 관심사 = 자연에 관한 영화 만들기","I’m interested in making movies about nature. (나는 자연에 관한 영화를 만드는 데 관심이 있어.)"]},{"n":4,"q":"Jinsu는 Amy에게 어떤 조언을 했나요?","o":["동물원에 가 보라고","영화감독에게서 배우라고","사막에 가 보라고","영화를 많이 보라고","연설 연습을 하라고"],"a":1,"ev":["Then you should learn from movie directors.","그럼 너는 영화감독에게서 배워야 해."],"why":"should는 '~해야 한다, ~하는 게 좋다'라는 조언이에요.","ans":"영화감독에게서 배우라고","memo":["Jinsu의 조언 = 영화감독에게서 배우기","Then you should learn from movie directors. (그럼 너는 영화감독에게서 배워야 해.)"]},{"n":5,"q":"Linda Han은 지금 무엇을 하고 있나요?","o":["영화를 만들고 있다","대강당에서 연설을 하고 있다","야생동물을 돌보고 있다","학생들에게 영화를 보여 주고 있다","사막으로 여행을 가고 있다"],"a":1,"ev":["The director, Linda Han, is giving a speech in the main hall.","감독인 Linda Han이 대강당에서 연설을 하고 있어."],"why":"is giving은 '하고 있다'(진행)이고, speech는 '연설', main hall은 '대강당'이에요.","ans":"대강당에서 연설을 하고 있다","memo":["Linda Han의 현재 = 대강당에서 연설 중","The director, Linda Han, is giving a speech in the main hall. (감독인 Linda Han이 대강당에서 연설을 하고 있어.)"]}];var DQ=[{"n":6,"q":"Nari는 아침에 무엇을 확인하나요?","o":["바다의 쓰레기","물때와 날씨","해산물의 가격","잠수복의 크기","다른 해녀들의 일정"],"a":1,"ev":["In the morning, I check the tide and the weather.","아침에 나는 물때와 날씨를 확인한다."],"why":"tide는 '물때(밀물과 썰물)', weather는 '날씨'예요.","ans":"물때와 날씨","memo":["Nari의 아침 일 = 물때와 날씨 확인","In the morning, I check the tide and the weather. (아침에 나는 물때와 날씨를 확인한다.)"]},{"n":7,"q":"Nari가 물속의 쓰레기를 줍는 이유는 무엇인가요?","o":["요즘 물속에서 쓰레기를 많이 보기 때문에","쓰레기를 팔 수 있기 때문에","상을 받고 싶기 때문에","해산물을 더 많이 모으려고","다른 사람이 부탁했기 때문에"],"a":0,"ev":["These days, I see a lot of trash in the water, so I pick up the trash.","요즘 나는 물속에서 많은 쓰레기를 보기 때문에 쓰레기를 줍는다."],"why":"so(그래서) 앞 문장이 이유예요. pick up은 '줍다'라는 뜻이에요.","ans":"요즘 물속에서 쓰레기를 많이 보기 때문에","memo":["쓰레기를 줍는 이유 = 요즘 물속에 쓰레기가 많음","These days, I see a lot of trash in the water, so I pick up the trash. (요즘 나는 물속에서 많은 쓰레기를 보기 때문에 쓰레기를 줍는다.)"]},{"n":8,"q":"Jihan이 가끔 산에 오르는 이유는 무엇인가요?","o":["곰 같은 야생동물을 돌보려고","산에서 운동하려고","나무를 심으려고","사진을 찍으려고","등산객을 안내하려고"],"a":0,"ev":["I often climb the mountain to look after wild animals like bears.","나는 곰 같은 야생동물을 돌보기 위해 자주 산에 오른다."],"why":"to look after는 '돌보기 위해'라는 뜻이에요.","ans":"곰 같은 야생동물을 돌보려고","memo":["산에 오르는 이유 = 곰 같은 야생동물 돌보기","I often climb the mountain to look after wild animals like bears. (나는 곰 같은 야생동물을 돌보기 위해 자주 산에 오른다.)"]},{"n":9,"q":"Eun은 Araon 덕분에 무엇을 할 수 있나요?","o":["북극곰을 관찰한다","바닷물 샘플을 모은다","얼음 위에서 산다","노르웨이로 이사한다","빠르게 수영한다"],"a":1,"ev":["Thanks to Araon, I can collect seawater samples.","Araon 덕분에 나는 바닷물 샘플을 모을 수 있다."],"why":"Thanks to는 '~ 덕분에'라는 뜻이에요. collect는 '모으다'예요.","ans":"바닷물 샘플을 모은다","memo":["Araon 덕분에 가능한 일 = 바닷물 샘플 채집","Thanks to Araon, I can collect seawater samples. (Araon 덕분에 나는 바닷물 샘플을 모을 수 있다.)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["Nari는 거제에서 해녀로 일한다.","Jihan은 자신의 일을 자랑스러워한다.","Eun은 노르웨이의 북극 다산 기지에서 일한다.","Araon은 두꺼운 얼음을 깰 수 있다.","Nari는 바다에서 해산물을 가능한 한 많이 모은다."],"a":4,"ev":["I don’t collect too much seafood.","나는 너무 많은 해산물을 모으지 않는다."],"why":"본문은 Nari가 해산물을 too much(너무 많이) 모으지 않는다고 했어요. 나머지 넷은 본문에 그대로 나와요.","ans":"Nari는 바다에서 해산물을 가능한 한 많이 모은다.","memo":["Nari의 해산물 채집 = 너무 많이 모으지 않음","I don’t collect too much seafood. (나는 너무 많은 해산물을 모으지 않는다.)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

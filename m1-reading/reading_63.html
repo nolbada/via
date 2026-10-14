@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 63</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 63 · We Look Funny but Taste Great!</h1><div class="sub">우리는 우스꽝스럽게 생겼지만, 맛은 좋아요! · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":null,"en":"This is a special market for funny-looking fruits and vegetables.","ko":"이곳은 우스꽝스럽게 생긴 과일과 채소를 위한 특별한 시장입니다.","ok":true,"foot":[],"fixes":[]},{"n":2,"tag":null,"en":"They greet each others and start to talk.","ko":"그들은 서로에게 인사하며 이야기를 시작합니다.","ok":false,"foot":[],"fixes":[{"wrong":"each others","right":"each other","partial":false,"at":[2],"point":"어휘: each other는 그 자체로 '서로'라는 복수의 의미를 가지므로 뒤에 -s를 붙이지 않음","topic":"어휘","memo":"each other는 그 자체로 '서로'라는 복수의 의미를 가지므로 뒤에 -s를 붙이지 않음"}]},{"n":3,"tag":"Apple · 사과","en":"What a nice day! I'm here because I have many spot on my skin.","ko":"정말 좋은 날이야! 나는 내 껍질에 점이 많아서 이곳에 왔어.","ok":false,"foot":[],"fixes":[{"wrong":"spot","right":"spots","partial":false,"at":[10],"point":"수일치/어휘: many 뒤에는 복수명사 spots 사용","topic":"수일치/어휘","memo":"many 뒤에는 복수명사 spots 사용"}]},{"n":4,"tag":null,"en":"People thinks that I'm tasteless.","ko":"사람들은 내가 맛없다고 생각해.","ok":false,"foot":[],"fixes":[{"wrong":"thinks","right":"think","partial":false,"at":[1],"point":"수일치: People은 복수로 취급하는 명사이므로 동사원형 think 사용","topic":"수일치","memo":"People은 복수로 취급하는 명사이므로 동사원형 think 사용"}]},{"n":5,"tag":null,"en":"They is wrong! My spots are not harmfully.","ko":"그들은 틀렸어! 내 점은 해롭지 않아.","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"are","partial":false,"at":[1],"point":"수일치: 주어 They(복수)에 맞춰 동사 are 사용","topic":"수일치","memo":"주어 They(복수)에 맞춰 동사 are 사용"},{"wrong":"harmfully","right":"harmful","partial":false,"at":[7],"point":"어법: be동사(are)의 보어 자리이므로 부사 harmfully가 아닌 형용사 harmful 사용","topic":"어법","memo":"be동사(are)의 보어 자리이므로 부사 harmfully가 아닌 형용사 harmful 사용"}]},{"n":6,"tag":null,"en":"I taste more better than I look.","ko":"나는 보기보다 맛이 더 좋아.","ok":false,"foot":[],"fixes":[{"wrong":"more better","right":"better","partial":false,"at":[2],"point":"비교급: better는 이미 비교급이므로 more를 함께 쓰지 않음(이중비교 오류)","topic":"비교급","memo":"better는 이미 비교급이므로 more를 함께 쓰지 않음(이중비교 오류)"}]},{"n":7,"tag":"Kiwi · 키위","en":"I'm round, but I'm the small fruit here. Farmers doesn't want to sell me because of my size.","ko":"나는 둥글지만, 이곳에서 가장 작은 과일이야. 농부들은 내 크기 때문에 나를 팔고 싶어 하지 않아.","ok":false,"foot":[],"fixes":[{"wrong":"small","right":"smallest","partial":false,"at":[5],"point":"최상급: the 뒤에서 여럿 중 가장 작음을 나타낼 때는 최상급 smallest 사용","topic":"최상급","memo":"the 뒤에서 여럿 중 가장 작음을 나타낼 때는 최상급 smallest 사용"},{"wrong":"doesn't","right":"don't","partial":false,"at":[9],"point":"수일치: 주어 Farmers(복수)에 맞춰 don't 사용","topic":"수일치","memo":"주어 Farmers(복수)에 맞춰 don't 사용"}]},{"n":8,"tag":null,"en":"Who cares about size?","ko":"크기가 무슨 상관이야?","ok":true,"foot":[],"fixes":[]},{"n":9,"tag":null,"en":"I'm as sweet than candy.","ko":"나는 사탕만큼 달콤해.","ok":false,"foot":[],"fixes":[{"wrong":"than","right":"as","partial":false,"at":[3],"point":"원급비교: as ~ as 형태이므로 than이 아닌 as 사용","topic":"원급비교","memo":"as ~ as 형태이므로 than이 아닌 as 사용"}]},{"n":10,"tag":"Carrot · 당근","en":"Do you see that I have the three legs?","ko":"내 다리가 세 개인 것이 보이니?","ok":false,"foot":[],"fixes":[{"wrong":"the three legs","right":"three legs","partial":false,"at":[6],"point":"관사: 특정한 대상을 가리키는 것이 아니므로 정관사 the를 붙이지 않음","topic":"관사","memo":"특정한 대상을 가리키는 것이 아니므로 정관사 the를 붙이지 않음"}]},{"n":11,"tag":null,"en":"I look funnily because my roots are like fork.","ko":"내 뿌리가 포크처럼 생겼기 때문에 나는 우스꽝스러워 보여.","ok":false,"foot":[],"fixes":[{"wrong":"funnily","right":"funny","partial":false,"at":[2],"point":"어법: 감각동사 look 뒤에는 형용사 funny 사용(부사 funnily는 쓸 수 없음)","topic":"어법","memo":"감각동사 look 뒤에는 형용사 funny 사용"},{"wrong":"fork","right":"a fork","partial":false,"at":[8],"point":"관사: 셀 수 있는 단수명사 fork 앞에는 부정관사 a 필요","topic":"관사","memo":"셀 수 있는 단수명사 fork 앞에는 부정관사 a 필요"}]},{"n":12,"tag":null,"en":"While I tried to avoid stones in the ground, I grew three legs. I'm fresh and makes healthy juice.","ko":"내가 땅속에서 돌을 피하려고 했을 때, 나는 다리가 세 개로 자랐어. 나는 신선하고, 건강에 좋은 주스를 만들어.","ok":false,"foot":[],"fixes":[{"wrong":"While","right":"When","partial":false,"at":[0],"point":"접속사: '~했을 때'라는 시점을 나타내는 절이므로 while이 아닌 when 사용","topic":"접속사","memo":"'~했을 때'라는 시점을 나타내는 절이므로 while이 아닌 when 사용"},{"wrong":"makes","right":"make","partial":false,"at":[16],"point":"수일치: 주어 I에 맞춰 동사원형 make 사용","topic":"수일치","memo":"주어 I에 맞춰 동사원형 make 사용"}]},{"n":13,"tag":"Apple · 사과","en":"I'm glad see you all!","ko":"모두 만나서 반가워!","ok":false,"foot":[],"fixes":[{"wrong":"see","right":"to see","partial":false,"at":[2],"point":"to부정사의 부사적 용법(감정의 원인): 형용사 glad 뒤에는 to부정사 to see 사용","topic":"to부정사의 부사적 용법(감정의 원인)","memo":"형용사 glad 뒤에는 to부정사 to see 사용"}]},{"n":14,"tag":null,"en":"I'm go to meet more fruits and vegetables like us. Do you know any?","ko":"나는 우리와 같은 더 많은 과일과 채소들을 만날 거야. 너 아는 친구 있니?","ok":false,"foot":[],"fixes":[{"wrong":"go","right":"going","partial":false,"at":[1],"point":"be going to: be동사(am) 뒤에는 going to 형태로 미래의 계획을 표현","topic":"be going to","memo":"be동사(am) 뒤에는 going to 형태로 미래의 계획을 표현"}]},{"n":15,"tag":"Kiwi · 키위","en":"How about eggplants? Some eggplants is bent too much.","ko":"가지들은 어때? 어떤 가지들은 너무 많이 휘어 있어.","ok":false,"foot":["1bent 휘어진"],"fixes":[{"wrong":"is","right":"are","partial":false,"at":[5],"point":"수일치: 주어 eggplants(복수)에 맞춰 동사 are 사용","topic":"수일치","memo":"주어 eggplants(복수)에 맞춰 동사 are 사용"}]},{"n":16,"tag":null,"en":"Supermarkets don't sell them because people like straight one better.","ko":"사람들이 곧은 것을 더 좋아하기 때문에 슈퍼마켓은 그것들을 팔지 않아.","ok":false,"foot":[],"fixes":[{"wrong":"straight one","right":"a straight one","partial":false,"at":[7],"point":"부정대명사: 단수 부정대명사 one 앞에는 부정관사 a가 필요(a straight one)","topic":"부정대명사","memo":"단수 부정대명사 one 앞에는 부정관사 a가 필요(a straight one)"}]},{"n":17,"tag":"Carrot · 당근","en":"There is funny-looking potatoes, too. Their shapes are unusual, and there sizes are all different.","ko":"우스꽝스럽게 생긴 감자들도 있어. 그들의 모양은 특이하고, 크기도 모두 달라.","ok":false,"foot":["1unusual 특이한"],"fixes":[{"wrong":"is","right":"are","partial":false,"at":[1],"point":"수일치(There be구문): 주어 potatoes(복수)에 맞춰 There are 사용","topic":"수일치(There be구문)","memo":"주어 potatoes(복수)에 맞춰 There are 사용"},{"wrong":"there","right":"their","partial":false,"at":[10],"point":"어휘: 장소의 부사 there와 소유격 their를 혼동하지 않도록 주의 - 여기서는 소유격 their 필요","topic":"어휘","memo":"장소의 부사 there와 소유격 their를 혼동하지 않도록 주의 - 여기서는 소유격 their 필요"}]},{"n":18,"tag":null,"en":"People believe that them are useless.","ko":"사람들은 그들을 쓸모없다고 여겨.","ok":false,"foot":["1useless 쓸모없는"],"fixes":[{"wrong":"them","right":"they","partial":false,"at":[3],"point":"인칭대명사의 격: that절의 주어 자리이므로 목적격 them이 아닌 주격 they 사용","topic":"인칭대명사의 격","memo":"that절의 주어 자리이므로 목적격 them이 아닌 주격 they 사용"}]},{"n":19,"tag":"Kiwi · 키위","en":"I know, but I heard that funny-looking potatoes make a fantastic chips.","ko":"나도 알아, 하지만 우스꽝스럽게 생긴 감자들이 훌륭한 감자칩을 만든다고 들었어.","ok":false,"foot":[],"fixes":[{"wrong":"a fantastic chips","right":"fantastic chips","partial":false,"at":[9],"point":"관사: chips(감자칩)는 복수형으로 쓰이므로 부정관사 a와 함께 쓰지 않음","topic":"관사","memo":"chips(감자칩)는 복수형으로 쓰이므로 부정관사 a와 함께 쓰지 않음"}]},{"n":20,"tag":"Carrot · 당근","en":"Is it true? How wonderful! I hope that people learn more about we.","ko":"그거 사실이야? 정말 멋진데! 나는 사람들이 우리에 대해 더 많이 알기를 희망해.","ok":false,"foot":[],"fixes":[{"wrong":"we","right":"us","partial":false,"at":[12],"point":"인칭대명사의 격: 전치사 about의 목적어 자리이므로 목적격 us 사용","topic":"인칭대명사의 격","memo":"전치사 about의 목적어 자리이므로 목적격 us 사용"}]},{"n":21,"tag":"Apple · 사과","en":"I hope so, too. Look, friends! People come.","ko":"나도 그러길 바라. 봐, 친구들! 사람들이 오고 있어.","ok":false,"foot":[],"fixes":[{"wrong":"come","right":"are coming","partial":false,"at":[7],"point":"현재진행형: 지금 일어나고 있는 일을 나타낼 때는 be동사+v-ing(are coming) 사용","topic":"현재진행형","memo":"지금 일어나고 있는 일을 나타낼 때는 be동사+v-ing(are coming) 사용"}]},{"n":22,"tag":null,"en":"Let's welcomes them.","ko":"그들을 환영하자.","ok":false,"foot":[],"fixes":[{"wrong":"welcomes","right":"welcome","partial":false,"at":[1],"point":"어법: Let's 뒤에는 동사원형 welcome 사용","topic":"어법","memo":"Let's 뒤에는 동사원형 welcome 사용"}]}];var RNUM=63;var TITLE_EN="We Look Funny but Taste Great!";var PASS_EN=["We Look Funny but Taste Great!","This is a special market for funny-looking fruits and vegetables. They greet each other and start to talk.","Apple: What a nice day! I’m here because I have many spots on my skin. People think that I’m tasteless. They are wrong! My spots are not harmful. I taste great.","Kiwi: I’m round but very small. Farmers don’t want to sell me because of my size. Who cares about size? I’m sweet and delicious.","Carrot: Do you see that I have three legs? I look funny because my roots are like a fork. I just tried to avoid stones in the ground and grew three legs. I’m fresh and make healthy juice.","Apple: I’m glad to see you all! I want to meet more fruits and vegetables like us. Do you know any?","Kiwi: How about eggplants? Some eggplants are bent too much. Supermarkets don’t sell them because people like straight eggplants.","Carrot: There are funny-looking potatoes, too. Their shapes are unusual, and their sizes are all different. People believe that they are useless.","Kiwi: I know, but I heard that funny-looking potatoes make fantastic chips.","Carrot: Is it true? How wonderful! I hope that people learn more about us.","Apple: I hope so, too. Look, friends! People are coming. Let’s welcome them."];var PASS_KO=["우리는 우스꽝스럽게 생겼지만, \n맛은 좋아요!","이곳은 우스꽝스럽게 생긴 과일과 채소를 위한 특별한 시장입니다. 그들은 서로에게 인사하며 이야기를 시작합니다.","사과: 정말 좋은 날이야! 나는 내 껍질에 점이 많아서 이곳에 왔어. 사람들은 내가 맛없다고 생각해. 그들은 틀렸어! 내 점은 해롭지 않아. 나는 맛이 훌륭해.","키위: 나는 둥글지만 아주 작아. 농부들은 내 크기 때문에 나를 팔고 싶어 하지 않아 해. 크기가 무슨 상관이야? 나는 달콤하고 맛있는걸.","당근: 내 다리가 세 개인 것이 보이니? 내 뿌리가 포크처럼 생겼기 때문에 나는 우스꽝스러워 보여. 나는 그저 땅속에서 돌을 피하려 했는데 다리가 세 개로 자랐어. 나는 신선하고, 건강에 좋은 주스를 만들어.","사과: 모두 만나서 반가워! 나는 우리와 같은 더 많은 과일과 채소들을 만나고 싶어. 너 아는 친구 있니?","키위: 가지들은 어때? 어떤 가지들은 너무 많이 휘어 있어. 사람들이 곧은 가지를 좋아하기 때문에 슈퍼마켓은 그들을 팔지 않아.","당근: 우스꽝스럽게 생긴 감자들도 있어. 그들의 모양은 특이하고, 크기도 모두 달라. 사람들은 그들을 쓸모없다고 여겨.","키위: 나도 알아, 하지만 우스꽝스럽게 생긴 감자들이 훌륭한 감자칩을 만든다고 들었어.","당근: 그거 사실이야? 정말 멋진데! 나는 사람들이 우리에 대해 더 많이 알기를 희망해.","사과: 나도 그러길 바라. 봐, 친구들! 사람들이 오고 있어. 그들을 환영하자."];var DLG=[["G","Hey, Brad. I’m thirsty. Let’s get some juice.","안녕, Brad. 나 목말라. 주스 좀 사자."],["B","That’s a good idea. I’m thirsty, too.","좋은 생각이야. 나도 목말라."],["G","What are you going to drink?","너는 뭘 마실 거야?"],["B","I’m going to have the kiwi juice. How about you, Annie?","나는 키위 주스를 마실 거야. 너는 어때, Annie?"],["G","I’d like to try the strawberry juice.","나는 딸기 주스를 마셔 보고 싶어."],["B","Look at this! “Bring your own cup; get any juice for two dollars!”","이것 봐! “자기 컵을 가져오면 어떤 주스든 2달러!”"],["G","That’s great! I brought my own cup.","잘됐다! 나는 내 컵을 가져왔어."],["B","Me, too.","나도 그래."]];var BQ=[{"n":1,"q":"두 사람은 왜 주스를 사려고 하나요?","o":["배가 고파서","목이 말라서","생일이라서","돈이 남아서","수업이 끝나서"],"a":1,"ev":["Hey, Brad. I’m thirsty. Let’s get some juice.","안녕, Brad. 나 목말라. 주스 좀 사자."],"why":"thirsty는 '목마른'이라는 뜻이에요. Brad도 \"I’m thirsty, too.\"라고 했어요.","ans":"목이 말라서","memo":["주스를 사는 이유 = 목이 마름","Hey, Brad. I’m thirsty. Let’s get some juice. (안녕, Brad. 나 목말라. 주스 좀 사자.)"]},{"n":2,"q":"Brad는 어떤 주스를 마실 건가요?","o":["딸기 주스","오렌지 주스","키위 주스","사과 주스","포도 주스"],"a":2,"ev":["I’m going to have the kiwi juice.","나는 키위 주스를 마실 거야."],"why":"Annie가 고른 주스와 헷갈리지 마세요. Brad가 직접 말한 주스예요.","ans":"키위 주스","memo":["Brad의 주스 = 키위 주스","I’m going to have the kiwi juice. (나는 키위 주스를 마실 거야.)"]},{"n":3,"q":"Annie는 어떤 주스를 마셔 보고 싶어 하나요?","o":["키위 주스","딸기 주스","바나나 주스","토마토 주스","레몬 주스"],"a":1,"ev":["I’d like to try the strawberry juice.","나는 딸기 주스를 마셔 보고 싶어."],"why":"I’d like to ~는 '~하고 싶다'예요.","ans":"딸기 주스","memo":["Annie의 주스 = 딸기 주스","I’d like to try the strawberry juice. (나는 딸기 주스를 마셔 보고 싶어.)"]},{"n":4,"q":"자기 컵을 가져오면 어떤 혜택이 있나요?","o":["어떤 주스든 2달러이다","주스를 두 잔 준다","빨대를 준다","주스가 반값이다","주스가 공짜이다"],"a":0,"ev":["Bring your own cup; get any juice for two dollars!","자기 컵을 가져오면 어떤 주스든 2달러!"],"why":"안내문에 any juice for two dollars라고 나와요.","ans":"어떤 주스든 2달러이다","memo":["컵 가져오면 = 어떤 주스든 2달러","Bring your own cup; get any juice for two dollars! (자기 컵을 가져오면 어떤 주스든 2달러!)"]},{"n":5,"q":"두 사람이 공통으로 가져온 것은 무엇인가요?","o":["돈 2달러","우산","물병","가방","자기 컵"],"a":4,"ev":["That’s great! I brought my own cup. / Me, too.","잘됐다! 나는 내 컵을 가져왔어. / 나도 그래."],"why":"Brad의 \"Me, too.\"는 '나도 내 컵을 가져왔어'라는 뜻이에요.","ans":"자기 컵","memo":["둘 다 가져온 것 = 자기 컵","That’s great! I brought my own cup. / Me, too. (잘됐다! 나는 내 컵을 가져왔어. / 나도 그래.)"]}];var DQ=[{"n":6,"q":"Apple이 이 시장에 온 이유는 무엇인가요?","o":["키가 커서","피부에 반점이 많아서","맛이 없어서","색이 너무 붉어서","크기가 작아서"],"a":1,"ev":["I’m here because I have many spots on my skin.","나는 피부에 반점이 많아서 여기에 왔어."],"why":"because(~때문에) 뒤가 이유예요.","ans":"피부에 반점이 많아서","memo":["Apple이 온 이유 = 피부의 많은 반점","I’m here because I have many spots on my skin. (나는 피부에 반점이 많아서 여기에 왔어.)"]},{"n":7,"q":"농부들이 Kiwi를 팔고 싶어 하지 않는 이유는 무엇인가요?","o":["값이 비싸서","껍질이 두꺼워서","맛이 시어서","크기가 작아서","색이 이상해서"],"a":3,"ev":["Farmers don’t want to sell me because of my size.","농부들은 내 크기 때문에 나를 팔고 싶어 하지 않아."],"why":"because of 뒤에 나오는 my size가 이유예요.","ans":"크기가 작아서","memo":["Kiwi가 안 팔리는 이유 = 작은 크기","Farmers don’t want to sell me because of my size. (농부들은 내 크기 때문에 나를 팔고 싶어 하지 않아.)"]},{"n":8,"q":"Carrot은 왜 다리가 세 개가 되었나요?","o":["비료를 많이 먹어서","땅속 돌을 피하려고 해서","햇빛을 더 받으려고 해서","물이 부족해서","친구와 부딪혀서"],"a":1,"ev":["I just tried to avoid stones in the ground and grew three legs.","나는 그저 땅속의 돌을 피하려고 했고 다리가 세 개로 자랐어."],"why":"avoid는 '피하다'예요. stones(돌)를 피하다가 생긴 모양이에요.","ans":"땅속 돌을 피하려고 해서","memo":["Carrot의 세 다리 = 땅속 돌을 피하려다 생김","I just tried to avoid stones in the ground and grew three legs. (나는 그저 땅속의 돌을 피하려고 했고 다리가 세 개로 자랐어.)"]},{"n":9,"q":"슈퍼마켓이 구부러진 가지를 팔지 않는 이유는 무엇인가요?","o":["가격이 비싸서","맛이 없어서","사람들이 곧은 가지를 좋아해서","가지가 너무 작아서","농부들이 키우지 않아서"],"a":2,"ev":["Supermarkets don’t sell them because people like straight eggplants.","슈퍼마켓은 사람들이 곧은 가지를 좋아하기 때문에 그것들을 팔지 않아."],"why":"bent(구부러진)와 straight(곧은)는 반대말이에요.","ans":"사람들이 곧은 가지를 좋아해서","memo":["가지가 안 팔리는 이유 = 사람들이 곧은 가지를 선호","Supermarkets don’t sell them because people like straight eggplants. (슈퍼마켓은 사람들이 곧은 가지를 좋아하기 때문에 그것들을 팔지 않아.)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["Kiwi는 자신이 달고 맛있다고 말한다.","Carrot은 신선하고 건강한 주스를 만든다고 말한다.","Kiwi는 못생긴 감자로 훌륭한 칩을 만든다고 들었다.","Apple은 자신의 반점이 해롭다고 말한다.","Apple은 자신의 맛이 아주 좋다고 말한다."],"a":3,"ev":["My spots are not harmful.","내 반점은 해롭지 않아."],"why":"Apple은 not harmful(해롭지 않다)이라고 했어요. 해롭다고 한 ④번이 본문과 반대예요.","ans":"Apple은 자신의 반점이 해롭다고 말한다.","memo":["Apple의 반점 = 해롭지 않음","My spots are not harmful. (내 반점은 해롭지 않아.)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

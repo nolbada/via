@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 49</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 49 · Growing Season</h1><div class="sub">성장하는 시기 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":null,"en":"El and Jo were the smallest students in the class.","ko":"El과 Jo는 반에서 가장 작은 학생들이었다.","ok":true,"foot":[],"fixes":[]},{"n":2,"tag":null,"en":"They was always together.","ko":"그들은 항상 함께였다.","ok":false,"foot":[],"fixes":[{"wrong":"was","right":"were","partial":false,"at":[1],"point":"수일치: 주어 They(복수)에 맞춰 동사 were 사용","topic":"수일치","memo":"주어 They(복수)에 맞춰 동사 were 사용"}]},{"n":3,"tag":null,"en":"They even watered the plants together on the class because they could not to reach the pots alone.","ko":"그들은 혼자서는 화분에 닿을 수 없었기 때문에 심지어는 교실에서 함께 식물에 물을 주기도 했다.","ok":false,"foot":[],"fixes":[{"wrong":"on the class","right":"in the class","partial":false,"at":[6],"point":"전치사: '교실에서'는 in the class 사용 (on ×)","topic":"전치사","memo":"'교실에서'는 in the class 사용 (on ×)"},{"wrong":"to reach","right":"reach","partial":false,"at":[13],"point":"조동사 could 뒤에는 동사원형 reach 사용 (to reach ×)","topic":"조동사 could 뒤에는 동사원형 reach 사용 (to reach ×)","memo":""}]},{"n":4,"tag":null,"en":"However, in the spring, something were DIFFERENT.","ko":"하지만 봄에는 무언가가 달라졌다.","ok":false,"foot":[],"fixes":[{"wrong":"were","right":"was","partial":false,"at":[5],"point":"수일치: 주어 something(단수)에 맞춰 동사 was 사용","topic":"수일치","memo":"주어 something(단수)에 맞춰 동사 was 사용"}]},{"n":5,"tag":null,"en":"Jo growed MORE TALLER!","ko":"Jo의 키가 더 커졌다!","ok":false,"foot":[],"fixes":[{"wrong":"growed","right":"grew","partial":false,"at":[1],"point":"어휘/불규칙 과거형: grow의 과거형은 grew (growed ×)","topic":"어휘/불규칙 과거형","memo":"grow의 과거형은 grew (growed ×)"},{"wrong":"MORE TALLER","right":"TALLER","partial":false,"at":[2],"point":"비교급: 비교급을 두 번 겹쳐 쓰지 않음 (more taller ×) → taller","topic":"비교급","memo":"비교급을 두 번 겹쳐 쓰지 않음 (more taller ×) → taller"}]},{"n":6,"tag":null,"en":"Jo was taller then El, so Jo could water the plants alone.","ko":"Jo는 El보다 키가 더 컸고, 그래서 Jo는 혼자 식물에 물을 줄 수 있었다.","ok":false,"foot":[],"fixes":[{"wrong":"then","right":"than","partial":false,"at":[3],"point":"어휘 혼동: 비교급 문장에는 than(~보다) 사용, then(그다음)과 구별","topic":"어휘 혼동","memo":"비교급 문장에는 than(~보다) 사용, then(그다음)과 구별"}]},{"n":7,"tag":null,"en":"El feels smaller every day.","ko":"El은 매일 더 작아지는 기분이었다.","ok":false,"foot":[],"fixes":[{"wrong":"feels","right":"felt","partial":false,"at":[1],"point":"시제: 이야기 전체가 과거 시제이므로 felt(과거형) 사용","topic":"시제","memo":"이야기 전체가 과거 시제이므로 felt(과거형) 사용"}]},{"n":8,"tag":"학교 마지막 날","en":"On the last day of school, Mr. Diaz said, “Class, you can take a flower home and caring for it over the summer.”","ko":"학교 마지막 날에 Diaz 선생님이 말씀하셨다. “여러분, 꽃을 하나 집에 가져가서 여름 동안 돌보세요.”","ok":false,"foot":[],"fixes":[{"wrong":"caring","right":"care","partial":false,"at":[17],"point":"동명사/동사원형 구별: 조동사 can 뒤, take와 병렬로 연결된 자리이므로 동사원형 care 사용 (caring ×)","topic":"동명사/동사원형 구별","memo":"조동사 can 뒤, take와 병렬로 연결된 자리이므로 동사원형 care 사용 (caring ×)"}]},{"n":9,"tag":null,"en":"All the student ran to the window.","ko":"모든 학생이 창문으로 달려갔다.","ok":false,"foot":[],"fixes":[{"wrong":"student","right":"students","partial":false,"at":[2],"point":"수량형용사: All 뒤에는 복수명사 students 사용","topic":"수량형용사","memo":"All 뒤에는 복수명사 students 사용"}]},{"n":10,"tag":null,"en":"El’s classmates reached to the pots over tiny El.","ko":"El의 학급 친구들은 작은 El 너머 화분에 손을 뻗었다.","ok":false,"foot":[],"fixes":[{"wrong":"reached to","right":"reached for","partial":false,"at":[2],"point":"어휘/전치사: reach for(~을 향해 손을 뻗다)는 관용표현","topic":"어휘/전치사","memo":"reach for(~을 향해 손을 뻗다)는 관용표현"}]},{"n":11,"tag":null,"en":"They took all the pots with much colorful flowers.","ko":"그들은 형형색색의 꽃이 많이 있는 화분을 모두 가져갔다.","ok":false,"foot":[],"fixes":[{"wrong":"much","right":"many","partial":false,"at":[6],"point":"수량형용사: 가산명사 복수형 (flowers) 앞에는 many 사용, much는 불가산명사에 사용","topic":"수량형용사","memo":"가산명사 복수형 (flowers) 앞에는 many 사용, much는 불가산명사에 사용"}]},{"n":12,"tag":null,"en":"El took a last pot.","ko":"El은 마지막 화분을 가져갔다.","ok":false,"foot":[],"fixes":[{"wrong":"a","right":"the","partial":false,"at":[2],"point":"관사: last(마지막)처럼 순서를 나타내는 말 앞에는 정관사 the 사용","topic":"관사","memo":"last(마지막)처럼 순서를 나타내는 말 앞에는 정관사 the 사용"}]},{"n":13,"tag":null,"en":"It had the smallest plant with no flowers.","ko":"그것은 꽃이 없는 가장 작은 식물을 가지고 있었다.","ok":true,"foot":[],"fixes":[]},{"n":14,"tag":null,"en":"“I feel just as you, little plant,” said El.","ko":"“나도 너와 같은 심정이야, 작은 식물아.” El이 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"as","right":"like","partial":false,"at":[3],"point":"어휘: '~처럼'이라는 뜻은 like 사용, as는 다른 의미(주로 '~로서/~때문에')","topic":"어휘","memo":"'~처럼'이라는 뜻은 like 사용, as는 다른 의미(주로 '~로서/~때문에')"}]},{"n":15,"tag":null,"en":"Mr. Diaz looked at El and said, “That’s a aster plant.”","ko":"Diaz 선생님이 El을 보며 말씀하셨다. “그것은 과꽃 식물이야.”","ok":false,"foot":["1aster 과꽃"],"fixes":[{"wrong":"a","right":"an","partial":false,"at":[8],"point":"관사: 모음 소리로 시작하는 aster 앞에는 부정관사 an 사용","topic":"관사","memo":"모음 소리로 시작하는 aster 앞에는 부정관사 an 사용"}]},{"n":16,"tag":null,"en":"In time, it are going to grow and having beautiful flowers.","ko":"시간이 지나면, 그것은 자라서 아름다운 꽃을 피울 거야.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[3],"point":"비인칭·수일치: 주어 it은 단수이므로 be동사 is 사용 (be going to)","topic":"비인칭·수일치","memo":"주어 it은 단수이므로 be동사 is 사용 (be going to)"},{"wrong":"having","right":"have","partial":false,"at":[8],"point":"병렬구조: grow와 and로 연결된 동사원형 have 사용 (having ×)","topic":"병렬구조","memo":"grow와 and로 연결된 동사원형 have 사용 (having ×)"}]},{"n":17,"tag":null,"en":"“But its just a little green plant,” said El.","ko":"“하지만 그것은 작은 녹색 식물일 뿐이에요.” El이 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"its","right":"it’s","partial":false,"at":[1],"point":"어휘/철자: it’s(it is의 축약형)와 its(소유격) 구별","topic":"어휘/철자","memo":"it’s(it is의 축약형)와 its(소유격) 구별"}]},{"n":18,"tag":null,"en":"She were not so surely.","ko":"그녀는 확신이 없었다.","ok":false,"foot":[],"fixes":[{"wrong":"were","right":"was","partial":false,"at":[1],"point":"수일치: 주어 She(단수)에 맞춰 was 사용","topic":"수일치","memo":"주어 She(단수)에 맞춰 was 사용"},{"wrong":"surely","right":"sure","partial":false,"at":[4],"point":"형용사/부사: be동사(was)의 보어는 형용사 sure 사용 (surely는 부사)","topic":"형용사/부사","memo":"be동사(was)의 보어는 형용사 sure 사용 (surely는 부사)"}]},{"n":19,"tag":null,"en":"“You can have my zinnia plant,” Jo said to she.","ko":"“너는 내 백일홍을 가져도 돼.” Jo가 El에게 말했다.","ok":false,"foot":["1zinnia 백일홍"],"fixes":[{"wrong":"she","right":"her","partial":false,"at":[9],"point":"인칭대명사 목적격: 전치사 to 뒤에는 목적격 her 사용","topic":"인칭대명사 목적격","memo":"전치사 to 뒤에는 목적격 her 사용"}]},{"n":20,"tag":null,"en":"“I’ll be in my grandma’s all summer.”","ko":"“나는 여름 내내 할머니 댁에 있을 거야.”","ok":false,"foot":[],"fixes":[{"wrong":"in","right":"at","partial":false,"at":[2],"point":"어휘/전치사: '~의 집에'는 at + 소유격 사용","topic":"어휘/전치사","memo":"'~의 집에'는 at + 소유격 사용"}]},{"n":21,"tag":null,"en":"“I’ve decided planting my aster and your zinnia side by side,” El said.","ko":"“내 과꽃과 너의 백일홍을 나란히 심기로 했어.” El이 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"planting","right":"to plant","partial":false,"at":[2],"point":"to부정사의 명사적 용법: decide는 목적어로 to부정사를 취함(decide+to-V), 동명사(planting) 사용 불가","topic":"to부정사의 명사적 용법","memo":"decide는 목적어로 to부정사를 취함(decide+to-V), 동명사(planting) 사용 불가"}]},{"n":22,"tag":null,"en":"“They’ll be well friends — just like we!” said Jo. El smiled.","ko":"“그것들은 좋은 친구가 될 거야—바로 우리처럼!” Jo가 말했다. El은 미소 지었다.","ok":false,"foot":[],"fixes":[{"wrong":"well","right":"good","partial":false,"at":[2],"point":"형용사/부사 구별: 명사 friends를 꾸미는 것은 형용사 good 사용 (well은 부사)","topic":"형용사/부사 구별","memo":"명사 friends를 꾸미는 것은 형용사 good 사용 (well은 부사)"},{"wrong":"we","right":"us","partial":false,"at":[7],"point":"인칭대명사 목적격: 전치사 like 뒤에는 목적격 us 사용","topic":"인칭대명사 목적격","memo":"전치사 like 뒤에는 목적격 us 사용"}]},{"n":23,"tag":null,"en":"El planted the flowers on her garden.","ko":"El은 그녀의 정원에 꽃들을 심었다.","ok":false,"foot":[],"fixes":[{"wrong":"on","right":"in","partial":false,"at":[4],"point":"전치사: 경계가 있는 공간(정원) 안에는 in 사용","topic":"전치사","memo":"경계가 있는 공간(정원) 안에는 in 사용"}]},{"n":24,"tag":null,"en":"That was growing season.","ko":"성장하는 시기였다.","ok":false,"foot":[],"fixes":[{"wrong":"That","right":"It","partial":false,"at":[0],"point":"비인칭주어 it: 계절을 나타낼 때는 비인칭주어 it 사용 (that으로 대체 불가)","topic":"비인칭주어 it","memo":"계절을 나타낼 때는 비인칭주어 it 사용 (that으로 대체 불가)"}]},{"n":25,"tag":null,"en":"All summer long, she cared for they.","ko":"여름 내내 그녀는 그것들을 돌보았다.","ok":false,"foot":[],"fixes":[{"wrong":"they","right":"them","partial":false,"at":[6],"point":"인칭대명사 목적격: 전치사 for 뒤에는 목적격 them 사용","topic":"인칭대명사 목적격","memo":"전치사 for 뒤에는 목적격 them 사용"}]},{"n":26,"tag":"여름의 마지막 날","en":"On the last day of summer, Jo come to El house.","ko":"여름의 마지막 날, Jo가 El의 집에 왔다.","ok":false,"foot":[],"fixes":[{"wrong":"come","right":"came","partial":false,"at":[7],"point":"시제: 과거 시제 came 사용 (come ×)","topic":"시제","memo":"과거 시제 came 사용 (come ×)"},{"wrong":"El house","right":"El’s house","partial":false,"at":[9],"point":"소유격: El’s house처럼 명사’s + 명사 형태로 소유격 표시 (아포스트로피 필요)","topic":"소유격","memo":"El’s house처럼 명사’s + 명사 형태로 소유격 표시 (아포스트로피 필요)"}]},{"n":27,"tag":null,"en":"El and Jo runs to the garden and suddenly stopping.","ko":"El과 Jo는 정원으로 달려가다가 갑자기 멈췄다.","ok":false,"foot":[],"fixes":[{"wrong":"runs","right":"ran","partial":false,"at":[3],"point":"시제: 이야기가 과거 시제이므로 run의 과거형 ran 사용 (runs ×)","topic":"시제","memo":"이야기가 과거 시제이므로 run의 과거형 ran 사용 (runs ×)"},{"wrong":"stopping","right":"stopped","partial":false,"at":[9],"point":"병렬구조: and로 연결된 동사는 같은 형태(과거형) stopped 사용 (stopping ×)","topic":"병렬구조","memo":"and로 연결된 동사는 같은 형태(과거형) stopped 사용 (stopping ×)"}]},{"n":28,"tag":null,"en":"Something was DIFFERENT! There were flowers on the aster... and El grew TALLEST, TOO!","ko":"무엇인가가 달라졌다! 과꽃에 꽃들이 있었다... 그리고 El도 키가 더 커졌다!","ok":false,"foot":[],"fixes":[{"wrong":"TALLEST","right":"TALLER","partial":false,"at":[12],"point":"비교급 vs 최상급: 이전의 자신과 비교하는 것이므로 비교급 taller 사용 (셋 이상 비교하는 최상급 tallest는 부적절)","topic":"비교급 vs 최상급","memo":"이전의 자신과 비교하는 것이므로 비교급 taller 사용 (셋 이상 비교하는 최상급 tallest는 부적절)"}]}];var RNUM=49;var TITLE_EN="Growing Season";var PASS_EN=["Growing Season","El and Jo were the smallest students in the class. They were always together. They even watered the plants together in the class because they could not reach the pots alone.","However, in the spring, something was DIFFERENT. Jo grew TALLER! Jo was taller than El, so Jo could water the plants alone. El felt smaller every day.","On the last day of school, Mr. Diaz said, “Class, you can take a flower home and care for it over the summer.” All the students ran to the window. El’s classmates reached for the pots over tiny El. They took all the pots with colorful flowers.","El took the last pot. It had the smallest plant with no flowers. “I feel just like you, little plant,” said El. Mr. Diaz looked at El and said, “That’s an aster plant. In time, it’ll grow and have beautiful flowers.”","“But it’s just a little green plant,” said El. She was not so sure.","“You can have my zinnia plant,” Jo said to El, “I’ll be at my grandma’s all summer.”","“I’ll plant my aster and your zinnia side by side,” El said.","“They’ll be good friends — just like us!” said Jo. El smiled.","El planted the flowers in her garden. It was growing season. All summer long, she cared for them.","On the last day of summer, Jo came to El’s house. El and Jo ran to the garden and suddenly stopped. Something was DIFFERENT! There were flowers on the aster ... and El grew TALLER, TOO!"];var PASS_KO=["성장하는 시기","El과 Jo는 반에서 가장 작은 학생들이었다. 그들은 항상 함께였다. 그들은 혼자서는 화분에 닿을 수 없었기 때문에 심지어는 교실에서 함께 식물에 물을 주기도 했다.","하지만 봄에는 무언가가 달라졌다. Jo의 키가 더 커졌다! Jo는 El보다 키가 더 컸고, 그래서 Jo는 혼자 식물에 물을 줄 수 있었다. El은 매일 더 작아지는 기분이었다.","학교 마지막 날에 Diaz 선생님이 말씀하셨다. “여러분, 꽃을 하나 집에 가져가서 여름 동안 돌보세요.” 모든 학생이 창문으로 달려갔다. El의 학급 친구들은 작은 El 너머 화분에 손을 뻗었다. 그들은 형형색색의 꽃이 있는 화분을 모두 가져갔다.","El은 마지막 화분을 가져갔다. 그것은 꽃이 없는 가장 작은 식물을 가지고 있었다. “나도 너와 같은 심정이야, 작은 식물아.” El이 말했다. Diaz 선생님이 El을 보며 말씀하셨다. “그것은 과꽃 식물이야. 시간이 지나면, 그것은 자라서 아름다운 꽃을 피울 거야.”","“하지만 그것은 작은 녹색 식물일 뿐이에요.” El이 말했다. 그녀는 확신이 없었다.","“너는 내 백일홍을 가져도 돼.” Jo가 El에게 말했다. “나는 여름 내내 할머니 댁에 있을 거야.”","“내가 내 과꽃과 너의 백일홍을 나란히 심을게.” El이 말했다.","“그것들은 좋은 친구가 될 거야 — 바로 우리처럼!” Jo가 말했다. El은 미소 지었다.","El은 그녀의 정원에 꽃들을 심었다. 성장하는 시기였다. 여름 내내 그녀는 그것들을 돌보았다.","여름의 마지막 날, Jo가 El의 집에 왔다. El과 Jo는 정원으로 달려가다가 갑자기 멈췄다. 무엇인가가 달라졌다! 과꽃에 꽃들이 있었다 ... 그리고 El도 키가 더 커졌다!"];var DLG=[["Eric","What’s the matter, Bomin?","무슨 일이니, Bomin?"],["Bomin","I’m too nervous about tomorrow’s basketball game, Eric.","나는 내일 농구 경기가 너무 긴장돼, Eric."],["Eric","I feel just like you, but we practiced a lot.","나도 너와 같은 기분이야, 하지만 우리는 연습을 많이 했잖아."],["Bomin","I missed the ball many times during the last game. So I’m worried about tomorrow’s game.","지난 경기에서 나는 공을 여러 번 놓쳤어. 그래서 내일 경기가 걱정돼."],["Eric","Don’t worry. We all learn from our mistakes. You’ll do better this time.","걱정하지 마. 우리 모두 실수에서 배우잖아. 이번에는 더 잘할 거야."],["Bomin","Thanks, Eric. I feel better now.","고마워, Eric. 이제 기분이 나아졌어."]];var BQ=[{"n":1,"q":"Bomin이 긴장하고 걱정하는 것은 무엇인가요?","o":["어제 본 시험","내일 있을 농구 경기","다음 주 캠프","내일 있을 발표","지난 경기의 결과"],"a":1,"ev":["I’m too nervous about tomorrow’s basketball game, Eric.","나는 내일 농구 경기가 너무 긴장돼, Eric."],"why":"nervous는 '긴장한'이라는 뜻이에요. 걱정하는 대상은 tomorrow's basketball game이에요.","ans":"내일 있을 농구 경기","memo":["Bomin의 걱정 = 내일 농구 경기","I’m too nervous about tomorrow’s basketball game, Eric. (나는 내일 농구 경기가 너무 긴장돼, Eric.)"]},{"n":2,"q":"Bomin이 지난 경기에서 한 실수는 무엇인가요?","o":["공을 여러 번 놓쳤다.","규칙을 어겼다.","다른 팀 선수를 다치게 했다.","공을 상대 팀에게 패스했다.","경기에 늦게 도착했다."],"a":0,"ev":["I missed the ball many times during the last game.","지난 경기에서 나는 공을 여러 번 놓쳤어."],"why":"missed는 miss(놓치다)의 과거형이에요. many times는 여러 번이라는 뜻이에요.","ans":"공을 여러 번 놓쳤다.","memo":["지난 경기의 실수 = 공을 여러 번 놓침","I missed the ball many times during the last game. (지난 경기에서 나는 공을 여러 번 놓쳤어.)"]},{"n":3,"q":"Eric은 팀이 무엇을 했다고 말하며 Bomin을 안심시켰나요?","o":["경기에서 이겼다.","새 공을 샀다.","감독님을 만났다.","연습을 많이 했다.","휴식을 오래 했다."],"a":3,"ev":["I feel just like you, but we practiced a lot.","나도 너와 같은 기분이야, 하지만 우리는 연습을 많이 했잖아."],"why":"practiced는 practice(연습하다)의 과거형이에요. a lot은 '많이'라는 뜻이에요.","ans":"연습을 많이 했다.","memo":["Eric의 위로 = 우리는 연습을 많이 함","I feel just like you, but we practiced a lot. (나도 너와 같은 기분이야, 하지만 우리는 연습을 많이 했잖아.)"]},{"n":4,"q":"Eric이 실수에 대해 한 말은 무엇인가요?","o":["실수는 절대 하면 안 된다.","실수한 사람은 경기에 못 나간다.","우리 모두 실수에서 배운다.","실수는 금방 잊어야 한다.","실수는 다른 사람 탓이다."],"a":2,"ev":["We all learn from our mistakes.","우리 모두 우리의 실수에서 배워."],"why":"learn from은 '~에서 배우다'라는 뜻이에요. mistakes는 실수들이에요.","ans":"우리 모두 실수에서 배운다.","memo":["Eric의 말 = 실수에서 배움","We all learn from our mistakes. (우리 모두 우리의 실수에서 배워.)"]},{"n":5,"q":"대화가 끝날 때 Bomin의 기분은 어떻게 되었나요?","o":["더 걱정하게 되었다.","화가 났다.","졸리게 되었다.","슬퍼졌다.","기분이 나아졌다."],"a":4,"ev":["Thanks, Eric. I feel better now.","고마워, Eric. 이제 기분이 나아졌어."],"why":"better는 '더 나은'이라는 뜻이에요. 처음에는 nervous했지만 Eric 덕분에 나아졌어요.","ans":"기분이 나아졌다.","memo":["Bomin의 마지막 기분 = 나아짐(better)","Thanks, Eric. I feel better now. (고마워, Eric. 이제 기분이 나아졌어.)"]}];var DQ=[{"n":6,"q":"El과 Jo는 반에서 어떤 학생들이었나요?","o":["가장 키가 큰 학생들","가장 어린 학생들","가장 조용한 학생들","가장 새로 온 학생들","가장 작은 학생들"],"a":4,"ev":["El and Jo were the smallest students in the class.","El과 Jo는 반에서 가장 작은 학생들이었어요."],"why":"smallest는 '가장 작은'이라는 뜻이에요.","ans":"가장 작은 학생들","memo":["El과 Jo = 반에서 가장 작은 학생들","El and Jo were the smallest students in the class. (El과 Jo는 반에서 가장 작은 학생들이었어요.)"]},{"n":7,"q":"봄에 달라진 것은 무엇인가요?","o":["Jo의 키가 커졌다.","El의 키가 커졌다.","Jo가 이사를 갔다.","El이 학교를 옮겼다.","화분이 사라졌다."],"a":0,"ev":["Jo grew TALLER!","Jo의 키가 더 커졌어요!"],"why":"grew는 grow(자라다)의 과거형이고 taller는 '더 키가 큰'이에요. 커진 사람은 Jo예요.","ans":"Jo의 키가 커졌다.","memo":["봄에 달라진 것 = Jo의 키가 커짐","Jo grew TALLER! (Jo의 키가 더 커졌어요!)"]},{"n":8,"q":"El이 마지막으로 가져간 화분의 식물은 어땠나요?","o":["가장 크고 꽃이 많았다.","빨간 꽃이 하나 피어 있었다.","가장 작고 꽃이 없었다.","이미 시들어 있었다.","나무처럼 높이 자라 있었다."],"a":2,"ev":["It had the smallest plant with no flowers.","그것에는 꽃이 없는 가장 작은 식물이 있었어요."],"why":"no flowers는 '꽃이 없는'이라는 뜻이에요. 친구들이 꽃 있는 화분을 모두 가져갔어요.","ans":"가장 작고 꽃이 없었다.","memo":["El의 화분 = 가장 작고 꽃 없는 식물","It had the smallest plant with no flowers. (그것에는 꽃이 없는 가장 작은 식물이 있었어요.)"]},{"n":9,"q":"Jo가 El에게 자기 zinnia 식물을 주겠다고 한 이유는 무엇인가요?","o":["그 식물이 마음에 들지 않아서","El이 생일이어서","학교가 방학을 하지 않아서","여름 내내 할머니 댁에 있을 것이어서","El의 식물이 죽어서"],"a":3,"ev":["I’ll be at my grandma’s all summer.","나는 여름 내내 할머니 댁에 있을 거야."],"why":"all summer는 '여름 내내'라는 뜻이에요. Jo는 식물을 돌볼 수 없어서 El에게 맡겼어요.","ans":"여름 내내 할머니 댁에 있을 것이어서","memo":["Jo가 식물을 준 이유 = 여름 내내 할머니 댁에 있음","I’ll be at my grandma’s all summer. (나는 여름 내내 할머니 댁에 있을 거야.)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["El과 Jo는 함께 식물에 물을 주었다.","여름 마지막 날, 과꽃에는 꽃이 피지 않았다.","Diaz 선생님은 꽃을 집에 가져가 돌보라고 했다.","El은 과꽃과 zinnia를 나란히 심겠다고 했다.","여름 마지막 날 Jo가 El의 집에 왔다."],"a":1,"ev":["There were flowers on the aster","과꽃에 꽃이 피어 있었어요"],"why":"마지막 장면에서 aster에 꽃이 피어 있었어요(There were flowers). 나머지 넷은 본문 그대로예요.","ans":"여름 마지막 날, 과꽃에는 꽃이 피지 않았다.","memo":["마지막 장면 = 과꽃에 꽃이 핌(안 핌 X)","There were flowers on the aster (과꽃에 꽃이 피어 있었어요)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

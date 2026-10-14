@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 61</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 61 · You're an Environmental Superhero!</h1><div class="sub">당신은 환경 슈퍼히어로입니다! · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":null,"en":"Pollution is the most big problem in the world.","ko":"오염은 세계에서 가장 큰 문제입니다.","ok":false,"foot":[],"fixes":[{"wrong":"most big","right":"biggest","partial":false,"at":[3],"point":"최상급: 1음절 형용사 big의 최상급은 -est를 붙인 biggest 사용 (most와 중복 사용 불가)","topic":"최상급","memo":"1음절 형용사 big의 최상급은 -est를 붙인 biggest 사용 (most와 중복 사용 불가)"}]},{"n":2,"tag":null,"en":"Luckily, three superheroes is working to protecting the environment.","ko":"다행히, 세 명의 슈퍼히어로가 환경을 보호하기 위해서 일하고 있습니다.","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"are","partial":false,"at":[3],"point":"수일치: 복수 주어 superheroes에는 be동사 are 사용","topic":"수일치","memo":"복수 주어 superheroes에는 be동사 are 사용"},{"wrong":"to protecting","right":"to protect","partial":false,"at":[5],"point":"to부정사의 부사적 용법(목적): to 뒤에는 동사원형 사용 (to protect)","topic":"to부정사의 부사적 용법(목적)","memo":"to 뒤에는 동사원형 사용 (to protect)"}]},{"n":3,"tag":null,"en":"They want to make the world clean.","ko":"그들은 세상을 깨끗하게 만들고 싶어 합니다.","ok":true,"foot":[],"fixes":[]},{"n":4,"tag":null,"en":"Will you become it, too?","ko":"당신도 그들 중 하나가 되어 보시겠어요?","ok":false,"foot":[],"fixes":[{"wrong":"it","right":"one","partial":false,"at":[3],"point":"부정대명사 one: 앞에 나온 가산명사 (superhero)와 같은 종류의 불특정 대상을 가리킬 때는 it이 아닌 one 사용","topic":"부정대명사 one","memo":"앞에 나온 가산명사 (superhero)와 같은 종류의 불특정 대상을 가리킬 때는 it이 아닌 one 사용"}]},{"n":5,"tag":"Recycle Wizard · 재활용 마법사","en":"Hi! I'm a Recycle Wizard.","ko":"안녕하세요! 저는 재활용 마법사예요.","ok":false,"foot":[],"fixes":[{"wrong":"a Recycle Wizard","right":"Recycle Wizard","partial":false,"at":[2],"point":"관사: 별명·정체성을 나타내는 말 앞에는 관사를 쓰지 않음 (I'm Recycle Wizard)","topic":"관사","memo":"별명·정체성을 나타내는 말 앞에는 관사를 쓰지 않음 (I'm Recycle Wizard)"}]},{"n":6,"tag":null,"en":"People waste too much resources.","ko":"사람들은 너무 많은 자원을 낭비해요.","ok":false,"foot":["1resource 자원"],"fixes":[{"wrong":"much","right":"many","partial":false,"at":[3],"point":"수량형용사: 셀 수 있는 명사의 복수형 (resources) 앞에는 many 사용","topic":"수량형용사","memo":"셀 수 있는 명사의 복수형 (resources) 앞에는 many 사용"}]},{"n":7,"tag":null,"en":"But recycling can saves them.","ko":"하지만 재활용은 그것들을 절약할 수 있어요.","ok":false,"foot":[],"fixes":[{"wrong":"saves","right":"save","partial":false,"at":[3],"point":"조동사 can 뒤에는 동사원형 사용 (save)","topic":"조동사 can 뒤에는 동사원형 사용 (save)","memo":""}]},{"n":8,"tag":null,"en":"For example, recycling 1,000 kilogram of paper can save about 19 trees and 29,000 liters of water.","ko":"예를 들어, 종이 1,000kg을 재활용하는 것은 약 19그루의 나무와 29,000리터의 물을 절약할 수 있어요.","ok":false,"foot":[],"fixes":[{"wrong":"kilogram","right":"kilograms","partial":false,"at":[4],"point":"명사의 수: 숫자(복수 개념) 뒤에는 복수형 kilograms 사용","topic":"명사의 수","memo":"숫자(복수 개념) 뒤에는 복수형 kilograms 사용"}]},{"n":9,"tag":null,"en":"Do you wants to be a wizard at recycling?","ko":"여러분은 재활용 마법사가 되고 싶나요?","ok":false,"foot":[],"fixes":[{"wrong":"wants","right":"want","partial":false,"at":[2],"point":"Do 의문문에서는 주어와 관계없이 동사원형 사용 (want)","topic":"Do 의문문에서는 주어와 관계없이 동사원형 사용 (want)","memo":""}]},{"n":10,"tag":null,"en":"Then you are going recycle proper!","ko":"그러면 이제 제대로 재활용을 하게 될 거예요!","ok":false,"foot":[],"fixes":[{"wrong":"going recycle","right":"going to recycle","partial":false,"at":[3],"point":"be going to: be동사+going 뒤에는 to+동사원형 사용 (going to recycle)","topic":"be going to","memo":"be동사+going 뒤에는 to+동사원형 사용 (going to recycle)"},{"wrong":"proper","right":"properly","partial":false,"at":[5],"point":"부사 vs 형용사: 동사를 꾸미는 자리이므로 부사 properly 사용","topic":"부사 vs 형용사","memo":"동사를 꾸미는 자리이므로 부사 properly 사용"}]},{"n":11,"tag":null,"en":"Puts plastic, paper, food waste, and glass in the correct bins.","ko":"플라스틱, 종이, 음식물 쓰레기, 그리고 유리를 알맞은 쓰레기통에 넣으세요.","ok":false,"foot":["1bin 쓰레기통"],"fixes":[{"wrong":"Puts","right":"Put","partial":false,"at":[0],"point":"명령문은 동사원형으로 시작 (Put)","topic":"명령문은 동사원형으로 시작 (Put)","memo":""}]},{"n":12,"tag":null,"en":"Looks at the waste below. Draw an line from each piece of waste to the right bin.","ko":"아래 쓰레기를 보세요. 각 쓰레기 조각에서 알맞은 쓰레기통까지 선을 그어 보세요.","ok":false,"foot":[],"fixes":[{"wrong":"Looks","right":"Look","partial":false,"at":[0],"point":"명령문은 동사원형으로 시작 (Look)","topic":"명령문은 동사원형으로 시작 (Look)","memo":""},{"wrong":"an","right":"a","partial":false,"at":[6],"point":"관사: 자음 소리로 시작하는 line 앞에는 부정관사 a 사용","topic":"관사","memo":"자음 소리로 시작하는 line 앞에는 부정관사 a 사용"}]},{"n":13,"tag":"Fashion Clever · 패션 똑똑이","en":"Goods job! I'm Fashion Clever.","ko":"잘했어요! 저는 패션 똑똑이예요.","ok":false,"foot":[],"fixes":[{"wrong":"Goods","right":"Good","partial":false,"at":[0],"point":"어휘: Good(형용사, 좋은) vs Goods(명사, 상품) — 감탄 표현이므로 형용사 Good 필요","topic":"어휘","memo":"Good(형용사, 좋은) vs Goods(명사, 상품) — 감탄 표현이므로 형용사 Good 필요"}]},{"n":14,"tag":null,"en":"People throws away clothes too often.","ko":"사람들은 옷을 너무 자주 버려요.","ok":false,"foot":[],"fixes":[{"wrong":"throws","right":"throw","partial":false,"at":[1],"point":"수일치: 복수 주어 People에는 동사원형 throw 사용","topic":"수일치","memo":"복수 주어 People에는 동사원형 throw 사용"}]},{"n":15,"tag":null,"en":"They becomes waste and hurting the environment.","ko":"그것들은 쓰레기가 되어 환경을 해쳐요.","ok":false,"foot":[],"fixes":[{"wrong":"becomes","right":"become","partial":false,"at":[1],"point":"수일치: 주어 They(복수)에는 동사 원형 become 사용","topic":"수일치","memo":"주어 They(복수)에는 동사 원형 become 사용"},{"wrong":"hurting","right":"hurt","partial":false,"at":[4],"point":"병렬구조: and로 연결된 두 동사의 형태를 맞춰 hurt 사용","topic":"병렬구조","memo":"and로 연결된 두 동사의 형태를 맞춰 hurt 사용"}]},{"n":16,"tag":null,"en":"Did you know that some clothes takes over 200 years to break down?","ko":"몇몇 옷들은 분해되는 데 200년이 넘게 걸린다는 것을 알고 있었나요?","ok":false,"foot":[],"fixes":[{"wrong":"takes","right":"take","partial":false,"at":[6],"point":"수일치: 주어 some clothes(복수)에는 동사원형 take 사용","topic":"수일치","memo":"주어 some clothes(복수)에는 동사원형 take 사용"}]},{"n":17,"tag":null,"en":"Don't buy too much clothes.","ko":"너무 많은 옷을 사지 마세요.","ok":false,"foot":[],"fixes":[{"wrong":"much","right":"many","partial":false,"at":[3],"point":"가산명사(복수형) clothes 앞에는 many 사용","topic":"가산명사(복수형) clothes 앞에는 many 사용","memo":""}]},{"n":18,"tag":null,"en":"Wear you clothes for a long time.","ko":"여러분의 옷을 오랫동안 입으세요.","ok":false,"foot":[],"fixes":[{"wrong":"you","right":"your","partial":false,"at":[1],"point":"인칭대명사 격: 명사 clothes를 꾸미는 자리이므로 소유격 your 사용","topic":"인칭대명사 격","memo":"명사 clothes를 꾸미는 자리이므로 소유격 your 사용"}]},{"n":19,"tag":null,"en":"You can also creates new items from you old clothes!","ko":"여러분의 헌 옷으로 새로운 물건을 만들 수도 있어요!","ok":false,"foot":[],"fixes":[{"wrong":"creates","right":"create","partial":false,"at":[3],"point":"조동사 can 뒤에는 동사원형 사용 (create)","topic":"조동사 can 뒤에는 동사원형 사용 (create)","memo":""},{"wrong":"you","right":"your","partial":false,"at":[7],"point":"인칭대명사 격: 명사 old clothes를 꾸미는 자리이므로 소유격 your 사용","topic":"인칭대명사 격","memo":"명사 old clothes를 꾸미는 자리이므로 소유격 your 사용"}]},{"n":20,"tag":null,"en":"Let's makes old clothes usefully.","ko":"헌 옷을 유용하게 만들어 봅시다.","ok":false,"foot":[],"fixes":[{"wrong":"makes","right":"make","partial":false,"at":[1],"point":"Let's 뒤에는 동사원형 사용 (make)","topic":"Let's 뒤에는 동사원형 사용 (make)","memo":""},{"wrong":"usefully","right":"useful","partial":false,"at":[4],"point":"목적격보어 자리에는 형용사 useful 사용 (동사 make의 목적격보어)","topic":"목적격보어 자리에는 형용사 useful 사용 (동사 make의 목적격보어)","memo":""}]},{"n":21,"tag":null,"en":"There are some item below. What can you make with these old clothes?","ko":"아래에 몇 가지 물건들이 있어요. 여러분은 이 헌 옷들로 무엇을 만들 수 있나요?","ok":false,"foot":[],"fixes":[{"wrong":"item","right":"items","partial":false,"at":[3],"point":"명사의 수: some 뒤에는 복수명사 items 사용","topic":"명사의 수","memo":"some 뒤에는 복수명사 items 사용"}]},{"n":22,"tag":null,"en":"Matching the old clothes with the correct new items.","ko":"헌 옷과 알맞은 새 물건을 연결해 보세요.","ok":false,"foot":[],"fixes":[{"wrong":"Matching","right":"Match","partial":false,"at":[0],"point":"명령문은 동사원형으로 시작 (Match) — 동명사(-ing)로 시작 불가","topic":"명령문은 동사원형으로 시작 (Match) — 동명사(-ing)로 시작 불가","memo":""}]},{"n":23,"tag":null,"en":"Now you can be clever on fashion too!","ko":"이제 여러분도 패션에 영리해질 수 있어요!","ok":false,"foot":[],"fixes":[{"wrong":"on","right":"at","partial":false,"at":[5],"point":"'be clever at+분야'의 표현에는 전치사 at 사용","topic":"'be clever at+분야'의 표현에는 전치사 at 사용","memo":""}]},{"n":24,"tag":"Water Saver · 물 절약이","en":"Hi! I'm Water Saver!","ko":"안녕하세요! 저는 물 절약이에요!","ok":true,"foot":[],"fixes":[]},{"n":25,"tag":null,"en":"Water is so important as air. We can't live without it.","ko":"물은 공기만큼 중요합니다. 우리는 그것 없이 살 수 없어요.","ok":false,"foot":[],"fixes":[{"wrong":"so","right":"as","partial":false,"at":[2],"point":"원급비교: as+원급+as 표현이므로 so가 아닌 as 사용 (as important as)","topic":"원급비교","memo":"as+원급+as 표현이므로 so가 아닌 as 사용 (as important as)"}]},{"n":26,"tag":null,"en":"But people waste a lot of waters. It make me sad.","ko":"하지만 사람들은 많은 물을 낭비해요. 그것이 저를 슬프게 만들어요.","ok":false,"foot":[],"fixes":[{"wrong":"waters","right":"water","partial":false,"at":[6],"point":"명사: water는 셀 수 없는 명사이므로 복수형 불가 (water)","topic":"명사","memo":"water는 셀 수 없는 명사이므로 복수형 불가 (water)"},{"wrong":"make","right":"makes","partial":false,"at":[8],"point":"수일치: 주어 It(3인칭 단수)에는 동사에 -s를 붙임 (makes)","topic":"수일치","memo":"주어 It(3인칭 단수)에는 동사에 -s를 붙임 (makes)"}]},{"n":27,"tag":null,"en":"How can we safe water?","ko":"우리는 어떻게 물을 절약할 수 있을까요?","ok":false,"foot":[],"fixes":[{"wrong":"safe","right":"save","partial":false,"at":[3],"point":"어휘: safe(형용사, 안전한) vs save(동사, 절약하다) — 문장의 동사 자리이므로 save 사용","topic":"어휘","memo":"safe(형용사, 안전한) vs save(동사, 절약하다) — 문장의 동사 자리이므로 save 사용"}]},{"n":28,"tag":null,"en":"Take more shorter showers than before. Turn off the water when you will brush your teeth.","ko":"이전보다 더 짧게 샤워하세요. 이를 닦을 때 물을 잠그세요.","ok":false,"foot":[],"fixes":[{"wrong":"more shorter","right":"shorter","partial":false,"at":[1],"point":"비교급: 짧은 형용사 short의 비교 급은 -er을 붙인 shorter 사용 (more와 중복 사용 불가)","topic":"비교급","memo":"짧은 형용사 short의 비교 급은 -er을 붙인 shorter 사용 (more와 중복 사용 불가)"},{"wrong":"will brush","right":"brush","partial":false,"at":[12],"point":"접속사 when이 이끄는 시간 부사 절에서는 미래의 일도 현재시제로 표현 (will brush X, brush O)","topic":"접속사 when이 이끄는 시간 부사 절에서는 미래의 일도 현재시제로 표현 (will brush X, brush O)","memo":""}]},{"n":29,"tag":null,"en":"Also, make sure that you turn off the tap complete.","ko":"또한, 여러분이 수도꼭지를 완전히 잠갔는지 확인하세요.","ok":false,"foot":["1tap 수도꼭지"],"fixes":[{"wrong":"complete","right":"completely","partial":false,"at":[9],"point":"부사 vs 형용사: 동사구를 꾸미는 자리이므로 부사 completely 사용","topic":"부사 vs 형용사","memo":"동사구를 꾸미는 자리이므로 부사 completely 사용"}]},{"n":30,"tag":null,"en":"Looking at the pictures below. Which are ways to save water and which are not?","ko":"아래 그림들을 보세요. 물을 절약하는 방법과 그렇지 않은 방법은 무엇인가요?","ok":false,"foot":[],"fixes":[{"wrong":"Looking","right":"Look","partial":false,"at":[0],"point":"명령문은 동사원형으로 시작 (Look) — 동명사(-ing)로 시작 불가","topic":"명령문은 동사원형으로 시작 (Look) — 동명사(-ing)로 시작 불가","memo":""}]},{"n":31,"tag":null,"en":"Write an O or X in each picture.","ko":"각 그림에 O 또는 X를 쓰세요.","ok":false,"foot":[],"fixes":[{"wrong":"in","right":"on","partial":false,"at":[5],"point":"전치사: 그림 표면 위에 표시하는 것이므로 on 사용","topic":"전치사","memo":"그림 표면 위에 표시하는 것이므로 on 사용"}]},{"n":32,"tag":null,"en":"I'm sure that you got all the right answers. You are amazed at saving water!","ko":"저는 여러분이 정답을 맞혔다고 확신해요. 여러분은 물을 절약하는 것에 정말 뛰어나요!","ok":false,"foot":[],"fixes":[{"wrong":"amazed","right":"amazing","partial":false,"at":[11],"point":"분사형용사: 상대에게 놀라움을 주는 대상(you)을 나타내므로 amazing 사용 (amazed는 감정을 느끼는 주체에 사용)","topic":"분사형용사","memo":"상대에게 놀라움을 주는 대상(you)을 나타내므로 amazing 사용 (amazed는 감정을 느끼는 주체에 사용)"}]}];var RNUM=61;var TITLE_EN="You're an Environmental Superhero!";var PASS_EN=["You’re an Environmental Superhero!","Pollution is a big problem. Luckily, three superheroes are working to protect the environment. They want to make the world clean. Will you join them?","Hi! I’m Recycle Wizard.","People waste too many resources. But recycling can save them. For example, recycling 1,000 kilograms of paper can save about 19 trees and 29,000 liters of water. Do you want to be a wizard at recycling? Then you should recycle properly! Put plastic, paper, food waste, and glass in the correct bins.","Look at the waste below. Draw a line from each piece of waste to the right bin.","Good job!","I’m Fashion Clever.","People throw away clothes too often. They become waste and hurt the environment. Did you know that some clothes take over 200 years to break down? Don’t buy too many clothes. Wear your clothes for a long time. You can also create new items from your old clothes! Let’s make old clothes useful.","There are some items below. What can you make with these old clothes? Match the old clothes with the correct new items.","Now you can be clever at fashion too!","Water is very important. We can’t live without it. But people waste a lot of water. It makes me sad. How can we save water? Take quick showers. Turn off the water while you brush your teeth. Also, make sure that you turn off the tap completely.","Look at the pictures below. Which are ways to save water and which are not? Write an O or X on each picture.","I’m sure that you got the right answers. You are amazing at saving water!"];var PASS_KO=["당신은 환경 슈퍼히어로입니다!","오염은 큰 문제입니다. 다행히, 세 명의 슈퍼히어로가 환경을 보호하기 위해서 일하고 있습니다. 그들은 세상을 깨끗하게 만들고 싶어 합니다. 당신도 그들과 함께하시겠어요?","안녕하세요! 저는 재활용 마법사예요.","사람들은 너무 많은 자원을 낭비해요. 하지만 재활용은 그것들을 절약할 수 있어요. 예를 들어, 종이 1,000kg을 재활용하는 것은 약 19그루의 나무와 29,000리터의 물을 절약할 수 있어요. 여러분은 재활용 마법사가 되고 싶나요? 그렇다면 재활용을 제대로 해야 합니다! 플라스틱, 종이, 음식물 쓰레기, 그리고 유리를 알맞은 쓰레기통에 넣으세요.","아래 쓰레기를 보세요. 각 쓰레기 조각에서 알맞은 쓰레기통까지 선을 그어 보세요.","잘했어요!","저는 패션 똑똑이예요.","사람들은 옷을 너무 자주 버려요. 그것들은 쓰레기가 되어 환경을 해쳐요. 몇몇 옷들은 분해되는 데 200년이 넘게 걸린다는 것을 알고 있었나요? 너무 많은 옷을 사지 마세요. 여러분의 옷을 오랫동안 입으세요. 여러분의 헌 옷으로 새로운 물건을 만들 수도 있어요! 헌 옷을 유용하게 만들어 봅시다.","아래에 몇 가지 물건들이 있어요. 여러분은 이 헌 옷들로 무엇을 만들 수 있나요? 헌 옷과 알맞은 새 물건을 연결해 보세요.","이제 여러분도 패션에 영리해질 수 있어요!","안녕하세요! 저는 물 절약이에요!","물은 매우 중요합니다. 우리는 그것 없이 살 수 없어요. 하지만 사람들은 많은 물을 낭비해요. 그것이 저를 슬프게 만들어요. 우리는 어떻게 물을 절약할 수 있을까요? 샤워를 빨리 하세요. 여러분이 이를 닦는 동안에는 물을 잠그세요. 또한, 여러분이 수도꼭지를 완전히 잠갔는지 확인하세요.","아래 그림들을 보세요. 물을 절약하는 방법과 그렇지 않은 방법은 무엇인가요? 각 그림에 O 또는 X를 쓰세요.","저는 여러분이 정답을 맞혔다고 확신해요. 여러분은 물을 절약하는 것에 정말 뛰어나요!"];var DLG=[["B","Hi, Bora. What are you going to do this weekend?","안녕, 보라야. 너 이번 주말에 뭐 할 거니?"],["G","I’m planning to go to a zero waste shop. Do you know about zero waste shops?","나는 제로 웨이스트 상점에 갈 계획이야. 너 제로 웨이스트 상점에 대해 알고 있니?"],["B","No, I don’t. Please tell me about them.","아니, 몰라. 그것들에 대해 말해 줘."],["G","They don’t sell items in containers, so you can reduce waste. Why don’t you come with me?","그곳은 물건을 용기에 담아서 팔지 않아서 쓰레기를 줄일 수 있어. 나랑 같이 가지 않을래?"],["B","That sounds great! What can I buy there?","좋아! 거기서 뭘 살 수 있어?"],["G","You can buy a lot of items. For example, they have bags, shampoo, and some snacks.","많은 물건을 살 수 있어. 예를 들어, 가방, 샴푸, 그리고 간식이 있어."],["B","I see. I’m going to buy shampoo.","알겠어. 나는 샴푸를 살 거야."],["G","You should bring your own container, then. You can put the shampoo in it.","그럼 너의 용기를 가져와야 해. 그 안에 샴푸를 담을 수 있어."],["B","Okay.","알겠어."]];var BQ=[{"n":1,"q":"보라는 이번 주말에 무엇을 할 계획인가요?","o":["친구 집에서 자기","재활용 센터에서 봉사하기","영화관에 가기","제로 웨이스트 상점에 가기","샴푸 만들기"],"a":3,"ev":["I’m planning to go to a zero waste shop.","나는 제로 웨이스트 상점에 갈 계획이야."],"why":"소년이 주말 계획을 묻자 보라가 대답한 문장이에요.","ans":"제로 웨이스트 상점에 가기","memo":["보라의 주말 계획 = 제로 웨이스트 상점 방문","I’m planning to go to a zero waste shop. (나는 제로 웨이스트 상점에 갈 계획이야.)"]},{"n":2,"q":"소년은 제로 웨이스트 상점에 대해 어떻게 말했나요?","o":["이미 여러 번 가 봤다고 했다","잘 모르니 설명해 달라고 했다","가기 싫다고 했다","주말에 바쁘다고 했다","그곳에서 일한다고 했다"],"a":1,"ev":["No, I don’t. Please tell me about them.","아니, 몰라. 그것들에 대해 말해 줘."],"why":"\"Do you know about ~?\"에 \"No, I don’t.\"라고 답했어요. 모른다는 뜻이에요.","ans":"잘 모르니 설명해 달라고 했다","memo":["소년 = 제로 웨이스트 상점을 모름, 설명 부탁","No, I don’t. Please tell me about them. (아니, 몰라. 그것들에 대해 말해 줘.)"]},{"n":3,"q":"제로 웨이스트 상점이 쓰레기를 줄일 수 있는 방법은 무엇인가요?","o":["물건을 용기에 담지 않고 판다","물건을 아주 싸게 판다","물건을 배달해 준다","헌 물건만 판다","쓰레기통을 많이 놓아 둔다"],"a":0,"ev":["They don’t sell items in containers, so you can reduce waste.","그곳은 물건을 용기에 담아서 팔지 않아서 쓰레기를 줄일 수 있어."],"why":"so(그래서) 앞이 이유예요. 용기에 담아 팔지 않아서 쓰레기가 줄어요.","ans":"물건을 용기에 담지 않고 판다","memo":["쓰레기 줄이는 방법 = 용기에 담지 않고 판매","They don’t sell items in containers, so you can reduce waste. (그곳은 물건을 용기에 담아서 팔지 않아서 쓰레기를 줄일 수 있어.)"]},{"n":4,"q":"소년은 제로 웨이스트 상점에서 무엇을 살 것인가요?","o":["가방","간식","샴푸","비누","치약"],"a":2,"ev":["I’m going to buy shampoo.","나는 샴푸를 살 거야."],"why":"상점에는 가방, 샴푸, 간식이 있다고 했지만 소년이 사겠다고 한 건 하나예요.","ans":"샴푸","memo":["소년이 살 물건 = 샴푸","I’m going to buy shampoo. (나는 샴푸를 살 거야.)"]},{"n":5,"q":"보라는 소년에게 무엇을 가져와야 한다고 했나요?","o":["큰 가방","돈","자신의 용기","빈 병 10개","장바구니 두 개"],"a":2,"ev":["You should bring your own container, then.","그럼 너의 용기를 가져와야 해."],"why":"샴푸를 담을 수 있도록 your own container가 필요해요.","ans":"자신의 용기","memo":["가져올 것 = 자신의 용기(container)","You should bring your own container, then. (그럼 너의 용기를 가져와야 해.)"]}];var DQ=[{"n":6,"q":"세 명의 슈퍼히어로는 무엇을 하려고 일하고 있나요?","o":["새 학교를 짓기 위해","환경을 보호하기 위해","대회에서 우승하기 위해","옷을 팔기 위해","물고기를 기르기 위해"],"a":1,"ev":["Luckily, three superheroes are working to protect the environment.","다행히, 세 명의 슈퍼히어로가 환경을 보호하기 위해서 일하고 있습니다."],"why":"work to ~는 '~하기 위해 일하다'예요.","ans":"환경을 보호하기 위해","memo":["슈퍼히어로의 일 = 환경 보호","Luckily, three superheroes are working to protect the environment. (다행히, 세 명의 슈퍼히어로가 환경을 보호하기 위해서 일하고 있습니다.)"]},{"n":7,"q":"종이 1,000kg을 재활용하면 약 무엇을 절약할 수 있나요?","o":["나무 19그루와 물 29,000리터","나무 29그루와 물 19,000리터","나무 190그루와 물 2,900리터","나무 1,000그루","물 1,000리터"],"a":0,"ev":["recycling 1,000 kilograms of paper can save about 19 trees and 29,000 liters of water","종이 1,000kg을 재활용하는 것은 약 19그루의 나무와 29,000리터의 물을 절약할 수 있어요"],"why":"숫자를 서로 바꿔 놓은 선지에 주의하세요. 나무는 19그루, 물은 29,000리터예요.","ans":"나무 19그루와 물 29,000리터","memo":["종이 1,000kg 재활용 = 나무 약 19그루, 물 29,000리터 절약","recycling 1,000 kilograms of paper can save about 19 trees and 29,000 liters of water (종이 1,000kg을 재활용하는 것은 약 19그루의 나무와 29,000리터의 물을 절약할 수 있어요)"]},{"n":8,"q":"어떤 옷들은 분해되는 데 얼마나 걸리나요?","o":["20년 이상","100년 이상","200년 이상","2,000년 이상","1년 미만"],"a":2,"ev":["Did you know that some clothes take over 200 years to break down?","몇몇 옷들은 분해되는 데 200년이 넘게 걸린다는 것을 알고 있었나요?"],"why":"break down은 '분해되다'예요. over 200 years는 200년이 넘는다는 뜻이에요.","ans":"200년 이상","memo":["옷 분해 시간 = 200년 넘게 걸림","Did you know that some clothes take over 200 years to break down? (몇몇 옷들은 분해되는 데 200년이 넘게 걸린다는 것을 알고 있었나요?)"]},{"n":9,"q":"물 절약 슈퍼히어로가 슬픈 이유는 무엇인가요?","o":["사람들이 물을 많이 낭비해서","비가 오지 않아서","수도꼭지가 고장 나서","샤워를 못 해서","물이 너무 차가워서"],"a":0,"ev":["But people waste a lot of water. It makes me sad.","하지만 사람들은 많은 물을 낭비해요. 그것이 저를 슬프게 만들어요."],"why":"It makes me sad. 바로 앞 문장이 슬픈 이유예요.","ans":"사람들이 물을 많이 낭비해서","memo":["슬픈 이유 = 사람들의 물 낭비","But people waste a lot of water. It makes me sad. (하지만 사람들은 많은 물을 낭비해요. 그것이 저를 슬프게 만들어요.)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["Recycle Wizard는 쓰레기를 알맞은 쓰레기통에 넣으라고 한다.","Fashion Clever는 옷을 너무 많이 사지 말라고 한다.","Fashion Clever는 헌 옷으로 새로운 물건을 만들 수 있다고 한다.","물 절약 슈퍼히어로는 샤워를 천천히 하라고 한다.","물 절약 슈퍼히어로는 이를 닦는 동안 물을 잠그라고 한다."],"a":3,"ev":["Take quick showers.","샤워를 빨리 하세요."],"why":"본문은 quick showers(빨리 하는 샤워)라고 했어요. 천천히 하라는 ④번이 본문과 반대예요.","ans":"물 절약 슈퍼히어로는 샤워를 천천히 하라고 한다.","memo":["물 절약 샤워 = 빨리 하기","Take quick showers. (샤워를 빨리 하세요.)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

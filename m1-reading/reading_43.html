@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 43</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 43 · Ice Cream in the World</h1><div class="sub">세계의 아이스크림 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":"인트로","en":"Hi, everyone! Welcome to my vlog. I'm at a international ice cream festival.","ko":"여러분 안녕하세요! 제 브이로그에 오신 것을 환영해요. 저는 국제 아이스크림 축제에 와 있어요.","ok":false,"foot":[],"fixes":[{"wrong":"a","right":"an","partial":false,"at":[8],"point":"관사: international처럼 모음 발음으로 시작하는 단어 앞에는 부정관사 an 사용","topic":"관사","memo":"international처럼 모음 발음으로 시작하는 단어 앞에는 부정관사 an 사용"}]},{"n":2,"tag":null,"en":"I love ice cream. How about you? Different countries has different types of ice cream.","ko":"저는 아이스크림을 사랑해요. 여러분은 어떠신가요? 다양한 나라에는 각기 다른 종류의 아이스크림이 있어요.","ok":false,"foot":[],"fixes":[{"wrong":"has","right":"have","partial":false,"at":[9],"point":"수일치: 주어 countries(복수)에 맞춰 동사원형 have 사용","topic":"수일치","memo":"주어 countries(복수)에 맞춰 동사원형 have 사용"}]},{"n":3,"tag":"젤라토","en":"A gelato truck is over there. There are a long line. Let's going there first.","ko":"젤라토 트럭이 저기에 있어요. 줄이 길어요. 저기에 먼저 가 봐요.","ok":false,"foot":["1gelato 젤라토(이탈리아식 아이스크림)"],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[7],"point":"수일치: 주어 a long line(단수)에 맞춰 동사 is 사용","topic":"수일치","memo":"주어 a long line(단수)에 맞춰 동사 is 사용"},{"wrong":"going","right":"go","partial":false,"at":[12],"point":"어법: Let's 뒤에는 동사원형 go 사용","topic":"어법","memo":"Let's 뒤에는 동사원형 go 사용"}]},{"n":4,"tag":null,"en":"There are much flavors of gelato. They all look delicious.","ko":"다양한 맛의 젤라토가 있어요. 그것들은 모두 맛있어 보여요.","ok":false,"foot":[],"fixes":[{"wrong":"much","right":"many","partial":false,"at":[2],"point":"수량형용사: 셀 수 있는 명사의 복수형 flavors 앞에는 many 사용","topic":"수량형용사","memo":"셀 수 있는 명사의 복수형 flavors 앞에는 many 사용"}]},{"n":5,"tag":null,"en":"Hmm.... This time, I want trying strawberry gelato. Yummy! It is very creamy.","ko":"음…. 이번에는 딸기 젤라토를 먹어 보고 싶어요. 맛있어요! 이것은 정말 부드러워요.","ok":false,"foot":[],"fixes":[{"wrong":"trying","right":"to try","partial":false,"at":[5],"point":"to부정사의 명사적 용법: want는 목적어로 to부정사를 취하므로 to try 사용(동명사 trying 불가)","topic":"to부정사의 명사적 용법","memo":"want는 목적어로 to부정사를 취하므로 to try 사용(동명사 trying 불가)"}]},{"n":6,"tag":null,"en":"Italy is a home of gelato. Gelato is a very popular desserts there.","ko":"이탈리아는 젤라토의 본고장입니다. 젤라토는 그곳에서 매우 인기 있는 디저트입니다.","ok":false,"foot":[],"fixes":[{"wrong":"a","right":"the","partial":false,"at":[2],"point":"관사: 이탈리아는 젤라토의 하나뿐인 본고장이므로 정관사 the 사용","topic":"관사","memo":"이탈리아는 젤라토의 하나뿐인 본고장이므로 정관사 the 사용"},{"wrong":"desserts","right":"dessert","partial":false,"at":[11],"point":"관사+명사의 수: 부정관사 a 뒤에는 단수명사 dessert 사용","topic":"관사+명사의 수","memo":"부정관사 a 뒤에는 단수명사 dessert 사용"}]},{"n":7,"tag":null,"en":"It first appear there in the 16th century, and some gelato shops has a long history.","ko":"그것은 그곳에 16세기에 처음 등장했고, 몇몇 젤라토 가게들은 긴 역사가 있답니다.","ok":false,"foot":[],"fixes":[{"wrong":"appear","right":"appeared","partial":false,"at":[2],"point":"시제: 과거의 일이므로 과거형 appeared 사용","topic":"시제","memo":"과거의 일이므로 과거형 appeared 사용"},{"wrong":"has","right":"have","partial":false,"at":[12],"point":"수일치: 주어 gelato shops(복수)에 맞춰 동사원형 have 사용","topic":"수일치","memo":"주어 gelato shops(복수)에 맞춰 동사원형 have 사용"}]},{"n":8,"tag":"돈두르마","en":"Here are a dondurma truck. I choose chocolate dondurma. Surprise! It's sticky and stretchy.","ko":"여기는 돈두르마 트럭이에요. 저는 초콜릿 돈두르마를 골랐어요. 놀라워요! 이것은 쫀득하고 잘 늘어나요.","ok":false,"foot":["1dondurma 돈두르마(튀르키예식 아이스크림)"],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[1],"point":"수일치: 주어 a dondurma truck(단수)에 맞춰 동사 is 사용","topic":"수일치","memo":"주어 a dondurma truck(단수)에 맞춰 동사 is 사용"}]},{"n":9,"tag":null,"en":"Look at the man. He is stretching some dondurma. It is long than his arm.","ko":"저 아저씨를 보세요. 그는 돈두르마를 늘리고 있어요. 그것은 그의 팔보다 더 길어요.","ok":false,"foot":[],"fixes":[{"wrong":"long","right":"longer","partial":false,"at":[11],"point":"비교급: than과 함께 두 대상을 비교하므로 비교급 longer 사용","topic":"비교급","memo":"than과 함께 두 대상을 비교하므로 비교급 longer 사용"}]},{"n":10,"tag":null,"en":"Now he is handing the dondurma to a boy, but then he is taking it back.","ko":"이제 그는 한 남학생에게 돈두르마를 건네주고 있는데요, 아저씨가 그것을 다시 가져가네요.","ok":true,"foot":[],"fixes":[]},{"n":11,"tag":null,"en":"Huh? The man is doing the same thing again and again. Can the boy gets it?","ko":"어? 아저씨가 같은 행동을 계속 해요. 남학생은 그것을 받을 수 있을까요?","ok":false,"foot":[],"fixes":[{"wrong":"gets","right":"get","partial":false,"at":[14],"point":"어법: 조동사 Can 뒤에는 동사원형 get 사용","topic":"어법","memo":"조동사 Can 뒤에는 동사원형 get 사용"}]},{"n":12,"tag":null,"en":"Dondurma is Turkish ice cream. It melt very slowly.","ko":"돈두르마는 튀르키예 아이스크림입니다. 그것은 아주 천천히 녹습니다.","ok":false,"foot":[],"fixes":[{"wrong":"melt","right":"melts","partial":false,"at":[6],"point":"수일치: 3인칭 단수 주어 It에는 동사에 -s를 붙여 melts 사용","topic":"수일치","memo":"3인칭 단수 주어 It에는 동사에 -s를 붙여 melts 사용"}]},{"n":13,"tag":null,"en":"Turkish people eat dondurma with many ways.","ko":"튀르키예 사람들은 다양한 방법으로 돈두르마를 먹습니다.","ok":false,"foot":[],"fixes":[{"wrong":"with","right":"in","partial":false,"at":[4],"point":"전치사: '여러 방법으로'는 in many ways로 전치사 in 사용","topic":"전치사","memo":"'여러 방법으로'는 in many ways로 전치사 in 사용"}]},{"n":14,"tag":null,"en":"Some use a knife and fork, and other eat it like a sandwich.","ko":"어떤 사람들은 칼과 포크를 사용하고, 다른 사람들은 그것을 샌드위치처럼 먹습니다.","ok":false,"foot":[],"fixes":[{"wrong":"other","right":"others","partial":false,"at":[7],"point":"대명사의 수: '다른 사람들'이라는 뜻이므로 복수형 대명사 others 사용","topic":"대명사의 수","memo":"'다른 사람들'이라는 뜻이므로 복수형 대명사 others 사용"}]},{"n":15,"tag":"팔레타","en":"This is a truck for Mexican ice cream, paleta. Paleta looks like the popsicle.","ko":"이것은 멕시코 아이스크림인 팔레타 트럭이에요. 팔레타는 막대 아이스크림처럼 생겼어요.","ok":false,"foot":["1paleta 팔레타(멕시코식 막대 아이스크림)"],"fixes":[{"wrong":"the","right":"a","partial":false,"at":[12],"point":"관사: 특정하지 않은 막대 아이스크림 하나를 가리키므로 부정관사 a 사용","topic":"관사","memo":"특정하지 않은 막대 아이스크림 하나를 가리키므로 부정관사 a 사용"}]},{"n":16,"tag":null,"en":"Most paletas have natural fruits in them. Me want this kiwi paleta.","ko":"팔레타 대부분은 안에 천연 과일이 들어 있어요. 저는 이 키위 팔레타를 먹고 싶어요.","ok":false,"foot":[],"fixes":[{"wrong":"Me","right":"I","partial":false,"at":[7],"point":"인칭대명사 격: 문장의 주어 자리이므로 주격 I 사용(Me는 목적격)","topic":"인칭대명사 격","memo":"문장의 주어 자리이므로 주격 I 사용(Me는 목적격)"}]},{"n":17,"tag":null,"en":"Oh, no! It taste spicy!","ko":"오, 이런! 이것은 매운맛이 나요!","ok":false,"foot":[],"fixes":[{"wrong":"taste","right":"tastes","partial":false,"at":[3],"point":"수일치: 3인칭 단수 주어 It에는 동사에 -s를 붙여 tastes 사용","topic":"수일치","memo":"3인칭 단수 주어 It에는 동사에 -s를 붙여 tastes 사용"}]},{"n":18,"tag":null,"en":"Mexicans loves spicy food. They sometimes add chili peppers in paletas.","ko":"멕시코 사람들은 매운 음식을 좋아합니다. 그들은 때때로 팔레타에 고추를 추가합니다.","ok":false,"foot":[],"fixes":[{"wrong":"loves","right":"love","partial":false,"at":[1],"point":"수일치: 주어 Mexicans(복수)에 맞춰 동사원형 love 사용","topic":"수일치","memo":"주어 Mexicans(복수)에 맞춰 동사원형 love 사용"},{"wrong":"in","right":"to","partial":false,"at":[9],"point":"어법: '~에 첨가하다'는 add A to B로 전치사 to 사용","topic":"어법","memo":"'~에 첨가하다'는 add A to B로 전치사 to 사용"}]},{"n":19,"tag":null,"en":"Most paletas are sweet, but some are spicy. Some Mexicans make they at home.","ko":"팔레타 대부분은 달콤하지만, 어떤 것은 맵습니다. 어떤 멕시코 사람들은 그것을 집에서 만듭니다.","ok":false,"foot":[],"fixes":[{"wrong":"they","right":"them","partial":false,"at":[11],"point":"인칭대명사 격: 동사 make의 목적어 자리이므로 목적격 them 사용 (they는 주격)","topic":"인칭대명사 격","memo":"동사 make의 목적어 자리이므로 목적격 them 사용 (they는 주격)"}]},{"n":20,"tag":"마무리","en":"Today, I have a lot of ice cream. Gelato were my favorite.","ko":"오늘 저는 많은 아이스크림을 먹었어요. 젤라토는 제가 제일 좋아하는 것이었어요.","ok":false,"foot":[],"fixes":[{"wrong":"have","right":"had","partial":false,"at":[2],"point":"시제: 오늘 있었던 일(과거)이므로 have의 과거형 had 사용","topic":"시제","memo":"오늘 있었던 일(과거)이므로 have의 과거형 had 사용"},{"wrong":"were","right":"was","partial":false,"at":[9],"point":"수일치: 주어 Gelato(단수)에 맞춰 be동사 과거형 was 사용","topic":"수일치","memo":"주어 Gelato(단수)에 맞춰 be동사 과거형 was 사용"}]},{"n":21,"tag":null,"en":"It was more delicious than dondurma and paleta.","ko":"그것은 돈두르마와 팔레타보다 더 맛있었어요.","ok":true,"foot":[],"fixes":[]},{"n":22,"tag":null,"en":"What kind of ice cream do you wants to try? Please leaves a comment. Bye, bye.","ko":"여러분은 어떤 종류의 아이스크림을 먹어 보고 싶나요? 의견을 남겨 주세요. 안녕.","ok":false,"foot":[],"fixes":[{"wrong":"wants","right":"want","partial":false,"at":[7],"point":"어법: Do 의문문에서는 주어와 상관없이 동사원형 want 사용","topic":"어법","memo":"Do 의문문에서는 주어와 상관없이 동사원형 want 사용"},{"wrong":"leaves","right":"leave","partial":false,"at":[11],"point":"어법: 명령문(Please+동사원형)이므로 동사원형 leave 사용","topic":"어법","memo":"명령문(Please+동사원형)이므로 동사원형 leave 사용"}]}];var RNUM=43;var TITLE_EN="Ice Cream in the World";var PASS_EN=["Ice Cream in the World","Hi, everyone! Welcome to my vlog. I’m at an international ice cream festival. I love ice cream. How about you? Different countries have different types of ice cream. A gelato truck is over there. There is a long line. Let’s go there first.","There are many flavors of gelato. They all look delicious. Hmm.... This time, I want to try strawberry gelato. Yummy! It is very creamy.","Italy is the home of gelato. Gelato is a very popular dessert there. It first appeared there in the 16th century, and some gelato shops have a long history.","Here is a dondurma truck. I choose chocolate dondurma. Surprise! It’s sticky and stretchy. Look at the man. He is stretching some dondurma. It is longer than his arm. Now he is handing the dondurma to a boy, but then he is taking it back. Huh? The man is doing the same thing again and again. Can the boy get it?","Dondurma is Turkish ice cream. It melts very slowly. Turkish people eat dondurma in many ways. Some use a knife and fork, and others eat it like a sandwich.","This is a truck for Mexican ice cream, paleta. Paleta looks like a popsicle. Most paletas have natural fruits in them. I want this kiwi paleta. Oh, no! It tastes spicy!","Mexicans love spicy food. They sometimes add chili peppers to paletas. Most paletas are sweet, but some are spicy. Some Mexicans make them at home.","Today, I had a lot of ice cream. Gelato was my favorite. It was more delicious than dondurma and paleta. What kind of ice cream do you want to try? Please leave a comment. Bye, bye."];var PASS_KO=["세계의 아이스크림","여러분 안녕하세요! 제 브이로그에 오신 것을 환영해요. 저는 국제 아이스크림 축제에 와 있어요. 저는 아이스크림을 사랑해요. 여러분은 어떠신가요? 다양한 나라에는 각기 다른 종류의 아이스크림이 있어요. 젤라토 트럭이 저기에 있어요. 줄이 길어요. 저기에 먼저 가 봐요.","다양한 맛의 젤라토가 있어요. 그것들은 모두 맛있어 보여요. 음…. 이번에는 딸기 젤라토를 먹어 보고 싶어요. 맛있어요! 이것은 정말 부드러워요.","이탈리아는 젤라토의 본고장입니다. 젤라토는 그곳에서 매우 인기 있는 디저트입니다. 그것은 그곳에 16세기에 처음 등장했고, 몇몇 젤라토 가게들은 긴 역사가 있답니다.","여기는 돈두르마 트럭이에요. 저는 초콜릿 돈두르마를 골랐어요. 놀라워요! 이것은 쫀득하고 잘 늘어나요. 저 아저씨를 보세요. 그는 돈두르마를 늘리고 있어요. 그것은 그의 팔보다 더 길어요. 이제 그는 한 남학생에게 돈두르마를 건네주고 있는데요, 아저씨가 그것을 다시 가져가네요. 어? 아저씨가 같은 행동을 계속 해요. 남학생은 그것을 받을 수 있을까요?","돈두르마는 튀르키예 아이스크림입니다. 그것은 아주 천천히 녹습니다. 튀르키예 사람들은 다양한 방법으로 돈두르마를 먹습니다. 어떤 사람들은 칼과 포크를 사용하고, 다른 사람들은 그것을 샌드위치처럼 먹습니다.","이것은 멕시코 아이스크림인 팔레타 트럭이에요. 팔레타는 막대 아이스크림처럼 생겼어요. 팔레타 대부분은 안에 천연 과일이 들어 있어요. 저는 이 키위 팔레타를 먹고 싶어요. 오, 이런! 이것은 매운맛이 나요!","멕시코 사람들은 매운 음식을 좋아합니다. 그들은 때때로 팔레타에 고추를 추가합니다. 팔레타 대부분은 달콤하지만, 어떤 것은 맵습니다. 어떤 멕시코 사람들은 그것을 집에서 만듭니다.","오늘 저는 많은 아이스크림을 먹었어요. 젤라토는 제가 제일 좋아하는 것이었어요. 그것은 돈두르마와 팔레타보다 더 맛있었어요. 여러분은 어떤 종류의 아이스크림을 먹어 보고 싶나요? 의견을 남겨 주세요. 안녕."];var DLG=[["G","Let’s eat Thai food today.","오늘은 태국 음식을 먹자."],["B","Sure. I want some spicy food.","좋아. 나는 매운 음식이 좀 먹고 싶어."],["G","Why don’t you try som tam? It’s spicy.","som tam을 먹어 보는 게 어때? 맵거든."],["B","Som tam? What’s that?","som tam? 그게 뭐야?"],["G","It’s Thai salad.","태국식 샐러드야."],["B","Sounds good. I’ll get it.","좋아. 그걸로 할게."]];var BQ=[{"n":1,"q":"두 사람은 오늘 어느 나라 음식을 먹기로 했나요?","o":["한국 음식","태국 음식","멕시코 음식","일본 음식","중국 음식"],"a":1,"ev":["Let’s eat Thai food today.","오늘은 태국 음식을 먹자."],"why":"G가 먼저 제안한 말이에요. 첫 줄에 답이 있어요.","ans":"태국 음식","memo":["오늘 먹기로 한 음식 = 태국 음식","Let’s eat Thai food today. (오늘은 태국 음식을 먹자.)"]},{"n":2,"q":"B는 어떤 음식을 먹고 싶다고 했나요?","o":["달콤한 음식","짠 음식","차가운 음식","매운 음식","부드러운 음식"],"a":3,"ev":["I want some spicy food.","나는 매운 음식이 좀 먹고 싶어."],"why":"spicy는 '매운'이라는 뜻이에요. sweet(달콤한)와 헷갈리지 마세요.","ans":"매운 음식","memo":["B가 원한 음식 = 매운 음식","I want some spicy food. (나는 매운 음식이 좀 먹고 싶어.)"]},{"n":3,"q":"G가 B에게 먹어 보라고 추천한 음식은 무엇인가요?","o":["som tam","pho","taco","hot dog","Peking duck"],"a":0,"ev":["Why don’t you try som tam?","som tam을 먹어 보는 게 어때?"],"why":"Why don't you try ~?는 '~을 먹어 보는 게 어때?'라는 추천이에요.","ans":"som tam","memo":["G가 추천한 음식 = som tam","Why don’t you try som tam? (som tam을 먹어 보는 게 어때?)"]},{"n":4,"q":"som tam은 어떤 음식인가요?","o":["태국식 수프","태국식 볶음밥","태국식 샐러드","태국식 국수","태국식 디저트"],"a":2,"ev":["It’s Thai salad.","그것은 태국식 샐러드야."],"why":"B가 What's that?이라고 묻자 G가 대답한 문장이에요.","ans":"태국식 샐러드","memo":["som tam = 태국식 샐러드","It’s Thai salad. (그것은 태국식 샐러드야.)"]},{"n":5,"q":"대화의 마지막에서 B는 어떻게 하기로 했나요?","o":["다른 음식을 고르기로 했다","집에 가기로 했다","그 음식을 먹지 않기로 했다","G에게 요리법을 배우기로 했다","추천받은 음식을 주문하기로 했다"],"a":4,"ev":["Sounds good. I’ll get it.","좋아. 그걸로 할게."],"why":"Sounds good은 '좋아'라는 동의이고, get it은 여기서 '그것을 주문하다'예요.","ans":"추천받은 음식을 주문하기로 했다","memo":["B의 마지막 결정 = som tam 주문","Sounds good. I’ll get it. (좋아. 그걸로 할게.)"]}];var DQ=[{"n":6,"q":"글쓴이가 가장 먼저 가 보자고 한 곳은 어디인가요?","o":["돈두르마 트럭","젤라토 트럭","팔레타 트럭","아이스크림 공장","케이크 가게"],"a":1,"ev":["A gelato truck is over there. There is a long line. Let’s go there first.","젤라토 트럭이 저기에 있어요. 줄이 길어요. 저기에 먼저 가 봐요."],"why":"'there'는 앞 문장의 젤라토 트럭을 가리켜요.","ans":"젤라토 트럭","memo":["먼저 간 곳 = 젤라토 트럭","A gelato truck is over there. There is a long line. Let’s go there first. (젤라토 트럭이 저기에 있어요. 줄이 길어요. 저기에 먼저 가 봐요.)"]},{"n":7,"q":"젤라토는 언제 처음 등장했나요?","o":["12세기","14세기","15세기","16세기","18세기"],"a":3,"ev":["It first appeared there in the 16th century","그것은 그곳에 16세기에 처음 등장했어요"],"why":"first appeared는 '처음 등장했다'는 뜻이에요.","ans":"16세기","memo":["젤라토 등장 시기 = 16세기","It first appeared there in the 16th century (그것은 그곳에 16세기에 처음 등장했어요)"]},{"n":8,"q":"돈두르마에 대한 설명으로 알맞은 것은 무엇인가요?","o":["아주 천천히 녹는다","아주 빨리 녹는다","차갑지 않다","멕시코에서 왔다","팔 때 칼과 포크를 준다"],"a":0,"ev":["It melts very slowly.","그것은 아주 천천히 녹습니다."],"why":"melt는 '녹다'이고 slowly는 '천천히'예요. 빨리가 아니에요.","ans":"아주 천천히 녹는다","memo":["돈두르마의 특징 = 아주 천천히 녹음","It melts very slowly. (그것은 아주 천천히 녹습니다.)"]},{"n":9,"q":"글쓴이가 먹은 키위 팔레타는 어떤 맛이었나요?","o":["시큼한 맛","달콤한 맛","매운맛","짠맛","쓴맛"],"a":2,"ev":["Oh, no! It tastes spicy!","오, 이런! 이것은 매운맛이 나요!"],"why":"Oh, no!에서 글쓴이가 예상 못 한 맛이라는 걸 알 수 있어요.","ans":"매운맛","memo":["키위 팔레타의 맛 = 매운맛","Oh, no! It tastes spicy! (오, 이런! 이것은 매운맛이 나요!)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["글쓴이는 국제 아이스크림 축제에 와 있다.","어떤 튀르키예 사람들은 돈두르마를 샌드위치처럼 먹는다.","대부분의 팔레타에는 천연 과일이 들어 있다.","글쓴이가 가장 좋아한 아이스크림은 젤라토였다.","팔레타 중에는 매운 것이 하나도 없다."],"a":4,"ev":["Most paletas are sweet, but some are spicy.","팔레타 대부분은 달콤하지만, 어떤 것은 맵습니다."],"why":"본문에는 some are spicy, 즉 매운 팔레타도 있다고 나와요. 그래서 '하나도 없다'가 틀려요.","ans":"팔레타 중에는 매운 것이 하나도 없다.","memo":["팔레타 = 대부분 달콤, 일부는 매움","Most paletas are sweet, but some are spicy. (팔레타 대부분은 달콤하지만, 어떤 것은 맵습니다.)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

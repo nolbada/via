@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 1</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 1 · Me and My Three Emojis</h1><div class="sub">나와 나의 세 가지 이모지들 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":"재호 · 한국","en":"Hello! My name are Jaeho. I'm from Korea.","ko":"안녕! 내 이름은 재호야. 나는 한국 출신이야.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[3],"point":"be동사의 긍정문: 주어 My name(3인칭 단수)에는 is 사용","topic":"be동사의 긍정문","memo":"주어 My name(3인칭 단수)에는 is 사용"}]},{"n":2,"tag":null,"en":"I'm at the first grade of middle school.","ko":"나는 중학교 1학년이야.","ok":false,"foot":[],"fixes":[{"wrong":"at","right":"in","partial":false,"at":[1],"point":"기본전치사: '~학년에'는 전치사 in 사용 (at 아님)","topic":"기본전치사","memo":"'~학년에'는 전치사 in 사용"}]},{"n":3,"tag":null,"en":"Looking at my smile! I always smile, so many people like me.","ko":"내 미소를 좀 봐! 나는 항상 미소를 지어서, 많은 사람들이 나를 좋아해.","ok":false,"foot":[],"fixes":[{"wrong":"Looking","right":"Look","partial":false,"at":[0],"point":"명령문: 동사원형으로 시작 - Look 사용 (Looking 아님)","topic":"명령문","memo":"동사원형으로 시작 - Look 사용"}]},{"n":4,"tag":null,"en":"In my free time, I plays soccer with my friends. Me love soccer.","ko":"여가 시간에, 나는 내 친구들과 축구를 해. 나는 축구를 좋아해.","ok":false,"foot":[],"fixes":[{"wrong":"plays","right":"play","partial":false,"at":[5],"point":"일반동사의 긍정문: 주어 I에는 동사원형 play 사용","topic":"일반동사의 긍정문","memo":"주어 I에는 동사원형 play 사용"},{"wrong":"Me","right":"I","partial":false,"at":[10],"point":"인칭대명사 격: 주어 자리에는 주격 I 사용","topic":"인칭대명사 격","memo":"주어 자리에는 주격 I 사용"}]},{"n":5,"tag":null,"en":"I are in the school soccer club. I also love music.","ko":"나는 학교 축구 동호회에 속해 있어. 나는 음악도 좋아해.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"am","partial":false,"at":[1],"point":"be동사의 긍정문: 주어 I에는 am 사용","topic":"be동사의 긍정문","memo":"주어 I에는 am 사용"}]},{"n":6,"tag":null,"en":"I'm in the singing club too. Both clubs are fun!","ko":"나는 노래 동호회에도 속해 있어. 두 동호회는 모두 재미있어!","ok":true,"foot":[],"fixes":[]},{"n":7,"tag":null,"en":"im13: Hey, I'm also on middle school! Good luck.","ko":"im13: 안녕, 나도 중학생이야! 행운을 빌어.","ok":false,"foot":[],"fixes":[{"wrong":"on","right":"in","partial":false,"at":[4],"point":"기본전치사: '~에 속해 있다'는 전치사 in 사용 (on 아님)","topic":"기본전치사","memo":"'~에 속해 있다'는 전치사 in 사용"}]},{"n":8,"tag":null,"en":"messi10: I likes soccer too!","ko":"messi10: 나도 축구를 좋아해!","ok":false,"foot":[],"fixes":[{"wrong":"likes","right":"like","partial":false,"at":[2],"point":"일반동사의 긍정문: 주어 I에는 동사원형 like 사용","topic":"일반동사의 긍정문","memo":"주어 I에는 동사원형 like 사용"}]},{"n":9,"tag":"Diego · 멕시코","en":"I'm Diego. I is from Mexico.","ko":"나는 Diego야. 나는 멕시코 출신이야.","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"am","partial":false,"at":[3],"point":"be동사의 긍정문: 주어 I에는 am 사용","topic":"be동사의 긍정문","memo":"주어 I에는 am 사용"}]},{"n":10,"tag":null,"en":"I have an cat. She name is Bella. (Meow!)","ko":"나는 고양이 한 마리를 키워. 그녀의 이름은 Bella야. (야옹!)","ok":false,"foot":[],"fixes":[{"wrong":"an","right":"a","partial":false,"at":[2],"point":"관사: 자음으로 시작하는 cat 앞에는 부정관사 a 사용 (an 아님)","topic":"관사","memo":"자음으로 시작하는 cat 앞에는 부정관사 a 사용"},{"wrong":"She","right":"Her","partial":false,"at":[4],"point":"인칭대명사 격: 명사 name을 꾸미는 소유격 Her 사용 (주격 She 아님)","topic":"인칭대명사 격","memo":"명사 name을 꾸미는 소유격 Her 사용"}]},{"n":11,"tag":null,"en":"She is so sweet!","ko":"그녀는 정말 사랑스러워!","ok":true,"foot":[],"fixes":[]},{"n":12,"tag":null,"en":"I often take pictures of Bella and post they online.","ko":"나는 Bella의 사진을 자주 찍고 그것들을 온라인에 게시해.","ok":false,"foot":[],"fixes":[{"wrong":"they","right":"them","partial":false,"at":[8],"point":"인칭대명사 격: 동사 post의 목적어 자리에는 목적격 them 사용","topic":"인칭대명사 격","memo":"동사 post의 목적어 자리에는 목적격 them 사용"}]},{"n":13,"tag":null,"en":"Also, I liking tacos. I sometime make them with my mom.","ko":"또한, 나는 타코를 좋아해. 나는 때때로 엄마와 함께 그것들을 만들어.","ok":false,"foot":[],"fixes":[{"wrong":"liking","right":"like","partial":false,"at":[2],"point":"현재시제: 반복적으로 좋아하는 것은 진행형이 아닌 현재시제 like 사용 (liking 아님, be동사도 없음)","topic":"현재시제","memo":"반복적으로 좋아하는 것은 진행형이 아닌 현재시제 like 사용"},{"wrong":"sometime","right":"sometimes","partial":false,"at":[5],"point":"어휘: '가끔'이라는 반복 의미의 부사는 sometimes 사용 (sometime은 '언젠가'라는 뜻)","topic":"어휘","memo":"'가끔'이라는 반복 의미의 부사는 sometimes 사용"}]},{"n":14,"tag":null,"en":"luv_cat: I love cat too!","ko":"luv_cat: 나도 고양이를 좋아해!","ok":false,"foot":[],"fixes":[{"wrong":"cat","right":"cats","partial":false,"at":[3],"point":"수일치: 고양이 전반을 가리키는 일반적 진술이므로 복수형 cats 사용","topic":"수일치","memo":"고양이 전반을 가리키는 일반적 진술이므로 복수형 cats 사용"}]},{"n":15,"tag":"Amara · 태국","en":"I'm Amara. I lives in Thailand.","ko":"나는 Amara야. 나는 태국에 살아.","ok":false,"foot":[],"fixes":[{"wrong":"lives","right":"live","partial":false,"at":[3],"point":"일반동사의 긍정문: 주어 I에는 동사원형 live 사용 (3인칭 단수가 아니므로 -s 없음)","topic":"일반동사의 긍정문","memo":"주어 I에는 동사원형 live 사용"}]},{"n":16,"tag":null,"en":"I have an warm heart. I often help other people and feeling happy.","ko":"나는 따뜻한 마음을 가지고 있어. 나는 자주 다른 사람들을 돕고 행복을 느껴.","ok":false,"foot":[],"fixes":[{"wrong":"an","right":"a","partial":false,"at":[2],"point":"관사: 자음(w) 발음으로 시작하는 warm 앞에는 부정관사 a 사용 (an 아님)","topic":"관사","memo":"자음(w) 발음으로 시작하는 warm 앞에는 부정관사 a 사용"},{"wrong":"feeling","right":"feel","partial":false,"at":[11],"point":"현재시제: and로 연결된 두 동사는 형태를 일치시켜 현재시제 feel 사용 (feeling 아님)","topic":"현재시제","memo":"and로 연결된 두 동사는 형태를 일치시켜 현재시제 feel 사용"}]},{"n":17,"tag":null,"en":"I like dance and exercise. I practice dance moves every days.","ko":"나는 춤과 운동을 좋아해. 나는 매일 춤 동작을 연습해.","ok":false,"foot":[],"fixes":[{"wrong":"dance","right":"dancing","partial":false,"at":[2],"point":"동명사: 동사 like의 목적어 자리에는 동명사 dancing 사용","topic":"동명사","memo":"동사 like의 목적어 자리에는 동명사 dancing 사용"},{"wrong":"days","right":"day","partial":false,"at":[10],"point":"수일치: every 뒤에는 단수명사 day 사용 (days 아님)","topic":"수일치","memo":"every 뒤에는 단수명사 day 사용"}]},{"n":18,"tag":null,"en":"I also go to the gym for exercise. I feel so healthily!","ko":"나는 또한 운동을 위해 체육관에 다녀. 나는 정말 건강하다고 느껴!","ok":false,"foot":[],"fixes":[{"wrong":"healthily","right":"healthy","partial":false,"at":[11],"point":"부사 vs 형용사: 감각동사 feel의 보어 자리에는 형용사 healthy 사용 (healthily 아님)","topic":"부사 vs 형용사","memo":"감각동사 feel의 보어 자리에는 형용사 healthy 사용"}]},{"n":19,"tag":null,"en":"p0wer: Great! What does you do for exercise?","ko":"p0wer: 훌륭해! 넌 운동을 위해 무엇을 하니?","ok":false,"foot":[],"fixes":[{"wrong":"does","right":"do","partial":false,"at":[3],"point":"일반동사의 의문문: 주어 you에는 do 사용 (does 아님)","topic":"일반동사의 의문문","memo":"주어 you에는 do 사용"}]},{"n":20,"tag":"Sophie · 프랑스","en":"Hi! I'm Sophie. Can you guessing my country?","ko":"안녕! 나는 Sophie야. 내 나라를 알아맞힐 수 있니?","ok":false,"foot":[],"fixes":[{"wrong":"guessing","right":"guess","partial":false,"at":[5],"point":"조동사 can + 동사원형: guess 사용 (guessing 아님)","topic":"조동사 can + 동사원형","memo":"guess 사용"}]},{"n":21,"tag":null,"en":"You can sees the baguette. Yes, I'm of France!","ko":"너는 바게트를 볼 수 있어. 맞아, 난 프랑스 출신이야!","ok":false,"foot":["1baguette 바게트: 프랑스식 막대 모양 빵"],"fixes":[{"wrong":"sees","right":"see","partial":false,"at":[2],"point":"조동사 can + 동사원형: see 사용 (sees 아님)","topic":"조동사 can + 동사원형","memo":"see 사용"},{"wrong":"of","right":"from","partial":false,"at":[7],"point":"기본전치사: 출신을 나타낼 때는 전치사 from 사용 (of 아님)","topic":"기본전치사","memo":"출신을 나타낼 때는 전치사 from 사용"}]},{"n":22,"tag":null,"en":"I live with my families: my mom, dad, and Enzo.","ko":"나는 가족과 함께 살아: 우리 엄마, 아빠, 그리고 Enzo야.","ok":false,"foot":[],"fixes":[{"wrong":"families","right":"family","partial":false,"at":[4],"point":"동격: 콜론 뒤 my mom, dad, and Enzo가 가리키는 것은 하나의 family이므로 단수형 family 사용","topic":"동격","memo":"콜론 뒤 my mom, dad, and Enzo가 가리키는 것은 하나의 family이므로 단수형 family 사용"}]},{"n":23,"tag":null,"en":"Enzo is my twin brothers. We are best friend!","ko":"Enzo는 내 쌍둥이 형제야. 우리는 가장 친한 친구야!","ok":false,"foot":[],"fixes":[{"wrong":"brothers","right":"brother","partial":false,"at":[4],"point":"동격: 주어 Enzo(단수 한 명)와 동격 표현의 수를 일치시켜 단수형 brother 사용","topic":"동격","memo":"주어 Enzo(단수 한 명)와 동격 표현의 수를 일치시켜 단수형 brother 사용"},{"wrong":"friend","right":"friends","partial":false,"at":[8],"point":"수일치: 주어 We(복수)와 보어의 수를 일치시켜 복수형 friends 사용","topic":"수일치","memo":"주어 We(복수)와 보어의 수를 일치시켜 복수형 friends 사용"}]},{"n":24,"tag":null,"en":"My family loves a camping. We go camp very often.","ko":"우리 가족은 캠핑을 좋아해. 우리는 캠핑을 매우 자주 가.","ok":false,"foot":[],"fixes":[{"wrong":"a camping","right":"camping","partial":false,"at":[3],"point":"관사: 동명사 camping 앞에는 부정관사를 쓰지 않음 (a camping 아님)","topic":"관사","memo":"동명사 camping 앞에는 부정관사를 쓰지 않음"},{"wrong":"camp","right":"camping","partial":false,"at":[7],"point":"동명사: go camping(캠핑을 가다)처럼 취미 표현에는 동명사 camping 사용 (camp 아님)","topic":"동명사","memo":"go camping(캠핑을 가다)처럼 취미 표현에는 동명사 camping 사용"}]},{"n":25,"tag":null,"en":"leo_121: Bonjour, Sophie! k!m: Does you and your brother look like each other?","ko":"leo_121: 안녕, Sophie! k!m: 너와 네 형제는 서로 닮았니?","ok":false,"foot":[],"fixes":[{"wrong":"Does","right":"Do","partial":false,"at":[4],"point":"일반동사의 의문문: 주어 you and your brother(복수)에는 Do 사용 (Does 아님)","topic":"일반동사의 의문문","memo":"주어 you and your brother(복수)에는 Do 사용"}]}];var RNUM=1;var TITLE_EN="Me and My Three Emojis";var PASS_EN=["Me and My Three Emojis","Jaeho","Hello! My name is Jaeho. I'm from Korea. I'm in the first grade of middle school. Look at my smile! I always smile, so many people like me. In my free time, I play soccer with my friends. I love soccer. I'm in the school soccer club. I also love music. I'm in the singing club too. Both clubs are fun!","im13: Hey, I'm also in middle school! Good luck.","messi10: I like soccer too!","Diego","I'm Diego. I'm from Mexico. I have a cat. Her name is Bella. (Meow!) She is so sweet! I often take pictures of Bella and post them online. Also, I like tacos. I sometimes make them with my mom.","luv_cat: I love cats too!","0905jm: Bella","Amara","I'm Amara. I live in Thailand. I have a warm heart. I often help other people and feel happy. I like dancing and exercise. I practice dance moves every day. I also go to the gym for exercise. I feel so healthy!","p0wer: Great! What do you do for exercise?","Sophie","Hi! I'm Sophie. Can you guess my country? You can see the baguette. Yes, I'm from France! I live with my family: my mom, dad, and Enzo. Enzo is my twin brother. We are best friends! My family loves camping. We go camping very often.","leo_121: Bonjour, Sophie!","k!m: Do you and your brother look like each other?","0905jm: Bella","leo_121: 안녕, Sophie!"];var PASS_KO=["나와 나의 세 가지 이모지들","안녕! 내 이름은 재호야. 나는 한국 출신이야. 나는 중학교 1학년이야. 내 미소를 좀 봐! 나는 항상 미소를 지어서, 많은 사람들이 나를 좋아해. 여가 시간에, 나는 내 친구들과 축구를 해. 나는 축구를 좋아해. 나는 학교 축구 동호회에 속해 있어. 나는 음악도 좋아해. 나는 노래 동호회에도 속해 있어. 두 동호회는 모두 재미있어!","im13: 안녕, 나도 중학생이야! 행운을 빌어.","messi10: 나도 축구를 좋아해!","나는 Diego야. 나는 멕시코 출신이야. 나는 고양이 한 마리를 키워. 그녀의 이름은 Bella야. (야옹!) 그녀는 정말 사랑스러워! 나는 Bella의 사진을 자주 찍고 그것들을 온라인에 게시해. 또한, 나는 타코를 좋아해. 나는 때때로 엄마와 함께 그것들을 만들어.","luv_cat: 나도 고양이를 좋아해!","나는 Amara야. 나는 태국에 살아. 나는 따뜻한 마음을 가지고 있어. 나는 자주 다른 사람들을 돕고 행복을 느껴. 나는 춤과 운동을 좋아해. 나는 매일 춤 동작을 연습해. 나는 또한 운동을 위해 체육관에 다녀. 나는 정말 건강하다고 느껴!","p0wer: 훌륭해! 넌 운동을 위해 무엇을 하니?","안녕! 나는 Sophie야. 내 나라를 알아맞힐 수 있니? 너는 바게트를 볼 수 있어. 맞아, 난 프랑스 출신이야! 나는 가족과 함께 살아: 우리 엄마, 아빠, 그리고 Enzo야. Enzo는 내 쌍둥이 형제야. 우리는 가장 친한 친구야! 우리 가족은 캠핑을 좋아해. 우리는 캠핑을 매우 자주 가.","k!m: 너와 네 형제는 서로 닮았니?"];var DLG=[["G","Hi, I'm Minjeong. Nice to meet you.","안녕, 나는 민정이야. 만나서 반가워."],["B","Hi, Minjeong. Nice to meet you too. I'm Sam.","안녕, 민정아. 나도 만나서 반가워. 나는 Sam이야."],["G","Where are you from, Sam?","너는 어디 출신이니, Sam?"],["B","I'm from Canada.","나는 캐나다 출신이야."],["G","I see. Oh, you have a Ladybug CD. Are you a fan of Ladybug?","그렇구나. 오, 너 Ladybug CD를 가지고 있네. 너는 Ladybug의 팬이니?"],["B","Yeah! She is my favorite singer. Do you like Ladybug too?","응! 그녀는 내가 가장 좋아하는 가수야. 너도 Ladybug를 좋아하니?"],["G","Of course! I like her music so much. What is your favorite song?","물론이지! 나는 그녀의 음악을 정말 좋아해. 네가 가장 좋아하는 노래는 뭐니?"],["B","My favorite song is \"Summer Days.\" I like the words of the song.","내가 가장 좋아하는 노래는 \"Summer Days\"야. 나는 그 노래의 가사가 좋아."]];var BQ=[{"n":1,"q":"Sam은 어느 나라 출신인가요?","o":["한국","캐나다","미국","프랑스","태국"],"a":1,"ev":["I'm from Canada.","나는 캐나다 출신이야."],"why":"Minjeong이 \"Where are you from?\"이라고 묻고 Sam이 대답한 문장이 근거예요.","ans":"캐나다","memo":["Sam = 캐나다 출신","I'm from Canada. (나는 캐나다 출신이야.)"]},{"n":2,"q":"Sam이 가지고 있는 것은 무엇인가요?","o":["Ladybug의 CD","Ladybug의 콘서트 표","Ladybug의 사진","Ladybug의 책","Ladybug의 티셔츠"],"a":0,"ev":["Oh, you have a Ladybug CD.","오, 너 Ladybug CD를 가지고 있네."],"why":"민정이가 Sam이 가진 것을 보고 한 말이에요.","ans":"Ladybug의 CD","memo":["Sam이 가진 것 = Ladybug CD","you have a Ladybug CD (너 Ladybug CD를 가지고 있네)"]},{"n":3,"q":"두 사람이 공통으로 좋아하는 것은 무엇인가요?","o":["축구","가수 Ladybug","피자","고양이","영화"],"a":1,"ev":["Do you like Ladybug too? / Of course! I like her music so much.","너도 Ladybug를 좋아하니? / 물론이지! 나는 그녀의 음악을 정말 좋아해."],"why":"Sam은 Ladybug가 favorite singer라고 했고, 민정이도 그녀의 음악을 좋아한다고 했어요.","ans":"가수 Ladybug","memo":["공통점 = 가수 Ladybug를 좋아함","I like her music so much. (나는 그녀의 음악을 정말 좋아해.)"]},{"n":4,"q":"두 사람의 관계로 알맞은 것은?","o":["오래된 친구","가족","처음 만난 사이","선생님과 학생","쌍둥이"],"a":2,"ev":["Nice to meet you. / Nice to meet you too.","만나서 반가워. / 나도 만나서 반가워."],"why":"Nice to meet you는 처음 만났을 때 하는 인사예요.","ans":"처음 만난 사이","memo":["두 사람의 관계 = 처음 만난 사이","Nice to meet you. = 처음 만났을 때 하는 인사"]},{"n":5,"q":"Sam이 가장 좋아하는 노래와 그 이유로 알맞은 것은?","o":["\"Summer Days\" - 가사가 좋아서","\"Summer Days\" - 춤이 멋져서","\"Winter Days\" - 가사가 좋아서","\"Winter Days\" - 멜로디가 좋아서","\"Summer Days\" - 친구가 불러서"],"a":0,"ev":["My favorite song is \"Summer Days.\" I like the words of the song.","내가 가장 좋아하는 노래는 \"Summer Days\"야. 나는 그 노래의 가사가 좋아."],"why":"words of the song은 노래의 가사를 뜻해요.","ans":"\"Summer Days\" - 가사가 좋아서","memo":["Sam의 최애곡 = Summer Days (가사가 좋아서)","I like the words of the song. (나는 그 노래의 가사가 좋아.)"]}];var DQ=[{"n":6,"q":"재호가 여가 시간에 하는 것은?","o":["친구들과 축구를 한다","노래 연습을 한다","고양이와 논다","체육관에 간다","타코를 만든다"],"a":0,"ev":["In my free time, I play soccer with my friends.","여가 시간에, 나는 내 친구들과 축구를 해."],"why":"in my free time이 '여가 시간에'라는 뜻이에요.","ans":"친구들과 축구를 한다","memo":["재호의 여가 시간 = 친구들과 축구","In my free time, I play soccer with my friends."]},{"n":7,"q":"Diego는 누구와 함께 타코를 만드나요?","o":["친구","엄마","아빠","형","Bella"],"a":1,"ev":["I sometimes make them with my mom.","나는 때때로 엄마와 함께 그것들을 만들어."],"why":"them은 앞 문장의 tacos를 가리켜요.","ans":"엄마","memo":["Diego가 타코를 같이 만드는 사람 = 엄마","I sometimes make them with my mom. (them = tacos)"]},{"n":8,"q":"Amara가 매일 하는 것은?","o":["고양이 사진 찍기","춤 동작 연습하기","축구하기","노래 부르기","체육관 청소하기"],"a":1,"ev":["I practice dance moves every day.","나는 매일 춤 동작을 연습해."],"why":"every day가 '매일'이라는 뜻이에요.","ans":"춤 동작 연습하기","memo":["Amara가 매일 하는 것 = 춤 동작 연습","I practice dance moves every day."]},{"n":9,"q":"k!m이 Sophie에게 물은 내용은?","o":["Sophie와 Enzo가 서로 닮았는지","Sophie의 나이","캠핑을 어디로 가는지","가족이 모두 몇 명인지","프랑스 어느 도시에 사는지"],"a":0,"ev":["Do you and your brother look like each other?","너와 네 형제는 서로 닮았니?"],"why":"look like each other는 '서로 닮다'라는 뜻이에요.","ans":"Sophie와 Enzo가 서로 닮았는지","memo":["k!m의 질문 = Sophie와 형제가 닮았는지","look like each other = 서로 닮다"]},{"n":10,"q":"위 네 글의 내용과 일치하지 않는 것은?","o":["재호는 한국 출신이다.","Diego는 멕시코 출신이다.","Amara는 태국에 산다.","Sophie의 가족은 캠핑을 좋아한다.","Sophie와 Enzo는 사이가 좋지 않다."],"a":4,"ev":["We are best friends!","우리는 가장 친한 친구야!"],"why":"Sophie는 Enzo와 best friends라고 했어요. 나머지는 모두 글에 그대로 나와요.","ans":"Sophie와 Enzo는 사이가 좋지 않다.","memo":["Sophie와 Enzo = 가장 친한 친구 (사이 나쁨 X)","We are best friends! (우리는 가장 친한 친구야!)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

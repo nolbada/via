@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 56</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 56 · Who Do I Want to Be?</h1><div class="sub">나는 누가 되고 싶은가? · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":null,"en":"My teacher told we about tomorrow’s presentation.","ko":"나의 선생님은 우리에게 내일 발표에 대해서 말씀하셨다.","ok":false,"foot":["1presentation 발표"],"fixes":[{"wrong":"we","right":"us","partial":false,"at":[3],"point":"인칭대명사 목적격: told의 목적어이므로 목적격 us 사용(we는 주격)","topic":"인칭대명사 목적격","memo":"told의 목적어이므로 목적격 us 사용(we는 주격)"}]},{"n":2,"tag":null,"en":"He asked us, “What do you want to be when you grows up?”","ko":"선생님은 우리에게 물어보셨다. “여러분은 커서 무엇이 되고 싶은가요?”","ok":false,"foot":[],"fixes":[{"wrong":"grows","right":"grow","partial":false,"at":[11],"point":"수일치: 접속사 when이 이끄는 절의 주어 you에는 동사원형 grow 사용 (grows 아님)","topic":"수일치","memo":"접속사 when이 이끄는 절의 주어 you에는 동사원형 grow 사용"}]},{"n":3,"tag":null,"en":"I said to myself, “Oh, no. Not again! What do I want to be? I has no idea.”","ko":"나는 나 자신에게 말했다. “오, 안 돼. 또야! 내가 뭐가 되고 싶냐고? 모르겠어.”","ok":false,"foot":[],"fixes":[{"wrong":"has","right":"have","partial":false,"at":[15],"point":"수일치: 주어 I에는 동사원형 have 사용(has 아님)","topic":"수일치","memo":"주어 I에는 동사원형 have 사용"}]},{"n":4,"tag":null,"en":"At home, I asked my family about their dream jobs.","ko":"집에서 나는 가족들에게 그들의 꿈의 직업에 대해 물었다.","ok":true,"foot":[],"fixes":[]},{"n":5,"tag":null,"en":"Dad said, “Well, I wanted being an astronaut when I was young. I wanted to travel to moon.”","ko":"아빠는 말씀하셨다. “글쎄, 나는 어렸을 때는 우주 비행사가 되고 싶었단다. 나는 달로 여행 가고 싶었거든.”","ok":false,"foot":["1astronaut 우주비행사"],"fixes":[{"wrong":"being","right":"to be","partial":false,"at":[5],"point":"to부정사의 명사적 용법: wanted의 목적어이므로 to be 사용 (동명사 being 아님)","topic":"to부정사의 명사적 용법","memo":"wanted의 목적어이므로 to be 사용"},{"wrong":"to moon","right":"to the moon","partial":false,"at":[16],"point":"관사: 세상에 하나뿐인 대상(달) 앞에는 정관사 the 사용","topic":"관사","memo":"세상에 하나뿐인 대상(달) 앞에는 정관사 the 사용"}]},{"n":6,"tag":null,"en":"“When I will grow up, I’m going to be a robot designer,” said my big sister Angela.","ko":"“나는 커서 로봇 디자이너가 될 거야,” 나의 누나 Angela가 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"will grow","right":"grow","partial":false,"at":[2],"point":"접속사 when이 이끄는 시간의 부사절에서는 미래의 일도 현재시제로 표현 (will grow → grow)","topic":"접속사 when이 이끄는 시간의 부사절에서는 미래의 일도 현재시제로 표현 (will grow → grow)","memo":""}]},{"n":7,"tag":null,"en":"My little sister Sophie shout, “I’m going to be a superhero or a bird!”","ko":"나의 여동생 Sophie가 소리쳤다. “나는 슈퍼히어로나 새가 될 거야!”","ok":false,"foot":[],"fixes":[{"wrong":"shout","right":"shouted","partial":false,"at":[4],"point":"시제: 과거에 있었던 일을 서술하는 글이므로 과거형 shouted 사용","topic":"시제","memo":"과거에 있었던 일을 서술하는 글이므로 과거형 shouted 사용"}]},{"n":8,"tag":null,"en":"Dad asked me, “What about you, Noah? What are you want to be?”","ko":"아빠가 내게 물어보셨다. “Noah, 너는 어떠니? 너는 무엇이 되고 싶어?”","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"do","partial":false,"at":[8],"point":"일반동사가 있는 의문문은 do로 시작함(are → do, be동사와 혼동 주의)","topic":"일반동사가 있는 의문문은 do로 시작함(are → do, be동사와 혼동 주의)","memo":""}]},{"n":9,"tag":null,"en":"Dad said I should just relaxes.","ko":"아빠는 나에게 그냥 긴장을 풀라고 말씀하셨다.","ok":false,"foot":[],"fixes":[{"wrong":"relaxes","right":"relax","partial":false,"at":[5],"point":"조동사 should 뒤에는 동사원형 사용 (relaxes → relax)","topic":"조동사 should 뒤에는 동사원형 사용 (relaxes → relax)","memo":""}]},{"n":10,"tag":null,"en":"I felt stressedly out.","ko":"나는 스트레스를 받았다.","ok":false,"foot":[],"fixes":[{"wrong":"stressedly","right":"stressed","partial":false,"at":[2],"point":"2형식 문장: 감각동사 felt의 보어는 형용사 stressed 사용(부사 stressedly 아님)","topic":"2형식 문장","memo":"감각동사 felt의 보어는 형용사 stressed 사용"}]},{"n":11,"tag":null,"en":"When Mom came home from work, I was still think about my dream job.","ko":"엄마가 퇴근하셨을 때, 나는 여전히 내 꿈의 직업에 대해 생각하고 있었다.","ok":false,"foot":[],"fixes":[{"wrong":"think","right":"thinking","partial":false,"at":[9],"point":"과거진행형: be동사(was)+v-ing 형태이므로 thinking 사용","topic":"과거진행형","memo":"be동사(was)+v-ing 형태이므로 thinking 사용"}]},{"n":12,"tag":null,"en":"“Noah, are everything okay?” she asked.","ko":"“Noah, 모든 것이 괜찮니?” 엄마가 물으셨다.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[1],"point":"수일치: 주어 everything은 단수 취급하므로 동사 is 사용","topic":"수일치","memo":"주어 everything은 단수 취급하므로 동사 is 사용"}]},{"n":13,"tag":null,"en":"“No, Mom. Something are wrong with me. I’m not going to be anything in the futures.”","ko":"“아니요, 엄마. 저한테 뭔가 문제가 있어요. 저는 미래에 아무것도 되지 못할 거예요.”","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[3],"point":"수일치: 주어 Something(단수)에는 동사 is 사용","topic":"수일치","memo":"주어 Something(단수)에는 동사 is 사용"},{"wrong":"futures","right":"future","partial":false,"at":[15],"point":"어휘: ‘미래에’라는 뜻의 관용표현 in the future는 단수형으로 사용","topic":"어휘","memo":"‘미래에’라는 뜻의 관용표현 in the future는 단수형으로 사용"}]},{"n":14,"tag":null,"en":"“What do you means?” she asked.","ko":"“무슨 말이니?” 엄마가 물으셨다.","ok":false,"foot":[],"fixes":[{"wrong":"means","right":"mean","partial":false,"at":[3],"point":"일반동사 의문문(do/does)에서는 동사원형 사용(means → mean)","topic":"일반동사 의문문(do/does)에서는 동사원형 사용(means → mean)","memo":""}]},{"n":15,"tag":null,"en":"“Everyone have a dream job. Even Sophie does. And she’s only three!” I cried.","ko":"“모두에게는 꿈의 직업이 있잖아요. 심지어 Sophie에게도요. 그리고 걔는 고작 세 살이라고요!” 나는 울부짖었다.","ok":false,"foot":[],"fixes":[{"wrong":"have","right":"has","partial":false,"at":[1],"point":"수일치: 주어 Everyone은 단수 취급하므로 동사 has 사용","topic":"수일치","memo":"주어 Everyone은 단수 취급하므로 동사 has 사용"}]},{"n":16,"tag":null,"en":"“Oh, Noah. I don’t knows my dream job.”","ko":"“오, Noah. 나는 내 꿈의 직업을 몰라.”","ok":false,"foot":[],"fixes":[{"wrong":"knows","right":"know","partial":false,"at":[4],"point":"조동사 don’t 뒤에는 동사원형 사용 (knows → know)","topic":"조동사 don’t 뒤에는 동사원형 사용 (knows → know)","memo":""}]},{"n":17,"tag":null,"en":"“What? But you’re an grown-up, and you has a job,” I said.","ko":"“뭐라고요? 그렇지만 엄마는 어른이고 직업이 있잖아요.” 나는 말했다.","ok":false,"foot":["1grown-up 다 자란 어른"],"fixes":[{"wrong":"an grown-up","right":"a grown- up","partial":false,"at":[3],"point":"관사: grown-up은 자음 발음 [g] 로 시작하므로 부정관사 a 사용","topic":"관사","memo":"grown-up은 자음 발음 [g] 로 시작하므로 부정관사 a 사용"},{"wrong":"has","right":"have","partial":false,"at":[7],"point":"수일치: 주어 you에는 동사원형 have 사용(has 아님)","topic":"수일치","memo":"주어 you에는 동사원형 have 사용"}]},{"n":18,"tag":null,"en":"“That’s right, but …” “And you takes care of everyone. You have the answers to everything,” I went on.","ko":"“맞아, 그렇지만 …” “그리고 엄마는 모든 사람을 돌보시잖아요. 엄마는 모든 것에 대한 답을 갖고 있으시고요,” 나는 계속했다.","ok":false,"foot":[],"fixes":[{"wrong":"takes","right":"take","partial":false,"at":[6],"point":"수일치: 주어 you에는 동사원형 take 사용(takes 아님)","topic":"수일치","memo":"주어 you에는 동사원형 take 사용"}]},{"n":19,"tag":null,"en":"“You’re always nicely, and you’re not afraid of nothing. Most of all, you’re my mom!”","ko":"“엄마는 언제나 친절하시고 어떤 것도 두려워하지 않으시잖아요. 무엇보다도 엄마는 제 엄마잖아요!”","ok":false,"foot":[],"fixes":[{"wrong":"nicely","right":"nice","partial":false,"at":[2],"point":"2형식 문장: be동사(are)의 보어는 형용사 nice 사용(부사 nicely 아님)","topic":"2형식 문장","memo":"be동사(are)의 보어는 형용사 nice 사용"},{"wrong":"nothing","right":"anything","partial":false,"at":[8],"point":"어법: not이 있는 부정문에는 any 계열(anything)을 쓰며 이중부정 (nothing)은 쓰지 않음","topic":"어법","memo":"not이 있는 부정문에는 any 계열(anything)을 쓰며 이중부정 (nothing)은 쓰지 않음"}]},{"n":20,"tag":null,"en":"Mom smiled and said, “I hope you is right. I wanted become that kind of person.”","ko":"엄마는 미소를 지으며 말씀하셨다. “네가 맞기를 바라. 나는 그런 종류의 사람이 되고 싶었거든.”","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"are","partial":false,"at":[7],"point":"수일치: 주어 you에는 동사 are 사용(is 아님)","topic":"수일치","memo":"주어 you에는 동사 are 사용"},{"wrong":"become","right":"to become","partial":false,"at":[11],"point":"to부정사의 명사적 용법: wanted의 목적어이므로 to become 사용","topic":"to부정사의 명사적 용법","memo":"wanted의 목적어이므로 to become 사용"}]},{"n":21,"tag":null,"en":"“Mom! You’re already that kind of persons!”","ko":"“엄마! 엄마는 이미 그런 종류의 사람이에요!”","ok":false,"foot":[],"fixes":[{"wrong":"persons","right":"person","partial":false,"at":[6],"point":"어휘: that kind of 뒤에는 단수명사 person 사용","topic":"어휘","memo":"that kind of 뒤에는 단수명사 person 사용"}]},{"n":22,"tag":null,"en":"Just then, I have an idea. “That’s it! Thanks, Mom!”","ko":"바로 그때, 나는 생각이 떠올랐다. “바로 그거야! 고마워요, 엄마!”","ok":false,"foot":[],"fixes":[{"wrong":"have","right":"had","partial":false,"at":[3],"point":"시제: 과거에 있었던 일을 서술하는 글이므로 과거형 had 사용","topic":"시제","memo":"과거에 있었던 일을 서술하는 글이므로 과거형 had 사용"}]},{"n":23,"tag":null,"en":"The next day, I gave a presentation.","ko":"그다음 날, 나는 발표를 했다.","ok":true,"foot":[],"fixes":[]},{"n":24,"tag":null,"en":"“What do I want to be when I growth up? I don’t know. Who do I want to be? I knows that!","ko":"“제가 크면 무엇이 되고 싶냐고요? 저는 모르겠어요. 제가 누가 되고 싶냐고요? 저는 그것은 알아요!","ok":false,"foot":[],"fixes":[{"wrong":"growth","right":"grow","partial":false,"at":[8],"point":"어휘/품사: 명사 growth가 아닌 동사 grow 사용(growth up → grow up)","topic":"어휘/품사","memo":"명사 growth가 아닌 동사 grow 사용(growth up → grow up)"},{"wrong":"knows","right":"know","partial":false,"at":[20],"point":"수일치: 주어 I에는 동사원형 know 사용(knows 아님)","topic":"수일치","memo":"주어 I에는 동사원형 know 사용"}]},{"n":25,"tag":null,"en":"I want to be a caring person. I enjoy help others.","ko":"저는 배려하는 사람이 되고 싶어요. 저는 다른 사람들을 돕는 것을 좋아해요.","ok":false,"foot":["1caring 배려하는"],"fixes":[{"wrong":"help","right":"helping","partial":false,"at":[9],"point":"동명사: enjoy는 동명사(-ing)를 목적어로 취함(help → helping)","topic":"동명사","memo":"enjoy는 동명사(-ing)를 목적어로 취함(help → helping)"}]},{"n":26,"tag":null,"en":"I also want being a brave person. I want to try new thing.","ko":"저는 또한 용감한 사람이 되고 싶어요. 저는 새로운 것들을 시도하고 싶어요.","ok":false,"foot":["1brave 용감한"],"fixes":[{"wrong":"being","right":"to be","partial":false,"at":[3],"point":"to부정사의 명사적 용법: want의 목적어이므로 to be 사용(동명사 being 아님)","topic":"to부정사의 명사적 용법","memo":"want의 목적어이므로 to be 사용"},{"wrong":"thing","right":"things","partial":false,"at":[12],"point":"어휘: 막연히 여러 가지를 의미할 때는 복수형 things 사용","topic":"어휘","memo":"막연히 여러 가지를 의미할 때는 복수형 things 사용"}]},{"n":27,"tag":null,"en":"Who do I want to be? I want to being me.”","ko":"제가 누가 되고 싶냐고요? 저는 제가 되고 싶어요.”","ok":false,"foot":[],"fixes":[{"wrong":"being","right":"be","partial":false,"at":[9],"point":"to부정사의 명사적 용법: want의 목적어이므로 be 사용(동명사 being 아님)","topic":"to부정사의 명사적 용법","memo":"want의 목적어이므로 be 사용"}]}];var RNUM=56;var TITLE_EN="Who Do I Want to Be?";var PASS_EN=["Who Do I Want to Be?","My teacher told us about tomorrow’s presentation. He asked us, “What do you want to be when you grow up?” I said to myself, “Oh, no. Not again! What do I want to be? I have no idea.”","At home, I asked my family about their dream jobs. Dad said, “Well, I wanted to be an astronaut when I was young. I wanted to travel to the moon.”","“When I grow up, I’m going to be a robot designer,” said my big sister Angela.","My little sister Sophie shouted, “I’m going to be a superhero or a bird!”","Dad asked me, “What about you, Noah? What do you want to be?”","I was stressed out.","Later, Mom came home from work.","“Noah, is everything okay?” she asked.","“No, Mom. Something is wrong with me. I’m not going to be anything in the future.”","“What do you mean?” she asked.","“Everyone has a dream job. Even Sophie does. And she’s only three!” I cried.","“Oh, Noah. I don’t know my dream job.”","“What? But you’re a grown-up, and you have a job,” I said.","“That’s right, but …”","“And you take care of everyone. You have the answers to everything,” I went on. “You’re always nice, and you’re not afraid of anything. Most of all, you’re my mom!”","Mom smiled and said, “I hope you are right. I wanted to become that kind of person.”","“Mom! You’re already that kind of person!”","Just then, I had an idea. “That’s it! Thanks, Mom!”","The next day, I gave a presentation.","“What do I want to be when I grow up? I don’t know. Who do I want to be? I know that!","I want to be a caring person. I want to help others. I also want to be a brave person. I want to try new things.","Who do I want to be? I want to be me.”"];var PASS_KO=["제가 누가 되고 싶냐고요?","나의 선생님은 우리에게 내일 발표에 대해서 말씀하셨다. 선생님은 우리에게 물어보셨다. “여러분은 커서 무엇이 되고 싶은가요?” 나는 나 자신에게 말했다. “오, 안 돼. 또야! 내가 뭐가 되고 싶냐고? 모르겠어.”","집에서 나는 가족들에게 그들의 꿈의 직업에 대해 물었다. 아빠는 말씀하셨다. “글쎄, 나는 어렸을 때는 우주 비행사가 되고 싶었단다. 나는 달로 여행 가고 싶었거든.”","“나는 커서 로봇 디자이너가 될 거야.” 나의 누나 Angela가 말했다.","나의 여동생 Sophie가 소리쳤다. “나는 슈퍼히어로나 새가 될 거야!”","아빠가 내게 물어보셨다. “Noah, 너는 어떠니? 너는 무엇이 되고 싶어?”","나는 스트레스가 쌓였다.","나중에 엄마가 퇴근하셨다.","“Noah, 모든 것이 괜찮니?” 엄마가 물으셨다.","“아니요, 엄마. 저한테 뭔가 문제가 있어요. 저는 미래에 아무것도 되지 못할 거예요.”","“무슨 말이니?” 엄마가 물으셨다.","“모두에게는 꿈의 직업이 있잖아요. 심지어 Sophie에게도요. 그리고 걔는 고작 세 살이라고요!” 나는 울부짖었다.","“오, Noah. 나는 내 꿈의 직업을 몰라.”","“뭐라고요? 그렇지만 엄마는 어른이고 직업이 있잖아요.” 나는 말했다.","“맞아, 그렇지만 …”","“그리고 엄마는 모든 사람을 돌보시잖아요. 엄마는 모든 것에 대한 답을 갖고 있으시고요.” 나는 계속했다. “엄마는 언제나 친절하시고 어떤 것도 두려워하지 않으시잖아요. 무엇보다도 엄마는 제 엄마잖아요!”","엄마는 미소를 지으며 말씀하셨다. “네가 맞기를 바라. 나는 그런 종류의 사람이 되고 싶었거든.”","“엄마! 엄마는 이미 그런 종류의 사람이에요!”","바로 그때, 나는 생각이 떠올랐다. “바로 그거야! 고마워요, 엄마!”","그다음 날, 나는 발표를 했다.","“제가 크면 무엇이 되고 싶냐고요? 저는 모르겠어요. 제가 누가 되고 싶냐고요? 저는 그것은 알아요!","저는 배려하는 사람이 되고 싶어요. 저는 다른 사람들을 돕고 싶어요. 저는 또한 용감한 사람이 되고 싶어요. 저는 새로운 것들을 시도하고 싶어요.","제가 누가 되고 싶냐고요? 저는 제가 되고 싶어요.”"];var DLG=[["G","Hello, Hajin. What are you doing?","안녕, 하진아. 뭐 하고 있니?"],["B","Hi, Alicia. I’m doing my writing homework. It’s about my dream job.","안녕, Alicia. 나는 쓰기 숙제를 하고 있어. 내 꿈의 직업에 관한 거야."],["G","What do you want to be in the future?","너는 미래에 뭐가 되고 싶니?"],["B","I want to be a tennis player and win the world championship someday.","나는 테니스 선수가 되어서 언젠가 세계 선수권 대회에서 우승하고 싶어."],["G","Wow, that’s cool!","와, 멋지다!"],["B","How about you? What do you want to be in the future?","너는 어때? 너는 미래에 뭐가 되고 싶니?"],["G","Well, I’m interested in AI. I want to be a computer scientist.","음, 나는 AI에 관심이 있어. 나는 컴퓨터 과학자가 되고 싶어."],["B","Oh, that’s really nice.","오, 정말 멋지다."]];var BQ=[{"n":1,"q":"Hajin은 지금 무엇을 하고 있나요?","o":["영어 시험 공부","그림 그리기","테니스 연습","쓰기 숙제","AI 프로그램 만들기"],"a":3,"ev":["I’m doing my writing homework.","나는 쓰기 숙제를 하고 있어."],"why":"I'm doing은 지금 하고 있는 일을 말해요.","ans":"쓰기 숙제","memo":["Hajin이 지금 하는 일 = 쓰기 숙제","I’m doing my writing homework. (나는 쓰기 숙제를 하고 있어.)"]},{"n":2,"q":"Hajin의 숙제 주제는 무엇인가요?","o":["꿈의 직업","가장 좋아하는 운동","여름 방학","우리 가족","좋아하는 과목"],"a":0,"ev":["It’s about my dream job.","내 꿈의 직업에 관한 거야."],"why":"about 뒤에 숙제 주제가 나와요.","ans":"꿈의 직업","memo":["Hajin의 숙제 주제 = 꿈의 직업","It’s about my dream job. (내 꿈의 직업에 관한 거야.)"]},{"n":3,"q":"Hajin의 장래 희망은 무엇인가요?","o":["컴퓨터 과학자","축구 선수","테니스 선수","요리사","의사"],"a":2,"ev":["I want to be a tennis player and win the world championship someday.","나는 테니스 선수가 되어서 언젠가 세계 선수권 대회에서 우승하고 싶어."],"why":"want to be 뒤에 되고 싶은 직업이 나와요.","ans":"테니스 선수","memo":["Hajin의 장래 희망 = 테니스 선수","I want to be a tennis player and win the world championship someday. (나는 테니스 선수가 되어서 언젠가 세계 선수권 대회에서 우승하고 싶어.)"]},{"n":4,"q":"Hajin의 장래 희망을 들은 Alicia의 반응은?","o":["걱정했다","웃기다고 했다","이해하지 못했다","화를 냈다","멋지다고 감탄했다"],"a":4,"ev":["Wow, that’s cool!","와, 멋지다!"],"why":"cool은 '멋진'이라는 뜻이에요.","ans":"멋지다고 감탄했다","memo":["Alicia의 반응 = 멋지다고 감탄","Wow, that’s cool! (와, 멋지다!)"]},{"n":5,"q":"Alicia의 장래 희망은 무엇인가요?","o":["해양 과학자","컴퓨터 과학자","테니스 선수","로봇 디자이너","우주 비행사"],"a":1,"ev":["I want to be a computer scientist.","나는 컴퓨터 과학자가 되고 싶어."],"why":"Alicia는 AI에 관심이 있다고 한 뒤 장래 희망을 말했어요.","ans":"컴퓨터 과학자","memo":["Alicia의 장래 희망 = 컴퓨터 과학자","I want to be a computer scientist. (나는 컴퓨터 과학자가 되고 싶어.)"]}];var DQ=[{"n":6,"q":"선생님이 학생들에게 말해 준 것은 무엇인가요?","o":["내일 소풍 계획","내일 발표","다음 주 시험","방학 숙제","새 친구 소개"],"a":1,"ev":["My teacher told us about tomorrow’s presentation.","나의 선생님은 우리에게 내일 발표에 대해서 말씀하셨다."],"why":"presentation은 '발표'예요.","ans":"내일 발표","memo":["선생님이 알려 준 것 = 내일 발표","My teacher told us about tomorrow’s presentation. (나의 선생님은 우리에게 내일 발표에 대해서 말씀하셨다.)"]},{"n":7,"q":"Noah의 아빠가 어렸을 때 되고 싶었던 것은?","o":["로봇 디자이너","슈퍼히어로","선생님","우주 비행사","운동선수"],"a":3,"ev":["Well, I wanted to be an astronaut when I was young.","글쎄, 나는 어렸을 때는 우주 비행사가 되고 싶었단다."],"why":"when I was young은 '어렸을 때'예요.","ans":"우주 비행사","memo":["아빠의 어릴 적 꿈 = 우주 비행사","Well, I wanted to be an astronaut when I was young. (글쎄, 나는 어렸을 때는 우주 비행사가 되고 싶었단다.)"]},{"n":8,"q":"Sophie가 되고 싶다고 한 것은 무엇인가요?","o":["슈퍼히어로나 새","로봇 디자이너","우주 비행사","선생님","화가"],"a":0,"ev":["I’m going to be a superhero or a bird!","나는 슈퍼히어로나 새가 될 거야!"],"why":"or는 '또는'이라는 뜻이에요.","ans":"슈퍼히어로나 새","memo":["Sophie의 꿈 = 슈퍼히어로 또는 새","I’m going to be a superhero or a bird! (나는 슈퍼히어로나 새가 될 거야!)"]},{"n":9,"q":"Noah가 발표에서 되고 싶다고 말한 사람은?","o":["똑똑하고 유명한 사람","부자이고 친절한 사람","배려하고 용감한 사람","재미있고 인기 많은 사람","조용하고 착한 사람"],"a":2,"ev":["I want to be a caring person. / I also want to be a brave person.","나는 배려하는 사람이 되고 싶다. / 나는 또한 용감한 사람이 되고 싶다."],"why":"caring은 '배려하는', brave는 '용감한'이에요.","ans":"배려하고 용감한 사람","memo":["Noah가 되고 싶은 사람 = 배려하고 용감한 사람","I want to be a caring person. / I also want to be a brave person. (나는 배려하는 사람이 되고 싶다. / 나는 또한 용감한 사람이 되고 싶다.)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["Angela는 로봇 디자이너가 될 것이라고 했다.","Sophie는 세 살이다.","Noah의 엄마는 자신의 꿈의 직업을 모른다고 했다.","Noah는 엄마가 어떤 것도 두려워하지 않는다고 했다.","Noah의 엄마는 직업이 없다."],"a":4,"ev":["you’re a grown-up, and you have a job, / That’s right, but","엄마는 어른이고 직업이 있잖아요 / 맞아, 그렇지만"],"why":"엄마는 직업이 있고 Noah의 말에 That's right라고 했어요. 나머지는 모두 글에 그대로 나와요.","ans":"Noah의 엄마는 직업이 없다.","memo":["Noah의 엄마 = 직업이 있음 (직업 없음 X)","you’re a grown-up, and you have a job, / That’s right, but (엄마는 어른이고 직업이 있잖아요 / 맞아, 그렇지만)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

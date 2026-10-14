@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 39</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 39 · My Korean Food Diary</h1><div class="sub">나의 한국 음식 일기 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":null,"en":"During the summer vacation, William traveled around Korea with his family.","ko":"여름 방학 동안, William은 가족과 함께 한국 여기저기를 여행했다.","ok":true,"foot":[],"fixes":[]},{"n":2,"tag":null,"en":"These is his food diary.","ko":"이것은 그의 음식 일기이다.","ok":false,"foot":[],"fixes":[{"wrong":"These","right":"This","partial":false,"at":[0],"point":"지시대명사: 뒤에 나오는 단수명사 diary에 맞춰 This 사용","topic":"지시대명사","memo":"뒤에 나오는 단수명사 diary에 맞춰 This 사용"}]},{"n":3,"tag":"7월 25일 · 담양","en":"We went to Damyang to visiting Jungnogwon, an famous bamboo garden.","ko":"우리는 유명한 대나무 정원인 죽녹원을 방문하기 위해 담양에 갔다.","ok":false,"foot":[],"fixes":[{"wrong":"to visiting","right":"to visit","partial":false,"at":[4],"point":"to부정사의 부사적 용법(목적): '~ 하기 위해'는 to+동사원형","topic":"to부정사의 부사적 용법(목적)","memo":"'~ 하기 위해'는 to+동사원형"},{"wrong":"an","right":"a","partial":false,"at":[7],"point":"관사: 자음 발음 [f]로 시작하는 famous 앞에는 a 사용","topic":"관사","memo":"자음 발음 [f]로 시작하는 famous 앞에는 a 사용"}]},{"n":4,"tag":null,"en":"We enjoyed walking in the garden.","ko":"우리는 정원에서 걷는 것을 즐겼다.","ok":true,"foot":[],"fixes":[]},{"n":5,"tag":null,"en":"After we looked around, we eat two local dishes, daetongbap and tteokgalbi.","ko":"주변을 둘러본 후에, 우리는 대통밥과 떡갈비라는 두 가지 지역 음식을 먹었다.","ok":false,"foot":["1daetongbap 대통밥: 대나무 통에 지은 밥 2tteokgalbi 떡갈비: 다진 소고기로 만든 갈비 요리"],"fixes":[{"wrong":"eat","right":"ate","partial":false,"at":[5],"point":"시제 일관성: 과거 시제 ate 사용","topic":"시제 일관성","memo":"과거 시제 ate 사용"}]},{"n":6,"tag":null,"en":"Daetongbap are a rice in a bamboo bowl.","ko":"대통밥은 대나무 그릇에 담긴 밥이다.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[1],"point":"수일치: 주어 Daetongbap(단수)에 맞춰 is 사용","topic":"수일치","memo":"주어 Daetongbap(단수)에 맞춰 is 사용"},{"wrong":"a rice","right":"rice","partial":false,"at":[2],"point":"어휘: rice는 불가산명사이므로 부정관사 a 사용 불가","topic":"어휘","memo":"rice는 불가산명사이므로 부정관사 a 사용 불가"}]},{"n":7,"tag":null,"en":"I loved it's unique bamboo smell.","ko":"나는 그것의 독특한 대나무 향이 정말 좋았다.","ok":false,"foot":[],"fixes":[{"wrong":"it's","right":"its","partial":false,"at":[2],"point":"인칭대명사 소유격: it's(it is의 축약형)가 아닌 소유격 its 사용","topic":"인칭대명사 소유격","memo":"it's(it is의 축약형)가 아닌 소유격 its 사용"}]},{"n":8,"tag":null,"en":"Tteokgalbi, a Korean beef dish, were soft and sweetly.","ko":"한국의 소고기 요리인 떡갈비는 부드럽고 달콤했다.","ok":false,"foot":[],"fixes":[{"wrong":"were","right":"was","partial":false,"at":[5],"point":"수일치: 주어 Tteokgalbi(단수)에 맞춰 was 사용","topic":"수일치","memo":"주어 Tteokgalbi(단수)에 맞춰 was 사용"},{"wrong":"sweetly","right":"sweet","partial":false,"at":[8],"point":"어법: be동사의 보어는 형용사 sweet 사용(부사 sweetly 불가)","topic":"어법","memo":"be동사의 보어는 형용사 sweet 사용(부사 sweetly 불가)"}]},{"n":9,"tag":null,"en":"The dishes real went good together.","ko":"그 요리들은 함께 정말 잘 어울렸다.","ok":false,"foot":[],"fixes":[{"wrong":"real","right":"really","partial":false,"at":[2],"point":"부사: 동사 went를 수식하므로 real이 아닌 really 사용","topic":"부사","memo":"동사 went를 수식하므로 real이 아닌 really 사용"},{"wrong":"good","right":"well","partial":false,"at":[4],"point":"부사: go well(잘 어울리다)의 well 자리에 형용사 good 사용 불가","topic":"부사","memo":"go well(잘 어울리다)의 well 자리에 형용사 good 사용 불가"}]},{"n":10,"tag":"7월 30일 · 통영","en":"We visited Tongyeong and went up the mountain with cable car.","ko":"우리는 통영을 방문했고 케이블카를 타고 산에 올라갔다.","ok":false,"foot":[],"fixes":[{"wrong":"with cable car","right":"by cable car","partial":false,"at":[8],"point":"전치사: 교통수단을 나타낼 때는 by+무관사 명사 사용","topic":"전치사","memo":"교통수단을 나타낼 때는 by+무관사 명사 사용"}]},{"n":11,"tag":null,"en":"We really enjoyed us there.","ko":"우리는 그곳에서 정말 즐거운 시간을 보냈다.","ok":false,"foot":[],"fixes":[{"wrong":"us","right":"ourselves","partial":false,"at":[3],"point":"재귀대명사: enjoy oneself(즐거운 시간을 보내다) 관용표현, 주어 We와 동일 대상이므로 ourselves 사용","topic":"재귀대명사","memo":"enjoy oneself(즐거운 시간을 보내다) 관용표현, 주어 We와 동일 대상이므로 ourselves 사용"}]},{"n":12,"tag":null,"en":"How fantastic were the blue ocean and the green islands!","ko":"파란 바다와 초록빛 섬들이 얼마나 환상적이었는지!","ok":false,"foot":[],"fixes":[{"wrong":"How fantastic were the blue ocean and the green islands","right":"How fantastic the blue ocean and the green islands were","partial":false,"at":[0],"point":"감탄문 어순: How+형용사+주어+동사! 순서로 사용","topic":"감탄문 어순","memo":"How+형용사+주어+동사! 순서로 사용"}]},{"n":13,"tag":null,"en":"Near to the sea, we found local restaurant.","ko":"바다 근처에서, 우리는 현지 식당을 하나 찾았다.","ok":false,"foot":[],"fixes":[{"wrong":"Near to the sea","right":"Near the sea","partial":false,"at":[0],"point":"전치사: near는 그 자체로 '~근처에'라는 뜻이므로 near to는 잘못된 표현","topic":"전치사","memo":"near는 그 자체로 '~근처에'라는 뜻이므로 near to는 잘못된 표현"},{"wrong":"found local restaurant","right":"found a local restaurant","partial":false,"at":[5],"point":"관사: 셀 수 있는 단수명사 restaurant 앞에는 부정관사 a 필요","topic":"관사","memo":"셀 수 있는 단수명사 restaurant 앞에는 부정관사 a 필요"}]},{"n":14,"tag":null,"en":"The restaurant served chungmugimbap us.","ko":"그 식당은 우리에게 충무김밥을 제공했다.","ok":false,"foot":["1chungmugimbap 충무김밥: 오징어무침과 무김치를 곁들인 김밥"],"fixes":[{"wrong":"served chungmugimbap us","right":"served us chungmugimbap","partial":false,"at":[2],"point":"4형식 어순: 수여동사+간접목적어 (us)+직접목적어 (chungmugimbap) 순서","topic":"4형식 어순","memo":"수여동사+간접목적어 (us)+직접목적어 (chungmugimbap) 순서"}]},{"n":15,"tag":null,"en":"It wasn't like other type of gimbap.","ko":"그것은 다른 종류의 김밥과는 달랐다.","ok":false,"foot":[],"fixes":[{"wrong":"type","right":"types","partial":false,"at":[4],"point":"수일치: other 뒤에는 복수명사 types 사용","topic":"수일치","memo":"other 뒤에는 복수명사 types 사용"}]},{"n":16,"tag":null,"en":"There were only rice inside the seaweed.","ko":"김 안에는 오직 밥만 있었다.","ok":false,"foot":[],"fixes":[{"wrong":"were","right":"was","partial":false,"at":[1],"point":"There+be동사: 뒤에 나오는 불가산명사 rice는 단수 취급하므로 was 사용","topic":"There+be동사","memo":"뒤에 나오는 불가산명사 rice는 단수 취급하므로 was 사용"}]},{"n":17,"tag":null,"en":"Kimchi and spicy squid was on the side.","ko":"김치와 매운 오징어가 옆에 있었다.","ok":false,"foot":[],"fixes":[{"wrong":"was","right":"were","partial":false,"at":[4],"point":"수일치: and로 연결된 복수 주어 (Kimchi and spicy squid)에 맞춰 were 사용","topic":"수일치","memo":"and로 연결된 복수 주어 (Kimchi and spicy squid)에 맞춰 were 사용"}]},{"n":18,"tag":null,"en":"It is spicy but really delicious.","ko":"그것은 매웠지만 정말 맛있었다.","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"was","partial":false,"at":[1],"point":"시제 일관성: 과거 시제 was 사용","topic":"시제 일관성","memo":"과거 시제 was 사용"}]},{"n":19,"tag":null,"en":"I heard for the history of this food.","ko":"나는 이 음식의 역사에 관해 들었다.","ok":false,"foot":[],"fixes":[{"wrong":"heard for","right":"heard about","partial":false,"at":[1],"point":"어휘: hear about(~에 대해 듣다) 관용표현","topic":"어휘","memo":"hear about(~에 대해 듣다) 관용표현"}]},{"n":20,"tag":null,"en":"Chungmu is a old name for Tongyeong.","ko":"충무는 통영의 옛 이름이다.","ok":false,"foot":[],"fixes":[{"wrong":"a","right":"an","partial":false,"at":[2],"point":"관사: 모음 발음 [o]로 시작하는 old 앞에는 an 사용","topic":"관사","memo":"모음 발음 [o]로 시작하는 old 앞에는 an 사용"}]},{"n":21,"tag":null,"en":"Long ago, fishermen in this town starts to eat chungmugimbap because it did not go bad quick.","ko":"오래전에, 이 마을의 어부들은 이 음식이 빨리 상하지 않았기 때문에 충무김밥을 먹기 시작했다.","ok":false,"foot":[],"fixes":[{"wrong":"starts","right":"started","partial":false,"at":[6],"point":"시제 일관성: 과거 시제 started 사용","topic":"시제 일관성","memo":"과거 시제 started 사용"},{"wrong":"quick","right":"quickly","partial":false,"at":[16],"point":"부사: 동사구 go bad를 수식하므로 quickly 사용","topic":"부사","memo":"동사구 go bad를 수식하므로 quickly 사용"}]},{"n":22,"tag":"8월 2일 · 제주도","en":"Jeju-do are a beautiful islands in Korea.","ko":"제주도는 한국의 아름다운 섬이다.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[1],"point":"수일치: 주어 Jeju-do(단수)에 맞춰 is 사용","topic":"수일치","memo":"주어 Jeju-do(단수)에 맞춰 is 사용"},{"wrong":"islands","right":"island","partial":false,"at":[4],"point":"어휘: 부정관사 a 뒤에는 단수명사 island 사용","topic":"어휘","memo":"부정관사 a 뒤에는 단수명사 island 사용"}]},{"n":23,"tag":null,"en":"We went there on a very hot day, and we become tired.","ko":"우리는 매우 더운 날에 거기에 갔고 피곤해졌다.","ok":false,"foot":[],"fixes":[{"wrong":"become","right":"became","partial":false,"at":[10],"point":"시제 일관성: 불규칙 동사 become의 과거형 became 사용","topic":"시제 일관성","memo":"불규칙 동사 become의 과거형 became 사용"}]},{"n":24,"tag":null,"en":"However, we got our energy back thanks for dombegogi.","ko":"그러나 돔베고기 덕분에 우리는 기운을 되찾았다.","ok":false,"foot":["1dombegogi 돔베고기: 도마 위에 썬 돼지고기 요리"],"fixes":[{"wrong":"thanks for","right":"thanks to","partial":false,"at":[6],"point":"어휘: thanks to+명사(~덕분에) 관용 표현","topic":"어휘","memo":"thanks to+명사(~덕분에) 관용 표현"}]},{"n":25,"tag":null,"en":"It surprised I in two ways.","ko":"그것은 두 가지 면에서 나를 놀라게 했다.","ok":false,"foot":[],"fixes":[{"wrong":"I","right":"me","partial":false,"at":[2],"point":"인칭대명사의 목적격: 동사 surprised의 목적어이므로 me 사용","topic":"인칭대명사의 목적격","memo":"동사 surprised의 목적어이므로 me 사용"}]},{"n":26,"tag":null,"en":"First, it was a pork on cutting board, not on a plate.","ko":"첫째로, 그것은 접시가 아닌 도마 위의 돼지고기였다.","ok":false,"foot":[],"fixes":[{"wrong":"a pork","right":"pork","partial":false,"at":[3],"point":"어휘: pork(돼지고기)는 불가산명사이므로 부정관사 a 사용 불가","topic":"어휘","memo":"pork(돼지고기)는 불가산명사이므로 부정관사 a 사용 불가"},{"wrong":"on cutting board","right":"on a cutting board","partial":false,"at":[5],"point":"관사: 셀 수 있는 단수명사 board 앞에는 부정관사 a 필요","topic":"관사","memo":"셀 수 있는 단수명사 board 앞에는 부정관사 a 필요"}]},{"n":27,"tag":null,"en":"We has to eat it fast because it was very hot.","ko":"그것이 너무 뜨거워서 우리는 빨리 먹어야 했다.","ok":false,"foot":[],"fixes":[{"wrong":"has to","right":"had to","partial":false,"at":[1],"point":"조동사 have to의 과거형: 과거 상황이므로 had to 사용","topic":"조동사 have to의 과거형","memo":"과거 상황이므로 had to 사용"}]},{"n":28,"tag":null,"en":"What a soft meat it was!","ko":"고기가 얼마나 부드러웠는지!","ok":false,"foot":[],"fixes":[{"wrong":"a soft meat","right":"soft meat","partial":false,"at":[1],"point":"감탄문: meat는 불가산명사이므로 부정관사 a 사용 불가","topic":"감탄문","memo":"meat는 불가산명사이므로 부정관사 a 사용 불가"}]},{"n":29,"tag":null,"en":"I had it with special fish sauce, and the sauce was great, too.","ko":"나는 그것을 특별한 생선 소스와 함께 먹었는데, 그 소스도 훌륭했다.","ok":false,"foot":[],"fixes":[{"wrong":"with special fish sauce","right":"with a special fish sauce","partial":false,"at":[3],"point":"관사: 셀 수 있는 단수명사 sauce 앞에는 부정관사 a 필요","topic":"관사","memo":"셀 수 있는 단수명사 sauce 앞에는 부정관사 a 필요"}]},{"n":30,"tag":null,"en":"Later, I learned of the meaning of dombe.","ko":"나중에 나는 돔베의 의미에 대해 알게 되었다.","ok":false,"foot":["1dombe 돔베: 도마를 뜻하는 제주 방언"],"fixes":[{"wrong":"learned of","right":"learned about","partial":false,"at":[2],"point":"어휘: learn about(~에 대해 배우다)관용표현","topic":"어휘","memo":"learn about(~에 대해 배우다)관용표현"}]},{"n":31,"tag":null,"en":"It means a cutting board in Jeju language.","ko":"그것은 제주 말로 도마를 의미한다.","ok":false,"foot":[],"fixes":[{"wrong":"Jeju language","right":"Jeju's language","partial":false,"at":[6],"point":"소유격: 명사의 소유격은 's 형태로 표현 (Jeju's language)","topic":"소유격","memo":"명사의 소유격은 's 형태로 표현 (Jeju's language)"}]}];var RNUM=39;var TITLE_EN="My Korean Food Diary";var PASS_EN=["My Korean Food Diary","During the summer vacation, William traveled around Korea with his family. This is his food diary.","July 25","We went to Damyang and visited Jungnogwon, a famous bamboo garden. We enjoyed walking in the garden. After we looked around, we ate two local dishes, daetongbap and tteokgalbi. Daetongbap is rice in a bamboo bowl. I loved its unique bamboo smell. Tteokgalbi, a Korean beef dish, was soft and sweet. The dishes really went well together.","July 30","We visited Tongyeong and went up the mountain by cable car. Seeing the blue ocean and the green islands was fantastic! Near the sea, we found a local restaurant and ate chungmugimbap. It wasn’t like other types of gimbap. There was only rice inside the seaweed. Kimchi and spicy squid were on the side. It was spicy but really delicious. I heard about the history of this food. Chungmu is an old name for Tongyeong. Long ago, fishermen in this town started to eat chungmugimbap because it did not go bad quickly.","August 2","Jeju-do is a beautiful island in Korea. We went there on a very hot day, and we became tired. However, we got our energy back thanks to dombegogi. It surprised me in two ways. First, it was pork on a cutting board, not on a plate. Second, the meat was so soft! I had it with a special fish sauce, and the sauce was great, too. Later, I learned about the meaning of dombe. It means a cutting board in Jeju’s language."];var PASS_KO=["나의 한국 음식 일기","여름 방학 동안, William은 가족과 함께 한국 여기저기를 여행했다. 이것은 그의 음식 일기이다.","7월 25일","우리는 담양에 갔고 유명한 대나무 정원인 죽녹원을 방문했다. 우리는 정원에서 걷는 것을 즐겼다. 주변을 둘러본 후에, 우리는 두 가지 지역 음식인 대통밥과 떡갈비를 먹었다. 대통밥은 대나무 그릇에 담긴 밥이다. 나는 그것의 독특한 대나무 향이 매우 좋았다. 한국의 소고기 요리인 떡갈비는 부드럽고 달콤했다. 그 요리들은 함께 정말 잘 어울렸다.","7월 30일","우리는 통영을 방문했고 케이블카를 타고 산에 올라갔다. 파란 바다와 녹색의 섬들을 보는 것은 환상적이었다! 바다 근처에서 우리는 현지 식당을 찾았고 충무김밥을 먹었다. 그것은 다른 종류의 김밥과는 달랐다. 김 안에는 오직 밥만 있었다. 김치와 매운 오징어가 옆에 있었다. 그것은 매웠지만 정말 맛있었다. 나는 이 음식의 역사에 관해 들었다. 충무는 통영의 옛 이름이다. 오래전에, 이 마을의 어부들은 이 음식이 빨리 상하지 않았기 때문에 충무김밥을 먹기 시작했다.","8월 2일","제주도는 한국의 아름다운 섬이다. 우리는 매우 더운 날에 거기에 갔고 피곤해졌다. 그러나 돔베고기 덕분에 우리는 기운을 되찾았다. 그것은 두 가지 면으로 나를 놀라게 했다. 첫째로, 그것은 접시 위가 아닌 도마 위의 돼지고기였다. 둘째로, 고기가 아주 부드러웠다! 나는 그것을 특별한 생선 소스와 함께 먹었는데, 그 소스도 훌륭했다. 나중에 나는 돔베의 의미에 대해 배웠다. 그것은 제주 말로 도마를 의미한다."];var DLG=[["Mina","How was your weekend, Jason?","주말은 어땠어, Jason?"],["Jason","It was good. I went to a baking class on Saturday.","좋았어. 나는 토요일에 제빵 수업에 갔어."],["Mina","Oh, what did you make?","오, 뭘 만들었니?"],["Jason","I made apple pies and chocolate cookies.","나는 사과 파이와 초콜릿 쿠키를 만들었어."],["Mina","Sounds delicious!","맛있겠다!"],["Jason","I brought some of them with me. Would you like some, Mina?","그중 몇 개를 가져왔어. 좀 먹을래, Mina?"],["Mina","Sure. Wow, they’re so good.","그래. 와, 정말 맛있다."]];var BQ=[{"n":1,"q":"Jason은 토요일에 어디에 갔나요?","o":["요리 대회","제빵 수업","미술관","도서관","수영장"],"a":1,"ev":["I went to a baking class on Saturday.","나는 토요일에 제빵 수업에 갔어."],"why":"baking class는 빵이나 과자를 만드는 수업이에요.","ans":"제빵 수업","memo":["Jason이 토요일에 간 곳 = 제빵 수업","I went to a baking class on Saturday. (나는 토요일에 제빵 수업에 갔어.)"]},{"n":2,"q":"Jason이 만든 것은 무엇인가요?","o":["딸기 케이크와 빵","치즈 피자와 샌드위치","바나나 푸딩","사과 파이와 초콜릿 쿠키","아이스크림과 주스"],"a":3,"ev":["I made apple pies and chocolate cookies.","나는 사과 파이와 초콜릿 쿠키를 만들었어."],"why":"make의 과거형 made 뒤에 만든 것이 나와요.","ans":"사과 파이와 초콜릿 쿠키","memo":["Jason이 만든 것 = 사과 파이, 초콜릿 쿠키","I made apple pies and chocolate cookies. (나는 사과 파이와 초콜릿 쿠키를 만들었어.)"]},{"n":3,"q":"Mina가 대화를 시작하며 Jason에게 물은 것은 무엇인가요?","o":["주말이 어땠는지","어디에 사는지","무엇을 먹었는지","몇 시에 일어났는지","누구와 갔는지"],"a":0,"ev":["How was your weekend, Jason?","주말은 어땠어, Jason?"],"why":"How was ~?는 어땠는지 소감을 묻는 말이에요.","ans":"주말이 어땠는지","memo":["Mina의 첫 질문 = 주말이 어땠는지","How was your weekend, Jason? (주말은 어땠어, Jason?)"]},{"n":4,"q":"Jason이 Mina에게 한 제안은 무엇인가요?","o":["같이 수업에 가자고 했다","쿠키 만드는 법을 알려 주겠다고 했다","내일 만나자고 했다","가게에서 사 오라고 했다","가져온 것을 먹어 보겠냐고 물었다"],"a":4,"ev":["I brought some of them with me. Would you like some, Mina?","그중 몇 개를 가져왔어. 좀 먹을래, Mina?"],"why":"Would you like some?은 '좀 먹을래?'라고 권하는 말이에요.","ans":"가져온 것을 먹어 보겠냐고 물었다","memo":["Jason의 제안 = 가져온 것을 먹어 보라고 권함","I brought some of them with me. Would you like some, Mina? (그중 몇 개를 가져왔어. 좀 먹을래, Mina?)"]},{"n":5,"q":"Jason의 제안에 대한 Mina의 반응은?","o":["거절했다","이미 먹었다고 했다","받아들이고 맛있다고 했다","화를 냈다","다음에 먹겠다고 했다"],"a":2,"ev":["Sure. Wow, they’re so good.","그래. 와, 정말 맛있다."],"why":"Sure는 '좋아'라고 받아들이는 말이에요.","ans":"받아들이고 맛있다고 했다","memo":["Mina의 반응 = 수락하고 맛있다고 함","Sure. Wow, they’re so good. (그래. 와, 정말 맛있다.)"]}];var DQ=[{"n":6,"q":"7월 25일에 William의 가족이 담양에서 방문한 곳은 어디인가요?","o":["해변","박물관","대나무 정원 죽녹원","케이블카 정류장","전통 시장"],"a":2,"ev":["We went to Damyang and visited Jungnogwon, a famous bamboo garden.","우리는 담양에 갔고 유명한 대나무 정원인 죽녹원을 방문했다."],"why":"Jungnogwon 뒤의 설명이 bamboo garden이에요.","ans":"대나무 정원 죽녹원","memo":["담양 방문지 = 죽녹원(대나무 정원)","We went to Damyang and visited Jungnogwon, a famous bamboo garden. (우리는 담양에 갔고 유명한 대나무 정원인 죽녹원을 방문했다.)"]},{"n":7,"q":"대통밥은 어떤 음식인가요?","o":["대나무 그릇에 담긴 밥","김 안에 밥만 있는 음식","도마 위의 돼지고기","달콤한 소고기 요리","매운 오징어 요리"],"a":0,"ev":["Daetongbap is rice in a bamboo bowl.","대통밥은 대나무 그릇에 담긴 밥이다."],"why":"bamboo bowl은 대나무 그릇이에요.","ans":"대나무 그릇에 담긴 밥","memo":["대통밥 = 대나무 그릇에 담긴 밥","Daetongbap is rice in a bamboo bowl. (대통밥은 대나무 그릇에 담긴 밥이다.)"]},{"n":8,"q":"William의 가족이 통영에서 산에 올라간 방법은?","o":["걸어서","자전거로","버스로","케이블카로","배로"],"a":3,"ev":["We visited Tongyeong and went up the mountain by cable car.","우리는 통영을 방문했고 케이블카를 타고 산에 올라갔다."],"why":"by cable car는 케이블카를 타고라는 뜻이에요.","ans":"케이블카로","memo":["통영에서 산에 오른 방법 = 케이블카","We visited Tongyeong and went up the mountain by cable car. (우리는 통영을 방문했고 케이블카를 타고 산에 올라갔다.)"]},{"n":9,"q":"통영의 어부들이 충무김밥을 먹기 시작한 이유는?","o":["맛이 매워서","음식이 빨리 상하지 않아서","값이 싸서","만들기 쉬워서","관광객이 좋아해서"],"a":1,"ev":["Long ago, fishermen in this town started to eat chungmugimbap because it did not go bad quickly.","오래전에, 이 마을의 어부들은 이 음식이 빨리 상하지 않았기 때문에 충무김밥을 먹기 시작했다."],"why":"because 뒤에 이유가 나와요. go bad는 '상하다'예요.","ans":"음식이 빨리 상하지 않아서","memo":["어부들이 충무김밥을 먹은 이유 = 빨리 상하지 않아서","Long ago, fishermen in this town started to eat chungmugimbap because it did not go bad quickly. (오래전에, 이 마을의 어부들은 이 음식이 빨리 상하지 않았기 때문에 충무김밥을 먹기 시작했다.)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["대통밥은 대나무 그릇에 담긴 밥이다.","충무는 통영의 옛 이름이다.","제주도에서 돼지고기가 도마 위에 나왔다.","돔베는 제주 말로 도마를 뜻한다.","돔베고기는 소고기를 도마에 올린 음식이다."],"a":4,"ev":["First, it was pork on a cutting board, not on a plate.","첫째로, 그것은 접시 위가 아닌 도마 위의 돼지고기였다."],"why":"돔베고기는 pork(돼지고기)예요. 소고기가 아니에요. 나머지는 모두 글에 그대로 나와요.","ans":"돔베고기는 소고기를 도마에 올린 음식이다.","memo":["돔베고기 = 도마 위의 돼지고기 (소고기 X)","First, it was pork on a cutting board, not on a plate. (첫째로, 그것은 접시 위가 아닌 도마 위의 돼지고기였다.)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

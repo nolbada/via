@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 50</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 50 · Garam's Travel Diary to Tongyeong</h1><div class="sub">가람이의 통영 여행 일기 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":"August 16th","en":"I got up at six on the morning.","ko":"나는 아침 여섯 시에 일어났다.","ok":false,"foot":[],"fixes":[{"wrong":"on","right":"in","partial":false,"at":[5],"point":"전치사: '아침에'는 in the morning (on 아님)","topic":"전치사","memo":"'아침에'는 in the morning"}]},{"n":2,"tag":null,"en":"There was the one day of my family trip to Tongyeong.","ko":"통영으로의 우리 가족 여행의 첫날이었다.","ok":false,"foot":[],"fixes":[{"wrong":"There","right":"It","partial":false,"at":[0],"point":"비인칭주어: 시간/날짜를 나타낼 때는 It 사용","topic":"비인칭주어","memo":"시간/날짜를 나타낼 때는 It 사용"},{"wrong":"one","right":"first","partial":false,"at":[3],"point":"서수: 순서를 나타낼 때는 first(서수) 사용, one(기수) 아님","topic":"서수","memo":"순서를 나타낼 때는 first(서수) 사용, one(기수) 아님"}]},{"n":3,"tag":null,"en":"I was exciting!","ko":"나는 신이 났다!","ok":false,"foot":[],"fixes":[{"wrong":"exciting","right":"excited","partial":false,"at":[2],"point":"감정형용사: 사람이 주어이므로 -ed형 excited 사용 (exciting은 사물이 감정을 유발할 때)","topic":"감정형용사","memo":"사람이 주어이므로 -ed형 excited 사용 (exciting은 사물이 감정을 유발할 때)"}]},{"n":4,"tag":null,"en":"We arrived at Jungang Market at 1 p.m.","ko":"우리는 오후 1시에 중앙시장에 도착했다.","ok":true,"foot":[],"fixes":[]},{"n":5,"tag":null,"en":"There we haved Chungmu gimbap for lunch.","ko":"그곳에서 우리는 점심으로 충무김밥을 먹었다.","ok":false,"foot":[],"fixes":[{"wrong":"haved","right":"had","partial":false,"at":[2],"point":"불규칙 과거형: have의 과거형은 had (haved 아님)","topic":"불규칙 과거형","memo":"have의 과거형은 had"}]},{"n":6,"tag":null,"en":"There were only rice inside the roll!","ko":"롤 안에는 밥만 있었다!","ok":false,"foot":[],"fixes":[{"wrong":"were","right":"was","partial":false,"at":[1],"point":"수일치: rice는 불가산명사이므로 단수 동사 was 사용","topic":"수일치","memo":"rice는 불가산명사이므로 단수 동사 was 사용"}]},{"n":7,"tag":null,"en":"Dad said, “Trying the roll with radish and squid.","ko":"아빠는 \"롤을 무와 오징어랑 함께 먹어 봐.","ok":false,"foot":["1 2","1radish 무 2squid 오징어"],"fixes":[{"wrong":"Trying","right":"Try","partial":false,"at":[2],"point":"명령문: 동사원형으로 시작 (Try)","topic":"명령문","memo":"동사원형으로 시작 (Try)"}]},{"n":8,"tag":null,"en":"Long ago, fishermen had Chungmu gimbap in the sea.","ko":"오래전에 어부들은 바다에 나가서 충무김밥을 먹었어.\"라고 말씀하셨다.","ok":false,"foot":["1fishermen 어부"],"fixes":[{"wrong":"in the sea","right":"out at sea","partial":false,"at":[6],"point":"전치사구 관용표현: '바다에 나가서'는 out at sea","topic":"전치사구 관용표현","memo":"'바다에 나가서'는 out at sea"}]},{"n":9,"tag":null,"en":"It was a bit spicy but taste.","ko":"그것은 약간 매웠지만 맛있었다.","ok":false,"foot":[],"fixes":[{"wrong":"taste","right":"tasty","partial":false,"at":[6],"point":"어휘: 형용사 자리이므로 taste(동사/ 명사)가 아닌 tasty(형용사) 사용","topic":"어휘","memo":"형용사 자리이므로 taste(동사/ 명사)가 아닌 tasty(형용사) 사용"}]},{"n":10,"tag":null,"en":"Chungmu is Tongyeongs old name.","ko":"충무는 통영의 옛 이름이다.","ok":false,"foot":[],"fixes":[{"wrong":"Tongyeongs","right":"Tongyeong's","partial":false,"at":[2],"point":"소유격: 명사's 형태로 Tongyeong's 사용","topic":"소유격","memo":"명사's 형태로 Tongyeong's 사용"}]},{"n":11,"tag":null,"en":"At the afternoon, we went to Yi Sun-sin Park.","ko":"오후에 우리는 이순신 공원에 갔다.","ok":false,"foot":[],"fixes":[{"wrong":"At","right":"In","partial":false,"at":[0],"point":"전치사: 오후를 나타낼 때는 in 사용 (in the afternoon)","topic":"전치사","memo":"오후를 나타낼 때는 in 사용 (in the afternoon)"}]},{"n":12,"tag":null,"en":"There were an huge statue of Admiral Yi.","ko":"이순신 장군의 거대한 동상이 있었다.","ok":false,"foot":["1 2","1statue 동상 2Admiral 제독"],"fixes":[{"wrong":"were","right":"was","partial":false,"at":[1],"point":"수일치: 주어 statue(단수)에 맞춰 was 사용","topic":"수일치","memo":"주어 statue(단수)에 맞춰 was 사용"},{"wrong":"an","right":"a","partial":false,"at":[2],"point":"관사: huge는 자음 [h] 발음으로 시작하므로 부정관사 a 사용","topic":"관사","memo":"huge는 자음 [h] 발음으로 시작하므로 부정관사 a 사용"}]},{"n":13,"tag":null,"en":"I imagined the greatly battle right in the coast of Tongyeong.","ko":"나는 통영의 해안 바로 앞에서 있었던 위대한 전투를 상상했다.","ok":false,"foot":["1battle 전투"],"fixes":[{"wrong":"in","right":"off","partial":false,"at":[6],"point":"전치사 관용표현: '~ 앞바다에'는 off the coast (in 아님)","topic":"전치사 관용표현","memo":"'~ 앞바다에'는 off the coast"},{"wrong":"greatly","right":"great","partial":false,"at":[3],"point":"형용사/부사: battle을 꾸미는 자리이므로 형용사 great 사용 (greatly는 부사)","topic":"형용사/부사","memo":"battle을 꾸미는 자리이므로 형용사 great 사용 (greatly는 부사)"}]},{"n":14,"tag":null,"en":"Then we enjoyed to take a walk along the coast.","ko":"그다음에 우리는 해안을 따라 산책하는 것을 즐겼다.","ok":false,"foot":[],"fixes":[{"wrong":"to take","right":"taking","partial":false,"at":[3],"point":"동명사: enjoy는 동명사를 목적어로 취함 (enjoy + V-ing)","topic":"동명사","memo":"enjoy는 동명사를 목적어로 취함 (enjoy + V-ing)"}]},{"n":15,"tag":null,"en":"The sunset was beautifully.","ko":"일몰이 아름다웠다.","ok":false,"foot":[],"fixes":[{"wrong":"beautifully","right":"beautiful","partial":false,"at":[3],"point":"형용사/부사: be동사의 보어 자리이므로 형용사 beautiful 사용","topic":"형용사/부사","memo":"be동사의 보어 자리이므로 형용사 beautiful 사용"}]},{"n":16,"tag":null,"en":"I close my eyes.","ko":"나는 눈을 감았다.","ok":false,"foot":[],"fixes":[{"wrong":"close","right":"closed","partial":false,"at":[1],"point":"과거시제: 일기 전체가 과거 시제이므로 closed 사용","topic":"과거시제","memo":"일기 전체가 과거 시제이므로 closed 사용"}]},{"n":17,"tag":null,"en":"I could feeling Yis love for the country.","ko":"나는 이순신 장군의 나라에 대한 사랑을 느낄 수 있었다.","ok":false,"foot":[],"fixes":[{"wrong":"feeling","right":"feel","partial":false,"at":[2],"point":"조동사: could 뒤에는 동사원형 feel 사용","topic":"조동사","memo":"could 뒤에는 동사원형 feel 사용"},{"wrong":"Yis","right":"Yi's","partial":false,"at":[3],"point":"소유격: 고유명사 뒤에는 's를 붙여 Yi's로 사용","topic":"소유격","memo":"고유명사 뒤에는 's를 붙여 Yi's로 사용"}]},{"n":18,"tag":null,"en":"Everything were really peaceful.","ko":"모든 것이 정말 평화로웠다.","ok":false,"foot":[],"fixes":[{"wrong":"were","right":"was","partial":false,"at":[1],"point":"수일치: Everything은 단수 취급하므로 was 사용","topic":"수일치","memo":"Everything은 단수 취급하므로 was 사용"}]},{"n":19,"tag":"August 17th","en":"Early in the morning, we goed to Dongpirang.","ko":"아침 일찍, 우리는 동피랑에 갔다.","ok":false,"foot":[],"fixes":[{"wrong":"goed","right":"went","partial":false,"at":[5],"point":"불규칙 과거형: go의 과거형은 went (goed 아님)","topic":"불규칙 과거형","memo":"go의 과거형은 went"}]},{"n":20,"tag":null,"en":"There were much pretty paintings in the walls.","ko":"벽에는 많은 예쁜 그림들이 있었다.","ok":false,"foot":[],"fixes":[{"wrong":"much","right":"many","partial":false,"at":[2],"point":"수량형용사: paintings는 셀 수 있는 명사이므로 many 사용 (much는 불가산명사에 사용)","topic":"수량형용사","memo":"paintings는 셀 수 있는 명사이므로 many 사용 (much는 불가산명사에 사용)"},{"wrong":"in","right":"on","partial":false,"at":[5],"point":"전치사: 벽 표면 위에 있다는 의미이므로 on 사용","topic":"전치사","memo":"벽 표면 위에 있다는 의미이므로 on 사용"}]},{"n":21,"tag":null,"en":"It was the goodest place for taking pictures!","ko":"그곳은 사진을 찍기에 최고의 장소였다!","ok":false,"foot":[],"fixes":[{"wrong":"goodest","right":"best","partial":false,"at":[3],"point":"최상급: good의 최상급은 불규칙형 best (goodest 아님)","topic":"최상급","memo":"good의 최상급은 불규칙형 best"}]},{"n":22,"tag":null,"en":"Mom and I taked hundreds of pictures.","ko":"엄마와 나는 수백 장의 사진을 찍었다.","ok":false,"foot":[],"fixes":[{"wrong":"taked","right":"took","partial":false,"at":[3],"point":"불규칙 과거형: take의 과거형은 took (taked 아님)","topic":"불규칙 과거형","memo":"take의 과거형은 took"}]},{"n":23,"tag":null,"en":"Final, my dad said, “Please stopping! No more pictures!”","ko":"마침내, 나의 아빠가 \"제발 그만! 더 이상의 사진은 안 돼!\"라고 말씀하셨다.","ok":false,"foot":[],"fixes":[{"wrong":"Final","right":"Finally","partial":false,"at":[0],"point":"부사: 문장 전체를 꾸미는 자리이므로 -ly형 Finally 사용","topic":"부사","memo":"문장 전체를 꾸미는 자리이므로 -ly형 Finally 사용"},{"wrong":"stopping","right":"stop","partial":false,"at":[5],"point":"명령문: Please 뒤에는 동사원형 stop 사용","topic":"명령문","memo":"Please 뒤에는 동사원형 stop 사용"}]},{"n":24,"tag":null,"en":"‘Dong’ mean ‘east,’ and ‘pirang’ means ‘cliff.’","ko":"‘동’은 ‘동쪽’을 의미하고, ‘피랑’은 ‘절벽’을 의미한다.","ok":false,"foot":[],"fixes":[{"wrong":"mean","right":"means","partial":false,"at":[1],"point":"수일치: 주어 'Dong'(3인칭 단수)에 맞춰 means 사용","topic":"수일치","memo":"주어 'Dong'(3인칭 단수)에 맞춰 means 사용"}]},{"n":25,"tag":null,"en":"There are also Seopirang.","ko":"서피랑도 있다.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[1],"point":"수일치: 단수 고유명사 Seopirang에 맞춰 is 사용","topic":"수일치","memo":"단수 고유명사 Seopirang에 맞춰 is 사용"}]},{"n":26,"tag":null,"en":"Next, we went to a Jeon Hyuck-lim Museum of Art.","ko":"다음으로, 우리는 전혁림 미술관에 갔다.","ok":false,"foot":[],"fixes":[{"wrong":"a","right":"the","partial":false,"at":[4],"point":"관사: 특정한 하나뿐인 미술관을 가리키므로 정관사 the 사용","topic":"관사","memo":"특정한 하나뿐인 미술관을 가리키므로 정관사 the 사용"}]},{"n":27,"tag":null,"en":"The painter’s nickname is ‘The Magician of Color.’","ko":"그 화가의 별명은 ‘색채의 마술사’이다.","ok":true,"foot":[],"fixes":[]},{"n":28,"tag":null,"en":"He painted the sea in Tongyeong with blue various colors.","ko":"그는 통영의 바다를 다양한 푸른색으로 칠했다.","ok":false,"foot":["1various 다양한"],"fixes":[{"wrong":"in","right":"of","partial":false,"at":[4],"point":"전치사: 소속을 나타낼 때는 of 사용 (통영의 바다: the sea of Tongyeong)","topic":"전치사","memo":"소속을 나타낼 때는 of 사용 (통영의 바다: the sea of Tongyeong)"},{"wrong":"blue various","right":"various blue","partial":false,"at":[7],"point":"형용사 어순: 성질(various)이 색깔 (blue)보다 앞에 옴 (various blue colors)","topic":"형용사 어순","memo":"성질(various)이 색깔 (blue)보다 앞에 옴 (various blue colors)"}]},{"n":29,"tag":null,"en":"I enjoyed him paintings very much.","ko":"나는 그의 그림들을 아주 많이 즐겼다.","ok":false,"foot":[],"fixes":[{"wrong":"him","right":"his","partial":false,"at":[2],"point":"인칭대명사 격: 명사 앞 소유격 자리이므로 his 사용 (him은 목적격)","topic":"인칭대명사 격","memo":"명사 앞 소유격 자리이므로 his 사용 (him은 목적격)"}]},{"n":30,"tag":null,"en":"How a great experience!","ko":"정말 좋은 경험이었구나!","ok":false,"foot":[],"fixes":[{"wrong":"How a","right":"What a","partial":false,"at":[0],"point":"감탄문: 뒤에 명사(experience)가 있으므로 What 사용 (How는 형용사/부사만 있을 때)","topic":"감탄문","memo":"뒤에 명사(experience)가 있으므로 What 사용 (How는 형용사/부사만 있을 때)"}]},{"n":31,"tag":null,"en":"Go on a family trip is always funny.","ko":"가족 여행을 가는 것은 언제나 재미있다.","ok":false,"foot":[],"fixes":[{"wrong":"Go","right":"Going","partial":false,"at":[0],"point":"동명사: 문장의 주어 자리이므로 Going(동명사) 사용","topic":"동명사","memo":"문장의 주어 자리이므로 Going(동명사) 사용"},{"wrong":"funny","right":"fun","partial":false,"at":[7],"point":"어휘: '재미있는'은 fun (funny는 '우스꽝스러운'이라는 뜻)","topic":"어휘","memo":"'재미있는'은 fun"}]},{"n":32,"tag":null,"en":"Tongyeong, bye for now! Seeing you next time!","ko":"통영, 이젠 안녕! 다음에 보자!","ok":false,"foot":[],"fixes":[{"wrong":"Seeing","right":"See","partial":false,"at":[4],"point":"명령문/인사표현: 동사원형 See로 시작","topic":"명령문/인사표현","memo":"동사원형 See로 시작"}]}];var RNUM=50;var TITLE_EN="Garam's Travel Diary to Tongyeong";var PASS_EN=["Garam’s Travel Diary to Tongyeong","August 16th","I got up at six in the morning. It was the first day of my family trip to Tongyeong. I was excited!","We arrived at Jungang Market at 1 p.m. There we had Chungmu gimbap for lunch. There was only rice inside the roll! Dad said, “Try the roll with radish and squid. Long ago, fishermen had Chungmu gimbap out at sea.” It was a bit spicy but tasty.","Chungmu is Tongyeong’s old name.","In the afternoon, we went to Yi Sun-sin Park. There was a huge statue of Admiral Yi. I imagined the great battle right off the coast of Tongyeong. Then we enjoyed taking a walk along the coast. The sunset was beautiful. I closed my eyes. I could feel Admiral Yi’s love for the country. Everything was really peaceful.","August 17th","Early in the morning, we went to Dongpirang. There were many pretty paintings on the walls. It was the best place for taking pictures! Mom and I took hundreds of pictures. Finally, my dad said, “Please stop! No more pictures!”","‘Dong’ means ‘east,’ and ‘pirang’ means ‘cliff.’ There is also Seopirang.","Next, we went to the Jeon Hyuck-lim Museum of Art. The painter’s nickname is ‘The Magician of Color.’ He painted the sea of Tongyeong with various blue colors. I enjoyed his paintings very much.","What a great experience! Going on a family trip is always fun. Tongyeong, bye for now! See you next time!"];var PASS_KO=["가람이의 통영 여행 일기","8월 16일","나는 아침 여섯 시에 일어났다. 통영으로의 우리 가족 여행의 첫날이었다. 나는 신이 났다!","우리는 오후 1시에 중앙시장에 도착했다. 그곳에서 우리는 점심으로 충무김밥을 먹었다. 롤 안에는 밥만 있었다! 아빠는 “롤을 무와 오징어랑 함께 먹어 봐. 오래전에 어부들은 바다에 나가서 충무김밥을 먹었어.”라고 말씀하셨다. 그것은 약간 매웠지만 맛있었다.","충무는 통영의 옛 이름이다.","오후에 우리는 이순신 공원에 갔다. 이순신 장군의 거대한 동상이 있었다. 나는 통영의 해안 바로 앞에서 있었던 위대한 전투를 상상했다. 그다음에 우리는 해안을 따라 산책하는 것을 즐겼다. 일몰이 아름다웠다. 나는 눈을 감았다. 나는 이순신 장군의 나라에 대한 사랑을 느낄 수 있었다. 모든 것이 정말 평화로웠다.","8월 17일","아침 일찍, 우리는 동피랑에 갔다. 벽에는 많은 예쁜 그림들이 있었다. 그곳은 사진을 찍기에 최고의 장소였다! 엄마와 나는 수백 장의 사진을 찍었다. 마침내, 나의 아빠가 “제발 그만! 더 이상의 사진은 안 돼!”라고 말씀하셨다.","‘동’은 ‘동쪽’을 의미하고, ‘피랑’은 ‘절벽’을 의미한다. 서피랑도 있다.","다음으로, 우리는 전혁림 미술관에 갔다. 그 화가의 별명은 ‘색채의 마술사’이다. 그는 통영의 바다를 다양한 푸른색으로 칠했다. 나는 그의 그림들을 아주 많이 즐겼다.","정말 좋은 경험이었구나! 가족 여행을 가는 것은 언제나 재미있다. 통영, 이젠 안녕! 다음에 보자!"];var DLG=[["Alex","Hi, Kate. What are you going to do this weekend?","안녕, Kate. 이번 주말에 뭐 할 거니?"],["Kate","I’m going to visit Jeju-do with my family.","나는 가족과 함께 제주도에 갈 거야."],["Junho","Oh, my grandparents live there. Jeju-do is so beautiful.","오, 우리 조부모님이 거기 사셔. 제주도는 정말 아름다워."],["Kate","Really? This is my first trip to Jeju-do. I’m so excited.","정말? 이번이 내 첫 제주도 여행이야. 나 정말 신나."],["Alex","What are you going to do there?","거기서 뭘 할 거니?"],["Kate","I’m going to see dolphins. I’ll also hike Hallasan.","나는 돌고래를 볼 거야. 한라산도 오를 거야."],["Junho","You should visit a horse park and ride a horse, too. It’s really fun.","말 공원도 가서 말도 타 봐. 정말 재미있어."],["Kate","That’s a good idea. I’ll visit there, too.","좋은 생각이야. 나도 거기 갈게."],["Junho","Jeju-do is an amazing place. Have a nice trip!","제주도는 멋진 곳이야. 즐거운 여행 하렴!"]];var BQ=[{"n":1,"q":"Kate는 이번 주말에 누구와 어디에 갈 예정인가요?","o":["친구들과 부산","가족과 제주도","혼자 서울","할머니와 통영","Junho와 한라산"],"a":1,"ev":["I’m going to visit Jeju-do with my family.","나는 가족과 함께 제주도에 갈 거야."],"why":"Kate의 첫 대답에 장소와 함께 가는 사람이 모두 나와요.","ans":"가족과 제주도","memo":["Kate의 주말 계획 = 가족과 제주도 방문","I’m going to visit Jeju-do with my family. (나는 가족과 함께 제주도에 갈 거야.)"]},{"n":2,"q":"Junho의 조부모님은 어디에 사시나요?","o":["제주도","서울","부산","통영","한라산 근처의 서울"],"a":0,"ev":["Oh, my grandparents live there.","오, 우리 조부모님이 거기 사셔."],"why":"there는 앞에서 말한 Jeju-do를 가리켜요.","ans":"제주도","memo":["Junho의 조부모님 = 제주도에 거주","Oh, my grandparents live there. (오, 우리 조부모님이 거기 사셔.)"]},{"n":3,"q":"Kate에게 이번 제주도 여행은 어떤 여행인가요?","o":["두 번째 여행","매년 가는 여행","학교에서 가는 여행","처음 가는 여행","혼자 가는 여행"],"a":3,"ev":["This is my first trip to Jeju-do.","이번이 내 첫 제주도 여행이야."],"why":"first는 '첫 번째'라는 뜻이에요. 그래서 Kate는 I’m so excited라고 했어요.","ans":"처음 가는 여행","memo":["Kate의 제주 여행 = 첫 방문","This is my first trip to Jeju-do. (이번이 내 첫 제주도 여행이야.)"]},{"n":4,"q":"Kate가 제주도에서 하려는 일은 무엇인가요?","o":["말을 타고 해변 달리기","박물관 가서 그림 그리기","돌고래를 보고 한라산에 오르기","수영하고 해녀 만나기","시장에서 귤 사기"],"a":2,"ev":["I’m going to see dolphins. / I’ll also hike Hallasan.","나는 돌고래를 볼 거야. / 한라산도 오를 거야."],"why":"hike는 '도보 여행하다, 오르다'라는 뜻이에요. 말 타기는 Junho의 추천이에요.","ans":"돌고래를 보고 한라산에 오르기","memo":["Kate의 계획 = 돌고래 보기 + 한라산 오르기","I’m going to see dolphins. / I’ll also hike Hallasan. (나는 돌고래를 볼 거야. / 한라산도 오를 거야.)"]},{"n":5,"q":"Junho가 Kate에게 추천한 것은 무엇인가요?","o":["돌고래 쇼 보기","한라산에서 캠핑하기","할머니 댁에 가 보기","해산물 먹어 보기","말 공원에 가서 말을 타 보기"],"a":4,"ev":["You should visit a horse park and ride a horse, too.","말 공원도 가서 말도 타 봐."],"why":"should는 '~하는 게 좋다'라는 추천의 말이에요. ride a horse는 말을 타다예요.","ans":"말 공원에 가서 말을 타 보기","memo":["Junho의 추천 = 말 공원에서 말 타기","You should visit a horse park and ride a horse, too. (말 공원도 가서 말도 타 봐.)"]}];var DQ=[{"n":6,"q":"아빠가 충무김밥을 먹는 방법으로 가람이에게 권한 것은 무엇인가요?","o":["김치와 함께 먹어 보기","따뜻한 국과 함께 먹어 보기","고추장에 찍어 먹어 보기","무와 오징어와 함께 먹어 보기","아무것도 없이 먹어 보기"],"a":3,"ev":["Try the roll with radish and squid.","무와 오징어와 함께 롤을 먹어 보렴."],"why":"radish는 무, squid는 오징어예요. 롤 안에는 밥만 있어서 아빠가 곁들이는 법을 알려 주었어요.","ans":"무와 오징어와 함께 먹어 보기","memo":["아빠의 조언 = 무와 오징어를 곁들여 먹기","Try the roll with radish and squid. (무와 오징어와 함께 롤을 먹어 보렴.)"]},{"n":7,"q":"가람이네 가족이 중앙시장에서 점심으로 먹은 것은 무엇인가요?","o":["충무김밥","비빔밥","오징어 튀김","라면","떡볶이"],"a":0,"ev":["There we had Chungmu gimbap for lunch.","우리는 거기서 점심으로 충무김밥을 먹었어요."],"why":"had는 여기서 '먹었다'라는 뜻이에요. lunch는 점심이에요.","ans":"충무김밥","memo":["점심 메뉴 = 중앙시장의 충무김밥","There we had Chungmu gimbap for lunch. (우리는 거기서 점심으로 충무김밥을 먹었어요.)"]},{"n":8,"q":"이순신 공원에 있던 것은 무엇인가요?","o":["이순신 장군의 작은 그림","오래된 배 모형","이순신 장군의 거대한 동상","커다란 시장","높은 탑"],"a":2,"ev":["There was a huge statue of Admiral Yi.","이순신 장군의 거대한 동상이 있었어요."],"why":"huge는 '거대한', statue는 '동상'이에요.","ans":"이순신 장군의 거대한 동상","memo":["이순신 공원 = 이순신 장군의 거대한 동상","There was a huge statue of Admiral Yi. (이순신 장군의 거대한 동상이 있었어요.)"]},{"n":9,"q":"동피랑에서 가람이와 엄마가 한 일은 무엇인가요?","o":["벽에 그림을 그렸다.","수백 장의 사진을 찍었다.","그림을 사서 집에 가져갔다.","절벽에 올라가 수영했다.","미술관 표를 샀다."],"a":1,"ev":["Mom and I took hundreds of pictures.","엄마와 나는 수백 장의 사진을 찍었어요."],"why":"took은 take(찍다)의 과거형이고 hundreds of는 '수백 개의'라는 뜻이에요.","ans":"수백 장의 사진을 찍었다.","memo":["동피랑에서 한 일 = 수백 장의 사진 촬영","Mom and I took hundreds of pictures. (엄마와 나는 수백 장의 사진을 찍었어요.)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["가람이는 아침 여섯 시에 일어났다.","가족은 오후 1시에 중앙시장에 도착했다.","이순신 공원에서 해안을 따라 산책을 즐겼다.","전혁림 화가의 별명은 ‘색의 마술사’이다.","동피랑에서 아빠는 사진을 더 찍으라고 말했다."],"a":4,"ev":["Finally, my dad said, “Please stop! No more pictures!”","마침내 아빠가 말했어요. “그만해! 더 이상 사진은 안 돼!”"],"why":"아빠는 Please stop! No more pictures!라고 말렸어요. 나머지 넷은 본문 그대로예요.","ans":"동피랑에서 아빠는 사진을 더 찍으라고 말했다.","memo":["동피랑에서 아빠의 말 = 사진 그만 찍으라고 함","Finally, my dad said, “Please stop! No more pictures!” (마침내 아빠가 말했어요. “그만해! 더 이상 사진은 안 돼!”)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 28</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 28 · Grandma's Secret Recipe</h1><div class="sub">할머니의 비밀 요리법 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":null,"en":"Hi, I are Sam.","ko":"안녕, 나는 Sam이야.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"am","partial":false,"at":[2],"point":"be동사 수일치: 주어 I에는 am 사용","topic":"be동사 수일치","memo":"주어 I에는 am 사용"}]},{"n":2,"tag":null,"en":"I lives with my grandma, and she is an great cook.","ko":"나는 할머니와 살고 있고, 할머니는 훌륭한 요리사야.","ok":false,"foot":[],"fixes":[{"wrong":"lives","right":"live","partial":false,"at":[1],"point":"수일치: 주어 I(1인칭)에는 동사원형 live 사용, -(e)s는 3인칭 단수에만 붙임","topic":"수일치","memo":"주어 I(1인칭)에는 동사원형 live 사용, -(e)s는 3인칭 단수에만 붙임"},{"wrong":"an","right":"a","partial":false,"at":[8],"point":"관사: 자음으로 시작하는 great 앞에는 부정관사 a 사용","topic":"관사","memo":"자음으로 시작하는 great 앞에는 부정관사 a 사용"}]},{"n":3,"tag":null,"en":"She make delicious food just like magic.","ko":"할머니는 마치 마법처럼 맛있는 음식을 만드셔.","ok":false,"foot":[],"fixes":[{"wrong":"make","right":"makes","partial":false,"at":[1],"point":"수일치: 주어 She(3인칭 단수)에는 동사에 -s를 붙여 makes 사용","topic":"수일치","memo":"주어 She(3인칭 단수)에는 동사에 -s를 붙여 makes 사용"}]},{"n":4,"tag":null,"en":"We often cook together.","ko":"우리는 종종 함께 요리를 해.","ok":true,"foot":[],"fixes":[]},{"n":5,"tag":null,"en":"Thanks to her, I can makes some simple dishes.","ko":"할머니 덕분에 나는 몇 개의 간단한 요리를 만들 수 있어.","ok":false,"foot":[],"fixes":[{"wrong":"makes","right":"make","partial":false,"at":[5],"point":"조동사: 조동사 can 뒤에는 동사원형 make 사용","topic":"조동사","memo":"조동사 can 뒤에는 동사원형 make 사용"}]},{"n":6,"tag":null,"en":"Mac and cheese are one of them, and I can make it very good.","ko":"맥앤치즈는 그 요리들 중 하나이고, 나는 그것을 아주 잘 만들 수 있어.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[3],"point":"수일치: Mac and cheese는 하나의 음식으로 취급하는 단수 주어이므로 단수동사 is 사용","topic":"수일치","memo":"Mac and cheese는 하나의 음식으로 취급하는 단수 주어이므로 단수동사 is 사용"},{"wrong":"good","right":"well","partial":false,"at":[13],"point":"어휘: 동사 make를 꾸미는 부사 자리이므로 형용사 good 대신 부사 well 사용","topic":"어휘","memo":"동사 make를 꾸미는 부사 자리이므로 형용사 good 대신 부사 well 사용"}]},{"n":7,"tag":null,"en":"Mac means macaroni, an type of pasta.","ko":"mac은 파스타의 일종인 마카로니를 의미해.","ok":false,"foot":[],"fixes":[{"wrong":"an","right":"a","partial":false,"at":[3],"point":"관사: 자음으로 시작하는 type 앞에는 부정관사 a 사용","topic":"관사","memo":"자음으로 시작하는 type 앞에는 부정관사 a 사용"}]},{"n":8,"tag":null,"en":"Much Americans love this food.","ko":"많은 미국인들이 이 음식을 아주 좋아해.","ok":false,"foot":[],"fixes":[{"wrong":"Much","right":"Many","partial":false,"at":[0],"point":"어휘: Americans는 셀 수 있는 명사 (복수)이므로 much 대신 many 사용","topic":"어휘","memo":"Americans는 셀 수 있는 명사 (복수)이므로 much 대신 many 사용"}]},{"n":9,"tag":null,"en":"The recipe are simple, so you can makes it, too!","ko":"그 요리법은 간단해서 너희들도 만들 수 있어!","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[2],"point":"수일치: 주어 recipe(단수)에 맞춰 be동사 is 사용","topic":"수일치","memo":"주어 recipe(단수)에 맞춰 be동사 is 사용"},{"wrong":"makes","right":"make","partial":false,"at":[7],"point":"조동사: 조동사 can 뒤에는 동사원형 make 사용","topic":"조동사","memo":"조동사 can 뒤에는 동사원형 make 사용"}]},{"n":10,"tag":null,"en":"Here are the recipe.","ko":"여기에 그 요리법이 있지.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[1],"point":"수일치: 단수 주어 recipe에는 is 사용","topic":"수일치","memo":"단수 주어 recipe에는 is 사용"}]},{"n":11,"tag":"재료 (Ingredients)","en":"You need: macaroni, cheese, milk, butter, flour, salt","ko":"필요한 것: 마카로니, 치즈, 우유, 버터, 밀가루, 소금","ok":true,"foot":["1flour 밀가루"],"fixes":[]},{"n":12,"tag":"만드는 방법 (Steps)","en":"Boiling the macaroni.","ko":"마카로니를 삶는다.","ok":false,"foot":[],"fixes":[{"wrong":"Boiling","right":"Boil","partial":false,"at":[0],"point":"명령문: 명령문은 동사원형으로 시작 (Boil)","topic":"명령문","memo":"명령문은 동사원형으로 시작 (Boil)"}]},{"n":13,"tag":null,"en":"Melting the butter in an pan.","ko":"버터를 팬에서 녹인다.","ok":false,"foot":[],"fixes":[{"wrong":"Melting","right":"Melt","partial":false,"at":[0],"point":"명령문: 명령문은 동사원형으로 시작 (Melt)","topic":"명령문","memo":"명령문은 동사원형으로 시작 (Melt)"},{"wrong":"an","right":"a","partial":false,"at":[4],"point":"관사: 자음으로 시작하는 pan 앞에는 부정관사 a 사용","topic":"관사","memo":"자음으로 시작하는 pan 앞에는 부정관사 a 사용"}]},{"n":14,"tag":null,"en":"Add the flower and salt.","ko":"밀가루와 소금을 추가한다.","ok":false,"foot":[],"fixes":[{"wrong":"flower","right":"flour","partial":false,"at":[2],"point":"어휘: '밀가루'는 flour, flower는 '꽃'이라는 전혀 다른 단어이므로 주의","topic":"어휘","memo":"'밀가루'는 flour, flower는 '꽃'이라는 전혀 다른 단어이므로 주의"}]},{"n":15,"tag":null,"en":"Add the milk and stir slow.","ko":"우유를 추가하고 천천히 젓는다.","ok":false,"foot":["1stir 젓다"],"fixes":[{"wrong":"slow","right":"slowly","partial":false,"at":[5],"point":"어법: 동사 stir를 꾸미는 부사 자리이므로 형용사 slow 대신 부사 slowly 사용","topic":"어법","memo":"동사 stir를 꾸미는 부사 자리이므로 형용사 slow 대신 부사 slowly 사용"}]},{"n":16,"tag":null,"en":"Turn of the heat.","ko":"불을 끈다.","ok":false,"foot":[],"fixes":[{"wrong":"of","right":"off","partial":false,"at":[1],"point":"어휘: 구동사 turn off(끄다)의 off를 of로 잘못 쓰지 않도록 주의","topic":"어휘","memo":"구동사 turn off(끄다)의 off를 of로 잘못 쓰지 않도록 주의"}]},{"n":17,"tag":null,"en":"Add the cheese and stirs again.","ko":"치즈를 추가하고 다시 젓는다.","ok":false,"foot":[],"fixes":[{"wrong":"stirs","right":"stir","partial":false,"at":[4],"point":"명령문: 명령문 병렬구조에서는 두 동사 모두 동사원형 사용 (Add ~ and stir ~)","topic":"명령문","memo":"명령문 병렬구조에서는 두 동사 모두 동사원형 사용 (Add ~ and stir ~)"}]},{"n":18,"tag":null,"en":"The sauce is readily.","ko":"소스가 준비되었다.","ok":false,"foot":[],"fixes":[{"wrong":"readily","right":"ready","partial":false,"at":[3],"point":"2형식: be동사(is)의 보어 자리이므로 부사 readily 대신 형용사 ready 사용","topic":"2형식","memo":"be동사(is)의 보어 자리이므로 부사 readily 대신 형용사 ready 사용"}]},{"n":19,"tag":null,"en":"Mixes the sauce of the macaroni.","ko":"소스를 마카로니와 섞는다.","ok":false,"foot":[],"fixes":[{"wrong":"Mixes","right":"Mix","partial":false,"at":[0],"point":"명령문: 명령문은 동사원형으로 시작 (Mix)","topic":"명령문","memo":"명령문은 동사원형으로 시작 (Mix)"},{"wrong":"of","right":"with","partial":false,"at":[3],"point":"어휘/어법: '~와 섞다'는 mix A with B로 표현, of는 사용하지 않음","topic":"어휘/어법","memo":"'~와 섞다'는 mix A with B로 표현, of는 사용하지 않음"}]},{"n":20,"tag":null,"en":"Bake it during about 15 minutes.","ko":"그것을 약 15분간 굽는다.","ok":false,"foot":[],"fixes":[{"wrong":"during","right":"for","partial":false,"at":[2],"point":"어휘/어법: 숫자로 된 기간 앞에는 for 사용, during은 특정 사건이나 명사 앞에 사용","topic":"어휘/어법","memo":"숫자로 된 기간 앞에는 for 사용, during은 특정 사건이나 명사 앞에 사용"}]},{"n":21,"tag":null,"en":"Ta-da! The mac and cheese are ready now.","ko":"짜잔! 맥앤치즈가 이제 준비됐어.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[5],"point":"수일치: Mac and cheese는 하나의 음식으로 취급하는 단수 주어이므로 단수동사 is 사용","topic":"수일치","memo":"Mac and cheese는 하나의 음식으로 취급하는 단수 주어이므로 단수동사 is 사용"}]},{"n":22,"tag":null,"en":"It looks deliciously!","ko":"맛있어 보여!","ok":false,"foot":[],"fixes":[{"wrong":"deliciously","right":"delicious","partial":false,"at":[2],"point":"2형식 감각동사: look 뒤에는 형용사 보어 사용 (looks delicious)","topic":"2형식 감각동사","memo":"look 뒤에는 형용사 보어 사용 (looks delicious)"}]},{"n":23,"tag":null,"en":"It smells well, too!","ko":"좋은 냄새도 나!","ok":false,"foot":[],"fixes":[{"wrong":"well","right":"good","partial":false,"at":[2],"point":"2형식 감각동사: smell 뒤에는 형용사 보어 사용 (smells good, smells well은 '냄새를 잘 맡다'라는 다른 의미)","topic":"2형식 감각동사","memo":"smell 뒤에는 형용사 보어 사용 (smells good, smells well은 '냄새를 잘 맡다'라는 다른 의미)"}]},{"n":24,"tag":null,"en":"Oh, here are a secretly tip from my grandma.","ko":"오, 여기에 우리 할머니의 비법이 하나 있어.","ok":false,"foot":["1tip (실용적인) 조언, 팁"],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[2],"point":"수일치: 주어 tip(단수)에 맞춰 be동사 is 사용","topic":"수일치","memo":"주어 tip(단수)에 맞춰 be동사 is 사용"},{"wrong":"secretly","right":"secret","partial":false,"at":[4],"point":"어법: 명사 tip을 꾸미는 자리이므로 부사 secretly 대신 형용사 secret 사용","topic":"어법","memo":"명사 tip을 꾸미는 자리이므로 부사 secretly 대신 형용사 secret 사용"}]},{"n":25,"tag":null,"en":"Add love and shares the foods with your family and friends.","ko":"사랑을 더하고, 너의 가족과 친구들과 그 음식을 나눠 먹으렴.","ok":false,"foot":[],"fixes":[{"wrong":"shares","right":"share","partial":false,"at":[3],"point":"명령문: 명령문 병렬구조에서는 두 동사 모두 동사원형 사용 (Add ~ and share ~)","topic":"명령문","memo":"명령문 병렬구조에서는 두 동사 모두 동사원형 사용 (Add ~ and share ~)"},{"wrong":"foods","right":"food","partial":false,"at":[5],"point":"어휘: food는 셀 수 없는 명사이므로 복수형 foods를 쓰지 않음","topic":"어휘","memo":"food는 셀 수 없는 명사이므로 복수형 foods를 쓰지 않음"}]}];var RNUM=28;var TITLE_EN="Grandma's Secret Recipe";var PASS_EN=["Grandma’s Secret Recipe","Hi, I am Sam. I live with my grandma, and she is a great cook. She makes delicious food just like magic. We often cook together. Thanks to her, I can make some simple dishes.","Mac and cheese is one of them, and I can make it very well. Mac means macaroni, a type of pasta. Many Americans love this food. The recipe is simple, so you can make it, too! Here is the recipe.","You need: macaroni, cheese, milk, butter, flour, salt","1. Boil the macaroni.","2. Melt the butter in a pan. Add the flour and salt.","3. Add the milk and stir slowly.","4. Turn off the heat. Add the cheese and stir again. The sauce is ready.","5. Mix the sauce with the macaroni.","6. Bake it for about 15 minutes.","Ta-da! The mac and cheese is ready now. It looks delicious! It smells good, too! Oh, here is a secret tip from my grandma. “Add love and share the food with your family and friends.”"];var PASS_KO=["할머니의 비밀 요리법","안녕, 나는 Sam이야. 나는 할머니와 살고 있고, 할머니는 훌륭한 요리사야. 할머니는 마치 마법처럼 맛있는 음식을 만드셔. 우리는 종종 함께 요리를 해. 할머니 덕분에 나는 몇 개의 간단한 요리를 만들 수 있어.","맥앤치즈는 그 요리들 중 하나이고, 나는 그것을 아주 잘 만들 수 있어. mac은 파스타의 일종인 마카로니를 의미해. 많은 미국인들이 이 음식을 아주 좋아해. 그 요리법은 간단해서 너희들도 만들 수 있어! 여기에 그 요리법이 있지.","필요한 것: 마카로니, 치즈, 우유, 버터, 밀가루, 소금","1. 마카로니를 삶는다.","2. 버터를 팬에서 녹인다. 밀가루와 소금을 추가한다.","3. 우유를 추가하고 천천히 젓는다.","4. 불을 끈다. 치즈를 추가하고 다시 젓는다. 소스가 준비되었다.","5. 소스를 마카로니와 섞는다.","6. 그것을 약 15분간 굽는다.","짜잔! 맥앤치즈가 이제 준비됐어. 맛있어 보여! 좋은 냄새도 나! 오, 여기에 우리 할머니의 비법이 하나 있어. “사랑을 더하고, 너의 가족과 친구들과 그 음식을 나눠 먹으렴.”"];var DLG=[["B","Thank you for dinner, Ratu.","저녁 식사 고마워, Ratu."],["G","My pleasure, Jiho. Help yourself.","천만에, 지호야. 마음껏 먹어."],["B","Wow, it’s so delicious! What is the name of this food?","와, 정말 맛있다! 이 음식의 이름이 뭐니?"],["G","It’s nasi-goreng. It’s Indonesian fried rice.","nasi-goreng야. 인도네시아식 볶음밥이야."],["B","Can I have some more?","좀 더 먹을 수 있을까?"],["G","No problem. Here you go. I also made a dessert. Would you like some?","물론이지. 여기 있어. 나는 디저트도 만들었어. 좀 먹어볼래?"],["B","Sure! Is it also Indonesian?","좋아! 그것도 인도네시아 음식이니?"],["G","Yes. It’s es-buah, an iced fruit dessert. It’s really good.","응. es-buah라는 얼음 과일 디저트야. 정말 맛있어."]];var BQ=[{"n":1,"q":"지호가 먹고 있는 음식의 이름은 무엇인가요?","o":["taco","mac and cheese","pad thai","nasi-goreng","es-buah"],"a":3,"ev":["What is the name of this food? / It’s nasi-goreng.","이 음식의 이름이 뭐니? / nasi-goreng야."],"why":"지호가 이름을 묻고 Ratu가 답한 부분이 근거예요. es-buah는 디저트 이름이에요.","ans":"nasi-goreng","memo":["음식 이름 = nasi-goreng (인도네시아식 볶음밥)","It’s nasi-goreng. It’s Indonesian fried rice. (nasi-goreng야. 인도네시아식 볶음밥이야.)"]},{"n":2,"q":"지호가 Ratu에게 부탁한 것은 무엇인가요?","o":["레시피 알려 주기","물 가져다 주기","디저트 만들어 주기","음식 이름 알려 주기","음식을 더 달라고 하기"],"a":4,"ev":["Can I have some more?","좀 더 먹을 수 있을까?"],"why":"Can I have some more?는 더 달라고 할 때 쓰는 표현이에요.","ans":"음식을 더 달라고 하기","memo":["지호의 부탁 = 음식을 더 먹고 싶다고 요청","Can I have some more? (좀 더 먹을 수 있을까?)"]},{"n":3,"q":"Ratu가 만든 디저트는 무엇인가요?","o":["아이스크림","과일 케이크","얼음 과일 디저트","볶음밥","쿠키"],"a":2,"ev":["I also made a dessert. / It’s es-buah, an iced fruit dessert.","나는 디저트도 만들었어. / es-buah라는 얼음 과일 디저트야."],"why":"an iced fruit dessert가 es-buah를 설명해요.","ans":"얼음 과일 디저트","memo":["Ratu의 디저트 = es-buah (얼음 과일 디저트)","It’s es-buah, an iced fruit dessert. (es-buah라는 얼음 과일 디저트야.)"]},{"n":4,"q":"Ratu가 디저트를 권하자 지호는 어떻게 답했나요?","o":["거절했다","수락했다","나중에 먹겠다고 했다","배부르다고 했다","다른 것을 달라고 했다"],"a":1,"ev":["Would you like some? / Sure!","좀 먹어볼래? / 좋아!"],"why":"Sure!는 '좋아!'라는 승낙의 말이에요.","ans":"수락했다","memo":["지호의 반응 = 디저트 권유를 수락함","Would you like some? / Sure! (좀 먹어볼래? / 좋아!)"]},{"n":5,"q":"지호는 식사를 어떻게 느꼈나요?","o":["너무 짰다","너무 매웠다","별로였다","아주 맛있었다","너무 차가웠다"],"a":3,"ev":["Wow, it’s so delicious!","와, 정말 맛있다!"],"why":"delicious는 '맛있는'이라는 뜻이에요.","ans":"아주 맛있었다","memo":["지호의 소감 = 아주 맛있음","Wow, it’s so delicious! (와, 정말 맛있다!)"]}];var DQ=[{"n":6,"q":"Sam은 누구와 함께 살고 있나요?","o":["할머니","삼촌","친구","혼자","부모님"],"a":0,"ev":["I live with my grandma, and she is a great cook.","나는 할머니와 살고 있고, 할머니는 훌륭한 요리사야."],"why":"grandma는 할머니예요.","ans":"할머니","memo":["Sam이 함께 사는 사람 = 할머니","I live with my grandma, and she is a great cook. (나는 할머니와 살고 있고, 할머니는 훌륭한 요리사야.)"]},{"n":7,"q":"mac and cheese에서 mac은 무엇을 의미하나요?","o":["맥주의 줄임말","소스 이름","치즈의 한 종류","파스타의 일종인 마카로니","미국의 도시 이름"],"a":3,"ev":["Mac means macaroni, a type of pasta.","mac은 파스타의 일종인 마카로니를 의미해."],"why":"a type of pasta는 '파스타의 일종'이에요.","ans":"파스타의 일종인 마카로니","memo":["mac의 뜻 = 파스타의 일종인 마카로니","Mac means macaroni, a type of pasta. (mac은 파스타의 일종인 마카로니를 의미해.)"]},{"n":8,"q":"소스에 치즈를 넣기 전에 해야 할 일은 무엇인가요?","o":["오븐을 켠다","불을 끈다","마카로니를 삶는다","우유를 모두 버린다","소스를 마카로니와 섞는다"],"a":1,"ev":["Turn off the heat. Add the cheese and stir again.","불을 끈다. 치즈를 추가하고 다시 젓는다."],"why":"치즈를 넣는 문장 바로 앞에 Turn off the heat.가 나와요.","ans":"불을 끈다","memo":["치즈 넣기 전 = 불 끄기","Turn off the heat. Add the cheese and stir again. (불을 끈다. 치즈를 추가하고 다시 젓는다.)"]},{"n":9,"q":"맥앤치즈는 마지막에 얼마 동안 굽나요?","o":["약 5분","약 10분","약 15분","약 30분","약 1시간"],"a":2,"ev":["Bake it for about 15 minutes.","그것을 약 15분간 굽는다."],"why":"about 15 minutes는 '약 15분'이에요.","ans":"약 15분","memo":["굽는 시간 = 약 15분","Bake it for about 15 minutes. (그것을 약 15분간 굽는다.)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["많은 미국인들이 맥앤치즈를 아주 좋아한다.","버터는 팬에서 녹인다.","완성된 맥앤치즈는 맛있어 보이고 좋은 냄새가 난다.","Sam은 할머니 덕분에 간단한 요리를 만들 수 있다.","할머니의 비법은 음식을 혼자서만 먹는 것이다."],"a":4,"ev":["“Add love and share the food with your family and friends.”","“사랑을 더하고, 너의 가족과 친구들과 그 음식을 나눠 먹으렴.”"],"why":"할머니의 비법은 가족과 친구들과 음식을 share(나누는) 것이에요. 혼자 먹으라는 말은 없어요.","ans":"할머니의 비법은 음식을 혼자서만 먹는 것이다.","memo":["할머니의 비법 = 사랑을 더하고 가족·친구와 음식을 나눔","Add love and share the food with your family and friends. (사랑을 더하고, 너의 가족과 친구들과 그 음식을 나눠 먹으렴.)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

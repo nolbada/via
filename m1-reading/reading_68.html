@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 68</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 68 · Why Do Animals Travel?</h1><div class="sub">왜 동물들이 여행을 할까? · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":null,"en":"Do you know animals also leaves there homes and travel?","ko":"동물들도 자신의 집을 떠나 여행한다는 것을 알고 있는가?","ok":false,"foot":[],"fixes":[{"wrong":"leaves","right":"leave","partial":false,"at":[5],"point":"어법: 조동사 Do 뒤에는 동사원형 leave 사용","topic":"어법","memo":"조동사 Do 뒤에는 동사원형 leave 사용"},{"wrong":"there","right":"their","partial":false,"at":[6],"point":"어휘: 소유격 their와 장소를 나타내는 there의 구별","topic":"어휘","memo":"소유격 their와 장소를 나타내는 there의 구별"}]},{"n":2,"tag":null,"en":"Many animals travels for different reasons. Let's finding out more!","ko":"많은 동물이 다양한 이유로 여행한다. 더 알아보도록 하자!","ok":false,"foot":[],"fixes":[{"wrong":"travels","right":"travel","partial":false,"at":[2],"point":"수일치: 주어 animals(복수)에 맞춰 동사원형 travel 사용","topic":"수일치","memo":"주어 animals(복수)에 맞춰 동사원형 travel 사용"},{"wrong":"finding","right":"find","partial":false,"at":[7],"point":"어법: Let's 뒤에는 동사원형 find 사용","topic":"어법","memo":"Let's 뒤에는 동사원형 find 사용"}]},{"n":3,"tag":"Fruit Bats · 아프리카","en":"From October to December, million of fruit bats fly to Zambia's Kasanka National Park.","ko":"10월부터 12월 사이에 수백만 마리의 과일박쥐들이 잠비아의 카산카 국립공원으로 날아간다.","ok":false,"foot":[],"fixes":[{"wrong":"million","right":"millions","partial":false,"at":[4],"point":"어휘/수: '수백만'이라는 뜻으로 millions of 형태 사용(million은 복수형 필요)","topic":"어휘/수","memo":"'수백만'이라는 뜻으로 millions of 형태 사용(million은 복수형 필요)"}]},{"n":4,"tag":null,"en":"These bats come from all over Africa.","ko":"이 박쥐들은 아프리카의 전 지역에서 온다.","ok":true,"foot":[],"fixes":[]},{"n":5,"tag":null,"en":"Why does they travel to the park?","ko":"왜 그들이 그 공원으로 여행을 하는 것일까?","ok":false,"foot":[],"fixes":[{"wrong":"does","right":"do","partial":false,"at":[1],"point":"어법: 주어 they(복수)에 맞는 의문문 조동사 do 사용","topic":"어법","memo":"주어 they(복수)에 맞는 의문문 조동사 do 사용"}]},{"n":6,"tag":null,"en":"They goes there to eating wild fruit.","ko":"그들은 야생 과일을 먹기 위해 그곳에 간다.","ok":false,"foot":[],"fixes":[{"wrong":"goes","right":"go","partial":false,"at":[1],"point":"수일치: 주어 They(복수)에 맞춰 동사원형 go 사용","topic":"수일치","memo":"주어 They(복수)에 맞춰 동사원형 go 사용"},{"wrong":"to eating","right":"to eat","partial":false,"at":[3],"point":"to부정사의 부사적 용법(목적): to+동사원형 eat 사용","topic":"to부정사의 부사적 용법(목적)","memo":"to+동사원형 eat 사용"}]},{"n":7,"tag":null,"en":"They are big eater.","ko":"그들은 대식가이다.","ok":false,"foot":[],"fixes":[{"wrong":"eater","right":"eaters","partial":false,"at":[3],"point":"수일치: 주어 They(복수)에 맞춰 복수 명사 eaters 사용","topic":"수일치","memo":"주어 They(복수)에 맞춰 복수 명사 eaters 사용"}]},{"n":8,"tag":null,"en":"They eat more then their weight in a night.","ko":"그들은 하룻밤에 자신의 몸무게보다 더 많은 양을 먹는다.","ok":false,"foot":["1weight 무게, 몸무게"],"fixes":[{"wrong":"then","right":"than","partial":false,"at":[3],"point":"어휘: 비교 표현에는 than 사용 (then은 '그 다음에, 그때'라는 뜻의 부사)","topic":"어휘","memo":"비교 표현에는 than 사용"}]},{"n":9,"tag":"Red Crabs · 크리스마스섬","en":"On Christmas Island, red crabs lives in forests, not in the water.","ko":"크리스마스섬에서 붉은게는 물속이 아니라 숲에서 산다.","ok":false,"foot":[],"fixes":[{"wrong":"lives","right":"live","partial":false,"at":[5],"point":"수일치: 주어 red crabs(복수)에 맞춰 동사원형 live 사용","topic":"수일치","memo":"주어 red crabs(복수)에 맞춰 동사원형 live 사용"}]},{"n":10,"tag":null,"en":"However, when the rainy season begin in October, millions of red crabs march toward the ocean to laying eggs.","ko":"하지만 10월에 우기가 시작되면, 수백만 마리의 붉은게들이 알을 낳기 위해 바다 쪽으로 행진한다.","ok":false,"foot":["1march 행진하다"],"fixes":[{"wrong":"begin","right":"begins","partial":false,"at":[5],"point":"수일치: 접속사 when이 이끄는 절의 주어 the rainy season(단수)에 맞춰 동사 begins 사용","topic":"수일치","memo":"접속사 when이 이끄는 절의 주어 the rainy season(단수)에 맞춰 동사 begins 사용"},{"wrong":"to laying","right":"to lay","partial":false,"at":[16],"point":"to부정사의 부사적 용법(목적): to+동사원형 lay 사용","topic":"to부정사의 부사적 용법(목적)","memo":"to+동사원형 lay 사용"}]},{"n":11,"tag":null,"en":"During this period, they are all over the place, and the whole island turn red.","ko":"이 기간 동안에는 그들이 모든 곳에 걸쳐 있어서 섬 전체가 붉게 변한다.","ok":false,"foot":["1period 기간"],"fixes":[{"wrong":"turn","right":"turns","partial":false,"at":[13],"point":"수일치: 주어 the whole island(단수)에 맞춰 동사 turns 사용","topic":"수일치","memo":"주어 the whole island(단수)에 맞춰 동사 turns 사용"}]},{"n":12,"tag":null,"en":"People close some roads and builds bridges to protect them.","ko":"사람들은 그들을 보호하기 위해 일부 도로를 폐쇄하고 다리를 놓는다.","ok":false,"foot":[],"fixes":[{"wrong":"builds","right":"build","partial":false,"at":[5],"point":"수일치: 주어 People(복수)에 맞춰 동사원형 build 사용(병렬로 연결된 close와 같은 형태)","topic":"수일치","memo":"주어 People(복수)에 맞춰 동사원형 build 사용(병렬로 연결된 close와 같은 형태)"}]},{"n":13,"tag":null,"en":"With their help, the crabs move to the ocean safe.","ko":"사람들의 도움으로 게들은 바다로 안전하게 이동한다.","ok":false,"foot":[],"fixes":[{"wrong":"safe","right":"safely","partial":false,"at":[9],"point":"어법: 동사 move를 수식하려면 부사 safely 사용(safe는 형용사)","topic":"어법","memo":"동사 move를 수식하려면 부사 safely 사용(safe는 형용사)"}]},{"n":14,"tag":"Golden Jellyfish · 팔라우","en":"Jellyfish Lake in Palau is home for golden jellyfish.","ko":"팔라우의 젤리피시 호수는 황금해파리의 집이다.","ok":false,"foot":[],"fixes":[{"wrong":"for","right":"to","partial":false,"at":[6],"point":"어휘: '~의 서식지이다'라는 뜻의 관용 표현은 home to 사용","topic":"어휘","memo":"'~의 서식지이다'라는 뜻의 관용 표현은 home to 사용"}]},{"n":15,"tag":null,"en":"Every day, they move across the lake and then swims back.","ko":"매일 그들은 호수를 가로질러 이동한 뒤에 다시 헤엄쳐 돌아온다.","ok":false,"foot":[],"fixes":[{"wrong":"swims","right":"swim","partial":false,"at":[9],"point":"수일치: 주어 they(복수)에 맞춰 동사 원형 swim 사용","topic":"수일치","memo":"주어 they(복수)에 맞춰 동사 원형 swim 사용"}]},{"n":16,"tag":null,"en":"Why do they travel every day?","ko":"왜 그들은 매일 여행을 할까?","ok":true,"foot":[],"fixes":[]},{"n":17,"tag":null,"en":"They follows the sun to get energy from them.","ko":"그들은 태양으로부터 에너지를 얻기 위해 태양을 따라간다.","ok":false,"foot":[],"fixes":[{"wrong":"follows","right":"follow","partial":false,"at":[1],"point":"수일치: 주어 They(복수)에 맞춰 동사원형 follow 사용","topic":"수일치","memo":"주어 They(복수)에 맞춰 동사원형 follow 사용"},{"wrong":"them","right":"it","partial":false,"at":[8],"point":"인칭대명사: 단수명사 the sun을 가리키므로 it 사용","topic":"인칭대명사","memo":"단수명사 the sun을 가리키므로 it 사용"}]},{"n":18,"tag":null,"en":"When the sun rise in the morning, the jellyfish begin to swim toward the sun.","ko":"아침에 태양이 뜨면, 황금해파리들은 태양 쪽으로 헤엄치기 시작한다.","ok":false,"foot":[],"fixes":[{"wrong":"rise","right":"rises","partial":false,"at":[3],"point":"수일치: 접속사 when이 이끄는 절의 주어 the sun(단수)에 맞춰 동사 rises 사용","topic":"수일치","memo":"접속사 when이 이끄는 절의 주어 the sun(단수)에 맞춰 동사 rises 사용"}]},{"n":19,"tag":null,"en":"In the afternoon, they travel back and wait in the next morning.","ko":"오후에는 다시 돌아와 다음 날 아침을 기다린다.","ok":false,"foot":[],"fixes":[{"wrong":"in","right":"for","partial":false,"at":[8],"point":"어휘/전치사: '~을 기다리다'라는 뜻의 wait for 사용","topic":"어휘/전치사","memo":"'~을 기다리다'라는 뜻의 wait for 사용"}]}];var RNUM=68;var TITLE_EN="Why Do Animals Travel?";var PASS_EN=["Why Do Animals Travel?","Do you know animals also leave their homes and travel? Many animals travel for different reasons. Let’s find out more!","Fruit Bats in Africa","From October to December, millions of fruit bats fly to Zambia’s Kasanka National Park. These bats come from all over Africa. Why do they travel to the park? They go there to eat wild fruit. They are big eaters. They eat more than their weight in a night.","Red Crabs on Christmas Island","On Christmas Island, red crabs live in forests, not in the water. However, when the rainy season begins in October, millions of red crabs march toward the ocean to lay eggs. During this period, they are all over the place, and the whole island turns red. People close some roads and build bridges to protect them. With their help, the crabs move to the ocean safely.","Golden Jellyfish in Jellyfish Lake, Palau","Jellyfish Lake in Palau is home to golden jellyfish. Every day, they move across the lake and then swim back. Why do they travel every day? They follow the sun to get energy from it. When the sun rises in the morning, the jellyfish begin to swim toward the sun. In the afternoon, they travel back and wait for the next morning."];var PASS_KO=["왜 동물들이 여행을 할까?","동물들도 자신의 집을 떠나 여행한다는 것을 알고 있는가? 많은 동물이 다양한 이유로 여행한다. 더 알아보도록 하자!","아프리카에 사는 과일박쥐","10월부터 12월 사이에 수백만 마리의 과일박쥐들이 잠비아의 카산카 국립공원으로 날아간다. 이 박쥐들은 아프리카의 전 지역에서 온다. 왜 그들이 그 공원으로 여행을 하는 것일까? 그들은 야생 과일을 먹기 위해 그곳에 간다. 그들은 대식가이다. 그들은 하룻밤에 자신의 몸무게보다 더 많은 양을 먹는다.","크리스마스섬의 붉은게","크리스마스섬에서 붉은게는 물속이 아니라 숲에서 산다. 하지만 10월에 우기가 시작되면, 수백만 마리의 붉은게들이 알을 낳기 위해 바다 쪽으로 행진한다. 이 기간 동안에는 그들이 모든 곳에 걸쳐 있어서 섬 전체가 붉게 변한다. 사람들은 그들을 보호하기 위해 일부 도로를 폐쇄하고 다리를 놓는다. 사람들의 도움으로 게들은 바다로 안전하게 이동한다.","팔라우의 젤리피시 호수에 사는 황금해파리","팔라우의 젤리피시 호수는 황금해파리의 집이다. 매일 그들은 호수를 가로질러 이동한 뒤에 다시 헤엄쳐 돌아온다. 왜 그들은 매일 여행을 할까? 그들은 태양으로부터 에너지를 얻기 위해 태양을 따라간다. 아침에 태양이 뜨면, 황금해파리들은 태양 쪽으로 헤엄치기 시작한다. 오후에는 다시 돌아와 다음 날 아침을 기다린다."];var DLG=[["G","I am reading a book on gray whales for the science project.","나는 과학 프로젝트를 위해 쇠고래에 관한 책을 읽고 있어."],["B","What did you learn from the book?","그 책에서 뭘 배웠니?"],["G","Gray whales make the longest journey in the world! They swim more than 8,000 kilometers every year.","쇠고래는 세상에서 가장 긴 여행을 해! 매년 8,000킬로미터 넘게 헤엄쳐."],["B","Why do they travel such a long way?","그들은 왜 그렇게 먼 길을 여행하니?"],["G","They travel to get food and give birth to their babies.","먹이를 구하고 새끼를 낳기 위해서 여행해."],["B","I see. What else did you learn about gray whales?","그렇구나. 쇠고래에 대해 또 뭘 배웠니?"],["G","They don’t have any teeth.","그들은 이빨이 하나도 없어."],["B","I won’t believe it! Then, how do they eat? I want to read that book, too.","못 믿겠어! 그럼 어떻게 먹니? 나도 그 책을 읽고 싶어."]];var BQ=[{"n":1,"q":"여자아이는 무엇을 위해 쇠고래에 관한 책을 읽고 있나요?","o":["영어 숙제","과학 프로젝트","독서 대회","미술 수업","동아리 발표"],"a":1,"ev":["I am reading a book on gray whales for the science project.","나는 과학 프로젝트를 위해 쇠고래에 관한 책을 읽고 있어."],"why":"for 뒤에 나오는 말이 책을 읽는 목적이에요.","ans":"과학 프로젝트","memo":["여자아이가 책을 읽는 목적 = 과학 프로젝트","I am reading a book on gray whales for the science project. (나는 과학 프로젝트를 위해 쇠고래에 관한 책을 읽고 있어.)"]},{"n":2,"q":"쇠고래는 매년 얼마나 멀리 헤엄치나요?","o":["8,000킬로미터보다 적게","800킬로미터","1,800킬로미터","8,000킬로미터 넘게","80킬로미터"],"a":3,"ev":["They swim more than 8,000 kilometers every year.","매년 8,000킬로미터 넘게 헤엄쳐."],"why":"more than은 '~보다 많이, ~이 넘게'라는 뜻이에요.","ans":"8,000킬로미터 넘게","memo":["쇠고래가 매년 헤엄치는 거리 = 8,000km 넘게","They swim more than 8,000 kilometers every year. (매년 8,000킬로미터 넘게 헤엄쳐.)"]},{"n":3,"q":"쇠고래가 그렇게 먼 길을 여행하는 이유는 무엇인가요?","o":["이빨을 닦기 위해서","친구를 만나기 위해서","먹이를 구하고 새끼를 낳기 위해서","추위를 피해 잠을 자기 위해서","사람들에게 구경거리를 보여주기 위해서"],"a":2,"ev":["They travel to get food and give birth to their babies.","먹이를 구하고 새끼를 낳기 위해서 여행해."],"why":"to get ~, (to) give ~ 두 가지가 이유예요. 둘 다 있어야 정답이에요.","ans":"먹이를 구하고 새끼를 낳기 위해서","memo":["쇠고래의 여행 이유 = 먹이 구하기 + 새끼 낳기","They travel to get food and give birth to their babies. (먹이를 구하고 새끼를 낳기 위해서 여행해.)"]},{"n":4,"q":"쇠고래에 대해 여자아이가 한 말로 알맞은 것은?","o":["이빨이 매우 크다","이빨이 하나도 없다","이빨이 두 개 있다","이빨로 먹이를 잡는다","이빨이 매년 새로 난다"],"a":1,"ev":["They don’t have any teeth.","그들은 이빨이 하나도 없어."],"why":"don’t have any ~는 '~이 하나도 없다'는 뜻이에요.","ans":"이빨이 하나도 없다","memo":["쇠고래의 이빨 = 하나도 없음","They don’t have any teeth. (그들은 이빨이 하나도 없어.)"]},{"n":5,"q":"대화가 끝날 때 남자아이가 하고 싶어 하는 것은 무엇인가요?","o":["쇠고래를 직접 보러 가기","그 책을 읽기","과학 프로젝트를 같이 하기","여자아이에게 책을 빌려주기","쇠고래 영상을 만들기"],"a":1,"ev":["I want to read that book, too.","나도 그 책을 읽고 싶어."],"why":"want to ~는 '~하고 싶다'예요. too는 '나도'라는 뜻이에요.","ans":"그 책을 읽기","memo":["남자아이가 하고 싶은 것 = 그 책 읽기","I want to read that book, too. (나도 그 책을 읽고 싶어.)"]}];var DQ=[{"n":6,"q":"과일박쥐들이 카산카 국립공원으로 날아가는 이유는 무엇인가요?","o":["알을 낳으려고","야생 과일을 먹으려고","추위를 피하려고","물을 마시려고","친구를 만나려고"],"a":1,"ev":["They go there to eat wild fruit.","그들은 야생 과일을 먹기 위해 그곳에 간다."],"why":"to eat은 '먹기 위해'라는 목적을 말해요.","ans":"야생 과일을 먹으려고","memo":["과일박쥐가 공원에 가는 이유 = 야생 과일 먹기","They go there to eat wild fruit. (그들은 야생 과일을 먹기 위해 그곳에 간다.)"]},{"n":7,"q":"크리스마스섬에서 붉은게가 바다로 안전하게 이동하도록 사람들이 하는 일은?","o":["바다에 먹이를 던진다","일부 도로를 닫고 다리를 놓는다","숲에 불을 피운다","게를 상자에 담아 옮긴다","섬 전체에 물을 뿌린다"],"a":1,"ev":["People close some roads and build bridges to protect them.","사람들은 그들을 보호하기 위해 일부 도로를 폐쇄하고 다리를 놓는다."],"why":"them은 붉은게를 가리켜요.","ans":"일부 도로를 닫고 다리를 놓는다","memo":["게를 위해 사람들이 하는 일 = 도로 폐쇄 + 다리 건설","People close some roads and build bridges to protect them. (사람들은 그들을 보호하기 위해 일부 도로를 폐쇄하고 다리를 놓는다.)"]},{"n":8,"q":"황금해파리가 매일 태양을 따라 이동하는 이유는?","o":["태양으로부터 에너지를 얻으려고","알을 낳으려고","추운 날씨를 피하려고","친구를 찾으려고","먹이를 숨기려고"],"a":0,"ev":["They follow the sun to get energy from it.","그들은 태양으로부터 에너지를 얻기 위해 태양을 따라간다."],"why":"it은 the sun을 가리켜요.","ans":"태양으로부터 에너지를 얻으려고","memo":["황금해파리가 태양을 따르는 이유 = 에너지 얻기","They follow the sun to get energy from it. (그들은 태양으로부터 에너지를 얻기 위해 태양을 따라간다.)"]},{"n":9,"q":"윗글의 주제로 가장 알맞은 것은?","o":["동물들은 집에서만 산다","동물들은 겨울에만 여행한다","많은 동물이 다양한 이유로 여행한다","사람들은 동물을 보면 도망간다","동물은 바다에서만 여행한다"],"a":2,"ev":["Many animals travel for different reasons.","많은 동물이 다양한 이유로 여행한다."],"why":"박쥐, 게, 해파리 모두 서로 다른 이유로 여행해요.","ans":"많은 동물이 다양한 이유로 여행한다","memo":["글의 주제 = 많은 동물이 다양한 이유로 여행함","Many animals travel for different reasons. (많은 동물이 다양한 이유로 여행한다.)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["과일박쥐는 10월부터 12월 사이에 카산카 국립공원으로 간다.","붉은게는 숲에 살지만 알을 낳으러 바다로 간다.","황금해파리는 팔라우의 호수에 산다.","황금해파리는 아침에 태양에서 멀어지는 쪽으로 헤엄친다.","과일박쥐는 하룻밤에 자기 몸무게보다 더 많이 먹는다."],"a":3,"ev":["When the sun rises in the morning, the jellyfish begin to swim toward the sun.","아침에 태양이 뜨면, 황금해파리들은 태양 쪽으로 헤엄치기 시작한다."],"why":"해파리는 태양 쪽으로(toward) 헤엄쳐요. 나머지는 모두 글에 그대로 나와요.","ans":"황금해파리는 아침에 태양에서 멀어지는 쪽으로 헤엄친다.","memo":["황금해파리 = 아침에 태양 쪽으로 헤엄침 (멀어짐 X)","When the sun rises in the morning, the jellyfish begin to swim toward the sun. (아침에 태양이 뜨면, 황금해파리들은 태양 쪽으로 헤엄치기 시작한다.)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

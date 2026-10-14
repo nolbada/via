@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 30</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 30 · Save Coral Reefs</h1><div class="sub">산호초를 구해 주세요 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":null,"en":"Welcomes to a ‘Save Coral Reefs’ festival.","ko":"'산호초를 구해 주세요' 축제에 오신 것을 환영합니다.","ok":false,"foot":[],"fixes":[{"wrong":"Welcomes","right":"Welcome","partial":false,"at":[0],"point":"명령문: 명령문은 동사원형으로 시작하므로 Welcomes가 아닌 Welcome 사용","topic":"명령문","memo":"명령문은 동사원형으로 시작하므로 Welcomes가 아닌 Welcome 사용"},{"wrong":"a","right":"the","partial":false,"at":[2],"point":"관사: 특정 축제를 가리키므로 정관사 the 사용","topic":"관사","memo":"특정 축제를 가리키므로 정관사 the 사용"}]},{"n":2,"tag":null,"en":"It was for Boram Middle School’s Earth Day event.","ko":"그것은 보람 중학교의 지구의 날 행사입니다.","ok":false,"foot":[],"fixes":[{"wrong":"was","right":"is","partial":false,"at":[1],"point":"be동사 현재형: 지금 열리고 있는 행사를 설명하므로 is 사용 (was는 과거형)","topic":"be동사 현재형","memo":"지금 열리고 있는 행사를 설명하므로 is 사용 (was는 과거형)"}]},{"n":3,"tag":null,"en":"Join the festival to learning about coral reefs.","ko":"산호초에 대해 배우기 위해 축제에 참여하세요.","ok":false,"foot":[],"fixes":[{"wrong":"learning","right":"learn","partial":false,"at":[4],"point":"to부정사의 부사적 용법(목적): to 뒤에는 동사원형 learn 사용","topic":"to부정사의 부사적 용법(목적)","memo":"to 뒤에는 동사원형 learn 사용"}]},{"n":4,"tag":"Coral Reefs Are in Danger!","en":"In the movie Finding Nemo, Nemo live on beautiful coral reefs.","ko":"영화 「니모를 찾아서」에서, 니모는 아름다운 산호초에서 삽니다.","ok":false,"foot":["1coral reefs 산호초"],"fixes":[{"wrong":"live","right":"lives","partial":false,"at":[6],"point":"수일치: 주어 Nemo(3인칭 단수)에 맞춰 lives 사용","topic":"수일치","memo":"주어 Nemo(3인칭 단수)에 맞춰 lives 사용"}]},{"n":5,"tag":null,"en":"They are home to many sea animals.","ko":"그것들은 많은 바다 동물들의 서식지입니다.","ok":true,"foot":[],"fixes":[]},{"n":6,"tag":null,"en":"Coral reefs are in dangerous, isn’t it?","ko":"산호초는 위험에 처해 있어요, 그렇지 않나요?","ok":false,"foot":[],"fixes":[{"wrong":"dangerous","right":"danger","partial":false,"at":[4],"point":"어휘: '위험에 처하다'는 be in danger로 명사 danger 사용 (dangerous는 형용사)","topic":"어휘","memo":"'위험에 처하다'는 be in danger로 명사 danger 사용 (dangerous는 형용사)"},{"wrong":"isn’t it","right":"aren’t they","partial":false,"at":[5],"point":"부가의문문: 주어가 복수(coral reefs)이고 be동사가 are이므로 aren't they 사용","topic":"부가의문문","memo":"주어가 복수(coral reefs)이고 be동사가 are이므로 aren't they 사용"}]},{"n":7,"tag":null,"en":"Climate change warm up the sea.","ko":"기후 변화가 바다를 따뜻하게 하고 있습니다.","ok":false,"foot":[],"fixes":[{"wrong":"warm","right":"is warming","partial":false,"at":[2],"point":"현재진행형: be동사(is)+v-ing 형태로 진행 중인 변화를 표현 (is warming)","topic":"현재진행형","memo":"be동사(is)+v-ing 형태로 진행 중인 변화를 표현 (is warming)"}]},{"n":8,"tag":null,"en":"The sea water is also getting dirtily.","ko":"바닷물 또한 더러워지고 있습니다.","ok":false,"foot":[],"fixes":[{"wrong":"dirtily","right":"dirty","partial":false,"at":[6],"point":"2형식 문장: 연결동사 get의 보어로 형용사 dirty 사용 (부사 dirtily 불가)","topic":"2형식 문장","memo":"연결동사 get의 보어로 형용사 dirty 사용 (부사 dirtily 불가)"}]},{"n":9,"tag":null,"en":"Coral reefs are dying, but our small actions can saves them.","ko":"산호초가 죽어 가고 있지만, 우리의 작은 행동들이 그들을 구할 수 있습니다.","ok":false,"foot":[],"fixes":[{"wrong":"saves","right":"save","partial":false,"at":[9],"point":"조동사 can 뒤에는 동사원형 save 사용","topic":"조동사 can 뒤에는 동사원형 save 사용","memo":""}]},{"n":10,"tag":"Small Actions for Coral Reefs · Say “No” to Plastics","en":"Doesn’t use plastic bag or plastic straws.","ko":"비닐봉지나 플라스틱 빨대를 사용하지 마세요.","ok":false,"foot":[],"fixes":[{"wrong":"Doesn’t","right":"Don’t","partial":false,"at":[0],"point":"명령문 부정: 명령문의 부정은 주어와 상관없이 Don't 사용","topic":"명령문 부정","memo":"명령문의 부정은 주어와 상관없이 Don't 사용"},{"wrong":"bag","right":"bags","partial":false,"at":[3],"point":"어휘: straws와 병렬을 이루도록 복수형 bags 사용","topic":"어휘","memo":"straws와 병렬을 이루도록 복수형 bags 사용"}]},{"n":11,"tag":"Save Energy","en":"We can slowing down climate change.","ko":"우리는 기후 변화를 늦출 수 있습니다.","ok":false,"foot":[],"fixes":[{"wrong":"slowing","right":"slow","partial":false,"at":[2],"point":"조동사 can 뒤에는 동사원형 slow 사용","topic":"조동사 can 뒤에는 동사원형 slow 사용","memo":""}]},{"n":12,"tag":"Choose Sunscreens Carefully","en":"You shoulds avoid sunscreens that is dangerous to coral reefs.","ko":"산호초에 위험한 자외선 차단제는 피해야 합니다.","ok":false,"foot":[],"fixes":[{"wrong":"shoulds","right":"should","partial":false,"at":[1],"point":"조동사 should는 형태가 변하지 않으므로 shoulds가 아닌 should 사용","topic":"조동사 should는 형태가 변하지 않으므로 shoulds가 아닌 should 사용","memo":""},{"wrong":"is","right":"are","partial":false,"at":[5],"point":"관계대명사절의 수일치: 선행사 sunscreens(복수)에 맞춰 are 사용","topic":"관계대명사절의 수일치","memo":"선행사 sunscreens(복수)에 맞춰 are 사용"}]},{"n":13,"tag":"Watch & Join","en":"The Film Chasing Coral show from 1 p.m. to 3 p.m. in the library.","ko":"영화 「산호를 따라서」는 도서관에서 오후 1시부터 3시까지 상영됩니다.","ok":false,"foot":[],"fixes":[{"wrong":"show","right":"is showing","partial":false,"at":[4],"point":"현재진행형: be동사(is)+v-ing 형태로 상영 시간을 표현 (is showing)","topic":"현재진행형","memo":"be동사(is)+v-ing 형태로 상영 시간을 표현 (is showing)"}]},{"n":14,"tag":null,"en":"In Chasing Coral, people talks about coral reef in danger.","ko":"「산호를 따라서」에서, 사람들은 위험에 처한 산호초에 관해 이야기합니다.","ok":false,"foot":[],"fixes":[{"wrong":"talks","right":"talk","partial":false,"at":[4],"point":"수일치: 주어 people은 복수 취급하므로 동사원형 talk 사용","topic":"수일치","memo":"주어 people은 복수 취급하므로 동사원형 talk 사용"},{"wrong":"coral reef","right":"coral reefs","partial":false,"at":[6],"point":"어휘/수일치: 일반적인 산호초들을 가리키므로 복수형 coral reefs 사용","topic":"어휘/수일치","memo":"일반적인 산호초들을 가리키므로 복수형 coral reefs 사용"}]},{"n":15,"tag":null,"en":"Come and watching the film!","ko":"와서 영화를 보세요!","ok":false,"foot":[],"fixes":[{"wrong":"watching","right":"watch","partial":false,"at":[2],"point":"명령문의 병렬구조: Come and 뒤에도 동사원형 watch 사용","topic":"명령문의 병렬구조","memo":"Come and 뒤에도 동사원형 watch 사용"}]},{"n":16,"tag":"Feel & Think","en":"The Great Barrier Reef VR run from 10 a.m. to 4 p.m. in the gym.","ko":"그레이트배리어리프 VR은 체육관에서 오전 10시부터 오후 4시까지 진행됩니다.","ok":false,"foot":[],"fixes":[{"wrong":"run","right":"runs","partial":false,"at":[5],"point":"수일치: 주어 The Great Barrier Reef VR(단수로 취급하는 프로그램 명)에 맞춰 runs 사용","topic":"수일치","memo":"주어 The Great Barrier Reef VR(단수로 취급하는 프로그램 명)에 맞춰 runs 사용"}]},{"n":17,"tag":null,"en":"Dive into the Great Barrier Reef with VR.","ko":"VR로 그레이트배리어리프에 뛰어들어 보세요.","ok":true,"foot":["1VR 가상현실(Virtual Reality)"],"fixes":[]},{"n":18,"tag":null,"en":"You will not needs swimwears.","ko":"여러분은 수영복이 필요하지 않을 것입니다.","ok":false,"foot":[],"fixes":[{"wrong":"needs","right":"need","partial":false,"at":[3],"point":"조동사 will 뒤에는 동사원형 need 사용","topic":"조동사 will 뒤에는 동사원형 need 사용","memo":""},{"wrong":"swimwears","right":"swimwear","partial":false,"at":[4],"point":"어휘: swimwear는 셀 수 없는 명사이므로 복수형 불가","topic":"어휘","memo":"swimwear는 셀 수 없는 명사이므로 복수형 불가"}]},{"n":19,"tag":null,"en":"You can sees the coral reef before and now.","ko":"여러분은 이전과 현재의 산호초를 볼 수 있습니다.","ok":false,"foot":[],"fixes":[{"wrong":"sees","right":"see","partial":false,"at":[2],"point":"조동사 can 뒤에는 동사원형 see 사용","topic":"조동사 can 뒤에는 동사원형 see 사용","memo":""},{"wrong":"coral reef","right":"coral reefs","partial":false,"at":[4],"point":"어휘/수일치: 일반적인 산호초들을 가리키므로 복수형 coral reefs 사용","topic":"어휘/수일치","memo":"일반적인 산호초들을 가리키므로 복수형 coral reefs 사용"}]},{"n":20,"tag":"Paint & Change","en":"Coral Reef Wall Painting are from 11 a.m. to 3 p.m. in the art room.","ko":"산호초 벽화는 미술실에서 오전 11시부터 오후 3시까지 진행됩니다.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[4],"point":"수일치: 주어 Coral Reef Wall Painting(단수로 취급하는 행사명)에 맞춰 is 사용","topic":"수일치","memo":"주어 Coral Reef Wall Painting(단수로 취급하는 행사명)에 맞춰 is 사용"}]},{"n":21,"tag":null,"en":"Dying coral reefs are turning whitely.","ko":"죽어 가는 산호초들이 하얗게 변하고 있습니다.","ok":false,"foot":[],"fixes":[{"wrong":"whitely","right":"white","partial":false,"at":[5],"point":"2형식 문장: 연결동사 turn의 보어로 형용사 white 사용 (부사 whitely 불가)","topic":"2형식 문장","memo":"연결동사 turn의 보어로 형용사 white 사용 (부사 whitely 불가)"}]},{"n":22,"tag":null,"en":"Explore there original colors and paint the coral reefs on the wall.","ko":"그것들의 원래 색을 탐색하고 벽에 있는 산호초를 칠하세요.","ok":false,"foot":[],"fixes":[{"wrong":"there","right":"their","partial":false,"at":[1],"point":"어휘: 소유격 '그것들의'는 their 사용 (there는 '거기에'라는 의미의 부사)","topic":"어휘","memo":"소유격 '그것들의'는 their 사용 (there는 '거기에'라는 의미의 부사)"}]},{"n":23,"tag":null,"en":"Small actions makes a big difference.","ko":"작은 행동들이 큰 차이를 만듭니다.","ok":false,"foot":[],"fixes":[{"wrong":"makes","right":"make","partial":false,"at":[2],"point":"수일치: 주어 actions(복수)에 맞춰 make 사용","topic":"수일치","memo":"주어 actions(복수)에 맞춰 make 사용"}]},{"n":24,"tag":null,"en":"The change start with you!","ko":"변화는 여러분으로부터 시작됩니다!","ok":false,"foot":[],"fixes":[{"wrong":"start","right":"starts","partial":false,"at":[2],"point":"수일치: 주어 change(단수)에 맞춰 starts 사용","topic":"수일치","memo":"주어 change(단수)에 맞춰 starts 사용"}]}];var RNUM=30;var TITLE_EN="Save Coral Reefs";var PASS_EN=["Save Coral Reefs","Welcome to the ‘Save Coral Reefs’ festival. It is for Boram Middle School’s Earth Day event. Join the festival and learn about coral reefs.","Coral Reefs Are in Danger!","In the movie Finding Nemo, Nemo lives on beautiful coral reefs. They are home to many sea animals.","Coral reefs are in danger. Climate change is warming up the sea. The sea water is also getting dirty. Coral reefs are dying, but our small actions can save them.","Small Actions for Coral Reefs","Say “No” to Plastics","Don't use plastic bags or plastic straws.","Save Energy","We can slow down climate change.","Choose Sunscreens Carefully","Some sunscreens are dangerous to coral reefs.","Watch & Join","The Film Chasing Coral: 1 p.m. – 3 p.m. in the library","In Chasing Coral, people talk about coral reefs in danger. Come and watch the film!","Feel & Think","The Great Barrier Reef VR: 10 a.m. – 4 p.m. in the gym","Dive into the Great Barrier Reef with VR. You will not need swimwear. You can see the coral reefs before and now.","Paint & Change","Coral Reef Wall Painting: 11 a.m. – 3 p.m. in the art room","Dying coral reefs are turning white. Explore their original colors and paint the coral reefs on the wall.","Small actions make a big difference.","The change starts with you!"];var PASS_KO=["산호초를 구해 주세요","‘산호초를 구해 주세요’ 축제에 오신 것을 환영합니다. 그것은 보람 중학교의 지구의 날 행사입니다. 축제에 참여하고 산호초에 대해 배우세요.","산호초가 위험에 처했어요!","영화 「니모를 찾아서」에서, 니모는 아름다운 산호초에서 삽니다. 그들은 많은 바다 동물들의 서식지입니다.","산호초가 위험에 처해 있습니다. 기후 변화가 바다를 따뜻하게 하고 있습니다. 바닷물 또한 더러워지고 있습니다. 산호초가 죽어 가고 있지만, 우리의 작은 행동들이 그들을 구할 수 있습니다.","산호초를 위한 작은 행동들","플라스틱에 “아니오”라고 말하세요","비닐봉지나 플라스틱 빨대를 사용하지 마세요.","에너지를 절약하세요","우리는 기후 변화를 늦출 수 있습니다.","자외선 차단제를 신중하게 고르세요","일부 자외선 차단제는 산호초에 위험합니다.","PROGRAMS천재(이상기)","프로그램","<보고 참여해요>","영화 「산호를 따라서」: 도서관에서 오후 1시 - 오후 3시","「산호를 따라서」에서, 사람들은 위험에 처한 산호초에 관해 이야기 합니다. 와서 영화를 보세요!","<느끼고 생각해요>","그레이트배리어리프 VR: 체육관에서 오전 10시 - 오후 4시","VR로 그레이트배리어리프에서 잠수하세요. 여러분은 수영복이 필요하지 않을 것입니다. 여러분은 이전과 현재의 산호초를 볼 수 있습니다.","<색칠하고 바꿔요>","산호초 벽화: 미술실에서 오전 11시 - 오후 3시","죽어 가는 산호초들이 하얗게 변하고 있습니다. 그것들의 원래 색을 탐색하고 벽에 있는 산호초를 칠하세요.","작은 행동들이 큰 차이를 만듭니다.","변화는 여러분으로부터 시작됩니다!"];var DLG=[["Kate","Everyone, join our campaign!","여러분, 우리 캠페인에 참여하세요!"],["Alex","Save the sea animals! They're dying.","바다 동물들을 구해 주세요! 그들이 죽어 가고 있어요."],["Junho","Kate, Alex! Hi!","Kate, Alex! 안녕!"],["Kate","Hi, Junho! Come and join our campaign.","안녕, Junho! 와서 우리 캠페인에 참여해."],["Alex","Look at the sea turtle in the picture.","사진 속 바다거북을 봐."],["Junho","Okay. What is the turtle eating? Is that a jellyfish?","응. 그 거북이는 뭘 먹고 있는 거야? 저거 해파리야?"],["Kate","No, it’s a plastic bag. Sea turtles are dying because of plastic bags.","아니, 비닐봉지야. 바다거북은 비닐봉지 때문에 죽어 가고 있어."],["Junho","Oh, no. We should not use plastic bags.","오, 안 돼. 우리는 비닐봉지를 사용하면 안 돼."],["Alex","You're right. We should use cloth bags.","네 말이 맞아. 우리는 천 가방을 써야 해."],["Kate","Also, we should not use plastic straws.","또한 우리는 플라스틱 빨대도 쓰면 안 돼."],["Junho","Okay. From now on, I won’t. I’ll post your campaign information online, too!","좋아. 지금부터 나는 안 쓸게. 너희 캠페인 정보를 온라인에도 올릴게!"],["Alex","That’s a good idea. Thank you, Junho.","좋은 생각이야. 고마워, Junho."]];var BQ=[{"n":1,"q":"Alex가 Junho에게 보라고 한 것은 무엇인가요?","o":["사진 속 바다거북","바다 동물 포스터","캠페인 영상","천 가방 모음","해파리 그림"],"a":0,"ev":["Look at the sea turtle in the picture.","사진 속 바다거북을 봐."],"why":"Alex가 Junho에게 사진을 가리키며 한 말이에요. 해파리는 Junho가 거북이가 먹는 것으로 착각한 거예요.","ans":"사진 속 바다거북","memo":["핵심 = Alex가 보라고 한 것은 사진 속 바다거북","Look at the sea turtle in the picture. (사진 속 바다거북을 봐.)"]},{"n":2,"q":"바다거북이 죽어 가는 이유로 알맞은 것은?","o":["해파리가 너무 많아서","먹이가 부족해서","비닐봉지 때문에","바다가 너무 추워서","사진을 찍어서"],"a":2,"ev":["Sea turtles are dying because of plastic bags.","바다거북은 비닐봉지 때문에 죽어 가고 있어."],"why":"because of는 '~ 때문에'라는 뜻이라 뒤에 오는 plastic bags가 이유예요.","ans":"비닐봉지 때문에","memo":["핵심 = 바다거북이 죽어 가는 이유는 비닐봉지","Sea turtles are dying because of plastic bags. (바다거북은 비닐봉지 때문에 죽어 가고 있어.)"]},{"n":3,"q":"Alex는 비닐봉지 대신 무엇을 쓰자고 했나요?","o":["종이 상자","종이컵","유리병","플라스틱 통","천 가방"],"a":4,"ev":["We should use cloth bags.","우리는 천 가방을 써야 해."],"why":"cloth bag은 천으로 만든 가방이에요. should는 '~해야 한다'는 뜻이에요.","ans":"천 가방","memo":["핵심 = Alex가 쓰자고 한 것은 천 가방","We should use cloth bags. (우리는 천 가방을 써야 해.)"]},{"n":4,"q":"Junho는 캠페인 정보를 어떻게 알리겠다고 했나요?","o":["학교 방송으로 알리겠다","온라인에 올리겠다","전단지를 나눠 주겠다","편지를 쓰겠다","포스터를 붙이겠다"],"a":1,"ev":["I’ll post your campaign information online, too!","너희 캠페인 정보를 온라인에도 올릴게!"],"why":"post는 글이나 사진을 '올리다'라는 뜻이고, online은 '온라인으로'라는 뜻이에요.","ans":"온라인에 올리겠다","memo":["핵심 = Junho의 약속은 캠페인 정보를 온라인에 올리기","I’ll post your campaign information online, too! (너희 캠페인 정보를 온라인에도 올릴게!)"]},{"n":5,"q":"Kate와 Alex가 하고 있는 일은 무엇인가요?","o":["해변 청소","영화 촬영","동물원 안내","바다 동물을 지키는 캠페인","가방 판매"],"a":3,"ev":["Everyone, join our campaign! / Save the sea animals! They're dying.","여러분, 우리 캠페인에 참여하세요! / 바다 동물들을 구해 주세요! 그들이 죽어 가고 있어요."],"why":"campaign은 어떤 목적을 위한 활동이에요. 두 사람은 바다 동물을 구하자고 말하고 있어요.","ans":"바다 동물을 지키는 캠페인","memo":["핵심 = 두 사람의 활동은 바다 동물을 지키는 캠페인","Everyone, join our campaign! / Save the sea animals! They're dying. (여러분, 우리 캠페인에 참여하세요! / 바다 동물들을 구해 주세요! 그들이 죽어 가고 있어요.)"]}];var DQ=[{"n":6,"q":"'Save Coral Reefs' 축제는 어느 학교의 무슨 행사인가요?","o":["보람 중학교의 졸업식","보람 초등학교의 체육 대회","보람 중학교의 지구의 날 행사","바다 중학교의 영어 말하기 대회","보람 중학교의 음악회"],"a":2,"ev":["It is for Boram Middle School’s Earth Day event.","그것은 보람 중학교의 지구의 날 행사예요."],"why":"Earth Day는 지구의 날이에요. 학교 이름과 행사 이름을 둘 다 확인해요.","ans":"보람 중학교의 지구의 날 행사","memo":["핵심 = 축제는 보람 중학교의 지구의 날 행사","It is for Boram Middle School’s Earth Day event. (그것은 보람 중학교의 지구의 날 행사예요.)"]},{"n":7,"q":"영화 Finding Nemo에서 Nemo는 어디에 사나요?","o":["바닷속 동굴","모래 해변","배 안","수족관","아름다운 산호초"],"a":4,"ev":["Nemo lives on beautiful coral reefs.","Nemo는 아름다운 산호초에서 살아요."],"why":"lives on 뒤에 사는 곳이 나와요.","ans":"아름다운 산호초","memo":["핵심 = Nemo가 사는 곳은 아름다운 산호초","Nemo lives on beautiful coral reefs. (Nemo는 아름다운 산호초에서 살아요.)"]},{"n":8,"q":"기후 변화는 바다를 어떻게 하고 있나요?","o":["얼리고 있다","따뜻하게 만들고 있다","깨끗하게 만들고 있다","더 깊게 만들고 있다","더 넓게 만들고 있다"],"a":1,"ev":["Climate change is warming up the sea.","기후 변화가 바다를 따뜻하게 하고 있어요."],"why":"warm up은 '따뜻해지게 하다'라는 뜻이에요.","ans":"따뜻하게 만들고 있다","memo":["핵심 = 기후 변화가 바다를 따뜻하게 만듦","Climate change is warming up the sea. (기후 변화가 바다를 따뜻하게 하고 있어요.)"]},{"n":9,"q":"산호초 벽화 그리기 프로그램은 어디에서 하나요?","o":["미술실","체육관","도서관","교실","운동장"],"a":0,"ev":["Coral Reef Wall Painting: 11 a.m. – 3 p.m. in the art room","산호초 벽화: 미술실에서 오전 11시 - 오후 3시"],"why":"in 뒤에 장소가 나와요. art room은 미술실이에요.","ans":"미술실","memo":["핵심 = 산호초 벽화 그리기는 미술실에서 진행","Coral Reef Wall Painting: 11 a.m. – 3 p.m. in the art room (산호초 벽화: 미술실에서 오전 11시 - 오후 3시)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["바닷물도 더러워지고 있다.","일부 자외선 차단제는 산호초에 위험하다.","벽화 활동에서 산호초의 원래 색을 탐색한다.","영화 Chasing Coral은 체육관에서 상영된다.","VR로 이전과 현재의 산호초를 볼 수 있다."],"a":3,"ev":["The Film Chasing Coral: 1 p.m. – 3 p.m. in the library","영화 「산호를 따라서」: 도서관에서 오후 1시 - 오후 3시"],"why":"영화는 체육관이 아니라 도서관(library)에서 상영돼요. 나머지는 모두 본문에 그대로 나와요.","ans":"영화 Chasing Coral은 체육관에서 상영된다.","memo":["핵심 = 영화 Chasing Coral의 상영 장소는 체육관이 아니라 도서관","The Film Chasing Coral: 1 p.m. – 3 p.m. in the library (영화 「산호를 따라서」: 도서관에서 오후 1시 - 오후 3시)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

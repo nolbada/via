@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 73</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 73 · The Dot</h1><div class="sub">점 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":"Vashti · 미술 시간","en":"Art class was over.","ko":"미술 수업이 끝났다.","ok":true,"foot":[],"fixes":[]},{"n":2,"tag":null,"en":"Vashti did not left the classroom.","ko":"Vashti는 교실을 떠나지 않았다.","ok":false,"foot":[],"fixes":[{"wrong":"left","right":"leave","partial":false,"at":[3],"point":"일반동사 부정문: did not 뒤에는 동사원형 leave 사용","topic":"일반동사 부정문","memo":"did not 뒤에는 동사원형 leave 사용"}]},{"n":3,"tag":null,"en":"Her paper were empty.","ko":"그녀의 종이는 비어 있었다.","ok":false,"foot":[],"fixes":[{"wrong":"were","right":"was","partial":false,"at":[2],"point":"수일치: 단수 주어 paper에는 be동사 was 사용","topic":"수일치","memo":"단수 주어 paper에는 be동사 was 사용"}]},{"n":4,"tag":null,"en":"Vashti’s teacher look at an empty paper.","ko":"Vashti의 선생님은 빈 종이를 보았다.","ok":false,"foot":[],"fixes":[{"wrong":"look","right":"looked","partial":false,"at":[2],"point":"시제: 과거의 일이므로 동사의 과거형 looked 사용","topic":"시제","memo":"과거의 일이므로 동사의 과거형 looked 사용"},{"wrong":"an","right":"the","partial":false,"at":[4],"point":"관사: 앞에서 이미 언급된 특정 대상을 가리킬 때는 정관사 the 사용","topic":"관사","memo":"앞에서 이미 언급된 특정 대상을 가리킬 때는 정관사 the 사용"}]},{"n":5,"tag":null,"en":"“Ah! It’s an polar bear in a snowstorm,” she said.","ko":"“아! 이것은 눈보라 속에 있는 북극곰이구나.” 그녀가 말했다.","ok":false,"foot":["1snowstorm 눈보라"],"fixes":[{"wrong":"an","right":"a","partial":false,"at":[2],"point":"관사: polar는 자음 소리로 시작하므로 부정관사 a 사용","topic":"관사","memo":"polar는 자음 소리로 시작하므로 부정관사 a 사용"}]},{"n":6,"tag":null,"en":"“Very funny!” says Vashti. “I just can’t drawing.”","ko":"“아주 재미있네요!” Vashti가 말했다. “저는 정말 못 그리겠어요.”","ok":false,"foot":[],"fixes":[{"wrong":"says","right":"said","partial":false,"at":[2],"point":"시제: 과거에 있었던 일이므로 said 사용","topic":"시제","memo":"과거에 있었던 일이므로 said 사용"},{"wrong":"drawing","right":"draw","partial":false,"at":[7],"point":"조동사 can’t 뒤에는 동사원형 draw 사용","topic":"조동사 can’t 뒤에는 동사원형 draw 사용","memo":""}]},{"n":7,"tag":null,"en":"Her teacher smiled and shaked her head.","ko":"그녀의 선생님은 미소 지었고 그녀의 머리를 저었다.","ok":false,"foot":[],"fixes":[{"wrong":"shaked","right":"shook","partial":false,"at":[4],"point":"불규칙동사 과거형: shake의 과거형은 shook","topic":"불규칙동사 과거형","memo":"shake의 과거형은 shook"}]},{"n":8,"tag":null,"en":"“Just makes a mark. It will takes you somewhere.”","ko":"“그냥 점 하나를 만들어 봐. 그것이 너를 어딘가로 데려다줄 거야.”","ok":false,"foot":[],"fixes":[{"wrong":"makes","right":"make","partial":false,"at":[1],"point":"명령문: 명령문은 동사원형으로 시작 (make)","topic":"명령문","memo":"명령문은 동사원형으로 시작 (make)"},{"wrong":"takes","right":"take","partial":false,"at":[6],"point":"조동사 will 뒤에는 동사원형 take 사용","topic":"조동사 will 뒤에는 동사원형 take 사용","memo":""}]},{"n":9,"tag":null,"en":"Vashti picked up an pen and pokes the paper. “There!”","ko":"Vashti는 펜을 집어 종이를 쿡 찔렀다. “여기요!”","ok":false,"foot":[],"fixes":[{"wrong":"an","right":"a","partial":false,"at":[3],"point":"관사: pen은 자음 소리로 시작하므로 부정관사 a 사용","topic":"관사","memo":"pen은 자음 소리로 시작하므로 부정관사 a 사용"},{"wrong":"pokes","right":"poked","partial":false,"at":[6],"point":"시제 일치: and로 연결된 동사도 앞 동사와 같은 과거형 poked 사용","topic":"시제 일치","memo":"and로 연결된 동사도 앞 동사와 같은 과거형 poked 사용"}]},{"n":10,"tag":null,"en":"After her teacher picked up the paper and looking at it carefully, she returned it to Vashti and said, “Now sign it.”","ko":"선생님은 종이를 집어 들고 주의 깊게 본 후, 종이를 Vashti에게 돌려주며 “이제 이것에 서명하렴.”이라고 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"looking","right":"looked","partial":false,"at":[8],"point":"접속사 after: after가 이끄는 절 안의 동사도 주어에 맞는 정동사(과거형 looked)로 병렬 사용","topic":"접속사 after","memo":"after가 이끄는 절 안의 동사도 주어에 맞는 정동사(과거형 looked)로 병렬 사용"}]},{"n":11,"tag":null,"en":"Vashti thinked for a moment.","ko":"Vashti는 잠시 동안 생각했다.","ok":false,"foot":[],"fixes":[{"wrong":"thinked","right":"thought","partial":false,"at":[1],"point":"불규칙동사 과거형: think의 과거형은 thought","topic":"불규칙동사 과거형","memo":"think의 과거형은 thought"}]},{"n":12,"tag":null,"en":"“Well, maybe I can’t draw, but I can signs my name.”","ko":"“음, 아마 저는 그릴 수는 없지만 제 이름은 서명할 수 있어요.”","ok":false,"foot":[],"fixes":[{"wrong":"signs","right":"sign","partial":false,"at":[8],"point":"조동사 can 뒤에는 동사원형 sign 사용","topic":"조동사 can 뒤에는 동사원형 sign 사용","memo":""}]},{"n":13,"tag":null,"en":"Next week, Vashti walk in art class.","ko":"다음 주에 Vashti는 미술 수업에 들어갔다.","ok":false,"foot":[],"fixes":[{"wrong":"walk","right":"walked","partial":false,"at":[3],"point":"시제: 과거의 일이므로 동사의 과거형 walked 사용","topic":"시제","memo":"과거의 일이므로 동사의 과거형 walked 사용"},{"wrong":"in","right":"into","partial":false,"at":[4],"point":"전치사: ‘~안으로 들어가다’라는 이동의 의미이므로 into 사용","topic":"전치사","memo":"‘~안으로 들어가다’라는 이동의 의미이므로 into 사용"}]},{"n":14,"tag":null,"en":"She was surprised what there were a picture above the teacher’s desk. It was her dot in a gold frame!","ko":"그녀는 선생님의 책상 위에 그림이 한 점 있다는 것에 놀랐다. 그것은 금색 액자에 있는 그녀의 점이었다!","ok":false,"foot":[],"fixes":[{"wrong":"what","right":"that","partial":false,"at":[3],"point":"접속사 that: 감정형용사 (surprised) 뒤에는 명사절을 이끄는 접속사 that 사용","topic":"접속사 that","memo":"감정형용사 (surprised) 뒤에는 명사절을 이끄는 접속사 that 사용"},{"wrong":"were","right":"was","partial":false,"at":[5],"point":"수일치: 단수 주어 a picture에는 be동사 was 사용","topic":"수일치","memo":"단수 주어 a picture에는 be동사 was 사용"}]},{"n":15,"tag":null,"en":"“Hmm! I can make a better dot than that!”","ko":"“음! 나는 저것보다 더 나은 점을 만들 수 있어!”","ok":true,"foot":[],"fixes":[]},{"n":16,"tag":null,"en":"She opened her set of watercolors and starts to work.","ko":"그녀는 자신의 수채화 그림물감 세트를 열고 작업하기 시작했다.","ok":false,"foot":["1watercolors 수채화 그림물감"],"fixes":[{"wrong":"starts","right":"started","partial":false,"at":[7],"point":"시제 일치: and로 연결된 동사도 앞 동사와 같은 과거형 started 사용","topic":"시제 일치","memo":"and로 연결된 동사도 앞 동사와 같은 과거형 started 사용"}]},{"n":17,"tag":null,"en":"Vashti painted and paint more to create dots. An red dot. A yellow dot. A blue dot.","ko":"Vashti는 점들을 만들기 위해 더 그리고 그렸다. 빨간 점. 노란 점. 파란 점.","ok":false,"foot":[],"fixes":[{"wrong":"paint","right":"painted","partial":false,"at":[3],"point":"시제 일치: and로 연결된 동사도 과거형 painted 사용","topic":"시제 일치","memo":"and로 연결된 동사도 과거형 painted 사용"}]},{"n":18,"tag":null,"en":"She mixed the blue on the yellow. She could make a green dot!","ko":"그녀는 파란색을 노란색과 섞었다. 그녀는 초록색 점을 만들 수 있었다!","ok":false,"foot":[],"fixes":[{"wrong":"on","right":"with","partial":false,"at":[4],"point":"어휘/전치사: ‘~을 …와 섞다’는 mix A with B로 표현","topic":"어휘/전치사","memo":"‘~을 …와 섞다’는 mix A with B로 표현"}]},{"n":19,"tag":null,"en":"She was very happy with hers.","ko":"그녀는 자신에게 매우 만족했다.","ok":false,"foot":[],"fixes":[{"wrong":"hers","right":"herself","partial":false,"at":[5],"point":"재귀대명사: 주어 자신을 가리킬 때는 재귀대명사 herself 사용","topic":"재귀대명사","memo":"주어 자신을 가리킬 때는 재귀대명사 herself 사용"}]},{"n":20,"tag":null,"en":"“I made lots of little dots. I guess I can make big ones, too.” Vashti used a more bigger brush and bigger paper to make bigger dots.","ko":"“나는 많은 작은 점들을 만들었어. 나는 큰 것들도 만들 수 있을 것 같아.” Vashti는 더 큰 점들을 만들기 위해 더 큰 붓과 더 큰 종이를 사용했다.","ok":false,"foot":[],"fixes":[{"wrong":"more bigger","right":"bigger","partial":false,"at":[17],"point":"비교급: 1음절 단어 big은 -er을 붙여 비교급을 만들며(bigger) more와 중복 사용하지 않음 (이중비교급 오류)","topic":"비교급","memo":"1음절 단어 big은 -er을 붙여 비교급을 만들며(bigger) more와 중복 사용하지 않음 (이중비교급 오류)"}]},{"n":21,"tag":null,"en":"Vashti even made a dot without paint one. She painted the whole paper except the round center. There was a white dot!","ko":"Vashti는 심지어 점을 그리지 않고 만들었다. 그녀는 둥근 중앙 부분을 제외하고 종이 전체를 색칠했다. 흰색 점이 있었다!","ok":false,"foot":[],"fixes":[{"wrong":"paint","right":"painting","partial":false,"at":[6],"point":"전치사 without 뒤에는 동명사(-ing) painting 사용","topic":"전치사 without 뒤에는 동명사(-ing) painting 사용","memo":""}]},{"n":22,"tag":null,"en":"After a few weeks, the school art show taked place. Vashti’s many dots were a big success!","ko":"몇 주 후에 학교 미술 전시회가 열렸다. Vashti의 많은 점들은 대성공이었다!","ok":false,"foot":[],"fixes":[{"wrong":"taked","right":"took","partial":false,"at":[8],"point":"불규칙동사 과거형: take의 과거형은 took","topic":"불규칙동사 과거형","memo":"take의 과거형은 took"}]},{"n":23,"tag":"몇 주 후 · 소년과의 만남","en":"Vashti see a little boy. He was stand beside her.","ko":"Vashti는 어린 남자아이를 보았다. 그는 그녀 옆에 서 있었다.","ok":false,"foot":[],"fixes":[{"wrong":"see","right":"saw","partial":false,"at":[1],"point":"시제: 과거의 일이므로 동사의 과거형 saw 사용","topic":"시제","memo":"과거의 일이므로 동사의 과거형 saw 사용"},{"wrong":"stand","right":"standing","partial":false,"at":[7],"point":"진행형: be동사(was) 뒤에는 v-ing standing 사용","topic":"진행형","memo":"be동사(was) 뒤에는 v-ing standing 사용"}]},{"n":24,"tag":null,"en":"“You’re an great artist. I want to paint like your,” he said.","ko":"“당신은 대단한 예술가예요. 저는 당신처럼 그리고 싶어요.” 그가 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"an","right":"a","partial":false,"at":[1],"point":"관사: great는 자음 소리로 시작하므로 부정관사 a 사용","topic":"관사","memo":"great는 자음 소리로 시작하므로 부정관사 a 사용"},{"wrong":"your","right":"you","partial":false,"at":[9],"point":"인칭대명사 격: 전치사(like) 뒤에는 목적격 you 사용","topic":"인칭대명사 격","memo":"전치사(like) 뒤에는 목적격 you 사용"}]},{"n":25,"tag":null,"en":"“I’m sure you can. Trust you,” said Vashti.","ko":"“나는 네가 할 수 있다고 확신해. 너 자신을 믿어.” Vashti가 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"Trust you","right":"Trust yourself","partial":false,"at":[4],"point":"재귀대명사: 명령문의 생략된 주어 (you)와 목적어가 같은 대상이므로 재귀대명사 yourself 사용","topic":"재귀대명사","memo":"명령문의 생략된 주어 (you)와 목적어가 같은 대상이므로 재귀대명사 yourself 사용"}]},{"n":26,"tag":null,"en":"“No, I can’t even draw a straightly line.”","ko":"“아니요, 저는 직선조차 그릴 수 없어요.”","ok":false,"foot":[],"fixes":[{"wrong":"straightly","right":"straight","partial":false,"at":[6],"point":"형용사 vs 부사: 명사(line)를 꾸미므로 형용사 straight 사용","topic":"형용사 vs 부사","memo":"명사(line)를 꾸미므로 형용사 straight 사용"}]},{"n":27,"tag":null,"en":"Vashti smile. She handed a piece of paper the boy.","ko":"Vashti가 미소 지었다. 그녀는 그 남자아이에게 종이 한 장을 건네주었다.","ok":false,"foot":[],"fixes":[{"wrong":"smile","right":"smiled","partial":false,"at":[1],"point":"시제: 과거의 일이므로 동사의 과거형 smiled 사용","topic":"시제","memo":"과거의 일이므로 동사의 과거형 smiled 사용"},{"wrong":"a piece of paper the boy","right":"the boy a piece of paper","partial":false,"at":[4],"point":"4형식(수여동사): hand+간접목적어(사람)+직접목적어(사물) 어순 사용","topic":"4형식(수여동사)","memo":"hand+간접목적어(사람)+직접목적어(사물) 어순 사용"}]},{"n":28,"tag":null,"en":"“Show me.” The boy’s pencil shook while he draw a line.","ko":"“나에게 보여 줘.” 그 남자아이가 선을 그리는 동안 그 남자아이의 연필은 흔들렸다.","ok":false,"foot":[],"fixes":[{"wrong":"draw","right":"drew","partial":false,"at":[8],"point":"불규칙동사 과거형: draw의 과거형은 drew","topic":"불규칙동사 과거형","memo":"draw의 과거형은 drew"}]},{"n":29,"tag":null,"en":"The line was no straight.","ko":"그 선은 곧지 않았다.","ok":false,"foot":[],"fixes":[{"wrong":"no","right":"not","partial":false,"at":[3],"point":"부정문: be동사 뒤에는 not을 사용 (no는 명사 앞에서 명사를 부정할 때 사용)","topic":"부정문","memo":"be동사 뒤에는 not을 사용 (no는 명사 앞에서 명사를 부정할 때 사용)"}]},{"n":30,"tag":null,"en":"When Vashti look at it carefully, she said, “Please … sign it.”","ko":"Vashti는 그것을 주의 깊게 보았을 때, “이것에 서명해 주렴.”이라고 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"look","right":"looked","partial":false,"at":[2],"point":"접속사 when: when이 이끄는 절 안의 동사도 문맥상 과거형 looked 사용","topic":"접속사 when","memo":"when이 이끄는 절 안의 동사도 문맥상 과거형 looked 사용"}]}];var RNUM=73;var TITLE_EN="The Dot";var PASS_EN=["The Dot","Art class was over. Vashti did not leave the classroom. Her paper was empty.","Vashti’s teacher looked at the empty paper.","“Ah! It’s a polar bear in a snowstorm,” she said.","“Very funny!” said Vashti. “I just can’t draw.”","Her teacher smiled and shook her head.","“Just make a mark. It will take you somewhere.”","Vashti picked up a pen and poked the paper.","“There!”","Her teacher picked up the paper and looked at it carefully. She returned the paper to Vashti and said,","“Now sign it.”","Vashti thought for a moment.","“Well, maybe I can’t draw, but I can sign my name.”","Next week, Vashti walked into art class. She was surprised. There was a picture above the teacher’s desk. It was her dot in a gold frame!","“Hmm! I can make a better dot than that!”","She opened her set of watercolors and started to work.","Vashti painted and painted more to create dots. A red dot. A yellow dot. A blue dot. She mixed the blue with the yellow. She could make a green dot! She was very happy with herself.","“I made lots of little dots. I guess I can make big ones, too.” Vashti used a bigger brush and bigger paper to make bigger dots.","Vashti even made a dot without painting one. She painted the whole paper except the round center. There was a white dot!","A few weeks later, the school art show took place. Vashti’s many dots were a big success!","“You’re a great artist. I want to paint like you,” he said.","“I’m sure you can. Trust yourself,” said Vashti.","“No, I can’t even draw a straight line.”","Vashti smiled. She handed the boy a piece of paper.","“Show me.”","The boy’s pencil shook while he drew a line. The line was not straight.","Vashti looked at it carefully and said,","“Please ... sign it.”"];var PASS_KO=["미술 수업이 끝났다. Vashti는 교실을 떠나지 않았다. 그녀의 종이는 비어 있었다.","Vashti의 선생님은 빈 종이를 보았다. “아! 이것은 눈보라 속에 있는 북극곰이구나.” 그녀가 말했다.","“아주 재미있네요!” Vashti가 말했다. “저는 정말 못 그리겠어요.”","그녀의 선생님은 미소 지었고 그녀의 머리를 저었다. “그냥 점 하나를 만들어 봐. 그것이 너를 어딘가로 데려다줄 거야.” Vashti는 펜을 집어 종이를 쿡 찔렀다.","“여기요!”","그녀의 선생님은 종이를 집어 들고 주의 깊게 보았다. 그녀는 종이를 Vashti에게 돌려주며 말했다, “이제 이것에 서명하렴.” Vashti는 잠시 동안 생각했다. “음, 아마 저는 그릴 수는 없지만 제 이름은 서명할 수 있어요.”","다음 주에 Vashti는 미술 수업에 들어갔다. 그녀는 놀랐다. 선생님의 책상 위에 그림이 한 점 있었다. 그것은 금색 액자에 있는 그녀의 점이었다!","“음! 나는 저것보다 더 나은 점을 만들 수 있어!” 그녀는 자신의 수채화 그림물감 세트를 열고 작업하기 시작했다.","Vashti는 점들을 만들기 위해 더 그리고 그렸다. 빨간 점. 노란 점. 파란 점. 그녀는 파란색을 노란색과 섞었다. 그녀는 초록색 점을 만들 수 있었다! 그녀는 자신에게 매우 만족했다.","“나는 많은 작은 점들을 만들었어. 나는 큰 것들도 만들 수 있을 것 같아.” Vashti는 더 큰 점들을 만들기 위해 더 큰 붓과 더 큰 종이를 사용했다.","Vashti는 심지어 점을 그리지 않고 만들었다. 그녀는 둥근 중앙 부분을 제외하고 종이 전체를 색칠했다. 흰색 점이 있었다!","몇 주 후에 학교 미술 전시회가 열렸다. Vashti의 많은 점들은 대성공이었다!","Vashti는 어린 남자아이를 보았다. 그는 그녀 옆에 서 있었다. “당신은 대단한 예술가예요. 저는 당신처럼 그리고 싶어요.” 그가 말했다. “나는 네가 할 수 있다고 확신해. 너 자신을 믿어.” Vashti가 말했다. “아니요, 저는 직선조차 그릴 수 없어요.”","Vashti가 미소 지었다. 그녀는 그 남자아이에게 종이 한 장을 건네주었다. “나에게 보여 줘.” 그 남자아이가 선을 그리는 동안 그 남자아이의 연필은 흔들렸다. 그 선은 곧지 않았다. Vashti는 그것을 주의 깊게 보고 말했다. “이것에 서명해 주렴.”"];var DLG=[["B","Wow, Steve looks so cool!","와, Steve 정말 멋져 보여!"],["G","Yes. I think this movie is going to be a big hit.","응. 나는 이 영화가 크게 성공할 거라고 생각해."],["B","Why do you think so, Ella?","왜 그렇게 생각해, Ella?"],["G","Because Steve is playing a brave hero for the first time.","Steve가 처음으로 용감한 영웅을 연기하기 때문이야."],["B","You’re right. I’m so excited about his acting.","맞아. 나는 그의 연기가 정말 기대돼."],["G","When does the movie start?","영화는 언제 시작해?"],["B","It starts at 3:30.","3시 30분에 시작해."],["G","Let’s buy some drinks, Alex!","음료수를 좀 사자, Alex!"]];var BQ=[{"n":1,"q":"Ella는 이 영화가 어떻게 될 거라고 생각하나요?","o":["크게 성공할 것이다","곧 끝날 것이다","재미없을 것이다","상영이 취소될 것이다","표가 비쌀 것이다"],"a":0,"ev":["I think this movie is going to be a big hit.","나는 이 영화가 크게 성공할 거라고 생각해."],"why":"big hit은 '큰 성공'이라는 뜻이에요. Ella의 의견이에요.","ans":"크게 성공할 것이다","memo":["Ella의 생각 = 영화가 크게 성공할 것","I think this movie is going to be a big hit. (나는 이 영화가 크게 성공할 거라고 생각해.)"]},{"n":2,"q":"Ella가 그렇게 생각하는 이유는 무엇인가요?","o":["Steve가 처음으로 용감한 영웅을 연기해서","영화가 아주 짧아서","Steve가 감독이라서","표가 싸서","친구가 추천해서"],"a":0,"ev":["Because Steve is playing a brave hero for the first time.","Steve가 처음으로 용감한 영웅을 연기하기 때문이야."],"why":"Why 질문에는 Because로 이유를 답해요. brave는 '용감한'이에요.","ans":"Steve가 처음으로 용감한 영웅을 연기해서","memo":["이유 = Steve가 처음 용감한 영웅을 연기함","Because Steve is playing a brave hero for the first time. (Steve가 처음으로 용감한 영웅을 연기하기 때문이야.)"]},{"n":3,"q":"영화는 몇 시에 시작하나요?","o":["2시","2시 30분","3시","3시 30분","4시"],"a":3,"ev":["It starts at 3:30.","3시 30분에 시작해."],"why":"영화가 언제 시작하는지 묻는 말에 대한 대답이에요.","ans":"3시 30분","memo":["영화 시작 시간 = 3시 30분","It starts at 3:30. (3시 30분에 시작해.)"]},{"n":4,"q":"Alex가 기대하고 있는 것은 무엇인가요?","o":["Steve의 연기","영화관의 음식","영화 포스터","Ella의 노래","영화 속 음악"],"a":0,"ev":["I’m so excited about his acting.","나는 그의 연기가 정말 기대돼."],"why":"his는 Steve를 가리켜요. be excited about은 '~가 기대되다'예요.","ans":"Steve의 연기","memo":["Alex가 기대하는 것 = Steve의 연기","I’m so excited about his acting. (나는 그의 연기가 정말 기대돼.)"]},{"n":5,"q":"두 사람은 마지막에 무엇을 하자고 했나요?","o":["표를 사자","자리를 고르자","점심을 먹자","음료수를 사자","집에 가자"],"a":3,"ev":["Let’s buy some drinks, Alex!","음료수를 좀 사자, Alex!"],"why":"Let’s는 '~하자'라는 제안이에요. 표나 자리 이야기는 나오지 않아요.","ans":"음료수를 사자","memo":["마지막 제안 = 음료수 사기","Let’s buy some drinks, Alex! (음료수를 좀 사자, Alex!)"]}];var DQ=[{"n":6,"q":"미술 수업이 끝났는데 Vashti는 왜 교실에 남아 있었나요?","o":["종이가 비어 있었다","선생님께 혼났다","그림을 이미 다 그렸다","친구를 기다렸다","물감이 없었다"],"a":0,"ev":["Art class was over. Vashti did not leave the classroom. Her paper was empty.","미술 수업이 끝났다. Vashti는 교실을 떠나지 않았다. 그녀의 종이는 비어 있었다."],"why":"종이가 empty(비어 있는) 상태였어요. 아무것도 그리지 못한 거예요.","ans":"종이가 비어 있었다","memo":["남아 있던 상황 = 종이가 비어 있음","Her paper was empty. (그녀의 종이는 비어 있었다.)"]},{"n":7,"q":"선생님이 Vashti에게 종이에 하라고 한 것은 무엇인가요?","o":["점을 하나 찍으라고 했다","꽃을 그리라고 했다","이름을 지우라고 했다","종이를 접으라고 했다","그림을 버리라고 했다"],"a":0,"ev":["“Just make a mark. It will take you somewhere.”","“그냥 표시를 하나 해봐. 그것이 너를 어딘가로 데려다줄 거야.”"],"why":"mark는 '표시'예요. Vashti는 펜으로 종이를 콕 찔렀어요.","ans":"점을 하나 찍으라고 했다","memo":["선생님의 말 = 표시(점) 하나 만들기","“Just make a mark. It will take you somewhere.” (“그냥 표시를 하나 해봐. 그것이 너를 어딘가로 데려다줄 거야.”)"]},{"n":8,"q":"Vashti가 다음 주 미술 수업에서 놀란 이유는 무엇인가요?","o":["선생님이 없었다","교실이 바뀌었다","자기 점이 금색 액자에 걸려 있었다","시험을 보았다","친구가 전학을 갔다"],"a":2,"ev":["There was a picture above the teacher’s desk. It was her dot in a gold frame!","선생님 책상 위에 그림이 한 점 있었다. 그것은 금색 액자에 든 그녀의 점이었다!"],"why":"gold frame은 '금색 액자'예요. 그림은 선생님 책상 위에 있었어요.","ans":"자기 점이 금색 액자에 걸려 있었다","memo":["놀란 이유 = 자기 점이 금색 액자에 있음","It was her dot in a gold frame! (그것은 금색 액자에 든 그녀의 점이었다!)"]},{"n":9,"q":"Vashti는 초록색 점을 어떻게 만들었나요?","o":["초록색 펜을 써서","파란색과 노란색을 섞어서","빨간색과 파란색을 섞어서","종이를 접어서","물감을 사서"],"a":1,"ev":["She mixed the blue with the yellow. She could make a green dot!","그녀는 파란색을 노란색과 섞었다. 그녀는 초록색 점을 만들 수 있었다!"],"why":"mix A with B는 'A를 B와 섞다'예요.","ans":"파란색과 노란색을 섞어서","memo":["초록색 점 = 파란색 + 노란색","She mixed the blue with the yellow. (그녀는 파란색을 노란색과 섞었다.)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["Vashti는 처음에 자신은 그림을 못 그린다고 말했다.","Vashti는 종이에 서명을 했다.","Vashti는 더 큰 붓과 더 큰 종이로 큰 점을 만들었다.","미술 전시회에서 Vashti의 점들은 크게 성공했다.","Vashti는 아이에게 종이를 주며 그림을 그리지 말라고 했다."],"a":4,"ev":["She handed the boy a piece of paper. / “Show me.”","그녀는 그 남자아이에게 종이 한 장을 건넸다. / “보여 줘.”"],"why":"Vashti는 아이에게 종이를 건네며 'Show me(보여 줘)'라고 했어요. 그리지 말라고 한 적이 없어요.","ans":"Vashti는 아이에게 종이를 주며 그림을 그리지 말라고 했다.","memo":["불일치 = 그리지 말라고 한 것이 아니라 보여 달라고 함","She handed the boy a piece of paper. “Show me.” (그녀는 그 남자아이에게 종이 한 장을 건넸다. “보여 줘.”)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

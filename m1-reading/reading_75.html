@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 75</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 75 · Frindle</h1><div class="sub">프린들 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":null,"en":"Nick Allen was in the five grade.","ko":"Nick Allen은 5학년이었다.","ok":false,"foot":[],"fixes":[{"wrong":"five","right":"fifth","partial":false,"at":[5],"point":"어휘/서수: 학년을 나타낼 때는 서수 fifth 사용 (five는 기수)","topic":"어휘/서수","memo":"학년을 나타낼 때는 서수 fifth 사용 (five는 기수)"}]},{"n":2,"tag":null,"en":"One day in English class, he asked to his teacher, \"How do word get their meanings?","ko":"어느 날 영어 시간에, 그는 선생님께 ‘단어는 어떻게 의미를 갖게 되나요?’라고 물었다.","ok":false,"foot":[],"fixes":[{"wrong":"asked to his teacher","right":"asked his teacher","partial":false,"at":[6],"point":"4형식(수여동사): ask는 목적어 앞에 전치사 to 없이 사용 (ask+사람+질문)","topic":"4형식(수여동사)","memo":"ask는 목적어 앞에 전치사 to 없이 사용 (ask+사람+질문)"},{"wrong":"word","right":"words","partial":false,"at":[12],"point":"수일치: their(복수 소유격)가 가리키는 명사는 복수형 words 사용","topic":"수일치","memo":"their(복수 소유격)가 가리키는 명사는 복수형 words 사용"}]},{"n":3,"tag":null,"en":"Why does the word dog means a dog? Why can’t it mean an book?\"","ko":"‘왜 개라는 단어는 개를 의미하는 거죠? 왜 그것이 책을 의미할 수는 없는 건가요?’","ok":false,"foot":[],"fixes":[{"wrong":"means","right":"mean","partial":false,"at":[5],"point":"수일치: 조동사 does 뒤에는 동사 원형 mean 사용","topic":"수일치","memo":"조동사 does 뒤에는 동사 원형 mean 사용"},{"wrong":"an","right":"a","partial":false,"at":[12],"point":"관사: book은 자음으로 시작하므로 부정관사 a 사용","topic":"관사","memo":"book은 자음으로 시작하므로 부정관사 a 사용"}]},{"n":4,"tag":null,"en":"Mrs. Granger answered, \"People gives meanings to words.\"","ko":"Granger 선생님은 ‘사람들이 단어에 의미를 부여한단다.’라고 대답했다.","ok":false,"foot":[],"fixes":[{"wrong":"gives","right":"give","partial":false,"at":[4],"point":"수일치: 주어 People(복수)에 맞춰 동사원형 give 사용","topic":"수일치","memo":"주어 People(복수)에 맞춰 동사원형 give 사용"}]},{"n":5,"tag":null,"en":"Nick asked, \"How?\" Mrs. Granger said, \"You, me, and everyone in the country agree on the meaning.\"","ko":"Nick이 ‘어떻게요?’라고 묻자, Granger 선생님은 ‘너, 나, 그리고 나라의 모든 사람이 그 의미에 동의했단다.’라고 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"me","right":"I","partial":false,"at":[7],"point":"인칭대명사 격: 주어 자리이므로 목적격 me 대신 주격 I 사용","topic":"인칭대명사 격","memo":"주어 자리이므로 목적격 me 대신 주격 I 사용"},{"wrong":"agree","right":"agreed","partial":false,"at":[13],"point":"시제: 이야기 전체가 과거 시제이므로 과거형 agreed 사용","topic":"시제","memo":"이야기 전체가 과거 시제이므로 과거형 agreed 사용"}]},{"n":6,"tag":null,"en":"Nick thought, \"Really? I didn’t agree.\"","ko":"Nick은 ‘정말? 나는 동의하지 않았는데.’라고 생각했다.","ok":true,"foot":[],"fixes":[]},{"n":7,"tag":null,"en":"On the way home, Nick saw an pen on the street.","ko":"집에 오는 길에, Nick은 거리에서 펜 하나를 보았다.","ok":false,"foot":[],"fixes":[{"wrong":"an","right":"a","partial":false,"at":[6],"point":"관사: pen은 자음으로 시작하므로 부정관사 a 사용","topic":"관사","memo":"pen은 자음으로 시작하므로 부정관사 a 사용"}]},{"n":8,"tag":null,"en":"He picked up the pen. He had a idea.","ko":"그는 그 펜을 주웠다. 그는 생각이 하나 떠올랐다.","ok":false,"foot":[],"fixes":[{"wrong":"a","right":"an","partial":false,"at":[7],"point":"관사: idea는 모음 발음으로 시작하므로 부정관사 an 사용","topic":"관사","memo":"idea는 모음 발음으로 시작하므로 부정관사 an 사용"}]},{"n":9,"tag":null,"en":"\"From today, your new name are frindle.\"","ko":"‘오늘부터, 너의 새 이름은 frindle이야.’","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[5],"point":"수일치: 주어 name(단수)에 맞춰 동사 is 사용","topic":"수일치","memo":"주어 name(단수)에 맞춰 동사 is 사용"}]},{"n":10,"tag":null,"en":"The next day, he said his friends about his new word.","ko":"다음 날, 그는 친구들에게 그의 새로운 단어에 대해 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"said","right":"told","partial":false,"at":[4],"point":"어휘/4형식: say는 사람을 바로 목적어로 쓸 수 없으므로 4형식 동사 told 사용 (say는 to가 필요)","topic":"어휘/4형식","memo":"say는 사람을 바로 목적어로 쓸 수 없으므로 4형식 동사 told 사용 (say는 to가 필요)"}]},{"n":11,"tag":null,"en":"By the end of the week, all his classmates was using it.","ko":"그 주의 끝 무렵에는, 그의 학급 친구들 모두가 그 단어를 사용하고 있었다.","ok":false,"foot":[],"fixes":[{"wrong":"was","right":"were","partial":false,"at":[9],"point":"수일치: 주어 classmates(복수)에 맞춰 동사 were 사용","topic":"수일치","memo":"주어 classmates(복수)에 맞춰 동사 were 사용"}]},{"n":12,"tag":null,"en":"\"Can I lend your frindle?\"","ko":"‘내가 너의 frindle을 빌릴 수 있을까?’","ok":false,"foot":[],"fixes":[{"wrong":"lend","right":"borrow","partial":false,"at":[2],"point":"어휘: 상대방의 것을 ‘빌리다’라는 뜻은 borrow (lend는 ‘빌려주다’)","topic":"어휘","memo":"상대방의 것을 ‘빌리다’라는 뜻은 borrow (lend는 ‘빌려주다’)"}]},{"n":13,"tag":null,"en":"\"I think what your red frindle is pretty.\"","ko":"‘나는 너의 빨간 frindle이 예쁘다고 생각해.’","ok":false,"foot":[],"fixes":[{"wrong":"what","right":"that","partial":false,"at":[2],"point":"접속사: think 뒤에 오는 명사절은 접속사 that 사용","topic":"접속사","memo":"think 뒤에 오는 명사절은 접속사 that 사용"}]},{"n":14,"tag":null,"en":"One day after class, Mrs. Granger call Nick.","ko":"어느 날 수업이 끝난 후, Granger 선생님은 Nick을 불렀다.","ok":false,"foot":[],"fixes":[{"wrong":"call","right":"called","partial":false,"at":[6],"point":"시제: 이야기 전체가 과거 시제이므로 과거형 called 사용","topic":"시제","memo":"이야기 전체가 과거 시제이므로 과거형 called 사용"}]},{"n":15,"tag":null,"en":"She said, \"Frindle is not an real word. You and your classmates has to stop using it.\"","ko":"그녀는 ‘frindle은 진짜 단어가 아니야. 너와 너희 반 친구들은 그것을 사용하는 것을 멈춰야 해.’라고 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"an","right":"a","partial":false,"at":[5],"point":"관사: word는 자음으로 시작하므로 부정관사 a 사용","topic":"관사","memo":"word는 자음으로 시작하므로 부정관사 a 사용"},{"wrong":"has","right":"have","partial":false,"at":[12],"point":"조동사 have to: 주어 You and your classmates(복수)에 맞춰 have to 사용","topic":"조동사 have to","memo":"주어 You and your classmates(복수)에 맞춰 have to 사용"}]},{"n":16,"tag":null,"en":"Nick said, \"I know that you’re not happy. I’m really sorry, but it’s too late. Everyone are using it now.\"","ko":"Nick은 ‘선생님께서 기분이 좋지 않으신 건 알겠어요. 정말 죄송하지만, 너무 늦었어요. 이제는 모두가 그것을 사용하고 있어요.’라고 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[16],"point":"수일치: 주어 Everyone(단수 취급)에 맞춰 동사 is 사용","topic":"수일치","memo":"주어 Everyone(단수 취급)에 맞춰 동사 is 사용"}]},{"n":17,"tag":null,"en":"Mrs. Granger taked out a letter.","ko":"Granger 선생님은 편지 한 통을 꺼냈다.","ok":false,"foot":[],"fixes":[{"wrong":"taked","right":"took","partial":false,"at":[2],"point":"동사 형태: take의 과거형은 불규칙 변화형 took 사용","topic":"동사 형태","memo":"take의 과거형은 불규칙 변화형 took 사용"}]},{"n":18,"tag":null,"en":"She said, \"I written this letter for you.","ko":"그녀는 ‘나는 너를 위해 이 편지를 썼단다.’라고 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"written","right":"wrote","partial":false,"at":[3],"point":"동사 형태: 문장의 동사 자리이므로 과거형 wrote 사용 (written은 과거분사형)","topic":"동사 형태","memo":"문장의 동사 자리이므로 과거형 wrote 사용 (written은 과거분사형)"}]},{"n":19,"tag":null,"en":"But I’m not going to give it for you today.","ko":"‘하지만 나는 그것을 네게 오늘 주지 않을 거야.’","ok":false,"foot":[],"fixes":[{"wrong":"for","right":"to","partial":false,"at":[7],"point":"어법: give는 ‘~에게’라는 대상 앞에 전치사 to 사용","topic":"어법","memo":"give는 ‘~에게’라는 대상 앞에 전치사 to 사용"}]},{"n":20,"tag":null,"en":"I will send to you this letter some day.\"","ko":"‘나는 이 편지를 언젠가 네게 보낼 거야.’","ok":false,"foot":[],"fixes":[{"wrong":"send to you","right":"send you","partial":false,"at":[2],"point":"4형식(수여동사): send는 간접목적어 앞에 전치사 없이 사용 (send+사람 +사물)","topic":"4형식(수여동사)","memo":"send는 간접목적어 앞에 전치사 없이 사용 (send+사람 +사물)"}]},{"n":21,"tag":null,"en":"The next morning, Mrs. Granger told the class, \"Stop to using frindle! Frindle are not a real word.\"","ko":"다음 날 아침, Granger 선생님은 학급에 ‘frindle을 사용하는 것을 멈추거라! frindle은 진짜 단어가 아니야.’라고 말했다.","ok":false,"foot":[],"fixes":[{"wrong":"to using","right":"using","partial":false,"at":[9],"point":"어법: stop 뒤에 ‘~하는 것을 멈추다’라는 뜻은 동명사(v-ing) 사용","topic":"어법","memo":"stop 뒤에 ‘~하는 것을 멈추다’라는 뜻은 동명사(v-ing) 사용"},{"wrong":"are","right":"is","partial":false,"at":[13],"point":"수일치: 주어 Frindle(단수)에 맞춰 동사 is 사용","topic":"수일치","memo":"주어 Frindle(단수)에 맞춰 동사 is 사용"}]},{"n":22,"tag":null,"en":"But many and many students used it.","ko":"하지만 점점 더 많은 학생들이 그것을 사용했다.","ok":false,"foot":[],"fixes":[{"wrong":"many and many","right":"more and more","partial":false,"at":[1],"point":"비교급: ‘점점 더 많이’라는 뜻은 many의 비교급 more를 반복한 more and more 사용","topic":"비교급","memo":"‘점점 더 많이’라는 뜻은 many의 비교급 more를 반복한 more and more 사용"}]},{"n":23,"tag":null,"en":"Students in another schools started using it.","ko":"다른 학교의 학생들이 그것을 사용하기 시작했다.","ok":false,"foot":[],"fixes":[{"wrong":"another","right":"other","partial":false,"at":[2],"point":"어휘: 복수명사 schools 앞에는 another(단수용) 대신 other 사용","topic":"어휘","memo":"복수명사 schools 앞에는 another(단수용) 대신 other 사용"}]},{"n":24,"tag":null,"en":"Soon, students in the whole country was using it.","ko":"곧, 전국의 학생들이 그것을 사용하고 있었다.","ok":false,"foot":[],"fixes":[{"wrong":"was","right":"were","partial":false,"at":[6],"point":"수일치: 주어 students(복수)에 맞춰 동사 were 사용","topic":"수일치","memo":"주어 students(복수)에 맞춰 동사 were 사용"}]},{"n":25,"tag":null,"en":"Time passed and Nick graduated. He forgot on frindle.","ko":"시간이 흘렀고 Nick은 졸업했다. 그는 frindle에 대해 잊었다.","ok":false,"foot":["1graduated 졸업했다"],"fixes":[{"wrong":"on","right":"about","partial":false,"at":[7],"point":"어법: forget 뒤에서 ‘~에 대해 잊다’라는 뜻은 전치사 about 사용","topic":"어법","memo":"forget 뒤에서 ‘~에 대해 잊다’라는 뜻은 전치사 about 사용"}]},{"n":26,"tag":"소포","en":"Before he turned 21, he received an package from Mrs. Granger.","ko":"그가 21살이 되었을 때, 그는 Granger 선생님으로부터 소포 하나를 받았다.","ok":false,"foot":["1package 소포, 꾸러미"],"fixes":[{"wrong":"Before","right":"When","partial":false,"at":[0],"point":"접속사: ‘21살이 되었을 때’ 소포를 받은 것이므로 시간 접속사 When 사용 (Before는 문맥상 부적절)","topic":"접속사","memo":"‘21살이 되었을 때’ 소포를 받은 것이므로 시간 접속사 When 사용 (Before는 문맥상 부적절)"},{"wrong":"an","right":"a","partial":false,"at":[6],"point":"관사: package는 자음으로 시작하므로 부정관사 a 사용","topic":"관사","memo":"package는 자음으로 시작하므로 부정관사 a 사용"}]},{"n":27,"tag":null,"en":"It had a pen, a letter, and dictionary. There were a note on the dictionary. \"See page 541.\"","ko":"그것에는 펜 한 자루와 편지 한 통, 그리고 사전 하나가 있었다. 사전 위에는 쪽지가 하나 있었다. ‘541쪽을 보거라.’","ok":false,"foot":[],"fixes":[{"wrong":"and dictionary","right":"and a dictionary","partial":false,"at":[6],"point":"관사: 병렬구조 a pen, a letter, and a dictionary에서 마지막 명사에도 부정관사 a 필요","topic":"관사","memo":"병렬구조 a pen, a letter, and a dictionary에서 마지막 명사에도 부정관사 a 필요"},{"wrong":"were","right":"was","partial":false,"at":[9],"point":"수일치: 주어 note(단수)에 맞춰 동사 was 사용","topic":"수일치","memo":"주어 note(단수)에 맞춰 동사 was 사용"}]},{"n":28,"tag":null,"en":"Nick couldn’t believe his eyes. On that page, he finded the word frindle!","ko":"Nick은 자신의 눈을 믿을 수 없었다. 그 페이지에서, 그는 frindle이라는 단어를 발견했다!","ok":false,"foot":[],"fixes":[{"wrong":"finded","right":"found","partial":false,"at":[9],"point":"동사 형태: find의 과거형은 불규칙 변화형 found 사용","topic":"동사 형태","memo":"find의 과거형은 불규칙 변화형 found 사용"}]},{"n":29,"tag":"Granger 선생님의 편지","en":"Dear Nick, Congratulations! Frindle now is a real word.","ko":"Nick에게, 축하한다! frindle은 이제 진짜 단어야.","ok":false,"foot":["1Congratulations 축하해!"],"fixes":[{"wrong":"now is","right":"is now","partial":false,"at":[4],"point":"어순: 시간을 나타내는 부사 now는 be동사 뒤에 위치","topic":"어순","memo":"시간을 나타내는 부사 now는 be동사 뒤에 위치"}]},{"n":30,"tag":null,"en":"I was on your side from the beginning.","ko":"나는 처음부터 네 편이었단다.","ok":true,"foot":["1beginning 시작, 처음"],"fixes":[]},{"n":31,"tag":null,"en":"But every good story need a \"bad guy.\" I played that roll.","ko":"하지만 모든 좋은 이야기에는 ‘나쁜 사람’이 필요하지. 내가 그 역할을 했단다.","ok":false,"foot":[],"fixes":[{"wrong":"need","right":"needs","partial":false,"at":[4],"point":"수일치: 주어 story(단수)에 맞춰 동사 needs 사용","topic":"수일치","memo":"주어 story(단수)에 맞춰 동사 needs 사용"},{"wrong":"roll","right":"role","partial":false,"at":[11],"point":"어휘: ‘역할’이라는 뜻은 role (roll은 ‘구르다, 두루마리’)","topic":"어휘","memo":"‘역할’이라는 뜻은 role (roll은 ‘구르다, 두루마리’)"}]},{"n":32,"tag":null,"en":"I hope what you understand...","ko":"네가 이해해 주기를 바란다...","ok":false,"foot":[],"fixes":[{"wrong":"what","right":"that","partial":false,"at":[2],"point":"접속사: hope 뒤에 오는 명사절은 접속사 that 사용","topic":"접속사","memo":"hope 뒤에 오는 명사절은 접속사 that 사용"}]}];var RNUM=75;var TITLE_EN="Frindle";var PASS_EN=["Frindle","Nick Allen was in the fifth grade. One day in English class, he asked his teacher, “How do words get their meanings? Why does the word dog mean a dog? Why can’t it mean a book?” Mrs. Granger answered, “People give meanings to words.” Nick asked, “How?” Mrs. Granger said, “You, me, and everyone in the country agreed on the meaning.” Nick thought, “Really? I didn’t agree.”","On the way home, Nick saw a pen on the street. He picked up the pen. He had an idea.","“From today, your new name is frindle.”","The next day, he told his friends about his new word. By the end of the week, all his classmates were using it.","“Can I borrow your frindle?”","“I think that your red frindle is pretty.”","One day after class, Mrs. Granger called Nick. She said, “Frindle is not a real word. You and your classmates should stop using it.” Nick said, “I know that you’re not happy. I’m really sorry, but it’s too late. Everyone is using it now.” Mrs. Granger took out a letter. She said, “I wrote this letter for you. But I’m not going to give it to you today. I will send you this letter some day.”","The next morning, Mrs. Granger told the class, “Stop using frindle! Frindle is not a real word.” But more and more students used it. Students in other schools started using it. Soon, students in the whole country were using it.","Time passed and Nick graduated. He forgot about frindle. When he turned 21, he received a package from Mrs. Granger. It had a pen, a letter, and a dictionary. There was a note on the dictionary.","Frindle","Nick couldn’t believe his eyes. On that page, he found the word frindle!","Dear Nick,","Congratulations! Frindle is now a real word. I was on your side from the beginning. But every good story needs a “bad guy.” I played that role. I hope that you understand..."];var PASS_KO=["Nick Allen은 5학년이었다. 어느 날 영어 시간에, 그는 선생님께 “단어는 어떻게 의미를 갖게 되나요? 왜 ‘개’라는 단어는 개를 의미하는 거죠? 왜 그것이 책을 의미할 수는 없는 건가요?”라고 물었다. Granger 선생님은 “사람들이 단어에 의미를 부여한단다.”라고 대답했다. Nick이 “어떻게요?”라고 물었다. Granger 선생님은 “너, 나, 그리고 나라의 모든 사람이 그 의미에 동의했단다.”라고 말했다. Nick은 “정말? 나는 동의하지 않았는데.”라고 생각했다.","집에 오는 길에, Nick은 거리에서 펜 하나를 보았다. 그는 그 펜을 주웠다. 그는 생각이 하나 떠올랐다.","“오늘부터, 너의 새 이름은 ‘frindle’이야.”","다음 날, 그는 친구들에게 그의 새로운 단어에 대해 말했다. 그 주의 끝 무렵에는, 그의 학급 친구들 모두가 그 단어를 사용하고 있었다.","“내가 너의 ‘frindle’을 빌릴 수 있을까?”","“나는 너의 빨간 ‘frindle’이 예쁘다고 생각해.”","어느 날 수업이 끝난 후, Granger 선생님은 Nick을 불렀다. 그녀는 “‘frindle’은 진짜 단어가 아니야. 너와 너희 반 친구들은 그것을 사용하는 것을 멈춰야 해.”라고 말했다. Nick은 “선생님께서 기분이 좋지 않으신 건 알겠어요. 정말 죄송하지만, 너무 늦었어요. 이제는 모두가 그것을 사용하고 있어요.”라고 말했다. Granger 선생님은 편지 한 통을 꺼냈다. 그녀는 “나는 너를 위해 이 편지를 썼단다. 하지만 나는 그것을 네게 오늘 주지 않을 거야. 나는 이 편지를 언젠가 네게 보낼 거야.”라고 말했다.","다음 날 아침, Granger 선생님은 학급에 “‘frindle’을 사용하는 것을 멈추거라! ‘frindle’은 진짜 단어가 아니야.”라고 말했다. 하지만 점점 더 많은 학생들이 그것을 사용했다. 다른 학교의 학생들이 그것을 사용하기 시작했다. 곧, 전국의 학생들이 그것을 사용하고 있었다.","시간이 흘렀고 Nick은 졸업했다. 그는 ‘frindle’에 대해 잊었다. 그가 21살이 되었을 때, 그는 Granger 선생님으로부터 소포 하나를 받았다. 그것에는 펜 한 자루와 편지 한 통, 그리고 사전 하나가 있었다. 사전 위에는 쪽지가 하나 있었다.","“541쪽을 보거라.”","Nick은 자신의 눈을 믿을 수 없었다. 그 페이지에서, 그는 ‘frindle’이라는 단어를 발견했다!","Nick에게,","축하한다! ‘frindle’은 이제 진짜 단어야. 나는 처음부터 네 편이었단다. 하지만 모든 좋은 이야기에는 ‘나쁜 사람’이 필요하지. 내가 그 역할을 했단다. 네가 이해해 주기를 바란다..."];var DLG=[["B","Suji, what did you do last weekend?","수지야, 지난 주말에 뭐 했어?"],["G","I went to a volleyball game.","나는 배구 경기에 갔어."],["B","Which teams played?","어느 팀들이 경기했어?"],["G","The Spikers played the Flyers.","Spikers가 Flyers와 경기했어."],["B","Which team did you cheer for?","너는 어느 팀을 응원했어?"],["G","The Spikers. They’re my favorite team.","Spikers야. 그 팀은 내가 가장 좋아하는 팀이야."],["B","I see. How was the game?","그렇구나. 경기는 어땠어?"],["G","It was really exciting. The Spikers won. How was your weekend, Eddie?","정말 신났어. Spikers가 이겼어. 너의 주말은 어땠어, Eddie?"],["B","Great. I rode my bike in the park.","좋았어. 나는 공원에서 자전거를 탔어."],["G","Sounds good.","좋았겠다."]];var BQ=[{"n":1,"q":"Suji는 지난 주말에 어디에 갔나요?","o":["영화관","축구 경기","배구 경기","공원","스키장"],"a":2,"ev":["I went to a volleyball game.","나는 배구 경기에 갔어."],"why":"went to는 '~에 갔다'예요. Eddie가 공원에 간 것과 헷갈리지 마세요.","ans":"배구 경기","memo":["Suji의 주말 = 배구 경기 관람","I went to a volleyball game. (나는 배구 경기에 갔어.)"]},{"n":2,"q":"배구 경기에서 Spikers는 어느 팀과 경기했나요?","o":["Stars","Eagles","Tigers","Flyers","Rockets"],"a":3,"ev":["The Spikers played the Flyers.","Spikers가 Flyers와 경기했어."],"why":"played 뒤에 상대 팀 이름이 나와요.","ans":"Flyers","memo":["경기한 두 팀 = Spikers와 Flyers","The Spikers played the Flyers. (Spikers가 Flyers와 경기했어.)"]},{"n":3,"q":"Suji가 응원한 팀은 어디인가요?","o":["Flyers","Spikers","두 팀 모두","어느 팀도 응원하지 않았다","Eddie가 응원한 팀"],"a":1,"ev":["The Spikers. They’re my favorite team.","Spikers야. 그 팀은 내가 가장 좋아하는 팀이야."],"why":"cheer for는 '~를 응원하다'예요. Suji가 가장 좋아하는 팀이 Spikers예요.","ans":"Spikers","memo":["Suji가 응원한 팀 = Spikers","The Spikers. They’re my favorite team. (Spikers야. 그 팀은 내가 가장 좋아하는 팀이야.)"]},{"n":4,"q":"경기 결과는 어땠나요?","o":["Flyers가 이겼다","비겨서 무승부였다","Spikers가 이겼다","비 때문에 취소되었다","끝까지 보지 못했다"],"a":2,"ev":["The Spikers won.","Spikers가 이겼어."],"why":"won은 win(이기다)의 과거형이에요.","ans":"Spikers가 이겼다","memo":["경기 결과 = Spikers 승리","The Spikers won. (Spikers가 이겼어.)"]},{"n":5,"q":"Eddie는 지난 주말에 무엇을 했나요?","o":["공원에서 자전거를 탔다","배구 경기에 갔다","집에서 숙제를 했다","영화를 봤다","눈사람을 만들었다"],"a":0,"ev":["I rode my bike in the park.","나는 공원에서 자전거를 탔어."],"why":"rode는 ride(타다)의 과거형이에요. 장소는 in the park예요.","ans":"공원에서 자전거를 탔다","memo":["Eddie의 주말 = 공원에서 자전거 타기","I rode my bike in the park. (나는 공원에서 자전거를 탔어.)"]}];var DQ=[{"n":6,"q":"Nick이 영어 시간에 선생님께 한 질문의 주제는 무엇인가요?","o":["단어가 어떻게 의미를 얻는지","영어를 잘하는 방법","사전을 쓰는 방법","개가 왜 짖는지","숙제가 왜 많은지"],"a":0,"ev":["How do words get their meanings?","단어는 어떻게 그 의미를 얻나요?"],"why":"Nick은 dog가 왜 개라는 뜻인지 궁금해했어요.","ans":"단어가 어떻게 의미를 얻는지","memo":["Nick의 질문 = 단어의 의미는 어떻게 생기는가","How do words get their meanings? (단어는 어떻게 그 의미를 얻나요?)"]},{"n":7,"q":"Nick이 frindle이라고 새로 이름 붙인 것은 무엇인가요?","o":["길에서 주운 펜","연필 한 자루","공책","지우개","책가방"],"a":0,"ev":["Nick saw a pen on the street. He picked up the pen. He had an idea. / “From today, your new name is frindle.”","Nick은 길에서 펜을 보았다. 그는 그 펜을 집어 들었다. 그에게 한 가지 생각이 떠올랐다. / “오늘부터 네 새 이름은 frindle이야.”"],"why":"pen을 집어 들고 새 이름을 붙였어요.","ans":"길에서 주운 펜","memo":["frindle = 길에서 주운 펜의 새 이름","From today, your new name is frindle. (오늘부터 네 새 이름은 frindle이야.)"]},{"n":8,"q":"Granger 선생님이 Nick에게 하라고 한 것은 무엇인가요?","o":["frindle 사용을 멈추기","frindle을 더 널리 퍼뜨리기","사전을 찾아보기","친구들에게 사과 편지 쓰기","새 펜을 사기"],"a":0,"ev":["Frindle is not a real word. You and your classmates should stop using it.","Frindle은 진짜 단어가 아니야. 너와 네 반 친구들은 그것을 사용하는 것을 멈춰야 해."],"why":"stop using it은 '그것을 쓰는 것을 멈추다'예요.","ans":"frindle 사용을 멈추기","memo":["선생님의 요구 = frindle 사용 중단","You and your classmates should stop using it. (너와 네 반 친구들은 그것을 사용하는 것을 멈춰야 해.)"]},{"n":9,"q":"Nick이 21살이 되었을 때 받은 소포에 들어 있던 것이 아닌 것은?","o":["펜","편지","사전","열쇠","쪽지"],"a":3,"ev":["When he turned 21, he received a package from Mrs. Granger. It had a pen, a letter, and a dictionary.","그가 21살이 되었을 때, 그는 Granger 선생님께 소포를 받았다. 그것에는 펜, 편지, 그리고 사전이 들어 있었다."],"why":"소포에는 pen, letter, dictionary가 있었고 쪽지는 사전 위에 있었어요. 열쇠는 나오지 않아요.","ans":"열쇠","memo":["소포 속 물건 = 펜, 편지, 사전","It had a pen, a letter, and a dictionary. (그것에는 펜, 편지, 그리고 사전이 들어 있었다.)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["Nick은 5학년이었다.","Nick은 길에서 펜을 보았다.","전국의 학생들이 frindle을 쓰게 되었다.","Granger 선생님은 편지를 그날 바로 Nick에게 주었다.","Frindle은 이제 진짜 단어가 되었다."],"a":3,"ev":["But I’m not going to give it to you today. I will send you this letter some day.","하지만 오늘은 그것을 너에게 주지 않을 거야. 언젠가 이 편지를 너에게 보낼게."],"why":"선생님은 편지를 오늘은 주지 않고 언젠가 보내겠다고 했어요.","ans":"Granger 선생님은 편지를 그날 바로 Nick에게 주었다.","memo":["불일치 = 편지를 그날 주지 않고 나중에 보냄","I’m not going to give it to you today. (오늘은 그것을 너에게 주지 않을 거야.)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>

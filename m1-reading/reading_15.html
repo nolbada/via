@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Reading 15</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M1 Reading</a><h1>Reading 15 · Dr. AI, Help!</h1><div class="sub">Dr. AI, 도와줘요! · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div id="app"></div>
+</div>
+<script>
+var D=[{"n":1,"tag":"Dr. AI","en":"Dr. AI thinks if too much smartphone use is bad for teens and wants helping.","ko":"Dr. AI는 스마트폰을 너무 많이 쓰는 것이 십 대에게 나쁘다고 생각하고, 도와주고 싶어 한다.","ok":false,"foot":[],"fixes":[{"wrong":"if","right":"that","partial":false,"at":[3],"point":"접속사: '~라는 것'을 의미하는 명사 절 접속사 that 사용 (if는 '~인지 아닌지'라는 뜻이라서 문맥상 부적절)","topic":"접속사","memo":"'~라는 것'을 의미하는 명사 절 접속사 that 사용"},{"wrong":"helping","right":"to help","partial":false,"at":[14],"point":"to부정사의 명사적 용법: want의 목적어로는 to부정사 사용 (동명사 helping은 불가)","topic":"to부정사의 명사적 용법","memo":"want의 목적어로는 to부정사 사용 (동명사 helping은 불가)"}]},{"n":2,"tag":"Bora · 거북목","en":"Bora, you has text neck!","ko":"보라야, 너는 거북목 증상이 있구나!","ok":false,"foot":[],"fixes":[{"wrong":"has","right":"have","partial":false,"at":[2],"point":"수일치: 주어 you 뒤에는 동사원형 have 사용","topic":"수일치","memo":"주어 you 뒤에는 동사원형 have 사용"}]},{"n":3,"tag":null,"en":"Text neck is pain on the neck.","ko":"거북목은 목에 오는 통증이야.","ok":false,"foot":[],"fixes":[{"wrong":"pain","right":"a pain","partial":false,"at":[3],"point":"관사: pain이 '고통거리'라는 뜻의 가산명사로 쓰일 때는 부정관사 a 필요","topic":"관사","memo":"pain이 '고통거리'라는 뜻의 가산명사로 쓰일 때는 부정관사 a 필요"},{"wrong":"on","right":"in","partial":false,"at":[4],"point":"어휘/전치사: 관용표현 a pain in the neck에서는 전치사 in 사용","topic":"어휘/전치사","memo":"관용표현 a pain in the neck에서는 전치사 in 사용"}]},{"n":4,"tag":null,"en":"Look at the two pictures below.","ko":"아래 두 그림을 보렴.","ok":true,"foot":[],"fixes":[]},{"n":5,"tag":null,"en":"On the left, your neck are fine.","ko":"왼쪽에, 네 목은 괜찮아.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[5],"point":"수일치: 주어 neck(단수)에 맞춰 동사 is 사용","topic":"수일치","memo":"주어 neck(단수)에 맞춰 동사 is 사용"}]},{"n":6,"tag":null,"en":"But on the right, you bending your neck much too.","ko":"그러나 오른쪽에, 너는 네 목을 너무 많이 구부리고 있어.","ok":false,"foot":[],"fixes":[{"wrong":"bending","right":"are bending","partial":false,"at":[5],"point":"현재진행형: be동사(are)+v-ing 형태로 진행 중인 동작을 표현","topic":"현재진행형","memo":"be동사(are)+v-ing 형태로 진행 중인 동작을 표현"},{"wrong":"much too","right":"too much","partial":false,"at":[8],"point":"어휘/어순: '너무 많이'는 too much의 어순으로 사용","topic":"어휘/어순","memo":"'너무 많이'는 too much의 어순으로 사용"}]},{"n":7,"tag":null,"en":"How your head feels heavy!","ko":"네 머리가 얼마나 무겁게 느껴지는지!","ok":false,"foot":[],"fixes":[{"wrong":"your head feels heavy","right":"heavy your head feels","partial":false,"at":[1],"point":"감탄문: How+형용사+주어+동사!의 어순 사용","topic":"감탄문","memo":"How+형용사+주어+동사!의 어순 사용"}]},{"n":8,"tag":null,"en":"If you don't fix it, your neck will hurts more.","ko":"만약 그것을 고치지 않으면, 네 목은 더 아플 거야.","ok":false,"foot":[],"fixes":[{"wrong":"hurts","right":"hurt","partial":false,"at":[8],"point":"조동사: will 뒤에는 동사원형 사용","topic":"조동사","memo":"will 뒤에는 동사원형 사용"}]},{"n":9,"tag":"Eddie · 건조한 눈","en":"Eddie, you have dry eyes?","ko":"Eddie, 너는 건조한 눈을 가지고 있니?","ok":false,"foot":[],"fixes":[{"wrong":"you have","right":"do you have","partial":false,"at":[1],"point":"의문문: 일반동사 의문문은 Do+주어 +동사원형 어순 사용","topic":"의문문","memo":"일반동사 의문문은 Do+주어 +동사원형 어순 사용"}]},{"n":10,"tag":null,"en":"Dry eyes are painfully.","ko":"건조한 눈은 고통스러워.","ok":false,"foot":[],"fixes":[{"wrong":"painfully","right":"painful","partial":false,"at":[3],"point":"어휘: be동사의 보어 자리에는 형용사 painful 사용 (painfully는 부사)","topic":"어휘","memo":"be동사의 보어 자리에는 형용사 painful 사용 (painfully는 부사)"}]},{"n":11,"tag":null,"en":"You use your smartphone much too.","ko":"너는 네 스마트폰을 너무 많이 사용해.","ok":false,"foot":[],"fixes":[{"wrong":"much too","right":"too much","partial":false,"at":[4],"point":"어휘/어순: '너무 많이'는 too much의 어순으로 사용","topic":"어휘/어순","memo":"'너무 많이'는 too much의 어순으로 사용"}]},{"n":12,"tag":null,"en":"You play games and watching videos.","ko":"너는 게임을 하고 동영상을 봐.","ok":false,"foot":[],"fixes":[{"wrong":"watching","right":"watch","partial":false,"at":[4],"point":"병렬구조: and로 연결된 두 동사는 같은 형태(동사원형)로 사용","topic":"병렬구조","memo":"and로 연결된 두 동사는 같은 형태(동사원형)로 사용"}]},{"n":13,"tag":null,"en":"You also sends much texts.","ko":"너는 또한 많은 문자 메시지를 보내.","ok":false,"foot":[],"fixes":[{"wrong":"sends","right":"send","partial":false,"at":[2],"point":"수일치: 주어 You 뒤에는 동사원형 send 사용","topic":"수일치","memo":"주어 You 뒤에는 동사원형 send 사용"},{"wrong":"much","right":"many","partial":false,"at":[3],"point":"어휘: 가산명사 texts 앞에는 many 사용 (much는 불가산명사에 사용)","topic":"어휘","memo":"가산명사 texts 앞에는 many 사용 (much는 불가산명사에 사용)"}]},{"n":14,"tag":null,"en":"How much time you spend on your smartphone every day?","ko":"너는 매일 스마트폰에 얼마나 많은 시간을 쓰니?","ok":false,"foot":[],"fixes":[{"wrong":"you spend","right":"do you spend","partial":false,"at":[3],"point":"의문사 의문문: How much time 뒤에는 「do+주어+동사원형」 어순 사용","topic":"의문사 의문문","memo":"How much time 뒤에는 「do+주어+동사원형」 어순 사용"}]},{"n":15,"tag":null,"en":"Look at the mirror.","ko":"거울을 봐.","ok":false,"foot":[],"fixes":[{"wrong":"at","right":"in","partial":false,"at":[1],"point":"어휘/전치사: 거울을 들여다볼 때는 look in the mirror 사용","topic":"어휘/전치사","memo":"거울을 들여다볼 때는 look in the mirror 사용"}]},{"n":16,"tag":null,"en":"You is going to have red, dry eyes if you don't rest them.","ko":"네가 눈을 쉬게 하지 않으면, 눈이 충혈되고 건조해질 거야.","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"are","partial":false,"at":[1],"point":"be going to: 주어 You에 맞는 be동사 are 사용","topic":"be going to","memo":"주어 You에 맞는 be동사 are 사용"}]},{"n":17,"tag":"Jaemin · 스몸비","en":"Jaemin, is you a smombie?","ko":"재민아, 너는 스몸비니?","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"are","partial":false,"at":[1],"point":"수일치: 주어 you에 맞는 be동사 are 사용","topic":"수일치","memo":"주어 you에 맞는 be동사 are 사용"}]},{"n":18,"tag":null,"en":"A smombie is smartphone zombie.","ko":"스몸비는 스마트폰 좀비야.","ok":false,"foot":["1zombie 좀비"],"fixes":[{"wrong":"smartphone zombie","right":"a smartphone zombie","partial":false,"at":[3],"point":"관사: 단수 가산명사 zombie 앞에는 부정관사 a 필요","topic":"관사","memo":"단수 가산명사 zombie 앞에는 부정관사 a 필요"}]},{"n":19,"tag":null,"en":"You always walk with your smartphone.","ko":"너는 항상 스마트폰을 가지고 걸어 다녀.","ok":true,"foot":[],"fixes":[]},{"n":20,"tag":null,"en":"But you doesn't look ahead.","ko":"하지만 너는 앞을 보지 않아.","ok":false,"foot":[],"fixes":[{"wrong":"doesn't","right":"don't","partial":false,"at":[2],"point":"수일치: 주어 you에는 do의 부정형 don't 사용","topic":"수일치","memo":"주어 you에는 do의 부정형 don't 사용"}]},{"n":21,"tag":null,"en":"You only look your phone.","ko":"너는 오직 네 전화기만 봐.","ok":false,"foot":[],"fixes":[{"wrong":"look","right":"look at","partial":false,"at":[2],"point":"어휘/전치사: '~을 보다'는 look at 사용 (전치사 필요)","topic":"어휘/전치사","memo":"'~을 보다'는 look at 사용 (전치사 필요)"}]},{"n":22,"tag":null,"en":"Sometimes, you bumps into people or tree!","ko":"때때로, 너는 사람들이나 나무와 부딪히기도 해!","ok":false,"foot":["1bump into ~와 부딪히다"],"fixes":[{"wrong":"bumps","right":"bump","partial":false,"at":[2],"point":"수일치: 주어 you 뒤에는 동사원형 bump 사용","topic":"수일치","memo":"주어 you 뒤에는 동사원형 bump 사용"},{"wrong":"tree","right":"trees","partial":false,"at":[6],"point":"병렬구조: people과 or로 연결되는 명사는 형태를 맞춰 복수형 trees 사용","topic":"병렬구조","memo":"people과 or로 연결되는 명사는 형태를 맞춰 복수형 trees 사용"}]},{"n":23,"tag":"Dr. AI의 조언","en":"You cans prevent this if you look up more often.","ko":"네가 더 자주 위를 본다면 이것을 예방할 수 있어.","ok":false,"foot":[],"fixes":[{"wrong":"cans","right":"can","partial":false,"at":[1],"point":"조동사: can 뒤에는 동사원형 사용, can에는 -s를 붙이지 않음","topic":"조동사","memo":"can 뒤에는 동사원형 사용, can에는 -s를 붙이지 않음"}]},{"n":24,"tag":null,"en":"Don't worries.","ko":"걱정하지 마.","ok":false,"foot":[],"fixes":[{"wrong":"worries","right":"worry","partial":false,"at":[1],"point":"명령문 부정형: Don't+동사원형 사용","topic":"명령문 부정형","memo":"Don't+동사원형 사용"}]},{"n":25,"tag":null,"en":"Here is some tips.","ko":"여기 몇 가지 조언이 있단다.","ok":false,"foot":[],"fixes":[{"wrong":"is","right":"are","partial":false,"at":[1],"point":"수일치: 주어 tips(복수)에 맞춰 동사 are 사용","topic":"수일치","memo":"주어 tips(복수)에 맞춰 동사 are 사용"}]},{"n":26,"tag":null,"en":"Bora, holds your smartphone at eye level, and stretching your neck often.","ko":"보라야, 네 스마트폰을 눈높이로 들고, 목을 자주 스트레칭해.","ok":false,"foot":["1 2","1eye level 눈높이 2stretch 쭉 펴다, 스트레칭하다"],"fixes":[{"wrong":"holds","right":"hold","partial":false,"at":[1],"point":"명령문: 동사원형으로 문장 시작 (holds → hold)","topic":"명령문","memo":"동사원형으로 문장 시작 (holds → hold)"},{"wrong":"stretching","right":"stretch","partial":false,"at":[8],"point":"병렬구조: and로 연결된 두 명령문 동사는 형태를 맞춰 동사원형 stretch 사용","topic":"병렬구조","memo":"and로 연결된 두 명령문 동사는 형태를 맞춰 동사원형 stretch 사용"}]},{"n":27,"tag":null,"en":"Eddie, rests your eyes.","ko":"Eddie, 네 눈을 쉬어 줘.","ok":false,"foot":[],"fixes":[{"wrong":"rests","right":"rest","partial":false,"at":[1],"point":"명령문: 동사원형으로 문장 시작","topic":"명령문","memo":"동사원형으로 문장 시작"}]},{"n":28,"tag":null,"en":"Jaemin, looking ahead and walks.","ko":"재민아, 앞을 보고 걸어.","ok":false,"foot":[],"fixes":[{"wrong":"looking","right":"look","partial":false,"at":[1],"point":"명령문: 동사원형으로 문장 시작 (Looking → Look)","topic":"명령문","memo":"동사원형으로 문장 시작 (Looking → Look)"},{"wrong":"walks","right":"walk","partial":false,"at":[4],"point":"병렬구조: and로 연결된 두 동사는 같은 형태(동사원형)로 사용","topic":"병렬구조","memo":"and로 연결된 두 동사는 같은 형태(동사원형)로 사용"}]},{"n":29,"tag":null,"en":"It are important resting your eyes and neck.","ko":"네 눈과 목을 쉬게 하는 것이 중요해.","ok":false,"foot":[],"fixes":[{"wrong":"are","right":"is","partial":false,"at":[1],"point":"수일치: 가주어 It은 단수이므로 be동사 is 사용","topic":"수일치","memo":"가주어 It은 단수이므로 be동사 is 사용"},{"wrong":"resting","right":"to rest","partial":false,"at":[3],"point":"to부정사의 명사적 용법: It is+형용사+to부정사 구문에서 to rest 사용","topic":"to부정사의 명사적 용법","memo":"It is+형용사+to부정사 구문에서 to rest 사용"}]},{"n":30,"tag":null,"en":"Let's being safe and healthy!","ko":"안전하고 건강해지자!","ok":false,"foot":[],"fixes":[{"wrong":"being","right":"be","partial":false,"at":[1],"point":"명령문: Let's 뒤에는 동사원형 사용","topic":"명령문","memo":"Let's 뒤에는 동사원형 사용"}]}];var RNUM=15;var TITLE_EN="Dr. AI, Help!";var PASS_EN=["Dr. AI, Help!","Bora, you have text neck! Text neck is a pain in the neck. Look at the two pictures below. On the left, your neck is fine. But on the right, you bend your neck too much. Your head feels heavy. Your neck hurts!","Eddie, do you have dry eyes? Dry eyes are painful. You use your smartphone too much. You play games. You watch videos. You also send many texts. Look in the mirror. Your eyes are red and dry!","Jaemin, are you a smombie? A smombie is a smartphone zombie. You always walk with your smartphone. But you don't look ahead. You only look at your phone. Sometimes, you bump into people or trees!","Don't worry. Here are some tips. Bora, hold your smartphone at eye level. Also, stretch your neck often. Eddie, rest your eyes. Jaemin, look ahead and walk. Let's be safe and healthy!"];var PASS_KO=["Dr. AI, 도와줘요!","보라야, 너는 거북목 증상이 있구나! 거북목은 목에 오는 통증이야. 아래 두 그림을 보렴. 왼쪽에, 네 목은 괜찮아. 그러나 오른쪽에, 너는 네 목을 너무 많이 구부려. 네 머리는 무겁게 느껴져. 네 목은 아프단다!","Eddie, 건조한 눈을 가지고 있니? 건조한 눈은 고통스러워. 너는 네 스마트폰을 너무 많이 사용해. 너는 게임을 해. 너는 동영상을 봐. 너는 또한 많은 문자 메시지를 보내. 거울을 봐. 네 눈은 충혈되어 있고 건조해!","재민아, 너는 스몸비니? 스몸비는 스마트폰 좀비야. 너는 항상 스마트폰을 가지고 걸어 다녀. 하지만 너는 앞을 보지 않아. 너는 오직 네 전화기만 봐. 때때로, 너는 사람들이나 나무와 부딪히기도 해!","걱정하지 마. 여기 몇 가지 조언이 있단다. 보라야, 네 스마트폰을 눈높이로 들어. 또한, 네 목을 자주 스트레칭해. Eddie, 네 눈을 쉬어 줘. 재민아, 앞을 보고 걸어. 안전하고 건강해지자!"];var DLG=[["B","Semi, what's wrong? You look worried.","세미야, 무슨 일이야? 걱정스러워 보여."],["G","I can't go to Jisu's birthday party today.","나는 오늘 지수의 생일 파티에 갈 수 없어."],["B","Oh, no! She's your best friend.","아, 이런! 그 애는 네 가장 친한 친구잖아."],["G","Yeah, but I have to visit my grandparents.","응, 하지만 나는 조부모님을 찾아뵈어야 해."],["B","Jisu will be sad.","지수가 슬퍼하겠다."],["G","I know. What should I do, Nick?","알아. 내가 어떻게 해야 할까, Nick?"],["B","You should write a birthday card for her.","그 애에게 생일 카드를 써 주는 게 좋겠어."],["G","Okay, I will. Thanks.","응, 그럴게. 고마워."]];var BQ=[{"n":1,"q":"Semi가 오늘 갈 수 없는 행사는 무엇인가요?","o":["Jisu의 생일 파티","학교 축제","조부모님 댁 저녁 식사","영어 수업","Nick의 졸업식"],"a":0,"ev":["I can't go to Jisu's birthday party today.","나는 오늘 지수의 생일 파티에 갈 수 없어."],"why":"I can't go to 뒤가 못 가는 행사예요.","ans":"Jisu의 생일 파티","memo":["Semi가 못 가는 행사 = Jisu의 생일 파티","I can't go to Jisu's birthday party today. (나는 오늘 지수의 생일 파티에 갈 수 없어.)"]},{"n":2,"q":"Semi가 파티에 갈 수 없는 이유는 무엇인가요?","o":["몸이 아파서","숙제가 많아서","조부모님을 찾아뵈어야 해서","Jisu와 싸워서","선물을 못 사서"],"a":2,"ev":["Yeah, but I have to visit my grandparents.","응, 하지만 나는 조부모님을 찾아뵈어야 해."],"why":"have to는 '~해야 한다'는 뜻이에요.","ans":"조부모님을 찾아뵈어야 해서","memo":["파티에 못 가는 이유 = 조부모님 방문","Yeah, but I have to visit my grandparents. (응, 하지만 나는 조부모님을 찾아뵈어야 해.)"]},{"n":3,"q":"Semi와 Jisu의 관계는 무엇인가요?","o":["사촌","같은 반 선생님","이웃","가장 친한 친구","동생"],"a":3,"ev":["Oh, no! She's your best friend.","아, 이런! 그 애는 네 가장 친한 친구잖아."],"why":"Nick이 Jisu를 가리켜 한 말이에요.","ans":"가장 친한 친구","memo":["Semi와 Jisu = 가장 친한 친구","Oh, no! She's your best friend. (아, 이런! 그 애는 네 가장 친한 친구잖아.)"]},{"n":4,"q":"Nick이 Semi에게 한 조언은 무엇인가요?","o":["Jisu에게 전화하기","Jisu에게 생일 카드 써 주기","파티에 가기","조부모님께 선물 드리기","Jisu에게 선물 사 주기"],"a":1,"ev":["You should write a birthday card for her.","그 애에게 생일 카드를 써 주는 게 좋겠어."],"why":"You should 뒤가 조언의 내용이에요.","ans":"Jisu에게 생일 카드 써 주기","memo":["Nick의 조언 = 생일 카드 쓰기","You should write a birthday card for her. (그 애에게 생일 카드를 써 주는 게 좋겠어.)"]},{"n":5,"q":"Nick은 Jisu가 어떻게 될 것이라고 말했나요?","o":["화를 낼 것이다","기뻐할 것이다","슬퍼할 것이다","놀랄 것이다","잊어버릴 것이다"],"a":2,"ev":["Jisu will be sad.","지수가 슬퍼하겠다."],"why":"will be는 '~할 것이다'라는 뜻이에요.","ans":"슬퍼할 것이다","memo":["Nick의 예상 = Jisu가 슬퍼함","Jisu will be sad. (지수가 슬퍼하겠다.)"]}];var DQ=[{"n":6,"q":"Bora의 목이 아픈 까닭은 무엇인가요?","o":["목을 너무 많이 구부려서","게임을 너무 많이 해서","거울을 안 봐서","눈을 쉬게 하지 않아서","나무에 부딪혀서"],"a":0,"ev":["But on the right, you bend your neck too much.","그러나 오른쪽에, 너는 네 목을 너무 많이 구부려."],"why":"오른쪽 그림에서 목을 너무 많이 구부린다고 해요.","ans":"목을 너무 많이 구부려서","memo":["Bora의 목 통증 이유 = 목을 너무 많이 구부림","But on the right, you bend your neck too much. (그러나 오른쪽에, 너는 네 목을 너무 많이 구부려.)"]},{"n":7,"q":"Eddie의 눈은 어떤 상태인가요?","o":["파랗고 촉촉하다","빨갛고 건조하다","크고 맑다","작고 어둡다","눈물이 난다"],"a":1,"ev":["Look in the mirror. Your eyes are red and dry!","거울을 봐. 네 눈은 충혈되어 있고 건조해!"],"why":"red는 '빨간', dry는 '건조한'이에요.","ans":"빨갛고 건조하다","memo":["Eddie의 눈 상태 = 빨갛고 건조함","Look in the mirror. Your eyes are red and dry! (거울을 봐. 네 눈은 충혈되어 있고 건조해!)"]},{"n":8,"q":"smombie는 무엇을 뜻하나요?","o":["스마트폰 좀비","스마트폰 가게","스마트폰 게임","스마트폰 사진","스마트폰 선생님"],"a":0,"ev":["A smombie is a smartphone zombie.","smombie는 스마트폰 좀비야."],"why":"smombie는 smartphone과 zombie를 합친 말이에요.","ans":"스마트폰 좀비","memo":["smombie = 스마트폰 좀비","A smombie is a smartphone zombie. (smombie는 스마트폰 좀비야.)"]},{"n":9,"q":"Jaemin은 가끔 무엇에 부딪히나요?","o":["자동차와 버스","사람들이나 나무","건물과 문","친구와 선생님","자전거와 개"],"a":1,"ev":["Sometimes, you bump into people or trees!","가끔 너는 사람들이나 나무에 부딪혀!"],"why":"bump into는 '~와 부딪히다'라는 뜻이에요.","ans":"사람들이나 나무","memo":["Jaemin이 부딪히는 것 = 사람, 나무","Sometimes, you bump into people or trees! (가끔 너는 사람들이나 나무에 부딪혀!)"]},{"n":10,"q":"윗글의 내용과 일치하지 않는 것은?","o":["거북목은 목에 오는 통증이다.","Eddie는 눈을 쉬게 하라는 조언을 받았다.","Jaemin은 앞을 보며 걸으라는 조언을 받았다.","Jaemin은 항상 스마트폰을 들고 걷는다.","Bora는 스마트폰을 무릎 높이로 들라는 조언을 받았다."],"a":4,"ev":["Bora, hold your smartphone at eye level.","보라야, 스마트폰을 눈높이로 들렴."],"why":"조언은 무릎 높이가 아니라 눈높이(eye level)로 들라는 거예요.","ans":"Bora는 스마트폰을 무릎 높이로 들라는 조언을 받았다.","memo":["Bora의 조언 = 스마트폰을 눈높이로 들기","Bora, hold your smartphone at eye level. (보라야, 스마트폰을 눈높이로 들렴.)"]}];
+var BK='m-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone(),!!qdone[0],!!qdone[1]],nm=['본문 오류 찾기','대화문 내용 5문제','본문 내용 5문제'],f=-1;for(var i=0;i<3;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+f.right+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>문법 memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[{title:'대화문 내용 파악',groups:[{dlg:DLG,qs:BQ}]},{title:'본문 내용 파악',groups:[{pass:0,qs:DQ}]}];
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ PASS_EN.forEach(function(l){h+='<div class="ln"><div class="en">'+esc(l)+'</div></div>'});
+ if(lock){h+='<div class="kr" style="white-space:pre-line">'+esc(PASS_KO.join('\n'))+'</div>'}
+ return h+'</div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pass!=null)h+=passHtml(g.pass,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/5</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h;
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div><div class="pt" style="margin-top:4px">'+esc(q.why)+'</div></div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 5문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">틀린 문제'+(ms.length>cap?' '+ms.length+'개 중 '+cap+'개':'')+'만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+render();
+</script></body></html>
