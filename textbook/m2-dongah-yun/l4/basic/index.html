@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<meta name="robots" content="noindex">
+<title>4과 기본 문장 분석</title>
+<style>
+/* Layout: one narrow column, phone-first. Home = Day grid; Play = 3-step card (order, role, meaning); roles are color-coded. */
+:root{
+  --bg:#f4f6f8; --surface:#ffffff; --fg:#14202b; --muted:#566474; --line:#d9e0e7;
+  --accent:#0f766e; --accent-fg:#ffffff; --good:#15803d; --bad:#b91c1c; --bad-bg:#fde8e8; --good-bg:#e3f4e8;
+  --s-bg:#dbeafe; --s-fg:#1e40af;
+  --v-bg:#dfe5ee; --v-fg:#1e293b;
+  --o-bg:#dcfce7; --o-fg:#166534;
+  --io-bg:#cffafe; --io-fg:#155e75;
+  --do-bg:#ecfccb; --do-fg:#3f6212;
+  --c-bg:#ffedd5; --c-fg:#9a3412;
+  --oc-bg:#fef3c7; --oc-fg:#92400e;
+  --m-bg:#ede9fe; --m-fg:#5b21b6;
+  --cj-bg:#e5e7eb; --cj-fg:#374151;
+  --hl:#fde047;--hlfg:#14202b;
+  --ko:"Gothic A1","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+  --en:"Lexend","Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e141b; --surface:#17212b; --fg:#e6ebf0; --muted:#9aa8b6; --line:#2a3744;
+  --accent:#2dd4bf; --accent-fg:#04201d; --good:#4ade80; --bad:#f87171; --bad-bg:#3a1d1f; --good-bg:#15301f;
+  --s-bg:#1e2f5c; --s-fg:#bfdbfe; --v-bg:#3a4658; --v-fg:#e2e8f0; --o-bg:#14392a; --o-fg:#bbf7d0;
+  --io-bg:#0f3a44; --io-fg:#a5f3fc; --do-bg:#2d3a12; --do-fg:#d9f99d; --c-bg:#4a2410; --c-fg:#fed7aa;
+  --oc-bg:#46330a; --oc-fg:#fde68a; --m-bg:#34235e; --m-fg:#ddd6fe; --cj-bg:#2f3340; --cj-fg:#d1d5db;
+  --hl:#a16207;--hlfg:#fff7d6;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e141b; --surface:#17212b; --fg:#e6ebf0; --muted:#9aa8b6; --line:#2a3744;
+  --accent:#2dd4bf; --accent-fg:#04201d; --good:#4ade80; --bad:#f87171; --bad-bg:#3a1d1f; --good-bg:#15301f;
+  --s-bg:#1e2f5c; --s-fg:#bfdbfe; --v-bg:#3a4658; --v-fg:#e2e8f0; --o-bg:#14392a; --o-fg:#bbf7d0;
+  --io-bg:#0f3a44; --io-fg:#a5f3fc; --do-bg:#2d3a12; --do-fg:#d9f99d; --c-bg:#4a2410; --c-fg:#fed7aa;
+  --oc-bg:#46330a; --oc-fg:#fde68a; --m-bg:#34235e; --m-fg:#ddd6fe; --cj-bg:#2f3340; --cj-fg:#d1d5db;
+  color-scheme:dark}
+*{box-sizing:border-box}
+.cp{margin-top:10px;padding:12px;border:1.5px dashed var(--accent);border-radius:12px;background:var(--bg)}
+.cpl{font-size:12px;font-weight:700;color:var(--muted);margin:0 0 6px}
+.ckv{border:2.5px solid var(--v-fg);border-radius:999px;padding:1px 8px}
+.hlm{background:var(--hl);color:var(--hlfg);padding:1px 3px;border-radius:3px}
+.cpw{font-size:16px;font-weight:700;margin:6px 0 0}
+.rtask{margin-top:12px}
+.cmb{display:block;font-size:12.5px;font-weight:700;color:var(--good);line-height:1.3;margin-top:1px}
+.cflow{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-start}
+.cch{display:flex;flex-direction:column;gap:3px;min-width:0}
+.cen{font-family:var(--en);font-size:15px;font-weight:500;line-height:1.35}
+.cko{font-size:12.5px;font-weight:700;color:var(--good);line-height:1.3;min-height:17px}
+.rtask .mdir{font-size:14px;font-weight:600;line-height:1.5}
+.rtask .cpw{font-size:14px;font-weight:600}
+.rtask .hint{font-size:13px;padding:8px 10px;color:var(--muted)}
+.cflow.tap{cursor:pointer}
+.cflow.tap .cko::after{content:'···';color:var(--muted);font-weight:400;letter-spacing:.12em}
+.rec{border:1.5px solid var(--accent);border-radius:16px;padding:18px 16px;background:var(--card,var(--bg));text-align:center}
+.rec-h{font-size:12px;color:var(--muted);letter-spacing:.02em}
+.rec-t{font-size:20px;font-weight:800;margin-top:6px}
+.rec-d{font-size:14px;color:var(--muted);margin-top:2px}
+.rec-big{font-size:44px;font-weight:800;line-height:1.2;margin:10px 0 6px}
+.rec-big.ok{color:var(--good)}.rec-big.no{color:var(--bad)}
+.rec-l{font-size:15px;margin-top:4px}
+.rec-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0 8px}
+.rec-chip{font-size:13px;padding:3px 9px;border-radius:999px;border:1px solid var(--line)}
+.rec-chip.o{color:var(--good);border-color:var(--good)}.rec-chip.x{color:var(--bad);border-color:var(--bad)}
+.trkrow{display:block;width:100%;text-align:left;margin-top:8px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:inherit;font:inherit;cursor:pointer}
+.trks{margin-top:8px}.trke{font-size:15px;font-weight:600;line-height:1.4}.trkk{font-size:13px;color:var(--good);margin-top:2px}.trkh{font-size:12px;color:var(--muted);margin-top:6px}
+.popq{margin-top:12px}
+.trkrow.on{border-color:var(--good);background:var(--good-bg)}
+.trkrow span{display:block}.trkt{font-size:12px;color:var(--muted)}.trkw{font-size:18px;margin:2px 0}.trkd{font-size:14px}
+.trkchips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.trkchip{padding:6px 10px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);color:inherit;font:inherit;font-size:13px;cursor:pointer}.trkchip.sel{border-color:var(--accent);background:var(--accent);color:var(--accent-fg)}
+.rec-sub{font-size:13px;color:var(--muted);margin-top:2px}
+.rec-big.pend{color:var(--muted);font-size:30px}
+.rec-q{font-size:13px;color:var(--muted);margin-top:6px}
+.rec-c{font-size:13px;color:var(--muted);margin-top:10px}
+.wbox{margin-top:12px}.wrow{padding:10px 0;border-top:1px solid var(--line)}.wrow:first-of-type{border-top:0}.wn{font-size:12px;color:var(--muted)}.wen{font-size:16px;font-weight:600;line-height:1.5;margin-top:2px}.wko{font-size:14px;color:var(--good);line-height:1.5;margin-top:3px}
+.rec-f{font-size:12px;color:var(--muted);margin-top:12px;border-top:1px dashed var(--line);padding-top:8px}
+.hrow{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.hrow span{color:var(--muted);flex:none}
+.hrow b{text-align:right;font-weight:600}
+.rtask.done{opacity:.75}
+body{background:var(--bg);color:var(--fg);font-family:var(--ko);font-size:16px;line-height:1.55;word-break:keep-all}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:640px;margin:0 auto;padding-inline:16px;padding-block:16px 40px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.brand{font-weight:900;letter-spacing:.02em;font-size:17px}
+.brand small{display:block;font-weight:500;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.pts{font-family:var(--en);font-weight:600;font-variant-numeric:tabular-nums;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;white-space:nowrap}
+.pts b{color:var(--accent)}
+h1{font-size:22px;margin:18px 0 6px;text-wrap:balance}
+h2{font-size:15px;margin:22px 0 10px;color:var(--muted);letter-spacing:.04em}
+.lead{color:var(--muted);margin:0 0 4px;font-size:15px}
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:8px}
+.day{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;min-height:64px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.day .dn{font-family:var(--en);font-weight:600;font-size:20px;font-variant-numeric:tabular-nums}
+.day .st{font-size:12px;color:var(--accent);letter-spacing:1px;min-height:18px}
+.day.done{border-color:var(--accent)}
+.foot{margin-top:28px;font-size:13px;color:var(--muted)}
+.back{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-height:44px}
+.ttl{font-weight:700;font-size:17px;text-align:center;flex:1}
+.prog{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.prog i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.pcount{font-size:13px;color:var(--muted);margin-bottom:12px;font-family:var(--en)}
+.steps.two{grid-template-columns:1fr 1fr}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
+.steps div{text-align:center;padding:8px 4px;border-radius:10px;font-size:14px;font-weight:700;border:1px solid var(--line);color:var(--muted);background:var(--surface)}
+.steps div.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.steps div.ok{color:var(--good);border-color:var(--good)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.ask{margin:0 0 12px;font-weight:700;font-size:17px;text-wrap:balance}
+.line{min-height:64px;border:2px dashed var(--line);border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.line .ph{color:var(--muted);font-size:14px;padding-inline:4px}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:52px}
+.tile{font-family:var(--en);font-size:17px;padding:10px 14px;min-height:46px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);overflow-wrap:anywhere;text-align:left}
+.line .tile{background:var(--surface);border-color:var(--accent)}
+.tile.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.tile.good{background:var(--good-bg);border-color:var(--good)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.ghost{background:transparent;border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-height:44px;color:var(--muted)}
+.primary{background:var(--accent);color:var(--accent-fg);border:0;border-radius:12px;padding:12px 20px;min-height:48px;font-weight:700;font-size:16px;width:100%;margin-top:14px}
+.krow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px;padding:10px;background:var(--bg);border-radius:10px;min-height:48px}
+.klbl{font-size:12px;font-weight:700;color:var(--muted);width:100%}
+.kblk{font:inherit;font-size:14px;cursor:pointer;padding:6px 10px;border-radius:8px;background:var(--surface);border:1.5px solid var(--good);color:var(--good);font-size:14px;font-weight:700}
+.kblk.go{box-shadow:0 0 0 2px var(--accent)}
+.rslot{min-height:24px;text-align:center;font-size:13px;font-weight:700;border-radius:6px;padding:2px 6px}
+.minp{width:100%;box-sizing:border-box;padding:12px;font-size:16px;font-family:var(--en);border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:inherit}
+.mission{margin-top:12px}
+.mline{margin:0 0 8px;font-size:15px;line-height:1.5}
+.mdir{margin:0;font-size:15px;font-weight:700}
+.mk{display:inline-block;padding:2px 8px;border-radius:6px;font-size:13px;margin-right:4px}
+.mans{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.msent{margin:0 0 10px;font-family:var(--en);font-size:15px;line-height:1.6}
+.kfull{margin:0;font-size:16px;font-weight:700;line-height:1.5}
+.kflow{display:flex;flex-wrap:wrap;gap:6px}
+.r2.down{animation:slideDown .35s ease both}
+@keyframes slideDown{from{transform:translateY(-14px);opacity:0}to{transform:none;opacity:1}}
+.kslot.wait{border-top-color:var(--accent);min-height:24px}
+.kdone{font-size:13px;color:var(--muted)}
+.hint{margin:12px 0 0;padding:10px 12px;background:var(--bg);border-radius:10px;font-size:15px}
+.msg{margin:12px 0 0;padding:10px 12px;border-radius:10px;font-size:15px;font-weight:700}
+.msg.ok{background:var(--good-bg);color:var(--good)}
+.bememo{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:#fff4d6;border:2px solid #f0b429;color:#5b3d00;font-size:14.5px;line-height:1.55}.bememo b.t{display:block;font-size:15.5px;margin-bottom:4px}.bememo .pr{display:inline-block;margin:2px 4px 2px 0;padding:2px 8px;border-radius:8px;background:#fff;border:1px solid #f0b429;font-weight:800}.bememo .x{color:#c0392b;text-decoration:line-through;font-weight:700}
+.today{text-align:left;margin:12px 0 4px;border-top:1px dashed var(--line);padding-top:10px}.tdh{font-size:14px;font-weight:800;margin-bottom:6px}.tdi{margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}.tdn{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:2px}.tdk{font-size:13px;color:var(--muted);margin-top:4px}.tdko{font-size:15px;font-weight:700;margin-top:3px}.tdm{margin-top:5px;font-size:12.5px;color:#7a4b00;background:#fff4d6;border-radius:8px;padding:4px 8px}
+.notestrip{display:block;width:100%;margin:0 0 12px;padding:11px 14px;border:2px solid #e0a100;border-radius:12px;background:#fff4d6;color:#5b3d00;font:inherit;font-size:15px;font-weight:800;text-align:left;cursor:pointer}.nbox{margin:12px 0 0;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.nbox .nt{font-size:14px;font-weight:800;margin:0 0 6px}.ni{margin:0 0 14px;padding:0 0 12px;border-bottom:1px solid var(--line)}.ni .nn{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:2px}.ni .nen{font-size:16px;font-weight:700;line-height:1.5}.ni .nko{font-size:14px;color:var(--muted);margin-top:2px}.ni ul{margin:8px 0 0;padding:0 0 0 18px;font-size:14px;line-height:1.6}.ni .nd{margin-top:6px;font-size:13px;color:var(--muted);line-height:1.5}.today{text-align:left;margin:12px 0 4px;border-top:1px dashed var(--line);padding-top:10px}.tdh{font-size:14px;font-weight:800;margin-bottom:6px}.tdi{margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}.tdn{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:2px}.tdk{font-size:13px;color:var(--muted);margin-top:4px}.tdko{font-size:15px;font-weight:700;margin-top:3px}.tdm{margin-top:5px;font-size:12.5px;color:#7a4b00;background:#fff4d6;border-radius:8px;padding:4px 8px}.bememo{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:#fff4d6;border:2px solid #f0b429;color:#5b3d00;font-size:14.5px;line-height:1.55}.bememo b.t{display:block;font-size:15.5px;margin-bottom:4px}.bememo .pr{display:inline-block;margin:2px 4px 2px 0;padding:2px 8px;border-radius:8px;background:#fff;border:1px solid #f0b429;font-weight:800}.bememo .x{color:#c0392b;text-decoration:line-through;font-weight:700}
+.msg.no{background:var(--bad-bg);color:var(--bad)}
+.r2{padding:12px 0;border-top:1px solid var(--line)}
+.r2:first-of-type{border-top:0}
+.r2 .chunk{font-family:var(--en);font-size:18px;font-weight:500;margin-bottom:8px;overflow-wrap:anywhere}
+.r2.done{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.r2.done .chunk{margin:0}
+.tgt{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{border:1.5px solid var(--line);background:var(--bg);border-radius:10px;padding:8px 12px;min-height:44px;font-weight:500}
+.opt.bad{text-decoration:line-through;color:var(--bad);border-color:var(--bad);background:var(--bad-bg);opacity:.8}
+.tg{background:var(--accent);color:var(--accent-fg);border-radius:8px;padding:2px 8px;font-weight:600}
+.qsent{font-family:var(--en);font-size:20px;line-height:2.1;margin:6px 0 16px;overflow-wrap:anywhere}
+.qopts{display:flex;flex-wrap:wrap;gap:8px}
+.qopts .opt{min-height:48px;font-size:16px;padding:10px 16px}
+.quizbtn{width:100%;text-align:left;background:var(--surface);border:1.5px solid var(--accent);border-radius:14px;padding:14px 16px;margin:16px 0 4px;min-height:60px}
+.quizbtn b{display:block;font-size:17px;color:var(--accent)}
+.quizbtn span{font-size:14px;color:var(--muted)}
+.badge,.blk{border-radius:8px;font-weight:700}
+.badge{padding:4px 10px;font-size:14px;white-space:nowrap}
+.role-s{background:var(--s-bg);color:var(--s-fg)}.role-v{background:var(--v-bg);color:var(--v-fg)}
+.role-o{background:var(--o-bg);color:var(--o-fg)}.role-io{background:var(--io-bg);color:var(--io-fg)}
+.role-do{background:var(--do-bg);color:var(--do-fg)}.role-c{background:var(--c-bg);color:var(--c-fg)}
+.role-oc{background:var(--oc-bg);color:var(--oc-fg)}.role-m{background:var(--m-bg);color:var(--m-fg)}
+.role-cj{background:var(--cj-bg);color:var(--cj-fg)}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.col{display:flex;flex-direction:column;gap:8px;min-width:0}
+.col h3{margin:0 0 2px;font-size:13px;color:var(--muted)}
+.ml,.mr{border:1.5px solid var(--line);background:var(--bg);border-radius:10px;padding:10px;min-height:52px;text-align:left;overflow-wrap:anywhere;min-width:0}
+.ml{font-family:var(--en);font-size:15px}
+.ml small{display:block;font-family:var(--ko);font-size:13px;margin-top:4px;color:var(--good);font-weight:700}
+.mr{font-size:15px}
+.ml.sel,.mr.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.ml.ok,.mr.ok{border-color:var(--good);background:var(--good-bg)}
+.mr.ok{opacity:.55}
+.ml.bad,.mr.bad{border-color:var(--bad);background:var(--bad-bg)}
+.ml .badge{display:inline-block;margin-bottom:4px;font-size:12px;padding:2px 8px;font-family:var(--ko)}
+.stage{display:flex;flex-wrap:wrap;gap:6px 5px;min-height:74px;padding:10px 8px;margin-bottom:14px;border-radius:14px;background:var(--bg);border:1.5px solid var(--line)}
+.slot{width:44px;height:46px;border:2px dashed var(--line);border-radius:10px}
+.sblk{display:inline-flex;flex-direction:column;padding:5px 8px;border-radius:10px;background:var(--surface);border:1.5px solid var(--good);min-width:0}
+.sblk b{font-family:var(--en);font-weight:500;font-size:15px;overflow-wrap:anywhere}
+.sblk small{font-size:12px;font-weight:700;color:var(--good)}
+.slot.lab{width:auto;min-width:56px;padding:6px 10px;display:inline-flex;align-items:center;justify-content:center}
+.slot.lab small{font-size:13px;color:var(--muted);font-weight:700}
+.slot.next{border-color:var(--accent);background:var(--surface)}
+.tile.hl{box-shadow:0 0 0 4px #f97316;border-color:#f97316;background:#ffedd5;color:#7c2d12}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tile.hl{background:#5a2a0a;color:#ffedd5}}
+.col3{display:flex;flex-direction:column;gap:3px;align-items:stretch;min-width:44px;max-width:100%}
+.col3 .slot{width:auto;min-width:44px;height:46px}
+.kslot{min-height:22px;font-size:12px;font-weight:700;color:var(--good);text-align:center;border-top:2px dashed var(--line);padding-top:4px;line-height:1.3}
+.kslot.filled{border-top-color:transparent}
+@media (prefers-reduced-motion:no-preference){.drop{animation:dropIn .6s .28s both cubic-bezier(.2,.8,.2,1)}@keyframes dropIn{from{transform:translateY(-90px);opacity:0}to{transform:none;opacity:1}}}
+@media (prefers-reduced-motion:no-preference){.hl{animation:pl 1s infinite}@keyframes pl{50%{box-shadow:0 0 0 8px rgba(249,115,22,.25)}}}
+.seq{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 14px}
+.seq .arr{color:var(--muted);font-weight:700}
+.seqlbl{font-size:13px;color:var(--muted);margin-right:4px}
+.banner{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px dashed var(--accent);font-size:14px}
+.sblk.st2 small{color:inherit;opacity:.9}
+.sblk.st2{border-color:transparent}
+.sblk{position:relative}
+.sblk .no{position:absolute;top:-9px;left:-6px;width:20px;height:20px;border-radius:50%;background:var(--ink,#222);color:var(--surface,#fff);font-style:normal;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.sblk.pick{font:inherit;cursor:pointer;color:inherit}
+.sblk.wait{border:2px solid var(--muted);background:var(--surface);color:var(--text,inherit);opacity:1}
+.sblk.wait.now{border:2px solid #f97316;background:#ffedd5;color:#7c2d12;box-shadow:0 0 0 4px rgba(249,115,22,.35)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sblk.wait.now{background:#5a2a0a;color:#ffedd5}}
+.sblk.wait.sel{border:2px solid var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--surface))}
+.sblk.wait b{color:inherit}
+.nth{display:inline-block;font-family:var(--ui,inherit);font-size:12px;font-weight:700;color:var(--accent);margin-right:6px}
+.ml.free{border-style:dashed}
+.ml.free small{color:var(--muted);font-weight:500}
+.sent{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px}
+.blk{display:inline-flex;flex-direction:column;padding:8px 12px}
+.blk b{font-family:var(--en);font-weight:500;font-size:17px;overflow-wrap:anywhere}
+.blk small{font-size:12px;font-weight:700;opacity:.85}
+.kor{font-size:18px;font-weight:700;margin:0 0 12px;text-wrap:balance}
+.notes{margin:0 0 12px;padding:0;list-style:none;font-size:14px;color:var(--muted)}
+.notes li{padding:4px 0}
+.notes span{font-family:var(--en);color:var(--fg)}
+.gain{font-size:15px;margin:0}
+.gain b{font-family:var(--en);font-size:22px;color:var(--accent)}
+.big{font-family:var(--en);font-size:44px;font-weight:600;font-variant-numeric:tabular-nums;margin:6px 0}
+.stars{font-size:28px;color:var(--accent);letter-spacing:4px}
+.center{text-align:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+.two .primary,.two .ghost{margin:0;width:100%}
+@media (prefers-reduced-motion:no-preference){.shake{animation:sh .25s}@keyframes sh{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+button,select,a,.day,.tile,.opt{touch-action:manipulation}
+input,select,textarea{font-size:16px}
+.dgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}.dg{padding:8px 0;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;font:inherit;font-size:14px;cursor:pointer}.dg small.dd{display:block;font-size:9px;line-height:1.1;margin-top:1px;color:var(--good);font-weight:700}.dg.on small.dd{color:inherit}.dg.ok{background:var(--good-bg);border-color:var(--good)}.dg.on{border-color:var(--accent);background:var(--accent);color:var(--accent-fg);font-weight:700}u.sig{text-decoration:underline;text-decoration-thickness:2.5px;text-underline-offset:3px;font-weight:700}
+</style>
+<style>
+.badge.role-s,.badge.role-v,.badge.role-o,.badge.role-io,.badge.role-do,.badge.role-c,.badge.role-oc,.badge.role-m,.badge.role-cj{display:inline-block}
+.klinew{margin:0 0 12px;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:15px;line-height:1.8}
+.klinew .kc{display:inline-block;padding:0 6px;border-radius:6px;margin:0 2px;font-weight:700}
+.gl{margin:14px 0 0;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:14.5px;line-height:1.7}
+.gl .gh{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:2px}
+.gl small{color:var(--muted)}
+.nbox2{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:14.5px;line-height:1.6}
+.sec{margin:16px 2px 8px;font-size:14px;font-weight:700;color:var(--muted)}
+.tback{display:inline-block;margin-bottom:6px;color:var(--accent);text-decoration:none;padding:6px 0;font-size:14px}
+.day.bad .st{color:var(--bad)}
+</style></head>
+<body><div class="wrap" id="app"></div>
+<script>
+(function(){
+"use strict";
+var DATA=[{"id": "4-1", "sec": "현명한 구매자가 되세요", "en": "Do you think you are a smart shopper?", "ko": "여러분은 자신이 현명한 구매자라고 생각하나요?", "ch": [{"t": "Do", "r": "동사", "k": "", "c": "의문문을 만드는 조동사"}, {"t": "you", "r": "주어", "k": "여러분은"}, {"t": "think", "r": "동사", "k": "생각하나요"}, {"t": "you are a smart shopper?", "r": "목적어", "k": "자신이 현명한 구매자라고", "c": "생각하는 내용(생략된 that절)"}], "kord": [1, 3, 2], "note": "Do는 의문문을 만드는 말이라 해석하지 않아요. Do ... think가 하나의 동사예요. think 뒤에 that이 생략되어 있고, you are a smart shopper 전체가 \"생각하는 내용\"이라서 한 덩어리(목적어)로 봐요."}, {"id": "4-2", "sec": "현명한 구매자가 되세요", "en": "Well, you may think you are, but hold on!", "ko": "글쎄요, 여러분은 그렇다고 생각할 수도 있지만, 잠깐만요!", "ch": [{"t": "Well,", "r": "수식어", "k": "글쎄요", "c": "감탄사(응답어)", "a": "문장 전체 수식"}, {"t": "you", "r": "주어", "k": "여러분은"}, {"t": "may think", "r": "동사", "k": "생각할 수도 있다"}, {"t": "you are,", "r": "목적어", "k": "그렇다고", "c": "생각하는 내용(생략된 that절)"}, {"t": "but", "r": "접속사", "k": "하지만"}, {"t": "hold on!", "r": "동사", "k": "잠깐 기다려라"}], "kord": [0, 1, 3, 2, 4, 5], "note": "you are, 뒤에는 a smart shopper가 생략되어 있어요. but 앞뒤는 서로 다른 두 문장이에요. hold on은 \"잠깐 기다리다, 멈추다\"라는 한 덩어리 동사이고, 명령문이라 주어(You)가 보이지 않아요."}, {"id": "4-3", "sec": "현명한 구매자가 되세요", "en": "There are various marketing strategies which influence your decisions.", "ko": "여러분의 결정에 영향을 미치는 다양한 마케팅 전략들이 있어요.", "ch": [{"t": "There are", "r": "동사", "k": "있다"}, {"t": "various marketing strategies", "r": "주어", "k": "다양한 마케팅 전략들이"}, {"t": "which influence your decisions.", "r": "수식어", "k": "여러분의 결정에 영향을 미치는", "c": "형용사절", "a": "주어(various marketing strategies) 수식"}], "kord": [2, 1, 0], "note": "There are는 \"~이 있다\"라는 뜻이고, 뒤의 various marketing strategies가 진짜 주어예요."}, {"id": "4-4", "sec": "현명한 구매자가 되세요", "en": "Learning about them will make you a smarter shopper.", "ko": "그것들에 대해 배우는 것이 여러분을 더 현명한 구매자로 만들 거예요.", "ch": [{"t": "Learning about them", "r": "주어", "k": "그것들에 대해 배우는 것이"}, {"t": "will make", "r": "동사", "k": "만들 것이다"}, {"t": "you", "r": "목적어", "k": "여러분을"}, {"t": "a smarter shopper.", "r": "목적격보어", "k": "더 현명한 구매자로"}], "kord": [0, 2, 3, 1], "note": "Learning about them(그것들에 대해 배우는 것)이 주어예요. make + 목적어 + 보어는 \"~을 ...로 만들다\"라는 5형식이에요. smarter는 smart의 비교급이에요."}, {"id": "4-5", "sec": "헝거 마케팅", "en": "What? The sale ends in two hours?", "ko": "뭐라고? 세일이 두 시간 후에 끝난다고?", "ch": [{"t": "What?", "r": "수식어", "k": "뭐라고", "c": "되묻는 말(감탄사)", "a": "문장 전체 수식"}, {"t": "The sale", "r": "주어", "k": "세일이"}, {"t": "ends", "r": "동사", "k": "끝난다고"}, {"t": "in two hours?", "r": "수식어", "k": "두 시간 후에", "c": "시간의 부사구", "a": "동사(ends) 수식"}], "kord": [0, 1, 3, 2], "note": "What?은 상대의 말을 놀라서 되묻는 말이에요. 문장의 성분으로 나누지 않아요."}, {"id": "4-6", "sec": "헝거 마케팅", "en": "If I don’t buy the sneakers now, I will have to buy them at a higher price.", "ko": "지금 운동화를 사지 않으면, 더 비싼 가격에 그것을 사야 할 거야.", "ch": [{"t": "If", "r": "접속사", "k": "~하면"}, {"t": "I", "r": "주어", "k": "내가"}, {"t": "don’t buy", "r": "동사", "k": "사지 않는다"}, {"t": "the sneakers", "r": "목적어", "k": "운동화를"}, {"t": "now,", "r": "수식어", "k": "지금", "c": "시간의 부사", "a": "동사(don’t buy) 수식"}, {"t": "I", "r": "주어", "k": "나는"}, {"t": "will have to buy", "r": "동사", "k": "사야 할 것이다"}, {"t": "them", "r": "목적어", "k": "그것들을"}, {"t": "at a higher price.", "r": "수식어", "k": "더 높은 가격에", "c": "가격의 부사구", "a": "동사(will have to buy) 수식"}], "kord": [4, 1, 3, 2, 0, 5, 8, 7, 6], "note": "If가 이끄는 앞부분(조건)과 뒷부분(결과)이 한 문장이에요. 해석할 때는 \"~하면\"을 앞 내용 끝에 붙여요. have to는 \"~해야 한다\"라는 뜻이라 will have to buy를 한 덩어리 동사로 봐요."}, {"id": "4-7", "sec": "헝거 마케팅", "en": "Stop, Junho!", "ko": "멈춰, 준호야!", "ch": [{"t": "Stop,", "r": "동사", "k": "멈춰라"}, {"t": "Junho!", "r": "수식어", "k": "준호야", "c": "부르는 말(호칭)", "a": "문장 전체 수식"}], "kord": [0, 1], "note": "명령문은 주어(You)가 보이지 않아요. 동사로 문장이 시작해요. Junho는 부르는 말(호칭)이라 주어가 아니에요."}, {"id": "4-8", "sec": "헝거 마케팅", "en": "You’re buying the sneakers just because you don’t want to miss the sale.", "ko": "너는 단지 세일을 놓치고 싶지 않아서 운동화를 사고 있는 거야.", "ch": [{"t": "You", "r": "주어", "k": "너는"}, {"t": "’re buying", "r": "동사", "k": "사고 있다", "g": 1}, {"t": "the sneakers", "r": "목적어", "k": "운동화를"}, {"t": "just", "r": "수식어", "k": "단지", "c": "부사", "a": "부사절(because ~) 수식"}, {"t": "because", "r": "접속사", "k": "~때문에"}, {"t": "you", "r": "주어", "k": "네가"}, {"t": "don’t want", "r": "동사", "k": "원하지 않는다"}, {"t": "to miss the sale.", "r": "목적어", "k": "세일을 놓치는 것을"}], "kord": [0, 3, 5, 7, 6, 4, 2, 1], "note": "just because는 \"단지 ~이기 때문에\"라는 뜻이에요. ’re buying은 \"~하고 있다\"는 진행형이라 한 덩어리 동사예요."}, {"id": "4-9", "sec": "헝거 마케팅", "en": "You’re falling for a hunger marketing strategy.", "ko": "너는 헝거 마케팅 전략에 속고 있어.", "ch": [{"t": "You", "r": "주어", "k": "너는"}, {"t": "’re falling", "r": "동사", "k": "속고 있다", "g": 1}, {"t": "for a hunger marketing strategy.", "r": "수식어", "k": "헝거 마케팅 전략에", "c": "대상을 나타내는 부사구", "a": "동사(’re falling) 수식"}], "kord": [0, 2, 1], "note": "fall for는 \"~에 속다\"라는 뜻의 표현이에요. 여기서는 falling(속다)과 for a hunger marketing strategy(헝거 마케팅 전략에)로 나누어 봐요."}, {"id": "4-10", "sec": "헝거 마케팅", "en": "If people can buy a product only for a limited time, they often feel “hungry” for it and want to buy it.", "ko": "만약 사람들이 한정된 시간 동안만 제품을 살 수 있다면, 그들은 종종 그 제품에 대해 ‘배고프다’고 느끼고 그것을 사고 싶어 해.", "ch": [{"t": "If", "r": "접속사", "k": "~한다면"}, {"t": "people", "r": "주어", "k": "사람들이"}, {"t": "can buy", "r": "동사", "k": "살 수 있다"}, {"t": "a product", "r": "목적어", "k": "제품을"}, {"t": "only for a limited time,", "r": "수식어", "k": "한정된 시간 동안만", "c": "시간의 부사구", "a": "동사(can buy) 수식"}, {"t": "they", "r": "주어", "k": "그들은"}, {"t": "often", "r": "수식어", "k": "종종", "c": "부사", "a": "동사(feel, want) 수식"}, {"t": "feel", "r": "동사", "k": "느낀다"}, {"t": "“hungry”", "r": "보어", "k": "‘배고프다’고"}, {"t": "for it", "r": "수식어", "k": "그것에 대해", "c": "대상을 나타내는 부사구", "a": "형용사(hungry) 수식"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "want", "r": "동사", "k": "원한다"}, {"t": "to buy it.", "r": "목적어", "k": "그것을 사는 것을"}], "kord": [1, 4, 3, 2, 0, 5, 6, 9, 8, 7, 10, 12, 11], "note": "feel hungry는 \"배고프다고 느끼다\"라는 뜻의 2형식이에요. and는 두 동사 feel과 want를 이어 줘요. it은 a product를 가리켜요."}, {"id": "4-11", "sec": "헝거 마케팅", "en": "About missing the sale, don’t worry, Junho.", "ko": "세일을 놓치는 것에 대해서는 걱정하지 마, 준호야.", "ch": [{"t": "About missing the sale,", "r": "수식어", "k": "세일을 놓치는 것에 대해", "c": "주제를 나타내는 부사구", "a": "동사(don’t worry) 수식"}, {"t": "don’t worry,", "r": "동사", "k": "걱정하지 마라"}, {"t": "Junho.", "r": "수식어", "k": "준호야", "c": "부르는 말(호칭)", "a": "문장 전체 수식"}], "kord": [0, 1, 2], "note": "전치사 About 뒤의 missing은 동명사(~하는 것)예요. 명령문이라 주어(You)가 보이지 않아요. Junho는 부르는 말(호칭)이라 주어가 아니에요."}, {"id": "4-12", "sec": "헝거 마케팅", "en": "You’ll soon see a similar sale again.", "ko": "너는 곧 비슷한 세일을 다시 보게 될 거야.", "ch": [{"t": "You", "r": "주어", "k": "너는"}, {"t": "’ll soon see", "r": "동사", "k": "곧 보게 될 것이다", "g": 1}, {"t": "a similar sale", "r": "목적어", "k": "비슷한 세일을"}, {"t": "again.", "r": "수식어", "k": "다시", "c": "부사", "a": "동사(’ll soon see) 수식"}], "kord": [0, 3, 2, 1], "note": ""}, {"id": "4-13", "sec": "바이럴 마케팅", "en": "That’s the hottest dress on social media now.", "ko": "저건 지금 소셜 미디어에서 가장 인기 있는 원피스야.", "ch": [{"t": "That", "r": "주어", "k": "저것은"}, {"t": "’s", "r": "동사", "k": "이다", "g": 1}, {"t": "the hottest dress", "r": "보어", "k": "가장 인기 있는 원피스"}, {"t": "on social media", "r": "수식어", "k": "소셜 미디어에서", "c": "형용사구", "a": "보어(the hottest dress) 수식"}, {"t": "now.", "r": "수식어", "k": "지금", "c": "시간의 부사", "a": "동사(’s) 수식"}], "kord": [0, 4, 3, 2, 1], "note": "That’s는 That is를 줄인 말이에요. hottest는 hot(인기 있는)의 최상급이에요."}, {"id": "4-14", "sec": "바이럴 마케팅", "en": "Lots of people are wearing it.", "ko": "많은 사람들이 이것을 입고 있어.", "ch": [{"t": "Lots of people", "r": "주어", "k": "많은 사람들이"}, {"t": "are wearing", "r": "동사", "k": "입고 있다"}, {"t": "it.", "r": "목적어", "k": "그것을"}], "kord": [0, 2, 1], "note": "are wearing은 \"~하고 있다\"는 진행형이라 한 덩어리 동사예요. it은 앞에서 말한 dress를 가리켜요."}, {"id": "4-15", "sec": "바이럴 마케팅", "en": "I have to get that dress, too!", "ko": "나도 저 원피스를 사야 해!", "ch": [{"t": "I", "r": "주어", "k": "나는"}, {"t": "have to get", "r": "동사", "k": "사야 한다"}, {"t": "that dress,", "r": "목적어", "k": "저 원피스를"}, {"t": "too!", "r": "수식어", "k": "또한", "c": "부사", "a": "동사(have to get) 수식"}], "kord": [0, 3, 2, 1], "note": "have to는 \"~해야 한다\"라는 뜻이라 have to get을 한 덩어리 동사로 봐요. get은 여기서 \"사다\"의 뜻이에요."}, {"id": "4-16", "sec": "바이럴 마케팅", "en": "Wait, Yuna!", "ko": "잠깐, 유나야!", "ch": [{"t": "Wait,", "r": "동사", "k": "기다려라"}, {"t": "Yuna!", "r": "수식어", "k": "유나야", "c": "부르는 말(호칭)", "a": "문장 전체 수식"}], "kord": [0, 1], "note": "명령문은 주어(You)가 보이지 않아요. 동사로 문장이 시작해요. Yuna는 부르는 말(호칭)이라 주어가 아니에요."}, {"id": "4-17", "sec": "바이럴 마케팅", "en": "You only want the dress because you saw it again and again on social media.", "ko": "너는 소셜 미디어에서 그 원피스를 계속 봤기 때문에 그것을 원하는 것뿐이야.", "ch": [{"t": "You", "r": "주어", "k": "너는"}, {"t": "only", "r": "수식어", "k": "오직", "c": "부사", "a": "동사(want) 수식"}, {"t": "want", "r": "동사", "k": "원한다"}, {"t": "the dress", "r": "목적어", "k": "그 원피스를"}, {"t": "because", "r": "접속사", "k": "~때문에"}, {"t": "you", "r": "주어", "k": "네가"}, {"t": "saw", "r": "동사", "k": "봤다"}, {"t": "it", "r": "목적어", "k": "그것을"}, {"t": "again and again", "r": "수식어", "k": "반복해서", "c": "부사구", "a": "동사(saw) 수식"}, {"t": "on social media.", "r": "수식어", "k": "소셜 미디어에서", "c": "장소의 부사구", "a": "동사(saw) 수식"}], "kord": [0, 1, 5, 9, 7, 8, 6, 4, 3, 2], "note": "because가 이끄는 뒷부분(이유)과 앞부분(결과)이 한 문장이에요. 해석할 때는 \"~때문에\"를 이유 내용 끝에 붙여요. only want는 \"~만 원하다\"라는 뜻이에요."}, {"id": "4-18", "sec": "바이럴 마케팅", "en": "It isn’t just you.", "ko": "너뿐만이 아니야.", "ch": [{"t": "It", "r": "주어", "k": "그것은"}, {"t": "isn’t", "r": "동사", "k": "아니다"}, {"t": "just", "r": "수식어", "k": "단지", "c": "부사", "a": "보어(you) 수식"}, {"t": "you.", "r": "보어", "k": "너"}], "kord": [0, 2, 3, 1], "note": "isn’t just you는 \"단지 너만 있는 것이 아니다\"라는 뜻이에요. It은 앞에서 말한 상황 전체를 가리켜요."}, {"id": "4-19", "sec": "바이럴 마케팅", "en": "There are a lot of people who fall for a viral marketing strategy.", "ko": "바이럴 마케팅 전략에 속는 사람들이 많아.", "ch": [{"t": "There are", "r": "동사", "k": "있다"}, {"t": "a lot of people", "r": "주어", "k": "많은 사람들이"}, {"t": "who fall for a viral marketing strategy.", "r": "수식어", "k": "바이럴 마케팅 전략에 속는", "c": "형용사절", "a": "주어(a lot of people) 수식"}], "kord": [2, 1, 0], "note": "There are는 \"~이 있다\"라는 뜻이고, 뒤의 a lot of people이 진짜 주어예요. a lot of는 \"많은\"이라는 뜻이에요. fall for는 \"~에 속다\"라는 표현이에요."}, {"id": "4-20", "sec": "바이럴 마케팅", "en": "Why? Information about a product can spread quickly and widely on the Internet, just like a “virus.”", "ko": "왜냐고? 제품에 대한 정보는 ‘바이러스’처럼 인터넷에서 빠르게 널리 퍼질 수 있어.", "ch": [{"t": "Why?", "r": "수식어", "k": "왜냐고", "c": "이유를 되묻는 말", "a": "문장 전체 수식"}, {"t": "Information", "r": "주어", "k": "정보는"}, {"t": "about a product", "r": "수식어", "k": "제품에 대한", "c": "형용사구", "a": "주어(Information) 수식"}, {"t": "can spread", "r": "동사", "k": "퍼질 수 있다"}, {"t": "quickly and widely", "r": "수식어", "k": "빠르게 그리고 널리", "c": "부사구", "a": "동사(can spread) 수식"}, {"t": "on the Internet,", "r": "수식어", "k": "인터넷에서", "c": "장소의 부사구", "a": "동사(can spread) 수식"}, {"t": "just like a “virus.”", "r": "수식어", "k": "꼭 ‘바이러스’처럼", "c": "방법의 부사구", "a": "동사(can spread) 수식"}], "kord": [0, 2, 1, 6, 5, 4, 3], "note": "Why?는 이유를 되묻는 말이에요. 문장의 성분으로 나누지 않아요. like는 여기서 \"~처럼\"의 뜻인 전치사예요."}, {"id": "4-21", "sec": "바이럴 마케팅", "en": "If a product becomes hot on social media, people naturally want to have it.", "ko": "만약 어떤 제품이 소셜 미디어에서 인기를 끌게 되면, 사람들은 자연스럽게 그것을 갖고 싶어 해.", "ch": [{"t": "If", "r": "접속사", "k": "~한다면"}, {"t": "a product", "r": "주어", "k": "제품이"}, {"t": "becomes", "r": "동사", "k": "된다"}, {"t": "hot", "r": "보어", "k": "인기 있는"}, {"t": "on social media,", "r": "수식어", "k": "소셜 미디어에서", "c": "장소의 부사구", "a": "동사(becomes) 수식"}, {"t": "people", "r": "주어", "k": "사람들은"}, {"t": "naturally", "r": "수식어", "k": "자연스럽게", "c": "부사", "a": "동사(want) 수식"}, {"t": "want", "r": "동사", "k": "원한다"}, {"t": "to have it.", "r": "목적어", "k": "그것을 가지는 것을"}], "kord": [1, 4, 3, 2, 0, 5, 6, 8, 7], "note": "If가 이끄는 앞부분(조건)과 뒷부분(결과)이 한 문장이에요. 해석할 때는 \"~한다면\"을 앞 내용 끝에 붙여요. become hot은 \"인기 있게 되다\"라는 뜻의 2형식이에요."}, {"id": "4-22", "sec": "바이럴 마케팅", "en": "Yuna, just remember that a popular product isn’t always right for you.", "ko": "유나야, 인기 있는 제품이 항상 너에게 적합한 것은 아니라는 것을 기억하렴.", "ch": [{"t": "Yuna,", "r": "수식어", "k": "유나야", "c": "부르는 말(호칭)", "a": "문장 전체 수식"}, {"t": "just", "r": "수식어", "k": "그저", "c": "부사", "a": "동사(remember) 수식"}, {"t": "remember", "r": "동사", "k": "기억해라"}, {"t": "that a popular product isn’t always right for you.", "r": "목적어", "k": "인기 있는 제품이 항상 너에게 적합한 것은 아니라는 것을", "c": "기억할 내용(that절 전체)"}], "kord": [0, 1, 3, 2], "note": "remember 뒤의 that절 전체가 \"기억할 내용\"이라서 한 덩어리(목적어)로 봐요. 명령문이라 주어(You)가 보이지 않아요. isn’t always는 \"항상 ~인 것은 아니다\"라는 뜻이에요."}, {"id": "4-23", "sec": "앵커링 효과", "en": "I’m looking for a lipstick for my mom.", "ko": "저는 엄마에게 드릴 립스틱을 찾고 있어요.", "ch": [{"t": "I", "r": "주어", "k": "저는"}, {"t": "’m looking", "r": "동사", "k": "찾고 있다", "g": 1}, {"t": "for a lipstick", "r": "수식어", "k": "립스틱을", "c": "대상을 나타내는 부사구", "a": "동사(’m looking) 수식"}, {"t": "for my mom.", "r": "수식어", "k": "엄마에게 드릴", "c": "형용사구", "a": "명사(a lipstick) 수식"}], "kord": [0, 3, 2, 1], "note": "look for는 \"~을 찾다\"라는 뜻의 표현이에요. 여기서는 looking(찾다)과 for a lipstick(립스틱을)으로 나누어 봐요. for my mom은 a lipstick을 꾸며 줘요."}, {"id": "4-24", "sec": "앵커링 효과", "en": "How about this?", "ko": "이건 어때요?", "ch": [{"t": "How about this?", "r": "수식어", "k": "이건 어때요", "c": "제안하는 표현", "a": "문장 전체"}], "kord": [0], "note": "How about ~?은 \"~은 어때요?\"라고 제안하거나 권하는 표현이에요. 문장 성분으로 나누지 않고 한 덩어리로 외워요."}, {"id": "4-25", "sec": "앵커링 효과", "en": "Expensive! I thought I could buy a lipstick for 30 dollars.", "ko": "비싸네요! 저는 립스틱을 30달러에 살 수 있을 줄 알았어요.", "ch": [{"t": "Expensive!", "r": "수식어", "k": "비싸네요", "c": "감탄하는 말", "a": "문장 전체 수식"}, {"t": "I", "r": "주어", "k": "저는"}, {"t": "thought", "r": "동사", "k": "생각했다"}, {"t": "I could buy a lipstick for 30 dollars.", "r": "목적어", "k": "립스틱을 30달러에 살 수 있을 거라고", "c": "생각한 내용(생략된 that절)"}], "kord": [0, 1, 3, 2], "note": "thought는 think의 과거형이에요. thought 뒤에 that이 생략되어 있고, I could buy ... 전체가 \"생각한 내용\"이라서 한 덩어리(목적어)로 봐요."}, {"id": "4-26", "sec": "앵커링 효과", "en": "This is also popular.", "ko": "이것도 인기 있어요.", "ch": [{"t": "This", "r": "주어", "k": "이것은"}, {"t": "is", "r": "동사", "k": "이다"}, {"t": "also", "r": "수식어", "k": "또한", "c": "부사", "a": "동사(is) 수식"}, {"t": "popular.", "r": "보어", "k": "인기 있는"}], "kord": [0, 2, 3, 1], "note": ""}, {"id": "4-27", "sec": "앵커링 효과", "en": "That’s better!", "ko": "그게 더 좋네요!", "ch": [{"t": "That", "r": "주어", "k": "그것은"}, {"t": "’s", "r": "동사", "k": "이다", "g": 1}, {"t": "better!", "r": "보어", "k": "더 좋은"}], "kord": [0, 2, 1], "note": "That’s는 That is를 줄인 말이에요. better는 good(좋은)의 비교급이에요."}, {"id": "4-28", "sec": "앵커링 효과", "en": "Hold on, Somi!", "ko": "잠깐, 소미야!", "ch": [{"t": "Hold on,", "r": "동사", "k": "잠깐 기다려라"}, {"t": "Somi!", "r": "수식어", "k": "소미야", "c": "부르는 말(호칭)", "a": "문장 전체 수식"}], "kord": [0, 1], "note": "hold on은 \"잠깐 기다리다, 멈추다\"라는 한 덩어리 동사예요. 명령문이라 주어(You)가 보이지 않아요. Somi는 부르는 말(호칭)이라 주어가 아니에요."}, {"id": "4-29", "sec": "앵커링 효과", "en": "Your budget is 30 dollars, but you are buying a 40-dollar lipstick.", "ko": "네 예산은 30달러인데, 너는 40달러짜리 립스틱을 사고 있어.", "ch": [{"t": "Your budget", "r": "주어", "k": "네 예산은"}, {"t": "is", "r": "동사", "k": "이다"}, {"t": "30 dollars,", "r": "보어", "k": "30달러"}, {"t": "but", "r": "접속사", "k": "하지만"}, {"t": "you", "r": "주어", "k": "너는"}, {"t": "are buying", "r": "동사", "k": "사고 있다"}, {"t": "a 40-dollar lipstick.", "r": "목적어", "k": "40달러짜리 립스틱을"}], "kord": [0, 2, 1, 3, 4, 6, 5], "note": "but은 \"하지만\"이라는 뜻으로, 앞 문장과 뒤 문장을 이어 줘요. 그래서 이 문장은 두 개의 문장이 이어진 거예요. are buying은 \"~하고 있다\"는 진행형이라 한 덩어리 동사예요."}, {"id": "4-30", "sec": "앵커링 효과", "en": "The 40-dollar lipstick sounds cheap only because the salesperson showed you a 50-dollar lipstick first.", "ko": "단지 판매원이 너에게 50달러짜리 립스틱을 먼저 보여 줬기 때문에 40달러짜리 립스틱이 싸게 들리는 거야.", "ch": [{"t": "The 40-dollar lipstick", "r": "주어", "k": "40달러짜리 립스틱이"}, {"t": "sounds", "r": "동사", "k": "들린다"}, {"t": "cheap", "r": "보어", "k": "싸게"}, {"t": "only", "r": "수식어", "k": "단지", "c": "부사", "a": "부사절(because ~) 수식"}, {"t": "because", "r": "접속사", "k": "~때문에"}, {"t": "the salesperson", "r": "주어", "k": "판매원이"}, {"t": "showed", "r": "동사", "k": "보여 줬다"}, {"t": "you", "r": "간접목적어", "k": "너에게"}, {"t": "a 50-dollar lipstick", "r": "직접목적어", "k": "50달러짜리 립스틱을"}, {"t": "first.", "r": "수식어", "k": "먼저", "c": "부사", "a": "동사(showed) 수식"}], "kord": [3, 5, 7, 8, 9, 6, 4, 0, 2, 1], "note": "sound cheap은 \"싸게 들리다\"라는 뜻의 2형식이에요. only because는 \"단지 ~이기 때문에\"라는 뜻이에요. 뒤의 showed you a 50-dollar lipstick은 \"너에게 50달러짜리 립스틱을 보여 줬다\"는 뜻이에요."}, {"id": "4-31", "sec": "앵커링 효과", "en": "This is an example of the anchoring effect.", "ko": "이것은 앵커링 효과의 예시야.", "ch": [{"t": "This", "r": "주어", "k": "이것은"}, {"t": "is", "r": "동사", "k": "이다"}, {"t": "an example", "r": "보어", "k": "예시"}, {"t": "of the anchoring effect.", "r": "수식어", "k": "앵커링 효과의", "c": "형용사구", "a": "보어(an example) 수식"}], "kord": [0, 3, 2, 1], "note": "anchoring은 effect를 꾸미는 말이에요. anchoring effect는 \"앵커링 효과\"라는 하나의 이름으로 외워요."}, {"id": "4-32", "sec": "앵커링 효과", "en": "Usually, the first piece of information becomes an “anchor” and influences the shopper’s decision.", "ko": "보통 첫 번째 정보가 ‘닻’이 되어 구매자의 결정에 영향을 미쳐.", "ch": [{"t": "Usually,", "r": "수식어", "k": "보통", "c": "부사", "a": "동사(becomes, influences) 수식"}, {"t": "the first piece of information", "r": "주어", "k": "첫 번째 정보가"}, {"t": "becomes", "r": "동사", "k": "된다"}, {"t": "an “anchor”", "r": "보어", "k": "‘닻’이"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "influences", "r": "동사", "k": "영향을 미친다"}, {"t": "the shopper’s decision.", "r": "목적어", "k": "구매자의 결정에"}], "kord": [0, 1, 3, 2, 4, 6, 5], "note": "a piece of information은 \"하나의 정보\"라는 뜻이에요. and는 두 동사 becomes와 influences를 이어 줘요. influence는 \"~에 영향을 미치다\"라는 뜻의 동사라서 바로 뒤에 목적어가 와요."}, {"id": "4-33", "sec": "앵커링 효과", "en": "In your case, the 50-dollar lipstick was the anchor.", "ko": "너의 경우에는 50달러짜리 립스틱이 닻이었어.", "ch": [{"t": "In your case,", "r": "수식어", "k": "너의 경우에는", "c": "상황의 부사구", "a": "동사(was) 수식"}, {"t": "the 50-dollar lipstick", "r": "주어", "k": "50달러짜리 립스틱이"}, {"t": "was", "r": "동사", "k": "이었다"}, {"t": "the anchor.", "r": "보어", "k": "닻"}], "kord": [0, 1, 3, 2], "note": ""}, {"id": "4-34", "sec": "앵커링 효과", "en": "Somi, don’t just rely on the first piece of information that is given to you.", "ko": "소미야, 너에게 주어진 첫 번째 정보에만 의존하지 마.", "ch": [{"t": "Somi,", "r": "수식어", "k": "소미야", "c": "부르는 말(호칭)", "a": "문장 전체 수식"}, {"t": "don’t just rely", "r": "동사", "k": "단지 의지하지 마라"}, {"t": "on the first piece of information", "r": "수식어", "k": "첫 번째 정보에", "c": "대상을 나타내는 부사구", "a": "동사(don’t just rely) 수식"}, {"t": "that is given to you.", "r": "수식어", "k": "너에게 주어진", "c": "형용사절", "a": "명사(information) 수식"}], "kord": [0, 3, 2, 1], "note": "명령문은 주어(You)가 보이지 않아요. rely on은 \"~에 의존하다\"라는 표현이에요. 여기서는 rely(의존하다)와 on the first piece of information(첫 번째 정보에)으로 나누어 봐요. that is given to you는 information을 꾸며 줘요. is given은 \"주어진\"이라는 수동태예요."}];
+var GLOSS={"4-1": [["smart", "a. 현명한, 똑똑한", ""], ["shopper", "n. 구매자, 쇼핑객", ""]], "4-2": [["may", "aux. (가능성을 나타내어) ~일지도 모른다", ""], ["hold on", "기다리다, 멈추다 (hold-held-held)", ""]], "4-3": [["various", "a. 다양한, 여러 가지의", ""], ["strategies", "n. 전략", "strategy의 복수형"], ["influence", "v. ~에 영향을 미치다", ""], ["decisions", "n. 결정", "decision의 복수형"]], "4-4": [["Learning", "v. 배우다, ~을 알게 되다", "learn의 -ing형(동명사)"], ["smarter", "a. 현명한, 똑똑한", "smart의 비교급"], ["shopper", "n. 구매자, 쇼핑객", ""]], "4-5": [["ends", "v. 끝나다", "end의 3인칭 단수 현재형"]], "4-6": [["sneakers", "n. 운동화", ""], ["price", "n. 가격", ""]], "4-7": [], "4-8": [["sneakers", "n. 운동화", ""], ["miss", "v. ~을 놓치다", ""]], "4-9": [["falling for", "~에 속다 (fall-fell-fallen)", "fall for의 -ing형 (’re falling for: 진행형)"], ["hunger", "n. 배고픔", ""], ["strategy", "n. 전략", ""]], "4-10": [["product", "n. 상품, 제품", ""], ["limited", "a. 한정된, 제한된", ""], ["hungry", "a. 배고픈, 굶주린", ""]], "4-11": [["missing", "v. ~을 놓치다", "miss의 -ing형(동명사)"], ["worry", "v. 걱정하다", ""]], "4-12": [["soon", "adv. 곧", ""], ["similar", "a. 비슷한, 유사한", ""]], "4-13": [["hottest", "a. 인기 있는", "hot의 최상급"], ["social media", "소셜 미디어", ""]], "4-14": [], "4-15": [], "4-16": [], "4-17": [["again and again", "몇 번이고, 반복해서", ""], ["social media", "소셜 미디어", ""]], "4-18": [], "4-19": [["fall for", "~에 속다 (fall-fell-fallen)", ""], ["viral", "a. 급속히 퍼지는", ""], ["strategy", "n. 전략", ""]], "4-20": [["Information", "n. 정보", ""], ["product", "n. 상품, 제품", ""], ["spread", "v. 퍼지다, 확산되다 (spread-spread-spread)", ""], ["quickly", "adv. 빠르게", ""], ["widely", "adv. 널리", ""], ["virus", "n. 바이러스", ""]], "4-21": [["product", "n. 상품, 제품", ""], ["hot", "a. 인기 있는", ""], ["social media", "소셜 미디어", ""], ["naturally", "adv. 자연스럽게", ""]], "4-22": [["remember", "v. ~을 기억하다", ""], ["popular", "a. 인기 있는", ""], ["product", "n. 상품, 제품", ""], ["right", "a. 적절한, 잘 맞는", ""]], "4-23": [["looking for", "~을 찾다", "look for의 -ing형 (’m looking for: 진행형)"], ["lipstick", "n. 립스틱", ""]], "4-24": [], "4-25": [["Expensive", "a. 비싼", ""], ["lipstick", "n. 립스틱", ""]], "4-26": [["popular", "a. 인기 있는", ""]], "4-27": [], "4-28": [["Hold on", "기다리다, 멈추다 (hold-held-held)", ""]], "4-29": [["budget", "n. 예산", ""], ["lipstick", "n. 립스틱", ""]], "4-30": [["sounds", "v. ~하게 들리다, ~인 것 같다", "sound의 3인칭 단수 현재형"], ["cheap", "a. (가격이) 싼", ""], ["salesperson", "n. 판매원", ""], ["lipstick", "n. 립스틱", ""]], "4-31": [["example", "n. 예시", ""], ["anchoring", "n. 닻", "anchor의 -ing형 (anchoring effect: 앵커링 효과)"], ["effect", "n. 효과", ""]], "4-32": [["Usually", "adv. 보통", ""], ["information", "n. 정보", ""], ["anchor", "n. 닻", ""], ["influences", "v. ~에 영향을 미치다", "influence의 3인칭 단수 현재형"], ["shopper’s", "n. 구매자, 쇼핑객", "shopper의 소유격 (구매자의)"], ["decision", "n. 결정", ""]], "4-33": [["In your case", "~의 경우에", "in one’s case의 one’s 자리에 your가 쓰임"], ["lipstick", "n. 립스틱", ""], ["anchor", "n. 닻", ""]], "4-34": [["rely on", "~에 의존하다", ""], ["information", "n. 정보", ""]]};
+var KEYS='tbm2d-l4-b';
+var CLS={'주어':'s','동사':'v','목적어':'o','간접목적어':'io','직접목적어':'do','보어':'c','목적격보어':'oc','수식어':'m','접속사':'cj'};
+var ORDER=['주어','동사','목적어','간접목적어','직접목적어','보어','목적격보어','수식어','접속사'];
+var app=document.getElementById('app');
+var store={done:{}};
+try{var o=JSON.parse(localStorage.getItem(KEYS)||'null');if(o&&o.done)store=o;}catch(e){}
+function save(){try{localStorage.setItem(KEYS,JSON.stringify(store));}catch(e){}}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+var I=0,C=null;
+function badge(r){return '<span class="badge role-'+CLS[r]+'">'+r+'</span>';}
+function home(){
+  C=null;
+  var done=0;DATA.forEach(function(s){if(store.done[s.id]!=null)done++;});
+  var h='<a class="tback" href="../">&larr; 4과 목록</a><h1>4과 기본 문장 분석</h1><p class="lead">교과서 본문 · 뜻 잇기, 성분, 어순 ('+DATA.length+'문장)</p><p class="lead" style="margin-top:8px">푼 문장 '+done+' / '+DATA.length+'</p>';
+  var last=null,open=false;
+  DATA.forEach(function(s,k){
+    if(s.sec!==last){if(open)h+='</div>';h+='<div class="sec">'+esc(s.sec||'')+'</div><div class="days">';open=true;last=s.sec;}
+    var d=store.done[s.id];
+    h+='<button class="day'+(d!=null?' done':'')+'" data-act="go" data-i="'+k+'"><span class="dn">'+esc(s.id.replace(/^\d+-/,''))+'</span><span class="st">'+(d==null?'':(d?'실수 '+d:'완료'))+'</span></button>';
+  });
+  if(open)h+='</div>';
+  if(done)h+='<div class="two"><button class="ghost" data-act="reset">기록 지우기</button></div>';
+  app.innerHTML=h;window.scrollTo(0,0);
+}
+function start(i){
+  I=i;var s=DATA[i],n=s.ch.length,idx=[];
+  for(var k=0;k<n;k++)idx.push(k);
+  var pool=shuffle(idx),tries=0;
+  while(tries++<30&&pool.every(function(ci,k){return ci===k;}))pool=shuffle(idx);
+  var kd={};s.ch.forEach(function(c,k){if(!c.k)kd[k]=true;});
+  C={s:s,n:n,step:1,ph:'K',kdone:kd,roles:idx.map(function(){return null;}),bad:idx.map(function(){return {};}),
+     done2:false,placed:[],pool:pool,wrong:false,done1:false,w3:0,mist:0,flash:null,msg:null,lastDrop:null};
+  if(curK()<0)C.ph='R';
+  render();window.scrollTo(0,0);
+}
+function curK(){for(var k=0;k<C.n;k++)if(!C.kdone[k])return k;return -1;}
+function curA(){for(var k=0;k<C.n;k++)if(!C.roles[k])return k;return -1;}
+function render(){
+  var s=C.s;
+  var h='<div class="top"><button class="back" data-act="home">목록</button><div class="ttl">'+esc(s.id)+'</div><div class="pts">실수 <b>'+C.mist+'</b></div></div>'
+   +'<div class="prog"><i style="width:'+(I/DATA.length*100)+'%"></i></div><div class="pcount">문장 '+(I+1)+' / '+DATA.length+'</div>';
+  if(C.step<3)h+='<div class="steps two"><div class="'+(C.step===1?'on':'ok')+'">1 뜻·성분</div><div class="'+(C.step===2?'on':'')+'">2 어순</div></div>';
+  h+='<div class="card">'+(C.step===1?vA():C.step===2?v1():v4())+'</div>';
+  app.innerHTML=h;
+}
+function kordIdx(){return C.s.kord;}
+function vA(){
+  var s=C.s,ph=C.ph,cur=ph==='K'?curK():curA();
+  var ask=ph==='K'?'빛나는 영어 블록의 우리말 뜻을 위에서 골라요':'빛나는 블록의 성분(역할)을 골라요';
+  if(C.done2)ask='뜻과 성분을 모두 붙였어요';
+  var h='<p class="ask">'+ask+'</p>';
+  if(ph==='K'){
+    var idx=kordIdx().filter(function(k){return !C.kdone[k];});
+    if(idx.length)h+='<div class="krow"><span class="klbl">우리말 뜻</span><div class="kflow">'+idx.map(function(k){
+      var bad=C.flash&&C.flash.k===k;
+      return '<button class="kblk go'+(bad?' bad shake':'')+'" data-act="pickK" data-k="'+k+'">'+esc(s.ch[k].k)+'</button>';
+    }).join('')+'</div></div>';
+  }
+  h+='<div class="stage">'+s.ch.map(function(c,k){
+    var r=C.roles[k],kd=C.kdone[k]&&c.k,act=(k===cur&&!C.done2);
+    var top='<div class="kslot'+(kd?' filled'+(k===C.lastDrop?' drop':''):(act&&ph==='K'?' wait':''))+'">'+(kd?esc(c.k):'')+'</div>';
+    var mid=r?'<div class="sblk st2 role-'+CLS[r]+'"><b>'+esc(c.t)+'</b></div>'
+       :'<div class="sblk wait'+(act?' now':'')+'"><b>'+esc(c.t)+'</b></div>';
+    var bot='<div class="rslot'+(r?' role-'+CLS[r]:'')+'">'+(r?esc(r):'')+'</div>';
+    return '<div class="col3">'+top+mid+bot+'</div>';
+  }).join('')+'</div>';
+  if(C.msg)h+='<p class="msg no">'+C.msg+'</p>';
+  if(ph==='R'&&cur>=0){
+    var c0=s.ch[cur],set={'주어':1,'동사':1,'목적어':1,'보어':1,'수식어':1};
+    s.ch.forEach(function(c){set[c.r]=1;});
+    var opts=ORDER.filter(function(r){return set[r];});
+    h+='<div class="r2 down" data-rk="'+cur+'"><div class="chunk">'+esc(c0.t)+(c0.a?'<small class="tgt">꾸미는 대상: '+esc(c0.a.replace(/\s*수식$/,''))+'</small>':'')+'</div><div class="opts">'+opts.map(function(r){
+      var b=C.bad[cur][r];
+      return '<button class="opt'+(b?' bad':'')+'"'+(b?' disabled':'')+' data-act="roleA" data-k="'+cur+'" data-r="'+r+'">'+r+'</button>';
+    }).join('')+'</div></div>';
+  }
+  if(C.done2)h+='<p class="msg ok">뜻과 성분 완성.</p><button class="primary" data-act="next1">다음 단계: 어순</button>';
+  return h;
+}
+function tile(ci){
+  var bad=C.flash&&C.flash.b===ci;
+  var hl=C.w3>=2&&!C.done1&&C.s.ch[ci].t===C.s.ch[C.placed.length].t;
+  return '<button class="tile'+(bad?' bad shake':'')+(hl?' hl':'')+'" data-act="pick" data-i="'+ci+'">'+esc(C.s.ch[ci].t)+'</button>';
+}
+function kRow(){
+  var idx=kordIdx().filter(function(k){return C.placed.indexOf(k)<0;});
+  return '<div class="krow"><span class="klbl">우리말 해석</span><div class="kflow">'+(idx.length?idx.map(function(k){return '<span class="kblk">'+esc(C.s.ch[k].k)+'</span>';}).join(''):'<span class="kdone">해석이 모두 내려왔어요</span>')+'</div></div>';
+}
+function v1(){
+  var s=C.s,p=C.placed.length;
+  var h='<p class="ask">우리말 어순을 보고, 영어에서는 어떤 순서로 올지 찾아 쌓아요</p>'+kRow();
+  h+='<div class="stage">'+s.ch.map(function(c,k){
+    if(k<p)return '<div class="col3"><div class="sblk st2 role-'+CLS[c.r]+'"><b>'+esc(c.t)+'</b></div><div class="kslot filled'+(k===C.lastDrop?' drop':'')+'">'+(c.k?esc(c.k):'')+'</div></div>';
+    return '<div class="col3"><div class="slot'+(k===p?' next':'')+'"></div><div class="kslot"></div></div>';
+  }).join('')+'</div>';
+  h+='<div class="pool">'+C.pool.map(function(ci){return tile(ci);}).join('')+'</div>';
+  if(C.wrong)h+='<p class="msg no">그 블록은 다음 자리에 오지 않아요. 영어에서는 어떤 말이 올까요?</p>';
+  if(C.done1)h+='<p class="msg ok">어순 완성.</p><button class="primary" data-act="next2">완성한 문장 보기</button>';
+  return h;
+}
+function v4(){
+  var s=C.s;
+  var h='<p class="ask">완성한 문장</p><div class="sent">'+s.ch.map(function(c){
+    return '<span class="blk role-'+CLS[c.r]+'"><b>'+esc(c.t)+'</b><small>'+esc(c.r)+'</small></span>';
+  }).join('')+'</div><div class="seq"><span class="seqlbl">영어 어순</span>'+s.ch.map(function(c){return badge(c.r);}).join('<span class="arr">→</span>')+'</div>';
+  h+='<p class="ask" style="font-size:14px;margin:4px 0 6px">우리말 어순으로 읽으면</p><div class="klinew">'+s.kord.map(function(k){var c=s.ch[k];return '<span class="kc role-'+CLS[c.r]+'">'+esc(c.k)+'</span>';}).join('')+'</div>';
+  h+='<p class="kor">'+esc(s.ko)+'</p>';
+  var mods=s.ch.filter(function(c){return c.c||(c.r==='수식어'&&c.a);});
+  if(mods.length)h+='<ul class="notes">'+mods.map(function(c){
+    var p=[];if(c.c)p.push(esc(c.c));if(c.a)p.push('꾸미는 대상: '+esc(c.a.replace(/\s*수식$/,'')));
+    return '<li><span>'+esc(c.t)+'</span> '+p.join(' · ')+'</li>';
+  }).join('')+'</ul>';
+  if(s.note)h+='<div class="nbox2">'+esc(s.note)+'</div>';
+  var g=GLOSS[s.id]||[];
+  if(g.length)h+='<div class="gl"><div class="gh">이 문장의 단어</div>'+g.map(function(x){return '<div><b>'+esc(x[0])+'</b> '+esc(x[1])+(x[2]?' <small>('+esc(x[2])+')</small>':'')+'</div>';}).join('')+'</div>';
+  h+='<p class="gain" style="margin-top:14px">이번 문장 '+(C.mist?'실수 <b>'+C.mist+'</b>개':'실수 없음')+'</p>';
+  h+='<button class="primary" data-act="next">'+(I+1<DATA.length?'다음 문장':'목록으로')+'</button>';
+  return h;
+}
+function finish(){store.done[C.s.id]=C.mist;save();}
+app.addEventListener('click',function(e){
+  var b=e.target.closest('[data-act]');if(!b)return;
+  var a=b.getAttribute('data-act');
+  if(a==='go'){start(+b.getAttribute('data-i'));return;}
+  if(a==='home'){home();return;}
+  if(a==='reset'){if(confirm('기록을 모두 지울까요?')){store={done:{}};save();home();}return;}
+  if(!C)return;
+  var s=C.s;
+  if(a==='pickK'){
+    var kk=+b.getAttribute('data-k'),cu=curK();if(cu<0)return;
+    if(s.ch[kk].k===s.ch[cu].k){C.kdone[cu]=true;C.lastDrop=cu;C.flash=null;C.msg=null;if(curK()<0)C.ph='R';}
+    else{C.mist++;C.flash={k:kk};C.msg=null;}
+    render();return;
+  }
+  if(a==='roleA'){
+    var kr=+b.getAttribute('data-k'),rr=b.getAttribute('data-r');
+    if(s.ch[kr].r===rr){C.roles[kr]=rr;C.msg=null;if(curA()<0)C.done2=true;}
+    else{C.bad[kr][rr]=true;C.mist++;C.msg='아니에요. 다시 골라 보세요.';}
+    render();return;
+  }
+  if(a==='next1'){C.step=2;C.w3=0;C.flash=null;render();window.scrollTo(0,0);return;}
+  if(a==='pick'){
+    var ci=+b.getAttribute('data-i'),pp=C.placed.length;
+    if(s.ch[ci].t===s.ch[pp].t){
+      var at=C.pool.indexOf(ci);C.pool.splice(at,1);C.placed.push(pp);C.lastDrop=pp;C.wrong=false;C.flash=null;C.w3=0;
+      if(C.placed.length===C.n)C.done1=true;
+    }else{C.mist++;C.w3++;C.wrong=true;C.flash={b:ci};}
+    render();return;
+  }
+  if(a==='next2'){C.step=3;finish();render();window.scrollTo(0,0);return;}
+  if(a==='next'){if(I+1<DATA.length)start(I+1);else home();return;}
+});
+home();
+})();
+</script></body></html>
