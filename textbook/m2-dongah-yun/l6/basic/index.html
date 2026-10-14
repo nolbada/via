@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<meta name="robots" content="noindex">
+<title>6과 기본 문장 분석</title>
+<style>
+/* Layout: one narrow column, phone-first. Home = Day grid; Play = 3-step card (order, role, meaning); roles are color-coded. */
+:root{
+  --bg:#f4f6f8; --surface:#ffffff; --fg:#14202b; --muted:#566474; --line:#d9e0e7;
+  --accent:#0f766e; --accent-fg:#ffffff; --good:#15803d; --bad:#b91c1c; --bad-bg:#fde8e8; --good-bg:#e3f4e8;
+  --s-bg:#dbeafe; --s-fg:#1e40af;
+  --v-bg:#dfe5ee; --v-fg:#1e293b;
+  --o-bg:#dcfce7; --o-fg:#166534;
+  --io-bg:#cffafe; --io-fg:#155e75;
+  --do-bg:#ecfccb; --do-fg:#3f6212;
+  --c-bg:#ffedd5; --c-fg:#9a3412;
+  --oc-bg:#fef3c7; --oc-fg:#92400e;
+  --m-bg:#ede9fe; --m-fg:#5b21b6;
+  --cj-bg:#e5e7eb; --cj-fg:#374151;
+  --hl:#fde047;--hlfg:#14202b;
+  --ko:"Gothic A1","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+  --en:"Lexend","Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e141b; --surface:#17212b; --fg:#e6ebf0; --muted:#9aa8b6; --line:#2a3744;
+  --accent:#2dd4bf; --accent-fg:#04201d; --good:#4ade80; --bad:#f87171; --bad-bg:#3a1d1f; --good-bg:#15301f;
+  --s-bg:#1e2f5c; --s-fg:#bfdbfe; --v-bg:#3a4658; --v-fg:#e2e8f0; --o-bg:#14392a; --o-fg:#bbf7d0;
+  --io-bg:#0f3a44; --io-fg:#a5f3fc; --do-bg:#2d3a12; --do-fg:#d9f99d; --c-bg:#4a2410; --c-fg:#fed7aa;
+  --oc-bg:#46330a; --oc-fg:#fde68a; --m-bg:#34235e; --m-fg:#ddd6fe; --cj-bg:#2f3340; --cj-fg:#d1d5db;
+  --hl:#a16207;--hlfg:#fff7d6;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e141b; --surface:#17212b; --fg:#e6ebf0; --muted:#9aa8b6; --line:#2a3744;
+  --accent:#2dd4bf; --accent-fg:#04201d; --good:#4ade80; --bad:#f87171; --bad-bg:#3a1d1f; --good-bg:#15301f;
+  --s-bg:#1e2f5c; --s-fg:#bfdbfe; --v-bg:#3a4658; --v-fg:#e2e8f0; --o-bg:#14392a; --o-fg:#bbf7d0;
+  --io-bg:#0f3a44; --io-fg:#a5f3fc; --do-bg:#2d3a12; --do-fg:#d9f99d; --c-bg:#4a2410; --c-fg:#fed7aa;
+  --oc-bg:#46330a; --oc-fg:#fde68a; --m-bg:#34235e; --m-fg:#ddd6fe; --cj-bg:#2f3340; --cj-fg:#d1d5db;
+  color-scheme:dark}
+*{box-sizing:border-box}
+.cp{margin-top:10px;padding:12px;border:1.5px dashed var(--accent);border-radius:12px;background:var(--bg)}
+.cpl{font-size:12px;font-weight:700;color:var(--muted);margin:0 0 6px}
+.ckv{border:2.5px solid var(--v-fg);border-radius:999px;padding:1px 8px}
+.hlm{background:var(--hl);color:var(--hlfg);padding:1px 3px;border-radius:3px}
+.cpw{font-size:16px;font-weight:700;margin:6px 0 0}
+.rtask{margin-top:12px}
+.cmb{display:block;font-size:12.5px;font-weight:700;color:var(--good);line-height:1.3;margin-top:1px}
+.cflow{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-start}
+.cch{display:flex;flex-direction:column;gap:3px;min-width:0}
+.cen{font-family:var(--en);font-size:15px;font-weight:500;line-height:1.35}
+.cko{font-size:12.5px;font-weight:700;color:var(--good);line-height:1.3;min-height:17px}
+.rtask .mdir{font-size:14px;font-weight:600;line-height:1.5}
+.rtask .cpw{font-size:14px;font-weight:600}
+.rtask .hint{font-size:13px;padding:8px 10px;color:var(--muted)}
+.cflow.tap{cursor:pointer}
+.cflow.tap .cko::after{content:'···';color:var(--muted);font-weight:400;letter-spacing:.12em}
+.rec{border:1.5px solid var(--accent);border-radius:16px;padding:18px 16px;background:var(--card,var(--bg));text-align:center}
+.rec-h{font-size:12px;color:var(--muted);letter-spacing:.02em}
+.rec-t{font-size:20px;font-weight:800;margin-top:6px}
+.rec-d{font-size:14px;color:var(--muted);margin-top:2px}
+.rec-big{font-size:44px;font-weight:800;line-height:1.2;margin:10px 0 6px}
+.rec-big.ok{color:var(--good)}.rec-big.no{color:var(--bad)}
+.rec-l{font-size:15px;margin-top:4px}
+.rec-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0 8px}
+.rec-chip{font-size:13px;padding:3px 9px;border-radius:999px;border:1px solid var(--line)}
+.rec-chip.o{color:var(--good);border-color:var(--good)}.rec-chip.x{color:var(--bad);border-color:var(--bad)}
+.trkrow{display:block;width:100%;text-align:left;margin-top:8px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:inherit;font:inherit;cursor:pointer}
+.trks{margin-top:8px}.trke{font-size:15px;font-weight:600;line-height:1.4}.trkk{font-size:13px;color:var(--good);margin-top:2px}.trkh{font-size:12px;color:var(--muted);margin-top:6px}
+.popq{margin-top:12px}
+.trkrow.on{border-color:var(--good);background:var(--good-bg)}
+.trkrow span{display:block}.trkt{font-size:12px;color:var(--muted)}.trkw{font-size:18px;margin:2px 0}.trkd{font-size:14px}
+.trkchips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.trkchip{padding:6px 10px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);color:inherit;font:inherit;font-size:13px;cursor:pointer}.trkchip.sel{border-color:var(--accent);background:var(--accent);color:var(--accent-fg)}
+.rec-sub{font-size:13px;color:var(--muted);margin-top:2px}
+.rec-big.pend{color:var(--muted);font-size:30px}
+.rec-q{font-size:13px;color:var(--muted);margin-top:6px}
+.rec-c{font-size:13px;color:var(--muted);margin-top:10px}
+.wbox{margin-top:12px}.wrow{padding:10px 0;border-top:1px solid var(--line)}.wrow:first-of-type{border-top:0}.wn{font-size:12px;color:var(--muted)}.wen{font-size:16px;font-weight:600;line-height:1.5;margin-top:2px}.wko{font-size:14px;color:var(--good);line-height:1.5;margin-top:3px}
+.rec-f{font-size:12px;color:var(--muted);margin-top:12px;border-top:1px dashed var(--line);padding-top:8px}
+.hrow{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.hrow span{color:var(--muted);flex:none}
+.hrow b{text-align:right;font-weight:600}
+.rtask.done{opacity:.75}
+body{background:var(--bg);color:var(--fg);font-family:var(--ko);font-size:16px;line-height:1.55;word-break:keep-all}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:640px;margin:0 auto;padding-inline:16px;padding-block:16px 40px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.brand{font-weight:900;letter-spacing:.02em;font-size:17px}
+.brand small{display:block;font-weight:500;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.pts{font-family:var(--en);font-weight:600;font-variant-numeric:tabular-nums;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;white-space:nowrap}
+.pts b{color:var(--accent)}
+h1{font-size:22px;margin:18px 0 6px;text-wrap:balance}
+h2{font-size:15px;margin:22px 0 10px;color:var(--muted);letter-spacing:.04em}
+.lead{color:var(--muted);margin:0 0 4px;font-size:15px}
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:8px}
+.day{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;min-height:64px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.day .dn{font-family:var(--en);font-weight:600;font-size:20px;font-variant-numeric:tabular-nums}
+.day .st{font-size:12px;color:var(--accent);letter-spacing:1px;min-height:18px}
+.day.done{border-color:var(--accent)}
+.foot{margin-top:28px;font-size:13px;color:var(--muted)}
+.back{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-height:44px}
+.ttl{font-weight:700;font-size:17px;text-align:center;flex:1}
+.prog{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.prog i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.pcount{font-size:13px;color:var(--muted);margin-bottom:12px;font-family:var(--en)}
+.steps.two{grid-template-columns:1fr 1fr}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
+.steps div{text-align:center;padding:8px 4px;border-radius:10px;font-size:14px;font-weight:700;border:1px solid var(--line);color:var(--muted);background:var(--surface)}
+.steps div.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.steps div.ok{color:var(--good);border-color:var(--good)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.ask{margin:0 0 12px;font-weight:700;font-size:17px;text-wrap:balance}
+.line{min-height:64px;border:2px dashed var(--line);border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.line .ph{color:var(--muted);font-size:14px;padding-inline:4px}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:52px}
+.tile{font-family:var(--en);font-size:17px;padding:10px 14px;min-height:46px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);overflow-wrap:anywhere;text-align:left}
+.line .tile{background:var(--surface);border-color:var(--accent)}
+.tile.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.tile.good{background:var(--good-bg);border-color:var(--good)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.ghost{background:transparent;border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-height:44px;color:var(--muted)}
+.primary{background:var(--accent);color:var(--accent-fg);border:0;border-radius:12px;padding:12px 20px;min-height:48px;font-weight:700;font-size:16px;width:100%;margin-top:14px}
+.krow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px;padding:10px;background:var(--bg);border-radius:10px;min-height:48px}
+.klbl{font-size:12px;font-weight:700;color:var(--muted);width:100%}
+.kblk{font:inherit;font-size:14px;cursor:pointer;padding:6px 10px;border-radius:8px;background:var(--surface);border:1.5px solid var(--good);color:var(--good);font-size:14px;font-weight:700}
+.kblk.go{box-shadow:0 0 0 2px var(--accent)}
+.rslot{min-height:24px;text-align:center;font-size:13px;font-weight:700;border-radius:6px;padding:2px 6px}
+.minp{width:100%;box-sizing:border-box;padding:12px;font-size:16px;font-family:var(--en);border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:inherit}
+.mission{margin-top:12px}
+.mline{margin:0 0 8px;font-size:15px;line-height:1.5}
+.mdir{margin:0;font-size:15px;font-weight:700}
+.mk{display:inline-block;padding:2px 8px;border-radius:6px;font-size:13px;margin-right:4px}
+.mans{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.msent{margin:0 0 10px;font-family:var(--en);font-size:15px;line-height:1.6}
+.kfull{margin:0;font-size:16px;font-weight:700;line-height:1.5}
+.kflow{display:flex;flex-wrap:wrap;gap:6px}
+.r2.down{animation:slideDown .35s ease both}
+@keyframes slideDown{from{transform:translateY(-14px);opacity:0}to{transform:none;opacity:1}}
+.kslot.wait{border-top-color:var(--accent);min-height:24px}
+.kdone{font-size:13px;color:var(--muted)}
+.hint{margin:12px 0 0;padding:10px 12px;background:var(--bg);border-radius:10px;font-size:15px}
+.msg{margin:12px 0 0;padding:10px 12px;border-radius:10px;font-size:15px;font-weight:700}
+.msg.ok{background:var(--good-bg);color:var(--good)}
+.bememo{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:#fff4d6;border:2px solid #f0b429;color:#5b3d00;font-size:14.5px;line-height:1.55}.bememo b.t{display:block;font-size:15.5px;margin-bottom:4px}.bememo .pr{display:inline-block;margin:2px 4px 2px 0;padding:2px 8px;border-radius:8px;background:#fff;border:1px solid #f0b429;font-weight:800}.bememo .x{color:#c0392b;text-decoration:line-through;font-weight:700}
+.today{text-align:left;margin:12px 0 4px;border-top:1px dashed var(--line);padding-top:10px}.tdh{font-size:14px;font-weight:800;margin-bottom:6px}.tdi{margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}.tdn{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:2px}.tdk{font-size:13px;color:var(--muted);margin-top:4px}.tdko{font-size:15px;font-weight:700;margin-top:3px}.tdm{margin-top:5px;font-size:12.5px;color:#7a4b00;background:#fff4d6;border-radius:8px;padding:4px 8px}
+.notestrip{display:block;width:100%;margin:0 0 12px;padding:11px 14px;border:2px solid #e0a100;border-radius:12px;background:#fff4d6;color:#5b3d00;font:inherit;font-size:15px;font-weight:800;text-align:left;cursor:pointer}.nbox{margin:12px 0 0;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.nbox .nt{font-size:14px;font-weight:800;margin:0 0 6px}.ni{margin:0 0 14px;padding:0 0 12px;border-bottom:1px solid var(--line)}.ni .nn{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:2px}.ni .nen{font-size:16px;font-weight:700;line-height:1.5}.ni .nko{font-size:14px;color:var(--muted);margin-top:2px}.ni ul{margin:8px 0 0;padding:0 0 0 18px;font-size:14px;line-height:1.6}.ni .nd{margin-top:6px;font-size:13px;color:var(--muted);line-height:1.5}.today{text-align:left;margin:12px 0 4px;border-top:1px dashed var(--line);padding-top:10px}.tdh{font-size:14px;font-weight:800;margin-bottom:6px}.tdi{margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}.tdn{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:2px}.tdk{font-size:13px;color:var(--muted);margin-top:4px}.tdko{font-size:15px;font-weight:700;margin-top:3px}.tdm{margin-top:5px;font-size:12.5px;color:#7a4b00;background:#fff4d6;border-radius:8px;padding:4px 8px}.bememo{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:#fff4d6;border:2px solid #f0b429;color:#5b3d00;font-size:14.5px;line-height:1.55}.bememo b.t{display:block;font-size:15.5px;margin-bottom:4px}.bememo .pr{display:inline-block;margin:2px 4px 2px 0;padding:2px 8px;border-radius:8px;background:#fff;border:1px solid #f0b429;font-weight:800}.bememo .x{color:#c0392b;text-decoration:line-through;font-weight:700}
+.msg.no{background:var(--bad-bg);color:var(--bad)}
+.r2{padding:12px 0;border-top:1px solid var(--line)}
+.r2:first-of-type{border-top:0}
+.r2 .chunk{font-family:var(--en);font-size:18px;font-weight:500;margin-bottom:8px;overflow-wrap:anywhere}
+.r2.done{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.r2.done .chunk{margin:0}
+.tgt{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{border:1.5px solid var(--line);background:var(--bg);border-radius:10px;padding:8px 12px;min-height:44px;font-weight:500}
+.opt.bad{text-decoration:line-through;color:var(--bad);border-color:var(--bad);background:var(--bad-bg);opacity:.8}
+.tg{background:var(--accent);color:var(--accent-fg);border-radius:8px;padding:2px 8px;font-weight:600}
+.qsent{font-family:var(--en);font-size:20px;line-height:2.1;margin:6px 0 16px;overflow-wrap:anywhere}
+.qopts{display:flex;flex-wrap:wrap;gap:8px}
+.qopts .opt{min-height:48px;font-size:16px;padding:10px 16px}
+.quizbtn{width:100%;text-align:left;background:var(--surface);border:1.5px solid var(--accent);border-radius:14px;padding:14px 16px;margin:16px 0 4px;min-height:60px}
+.quizbtn b{display:block;font-size:17px;color:var(--accent)}
+.quizbtn span{font-size:14px;color:var(--muted)}
+.badge,.blk{border-radius:8px;font-weight:700}
+.badge{padding:4px 10px;font-size:14px;white-space:nowrap}
+.role-s{background:var(--s-bg);color:var(--s-fg)}.role-v{background:var(--v-bg);color:var(--v-fg)}
+.role-o{background:var(--o-bg);color:var(--o-fg)}.role-io{background:var(--io-bg);color:var(--io-fg)}
+.role-do{background:var(--do-bg);color:var(--do-fg)}.role-c{background:var(--c-bg);color:var(--c-fg)}
+.role-oc{background:var(--oc-bg);color:var(--oc-fg)}.role-m{background:var(--m-bg);color:var(--m-fg)}
+.role-cj{background:var(--cj-bg);color:var(--cj-fg)}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.col{display:flex;flex-direction:column;gap:8px;min-width:0}
+.col h3{margin:0 0 2px;font-size:13px;color:var(--muted)}
+.ml,.mr{border:1.5px solid var(--line);background:var(--bg);border-radius:10px;padding:10px;min-height:52px;text-align:left;overflow-wrap:anywhere;min-width:0}
+.ml{font-family:var(--en);font-size:15px}
+.ml small{display:block;font-family:var(--ko);font-size:13px;margin-top:4px;color:var(--good);font-weight:700}
+.mr{font-size:15px}
+.ml.sel,.mr.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.ml.ok,.mr.ok{border-color:var(--good);background:var(--good-bg)}
+.mr.ok{opacity:.55}
+.ml.bad,.mr.bad{border-color:var(--bad);background:var(--bad-bg)}
+.ml .badge{display:inline-block;margin-bottom:4px;font-size:12px;padding:2px 8px;font-family:var(--ko)}
+.stage{display:flex;flex-wrap:wrap;gap:6px 5px;min-height:74px;padding:10px 8px;margin-bottom:14px;border-radius:14px;background:var(--bg);border:1.5px solid var(--line)}
+.slot{width:44px;height:46px;border:2px dashed var(--line);border-radius:10px}
+.sblk{display:inline-flex;flex-direction:column;padding:5px 8px;border-radius:10px;background:var(--surface);border:1.5px solid var(--good);min-width:0}
+.sblk b{font-family:var(--en);font-weight:500;font-size:15px;overflow-wrap:anywhere}
+.sblk small{font-size:12px;font-weight:700;color:var(--good)}
+.slot.lab{width:auto;min-width:56px;padding:6px 10px;display:inline-flex;align-items:center;justify-content:center}
+.slot.lab small{font-size:13px;color:var(--muted);font-weight:700}
+.slot.next{border-color:var(--accent);background:var(--surface)}
+.tile.hl{box-shadow:0 0 0 4px #f97316;border-color:#f97316;background:#ffedd5;color:#7c2d12}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tile.hl{background:#5a2a0a;color:#ffedd5}}
+.col3{display:flex;flex-direction:column;gap:3px;align-items:stretch;min-width:44px;max-width:100%}
+.col3 .slot{width:auto;min-width:44px;height:46px}
+.kslot{min-height:22px;font-size:12px;font-weight:700;color:var(--good);text-align:center;border-top:2px dashed var(--line);padding-top:4px;line-height:1.3}
+.kslot.filled{border-top-color:transparent}
+@media (prefers-reduced-motion:no-preference){.drop{animation:dropIn .6s .28s both cubic-bezier(.2,.8,.2,1)}@keyframes dropIn{from{transform:translateY(-90px);opacity:0}to{transform:none;opacity:1}}}
+@media (prefers-reduced-motion:no-preference){.hl{animation:pl 1s infinite}@keyframes pl{50%{box-shadow:0 0 0 8px rgba(249,115,22,.25)}}}
+.seq{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 14px}
+.seq .arr{color:var(--muted);font-weight:700}
+.seqlbl{font-size:13px;color:var(--muted);margin-right:4px}
+.banner{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px dashed var(--accent);font-size:14px}
+.sblk.st2 small{color:inherit;opacity:.9}
+.sblk.st2{border-color:transparent}
+.sblk{position:relative}
+.sblk .no{position:absolute;top:-9px;left:-6px;width:20px;height:20px;border-radius:50%;background:var(--ink,#222);color:var(--surface,#fff);font-style:normal;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.sblk.pick{font:inherit;cursor:pointer;color:inherit}
+.sblk.wait{border:2px solid var(--muted);background:var(--surface);color:var(--text,inherit);opacity:1}
+.sblk.wait.now{border:2px solid #f97316;background:#ffedd5;color:#7c2d12;box-shadow:0 0 0 4px rgba(249,115,22,.35)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sblk.wait.now{background:#5a2a0a;color:#ffedd5}}
+.sblk.wait.sel{border:2px solid var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--surface))}
+.sblk.wait b{color:inherit}
+.nth{display:inline-block;font-family:var(--ui,inherit);font-size:12px;font-weight:700;color:var(--accent);margin-right:6px}
+.ml.free{border-style:dashed}
+.ml.free small{color:var(--muted);font-weight:500}
+.sent{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px}
+.blk{display:inline-flex;flex-direction:column;padding:8px 12px}
+.blk b{font-family:var(--en);font-weight:500;font-size:17px;overflow-wrap:anywhere}
+.blk small{font-size:12px;font-weight:700;opacity:.85}
+.kor{font-size:18px;font-weight:700;margin:0 0 12px;text-wrap:balance}
+.notes{margin:0 0 12px;padding:0;list-style:none;font-size:14px;color:var(--muted)}
+.notes li{padding:4px 0}
+.notes span{font-family:var(--en);color:var(--fg)}
+.gain{font-size:15px;margin:0}
+.gain b{font-family:var(--en);font-size:22px;color:var(--accent)}
+.big{font-family:var(--en);font-size:44px;font-weight:600;font-variant-numeric:tabular-nums;margin:6px 0}
+.stars{font-size:28px;color:var(--accent);letter-spacing:4px}
+.center{text-align:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+.two .primary,.two .ghost{margin:0;width:100%}
+@media (prefers-reduced-motion:no-preference){.shake{animation:sh .25s}@keyframes sh{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+button,select,a,.day,.tile,.opt{touch-action:manipulation}
+input,select,textarea{font-size:16px}
+.dgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}.dg{padding:8px 0;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;font:inherit;font-size:14px;cursor:pointer}.dg small.dd{display:block;font-size:9px;line-height:1.1;margin-top:1px;color:var(--good);font-weight:700}.dg.on small.dd{color:inherit}.dg.ok{background:var(--good-bg);border-color:var(--good)}.dg.on{border-color:var(--accent);background:var(--accent);color:var(--accent-fg);font-weight:700}u.sig{text-decoration:underline;text-decoration-thickness:2.5px;text-underline-offset:3px;font-weight:700}
+</style>
+<style>
+.badge.role-s,.badge.role-v,.badge.role-o,.badge.role-io,.badge.role-do,.badge.role-c,.badge.role-oc,.badge.role-m,.badge.role-cj{display:inline-block}
+.klinew{margin:0 0 12px;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:15px;line-height:1.8}
+.klinew .kc{display:inline-block;padding:0 6px;border-radius:6px;margin:0 2px;font-weight:700}
+.gl{margin:14px 0 0;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:14.5px;line-height:1.7}
+.gl .gh{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:2px}
+.gl small{color:var(--muted)}
+.nbox2{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:14.5px;line-height:1.6}
+.sec{margin:16px 2px 8px;font-size:14px;font-weight:700;color:var(--muted)}
+.tback{display:inline-block;margin-bottom:6px;color:var(--accent);text-decoration:none;padding:6px 0;font-size:14px}
+.day.bad .st{color:var(--bad)}
+</style></head>
+<body><div class="wrap" id="app"></div>
+<script>
+(function(){
+"use strict";
+var DATA=[{"id": "6-1", "sec": "3월 1일의 부탁", "en": "On February 28, 1919, a man came to Dr. Schofield’s house.", "ko": "1919년 2월 28일, 한 남자가 Schofield 박사의 집에 왔다.", "ch": [{"t": "On February 28, 1919,", "r": "수식어", "k": "1919년 2월 28일에", "c": "시간의 부사구", "a": "동사(came) 수식"}, {"t": "a man", "r": "주어", "k": "한 남자가"}, {"t": "came", "r": "동사", "k": "왔다"}, {"t": "to Dr. Schofield’s house.", "r": "수식어", "k": "Schofield 박사의 집으로", "c": "장소(도착점)의 부사구", "a": "동사(came) 수식"}], "kord": [0, 1, 3, 2], "note": ""}, {"id": "6-2", "sec": "3월 1일의 부탁", "en": "Dr. Schofield, I have a special favor to ask you.", "ko": "Schofield 박사님, 특별한 부탁이 있습니다.", "ch": [{"t": "Dr. Schofield,", "r": "수식어", "k": "Schofield 박사님", "c": "부르는 말(호격)", "a": "문장 전체 수식"}, {"t": "I", "r": "주어", "k": "저는"}, {"t": "have", "r": "동사", "k": "가지고 있다"}, {"t": "a special favor", "r": "목적어", "k": "특별한 부탁을"}, {"t": "to ask you.", "r": "수식어", "k": "당신께 부탁할", "c": "형용사구(to부정사)", "a": "목적어(a special favor) 수식"}], "kord": [0, 1, 4, 3, 2], "note": "Dr. Schofield,는 상대를 부르는 말이라 문장의 주어나 목적어가 아니에요. to ask you는 앞의 a special favor를 꾸며 줘요."}, {"id": "6-3", "sec": "3월 1일의 부탁", "en": "What can I do for you?", "ko": "제가 무엇을 해 드릴까요?", "ch": [{"t": "What", "r": "목적어", "k": "무엇을"}, {"t": "can", "r": "동사", "k": "", "c": "do와 함께 쓰는 조동사(해석은 do에서)"}, {"t": "I", "r": "주어", "k": "제가"}, {"t": "do", "r": "동사", "k": "해 드릴 수 있을까요"}, {"t": "for you?", "r": "수식어", "k": "당신을 위해", "c": "대상의 부사구", "a": "동사(do) 수식"}], "kord": [2, 4, 0, 3], "note": "의문문이라 조동사 can이 주어 I 앞에 나왔어요. can과 do를 합쳐 \"해 드릴 수 있을까요\"로 해석해요. 목적어 What이 문장 맨 앞에 왔어요."}, {"id": "6-4", "sec": "3월 1일의 부탁", "en": "Many people are going to gather tomorrow for the independence of Korea.", "ko": "내일 한국의 독립을 위해 많은 사람들이 모일 예정입니다.", "ch": [{"t": "Many people", "r": "주어", "k": "많은 사람들이"}, {"t": "are going to gather", "r": "동사", "k": "모일 예정이다"}, {"t": "tomorrow", "r": "수식어", "k": "내일", "c": "시간의 부사", "a": "동사(are going to gather) 수식"}, {"t": "for the independence of Korea.", "r": "수식어", "k": "한국의 독립을 위해", "c": "목적의 부사구", "a": "동사(are going to gather) 수식"}], "kord": [2, 3, 0, 1], "note": "be going to + 동사원형은 \"~할 예정이다\"라는 뜻이에요. are going to gather를 한 덩어리 동사로 봐요."}, {"id": "6-5", "sec": "3월 1일의 부탁", "en": "Could you take pictures of the event and share them with the world?", "ko": "그 사건의 사진을 찍어서 세계에 알려 주실 수 있으세요?", "ch": [{"t": "Could", "r": "동사", "k": "주실 수 있으세요", "c": "take, share와 함께 쓰는 조동사"}, {"t": "you", "r": "주어", "k": "당신은"}, {"t": "take", "r": "동사", "k": "찍어서"}, {"t": "pictures", "r": "목적어", "k": "사진을"}, {"t": "of the event", "r": "수식어", "k": "그 사건의", "c": "형용사구", "a": "목적어(pictures) 수식"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "share", "r": "동사", "k": "공유해"}, {"t": "them", "r": "목적어", "k": "그것들을"}, {"t": "with the world?", "r": "수식어", "k": "세계와", "c": "대상의 부사구", "a": "동사(share) 수식"}], "kord": [1, 4, 3, 2, 5, 7, 8, 6, 0], "note": "의문문이라 조동사 Could가 주어 you 앞에 나왔어요. Could는 take와 share 둘 다에 걸리고, \"~해 주실 수 있으세요?\"라는 정중한 부탁이에요. share A with B는 \"A를 B와 공유하다\"라는 뜻이에요."}, {"id": "6-6", "sec": "3월 1일의 부탁", "en": "At 2 p.m. on March 1, Dr. Schofield was hiding in a building and saw a large group of people gathering outside.", "ko": "3월 1일 오후 2시, Schofield 박사는 한 건물에 숨어 있으면서 밖에 많은 사람들이 모여드는 것을 보았다.", "ch": [{"t": "At 2 p.m. on March 1,", "r": "수식어", "k": "3월 1일 오후 2시에", "c": "시간의 부사구", "a": "동사(was hiding, saw) 수식"}, {"t": "Dr. Schofield", "r": "주어", "k": "Schofield 박사는"}, {"t": "was hiding", "r": "동사", "k": "숨어 있었다"}, {"t": "in a building", "r": "수식어", "k": "한 건물 안에", "c": "장소의 부사구", "a": "동사(was hiding) 수식"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "saw", "r": "동사", "k": "보았다"}, {"t": "a large group of people", "r": "목적어", "k": "많은 사람들의 무리가"}, {"t": "gathering", "r": "목적격보어", "k": "모여드는 것을"}, {"t": "outside.", "r": "수식어", "k": "밖에서", "c": "장소의 부사", "a": "목적격보어(gathering) 수식"}], "kord": [0, 1, 3, 2, 4, 8, 6, 7, 5], "note": "was hiding은 과거진행형(was + -ing)이라 한 덩어리 동사예요. saw는 \"목적어 + 목적격보어\" 구조예요. 사람들이 모여드는(gathering) 모습을 봤다는 뜻이고, gathering은 목적어를 설명하는 목적격보어예요."}, {"id": "6-7", "sec": "3월 1일의 부탁", "en": "He began to take pictures.", "ko": "그는 사진을 찍기 시작했다.", "ch": [{"t": "He", "r": "주어", "k": "그는"}, {"t": "began", "r": "동사", "k": "시작했다"}, {"t": "to take pictures.", "r": "목적어", "k": "사진을 찍기를"}], "kord": [0, 2, 1], "note": ""}, {"id": "6-8", "sec": "3월 1일의 부탁", "en": "Unbelievable!", "ko": "믿을 수 없어!", "ch": [{"t": "Unbelievable!", "r": "수식어", "k": "믿을 수 없어!", "c": "감탄의 표현", "a": "문장 전체"}], "kord": [0], "note": "Unbelievable!은 \"It is unbelievable!\"에서 It is가 빠진 감탄 표현이에요. 동사가 없어서 문장 성분으로 나누지 않아요."}, {"id": "6-9", "sec": "3월 1일의 부탁", "en": "There are so many people here.", "ko": "여기엔 정말 많은 사람들이 있어.", "ch": [{"t": "There are", "r": "동사", "k": "있다"}, {"t": "so many people", "r": "주어", "k": "정말 많은 사람들이"}, {"t": "here.", "r": "수식어", "k": "여기에", "c": "장소의 부사", "a": "동사(There are) 수식"}], "kord": [2, 1, 0], "note": "There are는 \"~이 있다\"라는 뜻이고, 뒤의 so many people이 진짜 주어예요."}, {"id": "6-10", "sec": "3월 1일의 부탁", "en": "I hope the world will learn about this important event through my pictures.", "ko": "내 사진을 통해 세계가 이 중요한 사건에 대해 알게 되기를 바라.", "ch": [{"t": "I", "r": "주어", "k": "나는"}, {"t": "hope", "r": "동사", "k": "바란다"}, {"t": "the world will learn about this important event through my pictures.", "r": "목적어", "k": "내 사진을 통해 세계가 이 중요한 사건에 대해 알게 되기를", "c": "바라는 내용(that이 생략된 절 전체)"}], "kord": [0, 2, 1], "note": "hope 뒤에 접속사 that이 생략되어 있어요. 뒤의 절 전체가 \"바라는 내용\"이라서 한 덩어리(목적어)로 봐요. 이 절 안의 구조는 심화 앱에서 자세히 나눠요."}, {"id": "6-11", "sec": "석호필이라는 이름", "en": "Do you know Seok Hopil?", "ko": "당신은 석호필을 아는가?", "ch": [{"t": "Do", "r": "동사", "k": "", "c": "의문문을 만드는 조동사(해석하지 않아요)"}, {"t": "you", "r": "주어", "k": "당신은"}, {"t": "know", "r": "동사", "k": "아는가"}, {"t": "Seok Hopil?", "r": "목적어", "k": "석호필을"}], "kord": [1, 3, 2], "note": "Do는 의문문을 만드는 조동사라서 해석하지 않아요. 해석은 know에 담겨 있어요."}, {"id": "6-12", "sec": "석호필이라는 이름", "en": "His English name was Frank W. Schofield, but he loved his Korean name.", "ko": "그의 영어 이름은 Frank W. Schofield였지만, 그는 자신의 한국 이름을 사랑했다.", "ch": [{"t": "His English name", "r": "주어", "k": "그의 영어 이름은"}, {"t": "was", "r": "동사", "k": "~였다"}, {"t": "Frank W. Schofield,", "r": "보어", "k": "Frank W. Schofield"}, {"t": "but", "r": "접속사", "k": "하지만"}, {"t": "he", "r": "주어", "k": "그는"}, {"t": "loved", "r": "동사", "k": "사랑했다"}, {"t": "his Korean name.", "r": "목적어", "k": "자신의 한국 이름을"}], "kord": [0, 2, 1, 3, 4, 6, 5], "note": "but 앞뒤는 주어와 동사가 각각 있는 두 문장이에요. His English name = Frank W. Schofield로 같은 대상이에요."}, {"id": "6-13", "sec": "석호필이라는 이름", "en": "It sounded similar to his real name, and it also had a good meaning.", "ko": "그 이름은 그의 본명과 비슷하게 들렸고 좋은 의미도 담고 있었다.", "ch": [{"t": "It", "r": "주어", "k": "그 이름은"}, {"t": "sounded", "r": "동사", "k": "들렸다"}, {"t": "similar to his real name,", "r": "보어", "k": "그의 본명과 비슷하게"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "it", "r": "주어", "k": "그것은"}, {"t": "also", "r": "수식어", "k": "또한", "c": "부사", "a": "동사(had) 수식"}, {"t": "had", "r": "동사", "k": "가지고 있었다"}, {"t": "a good meaning.", "r": "목적어", "k": "좋은 의미를"}], "kord": [0, 2, 1, 3, 4, 5, 7, 6], "note": "sound + 형용사는 \"~하게 들리다\"라는 뜻이에요. 그래서 similar to his real name은 보어예요. and 앞뒤는 주어와 동사가 각각 있는 두 문장이에요."}, {"id": "6-14", "sec": "석호필이라는 이름", "en": "Dr. Schofield was a Canadian doctor, and he first came to Korea in 1916 to teach medicine.", "ko": "Schofield 박사는 캐나다 의사였고, 의학을 가르치기 위해 1916년에 한국에 처음 왔다.", "ch": [{"t": "Dr. Schofield", "r": "주어", "k": "Schofield 박사는"}, {"t": "was", "r": "동사", "k": "~였다"}, {"t": "a Canadian doctor,", "r": "보어", "k": "캐나다 의사"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "he", "r": "주어", "k": "그는"}, {"t": "first", "r": "수식어", "k": "처음", "c": "부사", "a": "동사(came) 수식"}, {"t": "came", "r": "동사", "k": "왔다"}, {"t": "to Korea", "r": "수식어", "k": "한국에", "c": "장소(도착점)의 부사구", "a": "동사(came) 수식"}, {"t": "in 1916", "r": "수식어", "k": "1916년에", "c": "시간의 부사구", "a": "동사(came) 수식"}, {"t": "to teach medicine.", "r": "수식어", "k": "의학을 가르치기 위해", "c": "목적의 부사구(to부정사)", "a": "동사(came) 수식"}], "kord": [0, 2, 1, 3, 4, 9, 8, 7, 5, 6], "note": "and 앞뒤는 주어와 동사가 각각 있는 두 문장이에요. first는 여기서 \"처음으로\"라는 뜻의 부사예요."}, {"id": "6-15", "sec": "석호필이라는 이름", "en": "He wanted to teach in Korean, so he began to learn Korean right away.", "ko": "그는 한국어로 가르치고 싶어서, 곧바로 한국어를 배우기 시작했다.", "ch": [{"t": "He", "r": "주어", "k": "그는"}, {"t": "wanted", "r": "동사", "k": "원했다"}, {"t": "to teach in Korean,", "r": "목적어", "k": "한국어로 가르치기를"}, {"t": "so", "r": "접속사", "k": "그래서"}, {"t": "he", "r": "주어", "k": "그는"}, {"t": "began", "r": "동사", "k": "시작했다"}, {"t": "to learn Korean", "r": "목적어", "k": "한국어를 배우기를"}, {"t": "right away.", "r": "수식어", "k": "곧바로", "c": "시간의 부사구", "a": "동사(began) 수식"}], "kord": [0, 2, 1, 3, 4, 7, 6, 5], "note": "so는 \"그래서\"라는 뜻으로, 앞 문장(이유)과 뒤 문장(결과)을 이어 줘요. 그래서 이 문장은 두 개의 문장이 이어진 거예요. right away는 \"곧바로\"라는 뜻의 한 덩어리 표현이에요."}, {"id": "6-16", "sec": "석호필이라는 이름", "en": "He studied so hard that he was able to teach in Korean after only a few years.", "ko": "그는 매우 열심히 공부해서 몇 년 만에 한국어로 가르칠 수 있게 되었다.", "ch": [{"t": "He", "r": "주어", "k": "그는"}, {"t": "studied", "r": "동사", "k": "공부했다"}, {"t": "so hard", "r": "수식어", "k": "매우 열심히", "c": "정도의 부사구", "a": "동사(studied) 수식"}, {"t": "that", "r": "접속사", "k": "그래서"}, {"t": "he", "r": "주어", "k": "그는"}, {"t": "was able to teach", "r": "동사", "k": "가르칠 수 있었다"}, {"t": "in Korean", "r": "수식어", "k": "한국어로", "c": "방법의 부사구", "a": "동사(was able to teach) 수식"}, {"t": "after only a few years.", "r": "수식어", "k": "불과 몇 년 후에", "c": "시간의 부사구", "a": "동사(was able to teach) 수식"}], "kord": [0, 2, 1, 3, 4, 6, 7, 5], "note": "so ~ that ...은 \"매우 ~해서 ...하다\"라는 뜻이에요. 앞의 so와 뒤의 that이 짝이에요. was able to teach는 \"가르칠 수 있었다\"(= could teach)라는 뜻의 한 덩어리 동사예요."}, {"id": "6-17", "sec": "석호필이라는 이름", "en": "He believed that every country has the right to be independent, so he helped the Korean independence movement.", "ko": "그는 모든 나라는 독립할 권리가 있다고 믿었기에 한국의 독립운동을 도왔다.", "ch": [{"t": "He", "r": "주어", "k": "그는"}, {"t": "believed", "r": "동사", "k": "믿었다"}, {"t": "that every country has the right to be independent,", "r": "목적어", "k": "모든 나라는 독립할 권리가 있다고", "c": "믿는 내용(that절 전체)"}, {"t": "so", "r": "접속사", "k": "그래서"}, {"t": "he", "r": "주어", "k": "그는"}, {"t": "helped", "r": "동사", "k": "도왔다"}, {"t": "the Korean independence movement.", "r": "목적어", "k": "한국의 독립운동을"}], "kord": [0, 2, 1, 3, 4, 6, 5], "note": "believed 뒤의 that절 전체가 \"믿는 내용\"이라서 한 덩어리(목적어)로 봐요. 이 절 안의 구조는 심화 앱에서 자세히 나눠요. so 앞뒤는 주어와 동사가 각각 있는 두 문장이에요."}, {"id": "6-18", "sec": "3·1운동과 Schofield 박사", "en": "On March 1, 1919, Dr. Schofield heard people shouting for Korean independence in Tapgol Park.", "ko": "1919년 3월 1일, Schofield 박사는 탑골 공원에서 사람들이 한국의 독립을 외치는 소리를 들었다.", "ch": [{"t": "On March 1, 1919,", "r": "수식어", "k": "1919년 3월 1일에", "c": "시간의 부사구", "a": "동사(heard) 수식"}, {"t": "Dr. Schofield", "r": "주어", "k": "Schofield 박사는"}, {"t": "heard", "r": "동사", "k": "들었다"}, {"t": "people", "r": "목적어", "k": "사람들이"}, {"t": "shouting", "r": "목적격보어", "k": "외치는 것을"}, {"t": "for Korean independence", "r": "수식어", "k": "한국의 독립을 위해", "c": "목적의 부사구", "a": "목적격보어(shouting) 수식"}, {"t": "in Tapgol Park.", "r": "수식어", "k": "탑골 공원에서", "c": "장소의 부사구", "a": "목적격보어(shouting) 수식"}], "kord": [0, 1, 6, 3, 5, 4, 2], "note": "heard는 \"목적어 + 목적격보어\" 구조예요. 사람들이 외치는(shouting) 소리를 들었다는 뜻이고, shouting은 목적어 people을 설명하는 목적격보어예요."}, {"id": "6-19", "sec": "3·1운동과 Schofield 박사", "en": "He took pictures of the event with his camera.", "ko": "그는 카메라로 그 사건의 사진을 찍었다.", "ch": [{"t": "He", "r": "주어", "k": "그는"}, {"t": "took", "r": "동사", "k": "찍었다"}, {"t": "pictures", "r": "목적어", "k": "사진을"}, {"t": "of the event", "r": "수식어", "k": "그 사건의", "c": "형용사구", "a": "목적어(pictures) 수식"}, {"t": "with his camera.", "r": "수식어", "k": "그의 카메라로", "c": "도구의 부사구", "a": "동사(took) 수식"}], "kord": [0, 4, 3, 2, 1], "note": "took은 take의 과거형이에요. \"사진을 찍다\"라는 표현이지만 took이 동사, pictures가 목적어로 나뉘어요."}, {"id": "6-20", "sec": "3·1운동과 Schofield 박사", "en": "He then wrote an article about the historic event and sent it to foreign newspapers with his pictures.", "ko": "그 후 그는 이 역사적인 사건에 대한 기사를 써서 사진과 함께 외국 신문사에 보냈다.", "ch": [{"t": "He", "r": "주어", "k": "그는"}, {"t": "then", "r": "수식어", "k": "그 후에", "c": "시간의 부사", "a": "동사(wrote, sent) 수식"}, {"t": "wrote", "r": "동사", "k": "썼다"}, {"t": "an article", "r": "목적어", "k": "기사를"}, {"t": "about the historic event", "r": "수식어", "k": "그 역사적인 사건에 대한", "c": "형용사구", "a": "목적어(an article) 수식"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "sent", "r": "동사", "k": "보냈다"}, {"t": "it", "r": "목적어", "k": "그것을"}, {"t": "to foreign newspapers", "r": "수식어", "k": "외국 신문사에", "c": "장소(도착점)의 부사구", "a": "동사(sent) 수식"}, {"t": "with his pictures.", "r": "수식어", "k": "그의 사진과 함께", "c": "동반의 부사구", "a": "동사(sent) 수식"}], "kord": [0, 1, 4, 3, 2, 5, 9, 8, 7, 6], "note": "and는 두 동사 wrote와 sent를 이어 줘요. send A to B는 \"A를 B에게 보내다\"라는 뜻의 3형식이에요."}, {"id": "6-21", "sec": "3·1운동과 Schofield 박사", "en": "Dr. Schofield’s fight for Korean independence didn’t stop even after the March 1st Movement.", "ko": "한국 독립을 위한 Schofield 박사의 투쟁은 3·1운동 이후에도 멈추지 않았다.", "ch": [{"t": "Dr. Schofield’s fight", "r": "주어", "k": "Schofield 박사의 투쟁은"}, {"t": "for Korean independence", "r": "수식어", "k": "한국 독립을 위한", "c": "형용사구", "a": "주어(Dr. Schofield’s fight) 수식"}, {"t": "didn’t stop", "r": "동사", "k": "멈추지 않았다"}, {"t": "even after the March 1st Movement.", "r": "수식어", "k": "3·1운동 이후에도", "c": "시간의 부사구", "a": "동사(didn’t stop) 수식"}], "kord": [1, 0, 3, 2], "note": ""}, {"id": "6-22", "sec": "3·1운동과 Schofield 박사", "en": "He continued to write about the terrible situation in Korea for foreign newspapers.", "ko": "그는 외국 신문에 한국의 참혹한 상황에 대해 계속해서 글을 썼다.", "ch": [{"t": "He", "r": "주어", "k": "그는"}, {"t": "continued", "r": "동사", "k": "계속했다"}, {"t": "to write", "r": "목적어", "k": "글을 쓰기를"}, {"t": "about the terrible situation", "r": "수식어", "k": "참혹한 상황에 대해", "c": "부사구", "a": "동사(write) 수식"}, {"t": "in Korea", "r": "수식어", "k": "한국의", "c": "형용사구", "a": "명사(situation) 수식"}, {"t": "for foreign newspapers.", "r": "수식어", "k": "외국 신문에", "c": "대상의 부사구", "a": "동사(write) 수식"}], "kord": [0, 5, 4, 3, 2, 1], "note": ""}, {"id": "6-23", "sec": "3·1운동과 Schofield 박사", "en": "He was under the watchful eye of the Japanese police, so he had to go back to Canada in 1920.", "ko": "그는 일본 경찰의 감시를 받게 되어 1920년에 캐나다로 돌아가야 했다.", "ch": [{"t": "He", "r": "주어", "k": "그는"}, {"t": "was", "r": "동사", "k": "있었다"}, {"t": "under the watchful eye of the Japanese police,", "r": "수식어", "k": "일본 경찰의 감시 아래에", "c": "상태의 부사구", "a": "동사(was) 수식"}, {"t": "so", "r": "접속사", "k": "그래서"}, {"t": "he", "r": "주어", "k": "그는"}, {"t": "had to go back", "r": "동사", "k": "돌아가야 했다"}, {"t": "to Canada", "r": "수식어", "k": "캐나다로", "c": "장소(도착점)의 부사구", "a": "동사(had to go back) 수식"}, {"t": "in 1920.", "r": "수식어", "k": "1920년에", "c": "시간의 부사구", "a": "동사(had to go back) 수식"}], "kord": [0, 2, 1, 3, 4, 7, 6, 5], "note": "under the watchful eye of ~는 \"~의 감시 아래에\"라는 한 덩어리 표현이에요. was와 함께 \"감시를 받았다\"는 뜻이 돼요. had to go back은 \"돌아가야 했다\"라는 뜻의 한 덩어리 동사예요. so 앞뒤는 주어와 동사가 각각 있는 두 문장이에요."}, {"id": "6-24", "sec": "Schofield 박사의 여생", "en": "In 1958, he returned to Korea at the invitation of the Korean government and never left again.", "ko": "1958년, 그는 한국 정부의 초청으로 한국으로 돌아와서 다시는 떠나지 않았다.", "ch": [{"t": "In 1958,", "r": "수식어", "k": "1958년에", "c": "시간의 부사구", "a": "동사(returned, never left) 수식"}, {"t": "he", "r": "주어", "k": "그는"}, {"t": "returned", "r": "동사", "k": "돌아왔다"}, {"t": "to Korea", "r": "수식어", "k": "한국으로", "c": "장소(도착점)의 부사구", "a": "동사(returned) 수식"}, {"t": "at the invitation of the Korean government", "r": "수식어", "k": "한국 정부의 초청으로", "c": "이유의 부사구", "a": "동사(returned) 수식"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "never left", "r": "동사", "k": "떠나지 않았다"}, {"t": "again.", "r": "수식어", "k": "다시는", "c": "부사", "a": "동사(never left) 수식"}], "kord": [0, 1, 4, 3, 2, 5, 7, 6], "note": "and는 두 동사 returned와 never left를 이어 줘요. never는 \"결코 ~않다\"라는 부정이라 left와 함께 한 덩어리 동사로 봐요."}, {"id": "6-25", "sec": "Schofield 박사의 여생", "en": "For the rest of his life, he worked hard to help Koreans, especially poor students.", "ko": "그는 여생 동안 한국인들, 특히 가난한 학생들을 돕기 위해 열심히 일했다.", "ch": [{"t": "For the rest of his life,", "r": "수식어", "k": "그의 여생 동안", "c": "시간의 부사구", "a": "동사(worked) 수식"}, {"t": "he", "r": "주어", "k": "그는"}, {"t": "worked", "r": "동사", "k": "일했다"}, {"t": "hard", "r": "수식어", "k": "열심히", "c": "부사", "a": "동사(worked) 수식"}, {"t": "to help", "r": "수식어", "k": "돕기 위해", "c": "목적의 부사구(to부정사)", "a": "동사(worked) 수식"}, {"t": "Koreans,", "r": "목적어", "k": "한국인들을", "c": "to help의 목적어"}, {"t": "especially poor students.", "r": "수식어", "k": "특히 가난한 학생들을", "c": "동격(Koreans를 설명)", "a": "목적어(Koreans) 수식"}], "kord": [0, 1, 5, 6, 4, 3, 2], "note": "to help는 \"돕기 위해\"라는 목적을 나타내요. Koreans는 help의 목적어이고, especially poor students는 Koreans를 더 자세히 설명하는 말(동격)이에요."}, {"id": "6-26", "sec": "Schofield 박사의 여생", "en": "Dr. Schofield died in April 1970, and he was buried in Seoul National Cemetery.", "ko": "Schofield 박사는 1970년 4월에 세상을 떠났고, 국립서울현충원에 안장되었다.", "ch": [{"t": "Dr. Schofield", "r": "주어", "k": "Schofield 박사는"}, {"t": "died", "r": "동사", "k": "세상을 떠났다"}, {"t": "in April 1970,", "r": "수식어", "k": "1970년 4월에", "c": "시간의 부사구", "a": "동사(died) 수식"}, {"t": "and", "r": "접속사", "k": "그리고"}, {"t": "he", "r": "주어", "k": "그는"}, {"t": "was buried", "r": "동사", "k": "안장되었다"}, {"t": "in Seoul National Cemetery.", "r": "수식어", "k": "국립서울현충원에", "c": "장소의 부사구", "a": "동사(was buried) 수식"}], "kord": [0, 2, 1, 3, 4, 6, 5], "note": "was buried는 수동태(be + p.p.)라서 한 덩어리 동사예요. and 앞뒤는 주어와 동사가 각각 있는 두 문장이에요."}];
+var GLOSS={"6-1": [["February", "n. 2월", ""]], "6-2": [["special", "a. 특별한", ""], ["favor", "n. 부탁, 호의", ""], ["ask", "v. ~에게 부탁하다, ~을 요청하다", ""]], "6-3": [], "6-4": [["gather", "v. (사람들이) 모이다", ""], ["independence", "n. (국가의) 독립", ""]], "6-5": [["take pictures", "사진을 찍다", "take a picture의 복수 표현"], ["event", "n. (중요한) 사건, 사태", ""], ["share", "v. (정보·비밀 등)을 공유하다", ""]], "6-6": [["March", "n. 3월", ""], ["hiding", "v. 숨다, ~을 숨기다", "hide의 현재분사 (과거진행형 was hiding)"], ["building", "n. 건물", ""], ["gathering", "v. (사람들이) 모이다", "gather의 현재분사 (people gathering: 모여드는 사람들)"], ["outside", "adv. 밖에(서)", ""]], "6-7": [["take pictures", "사진을 찍다", "take a picture의 복수 표현"]], "6-8": [["Unbelievable", "a. 믿기 어려울 정도인", ""]], "6-9": [], "6-10": [["hope", "v. ~이기를 바라다[희망하다]", ""], ["learn about", "~을 알게 되다", ""], ["event", "n. (중요한) 사건, 사태", ""], ["through", "prep. ~을 통해", ""]], "6-11": [], "6-12": [], "6-13": [["sounded", "v. ~하게 들리다", "sound의 과거형"], ["similar to", "~와 비슷한", ""], ["real", "a. 실제의, 진짜의", ""], ["also", "adv. 또한, 게다가", ""], ["meaning", "n. 의미, 뜻", ""]], "6-14": [["Canadian", "a. 캐나다(사람)의", ""], ["first", "adv. 처음으로, 최초로", ""], ["medicine", "n. 1. 약, 의약품 2. 의학", ""]], "6-15": [["right away", "즉시, 곧바로", ""]], "6-16": [], "6-17": [["country", "n. 국가, 나라", ""], ["right", "n. 권리", ""], ["independent", "a. (국가가) 독립한", ""], ["independence", "n. (국가의) 독립", ""], ["movement", "n. (사회적·정치적) 운동", ""]], "6-18": [["March", "n. 3월", ""], ["shouting", "v. 외치다, 소리치다", "shout의 현재분사 (people shouting: 외치는 사람들)"], ["independence", "n. (국가의) 독립", ""], ["Park", "n. 공원", ""]], "6-19": [["took pictures", "사진을 찍다", "take pictures의 과거형"], ["event", "n. (중요한) 사건, 사태", ""], ["camera", "n. 카메라", ""]], "6-20": [["article", "n. (신문·잡지의) 기사", ""], ["historic", "a. 역사적인, 역사상 중요한", ""], ["event", "n. (중요한) 사건, 사태", ""], ["foreign", "a. 외국의", ""]], "6-21": [["fight", "n. 투쟁, 분투", ""], ["independence", "n. (국가의) 독립", ""], ["even", "adv. ~조차(도)", ""], ["March", "n. 3월", ""], ["Movement", "n. (사회적·정치적) 운동", ""]], "6-22": [["continued", "v. ~을 계속하다", "continue의 과거형"], ["terrible", "a. 끔찍한, 참혹한", ""], ["situation", "n. 상황", ""], ["foreign", "a. 외국의", ""]], "6-23": [["under the watchful eye of", "~의 감시 아래에서, ~가 주의 깊게 지켜보는 가운데", ""]], "6-24": [["returned", "v. 돌아오다, 돌아가다", "return의 과거형"], ["invitation", "n. 초청, 초대", ""], ["government", "n. 정부", ""]], "6-25": [["rest", "n. (어떤 것의) 나머지", ""], ["especially", "adv. 특히", ""], ["poor", "a. 가난한, 빈곤한", ""]], "6-26": [["died", "v. 죽다", "die의 과거형"], ["buried", "v. ~을 묻다, 매장하다", "bury의 과거분사 (수동태 was buried)"], ["National", "a. 국가의, 국립의", ""], ["Cemetery", "n. (공동) 묘지", ""]]};
+var KEYS='tbm2d-l6-b';
+var CLS={'주어':'s','동사':'v','목적어':'o','간접목적어':'io','직접목적어':'do','보어':'c','목적격보어':'oc','수식어':'m','접속사':'cj'};
+var ORDER=['주어','동사','목적어','간접목적어','직접목적어','보어','목적격보어','수식어','접속사'];
+var app=document.getElementById('app');
+var store={done:{}};
+try{var o=JSON.parse(localStorage.getItem(KEYS)||'null');if(o&&o.done)store=o;}catch(e){}
+function save(){try{localStorage.setItem(KEYS,JSON.stringify(store));}catch(e){}}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+var I=0,C=null;
+function badge(r){return '<span class="badge role-'+CLS[r]+'">'+r+'</span>';}
+function home(){
+  C=null;
+  var done=0;DATA.forEach(function(s){if(store.done[s.id]!=null)done++;});
+  var h='<a class="tback" href="../">&larr; 6과 목록</a><h1>6과 기본 문장 분석</h1><p class="lead">교과서 본문 · 뜻 잇기, 성분, 어순 ('+DATA.length+'문장)</p><p class="lead" style="margin-top:8px">푼 문장 '+done+' / '+DATA.length+'</p>';
+  var last=null,open=false;
+  DATA.forEach(function(s,k){
+    if(s.sec!==last){if(open)h+='</div>';h+='<div class="sec">'+esc(s.sec||'')+'</div><div class="days">';open=true;last=s.sec;}
+    var d=store.done[s.id];
+    h+='<button class="day'+(d!=null?' done':'')+'" data-act="go" data-i="'+k+'"><span class="dn">'+esc(s.id.replace(/^\d+-/,''))+'</span><span class="st">'+(d==null?'':(d?'실수 '+d:'완료'))+'</span></button>';
+  });
+  if(open)h+='</div>';
+  if(done)h+='<div class="two"><button class="ghost" data-act="reset">기록 지우기</button></div>';
+  app.innerHTML=h;window.scrollTo(0,0);
+}
+function start(i){
+  I=i;var s=DATA[i],n=s.ch.length,idx=[];
+  for(var k=0;k<n;k++)idx.push(k);
+  var pool=shuffle(idx),tries=0;
+  while(tries++<30&&pool.every(function(ci,k){return ci===k;}))pool=shuffle(idx);
+  var kd={};s.ch.forEach(function(c,k){if(!c.k)kd[k]=true;});
+  C={s:s,n:n,step:1,ph:'K',kdone:kd,roles:idx.map(function(){return null;}),bad:idx.map(function(){return {};}),
+     done2:false,placed:[],pool:pool,wrong:false,done1:false,w3:0,mist:0,flash:null,msg:null,lastDrop:null};
+  if(curK()<0)C.ph='R';
+  render();window.scrollTo(0,0);
+}
+function curK(){for(var k=0;k<C.n;k++)if(!C.kdone[k])return k;return -1;}
+function curA(){for(var k=0;k<C.n;k++)if(!C.roles[k])return k;return -1;}
+function render(){
+  var s=C.s;
+  var h='<div class="top"><button class="back" data-act="home">목록</button><div class="ttl">'+esc(s.id)+'</div><div class="pts">실수 <b>'+C.mist+'</b></div></div>'
+   +'<div class="prog"><i style="width:'+(I/DATA.length*100)+'%"></i></div><div class="pcount">문장 '+(I+1)+' / '+DATA.length+'</div>';
+  if(C.step<3)h+='<div class="steps two"><div class="'+(C.step===1?'on':'ok')+'">1 뜻·성분</div><div class="'+(C.step===2?'on':'')+'">2 어순</div></div>';
+  h+='<div class="card">'+(C.step===1?vA():C.step===2?v1():v4())+'</div>';
+  app.innerHTML=h;
+}
+function kordIdx(){return C.s.kord;}
+function vA(){
+  var s=C.s,ph=C.ph,cur=ph==='K'?curK():curA();
+  var ask=ph==='K'?'빛나는 영어 블록의 우리말 뜻을 위에서 골라요':'빛나는 블록의 성분(역할)을 골라요';
+  if(C.done2)ask='뜻과 성분을 모두 붙였어요';
+  var h='<p class="ask">'+ask+'</p>';
+  if(ph==='K'){
+    var idx=kordIdx().filter(function(k){return !C.kdone[k];});
+    if(idx.length)h+='<div class="krow"><span class="klbl">우리말 뜻</span><div class="kflow">'+idx.map(function(k){
+      var bad=C.flash&&C.flash.k===k;
+      return '<button class="kblk go'+(bad?' bad shake':'')+'" data-act="pickK" data-k="'+k+'">'+esc(s.ch[k].k)+'</button>';
+    }).join('')+'</div></div>';
+  }
+  h+='<div class="stage">'+s.ch.map(function(c,k){
+    var r=C.roles[k],kd=C.kdone[k]&&c.k,act=(k===cur&&!C.done2);
+    var top='<div class="kslot'+(kd?' filled'+(k===C.lastDrop?' drop':''):(act&&ph==='K'?' wait':''))+'">'+(kd?esc(c.k):'')+'</div>';
+    var mid=r?'<div class="sblk st2 role-'+CLS[r]+'"><b>'+esc(c.t)+'</b></div>'
+       :'<div class="sblk wait'+(act?' now':'')+'"><b>'+esc(c.t)+'</b></div>';
+    var bot='<div class="rslot'+(r?' role-'+CLS[r]:'')+'">'+(r?esc(r):'')+'</div>';
+    return '<div class="col3">'+top+mid+bot+'</div>';
+  }).join('')+'</div>';
+  if(C.msg)h+='<p class="msg no">'+C.msg+'</p>';
+  if(ph==='R'&&cur>=0){
+    var c0=s.ch[cur],set={'주어':1,'동사':1,'목적어':1,'보어':1,'수식어':1};
+    s.ch.forEach(function(c){set[c.r]=1;});
+    var opts=ORDER.filter(function(r){return set[r];});
+    h+='<div class="r2 down" data-rk="'+cur+'"><div class="chunk">'+esc(c0.t)+(c0.a?'<small class="tgt">꾸미는 대상: '+esc(c0.a.replace(/\s*수식$/,''))+'</small>':'')+'</div><div class="opts">'+opts.map(function(r){
+      var b=C.bad[cur][r];
+      return '<button class="opt'+(b?' bad':'')+'"'+(b?' disabled':'')+' data-act="roleA" data-k="'+cur+'" data-r="'+r+'">'+r+'</button>';
+    }).join('')+'</div></div>';
+  }
+  if(C.done2)h+='<p class="msg ok">뜻과 성분 완성.</p><button class="primary" data-act="next1">다음 단계: 어순</button>';
+  return h;
+}
+function tile(ci){
+  var bad=C.flash&&C.flash.b===ci;
+  var hl=C.w3>=2&&!C.done1&&C.s.ch[ci].t===C.s.ch[C.placed.length].t;
+  return '<button class="tile'+(bad?' bad shake':'')+(hl?' hl':'')+'" data-act="pick" data-i="'+ci+'">'+esc(C.s.ch[ci].t)+'</button>';
+}
+function kRow(){
+  var idx=kordIdx().filter(function(k){return C.placed.indexOf(k)<0;});
+  return '<div class="krow"><span class="klbl">우리말 해석</span><div class="kflow">'+(idx.length?idx.map(function(k){return '<span class="kblk">'+esc(C.s.ch[k].k)+'</span>';}).join(''):'<span class="kdone">해석이 모두 내려왔어요</span>')+'</div></div>';
+}
+function v1(){
+  var s=C.s,p=C.placed.length;
+  var h='<p class="ask">우리말 어순을 보고, 영어에서는 어떤 순서로 올지 찾아 쌓아요</p>'+kRow();
+  h+='<div class="stage">'+s.ch.map(function(c,k){
+    if(k<p)return '<div class="col3"><div class="sblk st2 role-'+CLS[c.r]+'"><b>'+esc(c.t)+'</b></div><div class="kslot filled'+(k===C.lastDrop?' drop':'')+'">'+(c.k?esc(c.k):'')+'</div></div>';
+    return '<div class="col3"><div class="slot'+(k===p?' next':'')+'"></div><div class="kslot"></div></div>';
+  }).join('')+'</div>';
+  h+='<div class="pool">'+C.pool.map(function(ci){return tile(ci);}).join('')+'</div>';
+  if(C.wrong)h+='<p class="msg no">그 블록은 다음 자리에 오지 않아요. 영어에서는 어떤 말이 올까요?</p>';
+  if(C.done1)h+='<p class="msg ok">어순 완성.</p><button class="primary" data-act="next2">완성한 문장 보기</button>';
+  return h;
+}
+function v4(){
+  var s=C.s;
+  var h='<p class="ask">완성한 문장</p><div class="sent">'+s.ch.map(function(c){
+    return '<span class="blk role-'+CLS[c.r]+'"><b>'+esc(c.t)+'</b><small>'+esc(c.r)+'</small></span>';
+  }).join('')+'</div><div class="seq"><span class="seqlbl">영어 어순</span>'+s.ch.map(function(c){return badge(c.r);}).join('<span class="arr">→</span>')+'</div>';
+  h+='<p class="ask" style="font-size:14px;margin:4px 0 6px">우리말 어순으로 읽으면</p><div class="klinew">'+s.kord.map(function(k){var c=s.ch[k];return '<span class="kc role-'+CLS[c.r]+'">'+esc(c.k)+'</span>';}).join('')+'</div>';
+  h+='<p class="kor">'+esc(s.ko)+'</p>';
+  var mods=s.ch.filter(function(c){return c.c||(c.r==='수식어'&&c.a);});
+  if(mods.length)h+='<ul class="notes">'+mods.map(function(c){
+    var p=[];if(c.c)p.push(esc(c.c));if(c.a)p.push('꾸미는 대상: '+esc(c.a.replace(/\s*수식$/,'')));
+    return '<li><span>'+esc(c.t)+'</span> '+p.join(' · ')+'</li>';
+  }).join('')+'</ul>';
+  if(s.note)h+='<div class="nbox2">'+esc(s.note)+'</div>';
+  var g=GLOSS[s.id]||[];
+  if(g.length)h+='<div class="gl"><div class="gh">이 문장의 단어</div>'+g.map(function(x){return '<div><b>'+esc(x[0])+'</b> '+esc(x[1])+(x[2]?' <small>('+esc(x[2])+')</small>':'')+'</div>';}).join('')+'</div>';
+  h+='<p class="gain" style="margin-top:14px">이번 문장 '+(C.mist?'실수 <b>'+C.mist+'</b>개':'실수 없음')+'</p>';
+  h+='<button class="primary" data-act="next">'+(I+1<DATA.length?'다음 문장':'목록으로')+'</button>';
+  return h;
+}
+function finish(){store.done[C.s.id]=C.mist;save();}
+app.addEventListener('click',function(e){
+  var b=e.target.closest('[data-act]');if(!b)return;
+  var a=b.getAttribute('data-act');
+  if(a==='go'){start(+b.getAttribute('data-i'));return;}
+  if(a==='home'){home();return;}
+  if(a==='reset'){if(confirm('기록을 모두 지울까요?')){store={done:{}};save();home();}return;}
+  if(!C)return;
+  var s=C.s;
+  if(a==='pickK'){
+    var kk=+b.getAttribute('data-k'),cu=curK();if(cu<0)return;
+    if(s.ch[kk].k===s.ch[cu].k){C.kdone[cu]=true;C.lastDrop=cu;C.flash=null;C.msg=null;if(curK()<0)C.ph='R';}
+    else{C.mist++;C.flash={k:kk};C.msg=null;}
+    render();return;
+  }
+  if(a==='roleA'){
+    var kr=+b.getAttribute('data-k'),rr=b.getAttribute('data-r');
+    if(s.ch[kr].r===rr){C.roles[kr]=rr;C.msg=null;if(curA()<0)C.done2=true;}
+    else{C.bad[kr][rr]=true;C.mist++;C.msg='아니에요. 다시 골라 보세요.';}
+    render();return;
+  }
+  if(a==='next1'){C.step=2;C.w3=0;C.flash=null;render();window.scrollTo(0,0);return;}
+  if(a==='pick'){
+    var ci=+b.getAttribute('data-i'),pp=C.placed.length;
+    if(s.ch[ci].t===s.ch[pp].t){
+      var at=C.pool.indexOf(ci);C.pool.splice(at,1);C.placed.push(pp);C.lastDrop=pp;C.wrong=false;C.flash=null;C.w3=0;
+      if(C.placed.length===C.n)C.done1=true;
+    }else{C.mist++;C.w3++;C.wrong=true;C.flash={b:ci};}
+    render();return;
+  }
+  if(a==='next2'){C.step=3;finish();render();window.scrollTo(0,0);return;}
+  if(a==='next'){if(I+1<DATA.length)start(I+1);else home();return;}
+});
+home();
+})();
+</script></body></html>
