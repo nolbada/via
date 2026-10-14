@@ -113,7 +113,7 @@ function summary(S,si){
  var ms=missed(S),cap=3;
  if(ms.length){
   var show=ms.slice(0,3);
-  h+='<div class="memo"><h2>이것만은 꼭! · 이대로 받아적기</h2><div class="hint">해설은 읽기만. 노트에는 아래 문장과 포인트만 그대로 &middot; '+show.length+'문장'+(ms.length>cap?' (놓친 '+ms.length+'개 중 '+cap+'개)':'')+'</div>';
+  h+='<div class="memo"><h2>이것만은 꼭! · 이대로 받아적기</h2><div class="hint">'+show.length+'문장'+(ms.length>cap?' (놓친 '+ms.length+'개 중 '+cap+'개)':'')+'</div>';
   show.forEach(function(i){var it=D[i];
    h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
    it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
@@ -130,7 +130,7 @@ document.getElementById('app').addEventListener('click',function(e){
   var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
   var y=window.scrollY;render();window.scrollTo(0,y);return}
  var b=e.target.closest('button[data-sub]');
- if(b){done[+b.dataset.sub]=true;render();
+ if(b){done[+b.dataset.sub]=true;logA(+b.dataset.sub);render();
   var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
   if(secs.every(function(S,si){return done[si]}))save(fo);
   var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
@@ -238,9 +238,12 @@ document.getElementById('app').addEventListener('click',function(e){
  if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
   if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
  var b=e.target.closest('button[data-subq]');
- if(b){qdone[+b.dataset.subq]=true;var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+ if(b){qdone[+b.dataset.subq]=true;logQ(+b.dataset.subq);var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
 });
 
+function wlog(key,title,items){try{var W=JSON.parse(localStorage.getItem('m1-wrong')||'{}');var r=W[RNUM]||(W[RNUM]={t:TITLE_EN,e:{}});r.t=TITLE_EN;if(r.e[key])return;r.e[key]={h:title,i:items,ts:Date.now()};localStorage.setItem('m1-wrong',JSON.stringify(W))}catch(e){}}
+function logA(si){var S=secs[si];var it=missed(S).map(function(i){var x=D[i];var p=[];x.fixes.forEach(function(f,k){if(!foundFix(i,k))p.push([f.topic,f.memo])});return{n:x.n,en:fixedEn(x),ko:x.ko,p:p}});wlog('a'+si,'1단계 · '+S.name,it)}
+function logQ(p){var P=QS[p],it=[];P.groups.forEach(function(g){g.qs.forEach(function(q){if(pick[q.n]!==q.a)it.push({n:q.dn,a:(q.o.length===2?'':CN[q.a]+' ')+q.ans,m:q.memo})})});wlog('q'+p,(p+2)+'단계 · '+P.title,it)}
 var PK='m1-prog-'+RNUM;
 function persist(){try{var any=Object.keys(sel).length||Object.keys(pick).length||Object.keys(done).length||Object.keys(qdone).length;
  if(any)localStorage.setItem(PK,JSON.stringify({sel:sel,done:done,pick:pick,qdone:qdone,att:ATT}));else localStorage.removeItem(PK);
