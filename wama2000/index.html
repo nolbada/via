@@ -211,6 +211,8 @@ h2{font-size:18px;font-weight:900;margin:0}
 .banner{background:#fff1de;border:1px solid #f0d6b6;color:#3a261c}
 .banner b{color:#c2570c}
 .row,.tbb,.dayarrow,#dsel,.back{border:1px solid var(--line)}
+.back{width:auto;min-width:64px;padding:0 14px;gap:4px;height:42px;background:var(--accent);color:var(--accent-ink);border:0;font-weight:800;font-size:15px}
+.homebtn{display:block;width:100%;margin-top:18px;padding:14px;border-radius:12px;border:2px solid var(--accent);background:transparent;color:var(--accent);font-size:16px;font-weight:800}
 .card,.sent,.picker,.legend,.lock{box-shadow:0 1px 3px rgba(80,40,10,.08);border:1px solid #eadccd}
 .pill{background:#f1e3d4;color:#6e5648}
 .pill.on{background:var(--accent);color:var(--accent-ink)}
@@ -9376,7 +9378,7 @@ var SKEY="wama2000_app_v1";
 loadAll();
 setDay(1);
 
-function topbar(eyebrow,title){return '<div class="top"><button type="button" class="back" data-act="home" aria-label="처음으로">‹</button><div><div class="eyebrow">'+esc(eyebrow)+'</div><h2>'+esc(title)+'</h2></div></div>';}
+function topbar(eyebrow,title){return '<div class="top"><button type="button" class="back" data-act="home" aria-label="홈으로 나가기">‹ 홈</button><div><div class="eyebrow">'+esc(eyebrow)+'</div><h2>'+esc(title)+'</h2></div></div>';}
 function badges(s){return s.tags.map(function(t){return '<span class="bdg '+t.c+'">'+esc(t.t)+'</span>';}).join("");}
 function legend(){return '<div class="legend"><span class="vm">빨간 굵은 밑줄</span> 주절 동사 · <span class="vs">파란 점선</span> 딸린 절 동사<br>to V · V-ing · 분사에는 밑줄을 치지 않아요.</div>';}
 function bgbox(s){return s.bg?'<div class="bgbox"><span class="bgtab">이 문장은 이런 얘기</span>'+esc(s.bg)+'</div>':"";}
@@ -9453,9 +9455,7 @@ function sentCard(s){
   }else{
     h+='<div class="plabel">슬래시 직독직해</div><div class="slw">'+slashRows(s)+'</div>';
     h+='<div class="plabel">자연스러운 해석</div><div class="ans">'+esc(s.ko)+'</div>'+bgbox(s);
-    h+='<div class="rrow"><button type="button" class="rbtn'+(r==="ok"?" on":"")+'" data-act="res" data-n="'+s.n+'" data-r="ok">맞았어요</button><button type="button" class="rbtn'+(r==="memo"?" on":"")+'" data-act="res" data-n="'+s.n+'" data-r="memo">메모할래요</button><button type="button" class="rbtn'+(r==="wrong"?" on bad":"")+'" data-act="res" data-n="'+s.n+'" data-r="wrong">틀렸어요 ★</button></div>';
-    if(r==="ok"){h+='<div class="hint">맞았으니 쓰지 않아도 돼요. 책 문장 옆에 ✓만 해 두세요.</div>';}
-    if(r==="memo"){h+='<div class="hint">책 문장 옆에 메모할 내용을 적어 두세요.</div>';}
+    h+='<div class="rrow"><button type="button" class="rbtn'+(r==="wrong"?" on bad":"")+'" data-act="res" data-n="'+s.n+'" data-r="wrong">틀렸어요 ★</button></div>';
     if(r==="wrong"){h+='<div class="hint">책 문장 번호 앞에 ★를 치세요. 이 문장은 ★ 해석 모아쓰기에 모여요.</div>';}
     h+='<button type="button" class="tog" data-act="close" data-n="'+s.n+'">해석 접기</button>';
   }
@@ -9464,12 +9464,12 @@ function sentCard(s){
 }
 
 function sents(){
-  var cs=curSents(),done=cs.filter(function(x){return S.res[x.n];}).length,st=starred().length;
+  var cs=curSents(),done=cs.filter(function(x){return S.open[x.n];}).length,st=starred().length;
   var h=topbar("DAY "+V.day+" · "+rlab(),"문장 하나씩 해석하기");
   h+=legend();
   h+='<div class="tb"><button type="button" class="tbb" data-act="openall">해석 전체 열기</button><button type="button" class="tbb" data-act="closeall">해석 전체 접기</button><button type="button" class="tbb" data-act="stars">★ 모아쓰기 '+st+'</button></div>';
   h+='<div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="'+cs.length+'" aria-valuenow="'+done+'"><i style="width:'+Math.round(done/cs.length*100)+'%"></i></div>';
-  h+='<div class="sub">확인을 마친 문장 '+done+' / '+cs.length+'</div>';
+  h+='<div class="sub">해석을 확인한 문장 '+done+' / '+cs.length+'</div>';
   h+='<div class="stack">';
   cs.forEach(function(s){h+=sentCard(s);});
   h+='</div>';
@@ -9497,13 +9497,10 @@ function stars(){
 
 function tagsView(){
   var h=topbar("DAY "+V.day+" · "+rlab(),"쓰임 모아보기");
-  h+='<div class="banner">단어 뜻만으로는 놓치기 쉬운 <b>쓰임</b>을 종류별로 모았어요. 박스 안의 내용만 <b>책의 해당 번호 옆에 옮겨 쓰면</b> 돼요.</div>';
-  TYPE_ORDER.forEach(function(t){
-    var items=Object.keys(TAGS).filter(function(k){return TAGS[k].t===t&&TI[k]&&inR(TI[k].n);}).sort(function(a,b){return TI[a].n-TI[b].n;});
-    if(!items.length){return;}
-    h+='<div class="gl">'+TYPES[t].n+' · '+items.length+'개</div>';
-    items.forEach(function(k){h+=tagCard(k);});
-  });
+  h+='<div class="banner">단어 뜻만으로는 놓치기 쉬운 <b>쓰임</b>을 <b>문장 번호 순서</b>대로 모았어요. 박스 안의 내용만 <b>책의 해당 번호 옆에 옮겨 쓰면</b> 돼요.</div>';
+  var items=Object.keys(TAGS).filter(function(k){return TI[k]&&inR(TI[k].n);}).sort(function(a,b){return TI[a].n-TI[b].n||TYPE_ORDER.indexOf(TAGS[a].t)-TYPE_ORDER.indexOf(TAGS[b].t);});
+  h+='<div class="gl">총 '+items.length+'개</div>';
+  items.forEach(function(k){h+=tagCard(k);});
   return h;
 }
 
@@ -9570,49 +9567,63 @@ function pickDistract(pos,banWords,banChunks,n,day){
 function inAns(q,o){return q.ans.some(function(a){return a.w===o.w;});}
 /* 기록 저장: 이 폰(브라우저)에만 저장. 문장 확인·★·퀴즈 진행 상황을 다음에 열어도 이어서 */
 function saveAll(){try{localStorage.setItem(SKEY,JSON.stringify({SS:SS,QZ:QZ}));}catch(e){}}
-function loadAll(){try{var t=localStorage.getItem(SKEY);if(!t)return;var o=JSON.parse(t);if(o&&o.SS){Object.keys(o.SS).forEach(function(k){SS[k]=o.SS[k];});}if(o&&o.QZ){Object.keys(o.QZ).forEach(function(k){var z=o.QZ[k];if(z&&z.qs&&z.i<z.qs.length){z.resume=true;z.pick=null;QZ[k]=z;}});}}catch(e){}}
-function genQuiz(day){
-  var U=UB[day],pool=[],all=[];
-  [day,day-1,day+1].forEach(function(d){var X=UB[d];if(!X)return;["syn","ant"].forEach(function(k){X[k].forEach(function(p,pi){p.items.forEach(function(it){all.push({it:it,key:d+k+pi,same:d===day});});});});});
-  ["syn","ant"].forEach(function(k){U[k].forEach(function(p,pi){
-    var src,ans;
-    if(k==="ant"){var f=Math.random()<.5;src=p.items[f?0:1]||p.items[0];ans=p.items[f?1:0]||p.items[1];}
-    else{var si=Math.floor(Math.random()*p.items.length);src=p.items[si];var rest=p.items.filter(function(_,j){return j!==si;});ans=rest[Math.floor(Math.random()*rest.length)];}
-    if(!src||!ans)return;
-    var ban={},bc=[];p.items.forEach(function(it){ban[it.w.toLowerCase()]=1;bc=bc.concat(ubChunks(it.m));});
-    var opts=[ans].concat(pickDistract(ans.p,ban,bc,3,day));
-    if(opts.length<4)return;
-    pool.push({k:k,p:p,src:src,ans:ans,opts:shuf(opts)});
-  });});
-  var syn=shuf(pool.filter(function(q){return q.k==="syn";})),ant=shuf(pool.filter(function(q){return q.k==="ant";}));
-  var na=Math.min(ant.length,1),qs=syn.slice(0,5-na).concat(ant.slice(0,na));
-  if(qs.length<5){qs=qs.concat(ant.slice(na,na+5-qs.length));}
-  /* 짝 판별 (보카링크식): 유의어? 반의어? 관계없음? */
-  var J=[],ps=[];["syn","ant"].forEach(function(k){U[k].forEach(function(p){ps.push({k:k,p:p});});});
-  var used={};qs.forEach(function(q){used[q.p.h]=1;});
-  var rel=shuf(ps.filter(function(x){return !used[x.p.h]&&x.p.items.length>1;}));
-  var ra=rel.filter(function(x){return x.k==="ant";}).slice(0,1),rs=rel.filter(function(x){return x.k==="syn";}).slice(0,1);
-  ra.concat(rs).forEach(function(x){var b=x.p.items[1+Math.floor(Math.random()*(x.p.items.length-1))],f=Math.random()<.5;J.push({t:"judge",k:x.k,rel:x.k==="syn"?"유의어":"반의어",a:f?x.p.items[0]:b,b:f?b:x.p.items[0],p:x.p});});
-  var flat=[];ps.forEach(function(x,pi){x.p.items.forEach(function(it){flat.push({it:it,pi:pi});});});
-  for(var tries=0;tries<60&&J.length<4;tries++){
-    var a=flat[Math.floor(Math.random()*flat.length)],b=flat[Math.floor(Math.random()*flat.length)];
-    if(a.pi===b.pi||a.it.w===b.it.w||a.it.p!==b.it.p)continue;
-    var ca=ubChunks(a.it.m),cb=ubChunks(b.it.m);if(ca.some(function(c){return cb.indexOf(c)>=0;}))continue;
-    J.push({t:"judge",k:"none",rel:"관계없음",a:a.it,b:b.it,p:null});
-  }
-  qs=qs.concat(J);
-  /* 모두 고르기: 표제어의 짝을 전부 고르기 (정답 1~3개 + 다른 짝 단어) */
-  J.forEach(function(j){if(j.p)used[j.p.h]=1;});
-  var mc=ps.filter(function(x){return !used[x.p.h]&&x.p.items.length>1;});
-  var multi=shuf(mc.filter(function(x){return x.p.items.length>2;})),single=shuf(mc.filter(function(x){return x.p.items.length===2;}));
-  var pick=multi.slice(0,2);pick=pick.concat(single.slice(0,3-pick.length));
-  pick.forEach(function(x){
-    var head=x.p.items[0],ans=x.p.items.slice(1),ban={};x.p.items.forEach(function(it){ban[it.w.toLowerCase()]=1;});
-    var bc=[];x.p.items.forEach(function(it){bc=bc.concat(ubChunks(it.m));});
+function loadAll(){try{var t=localStorage.getItem(SKEY);if(!t)return;var o=JSON.parse(t);if(o&&o.SS){Object.keys(o.SS).forEach(function(k){SS[k]=o.SS[k];});}if(o&&o.QZ){Object.keys(o.QZ).forEach(function(k){var z=o.QZ[k];if(z&&z.qs&&z.res){if(z.i>0&&z.i<z.qs.length){z.resume=true;}z.pick=null;QZ[k]=z;}});}}catch(e){}}
+function seedRng(seed){var a=seed>>>0;return function(){a=(a+0x6D2B79F5)|0;var t=Math.imul(a^(a>>>15),1|a);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296;};}
+/* 유·반의어 퀴즈: 한 DAY의 짝을 반으로 나눠 1회차·2회차에 한 번씩만 낸다. 문제는 고정(새로 섞이지 않음) */
+function genQuiz(day,rd,res){
+  var old=Math.random;Math.random=seedRng(day*7919+31);
+  try{var Z=genQuizRaw(day,rd||0);Z.rd=rd||0;Z.res=res||[null,null];return Z;}finally{Math.random=old;}
+}
+function genQuizRaw(day,rd){
+  var U=UB[day],ps=[];
+  ["syn","ant"].forEach(function(k){U[k].forEach(function(p){if(p.items.length>1)ps.push({k:k,p:p});});});
+  ps=shuf(ps);
+  var mp=ps.filter(function(x){return x.p.items.length>2;}),op=ps.filter(function(x){return x.p.items.length<=2;});
+  var mine=mp.filter(function(_,i){return i%2===rd;}).concat(op.filter(function(_,i){return (i+mp.length)%2===rd;}));
+  mine=shuf(mine);
+  var qs=[],rest=mine.slice();
+  var chunksOf=function(it){return ubChunks(it.m);};
+  /* 모두 고르기: 정답이 2개 이상인 짝만 (최대 3문제) */
+  var mu=rest.filter(function(x){return x.p.items.length>2;}).slice(0,3);
+  mu.forEach(function(x){
+    rest.splice(rest.indexOf(x),1);
+    var head=x.p.items[0],ans=x.p.items.slice(1),ban={},bc=[];
+    x.p.items.forEach(function(it){ban[it.w.toLowerCase()]=1;bc=bc.concat(chunksOf(it));});
     var opts=ans.concat(pickDistract(head.p,ban,bc,6-ans.length,day));
     qs.push({t:"multi",k:x.k,p:x.p,head:head,ans:ans,opts:shuf(opts),sel:{}});
   });
-  var extra=shuf(pool.filter(function(q){return qs.indexOf(q)<0;}));while(qs.length<12&&extra.length){qs.push(extra.pop());}
+  /* 짝 판별: 유의어/반의어 */
+  var nj=rest.length>=6?2:(rest.length>=4?1:0);
+  var ja=rest.filter(function(x){return x.k==="ant";})[0],js=rest.filter(function(x){return x.k==="syn";})[0];
+  var jl=[];if(nj>=1){jl.push(js||ja);}if(nj>=2){jl.push(ja&&ja!==jl[0]?ja:rest.filter(function(x){return x!==jl[0];})[0]);}
+  jl.forEach(function(x){
+    if(!x)return;rest.splice(rest.indexOf(x),1);
+    var b=x.p.items[1+Math.floor(Math.random()*(x.p.items.length-1))],f=Math.random()<.5;
+    qs.push({t:"judge",k:x.k,rel:x.k==="syn"?"유의어":"반의어",a:f?x.p.items[0]:b,b:f?b:x.p.items[0],p:x.p});
+  });
+  /* 짝 판별: 관계없음 (서로 다른 두 짝에서 한 단어씩) */
+  if(rest.length>=6){
+    for(var tr=0;tr<40;tr++){
+      var x1=rest[Math.floor(Math.random()*rest.length)],x2=rest[Math.floor(Math.random()*rest.length)];
+      if(x1===x2)continue;
+      var a=x1.p.items[Math.floor(Math.random()*x1.p.items.length)],b2=x2.p.items[Math.floor(Math.random()*x2.p.items.length)];
+      if(a.w===b2.w||a.p!==b2.p)continue;
+      var ca=chunksOf(a),cb=chunksOf(b2);if(ca.some(function(c){return cb.indexOf(c)>=0;}))continue;
+      rest.splice(rest.indexOf(x1),1);rest.splice(rest.indexOf(x2),1);
+      qs.push({t:"judge",k:"none",rel:"관계없음",a:a,b:b2,p:null});break;
+    }
+  }
+  /* 나머지: 4지선다 (유의어 바꿔 쓰기 / 반의어 찾기) */
+  rest.forEach(function(x){
+    var p=x.p,k=x.k,src,ans;
+    if(k==="ant"){var f=Math.random()<.5;src=p.items[f?0:1]||p.items[0];ans=p.items[f?1:0]||p.items[1];}
+    else{var si=Math.floor(Math.random()*p.items.length);src=p.items[si];var rs=p.items.filter(function(_,j){return j!==si;});ans=rs[Math.floor(Math.random()*rs.length)];}
+    if(!src||!ans)return;
+    var ban={},bc=[];p.items.forEach(function(it){ban[it.w.toLowerCase()]=1;bc=bc.concat(chunksOf(it));});
+    var opts=[ans].concat(pickDistract(ans.p,ban,bc,3,day));
+    if(opts.length<4)return;
+    qs.push({k:k,p:p,src:src,ans:ans,opts:shuf(opts)});
+  });
   return {day:day,qs:shuf(qs),i:0,pick:null,score:0,wrong:[],hint:false};
 }
 
@@ -9652,15 +9663,19 @@ function multiView(Z,q){
 }
 function quizView(U){
   var Z=QZ[V.day],h='';
-  if(!Z||Z.day!==V.day){Z=QZ[V.day]=genQuiz(V.day);saveAll();}
+  if(!Z||Z.day!==V.day||!Z.res){Z=QZ[V.day]=genQuiz(V.day,0,[null,null]);saveAll();}
   V.qz=Z;
+  var st='<div style="text-align:center;margin:0 0 10px">'+[0,1].map(function(r){var x=Z.res[r];return '<span style="display:inline-block;margin:0 4px;padding:4px 11px;border-radius:999px;font-size:13px;font-weight:700;border:1px solid '+(x?'#2e7d32':'#bbb')+';color:'+(x?'#2e7d32':'#888')+';background:'+(x?'#e8f5e9':'transparent')+'">'+(r+1)+'회차'+(x?' ✓ '+x.s+'/'+x.n:(Z.rd===r?' · 진행 중':''))+'</span>';}).join('')+'</div>';
+  h+=st;
   if(Z.resume&&Z.i>0&&Z.i<Z.qs.length){
-    return '<div class="card qzend"><div class="qzq" style="text-align:center">지난번에 <b class="uba">'+Z.i+' / '+Z.qs.length+'</b>까지 풀었어요.</div><div class="sub" style="text-align:center">맞힌 개수 '+Z.score+'</div><button type="button" class="rbtn on" data-act="qzresume">이어서 풀기</button><button type="button" class="rbtn" data-act="qzagain">처음부터 새 문제로</button></div>';
+    return h+'<div class="card qzend"><div class="qzq" style="text-align:center">지난번에 <b class="uba">'+Z.i+' / '+Z.qs.length+'</b>까지 풀었어요.</div><div class="sub" style="text-align:center">'+(Z.rd+1)+'회차 · 맞힌 개수 '+Z.score+'</div><button type="button" class="rbtn on" data-act="qzresume">이어서 풀기</button><button type="button" class="rbtn" data-act="qzagain">이 회차 처음부터 다시</button></div>';
   }
   if(Z.i>=Z.qs.length){
-    h+='<div class="card qzend"><div class="qzscore">'+Z.score+' <span>/ '+Z.qs.length+'</span></div><div class="sub" style="text-align:center">'+(Z.score===Z.qs.length?'완벽해요! 이 DAY 짝은 다 잡았어요.':'틀린 짝만 다시 눈에 넣고 한 번 더 풀어 봐요.')+'</div>';
+    var prev=Z.res[Z.rd];if(!prev||Z.score>prev.s){Z.res[Z.rd]={s:Z.score,n:Z.qs.length};saveAll();h=st.replace(/<\/div>$/,'')+'</div>';}
+    var both=Z.res[0]&&Z.res[1],oth=1-Z.rd;
+    h+='<div class="card qzend"><div class="qzscore">'+Z.score+' <span>/ '+Z.qs.length+'</span></div><div class="sub" style="text-align:center">'+(both?'🎉 도장깨기 완료! 이 DAY 유·반의어 짝을 두 회차에 걸쳐 한 번씩 다 만났어요.':(Z.score===Z.qs.length?'완벽해요! ':'')+(Z.rd+1)+'회차 끝! 이제 '+(oth+1)+'회차는 아직 안 나온 나머지 짝이에요.')+'</div>';
     if(Z.wrong.length){h+='<div class="plabel" style="margin-top:6px">다시 볼 짝</div>';Z.wrong.forEach(function(q){if(q.t==="multi"){h+='<div class="qzw"><b>'+esc(q.head.w)+'</b> <span class="ubmm">('+esc(ubChunks(q.head.m)[0])+')</span> <span class="ubsym">'+(q.k==="syn"?'≈':'↔')+'</span> '+q.ans.map(function(a){return '<b class="uba">'+esc(a.w)+'</b> <span class="ubmm">('+esc(ubChunks(a.m)[0])+')</span>';}).join(', ')+'</div>';return;}if(q.t==="judge"){h+='<div class="qzw"><b>'+esc(q.a.w)+'</b> <span class="ubmm">('+esc(ubChunks(q.a.m)[0])+')</span> · <b>'+esc(q.b.w)+'</b> <span class="ubmm">('+esc(ubChunks(q.b.m)[0])+')</span> → '+q.rel+'</div>';return;}h+='<div class="qzw"><b>'+esc(q.src.w)+'</b> <span class="ubmm">('+esc(ubChunks(q.src.m)[0])+')</span> <span class="ubsym">'+(q.k==="syn"?'≈':'↔')+'</span> <b class="uba">'+esc(q.ans.w)+'</b> <span class="ubmm">('+esc(ubChunks(q.ans.m)[0])+')</span></div>';});}
-    h+='<button type="button" class="rbtn on" style="margin-top:10px" data-act="qzagain">새 문제로 다시 풀기</button></div>';
+    h+='<button type="button" class="rbtn on" style="margin-top:10px" data-act="qzround" data-r="'+oth+'">'+(oth+1)+'회차 '+(Z.res[oth]?'다시 풀기':'풀기')+'</button><button type="button" class="rbtn" data-act="qzagain">'+(Z.rd+1)+'회차 다시 풀기 (같은 문제)</button></div>';
     return h;
   }
   var q=Z.qs[Z.i],done=Z.pick!==null;
@@ -9688,7 +9703,7 @@ function ubView(){
   var U=UB[V.day],h=topbar("DAY "+V.day+" · 워크북","유·반의어");
   if(!U){return h+'<div class="banner">이 DAY의 유·반의어는 아직 없어요.</div>';}
   var ut=V.ut||0,L=ut===0?U.syn:U.ant;
-  h+='<div class="seg" role="group" aria-label="유의어 반의어">'+[["유의어 "+U.syn.length],["반의어 "+U.ant.length],["퀴즈 12"]].map(function(x,i){return '<button type="button" data-act="utab" data-i="'+i+'" aria-pressed="'+(ut===i)+'">'+x[0]+'</button>';}).join("")+'</div>';
+  h+='<div class="seg" role="group" aria-label="유의어 반의어">'+[["유의어 "+U.syn.length],["반의어 "+U.ant.length],["퀴즈 2회"]].map(function(x,i){return '<button type="button" data-act="utab" data-i="'+i+'" aria-pressed="'+(ut===i)+'">'+x[0]+'</button>';}).join("")+'</div>';
   if(ut===2){return h+quizView(U);}
   h+='<div class="sub">워크북 정답을 확인하고, 두 단어가 어떻게 다른지까지 읽어 봐요.</div>';
   L.forEach(function(x,i){
@@ -9709,6 +9724,7 @@ function render(){
   else if(V.s==="ans"){h=ansView();}
   else if(V.s==="ub"){h=ubView();}
   else if(V.s==="soon"){h=topbar("워마 2000",V.t)+'<div class="banner">이 코너는 샘플에 아직 들어 있지 않아요. 내용이 정해지면 여기에 채워요.</div>';}
+  if(V.s!=="home"){h+='<button type="button" class="homebtn" data-act="home">홈으로 돌아가기</button>';}
   $app.innerHTML=h;
 }
 
@@ -9727,7 +9743,8 @@ $app.addEventListener("click",function(e){
   else if(a==="mucheck"){var Z=V.qz,q=Z.qs[Z.i];if(Object.keys(q.sel).some(function(k){return q.sel[k];})){var ok=q.opts.every(function(o,i){return !!q.sel[i]===inAns(q,o);});Z.pick=0;Z.lastOk=ok;if(ok){Z.score++;}else{Z.wrong.push(q);}}keep=true;}
   else if(a==="qznext"){V.qz.i++;V.qz.pick=null;V.qz.hint=false;keep=true;}
   else if(a==="qzhint"){V.qz.hint=true;keep=true;}
-  else if(a==="qzagain"){V.qz=QZ[V.day]=genQuiz(V.day);keep=true;}
+  else if(a==="qzagain"){V.qz=QZ[V.day]=genQuiz(V.day,V.qz.rd,V.qz.res);saveAll();keep=true;}
+  else if(a==="qzround"){V.qz=QZ[V.day]=genQuiz(V.day,Number(t.dataset.r),V.qz.res);saveAll();keep=true;}
   else if(a==="qzresume"){QZ[V.day].resume=false;keep=true;}
   else if(a==="ans"){V.s="ans";V.at=V.at||0;}
   else if(a==="atab"){V.at=Number(t.dataset.i);keep=true;}
@@ -9739,7 +9756,7 @@ $app.addEventListener("click",function(e){
   else if(a==="rng"){V.r=Number(t.dataset.r);keep=true;}
   else if(a==="open"){S.open[t.dataset.n]=true;keep=true;}
   else if(a==="close"){S.open[t.dataset.n]=false;keep=true;}
-  else if(a==="res"){S.res[t.dataset.n]=t.dataset.r;keep=true;}
+  else if(a==="res"){S.res[t.dataset.n]=(S.res[t.dataset.n]===t.dataset.r?"":t.dataset.r);keep=true;}
   else if(a==="wtog"){S.wopen[t.dataset.n]=!S.wopen[t.dataset.n];keep=true;}
   else if(a==="tag"){S.tagopen[t.dataset.k]=!S.tagopen[t.dataset.k];keep=true;}
   else if(a==="tw"){S.tw[t.dataset.k]=!S.tw[t.dataset.k];keep=true;}
