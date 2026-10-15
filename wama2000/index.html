@@ -191,6 +191,11 @@ h2{font-size:18px;font-weight:900;margin:0}
 .tgh small{color:var(--paper-mute);font-size:12px}
 .tgm{color:#4a362b}
 .tgx{font-size:13px;line-height:1.55;color:#4a362b}
+.postit{position:relative;background:#fff176;color:#2a1810;border-radius:4px;padding:24px 14px 12px;display:flex;flex-direction:column;gap:7px;margin-top:8px;box-shadow:2px 3px 0 rgba(0,0,0,.22);transform:rotate(-.6deg)}
+.ptab{position:absolute;top:6px;left:12px;font-size:11px;font-weight:800;color:#7a6a10}
+.exbox{margin-top:10px;font-size:13.5px;line-height:1.55;color:var(--paper-ink)}
+.exbox>b{display:block;font-size:12px;color:var(--paper-mute);margin-bottom:2px}
+.exbox .cex+.cex{margin-top:6px}
 .traps .mini{font-weight:500;letter-spacing:0;color:var(--paper-mute);font-size:11.5px;margin-left:4px}
 .trow{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:#fff;border:2px solid #d8cabd;border-radius:12px;padding:10px 12px;color:var(--paper-ink);font:inherit}
 .trow.done{border-color:var(--ok);background:#e5f6ee}
@@ -9209,10 +9214,11 @@ var CARDS1=[
   warn:"내가 감동을 받았으면 impressed, 대상이 인상적이면 impressive예요. I was impressive 라고 하면 '내가 인상적이었다'라는 뜻이 돼서 틀려요.",
   copy:[["key","impress A","A에게 깊은 인상을 주다"],["key","be impressed by A","A에 깊은 인상을 받다, 감동받다"],["key","impressive","인상적인 (대상이 감동을 줄 때)"],["ex","The teacher was impressed by her essay.","선생님은 그녀의 글에 감동받았다."],["ex","Her essay was impressive.","그녀의 글은 인상적이었다."],["bad","I was impressive by the movie.  (틀림! impressed)",""]]}
 ];
-var CIRC=["①","②","③"];
+var CIRC=["①","②","③","④"];
 
 /* 단어의 쓰임 딱지: 그 단어를 열면 바로 보이고, 쓰임 모아보기에서 종류별로도 모아 볼 수 있다. */
-var TYPES={"엮":{c:"eok",n:"짝꿍 단어"},"뜻":{c:"tteut",n:"여러 뜻"},"헷":{c:"hae",n:"헷갈려요"},"변":{c:"byeon",n:"모양이 변해요"}};
+var TYPES={"엮":{c:"eok",n:"함정"},"뜻":{c:"tteut",n:"다의어"},"헷":{c:"hae",n:"혼동어"},"변":{c:"byeon",n:"파생어"}};
+var TCH={"엮":"함","뜻":"다","헷":"혼","변":"파"};
 var TYPE_ORDER=["엮","뜻","헷","변"];
 var TAGS1={
  "prevent":{t:"엮",
@@ -9325,8 +9331,12 @@ var $app=document.getElementById("app");
 
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 function verbs(en){return esc(en).replace(/\{m\|([^}]*)\}/g,'<span class="vm">$1</span>').replace(/\{s\|([^}]*)\}/g,'<span class="vs">$1</span>');}
-function isMust(s){return s.tags.some(function(t){return MUST.indexOf(t.c)>=0;});}
-function mustNums(){return curSents().filter(isMust).map(function(s){return s.n;});}
+function rawMust(s){return s.tags.some(function(t){return MUST.indexOf(t.c)>=0;});}
+function mustScore(s){var k=0;s.tags.forEach(function(t){if(MUST.indexOf(t.c)>=0){k+=t.opt?0.5:1;}});return k*1000+s.en.length;}
+function mustNums(){return curSents().filter(rawMust).sort(function(a,b){return mustScore(b)-mustScore(a)||a.n-b.n;}).slice(0,5).map(function(s){return s.n;}).sort(function(a,b){return a-b;});}
+function isMust(s){return mustNums().indexOf(s.n)>=0;}
+/* 책에 옮겨 쓸 쓰임: 함정 단어 3 + 시험 빈출 쓰임 1 */
+function extraTag(){var cw={};curCards().forEach(function(c){cw[c.w.toLowerCase()]=1;});var ks=Object.keys(TAGS).filter(function(k){return TAGS[k].warn&&!cw[k]&&TI[k]&&inR(TI[k].n);}).sort(function(a,b){return TI[a].n-TI[b].n;});return ks.length?ks[0]:null;}
 
 function slashRows(s){
   var re=/\{([ms])\|([^}]*)\}|([^{]+)/g,m,plain="",cls=[],i;
@@ -9385,52 +9395,64 @@ function bgbox(s){return s.bg?'<div class="bgbox"><span class="bgtab">이 문장
 function starred(){return SENTS.filter(function(s){return S.res[s.n]==="wrong";});}
 
 /* 홈: 숙제 목록을 고르면 두 가지가 함께 뜬다. ① 오늘의 손해석 번호 ② 오늘의 시험 함정 단어 3 */
+function dayRowHtml(){
+  return '<div class="dayrow"><button type="button" class="arrow dayarrow" data-act="dprev" aria-label="이전 Day"'+(V.day<=1?' disabled':'')+'>‹</button><select id="dsel" aria-label="Day 고르기">'+Array.apply(null,Array(50)).map(function(_,i){return '<option value="'+(i+1)+'"'+(V.day===i+1?' selected':'')+'>DAY '+(i+1)+'</option>';}).join("")+'</select><button type="button" class="arrow dayarrow" data-act="dnext" aria-label="다음 Day"'+(V.day>=50?' disabled':'')+'>›</button></div>';
+}
 function home(){
   var mn=mustNums(),st=starred().filter(function(s){return !S.wrote[s.n];});
-  var memoDone=curCards().filter(function(c){return S.memo[c.n];}).length;
+  var ek=extraTag(),cc=curCards();
   var h='';
-  h+='<div><div class="eyebrow">워마 2000</div><div class="dayrow"><button type="button" class="arrow dayarrow" data-act="dprev" aria-label="이전 Day"'+(V.day<=1?' disabled':'')+'>‹</button><select id="dsel" aria-label="Day 고르기">'+Array.apply(null,Array(50)).map(function(_,i){return '<option value="'+(i+1)+'"'+(V.day===i+1?' selected':'')+'>DAY '+(i+1)+'</option>';}).join("")+'</select><button type="button" class="arrow dayarrow" data-act="dnext" aria-label="다음 Day"'+(V.day>=50?' disabled':'')+'>›</button></div><div class="sub">'+(DAYS[V.day]?rlab()+' · 오늘의 숙제':'DAY '+V.day+'는 아직 준비 중이에요.')+'</div></div>';
+  h+='<div><div class="eyebrow">워마 2000</div>'+dayRowHtml()+'<div class="sub">'+(DAYS[V.day]?rlab()+' · 오늘의 숙제':'DAY '+V.day+'는 아직 준비 중이에요.')+'</div></div>';
   if(!DAYS[V.day]){return h;}
   h+='<div class="seg" role="group" aria-label="숙제 범위">'+RANGES.map(function(r,i){return '<button type="button" data-act="rng" data-r="'+i+'" aria-pressed="'+(V.r===i)+'">'+r[0]+'~'+r[1]+'번</button>';}).join("")+'</div>';
 
-  h+='<div class="picker"><div class="plabel">① 오늘의 손해석</div><div class="chips">';
+  h+='<div class="picker"><div class="plabel">① 손해석 '+mn.length+'문장</div><div class="chips">';
   mn.forEach(function(n){h+='<button type="button" class="numchip" data-act="jump" data-n="'+n+'">#'+n+'</button>';});
-  h+='</div><div class="sub" style="color:var(--paper-ink)">이 '+mn.length+'문장은 책에 먼저 해석을 써 보고, 그다음에 문장을 열어 확인해요.</div></div>';
+  h+='</div></div>';
 
-  h+='<div class="picker traps"><div class="plabel">② 오늘의 시험 함정 단어 3 <span class="mini">해석과 별개로, 책에 옮겨 써 두세요</span></div>';
-  curCards().forEach(function(c,i){
+  h+='<div class="picker traps"><div class="plabel">② 메모 붙이기 '+(cc.length+(ek?1:0))+'개</div>';
+  cc.forEach(function(c,i){
     h+='<button type="button" class="trow" data-act="card" data-i="'+i+'"><span class="tno">'+CIRC[i]+'</span><span class="tw"><b>'+esc(c.w)+'</b><small>'+esc(c.hook)+'</small></span><span class="tn">#'+c.n+'번</span><span class="tck">열기</span></button>';
   });
+  if(ek){var g=TAGS[ek],x=TI[ek];h+='<button type="button" class="trow" data-act="card" data-i="'+cc.length+'"><span class="tno">'+CIRC[cc.length]+'</span><span class="tw"><b>'+esc(x.h)+'</b><small>'+TYPES[g.t].n+'</small></span><span class="tn">#'+x.n+'번</span><span class="tck">열기</span></button>';}
   h+='</div>';
 
   h+='<div class="stack">';
-  h+='<button type="button" class="row" data-act="sents"><div class="grow"><div class="t">문장 하나씩 해석하기</div><div class="d">단어를 보고, 끊어 읽으며 입으로 해석한 뒤 열어서 맞춰 봐요</div></div><span class="pill on">'+curSents().length+'문장</span></button>';
-  h+='<button type="button" class="row" data-act="stars"><div class="grow"><div class="t">★ 해석 모아쓰기</div><div class="d">틀려서 ★ 표시한 문장을 모아 두었다가 손으로 해석을 보충해요</div></div><span class="pill'+(st.length?' on':'')+'">'+st.length+'문장</span></button>';
-  h+='<button type="button" class="row" data-act="tags"><div class="grow"><div class="t">쓰임 모아보기</div><div class="d">짝꿍 단어, 여러 뜻, 헷갈려요, 모양이 변해요를 종류별로 모아 봐요</div></div><span class="pill on">'+Object.keys(TAGS).filter(function(k){return !S.tw[k]&&TI[k]&&inR(TI[k].n);}).length+'개</span></button>';
-  h+='<button type="button" class="row" data-act="ans"><div class="grow"><div class="t">워크북 단어테스트 정답</div><div class="d">Part 2 단어테스트(40개 단위) 정답을 맞춰 봐요</div></div><span class="pill on">열기</span></button>';
-  h+='<button type="button" class="row" data-act="ub"><div class="grow"><div class="t">워크북 유·반의어</div><div class="d">Part 3 유·반의어를 정리해요</div></div><span class="pill on">열기</span></button>';
+  h+='<button type="button" class="row" data-act="sents"><div class="grow"><div class="t">③ 문장 하나씩 해석하기</div><div class="d">단어를 보고, 끊어 읽으며 입으로 해석한 뒤 열어서 맞춰 봐요</div></div><span class="pill on">'+curSents().length+'문장</span></button>';
+  h+='<div class="gl">오답노트</div>';
+  h+='<button type="button" class="row" data-act="stars"><div class="grow"><div class="t">★ 해석 모아쓰기</div><div class="d">틀려서 ★ 표시한 문장</div></div><span class="pill'+(st.length?' on':'')+'">'+st.length+'문장</span></button>';
+  h+='<div class="gl">눈으로 보기</div>';
+  h+='<button type="button" class="row" data-act="tags"><div class="grow"><div class="t">쓰임 모아보기</div><div class="d">다의어 · 혼동어 · 파생어 · 함정을 문장 번호 순서로</div></div><span class="pill on">'+Object.keys(TAGS).filter(function(k){return TI[k]&&inR(TI[k].n);}).length+'개</span></button>';
+  var Zq=QZ[V.day],stp=(Zq&&Zq.res)?Zq.res.filter(function(x){return x;}).length:0;
+  h+='<div class="gl">도전</div>';
+  h+='<button type="button" class="row" data-act="quiz"><div class="grow"><div class="t">유·반의어 퀴즈</div><div class="d">수시로 풀어요 · DAY '+V.day+' 2회차</div></div><span class="pill'+(stp?' on':'')+'">'+stp+' / 2</span></button>';
+  h+='<div class="gl">정답지</div>';
+  h+='<button type="button" class="row" data-act="ans"><div class="grow"><div class="t">워크북 단어테스트 정답</div><div class="d">Part 2 단어테스트(40개 단위)</div></div><span class="pill on">열기</span></button>';
+  h+='<button type="button" class="row" data-act="ub"><div class="grow"><div class="t">워크북 유·반의어 정답</div><div class="d">Part 3</div></div><span class="pill on">열기</span></button>';
   h+='</div>';
   return h;
 }
 
-function copyBox(c,n){
-  var h='<div class="copybox"><span class="ctab">책 '+n+'번 문장 옆에 이대로 써요</span>';
+function memoBox(c,label){
+  var h='<div class="postit"><span class="ptab">'+label+'</span>',ex='';
   c.forEach(function(x){
     if(x[0]==="key"){h+='<div class="ckey">'+esc(x[1])+' <span>'+esc(x[2])+'</span></div>';}
-    else if(x[0]==="ex"){h+='<div class="cex">'+esc(x[1])+'<br><span>'+esc(x[2])+'</span></div>';}
     else if(x[0]==="pt"){h+='<div class="cpt">'+esc(x[1])+'</div>';}
     else if(x[0]==="bad"){h+='<div class="cbad">'+esc(x[1])+'</div>';}
+    else if(x[0]==="ex"){ex+='<div class="cex">'+esc(x[1])+'<br><span>'+esc(x[2])+'</span></div>';}
   });
-  return h+'</div>';
+  h+='</div>';
+  return h+(ex?'<div class="exbox"><b>예문</b>'+ex+'</div>':'');
 }
-function tagCard(k){
+function copyBox(c,n){return memoBox(c,'메모 · '+n+'번 문장 옆');}
+function tagCard(k,memo){
   var g=TAGS[k],x=TI[k],T=TYPES[g.t],done=!!S.tw[k];
-  var h='<div class="card"><div class="cardhead"><span class="chip '+T.c+'" aria-hidden="true">'+g.t+'</span><span class="tl '+T.c+'">'+T.n+'</span><span class="no">'+x.n+'번 문장</span></div>';
+  var h='<div class="card"><div class="cardhead"><span class="chip '+T.c+'" aria-hidden="true">'+TCH[g.t]+'</span><span class="tl '+T.c+'">'+T.n+'</span><span class="no">'+x.n+'번 문장</span></div>';
   h+='<div class="word">'+esc(x.h)+'<small>'+esc(x.m)+'</small></div>';
-  h+='<div class="body"><b>언제 써요?</b><br>'+esc(g.when)+'</div>';
+  h+='<div class="body"><b>이럴 때 써요</b><br>'+esc(g.when)+'</div>';
   if(g.warn){h+='<div class="warn"><span class="wtab">시험에 자주 나와요</span>'+esc(g.warn)+'</div>';}
-  h+='<div class="body"><b>기억할 것</b><br>'+esc(g.watch)+'</div>';
-  h+=copyBox(g.copy,x.n);
+  h+='<div class="body"><b>이것만 기억</b><br>'+esc(g.watch)+'</div>';
+  if(memo){h+=copyBox(g.copy,x.n);}
   h+='</div>';
   return h;
 }
@@ -9438,7 +9460,7 @@ function tagCard(k){
 function wordRow(n,x){
   var low=x.h.toLowerCase(),tg=TAGS[low],key=n+":"+low,open=!!S.tagopen[key];
   var h='<div class="wrow2"><div class="wh">'+(x.star?'<span class="stm">★</span>':'')+esc(x.h)+(x.p?' <small>('+x.p+')</small>':'');
-  if(tg){h+=' <button type="button" class="tgb '+TYPES[tg.t].c+'" data-act="tag" data-k="'+esc(key)+'" aria-label="쓰임 보기">'+tg.t+'</button>';}
+  if(tg){h+=' <button type="button" class="tgb '+TYPES[tg.t].c+'" data-act="tag" data-k="'+esc(key)+'" aria-label="쓰임 보기">'+TCH[tg.t]+'</button>';}
   h+='</div><div class="wm">'+esc(x.m)+'</div></div>';
   if(tg&&open){h+=tagCard(low);}
   return h;
@@ -9497,32 +9519,27 @@ function stars(){
 
 function tagsView(){
   var h=topbar("DAY "+V.day+" · "+rlab(),"쓰임 모아보기");
-  h+='<div class="banner">단어 뜻만으로는 놓치기 쉬운 <b>쓰임</b>을 <b>문장 번호 순서</b>대로 모았어요. 박스 안의 내용만 <b>책의 해당 번호 옆에 옮겨 쓰면</b> 돼요.</div>';
+  h+='<div class="banner">문장 번호 순서대로 눈으로 읽는 쓰임이에요.</div>';
   var items=Object.keys(TAGS).filter(function(k){return TI[k]&&inR(TI[k].n);}).sort(function(a,b){return TI[a].n-TI[b].n||TYPE_ORDER.indexOf(TAGS[a].t)-TYPE_ORDER.indexOf(TAGS[b].t);});
   h+='<div class="gl">총 '+items.length+'개</div>';
-  items.forEach(function(k){h+=tagCard(k);});
+  items.forEach(function(k){h+=tagCard(k,false);});
   return h;
 }
 
 function oneCard(c,i){
-  var h='<div class="card" id="c'+i+'"><div class="cardhead"><span class="chip hae">'+CIRC[i]+'</span><span class="tl hae">시험 함정 단어</span><span class="no">'+c.n+'번 문장</span></div>';
+  var h='<div class="card" id="c'+i+'"><div class="cardhead"><span class="chip hae">'+CIRC[i]+'</span><span class="tl hae">함정</span><span class="no">'+c.n+'번 문장</span></div>';
   h+='<div class="word">'+esc(c.w)+'<small>('+c.p+') '+esc(c.m)+'</small></div>';
   h+='<div class="warn"><span class="wtab">시험 단골 함정!</span>'+esc(c.warn)+'</div>';
-  h+='<div class="copybox"><span class="ctab">책에 옮겨 써요</span>';
-  c.copy.forEach(function(x){
-    if(x[0]==="key"){h+='<div class="ckey">'+esc(x[1])+' <span>'+esc(x[2])+'</span></div>';}
-    else if(x[0]==="ex"){h+='<div class="cex">'+esc(x[1])+'<br><span>'+esc(x[2])+'</span></div>';}
-    else if(x[0]==="pt"){h+='<div class="cpt">'+esc(x[1])+'</div>';}
-    else if(x[0]==="bad"){h+='<div class="cbad">'+esc(x[1])+'</div>';}
-  });
-  h+='</div></div>';
+  h+=memoBox(c.copy,'메모 · '+c.n+'번 문장 옆');
+  h+='</div>';
   return h;
 }
 
 function cards(){
-  var h=topbar("DAY "+V.day+" · 해석과 별개로 메모","오늘의 시험 함정 단어 3");
-  h+='<div class="banner">박스 안의 내용을 <b>책의 해당 문장 옆에 옮겨 적고</b>. 문장 해석을 안 한 날에도 이것만은 챙겨요.</div>';
+  var h=topbar("DAY "+V.day+" · "+rlab(),"책에 옮겨 쓸 쓰임");
   curCards().forEach(function(c,i){h+=oneCard(c,i);});
+  var ek=extraTag();
+  if(ek){h+='<div id="c'+curCards().length+'">'+tagCard(ek,true)+'</div>';}
   return h;
 }
 
@@ -9673,7 +9690,7 @@ function quizView(U){
   if(Z.i>=Z.qs.length){
     var prev=Z.res[Z.rd];if(!prev||Z.score>prev.s){Z.res[Z.rd]={s:Z.score,n:Z.qs.length};saveAll();h=st.replace(/<\/div>$/,'')+'</div>';}
     var both=Z.res[0]&&Z.res[1],oth=1-Z.rd;
-    h+='<div class="card qzend"><div class="qzscore">'+Z.score+' <span>/ '+Z.qs.length+'</span></div><div class="sub" style="text-align:center">'+(both?'🎉 도장깨기 완료! 이 DAY 유·반의어 짝을 두 회차에 걸쳐 한 번씩 다 만났어요.':(Z.score===Z.qs.length?'완벽해요! ':'')+(Z.rd+1)+'회차 끝! 이제 '+(oth+1)+'회차는 아직 안 나온 나머지 짝이에요.')+'</div>';
+    h+='<div class="card qzend"><div class="qzscore">'+Z.score+' <span>/ '+Z.qs.length+'</span></div><div class="sub" style="text-align:center">'+(both?'도장깨기 완료! 이 DAY 유·반의어 짝을 두 회차에 걸쳐 한 번씩 다 만났어요.':(Z.score===Z.qs.length?'완벽해요! ':'')+(Z.rd+1)+'회차 끝! 이제 '+(oth+1)+'회차는 아직 안 나온 나머지 짝이에요.')+'</div>';
     if(Z.wrong.length){h+='<div class="plabel" style="margin-top:6px">다시 볼 짝</div>';Z.wrong.forEach(function(q){if(q.t==="multi"){h+='<div class="qzw"><b>'+esc(q.head.w)+'</b> <span class="ubmm">('+esc(ubChunks(q.head.m)[0])+')</span> <span class="ubsym">'+(q.k==="syn"?'≈':'↔')+'</span> '+q.ans.map(function(a){return '<b class="uba">'+esc(a.w)+'</b> <span class="ubmm">('+esc(ubChunks(a.m)[0])+')</span>';}).join(', ')+'</div>';return;}if(q.t==="judge"){h+='<div class="qzw"><b>'+esc(q.a.w)+'</b> <span class="ubmm">('+esc(ubChunks(q.a.m)[0])+')</span> · <b>'+esc(q.b.w)+'</b> <span class="ubmm">('+esc(ubChunks(q.b.m)[0])+')</span> → '+q.rel+'</div>';return;}h+='<div class="qzw"><b>'+esc(q.src.w)+'</b> <span class="ubmm">('+esc(ubChunks(q.src.m)[0])+')</span> <span class="ubsym">'+(q.k==="syn"?'≈':'↔')+'</span> <b class="uba">'+esc(q.ans.w)+'</b> <span class="ubmm">('+esc(ubChunks(q.ans.m)[0])+')</span></div>';});}
     h+='<button type="button" class="rbtn on" style="margin-top:10px" data-act="qzround" data-r="'+oth+'">'+(oth+1)+'회차 '+(Z.res[oth]?'다시 풀기':'풀기')+'</button><button type="button" class="rbtn" data-act="qzagain">'+(Z.rd+1)+'회차 다시 풀기 (같은 문제)</button></div>';
     return h;
@@ -9703,8 +9720,7 @@ function ubView(){
   var U=UB[V.day],h=topbar("DAY "+V.day+" · 워크북","유·반의어");
   if(!U){return h+'<div class="banner">이 DAY의 유·반의어는 아직 없어요.</div>';}
   var ut=V.ut||0,L=ut===0?U.syn:U.ant;
-  h+='<div class="seg" role="group" aria-label="유의어 반의어">'+[["유의어 "+U.syn.length],["반의어 "+U.ant.length],["퀴즈 2회"]].map(function(x,i){return '<button type="button" data-act="utab" data-i="'+i+'" aria-pressed="'+(ut===i)+'">'+x[0]+'</button>';}).join("")+'</div>';
-  if(ut===2){return h+quizView(U);}
+  h+='<div class="seg" role="group" aria-label="유의어 반의어">'+[["유의어 "+U.syn.length],["반의어 "+U.ant.length]].map(function(x,i){return '<button type="button" data-act="utab" data-i="'+i+'" aria-pressed="'+(ut===i)+'">'+x[0]+'</button>';}).join("")+'</div>';
   h+='<div class="sub">워크북 정답을 확인하고, 두 단어가 어떻게 다른지까지 읽어 봐요.</div>';
   L.forEach(function(x,i){
     var wm=function(it,cls){return '<span class="ubwm"><b'+(cls?' class="'+cls+'"':'')+'>'+esc(it.w)+'</b><span class="ubmm">('+esc(ubShort(it,x,ut))+')</span></span>';};
@@ -9713,6 +9729,11 @@ function ubView(){
     h+='<div class="ubnu"><span class="ubtab">뉘앙스</span>'+esc(x.nu)+'</div></div>';
   });
   return h;
+}
+function quizScreen(){
+  var h=topbar("DAY "+V.day,"유·반의어 퀴즈")+dayRowHtml();
+  if(!UB[V.day]){return h+'<div class="banner">이 DAY의 유·반의어는 아직 없어요.</div>';}
+  return h+quizView(UB[V.day]);
 }
 function render(){
   var h="";
@@ -9723,6 +9744,7 @@ function render(){
   else if(V.s==="cards"){h=cards();}
   else if(V.s==="ans"){h=ansView();}
   else if(V.s==="ub"){h=ubView();}
+  else if(V.s==="quiz"){h=quizScreen();}
   else if(V.s==="soon"){h=topbar("워마 2000",V.t)+'<div class="banner">이 코너는 샘플에 아직 들어 있지 않아요. 내용이 정해지면 여기에 채워요.</div>';}
   if(V.s!=="home"){h+='<button type="button" class="homebtn" data-act="home">홈으로 돌아가기</button>';}
   $app.innerHTML=h;
@@ -9736,7 +9758,8 @@ $app.addEventListener("click",function(e){
   else if(a==="stars"){V.s="stars";}
   else if(a==="tags"){V.s="tags";}
   else if(a==="cards"){V.s="cards";}
-  else if(a==="ub"){V.s="ub";V.ut=V.ut||0;}
+  else if(a==="ub"){V.s="ub";V.ut=0;}
+  else if(a==="quiz"){V.s="quiz";}
   else if(a==="utab"){V.ut=Number(t.dataset.i);keep=true;}
   else if(a==="qzpick"){var Z=V.qz;if(Z&&Z.pick===null){Z.pick=Number(t.dataset.i);var q=Z.qs[Z.i];var ok=q.t==="judge"?["유의어","반의어","관계없음"][Z.pick]===q.rel:q.opts[Z.pick].w===q.ans.w;if(ok){Z.score++;}else{Z.wrong.push(q);}}keep=true;}
   else if(a==="mupick"){var q=V.qz.qs[V.qz.i];var k=Number(t.dataset.i);q.sel[k]=!q.sel[k];keep=true;}
