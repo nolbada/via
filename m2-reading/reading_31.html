@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M2 Reading 31</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}.bmw{text-align:center;margin:2px 0 0}.bmk{align-items:center;gap:8px;font-size:12px;color:#7a5a00;background:#fff3bf;border:1px solid #e0a800;border-radius:99px;padding:2px 4px 2px 12px}.bmk button{background:#fff;color:#7a5a00;border:1px solid #e0a800;padding:1px 10px;font-size:12px;font-weight:600;border-radius:99px}.res{border-radius:14px;padding:18px 16px;margin:12px 0;text-align:center;border:2px solid}.rp{background:#e6f5ec;border-color:#1a7f4b}.rf{background:#fdecea;border-color:#c0392b}.rt2{font-weight:700;font-size:15px}.rp .rt2{color:#1a7f4b}.rf .rt2{color:#c0392b}.rpct{font-size:54px;font-weight:700;line-height:1.1}.rpct small{font-size:18px;margin-left:2px}.rl2{font-size:13px;color:var(--mut);margin-bottom:10px}.rtb{width:100%;border-collapse:collapse;font-size:14px;text-align:left;background:#fff;border-radius:8px;margin:6px 0 12px}.rtb td{padding:7px 10px;border-top:1px solid var(--line)}.rtb tr:first-child td{border-top:0}.rtb td:last-child{text-align:right}.part{position:relative}.pane{position:sticky;top:0;z-index:6;max-height:40vh;max-height:40dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--bg,#f2f6f9);padding:2px 0 8px;box-shadow:0 10px 8px -9px rgba(18,38,58,.45)}.pane .dlg{margin:0}.pane.open{position:static;max-height:none;overflow:visible;box-shadow:none}.pp.np{margin-top:8px}.pp .k{margin-bottom:2px}.hl{display:inline-block;font-size:11px;font-weight:700;color:var(--pri);border:1px solid var(--pri);border-radius:4px;padding:0 6px;margin:6px 0 2px}.memo{transform:rotate(-.4deg);box-shadow:0 6px 14px rgba(138,90,0,.15)}.grp{position:relative}.sumbox{margin:2px 0 8px 28px;padding:8px 10px;background:#f4f7fa;border-left:3px solid var(--pri);border-radius:4px;font-size:15px;line-height:1.5}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M2 Reading</a><h1>Reading 31 · Sleep Matters for Teenagers</h1><div class="sub">수면은 십대들에게 중요하다 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div class="bmw"><span id="bm" class="bmk" style="display:none">책갈피 저장됨 &middot; 다음에 이어서 풀기<button type="button">처음부터</button></span></div><div id="app"></div>
+</div>
+<script>
+var D=[{"n": 1, "tag": "Dr. Jang", "en": "Hello, everyone! I’m Dr. Jang. I’m so happy to have about 400 teenager hear for my live stream.", "ko": "안녕하세요, 여러분! 저는 장 박사입니다. 여기 제 라이브 방송에 약 400명의 십대들이 함께해 주셔서 정말 기쁩니다.", "ok": false, "foot": [], "fixes": [{"wrong": "teenager", "right": "teenagers", "partial": false, "at": [12], "point": "어법: 수사(400) 뒤에는 복수명사 teenagers 사용", "topic": "어법", "memo": "수사(400) 뒤에는 복수명사 teenagers 사용"}, {"wrong": "hear", "right": "here", "partial": false, "at": [13], "point": "어휘: 장소를 나타내는 부사 here 사용(hear는 ‘듣다’라는 동사)", "topic": "어휘", "memo": "장소를 나타내는 부사 here 사용(hear는 ‘듣다’라는 동사)"}]}, {"n": 2, "tag": null, "en": "Today, we will talk with sleep. Ready? Let’s go!", "ko": "오늘 우리는 수면에 대해 이야기할 거예요. 준비됐나요? 시작합시다!", "ok": false, "foot": [], "fixes": [{"wrong": "with", "right": "about", "partial": false, "at": [4], "point": "어휘/전치사: 주제를 언급할 때는 talk about 사용(with는 ‘~와 함께’라는 뜻이므로 문맥상 부적절)", "topic": "어휘/전치사", "memo": "주제를 언급할 때는 talk about 사용(with는 ‘~와 함께’라는 뜻이므로 문맥상 부적절)"}]}, {"n": 3, "tag": null, "en": "Sleep is such important that you can’t live without it.", "ko": "수면은 매우 중요해서 잠을 자지 않고는 살 수가 없습니다.", "ok": false, "foot": [], "fixes": [{"wrong": "such", "right": "so", "partial": false, "at": [2], "point": "어법: 형용사를 바로 수식할 때는 so, 뒤에 명사가 있을 때는 such 사용(so + 형용사 + that ~)", "topic": "어법", "memo": "형용사를 바로 수식할 때는 so, 뒤에 명사가 있을 때는 such 사용(so + 형용사 + that ~)"}]}, {"n": 4, "tag": null, "en": "When you sleep, your body repairs your cells and muscles.", "ko": "잠을 잘 때, 여러분의 몸은 여러분의 세포와 근육을 회복시킵니다.", "ok": true, "foot": ["1cell 세포", "2muscle 근육"], "fixes": []}, {"n": 5, "tag": null, "en": "So, if you doesn’t get enough sleep, you can get sick.", "ko": "그래서 만약 여러분이 충분한 수면을 취하지 않는다면, 아플 수 있습니다.", "ok": false, "foot": [], "fixes": [{"wrong": "doesn’t", "right": "don’t", "partial": false, "at": [3], "point": "어법: 접속사 if가 이끄는 조건절의 주어 you에는 don’t 사용", "topic": "어법", "memo": "접속사 if가 이끄는 조건절의 주어 you에는 don’t 사용"}]}, {"n": 6, "tag": null, "en": "Sleep is important for your physically health.", "ko": "수면은 신체 건강에 중요합니다.", "ok": false, "foot": [], "fixes": [{"wrong": "physically", "right": "physical", "partial": false, "at": [5], "point": "어휘/어법: 명사 health를 수식하는 형용사 physical 사용(부사 physically 아님)", "topic": "어휘/어법", "memo": "명사 health를 수식하는 형용사 physical 사용(부사 physically 아님)"}]}, {"n": 7, "tag": null, "en": "And it is also important for your memories.", "ko": "또한 수면은 여러분의 기억력에도 중요합니다.", "ok": false, "foot": [], "fixes": [{"wrong": "memories", "right": "memory", "partial": false, "at": [7], "point": "어휘: ‘기억력’이라는 의미의 memory는 이 문맥에서 셀 수 없는 명사로 단수형 사용", "topic": "어휘", "memo": "‘기억력’이라는 의미의 memory는 이 문맥에서 셀 수 없는 명사로 단수형 사용"}]}, {"n": 8, "tag": null, "en": "While you sleep, your brain clears memories that is not needed.", "ko": "잠을 자는 동안, 여러분의 뇌는 필요 없는 기억들을 정리합니다.", "ok": false, "foot": [], "fixes": [{"wrong": "is", "right": "are", "partial": false, "at": [8], "point": "주격 관계대명사: 선행사 memories(복수)에 맞춰 관계대명사절의 동사 are 사용", "topic": "주격 관계대명사", "memo": "선행사 memories(복수)에 맞춰 관계대명사절의 동사 are 사용"}]}, {"n": 9, "tag": null, "en": "This makes space for new memories.", "ko": "이것이 새로운 기억들을 위한 공간을 만듭니다.", "ok": true, "foot": [], "fixes": []}, {"n": 10, "tag": null, "en": "Imagine to keep every detail of your experiences in your memory.", "ko": "여러분의 경험의 모든 세부사항을 기억한다고 상상해 보세요.", "ok": false, "foot": ["1detail 세부사항"], "fixes": [{"wrong": "to keep", "right": "keeping", "partial": false, "at": [1], "point": "동명사: imagine은 동명사를 목적어로 취함(imagine + v-ing)", "topic": "동명사", "memo": "imagine은 동명사를 목적어로 취함(imagine + v-ing)"}]}, {"n": 11, "tag": null, "en": "It would be like a room with necessary items everywhere.", "ko": "그것은 마치 불필요한 물건들이 가득한 방과 같을 겁니다.", "ok": false, "foot": [], "fixes": [{"wrong": "necessary", "right": "unnecessary", "partial": false, "at": [7], "point": "어휘: 문맥상 ‘불필요한’이라는 의미의 unnecessary 사용(necessary는 반대 의미)", "topic": "어휘", "memo": "문맥상 ‘불필요한’이라는 의미의 unnecessary 사용(necessary는 반대 의미)"}]}, {"n": 12, "tag": "sweetdream", "en": "During sleep, the brain work like a cleaner.", "ko": "잠자는 동안, 뇌는 청소부처럼 작동해요.", "ok": false, "foot": [], "fixes": [{"wrong": "work", "right": "works", "partial": false, "at": [4], "point": "수일치: 주어 the brain(3인칭 단수)에 맞춰 동사 works 사용", "topic": "수일치", "memo": "주어 the brain(3인칭 단수)에 맞춰 동사 works 사용"}]}, {"n": 13, "tag": "Dr. Jang", "en": "Sweetdream make a good point. Yes, unnecessary memories is cleaned up by your brain while you sleep.", "ko": "Sweetdream이 좋은 말을 했습니다. 맞습니다, 잠을 자는 동안 뇌는 불필요한 기억들을 정리합니다.", "ok": false, "foot": [], "fixes": [{"wrong": "make", "right": "made", "partial": false, "at": [1], "point": "시제: 과거 상황을 설명하므로 과거형 made 사용", "topic": "시제", "memo": "과거 상황을 설명하므로 과거형 made 사용"}, {"wrong": "is cleaned up", "right": "are cleaned up", "partial": false, "at": [8], "point": "수동태·수일치: 주어 memories(복수)에 맞춰 be동사 are + p.p. 사용", "topic": "수동태·수일치", "memo": "주어 memories(복수)에 맞춰 be동사 are + p.p. 사용"}]}, {"n": 14, "tag": null, "en": "Now, let’s looking at some questions. Here’s an interesting one.", "ko": "이제 몇 가지 질문을 살펴봅시다. 여기 흥미로운 질문이 하나 있네요.", "ok": false, "foot": [], "fixes": [{"wrong": "looking", "right": "look", "partial": false, "at": [2], "point": "어법: Let's 뒤에는 동사원형 look 사용", "topic": "어법", "memo": "Let's 뒤에는 동사원형 look 사용"}]}, {"n": 15, "tag": "sleepy", "en": "I have so many homework on weekdays that I can’t sleeping enough.", "ko": "저는 평일에는 숙제가 너무 많아서 충분히 잘 수가 없어요.", "ok": false, "foot": [], "fixes": [{"wrong": "many", "right": "much", "partial": false, "at": [3], "point": "어휘/어법: homework는 셀 수 없는 명사이므로 many가 아닌 much 사용", "topic": "어휘/어법", "memo": "homework는 셀 수 없는 명사이므로 many가 아닌 much 사용"}, {"wrong": "sleeping", "right": "sleep", "partial": false, "at": [10], "point": "조동사 can 뒤에는 동사원형 sleep 사용", "topic": "어법", "memo": "조동사 can 뒤에는 동사원형 sleep 사용"}]}, {"n": 16, "tag": null, "en": "So, I sleep most on weekends. Is this okay?", "ko": "그래서 주말에는 더 많이 잡니다. 이래도 괜찮은가요?", "ok": false, "foot": [], "fixes": [{"wrong": "most", "right": "more", "partial": false, "at": [3], "point": "비교급: 평일과 주말, 두 가지를 비교하는 문맥이므로 비교급 more 사용(최상급 most는 셋 이상을 비교할 때 사용)", "topic": "비교급", "memo": "평일과 주말, 두 가지를 비교하는 문맥이므로 비교급 more 사용(최상급 most는 셋 이상을 비교할 때 사용)"}]}, {"n": 17, "tag": "Dr. Jang", "en": "Try to sleep a lot for weekends may help.", "ko": "주말 동안 많이 자려고 노력하는 것은 도움이 될 수 있습니다.", "ok": false, "foot": [], "fixes": [{"wrong": "Try", "right": "Trying", "partial": false, "at": [0], "point": "동명사: 문장의 주어 자리이므로 동명사 Trying 사용", "topic": "동명사", "memo": "문장의 주어 자리이므로 동명사 Trying 사용"}, {"wrong": "for", "right": "during", "partial": false, "at": [5], "point": "어휘/전치사: 특정 기간을 나타낼 때는 during weekends 사용(for는 기간의 길이를 나타낼 때 사용)", "topic": "어휘/전치사", "memo": "특정 기간을 나타낼 때는 during weekends 사용(for는 기간의 길이를 나타낼 때 사용)"}]}, {"n": 18, "tag": null, "en": "But you should try to keep a regularly sleep schedule.", "ko": "하지만 규칙적인 수면 습관을 유지하려고 노력해야 합니다.", "ok": false, "foot": [], "fixes": [{"wrong": "regularly", "right": "regular", "partial": false, "at": [7], "point": "어휘/어법: 명사 schedule을 수식하는 형용사 regular 사용(부사 regularly 아님)", "topic": "어휘/어법", "memo": "명사 schedule을 수식하는 형용사 regular 사용(부사 regularly 아님)"}]}, {"n": 19, "tag": null, "en": "Changing sleep patterns too much may lead to healthy problems.", "ko": "수면 패턴을 너무 자주 바꾸는 것은 건강 문제로 이어질 수 있습니다.", "ok": false, "foot": ["1pattern 패턴, 양상"], "fixes": [{"wrong": "too much", "right": "too often", "partial": false, "at": [3], "point": "어휘: 빈도를 나타낼 때는 too often 사용(too much는 양을 나타냄)", "topic": "어휘", "memo": "빈도를 나타낼 때는 too often 사용(too much는 양을 나타냄)"}, {"wrong": "healthy", "right": "health", "partial": false, "at": [8], "point": "어휘: health problems(건강 문제)는 명사 health가 명사를 수식하는 형태이며 형용사 healthy는 부적절", "topic": "어휘", "memo": "health problems(건강 문제)는 명사 health가 명사를 수식하는 형태이며 형용사 healthy는 부적절"}]}];var PP=[["Hello, everyone! I’m Dr. Jang. I’m so happy to have about 400 teenagers here for my live stream.", "안녕하세요, 여러분! 저는 장 박사입니다. 여기 제 라이브 방송에 약 400명의 십대들이 함께해 주셔서 정말 기쁩니다.", 0], ["Today, we will talk about sleep. Ready? Let’s go!", "오늘 우리는 수면에 대해 이야기할 거예요. 준비됐나요? 시작합시다!", 0], ["Sleep is so important that you can’t live without it.", "수면은 매우 중요해서 잠을 자지 않고는 살 수가 없습니다.", 0], ["When you sleep, your body repairs your cells and muscles.", "잠을 잘 때, 여러분의 몸은 여러분의 세포와 근육을 회복시킵니다.", 0], ["So, if you don’t get enough sleep, you can get sick.", "그래서 만약 여러분이 충분한 수면을 취하지 않는다면, 아플 수 있습니다.", 0], ["Sleep is important for your physical health.", "수면은 신체 건강에 중요합니다.", 0], ["And it is also important for your memory.", "또한 수면은 여러분의 기억력에도 중요합니다.", 0], ["While you sleep, your brain clears memories that are not needed.", "잠을 자는 동안, 여러분의 뇌는 필요 없는 기억들을 정리합니다.", 0], ["This makes space for new memories.", "이것이 새로운 기억들을 위한 공간을 만듭니다.", 0], ["Imagine keeping every detail of your experiences in your memory.", "여러분의 경험의 모든 세부사항을 기억한다고 상상해 보세요.", 0], ["It would be like a room with unnecessary items everywhere.", "그것은 마치 불필요한 물건들이 가득한 방과 같을 겁니다.", 0], ["During sleep, the brain works like a cleaner.", "잠자는 동안, 뇌는 청소부처럼 작동해요.", 0], ["Sweetdream made a good point. Yes, unnecessary memories are cleaned up by your brain while you sleep.", "Sweetdream이 좋은 말을 했습니다. 맞습니다, 잠을 자는 동안 뇌는 불필요한 기억들을 정리합니다.", 0], ["Now, let’s look at some questions. Here’s an interesting one.", "이제 몇 가지 질문을 살펴봅시다. 여기 흥미로운 질문이 하나 있네요.", 0], ["I have so much homework on weekdays that I can’t sleep enough.", "저는 평일에는 숙제가 너무 많아서 충분히 잘 수가 없어요.", 0], ["So, I sleep more on weekends. Is this okay?", "그래서 주말에는 더 많이 잡니다. 이래도 괜찮은가요?", 0], ["Trying to sleep a lot during weekends may help.", "주말 동안 많이 자려고 노력하는 것은 도움이 될 수 있습니다.", 0], ["But you should try to keep a regular sleep schedule.", "하지만 규칙적인 수면 습관을 유지하려고 노력해야 합니다.", 0], ["Changing sleep patterns too often may lead to health problems.", "수면 패턴을 너무 자주 바꾸는 것은 건강 문제로 이어질 수 있습니다.", 0]];var RNUM=31;var TITLE_EN="Sleep Matters for Teenagers";var PASS_EN=["Sleep Matters for Teenagers", "Hello, everyone! I’m Dr. Jang. I’m so happy to have about 400 teenagers here for my live stream. Today, we will talk about sleep. Ready? Let’s go! Sleep is so important that you can’t live without it. When you sleep, your body repairs your cells and muscles. So, if you don’t get enough sleep, you can get sick. Sleep is important for your physical health. And it is also important for your memory. While you sleep, your brain clears memories that are not needed. This makes space for new memories. Imagine keeping every detail of your experiences in your memory. It would be like a room with unnecessary items everywhere.", "During sleep, the brain works like a cleaner.", "Sweetdream made a good point. Yes, unnecessary memories are cleaned up by your brain while you sleep. Now, let’s look at some questions. Here’s an interesting one.", "I have so much homework on weekdays that I can’t sleep enough. So, I sleep more on weekends. Is this okay?", "Trying to sleep a lot during weekends may help. But you should try to keep a regular sleep schedule. Changing sleep patterns too often may lead to health problems."];var PASS_KO=["수면은 십대들에게 중요하다", "안녕하세요, 여러분! 저는 장 박사입니다. 여기 제 라이브 방송에 약 400명의 십대들이 함께해 주셔서 정말 기쁩니다. 오늘 우리는 수면에 대해 이야기할 거예요. 준비됐나요? 시작합시다! 수면은 매우 중요해서 잠을 자지 않고는 살 수가 없습니다. 잠을 잘 때, 여러분의 몸은 여러분의 세포와 근육을 회복시킵니다. 그래서 만약 여러분이 충분한 수면을 취하지 않는다면, 아플 수 있습니다. 수면은 신체 건강에 중요합니다. 또한 수면은 여러분의 기억력에도 중요합니다. 잠을 자는 동안, 여러분의 뇌는 필요 없는 기억들을 정리합니다. 이것이 새로운 기억들을 위한 공간을 만듭니다. 여러분의 경험의 모든 세부사항을 기억한다고 상상해 보세요. 그것은 마치 불필요한 물건들이 가득한 방과 같을 겁니다.", "잠자는 동안, 뇌는 청소부처럼 작동해요.", "Sweetdream이 좋은 말을 했습니다. 맞습니다, 잠을 자는 동안 뇌는 불필요한 기억들을 정리합니다. 이제 몇 가지 질문을 살펴봅시다. 여기 흥미로운 질문이 하나 있네요.", "저는 평일에는 숙제가 너무 많아서 충분히 잘 수가 없어요. 그래서 주말에는 더 많이 잡니다. 이래도 괜찮은가요?", "주말 동안 많이 자려고 노력하는 것은 도움이 될 수 있습니다. 하지만 규칙적인 수면 습관을 유지하려고 노력해야 합니다. 수면 패턴을 너무 자주 바꾸는 것은 건강 문제로 이어질 수 있습니다."];var DG=[{"dlg": [["B", "Good morning, Ms. Kang. I’m not feeling well.", "안녕하세요, 강 선생님. 저 몸이 좀 안 좋아요."], ["W", "What’s wrong?", "어디가 안 좋니?"], ["B", "I have a bad stomachache. It hurt so much when I woke up this morning.", "배가 많이 아파요. 오늘 아침에 일어났을 때 정말 많이 아팠어요."], ["W", "What did you eat last night?", "어젯밤에 뭘 먹었니?"], ["B", "I ate spicy noodles late at night.", "밤늦게 매운 라면을 먹었어요."], ["W", "Spicy food can sometimes cause stomach pain. Eating late is also not good.", "매운 음식은 가끔 복통을 일으킬 수 있어. 늦게 먹는 것도 좋지 않단다."], ["B", "I see. What should I do?", "그렇군요. 어떻게 해야 하나요?"], ["W", "Drinking warm water will be helpful. You should take this medicine, too.", "따뜻한 물을 마시면 도움이 될 거야. 이 약도 먹으렴."], ["B", "Okay, I will. Thank you, Ms. Kang.", "네, 그럴게요. 감사합니다, 강 선생님."], ["W", "You’re welcome. Don’t forget to tell your teacher if your stomach still hurts.", "천만에. 계속 배가 아프면 담임 선생님께 말씀드리는 것 잊지 마."]], "qs": [{"n": 1, "q": "위 대화의 주제로 알맞은 것은?", "o": ["the boy’s eating habit", "the causes of a stomachache", "the bad effects of spicy food", "help for the boy’s stomachache", "the importance of drinking warm water"], "a": 3, "ans": "help for the boy’s stomachache", "evs": [["B: I have a bad stomachache. It hurt so much when I woke up this morning.", "배가 많이 아파요. 오늘 아침에 일어났을 때 정말 많이 아팠어요."], ["W: Drinking warm water will be helpful. You should take this medicine, too.", "따뜻한 물을 마시면 도움이 될 거야. 이 약도 먹으렴."]], "ev": ["B: I have a bad stomachache. It hurt so much when I woke up this morning.", "배가 많이 아파요. 오늘 아침에 일어났을 때 정말 많이 아팠어요."], "memo": ["B: I have a bad stomachache. It hurt so much when I woke up this morning.  (배가 많이 아파요. 오늘 아침에 일어났을 때 정말 많이 아팠어요.)", "W: Drinking warm water will be helpful. You should take this medicine, too.  (따뜻한 물을 마시면 도움이 될 거야. 이 약도 먹으렴.)"]}]}, {"dlg": [["G", "Hello?", "여보세요?"], ["B", "Hi, Tina. It’s Brian. You didn’t come to school today. What’s wrong?", "안녕, Tina. 나 Brian이야. 너 오늘 학교에 안 왔더라. 무슨 일 있어?"], ["G", "Hey, Brian. I have a bad cold. I keep coughing and have a runny nose.", "안녕, Brian. 나 감기에 심하게 걸렸어. 기침이 계속 나고 콧물이 나."], ["B", "I’m sorry to hear that. You should see a doctor.", "그것참 안됐다. 병원에 가 봐야 해."], ["G", "I already did. And I got some medicine.", "벌써 다녀왔어. 그리고 약도 받았어."], ["B", "Good. Don’t forget to take the medicine on time.", "잘했네. 약 제때 먹는 거 잊지 마."], ["G", "Okay. Thank you for calling, Brian.", "알았어. 전화해 줘서 고마워, Brian."], ["B", "You’re welcome. Take care and see you in class.", "천만에. 몸조리 잘하고 수업 시간에 보자."]], "qs": [{"n": 2, "q": "위 대화의 내용과 일치하지 않는 것은?", "o": ["Tina was absent from school today.", "Tina is suffering from a bad cold.", "Brian says that Tina should see a doctor.", "Tina will go to see a doctor after the dialogue.", "Brian advises that Tina should remember to take the medicine on time."], "a": 3, "ans": "Tina will go to see a doctor after the dialogue.", "evs": [["B: I’m sorry to hear that. You should see a doctor.", "그것참 안됐다. 병원에 가 봐야 해."], ["G: I already did. And I got some medicine.", "벌써 다녀왔어. 그리고 약도 받았어."]], "ev": ["B: I’m sorry to hear that. You should see a doctor.", "그것참 안됐다. 병원에 가 봐야 해."], "memo": ["B: I’m sorry to hear that. You should see a doctor.  (그것참 안됐다. 병원에 가 봐야 해.)", "G: I already did. And I got some medicine.  (벌써 다녀왔어. 그리고 약도 받았어.)"]}]}, {"dlg": [["B", "Good morning, Ms. Kang. I’m not feeling well.", "안녕하세요, 강 선생님. 저 몸이 좀 안 좋아요."], ["W", "What’s wrong?", "어디가 안 좋니?"], ["B", "I have a bad stomachache. It hurt so much when I woke up this morning.", "배가 많이 아파요. 오늘 아침에 일어났을 때 정말 많이 아팠어요."], ["W", "What did you eat last night?", "어젯밤에 뭘 먹었니?"], ["B", "I ate spicy noodles late at night.", "밤늦게 매운 라면을 먹었어요."], ["W", "Spicy food can sometimes cause stomach pain. Eating late is also not good.", "매운 음식은 가끔 복통을 일으킬 수 있어. 늦게 먹는 것도 좋지 않단다."], ["B", "I see. What should I do?", "그렇군요. 어떻게 해야 하나요?"], ["W", "Drinking warm water will be helpful. You should take this medicine, too.", "따뜻한 물을 마시면 도움이 될 거야. 이 약도 먹으렴."], ["B", "Okay, I will. Thank you, Ms. Kang.", "네, 그럴게요. 감사합니다, 강 선생님."], ["W", "You’re welcome. Don’t forget to tell your teacher if your stomach still hurts.", "천만에. 계속 배가 아프면 담임 선생님께 말씀드리는 것 잊지 마."]], "qs": [{"n": 3, "q": "위 대화를 읽고 답할 수 없는 질문은?", "o": ["What is the boy’s problem?", "When did his stomach start to hurt?", "What did the boy eat last night?", "How many times a day should the boy take the medicine?", "What does Ms. Kang advise the boy to drink?"], "a": 3, "ans": "How many times a day should the boy take the medicine?", "evs": [["W: Drinking warm water will be helpful. You should take this medicine, too.", "따뜻한 물을 마시면 도움이 될 거야. 이 약도 먹으렴."]], "ev": ["W: Drinking warm water will be helpful. You should take this medicine, too.", "따뜻한 물을 마시면 도움이 될 거야. 이 약도 먹으렴."], "memo": ["W: Drinking warm water will be helpful. You should take this medicine, too.  (따뜻한 물을 마시면 도움이 될 거야. 이 약도 먹으렴.)"]}]}, {"dlg": [["M", "Please take a seat. What’s wrong?", "앉으세요. 어디가 안 좋으세요?"], ["G", "I’m not feeling well, and I have a cough.", "몸이 좋지 않고 기침이 나요."], ["M", "I’ll take your temperature. Oh, you have a fever, too. I think you have a cold.", "체온을 재 볼게요. 아, 열도 있네요. 감기에 걸린 것 같아요."], ["G", "What should I do?", "어떻게 해야 하나요?"], ["M", "You need to take medicine. Don’t forget to eat something before you take it.", "약을 먹어야 해요. 약 먹기 전에 뭔가 먹는 것 잊지 마세요."], ["G", "Okay. Thank you.", "네. 감사합니다."]], "qs": [{"n": 4, "q": "위 대화를 요약한 문장의 빈칸 (A), (B)에 들어갈 말로 알맞은 것은?", "o": ["fever - water", "headache - medicine", "fever - medicine", "stomachache - medicine", "fever - a bus"], "a": 2, "ans": "fever - medicine", "evs": [["The girl has a cough and a fever. The doctor tells her to eat something before she takes medicine.", "소녀는 기침과 열이 있다. 의사는 그녀에게 약을 먹기 전에 무언가를 먹으라고 말한다."]], "ev": ["The girl has a cough and a fever. The doctor tells her to eat something before she takes medicine.", "소녀는 기침과 열이 있다. 의사는 그녀에게 약을 먹기 전에 무언가를 먹으라고 말한다."], "memo": ["The girl has a cough and a fever. The doctor tells her to eat something before she takes medicine.  (소녀는 기침과 열이 있다. 의사는 그녀에게 약을 먹기 전에 무언가를 먹으라고 말한다.)"], "sum": "The girl has a cough and a (A). The doctor tells her to eat something before she takes (B).", "lab": "완성된 요약문 : ", "why": "의사가 'Oh, you have a fever, too.'와 'You need to take medicine. Don’t forget to eat something before you take it.'이라고 말함."}]}, {"dlg": [["A", "I have a sore throat.", "나 목이 아파."], ["B", "That’s too bad. You should get some rest. And don’t forget to drink warm water.", "그것참 안됐다. 좀 쉬어야 해. 그리고 따뜻한 물 마시는 거 잊지 마."], ["A", "Okay. Thank you.", "알았어. 고마워."]], "qs": [{"n": 5, "q": "위 대화를 요약한 문장의 빈칸 (A), (B)에 들어갈 말로 알맞은 것은?", "o": ["throat - milk", "head - water", "throat - water", "stomach - tea", "leg - juice"], "a": 2, "ans": "throat - water", "evs": [["A has a sore throat. B tells A to get some rest and drink warm water.", "A는 목이 아프다. B는 A에게 좀 쉬고 따뜻한 물을 마시라고 말한다."]], "ev": ["A has a sore throat. B tells A to get some rest and drink warm water.", "A는 목이 아프다. B는 A에게 좀 쉬고 따뜻한 물을 마시라고 말한다."], "memo": ["A has a sore throat. B tells A to get some rest and drink warm water.  (A는 목이 아프다. B는 A에게 좀 쉬고 따뜻한 물을 마시라고 말한다.)"], "sum": "A has a sore (A). B tells A to get some rest and drink warm (B).", "lab": "완성된 요약문 : ", "why": "A가 'I have a sore throat.'라고 말하고, B가 'don’t forget to drink warm water'라고 말함."}]}];var BG=[{"pp": [["Sleep Matters for Teenagers", "수면은 십대들에게 중요하다"], ["Hello, everyone! I’m Dr. Jang. I’m so happy to have about 400 teenagers here for my live stream.", "안녕하세요, 여러분! 저는 장 박사입니다. 여기 제 라이브 방송에 약 400명의 십대들이 함께해 주셔서 정말 기쁩니다."], ["Today, we will talk about sleep. Ready? Let’s go!", "오늘 우리는 수면에 대해 이야기할 거예요. 준비됐나요? 시작합시다!"], ["Sleep is so important that you can’t live without it.", "수면은 매우 중요해서 잠을 자지 않고는 살 수가 없습니다."], ["When you sleep, your body repairs your cells and muscles.", "잠을 잘 때, 여러분의 몸은 여러분의 세포와 근육을 회복시킵니다."], ["So, if you don’t get enough sleep, you can get sick.", "그래서 만약 여러분이 충분한 수면을 취하지 않는다면, 아플 수 있습니다."], ["Sleep is important for your physical health.", "수면은 신체 건강에 중요합니다."]], "qs": [{"n": 6, "q": "윗글의 내용과 일치하지 않는 것은?", "o": ["We can get sick without enough sleep.", "We need sleep to live.", "Our cells and muscles are repaired during sleep.", "About 400 teenagers are watching Dr. Jang’s live stream.", "Sleep is not important for our physical health."], "a": 4, "ans": "Sleep is not important for our physical health.", "evs": [["Sleep is important for your physical health.", "수면은 신체 건강에 중요합니다."]], "ev": ["Sleep is important for your physical health.", "수면은 신체 건강에 중요합니다."], "memo": ["Sleep is important for your physical health.  (수면은 신체 건강에 중요합니다.)"]}]}, {"pp": [["And it is also important for your memory.", "또한 수면은 여러분의 기억력에도 중요합니다."], ["While you sleep, your brain clears memories that are not needed.", "잠을 자는 동안, 여러분의 뇌는 필요 없는 기억들을 정리합니다."], ["This makes space for new memories.", "이것이 새로운 기억들을 위한 공간을 만듭니다."], ["Imagine keeping every detail of your experiences in your memory.", "여러분의 경험의 모든 세부사항을 기억한다고 상상해 보세요."], ["It would be like a room with unnecessary items everywhere.", "그것은 마치 불필요한 물건들이 가득한 방과 같을 겁니다."]], "qs": [{"n": 7, "q": "윗글을 요약한 문장의 빈칸 (A), (B)에 들어갈 말로 알맞은 것은?", "o": ["needed - space", "needed - trouble", "happy - space", "important - noise", "shared - time"], "a": 0, "ans": "needed - space", "evs": [["While we sleep, the brain clears memories that are not needed. This makes space for new memories.", "우리가 잠을 자는 동안, 뇌는 필요 없는 기억들을 정리한다. 이것이 새로운 기억들을 위한 공간을 만든다."]], "ev": ["While we sleep, the brain clears memories that are not needed. This makes space for new memories.", "우리가 잠을 자는 동안, 뇌는 필요 없는 기억들을 정리한다. 이것이 새로운 기억들을 위한 공간을 만든다."], "memo": ["While we sleep, the brain clears memories that are not needed. This makes space for new memories.  (우리가 잠을 자는 동안, 뇌는 필요 없는 기억들을 정리한다. 이것이 새로운 기억들을 위한 공간을 만든다.)"], "sum": "While we sleep, the brain clears memories that are not (A). This makes (B) for new memories.", "lab": "완성된 요약문 : ", "why": "'your brain clears memories that are not needed. This makes space for new memories.'라고 함."}]}, {"pp": [["During sleep, the brain works like a cleaner.", "잠자는 동안, 뇌는 청소부처럼 작동해요."], ["Sweetdream made a good point. Yes, unnecessary memories are cleaned up by your brain while you sleep.", "Sweetdream이 좋은 말을 했습니다. 맞습니다, 잠을 자는 동안 뇌는 불필요한 기억들을 정리합니다."], ["Now, let’s look at some questions. Here’s an interesting one.", "이제 몇 가지 질문을 살펴봅시다. 여기 흥미로운 질문이 하나 있네요."], ["I have so much homework on weekdays that I can’t sleep enough.", "저는 평일에는 숙제가 너무 많아서 충분히 잘 수가 없어요."]], "qs": [{"n": 8, "q": "윗글의 내용과 일치하는 것은?", "o": ["Dr. Jang says that sweetdream is wrong.", "Unnecessary memories stay in the brain during sleep.", "Sweetdream compares the brain to a cleaner.", "Sleepy has little homework on weekdays.", "Sleepy can sleep enough on weekdays."], "a": 2, "ans": "Sweetdream compares the brain to a cleaner.", "evs": [["During sleep, the brain works like a cleaner.", "잠자는 동안, 뇌는 청소부처럼 작동해요."], ["Sweetdream made a good point. Yes, unnecessary memories are cleaned up by your brain while you sleep.", "Sweetdream이 좋은 말을 했습니다. 맞습니다, 잠을 자는 동안 뇌는 불필요한 기억들을 정리합니다."]], "ev": ["During sleep, the brain works like a cleaner.", "잠자는 동안, 뇌는 청소부처럼 작동해요."], "memo": ["During sleep, the brain works like a cleaner.  (잠자는 동안, 뇌는 청소부처럼 작동해요.)", "Sweetdream made a good point. Yes, unnecessary memories are cleaned up by your brain while you sleep.  (Sweetdream이 좋은 말을 했습니다. 맞습니다, 잠을 자는 동안 뇌는 불필요한 기억들을 정리합니다.)"]}]}, {"pp": [["So, I sleep more on weekends. Is this okay?", "그래서 주말에는 더 많이 잡니다. 이래도 괜찮은가요?"], ["Trying to sleep a lot during weekends may help.", "주말 동안 많이 자려고 노력하는 것은 도움이 될 수 있습니다."], ["But you should try to keep a regular sleep schedule.", "하지만 규칙적인 수면 습관을 유지하려고 노력해야 합니다."], ["Changing sleep patterns too often may lead to health problems.", "수면 패턴을 너무 자주 바꾸는 것은 건강 문제로 이어질 수 있습니다."]], "qs": [{"n": 9, "q": "윗글의 주제로 알맞은 것은?", "o": ["various causes of lack of sleep", "how to make good sleep patterns", "the importance of regular sleep routine", "the danger of changing a sleep pattern", "benefits of sleeping a lot during weekends"], "a": 2, "ans": "the importance of regular sleep routine", "evs": [["But you should try to keep a regular sleep schedule.", "하지만 규칙적인 수면 습관을 유지하려고 노력해야 합니다."], ["Changing sleep patterns too often may lead to health problems.", "수면 패턴을 너무 자주 바꾸는 것은 건강 문제로 이어질 수 있습니다."]], "ev": ["But you should try to keep a regular sleep schedule.", "하지만 규칙적인 수면 습관을 유지하려고 노력해야 합니다."], "memo": ["But you should try to keep a regular sleep schedule.  (하지만 규칙적인 수면 습관을 유지하려고 노력해야 합니다.)", "Changing sleep patterns too often may lead to health problems.  (수면 패턴을 너무 자주 바꾸는 것은 건강 문제로 이어질 수 있습니다.)"]}]}, {"qs": [{"n": 10, "q": "윗글의 제목으로 알맞은 것은?", "o": ["How to Remove Unnecessary Things", "The Role of the Brain as a Cleaner", "Why Is Sleep Important for Us?", "How Does the Brain Work?", "Tips to Get Enough Sleep"], "a": 2, "ans": "Why Is Sleep Important for Us?", "evs": [["Sleep is so important that you can’t live without it.", "수면은 매우 중요해서 잠을 자지 않고는 살 수가 없습니다."], ["Sleep is important for your physical health.", "수면은 신체 건강에 중요합니다."], ["And it is also important for your memory.", "또한 수면은 여러분의 기억력에도 중요합니다."]], "ev": ["Sleep is so important that you can’t live without it.", "수면은 매우 중요해서 잠을 자지 않고는 살 수가 없습니다."], "memo": ["Sleep is so important that you can’t live without it.  (수면은 매우 중요해서 잠을 자지 않고는 살 수가 없습니다.)", "Sleep is important for your physical health.  (수면은 신체 건강에 중요합니다.)", "And it is also important for your memory.  (또한 수면은 여러분의 기억력에도 중요합니다.)"]}]}];
+var BK='m2-find-r'+RNUM+'-best';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={};
+function key(i,t){return i+':'+t}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=partsHtml();
+ document.getElementById('app').innerHTML=h;relayUp();if(typeof persist==='function')persist();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function relayUp(){var st=[aDone()].concat(QS.map(function(P,i){return !!qdone[i]})),nm=['본문 오류 찾기'].concat(QS.map(function(P){var c=0;P.groups.forEach(function(g){c+=g.qs.length});return P.title.replace(' 파악','')+' '+c+'문제'})),f=-1;for(var i=0;i<st.length;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inSp)cls+=' miss';else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function noteHtml(i){
+ var it=D[i],h='',wp=wrongPicks(i);
+ if(it.ok){return '<div class="note fine"><b>맞는 문장이에요'+(wp?' (고른 곳은 틀린 곳이 아니에요)':'')+'</b><div class="pt">어법 오류 없음</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ h+='<div class="note '+(all?'found':'lost')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</b>';
+ it.fixes.forEach(function(f,k){h+='<div class="fx">'+(foundFix(i,k)?'✔ ':'✘ ')+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt">'+esc(f.right)+'</span><div class="pt">'+esc(f.point)+'</div></div>'});
+ h+='</div>';return h;
+}
+function missed(S){return S.items.filter(function(i){var it=D[i];return !it.ok&&it.fixes.some(function(f,k){return !foundFix(i,k)})})}
+function fixedEn(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,f.right);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,f.right==='(삭제)'?'\u0000':lead+f.right.split('/')[0]+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return tk.join(' ').replace(/ ?\u0000/g,'')}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ var h='<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+ var ms=missed(S),cap=3;
+ if(ms.length){
+  var show=ms.slice(0,3);
+  h+='<div class="memo"><h2>이것만은 꼭! · 이대로 받아적기</h2><div class="hint">'+show.length+'문장'+(ms.length>cap?' (놓친 '+ms.length+'개 중 '+cap+'개)':'')+'</div>';
+  show.forEach(function(i){var it=D[i];
+   h+='<div class="mi"><span class="no">'+String(it.n).padStart(2,'0')+'</span><span class="en">'+esc(fixedEn(it))+'</span><ul>';
+   it.fixes.forEach(function(f,k){if(!foundFix(i,k))h+='<li><b>'+esc(f.topic)+'</b> : '+esc(f.memo)+'</li>'});
+   h+='</ul><div class="k">'+esc(it.ko)+'</div></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>문법 memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){done[+b.dataset.sub]=true;logA(+b.dataset.sub);render();
+  var tot=0,fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(secs.every(function(S,si){return done[si]}))save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+var QS=[];if(DG.length)QS.push({title:'대화문 내용 파악',groups:DG});if(BG.length)QS.push({title:'본문 내용 파악',groups:BG});
+var PASS_PCT=70,ATT=0,ORIG=null;
+function mb(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function shuf(){if(!ORIG){ORIG={};QS.forEach(function(P){P.groups.forEach(function(g){g.qs.forEach(function(q){ORIG[q.n]={o:q.o.slice(),a:q.a}})})})}
+ QS.forEach(function(P){P.groups.forEach(function(g){g.qs.forEach(function(q){var O=ORIG[q.n],idx=O.o.map(function(_,i){return i});
+  if(ATT>0){var r=mb(ATT*977+q.n*31);for(var i=idx.length-1;i>0;i--){var j=Math.floor(r()*(i+1)),t=idx[i];idx[i]=idx[j];idx[j]=t}}
+  q.o=idx.map(function(i){return O.o[i]});q.a=idx.indexOf(O.a)})})})}
+function calcRes(){var c=QS.map(function(P){var a=0,n=0;P.groups.forEach(function(g){g.qs.forEach(function(q){n++;if(pick[q.n]===q.a)a++})});return[a,n]});
+ var n=0,ok=0;c.forEach(function(x){n+=x[1];ok+=x[0]});var pct=Math.round(ok*100/n);return{c:c,ok:ok,n:n,pct:pct,pass:pct>=PASS_PCT}}
+function resultHtml(){var r=calcRes();
+ return '<div class="stage">결과 &middot; 2~3단계 합산</div><div class="res '+(r.pass?'rp':'rf')+'"><div class="rt2">'+(r.pass?'통과':'통과선 미달')+'</div><div class="rpct">'+r.pct+'<small>점</small></div><div class="rl2">100점 만점 &middot; 통과선 '+PASS_PCT+'점'+(ATT?' &middot; '+(ATT+1)+'번째 도전':'')+'</div>'
+ +'<table class="rtb">'+QS.map(function(P,i){return '<tr><td>'+(i+2)+' '+P.title.replace(' 파악','')+'</td><td>'+r.c[i][0]+' / '+r.c[i][1]+'</td></tr>'}).join('')+'</table>'
+ +'<div class="rl2">총 학습 시간 '+fmtT(TM.act)+'</div>'+(r.pass?'':'<button type="button" data-redo="1">2~3단계 다시 도전 (보기 순서가 바뀌어요)</button>')+'</div>'}
+var pick={},qdone={};
+var CN='①②③④⑤';
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function partsHtml(){
+ if(!aDone())return '';
+ var h='';
+ for(var p=0;p<QS.length;p++){if(p>0&&!qdone[p-1])break;h+=partHtml(p)}
+ if(QS.every(function(P,p){return qdone[p]}))h+=resultHtml();
+ return h;
+}
+function passHtml(si,lock){
+ var h='<div class="pane'+(lock?' open':'')+'"><div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ if(lock){PP.forEach(function(p){h+='<div class="ln pp'+(p[2]?' np':'')+'"><div>'+(p[0]?'<div class="en">'+esc(p[0])+'</div>':'')+'<div class="k">'+esc(p[1])+'</div></div></div>'})}
+ else{var cur='';PP.forEach(function(p){if(!p[0])return;if(p[2]&&cur){h+='<div class="ln"><div class="en">'+esc(cur)+'</div></div>';cur=''}cur+=(cur?' ':'')+p[0]});if(cur)h+='<div class="ln"><div class="en">'+esc(cur)+'</div></div>'}
+ return h+'</div></div>';
+}
+function ppHtml(pp,lock){
+ var h='<div class="pane'+(lock?' open':'')+'"><div class="dlg"><div class="who">'+esc(TITLE_EN)+'</div>';
+ if(lock){pp.forEach(function(p){h+='<div class="ln pp"><div><div class="en">'+esc(p[0])+'</div><div class="k">'+esc(p[1])+'</div></div></div>'})}
+ else h+='<div class="ln"><div class="en">'+esc(pp.map(function(p){return p[0]}).join(' '))+'</div></div>';
+ return h+'</div></div>';
+}
+function dlgHtml(d,lock){
+ var h='<div class="pane'+(lock?' open':'')+'"><div class="dlg">';
+ d.forEach(function(l){h+='<div class="ln"><span class="sp">'+l[0]+'</span><div><div class="en">'+esc(l[1])+'</div>'+(lock?'<div class="k">'+esc(l[2])+'</div>':'')+'</div></div>'});
+ return h+'</div></div>';
+}
+function partHtml(p){
+ var P=QS[p],lock=!!qdone[p],h='<section class="part"><div class="stage">'+(p+2)+' · '+P.title+'</div>',c=0,dn=0,tot=0;P.groups.forEach(function(g){tot+=g.qs.length});
+ P.groups.forEach(function(g){h+='<div class="grp">';
+  if(g.dlg)h+=dlgHtml(g.dlg,lock);
+  if(g.pp)h+=ppHtml(g.pp,lock);
+  if(P.ox)h+='<div class="stem">대화와 일치하지 않는 문장을 모두 고르세요.</div>';g.qs.forEach(function(q){q.dn=++dn;h+=P.ox?sHtml(q,lock):qHtml(q,lock);if(pick[q.n]!=null)c++});h+='</div>';
+ });
+ if(lock)h+=P.ox?oxSummary(p):qSummary(p);
+ else h+='<div class="bar"><span class="c">답한 문제 <b>'+c+'</b>/'+tot+'</span><button data-subq="'+p+'">제출하기</button></div>';
+ return h+'</section>';
+}
+function qHtml(q,lock){
+ var h='<div class="q"><div class="qt"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>'+(q.sum?'<div class="sumbox">'+esc(q.sum)+'</div>':'');
+ q.o.forEach(function(t,i){
+  var cls='opt';
+  if(lock){if(i===q.a)cls+=' good';else if(pick[q.n]===i)cls+=' bad'}
+  else if(pick[q.n]===i)cls+=' on';
+  h+='<div class="'+cls+(q.o.length===2?' ox':'')+'" data-q="'+q.n+'" data-o="'+i+'">'+(q.o.length===2?'':'<span class="cn">'+CN[i]+'</span>')+esc(t)+'</div>';
+ });
+ if(lock){
+  var ok=pick[q.n]===q.a;
+  h+='<div class="note '+(ok?'found':'lost')+'"><b>'+(ok?'맞았어요':'놓쳤어요')+' · 정답 '+CN[q.a]+'</b>'
+   +'<div class="hl">해설</div>'+(q.evs||[q.ev]).map(function(x,j){return '<div class="pt">'+(j?'':(q.lab||'근거 : '))+esc(x[0])+'</div><div class="ko">'+esc(x[1])+'</div>'}).join('')+''+(q.why?'<div class="pt" style="margin-top:4px">'+esc(q.why)+'</div>':'')+'</div>';
+ }
+ return h+'</div>';
+}
+function sHtml(q,lock){
+ var on=pick[q.n]===1,cls='st';
+ if(lock){if(q.bad&&on)cls+=' hit';else if(q.bad)cls+=' miss';else if(on)cls+=' x'}
+ else if(on)cls+=' on';
+ var h='<div class="'+cls+'" data-s="'+q.n+'"><span class="qn">'+q.dn+'</span>'+esc(q.q)+'</div>';
+ if(lock){
+  var t=q.bad?(on?'찾았어요':'놓쳤어요'):(on?'틀리게 골랐어요 (대화와 일치하는 문장)':'일치');
+  h+='<div class="note '+(q.bad?(on?'found':'lost'):(on?'lost':'fine'))+' sn"><b>'+t+'</b>'+(q.bad?'<div class="pt">맞는 내용 : '+esc(q.fact)+'</div>':'')+'<div class="pt">근거 : '+esc(q.ev[0])+'</div><div class="ko">'+esc(q.ev[1])+'</div></div>';
+ }
+ return h;
+}
+function oxSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var bad=all.filter(function(q){return q.bad}),found=bad.filter(function(q){return pick[q.n]===1}),ms=bad.filter(function(q){return pick[q.n]!==1}),fp=all.filter(function(q){return !q.bad&&pick[q.n]===1});
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · 일치하지 않는 문장 '+bad.length+'개 중 <b>'+found.length+'개</b> 찾았어요'+(fp.length?' · 틀리게 고른 문장 '+fp.length+'개':'')+'</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>memo · 노트에 꼭 쓸 것</h2><div class="hint">놓친 문장만 쓰면 돼요. 아래 내용만 그대로 쓰세요.</div>';
+  ms.forEach(function(q){h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">'+esc(q.q)+' → 불일치</span><ul><li>'+esc(q.fact)+'</li><li>'+esc(q.ev[0])+' ('+esc(q.ev[1])+')</li></ul></div>'});
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">놓친 문장이 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+function qSummary(p){
+ var P=QS[p],all=[];P.groups.forEach(function(g){g.qs.forEach(function(q){all.push(q)})});
+ var ok=all.filter(function(q){return pick[q.n]===q.a}).length;
+ var ms=all.filter(function(q){return pick[q.n]!==q.a}),cap=P.ox?5:3;
+ var h='<div class="sum"><b>'+esc(P.title)+'</b> · '+all.length+'문제 중 <b>'+ok+'개</b> 맞았어요</div>';
+ if(ms.length){
+  h+='<div class="memo"><h2>이것만은 꼭! · 이대로 받아적기</h2><div class="hint">해설은 읽기만. 노트에는 아래 줄만 그대로 &middot; 총 '+ms.slice(0,cap).reduce(function(a,q){return a+q.memo.length},0)+'줄'+(ms.length>cap?' (틀린 '+ms.length+'개 중 '+cap+'개)':'')+'</div>';
+  ms.slice(0,cap).forEach(function(q){
+   h+='<div class="mi"><span class="no">'+q.dn+'</span><span class="en">정답 '+(q.o.length===2?'':CN[q.a]+' ')+esc(q.ans)+'</span><ul>'+q.memo.map(function(m){return '<li>'+esc(m)+'</li>'}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+ } else h+='<div class="memo"><h2>memo</h2><div class="hint">틀린 문제가 없어요. 쓸 것이 없습니다.</div></div>';
+ return h;
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var st=e.target.closest('.st');
+ if(st&&!st.closest('.locked')){var n0=+st.dataset.s,p0=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n0})})});if(qdone[p0])return;if(pick[n0]===1)delete pick[n0];else pick[n0]=1;var y0=window.scrollY;render();window.scrollTo(0,y0);return}
+ var o=e.target.closest('.opt');
+ if(o){var n=+o.dataset.q,p=QS.findIndex(function(P){return P.groups.some(function(g){return g.qs.some(function(q){return q.n===n})})});
+  if(qdone[p])return;pick[n]=+o.dataset.o;var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-subq]');
+ if(b){qdone[+b.dataset.subq]=true;logQ(+b.dataset.subq);if(QS.every(function(P,p){return qdone[p]})){tmFlush();TM.done=1}var y2=window.scrollY;render();var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'})}
+});
+
+function wlog(key,title,items){try{var W=JSON.parse(localStorage.getItem('m2-wrong')||'{}');var r=W[RNUM]||(W[RNUM]={t:TITLE_EN,e:{}});r.t=TITLE_EN;if(r.e[key])return;r.e[key]={h:title,i:items,ts:Date.now()};localStorage.setItem('m2-wrong',JSON.stringify(W))}catch(e){}}
+function logA(si){var S=secs[si];var it=missed(S).map(function(i){var x=D[i];var p=[];x.fixes.forEach(function(f,k){if(!foundFix(i,k))p.push([f.topic,f.memo])});return{n:x.n,en:fixedEn(x),ko:x.ko,p:p}});wlog('a'+si,'1단계 · '+S.name,it)}
+function logQ(p){var P=QS[p],it=[];P.groups.forEach(function(g){g.qs.forEach(function(q){if(pick[q.n]!==q.a)it.push({n:q.dn,a:(q.o.length===2?'':CN[q.a]+' ')+q.ans,m:q.memo})})});wlog('q'+p,(p+2)+'단계 · '+P.title,it)}
+var TM={act:0,lv:0,lt:0,done:0},_last=Date.now(),_hid=0;
+function tmFlush(){if(TM.done||document.hidden)return;var n=Date.now();TM.act+=n-_last;_last=n}
+function fmtT(ms){var s=Math.round(ms/1000),m=Math.floor(s/60);return m?m+'분 '+('0'+(s%60)).slice(-2)+'초':s+'초'}
+document.addEventListener('visibilitychange',function(){var n=Date.now();if(document.hidden){if(!TM.done){TM.act+=n-_last;TM.lv++}_hid=n;persist()}else{if(!TM.done&&_hid)TM.lt+=n-_hid;_last=n;_hid=0}});
+setInterval(function(){if(!document.hidden&&!TM.done){tmFlush();persist()}},5000);
+var PK='m2-prog-'+RNUM;
+function persist(){try{var any=Object.keys(sel).length||Object.keys(pick).length||Object.keys(done).length||Object.keys(qdone).length;
+ if(any)localStorage.setItem(PK,JSON.stringify({sel:sel,done:done,pick:pick,qdone:qdone,att:ATT,tm:TM}));else localStorage.removeItem(PK);
+ var st=JSON.parse(localStorage.getItem('m2-st')||'{}');var n=(aDone()?1:0)+QS.filter(function(P,i){return qdone[i]}).length;var rs=JSON.parse(localStorage.getItem('m2-res')||'{}');if(n>=1+QS.length){var cr=calcRes();rs[RNUM]={p:cr.pct,ok:cr.pass?1:0,t:Math.round(TM.act/1000)}}else{delete rs[RNUM]}localStorage.setItem('m2-res',JSON.stringify(rs));if(any){st[RNUM]=(n>=1+QS.length?3:n);localStorage.setItem('m2-st',JSON.stringify(st));localStorage.setItem('m2-last',String(RNUM))}else{delete st[RNUM];localStorage.setItem('m2-st',JSON.stringify(st))}
+ var el=document.getElementById('bm');if(el)el.style.display=any?'inline-flex':'none'}catch(e){}}
+try{var sv=JSON.parse(localStorage.getItem(PK)||'null');if(sv){sel=sv.sel||{};done=sv.done||{};pick=sv.pick||{};qdone=sv.qdone||{};ATT=sv.att||0;if(sv.tm){TM=sv.tm;TM.done=TM.done||0;_last=Date.now()}shuf()}}catch(e){}
+document.getElementById('app').addEventListener('click',function(e){if(e.target.closest('button[data-redo]')){ATT++;shuf();pick={};qdone={};TM.done=0;_last=Date.now();render();var s=document.querySelectorAll('.stage');s[1]&&s[1].scrollIntoView()}});
+document.getElementById('bm').addEventListener('click',function(e){if(e.target.closest('button')){if(confirm('이 Reading의 진행 기록을 지우고 처음부터 다시 할까요?')){try{localStorage.removeItem(PK)}catch(x){}sel={};done={};pick={};qdone={};ATT=0;TM={act:0,lv:0,lt:0,done:0};_last=Date.now();shuf();render();window.scrollTo(0,0)}}});
+render();
+</script></body></html>

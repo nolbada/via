@@ -1,0 +1,28 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>M2 Reading 내 오답노트</title>
+<style>:root{--ink:#12263a;--pri:#1f4e79;--mint:#2bb38a;--mut:#5d6b7a;--line:#dbe4ec;--bg:#f2f6f9;--card:#fff;--memo:#fff7d6}
+@media(prefers-color-scheme:dark){:root{--ink:#e8eef4;--bg:#0f1720;--line:#24323f;--mut:#9fb0c0;--card:#16212c;--memo:#2a2713}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.55}
+.w{max-width:720px;margin:0 auto;padding:16px 16px 60px}a.back{color:var(--pri);text-decoration:none;font-weight:700;font-size:14px}
+h1{margin:10px 0 2px;font-size:24px}.sub{color:var(--mut);font-size:14px;margin-bottom:18px}
+.r{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 14px 10px;margin-bottom:16px}
+.rh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px}.rh b{font-size:16px}.rh a{font-size:13px;color:var(--pri);font-weight:700;text-decoration:none;white-space:nowrap}
+.sh{font-size:12.5px;font-weight:700;color:var(--mint);margin:12px 0 6px;letter-spacing:.03em}
+.mi{background:var(--memo);border-radius:10px;padding:10px 12px;margin-bottom:8px}.no{display:inline-block;font-weight:700;color:var(--pri);margin-right:6px}
+.en{font-weight:700}.mi ul{margin:6px 0 4px;padding-left:18px}.k{color:var(--mut);font-size:14px}
+.cl{background:none;border:0;color:var(--mut);font-size:12px;text-decoration:underline;padding:6px 0;cursor:pointer}
+.em{text-align:center;color:var(--mut);padding:60px 10px}</style></head><body><div class="w"><a class="back" href="./">← M2 Reading</a><h1>내 오답노트</h1><div class="sub" id="sub"></div><div id="L"></div></div>
+<script>
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function get(){try{return JSON.parse(localStorage.getItem('m2-wrong')||'{}')}catch(e){return{}}}
+function draw(){var W=get(),ks=Object.keys(W).map(Number).sort(function(a,b){return a-b}),h='',tot=0;
+ks.forEach(function(R){var r=W[R],sec='',n=0;Object.keys(r.e).sort().forEach(function(k){var s=r.e[k];if(!s.i.length)return;n+=s.i.length;
+ sec+='<div class="sh">'+esc(s.h)+'</div>';
+ s.i.forEach(function(x){if(k[0]==='a'){sec+='<div class="mi"><span class="no">'+String(x.n).padStart(2,'0')+'</span><span class="en">'+esc(x.en)+'</span><ul>'+x.p.map(function(p){return'<li><b>'+esc(p[0])+'</b> : '+esc(p[1])+'</li>'}).join('')+'</ul><div class="k">'+esc(x.ko)+'</div></div>'}
+ else{sec+='<div class="mi"><span class="no">'+esc(x.n)+'</span><span class="en">정답 '+esc(x.a)+'</span><ul>'+x.m.map(function(m){return'<li>'+esc(m)+'</li>'}).join('')+'</ul></div>'}})});
+ if(!n)return;tot+=n;
+ h+='<div class="r"><div class="rh"><b>Reading '+String(R).padStart(2,'0')+' · '+esc(r.t)+'</b><a href="reading_'+String(R).padStart(2,'0')+'.html">다시 보기</a></div>'+sec+'<button class="cl" data-r="'+R+'">이 Reading 오답 지우기</button></div>'});
+document.getElementById('L').innerHTML=h||'<div class="em">저장된 오답이 없습니다</div>';
+document.getElementById('sub').textContent=tot?('틀린 것 '+tot+'개 · 이 기기에 저장됨'):'';}
+document.addEventListener('click',function(e){var b=e.target.closest('button[data-r]');if(!b)return;if(!confirm('Reading '+b.dataset.r+' 오답 기록을 지울까요?'))return;try{var W=get();delete W[b.dataset.r];localStorage.setItem('m2-wrong',JSON.stringify(W))}catch(x){}draw()});
+draw();
+</script></body></html>
