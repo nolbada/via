@@ -401,7 +401,9 @@ function mkXNote(){
     const lab=n.kind?(n.kind+' · '+n.sub):'주절 · '+n.form+'형식';
     tree+='<li><b>'+esc(lab)+'</b>: '+esc(txt.trim())+'</li>'});
   let rows='';cur.ch.forEach((c,i)=>{rows+='<div class="rw"><div class="re">'+esc(c)+'</div><div class="rk">'+esc(cur.ko[i])+'</div></div>'});
-  return {id:'x'+cur.id,src:'xray',title:cur.lv+' 문장 분석 '+no+'번 · 출처 '+cur.id,html:'<p class="sec">틀린 곳</p><ul class="wul">'+L.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><p class="sec">문장 구조</p><ul class="wul">'+tree+'</ul><p class="sec">끊어 읽기와 해석</p>'+rows};
+  const wc=cur.nodes.map(n=>n.kind?(n.kind+'('+n.sub+')'):'주절 '+n.form+'형식').join(' · ');
+  const pi='<div class="pi"><div class="pit">노트에 쓰기</div><div class="pir"><b>\u2460</b> 끊어 읽기와 해석</div>'+rows+'<div class="pir"><b>\u2461</b> 절 구조</div><div class="pib">'+esc(wc)+'</div></div><p class="ref">읽고 이해만 하세요. 쓰지 않아요.</p>';
+  return {id:'x'+cur.id,src:'xray',title:cur.lv+' 문장 분석 '+no+'번 · 출처 '+cur.id,html:pi+'<p class="sec">틀린 곳</p><ul class="wul">'+L.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><p class="sec">문장 구조</p><ul class="wul">'+tree+'</ul>'};
 }
 function fin(){
   ph='fin';R[cur.id].done=true;R[cur.id].wr=wr;save();if(wr>0)wlPut(mkXNote());
