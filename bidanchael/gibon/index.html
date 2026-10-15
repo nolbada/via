@@ -317,7 +317,7 @@ function m2(){
     }
   }else{
     var hasSub=q.toks.some(function(t){return t[1]==='s';});var step=a.m===undefined?1:((hasSub&&a.s===undefined)?2:3);
-    h+='<div class="sub" style="color:var(--paper-ink);font-weight:700">'+(step===1?'이 문장의 주인공(주절) 동사를 눌러요. 동사 한 곳만 눌러도 조동사까지 함께 선택돼요.':step===2?'뒤에 딸린 절의 동사를 눌러요. 여기도 한 곳만 누르면 돼요.':'확인해 봐요.')+'</div><div class="toks">';
+    h+='<div class="sub" style="color:var(--paper-ink);font-weight:700">'+(step===1?(hasSub?'이 문장의 동사를 모두 찾아요. 먼저 주절(주인공) 동사를 눌러요. 동사 한 곳만 눌러도 조동사까지 함께 선택돼요.':'이 문장의 동사를 눌러요. 동사 한 곳만 눌러도 조동사까지 함께 선택돼요.'):step===2?'이어서 딸린 절의 동사도 눌러요. 여기도 한 곳만 누르면 돼요.':'확인해 봐요.')+'</div><div class="toks">';
     q.toks.forEach(function(t,k){
       var cls='tok';
       if(step===3){cls+=t[1]==='m'?' vm':t[1]==='s'?' vs':'';}
