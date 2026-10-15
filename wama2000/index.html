@@ -9222,8 +9222,8 @@ var CARDS1=[
 var CIRC=["①","②","③","④"];
 
 /* 단어의 쓰임 딱지: 그 단어를 열면 바로 보이고, 쓰임 모아보기에서 종류별로도 모아 볼 수 있다. */
-var TYPES={"엮":{c:"eok",n:"함정"},"뜻":{c:"tteut",n:"다의어"},"헷":{c:"hae",n:"혼동어"},"변":{c:"byeon",n:"파생어"}};
-var TCH={"엮":"함","뜻":"다","헷":"혼","변":"파"};
+var TYPES={"엮":{c:"eok",n:"빈출"},"뜻":{c:"tteut",n:"다의어"},"헷":{c:"hae",n:"혼동어"},"변":{c:"byeon",n:"파생어"}};
+var TCH={"엮":"빈","뜻":"다","헷":"혼","변":"파"};
 var TYPE_ORDER=["엮","뜻","헷","변"];
 var TAGS1={
  "prevent":{t:"엮",
@@ -9541,7 +9541,7 @@ function tagsView(){
 }
 
 function oneCard(c,i){
-  var h='<div class="card"'+(i>=0?' id="c'+i+'"':'')+'><div class="cardhead"><span class="chip hae">'+(i>=0?CIRC[i]:TCH["엮"])+'</span><span class="tl hae">함정</span><span class="no">'+c.n+'번 문장</span></div>';
+  var h='<div class="card"'+(i>=0?' id="c'+i+'"':'')+'><div class="cardhead"><span class="chip hae">'+(i>=0?CIRC[i]:'함')+'</span><span class="tl hae">함정</span><span class="no">'+c.n+'번 문장</span></div>';
   h+='<div class="word">'+esc(c.w)+'<small>('+c.p+') '+esc(c.m)+'</small></div>';
   h+='<div class="warn"><span class="wtab">시험 단골 함정!</span>'+esc(c.warn)+'</div>';
   h+=memoBox(c.copy,'메모 · '+c.n+'번 문장 옆');
