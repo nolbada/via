@@ -160,6 +160,9 @@ h2{font-size:18px;font-weight:900;margin:0}
 .dn summary::-webkit-details-marker{display:none}
 .dn ul{margin:6px 0 0;padding:8px 10px 8px 22px;background:#f7f7f9;border-radius:8px;line-height:1.55}
 .dn li{margin:3px 0}.dn .dk{font-size:10.5px;font-weight:700;color:var(--sub);border:1px solid var(--sub);border-radius:4px;padding:0 4px;margin-left:4px}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0;margin:-8px 0 0}
+.top>div{flex:1;min-width:0}
+.tophome{flex:0 0 auto;border:0;border-radius:999px;padding:10px 18px;font-weight:900;font-size:15px;background:var(--accent);color:var(--accent-ink);box-shadow:0 2px 0 rgba(0,0,0,.18)}
 </style>
 
 
@@ -177,6 +180,7 @@ try{var r=localStorage.getItem(KEY);if(r){S=Object.assign(S,JSON.parse(r));}}cat
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
 var V={s:'home',i:0,banner:''};
 var R={size:10,start:1};
+try{if(S.r&&(S.r.size===10||S.r.size===20)&&S.r.start>=1&&S.r.start<=NMAX){R.size=S.r.size;R.start=S.r.start;}}catch(e){}
 var $app=document.getElementById('app');
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function pad(n){return ('000'+n).slice(-4);}
@@ -197,10 +201,11 @@ function opts(q,i){var a=q.o.slice();var k=i%3;return a.slice(k).concat(a.slice(
 function answered(q){var a=S.q[q.no];if(!a){return false;}return q.k==='b'?a.pick!==undefined:a.ok!==undefined;}
 function nAns(){return cur().quiz.filter(answered).length;}
 function wrongs(){return cur().quiz.filter(function(q){return answered(q)&&S.q[q.no].ok===false;});}
-function go(s,i){V.s=s;V.i=i||0;render();window.scrollTo(0,0);}
+function go(s,i){V.s=s;V.i=i||0;try{history.pushState({s:V.s,i:V.i},'');}catch(e){}render();window.scrollTo(0,0);}
+function persist(){S.r={size:R.size,start:R.start};S.v={s:V.s,i:V.i,t:Date.now()};save();try{history.replaceState({s:V.s,i:V.i},'');}catch(e){}}
 function chip(t){return '<span class="chip '+TYPES[t].c+'" aria-hidden="true">'+t+'</span>';}
 function rangeText(){var b=blocks();return pad(b[0])+' – '+pad(Math.min(b[b.length-1]+9,NMAX));}
-function topbar(title,back){return '<div class="top"><button type="button" class="back" data-go="'+back+'" aria-label="뒤로">'+ICON_BACK+'</button><div><div class="eyebrow">비단챌 '+BOOKNAME+' · '+rangeText()+'</div><h1 style="font-size:21px">'+title+'</h1></div></div>';}
+function topbar(title,back){return '<div class="top"><button type="button" class="back" data-go="'+back+'" aria-label="뒤로">'+ICON_BACK+'</button><div><div class="eyebrow">비단챌 '+BOOKNAME+' · '+rangeText()+'</div><h1 style="font-size:21px">'+title+'</h1></div><button type="button" class="tophome" data-go="home">홈</button></div>';}
 function bar(n,c){var h='<div class="bar" aria-hidden="true">';for(var k=0;k<n;k++){h+='<i class="'+(k<=c?'on':'')+'"></i>';}return h+'</div>';}
 
 function mix(h,t){var n=parseInt(h.slice(1),16),r=n>>16,g=(n>>8)&255,b=n&255,f=function(c){return Math.round(c+(255-c)*t);};return 'rgb('+f(r)+','+f(g)+','+f(b)+')';}
@@ -345,7 +350,7 @@ function wr(){
   return h+'</div><div class="banner"><b>책에 번호 체크 + 단어 뜻만</b><br>번호 옆에 체크하고 뜻만 적어 오면 돼요.</div>';
 }
 
-function render(){theme();var f={fin:fin,home:home,day:day,m1:m1,m2:m2,hae:hae,wr:wr}[V.s];$app.innerHTML=f();}
+function render(){theme();var f={fin:fin,home:home,day:day,m1:m1,m2:m2,hae:hae,wr:wr}[V.s];$app.innerHTML=f();persist();}
 
 $app.addEventListener('click',function(e){
   var t=e.target.closest('button');if(!t){return;}
@@ -376,7 +381,13 @@ $app.addEventListener('click',function(e){
   }
 });
 $app.addEventListener('change',function(e){if(e.target.id==='rsel'){R.start=Number(e.target.value);render();}});
-render();
+window.addEventListener('popstate',function(e){var st=e.state;if(st&&st.s){V.s=st.s;V.i=st.i||0;}else{V.s='home';V.i=0;}render();window.scrollTo(0,0);});
+(function(){var v=S.v,ok=v&&{day:1,m1:1,m2:1,hae:1,wr:1,fin:1}[v.s]&&(Date.now()-v.t)<1800000&&ready();
+  var hs=null;try{hs=history.state;}catch(e){}
+  if(hs&&hs.s&&ok){var C0=cur(),m0=hs.s==='m1'?C0.cards.length:hs.s==='m2'?C0.quiz.length:1;V.s=hs.s;V.i=(hs.i<m0)?hs.i:0;}
+  else if(ok){try{history.replaceState({s:'home',i:0},'');}catch(e){}var C=cur(),mx=v.s==='m1'?C.cards.length:v.s==='m2'?C.quiz.length:1;V.s=v.s;V.i=(v.i<mx)?v.i:0;try{history.pushState({s:V.s,i:V.i},'');}catch(e){}}
+  else{try{history.replaceState({s:'home',i:0},'');}catch(e){}}
+  render();})();
 })();
 </script>
 </body>
