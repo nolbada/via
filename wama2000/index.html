@@ -9410,7 +9410,7 @@ function home(){
   mn.forEach(function(n){h+='<button type="button" class="numchip" data-act="jump" data-n="'+n+'">#'+n+'</button>';});
   h+='</div></div>';
 
-  h+='<div class="picker traps"><div class="plabel">② 메모 붙이기 '+(cc.length+(ek?1:0))+'개</div>';
+  h+='<div class="picker traps"><div class="plabel">② 책에 메모 '+(cc.length+(ek?1:0))+'개</div>';
   cc.forEach(function(c,i){
     h+='<button type="button" class="trow" data-act="card" data-i="'+i+'"><span class="tno">'+CIRC[i]+'</span><span class="tw"><b>'+esc(c.w)+'</b><small>'+esc(c.hook)+'</small></span><span class="tn">#'+c.n+'번</span><span class="tck">열기</span></button>';
   });
@@ -9421,8 +9421,7 @@ function home(){
   h+='<button type="button" class="row" data-act="sents"><div class="grow"><div class="t">③ 문장 하나씩 해석하기</div><div class="d">단어를 보고, 끊어 읽으며 입으로 해석한 뒤 열어서 맞춰 봐요</div></div><span class="pill on">'+curSents().length+'문장</span></button>';
   h+='<div class="gl">오답노트</div>';
   h+='<button type="button" class="row" data-act="stars"><div class="grow"><div class="t">★ 해석 모아쓰기</div><div class="d">틀려서 ★ 표시한 문장</div></div><span class="pill'+(st.length?' on':'')+'">'+st.length+'문장</span></button>';
-  h+='<div class="gl">눈으로 보기</div>';
-  h+='<button type="button" class="row" data-act="tags"><div class="grow"><div class="t">쓰임 모아보기</div><div class="d">다의어 · 혼동어 · 파생어 · 함정을 문장 번호 순서로</div></div><span class="pill on">'+Object.keys(TAGS).filter(function(k){return TI[k]&&inR(TI[k].n);}).length+'개</span></button>';
+  h+='<button type="button" class="row" data-act="tags"><div class="grow"><div class="t">메모 모아보기</div><div class="d">DAY '+V.day+' 중요한 카드만</div></div><span class="pill on">'+memoItems().length+'개</span></button>';
   var Zq=QZ[V.day],stp=(Zq&&Zq.res)?Zq.res.filter(function(x){return x;}).length:0;
   h+='<div class="gl">도전</div>';
   h+='<button type="button" class="row" data-act="quiz"><div class="grow"><div class="t">유·반의어 퀴즈</div><div class="d">수시로 풀어요 · DAY '+V.day+' 2회차</div></div><span class="pill'+(stp?' on':'')+'">'+stp+' / 2</span></button>';
@@ -9517,17 +9516,26 @@ function stars(){
   return h;
 }
 
+function memoItems(){
+  var sv=V.r,out=[];
+  for(var r=0;r<RANGES.length;r++){
+    V.r=r;
+    curCards().forEach(function(c){out.push({n:c.n,h:oneCard(c,-1)});});
+    var ek=extraTag();if(ek){out.push({n:TI[ek].n,h:tagCard(ek,true)});}
+  }
+  V.r=sv;
+  out.sort(function(a,b){return a.n-b.n;});
+  return out;
+}
 function tagsView(){
-  var h=topbar("DAY "+V.day+" · "+rlab(),"쓰임 모아보기");
-  h+='<div class="banner">문장 번호 순서대로 눈으로 읽는 쓰임이에요.</div>';
-  var items=Object.keys(TAGS).filter(function(k){return TI[k]&&inR(TI[k].n);}).sort(function(a,b){return TI[a].n-TI[b].n||TYPE_ORDER.indexOf(TAGS[a].t)-TYPE_ORDER.indexOf(TAGS[b].t);});
-  h+='<div class="gl">총 '+items.length+'개</div>';
-  items.forEach(function(k){h+=tagCard(k,false);});
+  var h=topbar("DAY "+V.day,"메모 모아보기"),it=memoItems();
+  h+='<div class="gl">총 '+it.length+'개</div>';
+  it.forEach(function(x){h+=x.h;});
   return h;
 }
 
 function oneCard(c,i){
-  var h='<div class="card" id="c'+i+'"><div class="cardhead"><span class="chip hae">'+CIRC[i]+'</span><span class="tl hae">함정</span><span class="no">'+c.n+'번 문장</span></div>';
+  var h='<div class="card"'+(i>=0?' id="c'+i+'"':'')+'><div class="cardhead"><span class="chip hae">'+(i>=0?CIRC[i]:TCH["엮"])+'</span><span class="tl hae">함정</span><span class="no">'+c.n+'번 문장</span></div>';
   h+='<div class="word">'+esc(c.w)+'<small>('+c.p+') '+esc(c.m)+'</small></div>';
   h+='<div class="warn"><span class="wtab">시험 단골 함정!</span>'+esc(c.warn)+'</div>';
   h+=memoBox(c.copy,'메모 · '+c.n+'번 문장 옆');
