@@ -191,6 +191,11 @@ h2{font-size:18px;font-weight:900;margin:0}
 .tgh small{color:var(--paper-mute);font-size:12px}
 .tgm{color:#4a362b}
 .tgx{font-size:13px;line-height:1.55;color:#4a362b}
+.mstar{align-self:flex-start;margin-top:10px;background:#fff;border:2px solid #d8cabd;border-radius:10px;padding:8px 14px;font-size:13.5px;font-weight:800;color:var(--paper-ink)}
+.mstar.on{border-color:#e0a400;background:#fff3c4}
+.dlab{font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--c-ssu);margin:6px 0 -4px}
+.todaystar{background:var(--paper);color:var(--paper-ink);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px;border-left:6px solid var(--accent)}
+.stl{font-size:12px;font-weight:800;color:var(--paper-mute)}
 .postit{position:relative;background:#fff176;color:#2a1810;border-radius:4px;padding:24px 14px 12px;display:flex;flex-direction:column;gap:7px;margin-top:8px;box-shadow:2px 3px 0 rgba(0,0,0,.22);transform:rotate(-.6deg)}
 .ptab{position:absolute;top:6px;left:12px;font-size:11px;font-weight:800;color:#7a6a10}
 .exbox{margin-top:10px;font-size:13.5px;line-height:1.55;color:var(--paper-ink)}
@@ -9318,7 +9323,7 @@ var TAGS1={
 };
 
 var SS={};
-function freshS(){return {open:{},res:{},wopen:{},tagopen:{},wrote:{},memo:{},tw:{}};}
+function freshS(){return {open:{},res:{},wopen:{},tagopen:{},wrote:{},memo:{},tw:{},mstar:{}};}
 var S=freshS();
 var V={s:"home",card:null,r:0,day:1};
 var RANGES=[[1,20],[21,40]];
@@ -9376,7 +9381,7 @@ var DAYS={1:{SENTS:SENTS,W:W,CARDS:CARDS1,TAGS:TAGS1}};
 Object.keys(DAYX).forEach(function(k){DAYS[k]=DAYX[k];});
 function setDay(d){
   var D=DAYS[d];if(!D){return false;}
-  S=SS[d]||(SS[d]=freshS());
+  S=SS[d]||(SS[d]=freshS());if(!S.mstar){S.mstar={};}
   SENTS=D.SENTS;CARDS=D.CARDS;TAGS=D.TAGS;
   WD=D.W.map(function(a){return {s:a[0],w:a[1],f:a[2],p:a[3],m:a[4],d:a[5],star:!!a[6]};});
   BY=wordsBySent();TI={};
@@ -9392,7 +9397,11 @@ function topbar(eyebrow,title){return '<div class="top"><button type="button" cl
 function badges(s){return s.tags.map(function(t){return '<span class="bdg '+t.c+'">'+esc(t.t)+'</span>';}).join("");}
 function legend(){return '<div class="legend"><span class="vm">빨간 굵은 밑줄</span> 주절 동사 · <span class="vs">파란 점선</span> 딸린 절 동사<br>to V · V-ing · 분사에는 밑줄을 치지 않아요.</div>';}
 function bgbox(s){return s.bg?'<div class="bgbox"><span class="bgtab">이 문장은 이런 얘기</span>'+esc(s.bg)+'</div>':"";}
-function starred(){return SENTS.filter(function(s){return S.res[s.n]==="wrong";});}
+function starred(){return SENTS.filter(function(s){return S.res[s.n]==="wrong"&&inR(s.n);});}
+var RD=null;
+function mstarBtn(key){var d=RD||V.day,X=SS[d],on=!!(X&&X.mstar&&X.mstar[key]);return '<button type="button" class="mstar'+(on?' on':'')+'" data-act="mstar" data-d="'+d+'" data-k="'+esc(key)+'">'+(on?'★':'☆')+' 헷갈려요</button>';}
+function mstarCount(){var n=0;Object.keys(SS).forEach(function(d){var m=SS[d]&&SS[d].mstar;if(m){Object.keys(m).forEach(function(k){if(m[k]){n++;}});}});return n;}
+function starCards(list){var h='';list.forEach(function(s){var w=!!S.wrote[s.n];h+='<div class="sent"><div class="m"><span class="sn">'+s.n+'번</span><span class="pill star">★</span></div><div class="slw">'+slashRows(s)+'</div><div class="ans">'+esc(s.ko)+'</div><button type="button" class="rbtn'+(w?" on":"")+'" style="flex:none;align-self:flex-start;padding:9px 14px" data-act="wrote" data-n="'+s.n+'">'+(w?"다 썼어요 ✓":"다 썼어요")+'</button></div>';});return h;}
 
 /* 홈: 숙제 목록을 고르면 두 가지가 함께 뜬다. ① 오늘의 손해석 번호 ② 오늘의 시험 함정 단어 3 */
 function dayRowHtml(){
@@ -9419,9 +9428,11 @@ function home(){
 
   h+='<div class="stack">';
   h+='<button type="button" class="row" data-act="sents"><div class="grow"><div class="t">③ 문장 하나씩 해석하기</div><div class="d">단어를 보고, 끊어 읽으며 입으로 해석한 뒤 열어서 맞춰 봐요</div></div><span class="pill on">'+curSents().length+'문장</span></button>';
-  h+='<div class="gl">오답노트</div>';
-  h+='<button type="button" class="row" data-act="stars"><div class="grow"><div class="t">★ 해석 모아쓰기</div><div class="d">틀려서 ★ 표시한 문장</div></div><span class="pill'+(st.length?' on':'')+'">'+st.length+'문장</span></button>';
-  h+='<button type="button" class="row" data-act="tags"><div class="grow"><div class="t">메모 모아보기</div><div class="d">DAY '+V.day+' 중요한 카드만</div></div><span class="pill on">'+memoItems().length+'개</span></button>';
+  var sl=starred();
+  h+='<button type="button" class="row" data-act="stog" aria-expanded="'+(!!V.so)+'"><div class="grow"><div class="t">오늘 ★ 해석 모아쓰기</div><div class="d">DAY '+V.day+' · '+RANGES[V.r][0]+'~'+RANGES[V.r][1]+'번 오늘 것만</div></div><span class="pill'+(sl.length?' on':'')+'">'+sl.length+'문장 '+(V.so?'▴':'▾')+'</span></button>';
+  if(V.so){h+=sl.length?'<div class="todaystar"><div class="stl">오늘 ★ · DAY '+V.day+' · '+RANGES[V.r][0]+'~'+RANGES[V.r][1]+'번</div>'+starCards(sl)+'</div>':'<div class="todaystar"><div class="stl">오늘 ★ 표시한 문장이 아직 없어요.</div></div>';}
+  h+='<div class="gl">누적 복습</div>';
+  h+='<button type="button" class="row" data-act="tags"><div class="grow"><div class="t">메모 모아읽기</div><div class="d">★ 별표한 메모만 · 전체 DAY 누적</div></div><span class="pill'+(mstarCount()?' on':'')+'">'+mstarCount()+'개</span></button>';
   var Zq=QZ[V.day],stp=(Zq&&Zq.res)?Zq.res.filter(function(x){return x;}).length:0;
   h+='<div class="gl">도전</div>';
   h+='<button type="button" class="row" data-act="quiz"><div class="grow"><div class="t">유·반의어 퀴즈</div><div class="d">수시로 풀어요 · DAY '+V.day+' 2회차</div></div><span class="pill'+(stp?' on':'')+'">'+stp+' / 2</span></button>';
@@ -9451,7 +9462,7 @@ function tagCard(k,memo){
   h+='<div class="body"><b>이럴 때 써요</b><br>'+esc(g.when)+'</div>';
   if(g.warn){h+='<div class="warn"><span class="wtab">시험에 자주 나와요</span>'+esc(g.warn)+'</div>';}
   h+='<div class="body"><b>이것만 기억</b><br>'+esc(g.watch)+'</div>';
-  if(memo){h+=copyBox(g.copy,x.n);}
+  if(memo){h+=copyBox(g.copy,x.n);h+=mstarBtn('t:'+k);}
   h+='</div>';
   return h;
 }
@@ -9499,37 +9510,32 @@ function sents(){
 
 function stars(){
   var list=starred();
-  var h=topbar("틀려서 ★ 표시한 문장","★ 해석 모아쓰기");
-  if(!list.length){
-    h+='<div class="banner">아직 ★ 표시한 문장이 없어요. 문장 해석을 열어서 맞춰 보다가 틀리면 <b>틀렸어요 ★</b>를 눌러요. 그 문장이 여기에 모여요.</div>';
-    return h;
-  }
-  h+='<div class="banner">책에서 ★ 친 문장이에요. 아래 해석을 보고 <b>손으로 해석을 보충해 쓴</b> 뒤, 다 쓰면 눌러서 체크해요.</div>';
-  h+='<div class="stack">';
-  list.forEach(function(s){
-    var w=!!S.wrote[s.n];
-    h+='<div class="sent"><div class="m"><span class="sn">'+s.n+'번</span><span class="pill star">★</span></div>';
-    h+='<div class="slw">'+slashRows(s)+'</div><div class="ans">'+esc(s.ko)+'</div>';
-    h+='<button type="button" class="rbtn'+(w?" on":"")+'" style="flex:none;align-self:flex-start;padding:9px 14px" data-act="wrote" data-n="'+s.n+'">'+(w?"다 썼어요 ✓":"다 썼어요")+'</button></div>';
-  });
-  h+='</div>';
-  return h;
+  var h=topbar("DAY "+V.day+" · "+rlab(),"오늘 ★ 해석 모아쓰기");
+  if(!list.length){return h+'<div class="banner">오늘 ★ 표시한 문장이 아직 없어요.</div>';}
+  return h+'<div class="stack">'+starCards(list)+'</div>';
 }
 
-function memoItems(){
-  var sv=V.r,out=[];
-  for(var r=0;r<RANGES.length;r++){
-    V.r=r;
-    curCards().forEach(function(c){out.push({n:c.n,h:oneCard(c,-1)});});
-    var ek=extraTag();if(ek){out.push({n:TI[ek].n,h:tagCard(ek,true)});}
+function starMemos(){
+  var out=[],sv=V.r,sd=V.day;
+  for(var d=1;d<=50;d++){
+    var X=SS[d];if(!X||!X.mstar||!DAYS[d]){continue;}
+    var any=Object.keys(X.mstar).some(function(k){return X.mstar[k];});if(!any){continue;}
+    setDay(d);RD=d;var items=[];
+    for(var r=0;r<RANGES.length;r++){
+      V.r=r;
+      curCards().forEach(function(c){var k='c:'+c.n+':'+c.w.toLowerCase();if(X.mstar[k]){items.push({n:c.n,h:oneCard(c,-1)});}});
+      var ek=extraTag();if(ek&&X.mstar['t:'+ek]){items.push({n:TI[ek].n,h:tagCard(ek,true)});}
+    }
+    items.sort(function(a,b){return a.n-b.n;});
+    items.forEach(function(x){out.push({d:d,h:'<div class="dlab">DAY '+d+'</div>'+x.h});});
   }
-  V.r=sv;
-  out.sort(function(a,b){return a.n-b.n;});
+  RD=null;V.r=sv;setDay(sd);
   return out;
 }
 function tagsView(){
-  var h=topbar("DAY "+V.day,"메모 모아보기"),it=memoItems();
-  h+='<div class="gl">총 '+it.length+'개</div>';
+  var h=topbar("전체 DAY 누적","메모 모아읽기"),it=starMemos();
+  if(!it.length){return h+'<div class="banner">별표한 메모가 아직 없어요.</div>';}
+  h+='<div class="gl">★ 메모 '+it.length+'개</div>';
   it.forEach(function(x){h+=x.h;});
   return h;
 }
@@ -9539,6 +9545,7 @@ function oneCard(c,i){
   h+='<div class="word">'+esc(c.w)+'<small>('+c.p+') '+esc(c.m)+'</small></div>';
   h+='<div class="warn"><span class="wtab">시험 단골 함정!</span>'+esc(c.warn)+'</div>';
   h+=memoBox(c.copy,'메모 · '+c.n+'번 문장 옆');
+  h+=mstarBtn('c:'+c.n+':'+c.w.toLowerCase());
   h+='</div>';
   return h;
 }
@@ -9768,6 +9775,8 @@ $app.addEventListener("click",function(e){
   else if(a==="cards"){V.s="cards";}
   else if(a==="ub"){V.s="ub";V.ut=0;}
   else if(a==="quiz"){V.s="quiz";}
+  else if(a==="stog"){V.so=!V.so;keep=true;}
+  else if(a==="mstar"){var dd=Number(t.dataset.d),XX=SS[dd]||(SS[dd]=freshS());if(!XX.mstar){XX.mstar={};}XX.mstar[t.dataset.k]=!XX.mstar[t.dataset.k];keep=true;}
   else if(a==="utab"){V.ut=Number(t.dataset.i);keep=true;}
   else if(a==="qzpick"){var Z=V.qz;if(Z&&Z.pick===null){Z.pick=Number(t.dataset.i);var q=Z.qs[Z.i];var ok=q.t==="judge"?["유의어","반의어","관계없음"][Z.pick]===q.rel:q.opts[Z.pick].w===q.ans.w;if(ok){Z.score++;}else{Z.wrong.push(q);}}keep=true;}
   else if(a==="mupick"){var q=V.qz.qs[V.qz.i];var k=Number(t.dataset.i);q.sel[k]=!q.sel[k];keep=true;}
