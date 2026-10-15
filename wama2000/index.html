@@ -9541,9 +9541,9 @@ function tagsView(){
 }
 
 function oneCard(c,i){
-  var h='<div class="card"'+(i>=0?' id="c'+i+'"':'')+'><div class="cardhead"><span class="chip hae">'+(i>=0?CIRC[i]:'함')+'</span><span class="tl hae">함정</span><span class="no">'+c.n+'번 문장</span></div>';
+  var h='<div class="card"'+(i>=0?' id="c'+i+'"':'')+'><div class="cardhead"><span class="chip hae">'+(i>=0?CIRC[i]:TCH["엮"])+'</span><span class="tl hae">빈출</span><span class="no">'+c.n+'번 문장</span></div>';
   h+='<div class="word">'+esc(c.w)+'<small>('+c.p+') '+esc(c.m)+'</small></div>';
-  h+='<div class="warn"><span class="wtab">시험 단골 함정!</span>'+esc(c.warn)+'</div>';
+  h+='<div class="warn"><span class="wtab">시험 빈출!</span>'+esc(c.warn)+'</div>';
   h+=memoBox(c.copy,'메모 · '+c.n+'번 문장 옆');
   h+=mstarBtn('c:'+c.n+':'+c.w.toLowerCase());
   h+='</div>';
