@@ -81,7 +81,7 @@ function sentHtml(i,lock){
   h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
  });
  h+='</div></div>';
- if(lock)h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ h+='<div class="gl kr">'+esc(it.ko)+'</div>';
  if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
  if(lock)h+=noteHtml(i);
  return h+'</div>';
@@ -147,7 +147,7 @@ function calcRes(){var c=QS.map(function(P){var a=0,n=0;P.groups.forEach(functio
 function resultHtml(){var r=calcRes();
  return '<div class="stage">결과 &middot; 2~3단계 합산</div><div class="res '+(r.pass?'rp':'rf')+'"><div class="rt2">'+(r.pass?'통과':'통과선 미달')+'</div><div class="rpct">'+r.pct+'<small>점</small></div><div class="rl2">100점 만점 &middot; 통과선 '+PASS_PCT+'점'+(ATT?' &middot; '+(ATT+1)+'번째 도전':'')+'</div>'
  +'<table class="rtb">'+QS.map(function(P,i){return '<tr><td>'+(i+2)+' '+P.title.replace(' 파악','')+'</td><td>'+r.c[i][0]+' / '+r.c[i][1]+'</td></tr>'}).join('')+'</table>'
- +'<div class="rl2">소요 시간 '+fmtT(TM.act)+(TM.lv?' &middot; 화면 이탈 '+TM.lv+'회 ('+fmtT(TM.lt)+')':' &middot; 화면 이탈 없음')+'</div>'+(r.pass?'':'<button type="button" data-redo="1">2~3단계 다시 도전 (보기 순서가 바뀌어요)</button>')+'</div>'}
+ +'<div class="rl2">총 학습 시간 '+fmtT(TM.act)+'</div>'+(r.pass?'':'<button type="button" data-redo="1">2~3단계 다시 도전 (보기 순서가 바뀌어요)</button>')+'</div>'}
 var pick={},qdone={};
 var CN='①②③④⑤';
 function aDone(){return secs.every(function(S,si){return done[si]})}
@@ -258,7 +258,7 @@ setInterval(function(){if(!document.hidden&&!TM.done){tmFlush();persist()}},5000
 var PK='m1-prog-'+RNUM;
 function persist(){try{var any=Object.keys(sel).length||Object.keys(pick).length||Object.keys(done).length||Object.keys(qdone).length;
  if(any)localStorage.setItem(PK,JSON.stringify({sel:sel,done:done,pick:pick,qdone:qdone,att:ATT,tm:TM}));else localStorage.removeItem(PK);
- var st=JSON.parse(localStorage.getItem('m1-st')||'{}');var n=(aDone()?1:0)+QS.filter(function(P,i){return qdone[i]}).length;var rs=JSON.parse(localStorage.getItem('m1-res')||'{}');if(n>=1+QS.length){var cr=calcRes();rs[RNUM]={p:cr.pct,ok:cr.pass?1:0,t:Math.round(TM.act/1000),lv:TM.lv}}else{delete rs[RNUM]}localStorage.setItem('m1-res',JSON.stringify(rs));if(any){st[RNUM]=(n>=1+QS.length?3:n);localStorage.setItem('m1-st',JSON.stringify(st));localStorage.setItem('m1-last',String(RNUM))}else{delete st[RNUM];localStorage.setItem('m1-st',JSON.stringify(st))}
+ var st=JSON.parse(localStorage.getItem('m1-st')||'{}');var n=(aDone()?1:0)+QS.filter(function(P,i){return qdone[i]}).length;var rs=JSON.parse(localStorage.getItem('m1-res')||'{}');if(n>=1+QS.length){var cr=calcRes();rs[RNUM]={p:cr.pct,ok:cr.pass?1:0,t:Math.round(TM.act/1000)}}else{delete rs[RNUM]}localStorage.setItem('m1-res',JSON.stringify(rs));if(any){st[RNUM]=(n>=1+QS.length?3:n);localStorage.setItem('m1-st',JSON.stringify(st));localStorage.setItem('m1-last',String(RNUM))}else{delete st[RNUM];localStorage.setItem('m1-st',JSON.stringify(st))}
  var el=document.getElementById('bm');if(el)el.style.display=any?'inline-flex':'none'}catch(e){}}
 try{var sv=JSON.parse(localStorage.getItem(PK)||'null');if(sv){sel=sv.sel||{};done=sv.done||{};pick=sv.pick||{};qdone=sv.qdone||{};ATT=sv.att||0;if(sv.tm){TM=sv.tm;TM.done=TM.done||0;_last=Date.now()}shuf()}}catch(e){}
 document.getElementById('app').addEventListener('click',function(e){if(e.target.closest('button[data-redo]')){ATT++;shuf();pick={};qdone={};TM.done=0;_last=Date.now();render();var s=document.querySelectorAll('.stage');s[1]&&s[1].scrollIntoView()}});
