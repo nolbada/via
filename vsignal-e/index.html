@@ -724,11 +724,13 @@ window.BRK={
     app.addEventListener('click',onClick,true);
   },
   tabs:function(active){return tabsHtml(active||'home');},
-  note:function(e){
+  note:function(e,part){
     var b=null;for(var i=0;i<BRICKS.length;i++)if(kk(BRICKS[i])===e.b)b=BRICKS[i];if(!b)return '';
     var all=b.quiz.map(function(x){return ['quiz:'+x.id,x];}).concat(b.steps.map(function(x){return ['exam:'+x.id,x];}));
     var wr='';all.forEach(function(p){if(e.log[p[0]]){var x=p[1];wr+='<div class="bk-wr"><div class="bk-wq">'+(p[0].indexOf('quiz')===0?'퀴즈 · ':'분석 · ')+esc(x.q)+'</div><div class="bk-wa">'+x.good+'</div></div>';}});
     if(!wr)return '';
+    if(part==='box')return '<div class="nwi"><div class="nn">문장 엑스레이 '+esc(b.id)+'</div><div style="text-align:left;margin:4px 0 6px">'+sentFinal(b)+'</div><div class="nko">'+esc(b.ko)+'</div></div>';
+    if(part==='more')return '<div class="nr"><b>문장 엑스레이 '+esc(b.id)+' · '+esc(b.src)+'</b>'+wr+'</div>';
     return '<div class="ni"><div class="nn">문장 엑스레이 '+esc(b.id)+' · '+esc(b.src)+'</div><div style="text-align:left;margin:4px 0 6px">'+sentFinal(b)+'</div><div class="nko">'+esc(b.ko)+'</div>'+wr+'</div>';
   },
   start:function(){st.mode='list';st.sheet=false;render();}
@@ -1501,15 +1503,16 @@ function noteHtml(){
       +ks.map(function(k){return '<div class="nwk">'+k+'</div>';}).join('')+'</div>';
   });
   WD.slice(0,NOTE_MAX).forEach(function(e){h+='<div class="nwi"><div class="nn">단어</div><div class="nen">'+esc(e.w)+' = '+esc((e.m||[]).join(' / '))+'</div></div>';});
+  X.forEach(function(e){h+=BRK.note(e,'box');});
   h+='</div>';
-  var more=R2.length||WD.length>NOTE_MAX||G.length;
+  var more=R2.length||WD.length>NOTE_MAX||G.length||X.length;
   if(more){
     h+='<details class="nmore"><summary>참고 (안 써도 돼요)</summary>';
     G.forEach(function(g){var o=noteLines(g);h+='<div class="nr"><b>Day '+g.day+' · 책 '+g.s.n+'번</b> '+esc(g.s.en)+'<br><span>'+esc(g.s.ko)+'</span>'+(o.lines.length?'<ul>'+o.lines.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>':'')+(o.defs.length?'<div class="nd">'+o.defs.map(function(x){return esc(x);}).join('<br>')+'</div>':'')+beMemo(g.s,true)+'</div>';});
+    X.forEach(function(e){h+=BRK.note(e,'more');});
     WD.forEach(function(e){if(e.en)h+='<div class="nr"><b>'+esc(e.w)+'</b> '+esc(e.en)+'<br><span>'+esc(e.ko||'')+'</span></div>';});
     h+='</details>';
   }
-  X.forEach(function(e){h+=BRK.note(e);});
   return h+'</div>';
 }
 function renderNote(){
