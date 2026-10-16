@@ -930,7 +930,7 @@ function beMemo(s,compact){
   }
   if(!ps.length)return '';
   if(compact)return '<div class="tdm">합쳐서 해석: '+ps.map(function(x){return '<b>'+esc(x)+'</b>';}).join(', ')+' (동강동강 끊어 읽지 않기)</div>';
-  return '<div class="bememo"><b class="t">꼭 기억하세요: 동사와 보어는 합쳐서 해석해요!</b>이 문장은 성분 연습을 위해 어쩔 수 없이 동사와 보어를 나눠 놓았어요. 하지만 해석할 때는 <b>절대 동강동강 끊어 읽지 말고, 하나로 합쳐서</b> 읽어야 해요.<br>'+ps.map(function(x){return '<span class="pr">'+esc(x)+'</span>';}).join('')+'<br><span class="x">아픈 였다</span> (X) &nbsp; <b>was sick = 아팠다</b> (O) &nbsp;(나눠 놓았어도 뜻은 하나!)<br>위 문장의 우리말 해석도 한 번에 읽어 보세요.</div>';
+  return '<div class="bememo"><b class="t">동사 + 보어는 한 덩어리로 해석</b>'+ps.map(function(x){return '<span class="pr">'+esc(x)+'</span>';}).join('')+'<br>성분은 나눠서 골랐어도 해석은 한 번에.</div>';
 }
 function sig(c){if(c.r!=='수식어')return esc(c.t);var m=/^(\S+)(\s[\s\S]*)?$/.exec(c.t);return m?'<u class="sig">'+esc(m[1])+'</u>'+esc(m[2]||''):esc(c.t);}
 function todayHtml(L0,ttl){
