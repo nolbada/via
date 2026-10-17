@@ -72,7 +72,7 @@ h1{font-size:22px;margin:0;letter-spacing:-.01em}
 <main>
 <div class="top"><h1>틀린 곳 말하기 시험 <span style="font-size:14px;color:var(--sub);font-weight:600">· 선생님용</span></h1>
 <a class="btn" href="./">← 시험 모음</a></div>
-<p class="sub" id="sub">레슨을 누르면 틀린 문장 5개가 뽑혀요. 한 문제씩 보여주고, 학생이 큰 소리로 답하면 뒤집어서 정답을 확인한 뒤 ○/✕를 눌러요.</p>
+<p class="sub" id="sub">레슨을 누르면 틀린 문장 5개가 뽑혀요. 한 문제씩 밋밋한 문장만 보여줘요. 학생이 틀린 곳을 찾아 큰 소리로 말하면 뒤집어서 정답을 확인한 뒤 ○/✕를 눌러요.</p>
 
 <div id="pick">
  <div class="tabs"><button data-b="m1">M1 Reading</button><button data-b="m2">M2 Reading</button></div>
@@ -111,10 +111,10 @@ function card(){
  var q=Q[idx],tk=q.en.split(/\s+/),bad={};
  q.fx.forEach(function(f){var n=f.w.split(/\s+/).length;for(var j=0;j<n;j++)bad[f.at+j]=1});
  var h=[],i=0;
- while(i<tk.length){if(bad[i]){var st=i;while(bad[i]&&i<tk.length)i++;h.push('<span class="bad">'+esc(tk.slice(st,i).join(' '))+'</span>')}else{h.push(esc(tk[i]));i++}}
+ while(i<tk.length){if(flipped&&bad[i]){var st=i;while(bad[i]&&i<tk.length)i++;h.push('<span class="bad">'+esc(tk.slice(st,i).join(' '))+'</span>')}else{h.push(esc(tk[i]));i++}}
  var fx=q.fx.map(function(f){return '<div class="fx"><span class="w">'+esc(f.w)+'</span> → <span class="r">'+esc(f.r)+'</span><span class="tp">'+esc(f.t)+' — '+esc(f.m)+'</span></div>'}).join('');
  var h2=dots()+'<div class="q big"><div class="qh"><span class="qn">문제 '+(idx+1)+' / '+Q.length+' <small>(본문 '+q.n+'번)</small></span></div><div class="en">'+h.join(' ')+'</div><div class="ko">'+esc(q.ko)+'</div>';
- if(!flipped){h2+='<div class="ask">빨간 줄 친 곳, 왜 틀렸을까요? 큰 소리로 말해 보세요!</div><button class="bigb flipb" id="flip">🔄 뒤집기 (정답 보기)</button>'}
+ if(!flipped){h2+='<div class="ask">이 문장에서 틀린 곳은 어디일까요? 찾아서 큰 소리로 말해 보세요!</div><button class="bigb flipb" id="flip">🔄 뒤집기 (정답 보기)</button>'}
  else{h2+='<div class="ans" style="display:block">'+fx+'</div><div class="judge"><button class="bigb ob" data-v="1">○ 맞았어요</button><button class="bigb xb" data-v="2">✕ 틀렸어요</button></div>'}
  h2+='</div>'+(idx>0?'<button class="btn" id="prev">← 이전 문제</button>':'');
  $('cards').innerHTML=h2;window.scrollTo(0,0)}
