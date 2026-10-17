@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<title>금천고1 3과 핵심 7문장 (S)</title>
+<style>
+:root{--bg:#f4f6f8;--sf:#fff;--fg:#14202b;--mu:#566474;--ln:#d9e0e7;--ac:#0f766e;--acbg:#ccfbf1;--ok:#15803d;--okbg:#e3f4e8;--warn:#b45309;--warnbg:#fef3c7;--del:#9f1239;--delbg:#fde8ec;--new:#166534;--newbg:#dcf5e3}
+@media(prefers-color-scheme:dark){:root{--bg:#0e141b;--sf:#17212b;--fg:#e6ebf0;--mu:#9aa8b6;--ln:#2a3744;--ac:#2dd4bf;--acbg:#0f3a36;--ok:#4ade80;--okbg:#15301f;--warn:#fbbf24;--warnbg:#46330a;--del:#fda4af;--delbg:#4a1d28;--new:#86efac;--newbg:#15301f}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding:16px 16px 40px}
+h1{font-size:20px;margin:6px 0 2px}.sub{color:var(--mu);font-size:14px;margin:0 0 14px}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:14px;margin-bottom:12px}
+.day{font-weight:700;margin:0 0 8px;display:flex;justify-content:space-between}.day span{color:var(--mu);font-weight:400;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-width:52px;height:46px;border-radius:10px;border:1.5px solid var(--ln);background:var(--sf);color:var(--fg);font-size:15px;font-weight:700;cursor:pointer;padding:0 8px}
+.chip small{display:block;font-size:10px;font-weight:400;color:var(--mu);line-height:1}
+.chip.done{background:var(--okbg);border-color:var(--ok)}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.back{background:none;border:none;color:var(--mu);font-size:15px;cursor:pointer;padding:8px 0}
+.lab{font-size:12px;font-weight:700;color:var(--mu);margin:0 0 4px;display:flex;gap:6px;align-items:center}
+.pill{display:inline-block;padding:1px 9px;border-radius:99px;font-size:12px;font-weight:700}
+.p-key{background:var(--warnbg);color:var(--warn)}.p-nat{background:var(--newbg);color:var(--new)}
+.sent{font-size:20px;line-height:2.1;font-family:"Segoe UI",system-ui,-apple-system,Roboto,"Malgun Gothic",sans-serif}
+.t{border:none;background:none;color:inherit;font:inherit;padding:2px 1px;border-radius:6px;cursor:pointer}
+span.t{cursor:default}
+.t.pick{background:var(--acbg);outline:2px solid var(--ac)}
+.t.hit{background:var(--delbg);color:var(--del);text-decoration:line-through;text-decoration-thickness:1.5px}
+.t.hit.pick{outline:2px solid var(--ok)}
+.t.keep{border-bottom:3px solid var(--ac);border-radius:0;font-weight:700}
+.t.new{background:var(--newbg);color:var(--new);font-weight:700}
+.q{font-size:15px;font-weight:700;margin:0 0 6px}
+.btn{display:block;width:100%;height:50px;border:none;border-radius:12px;background:var(--ac);color:#fff;font-size:17px;font-weight:700;cursor:pointer;margin-top:14px}
+.btn.alt{background:var(--sf);color:var(--fg);border:1.5px solid var(--ln)}
+.arrow{text-align:center;color:var(--mu);font-size:13px;margin:6px 0}
+.badge{display:inline-block;padding:3px 12px;border-radius:8px;background:var(--ac);color:#fff;font-size:14px;font-weight:700}
+.cnt{font-size:13px;color:var(--mu);margin-left:8px}
+.note{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--bg);border-left:4px solid var(--ac);font-size:15px;line-height:1.6}
+.nl{font-size:12px;font-weight:700;color:var(--ac);margin-bottom:2px}
+.mt{display:flex;gap:10px}.mt>div{flex:1;display:flex;flex-direction:column;gap:8px}
+.mb{padding:10px;border-radius:10px;border:2px solid var(--ln);background:var(--sf);color:var(--fg);font:16px 'Segoe UI',system-ui,'Malgun Gothic',sans-serif;cursor:pointer;text-align:left}
+.mb.sel{border-color:var(--ac);background:var(--acbg)}.mb.ok{border-color:var(--ok);background:var(--okbg);color:var(--ok);font-weight:700}
+.opt{display:block;width:100%;text-align:left;padding:10px 12px;margin-top:8px;border-radius:10px;border:2px solid var(--ln);background:var(--sf);color:var(--fg);cursor:pointer;font-size:14px}.opt b{display:block;font-size:16px}.opt span{color:var(--mu)}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}.opt.no{border-color:var(--warn);background:var(--warnbg)}
+.msg{margin-top:10px;font-size:14px;color:var(--mu)}
+.leg{font-size:12px;color:var(--mu);margin-top:8px}
+.nt{padding:14px}.nh{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.sec{font-size:13px;font-weight:700;color:var(--ac);margin:14px 0 6px;border-bottom:1.5px solid var(--ln);padding-bottom:3px}.src{color:var(--mu);font-weight:400;font-size:11px;margin-left:4px}
+.chg{font-size:15px;margin:5px 0;line-height:1.7;font-family:'Segoe UI',system-ui,'Malgun Gothic',sans-serif}.chg s{background:var(--delbg);color:var(--del);padding:1px 4px;border-radius:4px}.chg u{text-decoration:none;background:var(--newbg);color:var(--new);font-weight:700;padding:1px 4px;border-radius:4px}
+.cn{display:inline-block;width:20px;height:20px;border-radius:50%;background:var(--ac);color:#fff;font-size:12px;text-align:center;line-height:20px;margin-right:6px}.cc{font-size:12px;font-weight:700;color:var(--mu);margin-right:4px}
+.ex{display:flex;gap:8px;align-items:flex-start;margin:7px 0;font-size:15px;line-height:1.75}.ex>span:last-child{flex:1}
+mark{background:#fde68a;color:#14202b;padding:0 2px;border-radius:3px}
+@media(prefers-color-scheme:dark){mark{background:#7a5a08;color:#fff}}
+.bd{flex:none;min-width:64px;white-space:nowrap;text-align:center;padding:2px 6px;border-radius:6px;font-size:12px;font-weight:700;margin-top:3px;color:#fff}
+.b0{background:#64748b}.b1{background:#0f766e}.b2{background:#15803d}.b3{background:#1d4ed8}.b4{background:#7c3aed}.b5{background:#b45309}.b6{background:#be185d}.b7{background:#475569}
+.hint{font-size:13px;color:var(--mu);margin:0 0 10px}
+.stamp{text-align:center}.stp{border:3px double var(--ac);border-radius:12px;padding:14px;color:var(--ac)}.stt{font-size:18px;font-weight:800}.std{font-size:22px;font-weight:800;margin:4px 0}
+</style><style>
+.wrd{display:inline;font-family:'Segoe UI',system-ui,'Malgun Gothic',sans-serif;font-size:20px;line-height:2.3}
+.gp{display:inline-block;width:20px;height:34px;vertical-align:middle;border:none;background:none;cursor:pointer;color:var(--ln);font-size:20px;padding:0;border-radius:6px}
+.gp:before{content:"\00b7"}.gp.on{color:var(--ac);font-weight:700}.gp.on:before{content:"/"}
+.gp.ok{color:var(--ok);background:var(--okbg)}.gp.ok:before{content:"/"}
+.gp.miss{color:var(--warn);background:var(--warnbg)}.gp.miss:before{content:"/"}
+.gp.ex{color:var(--del);background:var(--delbg)}.gp.ex:before{content:"/";text-decoration:line-through}
+.sn{display:flex;gap:6px;margin:6px 0 10px;flex-wrap:wrap}
+.sb{flex:1;min-width:40px;height:44px;border-radius:10px;border:1.5px solid var(--ln);background:var(--sf);color:var(--fg);font-weight:700;font-size:15px;cursor:pointer}
+.sb.done{background:var(--okbg);border-color:var(--ok)}.sb.cur{outline:2px solid var(--ac)}
+.rw{padding:8px 0;border-bottom:1px solid var(--ln)}.rw:last-child{border:none}
+.re{font-size:18px;font-family:'Segoe UI',system-ui,sans-serif;font-weight:600}.rk{font-size:15px;color:var(--mu);margin-top:2px}
+.nat{margin-top:12px;padding:10px 12px;border-radius:10px;background:var(--acbg);font-size:16px;line-height:1.7}
+.nat b{display:block;font-size:12px;color:var(--ac);margin-bottom:2px}
+.step{font-size:13px;color:var(--mu);margin:8px 0}
+.ctl{font-size:12px;color:var(--mu);margin-top:8px}
+.dis{opacity:.4}
+.nav{position:sticky;top:0;z-index:5;background:var(--bg,#fff);padding:6px 0}
+.sc{margin-bottom:14px;scroll-margin-top:64px}
+.ck{margin:3px 0 2px 44px;font-size:14px;color:var(--mu)}
+.vw{background:none;border:none;font:inherit;color:inherit;padding:0 2px;border-radius:6px;cursor:pointer}
+span.vw{cursor:default}
+.vw.on{background:var(--acbg);text-decoration:underline;text-decoration-thickness:2px}
+.vw.vok{text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:var(--ok);background:var(--okbg)}
+.vw.vms{text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:var(--warn);background:var(--warnbg)}
+.vw.vex{text-decoration:line-through;text-decoration-color:var(--del);background:var(--delbg)}
+.cfn{margin-top:16px;padding-top:6px;border-top:2px solid var(--ln)}.cfc{margin-bottom:14px}.cfc .cfo{margin-top:8px}
+.dn2{margin:12px 0;padding:10px 12px;border:1px solid var(--ln);border-radius:10px;font-size:14px;line-height:1.6}.dn2 summary{font-weight:700;font-size:13px;color:var(--mu);cursor:pointer}.dn2 ul{margin:8px 0 0;padding-left:18px}.dn2 li{margin:6px 0}.sft{border-bottom:2px dotted var(--mu)!important;color:var(--mu);opacity:.75}.dd{list-style:none;margin-left:-18px;padding-top:6px;border-top:1px solid var(--ln);color:var(--mu)}.dk{font-size:11px;padding:1px 6px;border-radius:6px;background:var(--acbg);color:var(--ac);font-weight:700}.sec2{font-weight:700;font-size:13px;color:var(--mu);margin:8px 0 4px}.fm,.pi{margin:14px 0 18px;padding:12px 14px;border:2px solid var(--warn);border-radius:12px;background:var(--warnbg)}
+.fm>b,.pit{display:inline-block;background:var(--warn);color:#fff;font-size:13px;font-weight:800;border-radius:6px;padding:2px 10px;margin-bottom:6px}.fm .fr i{background:var(--sf);color:var(--warn)}.pir{font-size:14px;font-weight:800;margin:8px 0 2px;color:var(--fg)}.pir b{color:var(--warn);margin-right:4px}.pib{font-size:16px;font-weight:700;line-height:1.7;color:var(--fg)}.pi .rw{border-color:rgba(180,83,9,.25)}.ref{font-size:12px;font-weight:700;color:var(--mu);margin:14px 0 0}
+.fr{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-top:1px solid var(--ln);font-size:15px;line-height:1.6}.fr:first-of-type{border:none}
+.fr i{font-style:normal;flex:none;min-width:58px;text-align:center;padding:2px 6px;border-radius:6px;background:var(--acbg);color:var(--ac);font-size:12px;font-weight:700}
+.fr em{font-style:normal;color:var(--mu)}
+.fmh{font-size:12px;color:var(--mu);margin-top:6px}
+.wlstrip{display:block;margin:0 0 12px;padding:11px 14px;border:2px solid #e0a100;border-radius:12px;background:#fff4d6;color:#5b3d00;font-size:15px;font-weight:800;text-decoration:none}
+.nbtn{display:block;text-align:center;margin-top:12px;padding:12px;border-radius:12px;background:var(--ac);color:#fff;font-weight:800;text-decoration:none}.tgl{display:block;width:100%;margin-top:10px;padding:11px;border:1px solid var(--ln);border-radius:12px;background:var(--sf);color:var(--fg);font:inherit;font-weight:700;cursor:pointer}.scr{text-align:center;margin-top:10px}.scb{font-size:22px;font-weight:800}.scb.ok{color:var(--ac)}.scb.no{color:#b45309}.scl{font-size:14px;margin-top:2px}.scl.perf{font-size:26px;font-weight:800;color:var(--ac)}.tdy{text-align:left;margin-top:14px;border-top:1px dashed var(--ln,#ccc);padding-top:10px}.tdh{font-size:15px;font-weight:800;margin-bottom:8px}.tdi{margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--ln,#ddd)}.tdn{font-size:12px;font-weight:700;color:var(--mu);margin-bottom:4px}.scl.sm{font-size:12px;color:var(--mu)}.wbox{margin-top:16px;padding:12px 14px;border:1px solid var(--ln);border-radius:12px;text-align:left}.wt{font-weight:800;font-size:15px;margin-bottom:4px}.wsub,.wnone{font-size:13px;color:var(--mu);margin:2px 0 8px}.wrow{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--ln)}.wn{flex:none;font-weight:800;color:var(--ac);min-width:34px}.wen{font-size:15px;line-height:1.6;font-weight:600}.wko{font-size:14px;line-height:1.6;color:var(--mu);margin-top:2px}.wwhy{font-size:12px;color:var(--mu);margin-top:2px}
+</style></head><body><div class="wrap" id="app"></div>
+<script>
+const DAYS=[{"d": 1, "s": [{"id": "1-1", "n": 1, "en": "Today, you're going to meet three amazing artists / who never gave up on their art, / despite challenges in their lives.", "ko": "오늘 여러분은 세 명의 놀라운 예술가들을 만나게 될 것이다 / 그들은 자신의 예술을 결코 포기하지 않았다 / 인생의 역경에도 불구하고", "nat": "오늘 여러분은 인생의 역경에도 불구하고 자신의 예술을 결코 포기하지 않은 세 명의 놀라운 예술가를 만나게 될 것이다."}, {"id": "1-2", "n": 2, "en": "Each artist has / a unique painting style and story / that has made their work highly valued.", "ko": "각 예술가에게는 있다 / 독특한 화풍과 이야기가 / 그 이야기가 그들의 작품을 높이 평가받게 만들어 왔다", "nat": "예술가마다 독특한 화풍과 이야기가 있고, 그 덕분에 작품이 높이 평가받아 왔다."}, {"id": "1-3", "n": 3, "en": "It wasn't until he was 85 years old / and became too ill to work / that he turned to drawing / to express his life experiences.", "ko": "그가 85세가 되고 / 몸이 너무 아파 일할 수 없게 된 후에야 / 그는 그림으로 눈을 돌렸다 / 자신의 인생 경험을 표현하기 위해", "nat": "그는 85세가 되어 몸이 너무 아파 일할 수 없게 되고 나서야, 자신의 인생 경험을 표현하려고 그림에 눈을 돌렸다."}, {"id": "1-4", "n": 4, "en": "Traylor had a strong fear of dogs / because they had often been used on farms / to watch and hunt slaves.", "ko": "Traylor는 개에 대한 강한 두려움이 있었다 / 개가 농장에서 자주 이용되었기 때문이다 / 노예를 감시하고 사냥하기 위해", "nat": "Traylor는 개를 몹시 무서워했는데, 개가 농장에서 노예를 감시하고 사냥하는 데 자주 이용되었기 때문이다."}, {"id": "1-5", "n": 5, "en": "Although her physical limitations confined her to a small cottage, / her talent and imagination were both limitless.", "ko": "비록 신체적 제약이 그녀를 작은 오두막집에 가두었지만 / 그녀의 재능과 상상력은 둘 다 무한했다", "nat": "신체적 제약 때문에 그녀는 작은 오두막집에 갇혀 지냈지만, 그녀의 재능과 상상력은 둘 다 끝이 없었다."}, {"id": "1-6", "n": 6, "en": "After that, she even studied abroad in Paris, / which was unusual for women at the time.", "ko": "그 후 그녀는 파리에서 유학까지 했다 / 그것은(=파리 유학) 당시 여성들에게 드문 일이었다", "nat": "그 후 그녀는 파리로 유학까지 갔는데, 이는 당시 여성에게는 드문 일이었다."}, {"id": "1-7", "n": 7, "en": "Even after getting married, / Ancher persisted in painting, / objecting to the social pressure / that married women were to solely focus on household duties.", "ko": "결혼 후에도 / Ancher는 그림을 계속 그렸다 / 사회적 압력에 저항하며 / 그 압력은 기혼 여성이 가사에만 집중해야 한다는 것이었다", "nat": "결혼한 뒤에도 Ancher는 계속 그림을 그렸고, 기혼 여성은 가사에만 집중해야 한다는 사회적 압력에 맞섰다."}]}];
+const CF=[];
+const VB={"1-1": [1, 2, 4, 10, 11], "1-2": [2, 10, 11], "1-3": [1, 4, 9, 16], "1-4": [1, 9, 11, 12], "1-5": [4, 14], "1-6": [4, 9], "1-7": [5, 16, 19]};
+const SF={"1-1": [12], "1-3": [17], "1-5": [6], "1-7": [6, 20]};
+var WLK='vsig-tb-g1gc-l3-wl-v1';
+function wlD(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+function wlGet(){try{return JSON.parse(localStorage.getItem(WLK)||'{}')}catch(e){return {}}}
+function wlPut(e){try{var o=wlGet(),k=wlD();Object.keys(o).forEach(function(q){if(q!==k)delete o[q]});var L=(o[k]||[]).filter(function(x){return x.id!==e.id});L.push(e);o[k]=L;var ks=Object.keys(o).sort();while(ks.length>10)delete o[ks.shift()];localStorage.setItem(WLK,JSON.stringify(o))}catch(x){}}
+function wlKey(o){var ks=Object.keys(o).sort().reverse();for(var i=0;i<ks.length;i++)if(o[ks[i]]&&o[ks[i]].length)return ks[i];return ''}
+function wlList(){var o=wlGet(),k=wlKey(o);return k?o[k]:[]}
+function wlN(){return wlList().length}
+function wlStrip(){var n=wlN();return n?'<a class="wlstrip" href="note.html">오답노트 '+n+'문장 쓰러 가기</a>':''}
+const KEY='vsig-tb-g1gc-l3-y-v1';
+let S={};try{S=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const $=document.getElementById('app');
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const isP=t=>/^[.,;:!?)\]”]$/.test(t);
+function line(tokens,flags,cls,btn,picks){let h='';tokens.forEach((t,i)=>{const sp=(i&&!isP(t)&&!/^[(“]$/.test(tokens[i-1]))?' ':'';const f=flags?flags[i]:0;let c='t'+(f?' '+cls:'');h+=sp+'<span class="'+c+'">'+esc(t)+'</span>';});return h}
+const NP=a=>a.filter(t=>!/^[.,;:!?()\[\]“”]$/.test(t)).length;
+const rw=x=>Math.max(x.ka.reduce((a,b)=>a+b,0)/NP(x.k),x.cb.reduce((a,b)=>a+b,0)/NP(x.c))>0.5;
+const kp=(tk,oth)=>{const s=new Set(oth.map(w=>w.toLowerCase()));return tk.map(w=>(w.length>3&&/[A-Za-z]/.test(w)&&s.has(w.toLowerCase()))?1:0)};
+const BD=[[/간결|짧/,'간결','b1'],[/자연스러/,'자연스러움','b2'],[/명확|명료|분명|논리|직관/,'명확','b3'],[/능동|수동/,'능동·수동','b4'],[/초점|관점|강조|주어/,'초점','b5'],[/구체|생생|묘사|시적|담백/,'표현','b6'],[/격식|세련|문어체|일상/,'격식','b7']];
+const bdg=s=>{for(const [r,n,c] of BD)if(r.test(s))return '<span class="bd '+c+'">'+n+'</span>';return '<span class="bd b0">풀이</span>'};
+const hl=s=>esc(s).replace(/[A-Za-z][A-Za-z’'.,\- ]*[A-Za-z’)]|[A-Za-z]/g,m=>m.length>1||/^[A-Za-z]$/.test(m)?'<mark>'+m+'</mark>':m);
+const sj=(tk,r)=>tk.slice(r[0],r[1]).join(' ').replace(/ ([.,;:!?])/g,'$1');
+function changes(x){if(rw(x))return '<div class="chg"><span class="cc">구조 변경</span> 문장이 크게 다시 짜였습니다. 두 문장에 모두 남은 말에 밑줄을 쳤습니다.</div>';
+ return x.o.slice(0,6).map((o,i)=>{const A=o[2]>o[1]?'<s>'+esc(sj(x.k,[o[1],o[2]]))+'</s>':'',B=o[4]>o[3]?'<u>'+esc(sj(x.c,[o[3],o[4]]))+'</u>':'';
+  const tag=o[0]=='replace'?'바뀜':o[0]=='delete'?'빠짐':'추가';return '<div class="chg"><span class="cn">'+(i+1)+'</span><span class="cc">'+tag+'</span> '+A+(A&&B?' &rarr; ':'')+B+'</div>'}).join('')}
+function card(x){const R=rw(x);const fa=R?kp(x.k,x.c):x.ka,fb=R?kp(x.c,x.k):x.cb,ca=R?'keep':'hit',cb=R?'keep':'new';
+ const notes=x.t.split(/(?<=다\.)\s+/).filter(Boolean);
+ return '<div class="card nt"><div class="nh"><b>Day '+x.d+' · '+x.n+'번</b><span class="badge">'+x.b+'</span></div>'+
+ '<p class="lab"><span class="pill p-key">책 문장 (KEY)</span></p><div class="sent">'+line(x.k,fa,ca,false)+'</div>'+
+ '<p class="lab" style="margin-top:8px"><span class="pill p-nat">cf. 자연스러운 표현</span></p><div class="sent">'+line(x.c,fb,cb,false)+'</div>'+
+ '<p class="sec">무엇이 바뀌었나</p>'+changes(x)+
+ '<p class="sec">왜 이렇게 다듬을까 <span class="src">책의 해설</span></p>'+notes.map(s=>'<div class="ex">'+bdg(s)+'<span>'+hl(s)+'</span></div>').join('')+'</div>'}
+
+
+const DN={"1-1": [["E2", ["going to meet", "be going to", "be going to + 동사원형은 '~할 것이다'라는 뜻으로 한 덩어리처럼 쓰입니다. 조동사처럼 보고 be동사, going, 그리고 뒤의 동사원형 meet까지 동사로 표시했습니다."]], ["A1", ["gave up", "give up"]], ["E2", ["on", "전치사", "give up on은 '~을 포기하다'입니다. gave up이 동사이고 on은 전치사라서 연한 점으로만 표시했습니다."]], ["E2", ["who", "관계대명사", "artists를 설명하는 관계절을 이끕니다. 이 절의 동사는 gave up입니다."]], ["E2", ["amazing", "현재분사", "명사 artists를 꾸미는 형용사 역할(놀라게 하는 → 놀라운)입니다. 동사가 아니라서 표시하지 않았습니다."]], ["E2", ["despite", "전치사", "despite는 '~에도 불구하고'이고 뒤에 절이 아니라 명사구(challenges …)가 옵니다. 동사가 아니라서 표시하지 않았습니다."]]], "1-2": [["E2", ["painting", "동명사", "painting style은 '그림 그리는 방식', 즉 화풍입니다. 명사 style의 용도를 나타내는 동명사라서 동사가 아니라서 표시하지 않았습니다."]], ["E2", ["that", "관계대명사", "a unique painting style and story를 설명하는 주격 관계대명사입니다. 이 절의 동사는 has made입니다."]], ["E2", ["made … valued", "5형식", "make + 목적어 + 과거분사 구조로, their work가 '높이 평가받는' 상태가 되게 했다는 뜻입니다. valued는 목적격보어라서 동사로 표시하지 않았습니다."]]], "1-3": [["E2", ["It wasn't until … that", "강조구문", "It wasn't until A that B는 'A하고 나서야 비로소 B했다'라는 강조구문입니다. until이 이끄는 말이 that 앞으로 나왔고, that 뒤는 평소 문장 순서입니다. that은 동사가 아닙니다."]], ["C", ["became … ill", "앞의 동사만 표시했습니다. 뒤의 말은 상태를 설명하는 형용사 역할을 하는 말입니다. (2형식)"]], ["A2", ["turned to", "turn to"]], ["E2", ["to work", "to부정사", "too ill to work는 '너무 아파서 일할 수 없다'(too ~ to …)라는 뜻입니다. to부정사라서 동사가 아니라서 표시하지 않았습니다."]], ["E2", ["drawing", "동명사", "전치사 to 뒤의 -ing는 동명사입니다. 명사 역할을 하므로 동사가 아니라서 표시하지 않았습니다."]], ["E2", ["to express", "to부정사", "to부정사(부사적 용법, 목적: ~하기 위해)입니다. 동사가 아니라서 표시하지 않았습니다."]]], "1-4": [["B", ["had been used", "had been + 과거분사로 이루어진 과거완료 수동태입니다. had, been, used를 모두 동사로 표시했습니다."]], ["E2", ["to watch and hunt", "to부정사", "to부정사(부사적 용법, 목적: ~하기 위해)입니다. watch와 hunt가 and로 이어져 둘 다 to에 걸립니다. 동사가 아니라서 표시하지 않았습니다."]], ["E2", ["because", "접속사", "because가 이끄는 절은 '왜 무서워했는지' 이유를 말합니다. 이 절의 동사는 had been used입니다."]]], "1-5": [["A2", ["confined … to", "confine to"]], ["C", ["were … limitless", "앞의 동사만 표시했습니다. 뒤의 말은 상태를 설명하는 형용사 역할을 하는 말입니다. (2형식)"]], ["E2", ["Although", "접속사", "Although(비록 ~이지만)가 이끄는 양보절입니다. 절의 동사는 confined이고, 쉼표 뒤가 진짜 주절입니다."]], ["E2", ["both", "부사", "both는 주어 her talent and imagination '둘 다'를 가리킵니다. 동사가 아니라서 표시하지 않았습니다."]]], "1-6": [["C", ["was … unusual", "앞의 동사만 표시했습니다. 뒤의 말은 상태를 설명하는 형용사 역할을 하는 말입니다. (2형식)"]], ["E2", ["which", "관계대명사(계속적 용법)", "쉼표 뒤의 which는 앞 내용 전체(파리에서 유학까지 한 것)를 받아 '그리고 그것은 ~'처럼 덧붙여 설명합니다. 이 절의 동사는 was입니다."]], ["E2", ["even", "부사", "even은 '~까지도'라는 뜻으로 studied abroad를 강조합니다. 동사가 아니라서 표시하지 않았습니다."]]], "1-7": [["A2", ["persisted in", "persist in"]], ["A2", ["focus on", "focus on"]], ["E2", ["getting married", "동명사", "전치사 after 뒤의 -ing는 동명사입니다. get married는 '결혼하다'입니다. 동사가 아니라서 표시하지 않았습니다."]], ["E2", ["painting", "동명사", "전치사 in 뒤의 -ing는 동명사입니다. 동사가 아니라서 표시하지 않았습니다."]], ["E2", ["objecting", "분사구문", "'~에 저항하면서'처럼 동시에 일어난 일을 덧붙이는 분사구문입니다. 주어는 앞 절의 Ancher입니다. object to는 '~에 반대하다'입니다. 동사가 아니라서 표시하지 않았습니다."]], ["E2", ["that", "동격 that", "the social pressure의 내용을 설명하는 접속사 that입니다(압력 = 기혼 여성은 가사에만 집중해야 한다). that 뒤가 완전한 문장입니다."]], ["E2", ["were to focus", "be to", "be to + 동사원형은 '~해야 한다'(의무·예정)라는 뜻입니다. 조동사처럼 보고 were와 focus를 동사로 표시했습니다."]]]};
+const DNL={A1:'숙어·구동사',A2:'동사+전치사',B:'수동태',H:'감정 분사',C:'형용사 보어',A:'숙어',Dm:'구동사',Du:'떨어진 말',D2:'전치사',F:'동사원형',L:'전치사 like'};
+function dnote(id){const a=DN[id];if(!a)return '';const e=a.filter(x=>x[0]=='E2'),o=a.filter(x=>x[0]!='E2');
+ let h=o.map(x=>'<li><b>'+esc(x[1][0])+'</b> <span class="dk">'+DNL[x[0]]+'</span><br>'+(x[0]=='A1'?'뜻이 숙어처럼 굳었거나 전치사·부사 때문에 뜻이 달라져서 한 덩어리 동사로 표시했습니다. 사전에도 <b>'+esc(x[1][1])+'</b>로 따로 실려 있습니다.':x[0]=='A2'?'원칙은 동사 뜻이 그대로이고 전치사가 따라붙는 것이라 동사로는 세지 않았습니다(연한 점선). 그래도 늘 함께 쓰이니 <b>'+esc(x[1][1])+'</b>로 통째로 외우세요.':esc(x[1][1]))+'</li>').join('');
+ e.forEach(x=>{h+='<li><b>'+esc(x[1][0])+'</b> <span class="dk">'+esc(x[1][1])+'</span><br>'+esc(x[1][2])+'</li>'});
+ if(o.some(x=>x[0]=='A2'))h+='<li class="dd"><b>사전·문법 근거</b><br>한국 문법책은 보통 자동사 + 전치사구(1형식)로 설명하고, 영미 문법은 전치사가 동사에 붙은 prepositional verb로 보아 be looked at처럼 수동태도 만듭니다. Oxford Learner\'s Dictionary와 Cambridge Dictionary도 look at, depend on 같은 동사 + 전치사 표현을 한 묶음으로 보여 줍니다.</li>';
+ return '<details class="dn2"'+(o.length?' open':'')+'><summary>동사 표시 기준 보기</summary><ul>'+h+'</ul></details>'}
+const FM={};
+const BDG={"바꾼 곳":"바꾼 곳","공식":"공식","효과":"효과","표현":"표현"};
+function autoBox(id){const x=CF.find(y=>y.id==id);if(!x)return '';const ko=KO[id]||[];let rows='';
+ rows+='<div class="fr"><i>유형</i><span>'+esc(x.b||'')+'</span></div>';
+ if(!rw(x)&&x.o.length){rows+='<div class="fr"><i>바꾼 곳</i><span>'+x.o.slice(0,4).map((o,i)=>{const k=ko[i]||{};const cn=t=>(t||'').replace(/^[,\s]+|[,\s]+$/g,'');const A=o[2]>o[1]?esc(sj(x.k,[o[1],o[2]])):'',B=o[4]>o[3]?esc(sj(x.c,[o[3],o[4]])):'';const KA=cn(k.a_ko),KB=cn(k.b_ko);const g=(KA||KB)?'<br><em>('+esc(KA)+(KA&&KB?' &rarr; ':'')+esc(KB)+')</em>':'';
+  return '<div>'+(A&&B?A+' <em>&rarr;</em> '+B:A?A+' <em>빠짐</em>':B+' <em>추가</em>')+g+'</div>'}).join('')+'</span></div>'}
+ else rows+='<div class="fr"><i>바꾼 곳</i><span>문장 전체를 다시 짬 (위 두 문장을 비교해 보기)</span></div>';
+ if(x.t)rows+='<div class="fr"><i>이유</i><span>'+esc(x.t)+'</span></div>';
+ return '<div class="fm"><b>이것만 꼭 써</b>'+rows+'</div>'}
+function fbox(id){const f=FM[id];if(!f)return autoBox(id);return '<div class="fm"><b>이것만 꼭 써</b>'+f.r.map(r=>'<div class="fr"><i>'+r[0]+'</i><span>'+(r.length==3?esc(r[1])+' <em>&rarr;</em> '+esc(r[2]):esc(r[1]))+'</span></div>').join('')+'<div class="fr"><i>단어</i><span>'+esc(f.w)+'</span></div></div>'}
+const KO={};
+function changes(x){if(rw(x))return '<div class="chg"><span class="cc">구조 변경</span> 문장이 크게 다시 짜였습니다. 두 문장에 모두 남은 말에 밑줄을 쳤습니다.</div>';
+ const ko=KO[x.id]||[];
+ return x.o.slice(0,6).map((o,i)=>{const A=o[2]>o[1]?'<s>'+esc(sj(x.k,[o[1],o[2]]))+'</s>':'',B=o[4]>o[3]?'<u>'+esc(sj(x.c,[o[3],o[4]]))+'</u>':'';
+  const tag=o[0]=='replace'?'바뀜':o[0]=='delete'?'빠짐':'추가';const k=ko[i]||{};
+  const KA=k.a_ko?'<s>'+esc(k.a_ko)+'</s>':'',KB=k.b_ko?'<u>'+esc(k.b_ko)+'</u>':'';
+  return '<div class="chg"><span class="cn">'+(i+1)+'</span><span class="cc">'+tag+'</span> '+A+(A&&B?' &rarr; ':'')+B+((KA||KB)?'<div class="ck">'+KA+(KA&&KB?' &rarr; ':'')+KB+'</div>':'')+'</div>'}).join('')}
+const WD=['일','월','화','수','목','금','토'];
+const p2=n=>String(n).padStart(2,'0');
+function stampHtml(d,v){return '<div class="stp"><div class="stt">Day '+d+' 7문장 노트 완성</div><div class="std">'+v.m+'/'+v.d+'('+v.w+') '+p2(v.h)+':'+p2(v.i)+'</div><div class="small">V SIGNAL · 3과 S</div></div>'}
+const wordsOf=s=>s.en.replace(/ \/ /g,' ').split(' ');
+function ans(s){const parts=s.en.split(' / ');const G=new Set();let c=0;parts.forEach((p,i)=>{c+=p.split(' ').length;if(i<parts.length-1)G.add(c-1)});return G}
+function home(){const dn=DAYS.filter(D=>S['D'+D.d]).length;
+ let h=wlStrip()+'<h1>3과 핵심 7문장</h1><p class="sub">책 Day의 7문장을 스스로 슬래시로 끊고 해석한 뒤 정답을 맞춰 봅니다. 1번부터 7번까지 차례로 동사 치기, 슬래시를 하고 정답을 확인합니다. cf. 문장을 만나면 노트 정리가 이어집니다. 통과 기준은 정답률 90% 이상이고, 못 넘으면 결과 화면에 "한번 더"가 나옵니다. 완성 '+dn+'/'+DAYS.length+'일.</p><div class="card"><div class="chips">';
+ h+=DAYS.map(D=>{const k=D.s.filter(s=>S[s.id]&&S[s.id].s).length;return '<button class="chip'+(S['D'+D.d]?' done':'')+'" data-d="'+D.d+'">'+D.d+'<small>'+(S['D'+D.d]?S['D'+D.d].m+'/'+S['D'+D.d].d+'('+S['D'+D.d].w+')':k+'/7')+'</small></button>'}).join('')+'</div></div>';
+ $.innerHTML=h;$.querySelectorAll('.chip').forEach(b=>b.onclick=()=>openDay(+b.dataset.d));window.scrollTo(0,0)}
+let ST={};
+const isDone=id=>!!(S[id]&&S[id].s);
+function openDay(d){const D=DAYS.find(x=>x.d==d);
+ let h='<div class="top"><button class="back" id="bk">&larr; 목록</button><span class="small" style="color:var(--mu);font-size:13px">Day '+d+'</span></div>';
+ h+='<div class="sn nav">'+D.s.map(s=>'<button class="sb'+(isDone(s.id)?' done':'')+'" data-s="'+s.id+'">'+s.n+'</button>').join('')+'</div>';
+ h+=D.s.map(s=>'<div class="sc" id="sc-'+s.id+'" hidden></div>').join('');
+ const st=S['D'+d];
+ h+='<div class="card stamp" id="st">'+stampInner(D)+'</div>';
+ $.innerHTML=h;window.scrollTo(0,0);
+ document.getElementById('bk').onclick=home;
+ const first=D.s.find(q=>!isDone(q.id));
+ D.s.forEach(q=>{if(isDone(q.id)||q===first||ST[q.id])show(D,q.id)});
+ $.querySelectorAll('.sb').forEach(b=>b.onclick=()=>{const id=b.dataset.s;const c=document.getElementById('sc-'+id);if(c.hidden)show(D,id);c.scrollIntoView({behavior:'smooth',block:'start'})});
+ wireStamp(D)}
+function mkNote(D,s,AVs,st){
+ const W=wordsOf(s),miss=[],ext=[],clean=w=>w.replace(/[.,;:!?“”"]/g,'');
+ AVs.forEach(i=>{if(!st.v.has(i))miss.push(clean(W[i]))});st.v.forEach(i=>{if(!AVs.has(i))ext.push(clean(W[i]))});
+ const A=ans(s);let gmiss=0;A.forEach(i=>{if(!st.g.has(i))gmiss++});
+ const vs=vgroups(s.id).map(g=>g.map(i=>clean(W[i])).join(' ')).join(', '),L=[];
+ if(miss.length||ext.length){L.push('동사는 '+esc(vs)+' 입니다.');if(miss.length)L.push('놓친 동사: '+esc(miss.join(', ')));if(ext.length)L.push('동사가 아닌데 고른 것: '+esc(ext.join(', ')))}
+ if(gmiss>=2)L.push('끊어 읽기: 슬래시는 의미 덩어리 사이에 넣습니다. 위 문장의 / 표시가 정답입니다.');
+ const rows=s.en.split(' / ').map((e,i)=>'<div class="rw"><div class="re">'+esc(e)+'</div><div class="rk">'+esc(s.ko.split(' / ')[i]||'')+'</div></div>').join('');
+ return {id:'d'+s.id,src:'day',title:'3과 · '+s.n+'번',html:'<p class="sec">틀린 곳</p><ul class="wul">'+L.map(x=>'<li>'+x+'</li>').join('')+'</ul>'+dnote(s.id)+'<div class="pi"><div class="pit">이것만 꼭 써</div><div class="pir"><b>\u2460</b> 직독직해</div>'+rows+'<div class="pir"><b>\u2461</b> 자연스러운 해석</div><div class="pib">'+esc(s.nat)+'</div></div>'};
+}
+function scoreHtml(D){const m=D.s.reduce((a,q)=>a+((S[q.id]&&S[q.id].m)||0),0),T=D.s.reduce((a,q)=>a+((S[q.id]&&S[q.id].t)||0),0),acc=T?Math.max(0,(T-m)/T):1,ok=acc>=0.9;
+ return '<div class="scr"><div class="scb '+(ok?'ok':'no')+'">정답률 '+Math.floor(acc*100)+'% · '+(ok?'통과':'한번 더')+'</div>'+(m?'<div class="scl">실수 '+m+'개</div>':'<div class="scl perf">Perfect!</div>')+'<div class="scl sm">통과 기준 : 정답률 90% 이상</div></div>'}
+function todayHtml(D){
+ return '<div class="tdy"><div class="tdh">오늘의 문장</div>'+D.s.map(s=>'<div class="tdi"><div class="tdn">'+D.d+'일 · '+s.n+'번</div>'+dnote(s.id)+cfInline(s.id)+'<div class="pi"><div class="pit">이것만 꼭 써</div><div class="pir"><b>\u2460</b> 직독직해</div>'+s.en.split(' / ').map((e,i)=>'<div class="rw"><div class="re">'+esc(e)+'</div><div class="rk">'+esc(s.ko.split(' / ')[i]||'')+'</div></div>').join('')+'<div class="pir"><b>\u2461</b> 자연스러운 해석</div><div class="pib">'+esc(s.nat)+'</div></div></div>').join('')+'</div>'}
+function noteBlockY(D){
+ const ids=new Set(D.s.map(q=>'d'+q.id)),n=wlList().filter(e=>ids.has(e.id)).length;
+ return '<div class="wbox"><div class="wt">오답노트</div>'+(n?'<p class="wsub">틀린 문장 '+n+'개. 노트에 쓸 내용이 준비되어 있습니다.</p><a class="nbtn" href="note.html">오답노트 열기</a>':(D.s.some(q=>S[q.id]&&S[q.id].w)?'<p class="wnone">이 Day의 틀린 문장은 더 최근 오답노트로 바뀌었습니다.</p>':'<p class="wnone">이 Day에서 틀린 문장이 없습니다. 오답노트에 쓸 내용이 없습니다.</p>'))+'<button class="tgl" id="tg">오늘의 문장 다시보기</button><div id="tgb" hidden>'+todayHtml(D)+'</div></div>'}
+function wrongHtml(D){const L=D.s.filter(q=>S[q.id]&&S[q.id].w);
+ if(!L.length)return '<div class="wbox"><div class="wt">오늘 틀린 문장</div><p class="wnone">오늘 틀린 문장이 없습니다. 모두 잘 해냈어요.</p></div>';
+ return '<div class="wbox"><div class="wt">오늘 틀린 문장 '+L.length+'개</div><p class="wsub">오답 노트에 영어 문장과 해석을 옮겨 적으세요.</p>'+L.map(q=>'<div class="wrow"><span class="wn">'+q.n+'번</span><div><div class="wen">'+esc(q.en.replace(/ \/ /g,' '))+'</div><div class="wko">'+esc(q.nat||q.ko)+'</div>'+(S[q.id].r?'<div class="wwhy">틀린 부분: '+esc(S[q.id].r)+'</div>':'')+'</div></div>').join('')+'</div>'}
+document.addEventListener('click',function(e){const t=e.target.closest&&e.target.closest('#tg');if(t){const b=document.getElementById('tgb');b.hidden=!b.hidden;t.textContent=b.hidden?'오늘의 문장 다시보기':'접기'}});
+function stampInner(D){const d=D.d,st=S['D'+d];const all=D.s.every(q=>isDone(q.id));
+ return st?stampHtml(d,st)+scoreHtml(D)+noteBlockY(D):'<button class="btn'+(all?'':' dis')+'" id="mk"'+(all?'':' disabled')+'>3과 핵심 7문장 노트 완성</button>'+(all?'':'<p class="small">7문장을 모두 확인하면 완성 도장을 받을 수 있습니다.</p>')}
+function wireStamp(D){const d=D.d;const mk=document.getElementById('mk');if(mk)mk.onclick=()=>{const n=new Date();const v={m:n.getMonth()+1,d:n.getDate(),w:WD[n.getDay()],h:n.getHours(),i:n.getMinutes()};S['D'+d]=v;save();document.getElementById('st').innerHTML=stampHtml(d,v)+scoreHtml(D)+noteBlockY(D)}}
+function cfInline(id){const x=CF.find(y=>y.id==id);if(!x)return '';return '<div class="cfn"><p class="sec">cf. 노트</p><p class="sec2">이해하기 (읽기만)</p>'+card(x)+fbox(id)+'</div>'}
+function show(D,id){const c=document.getElementById('sc-'+id);c.hidden=false;const s=D.s.find(q=>q.id==id);
+ if(!ST[id])ST[id]={v:new Set(),g:new Set(),p:0,r:false,done:isDone(id)&&false};
+ const st=ST[id];
+ if(isDone(id)&&!st.r&&!st.redo){c.innerHTML='<div class="card"><div class="nh"><b>Day '+D.d+' · '+s.n+'번</b><span class="badge">완료</span></div><p class="ctl">이 문장은 확인을 마쳤습니다.</p><button class="fx" data-redo="1">다시 해 보기</button></div>';const r=c.querySelector('[data-redo]');r.onclick=()=>{st.redo=true;st.v=new Set();st.g=new Set();st.p=0;st.r=false;show(D,id)};return}
+ c.innerHTML=sentCard(D,s,st);wire(D,s,st,c)}
+function sentCard(D,s,st){const W=wordsOf(s);const A=ans(s);const AV=new Set(VB[s.id]||[]);
+ let h='<div class="card"><div class="nh"><b>Day '+D.d+' · '+s.n+'번</b>'+(st.done?'<span class="badge">완료</span>':'')+'</div>';
+ if(!st.r&&st.p==0){
+  h+='<p class="lab"><span class="pill p-key">1) 동사 치기</span></p><div class="wrd">'+W.map((w,i)=>'<button class="vw'+(st.v.has(i)?' on':'')+'" data-v="'+i+'">'+esc(w)+'</button>').join(' ')+'</div>'+
+  '<p class="ctl">동사를 모두 누르면 자동으로 다음으로 넘어갑니다. 조동사와 본동사, 구동사(handed in)는 한 번만 눌러도 함께 선택됩니다.</p><button class="btn dis nx" disabled>다음: 슬래시 긋기</button>';
+ }else if(!st.r){
+  h+='<p class="lab"><span class="pill p-key">2) 슬래시로 끊어 읽기</span></p><div class="wrd">'+W.map((w,i)=>'<span class="vw'+(st.v.has(i)?' on':'')+'">'+esc(w)+'</span>'+(i<W.length-1?'<button class="gp'+(st.g.has(i)?' on':'')+'" data-g="'+i+'"></button>':'')).join('')+'</div>'+
+  '<p class="ctl">끊어 읽을 곳을 누르면 슬래시가 들어가고, 다 끊으면 정답이 자동으로 열립니다.</p><p class="step">슬래시 단위로 한글 직역과 자연스러운 해석은 노트에 연필로 씁니다.</p><button class="btn dis rv" disabled>정답 보기</button><p class="ctl lk"></p><button class="fx bk1">동사 다시 고르기</button>';
+ }else{
+  const vc=i=>{const a=AV.has(i),m=st.v.has(i);return a&&m?'vok':a?'vms':m?'vex':''};
+  h+='<p class="lab"><span class="pill p-nat">정답과 비교</span></p><div class="wrd">'+W.map((w,i)=>{const t='<span class="vw '+vc(i)+((SF[s.id]||[]).includes(i)?' sft':'')+'">'+esc(w)+'</span>';if(i<W.length-1){const a=A.has(i),m=st.g.has(i);const c=a&&m?'ok':a?'miss':m?'ex':'';return t+'<button class="gp '+c+'" disabled></button>'}return t}).join('')+'</div>'+
+  '<p class="ctl">밑줄이 동사입니다. 초록은 맞힌 동사, 노랑은 놓친 동사, 빨강 취소선은 동사가 아닌데 고른 것입니다. 슬래시는 초록이 같이 끊은 곳, 노랑이 놓친 곳, 빨강이 더 끊은 곳입니다. 끊는 위치가 조금 달라도 의미 덩어리로 읽었다면 괜찮습니다. 연한 점선은 동사 뒤에 늘 붙어 다니는 전치사로, 동사로 세지는 않지만 함께 외우면 좋습니다.</p>'+
+  '<p class="sec">직독직해</p>'+s.en.split(' / ').map((e,i)=>'<div class="rw"><div class="re">'+esc(e)+'</div><div class="rk">'+esc(s.ko.split(' / ')[i]||'')+'</div></div>').join('')+
+  '<div class="nat"><b>자연스러운 해석</b>'+esc(s.nat)+'</div>'+dnote(s.id)+cfInline(s.id)+(st.done?'':'<button class="btn dn">'+(CF.some(x=>x.id==s.id)?'노트 정리 끝, 다음 문장':'비교 끝, 다음 문장')+'</button>');
+ }
+ return h+'</div>'}
+const ADV=new Set(['not','never','always','often','also','still','just','only','already','even','really','finally','ever','now','then','almost','sometimes','usually','rarely','hardly','soon','nearly','quickly','carefully','n\'t','either','too','both']);
+const AUXS=new Set(['is','are','was','were','be','been','being','am','have','has','had','do','does','did','can','could','will','would','shall','should','may','might','must','cannot','dont','didnt','doesnt','cant','couldnt','wont','wouldnt','shouldnt','mustnt','isnt','arent','wasnt','werent','havent','hasnt','hadnt','lets']);
+const PARTS=new Set(['in','out','up','off','on','forward','over','down','away','back','along','around','through']);
+const cl=w=>w.toLowerCase().replace(/[.,;!?]/g,'').replace(/[’']/g,'');
+const isAux=w=>{const c=cl(w);return AUXS.has(c)||/(s|re|ve|ll|d)$/.test(c)&&/[’']/.test(w)};
+const PRON=new Set(['i','you','he','she','it','we','they','this','that','there']);
+function vgroups(id){const v=(VB[id]||[]).slice().sort((a,b)=>a-b);const tk=wordsOf(DAYS.flatMap(d=>d.s).find(q=>q.id==id));const G=[];let cur=[];
+ v.forEach(i=>{if(!cur.length){cur=[i];return}const last=cur[cur.length-1];let ok=false;
+  if(/[,“]$/.test(tk[last])||/^[“"]/.test(tk[i])){G.push(cur);cur=[i];return}
+  if(i==last+1)ok=isAux(tk[last])||!isAux(tk[i]);
+  else if(i-last<=3&&isAux(tk[last])){ok=true;for(let k=last+1;k<i;k++){const w=cl(tk[k]);if(!(ADV.has(w)||(k==last+1&&i-last>=2&&PRON.has(w))||/ly$/.test(w)||(w=='to'&&/^(have|has|had)$/.test(cl(tk[last])))))ok=false}}
+  if(ok)cur.push(i);else{G.push(cur);cur=[i]}});if(cur.length)G.push(cur);return G}
+function wire(D,s,st,c){const id=s.id;
+ const GR=vgroups(id);const NV=GR.length,NG=ans(s).size;const unitOf=i=>GR.find(g=>g.includes(i))||[i];
+ const units=()=>{const seen=new Set();st.v.forEach(i=>seen.add(unitOf(i).join(',')));return seen.size};
+ const q=sel=>c.querySelector(sel),qa=sel=>c.querySelectorAll(sel);
+ const chkv=()=>{const nx=q('.nx');if(!nx)return;const ok=st.v.size>=1;nx.disabled=!ok;nx.classList.toggle('dis',!ok)};
+ qa('.vw[data-v]').forEach(b=>b.onclick=()=>{const i=+b.dataset.v;const u=unitOf(i);const on=u.every(x=>st.v.has(x));u.forEach(x=>on?st.v.delete(x):st.v.add(x));u.forEach(x=>{const e=q('.vw[data-v="'+x+'"]');if(e)e.classList.toggle('on',!on)});chkv();if(units()==NV)setTimeout(()=>{if(!st.r&&st.p==0&&units()==NV){st.p=1;show(D,id)}},450)});chkv();
+ const nx=q('.nx');if(nx)nx.onclick=()=>{st.p=1;show(D,id)};
+ const bk1=q('.bk1');if(bk1)bk1.onclick=()=>{st.p=0;show(D,id)};
+ const chk=()=>{const rv=q('.rv');if(!rv)return;const ok=st.g.size>=1;rv.disabled=!ok;rv.classList.toggle('dis',!ok);const lk=q('.lk');if(lk)lk.style.display=ok?'none':''};
+ qa('.gp[data-g]').forEach(b=>b.onclick=()=>{const i=+b.dataset.g;st.g.has(i)?st.g.delete(i):st.g.add(i);b.classList.toggle('on');chk();if(st.g.size==NG)setTimeout(()=>{if(!st.r&&st.p==1&&st.g.size==NG){st.r=true;show(D,id)}},450)});chk();
+ const rv=q('.rv');if(rv)rv.onclick=()=>{st.r=true;show(D,id)};
+ const dn=q('.dn');if(dn)dn.onclick=()=>{const AVs=new Set(VB[id]||[]),As=ans(s);let vm=0,gm=0;AVs.forEach(i=>{if(!st.v.has(i))vm++});st.v.forEach(i=>{if(!AVs.has(i))vm++});As.forEach(i=>{if(!st.g.has(i))gm++});const bad=vm>0||gm>=2;if(bad)wlPut(mkNote(D,s,AVs,st));const pv=S[id]||{};S[id]={s:1,t:NV+NG,m:Math.max(pv.m||0,vm+gm),w:(pv.w||bad)?1:0,r:[vm?'동사':'',gm>=2?'끊어 읽기':''].filter(Boolean).join(', ')||pv.r||''};save();st.done=true;show(D,id);
+  const nb=document.querySelector('.sb[data-s="'+id+'"]');if(nb)nb.classList.add('done');
+  const nxt=D.s.find(q2=>!isDone(q2.id));
+  if(nxt){show(D,nxt.id);document.getElementById('sc-'+nxt.id).scrollIntoView({behavior:'smooth',block:'start'})}
+  else{const stp=document.getElementById('st');stp.innerHTML=stampInner(D);wireStamp(D);stp.scrollIntoView({behavior:'smooth',block:'center'})}}}
+home();
+</script></body></html>
