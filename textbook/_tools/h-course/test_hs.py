@@ -5,10 +5,10 @@ with sync_playwright() as p:
     b=p.chromium.launch();pg=b.new_page(viewport={"width":420,"height":900})
     errs=[];pg.on("pageerror",lambda e:errs.append(str(e)))
     pg.goto(URL);pg.wait_for_timeout(500)
-    ids=["1-3","1-4","2-5","2-7","3-9","4-4","4-6"]
+    ids=pg.evaluate("S.map(s=>s.id)")
     for sid in ids:
         pg.evaluate("play(%s)"%json.dumps(sid))
-        for it in range(200):
+        for it in range(300):
             pg.wait_for_timeout(80)
             st=pg.evaluate("({ph,si,ni,step:(typeof steps!=='undefined'&&steps&&steps[si])?steps[si].t:null,p:(typeof steps!=='undefined'&&steps&&steps[si])?steps[si].p||0:0})")
             ph=st["ph"]

@@ -1039,7 +1039,7 @@ function gqHtml(){
     h+='<div class="gqf">'+FMS.map(function(f,i){return '<button class="opt gqo'+((C.bk&&C.bk['f'+(i+1)])?' bad':'')+'" data-act="xq" data-t="fm" data-v="'+(i+1)+'"><b>'+f[0]+'</b> '+f[1]+'<span class="gqko">'+f[2]+'</span><span class="gqfo">'+f[3]+'</span></button>';}).join('')+'</div>';
   }else{
     var f=FMS[s.gq.fm-1];
-    h+='<p class="msg ok"><b>'+f[0]+'</b> · '+f[3].split(' · ')[0]+'<br>'+sk.map(function(c,i){return esc(c.t)+' <span class="arr">↔</span> '+esc(f[4][i]||'');}).join('<br>')+'</p>';
+    h+='<p class="msg ok"><b>'+f[0]+'</b> · '+f[3].split(' · ')[0]+'<br>'+sk.map(function(c,i){return c;}).sort(function(a,b){var R={'주어':0,'동사':1};return (R[a.r]!=null?R[a.r]:2)-(R[b.r]!=null?R[b.r]:2);}).map(function(c,i){return esc(c.t)+' <span class="arr">↔</span> '+esc(f[4][i]||'');}).join('<br>')+'</p>';
   }
   h+='</div>';
   if(!C.fmOk)return h;
