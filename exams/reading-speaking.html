@@ -55,12 +55,15 @@ h1{font-size:22px;margin:0;letter-spacing:-.01em}
 .res.p3{background:#fff3cd;color:#8a5a00}.res.p4{background:#ffe0b2;color:#a04a00}.res.p5{background:var(--redbg);color:var(--red)}
 .rule{font-size:13px;color:var(--sub);text-align:center}
 .hide{display:none}
+.ans{display:none}.q.open .ans,body.all .ans{display:block}
+.flip{font:inherit;font-size:15px;font-weight:800;padding:8px 14px;border-radius:10px;border:2px solid var(--accent);background:var(--card);color:var(--accent);cursor:pointer}
+.q.open .flip,body.all .flip{background:var(--accent);color:#fff}
 @media print{.pen,.bar,.tabs{display:none}}
 </style></head><body>
 <main>
-<div class="top"><h1>틀린 곳 말하기 시험 <span style="font-size:14px;color:var(--sub);font-weight:600">· 선생님용 (정답 보임)</span></h1>
+<div class="top"><h1>틀린 곳 말하기 시험 <span style="font-size:14px;color:var(--sub);font-weight:600">· 선생님용</span></h1>
 <a class="btn" href="./">← 시험 모음</a></div>
-<p class="sub" id="sub">레슨을 누르면 이 레슨의 틀린 문장 5개가 뽑혀요. 학생은 빨간 줄이 그어진 곳이 왜 틀렸는지 말로 설명해요.</p>
+<p class="sub" id="sub">레슨을 누르면 틀린 문장 5개가 뽑혀요. 학생은 빨간 줄이 그어진 곳이 왜 틀렸는지 말로 설명하고, 선생님이 '정답 보기'로 확인해요.</p>
 
 <div id="pick">
  <div class="tabs"><button data-b="m1">M1 Reading</button><button data-b="m2">M2 Reading</button></div>
@@ -68,7 +71,7 @@ h1{font-size:22px;margin:0;letter-spacing:-.01em}
 </div>
 
 <div id="test" class="hide">
- <div class="bar"><button class="btn" id="back">← 레슨 고르기</button><span class="ttl" id="ttl"></span><button class="btn pri" id="redraw">🎱 다시 뽑기</button></div>
+ <div class="bar"><button class="btn" id="back">← 레슨 고르기</button><span class="ttl" id="ttl"></span><button class="btn pri" id="redraw">🎱 다시 뽑기</button><button class="btn" id="allans">정답 모두 보기</button></div>
  <div id="cards"></div>
  <div class="pen" id="pen"><span class="cnt" id="cnt"></span><span class="res p0" id="res"></span><span class="rule">0~2개 틀림 통과 · 3개 5문장 · 4개 10문장 · 5개 15문장 쓰기</span></div>
 </div>
@@ -102,9 +105,9 @@ function show(pick){
   var h=[],i=0;
   while(i<tk.length){if(bad[i]){var s=i;while(bad[i]&&i<tk.length)i++;h.push('<span class="bad">'+esc(tk.slice(s,i).join(' '))+'</span>')}else{h.push(esc(tk[i]));i++}}
   var fx=q.fx.map(function(f){return '<div class="fx"><span class="w">'+esc(f.w)+'</span> → <span class="r">'+esc(f.r)+'</span><span class="tp">'+esc(f.t)+' — '+esc(f.m)+'</span></div>'}).join('');
-  return '<div class="q" id="q'+k+'"><div class="qh"><span class="qn">문제 '+(k+1)+' <small>(본문 '+q.n+'번)</small></span><div class="mk"><button class="o" data-k="'+k+'" data-v="1">○ 맞힘</button><button class="x" data-k="'+k+'" data-v="2">✕ 틀림</button></div></div><div class="en">'+h.join(' ')+'</div><div class="ko">'+esc(q.ko)+'</div><div class="ans">'+fx+'</div></div>'}).join('');
+  return '<div class="q" id="q'+k+'"><div class="qh"><span class="qn">문제 '+(k+1)+' <small>(본문 '+q.n+'번)</small></span><div class="mk"><button class="flip" data-f="'+k+'">정답 보기</button><button class="o" data-k="'+k+'" data-v="1">○ 맞힘</button><button class="x" data-k="'+k+'" data-v="2">✕ 틀림</button></div></div><div class="en">'+h.join(' ')+'</div><div class="ko">'+esc(q.ko)+'</div><div class="ans">'+fx+'</div></div>'}).join('');
  $('pen').classList.remove('hide');upd()}
-$('cards').onclick=function(e){var b=e.target.closest('.mk button');if(!b)return;var k=+b.dataset.k,v=+b.dataset.v;marks[k]=marks[k]===v?0:v;upd()};
+$('cards').onclick=function(e){var f=e.target.closest('.flip');if(f){$('q'+f.dataset.f).classList.toggle('open');return}var b=e.target.closest('.mk button');if(!b)return;$('q'+b.dataset.k).classList.add('open');var k=+b.dataset.k,v=+b.dataset.v;marks[k]=marks[k]===v?0:v;upd()};
 function upd(){
  var n=marks.length,bad=marks.filter(function(m){return m===2}).length,ok=marks.filter(function(m){return m===1}).length;
  marks.forEach(function(m,k){var q=$('q'+k);q.classList.toggle('ok',m===1);q.classList.toggle('ng',m===2);q.querySelector('.o').classList.toggle('on',m===1);q.querySelector('.x').classList.toggle('on',m===2)});
@@ -115,6 +118,7 @@ function upd(){
  if(ok+bad<n&&bad>=3){msg='지금 '+(bad===3?'5':bad===4?'10':'15')+'문장 쓰기';cls=bad===3?'p3':bad===4?'p4':'p5';r.style.opacity='1'}
  r.textContent=msg;r.className='res '+cls}
 $('redraw').onclick=draw;
+$('allans').onclick=function(){var on=document.body.classList.toggle('all');$('allans').textContent=on?'정답 숨기기':'정답 모두 보기'};
 $('back').onclick=function(){$('test').classList.add('hide');$('pick').classList.remove('hide');$('sub').classList.remove('hide');window.scrollTo(0,0)};
 tabs();
 </script></body></html>
