@@ -98,7 +98,7 @@ const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
 function wlD(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
 var L=[],K='';try{var O=JSON.parse(localStorage.getItem(WLK)||'{}'),ks=Object.keys(O).sort().reverse();for(var i=0;i<ks.length;i++)if(O[ks[i]]&&O[ks[i]].length){K=ks[i];L=O[K];break}}catch(e){}
 var q=K?K.split('-'):null,d=q?new Date(+q[0],+q[1]-1,+q[2]):new Date(),wd='일월화수목금토'[d.getDay()];
-var h='<div class="top"><a href="./" style="color:var(--ac);text-decoration:none;padding:6px 0">&larr; Y단계 홈</a></div><h1>오답노트</h1>'+(K?'<p class="sub">'+(d.getMonth()+1)+'/'+d.getDate()+'('+wd+')에 틀린 문장</p>':'');
+var h='<div class="top"><a href="./" style="color:var(--ac);text-decoration:none;padding:6px 0">&larr; 돌아가기</a></div><h1>오답노트</h1>'+(K?'<p class="sub">'+(d.getMonth()+1)+'/'+d.getDate()+'('+wd+')에 틀린 문장</p>':'');
 if(!L.length){h+='<div class="ncard"><p class="ntt">쓸 오답이 없습니다.</p><p class="hint" style="margin:0">틀린 문장이 있으면 여기에 노트에 쓸 내용이 정리됩니다.</p></div>'}
 else{h+='<p class="hint">모두 '+L.length+'문장</p>'+L.map(function(e){return '<div class="ncard"><p class="ntt">'+esc(e.title)+'</p>'+e.html+'</div>'}).join('')}
 document.getElementById('app').innerHTML=h;
