@@ -121,7 +121,7 @@ function card(){
 function result(){
  var nx=marks.filter(function(m){return m===2}).length,nt=marks.filter(function(m){return m===3}).length,bad=nx+Math.floor(nt/2),msg,cls,det;
  if(bad<=2){msg='통과 🎉';cls='p0';det='잘했어요!'}else if(bad===3){msg='5문장 쓰기';cls='p3'}else if(bad===4){msg='10문장 쓰기';cls='p4'}else{msg='15문장 쓰기';cls='p5'}
- $('cards').innerHTML=dots().replace(' cur','')+'<div class="q big resbox"><div class="cnt">틀린 문제 <b>'+bad+'</b>개 / '+Q.length+'개</div><div class="res '+cls+'" style="font-size:44px;display:inline-block;margin:14px 0">'+msg+'</div><div class="rule" style="margin-top:6px">0~2개 틀림 통과 · 3개 5문장 · 4개 10문장 · 5개 15문장 쓰기</div></div><button class="btn" id="prev">← 마지막 문제 다시 보기</button>';idx=Q.length;window.scrollTo(0,0)}
+ $('cards').innerHTML=dots().replace(' cur','')+'<div class="q big resbox"><div class="cnt">✕ <b>'+nx+'</b>개 · △ <b>'+nt+'</b>개 → 틀린 문제 <b>'+bad+'</b>개<br><small style="font-size:15px;color:var(--sub)">(△ 2개 = ✕ 1개로 계산)</small></div><div class="res '+cls+'" style="font-size:44px;display:inline-block;margin:14px 0">'+msg+'</div><div class="rule" style="margin-top:6px">0~2개 틀림 통과 · 3개 5문장 · 4개 10문장 · 5개 15문장 쓰기</div></div><button class="btn" id="prev">← 마지막 문제 다시 보기</button>';idx=Q.length;window.scrollTo(0,0)}
 $('cards').onclick=function(e){
  if(e.target.closest('#flip')){flipped=true;card();return}
  var b=e.target.closest('.judge .bigb');
