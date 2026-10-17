@@ -943,7 +943,7 @@ function v1(){
   var h='<p class="ask">우리말 어순을 보고, 영어에서는 어떤 순서로 올지 찾아 쌓아요. 제자리를 찾으면 그 뜻이 아래로 내려와요</p>'+kRow3()+stage3Html();
   h+='<div class="pool">'+C.pool.map(function(ci){return tile(ci,0,false);}).join('')+'</div>';
   if(C.wrong)h+='<p class="msg no">그 블록은 다음 자리에 오지 않아요. 영어에서는 어떤 말이 올까요?</p>';
-  if(C.done1){var ms=sumArr(C.mist);h+='<p class="msg ok">이번 문장 '+(ms?'실수 '+ms+'개':'실수 없음')+'</p><button class="primary" data-act="next">'+(S.i+1<S.list.length?'다음 문장':'Day 결과 보기')+'</button>';}
+  if(C.done1){var ms=sumArr(C.mist);h+=gqHtml();h+='<p class="msg ok">이번 문장 '+(ms?'실수 '+ms+'개':'실수 없음')+'</p><button class="primary" data-act="next"'+(gqDone()?'':' disabled')+'>'+(S.i+1<S.list.length?'다음 문장':'마무리 퀴즈로')+'</button>';}
   return h;
 }
 function optsFor(){
