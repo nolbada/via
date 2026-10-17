@@ -1856,11 +1856,11 @@ app.addEventListener('click',function(e){
 
 function home(){
   S=null;C=null;Q=null;
-  var b=store.best[1];
+  var b=store.best[1];var cu=store.cur&&store.cur.day===1&&store.cur.res&&(store.cur.i>0||store.cur.quiz||store.cur.c)?store.cur:null;
   var h='<a href="../" style="display:inline-block;color:#0f766e;text-decoration:none;padding:8px 0;font-size:14px">&larr; 3과 핵심 7문장 선택</a>'
    +'<div class="card" style="margin-bottom:10px"><h2 style="margin-top:0">3과 핵심 7문장 · H-K코스</h2>'
    +'<p class="hint" style="margin:0 0 12px">영어 덩어리의 뜻을 고르고 역할을 정한 뒤, 어순을 쌓고 마무리 퀴즈를 풉니다. 정답률 90% 이상이면 통과예요.</p>'
-   +'<button class="primary" data-act="startnext" data-day="1">'+(b?'다시 풀기':'시작')+'</button>'
+   +(cu?'<button class="primary" data-act="resume" data-day="1">이어서 하기</button><p class="hint" style="margin:8px 0 12px">'+(cu.quiz?'문장 연습은 끝났어요. 마무리 퀴즈부터':'7문장 중 '+(cu.i+1)+'번째 문장부터')+'</p><button class="ghost" data-act="startnext" data-day="1" style="width:100%">처음부터 다시 하기</button>':'<button class="primary" data-act="startnext" data-day="1">'+(b?'다시 풀기':'시작')+'</button>')
    +(b?'<p class="hint" style="margin:12px 0 0">3과 핵심 7문장 분석 완료 · 실수 '+b.mis+'개</p>':'')
    +'</div>';
   app.innerHTML=h;window.scrollTo(0,0);
