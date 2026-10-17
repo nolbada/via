@@ -45,12 +45,11 @@ D=[
   C("to the problems","수식어","문제들에 대한","형용사구","명사(solutions) 수식"),
   C("we currently face.","수식어","우리가 현재 직면한","형용사절","명사(problems) 수식")],
  "There could be ~ 구문: There는 해석하지 않고, be 뒤의 many more possible solutions가 주어 (있을 수 있다 + 해결책들이)\ncould be = 조동사 + be, 동사 한 덩어리\nthe problems (that) we currently face = 목적격 관계대명사 that이 생략된 형태, face의 목적어가 앞의 problems예요"),
-("Therefore, this promising area should be further explored to find out which trees are the most effective.",
- "그러므로 이 촉망받는 분야는 어떤 나무들이 가장 효과적인지 찾아내기 위해 더 깊게 탐구되어야 한다.",
- [C("Therefore,","수식어","그러므로","부사","동사(should be explored) 수식"),C("this promising area","주어","이 촉망받는 분야는"),
-  C("should be further explored","동사","더 깊게 탐구되어야 한다"),
-  C("to find out which trees are the most effective.","수식어","어떤 나무들이 가장 효과적인지 찾아내기 위해","목적의 부사구","동사(should be explored) 수식")],
- "should be further explored = 조동사 + be + p.p.(수동), 사이에 부사 further가 끼어 있어도 동사 한 덩어리\n'분야가 탐구되어야 한다'로 끝나서 S + V 모양(1형식 닮은꼴)이에요\nto find out ~ = '~을 찾아내기 위해' 목적을 덧붙이는 to부정사구 (안에 which trees are ~ 의문사절이 들어 있어요)"),
+("If we do, the future of our planet may be bright after all.",
+ "우리가 그렇게 한다면 우리 지구의 미래는 결국 밝을지도 모른다.",
+ [C("If we do,","수식어","우리가 그렇게 한다면","조건의 부사절","동사(may be) 수식"),C("the future of our planet","주어","우리 지구의 미래는"),
+  C("may be","동사","~일지도 모른다"),C("bright","보어","밝을"),C("after all.","수식어","결국","부가의 부사구","동사(may be) 수식")],
+ "If가 이끄는 절 = 조건의 부사절 ('만약 ~한다면'), 절 안의 do는 앞 내용을 대신 받는 말이에요\nmay be = 조동사 + be, 동사 한 덩어리\n뼈대는 the future may be bright: 주어 + 동사 + 보어(the future = bright), 2형식이에요"),
 ]
 GQ=[
  {"cl":[{"ci":4,"kind":"형용사절","sub":"관계부사"}],"fm":1},
@@ -59,7 +58,7 @@ GQ=[
  {"cl":[{"ci":3,"kind":"형용사절","sub":"주격 관계대명사"}],"fm":2},
  {"cl":[{"ci":2,"kind":"명사절","sub":"목적어"}],"fm":3},
  {"cl":[{"ci":3,"kind":"형용사절","sub":"목적격 관계대명사"}],"fm":1},
- {"cl":[],"fm":1},
+ {"cl":[{"ci":0,"kind":"부사절","sub":"조건"}],"fm":2},
 ]
 DATA=[]
 for i,(en,ko,ch,memo) in enumerate(D):

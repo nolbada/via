@@ -92,19 +92,19 @@ add(lv="심화",id="4-11",tok=t,
  vn="There는 자리를 채우는 말이에요. 동사는 could be(조동사 + be)이고 한 덩어리라서 함께 눌러요. 관계절 안의 동사는 face입니다.",why=None,
  nf=[],em=[])
 
-# ---- 3-10
-t=tk("Therefore, this promising area should be further explored to find out which trees are the most effective."); assert len(t)==17
-add(lv="심화",id="3-10",tok=t,
- ch=["Therefore, this promising area should be further explored","to find out which trees are the most effective."],
- ko=["그러므로 이 촉망받는 분야는 더 깊게 탐구되어야 한다","어떤 나무들이 가장 효과적인지 찾아내기 위해"],
- nodes=[dict(id="m",a=0,b=17,own=R(0,11),kids=[[11,17]],S=[3],V=[4,5,7],G=[[4,5,7]],form=1,fl=[0,8,9,10],
-   sk=[dict(r="S",g=[1,2,3]),dict(r="V",g=[4,5,7])],
-   note="this promising area should be further explored. 주어 + 동사, 1형식입니다. should be explored는 조동사 + be + p.p.(수동)로 한 덩어리 동사이고, 사이의 further는 부사예요. '분야가 탐구되어야 한다'로 끝나고, to find out ~ 은 목적을 덧붙이는 말입니다."),
-  dict(id="a",a=11,b=17,own=R(11,17),kids=[],S=[12],V=[13],G=[[13]],kind="명사절",sub="목적어",gv=[["find out","동사"]],
-   note="which trees are the most effective는 find out의 목적어 절입니다('어떤 나무들이 가장 효과적인지'). which는 trees를 꾸미는 의문형용사이고, 뒤에 주어(trees)와 동사(are), 보어(the most effective)가 갖춰져 있어요.")],
- dec={"0":"Therefore는 '그러므로'라는 접속부사입니다.","1":"this는 '이'라는 지시형용사입니다.","2":"promising은 area를 꾸미는 형용사('촉망받는')라서 동사가 아닙니다.","3":"area는 '분야'라는 명사입니다.","6":"further는 '더 깊게'라는 부사입니다.","8":"to는 to부정사를 만드는 말이라 문장의 동사가 아닙니다.","9":"find out은 to부정사 안의 동사라서 문장의 동사가 아닙니다.","10":"out은 find와 함께 쓰이는 말입니다.","11":"which는 trees를 꾸미는 의문형용사('어떤')입니다.","12":"trees는 '나무들'이라는 명사예요. -s가 붙었지만 동사가 아닙니다.","14":"the는 관사입니다.","15":"most는 '가장'을 뜻하는 부사입니다.","16":"effective는 상태를 나타내는 형용사(보어)라서 문장의 동사가 아닙니다."},
- vn="should be further explored는 조동사 + be + p.p.(수동)이고 사이에 부사 further가 끼어 있어도 한 덩어리 동사예요. to find out은 to부정사라서 동사가 아닙니다. 명사절 안의 동사는 are예요.",why=None,
- nf=[dict(w="to find out",t="to",use="부사적 용법",reason="to find out ~ 은 '~을 찾아내기 위해'라는 목적을 나타내서 동사 should be explored를 꾸미는 부사적 용법입니다.",g=[8,9,10])],em=[])
+# ---- 4-14
+t=tk("If we do, the future of our planet may be bright after all."); assert len(t)==13
+add(lv="심화",id="4-14",tok=t,
+ ch=["If we do,","the future of our planet may be bright after all."],
+ ko=["우리가 그렇게 한다면","우리 지구의 미래는 결국 밝을지도 모른다"],
+ nodes=[dict(id="m",a=0,b=13,own=R(3,13),kids=[[0,3]],S=[4],V=[8,9],G=[[8,9]],form=2,fl=[11,12],
+   sk=[dict(r="S",g=[3,4,5,6,7]),dict(r="V",g=[8,9]),dict(r="C",g=[10])],
+   note="the future of our planet may be bright. 주어 + 동사 + 보어, 2형식입니다. the future = bright(미래 = 밝은 상태)이고, may be는 조동사 + be로 한 덩어리 동사예요. after all은 '결국'이라고 덧붙이는 말입니다."),
+  dict(id="a",a=0,b=3,own=R(0,3),kids=[],S=[1],V=[2],G=[[2]],kind="부사절",sub="조건",
+   note="If가 이끄는 조건의 부사절('만약 ~한다면')입니다. 주어는 we, 동사는 do예요. 여기서 do는 앞 내용을 대신 받는 말이라 뒤에 목적어가 없어도 문장이 완성됩니다.")],
+ dec={"0":"If는 접속사입니다.","1":"we는 대명사입니다.","3":"the는 관사입니다.","4":"future는 '미래'라는 명사입니다.","5":"of는 전치사입니다.","6":"our는 '우리의'라는 대명사입니다.","7":"planet은 '지구'라는 명사입니다.","10":"bright는 상태를 나타내는 형용사(보어)라서 문장의 동사가 아닙니다.","11":"after all은 '결국'이라는 뜻의 부사구입니다.","12":"all은 after all 안에 들어 있는 말이라 동사가 아닙니다."},
+ vn="may be는 조동사 + be라서 may와 be를 함께 눌러요. If절의 동사는 do예요.",why=None,
+ nf=[],em=[])
 
 # sanity: node own/kids consistency
 for s in S:
