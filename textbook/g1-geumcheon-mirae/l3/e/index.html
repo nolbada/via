@@ -2,7 +2,7 @@
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>금천고1 3과 핵심 7문장 (K)</title>
+<title>금천고1 3과 핵심 7문장 · H-K코스</title>
 <style>
 :root{--bg:#f4f6f8;--sf:#fff;--fg:#14202b;--mu:#566474;--ln:#d9e0e7;--ac:#0f766e;--acbg:#ccfbf1;--ok:#15803d;--okbg:#e3f4e8;--warn:#b45309;--warnbg:#fef3c7;--del:#9f1239;--delbg:#fde8ec;--yl:#fff3b0;--yln:#e0b800}
 @media(prefers-color-scheme:dark){:root{--bg:#0e141b;--sf:#17212b;--fg:#e6ebf0;--mu:#9aa8b6;--ln:#2a3744;--ac:#2dd4bf;--acbg:#0f3a36;--ok:#4ade80;--okbg:#15301f;--warn:#fbbf24;--warnbg:#46330a;--del:#fda4af;--delbg:#4a1d2a;--yl:#5a4b05;--yln:#d4a900}}
@@ -39,7 +39,7 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 var $=document.getElementById('app');
 function esc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
 function shuffle(a,seed){var o=a.map(function(v,i){return i}),x=seed*9301+49297;for(var i=o.length-1;i>0;i--){x=(x*9301+49297)%233280;var j=Math.floor(x/233280*(i+1));var t=o[i];o[i]=o[j];o[j]=t}return o}
-function home(){var h='<h1>3과 핵심 7문장 · K</h1><p class="sub">문장마다 동사 → 뼈대 → 노란 덧붙는 말 순서로 풀어요. 틀리면 힌트가 나오고, 두 번 틀리면 정답과 해설이 열려요.</p>';
+function home(){var h='<h1>3과 핵심 7문장 · H-K코스</h1><p class="sub">문장마다 동사 → 뼈대 → 노란 덧붙는 말 순서로 풀어요. 틀리면 힌트가 나오고, 두 번 틀리면 정답과 해설이 열려요.</p>';
  SENT.forEach(function(s,i){var d=S[s.id]&&S[s.id].d;h+='<button class="item'+(d?' done':'')+'" data-i="'+i+'"><b>'+(i+1)+'</b><span>'+esc(s.en.split(' ').slice(0,7).join(' '))+' …<small>'+s.src+(d?' · 완료'+(S[s.id].m?' · 실수 '+S[s.id].m:' · Perfect'):'')+'</small></span></button>'});
  $.innerHTML=h;$.querySelectorAll('.item').forEach(function(b){b.onclick=function(){open(+b.dataset.i)}});window.scrollTo(0,0)}
 var ST=null;
