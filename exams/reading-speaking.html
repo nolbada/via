@@ -61,7 +61,7 @@ h1{font-size:22px;margin:0;letter-spacing:-.01em}
 .ask{font-size:20px;font-weight:700;color:var(--accent);margin:16px 0 10px;text-align:center}
 .bigb{font:inherit;font-size:24px;font-weight:900;padding:18px 26px;border-radius:14px;border:0;cursor:pointer;color:#fff;background:var(--accent);width:100%}
 .flipb{margin-top:4px}
-.judge{display:flex;gap:12px;margin-top:16px}.judge .ob{background:var(--green)}.judge .xb{background:var(--red)}
+.judge{display:flex;gap:12px;margin-top:16px}.judge .ob{background:var(--green)}.judge .xb{background:var(--red)}.judge .tb{background:#d98a00}.dt.t{background:#d98a00;border-color:#d98a00;color:#fff}
 .q.big .fx{font-size:28px}.q.big .fx .tp{font-size:18px}
 .resbox{text-align:center}.resbox .cnt{font-size:26px}
 .ans{display:none}.q.open .ans,body.all .ans{display:block}
@@ -106,7 +106,7 @@ function draw(){
   var pick=shuffle(pool).slice(0,5).sort(function(a,b){return a.n-b.n});
   lastIds=lastIds.concat(pick.map(function(q){return q.n}));
   Q=pick;marks=pick.map(function(){return 0});idx=0;flipped=false;card()},1200)}
-function dots(){return '<div class="dots">'+marks.map(function(m,k){return '<span class="dt'+(k===idx?' cur':'')+(m===1?' o':m===2?' x':'')+'">'+(m===1?'○':m===2?'✕':k+1)+'</span>'}).join('')+'</div>'}
+function dots(){return '<div class="dots">'+marks.map(function(m,k){return '<span class="dt'+(k===idx?' cur':'')+(m===1?' o':m===2?' x':m===3?' t':'')+'">'+(m===1?'○':m===2?'✕':m===3?'△':k+1)+'</span>'}).join('')+'</div>'}
 function card(){
  var q=Q[idx],tk=q.en.split(/\s+/),bad={};
  q.fx.forEach(function(f){var n=f.w.split(/\s+/).length;for(var j=0;j<n;j++)bad[f.at+j]=1});
@@ -115,11 +115,11 @@ function card(){
  var fx=q.fx.map(function(f){return '<div class="fx"><span class="w">'+esc(f.w)+'</span> → <span class="r">'+esc(f.r)+'</span><span class="tp">'+esc(f.t)+' — '+esc(f.m)+'</span></div>'}).join('');
  var h2=dots()+'<div class="q big"><div class="qh"><span class="qn">문제 '+(idx+1)+' / '+Q.length+' <small>(본문 '+q.n+'번)</small></span></div><div class="en">'+h.join(' ')+'</div><div class="ko">'+esc(q.ko)+'</div>';
  if(!flipped){h2+='<div class="ask">이 문장에서 틀린 곳은 어디일까요? 찾아서 큰 소리로 말해 보세요!</div><button class="bigb flipb" id="flip">🔄 뒤집기 (정답 보기)</button>'}
- else{h2+='<div class="ans" style="display:block">'+fx+'</div><div class="judge"><button class="bigb ob" data-v="1">○ 맞았어요</button><button class="bigb xb" data-v="2">✕ 틀렸어요</button></div>'}
+ else{h2+='<div class="ans" style="display:block">'+fx+'</div><div class="judge"><button class="bigb ob" data-v="1">○ 맞았어요</button><button class="bigb tb" data-v="3">△ 반만 맞았어요</button><button class="bigb xb" data-v="2">✕ 틀렸어요</button></div>'}
  h2+='</div>'+(idx>0?'<button class="btn" id="prev">← 이전 문제</button>':'');
  $('cards').innerHTML=h2;window.scrollTo(0,0)}
 function result(){
- var bad=marks.filter(function(m){return m===2}).length,msg,cls,det;
+ var nx=marks.filter(function(m){return m===2}).length,nt=marks.filter(function(m){return m===3}).length,bad=nx+Math.floor(nt/2),msg,cls,det;
  if(bad<=2){msg='통과 🎉';cls='p0';det='잘했어요!'}else if(bad===3){msg='5문장 쓰기';cls='p3'}else if(bad===4){msg='10문장 쓰기';cls='p4'}else{msg='15문장 쓰기';cls='p5'}
  $('cards').innerHTML=dots().replace(' cur','')+'<div class="q big resbox"><div class="cnt">틀린 문제 <b>'+bad+'</b>개 / '+Q.length+'개</div><div class="res '+cls+'" style="font-size:44px;display:inline-block;margin:14px 0">'+msg+'</div><div class="rule" style="margin-top:6px">0~2개 틀림 통과 · 3개 5문장 · 4개 10문장 · 5개 15문장 쓰기</div></div><button class="btn" id="prev">← 마지막 문제 다시 보기</button>';idx=Q.length;window.scrollTo(0,0)}
 $('cards').onclick=function(e){
