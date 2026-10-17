@@ -1023,7 +1023,7 @@ function gqSent(activeCi){
     var sp=(ci&&!c.g)?' ':'';
     if(c.r==='수식어'){
       var x=cls[ci];
-      if(x&&C.cq[ci].s){h+=sp+'<span class="gqk">'+esc(c.t)+'</span>';}
+      if(x&&C.cq[ci].k){h+=sp+'<span class="gqk">'+esc(c.t)+'</span>';}
       else if(x){h+=sp+'<span class="gqm'+(activeCi===ci?' act':'')+'">'+esc(c.t.split(/\s+/)[0].replace(/[^A-Za-z’\']/g,''))+' ...</span>';}
       else h+=sp+'<span class="gqm">가림</span>';
     }else if(c.r==='접속사'){h+=sp+'<span class="gqc">'+esc(c.t)+'</span>';}
@@ -1045,7 +1045,7 @@ function gqHtml(){
   if(!C.fmOk)return h;
   s.gq.cl.forEach(function(x){
     var q=C.cq[x.ci],c=s.ch[x.ci];
-    h+='<div class="card" style="margin-top:10px"><p class="ask">'+(q.s?'테이프를 뗐어요':'테이프를 떼고 안을 볼까요? 이건 어떤 절일까요?')+'</p>'+gqSent(x.ci);
+    h+='<div class="card" style="margin-top:10px"><p class="ask">'+(q.k?'테이프를 뗐어요':'테이프를 떼고 안을 볼까요? 이건 어떤 절일까요?')+'</p>'+gqSent(x.ci);
     if(!q.k){
       h+='<div class="qopts">'+['명사절','형용사절','부사절'].map(function(k){return '<button class="opt'+((C.bk&&C.bk[x.ci+k])?' bad':'')+'" data-act="xq" data-t="kind" data-ci="'+x.ci+'" data-v="'+k+'">'+k+'</button>';}).join('')+'</div>';
     }else if(!q.s){
