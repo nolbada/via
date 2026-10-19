@@ -16,12 +16,10 @@ body{background:var(--shd);color:#fff;font-family:"Malgun Gothic","Apple SD Goth
 .cv-s{position:absolute;left:0;right:0;top:77%;text-align:center;font-weight:700;font-size:3.6cqw;letter-spacing:.01em}
 .cv-ln{position:absolute;left:42.5%;width:15%;top:83%;height:0;border-top:1.5px solid rgba(255,244,230,.8)}
 .cv-a{position:absolute;left:0;right:0;top:86.5%;text-align:center;font-weight:700;font-size:4.4cqw}
-.cv-rib{position:relative;z-index:1;display:flex;gap:8px;width:min(92%,calc((100vh - 230px)*.7132));width:min(92%,calc((100dvh - 230px)*.7132));justify-content:space-between;margin-top:-10px;padding:0 4%}
-.cv-r{position:relative;flex:1;border:0;height:84px;padding:18px 2px 12px;font-family:inherit;font-weight:700;font-size:12.5px;line-height:1.25;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#2c1d14;cursor:pointer;text-decoration:none;text-align:center;clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);transition:transform .15s}
-.cv-r i{position:absolute;top:0;left:0;right:0;height:12px;background:rgba(0,0,0,.14)}
-.cv-r:active{transform:translateY(6px)}
-.r1{background:#f0c3a9}.r2{background:#cdbdf2}.r3{background:#a9dcc6}.r4{background:#f7e6c4}.r5{background:#f3d98f}
-.cv-h{margin:14px 0 0;color:rgba(255,244,230,.86);font-size:13px;font-weight:500;text-align:center}
+.cv-ln{display:none}
+.cv-menu{position:absolute;left:9%;right:9%;top:85.5%;height:8.5%;display:flex;border-top:1.5px solid rgba(255,244,230,.8)}
+.cv-m{flex:1;background:none;border:0;border-left:1px solid rgba(255,244,230,.32);color:#fff;font-family:inherit;font-weight:700;font-size:3cqw;line-height:1.3;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;padding:0;text-decoration:none;text-align:center}
+.cv-m:first-child{border-left:0}.cv-m:active{background:rgba(255,244,230,.14)}
 </style></head><body>
 <div class="cv-scene">
 <div class="cv"><div class="cv-fr"></div><div class="cv-t">V SIGNAL</div>
@@ -31,14 +29,13 @@ body{background:var(--shd);color:#fff;font-family:"Malgun Gothic","Apple SD Goth
 <polygon points="524,432 675,432 652,482 552,482 449,697 420,637" fill="url(#rg)"/>
 <polygon points="565,500 638,500 493,790 465,725" fill="var(--shd)" stroke="#fff" stroke-width="3"/>
 <polygon points="565,500 638,500 493,790 465,725" fill="url(#gp)"/></svg>
-<div class="cv-s">Y1 · Y2 | Y STAGE: YIELD (The Key)</div><div class="cv-ln"></div></div>
-<div class="cv-rib">
-<a class="cv-r r1" href="xray.html#basic"><i></i><span>기본</span><span>문장</span><span>분석</span></a>
-<a class="cv-r r2" href="xray.html#adv"><i></i><span>심화</span><span>문장</span><span>분석</span></a>
-<a class="cv-r r5" href="day.html"><i></i><span>오늘의</span><span>7문장</span></a>
-<a class="cv-r r3" href="review.html"><i></i><span>누적</span><span>복습</span></a>
-<a class="cv-r r4" href="words.html"><i></i><span>내</span><span>단어장</span></a>
-</div>
+<div class="cv-s">Y1 · Y2 | Y STAGE: YIELD (The Key)</div><div class="cv-ln"></div>
+<div class="cv-menu">
+<a class="cv-m" href="xray.html#basic"><span>기본</span><span>문장</span><span>분석</span></a>
+<a class="cv-m" href="xray.html#adv"><span>심화</span><span>문장</span><span>분석</span></a>
+<a class="cv-m" href="day.html"><span>오늘의</span><span>7문장</span></a>
+<a class="cv-m" href="review.html"><span>누적</span><span>복습</span></a>
+<a class="cv-m" href="words.html"><span>내</span><span>단어장</span></a>
+</div></div>
 <a id="wls" href="note.html" style="display:none;margin:14px auto 0;padding:11px 14px;border:2px solid #e0a100;border-radius:12px;background:#fff4d6;color:#5b3d00;font-size:15px;font-weight:800;text-decoration:none;max-width:320px;text-align:center"></a>
-<p class="cv-h">책갈피를 눌러 펼쳐요</p>
 </div><script>try{var O=JSON.parse(localStorage.getItem('vsig-y-wl-v1')||'{}'),ks=Object.keys(O).sort().reverse(),L=[];for(var i=0;i<ks.length;i++)if(O[ks[i]]&&O[ks[i]].length){L=O[ks[i]];break}if(L.length){var a=document.getElementById('wls');a.textContent='오답노트 '+L.length+'문장 쓰러 가기';a.style.display='block'}}catch(e){}</script></body></html>
