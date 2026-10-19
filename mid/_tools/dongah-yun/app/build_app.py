@@ -2,6 +2,7 @@
 import json,re
 from data import SECTIONS, CAT
 from qa import QA
+from notes import NOTES
 def _ph(sents,i):
     out=[]
     for r,n_,m in sents:
@@ -16,7 +17,7 @@ for si,s in enumerate(SECTIONS):
     sents=[]
     for rows,nat,mk in s['sents']:
         sents.append(dict(n=n,rows=[r.split('|') for r in rows],nat=nat,mk=mk)); n+=1
-    secs.append(dict(no=s['no'],sym=s['sym'],en=s['en'],ko=s['ko'],sents=sents,items=[dict(t=i[0],x=i[1],c=i[2],p=_ph(s['sents'],k+1),q=QA[si][k][0],a=QA[si][k][1]) for k,i in enumerate(s['items'])]))
+    secs.append(dict(no=s['no'],sym=s['sym'],en=s['en'],ko=s['ko'],sents=sents,items=[dict(t=i[0],x=NOTES[si][k][0],n=NOTES[si][k][1],c=i[2],p=_ph(s['sents'],k+1),q=QA[si][k][0],a=QA[si][k][1]) for k,i in enumerate(s['items'])]))
 DATA=json.dumps(dict(secs=secs,cat={k:dict(d=v[0],l=v[1],n=v[3],s=v[2]) for k,v in CAT.items()}),ensure_ascii=False)
 HTML=r'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>중2 동아(윤) 7과</title>
@@ -54,6 +55,7 @@ h2{font-size:20px;margin:6px 2px 4px}.sub{font-size:13px;color:var(--mut)}
 .b.l{width:22px;height:22px;font-size:12px;margin:0}
 .it{border-radius:14px;padding:12px 14px 13px;margin-bottom:10px}
 .it h4{margin:0 0 6px;font-size:15px;display:flex;align-items:center;gap:8px}
+.note{background:#fffbe6;border:1.5px dashed #d9c76a;border-radius:10px;padding:7px 11px;background-image:repeating-linear-gradient(transparent,transparent 25px,#efe6b3 25px,#efe6b3 26px)}.note .nl{font-size:11.5px;font-weight:800;color:#8a6d00;margin-bottom:2px}.note .ln{font-size:14px;font-weight:700;line-height:26px;color:#17202e}
 .rv{margin-top:6px;cursor:pointer}.rv .q{border-left:4px solid;padding:4px 8px;font-size:14px}.rv .a{display:none;margin-top:4px;border:1.5px solid;border-radius:10px;padding:8px 10px;font-size:13.5px;line-height:1.6}.rv.open .a{display:block}
 .bl{display:inline-block;min-width:54px;border-bottom:2.5px solid;margin:0 2px;vertical-align:bottom;cursor:pointer;line-height:1.5}
 .bl .tx{visibility:hidden;padding:0 2px;border-radius:3px}.bl.open .tx{visibility:visible}.it p{margin:0;font-size:13.5px;line-height:1.65}
@@ -76,7 +78,7 @@ a.cta b{display:block;font-size:17px}a.cta span{font-size:12px}
 <script>
 var D=__DATA__;
 /* ===== 학습 일정 (날짜를 바꾸려면 여기만 고치세요) : 'YYYY-MM-DD': [Day번호] ===== */
-var SCHEDULE={'2026-10-19':[1,2],'2026-10-20':[3,4]};
+/* 오늘 할 본문은 링크 끝에 ?today=1,2 처럼 붙여서 정해요 (본문 번호). 붙이지 않으면 4개 모두 보여요. */
 var DAYS={1:'1~7번',2:'8~13번',3:'14~19번',4:'20~26번'};
 var SYM={1:'❶',2:'❷',3:'❸',4:'❹'};
 function dayRow(d){return '<div style="margin-top:8px"><div class="sub" style="font-weight:800">본문 '+SYM[d]+' · '+DAYS[d]+' 문장</div><div style="display:flex;gap:8px"><a class="cta k" style="flex:1" href="../basic/?day='+d+'"><b>기본</b><span>우리말 순서부터 차근차근</span></a><a class="cta s" style="flex:1" href="../adv/?day='+d+'"><b>심화</b><span>덩어리 안쪽까지 파고들기</span></a></div></div>'}
@@ -92,6 +94,7 @@ function plainMark(t,sec,only){
     else out+='<span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 2px">'+esc(m[2])+'</span>';
     pos=re.lastIndex}
   return out+esc(t.slice(pos))}
+function noteBox(n){return '<div class="note"><div class="nl">노트에 이렇게 적어요</div>'+n.map(function(l){return '<div class="ln">'+esc(l)+'</div>'}).join('')+'</div>'}
 function legend(){return '<div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;font-size:12.5px;padding:10px 14px">'+['g','b','k','o'].map(function(k){var c=D.cat[k];return '<div style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;flex:none;background:'+c.l+';border:1.5px solid '+c.d+'"></span>'+esc(c.n)+'</div>'}).join('')+'</div>'}
 function drillBar(cur){return '<div style="display:flex;gap:6px;margin:0 0 10px">'+['g','b','k','o'].map(function(k){var c=D.cat[k];return '<button data-dr="'+k+'" style="flex:1;padding:8px 0;border-radius:10px;border:1.5px solid '+c.d+';background:'+(cur==k?c.d:c.l)+';color:'+(cur==k?'#fff':'#17202e')+';font:800 13px inherit;font-family:inherit">'+c.s+'</button>'}).join('')+'</div>'}
 function vDrill(){
@@ -103,7 +106,7 @@ function vDrill(){
     cards.forEach(function(x){
       var seen={},rows='',re=/\[(\d+)\|/g,m;
       while((m=re.exec(x.mk))){var ix=+m[1];if(s.items[ix-1].c==k&&!seen[ix]){seen[ix]=1;var it=s.items[ix-1];
-        rows+='<div class="rv"><div class="q" style="border-color:'+c.d+'"><span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 3px;font-weight:700">'+esc(it.p)+'</span><div style="margin-top:3px">'+esc(it.q)+'</div><div class="sub" style="margin-top:2px">눌러서 확인</div></div><div class="a" style="background:'+c.l+'88;border-color:'+c.d+'"><div style="font-weight:800;color:'+c.d+';margin-bottom:3px">'+esc(it.a)+'</div><div style="font-size:13px;color:#44545b">'+esc(it.x)+'</div></div></div>'}}
+        rows+='<div class="rv"><div class="q" style="border-color:'+c.d+'"><span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 3px;font-weight:700">'+esc(it.p)+'</span><div style="margin-top:3px">'+esc(it.q)+'</div><div class="sub" style="margin-top:2px">눌러서 확인</div></div><div class="a" style="background:'+c.l+'88;border-color:'+c.d+'"><div style="font-weight:800;color:'+c.d+';margin-bottom:3px">'+esc(it.a)+'</div>'+noteBox(it.n)+'<div style="font-size:13px;color:#44545b;margin-top:6px">'+esc(it.x)+'</div></div></div>'}}
       h+='<div class="card"><div class="no">'+x.n+'</div><div class="ps" style="border:0;padding:0"><span>'+plainMark(x.mk,s,k)+'</span></div><div class="sub" style="margin:4px 0 6px">'+esc(x.nat)+'</div>'+rows+'</div>'});
   });
   return h+'</div>'}
@@ -114,8 +117,8 @@ function vText(){
   var s=cur(),h=chips();
   if(S.corner=='gr'&&S.drill)return h+vDrill();
   if(S.corner=='an'){
-    return h+'<h2>7과 핵심 문장 분석</h2><div class="sub" style="margin-bottom:10px">본문 2개씩, 2회차로 나눠서 한 문장씩 뜯어 봐요.</div>'+
-    [[1,2],[3,4]].map(function(g,k){return '<div class="card"><b style="font-size:16px">'+(k+1)+'회차</b>'+dayRow(g[0])+dayRow(g[1])+'</div>'}).join('')}
+    return h+'<h2>7과 핵심 문장 분석</h2><div class="sub" style="margin-bottom:10px">본문 ❶~❹를 한 문장씩 뜯어 봐요.</div>'+
+    '<div class="card">'+[1,2,3,4].map(dayRow).join('')+'</div>'}
   h+=psel();
   var a=s.sents[0].n,b=s.sents[s.sents.length-1].n;
   if(S.corner=='tr'){
@@ -126,26 +129,17 @@ function vText(){
     h+='<h2>7과 · 본문 '+s.sym+' 문법 설명</h2><div class="sub" style="margin-bottom:8px">'+a+'~'+b+'번</div>'+'';
     h+='<div class="sub" style="font-weight:800;margin:2px 2px 6px">형광펜 이름별로 모아보기 (복습)</div>'+drillBar('');
     h+='<div class="card"><div class="sub" style="font-weight:800;margin-bottom:4px">본문에서 찾아요 · 색칠한 부분과 같은 말이 아래 설명 카드에 있어요</div>'+s.sents.map(function(x){return '<div class="ps"><i>'+x.n+'</i><span>'+plainMark(x.mk,s)+'</span></div>'}).join('')+'</div>';
-    h+=s.items.map(function(it,i){var c=D.cat[it.c];return '<div class="it" style="background:'+c.l+'88;border:1.5px solid '+c.d+'"><h4><span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 4px;flex:1">'+esc(it.p)+'</span><span style="font-size:11.5px;color:#fff;background:'+c.d+';border-radius:99px;padding:2px 9px;flex:none">'+esc(c.s)+'</span></h4><div style="font-size:14px;font-weight:800;color:'+c.d+';margin-bottom:5px">'+esc(it.t)+'</div><p>'+esc(it.x)+'</p></div>'}).join('');
+    h+=s.items.map(function(it,i){var c=D.cat[it.c];return '<div class="it" style="background:'+c.l+'88;border:1.5px solid '+c.d+'"><h4><span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 4px;flex:1">'+esc(it.p)+'</span><span style="font-size:11.5px;color:#fff;background:'+c.d+';border-radius:99px;padding:2px 9px;flex:none">'+esc(c.s)+'</span></h4><div style="font-size:15px;font-weight:800;color:'+c.d+';margin-bottom:6px">'+esc(it.a)+'</div>'+noteBox(it.n)+'<p style="margin-top:7px;font-size:13px;color:#44545b">'+esc(it.x)+'</p></div>'}).join('');
   }
   return h}
-function ymd(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+function todayList(){
+  var p='';try{p=new URLSearchParams(location.search).get('today')||''}catch(e){}
+  var l=p.split(',').map(function(x){return +x}).filter(function(x){return x>=1&&x<=4});
+  return l.length?l:null}
 function vToday(){
-  var now=new Date(),t=ymd(now);
-  if(!S.ym)S.ym=[now.getFullYear(),now.getMonth()];
-  if(!S.sel)S.sel=t;
-  var y=S.ym[0],m=S.ym[1],first=new Date(y,m,1),lead=(first.getDay()+6)%7,days=new Date(y,m+1,0).getDate();
-  var g='';for(var i=0;i<lead;i++)g+='<button disabled></button>';
-  for(var d=1;d<=days;d++){var key=y+'-'+('0'+(m+1)).slice(-2)+'-'+('0'+d).slice(-2),col=(lead+d-1)%7,c=[];
-    if(col==6)c.push('sun');if(SCHEDULE[key])c.push('l7');if(key==t)c.push('today');if(key==S.sel)c.push('sel');
-    g+='<button data-d="'+key+'" class="'+c.join(' ')+'">'+d+'</button>'}
-  var h='<div class="mon"><h2 style="margin:0">오늘의 학습</h2><div><button id="pm">‹</button><b>'+y+'년 '+(m+1)+'월</b><button id="nm">›</button></div></div>';
-  h+='<div class="cal"><div class="hd"><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div><div>일</div></div><div class="gr">'+g+'</div></div>';
-  var sd=S.sel.split('-'),dt=new Date(+sd[0],+sd[1]-1,+sd[2]),wk='일월화수목금토'[dt.getDay()];
-  h+='<div class="row" style="margin-top:14px"><b style="font-size:16px">'+(+sd[1])+'월 '+(+sd[2])+'일 '+wk+'요일</b>'+(SCHEDULE[S.sel]?'<span class="sub">7과 · 축제</span>':'')+'</div>';
-  var dn=SCHEDULE[S.sel];
-  if(dn){h+='<div class="card" style="border:1.5px solid #8fb3ac;padding:14px"><b style="font-size:18px">문장 분석</b><div class="sub">7과 · 본문 '+SYM[dn[0]]+' '+SYM[dn[1]]+'</div>'+dayRow(dn[0])+dayRow(dn[1])+'</div>'}
-  else h+='<div class="card sub">이 날은 정해진 학습이 없어요.</div>';
+  var t=todayList(),all=[1,2,3,4],h='<h2>오늘의 학습</h2>';
+  if(t){h+='<div class="sub" style="margin:2px 2px 10px">선생님이 정해 준 오늘 학습이에요.</div><div class="card" style="border:1.5px solid #8fb3ac;padding:14px"><b style="font-size:18px">문장 분석</b><div class="sub">7과 · 본문 '+t.map(function(d){return SYM[d]}).join(' ')+'</div>'+t.map(dayRow).join('')+'</div>'}
+  else{h+='<div class="sub" style="margin:2px 2px 10px">선생님이 정해 준 본문을 골라서 해요.</div><div class="card" style="padding:14px"><b style="font-size:18px">문장 분석</b><div class="sub">7과</div>'+all.map(dayRow).join('')+'</div>'}
   return h}
 function vKey(){return '<h2>답안지</h2><div class="card sub" style="margin-top:10px">7과·8과 답안지는 곧 열려요.</div>'}
 var ICON={text:'<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9 13h7M9 17h7"/>',key:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12l3 3 5-6"/>',today:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>'};
