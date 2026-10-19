@@ -260,6 +260,10 @@ body.cv-on{background:var(--shd,#06402a)}
 .cv-r i{position:absolute;top:0;left:0;right:0;height:12px;background:rgba(0,0,0,.14)}
 .cv-r:active{transform:translateY(6px)}
 .cv-h{margin:14px 0 0;color:rgba(255,244,230,.86);font-size:13px;font-weight:500;text-align:center}
+.cv-ln{display:none}
+.cv-menu{position:absolute;left:9%;right:9%;top:86%;height:7.2%;display:flex;border-top:1.5px solid rgba(255,244,230,.8)}
+.cv-m{flex:1;background:none;border:0;border-left:1px solid rgba(255,244,230,.32);color:#fff;font-family:inherit;font-weight:700;font-size:3.5cqw;line-height:1.3;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.cv-m:first-child{border-left:0}.cv-m:active{background:rgba(255,244,230,.14)}
 .wq-f{display:block;width:100%;height:calc(100vh - 96px);height:calc(100dvh - 96px);min-height:520px;border:0;background:transparent}
 </style>
 <div class="wrap" id="app"></div>
@@ -808,10 +812,9 @@ function logoSvg(){return '<svg viewBox="200 410 500 490" class="cv-logo" aria-h
  +'<polygon points="565,500 638,500 493,790 465,725" fill="url(#gp)"/></svg>';}
 function cover(){
   var e=edNo(),d=curDay();applyEd();
-  app.innerHTML='<div class="cv-scene"><div class="cv" style="container-type:inline-size"><div class="cv-fr"></div><div class="cv-t">V SIGNAL</div>'+logoSvg()+'<div class="cv-s">E'+e+' | E STAGE: EVOLVE (The Flow)</div><div class="cv-ln"></div></div>'
-   +'<div class="cv-rib">'+TABD.map(function(t){return '<button class="cv-r r-'+t[0]+'" data-act="tab" data-tab="'+t[0]+'"><i></i><span>'+t[1]+'</span><span>'+t[2]+'</span></button>';}).join('')+'</div>'
+  app.innerHTML='<div class="cv-scene"><div class="cv" style="container-type:inline-size"><div class="cv-fr"></div><div class="cv-t">V SIGNAL</div>'+logoSvg()+'<div class="cv-s">E'+e+' | E STAGE: EVOLVE (The Flow)</div><div class="cv-ln"></div><div class="cv-menu">'+TABD.map(function(t){return '<button class="cv-m" data-act="tab" data-tab="'+t[0]+'"><span>'+t[1]+'</span><span>'+t[2]+'</span></button>';}).join('')+'</div></div>'
    +'<div style="width:min(92%,420px);margin-top:14px">'+recStrip()+noteStrip()+'</div>'
-   +'<p class="cv-h">책갈피를 눌러 펼쳐요 · 지금 Day '+d+'</p></div>';
+   +'<p class="cv-h">지금 Day '+d+'</p></div>';
   window.scrollTo(0,0);
 }
 function dayTab(){
