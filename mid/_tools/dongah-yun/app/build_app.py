@@ -26,7 +26,7 @@ for si,s in enumerate(SECTIONS):
     secs.append(dict(no=s['no'],sym=SYMS[int(s['no'])-1],en=s['en'],ko=s['ko'],sents=sents,items=[dict(t=i[0],x=NOTES[si][k][0],n=NOTES[si][k][1],c=i[2],p=_ph(s['sents'],k+1),q=QA[si][k][0],a=QA[si][k][1]) for k,i in enumerate(s['items'])]))
 DATA=json.dumps(dict(secs=secs,cat={k:dict(d=v[0],l=v[1],n=v[3],s=v[2]) for k,v in CAT.items()}),ensure_ascii=False)
 HTML=r'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>중2 동아(윤) __LN__과</title>
+<title>__APPN__</title><meta name="application-name" content="__APPN__"><meta name="apple-mobile-web-app-title" content="__APPN__"><meta property="og:title" content="__APPN__">
 <style>
 :root{--teal:#0f766e;--bd:#d3e0dd;--mut:#53626a}
 *{box-sizing:border-box}
@@ -79,7 +79,7 @@ h2{font-size:20px;margin:6px 2px 4px}.sub{font-size:13px;color:var(--mut)}
 .cal .gr button.sel{background:var(--teal);color:#fff;border-radius:99px}
 .mon{display:flex;justify-content:space-between;align-items:baseline;padding:0 2px 8px}.mon button{border:0;background:none;font-size:20px;color:var(--mut);padding:0 8px}
 #cal{background:#fff;border:1px solid #cfd9d6;border-radius:16px;padding:10px 10px 8px;margin:10px 0}.calh{display:flex;justify-content:space-between;align-items:center;padding:0 4px 6px}.calh button{border:0;background:none;font-size:22px;color:#0f766e;padding:2px 12px;cursor:pointer}.calg{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}.calg .wd{font-size:12px;font-weight:800;color:#5b6b68;padding:3px 0}.calg .wd.sun,.calg .dd.sun{color:#c2410c}.calg .dd{position:relative;height:36px;line-height:36px;font-weight:700;font-size:14.5px}.calg .dd.tod{box-shadow:inset 0 0 0 1.5px #0f766e;border-radius:10px}.calg .dd.tod::before{content:"오늘";position:absolute;left:0;right:0;top:1px;font-size:8.5px;line-height:1;font-weight:800;color:#0f766e}.calg .dd.ex{color:#dc2626;background:#fee2e2;font-weight:900}.calg .dd.ex::before{content:"시험";position:absolute;left:0;right:0;top:1px;font-size:8.5px;line-height:1;font-weight:800;color:#dc2626}.exam{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#fee2e2;border:1.5px solid #dc2626;color:#991b1b;border-radius:12px;padding:10px 12px;margin:0 0 6px;font-size:14px}.exam b{font-size:15px}.exam span{font-weight:900;font-size:16px;white-space:nowrap}
-div.lsw{display:flex;gap:6px;margin:0 0 10px}.lsw a{flex:1;text-align:center;padding:7px 0;border-radius:99px;background:#fff;border:1.5px solid #b9c6c3;color:#4f6b67;font-weight:800;font-size:13.5px;text-decoration:none}.lsw a.on{background:#0f766e;border-color:#0f766e;color:#fff}
+div.apph{font-size:19px;font-weight:800;color:#0f4f49;margin:2px 2px 10px}div.lsw{display:flex;gap:6px;margin:0 0 10px}.lsw a{flex:1;text-align:center;padding:7px 0;border-radius:99px;background:#fff;border:1.5px solid #b9c6c3;color:#4f6b67;font-weight:800;font-size:13.5px;text-decoration:none}.lsw a.on{background:#0f766e;border-color:#0f766e;color:#fff}
 a.cta{display:block;text-decoration:none;border-radius:12px;padding:13px 14px;margin-top:8px}
 a.cta b{display:block;font-size:17px}a.cta span{font-size:12px}
 .cta.k{background:#dcefec;border:1.5px solid #a8d3cd;color:#0f6a62}.cta.k span{color:#4f6b67}.cta.k.dn{background:#0f766e;border-color:#0f766e;color:#fff}.cta.k.dn span{color:#d7efeb}
@@ -91,7 +91,8 @@ a.cta b{display:flex;align-items:center;gap:6px}
 var D=__DATA__;
 /* ===== 학습 일정 (날짜를 바꾸려면 여기만 고치세요) : 'YYYY-MM-DD': [Day번호] ===== */
 /* 오늘 할 본문은 링크 끝에 ?today=1,2 처럼 붙여서 정해요 (본문 번호). 붙이지 않으면 4개 모두 보여요. */
-var EXD=['2026-12-09','2026-12-10','2026-12-11'],EXN='용아중 2학년 기말고사 12/9(수)~12/11(금)';
+var APPN='__APPN__';
+var EXD=['2026-12-09','2026-12-10','2026-12-11'],EXN='용아중 2학년 2학기 기말고사 12/9(수)~12/11(금)';
 var LN='__LN__',SD=__SD__,DR=__DR__,NS=D.secs.length;
 var SYM={1:'❶',2:'❷',3:'❸',4:'❹',5:'❺',6:'❻'};
 function isDone(kind,d){try{var s=JSON.parse(localStorage.getItem('vsig-mid-dy-l'+LN+'-'+kind+'-v1')||'{}');return !!(s.best&&s.best[d])}catch(e){return false}}
@@ -101,7 +102,7 @@ function secRange(d){var s=D.secs.filter(function(x){return x.no==d})[0];return 
 function dayRow(d){var ds=SD[d],multi=ds.length>1;
   return '<div style="margin-top:10px"><div class="sub" style="font-weight:800">본문 '+SYM[d]+' · '+secRange(d)+' 문장</div>'+ds.map(function(k){
     return (multi?'<div class="sub" style="margin:6px 2px 0">'+k+'일차 분석 · '+DR[k]+'</div>':'')+'<div style="display:flex;gap:8px">'+btn('basic',k,'기본','우리말 순서부터 차근차근')+btn('adv',k,'심화','덩어리 안쪽까지 파고들기')+'</div>'}).join('')+(multi?'<div class="sub" style="margin:4px 2px 0;font-size:11.5px">※ 분석 한 일차가 본문 두 개에 걸칠 수 있어요.</div>':'')+'</div>'}
-function lsw(){return '<div class="lsw">'+['7','8'].map(function(x){return '<a href="../../l'+x+'/app/" class="'+(x==LN?'on':'')+'">'+x+'과</a>'}).join('')+'</div>'}
+function lsw(){return '<div class="apph">'+APPN+'</div><div class="lsw">'+['7','8'].map(function(x){return '<a href="../../l'+x+'/app/" class="'+(x==LN?'on':'')+'">교과서 '+x+'과</a>'}).join('')+'</div>'}
 var S={tab:'text',corner:'tr',sec:'1',hide:false,sel:null,ym:null,drill:null};
 function el(h){return h}
 function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
@@ -137,16 +138,16 @@ function vText(){
   var s=cur(),h=chips();
   if(S.corner=='gr'&&S.drill)return h+vDrill();
   if(S.corner=='an'){
-    return h+'<h2>'+LN+'과 핵심 문장 분석</h2><div class="sub" style="margin-bottom:10px">본문 '+SYM[1]+'~'+SYM[NS]+'를 한 문장씩 뜯어 봐요.</div>'+
+    return h+
     '<div class="card">'+D.secs.map(function(x){return dayRow(+x.no)}).join('')+'</div>'}
   h+=psel();
   var a=s.sents[0].n,b=s.sents[s.sents.length-1].n;
   if(S.corner=='tr'){
-    h+='<div class="row"><div><h2 style="margin:0">'+LN+'과 · 본문 '+s.sym+' 문장 해석</h2><div class="sub">'+esc(s.ko)+' · '+a+'~'+b+'번</div></div></div>';
+    h+='<div class="row"><div><h2 style="margin:0">교과서 '+LN+'과 · 본문 '+s.sym+' 문장 해석</h2><div class="sub">'+esc(s.ko)+' · '+a+'~'+b+'번</div></div></div>';
     h+='<div class="tog"><button id="b1" class="'+(S.hide?'':'on')+'">해석 보이기</button><button id="b2" class="'+(S.hide?'on':'')+'">해석 가리기</button></div><div class="sub" style="margin:0 2px 6px">해석을 가렸을 때는 한 줄씩 눌러서 열어 보세요.</div>';
     h+='<div id="list" class="'+(S.hide?'hide':'')+'">'+s.sents.map(function(x){return '<div class="card"><div class="no">'+x.n+'</div>'+x.rows.map(function(r){return '<div class="pair"><div class="en">'+esc(r[0])+'</div><div class="ko">'+esc(r[1])+'</div></div>'}).join('')+'<div class="nat">'+esc(x.nat)+'</div></div>'}).join('')+'</div>';
   }else{
-    h+='<h2>'+LN+'과 · 본문 '+s.sym+' 문법 설명</h2><div class="sub" style="margin-bottom:8px">'+a+'~'+b+'번</div>'+'';
+    h+='<h2>교과서 '+LN+'과 · 본문 '+s.sym+' 문법 설명</h2><div class="sub" style="margin-bottom:8px">'+a+'~'+b+'번</div>'+'';
     h+='<div class="sub" style="font-weight:800;margin:2px 2px 6px">형광펜 이름별로 모아보기 (복습)</div>'+drillBar('');
     h+='<div class="card"><div class="sub" style="font-weight:800;margin-bottom:4px">본문에서 찾아요 · 색칠한 부분과 같은 말이 아래 설명 카드에 있어요</div>'+s.sents.map(function(x){return '<div class="ps" id="ps-'+x.n+'"><i>'+x.n+'</i><span>'+plainMark(x.mk,s,null,x.n)+'</span></div>'}).join('')+'</div>';
     h+=s.items.map(function(it,i){var c=D.cat[it.c];return '<div class="it" id="it-'+(i+1)+'" style="background:'+c.l+'88;border:1.5px solid '+c.d+'"><h4><span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 4px;flex:1">'+esc(it.p)+'</span><span style="font-size:11.5px;color:#fff;background:'+c.d+';border-radius:99px;padding:2px 9px;flex:none">'+esc(c.s)+'</span></h4><div style="font-size:15px;font-weight:800;color:'+c.d+';margin-bottom:6px">'+esc(it.a)+'</div>'+noteBox(it.n)+'<p style="margin-top:7px;font-size:13px;color:#44545b">'+esc(it.x)+'</p><button class="bk" data-back="'+(i+1)+'" style="border-color:'+c.d+';color:'+c.d+'">↑ 본문으로 돌아가기</button></div>'}).join('');
@@ -169,11 +170,11 @@ function vCal(){
   for(var d=1;d<=days;d++){var k=dk(new Date(S.cy,S.cm,d));h+='<span class="dd'+(EXD.indexOf(k)>=0?' ex':'')+(k==td?' tod':'')+(((lead+d-1)%7)==6?' sun':'')+'">'+d+'</span>'}
   return h+'</div></div>'}
 function vToday(){
-  var t=todayList(),all=D.secs.map(function(x){return +x.no}),h='<h2>오늘의 학습</h2>'+vCal();
-  if(t){h+='<div class="sub" style="margin:2px 2px 10px">선생님이 정해 준 오늘 학습이에요.</div><div class="card" style="border:1.5px solid #8fb3ac;padding:14px"><b style="font-size:18px">문장 분석</b><div class="sub">'+LN+'과 · 본문 '+t.map(function(d){return SYM[d]}).join(' ')+'</div>'+t.map(dayRow).join('')+'</div>'}
-  else{h+='<div class="sub" style="margin:2px 2px 10px">선생님이 정해 준 본문을 골라서 해요.</div><div class="card" style="padding:14px"><b style="font-size:18px">문장 분석</b><div class="sub">'+LN+'과</div>'+all.map(dayRow).join('')+'</div>'}
+  var t=todayList(),all=D.secs.map(function(x){return +x.no}),h=''+vCal();
+  if(t){h+='<div class="card" style="border:1.5px solid #8fb3ac;padding:14px"><b style="font-size:18px">문장 분석</b><div class="sub">교과서 '+LN+'과 · 본문 '+t.map(function(d){return SYM[d]}).join(' ')+'</div>'+t.map(dayRow).join('')+'</div>'}
+  else{h+='<div class="card" style="padding:14px"><b style="font-size:18px">문장 분석</b><div class="sub">교과서 '+LN+'과</div>'+all.map(dayRow).join('')+'</div>'}
   return h}
-function vKey(){return '<h2>답안지</h2><div class="card sub" style="margin-top:10px">7과·8과 답안지는 곧 열려요.</div>'}
+function vKey(){return '<div class="card sub">교과서 7과·8과 답안지는 곧 열려요.</div>'}
 var ICON={text:'<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9 13h7M9 17h7"/>',key:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12l3 3 5-6"/>',today:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>'};
 function render(){
   var v=S.tab=='text'?vText():S.tab=='key'?vKey():vToday();
@@ -209,7 +210,7 @@ try{var p=new URLSearchParams(location.search).get('tab');if(p)S.tab=p}catch(e){
 window.addEventListener('pageshow',function(ev){if(ev.persisted&&!document.getElementById('list'))render()});
 render();
 </script></body></html>'''
-HTML=HTML.replace('__DATA__',DATA).replace('__LN__',LN).replace('__SD__',json.dumps(CFG['SD'])).replace('__DR__',json.dumps(CFG['DR']))
+HTML=HTML.replace('__DATA__',DATA).replace('__LN__',LN).replace('__APPN__','용아중 2학년 2학기 기말고사').replace('__SD__',json.dumps(CFG['SD'])).replace('__DR__',json.dumps(CFG['DR']))
 import os
 _out=os.path.join(os.path.dirname(os.path.abspath(__file__)),'../../../dongah-yun/l%s/app/index.html'%LN)
 os.makedirs(os.path.dirname(_out),exist_ok=True)
