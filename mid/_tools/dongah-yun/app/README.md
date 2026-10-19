@@ -3,4 +3,4 @@
 - 데이터: 7과 `data.py qa.py notes.py` / 8과 `data8.py qa8.py notes8.py`
 - 과별 본문↔분석 일차 매핑 `CFG`, 시험 일정 `EXD`·`EXN` 은 build_app.py 안
 - 전체 제작 순서·규칙: 스킬모음 `중등용 스킬모음/261019_00_시작은여기_중등_학교앱_만들기_가이드.md`
-- 링크 모음(선생님용): `mid/index.html`
+- 내신 링크 모음(선생님용, 중등·고등 통합): via-high 저장소 `h/naesin/index.html`
