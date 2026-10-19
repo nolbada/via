@@ -16,10 +16,17 @@ h2{font-size:20px;margin:6px 2px 4px}.sub{font-size:13px;color:var(--mut)}
 .btn{padding:8px 16px;border:1.5px solid #c3cfcc;background:#fff;border-radius:10px;font:700 13.5px inherit;font-family:inherit;color:#44545b}
 .card{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:12px 14px 13px;margin-bottom:10px}
 .no{font-size:12px;font-weight:800;color:var(--teal);margin-bottom:6px}
-.g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:baseline;border-top:1px solid #edf2f1;padding-top:7px;margin-top:7px}
-.g .en{font-size:15px;font-weight:700;line-height:1.5}.g .ko{font-size:14px;color:#44545b;line-height:1.5}
-.hide .ko,.hide .nat{visibility:hidden}
-.nat{font-size:13.5px;line-height:1.6;border-top:1px dashed #c3cfcc;padding-top:8px;margin-top:8px}
+.pair{margin:6px 0;padding:3px 2px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pair .en{font-size:16px;font-weight:700;line-height:1.5;color:#1e2a44}
+.pair .ko{font-size:15.5px;line-height:1.5;margin-top:3px;border-left:4px solid var(--teal);background:#e3f3f0;border-radius:0 8px 8px 0;padding:2px 0 2px 10px}
+.hide .pair .ko,.hide .nat{visibility:hidden;background:#fff}
+.hide .pair .ko.show,.hide .nat.show{visibility:visible;background:#e3f3f0}
+.hide .pair:active{background:#e3f3f0}
+.nat{font-size:14px;line-height:1.6;border-top:1px dashed #c3cfcc;padding-top:8px;margin-top:8px}
+.hide .nat{cursor:pointer}
+.tog{position:sticky;top:0;z-index:5;background:#f3f7f6;padding:8px 0;display:flex;gap:8px;margin-bottom:4px}
+.tog button{border:1px solid var(--bd);background:#fff;color:#17202e;border-radius:999px;padding:7px 14px;font:14px inherit;font-family:inherit}
+.tog button.on{background:var(--teal);color:#fff;border-color:var(--teal)}
 .ps{font-size:15px;line-height:2;display:flex;gap:8px;border-top:1px solid #edf2f1;padding-top:4px;margin-top:4px}
 .ps i{font-style:normal;font-size:12px;font-weight:800;color:var(--teal);flex:none;width:18px}
 .b{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:99px;color:#fff;font-size:10px;font-weight:800;margin:0 2px;vertical-align:1px}
@@ -69,8 +76,8 @@ function vText(){
   var a=s.sents[0].n,b=s.sents[s.sents.length-1].n;
   if(S.corner=='tr'){
     h+='<div class="row"><div><h2 style="margin:0">7과 · 본문 '+s.sym+' 문장 해석</h2><div class="sub">'+esc(s.ko)+' · '+a+'~'+b+'번</div></div></div>';
-    h+='<div class="row" style="justify-content:flex-end"><button class="btn" id="hideb">'+(S.hide?'우리말 뜻 열기':'우리말 뜻 닫기')+'</button></div>';
-    h+='<div class="'+(S.hide?'hide':'')+'">'+s.sents.map(function(x){return '<div class="card"><div class="no">'+x.n+'</div>'+x.rows.map(function(r){return '<div class="g"><div class="en">'+esc(r[0])+'</div><div class="ko">'+esc(r[1])+'</div></div>'}).join('')+'<div class="nat">'+esc(x.nat)+'</div></div>'}).join('')+'</div>';
+    h+='<div class="tog"><button id="b1" class="'+(S.hide?'':'on')+'">해석 보이기</button><button id="b2" class="'+(S.hide?'on':'')+'">해석 가리기</button></div><div class="sub" style="margin:0 2px 6px">해석을 가렸을 때는 한 줄씩 눌러서 열어 보세요.</div>';
+    h+='<div id="list" class="'+(S.hide?'hide':'')+'">'+s.sents.map(function(x){return '<div class="card"><div class="no">'+x.n+'</div>'+x.rows.map(function(r){return '<div class="pair"><div class="en">'+esc(r[0])+'</div><div class="ko">'+esc(r[1])+'</div></div>'}).join('')+'<div class="nat">'+esc(x.nat)+'</div></div>'}).join('')+'</div>';
   }else{
     h+='<h2>7과 · 본문 '+s.sym+' 문법 설명</h2><div class="sub" style="margin-bottom:8px">'+a+'~'+b+'번</div>';
     h+='<div class="card"><div class="sub" style="font-weight:800;margin-bottom:4px">본문에서 찾아요 · 색칠한 부분을 아래 같은 번호와 연결해요</div>'+s.sents.map(function(x){return '<div class="ps"><i>'+x.n+'</i><span>'+plainMark(x.mk)+'</span></div>'}).join('')+'</div>';
@@ -103,11 +110,18 @@ function render(){
   document.getElementById('tabbar').innerHTML=[['text','원문'],['key','답안지'],['today','오늘의 학습']].map(function(x){return '<button data-t="'+x[0]+'" class="'+(S.tab==x[0]?'on':'')+'"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+ICON[x[0]]+'</svg><span>'+x[1]+'</span></button>'}).join('');
   window.scrollTo(0,0)}
 document.addEventListener('click',function(e){
+  var L=document.getElementById('list');
+  if(L){
+    var bb=e.target.closest('#b1,#b2');
+    if(bb){S.hide=bb.id=='b2';L.classList.toggle('hide',S.hide);document.getElementById('b1').className=S.hide?'':'on';document.getElementById('b2').className=S.hide?'on':'';
+      var o=L.querySelectorAll('.show');for(var i=0;i<o.length;i++)o[i].classList.remove('show');return}
+    if(S.hide){var p=e.target.closest('.pair');if(p){p.querySelector('.ko').classList.toggle('show');return}
+      var n=e.target.closest('.nat');if(n){n.classList.toggle('show');return}}
+  }
   var t=e.target.closest('button');if(!t)return;
   if(t.dataset.t){S.tab=t.dataset.t}
   else if(t.dataset.c){S.corner=t.dataset.c}
   else if(t.dataset.s){S.sec=t.dataset.s}
-  else if(t.id=='hideb'){S.hide=!S.hide}
   else if(t.dataset.d){S.sel=t.dataset.d}
   else if(t.id=='pm'||t.id=='nm'){var d=new Date(S.ym[0],S.ym[1]+(t.id=='pm'?-1:1),1);S.ym=[d.getFullYear(),d.getMonth()]}
   else return;
