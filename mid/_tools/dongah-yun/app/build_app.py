@@ -55,6 +55,8 @@ h2{font-size:20px;margin:6px 2px 4px}.sub{font-size:13px;color:var(--mut)}
 .b.l{width:22px;height:22px;font-size:12px;margin:0}
 .it{border-radius:14px;padding:12px 14px 13px;margin-bottom:10px}
 .it h4{margin:0 0 6px;font-size:15px;display:flex;align-items:center;gap:8px}
+.bk{margin-top:8px;border:1.5px solid;background:#fff;border-radius:999px;padding:6px 14px;font:700 13px inherit;font-family:inherit}
+.flash{animation:fl 1.4s ease}@keyframes fl{0%,60%{box-shadow:0 0 0 4px #f5c84288}100%{box-shadow:none}}
 .note{background:#fffbe6;border:1.5px dashed #d9c76a;border-radius:10px;padding:7px 11px;background-image:repeating-linear-gradient(transparent,transparent 25px,#efe6b3 25px,#efe6b3 26px)}.note .nl{font-size:11.5px;font-weight:800;color:#8a6d00;margin-bottom:2px}.note .ln{font-size:14px;font-weight:700;line-height:26px;color:#17202e}
 .rv{margin-top:6px;cursor:pointer}.rv .q{border-left:4px solid;padding:4px 8px;font-size:14px}.rv .a{display:none;margin-top:4px;border:1.5px solid;border-radius:10px;padding:8px 10px;font-size:13.5px;line-height:1.6}.rv.open .a{display:block}
 .bl{display:inline-block;min-width:54px;border-bottom:2.5px solid;margin:0 2px;vertical-align:bottom;cursor:pointer;line-height:1.5}
@@ -87,11 +89,11 @@ function el(h){return h}
 function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function cur(){return D.secs.filter(function(s){return s.no==S.sec})[0]}
 function cc(sec,i){return D.cat[sec.items[i-1].c]}
-function plainMark(t,sec,only){
+function plainMark(t,sec,only,sn){
   var out='',pos=0,re=/\[(\d+)\|([^\]]*)\]/g,m;
   while((m=re.exec(t))){out+=esc(t.slice(pos,m.index));var c=cc(sec,m[1]),k=sec.items[m[1]-1].c;
     if(only){ if(k==only){out+='<span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 2px">'+esc(m[2])+'</span>'}else{out+=esc(m[2])} }
-    else out+='<span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 2px">'+esc(m[2])+'</span>';
+    else out+='<span class="hlk" data-i="'+m[1]+'" data-n="'+sn+'" style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 2px;cursor:pointer">'+esc(m[2])+'</span>';
     pos=re.lastIndex}
   return out+esc(t.slice(pos))}
 function noteBox(n){return '<div class="note"><div class="nl">노트에 이렇게 적어요</div>'+n.map(function(l){return '<div class="ln">'+esc(l)+'</div>'}).join('')+'</div>'}
@@ -128,8 +130,8 @@ function vText(){
   }else{
     h+='<h2>7과 · 본문 '+s.sym+' 문법 설명</h2><div class="sub" style="margin-bottom:8px">'+a+'~'+b+'번</div>'+'';
     h+='<div class="sub" style="font-weight:800;margin:2px 2px 6px">형광펜 이름별로 모아보기 (복습)</div>'+drillBar('');
-    h+='<div class="card"><div class="sub" style="font-weight:800;margin-bottom:4px">본문에서 찾아요 · 색칠한 부분과 같은 말이 아래 설명 카드에 있어요</div>'+s.sents.map(function(x){return '<div class="ps"><i>'+x.n+'</i><span>'+plainMark(x.mk,s)+'</span></div>'}).join('')+'</div>';
-    h+=s.items.map(function(it,i){var c=D.cat[it.c];return '<div class="it" style="background:'+c.l+'88;border:1.5px solid '+c.d+'"><h4><span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 4px;flex:1">'+esc(it.p)+'</span><span style="font-size:11.5px;color:#fff;background:'+c.d+';border-radius:99px;padding:2px 9px;flex:none">'+esc(c.s)+'</span></h4><div style="font-size:15px;font-weight:800;color:'+c.d+';margin-bottom:6px">'+esc(it.a)+'</div>'+noteBox(it.n)+'<p style="margin-top:7px;font-size:13px;color:#44545b">'+esc(it.x)+'</p></div>'}).join('');
+    h+='<div class="card"><div class="sub" style="font-weight:800;margin-bottom:4px">본문에서 찾아요 · 색칠한 부분과 같은 말이 아래 설명 카드에 있어요</div>'+s.sents.map(function(x){return '<div class="ps" id="ps-'+x.n+'"><i>'+x.n+'</i><span>'+plainMark(x.mk,s,null,x.n)+'</span></div>'}).join('')+'</div>';
+    h+=s.items.map(function(it,i){var c=D.cat[it.c];return '<div class="it" id="it-'+(i+1)+'" style="background:'+c.l+'88;border:1.5px solid '+c.d+'"><h4><span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 4px;flex:1">'+esc(it.p)+'</span><span style="font-size:11.5px;color:#fff;background:'+c.d+';border-radius:99px;padding:2px 9px;flex:none">'+esc(c.s)+'</span></h4><div style="font-size:15px;font-weight:800;color:'+c.d+';margin-bottom:6px">'+esc(it.a)+'</div>'+noteBox(it.n)+'<p style="margin-top:7px;font-size:13px;color:#44545b">'+esc(it.x)+'</p><button class="bk" data-back="'+(i+1)+'" style="border-color:'+c.d+';color:'+c.d+'">↑ 본문으로 돌아가기</button></div>'}).join('');
   }
   return h}
 function todayList(){
@@ -148,7 +150,11 @@ function render(){
   document.getElementById('app').innerHTML=v;
   document.getElementById('tabbar').innerHTML=[['text','원문'],['key','답안지'],['today','오늘의 학습']].map(function(x){return '<button data-t="'+x[0]+'" class="'+(S.tab==x[0]?'on':'')+'"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+ICON[x[0]]+'</svg><span>'+x[1]+'</span></button>'}).join('');
   window.scrollTo(0,0)}
+function firstSent(i){var s=cur();for(var k=0;k<s.sents.length;k++){if(new RegExp('\\['+i+'\\|').test(s.sents[k].mk))return s.sents[k].n}return s.sents[0].n}
+function goTo(el){if(!el)return;el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash')}
 document.addEventListener('click',function(e){
+  var hk=e.target.closest('.hlk');if(hk){S.back=hk.dataset.n;S.backI=hk.dataset.i;goTo(document.getElementById('it-'+hk.dataset.i));return}
+  var bk=e.target.closest('.bk');if(bk){var i=bk.dataset.back,n=(S.backI==i&&S.back)?S.back:firstSent(i);goTo(document.getElementById('ps-'+n));return}
   var L=document.getElementById('list');
   if(L){
     var bb=e.target.closest('#b1,#b2');
