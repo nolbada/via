@@ -3,7 +3,7 @@
 // 보카링크 1차 테스트(A형) — 시험지에 표시한 답을 앱에 입력 → 제출 → 채점 → 해설/오답 정리.
 // 한 번에 끝까지 푸는 방식: 풀다가 나가면 0점. 기록은 이 폰에만 저장.
 const C='①②③④',N=20,PASS=16,DAYS=30,KEY='vl_test_v1';
-const AV=[1,2,14,30]; // 문제 파일이 올라간 DAY (나머지는 준비 중)
+const AV=Array.from({length:DAYS},(_,i)=>i+1);
 let $=null,back=null,D=null,pick={};
 const load=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'null')||{d:{}};}catch(e){return{d:{}};}};
 const save=v=>{try{localStorage.setItem(KEY,JSON.stringify(v));}catch(e){}};
@@ -14,7 +14,7 @@ function settle(){const st=load();if(!st.pend)return;add(st,st.pend.n,{p:'0'.rep
 function ensure(n,cb){
  window.VL_TEST=window.VL_TEST||{};
  if(window.VL_TEST[n])return cb(true);
- const s=document.createElement('script');s.src='data/t'+n+'.js?v=1';
+ const s=document.createElement('script');s.src='data/t'+n+'.js?v=2';
  s.onload=()=>cb(!!window.VL_TEST[n]);s.onerror=()=>cb(false);document.head.appendChild(s);
 }
 function list(){
