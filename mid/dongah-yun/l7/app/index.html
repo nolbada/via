@@ -34,6 +34,7 @@ h2{font-size:20px;margin:6px 2px 4px}.sub{font-size:13px;color:var(--mut)}
 .b.l{width:22px;height:22px;font-size:12px;margin:0}
 .it{border-radius:14px;padding:12px 14px 13px;margin-bottom:10px}
 .it h4{margin:0 0 6px;font-size:15px;display:flex;align-items:center;gap:8px}
+.rv{margin-top:6px;cursor:pointer}.rv .q{border-left:4px solid;padding:4px 8px;font-size:14px}.rv .a{display:none;margin-top:4px;border:1.5px solid;border-radius:10px;padding:8px 10px;font-size:13.5px;line-height:1.6}.rv.open .a{display:block}
 .bl{display:inline-block;min-width:54px;border-bottom:2.5px solid;margin:0 2px;vertical-align:bottom;cursor:pointer;line-height:1.5}
 .bl .tx{visibility:hidden;padding:0 2px;border-radius:3px}.bl.open .tx{visibility:visible}.it p{margin:0;font-size:13.5px;line-height:1.65}
 .tabbar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--bd);display:flex;height:64px;max-width:440px;margin:0 auto}
@@ -67,19 +68,23 @@ function cc(sec,i){return D.cat[sec.items[i-1].c]}
 function plainMark(t,sec,only){
   var out='',pos=0,re=/\[(\d+)\|([^\]]*)\]/g,m;
   while((m=re.exec(t))){out+=esc(t.slice(pos,m.index));var c=cc(sec,m[1]),k=sec.items[m[1]-1].c;
-    if(only){ if(k==only){out+='<span class="bl" style="border-color:'+c.d+'" data-ans="1"><span class="tx" style="background:'+c.l+';color:#17202e">'+esc(m[2])+'</span></span><span class="b" style="background:'+c.d+'">'+m[1]+'</span>'}else{out+=esc(m[2])} }
+    if(only){ if(k==only){out+='<span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 2px">'+esc(m[2])+'</span>'}else{out+=esc(m[2])} }
     else out+='<span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 2px">'+esc(m[2])+'</span>';
     pos=re.lastIndex}
   return out+esc(t.slice(pos))}
 function legend(){return '<div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;font-size:12.5px;padding:10px 14px">'+['g','b','k','o'].map(function(k){var c=D.cat[k];return '<div style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;flex:none;background:'+c.l+';border:1.5px solid '+c.d+'"></span>'+esc(c.n)+'</div>'}).join('')+'</div>'}
 function drillBar(cur){return '<div style="display:flex;gap:6px;margin:0 0 10px">'+['g','b','k','o'].map(function(k){var c=D.cat[k];return '<button data-dr="'+k+'" style="flex:1;padding:8px 0;border-radius:10px;border:1.5px solid '+c.d+';background:'+(cur==k?c.d:c.l)+';color:'+(cur==k?'#fff':'#17202e')+';font:800 13px inherit;font-family:inherit">'+c.s+'</button>'}).join('')+'</div>'}
 function vDrill(){
-  var k=S.drill,c=D.cat[k],h='<h2>'+c.s+' 모아풀기</h2><div class="sub" style="margin-bottom:8px">빈칸을 떠올려 보고 눌러서 확인해요.</div>'+drillBar(k)+'<div class="row" style="justify-content:flex-end"><button class="btn" id="dclose">전부 다시 가리기</button></div><div id="list">';
+  var k=S.drill,c=D.cat[k],h='<h2>'+c.s+' 모아보기</h2><div class="sub" style="margin-bottom:8px">본문은 그대로 보고, 표시된 말이 무엇이었는지 떠올린 뒤 눌러서 확인해요.</div>'+drillBar(k)+'<div class="row" style="justify-content:flex-end"><button class="btn" id="dclose">설명 다시 가리기</button></div><div id="list">';
   D.secs.forEach(function(s){
     var cards=s.sents.filter(function(x){var re=/\[(\d+)\|/g,m,f=false;while((m=re.exec(x.mk)))if(s.items[m[1]-1].c==k)f=true;return f});
     if(!cards.length)return;
     h+='<div class="sub" style="font-weight:800;margin:10px 2px 6px">본문 '+s.sym+'</div>';
-    cards.forEach(function(x){h+='<div class="card"><div class="no">'+x.n+'</div><div class="sub" style="margin-bottom:6px">'+esc(x.nat)+'</div><div class="ps" style="border:0;padding:0"><span>'+plainMark(x.mk,s,k)+'</span></div></div>'});
+    cards.forEach(function(x){
+      var seen={},rows='',re=/\[(\d+)\|/g,m;
+      while((m=re.exec(x.mk))){var ix=+m[1];if(s.items[ix-1].c==k&&!seen[ix]){seen[ix]=1;var it=s.items[ix-1];
+        rows+='<div class="rv"><div class="q" style="border-color:'+c.d+'"><span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 3px;font-weight:700">'+esc(it.p)+'</span><span class="sub"> · 눌러서 확인</span></div><div class="a" style="background:'+c.l+'88;border-color:'+c.d+'"><div style="font-weight:800;color:'+c.d+';margin-bottom:3px">'+esc(it.t)+'</div>'+esc(it.x)+'</div></div>'}}
+      h+='<div class="card"><div class="no">'+x.n+'</div><div class="ps" style="border:0;padding:0"><span>'+plainMark(x.mk,s,k)+'</span></div><div class="sub" style="margin:4px 0 6px">'+esc(x.nat)+'</div>'+rows+'</div>'});
   });
   return h+'</div>'}
 function chips(){var n=[['tr','문장 해석'],['gr','문법 설명'],['an','문장 분석']];
@@ -99,7 +104,7 @@ function vText(){
     h+='<div id="list" class="'+(S.hide?'hide':'')+'">'+s.sents.map(function(x){return '<div class="card"><div class="no">'+x.n+'</div>'+x.rows.map(function(r){return '<div class="pair"><div class="en">'+esc(r[0])+'</div><div class="ko">'+esc(r[1])+'</div></div>'}).join('')+'<div class="nat">'+esc(x.nat)+'</div></div>'}).join('')+'</div>';
   }else{
     h+='<h2>7과 · 본문 '+s.sym+' 문법 설명</h2><div class="sub" style="margin-bottom:8px">'+a+'~'+b+'번</div>'+'';
-    h+='<div class="sub" style="font-weight:800;margin:2px 2px 6px">형광펜 이름별로 모아서 풀어 보기 (백지복습)</div>'+drillBar('');
+    h+='<div class="sub" style="font-weight:800;margin:2px 2px 6px">형광펜 이름별로 모아보기 (복습)</div>'+drillBar('');
     h+='<div class="card"><div class="sub" style="font-weight:800;margin-bottom:4px">본문에서 찾아요 · 색칠한 부분과 같은 말이 아래 설명 카드에 있어요</div>'+s.sents.map(function(x){return '<div class="ps"><i>'+x.n+'</i><span>'+plainMark(x.mk,s)+'</span></div>'}).join('')+'</div>';
     h+=s.items.map(function(it,i){var c=D.cat[it.c];return '<div class="it" style="background:'+c.l+'88;border:1.5px solid '+c.d+'"><h4><span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 4px;flex:1">'+esc(it.p)+'</span><span style="font-size:11.5px;color:#fff;background:'+c.d+';border-radius:99px;padding:2px 9px;flex:none">'+esc(c.s)+'</span></h4><div style="font-size:14px;font-weight:800;color:'+c.d+';margin-bottom:5px">'+esc(it.t)+'</div><p>'+esc(it.x)+'</p></div>'}).join('');
   }
@@ -135,7 +140,7 @@ document.addEventListener('click',function(e){
     var bb=e.target.closest('#b1,#b2');
     if(bb){S.hide=bb.id=='b2';L.classList.toggle('hide',S.hide);document.getElementById('b1').className=S.hide?'':'on';document.getElementById('b2').className=S.hide?'on':'';
       var o=L.querySelectorAll('.show');for(var i=0;i<o.length;i++)o[i].classList.remove('show');return}
-    var bl=e.target.closest('.bl');if(bl){bl.classList.toggle('open');return}
+    var rv=e.target.closest('.rv');if(rv){rv.classList.toggle('open');return}
     if(S.hide){var p=e.target.closest('.pair');if(p){p.querySelector('.ko').classList.toggle('show');return}
       var n=e.target.closest('.nat');if(n){n.classList.toggle('show');return}}
   }
@@ -143,7 +148,7 @@ document.addEventListener('click',function(e){
   if(t.dataset.t){S.tab=t.dataset.t}
   else if(t.dataset.c){S.corner=t.dataset.c;S.drill=null}
   else if(t.dataset.dr){S.drill=S.drill==t.dataset.dr?null:t.dataset.dr}
-  else if(t.id=='dclose'){var o2=document.querySelectorAll('.bl.open');for(var q=0;q<o2.length;q++)o2[q].classList.remove('open');return}
+  else if(t.id=='dclose'){var o2=document.querySelectorAll('.rv.open');for(var q=0;q<o2.length;q++)o2[q].classList.remove('open');return}
   else if(t.dataset.s){S.sec=t.dataset.s}
   else if(t.dataset.d){S.sel=t.dataset.d}
   else if(t.id=='pm'||t.id=='nm'){var d=new Date(S.ym[0],S.ym[1]+(t.id=='pm'?-1:1),1);S.ym=[d.getFullYear(),d.getMonth()]}
