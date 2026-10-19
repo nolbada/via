@@ -132,7 +132,7 @@ function todayList(){
 function dk(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
 function vCal(){
   var now=new Date(),td=dk(now);if(S.cy==null){S.cy=now.getFullYear();S.cm=now.getMonth()}
-  var e0=new Date(2026,11,9),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),dd=Math.round((e0-t0)/864e5);
+  var ep=EXD[0].split('-'),e0=new Date(+ep[0],+ep[1]-1,+ep[2]),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),dd=Math.round((e0-t0)/864e5);
   var lab=dd>0?'D-'+dd:dd==0?'D-DAY':'시험 기간 끝';
   var h='<div class="exam"><b>'+EXN+'</b><span>'+lab+'</span></div>';
   var first=new Date(S.cy,S.cm,1),lead=(first.getDay()+6)%7,days=new Date(S.cy,S.cm+1,0).getDate();
