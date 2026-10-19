@@ -74,7 +74,9 @@ h2{font-size:20px;margin:6px 2px 4px}.sub{font-size:13px;color:var(--mut)}
 .mon{display:flex;justify-content:space-between;align-items:baseline;padding:0 2px 8px}.mon button{border:0;background:none;font-size:20px;color:var(--mut);padding:0 8px}
 a.cta{display:block;text-decoration:none;border-radius:12px;padding:13px 14px;margin-top:8px}
 a.cta b{display:block;font-size:17px}a.cta span{font-size:12px}
-.k{background:var(--teal);color:#fff}.k span{color:#d7efeb}.s{background:#fff;border:1.5px solid var(--teal);color:var(--teal)}.s span{color:#44545b}
+.cta.k{background:#dcefec;border:1.5px solid #a8d3cd;color:#0f6a62}.cta.k span{color:#4f6b67}.cta.k.dn{background:#0f766e;border-color:#0f766e;color:#fff}.cta.k.dn span{color:#d7efeb}
+.cta.s{background:#e6eaf9;border:1.5px solid #b7c0ec;color:#3b4bb0}.cta.s span{color:#5b6393}.cta.s.dn{background:#4338ca;border-color:#4338ca;color:#fff}.cta.s.dn span{color:#dcd9fb}
+a.cta b{display:flex;align-items:center;gap:6px}
 </style></head><body><div id="app"></div>
 <div class="tabbar" id="tabbar"></div>
 <script>
@@ -83,7 +85,10 @@ var D=__DATA__;
 /* 오늘 할 본문은 링크 끝에 ?today=1,2 처럼 붙여서 정해요 (본문 번호). 붙이지 않으면 4개 모두 보여요. */
 var DAYS={1:'1~7번',2:'8~13번',3:'14~19번',4:'20~26번'};
 var SYM={1:'❶',2:'❷',3:'❸',4:'❹'};
-function dayRow(d){return '<div style="margin-top:8px"><div class="sub" style="font-weight:800">본문 '+SYM[d]+' · '+DAYS[d]+' 문장</div><div style="display:flex;gap:8px"><a class="cta k" style="flex:1" href="../basic/?day='+d+'"><b>기본</b><span>우리말 순서부터 차근차근</span></a><a class="cta s" style="flex:1" href="../adv/?day='+d+'"><b>심화</b><span>덩어리 안쪽까지 파고들기</span></a></div></div>'}
+function isDone(kind,d){try{var s=JSON.parse(localStorage.getItem('vsig-mid-dy-l7-'+kind+'-v1')||'{}');return !!(s.best&&s.best[d])}catch(e){return false}}
+var CK='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>';
+function btn(kind,d,name,sub){var dn=isDone(kind,d);return '<a class="cta '+(kind=='basic'?'k':'s')+(dn?' dn':'')+'" style="flex:1" href="../'+kind+'/?day='+d+'"><b>'+(dn?CK:'')+name+'</b><span>'+(dn?'분석 완료':sub)+'</span></a>'}
+function dayRow(d){return '<div style="margin-top:8px"><div class="sub" style="font-weight:800">본문 '+SYM[d]+' · '+DAYS[d]+' 문장</div><div style="display:flex;gap:8px">'+btn('basic',d,'기본','우리말 순서부터 차근차근')+btn('adv',d,'심화','덩어리 안쪽까지 파고들기')+'</div></div>'}
 var S={tab:'text',corner:'tr',sec:'1',hide:false,sel:null,ym:null,drill:null};
 function el(h){return h}
 function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
@@ -175,6 +180,7 @@ document.addEventListener('click',function(e){
   else return;
   render()});
 try{var p=new URLSearchParams(location.search).get('tab');if(p)S.tab=p}catch(e){}
+window.addEventListener('pageshow',function(ev){if(ev.persisted&&!document.getElementById('list'))render()});
 render();
 </script></body></html>'''
 HTML=HTML.replace('__DATA__',DATA)
