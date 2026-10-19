@@ -39,6 +39,7 @@ h2{font-size:20px;margin:6px 2px 4px}.sub{font-size:13px;color:var(--mut)}
 .tog button.on{background:var(--teal);color:#fff;border-color:var(--teal)}
 .ps{font-size:15px;line-height:2;display:flex;gap:8px;border-top:1px solid #edf2f1;padding-top:4px;margin-top:4px}
 .ps i{font-style:normal;font-size:12px;font-weight:800;color:var(--teal);flex:none;width:18px}
+.pl{display:inline-flex;align-items:center;height:17px;padding:0 6px;border-radius:99px;color:#fff;font-size:10.5px;font-weight:800;margin:0 2px;vertical-align:1px;white-space:nowrap}
 .b{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:99px;color:#fff;font-size:10px;font-weight:800;margin:0 2px;vertical-align:1px}
 .b.l{width:22px;height:22px;font-size:12px;margin:0}
 .it{border-radius:14px;padding:12px 14px 13px;margin-bottom:10px}
@@ -75,13 +76,13 @@ function plainMark(t,sec,only){
   var out='',pos=0,re=/\[(\d+)\|([^\]]*)\]/g,m;
   while((m=re.exec(t))){out+=esc(t.slice(pos,m.index));var c=cc(sec,m[1]),k=sec.items[m[1]-1].c;
     if(only){ if(k==only){out+='<span class="bl" style="border-color:'+c.d+'" data-ans="1"><span class="tx" style="background:'+c.l+';color:#17202e">'+esc(m[2])+'</span></span><span class="b" style="background:'+c.d+'">'+m[1]+'</span>'}else{out+=esc(m[2])} }
-    else out+='<span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 2px">'+esc(m[2])+'</span><span class="b" style="background:'+c.d+'">'+m[1]+'</span>';
+    else out+='<span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 2px">'+esc(m[2])+'</span><span class="pl" style="background:'+c.d+'">'+esc(c.s)+m[1]+'</span>';
     pos=re.lastIndex}
   return out+esc(t.slice(pos))}
 function legend(){return '<div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;font-size:12.5px;padding:10px 14px">'+['g','b','k','o'].map(function(k){var c=D.cat[k];return '<div style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;flex:none;background:'+c.l+';border:1.5px solid '+c.d+'"></span>'+esc(c.n)+'</div>'}).join('')+'</div>'}
 function drillBar(cur){return '<div style="display:flex;gap:6px;margin:0 0 10px">'+['g','b','k','o'].map(function(k){var c=D.cat[k];return '<button data-dr="'+k+'" style="flex:1;padding:8px 0;border-radius:10px;border:1.5px solid '+c.d+';background:'+(cur==k?c.d:c.l)+';color:'+(cur==k?'#fff':'#17202e')+';font:800 13px inherit;font-family:inherit">'+c.s+'</button>'}).join('')+'</div>'}
 function vDrill(){
-  var k=S.drill,c=D.cat[k],h='<h2>'+c.s+'색 모아풀기</h2><div class="sub" style="margin-bottom:8px">'+esc(c.n)+' · 빈칸을 떠올려 보고 눌러서 확인해요.</div>'+drillBar(k)+'<div class="row" style="justify-content:flex-end"><button class="btn" id="dclose">전부 다시 가리기</button></div><div id="list">';
+  var k=S.drill,c=D.cat[k],h='<h2>'+c.s+' 모아풀기</h2><div class="sub" style="margin-bottom:8px">빈칸을 떠올려 보고 눌러서 확인해요.</div>'+drillBar(k)+'<div class="row" style="justify-content:flex-end"><button class="btn" id="dclose">전부 다시 가리기</button></div><div id="list">';
   D.secs.forEach(function(s){
     var cards=s.sents.filter(function(x){var re=/\[(\d+)\|/g,m,f=false;while((m=re.exec(x.mk)))if(s.items[m[1]-1].c==k)f=true;return f});
     if(!cards.length)return;
@@ -105,10 +106,10 @@ function vText(){
     h+='<div class="tog"><button id="b1" class="'+(S.hide?'':'on')+'">해석 보이기</button><button id="b2" class="'+(S.hide?'on':'')+'">해석 가리기</button></div><div class="sub" style="margin:0 2px 6px">해석을 가렸을 때는 한 줄씩 눌러서 열어 보세요.</div>';
     h+='<div id="list" class="'+(S.hide?'hide':'')+'">'+s.sents.map(function(x){return '<div class="card"><div class="no">'+x.n+'</div>'+x.rows.map(function(r){return '<div class="pair"><div class="en">'+esc(r[0])+'</div><div class="ko">'+esc(r[1])+'</div></div>'}).join('')+'<div class="nat">'+esc(x.nat)+'</div></div>'}).join('')+'</div>';
   }else{
-    h+='<h2>7과 · 본문 '+s.sym+' 문법 설명</h2><div class="sub" style="margin-bottom:8px">'+a+'~'+b+'번</div>'+legend();
-    h+='<div class="sub" style="font-weight:800;margin:2px 2px 6px">색깔별로 모아서 풀어 보기 (백지복습)</div>'+drillBar('');
+    h+='<h2>7과 · 본문 '+s.sym+' 문법 설명</h2><div class="sub" style="margin-bottom:8px">'+a+'~'+b+'번</div>'+'';
+    h+='<div class="sub" style="font-weight:800;margin:2px 2px 6px">형광펜 이름별로 모아서 풀어 보기 (백지복습)</div>'+drillBar('');
     h+='<div class="card"><div class="sub" style="font-weight:800;margin-bottom:4px">본문에서 찾아요 · 색칠한 부분을 아래 같은 번호와 연결해요</div>'+s.sents.map(function(x){return '<div class="ps"><i>'+x.n+'</i><span>'+plainMark(x.mk,s)+'</span></div>'}).join('')+'</div>';
-    h+=s.items.map(function(it,i){var c=D.cat[it.c];return '<div class="it" style="background:'+c.l+'88;border:1.5px solid '+c.d+'"><h4><span class="b l" style="background:'+c.d+'">'+(i+1)+'</span><span style="color:'+c.d+';flex:1">'+esc(it.t)+'</span><span style="font-size:11.5px;color:#fff;background:'+c.d+';border-radius:99px;padding:2px 9px">'+(it.c=='g'?'어휘·청크':esc(c.n))+'</span></h4><p>'+esc(it.x)+'</p></div>'}).join('');
+    h+=s.items.map(function(it,i){var c=D.cat[it.c];return '<div class="it" style="background:'+c.l+'88;border:1.5px solid '+c.d+'"><h4><span class="b l" style="background:'+c.d+'">'+(i+1)+'</span><span style="color:'+c.d+';flex:1">'+esc(it.t)+'</span><span style="font-size:11.5px;color:#fff;background:'+c.d+';border-radius:99px;padding:2px 9px">'+esc(c.s)+'</span></h4><p>'+esc(it.x)+'</p></div>'}).join('');
   }
   return h}
 function ymd(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}

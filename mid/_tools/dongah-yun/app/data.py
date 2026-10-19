@@ -175,4 +175,4 @@ SECTIONS = [{'en': 'Fallas Festival in Valencia, Spain',
              'Not really, but [9|it] doesn’t matter.'),
             (['Everyone is just having fun!|모두가 그저 즐기고 있을 뿐이다!'], '모두가 그저 즐기고 있을 뿐이다!', '[8|Everyone is] just having fun!')],
   'sym': '❹'}]
-CAT={"g":("#15803d","#c6efcf","초록","어휘 · 이어동사 · 청크 · 동의어"),"b":("#1d4ed8","#cfe0fb","파랑","주요 문법"),"k":("#be185d","#fbcfe3","분홍","이번 단원 핵심 문법"),"o":("#c2570c","#ffe0b8","주황","대명사")}
+CAT={"g":("#15803d","#c6efcf","어휘","어휘"),"b":("#1d4ed8","#cfe0fb","문법","문법"),"k":("#be185d","#fbcfe3","핵심문법","핵심문법"),"o":("#c2570c","#ffe0b8","대명사","대명사")}
