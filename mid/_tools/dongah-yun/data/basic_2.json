@@ -1,0 +1,706 @@
+[
+ {
+  "id": "7-15",
+  "en": "They call this day the Day of the Dead.",
+  "ko": "그들은 이 날을 죽은 자들의 날이라고 부른다.",
+  "ch": [
+   {
+    "t": "They",
+    "r": "주어",
+    "k": "그들은"
+   },
+   {
+    "t": "call",
+    "r": "동사",
+    "k": "부른다"
+   },
+   {
+    "t": "this day",
+    "r": "목적어",
+    "k": "이 날을"
+   },
+   {
+    "t": "the Day of the Dead.",
+    "r": "목적격보어",
+    "k": "죽은 자들의 날이라고"
+   }
+  ],
+  "memo": "call A B = A를 B라고 부르다 (A = 이 날, B = the Day of the Dead)\nthis day와 the Day of the Dead는 같은 대상이라 5형식이에요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 5
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-16",
+  "en": "To welcome dead people, Mexicans hold a festival on November 1 and 2.",
+  "ko": "죽은 사람들을 환영하기 위해 멕시코 사람들은 11월 1일과 2일에 축제를 연다.",
+  "ch": [
+   {
+    "t": "To welcome dead people,",
+    "r": "수식어",
+    "k": "죽은 사람들을 환영하기 위해",
+    "c": "to부정사구(부사적: 목적)",
+    "a": "동사(hold) 수식"
+   },
+   {
+    "t": "Mexicans",
+    "r": "주어",
+    "k": "멕시코 사람들은"
+   },
+   {
+    "t": "hold",
+    "r": "동사",
+    "k": "연다"
+   },
+   {
+    "t": "a festival",
+    "r": "목적어",
+    "k": "축제를"
+   },
+   {
+    "t": "on November 1 and 2.",
+    "r": "수식어",
+    "k": "11월 1일과 2일에",
+    "c": "시간의 부사구",
+    "a": "동사(hold) 수식"
+   }
+  ],
+  "memo": "문장 맨 앞 To welcome ~, = ~하기 위해 (목적을 나타내요)\nhold a festival = 축제를 열다. 진짜 주어는 쉼표 뒤 Mexicans예요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-17",
+  "en": "They believe it is important to remember dead people.",
+  "ko": "그들은 죽은 사람들을 기억하는 것이 중요하다고 믿는다.",
+  "ch": [
+   {
+    "t": "They",
+    "r": "주어",
+    "k": "그들은"
+   },
+   {
+    "t": "believe",
+    "r": "동사",
+    "k": "믿는다"
+   },
+   {
+    "t": "it is important to remember dead people.",
+    "r": "목적어",
+    "k": "죽은 사람들을 기억하는 것이 중요하다고",
+    "c": "that 생략 명사절"
+   }
+  ],
+  "memo": "believe 뒤에 that이 생략됐어요: believe (that) ~ = ~라고 믿다\nit은 가짜 주어, 진짜 주어는 to remember dead people (기억하는 것)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-18",
+  "en": "So, people set up altars in their homes and have big parties in cemeteries.",
+  "ko": "그래서 사람들은 집에 제단을 차리고 묘지에서 큰 파티를 연다.",
+  "ch": [
+   {
+    "t": "So,",
+    "r": "수식어",
+    "k": "그래서",
+    "c": "연결 부사",
+    "a": "문장 전체 수식"
+   },
+   {
+    "t": "people",
+    "r": "주어",
+    "k": "사람들은"
+   },
+   {
+    "t": "set up",
+    "r": "동사",
+    "k": "차리고"
+   },
+   {
+    "t": "altars",
+    "r": "목적어",
+    "k": "제단을"
+   },
+   {
+    "t": "in their homes",
+    "r": "수식어",
+    "k": "집에",
+    "c": "장소의 부사구",
+    "a": "동사(set up) 수식"
+   },
+   {
+    "t": "and",
+    "r": "접속사",
+    "k": "그리고"
+   },
+   {
+    "t": "have",
+    "r": "동사",
+    "k": "연다"
+   },
+   {
+    "t": "big parties",
+    "r": "목적어",
+    "k": "큰 파티를"
+   },
+   {
+    "t": "in cemeteries.",
+    "r": "수식어",
+    "k": "묘지에서",
+    "c": "장소의 부사구",
+    "a": "동사(have) 수식"
+   }
+  ],
+  "memo": "So, = 그래서: 앞 내용의 결과를 말할 때 써요\nand 앞뒤에 동사가 둘 (set up / have): 주어 people이 둘 다에 쓰여요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "fm": 3
+    },
+    {
+     "ci": [
+      6,
+      7,
+      8
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": 5
+  }
+ },
+ {
+  "id": "7-19",
+  "en": "In some areas, people dress up like skeletons and hold big parades.",
+  "ko": "어떤 지역에서는 사람들이 해골처럼 분장하고 큰 퍼레이드를 연다.",
+  "ch": [
+   {
+    "t": "In some areas,",
+    "r": "수식어",
+    "k": "어떤 지역에서는",
+    "c": "장소의 부사구",
+    "a": "문장 전체 수식"
+   },
+   {
+    "t": "people",
+    "r": "주어",
+    "k": "사람들이"
+   },
+   {
+    "t": "dress up",
+    "r": "동사",
+    "k": "분장하고"
+   },
+   {
+    "t": "like skeletons",
+    "r": "수식어",
+    "k": "해골처럼",
+    "c": "방법의 부사구",
+    "a": "동사(dress up) 수식"
+   },
+   {
+    "t": "and",
+    "r": "접속사",
+    "k": "그리고"
+   },
+   {
+    "t": "hold",
+    "r": "동사",
+    "k": "연다"
+   },
+   {
+    "t": "big parades.",
+    "r": "목적어",
+    "k": "큰 퍼레이드를"
+   }
+  ],
+  "memo": "dress up = 분장하다, 변장하다 (두 단어가 한 덩어리 동사)\nlike skeletons = 해골처럼 (like 뒤는 명사, 목적어가 아니에요)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 1
+    },
+    {
+     "ci": [
+      5,
+      6
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": 4
+  }
+ },
+ {
+  "id": "7-20",
+  "en": "At the end of February, people in Alaska hold the Fur Rondy festival, one of the biggest winter festivals in the world.",
+  "ko": "2월 말에 알래스카의 사람들은 세계에서 가장 큰 겨울 축제 중 하나인 Fur Rondy 축제를 연다.",
+  "ch": [
+   {
+    "t": "At the end of February,",
+    "r": "수식어",
+    "k": "2월 말에",
+    "c": "시간의 부사구",
+    "a": "문장 전체 수식"
+   },
+   {
+    "t": "people",
+    "r": "주어",
+    "k": "사람들은"
+   },
+   {
+    "t": "in Alaska",
+    "r": "수식어",
+    "k": "알래스카의",
+    "c": "형용사구",
+    "a": "명사(people) 수식"
+   },
+   {
+    "t": "hold",
+    "r": "동사",
+    "k": "연다"
+   },
+   {
+    "t": "the Fur Rondy festival,",
+    "r": "목적어",
+    "k": "Fur Rondy 축제를"
+   },
+   {
+    "t": "one of the biggest winter festivals in the world.",
+    "r": "수식어",
+    "k": "세계에서 가장 큰 겨울 축제 중 하나인",
+    "c": "동격 명사구",
+    "a": "명사(the Fur Rondy festival) 설명"
+   }
+  ],
+  "memo": "쉼표 뒤 one of ~ 는 앞의 festival을 다시 설명해 주는 말 (= 그 축제는 ~ 중 하나)\none of the biggest ~ = 가장 큰 ~ 중 하나",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-21",
+  "en": "During this festival, visitors can enjoy various winter sports and Alaskan traditional games.",
+  "ko": "이 축제 동안 방문객들은 다양한 겨울 스포츠와 알래스카 전통 게임을 즐길 수 있다.",
+  "ch": [
+   {
+    "t": "During this festival,",
+    "r": "수식어",
+    "k": "이 축제 동안",
+    "c": "시간의 부사구",
+    "a": "문장 전체 수식"
+   },
+   {
+    "t": "visitors",
+    "r": "주어",
+    "k": "방문객들은"
+   },
+   {
+    "t": "can enjoy",
+    "r": "동사",
+    "k": "즐길 수 있다"
+   },
+   {
+    "t": "various winter sports and Alaskan traditional games.",
+    "r": "목적어",
+    "k": "다양한 겨울 스포츠와 알래스카 전통 게임을"
+   }
+  ],
+  "memo": "can + 동사원형 = ~할 수 있다 (can enjoy가 한 덩어리 동사)\nwinter sports and Alaskan traditional games = and로 이어진 두 명사가 함께 목적어",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-22",
+  "en": "They can also enjoy many special events such as the Running of the Reindeer.",
+  "ko": "그들은 또한 순록 달리기 같은 많은 특별한 행사들을 즐길 수 있다.",
+  "ch": [
+   {
+    "t": "They",
+    "r": "주어",
+    "k": "그들은"
+   },
+   {
+    "t": "can also enjoy",
+    "r": "동사",
+    "k": "즐길 수 있다"
+   },
+   {
+    "t": "many special events",
+    "r": "목적어",
+    "k": "많은 특별한 행사들을"
+   },
+   {
+    "t": "such as the Running of the Reindeer.",
+    "r": "수식어",
+    "k": "순록 달리기 같은",
+    "c": "형용사구",
+    "a": "명사(events) 수식"
+   }
+  ],
+  "memo": "such as ~ = ~ 같은 (앞 events의 예를 들어 줘요)\nalso는 can과 enjoy 사이에 끼어 있지만 동사 덩어리로 같이 봐요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-23",
+  "en": "People who participate in this race wear fun costumes and try to run faster than reindeer.",
+  "ko": "이 경주에 참가하는 사람들은 재미있는 의상을 입고 순록보다 더 빨리 달리려고 노력한다.",
+  "ch": [
+   {
+    "t": "People",
+    "r": "주어",
+    "k": "사람들은"
+   },
+   {
+    "t": "who participate in this race",
+    "r": "수식어",
+    "k": "이 경주에 참가하는",
+    "c": "관계절",
+    "a": "명사(People) 수식"
+   },
+   {
+    "t": "wear",
+    "r": "동사",
+    "k": "입고"
+   },
+   {
+    "t": "fun costumes",
+    "r": "목적어",
+    "k": "재미있는 의상을"
+   },
+   {
+    "t": "and",
+    "r": "접속사",
+    "k": "그리고"
+   },
+   {
+    "t": "try",
+    "r": "동사",
+    "k": "노력한다"
+   },
+   {
+    "t": "to run faster than reindeer.",
+    "r": "목적어",
+    "k": "순록보다 더 빨리 달리려고",
+    "c": "to부정사구(명사적)"
+   }
+  ],
+  "memo": "who participate in this race가 People을 꾸며 줘요 (참가하는 사람들)\ntry to run = 달리려고 노력하다 / faster than ~ = ~보다 더 빨리",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    },
+    {
+     "ci": [
+      5,
+      6
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": 4
+  }
+ },
+ {
+  "id": "7-24",
+  "en": "Is it possible to do so?",
+  "ko": "그렇게 하는 것이 가능한가?",
+  "ch": [
+   {
+    "t": "Is",
+    "r": "동사",
+    "k": "한가?"
+   },
+   {
+    "t": "it",
+    "r": "수식어",
+    "k": "(해석 없음)",
+    "c": "가주어(it)"
+   },
+   {
+    "t": "possible",
+    "r": "보어",
+    "k": "가능"
+   },
+   {
+    "t": "to do so?",
+    "r": "주어",
+    "k": "그렇게 하는 것이",
+    "c": "진주어(to부정사구)"
+   }
+  ],
+  "memo": "it은 가짜 주어라 해석하지 않아요. 진짜 주어는 to do so (그렇게 하는 것)\nIs it possible to ~? = ~하는 것이 가능한가요?",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 2
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-25",
+  "en": "Not really, but it doesn’t matter.",
+  "ko": "별로 그렇진 않아, 하지만 그건 중요하지 않아.",
+  "ch": [
+   {
+    "t": "Not really,",
+    "r": "수식어",
+    "k": "별로 그렇진 않아,",
+    "c": "대답 표현"
+   },
+   {
+    "t": "but",
+    "r": "수식어",
+    "k": "하지만",
+    "c": "연결어",
+    "a": "뒤 문장 연결"
+   },
+   {
+    "t": "it",
+    "r": "주어",
+    "k": "그건"
+   },
+   {
+    "t": "doesn’t matter.",
+    "r": "동사",
+    "k": "중요하지 않아."
+   }
+  ],
+  "memo": "Not really. = 별로 (그렇지 않아): 앞 질문에 대한 가벼운 대답\nmatter = 중요하다 → doesn't matter = 중요하지 않다, 상관없다",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-26",
+  "en": "Everyone is just having fun!",
+  "ko": "모두가 그저 재미를 즐기고 있다!",
+  "ch": [
+   {
+    "t": "Everyone",
+    "r": "주어",
+    "k": "모두가"
+   },
+   {
+    "t": "is just having",
+    "r": "동사",
+    "k": "즐기고 있다"
+   },
+   {
+    "t": "fun!",
+    "r": "목적어",
+    "k": "재미를"
+   }
+  ],
+  "memo": "is having = 진행형 (~하고 있다) / have fun = 재미있게 놀다\njust는 '그저, 단지'라는 뜻으로 동사 사이에 끼어 있어요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-01",
+  "en": "Eckels walked into the office of Time Travel.",
+  "ko": "Eckels는 Time Travel 사무실 안으로 걸어 들어갔다.",
+  "ch": [
+   {
+    "t": "Eckels",
+    "r": "주어",
+    "k": "Eckels는"
+   },
+   {
+    "t": "walked",
+    "r": "동사",
+    "k": "걸어 들어갔다"
+   },
+   {
+    "t": "into the office of Time Travel.",
+    "r": "수식어",
+    "k": "Time Travel 사무실 안으로",
+    "c": "장소의 부사구",
+    "a": "동사(walked) 수식"
+   }
+  ],
+  "memo": "walked into ~ = ~ 안으로 걸어 들어갔다 (into 뒤는 목적어가 아니라 장소)\nthe office of Time Travel = Time Travel의 사무실",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-02",
+  "en": "The big sign on the wall said, “NAME ANY YEAR IN THE PAST. WE TAKE YOU THERE.”",
+  "ko": "벽에 있는 큰 간판이 “과거의 어떤 해든 말하세요. 우리가 당신을 그곳으로 데려다 드립니다.”라고 말했다.",
+  "ch": [
+   {
+    "t": "The big sign",
+    "r": "주어",
+    "k": "큰 간판이"
+   },
+   {
+    "t": "on the wall",
+    "r": "수식어",
+    "k": "벽에 있는",
+    "c": "형용사구",
+    "a": "명사(sign) 수식"
+   },
+   {
+    "t": "said,",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "“NAME ANY YEAR IN THE PAST. WE TAKE YOU THERE.”",
+    "r": "목적어",
+    "k": "“과거의 어떤 해든 말하세요. 우리가 당신을 그곳으로 데려다 드립니다.”라고",
+    "c": "인용문(말한 내용)"
+   }
+  ],
+  "memo": "said, “...” = ~라고 말했다 (따옴표 안이 간판이 말한 내용)\non the wall은 sign을 꾸며 줘서 '벽에 있는 간판'이에요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ }
+]

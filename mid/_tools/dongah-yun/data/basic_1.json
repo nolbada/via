@@ -1,0 +1,714 @@
+[
+ {
+  "id": "7-01",
+  "en": "People in Valencia celebrate the coming of spring with the Fallas festival.",
+  "ko": "발렌시아의 사람들은 Fallas 축제로 봄이 오는 것을 기념한다.",
+  "ch": [
+   {
+    "t": "People",
+    "r": "주어",
+    "k": "사람들은"
+   },
+   {
+    "t": "in Valencia",
+    "r": "수식어",
+    "k": "발렌시아의",
+    "c": "형용사구",
+    "a": "명사(People) 수식"
+   },
+   {
+    "t": "celebrate",
+    "r": "동사",
+    "k": "기념한다"
+   },
+   {
+    "t": "the coming of spring",
+    "r": "목적어",
+    "k": "봄이 오는 것을"
+   },
+   {
+    "t": "with the Fallas festival.",
+    "r": "수식어",
+    "k": "Fallas 축제로",
+    "c": "수단의 부사구",
+    "a": "동사(celebrate) 수식"
+   }
+  ],
+  "memo": "the coming of spring = 봄이 오는 것 (coming은 '오는 것'이라는 명사)\nin Valencia는 People을 꾸며 주는 말이라 가려요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-02",
+  "en": "This festival takes place from March 15 to 19.",
+  "ko": "이 축제는 3월 15일부터 19일까지 열린다.",
+  "ch": [
+   {
+    "t": "This festival",
+    "r": "주어",
+    "k": "이 축제는"
+   },
+   {
+    "t": "takes place",
+    "r": "동사",
+    "k": "열린다"
+   },
+   {
+    "t": "from March 15 to 19.",
+    "r": "수식어",
+    "k": "3월 15일부터 19일까지",
+    "c": "시간의 부사구",
+    "a": "동사(takes place) 수식"
+   }
+  ],
+  "memo": "take place = 개최되다: 두 단어가 한 덩어리 동사예요\nplace는 목적어가 아니라 동사의 일부 → 목적어 없음 → 1형식",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-03",
+  "en": "During the festival, people enjoy parades and fireworks.",
+  "ko": "축제 기간 동안 사람들은 퍼레이드와 불꽃놀이를 즐긴다.",
+  "ch": [
+   {
+    "t": "During the festival,",
+    "r": "수식어",
+    "k": "축제 기간 동안",
+    "c": "시간의 부사구",
+    "a": "동사(enjoy) 수식"
+   },
+   {
+    "t": "people",
+    "r": "주어",
+    "k": "사람들은"
+   },
+   {
+    "t": "enjoy",
+    "r": "동사",
+    "k": "즐긴다"
+   },
+   {
+    "t": "parades and fireworks.",
+    "r": "목적어",
+    "k": "퍼레이드와 불꽃놀이를"
+   }
+  ],
+  "memo": "During + 명사 = ~ 동안 (뒤에 문장이 아니라 명사만 와요)\nparades and fireworks = and로 이어진 두 명사가 함께 목적어",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-04",
+  "en": "The stars of the festival are fallas, giant wooden statues.",
+  "ko": "축제의 주인공은 거대한 나무 조각상인 fallas이다.",
+  "ch": [
+   {
+    "t": "The stars",
+    "r": "주어",
+    "k": "주인공은"
+   },
+   {
+    "t": "of the festival",
+    "r": "수식어",
+    "k": "축제의",
+    "c": "형용사구",
+    "a": "명사(The stars) 수식"
+   },
+   {
+    "t": "are",
+    "r": "동사",
+    "k": "~이다"
+   },
+   {
+    "t": "fallas,",
+    "r": "보어",
+    "k": "fallas이다"
+   },
+   {
+    "t": "giant wooden statues.",
+    "r": "수식어",
+    "k": "거대한 나무 조각상인",
+    "c": "동격(fallas 설명)",
+    "a": "명사(fallas) 수식"
+   }
+  ],
+  "memo": "are 뒤의 fallas = 주어(The stars)와 같은 것 → 보어\n쉼표 뒤 giant wooden statues = fallas가 뭔지 다시 설명해 주는 말",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "fm": 2
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-05",
+  "en": "You can find hundreds of them all over the city.",
+  "ko": "여러분은 도시 곳곳에서 그것들 수백 개를 찾을 수 있다.",
+  "ch": [
+   {
+    "t": "You",
+    "r": "주어",
+    "k": "여러분은"
+   },
+   {
+    "t": "can find",
+    "r": "동사",
+    "k": "찾을 수 있다"
+   },
+   {
+    "t": "hundreds of them",
+    "r": "목적어",
+    "k": "그것들 수백 개를"
+   },
+   {
+    "t": "all over the city.",
+    "r": "수식어",
+    "k": "도시 곳곳에서",
+    "c": "장소의 부사구",
+    "a": "동사(can find) 수식"
+   }
+  ],
+  "memo": "can find = can + 동사원형이 한 덩어리 동사예요\nthem은 앞에 나온 fallas를 가리켜요 (hundreds of them = 그것들 수백 개)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-06",
+  "en": "Surprisingly, the fallas are burned on the last day of the festival.",
+  "ko": "놀랍게도 fallas는 축제 마지막 날에 불태워진다.",
+  "ch": [
+   {
+    "t": "Surprisingly,",
+    "r": "수식어",
+    "k": "놀랍게도",
+    "c": "부사",
+    "a": "문장 전체 수식"
+   },
+   {
+    "t": "the fallas",
+    "r": "주어",
+    "k": "fallas는"
+   },
+   {
+    "t": "are burned",
+    "r": "동사",
+    "k": "불태워진다"
+   },
+   {
+    "t": "on the last day of the festival.",
+    "r": "수식어",
+    "k": "축제 마지막 날에",
+    "c": "시간의 부사구",
+    "a": "동사(are burned) 수식"
+   }
+  ],
+  "memo": "are burned = be + p.p. → '불태워진다' (fallas가 당하는 쪽)\n문장 맨 앞 Surprisingly는 문장 전체를 꾸미는 말이라 가려요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-07",
+  "en": "Burning them symbolizes saying goodbye to old things and hello to a new start.",
+  "ko": "그것들을 태우는 것은 옛것에 작별을 고하고 새로운 시작에 인사하는 것을 상징한다.",
+  "ch": [
+   {
+    "t": "Burning them",
+    "r": "주어",
+    "k": "그것들을 태우는 것은"
+   },
+   {
+    "t": "symbolizes",
+    "r": "동사",
+    "k": "상징한다"
+   },
+   {
+    "t": "saying goodbye to old things and hello to a new start.",
+    "r": "목적어",
+    "k": "옛것에 작별을 고하고 새로운 시작에 인사하는 것을",
+    "c": "동명사구"
+   }
+  ],
+  "memo": "Burning them = 태우는 것 (-ing가 '~하는 것'이라는 주어가 돼요)\nsaying goodbye ~ = 작별을 고하는 것 (symbolizes의 목적어)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-08",
+  "en": "Winter in Sweden is long and dark, so the people there especially welcome summer.",
+  "ko": "스웨덴의 겨울은 길고 어둡다, 그래서 그곳 사람들은 특히 여름을 환영한다.",
+  "ch": [
+   {
+    "t": "Winter",
+    "r": "주어",
+    "k": "겨울은"
+   },
+   {
+    "t": "in Sweden",
+    "r": "수식어",
+    "k": "스웨덴의",
+    "c": "형용사구",
+    "a": "명사(Winter) 수식"
+   },
+   {
+    "t": "is",
+    "r": "동사",
+    "k": "~이다"
+   },
+   {
+    "t": "long and dark,",
+    "r": "보어",
+    "k": "길고 어둡다"
+   },
+   {
+    "t": "so",
+    "r": "접속사",
+    "k": "그래서"
+   },
+   {
+    "t": "the people there",
+    "r": "주어",
+    "k": "그곳 사람들은"
+   },
+   {
+    "t": "especially",
+    "r": "수식어",
+    "k": "특히",
+    "c": "부사",
+    "a": "동사(welcome) 수식"
+   },
+   {
+    "t": "welcome",
+    "r": "동사",
+    "k": "환영한다"
+   },
+   {
+    "t": "summer.",
+    "r": "목적어",
+    "k": "여름을"
+   }
+  ],
+  "memo": "so = 그래서: 앞 문장과 뒤 문장을 붙이는 접착제\n앞 문장 = Winter ~ is long and dark (2형식), 뒤 문장 = the people ~ welcome summer (3형식)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 2
+    },
+    {
+     "ci": [
+      5,
+      6,
+      7,
+      8
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": 4
+  }
+ },
+ {
+  "id": "7-09",
+  "en": "To celebrate the longest day of the year, they have a special festival.",
+  "ko": "한 해 중 가장 긴 날을 기념하기 위해 그들은 특별한 축제를 연다.",
+  "ch": [
+   {
+    "t": "To celebrate the longest day of the year,",
+    "r": "수식어",
+    "k": "한 해 중 가장 긴 날을 기념하기 위해",
+    "c": "to부정사구(부사적)",
+    "a": "동사(have) 수식"
+   },
+   {
+    "t": "they",
+    "r": "주어",
+    "k": "그들은"
+   },
+   {
+    "t": "have",
+    "r": "동사",
+    "k": "연다"
+   },
+   {
+    "t": "a special festival.",
+    "r": "목적어",
+    "k": "특별한 축제를"
+   }
+  ],
+  "memo": "To celebrate ~ = ~을 기념하기 위해 (to + 동사 = 목적을 나타내요)\nhave a festival = 축제를 열다 (have는 '가지다'만 있는 게 아니에요)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-10",
+  "en": "They call it the Midsummer festival.",
+  "ko": "그들은 그것을 한여름 축제라고 부른다.",
+  "ch": [
+   {
+    "t": "They",
+    "r": "주어",
+    "k": "그들은"
+   },
+   {
+    "t": "call",
+    "r": "동사",
+    "k": "부른다"
+   },
+   {
+    "t": "it",
+    "r": "목적어",
+    "k": "그것을"
+   },
+   {
+    "t": "the Midsummer festival.",
+    "r": "목적격보어",
+    "k": "한여름 축제라고"
+   }
+  ],
+  "memo": "call A B = A를 B라고 부르다 (A = B 관계)\nit = the Midsummer festival, 즉 it과 festival이 같은 대상이에요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 5
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-11",
+  "en": "The festival starts on the Friday evening between June 19 and 25 and ends on the Sunday.",
+  "ko": "축제는 6월 19일에서 25일 사이의 금요일 저녁에 시작해서 일요일에 끝난다.",
+  "ch": [
+   {
+    "t": "The festival",
+    "r": "주어",
+    "k": "축제는"
+   },
+   {
+    "t": "starts",
+    "r": "동사",
+    "k": "시작해서"
+   },
+   {
+    "t": "on the Friday evening between June 19 and 25",
+    "r": "수식어",
+    "k": "6월 19일에서 25일 사이의 금요일 저녁에",
+    "c": "시간의 부사구",
+    "a": "동사(starts) 수식"
+   },
+   {
+    "t": "and",
+    "r": "접속사",
+    "k": "~해서"
+   },
+   {
+    "t": "ends",
+    "r": "동사",
+    "k": "끝난다"
+   },
+   {
+    "t": "on the Sunday.",
+    "r": "수식어",
+    "k": "일요일에",
+    "c": "시간의 부사구",
+    "a": "동사(ends) 수식"
+   }
+  ],
+  "memo": "and가 starts와 ends 두 동사를 이어요 (주어 The festival은 하나)\non the Friday evening ~ / on the Sunday = 언제인지 알려 주는 말",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 1
+    },
+    {
+     "ci": [
+      4,
+      5
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": 3
+  }
+ },
+ {
+  "id": "7-12",
+  "en": "During the festival, people decorate a tall pole with flowers and green leaves and enjoy traditional dances around it.",
+  "ko": "축제 기간 동안 사람들은 꽃과 푸른 잎으로 높은 기둥을 장식하고, 그 주위에서 전통 춤을 즐긴다.",
+  "ch": [
+   {
+    "t": "During the festival,",
+    "r": "수식어",
+    "k": "축제 기간 동안",
+    "c": "시간의 부사구",
+    "a": "동사(decorate) 수식"
+   },
+   {
+    "t": "people",
+    "r": "주어",
+    "k": "사람들은"
+   },
+   {
+    "t": "decorate",
+    "r": "동사",
+    "k": "장식하고"
+   },
+   {
+    "t": "a tall pole",
+    "r": "목적어",
+    "k": "높은 기둥을"
+   },
+   {
+    "t": "with flowers and green leaves",
+    "r": "수식어",
+    "k": "꽃과 푸른 잎으로",
+    "c": "수단의 부사구",
+    "a": "동사(decorate) 수식"
+   },
+   {
+    "t": "and",
+    "r": "접속사",
+    "k": "~하고"
+   },
+   {
+    "t": "enjoy",
+    "r": "동사",
+    "k": "즐긴다"
+   },
+   {
+    "t": "traditional dances",
+    "r": "목적어",
+    "k": "전통 춤을"
+   },
+   {
+    "t": "around it.",
+    "r": "수식어",
+    "k": "그 주위에서",
+    "c": "장소의 부사구",
+    "a": "동사(enjoy) 수식"
+   }
+  ],
+  "memo": "and가 decorate ~와 enjoy ~ 두 동작을 이어요 (주어 people은 하나)\nit = a tall pole, around it = 그 기둥 주위에서",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "fm": 3
+    },
+    {
+     "ci": [
+      6,
+      7,
+      8
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": 5
+  }
+ },
+ {
+  "id": "7-13",
+  "en": "Because the sun hardly sets at this time of year in Sweden, people can enjoy the festival all night long.",
+  "ko": "스웨덴에서는 한 해 이맘때 해가 거의 지지 않기 때문에 사람들은 밤새도록 축제를 즐길 수 있다.",
+  "ch": [
+   {
+    "t": "Because the sun hardly sets at this time of year in Sweden,",
+    "r": "수식어",
+    "k": "스웨덴에서는 한 해 이맘때 해가 거의 지지 않기 때문에",
+    "c": "because 부사절",
+    "a": "동사(can enjoy) 수식"
+   },
+   {
+    "t": "people",
+    "r": "주어",
+    "k": "사람들은"
+   },
+   {
+    "t": "can enjoy",
+    "r": "동사",
+    "k": "즐길 수 있다"
+   },
+   {
+    "t": "the festival",
+    "r": "목적어",
+    "k": "축제를"
+   },
+   {
+    "t": "all night long.",
+    "r": "수식어",
+    "k": "밤새도록",
+    "c": "시간의 부사구",
+    "a": "동사(can enjoy) 수식"
+   }
+  ],
+  "memo": "Because ~ = ~ 때문에: 이유를 말하는 덩어리 (the sun hardly sets까지가 이유)\n쉼표 뒤부터가 진짜 문장: people can enjoy the festival",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "7-14",
+  "en": "Many Mexicans believe that once a year dead people come back home to meet their family and friends.",
+  "ko": "많은 멕시코 사람들은 1년에 한 번 죽은 사람들이 가족과 친구를 만나러 집에 돌아온다고 믿는다.",
+  "ch": [
+   {
+    "t": "Many Mexicans",
+    "r": "주어",
+    "k": "많은 멕시코 사람들은"
+   },
+   {
+    "t": "believe",
+    "r": "동사",
+    "k": "믿는다"
+   },
+   {
+    "t": "that once a year dead people come back home to meet their family and friends.",
+    "r": "목적어",
+    "k": "1년에 한 번 죽은 사람들이 가족과 친구를 만나러 집에 돌아온다고",
+    "c": "that 명사절"
+   }
+  ],
+  "memo": "believe that ~ = ~라고 믿다 (that 뒤의 문장 전체가 믿는 내용 = 목적어)\nthat 안: dead people(주어) come back(동사), to meet ~ = 만나러",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ }
+]

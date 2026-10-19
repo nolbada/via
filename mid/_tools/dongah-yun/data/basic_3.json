@@ -1,0 +1,627 @@
+[
+ {
+  "id": "8-03",
+  "en": "There was a TV on the wall, and Mr. Keith, the new president, was on the news.",
+  "ko": "벽에 TV가 있었다, 그리고 새 대통령인 Keith 씨는 뉴스에 나왔다.",
+  "ch": [
+   {
+    "t": "There",
+    "r": "수식어",
+    "k": "(해석 없음)",
+    "c": "유도부사"
+   },
+   {
+    "t": "was",
+    "r": "동사",
+    "k": "있었다"
+   },
+   {
+    "t": "a TV",
+    "r": "주어",
+    "k": "TV가"
+   },
+   {
+    "t": "on the wall,",
+    "r": "수식어",
+    "k": "벽에",
+    "c": "장소의 부사구",
+    "a": "동사(was) 수식"
+   },
+   {
+    "t": "and",
+    "r": "접속사",
+    "k": "그리고"
+   },
+   {
+    "t": "Mr. Keith,",
+    "r": "주어",
+    "k": "Keith 씨는"
+   },
+   {
+    "t": "the new president,",
+    "r": "수식어",
+    "k": "새 대통령인",
+    "c": "동격 표현",
+    "a": "명사(Mr. Keith) 수식"
+   },
+   {
+    "t": "was",
+    "r": "동사",
+    "k": "나왔다"
+   },
+   {
+    "t": "on the news.",
+    "r": "수식어",
+    "k": "뉴스에",
+    "c": "장소의 부사구",
+    "a": "동사(was) 수식"
+   }
+  ],
+  "memo": "There was ~ = ~이 있었다: There는 해석하지 않고 뒤의 a TV가 주어예요\nthe new president는 Mr. Keith을 다시 설명하는 말(동격)이라 쉼표로 가려요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 1
+    },
+    {
+     "ci": [
+      5,
+      6,
+      7,
+      8
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": 4
+  }
+ },
+ {
+  "id": "8-04",
+  "en": "“How can we help you?” said Mr. Parker, the founder of Time Travel.",
+  "ko": "“어떻게 도와드릴까요?”라고 Time Travel의 창립자인 Parker 씨가 말했다.",
+  "ch": [
+   {
+    "t": "“How can we help you?”",
+    "r": "목적어",
+    "k": "“어떻게 도와드릴까요?”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "said",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "Mr. Parker,",
+    "r": "주어",
+    "k": "Parker 씨가"
+   },
+   {
+    "t": "the founder of Time Travel.",
+    "r": "수식어",
+    "k": "Time Travel의 창립자인",
+    "c": "동격 표현",
+    "a": "명사(Mr. Parker) 수식"
+   }
+  ],
+  "memo": "따옴표 안의 말이 '말한 내용'(목적어), said가 동사, Mr. Parker가 말한 사람(주어)\nthe founder of Time Travel은 Mr. Parker가 누구인지 알려 주는 설명이에요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-05a",
+  "en": "“I’ve always wanted to see a dinosaur.”",
+  "ko": "저는 공룡을 보는 것을 늘 원해 왔어요.",
+  "ch": [
+   {
+    "t": "“I",
+    "r": "주어",
+    "k": "저는"
+   },
+   {
+    "t": "’ve always wanted",
+    "r": "동사",
+    "k": "늘 원해 왔어요",
+    "g": true
+   },
+   {
+    "t": "to see a dinosaur.”",
+    "r": "목적어",
+    "k": "공룡을 보는 것을",
+    "c": "to부정사구(명사적)"
+   }
+  ],
+  "memo": "I’ve = I have: have + p.p.(wanted)가 '계속 원해 왔다'는 한 덩어리 동사예요\nwant to + 동사 = ~하고 싶다, to see a dinosaur가 '원하는 내용'(목적어)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-05b",
+  "en": "“Is it possible?” asked Eckels.",
+  "ko": "“그게 가능한가요?”라고 Eckels가 물었다.",
+  "ch": [
+   {
+    "t": "“Is it possible?”",
+    "r": "목적어",
+    "k": "“그게 가능한가요?”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "asked",
+    "r": "동사",
+    "k": "물었다"
+   },
+   {
+    "t": "Eckels.",
+    "r": "주어",
+    "k": "Eckels가"
+   }
+  ],
+  "memo": "따옴표 안이 '물어본 내용'(목적어), asked가 동사, Eckels가 물어본 사람(주어)\n말한 사람이 뒤에 오는 형태(said/asked + 사람)는 해석할 때 사람을 먼저 읽어요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-06a",
+  "en": "“Sure,” said Mr. Parker.",
+  "ko": "“물론이죠,”라고 Parker 씨가 말했다.",
+  "ch": [
+   {
+    "t": "“Sure,”",
+    "r": "목적어",
+    "k": "“물론이죠,”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "said",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "Mr. Parker.",
+    "r": "주어",
+    "k": "Parker 씨가"
+   }
+  ],
+  "memo": "Sure = 물론이죠(대답하는 말), 따옴표 안 전체가 '말한 내용'(목적어)\nsaid가 동사, Mr. Parker가 말한 사람(주어)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-06b",
+  "en": "“We can take you back to the jungle of 60 million years ago.”",
+  "ko": "우리는 6천만 년 전의 정글로 당신을 데려다 드릴 수 있어요.",
+  "ch": [
+   {
+    "t": "“We",
+    "r": "주어",
+    "k": "우리는"
+   },
+   {
+    "t": "can take",
+    "r": "동사",
+    "k": "데려다 드릴 수 있어요"
+   },
+   {
+    "t": "you",
+    "r": "목적어",
+    "k": "당신을"
+   },
+   {
+    "t": "back to the jungle of 60 million years ago.”",
+    "r": "수식어",
+    "k": "6천만 년 전의 정글로",
+    "c": "장소의 부사구",
+    "a": "동사(can take) 수식"
+   }
+  ],
+  "memo": "can take = 데려갈 수 있다: can + 동사는 한 덩어리 동사예요\ntake you back to ~ = 당신을 ~로 도로 데려가다 (you가 목적어, back to ~는 가는 곳)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-07a",
+  "en": "“Great,” said Eckels.",
+  "ko": "“좋아요,”라고 Eckels가 말했다.",
+  "ch": [
+   {
+    "t": "“Great,”",
+    "r": "목적어",
+    "k": "“좋아요,”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "said",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "Eckels.",
+    "r": "주어",
+    "k": "Eckels가"
+   }
+  ],
+  "memo": "Great = 좋아요(기뻐서 하는 말), 따옴표 안 전체가 '말한 내용'(목적어)\nsaid가 동사, Eckels가 말한 사람(주어)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-07b",
+  "en": "“Can you take me there now?”",
+  "ko": "당신이 저를 지금 그곳에 데려다 주실 수 있나요?",
+  "ch": [
+   {
+    "t": "“Can",
+    "r": "수식어",
+    "k": "~ 수 있나요",
+    "c": "조동사(질문)",
+    "a": "동사(take)와 한 덩어리"
+   },
+   {
+    "t": "you",
+    "r": "주어",
+    "k": "당신이"
+   },
+   {
+    "t": "take",
+    "r": "동사",
+    "k": "데려다 주실"
+   },
+   {
+    "t": "me",
+    "r": "목적어",
+    "k": "저를"
+   },
+   {
+    "t": "there now?”",
+    "r": "수식어",
+    "k": "지금 그곳에",
+    "c": "장소의 부사구",
+    "a": "동사(take) 수식"
+   }
+  ],
+  "memo": "Can you ~? = ~해 줄 수 있나요?: 조동사 Can이 앞으로 나온 질문이에요\n원래 순서는 You can take me there now. → Can과 take가 한 동사 덩어리인데, 질문이라 you가 사이에 끼었어요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-08a",
+  "en": "“You’re lucky.”",
+  "ko": "당신은 운이 좋아요.",
+  "ch": [
+   {
+    "t": "“You",
+    "r": "주어",
+    "k": "당신은"
+   },
+   {
+    "t": "’re",
+    "r": "동사",
+    "k": "~이다",
+    "g": true
+   },
+   {
+    "t": "lucky.”",
+    "r": "보어",
+    "k": "운이 좋은"
+   }
+  ],
+  "memo": "You’re = You are: ’re가 동사(~이다)예요\nare 뒤에 오는 lucky(운이 좋은)가 You의 상태를 설명하는 보어",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 2
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-08b",
+  "en": "“There’s a time machine that leaves in 10 minutes,” said Mr. Parker.",
+  "ko": "“10분 뒤에 출발하는 타임머신이 있어요,”라고 Parker 씨가 말했다.",
+  "ch": [
+   {
+    "t": "“There’s a time machine that leaves in 10 minutes,”",
+    "r": "목적어",
+    "k": "“10분 뒤에 출발하는 타임머신이 있어요,”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "said",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "Mr. Parker.",
+    "r": "주어",
+    "k": "Parker 씨가"
+   }
+  ],
+  "memo": "따옴표 안이 '말한 내용'(목적어), said가 동사, Mr. Parker가 말한 사람(주어)\n따옴표 안: There’s a time machine = 타임머신이 있다, that leaves in 10 minutes = 10분 뒤에 출발하는",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-09",
+  "en": "“This is Travis, your travel guide,” he continued.",
+  "ko": "“이쪽은 여러분의 여행 안내인 Travis입니다,”라고 그가 계속 말했다.",
+  "ch": [
+   {
+    "t": "“This is Travis, your travel guide,”",
+    "r": "목적어",
+    "k": "“이쪽은 여러분의 여행 안내인 Travis입니다,”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "he",
+    "r": "주어",
+    "k": "그가"
+   },
+   {
+    "t": "continued.",
+    "r": "동사",
+    "k": "계속 말했다"
+   }
+  ],
+  "memo": "따옴표 안이 '말한 내용'(목적어), he가 말한 사람(주어), continued가 동사\n따옴표 안 your travel guide는 Travis가 누구인지 다시 설명해 주는 말이에요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-10",
+  "en": "“To stay safe, you must follow his instructions.”",
+  "ko": "안전하게 있으려면 당신은 그의 지시를 따라야 합니다.",
+  "ch": [
+   {
+    "t": "“To stay safe,",
+    "r": "수식어",
+    "k": "안전하게 있으려면",
+    "c": "to부정사구(부사적)",
+    "a": "동사(must follow) 수식"
+   },
+   {
+    "t": "you",
+    "r": "주어",
+    "k": "당신은"
+   },
+   {
+    "t": "must follow",
+    "r": "동사",
+    "k": "따라야 합니다"
+   },
+   {
+    "t": "his instructions.”",
+    "r": "목적어",
+    "k": "그의 지시를"
+   }
+  ],
+  "memo": "To stay safe = 안전하게 있으려면 (목적을 나타내는 to부정사, 쉼표까지 가려요)\nmust follow = 따라야 한다: must + 동사는 한 덩어리 동사예요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-11",
+  "en": "Inside the time machine, there were two other travelers.",
+  "ko": "타임머신 안에는 다른 여행자 두 명이 있었다.",
+  "ch": [
+   {
+    "t": "Inside the time machine,",
+    "r": "수식어",
+    "k": "타임머신 안에는",
+    "c": "장소의 부사구",
+    "a": "동사(were) 수식"
+   },
+   {
+    "t": "there",
+    "r": "수식어",
+    "k": "(해석 없음)",
+    "c": "유도부사"
+   },
+   {
+    "t": "were",
+    "r": "동사",
+    "k": "있었다"
+   },
+   {
+    "t": "two other travelers.",
+    "r": "주어",
+    "k": "다른 여행자 두 명이"
+   }
+  ],
+  "memo": "there were ~ = ~이 있었다: there는 해석하지 않고 뒤의 two other travelers가 주어예요\nInside the time machine은 '어디에'를 알려 주는 말이라 가려요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-12",
+  "en": "Eckels sat down and closed his eyes.",
+  "ko": "Eckels는 앉았다, 그리고 그의 눈을 감았다.",
+  "ch": [
+   {
+    "t": "Eckels",
+    "r": "주어",
+    "k": "Eckels는"
+   },
+   {
+    "t": "sat down",
+    "r": "동사",
+    "k": "앉았다"
+   },
+   {
+    "t": "and",
+    "r": "접속사",
+    "k": "그리고"
+   },
+   {
+    "t": "closed",
+    "r": "동사",
+    "k": "감았다"
+   },
+   {
+    "t": "his eyes.",
+    "r": "목적어",
+    "k": "그의 눈을"
+   }
+  ],
+  "memo": "sat down = 앉았다: sat과 down이 한 덩어리 동사예요\nand로 두 동작이 이어져요. 두 번째 동작 closed his eyes의 주어도 Eckels예요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1
+     ],
+     "fm": 1
+    },
+    {
+     "ci": [
+      3,
+      4
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": 2
+  }
+ }
+]

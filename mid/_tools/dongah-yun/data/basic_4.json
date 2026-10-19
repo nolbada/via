@@ -1,0 +1,550 @@
+[
+ {
+  "id": "8-13",
+  "en": "He felt the machine moving under his feet.",
+  "ko": "그는 기계가 발 아래에서 움직이는 것을 느꼈다.",
+  "ch": [
+   {
+    "t": "He",
+    "r": "주어",
+    "k": "그는"
+   },
+   {
+    "t": "felt",
+    "r": "동사",
+    "k": "느꼈다"
+   },
+   {
+    "t": "the machine",
+    "r": "목적어",
+    "k": "기계가"
+   },
+   {
+    "t": "moving under his feet.",
+    "r": "목적격보어",
+    "k": "발 아래에서 움직이는 것을",
+    "c": "현재분사구"
+   }
+  ],
+  "memo": "felt the machine moving = 기계가 움직이는 것을 느꼈다 (the machine = 목적어, moving ~ = 목적어가 어떤 상태인지 설명)\nmoving under his feet 전체가 한 덩어리 설명이라 같이 눌러요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 5
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-14",
+  "en": "After only a few minutes, the machine stopped.",
+  "ko": "단 몇 분 후에 기계는 멈췄다.",
+  "ch": [
+   {
+    "t": "After only a few minutes,",
+    "r": "수식어",
+    "k": "단 몇 분 후에",
+    "c": "시간의 부사구",
+    "a": "동사(stopped) 수식"
+   },
+   {
+    "t": "the machine",
+    "r": "주어",
+    "k": "기계는"
+   },
+   {
+    "t": "stopped.",
+    "r": "동사",
+    "k": "멈췄다"
+   }
+  ],
+  "memo": "After + 시간 = ~ 후에 (문장 맨 앞의 수식어라 뼈대에서 빼고 봐요)\nthe machine stopped = 주어 + 동사만 있는 1형식",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-15",
+  "en": "“We’ve just arrived in the jungle of 60 million years ago,” Travis explained.",
+  "ko": "“우리는 방금 6천만 년 전의 정글에 도착했어요.”라고 Travis가 설명했다.",
+  "ch": [
+   {
+    "t": "“We’ve just arrived in the jungle of 60 million years ago,”",
+    "r": "목적어",
+    "k": "“우리는 방금 6천만 년 전의 정글에 도착했어요.”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "Travis",
+    "r": "주어",
+    "k": "Travis가"
+   },
+   {
+    "t": "explained.",
+    "r": "동사",
+    "k": "설명했다"
+   }
+  ],
+  "memo": "“ ” 안은 Travis가 말한 내용 = explained의 목적어\n순서가 Travis explained 이어도 '누가(Travis) 설명했다(explained)'예요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-16a",
+  "en": "“Do you see the path over there?”",
+  "ko": "“너는 저쪽에 있는 길이 보이니?”",
+  "ch": [
+   {
+    "t": "“Do you",
+    "r": "주어",
+    "k": "너는"
+   },
+   {
+    "t": "see",
+    "r": "동사",
+    "k": "보이니"
+   },
+   {
+    "t": "the path",
+    "r": "목적어",
+    "k": "길이"
+   },
+   {
+    "t": "over there?”",
+    "r": "수식어",
+    "k": "저쪽에 있는",
+    "c": "형용사구",
+    "a": "명사(path) 수식"
+   }
+  ],
+  "memo": "Do you see ~? = 너는 ~이 보이니? (Do는 질문을 만드는 도우미라 you와 묶어 봐요)\nover there = 저쪽에: the path를 꾸며 주는 말",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-16b",
+  "en": "“You must not leave it at any time.”",
+  "ko": "“너희는 어떤 경우에도 그것을 떠나서는 안 된다.”",
+  "ch": [
+   {
+    "t": "“You",
+    "r": "주어",
+    "k": "너희는"
+   },
+   {
+    "t": "must not leave",
+    "r": "동사",
+    "k": "떠나서는 안 된다"
+   },
+   {
+    "t": "it",
+    "r": "목적어",
+    "k": "그것을"
+   },
+   {
+    "t": "at any time.”",
+    "r": "수식어",
+    "k": "어떤 경우에도",
+    "c": "시간의 부사구",
+    "a": "동사(leave) 수식"
+   }
+  ],
+  "memo": "must not + 동사원형 = ~하면 안 된다 (must not leave가 한 덩어리 동사)\nit = 앞에서 말한 the path(길), at any time = 언제든지",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-17a",
+  "en": "“Do not touch anything.”",
+  "ko": "“아무것도 만지지 마라.”",
+  "ch": [
+   {
+    "t": "“Do not touch",
+    "r": "동사",
+    "k": "만지지 마라"
+   },
+   {
+    "t": "anything.”",
+    "r": "목적어",
+    "k": "아무것도"
+   }
+  ],
+  "memo": "Do not + 동사원형 = ~하지 마라 (명령문이라 주어 You는 빠져 있어요)\nanything = 아무것도: touch의 대상이라 목적어",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-17b",
+  "en": "“You might kill something by accident.”",
+  "ko": "“너희는 실수로 무언가를 죽일지도 모른다.”",
+  "ch": [
+   {
+    "t": "“You",
+    "r": "주어",
+    "k": "너희는"
+   },
+   {
+    "t": "might kill",
+    "r": "동사",
+    "k": "죽일지도 모른다"
+   },
+   {
+    "t": "something",
+    "r": "목적어",
+    "k": "무언가를"
+   },
+   {
+    "t": "by accident.”",
+    "r": "수식어",
+    "k": "실수로",
+    "c": "방법의 부사구",
+    "a": "동사(kill) 수식"
+   }
+  ],
+  "memo": "might + 동사원형 = ~일지도 모른다 (might kill이 한 덩어리 동사)\nby accident = 실수로, 우연히: 어떻게 죽이는지 설명하는 수식어",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-18",
+  "en": "“A little change here can cause something unthinkable in the future.”",
+  "ko": "“여기서의 작은 변화는 미래에 상상도 못 할 일을 일으킬 수 있다.”",
+  "ch": [
+   {
+    "t": "“A little change here",
+    "r": "주어",
+    "k": "여기서의 작은 변화는"
+   },
+   {
+    "t": "can cause",
+    "r": "동사",
+    "k": "일으킬 수 있다"
+   },
+   {
+    "t": "something unthinkable",
+    "r": "목적어",
+    "k": "상상도 못 할 일을"
+   },
+   {
+    "t": "in the future.”",
+    "r": "수식어",
+    "k": "미래에",
+    "c": "시간의 부사구",
+    "a": "동사(cause) 수식"
+   }
+  ],
+  "memo": "something unthinkable = 상상도 못 할 일 (-thing 뒤에서 unthinkable이 꾸며 줘요)\ncan cause = 일으킬 수 있다, in the future = 미래에",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-19a",
+  "en": "Slowly, everyone got out of the time machine.",
+  "ko": "천천히 모두가 타임머신에서 나왔다.",
+  "ch": [
+   {
+    "t": "Slowly,",
+    "r": "수식어",
+    "k": "천천히",
+    "c": "부사",
+    "a": "동사(got out) 수식"
+   },
+   {
+    "t": "everyone",
+    "r": "주어",
+    "k": "모두가"
+   },
+   {
+    "t": "got out",
+    "r": "동사",
+    "k": "나왔다"
+   },
+   {
+    "t": "of the time machine.",
+    "r": "수식어",
+    "k": "타임머신에서",
+    "c": "장소의 부사구",
+    "a": "동사(got out) 수식"
+   }
+  ],
+  "memo": "get out of ~ = ~에서 나오다: got out이 동사, of the time machine은 어디서 나왔는지 알려 줘요\neveryone = 모두 (단수 취급)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-19b",
+  "en": "The jungle was covered in fog.",
+  "ko": "정글은 안개로 뒤덮여 있었다.",
+  "ch": [
+   {
+    "t": "The jungle",
+    "r": "주어",
+    "k": "정글은"
+   },
+   {
+    "t": "was covered",
+    "r": "동사",
+    "k": "뒤덮여 있었다"
+   },
+   {
+    "t": "in fog.",
+    "r": "수식어",
+    "k": "안개로",
+    "c": "수단의 부사구",
+    "a": "동사(was covered) 수식"
+   }
+  ],
+  "memo": "was covered = 뒤덮여 있었다 (be + p.p. 수동태, 한 덩어리 동사)\nbe covered in ~ = ~로 덮여 있다",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-20a",
+  "en": "It was very quiet.",
+  "ko": "그곳은 매우 조용했다.",
+  "ch": [
+   {
+    "t": "It",
+    "r": "주어",
+    "k": "그곳은"
+   },
+   {
+    "t": "was",
+    "r": "동사",
+    "k": "~했다"
+   },
+   {
+    "t": "very quiet.",
+    "r": "보어",
+    "k": "매우 조용"
+   }
+  ],
+  "memo": "It = 앞에서 말한 정글(그곳)\nwas + 형용사(quiet) = ~했다: 주어의 상태를 설명하는 2형식",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 2
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-20b",
+  "en": "“I’m so excited,” said Eckels.",
+  "ko": "“나는 정말 신나요.”라고 Eckels가 말했다.",
+  "ch": [
+   {
+    "t": "“I’m so excited,”",
+    "r": "목적어",
+    "k": "“나는 정말 신나요.”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "said",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "Eckels.",
+    "r": "주어",
+    "k": "Eckels가"
+   }
+  ],
+  "memo": "“ ” 안은 Eckels가 말한 내용 = said의 목적어\nsaid Eckels = Eckels said (말하는 사람이 뒤에 와도 주어는 Eckels)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-21a",
+  "en": "“Be careful.”",
+  "ko": "“조심해라.”",
+  "ch": [
+   {
+    "t": "“Be",
+    "r": "동사",
+    "k": "~해라"
+   },
+   {
+    "t": "careful.”",
+    "r": "보어",
+    "k": "조심"
+   }
+  ],
+  "memo": "명령문이라 주어 You가 빠지고 동사 Be로 시작해요\nBe + 형용사 = ~해라: careful(조심하는)이 보어",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1
+     ],
+     "fm": 2
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-21b",
+  "en": "“Some of the dinosaurs are hungry,” said Travis.",
+  "ko": "“공룡 몇 마리는 배가 고파요.”라고 Travis가 말했다.",
+  "ch": [
+   {
+    "t": "“Some of the dinosaurs are hungry,”",
+    "r": "목적어",
+    "k": "“공룡 몇 마리는 배가 고파요.”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "said",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "Travis.",
+    "r": "주어",
+    "k": "Travis가"
+   }
+  ],
+  "memo": "some of the dinosaurs = 공룡들 중 몇 마리\nsaid Travis = Travis said, “ ” 안이 말한 내용(목적어)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ }
+]

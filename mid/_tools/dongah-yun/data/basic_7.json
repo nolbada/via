@@ -1,0 +1,573 @@
+[
+ {
+  "id": "8-40b",
+  "en": "“You left the path.”",
+  "ko": "“너는 길을 벗어났어.”",
+  "ch": [
+   {
+    "t": "“You",
+    "r": "주어",
+    "k": "너는"
+   },
+   {
+    "t": "left",
+    "r": "동사",
+    "k": "벗어났어"
+   },
+   {
+    "t": "the path.”",
+    "r": "목적어",
+    "k": "길을"
+   }
+  ],
+  "memo": "left = leave(떠나다, 벗어나다)의 과거형이에요\nYou(주어) + left(동사) + the path(목적어) → 3형식",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-41a",
+  "en": "“I’m sorry, but I didn’t kill anything,” said Eckels.",
+  "ko": "“미안하지만 저는 아무것도 죽이지 않았어요,” 에켈스가 말했다.",
+  "ch": [
+   {
+    "t": "“I’m sorry, but I didn’t kill anything,”",
+    "r": "목적어",
+    "k": "“미안하지만 저는 아무것도 죽이지 않았어요,”",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "said",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "Eckels.",
+    "r": "주어",
+    "k": "에켈스가"
+   }
+  ],
+  "memo": "따옴표 안이 '말한 내용'이고, said Eckels = 에켈스가 말했다\n말한 내용이 목적어, said가 동사, Eckels가 주어예요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-41b",
+  "en": "“There’s only a little mud on my shoes.”",
+  "ko": "“제 신발에 진흙이 조금만 있어요.”",
+  "ch": [
+   {
+    "t": "“There’s",
+    "r": "동사",
+    "k": "있어요"
+   },
+   {
+    "t": "only a little mud",
+    "r": "주어",
+    "k": "진흙이 조금만"
+   },
+   {
+    "t": "on my shoes.”",
+    "r": "수식어",
+    "k": "제 신발에",
+    "c": "장소의 부사구",
+    "a": "명사(mud) 수식"
+   }
+  ],
+  "memo": "There’s = There is: '~가 있다'를 만드는 말이고, 주어는 뒤에 나오는 mud예요\na little mud = 약간의 진흙, only = ~뿐",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-42",
+  "en": "Travis stared at Eckels for a long time without saying anything.",
+  "ko": "트래비스는 한참 동안 아무 말 없이 에켈스를 쳐다보았다.",
+  "ch": [
+   {
+    "t": "Travis",
+    "r": "주어",
+    "k": "트래비스는"
+   },
+   {
+    "t": "stared at",
+    "r": "동사",
+    "k": "쳐다보았다"
+   },
+   {
+    "t": "Eckels",
+    "r": "목적어",
+    "k": "에켈스를"
+   },
+   {
+    "t": "for a long time",
+    "r": "수식어",
+    "k": "한참 동안",
+    "c": "시간의 부사구",
+    "a": "동사(stared at) 수식"
+   },
+   {
+    "t": "without saying anything.",
+    "r": "수식어",
+    "k": "아무 말 없이",
+    "c": "방법의 부사구",
+    "a": "동사(stared at) 수식"
+   }
+  ],
+  "memo": "stare at = ~을 쳐다보다: 두 단어가 한 덩어리 동사예요\nwithout + -ing = ~하지 않고 (without saying anything = 아무 말도 하지 않고)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-43",
+  "en": "“Let’s go home,” said Travis finally.",
+  "ko": "“집에 가자,” 트래비스가 마침내 말했다.",
+  "ch": [
+   {
+    "t": "“Let’s go home,”",
+    "r": "목적어",
+    "k": "“집에 가자,”",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "said",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "Travis",
+    "r": "주어",
+    "k": "트래비스가"
+   },
+   {
+    "t": "finally.",
+    "r": "수식어",
+    "k": "마침내",
+    "c": "부사",
+    "a": "동사(said) 수식"
+   }
+  ],
+  "memo": "Let’s + 동사 = ~하자 (Let’s go home = 집에 가자)\nsaid Travis = 트래비스가 말했다 → 말한 내용이 목적어",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-44a",
+  "en": "The machine stopped.",
+  "ko": "기계가 멈췄다.",
+  "ch": [
+   {
+    "t": "The machine",
+    "r": "주어",
+    "k": "기계가"
+   },
+   {
+    "t": "stopped.",
+    "r": "동사",
+    "k": "멈췄다"
+   }
+  ],
+  "memo": "The machine(주어) + stopped(동사): 짧고 쉬운 1형식 문장\nstopped = 멈췄다 (stop의 과거형)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-44b",
+  "en": "They all returned to the present safely.",
+  "ko": "그들은 모두 안전하게 현재로 돌아왔다.",
+  "ch": [
+   {
+    "t": "They all",
+    "r": "주어",
+    "k": "그들은 모두"
+   },
+   {
+    "t": "returned",
+    "r": "동사",
+    "k": "돌아왔다"
+   },
+   {
+    "t": "to the present",
+    "r": "수식어",
+    "k": "현재로",
+    "c": "장소의 부사구",
+    "a": "동사(returned) 수식"
+   },
+   {
+    "t": "safely.",
+    "r": "수식어",
+    "k": "안전하게",
+    "c": "부사",
+    "a": "동사(returned) 수식"
+   }
+  ],
+  "memo": "They all = 그들 모두: all은 주어를 설명하는 말이라 같이 묶어요\nreturn to ~ = ~로 돌아오다, to the present는 어디로 왔는지를 말해 줘요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-45",
+  "en": "“Is everything okay here?” asked Travis.",
+  "ko": "“여기 모든 게 괜찮나요?” 트래비스가 물었다.",
+  "ch": [
+   {
+    "t": "“Is everything okay here?”",
+    "r": "목적어",
+    "k": "“여기 모든 게 괜찮나요?”",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "asked",
+    "r": "동사",
+    "k": "물었다"
+   },
+   {
+    "t": "Travis.",
+    "r": "주어",
+    "k": "트래비스가"
+   }
+  ],
+  "memo": "따옴표 안 질문이 '물은 내용'이고, asked Travis = 트래비스가 물었다\n질문 내용이 목적어, asked가 동사, Travis가 주어예요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-46",
+  "en": "“Welcome home!” said Mr. Parker.",
+  "ko": "“집에 온 걸 환영해요!” 파커 씨가 말했다.",
+  "ch": [
+   {
+    "t": "“Welcome home!”",
+    "r": "목적어",
+    "k": "“집에 온 걸 환영해요!”",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "said",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "Mr. Parker.",
+    "r": "주어",
+    "k": "파커 씨가"
+   }
+  ],
+  "memo": "Welcome home! = 집에 온 걸 환영해요! (돌아온 사람에게 하는 인사)\nsaid Mr. Parker = 파커 씨가 말했다 → 말한 내용이 목적어",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-47",
+  "en": "Eckels looked around the room carefully.",
+  "ko": "에켈스는 방을 조심스럽게 둘러보았다.",
+  "ch": [
+   {
+    "t": "Eckels",
+    "r": "주어",
+    "k": "에켈스는"
+   },
+   {
+    "t": "looked around",
+    "r": "동사",
+    "k": "둘러보았다"
+   },
+   {
+    "t": "the room",
+    "r": "목적어",
+    "k": "방을"
+   },
+   {
+    "t": "carefully.",
+    "r": "수식어",
+    "k": "조심스럽게",
+    "c": "부사",
+    "a": "동사(looked around) 수식"
+   }
+  ],
+  "memo": "look around = 둘러보다: 두 단어가 한 덩어리 동사예요\ncarefully = 조심스럽게, 어떻게 둘러봤는지를 말해 줘요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-48",
+  "en": "Everything looked the same, except the big sign on the wall.",
+  "ko": "모든 것이 똑같아 보였다, 벽에 걸린 큰 표지판만 빼고.",
+  "ch": [
+   {
+    "t": "Everything",
+    "r": "주어",
+    "k": "모든 것이"
+   },
+   {
+    "t": "looked",
+    "r": "동사",
+    "k": "보였다"
+   },
+   {
+    "t": "the same,",
+    "r": "보어",
+    "k": "똑같아"
+   },
+   {
+    "t": "except the big sign on the wall.",
+    "r": "수식어",
+    "k": "벽에 걸린 큰 표지판만 빼고",
+    "c": "예외의 부사구",
+    "a": "동사(looked) 수식"
+   }
+  ],
+  "memo": "look + 형용사/the same = ~해 보이다 (보어가 와요)\nexcept ~ = ~을 제외하고, on the wall은 sign을 꾸며 줘요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 2
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-49a",
+  "en": "The sign now said, “NAIM ANY YEER EN THE PAST. WEE TAEK YU THAIR.”",
+  "ko": "표지판에는 이제 “NAIM ANY YEER EN THE PAST. WEE TAEK YU THAIR.”라고 적혀 있었다.",
+  "ch": [
+   {
+    "t": "The sign",
+    "r": "주어",
+    "k": "표지판에는"
+   },
+   {
+    "t": "now",
+    "r": "수식어",
+    "k": "이제",
+    "c": "부사",
+    "a": "동사(said) 수식"
+   },
+   {
+    "t": "said,",
+    "r": "동사",
+    "k": "적혀 있었다"
+   },
+   {
+    "t": "“NAIM ANY YEER EN THE PAST. WEE TAEK YU THAIR.”",
+    "r": "목적어",
+    "k": "“NAIM ANY YEER EN THE PAST. WEE TAEK YU THAIR.”라고",
+    "c": "인용문(말한 내용)"
+   }
+  ],
+  "memo": "The sign said, “…” = 표지판에 “…”라고 적혀 있었다\n따옴표 안 글자가 철자가 틀린 말이라 이상해 보여요(바뀐 세상의 표지판!)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-49b",
+  "en": "Eckels was confused.",
+  "ko": "에켈스는 혼란스러운 상태였다.",
+  "ch": [
+   {
+    "t": "Eckels",
+    "r": "주어",
+    "k": "에켈스는"
+   },
+   {
+    "t": "was",
+    "r": "동사",
+    "k": "상태였다"
+   },
+   {
+    "t": "confused.",
+    "r": "보어",
+    "k": "혼란스러운"
+   }
+  ],
+  "memo": "was confused = 혼란스러운 상태였다 (be동사 + 상태를 말하는 말)\nconfused는 '혼란스러운'이라는 뜻의 보어예요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 2
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-50a",
+  "en": "Then, he saw the TV.",
+  "ko": "그러고 나서 그는 TV를 보았다.",
+  "ch": [
+   {
+    "t": "Then,",
+    "r": "수식어",
+    "k": "그러고 나서",
+    "c": "시간의 부사",
+    "a": "동사(saw) 수식"
+   },
+   {
+    "t": "he",
+    "r": "주어",
+    "k": "그는"
+   },
+   {
+    "t": "saw",
+    "r": "동사",
+    "k": "보았다"
+   },
+   {
+    "t": "the TV.",
+    "r": "목적어",
+    "k": "TV를"
+   }
+  ],
+  "memo": "Then = 그러고 나서, 그때: 문장 맨 앞에서 때를 알려 줘요\nsaw = see(보다)의 과거형, he(주어) + saw(동사) + the TV(목적어)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ }
+]

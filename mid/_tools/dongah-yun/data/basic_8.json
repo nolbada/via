@@ -1,0 +1,352 @@
+[
+ {
+  "id": "8-50b",
+  "en": "The new president was on the news, but it was not Mr. Keith.",
+  "ko": "새 대통령이 뉴스에 나왔다, 하지만 그분은 키스 씨가 아니었다.",
+  "ch": [
+   {
+    "t": "The new president",
+    "r": "주어",
+    "k": "새 대통령이"
+   },
+   {
+    "t": "was",
+    "r": "동사",
+    "k": "나왔다"
+   },
+   {
+    "t": "on the news,",
+    "r": "수식어",
+    "k": "뉴스에",
+    "c": "장소의 부사구",
+    "a": "동사(was) 수식"
+   },
+   {
+    "t": "but",
+    "r": "접속사",
+    "k": "하지만"
+   },
+   {
+    "t": "it",
+    "r": "주어",
+    "k": "그분은"
+   },
+   {
+    "t": "was not",
+    "r": "동사",
+    "k": "아니었다"
+   },
+   {
+    "t": "Mr. Keith.",
+    "r": "보어",
+    "k": "키스 씨가"
+   }
+  ],
+  "memo": "but = 하지만: 앞 문장과 뒤 문장을 반대로 이어 줘요\n앞 문장 = 뉴스에 나옴(1형식), 뒤 문장 = it was not Mr. Keith (2형식, it = 그 대통령)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 1
+    },
+    {
+     "ci": [
+      4,
+      5,
+      6
+     ],
+     "fm": 2
+    }
+   ],
+   "glue": 3
+  }
+ },
+ {
+  "id": "8-51a",
+  "en": "“What’s going on?”",
+  "ko": "“무슨 일이 일어나고 있는 거야?”",
+  "ch": [
+   {
+    "t": "“What",
+    "r": "주어",
+    "k": "무슨 일이"
+   },
+   {
+    "t": "’s going on?”",
+    "r": "동사",
+    "k": "일어나고 있는 거야",
+    "g": true
+   }
+  ],
+  "memo": "What = 무슨 일이(주어): 물음표 문장이지만 What이 주어 자리예요\n’s going on = is going on (진행 중이다) → 한 덩어리 동사",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-51b",
+  "en": "He got more confused.",
+  "ko": "그는 더 혼란스러운 상태가 되었다.",
+  "ch": [
+   {
+    "t": "He",
+    "r": "주어",
+    "k": "그는"
+   },
+   {
+    "t": "got",
+    "r": "동사",
+    "k": "되었다"
+   },
+   {
+    "t": "more confused.",
+    "r": "보어",
+    "k": "더 혼란스러운 상태가"
+   }
+  ],
+  "memo": "got = ~이 되었다 (get + 형용사): 상태가 변했다는 뜻이에요\nconfused 앞의 more는 '더'. 목적어가 아니라 보어(He = confused)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 2
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-52",
+  "en": "He sat down and looked closely at the mud on his shoes.",
+  "ko": "그는 앉았다, 그리고 신발에 묻은 진흙을 자세히 살펴보았다.",
+  "ch": [
+   {
+    "t": "He",
+    "r": "주어",
+    "k": "그는"
+   },
+   {
+    "t": "sat down",
+    "r": "동사",
+    "k": "앉았다"
+   },
+   {
+    "t": "and",
+    "r": "접속사",
+    "k": "그리고"
+   },
+   {
+    "t": "looked",
+    "r": "동사",
+    "k": "살펴보았다"
+   },
+   {
+    "t": "closely",
+    "r": "수식어",
+    "k": "자세히",
+    "c": "부사",
+    "a": "동사(looked) 수식"
+   },
+   {
+    "t": "at the mud on his shoes.",
+    "r": "수식어",
+    "k": "신발에 묻은 진흙을",
+    "c": "전치사구(look at)",
+    "a": "동사(looked) 수식"
+   }
+  ],
+  "memo": "sat down과 looked는 and로 이어진 두 동작이고, 주어 He를 같이 써요\nlook at = ~을 살펴보다 (at 뒤는 목적어가 아니라 전치사구라 가려요)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1
+     ],
+     "fm": 1
+    },
+    {
+     "ci": [
+      0,
+      3,
+      4,
+      5
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": 2
+  }
+ },
+ {
+  "id": "8-53a",
+  "en": "“No, it can’t be,” said Eckels.",
+  "ko": "“아니야, 그럴 리 없어,” 에켈스가 말했다.",
+  "ch": [
+   {
+    "t": "“No, it can’t be,”",
+    "r": "목적어",
+    "k": "“아니야, 그럴 리 없어,”",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "said",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "Eckels.",
+    "r": "주어",
+    "k": "에켈스가"
+   }
+  ],
+  "memo": "따옴표 안은 '말한 내용'이라서 said의 목적어 자리예요\nsaid Eckels = 에켈스가 말했다 (주어와 동사의 순서가 바뀌어도 뜻은 같아요)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-53b",
+  "en": "“It’s all because of this little thing?”",
+  "ko": "“이게 전부 이 작은 것 때문이라고?”",
+  "ch": [
+   {
+    "t": "“It",
+    "r": "주어",
+    "k": "이게"
+   },
+   {
+    "t": "’s",
+    "r": "동사",
+    "k": "이라고",
+    "g": true
+   },
+   {
+    "t": "all because of this little thing?”",
+    "r": "보어",
+    "k": "전부 이 작은 것 때문"
+   }
+  ],
+  "memo": "’s = is: It’s는 It is를 줄인 말이에요\nall because of ~ = 전부 ~ 때문 (because of 뒤에는 명사가 와요)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 2
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-53c",
+  "en": "He was shocked.",
+  "ko": "그는 충격을 받은 상태였다.",
+  "ch": [
+   {
+    "t": "He",
+    "r": "주어",
+    "k": "그는"
+   },
+   {
+    "t": "was",
+    "r": "동사",
+    "k": "상태였다"
+   },
+   {
+    "t": "shocked.",
+    "r": "보어",
+    "k": "충격을 받은"
+   }
+  ],
+  "memo": "was shocked = 충격을 받은 상태였다 (be + 형용사 형태의 shocked)\nHe = shocked 관계라서 2형식이에요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 2
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-54",
+  "en": "In the mud on his right shoe, he found a small dead butterfly.",
+  "ko": "그는 오른쪽 신발에 묻은 진흙 속에서 작고 죽은 나비 한 마리를 발견했다.",
+  "ch": [
+   {
+    "t": "In the mud on his right shoe,",
+    "r": "수식어",
+    "k": "오른쪽 신발에 묻은 진흙 속에서",
+    "c": "장소의 부사구",
+    "a": "동사(found) 수식"
+   },
+   {
+    "t": "he",
+    "r": "주어",
+    "k": "그는"
+   },
+   {
+    "t": "found",
+    "r": "동사",
+    "k": "발견했다"
+   },
+   {
+    "t": "a small dead butterfly.",
+    "r": "목적어",
+    "k": "작고 죽은 나비 한 마리를"
+   }
+  ],
+  "memo": "문장 맨 앞 In the mud ~ shoe,는 '어디에서'를 알려 주는 말이라 가려요\na small dead butterfly = 작고 죽은 나비 한 마리 (found의 목적어)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ }
+]

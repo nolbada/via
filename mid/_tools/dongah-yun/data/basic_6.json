@@ -1,0 +1,675 @@
+[
+ {
+  "id": "8-30a",
+  "en": "“I can’t breathe,” said Eckels.",
+  "ko": "“숨을 쉴 수가 없어요,”라고 에켈스가 말했다.",
+  "ch": [
+   {
+    "t": "“I can’t breathe,”",
+    "r": "목적어",
+    "k": "“숨을 쉴 수가 없어요,”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "said",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "Eckels.",
+    "r": "주어",
+    "k": "에켈스가"
+   }
+  ],
+  "memo": "“ ” 안의 말이 said의 목적어예요 (말한 내용)\nsaid Eckels = Eckels said와 같은 뜻, 순서만 바뀐 거예요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-30b",
+  "en": "“Get me out of here!”",
+  "ko": "“여기서 나를 꺼내 줘!”",
+  "ch": [
+   {
+    "t": "“Get",
+    "r": "동사",
+    "k": "꺼내 줘!”"
+   },
+   {
+    "t": "me",
+    "r": "목적어",
+    "k": "나를"
+   },
+   {
+    "t": "out of here!”",
+    "r": "수식어",
+    "k": "여기서",
+    "c": "장소의 부사구",
+    "a": "동사(Get) 수식"
+   }
+  ],
+  "memo": "명령문은 주어(You)가 없이 동사로 시작해요\nGet me out of here = 나를 여기서 꺼내 줘 (get + 사람 + out)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-31a",
+  "en": "“Don’t panic, Eckels,” said Travis.",
+  "ko": "“당황하지 마, 에켈스,”라고 트래비스가 말했다.",
+  "ch": [
+   {
+    "t": "“Don’t panic, Eckels,”",
+    "r": "목적어",
+    "k": "“당황하지 마, 에켈스,”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "said",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "Travis.",
+    "r": "주어",
+    "k": "트래비스가"
+   }
+  ],
+  "memo": "Don't panic = 당황하지 마 (명령문의 부정, 주어 없이 Don't + 동사)\nEckels는 부르는 말이고, said 뒤의 Travis가 말한 사람이에요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-31b",
+  "en": "“Turn around, and walk quietly back to the machine.”",
+  "ko": "“뒤돌아서, 그리고 조용히 기계 쪽으로 걸어 돌아가라.”",
+  "ch": [
+   {
+    "t": "“Turn around,",
+    "r": "동사",
+    "k": "뒤돌아서,"
+   },
+   {
+    "t": "and",
+    "r": "접속사",
+    "k": "그리고"
+   },
+   {
+    "t": "walk",
+    "r": "동사",
+    "k": "걸어 돌아가라."
+   },
+   {
+    "t": "quietly",
+    "r": "수식어",
+    "k": "조용히",
+    "c": "부사",
+    "a": "동사(walk) 수식"
+   },
+   {
+    "t": "back to the machine.”",
+    "r": "수식어",
+    "k": "기계 쪽으로",
+    "c": "장소의 부사구",
+    "a": "동사(walk) 수식"
+   }
+  ],
+  "memo": "명령문 두 개를 and로 이었어요: Turn around / walk ~\nturn around = 뒤돌아서다 (한 덩어리), back to ~ = ~ 쪽으로 되돌아",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0
+     ],
+     "fm": 1
+    },
+    {
+     "ci": [
+      2,
+      3,
+      4
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": 1
+  }
+ },
+ {
+  "id": "8-32",
+  "en": "Eckels turned around and started to run.",
+  "ko": "에켈스는 뒤돌아섰다, 그리고 달리기 시작했다.",
+  "ch": [
+   {
+    "t": "Eckels",
+    "r": "주어",
+    "k": "에켈스는"
+   },
+   {
+    "t": "turned around",
+    "r": "동사",
+    "k": "뒤돌아섰다"
+   },
+   {
+    "t": "and",
+    "r": "접속사",
+    "k": "그리고"
+   },
+   {
+    "t": "started",
+    "r": "동사",
+    "k": "시작했다"
+   },
+   {
+    "t": "to run.",
+    "r": "목적어",
+    "k": "달리기",
+    "c": "to부정사구(명사적)"
+   }
+  ],
+  "memo": "주어 Eckels 하나에 동사 두 개: turned around / started to run\nstart to run = 달리기 시작하다 (to run이 '달리기'라는 뜻의 목적어)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1
+     ],
+     "fm": 1
+    },
+    {
+     "ci": [
+      0,
+      3,
+      4
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": 2
+  }
+ },
+ {
+  "id": "8-33",
+  "en": "He was so terrified that he left the path by accident.",
+  "ko": "그는 너무 겁에 질려서 우연히 길을 벗어났다.",
+  "ch": [
+   {
+    "t": "He",
+    "r": "주어",
+    "k": "그는"
+   },
+   {
+    "t": "was",
+    "r": "동사",
+    "k": "~였다"
+   },
+   {
+    "t": "so terrified",
+    "r": "보어",
+    "k": "너무 겁에 질려서"
+   },
+   {
+    "t": "that he left the path by accident.",
+    "r": "수식어",
+    "k": "우연히 길을 벗어났다",
+    "c": "that 부사절(결과)",
+    "a": "terrified 수식"
+   }
+  ],
+  "memo": "so ~ that ... = 너무 ~해서 ...하다 (원인 → 결과)\nthat 뒤: he left the path by accident = 그가 우연히 길을 벗어났다",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 2
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-34a",
+  "en": "“Eckels!” shouted Travis.",
+  "ko": "“에켈스!”라고 트래비스가 소리쳤다.",
+  "ch": [
+   {
+    "t": "“Eckels!”",
+    "r": "목적어",
+    "k": "“에켈스!”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "shouted",
+    "r": "동사",
+    "k": "소리쳤다"
+   },
+   {
+    "t": "Travis.",
+    "r": "주어",
+    "k": "트래비스가"
+   }
+  ],
+  "memo": "shouted = 소리쳤다 (said보다 큰 소리로)\n“ ” 안의 말이 shouted의 목적어, 말한 사람은 Travis예요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-34b",
+  "en": "“Don’t leave the path!”",
+  "ko": "“길을 벗어나지 마!”",
+  "ch": [
+   {
+    "t": "“Don’t leave",
+    "r": "동사",
+    "k": "벗어나지 마!”"
+   },
+   {
+    "t": "the path!”",
+    "r": "목적어",
+    "k": "길을"
+   }
+  ],
+  "memo": "Don't + 동사 = ~하지 마 (금지 명령)\nleave the path = 길을 벗어나다 (길을 떠나다)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-35",
+  "en": "The T. rex heard Travis and turned its head toward him and the other travelers.",
+  "ko": "티렉스는 트래비스의 소리를 들었다, 그리고 그와 다른 여행자들 쪽으로 머리를 돌렸다.",
+  "ch": [
+   {
+    "t": "The T. rex",
+    "r": "주어",
+    "k": "티렉스는"
+   },
+   {
+    "t": "heard",
+    "r": "동사",
+    "k": "들었다"
+   },
+   {
+    "t": "Travis",
+    "r": "목적어",
+    "k": "트래비스의 소리를"
+   },
+   {
+    "t": "and",
+    "r": "접속사",
+    "k": "그리고"
+   },
+   {
+    "t": "turned",
+    "r": "동사",
+    "k": "돌렸다"
+   },
+   {
+    "t": "its head",
+    "r": "목적어",
+    "k": "머리를"
+   },
+   {
+    "t": "toward him and the other travelers.",
+    "r": "수식어",
+    "k": "그와 다른 여행자들 쪽으로",
+    "c": "장소의 부사구",
+    "a": "동사(turned) 수식"
+   }
+  ],
+  "memo": "주어 The T. rex 하나에 동사 두 개: heard / turned\nhim = Travis, its head = 티렉스의 머리 (its는 '그것의')",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    },
+    {
+     "ci": [
+      0,
+      4,
+      5,
+      6
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": 3
+  }
+ },
+ {
+  "id": "8-36",
+  "en": "There was a moment of silence.",
+  "ko": "잠시 동안의 침묵이 있었다.",
+  "ch": [
+   {
+    "t": "There",
+    "r": "수식어",
+    "k": "(유도부사)",
+    "c": "유도부사"
+   },
+   {
+    "t": "was",
+    "r": "동사",
+    "k": "있었다"
+   },
+   {
+    "t": "a moment of silence.",
+    "r": "주어",
+    "k": "잠시 동안의 침묵이"
+   }
+  ],
+  "memo": "There was ~ = ~이 있었다: There는 '거기'가 아니라 문장을 여는 말\n진짜 주어는 뒤의 a moment of silence (잠시 동안의 침묵)",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 1
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-37",
+  "en": "Then, it suddenly started to run toward them with a loud roar.",
+  "ko": "그때, 그것은 갑자기 큰 포효와 함께 그들을 향해 달리기 시작했다.",
+  "ch": [
+   {
+    "t": "Then,",
+    "r": "수식어",
+    "k": "그때,",
+    "c": "시간의 부사",
+    "a": "동사(started) 수식"
+   },
+   {
+    "t": "it",
+    "r": "주어",
+    "k": "그것은"
+   },
+   {
+    "t": "suddenly",
+    "r": "수식어",
+    "k": "갑자기",
+    "c": "부사",
+    "a": "동사(started) 수식"
+   },
+   {
+    "t": "started",
+    "r": "동사",
+    "k": "시작했다"
+   },
+   {
+    "t": "to run",
+    "r": "목적어",
+    "k": "달리기",
+    "c": "to부정사구(명사적)"
+   },
+   {
+    "t": "toward them",
+    "r": "수식어",
+    "k": "그들을 향해",
+    "c": "장소의 부사구",
+    "a": "동사(run) 수식"
+   },
+   {
+    "t": "with a loud roar.",
+    "r": "수식어",
+    "k": "큰 포효와 함께",
+    "c": "방법의 부사구",
+    "a": "동사(run) 수식"
+   }
+  ],
+  "memo": "started to run = 달리기 시작했다 (to run이 목적어)\ntoward them / with a loud roar는 '어디로, 어떻게' 달리는지 꾸며 줘요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-38",
+  "en": "“Run, everybody! Run!” shouted Travis.",
+  "ko": "“모두 달려! 달려!”라고 트래비스가 소리쳤다.",
+  "ch": [
+   {
+    "t": "“Run, everybody! Run!”",
+    "r": "목적어",
+    "k": "“모두 달려! 달려!”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "shouted",
+    "r": "동사",
+    "k": "소리쳤다"
+   },
+   {
+    "t": "Travis.",
+    "r": "주어",
+    "k": "트래비스가"
+   }
+  ],
+  "memo": "“ ” 안은 Run(달려)이라는 명령문, everybody는 부르는 말\n말한 내용이 shouted의 목적어, 말한 사람은 Travis예요",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ },
+ {
+  "id": "8-39",
+  "en": "Travis and the other travelers returned safely to the machine and found Eckels inside.",
+  "ko": "트래비스와 다른 여행자들은 안전하게 기계로 돌아왔다, 그리고 안에서 에켈스를 발견했다.",
+  "ch": [
+   {
+    "t": "Travis and the other travelers",
+    "r": "주어",
+    "k": "트래비스와 다른 여행자들은"
+   },
+   {
+    "t": "returned",
+    "r": "동사",
+    "k": "돌아왔다"
+   },
+   {
+    "t": "safely",
+    "r": "수식어",
+    "k": "안전하게",
+    "c": "부사",
+    "a": "동사(returned) 수식"
+   },
+   {
+    "t": "to the machine",
+    "r": "수식어",
+    "k": "기계로",
+    "c": "장소의 부사구",
+    "a": "동사(returned) 수식"
+   },
+   {
+    "t": "and",
+    "r": "접속사",
+    "k": "그리고"
+   },
+   {
+    "t": "found",
+    "r": "동사",
+    "k": "발견했다"
+   },
+   {
+    "t": "Eckels",
+    "r": "목적어",
+    "k": "에켈스를"
+   },
+   {
+    "t": "inside.",
+    "r": "수식어",
+    "k": "안에서",
+    "c": "장소의 부사",
+    "a": "동사(found) 수식"
+   }
+  ],
+  "memo": "주어 하나에 동사 두 개: returned / found\nfound Eckels inside = 안에서 에켈스를 발견했다 (inside는 '안에서')",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "fm": 1
+    },
+    {
+     "ci": [
+      0,
+      5,
+      6,
+      7
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": 4
+  }
+ },
+ {
+  "id": "8-40a",
+  "en": "“You put all of us in danger,” said Travis to Eckels in an angry voice.",
+  "ko": "“당신은 우리 모두를 위험에 빠뜨렸어요,”라고 트래비스가 화난 목소리로 에켈스에게 말했다.",
+  "ch": [
+   {
+    "t": "“You put all of us in danger,”",
+    "r": "목적어",
+    "k": "“당신은 우리 모두를 위험에 빠뜨렸어요,”라고",
+    "c": "인용문(말한 내용)"
+   },
+   {
+    "t": "said",
+    "r": "동사",
+    "k": "말했다"
+   },
+   {
+    "t": "Travis",
+    "r": "주어",
+    "k": "트래비스가"
+   },
+   {
+    "t": "to Eckels",
+    "r": "수식어",
+    "k": "에켈스에게",
+    "c": "대상의 부사구",
+    "a": "동사(said) 수식"
+   },
+   {
+    "t": "in an angry voice.",
+    "r": "수식어",
+    "k": "화난 목소리로",
+    "c": "방법의 부사구",
+    "a": "동사(said) 수식"
+   }
+  ],
+  "memo": "put A in danger = A를 위험에 빠뜨리다 (all of us = 우리 모두)\nsaid to Eckels = 에켈스에게 말했다, in an angry voice = 화난 목소리로",
+  "x": {
+   "rounds": [
+    {
+     "ci": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "fm": 3
+    }
+   ],
+   "glue": null
+  }
+ }
+]
