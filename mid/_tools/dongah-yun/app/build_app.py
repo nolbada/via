@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json,re
 from data import SECTIONS, CAT
+from qa import QA
 def _ph(sents,i):
     out=[]
     for r,n_,m in sents:
@@ -11,11 +12,11 @@ def _ph(sents,i):
         if o not in seen: seen.append(o)
     return ' … '.join(seen)
 n=1; secs=[]
-for s in SECTIONS:
+for si,s in enumerate(SECTIONS):
     sents=[]
     for rows,nat,mk in s['sents']:
         sents.append(dict(n=n,rows=[r.split('|') for r in rows],nat=nat,mk=mk)); n+=1
-    secs.append(dict(no=s['no'],sym=s['sym'],en=s['en'],ko=s['ko'],sents=sents,items=[dict(t=i[0],x=i[1],c=i[2],p=_ph(s['sents'],k+1)) for k,i in enumerate(s['items'])]))
+    secs.append(dict(no=s['no'],sym=s['sym'],en=s['en'],ko=s['ko'],sents=sents,items=[dict(t=i[0],x=i[1],c=i[2],p=_ph(s['sents'],k+1),q=QA[si][k][0],a=QA[si][k][1]) for k,i in enumerate(s['items'])]))
 DATA=json.dumps(dict(secs=secs,cat={k:dict(d=v[0],l=v[1],n=v[3],s=v[2]) for k,v in CAT.items()}),ensure_ascii=False)
 HTML=r'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>중2 동아(윤) 7과</title>
@@ -102,7 +103,7 @@ function vDrill(){
     cards.forEach(function(x){
       var seen={},rows='',re=/\[(\d+)\|/g,m;
       while((m=re.exec(x.mk))){var ix=+m[1];if(s.items[ix-1].c==k&&!seen[ix]){seen[ix]=1;var it=s.items[ix-1];
-        rows+='<div class="rv"><div class="q" style="border-color:'+c.d+'"><span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 3px;font-weight:700">'+esc(it.p)+'</span><span class="sub"> · 눌러서 확인</span></div><div class="a" style="background:'+c.l+'88;border-color:'+c.d+'"><div style="font-weight:800;color:'+c.d+';margin-bottom:3px">'+esc(it.t)+'</div>'+esc(it.x)+'</div></div>'}}
+        rows+='<div class="rv"><div class="q" style="border-color:'+c.d+'"><span style="background:'+c.l+';border-bottom:2px solid '+c.d+';border-radius:3px;padding:0 3px;font-weight:700">'+esc(it.p)+'</span><div style="margin-top:3px">'+esc(it.q)+'</div><div class="sub" style="margin-top:2px">눌러서 확인</div></div><div class="a" style="background:'+c.l+'88;border-color:'+c.d+'"><div style="font-weight:800;color:'+c.d+';margin-bottom:3px">'+esc(it.a)+'</div><div style="font-size:13px;color:#44545b">'+esc(it.x)+'</div></div></div>'}}
       h+='<div class="card"><div class="no">'+x.n+'</div><div class="ps" style="border:0;padding:0"><span>'+plainMark(x.mk,s,k)+'</span></div><div class="sub" style="margin:4px 0 6px">'+esc(x.nat)+'</div>'+rows+'</div>'});
   });
   return h+'</div>'}
