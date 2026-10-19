@@ -100,7 +100,7 @@ function noteBox(n){return '<div class="note"><div class="nl">노트에 이렇�
 function legend(){return '<div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;font-size:12.5px;padding:10px 14px">'+['g','b','k','o'].map(function(k){var c=D.cat[k];return '<div style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:4px;flex:none;background:'+c.l+';border:1.5px solid '+c.d+'"></span>'+esc(c.n)+'</div>'}).join('')+'</div>'}
 function drillBar(cur){return '<div style="display:flex;gap:6px;margin:0 0 10px">'+['g','b','k','o'].map(function(k){var c=D.cat[k];return '<button data-dr="'+k+'" style="flex:1;padding:8px 0;border-radius:10px;border:1.5px solid '+c.d+';background:'+(cur==k?c.d:c.l)+';color:'+(cur==k?'#fff':'#17202e')+';font:800 13px inherit;font-family:inherit">'+c.s+'</button>'}).join('')+'</div>'}
 function vDrill(){
-  var k=S.drill,c=D.cat[k],h='<h2>'+c.s+' 모아보기</h2><div class="sub" style="margin-bottom:8px">본문은 그대로 보고, 표시된 말이 무엇이었는지 떠올린 뒤 눌러서 확인해요.</div>'+drillBar(k)+'<div class="row" style="justify-content:flex-end"><button class="btn" id="dclose">설명 다시 가리기</button></div><div id="list">';
+  var k=S.drill,c=D.cat[k],h='<button class="btn" data-dr="'+k+'" style="margin-bottom:8px">← 전체 문법 설명으로</button><h2>'+c.s+' 모아보기</h2><div class="sub" style="margin-bottom:8px">본문은 그대로 보고, 표시된 말이 무엇이었는지 떠올린 뒤 눌러서 확인해요.</div>'+drillBar(k)+'<div class="row" style="justify-content:flex-end"><button class="btn" id="dclose">설명 다시 가리기</button></div><div id="list">';
   D.secs.forEach(function(s){
     var cards=s.sents.filter(function(x){var re=/\[(\d+)\|/g,m,f=false;while((m=re.exec(x.mk)))if(s.items[m[1]-1].c==k)f=true;return f});
     if(!cards.length)return;
