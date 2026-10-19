@@ -73,13 +73,13 @@ function home(){
  $.innerHTML=`<div class="cv-scene"><div class="cv"><div class="cv-fr"></div>
  <div class="cv-t">VOCA LINK</div><div class="cv-k">보카링크</div>
  ${COVER_SVG}
- <div class="cv-s">표제어를 넘어, 관계로 외운다</div></div>
- <div class="cv-rib">
- <button class="cv-r r1" data-go="${rs?'resume':'pickday'}"><i></i>${rs?`<span>이어서 풀기</span><span>${rs.sel?'DAY '+rs.sel+' ':''}${rs.doneN}/${rs.total}</span>`:'<span>오늘의</span><span>20문제</span>'}</button>
- <button class="cv-r r4" data-go="vtest"><i></i><span>1차</span><span>테스트</span></button>
- <button class="cv-r r2" data-go="stats"><i></i><span>내</span><span>기록</span></button>
- <button class="cv-r r3" data-go="about"><i></i><span>앱</span><span>구성</span></button>
- </div>
+ <div class="cv-s">표제어를 넘어, 관계로 외운다</div>
+ <div class="cv-menu">
+ <button class="cv-m" data-go="${rs?'resume':'pickday'}">${rs?`<span>이어서 풀기</span><span>${rs.sel?'DAY '+rs.sel+' ':''}${rs.doneN}/${rs.total}</span>`:'<span>오늘의</span><span>20문제</span>'}</button>
+ <button class="cv-m" data-go="vtest"><span>1차</span><span>테스트</span></button>
+ <button class="cv-m" data-go="stats"><span>내</span><span>기록</span></button>
+ <button class="cv-m" data-go="about"><span>앱</span><span>구성</span></button>
+ </div></div>
  ${rs?'<button class="cv-nw" data-go="pickday">다른 DAY 고르기</button>':''}
  ${met?`<div class="cv-st"><span>만난 단어 <b>${met}</b></span><span>복습할 단어 <b>${dn}</b></span><span>완전히 외운 단어 <b>${grad}</b></span></div>`:''}
  ${/[?&]t=1/.test(location.search)?`<div class="cv-tt"><button data-go="next">내일로 넘기기 (선생님 테스트용)</button><button data-go="reset">기록 지우기 (선생님 테스트용)</button></div>`:''}</div>`;
