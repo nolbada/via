@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><title>공용</title></head><body>
+<script>
+(function(){
+var q=new URLSearchParams(location.search),a=q.get('a')||'';
+if(!a||!/^[A-Za-z0-9_\-\/.]+$/.test(a)||a.indexOf('..')>-1||a.charAt(0)==='/'){location.replace('/via/links/');return;}
+var MK='__shared_mem',LK='__shared_last',IDLE=900000,ss=window.sessionStorage,now=Date.now();
+try{
+var last=+ss.getItem(LK)||0;
+if(q.get('new')==='1'||now-last>IDLE){ss.removeItem(MK);}
+ss.setItem(LK,String(now));
+}catch(e){}
+if(q.get('new')==='1'){try{q.delete('new');history.replaceState(null,'',location.pathname+'?'+q.toString()+location.hash);}catch(e){}}
+var url='/via/'+a,base=url.replace(/[^\/]*$/,'');
+var SHIM='(function(){var P=Storage.prototype,oG=P.getItem,oS=P.setItem,oR=P.removeItem,oC=P.clear,oK=P.key,SS=window.sessionStorage,MK="__shared_mem",LK="__shared_last",IDLE=900000,m={};'
++'try{m=JSON.parse(oG.call(SS,MK)||"{}")}catch(e){}'
++'function sv(){try{oS.call(SS,MK,JSON.stringify(m))}catch(e){}}'
++'P.getItem=function(k){if(this===SS)return oG.call(this,k);return Object.prototype.hasOwnProperty.call(m,k)?m[k]:null};'
++'P.setItem=function(k,v){if(this===SS)return oS.call(this,k,v);m[k]=String(v);sv()};'
++'P.removeItem=function(k){if(this===SS)return oR.call(this,k);delete m[k];sv()};'
++'P.clear=function(){if(this===SS)return oC.call(this);m={};sv()};'
++'P.key=function(i){if(this===SS)return oK.call(this,i);return Object.keys(m)[i]||null};'
++'var T;function arm(){try{oS.call(SS,LK,String(Date.now()))}catch(e){}clearTimeout(T);T=setTimeout(function(){try{oR.call(SS,MK)}catch(e){}location.replace("/via/links/")},IDLE)}'
++'["pointerdown","keydown","touchstart"].forEach(function(e){addEventListener(e,arm,{passive:true})});arm();'
++'document.addEventListener("click",function(ev){var el=ev.target&&ev.target.closest?ev.target.closest("a[href]"):null;if(!el||el.target==="_blank")return;var h=el.getAttribute("href");if(!h||/^(#|javascript:|mailto:|tel:)/i.test(h))return;var u;try{u=new URL(el.href)}catch(e){return}if(u.origin!==location.origin||u.pathname.indexOf("/via/")!==0||u.pathname.indexOf("/via/shared/")===0||u.pathname.indexOf("/via/links/")===0)return;ev.preventDefault();location.href="/via/shared/?a="+u.pathname.slice(5)+(u.search?"&"+u.search.slice(1):"")+u.hash},true);'
++'document.addEventListener("DOMContentLoaded",function(){var b=document.createElement("button");b.textContent="(공용) 비우기";b.style.cssText="position:fixed;right:8px;bottom:8px;z-index:2147483647;font:12px sans-serif;padding:6px 10px;border:1px solid #888;border-radius:14px;background:rgba(255,255,255,.85);color:#333;opacity:.75";b.onclick=function(){try{oR.call(SS,MK)}catch(e){}location.href="/via/links/"};document.body.appendChild(b);if(document.title.indexOf("(공용)")!==0)document.title="(공용) "+document.title});'
++'})();';
+fetch(url,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(html){
+var inj='<base href="'+base+'"><script>'+SHIM+'<\/script>';
+var out=/<head[^>]*>/i.test(html)?html.replace(/<head[^>]*>/i,function(m){return m+inj}):inj+html;
+document.open();document.write(out);document.close();
+}).catch(function(){location.replace('/via/links/')});
+})();
+</script>
+</body></html>
