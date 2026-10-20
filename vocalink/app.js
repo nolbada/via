@@ -1,5 +1,8 @@
 (function(){
 "use strict";
+const SHARED=/[?&]shared/.test(location.search);
+if(SHARED){const mem={};try{Storage.prototype.getItem=function(k){return k in mem?mem[k]:null;};Storage.prototype.setItem=function(k,v){mem[k]=String(v);};Storage.prototype.removeItem=function(k){delete mem[k];};}catch(e){}
+ let T;const arm=()=>{clearTimeout(T);T=setTimeout(()=>location.reload(),900000);};['pointerdown','keydown','touchstart'].forEach(e=>addEventListener(e,arm,{passive:true}));arm();}
 const DAYS=Object.keys(window.VL_DATA).map(Number).sort((a,b)=>a-b);
 const hk=s=>{let h=7;for(const c of String(s))h=(h*31+c.charCodeAt(0))%100003;return h%100;};
 const D=(()=>{const m={judge:[],broken:[],deriv:[],family:[],conf:[],w24:[],poly:[]};
@@ -66,7 +69,7 @@ const COVER_SVG=(()=>{
  </svg>`;
 })();
 function home(){
- if(S.sess&&(S.sess.day!==dayNo()||!(S.sess.q&&S.sess.q.length))){delete S.sess;save();}
+ if(S.sess&&(SHARED||S.sess.day!==dayNo()||!(S.sess.q&&S.sess.q.length))){delete S.sess;save();}
  const rs=S.sess||null;
  const met=Object.keys(S.sr).length,grad=Object.values(S.sr).filter(e=>e.done).length,dn=dueWords().length;
  document.body.classList.add('cv-on');
@@ -81,7 +84,7 @@ function home(){
  <button class="cv-m" data-go="about"><span>앱</span><span>구성</span></button>
  </div></div>
  ${rs?'<button class="cv-nw" data-go="pickday">다른 DAY 고르기</button>':''}
- ${met?`<div class="cv-st"><span>만난 단어 <b>${met}</b></span><span>복습할 단어 <b>${dn}</b></span><span>완전히 외운 단어 <b>${grad}</b></span></div>`:''}
+ ${SHARED?`<div class="cv-st"><span>공유폰 모드</span></div>`:''}${met?`<div class="cv-st"><span>만난 단어 <b>${met}</b></span><span>복습할 단어 <b>${dn}</b></span><span>완전히 외운 단어 <b>${grad}</b></span></div>`:''}
  ${/[?&]t=1/.test(location.search)?`<div class="cv-tt"><button data-go="next">내일로 넘기기 (선생님 테스트용)</button><button data-go="reset">기록 지우기 (선생님 테스트용)</button></div>`:''}</div>`;
  $.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const g=b.dataset.go;if(g==='next'){S.off=(S.off||0)+1;save();home();return;}if(g==='reset'){if(confirm('이 폰/브라우저의 풀이 기록을 모두 지울까요?')){S={log:[],weak:{},lv:{},tipSeen:0,sr:{}};save();home();}return;}document.body.classList.remove('cv-on');window.scrollTo(0,0);g==='pickday'?pickDay():g==='vtest'?(window.VLTEST?VLTEST.open($,home):home()):g==='stats'?stats():g==='about'?about():g==='resume'?resumeDaily():g==='daily'?startDaily():start(g);});
 }
@@ -238,7 +241,7 @@ function next(){if(!Q.length)return summary();cur=Q.shift();answered=false;if(ro
 function frame(inner){
  $.innerHTML=`<div class="top"><button class="back" id="bk">← 그만하기</button><span class="sub">${doneN}/${total}</span></div>
  <div class="bar"><i style="width:${total?doneN/total*100:0}%"></i></div>${cur&&cur.tag?`<div class="pick"><b class="${({'오늘부터 1일':'c-new','왜 자꾸 날 잊어?':'c-weak','우리 만났었지?':'c-rev'})[cur.tag.split(' — ')[0]]||''}">${cur.tag.split(' — ')[0]}</b>${cur.tag.split(' — ').slice(1).join(' — ')}</div>`:''}${inner}`;
- document.getElementById('bk').onclick=()=>{tick();S.totalSec=(S.totalSec||0)+actSec;if(S.sess&&round&&round.mode==='daily')S.sess.sec=(S.sess.sec||0)+actSec;actSec=0;save();home();};
+ document.getElementById('bk').onclick=()=>{tick();S.totalSec=(S.totalSec||0)+actSec;if(S.sess&&round&&round.mode==='daily')S.sess.sec=(S.sess.sec||0)+actSec;actSec=0;save();SHARED?location.reload():home();};
 }
 function render(){({judge:rJudge,broken:rBroken,deriv:rDeriv,poly1:rPoly1,poly2:rPoly2,w24:rW24,w24w:rW24w})[cur.t]();}
 
@@ -468,11 +471,11 @@ function cardsHtml(){
 function summary(){
  tick();const prev=(round.mode==='daily'&&S.sess&&S.sess.sec)||0,secs=actSec+prev;S.totalSec=(S.totalSec||0)+actSec;if(round.mode==='daily'){delete S.sess;S.doneDay=dayNo();if(CURSEL){S.dd=S.dd||{};S.dd[CURSEL]=(S.dd[CURSEL]||0)+1;}}save();
  const w24=round.mode==='w24';
- $.innerHTML=`<h1>한 판 끝!</h1><div class="card"><div style="font-size:30px;font-weight:800">처음에 맞힌 개수 ${round.firstOk} / ${round.firstN}</div>
+ $.innerHTML=`<h1>한 판 끝!</h1><div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px"><span><b>${dlabel(dkey())}</b> · ${CURSEL?'DAY '+CURSEL:'오늘의 20문제'}</span><input id="pzn" placeholder="이름" maxlength="8" style="width:96px;font:inherit;border:0;border-bottom:1.5px solid currentColor;background:transparent;text-align:center;color:inherit"></div><div style="font-size:30px;font-weight:800">처음에 맞힌 개수 ${round.firstOk} / ${round.firstN}</div>
  <div class="sub">이번 사용시간 <b>${fmtT(secs)}</b> (딴 데 다녀온 시간·멈춰 있던 시간은 빼요)</div>
  ${w24?`<div class="fb ok">종이 PART2 「오늘의 어휘력 체크」 <b>1차</b> 칸에 <b>${round.firstOk}</b> 를 적어요.</div>`:''}
- <div class="sub">틀린 문제는 내일부터 '왜 자꾸 날 잊어?'로 다시 돌아와요.</div></div>
- ${cardsHtml()}${round.cards.length?'<button class="btn" id="wn">오늘의 오답노트 보기</button> ':''}<button class="btn pri" id="h">처음으로</button>`;document.getElementById('h').onclick=home;const wb=document.getElementById('wn');if(wb)wb.onclick=()=>wnote();
+ ${SHARED?'':'<div class="sub">틀린 문제는 내일부터 \'왜 자꾸 날 잊어?\'로 다시 돌아와요.</div>'}</div>
+ ${cardsHtml()}${round.cards.length?'<button class="btn" id="wn">오늘의 오답노트 보기</button> ':''}<button class="btn pri" id="h">${SHARED?'끝내기':'처음으로'}</button>`;document.getElementById('h').onclick=SHARED?()=>location.reload():home;const wb=document.getElementById('wn');if(wb)wb.onclick=()=>wnote();
 }
 function stats(){
  const by={};S.log.forEach(l=>{const b=by[l.t]=by[l.t]||{n:0,ok:0};b.n++;b.ok+=l.ok;});
