@@ -788,7 +788,9 @@ function curDay(){
   var q=null;try{q=Number(new URLSearchParams(location.search).get('day'));}catch(e){}
   if(q&&days[q])return q;
   if(store.sel&&days[store.sel])return store.sel;
-  return dayList[0];
+  var m=0;(store.hist||[]).forEach(function(h){if(h&&h.k==='lesson'&&h.d>m)m=h.d});Object.keys(store.best||{}).forEach(function(k){if(+k>m)m=+k});
+  var nx=dayList.filter(function(d){return d>m})[0];
+  return nx||dayList[0];
 }
 function dayGrid(from,to,cur){
   var h='';for(var d=from;d<=to;d++){
@@ -827,7 +829,7 @@ function dayTab(){
   window.scrollTo(0,0);
 }
 function dayPick(d17){
-  return '<div class="card" style="margin-bottom:10px"><h2 style="margin-top:0">Day 고르기</h2>'
+  return '<div class="card" style="margin-bottom:10px"><h2 style="margin-top:0">Day 고르기</h2><button class="ghost" data-act="skipday" style="width:100%;margin:0 0 8px">다음 Day로 넘기기 (Day '+(dayList[dayList.indexOf(d17)+1]||d17)+')</button>'
    +'<p class="hint" style="margin:0 0 6px">E1 · Day 1~32</p><div class="dgrid">'+dayGrid(1,32,d17)+'</div>'
    +'<p class="hint" style="margin:10px 0 6px">E2 · Day 33~64</p><div class="dgrid">'+dayGrid(33,64,d17)+'</div></div>';
 }
@@ -1688,6 +1690,7 @@ function finishQuiz(){
   save();
   var okN=S.res.reduce(function(x,r){return x+(r.ok||0);},0)+Q.list.length,acc=okN+total?okN/(okN+total):1,pass=acc>=CUT;
   addHist({k:'lesson',d:S.day,m:total,p:pass});
+  if(S.day===curDay()){var _nx=dayList[dayList.indexOf(S.day)+1];if(_nx){store.sel=_nx;save();}}
   S.fin={total:total,sm:sm,qm:qm,redo:redo,pass:pass,acc:acc,wrong:wrong};
   try{var _f={};for(var _k in S.fin)if(_k!=='wrong')_f[_k]=S.fin[_k];store.lastRec={d:S.day,t:Date.now(),f:_f};save();}catch(_e){}
   renderFin();
@@ -1716,6 +1719,7 @@ app.addEventListener('click',function(e){
   if(a==='view'){viewDay(Number(t.getAttribute('data-day')));return;}
   if(a==='view'){viewDay(Number(t.getAttribute('data-day')));return;}
   if(a==='tab'){TAB=t.getAttribute('data-tab');home();return;}
+  if(a==='skipday'){var _n=dayList[dayList.indexOf(curDay())+1];if(_n){store.sel=_n;save();}home();return;}
   if(a==='selday'){store.sel=Number(t.getAttribute('data-day'));save();home();return;}
   if(a==='wipe'){store={best:{}};HCONF=false;save();home();return;}
   if(a==='top'){window.scrollTo(0,0);return;}
