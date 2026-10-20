@@ -33,13 +33,22 @@ a.app.vs{border-left-color:#4fa56a}
 .bdc4 a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:10px;padding:14px 4px;color:var(--ink);text-decoration:none;font-size:17px;font-weight:700;min-width:0}
 .bdc4 a span{font-size:11px;font-weight:400;color:var(--sub)}
 .bdc4 a:active{background:var(--line)}
+.gy{background:#fde68a;border:3px solid #d97706;border-radius:16px;padding:4px 12px 6px;margin:0 0 30px}
+.gy h2{display:block;text-align:center;font-size:28px;font-weight:900;letter-spacing:.06em;color:#fff;background:#b45309;border-radius:12px;padding:16px 10px 12px;margin:10px 0 14px}
+.gy h2 span{display:block;font-size:13px;font-weight:700;letter-spacing:0;margin-top:4px;color:#fde68a}
+@media (prefers-color-scheme:dark){.gy{background:#4a3708;border-color:#f59e0b}.gy h2{color:#fff;background:#d97706}}
+.pv{background:#cfeee8;border:3px solid #0f766e;border-radius:16px;padding:4px 12px 14px;margin:0 0 20px}
+.pv h2.pt{display:block;text-align:center;font-size:28px;font-weight:900;letter-spacing:.06em;color:#fff;background:#0f766e;border-radius:12px;padding:16px 10px 12px;margin:10px 0 14px}
+.pv h2.pt span{display:block;font-size:13px;font-weight:700;letter-spacing:0;margin-top:4px;color:#b8efe6}
+@media (prefers-color-scheme:dark){.pv{background:#0e2e2a;border-color:#2fb5a8}.pv h2.pt{background:#0f766e}}
 </style>
 </head>
 <body>
 <main>
 <h1>앱 링크</h1>
 
-<h2>(공용)</h2>
+<div class="gy">
+<h2>(공용)<span>공용폰 전용 &middot; 기록이 남지 않음</span></h2>
 <a class="app" href="https://nolbada.github.io/via/shared/?a=vsignal-k/&amp;new=1">V SIGNAL K<span>K단계</span></a>
 <a class="app" href="https://nolbada.github.io/via/shared/?a=vsignal-e/&amp;new=1">V SIGNAL E<span>E단계</span></a>
 <a class="app" href="https://nolbada.github.io/via/shared/?a=vsignal-y/&amp;new=1">V SIGNAL Y<span>Y단계</span></a>
@@ -59,7 +68,10 @@ a.app.vs{border-left-color:#4fa56a}
 <a class="app vs" href="https://nolbada.github.io/via/shared/?a=switch-mission-s.html&amp;new=1">보카스위치 수능</a>
 <a class="app m1" href="https://nolbada.github.io/via/shared/?a=m1-reading/&amp;new=1">M1 Reading</a>
 <a class="app m2" href="https://nolbada.github.io/via/shared/?a=m2-reading/&amp;new=1">M2 Reading</a>
+</div>
 
+<div class="pv">
+<h2 class="pt">개인용<span>내 폰 &middot; 기록이 계속 남음</span></h2>
 <h2>V SIGNAL</h2>
 <a class="app" href="https://nolbada.github.io/via/vsignal-k/">V SIGNAL K<span>K단계</span></a>
 <a class="app" href="https://nolbada.github.io/via/vsignal-e/">V SIGNAL E<span>E단계</span></a>
@@ -90,6 +102,7 @@ a.app.vs{border-left-color:#4fa56a}
 <h2>FBI</h2>
 <a class="app fbi" href="https://nolbada.github.io/via/fbi/g1-9/">FBI 고1 9월</a>
 <a class="app fbi" href="https://nolbada.github.io/via/fbi/g2-6/">FBI 고2 6월</a>
+</div>
 </main>
 </body>
 </html>
