@@ -2,7 +2,7 @@
 "use strict";
 // 보카링크 1차 테스트(A형) — 시험지에 표시한 답을 앱에 입력 → 제출 → 채점 → 해설/오답 정리.
 // 풀다가 나가면 0점을 기록하지 않고 '중간에 나간 횟수'만 센다. 다시 들어오면 처음부터 새로 풀기. 기록은 이 폰에만 저장.
-const C='①②③④',N=20,PASS=16,DAYS=30,KEY='vl_test_v1';
+const C='①②③④',N=20,PASS=16,DAYS=30,KEY='vl_test_v1',LIM=2,CODE='8800';
 const AV=Array.from({length:DAYS},(_,i)=>i+1);
 let $=null,back=null,D=null,pick={};
 // 예전에 '나가서 0점'으로 남은 기록(20문항 모두 미응답)은 점수 기록에서 빼고 '중간에 나간 횟수'로 옮긴다.
@@ -46,7 +46,23 @@ function openDay(n){
   if(r){const all=[r.first].concat(r.re||[]);result(n,all.length-1);}else entry(n);
  });
 }
+// 중간에 나간 횟수가 LIM에 이르면 그 DAY는 잠김 — 선생님 코드를 넣으면 한 번 더 풀 수 있음
+function lock(n){
+ const ab=(load().ab||{})[n]||0;
+ $.innerHTML=`<div class="top"><button class="back" id="vb">← 목록</button></div><h1>DAY ${n} · 1차 테스트</h1>
+ <div class="card"><b>중간에 ${ab}번 나가서 잠겼어요.</b><div class="sub" style="margin-top:6px">선생님께 이 화면을 보여 주세요.</div>
+ <input id="vk" type="password" inputmode="numeric" maxlength="8" placeholder="선생님 코드" style="margin-top:10px;width:100%;box-sizing:border-box;font:inherit;padding:10px;border:1.5px solid currentColor;border-radius:8px;background:transparent;color:inherit">
+ <div class="sub" id="vm" style="margin-top:6px"></div></div>
+ <button class="btn pri" id="vo">확인</button>`;
+ document.getElementById('vb').onclick=list;
+ document.getElementById('vo').onclick=()=>{
+  if(document.getElementById('vk').value.trim()===CODE){const st=load();st.ab=st.ab||{};st.ab[n]=LIM-1;save(st);entry(n);}
+  else{document.getElementById('vm').textContent='코드가 달라요.';document.getElementById('vk').value='';}
+ };
+ window.scrollTo(0,0);
+}
 function entry(n){
+ if((((load().ab)||{})[n]||0)>=LIM)return lock(n);
  pick={};
  const st=load();st.pend={n,t:stamp()};save(st); // 제출 전에 나가면 점수 기록 없이 '나간 횟수'만 +1
  let h='';D.forEach((it,i)=>{
