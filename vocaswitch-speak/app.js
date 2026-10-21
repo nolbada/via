@@ -18,18 +18,18 @@
     $('book').value = b || '';
     document.querySelectorAll('.bk').forEach(function(x){ x.classList.toggle('on', x.dataset.b === b); });
     var n = (BOOKS[b] || []).length;
-    $('bkinfo').textContent = b ? b : 'UNIT을 선택하세요';
+    $('bkinfo').textContent = b ? b : '번호 구간을 선택하세요';
     $('err').textContent = '';
   }
   (function(){
     var box = $('books'); box.innerHTML = '';
     Object.keys(BOOKS).forEach(function(k){
       var b = document.createElement('button'); b.type = 'button'; b.className = 'bk'; b.dataset.b = k;
-      b.textContent = k.replace(/^\D+/, ''); box.appendChild(b);
+      b.textContent = k; box.appendChild(b);
     });
   })();
   document.querySelectorAll('.bk').forEach(function(x){ x.onclick = function(){ setBook(x.dataset.b); }; });
-  try { var p = JSON.parse(localStorage.getItem(PKEY) || '{}'); if (p.name) $('name').value = p.name; if (p.book) setBook(p.book); } catch(e){}
+  try { var p = JSON.parse(localStorage.getItem(PKEY) || '{}'); if (p.name) $('name').value = p.name; if (p.book && BOOKS[p.book]) setBook(p.book); } catch(e){}
 
   var attemptLog = [], picks = [], idx = -1, cur = null, results = [], tries = 0, graded = false, timerId = null, left = 0;
   var prof = {};
@@ -61,7 +61,7 @@
     var name = $('name').value.trim(), book = $('book').value, f = 1, t = 1;
     var arr = BOOKS[book], err = $('err'); f = 1; t = arr ? arr.length : 0;
     if (!name){ err.textContent = '이름을 입력하세요.'; return; }
-    if (!book){ err.textContent = 'UNIT을 눌러 선택하세요.'; return; }
+    if (!book){ err.textContent = '번호 구간을 눌러 선택하세요.'; return; }
     if (!arr){ err.textContent = '문장 데이터를 불러오지 못했어요. 새로고침 해 보세요.'; return; }
     if (!f || !t || f > t){ err.textContent = '번호 범위를 정확히 입력하세요. (예: 221 ~ 230)'; return; }
     if (f < 1 || t > arr.length){ err.textContent = book + '은 1~' + arr.length + '번까지 있어요.'; return; }
