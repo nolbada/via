@@ -7,7 +7,7 @@
   input[type=text], input[type=number], select { width:100%; padding:13px 14px; font:inherit; font-size:18px; border:2px solid #e9ecef; border-radius:12px; outline:none; background:#fff; }
   input:focus, select:focus { border-color:#f39c12; }
   .books { display:flex; flex-wrap:wrap; gap:8px; }
-  .bk { flex:0 0 calc((100% - 40px) / 6); padding:12px 0; border:2px solid #e9ecef; background:#fff; border-radius:12px; font:inherit; font-size:18px; font-weight:bold; color:#666; cursor:pointer; }
+  .bk { flex:0 0 calc((100% - 16px) / 3); padding:12px 0; border:2px solid #e9ecef; background:#fff; border-radius:12px; font:inherit; font-size:16px; font-weight:bold; color:#666; cursor:pointer; }
   .bk.on { border-color:#f39c12; background:#fff3cd; color:#2c3e50; }
   .bkinfo { text-align:center; color:#888; font-size:14px; margin-top:8px; }
   .two { display:flex; gap:10px; align-items:center; }
