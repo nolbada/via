@@ -1,16 +1,21 @@
 (function(){
 "use strict";
 // 보카링크 1차 테스트(A형) — 시험지에 표시한 답을 앱에 입력 → 제출 → 채점 → 해설/오답 정리.
-// 한 번에 끝까지 푸는 방식: 풀다가 나가면 0점. 기록은 이 폰에만 저장.
+// 풀다가 나가면 0점을 기록하지 않고 '중간에 나간 횟수'만 센다. 다시 들어오면 처음부터 새로 풀기. 기록은 이 폰에만 저장.
 const C='①②③④',N=20,PASS=16,DAYS=30,KEY='vl_test_v1';
 const AV=Array.from({length:DAYS},(_,i)=>i+1);
 let $=null,back=null,D=null,pick={};
-const load=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'null')||{d:{}};}catch(e){return{d:{}};}};
+// 예전에 '나가서 0점'으로 남은 기록(20문항 모두 미응답)은 점수 기록에서 빼고 '중간에 나간 횟수'로 옮긴다.
+// 제출은 20문항을 모두 골라야만 되므로 전부 0인 기록은 반드시 이탈 기록이다.
+function mig(st){let ch=false;Object.keys(st.d).forEach(k=>{const r=st.d[k],all=[r.first].concat(r.re||[]),ok=all.filter(a=>!/^0+$/.test(a.p)),z=all.length-ok.length;
+ if(z){ch=true;st.ab=st.ab||{};st.ab[k]=(st.ab[k]||0)+z;if(ok.length)st.d[k]={first:ok[0],re:ok.slice(1)};else delete st.d[k];}});return ch;}
+const load=()=>{try{const v=JSON.parse(localStorage.getItem(KEY)||'null')||{d:{}};if(mig(v))save(v);return v;}catch(e){return{d:{}};}};
 const save=v=>{try{localStorage.setItem(KEY,JSON.stringify(v));}catch(e){}};
 const stamp=()=>{const d=new Date(),p=x=>String(x).padStart(2,'0');return d.getFullYear()+'.'+p(d.getMonth()+1)+'.'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());};
 function add(st,n,rec){const r=st.d[n];if(r)r.re=(r.re||[]).concat([rec]);else st.d[n]={first:rec,re:[]};}
-// 풀던 중 화면을 닫았거나 나갔다면 0점으로 기록
-function settle(){const st=load();if(!st.pend)return;add(st,st.pend.n,{p:'0'.repeat(N),s:0,t:st.pend.t});delete st.pend;save(st);}
+// 풀던 중 화면을 닫았거나 나갔다면 점수는 남기지 않고 '중간에 나간 횟수'만 올린다
+function settle(){const st=load();if(!st.pend)return;const n=st.pend.n;st.ab=st.ab||{};st.ab[n]=(st.ab[n]||0)+1;delete st.pend;save(st);}
+const best=r=>Math.max.apply(null,[r.first].concat(r.re||[]).map(a=>a.s));
 function ensure(n,cb){
  window.VL_TEST=window.VL_TEST||{};
  if(window.VL_TEST[n])return cb(true);
@@ -21,13 +26,13 @@ function list(){
  settle();
  const st=load();
  let done=0,pass=0;
- for(let n=1;n<=DAYS;n++){const r=st.d[n];if(r){done++;if(r.first.s>=PASS)pass++;}}
+ for(let n=1;n<=DAYS;n++){const r=st.d[n];if(r){done++;if(best(r)>=PASS)pass++;}}
  $.innerHTML=`<div class="top"><button class="back" id="vb">← 처음으로</button></div><h1>1차 테스트</h1>
- <div class="sub">DAY별 20문제 · ${PASS}개 이상이면 통과</div>
+ <div class="sub">DAY별 20문제 · ${PASS}개 이상이면 통과 · 칸의 점수는 최고 점수</div>
  <div class="stats"><div><b>${done}</b><span>푼 DAY</span></div><div><b>${pass}</b><span>통과한 DAY</span></div><div><b>${DAYS-done}</b><span>남은 DAY</span></div></div>
  <div class="vt-grid">${Array.from({length:DAYS},(_,i)=>{const n=i+1,r=st.d[n];
   const on=AV.indexOf(n)>=0;
-  return `<button class="vt-d${r?(r.first.s>=PASS?' p':' f'):''}" data-n="${n}"${on?'':' disabled style="opacity:.4"'}>${n}<small>${r?r.first.s+'/'+N:(on?'DAY':'준비 중')}</small></button>`;}).join('')}</div>`;
+  return `<button class="vt-d${r?(best(r)>=PASS?' p':' f'):''}" data-n="${n}"${on?'':' disabled style="opacity:.4"'}>${n}<small>${r?best(r)+'/'+N:(on?'DAY':'준비 중')}</small></button>`;}).join('')}</div>`;
  document.getElementById('vb').onclick=()=>back();
  $.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>openDay(+b.dataset.n));
  window.scrollTo(0,0);
@@ -43,7 +48,7 @@ function openDay(n){
 }
 function entry(n){
  pick={};
- const st=load();st.pend={n,t:stamp()};save(st); // 제출 전에 나가면 0점
+ const st=load();st.pend={n,t:stamp()};save(st); // 제출 전에 나가면 점수 기록 없이 '나간 횟수'만 +1
  let h='';D.forEach((it,i)=>{
   if(i===0||D[i-1].sec!==it.sec)h+=`<div class="vt-sec">${it.sec}</div>`;
   h+=`<div class="vt-row" data-r="${it.n}"><span class="vt-no">${it.n}.</span><div class="vt-pk">${[1,2,3,4].map(k=>`<button data-n="${it.n}" data-k="${k}">${C[k-1]}</button>`).join('')}</div></div>`;
@@ -52,7 +57,7 @@ function entry(n){
  <button class="btn pri" id="vg" disabled>제출</button>`;
  const upd=()=>{const c=Object.keys(pick).length;document.getElementById('vc').textContent=c+'/'+N;const g=document.getElementById('vg');g.disabled=c<N;g.textContent=c<N?'남은 문항 '+(N-c)+'개':'제출';};
  upd();
- document.getElementById('vb').onclick=()=>{if(confirm('지금 나가면 이번 시험은 0점으로 기록돼요. 나갈까요?')){settle();list();}};
+ document.getElementById('vb').onclick=()=>{if(confirm('지금 나가면 이번 시험은 점수가 기록되지 않아요. 다시 들어오면 처음부터 새로 풀어요. 나갈까요?')){settle();list();}};
  $.querySelectorAll('.vt-pk button').forEach(b=>b.onclick=()=>{
   pick[+b.dataset.n]=+b.dataset.k;
   b.parentNode.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));upd();});
@@ -86,7 +91,7 @@ function explain(it){
  return h;
 }
 function result(n,idx){
- const r=load().d[n],all=[r.first].concat(r.re||[]),rec=all[idx],p=rec.p,zero=/^0+$/.test(p);
+ const stt=load(),r=stt.d[n],ab=(stt.ab&&stt.ab[n])||0,all=[r.first].concat(r.re||[]),rec=all[idx],p=rec.p;
  const bad=D.filter((it,i)=>+p[i]!==it.slot).length;
  let rows='';D.forEach((it,i)=>{
   if(i===0||D[i-1].sec!==it.sec)rows+=`<div class="vt-sec">${it.sec}</div>`;
@@ -95,10 +100,11 @@ function result(n,idx){
  });
  $.innerHTML=`<div class="top"><button class="back" id="vb">← 목록</button></div><h1>DAY ${n} · 1차 테스트</h1>
  <div class="card vt-sc"><div class="vt-big">${rec.s} / ${N}</div>
- <div class="${rec.s>=PASS?'vt-pass':'vt-fail'}">${zero?'제출하지 않고 나가서 0점으로 기록됐어요.':rec.s>=PASS?'통과 — 다음 DAY로 넘어가도 돼요.':'통과 기준은 '+PASS+'개예요. 틀린 문항의 해설을 읽고 다시 풀어 봐요.'}</div>
- <div class="sub" style="margin-top:6px">${idx?'재도전 '+idx+' · ':'첫 기록 · '}${rec.t}</div></div>
+ <div class="${rec.s>=PASS?'vt-pass':'vt-fail'}">${rec.s>=PASS?'통과 — 다음 DAY로 넘어가도 돼요.':'통과 기준은 '+PASS+'개예요. 틀린 문항의 해설을 읽고 다시 풀어 봐요.'}</div>
+ <div class="sub" style="margin-top:6px">${idx?'재도전 '+idx+' · ':'첫 기록 · '}${rec.t}</div>
+ ${all.length>1||ab?`<div class="sub" style="margin-top:4px">첫 기록 ${r.first.s}/${N} · 최고 ${best(r)}/${N}${ab?' · 중간에 나간 횟수 '+ab+'회':''}</div>`:''}</div>
  ${all.length>1?`<div class="vt-his">${all.map((a,i)=>`<button data-h="${i}" class="${i===idx?'on':''}">${i?'재도전 '+i:'첫 기록'} ${a.s}/${N}</button>`).join('')}</div>`:''}
- ${zero?'':`<div class="sub" style="margin:10px 2px 0">${bad?'틀린 문항 '+bad+'개의 해설이 열려 있어요.':'모두 맞았어요!'}</div>${rows}`}
+ <div class="sub" style="margin:10px 2px 0">${bad?'틀린 문항 '+bad+'개의 해설이 열려 있어요.':'모두 맞았어요!'}</div>${rows}
  <button class="btn" id="vr">다시 풀기 (첫 기록은 그대로 남아요)</button><button class="btn pri" id="vl">다른 DAY 고르기</button>`;
  document.getElementById('vb').onclick=list;document.getElementById('vl').onclick=list;
  document.getElementById('vr').onclick=()=>entry(n);
