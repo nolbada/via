@@ -345,7 +345,17 @@ function runTeacher(code){
     });
     return t+'</tbody></table></div><div class="legend"><span>완료 / 전체 칸</span><span><b class="part">(n)</b> 아직 검사 전인 칸 수</span></div>';
   }
+  var keepX=0,keepSig='';
   function draw(){
+    var gw=app.querySelector('.gridwrap'),sig=selCls+'|'+viewKey,y=window.pageYOffset;
+    if(gw&&sig===keepSig)keepX=gw.scrollLeft;else keepX=0;
+    drawBoard();
+    keepSig=selCls+'|'+viewKey;
+    var g2=app.querySelector('.gridwrap');
+    if(g2&&keepX)g2.scrollLeft=keepX;
+    if(sig===keepSig&&y)window.scrollTo(0,y);
+  }
+  function drawBoard(){
     var cur=curKey();if(viewKey>cur)viewKey=cur;
     var cl=classes();if(!selCls||(selCls!=='__all'&&cl.indexOf(selCls)<0))selCls=cl[0]||'';
     var start=parseKey(viewKey),end=addDays(start,5),isCur=viewKey===cur,t=today();
