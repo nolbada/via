@@ -151,6 +151,15 @@ details.mkd summary{margin:10px 2px 4px;font-size:13px}
 .dl{cursor:default}
 .dl input{display:none}
 .cnt{cursor:pointer;min-width:26px;text-align:center}
+#rmodal{position:fixed;inset:0;background:rgba(20,26,40,.5);display:none;align-items:center;justify-content:center;z-index:16;padding:16px}
+#rmodal .box{max-width:520px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;max-height:50vh;overflow:auto;margin:8px 0 12px}
+.ri{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:3px 5px 3px 10px;border:1px solid var(--line);border-radius:10px;font-weight:600}
+.ri button{min-height:30px;font-size:12px;padding:2px 8px}
+.ri button.arm{color:var(--bad);border-color:var(--bad)}
+.srch{display:flex;gap:8px;align-items:center}
+.srch input{flex:1}
+#rbtn{min-height:36px;padding:4px 14px;border-radius:999px;font-size:14px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff}
 </style>
 </head>
 <body>
@@ -170,7 +179,7 @@ details.mkd summary{margin:10px 2px 4px;font-size:13px}
       <button id="dnext" aria-label="다음 주">&#8250;</button>
       <button class="g" id="drec">최근</button>
     </div>
-    <div class="srch"><input id="q" type="search" placeholder="이름 검색" autocomplete="off"></div>
+    <div class="srch"><input id="q" type="search" placeholder="이름 검색" autocomplete="off"><button id="rbtn">명단</button></div>
   </div>
   <div class="stat" id="stat"></div>
 </header>
@@ -201,6 +210,7 @@ details.mkd summary{margin:10px 2px 4px;font-size:13px}
   <div id="a_err" style="color:#b4402c;font-size:14px;min-height:20px"></div>
   <div class="act"><button id="a_cancel">닫기</button><button id="a_only" class="g">결석만 기록</button><button class="p" id="a_ok">보강 등록</button></div>
 </div></div>
+<div id="rmodal"><div class="box"><h3 id="rt2"></h3><div class="row"><input id="rname" autocomplete="off" placeholder="이름" style="flex:1;font:inherit;padding:9px;border:1px solid var(--line);border-radius:10px;min-width:0"><button class="p" id="radd">추가</button></div><div id="rerr" style="color:#b4402c;font-size:14px;min-height:20px"></div><div id="rlist" class="rgrid"></div><div class="act"><button data-close="1">닫기</button></div></div></div>
 <div id="smodal"><div class="box" id="sbox"></div></div>
 <div id="lmodal"><div class="box"><h3 id="lt"></h3><div id="lb"></div><div class="act"><button data-close="1">닫기</button></div></div></div>
 <div id="modal"><div class="box">
@@ -252,6 +262,8 @@ function applyLocal(op,g){
   else if(op.op==='absent'){r.status='absent';}
   else if(op.op==='back'){if(r.status==='left'){r.leave=null;r.status='in';}else if(r.teacher){r.teacher='';}else{r.arrive=null;r.status='';}}
   else if(op.op==='clear_day'){ST[g].rec={};}
+  else if(op.op==='add_student'){if(!ST[g].roster.some(function(x){return x.name===op.name;}))ST[g].roster.push({name:op.name,grade:''});if(!r.status)delete ST[g].rec[op.name];}
+  else if(op.op==='remove_student'){ST[g].roster=ST[g].roster.filter(function(x){return x.name!==op.name;});if(!r.status)delete ST[g].rec[op.name];}
   else if(op.op==='edit'){if(op.field==='arrive'){if(!r.a0)r.a0=r.arrive;r.arrive=t;}else{if(!r.l0)r.l0=r.leave;r.leave=t;}}
 }
 function saveQ(g){ls('att_q_'+g,JSON.stringify(ST[g].Q));}
@@ -365,7 +377,7 @@ function render(){
   document.querySelector('.srch').style.display=mv?'none':'';
   document.getElementById('main').style.display=mv?'none':'';
   document.getElementById('mkview').style.display=mv?'block':'none';
-  if(mv){renderMk();renderSheet();renderLv();updMsg();return;}
+  if(mv){renderMk();renderSheet();renderLv();renderRoster();updMsg();return;}
   renderDbar();
   var names=S.roster.map(function(x){return x.name;});
   GM={};
@@ -395,7 +407,7 @@ function render(){
       '<div class="wrap"><section class="pane col stu"><h2>STUDENTS<span class="cnt" data-cnt="1">'+(NUMOFF?'-':all.out)+'</span></h2><div class="lst"><div class="grid">'+(outL.length?outL.map(chip).join(''):'<div class="empty">'+(all.out?'검색 결과 없음':'남은 학생 없음')+'</div>')+'</div></div></section>'+room('m',B.m)+room('f',B.f)+'</div>';
     var hd=document.querySelector('header');document.documentElement.style.setProperty('--hh',hd.offsetHeight+'px');
   }
-  renderSheet();renderLv();
+  renderSheet();renderLv();renderRoster();
   updMsg();
 }
 
@@ -650,6 +662,32 @@ document.getElementById('a_ok').onclick=function(){
     if(!r||(r.errs&&r.errs.length)){errState='보강 등록 실패: '+((r&&r.errs&&r.errs[0])||'연결 확인')+' (결석 기록 탭에서 다시 등록)';render();}
   });
 };
+
+/* 명단 관리 */
+var RV=false,RARM2='';
+function renderRoster(){
+  var m=document.getElementById('rmodal');
+  if(!RV||VIEW!=='att'){RV=false;m.style.display='none';return;}
+  document.getElementById('rt2').textContent='명단 · '+G+'요일';
+  document.getElementById('rlist').innerHTML=ST[G].roster.map(function(x){var e=esc(x.name),arm=RARM2===x.name;return '<div class="ri"><span>'+e+'</span><button class="g'+(arm?' arm':'')+'" data-rdel="'+e+'">'+(arm?'정말 빼기':'빼기')+'</button></div>';}).join('')||'<div class="empty">비어 있음</div>';
+  m.style.display='flex';
+}
+function addStudent(){
+  var i=document.getElementById('rname'),n=i.value.trim(),er=document.getElementById('rerr');
+  if(!n)return;
+  if(ST[G].roster.some(function(x){return x.name===n;})){er.textContent='이미 명단에 있습니다';return;}
+  er.textContent='';i.value='';push({op:'add_student',name:n});
+}
+document.getElementById('rbtn').onclick=function(){RV=true;RARM2='';document.getElementById('rerr').textContent='';renderRoster();};
+document.getElementById('radd').onclick=addStudent;
+document.getElementById('rname').addEventListener('keydown',function(e){if(e.key==='Enter')addStudent();});
+document.getElementById('rmodal').addEventListener('click',function(ev){
+  if(ev.target===this||ev.target.closest('[data-close]')){RV=false;renderRoster();return;}
+  var b=ev.target.closest('[data-rdel]');if(!b)return;
+  var n=b.getAttribute('data-rdel');
+  if(RARM2===n){RARM2='';push({op:'remove_student',name:n});}
+  else{RARM2=n;renderRoster();setTimeout(function(){if(RARM2===n){RARM2='';if(RV)renderRoster();}},4000);}
+});
 
 /* 비밀번호 */
 function showGate(m){
