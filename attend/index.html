@@ -175,6 +175,7 @@ details.mkd summary{margin:10px 2px 4px;font-size:13px}
 .chip.sel{background:#fff1ec;border-color:#e8795a;box-shadow:inset 3px 0 0 #e8795a}
 .rw.rv{cursor:pointer;-webkit-touch-callout:none;user-select:none}
 .rw.rv:active{background:#e9edf5}
+.sb.undo{background:#fff;color:#1e2540;font-weight:800;max-width:70vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -298,13 +299,53 @@ function pruneCache(){
       if(k&&k.indexOf('att_s_')===0){var m=k.match(/_(\d{4}-\d{2}-\d{2})$/);if(!m||m[1]<lim)del.push(k);}}
     del.forEach(function(k){localStorage.removeItem(k);});}catch(e){}
 }
+var UNDO={'금':[],'토':[],'보':[]};
+var ULBL={arrive:'등원',leave:'귀가',absent:'결석',back:'취소',edit:'시각 수정'};
+function undoLabel(ops){
+  var o=ops[0],nm=o.name||'',more=ops.length>1?' 외 '+(ops.length-1)+'명':'',w;
+  if(o.op==='assign')w=TEACH[o.teacher]+' 배정';
+  else if(o.op==='memo')w=o.v?o.v+' 예약':'예약 취소';
+  else w=ULBL[o.op]||'';
+  return nm+more+' '+w;
+}
+function rememberUndo(g,ops){
+  if(ops.some(function(o){return !o.name;})){if(ops[0]&&ops[0].op==='clear_day')UNDO[g]=[];return;}
+  var s={},R=ST[g].rec;
+  ops.forEach(function(o){if(!s[o.name]){var r=R[o.name]||{};s[o.name]={arrive:r.arrive||null,teacher:r.teacher||'',leave:r.leave||null,status:r.status||'',memo:r.memo||''};}});
+  UNDO[g].push({label:undoLabel(ops),snap:s});
+  if(UNDO[g].length>20)UNDO[g].shift();
+}
+function pathOps(name,cur,tg){
+  var ops=[],s={a:cur.arrive||null,t:cur.teacher||'',l:cur.leave||null,st:cur.status||''},n=0;
+  var same=(cur.arrive||null)===(tg.arrive||null)&&(cur.teacher||'')===(tg.teacher||'')&&(cur.leave||null)===(tg.leave||null)&&(cur.status||'')===(tg.status||'');
+  if(!same){
+    while((s.a||s.st)&&n++<4){ops.push({op:'back',name:name});if(s.st==='left'){s.l=null;s.st='in';}else if(s.t){s.t='';}else{s.a=null;s.st='';}}
+    if(tg.status==='absent')ops.push({op:'absent',name:name});
+    else if(tg.status==='in'||tg.status==='left'){
+      ops.push({op:'arrive',name:name,t:tg.arrive});
+      if(tg.teacher)ops.push({op:'assign',name:name,teacher:tg.teacher,t:tg.arrive});
+      if(tg.status==='left')ops.push({op:'leave',name:name,t:tg.leave});
+    }
+  }
+  if((cur.memo||'')!==(tg.memo||''))ops.push({op:'memo',name:name,v:tg.memo||''});
+  return ops;
+}
+function doUndo(){
+  var g=G,e=UNDO[g].pop();
+  if(!e){render();return;}
+  var ops=[];
+  Object.keys(e.snap).forEach(function(n){var r=ST[g].rec[n]||{};ops=ops.concat(pathOps(n,{arrive:r.arrive,teacher:r.teacher,leave:r.leave,status:r.status,memo:r.memo},e.snap[n]));});
+  if(ops.length)pushMany(ops,true);else render();
+}
 function push(op){
   var g=G;
   op.date=DATES[g];op.t=op.t||Date.now();op.id=Date.now()+'-'+Math.random().toString(36).slice(2,8);
+  rememberUndo(g,[op]);
   applyLocal(op,g);ST[g].Q.push(op);saveQ(g);render();sync(g);
 }
-function pushMany(ops){
+function pushMany(ops,noUndo){
   var g=G,t=Date.now();
+  if(!noUndo)rememberUndo(g,ops);
   ops.forEach(function(op,k){op.date=DATES[g];op.t=op.t||t;op.id=Date.now()+'-'+k+'-'+Math.random().toString(36).slice(2,8);applyLocal(op,g);ST[g].Q.push(op);});
   saveQ(g);render();sync(g);
 }
@@ -455,7 +496,7 @@ function render(){
     var all={out:B.out.length,wait:B.wait.length,m:B.m.length,f:B.f.length,left:B.left.length,abs:B.abs.length};
     var arrived=all.wait+all.m+all.f+all.left;
     document.getElementById('stat').innerHTML=
-      '<button class="sb" data-lv="left">귀가</button>'+(G==='보'?'':'<button class="sb" data-lv="abs">결석</button>')+'<button class="sb rst" data-reset="1">'+(RARM&&Date.now()-RARM<4000?'정말 초기화':'초기화')+'</button>';
+      (UNDO[G].length?'<button class="sb undo" data-undo="1">되돌리기 · '+esc(UNDO[G][UNDO[G].length-1].label)+'</button>':'')+'<button class="sb" data-lv="left">귀가</button>'+(G==='보'?'':'<button class="sb" data-lv="abs">결석</button>')+'<button class="sb rst" data-reset="1">'+(RARM&&Date.now()-RARM<4000?'정말 초기화':'초기화')+'</button>';
     var outL=B.out.filter(function(n){return !query||n.toLowerCase().indexOf(query)>=0;});
     var MH=
       (all.wait?'<section class="pane waitbar"><h2>등원 · 배정 전<span class="cnt" data-cnt="1">'+(NUMOFF?'-':all.wait)+'</span></h2><div class="wl">'+B.wait.map(wcard).join('')+'</div></section>':'')+
@@ -469,7 +510,7 @@ function render(){
 
 /* 서버 동기화 (탭별) */
 function post(body){
-  var c=new AbortController(),tm=setTimeout(function(){c.abort();},15000);
+  var c=new AbortController(),tm=setTimeout(function(){c.abort();},40000);
   return fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body),signal:c.signal}).then(function(r){clearTimeout(tm);return r.json();},function(e){clearTimeout(tm);throw e;});
 }
 function sync(g){
@@ -478,7 +519,7 @@ function sync(g){
   if(S.busy||!pw)return;
   if(API.indexOf('__API')===0){errState='서버 주소 미설정';render();return;}
   S.busy=true;
-  var sent=S.Q.slice(),d=DATES[g];
+  var sent=S.Q.slice(0,6),d=DATES[g];
   post({act:'ops',pw:pw,date:d,group:g,ops:sent}).then(function(res){
     S.busy=false;
     if(!res.ok){
@@ -496,7 +537,8 @@ function sync(g){
     if(S.Q.length||DATES[g]!==d)sync(g);
   }).catch(function(){S.busy=false;errState='연결 끊김 · 기록은 기기에 보관 중';render();});
 }
-function syncAll(){if(VIEW==='mk'){mkLoad();}sync(G);if(G==='보')sync('금');['금','토','보'].forEach(function(o){if(o!==G&&ST[o].Q.length)sync(o);});}
+var BOT=0;
+function syncAll(){if(VIEW==='mk'){mkLoad();}sync(G);if(G==='보'&&(!ST['금'].roster.length||(++BOT%6===0)))sync('금');['금','토','보'].forEach(function(o){if(o!==G&&ST[o].Q.length)sync(o);});}
 function setDate(d){
   if(!d||d>todayKey())return;
   DATES[G]=d;loadCache(G);closeEdit();SEL=null;LV=null;render();sync(G);
@@ -558,6 +600,7 @@ document.getElementById('lmodal').addEventListener('click',function(ev){
   onAct(ev);
 });
 document.getElementById('stat').addEventListener('click',function(ev){
+  if(ev.target.closest('[data-undo]')){doUndo();return;}
   var rb=ev.target.closest('[data-reset]');
   if(rb){
     if(RARM&&Date.now()-RARM<4000){RARM=0;push({op:'clear_day'});}
@@ -612,7 +655,7 @@ document.getElementById('ms').onclick=function(){
 
 
 /* ===== 결석·보강 ===== */
-var MKARM=null,MKINIT=false,MKOPEN=false,MKDEL=[],MKSEL={};
+var MKARM=null,MKINIT=false,MKOPEN=false,MKDEL=[],MKSEL={},MKDONE=[];
 document.getElementById('mklist').addEventListener('toggle',function(ev){if(ev.target.tagName==='DETAILS')MKOPEN=ev.target.open;},true);
 function mkPost(ops){
   MK.busy=true;
@@ -634,7 +677,7 @@ function mkDelRows(rows){
   var items=rows.map(function(r){return MK.list.filter(function(m){return m.row===r;})[0];}).filter(Boolean);
   if(!items.length)return;
   MKDEL.unshift(JSON.parse(JSON.stringify(items)));MKDEL=MKDEL.slice(0,10);
-  MKSEL={};
+  MKSEL={};MKDONE=[];
   MK.list=MK.list.filter(function(m){return rows.indexOf(m.row)<0;});
   renderMk();
   mkOps(items.map(function(m){return {op:'mk_del',row:m.row,name:m.name};}));
@@ -677,7 +720,7 @@ function renderMk(){
   function sec(title,arr,cls,kind){return arr.length?'<div class="mkh '+cls+'">'+title+' <span>'+arr.length+'</span></div>'+arr.map(function(m){return mkItem(m,kind);}).join(''):'';}
   Object.keys(MKSEL).forEach(function(k){if(!MK.list.some(function(m){return String(m.row)===k&&m.name===MKSEL[k];}))delete MKSEL[k];});
   var sn=Object.keys(MKSEL).length;
-  var ub=(sn?'<div class="undo"><span>'+sn+'건 선택</span><span><button class="g" data-mk="clearsel">해제</button> <button class="p" data-mk="bulkdel">삭제</button></span></div>':'')+(MKDEL.length?'<div class="undo"><span>삭제됨 '+esc(MKDEL[0][0].name)+(MKDEL[0].length>1?' 외 '+(MKDEL[0].length-1)+'건':'')+'</span><button class="p" data-mk="restore">되돌리기</button></div>':'');
+  var ub=(sn?'<div class="undo"><span>'+sn+'건 선택</span><span><button class="g" data-mk="clearsel">해제</button> <button class="p" data-mk="bulkdel">삭제</button></span></div>':'')+(MKDONE.length?'<div class="undo"><span>완료 처리됨 '+esc(MKDONE[0].name)+'</span><button class="p" data-mk="undodone">되돌리기</button></div>':'')+(MKDEL.length?'<div class="undo"><span>삭제됨 '+esc(MKDEL[0][0].name)+(MKDEL[0].length>1?' 외 '+(MKDEL[0].length-1)+'건':'')+'</span><button class="p" data-mk="restore">되돌리기</button></div>':'');
   var H=ub+(MK.err?'<div style="color:#b4402c;margin-top:8px">'+esc(MK.err)+'</div>':'')+
     '<div class="mkh">오늘 해야 할 보강 <span>'+tod.length+'</span></div>'+(tod.length?tod.map(function(m){return mkItem(m,'today');}).join(''):'<div class="empty">없음</div>')+sec('밀린 보강',late,'late','late')+sec('예정된 보강',up,'','up')+sec('보강일 미정',nod,'','nod')+
     
@@ -708,6 +751,7 @@ document.getElementById('mklist').addEventListener('click',function(ev){
     mkDelRows([row]);
     return;
   }
+  if(a==='undodone'){var d0=MKDONE.shift();if(!d0)return;mkLocal(d0.row,{done:false});mkOp({op:'mk_set',row:d0.row,name:d0.name,f:{done:false}});return;}
   if(a==='bulkdel'){mkDelRows(Object.keys(MKSEL).map(Number));return;}
   if(a==='clearsel'){MKSEL={};renderMk();return;}
   if(a==='restore'){
@@ -726,7 +770,7 @@ document.getElementById('mklist').addEventListener('click',function(ev){
     });
     return;
   }
-  if(a==='done'){mkLocal(row,{done:true});mkOp({op:'mk_set',row:row,name:name,f:{done:true}});}
+  if(a==='done'){MKDONE.unshift({row:row,name:name});MKDONE=MKDONE.slice(0,10);mkLocal(row,{done:true});mkOp({op:'mk_set',row:row,name:name,f:{done:true}});}
   if(a==='undo'){mkLocal(row,{done:false});mkOp({op:'mk_set',row:row,name:name,f:{done:false}});}
 });
 document.getElementById('mklist').addEventListener('change',function(ev){
