@@ -76,6 +76,12 @@ main{max-width:640px;margin:24px auto 0;padding-left:max(16px,env(safe-area-inse
 :root[data-theme="dark"] .hwbtn[aria-pressed="true"] .num{color:#0f1512}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hwbtn[aria-pressed="true"] .num{color:#0f1512}}
 .hwbtn[aria-pressed="true"] .tx{color:var(--muted)}
+.row[data-ck]{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.row[data-ck]:focus-visible{outline:3px solid var(--accent);outline-offset:6px;border-radius:8px}
+.row[aria-pressed="true"] .num{background:var(--accent);color:#fff}
+.row[aria-pressed="true"]>.tx{color:var(--muted)}
+:root[data-theme="dark"] .row[aria-pressed="true"] .num{color:#0f1512}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .row[aria-pressed="true"] .num{color:#0f1512}}
 .notice{background:var(--accent-soft);border-radius:14px;padding:14px 16px;font-size:16px;font-weight:500;overflow-wrap:anywhere;white-space:pre-wrap}
 .notice b{display:block;font-size:12px;letter-spacing:.12em;color:var(--accent);margin-bottom:4px}
 .empty{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:36px 18px;color:var(--muted);text-align:center}
@@ -218,9 +224,9 @@ function runStudent(){
           h+='</ul></section>';
         }
         if(info.list.length){
-          h+='<section class="sec td"><h2>오늘 할 일</h2><ol class="cards" style="list-style:none;margin:0;padding:0">';
+          var ck2=ckGet(gr,now);h+='<section class="sec td"><h2>오늘 할 일</h2><ol class="cards" style="list-style:none;margin:0;padding:0">';
           info.list.forEach(function(e,i){
-            h+='<li class="card"><div class="row"><span class="num">'+(i+1)+'</span><span class="tx">'+tx(e.it.t)+'</span>'+rulesHTML(e.it)+'</div></li>';
+            h+='<li class="card"><div class="row" role="button" tabindex="0" data-ck="'+esc(e.it.id)+'" aria-pressed="'+(!!ck2[e.it.id])+'"><span class="num">'+(i+1)+'</span><span class="tx">'+tx(e.it.t)+'</span>'+rulesHTML(e.it)+'</div></li>';
           });
           h+='</ol></section>';
         }
@@ -230,7 +236,7 @@ function runStudent(){
     app.innerHTML=h;
   }
   app.addEventListener('click',function(e){
-    var b=e.target.closest('button');if(!b)return;
+    var b=e.target.closest('button,[data-ck]');if(!b)return;
     if(b.id==='grp'){var sg=document.getElementById('seg');if(sg){sg.hidden=!sg.hidden;b.setAttribute('aria-expanded',String(!sg.hidden))}return}
     if(b.dataset.g){gid=b.dataset.g;s_('today:group',gid);render();return}
     if(b.dataset.ck){
@@ -240,6 +246,7 @@ function runStudent(){
       b.setAttribute('aria-pressed',String(!!ck[b.dataset.ck]));
     }
   });
+  app.addEventListener('keydown',function(e){var r=e.target;if((e.key==='Enter'||e.key===' ')&&r.getAttribute&&r.getAttribute('role')==='button'&&r.dataset.ck){e.preventDefault();r.click()}});
   function pull(){
     return readAll(PUB).then(function(d){
       err=false;M=parse(d);s_(CK,JSON.stringify(d));render();
