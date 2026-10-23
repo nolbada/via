@@ -160,6 +160,10 @@ details.mkd summary{margin:10px 2px 4px;font-size:13px}
 .srch{display:flex;gap:8px;align-items:center}
 .srch input{flex:1}
 #rbtn{min-height:36px;padding:4px 14px;border-radius:999px;font-size:14px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff}
+.rsep{grid-column:1/-1;font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--mut);margin:8px 2px 2px}
+.ri.off{background:#f6f7f9;color:var(--mut)}
+.undo{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 8px 6px 12px;margin:6px 0;border-radius:10px;background:#1e2540;color:#fff;font-weight:600}
+.undo button{min-height:30px;font-size:13px;padding:2px 12px}
 </style>
 </head>
 <body>
@@ -552,14 +556,16 @@ document.getElementById('ms').onclick=function(){
 
 
 /* ===== 결석·보강 ===== */
-var MKARM=null,MKINIT=false;
+var MKARM=null,MKINIT=false,MKOPEN=false,MKDEL=[];
+document.getElementById('mklist').addEventListener('toggle',function(ev){if(ev.target.tagName==='DETAILS')MKOPEN=ev.target.open;},true);
 function mkPost(ops){
   MK.busy=true;
   return post({act:'mk',pw:pw,ops:ops||[]}).then(function(res){
     MK.busy=false;
     if(!res.ok){if(res.err==='auth'){ls('att_pw',null);pw='';showGate('비밀번호가 맞지 않습니다');return;}MK.err='서버 오류';render();return;}
-    MK.list=res.list;MK.names=res.names;MK.loaded=true;MK.err=(res.errs&&res.errs[0])||'';
-    if(VIEW==='mk')render();
+    var nerr=(res.errs&&res.errs[0])||'',same=MK.loaded&&MK.err===nerr&&JSON.stringify(res.list)===JSON.stringify(MK.list);
+    MK.list=res.list;MK.names=res.names;MK.loaded=true;MK.err=nerr;
+    if(VIEW==='mk'&&!same)render();
     return res;
   }).catch(function(){MK.busy=false;MK.err='연결 끊김';if(VIEW==='mk')render();});
 }
@@ -602,10 +608,12 @@ function renderMk(){
   var nod=pend.filter(function(m){return !m.date;});
   var done=MK.list.filter(function(m){return m.done;}).sort(function(a,b){return b.row-a.row;}).slice(0,30);
   function sec(title,arr,cls,kind){return arr.length?'<div class="mkh '+cls+'">'+title+' <span>'+arr.length+'</span></div>'+arr.map(function(m){return mkItem(m,kind);}).join(''):'';}
-  L.innerHTML=(MK.err?'<div style="color:#b4402c;margin-top:8px">'+esc(MK.err)+'</div>':'')+
+  var ub=MKDEL.length?'<div class="undo"><span>삭제됨 '+esc(MKDEL[0].name)+(MKDEL.length>1?' 외 '+(MKDEL.length-1)+'건':'')+'</span><button class="p" data-mk="restore">되돌리기</button></div>':'';
+  var H=ub+(MK.err?'<div style="color:#b4402c;margin-top:8px">'+esc(MK.err)+'</div>':'')+
     '<div class="mkh">오늘 해야 할 보강 <span>'+tod.length+'</span></div>'+(tod.length?tod.map(function(m){return mkItem(m,'today');}).join(''):'<div class="empty">없음</div>')+sec('밀린 보강',late,'late','late')+sec('예정된 보강',up,'','up')+sec('보강일 미정',nod,'','nod')+
     
-    (done.length?'<details class="mkd"><summary>보강 완료 (최근 '+done.length+'건)</summary>'+done.map(function(m){return mkItem(m,'done');}).join('')+'</details>':'');
+    (done.length?'<details class="mkd"'+(MKOPEN?' open':'')+'><summary>보강 완료 (최근 '+done.length+'건)</summary>'+done.map(function(m){return mkItem(m,'done');}).join('')+'</details>':'');
+  if(L.__h!==H){L.__h=H;L.innerHTML=H;}
 }
 document.getElementById('f_save').onclick=function(){
   var name=document.getElementById('f_name').value.trim(),er=document.getElementById('f_err');
@@ -621,9 +629,22 @@ document.getElementById('f_save').onclick=function(){
 document.getElementById('mklist').addEventListener('click',function(ev){
   var b=ev.target.closest('[data-mk]');if(!b)return;
   var a=b.getAttribute('data-mk'),row=Number(b.getAttribute('data-row')),name=b.getAttribute('data-name');
+  if(row<0&&a!=='restore')return;
   if(a==='del'){
-    if(MKARM&&MKARM.row===row&&Date.now()-MKARM.t<4000){MKARM=null;MK.list=MK.list.filter(function(m){return m.row!==row;});renderMk();mkOp({op:'mk_del',row:row,name:name});}
-    else{MKARM={row:row,t:Date.now()};renderMk();setTimeout(function(){if(VIEW==='mk')renderMk();},4100);}
+    var it=MK.list.filter(function(m){return m.row===row;})[0];
+    if(it)MKDEL.unshift(JSON.parse(JSON.stringify(it)));
+    MKDEL=MKDEL.slice(0,20);
+    MK.list=MK.list.filter(function(m){return m.row!==row;});renderMk();mkOp({op:'mk_del',row:row,name:name});
+    return;
+  }
+  if(a==='restore'){
+    var o=MKDEL.shift();if(!o)return;
+    var oc=JSON.parse(JSON.stringify(o));oc.row=-1;MK.list.push(oc);renderMk();
+    mkOp({op:'mk_add',name:o.name,abs:o.abs||'',reason:o.reason||'',date:o.date||'',slot:o.slot||'',memo:o.memo||''}).then(function(r){
+      if(!o.done||!r||!r.list)return;
+      var c=r.list.filter(function(m){return m.name===o.name&&(m.abs||'')===(o.abs||'')&&!m.done;}).sort(function(x,y){return y.row-x.row;})[0];
+      if(c){mkLocal(c.row,{done:true});mkOp({op:'mk_set',row:c.row,name:o.name,f:{done:true}});}
+    });
     return;
   }
   if(a==='done'){mkLocal(row,{done:true});mkOp({op:'mk_set',row:row,name:name,f:{done:true}});}
@@ -664,29 +685,32 @@ document.getElementById('a_ok').onclick=function(){
 };
 
 /* 명단 관리 */
-var RV=false,RARM2='';
+var RV=false,REM=[];
 function renderRoster(){
   var m=document.getElementById('rmodal');
   if(!RV||VIEW!=='att'){RV=false;m.style.display='none';return;}
   document.getElementById('rt2').textContent='명단 · '+G+'요일';
-  document.getElementById('rlist').innerHTML=ST[G].roster.map(function(x){var e=esc(x.name),arm=RARM2===x.name;return '<div class="ri"><span>'+e+'</span><button class="g'+(arm?' arm':'')+'" data-rdel="'+e+'">'+(arm?'정말 빼기':'빼기')+'</button></div>';}).join('')||'<div class="empty">비어 있음</div>';
+  var rm=REM.filter(function(n){return !ST[G].roster.some(function(x){return x.name===n;});});
+  document.getElementById('rlist').innerHTML=(ST[G].roster.map(function(x){var e=esc(x.name);return '<div class="ri"><span>'+e+'</span><button class="g" data-rdel="'+e+'">빼기</button></div>';}).join('')||'<div class="empty">비어 있음</div>')+(rm.length?'<div class="rsep">방금 뺀 학생</div>'+rm.map(function(n){var e=esc(n);return '<div class="ri off"><span>'+e+'</span><button class="p" data-rres="'+e+'">복원</button></div>';}).join(''):'');
   m.style.display='flex';
 }
 function addStudent(){
   var i=document.getElementById('rname'),n=i.value.trim(),er=document.getElementById('rerr');
   if(!n)return;
   if(ST[G].roster.some(function(x){return x.name===n;})){er.textContent='이미 명단에 있습니다';return;}
-  er.textContent='';i.value='';push({op:'add_student',name:n});
+  er.textContent='';i.value='';REM=REM.filter(function(x){return x!==n;});push({op:'add_student',name:n});
 }
-document.getElementById('rbtn').onclick=function(){RV=true;RARM2='';document.getElementById('rerr').textContent='';renderRoster();};
+document.getElementById('rbtn').onclick=function(){RV=true;document.getElementById('rerr').textContent='';renderRoster();};
 document.getElementById('radd').onclick=addStudent;
 document.getElementById('rname').addEventListener('keydown',function(e){if(e.key==='Enter')addStudent();});
 document.getElementById('rmodal').addEventListener('click',function(ev){
   if(ev.target===this||ev.target.closest('[data-close]')){RV=false;renderRoster();return;}
+  var rs=ev.target.closest('[data-rres]');
+  if(rs){var nr=rs.getAttribute('data-rres');REM=REM.filter(function(x){return x!==nr;});push({op:'add_student',name:nr});return;}
   var b=ev.target.closest('[data-rdel]');if(!b)return;
   var n=b.getAttribute('data-rdel');
-  if(RARM2===n){RARM2='';push({op:'remove_student',name:n});}
-  else{RARM2=n;renderRoster();setTimeout(function(){if(RARM2===n){RARM2='';if(RV)renderRoster();}},4000);}
+  REM=[n].concat(REM.filter(function(x){return x!==n;})).slice(0,12);
+  push({op:'remove_student',name:n});
 });
 
 /* 비밀번호 */
