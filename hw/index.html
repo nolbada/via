@@ -157,6 +157,7 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 .rp-m{font-size:14px;font-weight:700;color:var(--ink)}.rp-m small{font-size:10px;font-weight:500;color:var(--ink-soft);margin-left:1px}
 .rp-dot{width:14px;height:14px;border-radius:50%;background:var(--o);display:inline-block}
 .rp-dot.bad{background:var(--x)}
+.rp-n{width:24px;height:24px;border-radius:50%;background:var(--o);color:#fff;font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;line-height:1}
 .rp-dot.e{background:transparent;border:1.5px solid var(--border)}
 .rp-leg{margin-top:10px;font-size:12px;color:var(--ink-soft);display:flex;gap:14px;flex-wrap:wrap}
 .rp-leg span{display:inline-flex;align-items:center;gap:6px}
@@ -341,6 +342,12 @@ function rpMins(arr){
   for(var i=0;i<6;i++){var v=arr&&arr[i]||0;h+='<div class="c">'+(v>0?'<span class="rp-m">'+v+'<small>분</small></span>':'<span class="rp-dot e"></span>')+'</div>'}
   return h;
 }
+function rpSetCnt(sets,days){
+  var map={'토':0,'일':1,'월':2,'화':3,'수':4,'목':5},c=[0,0,0,0,0,0],h='';
+  (sets||[]).forEach(function(x){var k=map[String(x.at||'').charAt(0)];if(k!==undefined)c[k]++});
+  for(var i=0;i<6;i++){h+='<div class="c">'+(c[i]>0?'<span class="rp-n">'+c[i]+'</span>':'<span class="rp-dot'+((days&&days[i])?'':' e')+'"></span>')+'</div>'}
+  return h;
+}
 function rpCount(arr){var n=0;(arr||[]).forEach(function(v){if(v)n++});return n}
 function reportView(meta,weeks,reps){
   var cur=curKey(),rkeys=Object.keys(reps).sort();
@@ -365,8 +372,8 @@ function reportView(meta,weeks,reps){
     h+='<div class="rp-s"><b>단어테스트</b><span class="v">'+(T.items||[]).length+'<small> / '+need+'회 응시</small></span><span class="d">'+tparts+'</span></div></div>';
     var dl='';for(var i=0;i<6;i++){var d=addDays(start,i);dl+='<div class="h">'+WD[i]+'<i>'+md(d)+'</i></div>'}
     h+='<div class="card"><div class="rp-h">요일별 학습 기록</div><p class="rp-sub">기록이 있는 날에 점이 찍히고, 문법은 그날 숙제로 학습한 시간(분)이 표시됩니다.</p><div class="rp-days"><div class="h"></div>'+dl;
-    h+='<div class="r">단어<br>숙제</div>'+rpDots(W.days)+'<div class="r">문법</div>'+(G.dm?rpMins(G.dm):rpDots(G.days))+'<div class="r">단어<br>테스트</div>'+rpDots(T.days)+'</div>';
-    h+='<div class="rp-leg"><span><i class="rp-dot"></i>기록 있음</span><span><i class="rp-dot bad"></i>테스트 80점 미만</span><span><i class="rp-dot e"></i>기록 없음</span></div>';
+    h+='<div class="r">단어<br>숙제</div>'+rpSetCnt(W.sets,W.days)+'<div class="r">문법</div>'+(G.dm?rpMins(G.dm):rpDots(G.days))+'<div class="r">단어<br>테스트</div>'+rpDots(T.days)+'</div>';
+    h+='<div class="rp-leg"><span><i class="rp-dot"></i>기록 있음</span><span><i class="rp-n" style="width:16px;height:16px;font-size:10px">2</i>단어 세트 수</span><span><i class="rp-dot bad"></i>테스트 80점 미만</span><span><i class="rp-dot e"></i>기록 없음</span></div>';
     if(wDays<=2)h+='<p class="rp-alert">단어숙제는 주 6일 해야 하는데, 이번 주는 '+(wDays?esc(R.wd||'')+' '+(wDays===1?'하루':'이틀')+'에 몰아서 한 것으로 보입니다.':'기록이 없습니다.')+'</p>';
     else if(wDays<=4)h+='<p class="rp-alert t">단어숙제는 주 6일 해야 하는데, 이번 주는 '+wDays+'일만 기록이 있습니다.</p>';
     if(T.d)h+='<p class="rp-note">단어테스트는 '+esc(T.d)+'에 응시합니다.</p>';
