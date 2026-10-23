@@ -59,6 +59,7 @@ main{max-width:640px;margin:24px auto 0;padding-left:max(16px,env(safe-area-inse
 .num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;background:var(--accent-soft);color:var(--accent)}
 .sec.hw .num{background:var(--hw-soft);color:var(--hw)}
 .row>.tx{padding-top:2px;min-width:0;overflow-wrap:break-word;word-break:keep-all}
+.sub{display:block;font-size:14px;font-weight:400;color:var(--muted);line-height:1.45;margin-top:2px}
 .rules{grid-column:2;margin-top:12px;background:var(--accent-soft);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;font-size:15px;font-weight:400}
 .rules>div{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;word-break:keep-all;overflow-wrap:break-word}
 .rules>div>span:last-child{flex:1 1 11em;min-width:0}
@@ -137,6 +138,7 @@ function md(d){return (d.getMonth()+1)+'/'+d.getDate()}
 function mdw(d){return md(d)+'('+DAYS[d.getDay()]+')'}
 function weekStart(d){return addDays(d,-((d.getDay()+1)%7))}
 function esc(x){return String(x==null?'':x).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function tx(t){var m=/^(.*?)\s*(\([^()]*\))\s*$/.exec(t==null?'':String(t));return m&&m[1]?esc(m[1])+'<span class="sub">'+esc(m[2])+'</span>':esc(t)}
 function uid(){return 'i'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
 
 /* 서버 (숙제 REC와 같은 구글 시트 서버) */
@@ -211,14 +213,14 @@ function runStudent(){
           var ck=ckGet(gr,now);
           h+='<section class="sec hw"><h2>숙제 확인<small>'+esc(rangeOf(now))+'</small></h2><ul class="cards">';
           info.hw.forEach(function(it,i){
-            h+='<li class="card"><button type="button" class="hwbtn" data-ck="'+esc(it.id)+'" aria-pressed="'+(!!ck[it.id])+'"><span class="num">'+(i+1)+'</span><span class="tx">'+esc(it.t)+'</span></button></li>';
+            h+='<li class="card"><button type="button" class="hwbtn" data-ck="'+esc(it.id)+'" aria-pressed="'+(!!ck[it.id])+'"><span class="num">'+(i+1)+'</span><span class="tx">'+tx(it.t)+'</span></button></li>';
           });
           h+='</ul></section>';
         }
         if(info.list.length){
           h+='<section class="sec td"><h2>오늘 할 일</h2><ol class="cards" style="list-style:none;margin:0;padding:0">';
           info.list.forEach(function(e,i){
-            h+='<li class="card"><div class="row"><span class="num">'+(i+1)+'</span><span class="tx">'+esc(e.it.t)+'</span>'+rulesHTML(e.it)+'</div></li>';
+            h+='<li class="card"><div class="row"><span class="num">'+(i+1)+'</span><span class="tx">'+tx(e.it.t)+'</span>'+rulesHTML(e.it)+'</div></li>';
           });
           h+='</ol></section>';
         }
