@@ -183,7 +183,7 @@ function merge(F,D){
   return out;
 }
 function dayInfo(M,gr,date){
-  var key=gr.id+':'+keyOf(date),day=M.d[key]||null,incl=(gr.days||[5]).indexOf(date.getDay())>=0;
+  var key=gr.id+':'+keyOf(date),day=M.d[key]||null,incl=true;
   var F=incl?(M.f[gr.id]||[]):[],D=day&&day.items?day.items:[];
   return{key:key,day:day,incl:incl,active:incl||!!(day&&((day.items&&day.items.length)||day.n)),
     list:merge(F,D),notice:day&&day.n?day.n:'',hw:incl?(M.h[gr.id]||[]):[]};
@@ -205,7 +205,7 @@ function runStudent(){
   function render(){
     var now=today(),gr=cur(),h='',L=groupsOf(M);
     var pick=!!(M&&L.length>1&&!gid),chip=gr&&!pick?'<button class="grp" id="grp" type="button" aria-expanded="false">'+esc(gr.name)+'</button>':'';
-    h+='<div class="band"><div class="inner"><div class="top"><span class="label">오늘 할 일</span>'+chip+'</div><h1 class="date">'+mdw(now)+'</h1>';
+    h+='<div class="band"><div class="inner"><div class="top"><span class="label"></span>'+chip+'</div><h1 class="date">금요 학습</h1>';
     if(L.length>1&&!pick)h+='<div class="seg" id="seg" hidden>'+L.map(function(x){return '<button type="button" data-g="'+esc(x.id)+'" aria-pressed="'+(gr&&x.id===gr.id)+'">'+esc(x.name)+'</button>'}).join('')+'</div>';
     h+='</div></div><main>';
     if(pick){
@@ -263,7 +263,7 @@ function runStudent(){
 /* ============ 선생님 ============ */
 function runTeacher(code){
   var ID='TD|'+code,M={cfg:null,f:{},h:{},d:{}},dirty={},saving=false,retry=null,ft=null,loaded=false,failed=false;
-  var gid=g('today_tg')||'',vd=today(),armed='',E=[],stText='',stErr=false;
+  var gid=g('today_tg')||'',vd=(function(){var d=today();while(d.getDay()!==5)d=addDays(d,1);return d})(),armed='',E=[],stText='',stErr=false;
   function gr(){var L=groupsOf(M),i;for(i=0;i<L.length;i++)if(L[i].id===gid)return L[i];return L[0]||null}
   function dk(){return gr().id+':'+keyOf(vd)}
   function setSt(t,e){stText=t;stErr=!!e;var el=document.getElementById('savest');if(el){el.textContent=t;el.className='savest'+(e?' err':'')}}
