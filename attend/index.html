@@ -628,7 +628,7 @@ function renderMk(){
   var H=ub+(MK.err?'<div style="color:#b4402c;margin-top:8px">'+esc(MK.err)+'</div>':'')+
     '<div class="mkh">오늘 해야 할 보강 <span>'+tod.length+'</span></div>'+(tod.length?tod.map(function(m){return mkItem(m,'today');}).join(''):'<div class="empty">없음</div>')+sec('밀린 보강',late,'late','late')+sec('예정된 보강',up,'','up')+sec('보강일 미정',nod,'','nod')+
     
-    (done.length?'<details class="mkd"'+(MKOPEN?' open':'')+'><summary>보강 완료 (최근 '+done.length+'건)</summary>'+done.map(function(m){return mkItem(m,'done');}).join('')+'</details>':'');
+    '';
   if(L.__h!==H){L.__h=H;L.innerHTML=H;}
 }
 document.getElementById('f_save').onclick=function(){
