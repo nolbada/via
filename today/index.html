@@ -82,6 +82,7 @@ main{max-width:640px;margin:24px auto 0;padding-left:max(16px,env(safe-area-inse
 .row[aria-pressed="true"]>.tx{color:var(--muted)}
 :root[data-theme="dark"] .row[aria-pressed="true"] .num{color:#0f1512}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .row[aria-pressed="true"] .num{color:#0f1512}}
+.pick{font-size:19px;font-weight:700;text-align:left;min-height:60px;padding:0 20px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
 .notice{background:var(--accent-soft);border-radius:14px;padding:14px 16px;font-size:16px;font-weight:500;overflow-wrap:anywhere;white-space:pre-wrap}
 .notice b{display:block;font-size:12px;letter-spacing:.12em;color:var(--accent);margin-bottom:4px}
 .empty{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:36px 18px;color:var(--muted);text-align:center}
@@ -203,11 +204,13 @@ function runStudent(){
   function ckGet(gr,date){try{return JSON.parse(g(ckKey(gr,date))||'{}')||{}}catch(e){return {}}}
   function render(){
     var now=today(),gr=cur(),h='',L=groupsOf(M);
-    var chip=gr?'<button class="grp" id="grp" type="button" aria-expanded="false">'+esc(gr.name)+'</button>':'';
+    var pick=!!(M&&L.length>1&&!gid),chip=gr&&!pick?'<button class="grp" id="grp" type="button" aria-expanded="false">'+esc(gr.name)+'</button>':'';
     h+='<div class="band"><div class="inner"><div class="top"><span class="label">오늘 할 일</span>'+chip+'</div><h1 class="date">'+mdw(now)+'</h1>';
-    if(L.length>1)h+='<div class="seg" id="seg" hidden>'+L.map(function(x){return '<button type="button" data-g="'+esc(x.id)+'" aria-pressed="'+(gr&&x.id===gr.id)+'">'+esc(x.name)+'</button>'}).join('')+'</div>';
+    if(L.length>1&&!pick)h+='<div class="seg" id="seg" hidden>'+L.map(function(x){return '<button type="button" data-g="'+esc(x.id)+'" aria-pressed="'+(gr&&x.id===gr.id)+'">'+esc(x.name)+'</button>'}).join('')+'</div>';
     h+='</div></div><main>';
-    if(!M||!gr){
+    if(pick){
+      h+='<section class="sec td"><h2>반 선택</h2><div class="cards">'+L.map(function(x){return '<button type="button" class="pick" data-g="'+esc(x.id)+'">'+esc(x.name)+'</button>'}).join('')+'</div></section>';
+    }else if(!M||!gr){
       h+='<div class="empty">'+(err?'불러오지 못했습니다':'불러오는 중')+'</div>';
     }else{
       var info=dayInfo(M,gr,now);
