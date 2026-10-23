@@ -367,7 +367,7 @@ function reportView(meta,weeks,reps){
     var tFail=0;(T.items||[]).forEach(function(x){if(!x.ok)tFail++});
     var wDays=rpCount(W.days),need=T.need||2;
     var tN=(T.items||[]).length,tp=[];if(tFail)tp.push(tFail+'회 80점 미만');if(tN<need)tp.push((need-tN)+'회 미응시');var tparts=tp.length?tp.join(' · '):'모두 80점 이상';
-    h+='<div class="rp-sum"><div class="rp-s"><b>단어숙제</b><span class="v">'+wOk+'<small> / '+(W.sets||[]).length+'세트</small></span><span class="d">80점 이상 완료</span></div>';
+    h+='<div class="rp-sum"><div class="rp-s"><b>단어숙제</b><span class="v">'+wOk+'<small> / '+Math.max(6,(W.sets||[]).length)+'세트</small></span><span class="d">'+(((W.sets||[]).length<6)?'<span style="color:var(--x);font-weight:700">'+(6-(W.sets||[]).length)+'세트 부족</span> · '+(W.sets||[]).length+'세트 학습':'80점 이상 완료')+'</span></div>';
     h+='<div class="rp-s"><b>문법</b><span class="v">'+(G.min||0)+'<small> 분</small></span><span class="d">'+(G.units||[]).length+'단원 진행</span></div>';
     h+='<div class="rp-s"><b>단어테스트</b><span class="v">'+(T.items||[]).length+'<small> / '+need+'회 응시</small></span><span class="d">'+tparts+'</span></div></div>';
     var dl='';for(var i=0;i<6;i++){var d=addDays(start,i);dl+='<div class="h">'+WD[i]+'<i>'+md(d)+'</i></div>'}
