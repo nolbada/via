@@ -153,6 +153,7 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 .rp-days .h i{display:block;font-style:normal;font-size:11px}
 .rp-days .r{font-size:13px;text-align:left;font-weight:500;padding:8px 0;border-top:1px solid var(--border);line-height:1.3;display:flex;align-items:center}
 .rp-days .c{padding:8px 0;border-top:1px solid var(--border);min-height:38px;display:flex;align-items:center;justify-content:center}
+.rp-tot{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px 18px;margin-bottom:12px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}.rp-tot .k{font-size:14px;font-weight:600;color:var(--ink-soft)}.rp-tot .v{font-size:34px;font-weight:800;line-height:1.1;margin-left:auto;color:var(--ink)}.rp-tot .v small{font-size:15px;font-weight:600;margin-left:2px}.rp-tot .d{flex-basis:100%;font-size:12px;color:var(--ink-soft)}
 .rp-m{font-size:14px;font-weight:700;color:var(--ink)}.rp-m small{font-size:10px;font-weight:500;color:var(--ink-soft);margin-left:1px}
 .rp-dot{width:14px;height:14px;border-radius:50%;background:var(--o);display:inline-block}
 .rp-dot.bad{background:var(--x)}
@@ -351,6 +352,8 @@ function reportView(meta,weeks,reps){
   if(!R){
     h+='<div class="card"><div class="rp-h">이 주 리포트가 없어요</div><div class="rp-sub" style="margin:0">리포트는 매주 금요일에 올라와요.</div></div>';
   }else{
+    var gMin=(R.g&&R.g.min)||0,lMin=(R.l&&R.l.min)||0;
+    h+='<div class="rp-tot"><span class="k">이번 주 숙제 순수 학습 시간</span><span class="v">'+(gMin+lMin)+'<small>분</small></span><span class="d">문법 '+gMin+'분'+(lMin?' · 듣기 '+lMin+'분':'')+' 합산 · 단어숙제는 시간이 기록되지 않아 제외</span></div>';
     h+='<div class="rp-msg"><b>선생님이 직접 확인하고 정리한 한 주입니다</b><p>클래스카드가 자동으로 내주는 성적표가 아닙니다.<br>비타민 영어클리닉 선생님이 한 주 동안의 단어숙제, 문법, 단어테스트 기록을 요일별로 하나하나 확인하고, 밀리지 않고 했는지 따져서 직접 편집한 리포트입니다.</p></div>';
     var W=R.w||{sets:[],days:[]},G=R.g||{units:[],days:[]},T=R.t||{items:[],days:[]};
     var wOk=0;(W.sets||[]).forEach(function(x){if(x.ok)wOk++});
