@@ -263,8 +263,8 @@ function render(){
     names.forEach(function(n){all[bucket(n)]++;});
     var arrived=all.wait+all.m+all.f+all.left;
     document.getElementById('stat').innerHTML=
-      '<div class="k"><b>'+all.out+'</b>안 온 학생</div><div><b>'+arrived+'</b>등원</div><div><b>'+(all.m+all.f)+'</b>수업 중</div><div><b>'+all.left+'</b>귀가</div><div><b>'+all.abs+'</b>결석</div><div><b>'+names.length+'</b>전체</div>';
-    var defs=[['out','TODAY'],['wait','등원 · 배정 전'],['m','남쌤'],['f','여쌤'],['left','귀가'],['abs','결석']];
+      '<div class="k"><b>'+all.out+'</b>TODAY</div><div><b>'+arrived+'</b>등원</div><div><b>'+(all.m+all.f)+'</b>수업 중</div><div><b>'+all.left+'</b>귀가</div><div><b>'+all.abs+'</b>결석</div><div><b>'+names.length+'</b>전체</div>';
+    var defs=[['out','STUDENTS'],['wait','등원 · 배정 전'],['m','남쌤'],['f','여쌤'],['left','귀가'],['abs','결석']];
     document.getElementById('main').innerHTML=defs.map(function(d){
       var l=B[d[0]];
       return '<section class="s-'+d[0]+'"><h2>'+d[1]+'<span>'+all[d[0]]+'</span></h2><div class="list">'+(l.length?l.map(function(n){return card(n,d[0]);}).join(''):'<div class="empty">-</div>')+'</div></section>';
