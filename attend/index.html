@@ -16,7 +16,14 @@ header{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 14px 8p
 .tabs{display:flex;gap:6px}
 .tabs button{min-height:40px;padding:6px 16px;font-size:18px;font-weight:600;border-radius:999px;background:#fff;color:var(--mut)}
 .tabs button.on{background:var(--acc);border-color:var(--acc);color:#fff}
-.dt{color:var(--mut);font-size:16px}
+.dbar{display:flex;align-items:center;gap:6px}
+.dbar button{min-height:40px;min-width:40px;padding:4px 10px;font-size:20px;line-height:1}
+.dbar button:disabled{opacity:.35}
+.dl{position:relative;display:inline-flex;align-items:center;min-height:40px;padding:4px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:18px;font-weight:600;white-space:nowrap}
+.dl small{color:var(--mut);font-weight:400;font-size:14px;margin-left:6px}
+.dl.past{border-color:#c9a23a;background:#fff7dd}
+.dl input{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px;cursor:pointer}
+.dbar .rec{font-size:14px;color:var(--mut)}
 .stat{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .stat div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 12px;font-size:15px;color:var(--mut)}
 .stat b{display:block;font-size:22px;color:var(--ink);line-height:1.1}
@@ -24,6 +31,7 @@ header{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 14px 8p
 .srch{margin-top:8px;display:flex;gap:8px}
 .srch input{flex:1;font:inherit;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
 main{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;padding:12px 14px 80px;align-items:start}
+.loading{grid-column:1/-1;color:var(--mut);padding:30px 4px;text-align:center}
 section{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
 section>h2{margin:0;padding:9px 12px;font-size:16px;display:flex;justify-content:space-between}
 section>h2 span{color:var(--mut);font-weight:400}
@@ -63,7 +71,15 @@ button.g{min-height:36px;padding:5px 10px;font-size:14px;color:var(--mut)}
 </div>
 <div id="app" style="display:none">
 <header>
-  <div class="top"><div class="tabs" id="tabs"><button data-g="금">금요일</button><button data-g="토">토요일</button></div><span class="dt" id="dt"></span></div>
+  <div class="top">
+    <div class="tabs" id="tabs"><button data-g="금">금요일</button><button data-g="토">토요일</button></div>
+    <div class="dbar">
+      <button id="dprev" aria-label="이전 주">&#8249;</button>
+      <label class="dl" id="dl"><span id="dtxt"></span><small id="dsub"></small><input type="date" id="dpick"></label>
+      <button id="dnext" aria-label="다음 주">&#8250;</button>
+      <button class="g" id="drec">최근</button>
+    </div>
+  </div>
   <div class="stat" id="stat"></div>
   <div class="srch"><input id="q" type="search" placeholder="이름 검색" autocomplete="off"></div>
 </header>
@@ -82,14 +98,18 @@ button.g{min-height:36px;padding:5px 10px;font-size:14px;color:var(--mut)}
 var API='https://script.google.com/macros/s/AKfycby5Y6FhgpP3jiNQSAwITDIMzBp8CVIuyLWUPEVIShUUMlXh5UOzupcL8aPyvN-xfsBO/exec';
 var TEACH={'남':'남쌤','여':'여쌤'};
 var DAYS=['일','월','화','수','목','금','토'];
-var ST={'금':{roster:[],rec:{},Q:[],busy:false},'토':{roster:[],rec:{},Q:[],busy:false}};
+var WD={'금':5,'토':6};
+var ST={'금':{roster:[],rec:{},Q:[],busy:false,loaded:false},'토':{roster:[],rec:{},Q:[],busy:false,loaded:false}};
+var DATES={'금':'','토':''};
 var pw='',query='',editing=null,errState='',lastTap=0,lastKey='';
 
 function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v);}catch(e){}return null;}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 function todayKey(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());}
 function dowOf(k){var p=k.split('-').map(Number);return new Date(Date.UTC(p[0],p[1]-1,p[2])).getUTCDay();}
+function addDays(k,n){var p=k.split('-').map(Number);return new Date(Date.UTC(p[0],p[1]-1,p[2]+n)).toISOString().slice(0,10);}
 function dayLabel(k){var p=k.split('-').map(Number);return p[1]+'/'+p[2]+'('+DAYS[dowOf(k)]+')';}
+function defDate(g){var t=todayKey();return addDays(t,-((dowOf(t)-WD[g]+7)%7));}
 function kst(ms){return new Date(ms+9*3600000);}
 function hm(ms){var d=kst(ms),h=d.getUTCHours(),m=d.getUTCMinutes();return (h<10?'0':'')+h+':'+(m<10?'0':'')+m;}
 function toMs(key,hhmm){var p=key.split('-').map(Number),t=hhmm.split(':').map(Number);return Date.UTC(p[0],p[1]-1,p[2],t[0]-9,t[1]);}
@@ -111,10 +131,36 @@ function applyLocal(op,g){
   else if(op.op==='edit'){if(op.field==='arrive'){if(!r.a0)r.a0=r.arrive;r.arrive=t;}else{if(!r.l0)r.l0=r.leave;r.leave=t;}}
 }
 function saveQ(g){ls('att_q_'+g,JSON.stringify(ST[g].Q));}
+function cacheKey(g,d){return 'att_s_'+g+'_'+d;}
+function loadCache(g){
+  var S=ST[g],d=DATES[g];S.rec={};S.loaded=false;
+  try{var cc=JSON.parse(ls(cacheKey(g,d))||'null');if(cc&&cc.roster){S.roster=cc.roster;S.rec=cc.rec||{};S.loaded=true;}}catch(e){}
+  S.Q.forEach(function(o){if(o.date===d)applyLocal(o,g);});
+}
+function pruneCache(){
+  try{var lim=addDays(todayKey(),-14),del=[];
+    for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
+      if(k&&k.indexOf('att_s_')===0){var m=k.match(/_(\d{4}-\d{2}-\d{2})$/);if(!m||m[1]<lim)del.push(k);}}
+    del.forEach(function(k){localStorage.removeItem(k);});}catch(e){}
+}
 function push(op){
   var g=G;
-  op.date=todayKey();op.t=op.t||Date.now();op.id=Date.now()+'-'+Math.random().toString(36).slice(2,8);
+  op.date=DATES[g];op.t=op.t||Date.now();op.id=Date.now()+'-'+Math.random().toString(36).slice(2,8);
   applyLocal(op,g);ST[g].Q.push(op);saveQ(g);render();sync(g);
+}
+/* 지난 날짜에서는 등원·귀가 시각을 직접 입력 */
+function needsTime(op){var r=ST[G].rec[op.name]||{};return op.op==='arrive'||op.op==='leave'||(op.op==='assign'&&!r.arrive);}
+function act(op){
+  if(DATES[G]!==todayKey()&&needsTime(op)){askTime(op);return;}
+  push(op);
+}
+function askTime(op){
+  var r=ST[G].rec[op.name]||{},isLeave=op.op==='leave';
+  editing={mode:'new',op:op,name:op.name,field:isLeave?'leave':'arrive',g:G};
+  document.getElementById('mt').textContent=op.name+' · '+(isLeave?'귀가':'등원')+' 시각 ('+dayLabel(DATES[G])+')';
+  document.getElementById('mi').value=isLeave&&r.arrive?hm(r.arrive+3600000):'15:00';
+  document.getElementById('err').textContent='';
+  document.getElementById('modal').style.display='flex';
 }
 
 function bucket(n){
@@ -138,26 +184,41 @@ function card(n,b){
   else if(b==='abs'){h+='</div><div class="row" style="margin-top:6px"><button class="g" data-op="back" data-name="'+e+'">결석 취소</button></div>';}
   return h+'</div>';
 }
+function renderDbar(){
+  var d=DATES[G],t=todayKey();
+  document.getElementById('dtxt').textContent=dayLabel(d);
+  document.getElementById('dsub').textContent=d===t?'오늘':(d>t?'':'지난 기록');
+  document.getElementById('dl').className='dl'+(d!==t?' past':'');
+  document.getElementById('dpick').value=d;
+  document.getElementById('dpick').max=t;
+  document.getElementById('dnext').disabled=addDays(d,7)>t;
+  document.getElementById('drec').style.display=(d===defDate(G))?'none':'';
+}
 function render(){
-  var key=todayKey(),S=ST[G];
+  var S=ST[G];
   Array.prototype.forEach.call(document.querySelectorAll('#tabs button'),function(b){b.className=(b.getAttribute('data-g')===G)?'on':'';});
-  document.getElementById('dt').textContent=dayLabel(key);
+  renderDbar();
   var names=S.roster.map(function(x){return x.name;});
   Object.keys(S.rec).forEach(function(n){if(names.indexOf(n)<0&&S.rec[n].status)names.push(n);});
-  var B={out:[],wait:[],m:[],f:[],left:[],abs:[]};
-  names.forEach(function(n){if(!query||n.toLowerCase().indexOf(query)>=0)B[bucket(n)].push(n);});
-  function byArr(a,b){return (S.rec[a].arrive||0)-(S.rec[b].arrive||0);}
-  B.out.sort();['wait','m','f','left'].forEach(function(k){B[k].sort(byArr);});B.abs.sort();
-  var all={out:0,wait:0,m:0,f:0,left:0,abs:0};
-  names.forEach(function(n){all[bucket(n)]++;});
-  var arrived=all.wait+all.m+all.f+all.left;
-  document.getElementById('stat').innerHTML=
-    '<div class="k"><b>'+all.out+'</b>안 온 학생</div><div><b>'+arrived+'</b>등원</div><div><b>'+(all.m+all.f)+'</b>수업 중</div><div><b>'+all.left+'</b>귀가</div><div><b>'+all.abs+'</b>결석</div><div><b>'+names.length+'</b>전체</div>';
-  var defs=[['out','안 온 학생'],['wait','등원 · 배정 전'],['m','남쌤'],['f','여쌤'],['left','귀가'],['abs','결석']];
-  document.getElementById('main').innerHTML=defs.map(function(d){
-    var l=B[d[0]];
-    return '<section class="s-'+d[0]+'"><h2>'+d[1]+'<span>'+all[d[0]]+'</span></h2><div class="list">'+(l.length?l.map(function(n){return card(n,d[0]);}).join(''):'<div class="empty">-</div>')+'</div></section>';
-  }).join('');
+  if(!S.loaded){
+    document.getElementById('stat').innerHTML='';
+    document.getElementById('main').innerHTML='<div class="loading">'+(errState?'연결되면 표시됩니다':'불러오는 중')+'</div>';
+  }else{
+    var B={out:[],wait:[],m:[],f:[],left:[],abs:[]};
+    names.forEach(function(n){if(!query||n.toLowerCase().indexOf(query)>=0)B[bucket(n)].push(n);});
+    var byArr=function(a,b){return (S.rec[a].arrive||0)-(S.rec[b].arrive||0);};
+    B.out.sort();['wait','m','f','left'].forEach(function(k){B[k].sort(byArr);});B.abs.sort();
+    var all={out:0,wait:0,m:0,f:0,left:0,abs:0};
+    names.forEach(function(n){all[bucket(n)]++;});
+    var arrived=all.wait+all.m+all.f+all.left;
+    document.getElementById('stat').innerHTML=
+      '<div class="k"><b>'+all.out+'</b>안 온 학생</div><div><b>'+arrived+'</b>등원</div><div><b>'+(all.m+all.f)+'</b>수업 중</div><div><b>'+all.left+'</b>귀가</div><div><b>'+all.abs+'</b>결석</div><div><b>'+names.length+'</b>전체</div>';
+    var defs=[['out','안 온 학생'],['wait','등원 · 배정 전'],['m','남쌤'],['f','여쌤'],['left','귀가'],['abs','결석']];
+    document.getElementById('main').innerHTML=defs.map(function(d){
+      var l=B[d[0]];
+      return '<section class="s-'+d[0]+'"><h2>'+d[1]+'<span>'+all[d[0]]+'</span></h2><div class="list">'+(l.length?l.map(function(n){return card(n,d[0]);}).join(''):'<div class="empty">-</div>')+'</div></section>';
+    }).join('');
+  }
   var pend=ST['금'].Q.length+ST['토'].Q.length;
   var m=document.getElementById('msg');
   if(errState){m.textContent=errState;m.style.display='block';}
@@ -165,7 +226,7 @@ function render(){
   else m.style.display='none';
 }
 
-/* 서버 동기화 (그룹별) */
+/* 서버 동기화 (탭별) */
 function post(body){
   var c=new AbortController(),tm=setTimeout(function(){c.abort();},15000);
   return fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body),signal:c.signal}).then(function(r){clearTimeout(tm);return r.json();},function(e){clearTimeout(tm);throw e;});
@@ -176,8 +237,8 @@ function sync(g){
   if(S.busy||!pw)return;
   if(API.indexOf('__API')===0){errState='서버 주소 미설정';render();return;}
   S.busy=true;
-  var sent=S.Q.slice();
-  post({act:'ops',pw:pw,date:todayKey(),group:g,ops:sent}).then(function(res){
+  var sent=S.Q.slice(),d=DATES[g];
+  post({act:'ops',pw:pw,date:d,group:g,ops:sent}).then(function(res){
     S.busy=false;
     if(!res.ok){
       if(res.err==='auth'){ls('att_pw',null);pw='';showGate('비밀번호가 맞지 않습니다');return;}
@@ -186,13 +247,19 @@ function sync(g){
     errState='';
     S.Q.splice(0,sent.length);saveQ(g);
     if(res.errs&&res.errs.length)errState=res.errs[0];
-    if(!S.Q.length){S.roster=res.roster;S.rec=res.rec;ls('att_s_'+g,JSON.stringify({d:todayKey(),roster:S.roster,rec:S.rec}));}
-    else if(!S.roster.length){S.roster=res.roster;}
+    if(DATES[g]===d){
+      if(!S.Q.length){S.roster=res.roster;S.rec=res.rec;S.loaded=true;ls(cacheKey(g,d),JSON.stringify({roster:S.roster,rec:S.rec}));}
+      else if(!S.roster.length){S.roster=res.roster;}
+    }
     render();
-    if(S.Q.length)sync(g);
+    if(S.Q.length||DATES[g]!==d)sync(g);
   }).catch(function(){S.busy=false;errState='연결 끊김 · 기록은 기기에 보관 중';render();});
 }
 function syncAll(){sync(G);var o=(G==='금')?'토':'금';if(ST[o].Q.length)sync(o);}
+function setDate(d){
+  if(!d||d>todayKey())return;
+  DATES[G]=d;loadCache(G);closeEdit();render();sync(G);
+}
 
 /* 이벤트 */
 document.getElementById('main').addEventListener('click',function(ev){
@@ -204,7 +271,7 @@ document.getElementById('main').addEventListener('click',function(ev){
   var nw=Date.now(),sc=b.closest('section'),kk=sc?sc.className:'';if(kk===lastKey&&nw-lastTap<350)return;lastKey=kk;lastTap=nw;
   var op={op:b.getAttribute('data-op'),name:b.getAttribute('data-name')};
   if(op.op==='assign')op.teacher=b.getAttribute('data-teacher');
-  push(op);
+  act(op);
 });
 document.getElementById('tabs').addEventListener('click',function(ev){
   var b=ev.target.closest('button[data-g]');if(!b)return;
@@ -213,11 +280,15 @@ document.getElementById('tabs').addEventListener('click',function(ev){
   render();sync(G);
   window.scrollTo(0,0);
 });
+document.getElementById('dprev').onclick=function(){setDate(addDays(DATES[G],-7));};
+document.getElementById('dnext').onclick=function(){setDate(addDays(DATES[G],7));};
+document.getElementById('drec').onclick=function(){setDate(defDate(G));};
+document.getElementById('dpick').addEventListener('change',function(e){setDate(e.target.value);});
 document.getElementById('q').addEventListener('input',function(e){query=e.target.value.trim().toLowerCase();render();});
 
 function openEdit(name,field){
   var r=ST[G].rec[name];if(!r||!r[field])return;
-  editing={name:name,field:field,g:G};
+  editing={mode:'edit',name:name,field:field,g:G};
   document.getElementById('mt').textContent=name+' · '+(field==='arrive'?'등원':'귀가')+' 시각';
   document.getElementById('mi').value=hm(r[field]);
   document.getElementById('err').textContent='';
@@ -233,11 +304,13 @@ document.querySelectorAll('.qk button').forEach(function(b){b.onclick=function()
 document.getElementById('ms').onclick=function(){
   if(!editing)return;
   var v=document.getElementById('mi').value;if(!v)return;
-  var ms=toMs(todayKey(),v),r=ST[editing.g].rec[editing.name];
-  if(editing.field==='leave'&&r.arrive&&ms<r.arrive){document.getElementById('err').textContent='귀가 시각이 등원 시각보다 빠릅니다';return;}
-  if(editing.field==='arrive'&&r.leave&&ms>r.leave){document.getElementById('err').textContent='등원 시각이 귀가 시각보다 늦습니다';return;}
-  if(editing.field==='arrive'&&ms>Date.now()+60000){document.getElementById('err').textContent='현재 시각보다 늦습니다';return;}
-  var op={op:'edit',name:editing.name,field:editing.field,t:ms};
+  var g=editing.g,d=DATES[g],ms=toMs(d,v),r=ST[g].rec[editing.name]||{},er=document.getElementById('err');
+  if(editing.field==='leave'&&r.arrive&&ms<r.arrive){er.textContent='귀가 시각이 등원 시각보다 빠릅니다';return;}
+  if(editing.field==='arrive'&&r.leave&&ms>r.leave){er.textContent='등원 시각이 귀가 시각보다 늦습니다';return;}
+  if(editing.field==='arrive'&&ms>Date.now()+60000){er.textContent='현재 시각보다 늦습니다';return;}
+  var op;
+  if(editing.mode==='new'){op=editing.op;op.t=ms;}
+  else op={op:'edit',name:editing.name,field:editing.field,t:ms};
   closeEdit();push(op);
 };
 
@@ -258,10 +331,12 @@ function start(){
   document.getElementById('app').style.display='block';
   render();syncAll();
 }
+pruneCache();
 ['금','토'].forEach(function(g){
   var S=ST[g];
+  DATES[g]=defDate(g);
   try{S.Q=JSON.parse(ls('att_q_'+g)||'[]');}catch(e){S.Q=[];}
-  try{var cc=JSON.parse(ls('att_s_'+g)||'null');if(cc&&cc.d===todayKey()){S.roster=cc.roster||[];S.rec=cc.rec||{};S.Q.forEach(function(o){if(o.date===todayKey())applyLocal(o,g);});}}catch(e){}
+  loadCache(g);
 });
 pw=ls('att_pw')||'';
 if(pw)start();else showGate('');
