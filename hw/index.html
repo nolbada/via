@@ -355,14 +355,14 @@ function reportView(meta,weeks,reps){
   if(viewKey>cur)viewKey=cur;
   if(!reps[viewKey]&&viewKey===cur){var lastK=rkeys[rkeys.length-1];if(lastK&&lastK<=cur)viewKey=lastK}
   var start=parseKey(viewKey),end=addDays(start,5),isCur=viewKey===cur,R=reps[viewKey]||null;
-  var h='<div class="rp-brand">비타민 영어클리닉</div>';
+  var h='<div class="rp-brand">비타민 영어클리닉 학원</div>';
   h+='<div class="hero"><div class="rp-kick">주간 학습 리포트</div><div class="name">'+esc(meta.name)+'</div><div class="meta">'+esc(pcls(meta.cls))+'</div><div style="margin-top:14px">'+weekNav(start,end,isCur)+'</div></div>';
   if(!R){
     h+='<div class="card"><div class="rp-h">이 주 리포트가 없어요</div><div class="rp-sub" style="margin:0">리포트는 매주 금요일에 올라와요.</div></div>';
   }else{
     var gMin=(R.g&&R.g.min)||0,lMin=(R.l&&R.l.min)||0;
     h+='<div class="rp-tot"><span class="k">이번 주 숙제 순수 학습 시간</span><span class="v">'+(gMin+lMin)+'<small>분</small></span><span class="d">문법 '+gMin+'분'+(lMin?' · 듣기 '+lMin+'분':'')+' 합산<br>단어숙제는 완료 여부로 확인 (하루 평균 5~7분 분량)</span></div>';
-    h+='<div class="rp-msg"><b>선생님이 직접 확인하고 정리한 한 주입니다</b><p>클래스카드가 자동으로 내주는 성적표가 아닙니다.<br>비타민 영어클리닉 선생님이 한 주 동안의 단어숙제, 문법, 단어테스트 기록을 요일별로 하나하나 확인하고, 밀리지 않고 했는지 따져서 직접 편집한 리포트입니다.</p></div>';
+    h+='<div class="rp-msg"><b>선생님이 직접 확인하고 정리한 한 주입니다</b><p>클래스카드가 자동으로 내주는 성적표가 아닙니다.<br>비타민 영어클리닉 학원 선생님이 한 주 동안의 단어숙제, 문법, 단어테스트 기록을 요일별로 하나하나 확인하고, 밀리지 않고 했는지 따져서 직접 편집한 리포트입니다.</p></div>';
     var W=R.w||{sets:[],days:[]},G=R.g||{units:[],days:[]},T=R.t||{items:[],days:[]};
     var wOk=0;(W.sets||[]).forEach(function(x){if(x.ok)wOk++});
     var tFail=0;(T.items||[]).forEach(function(x){if(!x.ok)tFail++});
@@ -411,7 +411,7 @@ function reportView(meta,weeks,reps){
       h+='</div></div>';
     });
   }
-  h+='<div class="foot">비타민 영어클리닉</div>';
+  h+='<div class="foot">비타민 영어클리닉 학원</div>';
   return h;
 }
 function runParent(tok){
