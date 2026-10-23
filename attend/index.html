@@ -286,11 +286,14 @@ function applyLocal(op,g){
   else if(op.op==='remove_student'){ST[g].roster=ST[g].roster.filter(function(x){return x.name!==op.name;});if(!r.status)delete ST[g].rec[op.name];}
   else if(op.op==='edit'){if(op.field==='arrive'){if(!r.a0)r.a0=r.arrive;r.arrive=t;}else{if(!r.l0)r.l0=r.leave;r.leave=t;}}
 }
+function memDec(m){m=String(m==null?'':m);if(m.indexOf('예약')===0)return m.slice(2);if(/(^|\D)0?3\s*[:시]\s*30/.test(m)||/T0?3:30/.test(m))return '3시30분';return m;}
+function memEnc(m){return (m==='2시'||m==='3시30분')?'예약'+m:m;}
+function recDec(rec){Object.keys(rec||{}).forEach(function(n){if(rec[n]&&rec[n].memo)rec[n].memo=memDec(rec[n].memo);});return rec;}
 function saveQ(g){ls('att_q_'+g,JSON.stringify(ST[g].Q));}
 function cacheKey(g,d){return 'att_s_'+g+'_'+d;}
 function loadCache(g){
   var S=ST[g],d=DATES[g];S.rec={};S.mk=[];S.loaded=false;
-  try{var cc=JSON.parse(ls(cacheKey(g,d))||'null');if(cc&&cc.roster){S.roster=cc.roster;S.rec=cc.rec||{};S.mk=cc.mk||[];S.loaded=true;}}catch(e){}
+  try{var cc=JSON.parse(ls(cacheKey(g,d))||'null');if(cc&&cc.roster){S.roster=cc.roster;S.rec=cc.rec||{};if(g==='보')recDec(S.rec);S.mk=cc.mk||[];S.loaded=true;}}catch(e){}
   S.Q.forEach(function(o){if(o.date===d)applyLocal(o,g);});
 }
 function pruneCache(){
@@ -520,7 +523,8 @@ function sync(g){
   if(API.indexOf('__API')===0){errState='서버 주소 미설정';render();return;}
   S.busy=true;
   var sent=S.Q.slice(0,6),d=DATES[g];
-  post({act:'ops',pw:pw,date:d,group:g,ops:sent}).then(function(res){
+  post({act:'ops',pw:pw,date:d,group:g,ops:sent.map(function(o){return (g==='보'&&o.op==='memo')?Object.assign({},o,{v:memEnc(o.v)}):o;})}).then(function(res){
+    if(g==='보'&&res&&res.rec)recDec(res.rec);
     S.busy=false;
     if(!res.ok){
       if(res.err==='auth'){ls('att_pw',null);pw='';showGate('비밀번호가 맞지 않습니다');return;}
