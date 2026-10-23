@@ -147,6 +147,10 @@ details.mkd summary{margin:10px 2px 4px;font-size:13px}
 .mkc .mk-ctl input[type=date]{width:118px;font-size:12px;padding:3px 4px}
 .mkc .mk-ctl select{width:76px;font-size:12px;padding:3px 4px}
 .mkc button{min-height:28px;padding:2px 8px;font-size:12px}
+#dprev,#dnext,#drec{display:none!important}
+.dl{cursor:default}
+.dl input{display:none}
+.cnt{cursor:pointer;min-width:26px;text-align:center}
 </style>
 </head>
 <body>
@@ -291,7 +295,7 @@ function bucket(n){
   if(r.teacher==='여')return 'f';
   return 'wait';
 }
-var ABSSEL='',LPT=0,RARM=0,CAP={m:12,f:9},SEL=null,LV=null,LB=null;
+var NUMOFF=ls('att_noff')==='1',ABSSEL='',LPT=0,RARM=0,CAP={m:12,f:9},SEL=null,LV=null,LB=null;
 function timeBtn(n,field,ms,orig){return '<span class="tm'+(orig?' ed':'')+'" data-edit="'+field+'" data-name="'+esc(n)+'">'+hm(ms)+'</span>';}
 function badge(n){return GM[n]?'<span class="bd">보강'+(GM[n].trim()?' '+esc(GM[n].trim()):'')+'</span>':'';}
 function card(n,b){
@@ -384,11 +388,11 @@ function render(){
     var all={out:B.out.length,wait:B.wait.length,m:B.m.length,f:B.f.length,left:B.left.length,abs:B.abs.length};
     var arrived=all.wait+all.m+all.f+all.left;
     document.getElementById('stat').innerHTML=
-      '<div class="k"><b>'+all.out+'</b>TODAY</div><div><b>'+arrived+'</b>등원</div><div><b>'+(all.m+all.f)+'</b>수업 중</div><button class="sb" data-lv="left"><b>'+all.left+'</b>귀가</button><button class="sb" data-lv="abs"><b>'+all.abs+'</b>결석</button><div><b>'+names.length+'</b>전체</div><button class="sb rst" data-reset="1">'+(RARM&&Date.now()-RARM<4000?'정말 초기화':'초기화')+'</button>';
+      '<button class="sb" data-lv="left">귀가</button><button class="sb" data-lv="abs">결석</button><button class="sb rst" data-reset="1">'+(RARM&&Date.now()-RARM<4000?'정말 초기화':'초기화')+'</button>';
     var outL=B.out.filter(function(n){return !query||n.toLowerCase().indexOf(query)>=0;});
     document.getElementById('main').innerHTML=
-      (all.wait?'<section class="pane waitbar"><h2>등원 · 배정 전<span>'+all.wait+'</span></h2><div class="wl">'+B.wait.map(wcard).join('')+'</div></section>':'')+
-      '<div class="wrap"><section class="pane col stu"><h2>STUDENTS<span>'+all.out+'</span></h2><div class="lst"><div class="grid">'+(outL.length?outL.map(chip).join(''):'<div class="empty">'+(all.out?'검색 결과 없음':'남은 학생 없음')+'</div>')+'</div></div></section>'+room('m',B.m)+room('f',B.f)+'</div>';
+      (all.wait?'<section class="pane waitbar"><h2>등원 · 배정 전<span class="cnt" data-cnt="1">'+(NUMOFF?'-':all.wait)+'</span></h2><div class="wl">'+B.wait.map(wcard).join('')+'</div></section>':'')+
+      '<div class="wrap"><section class="pane col stu"><h2>STUDENTS<span class="cnt" data-cnt="1">'+(NUMOFF?'-':all.out)+'</span></h2><div class="lst"><div class="grid">'+(outL.length?outL.map(chip).join(''):'<div class="empty">'+(all.out?'검색 결과 없음':'남은 학생 없음')+'</div>')+'</div></div></section>'+room('m',B.m)+room('f',B.f)+'</div>';
     var hd=document.querySelector('header');document.documentElement.style.setProperty('--hh',hd.offsetHeight+'px');
   }
   renderSheet();renderLv();
@@ -434,6 +438,8 @@ function setDate(d){
 function alert_(m){errState=m;render();setTimeout(function(){if(errState===m){errState='';render();}},3000);}
 function absFlow(n){if(GM[n])act({op:'absent',name:n});else openAbs('absent',n);}
 function onAct(ev){
+  var cn=ev.target.closest('[data-cnt]');
+  if(cn){NUMOFF=!NUMOFF;ls('att_noff',NUMOFF?'1':null);render();return;}
   var lt=ev.target.closest('[data-leavet]');
   if(lt){
     var nmL=lt.getAttribute('data-name'),vv=document.getElementById('sl').value,rrL=ST[G].rec[nmL]||{};
