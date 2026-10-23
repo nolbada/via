@@ -314,7 +314,7 @@ function runTeacher(code){
   function act(){return roster.filter(function(s){return !s.off})}
   function grpOf(c){return /^(M|월수금)/.test(c)?0:/^(T|화목금)/.test(c)?1:2}
   function gcls(c){var m=c.match(/(초|중|고)\s*(\d)/);if(!m)return 'g-x';if(m[1]==='고')return 'g-h';var k=m[1]+m[2];return k==='초6'?'g-e6':k==='중1'?'g-m1':k==='중2'?'g-m2':k==='중3'?'g-m3':'g-x'}
-  function clKey(c){var m=c.match(/(초|중|고)\s*(\d)/),l=c.match(/\(\s*(상|중|하)\s*\)/);return [grpOf(c),m?'초중고'.indexOf(m[1]):9,m?+m[2]:9,l?'상중하'.indexOf(l[1]):9]}
+  function clKey(c){var m=c.match(/(초|중|고)\s*(\d)/),l=c.match(/(초|중|고)\s*\d\s*[-(]?\s*([A-Za-z])\b/);return [grpOf(c),m?'초중고'.indexOf(m[1]):9,m?+m[2]:9,l?l[2].toUpperCase().charCodeAt(0):999]}
   function classes(){var o=[];act().forEach(function(s){if(o.indexOf(s.cls)<0)o.push(s.cls)});var ix={};o.forEach(function(c,i){ix[c]=i});return o.sort(function(x,y){var p=clKey(x),q=clKey(y);for(var i=0;i<4;i++){if(p[i]!==q[i])return p[i]-q[i]}return ix[x]-ix[y]})}
   function itemsOf(cl){
     var c=cfg[cl];if(c&&c.length)return c;
