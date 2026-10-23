@@ -405,7 +405,7 @@ function runTeacher(code){
   }
   function itemsHTML(cl){
     if(!draft||draft.cls!==selCls)draft={cls:selCls,items:cloneJ(itemsOf(selCls))};
-    var h='<details class="mgr" data-m="items"'+(mgrOpen.items?' open':'')+'><summary>숙제 항목 편집 · '+esc(selCls)+'</summary>';
+    var h='<details class="mgr" data-m="items"'+(mgrOpen.items?' open':'')+'><summary>숙제 항목 편집</summary>';
     draft.items.forEach(function(it,ix){
       var isDay=it.type==='day',n=nOf(it),opts='';
       for(var q=1;q<=6;q++)opts+='<option value="'+q+'"'+(!isDay&&n===q?' selected':'')+'>'+q+'칸</option>';
