@@ -404,7 +404,10 @@ function room(k,list){
   return '<section class="room col '+k+'"><div class="rh"><div class="rt">'+TEACH[k==='m'?'남':'여']+'</div><div class="rc"><b>'+n+'</b> / '+cap+'</div></div><div class="dots">'+dots+'</div><div class="rs">'+st+'</div><div class="lst">'+(n?list.map(function(x,j){return row(x,j,cap,k);}).join(''):'<div class="empty">비어 있음</div>')+'</div></section>';
 }
 function boRoom(k,list){
-  return '<section class="room col '+k+'"><div class="rh"><div class="rt">'+TEACH[k==='m'?'남':'여']+'</div><div class="rc"><b>'+(NUMOFF?'-':list.length)+'</b></div></div><div class="lst">'+(list.length?list.map(function(x,j){return row(x,j,9999,k);}).join(''):'<div class="empty">비어 있음</div>')+'</div></section>';
+  var cap=CAP[k],n=list.length,over=Math.max(0,n-cap),dots='',i;
+  for(i=0;i<cap;i++)dots+='<s class="'+(i<n?'f':'')+'"></s>';
+  var st=over?'<span class="warn">정원 초과 +'+over+'</span>':(n>=cap?'<span class="full">만석</span>':'빈 자리 '+(cap-n));
+  return '<section class="room col '+k+'"><div class="rh"><div class="rt">'+TEACH[k==='m'?'남':'여']+'</div><div class="rc"><b>'+(NUMOFF?'-':n)+'</b> / '+cap+'</div></div><div class="dots">'+dots+'</div><div class="rs">'+st+'</div><div class="lst">'+(n?list.map(function(x,j){return row(x,j,cap,k);}).join(''):'<div class="empty">비어 있음</div>')+'</div></section>';
 }
 function boMain(B,all,outL){
   var sn=Object.keys(BSEL).length;
