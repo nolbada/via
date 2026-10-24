@@ -90,7 +90,8 @@ button.bf{background:var(--fc);color:#fff;border:0}
 .gd{font-size:10px;font-weight:700;color:#8a5400;background:#ffe6b0;border-radius:5px;padding:0 4px;margin-left:4px}
 .rw .tm{font-size:14px;font-weight:700;padding:2px 8px;background:rgba(255,255,255,.85)}
 .rw .tm.due{color:#c92a2a;border-color:#e03131;background:#fff0f0}
-.rw .gh2{font:inherit;font-size:13px;font-weight:800;color:#fff;background:#e03131;border:0;border-radius:8px;padding:3px 10px;margin-left:6px;cursor:pointer}
+.rw .gh2.off{background:#e4e7ee;color:#4a5265}
+.rw .gh2{flex:none;font:inherit;font-size:13px;font-weight:800;color:#fff;background:#e03131;border:0;border-radius:8px;padding:3px 10px;margin-left:6px;cursor:pointer}
 .dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:#e03131;margin-right:6px;vertical-align:middle}
 .rw .rx{white-space:nowrap;min-height:34px;padding:0 10px;font-size:13px;font-weight:700;border-radius:10px;border:0;background:#e4e7ee;color:#566074}
 .rvp h2 .bgc{margin-left:auto;min-height:28px;padding:0 10px;font-size:12px;font-weight:700;border-radius:9px;border:0;background:#e4e7ee;color:#566074;cursor:pointer}
@@ -422,7 +423,7 @@ function isDue(n,r){
 }
 function row(n,i,cap,k){
   var r=ST[G].rec[n]||{},e=esc(n),due=isDue(n,r);
-  return '<div class="rw'+(i>=cap?' over':'')+'"><i class="no">'+(i+1)+'</i><div class="rn" data-sel="'+e+'">'+(due?'<span class="dot"></span>':'')+e+(GM[n]?'<span class="gd">보강</span>':'')+'</div>'+timeBtn(n,'arrive',r.arrive,r.a0).replace('class="tm','class="tm'+(due?' due':''))+(due?'<button class="gh2" data-gohome="'+e+'">귀가</button>':'')+'</div>';
+  return '<div class="rw'+(i>=cap?' over':'')+'"><i class="no">'+(i+1)+'</i><div class="rn" data-sel="'+e+'">'+(due?'<span class="dot"></span>':'')+e+(GM[n]?'<span class="gd">보강</span>':'')+'</div>'+((r.status==='in'&&DATES[G]===todayKey())?'<button class="gh2'+(due?'':' off')+'" data-gohome="'+e+'">귀가</button>':'')+timeBtn(n,'arrive',r.arrive,r.a0).replace('class="tm','class="tm'+(due?' due':''))+'</div>';
 }
 function room(k,list){
   var cap=CAP[k],n=list.length,over=Math.max(0,n-cap),dots='',i;
