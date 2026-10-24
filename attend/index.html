@@ -141,6 +141,7 @@ details.mkd summary{cursor:pointer;margin:16px 2px 6px;font-weight:700}
 .stat button.rst{margin-left:auto;font-size:13px;font-weight:700;color:#ffb3b8;border-color:rgba(255,106,116,.4)}
 .stat button.rst::after{content:none}
 .chip{-webkit-touch-callout:none}
+.aq{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}.aq button{font:inherit;font-size:15px;padding:10px 4px;border:1px solid var(--line);border-radius:10px;background:#f6f7f9;cursor:pointer}
 .lrow{display:flex;align-items:center;gap:8px;margin-bottom:12px;grid-column:1/-1}
 .lrow span{font-size:14px;color:var(--mut);white-space:nowrap}
 .lrow input{font:inherit;font-size:20px;flex:1;min-width:0;padding:8px;border:1px solid var(--line);border-radius:10px;text-align:center}
@@ -511,7 +512,7 @@ function renderLv(){
   if(VIEW!=='att'||!LV||!LB){LV=null;lm.style.display='none';return;}
   var l=LB[LV]||[];
   document.getElementById('lt').innerHTML=(LV==='left'?'귀가한 학생':'결석한 학생')+' <span>'+l.length+'</span>';
-  document.getElementById('lb').innerHTML=(LV==='abs'&&LB.out.length?'<div class="row" style="margin-bottom:10px"><select id="absSel" style="flex:1;font:inherit;padding:9px;border:1px solid var(--line);border-radius:10px">'+LB.out.map(function(n){return '<option'+(n===ABSSEL?' selected':'')+'>'+esc(n)+'</option>';}).join('')+'</select><button class="p" data-absadd="1">결석 처리</button></div>':'')+(l.length?l.map(function(n){return card(n,LV);}).join(''):'<div class="empty">없음</div>');
+  document.getElementById('lb').innerHTML=(LV==='abs'&&LB.out.length?'<div class="aq">'+LB.out.map(function(n){return '<button data-absq="'+esc(n)+'">'+esc(n)+'</button>';}).join('')+'</div>':'')+(l.length?l.map(function(n){return card(n,LV);}).join(''):'<div class="empty">없음</div>');
   lm.style.display='flex';
 }
 function renderDbar(){
@@ -640,6 +641,8 @@ function onAct(ev){
     if(rrL.arrive&&ms<Math.floor(rrL.arrive/60000)*60000){alert_('귀가 시각이 등원 시각보다 빠릅니다');return;}
     SEL=null;renderSheet();push({op:'leave',name:nmL,t:ms});return;
   }
+  var aq=ev.target.closest('[data-absq]');
+  if(aq){LV=null;renderLv();absFlow(aq.getAttribute('data-absq'));return;}
   var aa=ev.target.closest('[data-absadd]');
   if(aa){var sv=document.getElementById('absSel');if(sv&&sv.value){LV=null;renderLv();absFlow(sv.value);}return;}
   if(Date.now()-LPT<700&&ev.target.closest('.chip,.rv'))return;
