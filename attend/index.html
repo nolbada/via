@@ -424,7 +424,7 @@ function isDue(n,r){
 }
 function row(n,i,cap,k){
   var r=ST[G].rec[n]||{},e=esc(n),due=isDue(n,r);
-  return '<div class="rw'+(i>=cap?' over':'')+'"><i class="no">'+(i+1)+'</i><div class="rn" data-sel="'+e+'">'+(due?'<span class="dot"></span>':'')+e+(GM[n]?'<span class="gd">보강</span>':'')+'</div>'+timeBtn(n,'arrive',r.arrive,r.a0).replace('class="tm','class="tm'+(due?' due':''))+'</div>';
+  return '<div class="rw'+(i>=cap?' over':'')+'" data-sel="'+e+'"><i class="no">'+(i+1)+'</i><div class="rn">'+(due?'<span class="dot"></span>':'')+e+(GM[n]?'<span class="gd">보강</span>':'')+'</div><span class="tm'+(r.a0?' ed':'')+(due?' due':'')+'">'+hm(r.arrive)+'</span></div>';
 }
 function room(k,list){
   var cap=CAP[k],n=list.length,over=Math.max(0,n-cap),dots='',i;
@@ -872,7 +872,7 @@ function openAbs(mode,name){
   document.getElementById('a_reason').innerHTML=opts(REASONS,mode==='short'?'미완료':'','사유 선택');
   document.getElementById('a_slot').innerHTML=opts(SLOTS,'','선택 안 함');
   document.getElementById('a_date').value='';document.getElementById('a_memo').value='';document.getElementById('a_err').textContent='';
-  document.getElementById('a_only').style.display=mode==='absent'?'':'none';
+  document.getElementById('a_only').style.display='none';document.getElementById('a_ok').textContent=mode==='absent'?'결석 등록':'보강 등록';
   document.getElementById('amodal').style.display='flex';
 }
 document.getElementById('a_cancel').onclick=closeEdit;
