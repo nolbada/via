@@ -66,6 +66,7 @@ main{padding:12px 16px 14px;display:flex;flex-direction:column;gap:10px;height:c
 .wn{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0;cursor:pointer}
 .wn .cn{font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .wc button{min-width:58px;padding:4px 10px;font-weight:700;border:0;border-radius:12px;color:#fff}
+.wc button.bc{min-width:46px;background:#e4e7ee;color:#566074}
 button.bm{background:var(--mc);color:#fff;border:0}
 button.bf{background:var(--fc);color:#fff;border:0}
 .room{border-top:5px solid var(--mc)}
@@ -86,6 +87,7 @@ button.bf{background:var(--fc);color:#fff;border:0}
 .rn{flex:1;min-width:0;font-size:16px;font-weight:700;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .gd{font-size:10px;font-weight:700;color:#8a5400;background:#ffe6b0;border-radius:5px;padding:0 4px;margin-left:4px}
 .rw .tm{font-size:12px;padding:1px 6px;background:rgba(255,255,255,.75)}
+.rw .rx{white-space:nowrap;min-height:34px;padding:0 10px;font-size:13px;font-weight:700;border-radius:10px;border:0;background:#e4e7ee;color:#566074}
 .rw .lv{white-space:nowrap;min-height:34px;padding:0 12px;font-size:13px;font-weight:700;border-radius:10px;border:0;background:var(--dark);color:#fff}
 .nm{font-size:18px;font-weight:700;flex:1;min-width:70px}
 .tm{font-size:15px;color:var(--ink);background:#f2f4f7;border:1px solid var(--line);border-radius:8px;padding:2px 8px;cursor:pointer}
@@ -391,11 +393,11 @@ function chip(n){
 }
 function wcard(n){
   var r=ST[G].rec[n]||{},e=esc(n);
-  return '<div class="wc"><div class="wn" data-sel="'+e+'"><span class="cn">'+e+(GM[n]?'<span class="gd">보강</span>':'')+'</span>'+timeBtn(n,'arrive',r.arrive,r.a0)+'</div><button class="bm" data-op="assign" data-teacher="남" data-name="'+e+'">남쌤</button><button class="bf" data-op="assign" data-teacher="여" data-name="'+e+'">여쌤</button></div>';
+  return '<div class="wc"><div class="wn" data-sel="'+e+'"><span class="cn">'+e+(GM[n]?'<span class="gd">보강</span>':'')+'</span>'+timeBtn(n,'arrive',r.arrive,r.a0)+'</div><button class="bm" data-op="assign" data-teacher="남" data-name="'+e+'">남쌤</button><button class="bf" data-op="assign" data-teacher="여" data-name="'+e+'">여쌤</button><button class="bc" data-op="back" data-name="'+e+'">취소</button></div>';
 }
 function row(n,i,cap,k){
   var r=ST[G].rec[n]||{},e=esc(n);
-  return '<div class="rw'+(i>=cap?' over':'')+'"><i class="no">'+(i+1)+'</i><div class="rn" data-sel="'+e+'">'+e+(GM[n]?'<span class="gd">보강</span>':'')+'</div>'+timeBtn(n,'arrive',r.arrive,r.a0)+'</div>';
+  return '<div class="rw'+(i>=cap?' over':'')+'"><i class="no">'+(i+1)+'</i><div class="rn" data-sel="'+e+'">'+e+(GM[n]?'<span class="gd">보강</span>':'')+'</div>'+timeBtn(n,'arrive',r.arrive,r.a0)+'<button class="rx" data-op="back" data-name="'+e+'">취소</button></div>';
 }
 function room(k,list){
   var cap=CAP[k],n=list.length,over=Math.max(0,n-cap),dots='',i;
@@ -502,7 +504,7 @@ function render(){
     var all={out:B.out.length,wait:B.wait.length,m:B.m.length,f:B.f.length,left:B.left.length,abs:B.abs.length};
     var arrived=all.wait+all.m+all.f+all.left;
     document.getElementById('stat').innerHTML=
-      (UNDO[G].length?'<button class="sb undo" data-undo="1">되돌리기 · '+esc(UNDO[G][UNDO[G].length-1].label)+'</button>':'')+'<button class="sb" data-lv="left">귀가</button>'+(G==='보'?'':'<button class="sb" data-lv="abs">결석</button>')+'<button class="sb rst" data-reset="1">'+(RARM&&Date.now()-RARM<4000?'정말 초기화':'초기화')+'</button>';
+      '<button class="sb" data-lv="left">귀가</button>'+(G==='보'?'':'<button class="sb" data-lv="abs">결석</button>')+'<button class="sb rst" data-reset="1">'+(RARM&&Date.now()-RARM<4000?'정말 초기화':'초기화')+'</button>';
     var outL=B.out.filter(function(n){return !query||n.toLowerCase().indexOf(query)>=0;});
     var MH=
       (all.wait?'<section class="pane waitbar"><h2>등원 · 배정 전<span class="cnt" data-cnt="1">'+(NUMOFF?'-':all.wait)+'</span></h2><div class="wl">'+B.wait.map(wcard).join('')+'</div></section>':'')+
