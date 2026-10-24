@@ -405,7 +405,7 @@ function wcard(n){
 }
 function isDue(n,r){
   if(!r||!r.arrive||r.status!=='in'||DATES[G]!==todayKey())return false;
-  var m=G==='금'?60:(G==='토'&&!GM[n]?120:0);
+  var m=G==='금'?60:(G==='토'&&!GM[n]?120:(G==='보'&&!GM[n]?90:0));
   return m>0&&Date.now()-r.arrive>=m*60000;
 }
 function row(n,i,cap,k){
@@ -904,7 +904,7 @@ pruneCache();
 pw=ls('att_pw')||'';
 if(pw)start();else showGate('');
 setInterval(syncAll,10000);
-setInterval(function(){if(VIEW==='att'&&!document.hidden&&!SEL&&!editing&&!LV&&!RV&&G!=='보')render();},30000);
+setInterval(function(){if(VIEW==='att'&&!document.hidden&&!SEL&&!editing&&!LV&&!RV&&!(G==='보'&&Object.keys(BSEL).length))render();},30000);
 document.addEventListener('visibilitychange',function(){if(!document.hidden)syncAll();});
 })();
 </script>
