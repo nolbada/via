@@ -117,6 +117,8 @@ button.bf{background:var(--fc);color:#fff;border:0}
 .mkh{margin:16px 2px 6px;font-size:16px;font-weight:800}
 .mkh span{color:var(--mut);font-weight:400}
 .mkh.late{color:#b4402c}
+.mkh.wk{color:#2b7a4b}
+.card.mkc.wk{background:#eaf6ee;border-color:#9ccfae}
 .mk-ctl{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center}
 .mk-ctl input[type=date]{width:150px}.mk-ctl select{width:110px}
 details.mkd summary{cursor:pointer;margin:16px 2px 6px;font-weight:700}
@@ -740,7 +742,7 @@ document.getElementById('ms').onclick=function(){
 
 
 /* ===== 결석·보강 ===== */
-var MKARM=null,MKINIT=false,MKOPEN=false,MKDEL=[],MKSEL={},MKDONE=[];
+var MKARM=null,MKINIT=false,MKOPEN=false,MKDEL=[],MKDELT=0,MKSEL={},MKDONE=[];function mkWk(d){if(!d)return false;var w=new Date(d+'T00:00:00Z').getUTCDay();return w>=1&&w<=4;}
 document.getElementById('mklist').addEventListener('toggle',function(ev){if(ev.target.tagName==='DETAILS')MKOPEN=ev.target.open;},true);
 function mkPost(ops){
   MK.busy=true;
@@ -761,7 +763,7 @@ function mkDelRows(rows){
   rows=rows.filter(function(r){return r>=0;}).sort(function(a,b){return b-a;});
   var items=rows.map(function(r){return MK.list.filter(function(m){return m.row===r;})[0];}).filter(Boolean);
   if(!items.length)return;
-  MKDEL.unshift(JSON.parse(JSON.stringify(items)));MKDEL=MKDEL.slice(0,10);
+  MKDEL.unshift(JSON.parse(JSON.stringify(items)));MKDEL=MKDEL.slice(0,10);MKDELT=Date.now();setTimeout(function(){if(VIEW==='mk')renderMk();},9200);
   MKSEL={};MKDONE=[];
   MK.list=MK.list.filter(function(m){return rows.indexOf(m.row)<0;});
   renderMk();
@@ -771,7 +773,7 @@ function mkLocal(row,f){MK.list.forEach(function(m){if(m.row===row){for(var k in
 function cntOpts(){return '<option value="1">1회</option><option value="2">2회</option><option value="3">3회</option><option value="4">4회</option><option value="5">5회</option>';}
 function opts(arr,sel,blank){return (blank?'<option value="">'+blank+'</option>':'')+arr.map(function(x){return '<option'+(x===sel?' selected':'')+'>'+esc(x)+'</option>';}).join('');}
 function mkItem(m,kind){
-  var late=kind==='late',nm=esc(m.name),rw=m.row,h='<div class="card mkc'+(MKSEL[rw]?' sel':'')+'" data-crow="'+rw+'" data-cname="'+nm+'"><span class="nm">'+nm+'</span>';
+  var late=kind==='late',nm=esc(m.name),rw=m.row,h='<div class="card mkc'+(MKSEL[rw]?' sel':'')+(mkWk(m.date)?' wk':'')+'" data-crow="'+rw+'" data-cname="'+nm+'"><span class="nm">'+nm+'</span>';
   h+=(m.date?'<span class="tm" style="cursor:default'+(late?';border-color:#b4402c;color:#b4402c':'')+'">'+dayLabel(m.date)+(m.slot?' '+esc(m.slot):'')+'</span>':'<span class="tm" style="cursor:default">보강일 미정</span>');
   var sub=((m.part||m.amt)?'<b>'+esc((m.part?m.part+' ':'')+(m.amt||''))+'</b> · ':'')+(m.abs?'결석 '+dayLabel(m.abs):'')+(m.reason?' · '+esc(m.reason):'')+(m.memo?' · '+esc(m.memo):'')+(m.kind?' · '+esc(m.kind):'')+(m.arr?' · 도착 '+esc(m.arr):'');
   h+='<span class="sub">'+sub+'</span><span class="mk-ctl">';
@@ -800,14 +802,14 @@ function renderMk(){
   var late=pend.filter(function(m){return m.date&&m.date<t;}).sort(function(a,b){return a.date<b.date?-1:1;});
   var tod=pend.filter(function(m){return m.date===t;});
   var up=pend.filter(function(m){return m.date&&m.date>t;}).sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:0;});
-  var nod=pend.filter(function(m){return !m.date;});
+  var nod=pend.filter(function(m){return !m.date;});var upW=up.filter(function(m){return mkWk(m.date);});up=up.filter(function(m){return !mkWk(m.date);});
   var dcut=addDays(todayKey(),-3);var done=MK.list.filter(function(m){return m.done&&(!m.date||m.date>=dcut);}).sort(function(a,b){return b.row-a.row;}).slice(0,30);
   function sec(title,arr,cls,kind){return arr.length?'<div class="mkh '+cls+'">'+title+' <span>'+arr.length+'</span></div>'+arr.map(function(m){return mkItem(m,kind);}).join(''):'';}
   Object.keys(MKSEL).forEach(function(k){if(!MK.list.some(function(m){return String(m.row)===k&&m.name===MKSEL[k];}))delete MKSEL[k];});
   var sn=Object.keys(MKSEL).length;
-  var ub=(sn?'<div class="undo"><span>'+sn+'건 선택</span><span><button class="g" data-mk="clearsel">해제</button> <button class="p" data-mk="bulkdel">삭제</button></span></div>':'')+(MKDONE.length?'<div class="undo"><span>완료 처리됨 '+esc(MKDONE[0].name)+'</span><button class="p" data-mk="undodone">되돌리기</button></div>':'')+(MKDEL.length?'<div class="undo"><span>삭제됨 '+esc(MKDEL[0][0].name)+(MKDEL[0].length>1?' 외 '+(MKDEL[0].length-1)+'건':'')+'</span><button class="p" data-mk="restore">되돌리기</button></div>':'');
+  var ub=(sn?'<div class="undo"><span>'+sn+'건 선택</span><span><button class="g" data-mk="clearsel">해제</button> <button class="p" data-mk="bulkdel">삭제</button></span></div>':'')+((MKDONE.length&&Date.now()-(MKDONE[0].t||0)<9000)?'<div class="undo"><span>완료 처리됨 '+esc(MKDONE[0].name)+'</span><button class="p" data-mk="undodone">되돌리기</button></div>':'')+((MKDEL.length&&Date.now()-MKDELT<9000)?'<div class="undo"><span>삭제됨 '+esc(MKDEL[0][0].name)+(MKDEL[0].length>1?' 외 '+(MKDEL[0].length-1)+'건':'')+'</span><button class="p" data-mk="restore">되돌리기</button></div>':'');
   var H=ub+(MK.err?'<div style="color:#b4402c;margin-top:8px">'+esc(MK.err)+'</div>':'')+
-    '<div class="mkh">오늘 해야 할 보강 <span>'+tod.length+'</span></div>'+(tod.length?tod.map(function(m){return mkItem(m,'today');}).join(''):'<div class="empty">없음</div>')+sec('밀린 보강',late,'late','late')+sec('예정된 보강',up,'','up')+sec('보강일 미정',nod,'','nod')+
+    '<div class="mkh">오늘 해야 할 보강 <span>'+tod.length+'</span></div>'+(tod.length?tod.map(function(m){return mkItem(m,'today');}).join(''):'<div class="empty">없음</div>')+sec('밀린 보강',late,'late','late')+sec('토·일 보강 예정 (출석부에 뜸)',up,'','up')+sec('보강일 미정 (날짜를 잡거나 그대로 완료)',nod,'','nod')+sec('평일 보강 월~목 (출석부에 안 뜸, 직접 완료)',upW,'wk','up')+
     
     '';
   if(L.__h!==H){L.__h=H;L.innerHTML=H;}
@@ -855,7 +857,7 @@ document.getElementById('mklist').addEventListener('click',function(ev){
     });
     return;
   }
-  if(a==='done'){MKDONE.unshift({row:row,name:name});MKDONE=MKDONE.slice(0,10);mkLocal(row,{done:true});mkOp({op:'mk_set',row:row,name:name,f:{done:true}});}
+  if(a==='done'){MKDONE.unshift({row:row,name:name,t:Date.now()});MKDONE=MKDONE.slice(0,10);setTimeout(function(){if(VIEW==='mk')renderMk();},9200);mkLocal(row,{done:true});mkOp({op:'mk_set',row:row,name:name,f:{done:true}});}
   if(a==='undo'){mkLocal(row,{done:false});mkOp({op:'mk_set',row:row,name:name,f:{done:false}});}
 });
 document.getElementById('mklist').addEventListener('change',function(ev){
