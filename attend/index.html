@@ -462,10 +462,10 @@ function boMain(B,all,outL){
   var gradeOf=function(n){var g='';ST['금'].roster.forEach(function(x){if(x.name===n)g=x.grade||'';});return g;};
   var shown=gsl.length,html='';
   if(gsl.length)html+='<div class="bgh gh0"><span>보강</span><b>'+gsl.length+'</b></div><div class="rvl">'+gsl.map(grow).join('')+'</div>';
-  ['중3','중2','중1'].forEach(function(g){
+  ['중1','중2','중3'].forEach(function(g){
     var rl=rvT.filter(function(n){return !GM[n]&&gradeOf(n)===g;}),ul=outL.filter(function(n){return !GM[n]&&gradeOf(n)===g;}),f=boFolded(g),ns=ul.length&&ul.every(function(n){return BSEL[n];});
     shown+=rl.length+ul.length;
-    html+='<div class="bgh" data-bfold="'+g+'"><i>'+(f?'\u25B8':'\u25BE')+'</i><span>'+g+'</span><b>'+(rl.length+ul.length)+'</b>'+((f||!ul.length)?'':'<button data-bo="gall" data-grade="'+g+'">'+(ns?'해제':'전체')+'</button>')+'</div>'+(f?'':(rl.length?'<div class="rvl">'+rl.map(rrow).join('')+'</div>':'')+(ul.length?'<div class="grid">'+ul.map(chip).join('')+'</div>':''));
+    html+='<div class="bgh" data-bfold="'+g+'"><i>'+(f?'\u25B8':'\u25BE')+'</i><span>'+g+'</span><b>'+(rl.length+ul.length)+'</b>'+((f||!ul.length)?'':'<button data-bo="gasg" data-grade="'+g+'">전체 배정</button>')+'</div>'+(f?'':(rl.length?'<div class="rvl">'+rl.map(rrow).join('')+'</div>':'')+(ul.length?'<div class="grid">'+ul.map(chip).join('')+'</div>':''));
   });
   var lst=html;
   return tabs+(waitT.length?'<section class="pane waitbar"><h2>등원 · 배정 전<span class="cnt" data-cnt="1">'+(NUMOFF?'-':waitT.length)+'</span></h2><div class="wl">'+waitT.map(wcard).join('')+'</div></section>':'')+
@@ -474,6 +474,7 @@ function boMain(B,all,outL){
 function boAct(el){
   var a=el.getAttribute('data-bo'),n=el.getAttribute('data-name'),s=el.getAttribute('data-slot');
   if(a==='gall'){var gg=el.getAttribute('data-grade'),gl=((LB&&LB.out)||[]).filter(function(x){return boGrade(x)===gg;}),al=gl.every(function(x){return BSEL[x];});gl.forEach(function(x){if(al)delete BSEL[x];else BSEL[x]=1;});render();return;}
+  if(a==='gasg'){var g2=el.getAttribute('data-grade'),T2=curTab(),l2=((LB&&LB.out)||[]).filter(function(x){return !GM[x]&&boGrade(x)===g2;});BSEL={};if(l2.length)pushMany(l2.map(function(x){return {op:'memo',name:x,v:T2};}));return;}
   if(a==='clear'){BSEL={};render();return;}
   if(a==='sclr'){
     if(BCLR===s&&Date.now()-BCLT<4000){BCLR='';var cl=Object.keys(ST[G].rec).filter(function(x){var r=ST[G].rec[x];return !r.status&&r.memo===s;});pushMany(cl.map(function(x){return {op:'memo',name:x,v:''};}));return;}
