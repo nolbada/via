@@ -90,8 +90,7 @@ button.bf{background:var(--fc);color:#fff;border:0}
 .gd{font-size:10px;font-weight:700;color:#8a5400;background:#ffe6b0;border-radius:5px;padding:0 4px;margin-left:4px}
 .rw .tm{font-size:14px;font-weight:700;padding:2px 8px;background:rgba(255,255,255,.85)}
 .rw .tm.due{color:#c92a2a;border-color:#e03131;background:#fff0f0}
-.rw .gh2.off{background:#e4e7ee;color:#4a5265}
-.rw .gh2{flex:none;font:inherit;font-size:13px;font-weight:800;color:#fff;background:#e03131;border:0;border-radius:8px;padding:3px 10px;margin-left:6px;cursor:pointer}
+.sbtns .gohm{grid-column:1/-1;font-size:18px;padding:14px}
 .dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:#e03131;margin-right:6px;vertical-align:middle}
 .rw .rx{white-space:nowrap;min-height:34px;padding:0 10px;font-size:13px;font-weight:700;border-radius:10px;border:0;background:#e4e7ee;color:#566074}
 .rvp h2 .bgc{margin-left:auto;min-height:28px;padding:0 10px;font-size:12px;font-weight:700;border-radius:9px;border:0;background:#e4e7ee;color:#566074;cursor:pointer}
@@ -424,7 +423,7 @@ function isDue(n,r){
 }
 function row(n,i,cap,k){
   var r=ST[G].rec[n]||{},e=esc(n),due=isDue(n,r);
-  return '<div class="rw'+(i>=cap?' over':'')+'"><i class="no">'+(i+1)+'</i><div class="rn" data-sel="'+e+'">'+(due?'<span class="dot"></span>':'')+e+(GM[n]?'<span class="gd">보강</span>':'')+'</div>'+((r.status==='in'&&DATES[G]===todayKey())?'<button class="gh2'+(due?'':' off')+'" data-gohome="'+e+'">귀가</button>':'')+timeBtn(n,'arrive',r.arrive,r.a0).replace('class="tm','class="tm'+(due?' due':''))+'</div>';
+  return '<div class="rw'+(i>=cap?' over':'')+'"><i class="no">'+(i+1)+'</i><div class="rn" data-sel="'+e+'">'+(due?'<span class="dot"></span>':'')+e+(GM[n]?'<span class="gd">보강</span>':'')+'</div>'+timeBtn(n,'arrive',r.arrive,r.a0).replace('class="tm','class="tm'+(due?' due':''))+'</div>';
 }
 function room(k,list){
   var cap=CAP[k],n=list.length,over=Math.max(0,n-cap),dots='',i;
@@ -503,7 +502,7 @@ function renderSheet(){
   }
   var h='<h3>'+e+badge(SEL)+'</h3><div class="srow"><span>등원</span>'+timeBtn(SEL,'arrive',r.arrive,r.a0)+'</div><div class="sbtns">';
   if(b==='wait')h+='<button class="bm" data-op="assign" data-teacher="남"'+a+'>남쌤</button><button class="bf" data-op="assign" data-teacher="여"'+a+'>여쌤</button><button class="g" data-op="back"'+a+'>등원 취소</button>';
-  else{var o=b==='m'?'여':'남';h+='<div class="lrow"><span>귀가 시각</span><input type="time" id="sl" value="'+hm(Date.now())+'"><button class="p" data-leavet="1"'+a+'>귀가 처리</button></div><button class="'+(o==='남'?'bm':'bf')+'" data-op="assign" data-teacher="'+o+'"'+a+'>'+TEACH[o]+'으로 이동</button><button class="g" data-op="back"'+a+'>배정 취소</button>'+(G==='보'?'':'<button class="g" data-op="absent"'+a+'>결석으로 변경</button>')+'';}
+  else{var o=b==='m'?'여':'남';if(DATES[G]===todayKey())h+='<button class="p gohm" data-gohome="'+e+'">지금 귀가</button>';h+='<div class="lrow"><span>귀가 시각</span><input type="time" id="sl" value="'+hm(Date.now())+'"><button class="p" data-leavet="1"'+a+'>귀가 처리</button></div><button class="'+(o==='남'?'bm':'bf')+'" data-op="assign" data-teacher="'+o+'"'+a+'>'+TEACH[o]+'으로 이동</button><button class="g" data-op="back"'+a+'>배정 취소</button>'+(G==='보'?'':'<button class="g" data-op="absent"'+a+'>결석으로 변경</button>')+'';}
   h+='<button class="g" data-close="1" style="grid-column:1/-1">닫기</button></div>';
   document.getElementById('sbox').innerHTML=h;sh.style.display='flex';
 }
@@ -632,7 +631,7 @@ function onAct(ev){
   var bo=ev.target.closest('[data-bo]');
   if(bo){boAct(bo);return;}
   var gh=ev.target.closest('[data-gohome]');
-  if(gh){var nmG=gh.getAttribute('data-gohome');push({op:'leave',name:nmG,t:Date.now()});return;}
+  if(gh){var nmG=gh.getAttribute('data-gohome');SEL=null;renderSheet();push({op:'leave',name:nmG,t:Date.now()});return;}
   var lt=ev.target.closest('[data-leavet]');
   if(lt){
     var nmL=lt.getAttribute('data-name'),vv=document.getElementById('sl').value,rrL=ST[G].rec[nmL]||{};
