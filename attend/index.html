@@ -58,6 +58,7 @@ main{padding:12px 16px 14px;display:flex;flex-direction:column;gap:10px;height:c
 .chip .x:active{background:#fbe3df;color:var(--bad)}
 .chip.gst{background:var(--wtl);border-color:#f1d28b}
 .rw.gst{background:var(--wtl);border-color:#f1d28b}
+.stu>h2 .hb{margin-left:auto;margin-right:8px;min-height:28px;padding:0 10px;font-size:12px;font-weight:700;border-radius:10px;border:0;background:#e4e7ee;color:#566074}
 .chip .bd{order:3;flex-basis:100%;width:fit-content;margin:0 0 3px;font-size:11px}
 .col{display:flex;flex-direction:column;min-height:0}
 .lst{overflow:auto;flex:1;min-height:0;padding:2px;-webkit-overflow-scrolling:touch}
@@ -447,7 +448,7 @@ function boGroups(outL){
 function slotNow(){var d=new Date(),m=d.getHours()*60+d.getMinutes();return m<915?'2시':(m<1005?'3시30분':'5시');}
 function curTab(){if(BOSL.indexOf(BTAB)<0)BTAB=(DATES[G]===todayKey())?slotNow():'2시';return BTAB;}
 function slotOf(n){var r=ST[G].rec[n]||{};if(BOSL.indexOf(r.memo)>=0)return r.memo;if(r.arrive){var d=new Date(r.arrive),m=d.getHours()*60+d.getMinutes();return m<915?'2시':(m<1005?'3시30분':'5시');}return curTab();}
-function boFolded(g){return BFOLD[g]===undefined?g==='그 외':!!BFOLD[g];}
+function boFolded(g){return !!BFOLD[g];}
 function boMain(B,all,outL){
   var T=curTab(),sn=Object.keys(BSEL).length;
   var inT=function(n){return slotOf(n)===T;};
@@ -455,12 +456,20 @@ function boMain(B,all,outL){
   var cnt={};BOSL.forEach(function(x){cnt[x]=B.rv.filter(function(n){return rvSlot(n)===x;}).length+B.wait.concat(B.m,B.f).filter(function(n){return slotOf(n)===x;}).length;});
   var tabs='<div class="btabs">'+BOSL.map(function(x){return '<button class="'+(x===T?'on':'')+'" data-bo="tab" data-slot="'+x+'">'+SLL[x]+'<b>'+(NUMOFF?'-':cnt[x])+'</b></button>';}).join('')+'</div>';
   var bar=sn?'<div class="bobar"><span>'+sn+'명</span>'+BOSL.map(function(x){return '<button class="p" data-bo="slot" data-slot="'+x+'">'+x+'</button>';}).join('')+'<button class="g" data-bo="now">등원</button><button class="g" data-bo="clear">해제</button></div>':'';
-  var rvh=rvT.length?'<div class="bgh rvh"><span>예정</span><b>'+rvT.length+'</b><button data-bo="sclr" data-slot="'+T+'">'+(BCLR===T?'정말 비우기':'비우기')+'</button></div><div class="rvl">'+rvT.map(function(n,i){var e=esc(n);var pg=GM[n]&&!(ST[G].rec[n]&&BOSL.indexOf(ST[G].rec[n].memo)>=0);return '<div class="rw rv'+(GM[n]?' gst':'')+'" '+(pg?'data-bo="garr" data-slot="'+T+'"':'data-op="arrive"')+' data-name="'+e+'"><i class="no">'+(i+1)+'</i><div class="rn">'+e+(GM[n]?'<span class="gd">보강</span>':'')+'</div></div>';}).join('')+'</div>':'';
-  var gl0=boGroups(outL).filter(function(gr){return gr.g==='보강'||/^중/.test(gr.g);}),shown=gl0.reduce(function(t,gr){return t+gr.l.length;},0);
-  var groups=gl0.length?gl0.map(function(gr){var f=boFolded(gr.g),ns=gr.l.filter(function(n){return BSEL[n];}).length===gr.l.length;return '<div class="bgh" data-bfold="'+esc(gr.g)+'"><i>'+(f?'\u25B8':'\u25BE')+'</i><span>'+esc(gr.g)+'</span><b>'+gr.l.length+'</b>'+((f||gr.g==='보강')?'':'<button data-bo="gall" data-grade="'+esc(gr.g)+'">'+(ns?'해제':'전체')+'</button>')+'</div>'+(f?'':'<div class="grid">'+gr.l.map(chip).join('')+'</div>');}).join(''):'';
-  var lst=(rvh+groups)||'<div class="empty">'+(ST[G].roster.length?'모두 예약됨':'명단 없음')+'</div>';
+  var gsl=rvT.filter(function(n){return GM[n];}).concat(outL.filter(function(n){return GM[n];}));
+  var grow=function(n,i){var e=esc(n);return '<div class="rw rv gst" data-bo="garr" data-slot="'+T+'" data-name="'+e+'"><i class="no">'+(i+1)+'</i><div class="rn">'+e+'<span class="gd">보강</span></div></div>';};
+  var rrow=function(n,i){var e=esc(n);return '<div class="rw rv" data-op="arrive" data-name="'+e+'"><i class="no">'+(i+1)+'</i><div class="rn">'+e+'</div></div>';};
+  var gradeOf=function(n){var g='';ST['금'].roster.forEach(function(x){if(x.name===n)g=x.grade||'';});return g;};
+  var shown=gsl.length,html='';
+  if(gsl.length)html+='<div class="bgh gh0"><span>보강</span><b>'+gsl.length+'</b></div><div class="rvl">'+gsl.map(grow).join('')+'</div>';
+  ['중3','중2','중1'].forEach(function(g){
+    var rl=rvT.filter(function(n){return !GM[n]&&gradeOf(n)===g;}),ul=outL.filter(function(n){return !GM[n]&&gradeOf(n)===g;}),f=boFolded(g),ns=ul.length&&ul.every(function(n){return BSEL[n];});
+    shown+=rl.length+ul.length;
+    html+='<div class="bgh" data-bfold="'+g+'"><i>'+(f?'\u25B8':'\u25BE')+'</i><span>'+g+'</span><b>'+(rl.length+ul.length)+'</b>'+((f||!ul.length)?'':'<button data-bo="gall" data-grade="'+g+'">'+(ns?'해제':'전체')+'</button>')+'</div>'+(f?'':(rl.length?'<div class="rvl">'+rl.map(rrow).join('')+'</div>':'')+(ul.length?'<div class="grid">'+ul.map(chip).join('')+'</div>':''));
+  });
+  var lst=html;
   return tabs+(waitT.length?'<section class="pane waitbar"><h2>등원 · 배정 전<span class="cnt" data-cnt="1">'+(NUMOFF?'-':waitT.length)+'</span></h2><div class="wl">'+waitT.map(wcard).join('')+'</div></section>':'')+
-    '<div class="wrap"><section class="pane col stu"><h2>명단<span class="cnt" data-cnt="1">'+(NUMOFF?'-':shown+rvT.length)+'</span></h2>'+bar+'<div class="lst">'+lst+'</div></section>'+boRoom('m',mT)+boRoom('f',fT)+'</div>';
+    '<div class="wrap"><section class="pane col stu"><h2>명단'+(rvT.length>1?'<button class="hb" data-bo="sclr" data-slot="'+T+'">'+(BCLR===T?'정말 비우기':'비우기')+'</button>':'')+'<span class="cnt" data-cnt="1">'+(NUMOFF?'-':shown)+'</span></h2>'+bar+'<div class="lst">'+lst+'</div></section>'+boRoom('m',mT)+boRoom('f',fT)+'</div>';
 }
 function boAct(el){
   var a=el.getAttribute('data-bo'),n=el.getAttribute('data-name'),s=el.getAttribute('data-slot');
