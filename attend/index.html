@@ -621,7 +621,7 @@ function setDate(d){
 
 /* 이벤트 */
 function alert_(m){errState=m;render();setTimeout(function(){if(errState===m){errState='';render();}},3000);}
-function absFlow(n){if(GM[n])act({op:'absent',name:n});else openAbs('absent',n);}
+function absFlow(n){if(GM[n]){var mr=(ST[G].mk||[]).filter(function(m){return m.name===n&&!m.done;})[0]||(ST[G].mk||[]).filter(function(m){return m.name===n;})[0];if(mr){openAbs('resched',n,mr.row);return;}act({op:'absent',name:n});}else openAbs('absent',n);}
 function onAct(ev){
   var cn=ev.target.closest('[data-cnt]');
   if(cn){NUMOFF=!NUMOFF;ls('att_noff',NUMOFF?'1':null);render();return;}
@@ -866,13 +866,14 @@ document.getElementById('mklist').addEventListener('change',function(ev){
 });
 
 /* 결석·부족분 보강 팝업 */
-function openAbs(mode,name){
-  AB={mode:mode,name:name,g:G};
-  document.getElementById('at').textContent=name+' · '+(mode==='absent'?'결석':'부족분 보강')+' ('+dayLabel(DATES[G])+')';
+function openAbs(mode,name,row){
+  AB={mode:mode,name:name,g:G,row:row};
+  document.getElementById('a_reason').parentNode.style.display=mode==='resched'?'none':'';
+  document.getElementById('at').textContent=name+' · '+(mode==='resched'?'결석 · 보강 다시 잡기':mode==='absent'?'결석':'부족분 보강')+' ('+dayLabel(DATES[G])+')';
   document.getElementById('a_reason').innerHTML=opts(REASONS,mode==='short'?'미완료':'','사유 선택');
   document.getElementById('a_slot').innerHTML=opts(SLOTS,'','선택 안 함');
   document.getElementById('a_date').value='';document.getElementById('a_memo').value='';document.getElementById('a_err').textContent='';
-  document.getElementById('a_only').style.display='none';document.getElementById('a_ok').textContent=mode==='absent'?'결석 등록':'보강 등록';
+  document.getElementById('a_only').style.display='none';document.getElementById('a_ok').textContent=mode==='resched'?'저장':mode==='absent'?'결석 등록':'보강 등록';
   document.getElementById('amodal').style.display='flex';
 }
 document.getElementById('a_cancel').onclick=closeEdit;
@@ -881,6 +882,7 @@ document.getElementById('a_only').onclick=function(){
 };
 document.getElementById('a_ok').onclick=function(){
   if(!AB)return;
+  if(AB.mode==='resched'){var ra=AB,rd=document.getElementById('a_date').value,rs=document.getElementById('a_slot').value,rm=document.getElementById('a_memo').value.trim();closeEdit();push({op:'absent',name:ra.name});var rf={date:rd,slot:rs};if(rm)rf.memo=rm;mkLocal(ra.row,{date:rd,slot:rs});ST[ra.g].mk=(ST[ra.g].mk||[]).filter(function(m){return m.row!==ra.row;});render();mkOp({op:'mk_set',row:ra.row,name:ra.name,f:rf}).then(function(){syncAll();});return;}
   var reason=document.getElementById('a_reason').value,er=document.getElementById('a_err');
   if(!reason){er.textContent='사유를 선택하세요';return;}
   var a=AB,memo=document.getElementById('a_memo').value.trim();
