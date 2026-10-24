@@ -39,7 +39,7 @@ header{position:sticky;top:0;z-index:5;background:linear-gradient(180deg,#252c40
 .stat>*{display:inline-flex;align-items:baseline;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:3px 14px;min-height:0;font:inherit;font-size:13px;color:#aeb6c8}
 .stat b{font-size:18px;color:#fff;font-weight:800}
 .stat .k{background:rgba(255,106,116,.2);border-color:rgba(255,106,116,.55);color:#ffcfd2;letter-spacing:.08em;font-weight:700}
-.stat button.sb{cursor:pointer}
+.stat button.sb{cursor:pointer;min-height:40px;padding-top:0;padding-bottom:0}
 .stat button.sb::after{content:"\203A";margin-left:2px;opacity:.7;font-size:16px}
 .bd{display:inline-block;font-size:11px;font-weight:700;color:#8a5400;background:#ffe6b0;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:middle}
 main{padding:12px 16px 14px;display:flex;flex-direction:column;gap:10px;height:calc(100vh - var(--hh,118px));height:calc(100dvh - var(--hh,118px))}
@@ -58,7 +58,7 @@ main{padding:12px 16px 14px;display:flex;flex-direction:column;gap:10px;height:c
 .chip .x:active{background:#fbe3df;color:var(--bad)}
 .chip.gst{background:var(--wtl);border-color:#f1d28b}
 .rw.gst{background:var(--wtl);border-color:#f1d28b}
-.stu>h2 .hb{margin-left:auto;margin-right:8px;min-height:28px;padding:0 10px;font-size:12px;font-weight:700;border-radius:10px;border:0;background:#e4e7ee;color:#566074}
+.stu>h2 .hb{margin-left:auto;margin-right:8px;min-height:38px;padding:0 10px;font-size:12px;font-weight:700;border-radius:10px;border:0;background:#e4e7ee;color:#566074}
 .chip .bd{order:3;flex-basis:100%;width:fit-content;margin:0 0 3px;font-size:11px}
 .col{display:flex;flex-direction:column;min-height:0}
 .lst{overflow:auto;flex:1;min-height:0;padding:2px;-webkit-overflow-scrolling:touch}
@@ -99,7 +99,7 @@ button.bf{background:var(--fc);color:#fff;border:0}
 .bgh{display:flex;align-items:center;gap:8px;padding:8px 4px 6px;font-weight:700;cursor:pointer;user-select:none}
 .bgh i{font-style:normal;color:#8a93a6;width:14px}
 .bgh b{color:#7a8396;font-size:13px}
-.bgh button{margin-left:auto;min-height:30px;padding:0 12px;font-size:13px;font-weight:700;border-radius:10px;border:0;background:#e4e7ee;color:#566074}
+.bgh button{margin-left:auto;min-height:38px;padding:0 12px;font-size:13px;font-weight:700;border-radius:10px;border:0;background:#e4e7ee;color:#566074}
 .rw .lv{white-space:nowrap;min-height:34px;padding:0 12px;font-size:13px;font-weight:700;border-radius:10px;border:0;background:var(--dark);color:#fff}
 .nm{font-size:18px;font-weight:700;flex:1;min-width:70px}
 .tm{font-size:15px;color:var(--ink);background:#f2f4f7;border:1px solid var(--line);border-radius:8px;padding:2px 8px;cursor:pointer}
@@ -189,7 +189,7 @@ details.mkd summary{margin:10px 2px 4px;font-size:13px}
 .btabs button.on b{background:rgba(255,255,255,.2);color:#fff}
 .rvh{border-top:0;margin-top:0}
 .rvl .rw{margin-bottom:6px}
-@media(max-width:700px){.wrap .grid{grid-template-columns:minmax(0,1fr)}.bgh{padding:6px 2px;gap:4px}.bgh button{padding:0 8px;min-height:28px;font-size:12px;white-space:nowrap}.rvl .rx{min-height:28px;padding:0 6px;font-size:12px}.btabs{gap:5px}.btabs button{font-size:13px;gap:4px;padding:0 4px}.btabs button b{padding:0 6px;font-size:12px}}
+@media(max-width:700px){.wrap .grid{grid-template-columns:minmax(0,1fr)}.bgh{padding:6px 2px;gap:4px}.bgh button{padding:0 8px;min-height:38px;font-size:12px;white-space:nowrap}.rvl .rx{min-height:28px;padding:0 6px;font-size:12px}.btabs{gap:5px}.btabs button{font-size:13px;gap:4px;padding:0 4px}.btabs button b{padding:0 6px;font-size:12px}}
 .bobar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 10px;background:#1e2540;color:#fff;font-weight:700}
 .bobar span{margin-right:auto;white-space:nowrap}
 .bobar button{min-height:34px;padding:2px 9px;font-size:13px;white-space:nowrap}
@@ -415,7 +415,7 @@ function chip(n){
 }
 function wcard(n){
   var r=ST[G].rec[n]||{},e=esc(n);
-  return '<div class="wc"><div class="wn" data-sel="'+e+'"><span class="cn">'+e+(GM[n]?'<span class="gd">보강</span>':'')+'</span>'+timeBtn(n,'arrive',r.arrive,r.a0)+'</div><button class="bm" data-op="assign" data-teacher="남" data-name="'+e+'">남쌤</button><button class="bf" data-op="assign" data-teacher="여" data-name="'+e+'">여쌤</button><button class="ba" data-absflow="'+e+'">결석</button><button class="bc" data-op="back" data-name="'+e+'">취소</button></div>';
+  return '<div class="wc"><div class="wn" data-sel="'+e+'"><span class="cn">'+e+(GM[n]?'<span class="gd">보강</span>':'')+'</span><span class="tm'+(r.a0?' ed':'')+'">'+hm(r.arrive)+'</span></div><button class="bm" data-op="assign" data-teacher="남" data-name="'+e+'">남쌤</button><button class="bf" data-op="assign" data-teacher="여" data-name="'+e+'">여쌤</button><button class="ba" data-absflow="'+e+'">결석</button><button class="bc" data-op="back" data-name="'+e+'">취소</button></div>';
 }
 function isDue(n,r){
   if(!r||!r.arrive||r.status!=='in'||DATES[G]!==todayKey())return false;
