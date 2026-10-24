@@ -801,7 +801,7 @@ function renderMk(){
   var tod=pend.filter(function(m){return m.date===t;});
   var up=pend.filter(function(m){return m.date&&m.date>t;}).sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:0;});
   var nod=pend.filter(function(m){return !m.date;});
-  var done=MK.list.filter(function(m){return m.done;}).sort(function(a,b){return b.row-a.row;}).slice(0,30);
+  var dcut=addDays(todayKey(),-3);var done=MK.list.filter(function(m){return m.done&&(!m.date||m.date>=dcut);}).sort(function(a,b){return b.row-a.row;}).slice(0,30);
   function sec(title,arr,cls,kind){return arr.length?'<div class="mkh '+cls+'">'+title+' <span>'+arr.length+'</span></div>'+arr.map(function(m){return mkItem(m,kind);}).join(''):'';}
   Object.keys(MKSEL).forEach(function(k){if(!MK.list.some(function(m){return String(m.row)===k&&m.name===MKSEL[k];}))delete MKSEL[k];});
   var sn=Object.keys(MKSEL).length;
