@@ -58,6 +58,7 @@ button,input,select{font:inherit;color:inherit}
 .mark.O{border:3px solid var(--o);background:var(--o-soft);color:var(--o)}
 .mark.T{border:3px solid var(--t);background:var(--t-soft);color:var(--t)}
 .mark.X{border:3px solid var(--x);background:var(--x-soft);color:var(--x)}
+.mark.A{border:2.5px dashed var(--rest);background:var(--surface-2);color:var(--ink-soft);font-size:12px;letter-spacing:-.5px}
 .mark.R{border:2px solid var(--border);background:var(--surface-2);color:var(--rest);font-size:16px}
 .mark.N{border:3px solid var(--rest);background:var(--surface-2);color:var(--ink-soft);font-size:12px;letter-spacing:-.5px}
 .mark.future{opacity:.35}
@@ -66,7 +67,7 @@ button,input,select{font:inherit;color:inherit}
 .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--ink-soft);padding:0 4px}
 .legend span{display:inline-flex;align-items:center;gap:5px}
 .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
-.dot.N{background:var(--rest);opacity:.6}.dot.O{background:var(--o)}.dot.T{background:var(--t)}.dot.X{background:var(--x)}.dot.R{background:var(--rest)}.dot.E{border:1.5px dashed var(--ink-soft)}
+.dot.N{background:var(--rest);opacity:.6}.dot.O{background:var(--o)}.dot.T{background:var(--t)}.dot.X{background:var(--x)}.dot.R{background:var(--rest)}.dot.A{border:2px dashed var(--rest)}.dot.E{border:1.5px dashed var(--ink-soft)}
 .h2{font-size:14px;font-weight:700;margin:6px 4px 0}
 .hist{overflow:hidden}
 .hist-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;border:0;border-top:1px solid var(--border);width:100%;background:none;text-align:left;cursor:pointer}
@@ -102,6 +103,7 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 .cell.O{border:2.5px solid var(--o);background:var(--o-soft);color:var(--o)}
 .cell.T{border:2.5px solid var(--t);background:var(--t-soft);color:var(--t)}
 .cell.X{border:2.5px solid var(--x);background:var(--x-soft);color:var(--x)}
+.cell.A{border:2.5px dashed var(--rest);background:var(--surface-2);color:var(--ink-soft);font-size:10px;letter-spacing:-.5px}
 .cell.R{border:2px solid var(--border);background:var(--surface-2);color:var(--rest);font-size:12px}
 .cell.N{border:2.5px solid var(--rest);background:var(--surface-2);color:var(--ink-soft);font-size:10px;letter-spacing:-.5px}
 .cell.future{opacity:.3;cursor:default}
@@ -191,8 +193,8 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 'use strict';
 var SRV='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec';
 var DAYS=['일','월','화','수','목','금','토'], WD=['토','일','월','화','수','목'];
-var CYCLE={'':'O','O':'T','T':'X','X':'','R':'O'}, VCYC={'':'O','O':'T','T':'X','X':'N','N':'','R':'O'}, LONG={'':'R','O':'R','T':'R','X':'R','N':'R','R':''};
-var SYM={O:'O',T:'△',X:'X',N:'미지참',R:'쉼','':''};
+var CYCLE={'':'O','O':'T','T':'X','X':'A','A':'','R':'O'}, VCYC={'':'O','O':'T','T':'X','X':'N','N':'A','A':'','R':'O'}, LONG={'':'R','O':'R','T':'R','X':'R','N':'R','A':'R','R':''};
+var SYM={O:'O',T:'△',X:'X',N:'미지참',A:'결석',R:'쉼','':''};
 var LATE_MS=10*60*1000, PASS_LINE='통과 70점 · 70점 미만 토요일 보충';
 var Q=new URLSearchParams(location.search), LS=window.localStorage;
 function g(k){try{return LS.getItem(k)}catch(e){return null}}
@@ -252,7 +254,7 @@ function status(r,items){
 }
 function judged(k){return k<curKey()||today().getDay()===5}
 function cls(p){return p>=80?'o':(p>=70?'t':'x')}
-function cnt(arr){var o=0,t=0;arr.forEach(function(v){if(v!=='R'){t++;if(v==='O')o++}});return [o,t]}
+function cnt(arr){var o=0,t=0;arr.forEach(function(v){if(v!=='R'&&v!=='A'){t++;if(v==='O')o++}});return [o,t]}
 function cntIt(r,it){return cnt((r[it.k]||[]).slice(0,nOf(it)))}
 
 /* 보충 판정 (X·△ 였다가 10분 이상 지나 O로 바뀌면 보충) */
@@ -312,7 +314,7 @@ function parentView(meta,weeks){
     for(var i=0;i<n;i++){var si=slotInfo(it,i,start,false);h+=slot(si.lb,a[i],si.fut,!!r.lt[it.k+i])}
     h+='</div></div>';
   });
-  h+='<div class="legend"><span><i class="dot O"></i>했어요</span><span><i class="dot T"></i>기준 미달</span><span><i class="dot X"></i>안 했어요</span>'+(hasN(FL)?'<span><i class="dot N"></i>교재 미지참</span>':'')+'<span><i class="dot R"></i>쉬는 날</span><span><i class="dot E"></i>검사 전</span></div>';
+  h+='<div class="legend"><span><i class="dot O"></i>했어요</span><span><i class="dot T"></i>기준 미달</span><span><i class="dot X"></i>안 했어요</span>'+(hasN(FL)?'<span><i class="dot N"></i>교재 미지참</span>':'')+'<span><i class="dot A"></i>결석</span><span><i class="dot R"></i>쉬는 날</span><span><i class="dot E"></i>검사 전</span></div>';
   var keys=Object.keys(weeks).sort().reverse(),prev=keyOf(addDays(parseKey(cur),-7));
   h+='<div class="h2">주별 기록</div><div class="hist">';
   if(!keys.length)h+='<div class="empty">검사를 시작하면 주별 기록이 여기에 쌓여요.</div>';
@@ -638,7 +640,7 @@ function runTeacher(code){
       h+='<td class="sc gsep"><b class="s-'+(pct===null?'':cls(pct))+'">'+(pct===null?'–':pct+'점')+'</b><small>'+esc(note)+'</small></td></tr>';
     });
     h+='</tbody></table></div>';
-    h+='<div class="legend"><span><i class="dot O"></i>했어요</span><span><i class="dot T"></i>기준 미달</span><span><i class="dot X"></i>안 했어요</span>'+(hasN(TF)?'<span><i class="dot N"></i>교재 미지참</span>':'')+'<span><i class="dot R"></i>쉼</span><span><i class="dot E"></i>검사 전</span></div>';
+    h+='<div class="legend"><span><i class="dot O"></i>했어요</span><span><i class="dot T"></i>기준 미달</span><span><i class="dot X"></i>안 했어요</span>'+(hasN(TF)?'<span><i class="dot N"></i>교재 미지참</span>':'')+'<span><i class="dot A"></i>결석</span><span><i class="dot R"></i>쉼</span><span><i class="dot E"></i>검사 전</span></div>';
     h+=itemsHTML(cl);
     h+=mgrHTML(cl);
     h+='<div class="foot">비타민 영어클리닉</div>';
