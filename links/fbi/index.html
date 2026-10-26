@@ -20,10 +20,18 @@ h1{font-size:22px;margin:0 0 20px;letter-spacing:-.01em}
 a.app{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--card);border:1px solid var(--line);border-left:8px solid var(--g1);border-radius:10px;padding:20px 16px;margin-bottom:10px;color:var(--ink);text-decoration:none;font-size:18px;font-weight:700}
 a.app.g2{border-left-color:var(--g2)}
 a.app:active{background:var(--line)}
-h2{font-size:14px;color:var(--sub);font-weight:700;margin:26px 0 8px;letter-spacing:.02em}
-a.app.mid{border-left-color:#0f766e}
-a.app.hi{border-left-color:#c2410c}
-a.app span{font-size:13px;font-weight:400;color:var(--sub)}
+.ns{border:2px solid var(--k);background:var(--kb);border-radius:16px;padding:4px 12px 10px;margin:0 0 18px}
+.ns{margin-top:0}
+a.app+.ns{margin-top:26px}
+.ns.mid{--k:#a8dcd3;--kb:#eef8f6;--kh:#bfe6df}
+.ns.hi{--k:#f6c9aa;--kb:#fff5ec;--kh:#fbd9c0}
+@media (prefers-color-scheme:dark){.ns.mid{--k:#2b5c56;--kb:#14272a;--kh:#2b5c56}.ns.hi{--k:#6b4630;--kb:#2a1f19;--kh:#6b4630}}
+.ns h2{display:block;text-align:center;font-size:24px;font-weight:900;letter-spacing:.06em;color:var(--ink);background:var(--kh);border-radius:12px;padding:12px 10px;margin:10px 0 12px}
+.ns h3{font-size:13px;font-weight:700;color:var(--sub);margin:12px 2px 6px;letter-spacing:.02em}
+.sg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.sg a{display:flex;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:10px;padding:16px 4px;color:var(--ink);text-decoration:none;font-size:18px;font-weight:700;min-width:0}
+.sg a:active{background:var(--line)}
+.ns .none{text-align:center;color:var(--sub);font-size:13px;padding:2px 0 6px}
 </style>
 </head>
 <body>
@@ -31,16 +39,36 @@ a.app span{font-size:13px;font-weight:400;color:var(--sub)}
 <h1>FBI 교사용</h1>
 <a class="app" href="https://nolbada.github.io/via/fbi/g1-9-class/">FBI 고1 9월</a>
 <a class="app g2" href="https://nolbada.github.io/via/fbi/g2-6-class/">FBI 고2 6월</a>
-<h2>중등 내신</h2>
-<a class="app mid" href="https://nolbada.github.io/via-mid/m/yonga-mid2/?shared=1">용아중 중2</a>
-<a class="app mid" href="https://nolbada.github.io/via-mid/m/geumcheon-mid2/?shared=1">금천중 중2</a>
-<h2>고등 내신</h2>
-<a class="app hi" href="https://nolbada.github.io/via-high/h/geumcheon-go1/?shared=1">금천고 고1</a>
-<a class="app hi" href="https://nolbada.github.io/via-high/h/cheongseok-go1/?shared=1">청석고 고1</a>
-<a class="app hi" href="https://nolbada.github.io/via-high/h/jusung-go1/?shared=1">주성고 고1</a>
-<a class="app hi" href="https://nolbada.github.io/via-high/h/geumcheon-go2/?shared=1">금천고 고2</a>
-<a class="app hi" href="https://nolbada.github.io/via-high/h/cheongseok-go2/?shared=1">청석고 고2</a>
-<a class="app hi" href="https://nolbada.github.io/via-high/h/jusung-go2/?shared=1">주성고 고2</a>
+<div class="ns mid">
+<h2>중2</h2>
+<h3>2학기 기말</h3>
+<div class="sg">
+<a href="https://nolbada.github.io/via-mid/m/yonga-mid2/?shared=1" style="--c:#0f766e">용아</a>
+<a href="https://nolbada.github.io/via-mid/m/geumcheon-mid2/?shared=1" style="--c:#c2410c">금천</a>
+</div>
+</div>
+<div class="ns mid">
+<h2>중3</h2>
+<div class="none">준비 중</div>
+</div>
+<div class="ns hi">
+<h2>고1</h2>
+<h3>2학기 기말</h3>
+<div class="sg">
+<a href="https://nolbada.github.io/via-high/h/geumcheon-go1/?shared=1" style="--c:#c2410c">금천</a>
+<a href="https://nolbada.github.io/via-high/h/cheongseok-go1/?shared=1" style="--c:#4338ca">청석</a>
+<a href="https://nolbada.github.io/via-high/h/jusung-go1/?shared=1" style="--c:#be185d">주성</a>
+</div>
+</div>
+<div class="ns hi">
+<h2>고2</h2>
+<h3>2학기 기말</h3>
+<div class="sg">
+<a href="https://nolbada.github.io/via-high/h/geumcheon-go2/?shared=1" style="--c:#c2410c">금천</a>
+<a href="https://nolbada.github.io/via-high/h/cheongseok-go2/?shared=1" style="--c:#4338ca">청석</a>
+<a href="https://nolbada.github.io/via-high/h/jusung-go2/?shared=1" style="--c:#be185d">주성</a>
+</div>
+</div>
 </main>
 </body>
 </html>
