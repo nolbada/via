@@ -84,9 +84,10 @@ function home(){
  <button class="cv-m" data-go="about"><span>앱</span><span>구성</span></button>
  </div></div>
  ${rs?'<button class="cv-nw" data-go="pickday">다른 DAY 고르기</button>':''}
+ <button class="cv-kb" data-go="key">본책 정답지</button>
  ${SHARED?`<div class="cv-st"><span>공유폰 모드</span></div>`:''}${met?`<div class="cv-st"><span>만난 단어 <b>${met}</b></span><span>복습할 단어 <b>${dn}</b></span><span>완전히 외운 단어 <b>${grad}</b></span></div>`:''}
  ${/[?&]t=1/.test(location.search)?`<div class="cv-tt"><button data-go="next">내일로 넘기기 (선생님 테스트용)</button><button data-go="reset">기록 지우기 (선생님 테스트용)</button></div>`:''}</div>`;
- $.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const g=b.dataset.go;if(g==='next'){S.off=(S.off||0)+1;save();home();return;}if(g==='reset'){if(confirm('이 폰/브라우저의 풀이 기록을 모두 지울까요?')){S={log:[],weak:{},lv:{},tipSeen:0,sr:{}};save();home();}return;}document.body.classList.remove('cv-on');window.scrollTo(0,0);g==='pickday'?pickDay():g==='vtest'?(window.VLTEST?VLTEST.open($,home):home()):g==='stats'?stats():g==='about'?about():g==='resume'?resumeDaily():g==='daily'?startDaily():start(g);});
+ $.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const g=b.dataset.go;if(g==='next'){S.off=(S.off||0)+1;save();home();return;}if(g==='reset'){if(confirm('이 폰/브라우저의 풀이 기록을 모두 지울까요?')){S={log:[],weak:{},lv:{},tipSeen:0,sr:{}};save();home();}return;}document.body.classList.remove('cv-on');window.scrollTo(0,0);g==='pickday'?pickDay():g==='vtest'?(window.VLTEST?VLTEST.open($,home):home()):g==='key'?(window.VLKEY?VLKEY.open($,home):home()):g==='stats'?stats():g==='about'?about():g==='resume'?resumeDaily():g==='daily'?startDaily():start(g);});
 }
 function pickDay(){
  $.innerHTML=`<div class="top"><button class="back" id="bk">← 처음으로</button></div><h1>DAY 선택</h1><div class="sub">오늘 공부할 DAY를 골라요</div>
