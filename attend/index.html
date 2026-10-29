@@ -18,6 +18,9 @@
 html,body{overscroll-behavior-x:none}body{overflow-x:clip;margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 "Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 button{font:inherit;font-size:16px;border:1px solid var(--line);background:#fff;border-radius:11px;padding:9px 14px;min-height:44px;cursor:pointer;color:var(--ink)}
 button.p{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:700}
+button:active{transform:scale(.96)}
+button.busy{background:#8a929c!important;border-color:#8a929c!important;color:#fff!important;pointer-events:none;animation:bz 1s ease-in-out infinite}
+@keyframes bz{50%{opacity:.6}}
 button.g{min-height:36px;padding:5px 10px;font-size:14px;color:var(--mut)}
 header{position:sticky;top:0;z-index:5;background:linear-gradient(180deg,#252c40,#1a2030);color:#fff;padding:10px 16px;box-shadow:0 2px 14px rgba(20,26,40,.28)}
 .top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -820,11 +823,15 @@ document.getElementById('f_save').onclick=function(){
   if(!name){er.textContent='학생 이름을 입력하세요';return;}
   var op={op:'mk_add',name:name,abs:document.getElementById('f_abs').value,reason:document.getElementById('f_reason').value,date:document.getElementById('f_date').value,slot:document.getElementById('f_slot').value,memo:document.getElementById('f_memo').value.trim()};
   er.textContent='';
+  var fb=document.getElementById('f_save');if(fb.classList.contains('busy'))return;
+  fb.classList.add('busy');fb.textContent='저장 중…';
+  function ffin(){fb.classList.remove('busy');fb.textContent='등록';}
   mkOp(op).then(function(r){
+    ffin();
     if(r&&r.errs&&r.errs.length){er.textContent=r.errs[0];return;}
     ['f_name','f_date','f_memo'].forEach(function(i){document.getElementById(i).value='';});
     document.getElementById('f_reason').value='';document.getElementById('f_slot').value='';
-  });
+  },function(){ffin();er.textContent='저장 실패. 다시 눌러 주세요';});
 };
 document.getElementById('mklist').addEventListener('click',function(ev){
   var b=ev.target.closest('[data-mk]');
@@ -869,7 +876,10 @@ document.getElementById('mklist').addEventListener('change',function(ev){
 });
 
 /* 결석·부족분 보강 팝업 */
+var ABBUSY=false,ABPEND={};
 function openAbs(mode,name,row){
+  if(ABBUSY)return;
+  if(mode!=='resched'&&ABPEND[name+'|'+DATES[G]])return;
   AB={mode:mode,name:name,g:G,row:row};
   document.getElementById('a_reason').parentNode.style.display=mode==='resched'?'none':'';
   document.getElementById('at').textContent=name+' · '+(mode==='resched'?'결석 · 보강 다시 잡기':mode==='absent'?'결석':'부족분 보강')+' ('+dayLabel(DATES[G])+')';
@@ -888,13 +898,21 @@ document.getElementById('a_ok').onclick=function(){
   if(AB.mode==='resched'){var ra=AB,rd=document.getElementById('a_date').value,rs=document.getElementById('a_slot').value,rm=document.getElementById('a_memo').value.trim();closeEdit();push({op:'absent',name:ra.name});var rf={date:rd,slot:rs};if(rm)rf.memo=rm;mkLocal(ra.row,{date:rd,slot:rs});ST[ra.g].mk=(ST[ra.g].mk||[]).filter(function(m){return m.row!==ra.row;});render();mkOp({op:'mk_set',row:ra.row,name:ra.name,f:rf}).then(function(){syncAll();});return;}
   var reason=document.getElementById('a_reason').value,er=document.getElementById('a_err');
   if(!reason){er.textContent='사유를 선택하세요';return;}
+  if(ABBUSY)return;
   var a=AB,memo=document.getElementById('a_memo').value.trim();
   var op={op:'mk_add',name:a.name,abs:DATES[a.g],reason:reason,date:document.getElementById('a_date').value,slot:document.getElementById('a_slot').value,memo:(a.mode==='short'?('부족분'+(memo?' '+memo:'')):memo)};
-  closeEdit();
+  var pk=a.name+'|'+op.abs;
+  if(ABPEND[pk]){closeEdit();return;}
+  ABBUSY=true;ABPEND[pk]=1;
+  var ok=document.getElementById('a_ok'),cl=document.getElementById('a_cancel'),t0=ok.textContent;
+  ok.textContent='저장 중…';ok.classList.add('busy');cl.disabled=true;er.textContent='';
   if(a.mode==='absent')push({op:'absent',name:a.name});
-  mkOp(op).then(function(r){
+  function fin(r){
+    ABBUSY=false;delete ABPEND[pk];ok.classList.remove('busy');cl.disabled=false;ok.textContent=t0;
+    closeEdit();
     if(!r||(r.errs&&r.errs.length)){errState='보강 등록 실패: '+((r&&r.errs&&r.errs[0])||'연결 확인')+' (결석 기록 탭에서 다시 등록)';render();}
-  });
+  }
+  mkOp(op).then(fin,function(){fin(null);});
 };
 
 /* 명단 관리 */
