@@ -269,7 +269,7 @@ var MK={list:[],names:[],loaded:false,busy:false,err:''};
 var SLOTS=['불참','11시','11시30분','12시','12시30분','1시','1시30분','2시','2시30분','3시','3시30분','4시','4시30분','5시','5시30분','6시','6시30분','7시','7시30분'];
 var AMOUNTS=['30분','1시간','1시간30분','2시간'];var AB=null;
 var REASONS=['병결','무단','여행/휴가','개인','미완료','학교 행사','부모님연락','보충','가족행사'];
-var DATES={'금':'','토':'','보':''},DEFD={};
+var DATES={'금':'','토':'','보':''},DEFD={},FAILS=0,MKF=0;
 var BOSL=['2시','3시30분','5시'],SLL={'2시':'2시-3시30분','3시30분':'3시30분-5시','5시':'5시-6시30분'},BTAB='',BSEL={},BFOLD={},BCLR='',BCLT=0;try{BFOLD=JSON.parse(localStorage.getItem('att_bf')||'{}')||{};}catch(e){BFOLD={};}
 function dk(g){return DATES[g];}
 function deriveBo(){ST['보'].roster=ST['금'].roster.map(function(x){return {name:x.name,grade:x.grade||''};});}
@@ -600,9 +600,9 @@ function sync(g){
     S.busy=false;
     if(!res.ok){
       if(res.err==='auth'){ls('att_pw',null);pw='';showGate('비밀번호가 맞지 않습니다');return;}
-      errState='서버 오류';render();return;
+      FAILS++;if(FAILS>=3)errState='서버 오류';else setTimeout(function(){sync(g);},3000);render();return;
     }
-    errState='';
+    FAILS=0;errState='';
     S.Q.splice(0,sent.length);saveQ(g);
     if(res.errs&&res.errs.length)errState=res.errs[0];
     if(DATES[g]===d){
@@ -611,7 +611,7 @@ function sync(g){
     }
     render();
     if(S.Q.length||DATES[g]!==d)sync(g);
-  }).catch(function(){S.busy=false;errState='연결 끊김 · 기록은 기기에 보관 중';render();});
+  }).catch(function(){S.busy=false;FAILS++;if(FAILS>=3)errState='연결 끊김 · 기록은 기기에 보관 중';else setTimeout(function(){sync(g);},3000);render();});
 }
 var BOT=0;
 function refreshDef(){var ch=false;['금','토','보'].forEach(function(g){var nd=defDate(g);if(DEFD[g]===undefined){DEFD[g]=nd;return;}if(DEFD[g]!==nd){if(DATES[g]===DEFD[g]){DATES[g]=nd;loadCache(g);if(g===G&&VIEW==='att')ch=true;}DEFD[g]=nd;}});if(ch){closeEdit();SEL=null;LV=null;render();}}
@@ -744,16 +744,17 @@ document.getElementById('ms').onclick=function(){
 /* ===== 결석·보강 ===== */
 var MKARM=null,MKINIT=false,MKOPEN=false,MKDEL=[],MKDELT=0,MKSEL={},MKDONE=[];function mkWk(d){if(!d)return false;var w=new Date(d+'T00:00:00Z').getUTCDay();return w>=1&&w<=4;}
 document.getElementById('mklist').addEventListener('toggle',function(ev){if(ev.target.tagName==='DETAILS')MKOPEN=ev.target.open;},true);
-function mkPost(ops){
-  MK.busy=true;
+function mkFail(ops,n,msg){MK.busy=false;if(ops&&ops.length&&n<3){return new Promise(function(r){setTimeout(r,1500*(n+1));}).then(function(){return mkPost(ops,n+1);});}MKF++;if(MKF>=3){MK.err=msg;if(VIEW==='mk')render();}}
+function mkPost(ops,n){
+  n=n||0;MK.busy=true;
   return post({act:'mk',pw:pw,ops:ops||[]}).then(function(res){
     MK.busy=false;
-    if(!res.ok){if(res.err==='auth'){ls('att_pw',null);pw='';showGate('비밀번호가 맞지 않습니다');return;}MK.err='서버 오류';render();return;}
-    var nerr=(res.errs&&res.errs[0])||'',same=MK.loaded&&MK.err===nerr&&JSON.stringify(res.list)===JSON.stringify(MK.list);
+    if(!res.ok){if(res.err==='auth'){ls('att_pw',null);pw='';showGate('비밀번호가 맞지 않습니다');return;}return mkFail(ops,n,'서버 오류');}
+    MKF=0;var nerr=(res.errs&&res.errs[0])||'',same=MK.loaded&&MK.err===nerr&&JSON.stringify(res.list)===JSON.stringify(MK.list);
     MK.list=res.list;MK.names=res.names;MK.loaded=true;MK.err=nerr;
     if(VIEW==='mk'&&!same)render();
     return res;
-  }).catch(function(){MK.busy=false;MK.err='연결 끊김';if(VIEW==='mk')render();});
+  }).catch(function(){return mkFail(ops,n,'연결 끊김');});
 }
 function mkLoad(){if(MK.busy||MKPEND>0||!pw)return;var a=document.activeElement;if(a&&document.getElementById('mklist').contains(a))return;mkPost([]);}
 var MKPEND=0;
