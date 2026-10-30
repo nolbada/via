@@ -226,7 +226,7 @@ details.mkd summary{margin:10px 2px 4px;font-size:13px}
 <div id="mkview" style="display:none;padding:12px 14px 80px">
   <div class="mkf" id="mkform">
     <label>학생<input id="f_name" list="mknames" autocomplete="off"><datalist id="mknames"></datalist></label>
-    <label>결석일<input id="f_abs" type="date"></label>
+    <label>등록일<input id="f_abs" type="date"></label>
     <label>사유<select id="f_reason"></select></label>
     <label>보강일<input id="f_date" type="date"></label>
     <label>보강 시간대<select id="f_slot"></select></label>
@@ -779,7 +779,7 @@ function opts(arr,sel,blank){return (blank?'<option value="">'+blank+'</option>'
 function mkItem(m,kind){
   var late=kind==='late',nm=esc(m.name),rw=m.row,h='<div class="card mkc'+(MKSEL[rw]?' sel':'')+(mkWk(m.date)?' wk':'')+'" data-crow="'+rw+'" data-cname="'+nm+'"><span class="nm">'+nm+'</span>';
   h+=(m.date?'<span class="tm" style="cursor:default'+(late?';border-color:#b4402c;color:#b4402c':'')+'">'+dayLabel(m.date)+(m.slot?' '+esc(m.slot):'')+'</span>':'<span class="tm" style="cursor:default">보강일 미정</span>');
-  var sub=((m.part||m.amt)?'<b>'+esc((m.part?m.part+' ':'')+(m.amt||''))+'</b> · ':'')+(m.abs?'결석 '+dayLabel(m.abs):'')+(m.reason?' · '+esc(m.reason):'')+(m.memo?' · '+esc(m.memo):'')+(m.kind?' · '+esc(m.kind):'')+(m.arr?' · 도착 '+esc(m.arr):'');
+  var sub=((m.part||m.amt)?'<b>'+esc((m.part?m.part+' ':'')+(m.amt||''))+'</b> · ':'')+(m.abs?'등록 '+dayLabel(m.abs):'')+(m.reason?' · '+esc(m.reason):'')+(m.memo?' · '+esc(m.memo):'')+(m.kind?' · '+esc(m.kind):'')+(m.arr?' · 도착 '+esc(m.arr):'');
   h+='<span class="sub">'+sub+'</span><span class="mk-ctl">';
   if(!m.done){
     h+='<input type="date" data-mkf="date" data-row="'+rw+'" data-name="'+nm+'" value="'+m.date+'">';
