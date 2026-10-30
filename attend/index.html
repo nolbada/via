@@ -563,6 +563,7 @@ function render(){
     var rr=S.rec[m.name];
     if(!m.done||(rr&&rr.status)){GM[m.name]=m.slot||m.amt||' ';if(names.indexOf(m.name)<0)names.push(m.name);}
   });
+  if(G!=='보'){S.roster.forEach(function(x){delete GM[x.name];});}
   Object.keys(S.rec).forEach(function(n){if(names.indexOf(n)<0&&(S.rec[n].status||(G==='보'&&BOSL.indexOf(S.rec[n].memo)>=0)))names.push(n);});
   if(!S.loaded){
     document.getElementById('stat').innerHTML='';
