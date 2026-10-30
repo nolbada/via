@@ -140,10 +140,34 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 .btn.sub{border-color:var(--border);background:var(--surface-2);color:var(--ink-soft)}
 .btn:disabled{opacity:.4;cursor:default}
 
+.rp-score{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:12px}
+.rp-score .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.rp-score .k{font-size:14px;font-weight:600;color:var(--ink-soft)}
+.rp-score .big{font-size:44px;font-weight:800;line-height:1;margin-left:auto}
+.rp-score .big small{font-size:16px;font-weight:600;margin-left:2px}
+.rp-score .pill{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px}
+.rp-score .pill.ok{background:var(--o-soft);color:var(--o)}.rp-score .pill.t{background:var(--t-soft);color:var(--t)}.rp-score .pill.x{background:var(--x-soft);color:var(--x)}
+.rp-pos{position:relative;height:10px;border-radius:999px;margin:26px 0 8px;background:linear-gradient(90deg,var(--x-soft) 0,var(--x-soft) 30%,var(--t-soft) 30%,var(--t-soft) 70%,var(--o-soft) 70%,var(--o-soft) 100%)}
+.rp-pos i{position:absolute;top:-5px;width:4px;height:20px;border-radius:2px;background:var(--ink-soft);transform:translateX(-2px)}
+.rp-pos i em{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-style:normal;font-size:11px;font-weight:700;white-space:nowrap;color:var(--ink-soft)}
+.rp-pos i.me{background:var(--ink);width:6px;transform:translateX(-3px)}
+.rp-pos i.me em{color:var(--ink)}
+.rp-pl{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-soft)}
+.rp-bars{display:grid;gap:7px;margin-top:14px}
+.rp-bars div{display:grid;grid-template-columns:78px 1fr 34px;gap:8px;align-items:center;font-size:12.5px}
+.rp-bars span.b{height:8px;border-radius:999px;background:var(--border);overflow:hidden}
+.rp-bars span.b i{display:block;height:100%;background:var(--o)}
+.rp-bars span.b i.lo{background:var(--x)}
+.rp-bars em{font-style:normal;font-weight:700;text-align:right}
+.rp-score .sm{font-size:13.5px;line-height:1.65;margin:14px 0 0;text-align:left}
 .rp-msg{background:var(--o-soft);border-radius:14px;padding:14px 16px}
 .rp-msg b{display:block;font-size:14.5px;color:var(--o);margin-bottom:4px}
 .rp-msg p{margin:0;font-size:13.5px;line-height:1.6;text-align:left}
 .rp-msg p+p{margin-top:10px}
+.rp-next{border:1.5px solid var(--o);border-radius:14px;padding:13px 16px;margin-top:12px}
+.rp-next b{display:block;font-size:14.5px;color:var(--o);margin-bottom:4px}
+.rp-next p{margin:0;font-size:13.5px;line-height:1.6;text-align:left}
+.rp-next p+p{margin-top:8px}
 .rp-brand{font-size:14px;font-weight:700;color:var(--ink);padding-bottom:10px;border-bottom:2px solid var(--o)}
 .rp-kick{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--o);margin-bottom:2px}
 .rp-sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
@@ -152,7 +176,7 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 .rp-s .v{display:block;margin-top:2px;font-size:19px;font-weight:700;line-height:1.3;font-variant-numeric:tabular-nums}
 .rp-s .v small{font-size:12.5px;font-weight:500;color:var(--ink-soft)}
 .rp-s .d{display:block;margin-top:2px;font-size:12px;color:var(--ink-soft);text-align:left}
-.rp-days{display:grid;grid-template-columns:56px repeat(6,minmax(0,1fr));align-items:stretch;text-align:center;font-variant-numeric:tabular-nums}
+.rp-days{display:grid;grid-template-columns:50px repeat(7,minmax(0,1fr));align-items:stretch;text-align:center;font-variant-numeric:tabular-nums}
 .rp-days .h{font-size:12px;color:var(--ink-soft);padding-bottom:6px;line-height:1.3}
 .rp-days .h i{display:block;font-style:normal;font-size:11px}
 .rp-days .r{font-size:13px;text-align:left;font-weight:500;padding:8px 0;border-top:1px solid var(--border);line-height:1.3;display:flex;align-items:center}
@@ -284,7 +308,7 @@ function randTok(n){var a='abcdefghjkmnpqrstuvwxyz23456789',o='';var u=new Uint8
 
 /* ================= 학부모(조회) ================= */
 function weekNav(start,end,isCur,showNav){
-  var h='<div class="weeknav"><button data-nav="-1" aria-label="이전 주">‹</button><div class="weeklabel">'+md(start)+'(토) – '+md(end)+'(목)<small>'+(isCur?'이번 주':Math.round((parseKey(curKey())-start)/604800000)+'주 전')+'</small></div><button data-nav="1" aria-label="다음 주"'+(isCur?' disabled':'')+'>›</button></div>';
+  var h='<div class="weeknav"><button data-nav="-1" aria-label="이전 주">‹</button><div class="weeklabel">'+md(start)+'(토) – '+md(end)+'('+DAYS[end.getDay()]+')<small>'+(isCur?'이번 주':Math.round((parseKey(curKey())-start)/604800000)+'주 전')+'</small></div><button data-nav="1" aria-label="다음 주"'+(isCur?' disabled':'')+'>›</button></div>';
   return h;
 }
 function slot(label,val,fut,late,attrs){
@@ -339,33 +363,47 @@ function pcls(c){c=c||'';var m=c.match(/^\s*(M|T|월수금|화목금)?\s*((?:초
 function rpPill(c,t){return '<span class="rp-pill '+c+'">'+esc(t)+'</span>'}
 function rpDots(arr,start,mode){
   var h='';
-  for(var i=0;i<6;i++){var v=arr&&arr[i]||0;h+='<div class="c"><span class="rp-dot'+(v===2?' bad':(v?'':' e'))+'"></span></div>'}
+  for(var i=0;i<7;i++){var v=arr&&arr[i]||0;h+='<div class="c"><span class="rp-dot'+(v===2?' bad':(v?'':' e'))+'"></span></div>'}
   return h;
 }
 function rpMins(arr){
   var h='';
-  for(var i=0;i<6;i++){var v=arr&&arr[i]||0;h+='<div class="c">'+(v>0?'<span class="rp-m">'+v+'<small>분</small></span>':'<span class="rp-dot e"></span>')+'</div>'}
+  for(var i=0;i<7;i++){var v=arr&&arr[i]||0;h+='<div class="c">'+(v>0?'<span class="rp-m">'+v+'<small>분</small></span>':'<span class="rp-dot e"></span>')+'</div>'}
   return h;
 }
 function rpSetCnt(sets,days){
-  var map={'토':0,'일':1,'월':2,'화':3,'수':4,'목':5},c=[0,0,0,0,0,0],h='';
+  var map={'토':0,'일':1,'월':2,'화':3,'수':4,'목':5,'금':6},c=[0,0,0,0,0,0,0],h='';
   (sets||[]).forEach(function(x){var k=map[String(x.at||'').charAt(0)];if(k!==undefined)c[k]++});
-  for(var i=0;i<6;i++){h+='<div class="c">'+(c[i]>0?'<span class="rp-n">'+c[i]+'</span>':'<span class="rp-dot'+((days&&days[i])?'':' e')+'"></span>')+'</div>'}
+  for(var i=0;i<7;i++){h+='<div class="c">'+(c[i]>0?'<span class="rp-n">'+c[i]+'</span>':'<span class="rp-dot'+((days&&days[i])?'':' e')+'"></span>')+'</div>'}
   return h;
 }
 function rpCount(arr){var n=0;(arr||[]).forEach(function(v){if(v)n++});return n}
+function scoreCard(S){
+  if(!S)return '';
+  var cls=S.st==='보충'?'x':(S.st==='점검'?'t':'ok');
+  var h='<div class="rp-score"><div class="top"><span class="k">이번 주 숙제 종합</span><span class="pill '+cls+'">'+esc(S.st==='보충'?'토요일 보충':S.st)+'</span><span class="big">'+S.sc+'<small>점</small></span></div>';
+  var me=Math.max(2,Math.min(98,100-S.pct)),av=Math.max(2,Math.min(98,100-S.avgPct));
+  h+='<div class="rp-pos"><i style="left:'+av+'%"><em>학원 평균 '+S.avg+'</em></i><i class="me" style="left:'+me+'%"><em>우리 아이</em></i></div>';
+  h+='<div class="rp-pl"><span>하위</span><span>중간</span><span>상위</span></div>';
+  h+='<div class="rp-bars">';
+  (S.items||[]).forEach(function(it){h+='<div><span>'+esc(it[0])+'</span><span class="b"><i'+(it[1]<60?' class="lo"':'')+' style="width:'+it[1]+'%"></i></span><em>'+it[1]+'</em></div>'});
+  h+='</div><p class="sm">'+esc(S.msg||'').split('\n').join('<br>')+'</p></div>';
+  return h;
+}
 function reportView(meta,weeks,reps){
   var cur=curKey(),rkeys=Object.keys(reps).sort();
   if(viewKey>cur)viewKey=cur;
   if(!reps[viewKey]&&viewKey===cur){var lastK=rkeys[rkeys.length-1];if(lastK&&lastK<=cur)viewKey=lastK}
-  var start=parseKey(viewKey),end=addDays(start,5),isCur=viewKey===cur,R=reps[viewKey]||null;
+  var start=parseKey(viewKey),end=addDays(start,6),isCur=viewKey===cur,R=reps[viewKey]||null;
   var h='<div class="rp-brand">비타민 영어클리닉 학원</div>';
   h+='<div class="hero"><div class="rp-kick">주간 학습 리포트</div><div class="name">'+esc(meta.name)+'</div><div class="meta">'+esc(pcls(meta.cls))+'</div><div style="margin-top:14px">'+weekNav(start,end,isCur)+'</div></div>';
   if(!R){
     h+='<div class="card"><div class="rp-h">이 주 리포트가 없어요</div><div class="rp-sub" style="margin:0">리포트는 매주 금요일에 올라와요.</div></div>';
   }else{
-    var gMin=(R.g&&R.g.min)||0,lMin=(R.l&&R.l.min)||0;
-    h+='<div class="rp-tot"><span class="k">이번 주 숙제 순수 학습 시간</span><span class="v">'+(gMin+lMin)+'<small>분</small></span><span class="d">문법 '+gMin+'분'+(lMin?' · 듣기 '+lMin+'분':'')+' 합산<br>단어숙제는 완료 여부로 확인 (하루 평균 5~7분 분량)</span></div>';
+    var gMin=(R.g&&R.g.min)||0,lMin=(R.l&&R.l.min)||0,H=R.h||{};
+    h+=scoreCard(R.s);
+    if(R.n&&R.n.length){h+='<div class="rp-next"><b>다음 보충 안내</b>';R.n.forEach(function(t){h+='<p>'+esc(t)+'</p>'});h+='</div>'}
+    if(!(H.w&&H.g))h+='<div class="rp-tot"><span class="k">이번 주 숙제 순수 학습 시간</span><span class="v">'+(gMin+lMin)+'<small>분</small></span><span class="d">'+(H.g?'':'문법 '+gMin+'분')+(lMin?(H.g?'':' · ')+'듣기 '+lMin+'분':'')+' 합산'+(H.w?'':'<br>단어숙제는 완료 여부로 확인 (하루 평균 5~7분 분량)')+'</span></div>';
     h+='<div class="rp-msg"><b>선생님이 직접 확인하고 정리한 한 주입니다</b><p>클래스카드가 자동으로 내주는 성적표가 아닙니다.<br>비타민 영어클리닉 학원 선생님이 한 주 동안의 단어숙제, 문법, 단어테스트 기록을 요일별로 하나하나 확인하고, 밀리지 않고 했는지 따져서 직접 편집한 리포트입니다.</p></div>';
     var W=R.w||{sets:[],days:[]},G=R.g||{units:[],days:[]},T=R.t||{items:[],days:[]};
     var wOk=0;(W.sets||[]).forEach(function(x){if(x.ok)wOk++});
@@ -373,36 +411,46 @@ function reportView(meta,weeks,reps){
     var wDays=rpCount(W.days),need=T.need||2;
     var tN=(T.items||[]).length,tp=[];var tPass=tN-tFail;if(tPass>0)tp.push('<span style="color:var(--bl);font-weight:700">'+tPass+'회 80점 통과</span>');if(tFail)tp.push('<span style="color:var(--x);font-weight:700">'+tFail+'회 80점 미만</span>');if(tN<need)tp.push('<span style="color:var(--x);font-weight:700">'+(need-tN)+'회 미응시</span>');var tparts=tp.join('<br>');
     var wN=(W.sets||[]).length;
-    h+='<div class="rp-sum"><div class="rp-s"><b>단어숙제</b>'+(wN<6?'<span class="v" style="color:var(--x)">'+(6-wN)+'<small style="color:var(--x)">세트 부족</small></span><span class="d">'+wN+'세트 완료</span>':'<span class="v">'+wN+'<small>세트 완료</small></span><span class="d">6세트 기준 충족</span>')+'</div>';
-    h+='<div class="rp-s"><b>문법</b><span class="v">'+(G.min||0)+'<small> 분</small></span><span class="d">'+(G.units||[]).length+'단원 진행</span></div>';
-    h+='<div class="rp-s"><b>단어테스트</b><span class="v">'+(T.items||[]).length+'<small> / '+need+'회 응시</small></span><span class="d">'+tparts+'</span></div></div>';
-    var dl='';for(var i=0;i<6;i++){var d=addDays(start,i);dl+='<div class="h">'+WD[i]+'<i>'+md(d)+'</i></div>'}
+    var wneed=W.need||6;
+    var c1='<div class="rp-s"><b>단어숙제</b>'+(wN<wneed?'<span class="v" style="color:var(--x)">'+(wneed-wN)+'<small style="color:var(--x)">세트 부족</small></span><span class="d">'+wN+'세트 완료'+(wneed<6?' · 기준 '+wneed+'세트':'')+'</span>':'<span class="v">'+wN+'<small>세트 완료</small></span><span class="d">'+wneed+'세트 기준 충족</span>')+'</div>';
+    var c2='<div class="rp-s"><b>문법</b><span class="v">'+(G.min||0)+'<small> 분</small></span><span class="d">'+(G.units||[]).length+'단원 진행</span></div>';
+    var c3='<div class="rp-s"><b>단어테스트</b><span class="v">'+(T.items||[]).length+'<small> / '+need+'회 응시</small></span><span class="d">'+tparts+'</span></div>';
+    var cs=(H.w?'':c1)+(H.g?'':c2)+(H.t?'':c3);
+    if(cs)h+='<div class="rp-sum" style="grid-template-columns:repeat('+((H.w?0:1)+(H.g?0:1)+(H.t?0:1))+',minmax(0,1fr))">'+cs+'</div>';
+    var dl='',WD7=['토','일','월','화','수','목','금'];for(var i=0;i<7;i++){var d=addDays(start,i);dl+='<div class="h">'+WD7[i]+'<i>'+md(d)+'</i></div>'}
     h+='<div class="card"><div class="rp-h">요일별 학습 기록</div><p class="rp-sub">기록이 있는 날에 점이 찍히고, 문법은 그날 숙제로 학습한 시간(분)이 표시됩니다.</p><div class="rp-days"><div class="h"></div>'+dl;
-    h+='<div class="r">단어<br>숙제</div>'+rpSetCnt(W.sets,W.days)+'<div class="r">문법</div>'+(G.dm?rpMins(G.dm):rpDots(G.days))+'<div class="r">단어<br>테스트</div>'+rpDots(T.days)+'</div>';
+    h+=(H.w?'':'<div class="r">단어<br>숙제</div>'+rpSetCnt(W.sets,W.days))+(H.g?'':'<div class="r">문법</div>'+(G.dm?rpMins(G.dm):rpDots(G.days)))+(H.t?'':'<div class="r">단어<br>테스트</div>'+rpDots(T.days))+(R.l&&R.l.days?'<div class="r">듣기</div>'+rpDots(R.l.days):'')+'</div>';
     h+='<div class="rp-leg"><span><i class="rp-dot"></i>기록 있음</span><span><i class="rp-n" style="width:16px;height:16px;font-size:10px">2</i>단어 세트 수</span><span><i class="rp-dot bad"></i>테스트 80점 미만</span><span><i class="rp-dot e"></i>기록 없음</span></div>';
-    if(wDays<=2)h+='<p class="rp-alert">단어숙제는 주 6일 해야 하는데, 이번 주는 '+(wDays?esc(R.wd||'')+' '+(wDays===1?'하루':'이틀')+'에 몰아서 한 것으로 보입니다.':'기록이 없습니다.')+'</p>';
+    if(H.w){}else if(wDays<=2)h+='<p class="rp-alert">단어숙제는 주 6일 해야 하는데, 이번 주는 '+(wDays?esc(R.wd||'')+' '+(wDays===1?'하루':'이틀')+'에 몰아서 한 것으로 보입니다.':'기록이 없습니다.')+'</p>';
     else if(wDays<=4)h+='<p class="rp-alert t">단어숙제는 주 6일 해야 하는데, 이번 주는 '+wDays+'일만 기록이 있습니다.</p>';
-    if(T.d)h+='<p class="rp-note">단어테스트는 '+esc(T.d)+'에 응시합니다.</p>';
+    if(T.d&&!H.t)h+='<p class="rp-note">단어테스트는 '+esc(T.d)+'에 응시합니다.</p>';
     h+='</div>';
-    h+='<div class="card"><div class="rp-h">단어숙제</div><p class="rp-sub">'+esc(W.title||'')+' · 세트별 마지막 학습 시각과 최고 점수</p><ul class="rp-list">';
+    if(!H.w){h+='<div class="card"><div class="rp-h">단어숙제</div><p class="rp-sub">'+esc(W.title||'')+' · 세트별 마지막 학습 시각과 최고 점수</p><ul class="rp-list">';
     (W.sets||[]).forEach(function(x){h+='<li><span class="t">'+esc(x.t)+'</span><span class="w">'+esc(x.at||'')+'</span><span class="p"><span class="sc">'+esc(x.sc)+'점</span>'+(x.ok?rpPill('ok','완료'):rpPill('t','80점 미만'))+'</span></li>'});
     if(!(W.sets||[]).length)h+='<li><span class="t">이번 주 단어숙제 기록이 없습니다.</span></li>';
     h+='</ul>';
-    h+='<p class="rp-note">'+esc(W.note||'클래스카드는 세트마다 마지막 학습 시각만 남기므로, 다시 학습한 날은 표시되지 않을 수 있습니다.')+'</p></div>';
-    h+='<div class="card"><div class="rp-h">문법</div><p class="rp-sub">'+esc(G.title||'')+' · 정오표 문제 풀이 시간 기준</p><ul class="rp-list">';
+    h+='<p class="rp-note">'+esc(W.note||'클래스카드는 세트마다 마지막 학습 시각만 남기므로, 다시 학습한 날은 표시되지 않을 수 있습니다.')+'</p></div>';}
+    if(!H.g){h+='<div class="card"><div class="rp-h">문법</div><p class="rp-sub">'+esc(G.title||'')+' · 정오표 문제 풀이 시간 기준</p><ul class="rp-list">';
     (G.units||[]).forEach(function(x){h+='<li><span class="t">'+esc(x.t)+'</span><span class="w">'+esc(x.at||'')+'</span><span class="p">'+(x.m==null?'<span class="sc" style="font-size:13px;color:var(--ink-soft)">시간 제외</span>':'<span class="sc">'+esc(x.m)+'분</span>')+(x.ok?rpPill('ok','완료'):rpPill('t','진행 중'))+'</span></li>'});
     if(!(G.units||[]).length)h+='<li><span class="t">이번 주 문법 기록이 없습니다.</span></li>';
     h+='</ul><div class="rp-total"><span>이번 주 문법 순수 학습 시간</span><span>'+(G.min||0)+'분</span></div>';
     if(G.note)h+='<p class="rp-note">'+esc(G.note)+'</p>';
-    h+='</div>';
-    h+='<div class="card"><div class="rp-h">단어테스트</div><p class="rp-sub">'+esc(T.title||'')+' · 통과 기준 80점</p><ul class="rp-list">';
+    h+='</div>';}
+    if(!H.t){h+='<div class="card"><div class="rp-h">단어테스트</div><p class="rp-sub">'+esc(T.title||'')+' · 통과 기준 80점</p><ul class="rp-list">';
     (T.items||[]).forEach(function(x){h+='<li><span class="t">'+esc(x.t)+'</span><span class="w">'+esc(x.at||'')+'</span><span class="p"><span class="sc">'+esc(x.sc)+'점</span>'+(x.ok?rpPill('ok','통과'):rpPill('x','80점 미만'))+'</span></li>'});
     if(!(T.items||[]).length)h+='<li><span class="t">이번 주 단어테스트 응시 기록이 없습니다.</span></li>';
     h+='</ul>';
     if(tN<need)h+='<p class="rp-alert">단어테스트는 주 '+need+'회 응시해야 하는데 '+tN+'회만 응시했습니다.</p>';
     if(T.note)h+='<p class="rp-note">'+esc(T.note)+'</p>';
-    h+='</div>';
-    h+='<div class="rp-msg"><b>학부모님께 당부드립니다</b><p>문법 시간은 클래스카드 정오표에 기록된 문제 풀이 시간만 더한 순수 학습 시간입니다. 단어숙제는 학생마다 걸리는 시간 차이가 커서, 완료 여부, 요일, 점수로 확인합니다.</p><p>하루 단어숙제는 평균 5~7분 정도면 끝나는 분량입니다. 아이가 주로 언제, 얼마나 숙제를 하는지 함께 살펴봐 주세요.</p><p>숙제 검사 집계는 금요일 오전 11시에 합니다.<br>오후 등원 전에 몰아서 하지 않도록 지도해 주세요.</p></div>';
+    h+='</div>';}
+    var LS=R.l;
+    if(LS){h+='<div class="card"><div class="rp-h">듣기</div><p class="rp-sub">'+esc(LS.title||'영어듣기능력평가')+' · 이번 주 기준 1회 이상</p><ul class="rp-list">';
+    (LS.items||[]).forEach(function(x){h+='<li><span class="t">'+esc(x.t)+'</span><span class="w">'+esc(x.at||'')+'</span><span class="p"><span class="sc">'+esc(x.sc)+'점</span>'+rpPill('ok','완료')+'</span></li>'});
+    if(!(LS.items||[]).length)h+='<li><span class="t">이번 주 듣기 기록이 없습니다.</span></li>';
+    h+='</ul>';
+    if(LS.note)h+='<p class="rp-note">'+esc(LS.note)+'</p>';
+    h+='</div>';}
+    h+='<div class="rp-msg"><b>학부모님께 당부드립니다</b><p>문법 시간은 클래스카드 정오표에 기록된 문제 풀이 시간만 더한 순수 학습 시간입니다. 단어숙제는 학생마다 걸리는 시간 차이가 커서, 완료 여부, 요일, 점수로 확인합니다.</p><p>하루 단어숙제는 평균 5~7분 정도면 끝나는 분량입니다. 아이가 주로 언제, 얼마나 숙제를 하는지 함께 살펴봐 주세요.</p><p>숙제 마감은 금요일 오후 6시입니다.<br>금요일 오후 6시 이후에 한 숙제는 집이든 학원이든 크게 감점되니, 주중에 나누어 하도록 지도해 주세요.</p></div>';
   }
   var FL=itemsOfMeta(meta).filter(function(it){return it.k!=='w'&&it.k!=='g'});
   if(FL.length){
