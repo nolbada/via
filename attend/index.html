@@ -531,6 +531,12 @@ function renderDbar(){
   document.getElementById('dnext').disabled=false;
   document.getElementById('drec').style.display=(d===defDate(G))?'none':'';
 }
+function satChips(S,names){
+  var rs={},reg=S.roster.length,g={},gn=0;S.roster.forEach(function(x){rs[x.name]=1;});
+  names.forEach(function(n){if(!rs[n]&&GM[n]){gn++;var k=String(GM[n]).trim()||'시간 미정';g[k]=(g[k]||0)+1;}});
+  var det=Object.keys(g).sort(function(a,b){return SLOTS.indexOf(a)-SLOTS.indexOf(b);}).map(function(k){return k+' '+(NUMOFF?'-':g[k]);}).join(' · ');
+  return '<span class="cnt" data-cnt="1">정규 <b>'+(NUMOFF?'-':reg)+'</b></span><span class="cnt" data-cnt="1">보충 <b>'+(NUMOFF?'-':gn)+'</b>'+(det?' <small>'+det+'</small>':'')+'</span>';
+}
 function updMsg(){
   var pend=ST['금'].Q.length+ST['토'].Q.length;
   var m=document.getElementById('msg');
@@ -572,7 +578,7 @@ function render(){
     var all={out:B.out.length,wait:B.wait.length,m:B.m.length,f:B.f.length,left:B.left.length,abs:B.abs.length};
     var arrived=all.wait+all.m+all.f+all.left;
     document.getElementById('stat').innerHTML=
-      '<button class="sb" data-lv="left">귀가</button>'+(G==='보'?'':'<button class="sb" data-lv="abs">결석</button>')+'<button class="sb rst" data-reset="1">'+(RARM&&Date.now()-RARM<4000?'정말 초기화':'초기화')+'</button>';
+      (G==='토'?satChips(S,names):'')+'<button class="sb" data-lv="left">귀가</button>'+(G==='보'?'':'<button class="sb" data-lv="abs">결석</button>')+'<button class="sb rst" data-reset="1">'+(RARM&&Date.now()-RARM<4000?'정말 초기화':'초기화')+'</button>';
     var outL=B.out.filter(function(n){return !query||n.toLowerCase().indexOf(query)>=0;});
     var MH=
       (all.wait?'<section class="pane waitbar"><h2>등원 · 배정 전<span class="cnt" data-cnt="1">'+(NUMOFF?'-':all.wait)+'</span></h2><div class="wl">'+B.wait.map(wcard).join('')+'</div></section>':'')+
