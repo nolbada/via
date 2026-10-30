@@ -696,6 +696,7 @@ document.getElementById('lmodal').addEventListener('click',function(ev){
   onAct(ev);
 });
 document.getElementById('stat').addEventListener('click',function(ev){
+  if(ev.target.closest('[data-cnt]')){NUMOFF=!NUMOFF;ls('att_noff',NUMOFF?'1':null);render();return;}
   if(ev.target.closest('[data-undo]')){doUndo();return;}
   var rb=ev.target.closest('[data-reset]');
   if(rb){
