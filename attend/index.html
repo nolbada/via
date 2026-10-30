@@ -271,7 +271,7 @@ var VIEW='att';
 var MK={list:[],names:[],loaded:false,busy:false,err:''};
 var SLOTS=['불참','11시','11시30분','12시','12시30분','1시','1시30분','2시','2시30분','3시','3시30분','4시','4시30분','5시','5시30분','6시','6시30분','7시','7시30분'];
 var AMOUNTS=['30분','1시간','1시간30분','2시간'];var AB=null;
-var REASONS=['병결','무단','여행/휴가','개인','학습 미완료','숙제 70% 미만','학교 행사','부모님연락','보충','가족행사'];
+var REASONS=['결석 보충','숙제 70% 미만','학습 미완료'];
 var DATES={'금':'','토':'','보':''},DEFD={},FAILS=0,MKF=0;
 var BOSL=['2시','3시30분','5시'],SLL={'2시':'2시-3시30분','3시30분':'3시30분-5시','5시':'5시-6시30분'},BTAB='',BSEL={},BFOLD={},BCLR='',BCLT=0;try{BFOLD=JSON.parse(localStorage.getItem('att_bf')||'{}')||{};}catch(e){BFOLD={};}
 function dk(g){return DATES[g];}
