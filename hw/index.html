@@ -422,7 +422,7 @@ function reportView(meta,weeks,reps){
     h+=(H.w?'':'<div class="r">단어<br>숙제</div>'+rpSetCnt(W.sets,W.days))+(H.g?'':'<div class="r">문법</div>'+(G.dm?rpMins(G.dm):rpDots(G.days)))+(H.t?'':'<div class="r">단어<br>테스트</div>'+rpDots(T.days))+(R.l&&R.l.days?'<div class="r">듣기</div>'+rpDots(R.l.days):'')+'</div>';
     h+='<div class="rp-leg"><span><i class="rp-dot"></i>기록 있음</span><span><i class="rp-n" style="width:16px;height:16px;font-size:10px">2</i>단어 세트 수</span><span><i class="rp-dot bad"></i>테스트 80점 미만</span><span><i class="rp-dot e"></i>기록 없음</span></div>';
     if(H.w){}else if(wDays<=2)h+='<p class="rp-alert">단어숙제는 주 6일 해야 하는데, 이번 주는 '+(wDays?esc(R.wd||'')+' '+(wDays===1?'하루':'이틀')+'에 몰아서 한 것으로 보입니다.':'기록이 없습니다.')+'</p>';
-    else if(wDays<=4)h+='<p class="rp-alert t">단어숙제는 주 6일 해야 하는데, 이번 주는 '+wDays+'일만 기록이 있습니다.</p>';
+    else if(wDays<=4&&wN<wneed)h+='<p class="rp-alert t">단어숙제는 주 6일 해야 하는데, 이번 주는 '+wDays+'일만 기록이 있습니다.</p>';
     if(T.d&&!H.t)h+='<p class="rp-note">단어테스트는 '+esc(T.d)+'에 응시합니다.</p>';
     h+='</div>';
     if(!H.w){h+='<div class="card"><div class="rp-h">단어숙제</div><p class="rp-sub">'+esc(W.title||'')+' · 세트별 마지막 학습 시각과 최고 점수</p><ul class="rp-list">';
