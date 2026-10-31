@@ -179,7 +179,7 @@ function stepCard(p,s,i,kind){
   }
   if(s.write&&s.write.length){var wb=el("div","wr");wb.appendChild(el("div","wl","책에 쓸 것"));s.write.forEach(function(l){wb.appendChild(el("div",null,l))});if(s.opts)ap.appendChild(wb);else ap.insertBefore(wb,ap.firstChild)}
   if(kind==="q"){qbtns.push(ab);ab.disabled=!allOpened(p)}
-  ab.addEventListener("click",function(){if(ab.disabled)return;ap.hidden=!ap.hidden;ab.setAttribute("aria-expanded",String(!ap.hidden));if(kind==="s"){done["o-"+key]=true;store.set("rg5u6",JSON.stringify(done));syncQ()}});
+  ab.addEventListener("click",function(){if(ab.disabled)return;ap.hidden=!ap.hidden;ab.setAttribute("aria-expanded",String(!ap.hidden));if(!ap.hidden&&!cb.checked){cb.checked=true;done[key]=true;c.classList.add("done")}if(kind==="s"){done["o-"+key]=true;syncQ()}store.set("rg5u6",JSON.stringify(done));progress()});
   b.appendChild(acts);
   if(hp)b.appendChild(hp);
   b.appendChild(ap);
