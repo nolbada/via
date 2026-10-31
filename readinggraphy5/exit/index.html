@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">
 <style>
-:root{--bg:#f4f5f8;--surface:#fff;--ink:#1b2130;--muted:#5a6376;--line:#dadfe8;--accent:#2c4a9a;--accent-soft:#e6ebf8;--ok:#2f7d57;--font:"Noto Sans KR","Noto Sans CJK KR","Malgun Gothic",system-ui,sans-serif}
+:root{--sel:#c2570c;--bg:#f4f5f8;--surface:#fff;--ink:#1b2130;--muted:#5a6376;--line:#dadfe8;--accent:#2c4a9a;--accent-soft:#e6ebf8;--ok:#2f7d57;--font:"Noto Sans KR","Noto Sans CJK KR","Malgun Gothic",system-ui,sans-serif}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11151d;--surface:#1a202b;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2b3344;--accent:#93acff;--accent-soft:#232c44;--ok:#6fcf9f;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#11151d;--surface:#1a202b;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2b3344;--accent:#93acff;--accent-soft:#232c44;--ok:#6fcf9f;color-scheme:dark}
 *{box-sizing:border-box}
@@ -32,7 +32,7 @@ button:focus-visible,select:focus-visible{outline:2px solid var(--accent);outlin
 .opts{display:grid;gap:8px}
 .o{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:10px 12px;font:inherit;font-size:15px;cursor:pointer;min-height:44px}
 .o i{font-style:normal;font-weight:700;color:var(--muted);flex:none;min-width:18px}
-.o[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.o[aria-pressed="true"]{border:2px solid var(--sel);background:var(--sel);color:#fff;font-weight:700}.o[aria-pressed="true"] i{color:#fff}
 .tf{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .tf .o{justify-content:center;font-weight:700;font-size:17px}
 select{font:inherit;font-size:15px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:6px;padding:4px 6px;max-width:100%}
@@ -80,6 +80,9 @@ select{font:inherit;font-size:15px;border:1px solid var(--line);background:var(-
 .zone ol{margin:0 0 6px;padding-left:22px}.zone li{margin:0 0 3px}
 .rs-btn{display:block;width:100%;margin-top:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:12px;font:inherit;font-weight:700;min-height:44px;cursor:pointer}.rs-btn.arm{border-color:#c04545;color:#c04545}
 .banner .rule{display:block;margin-top:10px;padding-top:10px;border-top:1px solid currentColor;font-size:15px;font-weight:700}
+.tgl{display:block;width:100%;margin-top:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:11px;font:inherit;font-weight:700;min-height:44px;cursor:pointer}
+.o.good,.o.bad{color:var(--ink)}.o.good i,.o.bad i{color:var(--muted)}
+.o.good{font-weight:700}
 </style>
 </head>
 <body>
@@ -113,14 +116,14 @@ function view(){var p=pr(),v=document.getElementById("view");v.innerHTML="";var 
   else if(it.opts){var g=el("div","opts");it.opts.forEach(function(t,i){var b=el("button","o");b.innerHTML="<i>"+(i+1)+"</i><span></span>";b.lastChild.textContent=t;b.setAttribute("aria-pressed",String((ans[p.id]||{})[it.n]===i+1));b.onclick=function(){setAns(p,it,i+1);Array.prototype.forEach.call(g.children,function(c){c.setAttribute("aria-pressed",String(c===b))});foot()};g.appendChild(b)});q.appendChild(g)}
   else if(it.t==="fill"){q.appendChild(el("p","bank","보기: "+it.bank.join(" / ")))}
   if(fin){var pk=(ans[p.id]||{})[it.n];if(it.t==="tf"){Array.prototype.forEach.call(q.querySelector(".tf").children,function(b){var v=b.textContent;if(v===it.r.c){b.className+=" good";b.appendChild(el("span","tg","정답"))}else if(v===pk&&!okm){b.className+=" bad";b.appendChild(el("span","tg","내 답"))}})}else if(it.opts){Array.prototype.forEach.call(q.querySelector(".opts").children,function(b,i){if(i+1===it.r.c){b.className+=" good";b.appendChild(el("span","tg","정답"))}else if(i+1===pk&&!okm){b.className+=" bad";b.appendChild(el("span","tg","내 답"))}})}}
-  if(fin&&!okm&&it.r){var rv=el("div","rv");
+  if(fin&&it.r){var rv=el("div","rv");
    var z1=el("div","zone z-tr");z1.appendChild(el("h4",null,"한글 해석"));
    function ln(l,t){var p2=el("p","ln");p2.appendChild(el("b",null,l));p2.appendChild(document.createTextNode(t));z1.appendChild(p2)}
    if(it.ko)ln("문제",it.ko);if(it.sko)ln("문장",it.sko);
    if(it.oko){var ol=el("ol");it.oko.forEach(function(x){ol.appendChild(el("li",null,x))});var lb=el("p","ln");lb.appendChild(el("b",null,"선택지"));z1.appendChild(lb);z1.appendChild(ol)}
    if(it.bko){var bl=el("p","ln");bl.appendChild(el("b",null,"보기 단어"));bl.appendChild(document.createTextNode(it.bank.map(function(w){return w+" "+(it.bko[w]||"")}).join(" / ")));z1.appendChild(bl)}
    if(z1.children.length>1)rv.appendChild(z1);
-   var z2=el("div","zone z-an");z2.appendChild(el("h4",null,"정답 · 해설"));z2.appendChild(el("p","ra","정답: "+it.r.a));z2.appendChild(el("div","rl","교재 근거 ("+it.r.ev+")"));it.r.s.forEach(function(x){var d=el("div","rs");var e=el("span","en");e.appendChild(el("span","sn",x[0]+"번"));e.appendChild(document.createTextNode(x[1]));d.appendChild(e);d.appendChild(el("span","ko",x[2]));z2.appendChild(d)});z2.appendChild(el("div","rl","정리"));z2.appendChild(el("p","rw",it.r.w));rv.appendChild(z2);q.appendChild(rv)}
+   var z2=el("div","zone z-an");z2.appendChild(el("h4",null,"정답 · 해설"));z2.appendChild(el("p","ra","정답: "+it.r.a));z2.appendChild(el("div","rl","교재 근거 ("+it.r.ev+")"));it.r.s.forEach(function(x){var d=el("div","rs");var e=el("span","en");e.appendChild(el("span","sn",x[0]+"번"));e.appendChild(document.createTextNode(x[1]));d.appendChild(e);d.appendChild(el("span","ko",x[2]));z2.appendChild(d)});z2.appendChild(el("div","rl","정리"));z2.appendChild(el("p","rw",it.r.w));rv.appendChild(z2);if(okm){rv.style.display="none";var tg=el("button","tgl","해설 보기");tg.onclick=function(){var s=rv.style.display==="none";rv.style.display=s?"block":"none";tg.textContent=s?"해설 닫기":"해설 보기"};q.appendChild(tg)}q.appendChild(rv)}
   box.appendChild(q)});
  v.appendChild(box);
  var sb=el("div","sbar");sb.id="sbar";v.appendChild(sb);foot();
