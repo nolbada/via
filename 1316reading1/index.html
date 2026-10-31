@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>능률 1316 Reading 1</title>
+<meta name="theme-color" content="#ffd93b">
+<meta name="apple-mobile-web-app-title" content="능률 1316 Reading 1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#f4f5f8; --surface:#ffffff; --ink:#1b2130; --muted:#5a6376; --line:#dadfe8;
+  --accent:#2c4a9a; --accent-soft:#e6ebf8; --ok:#2f7d57;
+  --hl:#f6df5c; --ul:#3b6fd4; --ci:#d6443c; --sl:#1b2130; --ar:#2f8a5b; --me:#7a8296; --an:#8a4fc4;
+  --font:"Noto Sans KR","Noto Sans CJK KR","Malgun Gothic",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11151d; --surface:#1a202b; --ink:#e8ebf2; --muted:#9aa3b5; --line:#2b3344;
+    --accent:#93acff; --accent-soft:#232c44; --ok:#6fcf9f;
+    --hl:#d9c437; --ul:#6d97f0; --ci:#f0766e; --sl:#e8ebf2; --ar:#59c18b; --me:#9aa3b5; --an:#b98cf0;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.6;margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:720px;margin:0 auto}
+header h1{font-size:20px;line-height:1.3;margin:0 0 2px;font-weight:700;text-wrap:balance}
+header p{margin:0;color:var(--muted);font-size:13px}
+.units{display:flex;flex-wrap:nowrap;gap:6px;margin:16px -16px 0;padding:2px 16px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}.units::-webkit-scrollbar{display:none}
+.ub{flex:none;white-space:nowrap;font:inherit;font-size:14px;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);cursor:pointer}
+.ub[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tabs{display:flex;flex-direction:column;gap:8px;margin:18px 0 14px}
+.tab{display:block;width:100%;min-width:0;text-align:left;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:10px 12px;font:inherit;cursor:pointer}
+.tab b{display:block;font-size:15px}
+.tab span{display:block;font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.tab[aria-selected="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.tab:focus-visible,.btn:focus-visible,.chk:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.meta{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin:6px 2px 12px;color:var(--muted);font-size:13px;flex-wrap:wrap}
+.meta strong{color:var(--ink);font-size:16px}
+.bar{height:4px;background:var(--line);border-radius:2px;overflow:hidden;margin:0 2px 16px}
+.bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .2s}
+.sec{margin:22px 2px 8px;font-size:12px;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:10px}
+.step.done{opacity:.72}
+.top{display:flex;gap:10px;align-items:flex-start}
+.chk{appearance:none;-webkit-appearance:none;flex:none;width:24px;height:24px;border:2px solid var(--line);border-radius:6px;margin:1px 0 0;background:var(--bg);cursor:pointer;display:grid;place-content:center}
+.chk:checked{background:var(--ok);border-color:var(--ok)}
+.chk:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.body{min-width:0;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:2px 8px 2px 6px;border:1px solid var(--line);border-radius:999px;background:var(--bg)}
+.sw{display:inline-block;flex:none}
+.sw.hl{width:16px;height:8px;background:var(--hl);border-radius:2px}
+.sw.ul{width:16px;height:0;border-bottom:2.5px solid var(--ul)}
+.sw.ci{width:12px;height:12px;border:2px solid var(--ci);border-radius:50%}
+.sw.sl{width:2px;height:13px;background:var(--sl);transform:rotate(18deg)}
+.sw.ar{width:14px;height:0;border-bottom:2px solid var(--ar);position:relative}
+.sw.ar::after{content:"";position:absolute;right:-1px;top:-4px;border:solid var(--ar);border-width:0 2px 2px 0;width:6px;height:6px;transform:rotate(-45deg)}
+.sw.me{width:13px;height:11px;border:1.5px dashed var(--me);border-radius:2px}
+.sw.an{width:auto;height:auto;color:var(--an);font-weight:700;line-height:1}
+.at{font-size:12.5px;color:var(--muted);margin-bottom:4px;overflow-wrap:anywhere}
+.at em{font-style:normal;font-weight:700;color:var(--ink)}
+.q{margin:0;font-size:15px;overflow-wrap:anywhere}
+.acts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.btn{font:inherit;font-size:14px;padding:8px 14px;min-height:40px;border-radius:7px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.btn[aria-expanded="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.panel{margin-top:10px;padding:10px 12px;border-radius:8px;font-size:14px}
+.panel.help{background:var(--accent-soft)}
+.panel.ans{border:1px solid var(--ok)}
+.panel ul{margin:0;padding:0;list-style:none;display:grid;gap:4px}
+.panel li{overflow-wrap:anywhere}
+.panel .w{font-weight:700}
+.opt{padding:7px 0;border-top:1px solid var(--line)}
+.opt:first-child{border-top:0;padding-top:0}
+.opt .en{font-weight:700;overflow-wrap:anywhere}
+.opt .ko{margin-top:1px}
+.opt .nt{color:var(--muted);font-size:13px}
+.rq{font-size:11px;font-weight:700;color:#fff;background:var(--ci);border-radius:999px;padding:2px 8px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.wr{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:6px;padding:8px 10px;margin-bottom:8px;font-weight:700}
+.wl{font-size:11px;letter-spacing:.06em;color:var(--accent);margin-bottom:2px}
+.lockcard{display:none;border:1px dashed var(--muted);border-radius:10px;padding:18px;text-align:center;color:var(--muted);font-weight:700}
+.qw.locked .lockcard{display:block}
+.qw.locked .step{display:none}
+.a1{font-weight:800;margin:0 0 8px}
+.lb{font-size:12px;font-weight:800;color:var(--muted);margin:12px 0 6px;letter-spacing:.03em}
+.evs{background:var(--accent-soft);border-radius:8px;padding:8px 10px;margin:0 0 6px}
+.evs .en{font-weight:600;overflow-wrap:anywhere}.evs .ko{margin-top:2px;color:var(--muted)}
+.evs .sn{display:inline-block;font-size:12px;font-weight:800;color:var(--accent);margin-right:6px}
+.panel .wr{margin:12px 0 0}
+.rs-btn{display:block;width:100%;margin:20px 0 8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:12px;font:inherit;font-weight:700;min-height:44px;cursor:pointer}.rs-btn.arm{border-color:#c04545;color:#c04545}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>능률 1316 Reading 1</h1>
+  <p style="margin:6px 0 0"><a href="exit/" style="font-weight:700;color:inherit">Exit test →</a></p>
+  <p id="sub"></p>
+</header>
+<div class="units" id="units"></div>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div id="view"></div>
+</div>
+<script src="data.js"></script>
+<script>
+var KEY="b1";
+var TAGS={hl:"형광펜",ul:"밑줄",ci:"동그라미",sl:"슬래시",ar:"화살표",me:"여백 메모",an:"반의어"};
+function localStorage_get(){try{var v=localStorage.getItem(KEY+"unit");if(v&&U[v])return v}catch(e){}return Object.keys(U)[0]}
+var unit=localStorage_get();var P=U[unit];
+var store={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+var cur=0;
+var done={};
+try{done=JSON.parse(store.get(KEY+"done")||"{}")||{}}catch(e){done={}}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function swatch(k){var s=el("span","sw "+k);if(k==="an")s.textContent="↔";s.setAttribute("aria-hidden","true");return s}
+var qbtns=[];
+function allOpened(p){for(var i=0;i<p.steps.length;i++)if(!done["o-"+p.id+"-s"+i])return false;return true}
+function syncQ(){qbtns.forEach(function(b){b.disabled=!allOpened(P[cur])})}
+function stepCard(p,s,i,kind){
+  var key=p.id+"-"+kind+i;
+  var c=el("div","step"+(done[key]?" done":""));
+  var top=el("div","top");
+  var cb=el("input","chk");cb.type="checkbox";cb.id="c-"+key;cb.checked=!!done[key];
+  cb.setAttribute("aria-label",(i+1)+"번 완료");
+  cb.addEventListener("change",function(){done[key]=cb.checked;c.classList.toggle("done",cb.checked);store.set(KEY+"done",JSON.stringify(done));progress()});
+  top.appendChild(cb);
+  var b=el("div","body");
+  var tg=el("div","tags");
+  if(s.req||kind==="q"){tg.appendChild(el("span","rq","필수"))}
+  s.tags.forEach(function(t){var g=el("span","tag");g.appendChild(swatch(t));g.appendChild(document.createTextNode(TAGS[t]));tg.appendChild(g)});
+  b.appendChild(tg);
+  var at=el("div","at");var em=el("em",null,s.at);at.appendChild(em);at.appendChild(document.createTextNode(" · "+s.st));
+  b.appendChild(at);
+  b.appendChild(el("p","q",s.q));
+  var acts=el("div","acts");
+  var hp=null,ap=null,hb=null,ab=null;
+  if(s.help){
+    hb=el("button","btn","도움");hb.type="button";hb.setAttribute("aria-expanded","false");acts.appendChild(hb);
+    hp=el("div","panel help");hp.hidden=true;var ul=el("ul");
+    s.help.forEach(function(h){var li=el("li");li.appendChild(el("span","w",h[0]));li.appendChild(document.createTextNode("  "+h[1]));ul.appendChild(li)});
+    hp.appendChild(ul);
+    hb.addEventListener("click",function(){hp.hidden=!hp.hidden;hb.setAttribute("aria-expanded",String(!hp.hidden))});
+  }
+  ab=el("button","btn",s.opts?"근거":"확인");ab.type="button";ab.setAttribute("aria-expanded","false");acts.appendChild(ab);
+  ap=el("div","panel ans");ap.hidden=true;
+  if(s.opts){
+    ap.appendChild(el("div","a1",s.ans));
+    if(s.ev&&s.ev.length){ap.appendChild(el("div","lb","근거 본문"));s.ev.forEach(function(n){var x=(p.S||{})[n];if(!x)return;var d=el("div","evs");var e=el("div","en");e.appendChild(el("span","sn",n+"번"));e.appendChild(document.createTextNode(x[0]));d.appendChild(e);d.appendChild(el("div","ko",x[1]));ap.appendChild(d)})}
+    ap.appendChild(el("div","lb","선지별 설명"));
+    s.opts.forEach(function(o){var d=el("div","opt");d.appendChild(el("div","en",o[0]+"  "+o[1]));d.appendChild(el("div","ko",o[2]));d.appendChild(el("div","nt",o[3]));ap.appendChild(d)});
+  }else{
+    s.ans.split("\n").forEach(function(l){var d=el("div",null,l);ap.appendChild(d)});
+  }
+  if(s.write&&s.write.length){var wb=el("div","wr");wb.appendChild(el("div","wl","책에 쓸 것"));s.write.forEach(function(l){wb.appendChild(el("div",null,l))});if(s.opts)ap.appendChild(wb);else ap.insertBefore(wb,ap.firstChild)}
+  if(kind==="q"){qbtns.push(ab);ab.disabled=!allOpened(p)}
+  ab.addEventListener("click",function(){if(ab.disabled)return;ap.hidden=!ap.hidden;ab.setAttribute("aria-expanded",String(!ap.hidden));if(!ap.hidden&&!cb.checked){cb.checked=true;done[key]=true;c.classList.add("done")}if(kind==="s"){done["o-"+key]=true;syncQ()}store.set(KEY+"done",JSON.stringify(done));progress()});
+  b.appendChild(acts);
+  if(hp)b.appendChild(hp);
+  b.appendChild(ap);
+  top.appendChild(b);c.appendChild(top);
+  return c;
+}
+function progress(){
+  var p=P[cur],n=p.steps.length+p.qs.length,d=0,i;
+  for(i=0;i<p.steps.length;i++)if(done[p.id+"-s"+i])d++;
+  for(i=0;i<p.qs.length;i++)if(done[p.id+"-q"+i])d++;
+  var pc=document.getElementById("pc");if(pc)pc.textContent=d+" / "+n;
+  var pb=document.getElementById("pb");if(pb)pb.style.width=(100*d/n)+"%";
+  var ok=true;for(i=0;i<p.steps.length;i++)if(!done[p.id+"-s"+i])ok=false;
+  var qw=document.getElementById("qw");if(qw)qw.classList.toggle("locked",!ok);
+}
+function render(){
+  P=U[unit];if(cur>=P.length)cur=0;
+  var up=document.getElementById("units");up.textContent="";
+  Object.keys(U).forEach(function(k){var b=el("button","ub","Section "+k);b.type="button";b.setAttribute("aria-pressed",String(k===unit));
+    b.addEventListener("click",function(){unit=k;cur=0;try{localStorage.setItem(KEY+"unit",k)}catch(e){}render()});up.appendChild(b)});
+  var tabs=document.getElementById("tabs");tabs.textContent="";
+  P.forEach(function(p,i){
+    var t=el("button","tab");t.type="button";t.setAttribute("role","tab");t.setAttribute("aria-selected",String(i===cur));
+    t.appendChild(el("b",null,"Reading "+p.no));t.appendChild(el("span",null,p.ko));
+    t.addEventListener("click",function(){cur=i;render();document.getElementById("view").scrollIntoView({block:"start"})});tabs.appendChild(t);
+  });
+  var p=P[cur],v=document.getElementById("view");document.getElementById("sub").textContent="Section "+unit+" · "+p.pg;v.textContent="";
+  var m=el("div","meta");var st=el("strong",null,p.ko);m.appendChild(st);var pc=el("span",null,"");pc.id="pc";m.appendChild(pc);v.appendChild(m);
+  var bar=el("div","bar");var bi=el("i");bi.id="pb";bar.appendChild(bi);v.appendChild(bar);
+  v.appendChild(el("div","sec","지문 읽기"));
+  qbtns=[];
+  p.steps.forEach(function(s,i){v.appendChild(stepCard(p,s,i,"s"))});
+  var qw=el("div","qw");qw.id="qw";qw.appendChild(el("div","sec","문제 선지"));
+  var lk=el("div","lockcard","잠김");lk.id="lk";qw.appendChild(lk);
+  p.qs.forEach(function(s,i){qw.appendChild(stepCard(p,s,i,"q"))});v.appendChild(qw);
+  var rb=el("button","rs-btn","처음부터 다시 (다음 학생)");rb.type="button";var rt=0;
+  rb.addEventListener("click",function(){if(!rb.classList.contains("arm")){rb.classList.add("arm");rb.textContent="한 번 더 누르면 모두 지워집니다";clearTimeout(rt);rt=setTimeout(function(){rb.classList.remove("arm");rb.textContent="처음부터 다시 (다음 학생)"},3500);return}done={};store.set(KEY+"done","{}");cur=0;render();window.scrollTo(0,0)});
+  v.appendChild(rb);
+  var hm=el("a","rs-btn","Exit test 보러 가기 →");hm.href="exit/";hm.style.textAlign="center";hm.style.textDecoration="none";hm.style.marginTop="0";v.appendChild(hm);
+  progress();
+}
+render();
+</script>
+</body>
+</html>
