@@ -112,6 +112,7 @@ header p{margin:0;color:var(--muted);font-size:13px}
 .evs .en{font-weight:600;overflow-wrap:anywhere}.evs .ko{margin-top:2px;color:var(--muted)}
 .evs .sn{display:inline-block;font-size:12px;font-weight:800;color:var(--accent);margin-right:6px}
 .panel .wr{margin:12px 0 0}
+.rs-btn{display:block;width:100%;margin:20px 0 8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:12px;font:inherit;font-weight:700;min-height:44px;cursor:pointer}.rs-btn.arm{border-color:#c04545;color:#c04545}
 </style>
 
 <div class="wrap">
@@ -217,6 +218,9 @@ function render(){
   var qw=el("div","qw");qw.id="qw";qw.appendChild(el("div","sec","문제 선지"));
   var lk=el("div","lockcard","잠김");lk.id="lk";qw.appendChild(lk);
   p.qs.forEach(function(s,i){qw.appendChild(stepCard(p,s,i,"q"))});v.appendChild(qw);
+  var rb=el("button","rs-btn","처음부터 다시 (다음 학생)");rb.type="button";var rt=0;
+  rb.addEventListener("click",function(){if(!rb.classList.contains("arm")){rb.classList.add("arm");rb.textContent="한 번 더 누르면 모두 지워집니다";clearTimeout(rt);rt=setTimeout(function(){rb.classList.remove("arm");rb.textContent="처음부터 다시 (다음 학생)"},3500);return}done={};store.set("rg5u6","{}");cur=0;render();window.scrollTo(0,0)});
+  v.appendChild(rb);
   progress();
 }
 render();
