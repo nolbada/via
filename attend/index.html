@@ -49,7 +49,7 @@ main{padding:12px 16px 14px;display:flex;flex-direction:column;gap:10px;height:c
 .loading{color:var(--mut);padding:30px 4px;text-align:center}
 .wrap{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:12px}
 @media(max-width:900px){main{height:auto}.wrap{grid-template-columns:1fr 1fr}.stu{grid-column:1/-1}.col .lst{overflow:visible}}
-@media(max-width:700px){main{height:calc(100vh - var(--hh,118px));height:calc(100dvh - var(--hh,118px));padding:8px}.wrap{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:6px}.stu{grid-column:auto}.col .lst{overflow:auto}.grid{grid-template-columns:1fr;gap:5px}.chip{min-height:40px;padding:2px 2px 2px 8px}.chip .cn{font-size:15px}.chip .x{min-width:28px;min-height:30px}.pane,.room{padding:8px;border-radius:14px}.rt{font-size:16px}.rc b{font-size:20px}.rw{padding:2px 6px;min-height:40px;margin-bottom:5px}.rw .no,.rw .lv{display:none}.rw{flex-wrap:wrap}.rw .tm{flex-basis:100%;text-align:left;font-size:12px;padding:0;border:0;background:none;min-height:0}.rw .rn{font-size:15px;white-space:normal;overflow:visible;text-overflow:clip;line-height:1.25}.rw .rn .gd{display:block;width:max-content;margin:2px 0 0}.dots{display:none}.rs{margin-bottom:4px}.srch{margin-left:0;width:100%}.srch input{width:100%}.pane>h2{margin-bottom:6px}.wl{grid-template-columns:1fr}.stat{margin-top:6px;gap:5px}.stat>*{padding:1px 9px}.stat b{font-size:15px}.top{gap:8px}header{padding:8px 10px}}
+@media(max-width:700px){main{height:calc(100vh - var(--hh,118px));height:calc(100dvh - var(--hh,118px));padding:8px}.wrap{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:6px}.stu{grid-column:auto}.col .lst{overflow:auto}.grid{grid-template-columns:1fr;gap:5px}.chip{min-height:40px;padding:2px 2px 2px 8px}.chip .cn{font-size:15px}.chip .x{min-width:28px;min-height:30px}.pane,.room{padding:8px;border-radius:14px}.rt{font-size:16px}.rc b{font-size:20px}.rw{padding:2px 6px;min-height:40px;margin-bottom:5px}.rw .no,.rw .lv{display:none}.rw{flex-wrap:wrap}.rw .tm{flex-basis:100%;text-align:left;font-size:12px;padding:0;border:0;background:none;min-height:0}.rw .tm[data-edit]{padding:7px 0;min-height:30px}.rw .rn{font-size:15px;white-space:normal;overflow:visible;text-overflow:clip;line-height:1.25}.rw .rn .gd{display:block;width:max-content;margin:2px 0 0}.dots{display:none}.rs{margin-bottom:4px}.srch{margin-left:0;width:100%}.srch input{width:100%}.pane>h2{margin-bottom:6px}.wl{grid-template-columns:1fr}.stat{margin-top:6px;gap:5px}.stat>*{padding:1px 9px}.stat b{font-size:15px}.top{gap:8px}header{padding:8px 10px}}
 .pane,.room{background:var(--card);border-radius:18px;padding:12px;box-shadow:0 1px 2px rgba(20,26,40,.06),0 8px 22px rgba(20,26,40,.05)}
 .pane>h2{margin:0 2px 10px;font-size:12px;letter-spacing:.16em;font-weight:800;color:var(--mut);display:flex;justify-content:space-between;align-items:center}
 .pane>h2 span{background:#eef0f4;color:var(--ink);border-radius:999px;padding:1px 10px;letter-spacing:0;font-size:13px}
@@ -421,7 +421,7 @@ function chip(n){
 }
 function wcard(n){
   var r=ST[G].rec[n]||{},e=esc(n);
-  return '<div class="wc"><div class="wn" data-sel="'+e+'"><span class="cn">'+e+(GM[n]?'<span class="gd">보강</span>':'')+'</span><span class="tm'+(r.a0?' ed':'')+'">'+hm(r.arrive)+'</span></div><button class="bm" data-op="assign" data-teacher="남" data-name="'+e+'">남쌤</button><button class="bf" data-op="assign" data-teacher="여" data-name="'+e+'">여쌤</button><button class="ba" data-absflow="'+e+'">결석</button><button class="bc" data-op="back" data-name="'+e+'">취소</button></div>';
+  return '<div class="wc"><div class="wn" data-sel="'+e+'"><span class="cn">'+e+(GM[n]?'<span class="gd">보강</span>':'')+'</span><span class="tm'+(r.a0?' ed':'')+'"'+(r.arrive?' data-edit="arrive" data-name="'+e+'"':'')+'>'+hm(r.arrive)+'</span></div><button class="bm" data-op="assign" data-teacher="남" data-name="'+e+'">남쌤</button><button class="bf" data-op="assign" data-teacher="여" data-name="'+e+'">여쌤</button><button class="ba" data-absflow="'+e+'">결석</button><button class="bc" data-op="back" data-name="'+e+'">취소</button></div>';
 }
 function isDue(n,r){
   if(!r||!r.arrive||r.status!=='in'||DATES[G]!==todayKey())return false;
@@ -430,7 +430,7 @@ function isDue(n,r){
 }
 function row(n,i,cap,k){
   var r=ST[G].rec[n]||{},e=esc(n),due=isDue(n,r);
-  return '<div class="rw'+(i>=cap?' over':'')+'" data-sel="'+e+'"><i class="no">'+(i+1)+'</i><div class="rn">'+(due?'<span class="dot"></span>':'')+e+(GM[n]?'<span class="gd">보강</span>':'')+'</div><span class="tm'+(r.a0?' ed':'')+(due?' due':'')+'">'+hm(r.arrive)+'</span></div>';
+  return '<div class="rw'+(i>=cap?' over':'')+'" data-sel="'+e+'"><i class="no">'+(i+1)+'</i><div class="rn">'+(due?'<span class="dot"></span>':'')+e+(GM[n]?'<span class="gd">보강</span>':'')+'</div><span class="tm'+(r.a0?' ed':'')+(due?' due':'')+'"'+(r.arrive?' data-edit="arrive" data-name="'+e+'"':'')+'>'+hm(r.arrive)+'</span></div>';
 }
 function room(k,list){
   var cap=CAP[k],n=list.length,over=Math.max(0,n-cap),dots='',i;
