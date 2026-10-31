@@ -221,6 +221,7 @@ function render(){
   var rb=el("button","rs-btn","처음부터 다시 (다음 학생)");rb.type="button";var rt=0;
   rb.addEventListener("click",function(){if(!rb.classList.contains("arm")){rb.classList.add("arm");rb.textContent="한 번 더 누르면 모두 지워집니다";clearTimeout(rt);rt=setTimeout(function(){rb.classList.remove("arm");rb.textContent="처음부터 다시 (다음 학생)"},3500);return}done={};store.set("rg5u6","{}");cur=0;render();window.scrollTo(0,0)});
   v.appendChild(rb);
+  var hm=el("a","rs-btn","교재 링크모음으로");hm.href="../links/books/";hm.style.textAlign="center";hm.style.textDecoration="none";hm.style.marginTop="0";v.appendChild(hm);
   progress();
 }
 render();
