@@ -252,7 +252,7 @@ details.mkd summary{margin:10px 2px 4px;font-size:13px}
   <div id="a_err" style="color:#b4402c;font-size:14px;min-height:20px"></div>
   <div class="act"><button id="a_cancel">닫기</button><button id="a_only" class="g">결석만 기록</button><button class="p" id="a_ok">보강 등록</button></div>
 </div></div>
-<div id="rmodal"><div class="box"><h3 id="rt2"></h3><div class="row"><input id="rname" autocomplete="off" placeholder="이름" style="flex:1;font:inherit;padding:9px;border:1px solid var(--line);border-radius:10px;min-width:0"><button class="p" id="radd">추가</button></div><div id="rerr" style="color:#b4402c;font-size:14px;min-height:20px"></div><div id="rlist" class="rgrid"></div><div class="act"><button data-close="1">닫기</button></div></div></div>
+<div id="rmodal"><div class="box"><h3 id="rt2"></h3><div class="row"><input id="rname" autocomplete="off" placeholder="이름" style="flex:1;font:inherit;padding:9px;border:1px solid var(--line);border-radius:10px;min-width:0"><button class="p" id="radd">정규 추가</button></div><div id="rerr" style="color:#b4402c;font-size:14px;min-height:20px"></div><div style="font-size:13px;color:var(--mut);margin-bottom:6px">정규 학생만 추가. 오늘만 오는 보강 학생은 결석·보강 탭에서 등록</div><div id="rlist" class="rgrid"></div><div class="act"><button data-close="1">닫기</button></div></div></div>
 <div id="smodal"><div class="box" id="sbox"></div></div>
 <div id="lmodal"><div class="box"><h3 id="lt"></h3><div id="lb"></div><div class="act"><button data-close="1">닫기</button></div></div></div>
 <div id="modal"><div class="box">
@@ -569,6 +569,7 @@ function render(){
   });
   if(G!=='보'){S.roster.forEach(function(x){delete GM[x.name];});}
   Object.keys(S.rec).forEach(function(n){if(names.indexOf(n)<0&&(S.rec[n].status||(G==='보'&&BOSL.indexOf(S.rec[n].memo)>=0)))names.push(n);});
+  if(G!=='보'){var rs0=S.roster.map(function(x){return x.name;});names.forEach(function(n){if(rs0.indexOf(n)<0&&!GM[n])GM[n]=' ';});}
   if(!S.loaded){
     document.getElementById('stat').innerHTML='';
     document.getElementById('main').innerHTML='<div class="loading">'+(errState?'연결되면 표시됩니다':'불러오는 중')+'</div>';
