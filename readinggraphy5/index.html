@@ -209,8 +209,6 @@ function render(){
   var qw=el("div","qw");qw.id="qw";qw.appendChild(el("div","sec","문제 선지"));
   var lk=el("div","lockcard","잠김");lk.id="lk";qw.appendChild(lk);
   p.qs.forEach(function(s,i){qw.appendChild(stepCard(p,s,i,"q"))});v.appendChild(qw);
-  var tc=el("div","teacher");tc.appendChild(el("h2",null,"선생님 확인"));
-  var ol=el("ol");p.check.forEach(function(c){ol.appendChild(el("li",null,c))});tc.appendChild(ol);v.appendChild(tc);
   progress();
 }
 render();
