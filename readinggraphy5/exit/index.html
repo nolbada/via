@@ -79,6 +79,7 @@ select{font:inherit;font-size:15px;border:1px solid var(--line);background:var(-
 .zone .ln{margin:0 0 6px}.zone .ln b{font-size:12px;opacity:.75;margin-right:6px}
 .zone ol{margin:0 0 6px;padding-left:22px}.zone li{margin:0 0 3px}
 .rs-btn{display:block;width:100%;margin-top:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:12px;font:inherit;font-weight:700;min-height:44px;cursor:pointer}.rs-btn.arm{border-color:#c04545;color:#c04545}
+.banner .rule{display:block;margin-top:10px;padding-top:10px;border-top:1px solid currentColor;font-size:15px;font-weight:700}
 </style>
 </head>
 <body>
@@ -101,7 +102,7 @@ function pr(){return P.filter(function(p){return p.id===cur})[0]}
 function answered(p,it){var a=(ans[p.id]||{})[it.n];if(it.t==="fill")return a&&a[0]&&a[1];return a!=null&&a!==""}
 function setAns(p,it,v){ans[p.id]=ans[p.id]||{};ans[p.id][it.n]=v}
 function view(){var p=pr(),v=document.getElementById("view");v.innerHTML="";var fin=!!done[p.id];
- if(fin){var d0=done[p.id],pass=d0.s*10>=70,wr0=p.items.filter(function(it){return !d0.ok[it.n]}).map(function(it){return it.n});var bn=el("div","banner "+(pass?"pass":"fail"));bn.id="bn";bn.appendChild(el("span","vd",pass?"PASS":"FAIL"));bn.appendChild(el("span","sc",(d0.s*10)+"점 ("+d0.s+" / 10)"));bn.appendChild(el("span","wr",wr0.length?"틀린 문항: "+wr0.join(", ")+"번":"전 문항 정답"));v.appendChild(bn)}
+ if(fin){var d0=done[p.id],pass=d0.s*10>=70,wr0=p.items.filter(function(it){return !d0.ok[it.n]}).map(function(it){return it.n});var bn=el("div","banner "+(pass?"pass":"fail"));bn.id="bn";bn.appendChild(el("span","vd",pass?"PASS":"FAIL"));bn.appendChild(el("span","sc",(d0.s*10)+"점 ("+d0.s+" / 10)"));bn.appendChild(el("span","wr",wr0.length?"틀린 문항: "+wr0.join(", ")+"번":"전 문항 정답"));bn.appendChild(el("span","rule",pass?"70점 이상 통과":"70점 미만: 이 Reading의 전문 해석을 쓰세요. 책의 해석을 보고 써도 됩니다."));v.appendChild(bn)}
  var box=el("div",fin?"locked":"");
  p.items.forEach(function(it){
   var q=el("section","q");var h=el("div","qh");h.appendChild(el("span","qn",it.n));h.appendChild(el("span",null,LAB[it.t]));var okm=fin?done[p.id].ok[it.n]:null;if(fin){h.appendChild(el("span","mk "+(okm?"o1":"x1"),okm?"O":"X"));if(!okm)q.className+=" wrong"}q.appendChild(h);
