@@ -14,43 +14,55 @@
 @media (prefers-color-scheme:dark){:root{--bg:#0c1f2b;--card:#14303f;--ink:#e8eef2;--sub:#9db0bd;--line:#24465a}}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
-main{max-width:560px;margin:0 auto;padding:28px 16px 40px}
-h1{font-size:22px;margin:0 0 20px;letter-spacing:-.01em}
-.ns{border:2px solid var(--k);background:var(--kb);border-radius:16px;padding:4px 12px 10px;margin:0 0 18px;--k:#c4b5fd;--kb:#f3efff;--kh:#ddd2ff}
-@media (prefers-color-scheme:dark){.ns{--k:#4a3a8a;--kb:#1d1838;--kh:#4a3a8a}}
-.ns h2{display:block;text-align:center;font-size:24px;font-weight:900;letter-spacing:.06em;color:var(--ink);background:var(--kh);border-radius:12px;padding:12px 10px;margin:10px 0 12px}
-.ns h3{font-size:13px;font-weight:700;color:var(--sub);margin:12px 2px 6px;letter-spacing:.02em}
-.sg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.sg a{display:flex;align-items:center;justify-content:center;text-align:center;background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:10px;padding:16px 4px;color:var(--ink);text-decoration:none;font-size:18px;font-weight:700;min-width:0}
-.sg a:active{background:var(--line)}
+main{max-width:560px;margin:0 auto;padding:28px 16px 48px}
+h1{font-size:22px;margin:0 0 14px;letter-spacing:-.01em}
+.jump{display:flex;gap:8px;margin:0 0 20px}
+.jump a{flex:1;text-align:center;text-decoration:none;font-size:15px;font-weight:800;color:var(--ink);background:var(--kh);border:2px solid var(--k);border-radius:10px;padding:9px 4px}
+.t-gr{--k:#c4b5fd;--kb:#f3efff;--kh:#ddd2ff;--c:#7c3aed}
+.t-sj{--k:#fcd34d;--kb:#fff7e0;--kh:#fde9a8;--c:#d97706}
+.t-rd{--k:#5eead4;--kb:#e4f7f3;--kh:#bdeee6;--c:#0f766e}
+@media (prefers-color-scheme:dark){
+.t-gr{--k:#5b46a8;--kb:#1d1838;--kh:#3d2f78;--c:#a78bfa}
+.t-sj{--k:#8a6212;--kb:#2a2010;--kh:#5a4210;--c:#fbbf24}
+.t-rd{--k:#1f7a6d;--kb:#0f2a28;--kh:#17524a;--c:#2dd4bf}}
+.ns{border:2px solid var(--k);background:var(--kb);border-radius:16px;padding:4px 12px 12px;margin:0 0 18px;scroll-margin-top:12px}
+.ns h2{display:block;text-align:center;font-size:24px;font-weight:900;letter-spacing:.06em;color:var(--ink);background:var(--kh);border-radius:12px;padding:12px 10px;margin:10px 0 6px}
+.bk{margin:14px 0 0}
+.bk h3{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:var(--ink);margin:0 2px 8px}
+.bk h3:before{content:"";width:5px;height:18px;border-radius:3px;background:var(--c)}
+.st{display:grid;gap:8px}
+.st a{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:10px;padding:14px 14px;color:var(--ink);text-decoration:none;font-size:18px;font-weight:700;min-width:0}
+.st a:active{background:var(--line)}
+.st i{flex:none;display:grid;place-content:center;width:28px;height:28px;border-radius:14px;background:var(--c);color:#fff;font-style:normal;font-size:14px;font-weight:800}
+@media (prefers-color-scheme:dark){.st i{color:#0c1f2b}}
 </style>
 </head>
 <body>
 <main>
 <h1>교재</h1>
-<div class="ns">
+<nav class="jump"><a class="t-gr" href="#gr">문법</a><a class="t-sj" href="#sj">서술형</a><a class="t-rd" href="#rd">독해</a></nav>
+<section class="ns t-gr" id="gr">
 <h2>문법</h2>
-<h3>그래머인사이드</h3>
-<div class="sg">
-<a href="https://nolbada.github.io/via/grammar-inside/wb-l1/" style="--c:#7c3aed">L1 워크북</a>
-</div>
-</div>
-<div class="ns">
+<div class="bk"><h3>그래머인사이드</h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/grammar-inside/wb-l1/"><i>1</i>L1 워크북 힌트</a>
+</div></div>
+</section>
+<section class="ns t-sj" id="sj">
 <h2>서술형</h2>
-<h3>서술형이 전략이다</h3>
-<div class="sg">
-<a href="https://nolbada.github.io/via/seoljeon/" style="--c:#7c3aed">영작 Drill 힌트</a>
-<a href="https://www.classcard.net/folder/845891" style="--c:#7c3aed">클래스카드 세트</a>
-</div>
-</div>
-<div class="ns">
+<div class="bk"><h3>서술형이 전략이다</h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/seoljeon/"><i>1</i>영작 Drill 힌트</a>
+</div></div>
+</section>
+<section class="ns t-rd" id="rd">
 <h2>독해</h2>
-<h3>리딩그라피 5</h3>
-<div class="sg">
-<a href="https://nolbada.github.io/via/readinggraphy5/" style="--c:#0f766e">활동 앱</a>
-<a href="https://nolbada.github.io/via/readinggraphy5/exit/" style="--c:#0f766e">Exit test</a>
-</div>
-</div>
+<div class="bk"><h3>리딩그라피 5</h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/readinggraphy5/"><i>1</i>활동 앱</a>
+<a href="https://nolbada.github.io/via/readinggraphy5/exit/"><i>2</i>Exit test</a>
+</div></div>
+</section>
 </main>
 </body>
 </html>
