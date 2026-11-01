@@ -11,9 +11,9 @@
 .tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1}.tabs::-webkit-scrollbar{display:none}
 .tabs a{flex:none;text-decoration:none;font-size:13.5px;font-weight:900;border-radius:999px;padding:6px 12px;background:var(--c);color:var(--k);opacity:.55;transition:opacity .15s}
 .tabs a.on{opacity:1;outline:2px solid var(--ink);outline-offset:1px}
-.deck{display:flex;align-items:flex-start;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 7vw 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.deck::-webkit-scrollbar{display:none}
+.deck{display:flex;align-items:flex-start;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;padding:6px 7vw 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.deck::-webkit-scrollbar{display:none}
 @media(min-width:620px){.deck{padding-left:calc(50% - 230px);padding-right:calc(50% - 230px)}}
-.slide{flex:none;width:min(86vw,460px);scroll-snap-align:center;border-radius:30px;padding:22px 18px 22px;background:var(--bg,#fff);color:var(--ink)}
+.slide{flex:none;width:min(86vw,460px);scroll-snap-align:center;scroll-snap-stop:always;border-radius:30px;padding:22px 18px 22px;background:var(--bg,#fff);color:var(--ink)}
 .cover{--bg:#FFFFFF;display:flex;flex-direction:column;min-height:min(calc(100svh - 130px),700px)}
 .cover h1{font-family:"Black Han Sans","Noto Sans KR",sans-serif;font-weight:400;font-size:clamp(30px,8.6vw,42px);line-height:1.12;margin:6px 0 10px;letter-spacing:-.01em;word-break:keep-all}
 .cover .sub{margin:0;font-size:15px;line-height:1.5;color:var(--sub);font-weight:500}
