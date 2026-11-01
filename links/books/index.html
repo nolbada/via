@@ -35,8 +35,14 @@ h1{font-size:22px;margin:0 0 14px;letter-spacing:-.01em}
 .st a:active{background:var(--line)}
 .st i{flex:none;display:grid;place-content:center;width:28px;height:28px;border-radius:14px;background:var(--c);color:#fff;font-style:normal;font-size:14px;font-weight:800}
 @media (prefers-color-scheme:dark){.st i{color:#0c1f2b}}
-.sr{font-size:13px;font-weight:800;letter-spacing:.04em;color:var(--c);margin:22px 4px 0;padding-bottom:5px;border-bottom:2px solid var(--k)}
-.sr+.bk{margin-top:10px}
+.sd{margin:12px 0 0}
+.sr{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:17px;font-weight:800;color:var(--ink);background:var(--card);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:10px;padding:14px 14px}
+.sr::-webkit-details-marker{display:none}
+.sr small{font-size:13px;font-weight:700;color:var(--sub);margin-left:auto;margin-right:10px}
+.sr:after{content:"+";font-size:22px;font-weight:700;color:var(--c);line-height:1}
+.sd[open]>.sr{background:var(--kh);border-color:var(--k);border-left-color:var(--c)}
+.sd[open]>.sr:after{content:"\2212"}
+.sd[open]>.bk:first-of-type{margin-top:12px}
 </style>
 </head>
 <body>
@@ -59,7 +65,7 @@ h1{font-size:22px;margin:0 0 14px;letter-spacing:-.01em}
 </section>
 <section class="ns t-rd" id="rd">
 <h2>독해</h2>
-<div class="sr">리딩그라피</div>
+<details class="sd" name="rd-series"><summary class="sr">리딩그라피<small>6권</small></summary>
 <div class="bk"><h3>리딩그라피 1</h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/readinggraphy1/"><i>1</i>클래스 활동</a>
@@ -90,7 +96,8 @@ h1{font-size:22px;margin:0 0 14px;letter-spacing:-.01em}
 <a href="https://nolbada.github.io/via/readinggraphy6/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/readinggraphy6/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="sr">브릭스 중학독해</div>
+</details>
+<details class="sd" name="rd-series"><summary class="sr">브릭스 중학독해<small>4권</small></summary>
 <div class="bk"><h3>브릭스 중학독해 1</h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/bricks1/"><i>1</i>클래스 활동</a>
@@ -111,7 +118,8 @@ h1{font-size:22px;margin:0 0 14px;letter-spacing:-.01em}
 <a href="https://nolbada.github.io/via/bricks4/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/bricks4/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="sr">해커스 리딩스마트</div>
+</details>
+<details class="sd" name="rd-series"><summary class="sr">해커스 리딩스마트<small>6권</small></summary>
 <div class="bk"><h3>해커스 리딩스마트 스타터 1</h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/hackersstarter1/"><i>1</i>클래스 활동</a>
@@ -142,7 +150,8 @@ h1{font-size:22px;margin:0 0 14px;letter-spacing:-.01em}
 <a href="https://nolbada.github.io/via/hackers4/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/hackers4/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="sr">능률 1316 Reading</div>
+</details>
+<details class="sd" name="rd-series"><summary class="sr">능률 1316 Reading<small>3권</small></summary>
 <div class="bk"><h3>능률 1316 Reading 1</h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/1316reading1/"><i>1</i>클래스 활동</a>
@@ -158,7 +167,8 @@ h1{font-size:22px;margin:0 0 14px;letter-spacing:-.01em}
 <a href="https://nolbada.github.io/via/1316reading3/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/1316reading3/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="sr">리딩튜터 스타터</div>
+</details>
+<details class="sd" name="rd-series"><summary class="sr">리딩튜터 스타터<small>3권</small></summary>
 <div class="bk"><h3>리딩튜터 스타터 1</h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/tutorstarter1/"><i>1</i>클래스 활동</a>
@@ -174,7 +184,9 @@ h1{font-size:22px;margin:0 0 14px;letter-spacing:-.01em}
 <a href="https://nolbada.github.io/via/tutorstarter3/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/tutorstarter3/exit/"><i>2</i>Exit test</a>
 </div></div>
+</details>
 </section>
 </main>
+<script>document.querySelectorAll("details.sd").forEach(function(d){d.addEventListener("toggle",function(){if(d.open)document.querySelectorAll("details.sd[open]").forEach(function(o){if(o!==d)o.removeAttribute("open")})})});</script>
 </body>
 </html>
