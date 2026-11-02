@@ -39,7 +39,7 @@ h2.sec{font-size:15px;margin:20px 2px 8px;color:var(--sub);font-weight:700;lette
 .chip{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;white-space:nowrap}.chip.ok{background:var(--okBg);color:var(--ok)}.chip.w{background:#fbefd9;color:#9a5a0c}.chip.n{background:transparent;border:1px solid var(--line);color:var(--sub)}.chip.t{background:var(--soft);color:var(--pri)}
 .ln{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:13px;color:var(--sub)}.ln em{font-style:normal;width:96px;flex:none;white-space:nowrap}.ln .bar{flex:1;height:7px;border-radius:99px;background:var(--line);overflow:hidden}.ln .bar i{display:block;height:100%;background:var(--pri)}.ln .v{width:84px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
 .dg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:8px}.dg div{border:1px solid var(--line);border-radius:8px;padding:5px 0;text-align:center;font-size:12px;color:var(--sub)}.dg div b{display:block;font-size:13px;color:var(--ink)}.dg .d{background:var(--okBg);border-color:var(--ok)}.dg .l{background:#fbefd9;border-color:#c47a1a}.dg .c{background:repeating-linear-gradient(45deg,transparent 0 4px,var(--line) 4px 5px)}.dg .td{outline:2px solid var(--pri)}
-.kv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}.kv:last-child{border:0}.kv b{font-variant-numeric:tabular-nums}
+.sc.pv{text-decoration:none;color:inherit}.kv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}.kv:last-child{border:0}.kv b{font-variant-numeric:tabular-nums}
 </style></head><body><div id="app"></div>
 <script>
 var URL_=window.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',WD=['일','월','화','수','목','금','토'];
@@ -169,6 +169,7 @@ function draw(r){
   L.forEach(function(o){
     if(!shown&&o.state!=='late'){h+='<h2 class="sec">'+(late?'그 외 학생':'학생 현황')+'</h2>';shown=true}
     h+=cardH(o)});
+  h+='<h2 class="sec">학생 화면 미리보기</h2><a class="sc pv" target="_blank" rel="noopener" href="https://nolbada.github.io/via/wn/?v=B"><div class="h"><b>학생 메인 화면 · B형 (Core)</b><span class="chip n">열기</span></div></a><a class="sc pv" target="_blank" rel="noopener" href="https://nolbada.github.io/via/wn/?v=H"><div class="h"><b>학생 메인 화면 · H형 (Pro)</b><span class="chip n">열기</span></div></a>';
   b.innerHTML=h;
   b.querySelectorAll('.fl button').forEach(function(x){x.onclick=function(){FIL=x.dataset.g;ss('wn_fil',FIL);draw(r)}});
   b.querySelectorAll('.sc').forEach(function(x){x.onclick=function(){detail(x.dataset.n,r)}});
