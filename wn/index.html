@@ -250,5 +250,6 @@ function done(){
   h+='<button class="btn pri" id="hm">홈으로</button>';$.innerHTML=h;
   document.getElementById('hm').onclick=function(){home()};
 }
+try{var qn=new URLSearchParams(location.search).get('n');if(qn){ss('wn_name',qn.replace(/\s+/g,''));history.replaceState(null,'',location.pathname)}}catch(e){}
 home();
 </script></body></html>
