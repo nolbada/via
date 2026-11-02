@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>오답노트</title>
+<title>로드맵</title>
 <style>
 :root{--bg:#f6f7f4;--card:#fff;--ink:#1f2a24;--sub:#6b766f;--line:#dfe4de;--pri:#2f7d5b;--priInk:#fff;--ok:#2f7d5b;--okBg:#e4f3ea;--ng:#c0392b;--ngBg:#fbe9e6}
 @media (prefers-color-scheme:dark){:root{--bg:#141815;--card:#1d231f;--ink:#e8eee9;--sub:#97a39b;--line:#2f3832;--pri:#4fb98a;--priInk:#0e1612;--ok:#58c28f;--okBg:#183024;--ng:#ec7a6c;--ngBg:#3a1f1b}}
@@ -26,6 +26,47 @@ button{font:inherit;color:inherit;cursor:pointer}
 .badge{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 9px;color:var(--sub);white-space:nowrap;align-self:flex-start}
 input.tx{width:100%;font-size:18px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
 .msg{color:var(--sub);font-size:14px;margin-top:8px;min-height:20px}
+
+.hero{background:linear-gradient(160deg,#173f33 0%,#1f5a47 100%);color:#fff;border-radius:18px;padding:20px 18px 16px;margin:4px 0 12px}
+.hero .lb{font-size:12px;letter-spacing:.14em;opacity:.7;text-transform:uppercase}
+.hero .hn{font-size:26px;font-weight:800;margin:4px 0 2px;letter-spacing:-.01em}
+.hero .hd{font-size:14px;opacity:.8}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.kp div{background:rgba(255,255,255,.12);border-radius:12px;padding:10px 6px;text-align:center}
+.kp b{display:block;font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
+.kp span{font-size:12px;opacity:.8}
+h2.sec{font-size:13px;letter-spacing:.08em;color:var(--sub);margin:20px 4px 8px;font-weight:700}
+a.tk,button.tk{display:flex;align-items:center;gap:12px;width:100%;text-align:left;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:7px 0}
+.tk .bd{width:5px;align-self:stretch;border-radius:3px;background:var(--pri)}
+.tk .tt{flex:1;min-width:0}.tk .tt b{display:block;font-size:16px}.tk .tt small{color:var(--sub);font-size:13px}
+.tk.off{opacity:.5}
+.chip{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap;background:var(--okBg);color:var(--ok)}
+.chip.w{background:#fff3df;color:#a8650b}.chip.n{background:var(--bg);color:var(--sub);border:1px solid var(--line)}
+@media (prefers-color-scheme:dark){.chip.w{background:#3a2c14;color:#f0b765}}
+.pl{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pl .c{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.pl .c .nm{font-size:30px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+.pl .c .nm small{font-size:13px;font-weight:600;color:var(--sub);margin-left:3px}
+.pl .c .lb{font-size:13px;font-weight:700;margin-top:4px}
+.pl .c .ds{font-size:12px;color:var(--sub);margin-top:2px}
+.pbar{height:6px;background:var(--line);border-radius:3px;margin-top:10px;overflow:hidden}.pbar i{display:block;height:100%;background:var(--pri)}
+.pl .c .pg{font-size:12px;color:var(--sub);margin-top:4px;font-variant-numeric:tabular-nums}
+.frm{font-size:13px;color:var(--sub);margin:10px 4px 0;line-height:1.6}
+.cal{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px}
+.ch2{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.ch2 b{font-size:17px}
+.ch2 button{border:1px solid var(--line);background:var(--card);border-radius:10px;width:38px;height:34px;font-size:16px}.ch2 button:disabled{opacity:.3}
+.cg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cg .wd{text-align:center;font-size:12px;color:var(--sub);padding:2px 0}
+.cg .dy{min-height:54px;border-radius:9px;padding:4px 3px;text-align:center;font-size:13px;border:1px solid transparent;font-variant-numeric:tabular-nums}
+.cg .dy .n{display:block;font-weight:700}
+.cg .dy small{display:block;font-size:10.5px;margin-top:2px;line-height:1.25;color:var(--sub)}
+.cg .dy.hw{background:var(--bg);border-color:var(--line)}
+.cg .dy.dn{background:var(--okBg);border-color:var(--ok)}.cg .dy.dn small{color:var(--ok);font-weight:700}
+.cg .dy.lt{background:#fff3df;border-color:#e3b36b}.cg .dy.lt small{color:#a8650b;font-weight:700}
+@media (prefers-color-scheme:dark){.cg .dy.lt{background:#3a2c14;border-color:#8a6a33}.cg .dy.lt small{color:#f0b765}}
+.cg .dy.cl{background:repeating-linear-gradient(135deg,transparent 0 5px,var(--line) 5px 6px)}
+.cg .dy.td{outline:2px solid var(--pri);outline-offset:-1px}
+.cg .dy.ot{opacity:.35}
 </style></head><body><div id="app"></div>
 <script>
 var URL_=window.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',PIN='6900',WD=['일','월','화','수','목','금','토'];
@@ -46,7 +87,7 @@ function flushR(){
   return p.catch(function(){});
 }
 function login(){
-  $.innerHTML='<h1>오답노트</h1><div class="card"><input class="tx" id="nm" type="text" autocomplete="off" placeholder="이름"><button class="btn pri" id="go">시작</button><div class="msg" id="m"></div></div>';
+  $.innerHTML='<h1>로드맵</h1><div class="card"><input class="tx" id="nm" type="text" autocomplete="off" placeholder="이름"><button class="btn pri" id="go">시작</button><div class="msg" id="m"></div></div>';
   document.getElementById('go').onclick=function(){
     var v=(document.getElementById('nm').value||'').replace(/\s+/g,'');if(!v)return;
     var b=this;b.disabled=true;document.getElementById('m').textContent='확인 중...';
@@ -56,22 +97,78 @@ function login(){
     },function(){b.disabled=false;document.getElementById('m').textContent='연결이 안 됐어요. 인터넷을 확인해 주세요.'});
   };
 }
-var DATA=null,resetArm=false,resetT=null;
+var DATA=null,resetArm=false,resetT=null,CALM=null;
+var PLAN={"김서진": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "서승언": {"dv": "Core", "d": "B", "s": "2026-11-09", "m": "고1"}, "장은율": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김지효": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김린": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "이동우": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고2"}, "김도현": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김소희": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "윤유란": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "정다원": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "김민서": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "이지민": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "조혜린": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}};
+var CLOSED=['2026-12-25','2026-12-30','2026-12-31','2027-01-01'];
+var HWD=[1,2,3,4,6,0];
+var DQ={B:{n:80,q:1200,u:'daily/b/'},H:{n:112,q:1680,u:'daily/h/'}};
+var VB='https://nolbada.github.io/via/';
+var MM={'고1':'https://nolbada.github.io/via-high/h/minimock/h1/','고2':'https://nolbada.github.io/via-high/h/minimock/h2/'};
+function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+function lj(k,def){try{return JSON.parse(ls(k)||'')||def}catch(e){return def}}
+function planInfo(n){
+  var P=PLAN[n];if(!P)return null;
+  var Q=DQ[P.d],S=lj('dv_'+P.d+'_'+n,{}).done||{};
+  var dv=lj((P.dv==='Pro'?'dvp':'dvc')+'_done_'+n,[]);
+  var st=new Date(P.s+'T00:00:00'),map={},c=0,cur=new Date(st),end=new Date('2027-04-30T00:00:00');
+  for(;cur<=end&&c<Q.n;cur.setDate(cur.getDate()+1)){if(HWD.indexOf(cur.getDay())>=0){c++;map[iso(cur)]=c}}
+  return{P:P,Q:Q,S:S,dv:dv,st:st,map:map};
+}
 function home(r){
   var n=name();if(!n){login();return}
-  if(!r){$.innerHTML='<h1>오답노트</h1><div class="sub">불러오는 중...</div>';
+  if(!r){$.innerHTML='<h1>로드맵</h1><div class="sub">불러오는 중...</div>';
     flushR().then(function(){return post({act:'list',name:n,pin:PIN})}).then(function(x){
       if(x&&x.ok)home(x);else{ds('wn_name');login()}
-    },function(){$.innerHTML='<h1>오답노트</h1><div class="card">연결이 안 됐어요. 인터넷을 확인해 주세요.<button class="btn pri" id="rt">다시 불러오기</button></div>';document.getElementById('rt').onclick=function(){home()}});return}
+    },function(){$.innerHTML='<h1>로드맵</h1><div class="card">연결이 안 됐어요. 인터넷을 확인해 주세요.<button class="btn pri" id="rt">다시 불러오기</button></div>';document.getElementById('rt').onclick=function(){home()}});return
+  }
   DATA=r;
   var cap=Number(ls('wn_cap'))||r.cap||40;if(cap>r.max)cap=r.max;
   var due=r.items.filter(function(i){return i.nx&&i.nx<=r.today});
   var today=Math.min(due.length,cap);
-  var h='<h1>오답노트</h1><div class="card"><div class="sub">오늘 복습</div><div class="big">'+today+'개</div>';
-  if(due.length>cap)h+='<div class="sub">밀린 단어 '+(due.length-cap)+'개는 다음 날로 이어져요</div>';
+  var I=planInfo(n),now=new Date();now.setHours(0,0,0,0);var ti=iso(now);
+  var h='';
+  /* hero */
+  var streak=0,wk=0,wkN=0;
+  if(I){
+    var dd=new Date(now),guard=0;
+    var dnOf=function(d){var k=I.map[iso(d)];return k?!!I.S[k]:null};
+    if(dnOf(dd)!==true)dd.setDate(dd.getDate()-1);
+    while(guard++<400){var v=dnOf(dd);if(v===null){dd.setDate(dd.getDate()-1);continue}if(v!==true)break;if(dd<I.st)break;streak++;dd.setDate(dd.getDate()-1)}
+    var mon=new Date(now);mon.setDate(mon.getDate()-((mon.getDay()+6)%7));
+    for(var q=0;q<7;q++){var d2=new Date(mon);d2.setDate(mon.getDate()+q);var k2=I.map[iso(d2)];if(k2){wkN++;if(I.S[k2])wk++}}
+  }
+  h+='<div class="hero"><div class="lb">Roadmap</div><div class="hn">'+esc(n)+'</div><div class="hd">'+dshow(ti)+' · 11/2 ~ 2/28 4개월 과정</div>';
+  h+='<div class="kp"><div><b>'+streak+'</b><span>연속 완료일</span></div><div><b>'+(I?wk+'/'+wkN:'-')+'</b><span>이번 주 숙제</span></div><div><b>'+today+'</b><span>오늘 복습</span></div></div></div>';
+  /* today */
+  h+='<h2 class="sec">오늘</h2>';
+  if(I){
+    var P=I.P,tk=I.map[ti],dn=Object.keys(I.S).length;
+    var late=0;for(var dk in I.map){if(dk<ti&&!I.S[I.map[dk]])late++}
+    var sub,chip;
+    if(ti<P.s){sub='시작 '+dshow(P.s);chip='<span class="chip n">대기</span>'}
+    else if(tk){sub='Day '+tk+' · 15문항';chip=I.S[tk]?'<span class="chip">완료 '+I.S[tk].s+'</span>':(late?'<span class="chip w">밀림 '+late+'일</span>':'<span class="chip n">진행 전</span>')}
+    else{sub='오늘은 숙제 없음';chip=late?'<span class="chip w">밀림 '+late+'일</span>':'<span class="chip n">휴식</span>'}
+    h+='<a class="tk" href="'+VB+I.Q.u+'"><i class="bd"></i><div class="tt"><b>데일리보카 '+P.d+'</b><small>'+sub+'</small></div>'+chip+'</a>';
+    var dvn=I.dv.length,nd=0;for(var z=0;z<32;z++){if(I.dv.indexOf(z)<0){nd=z+1;break}}
+    h+='<a class="tk" href="'+VB+(P.dv==='Pro'?'dvpro/':'dvcore/')+'"><i class="bd" style="background:#2d6a9f"></i><div class="tt"><b>더블보카 '+P.dv+'</b><small>'+(nd?'다음 Day '+nd:'32 Day 완료')+' · 학원 시험 주 3회</small></div><span class="chip n">'+dvn+'/32</span></a>';
+    h+='<a class="tk" href="'+(MM[P.m]||MM['고1'])+'"><i class="bd" style="background:#8a5a9e"></i><div class="tt"><b>미니모의고사 '+P.m+'</b><small>24회 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
+  }
+  h+='<button class="tk" id="st"'+(today?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 복습</b><small>'+(due.length>cap?'밀린 '+(due.length-cap)+'개는 다음 날로 이어짐':'1 · 3 · 7 · 15일 주기')+'</small></div><span class="chip'+(today?' w':' n')+'">'+today+'개</span></button>';
   h+='<div class="seg">'+[40,50,60].filter(function(x){return x<=r.max}).map(function(x){return'<button data-c="'+x+'"'+(x===cap?' class="on"':'')+'>'+x+'개</button>'}).join('')+'</div>';
-  h+='<button class="btn pri" id="st"'+(today?'':' disabled')+'>복습 시작</button></div>';
-  h+='<div class="card"><div class="sub">쌓인 단어</div><div class="big">'+r.items.length+'개</div><button class="btn" id="ls"'+(r.items.length?'':' disabled')+'>전체 보기</button></div>';
+  /* plan */
+  if(I){
+    var P2=I.P,dn2=Object.keys(I.S).length;
+    h+='<h2 class="sec">플랜 규모</h2><div class="pl">';
+    h+='<div class="c"><div class="nm">288<small>지문</small></div><div class="lb">독해 · 미니모의고사 '+P2.m+'</div><div class="ds">24회 × 12지문, 고1 모의고사 3개년 분량</div></div>';
+    h+='<div class="c"><div class="nm">'+I.Q.q.toLocaleString()+'<small>문항</small></div><div class="lb">어휘 유형 · 데일리보카 '+P2.d+'</div><div class="ds">'+I.Q.n+'일 × 15문항</div><div class="pbar"><i style="width:'+(dn2/I.Q.n*100)+'%"></i></div><div class="pg">내 진행 '+dn2+' / '+I.Q.n+'일</div></div>';
+    h+='<div class="c"><div class="nm">640<small>표제어</small></div><div class="lb">유의어·반의어 · 더블보카 '+P2.dv+'</div><div class="ds">32 Day, 시험 주 3회</div><div class="pbar"><i style="width:'+(I.dv.length/32*100)+'%"></i></div><div class="pg">내 진행 '+I.dv.length+' / 32 Day</div></div>';
+    h+='<div class="c"><div class="nm">16<small>회</small></div><div class="lb">구문 · 천일문S 문장줄이기</div><div class="ds">12챕터 + 종합 4회, 이어서 함정피하기</div></div>';
+    h+='</div><div class="frm">목표 기준: 모의고사 3개년 분량의 독해, 주 6일 어휘, 누적 복습 1 · 3 · 7 · 15일. 이 분량을 4개월에 걸쳐 나눈 일정.</div>';
+    /* calendar */
+    h+='<h2 class="sec">캘린더</h2><div class="cal" id="cal"></div>';
+  }
+  h+='<h2 class="sec">오답노트</h2>';
+  h+='<div class="card" style="margin-top:0"><div class="sub">쌓인 단어</div><div class="big">'+r.items.length+'개</div><button class="btn" id="ls"'+(r.items.length?'':' disabled')+'>전체 보기</button></div>';
   h+='<button class="btn" id="rs">'+(resetArm?'한 번 더 누르면 나갑니다':'나가기 (다음 학생)')+'</button>';
   $.innerHTML=h;
   $.querySelectorAll('.seg button').forEach(function(b){b.onclick=function(){ss('wn_cap',b.dataset.c);home(DATA)}});
@@ -81,6 +178,27 @@ function home(r){
     if(!resetArm){resetArm=true;clearTimeout(resetT);resetT=setTimeout(function(){resetArm=false;home(DATA)},4000);home(DATA);return}
     resetArm=false;['wn_name','wn_cap','wn_rq','recm_name','rec_name'].forEach(ds);login();
   };
+  if(I){if(!CALM)CALM=new Date(now.getFullYear(),now.getMonth(),1);drawCal(I,ti)}
+}
+function drawCal(I,ti){
+  var el=document.getElementById('cal');if(!el)return;
+  var y=CALM.getFullYear(),m=CALM.getMonth(),first=new Date(y,m,1),lo=new Date(2026,10,1),hi=new Date(2027,2,1);
+  var h='<div class="ch2"><button id="pm"'+(first<=lo?' disabled':'')+'>&lsaquo;</button><b>'+y+'년 '+(m+1)+'월</b><button id="nm2"'+(first>=hi?' disabled':'')+'>&rsaquo;</button></div><div class="cg">';
+  ['월','화','수','목','금','토','일'].forEach(function(w){h+='<div class="wd">'+w+'</div>'});
+  var off=(first.getDay()+6)%7,days=new Date(y,m+1,0).getDate(),k;
+  for(k=0;k<off;k++)h+='<div></div>';
+  for(var d=1;d<=days;d++){
+    var dt=new Date(y,m,d),key=iso(dt),dayN=I.map[key],cls='dy',sm='';
+    var closed=CLOSED.indexOf(key)>=0;
+    if(dayN){cls+=' hw';if(I.S[dayN]){cls+=' dn';sm='D'+dayN+' ✓'}else if(key<ti){cls+=' lt';sm='D'+dayN+' 밀림'}else sm='D'+dayN}
+    else if(dt.getDay()===5&&key>=I.P.s)sm='쓰기';
+    if(closed){cls+=' cl';sm=(sm?sm+'<br>':'')+'휴원'}
+    if(key===ti)cls+=' td';
+    h+='<div class="'+cls+'"><span class="n">'+d+'</span><small>'+sm+'</small></div>';
+  }
+  el.innerHTML=h+'</div>';
+  document.getElementById('pm').onclick=function(){CALM=new Date(y,m-1,1);drawCal(I,ti)};
+  document.getElementById('nm2').onclick=function(){CALM=new Date(y,m+1,1);drawCal(I,ti)};
 }
 function byPri(a,b){return(b.c-a.c)||(a.nx<b.nx?-1:a.nx>b.nx?1:0)}
 function list(){
