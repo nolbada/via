@@ -68,6 +68,7 @@ a.tk,button.tk{display:flex;align-items:center;gap:12px;width:100%;text-align:le
 .cg .dy.dn{background:var(--okBg);border-color:var(--ok)}.cg .dy.dn small{color:var(--ok);font-weight:700}
 .cg .dy.lt{background:#fff3df;border-color:#e3b36b}.cg .dy.lt small{color:#a8650b;font-weight:700}
 @media (prefers-color-scheme:dark){.cg .dy.lt{background:#3a2c14;border-color:#8a6a33}.cg .dy.lt small{color:#f0b765}}
+.cg .dy.ip{background:var(--bg);border-color:var(--pri)}.cg .dy.ip small{color:var(--pri);font-weight:700}
 .cg .dy.cl{background:repeating-linear-gradient(135deg,transparent 0 5px,var(--line) 5px 6px)}
 .cg .dy.td{outline:2px solid var(--pri);outline-offset:-1px}
 .cg .dy.ot{opacity:.35}
@@ -116,7 +117,7 @@ function planInfo(n){
   var dv=lj((P.dv==='Pro'?'dvp':'dvc')+'_done_'+n,[]);
   var st=new Date(P.s+'T00:00:00'),map={},c=0,cur=new Date(st),end=new Date('2027-04-30T00:00:00');
   for(;cur<=end&&c<Q.n;cur.setDate(cur.getDate()+1)){if(HWD.indexOf(cur.getDay())>=0){c++;map[iso(cur)]=c}}
-  return{P:P,Q:Q,S:S,dv:dv,st:st,map:map};
+  var cu=lj('dv_'+P.d+'_'+n,{}).cur;return{P:P,Q:Q,S:S,dv:dv,st:st,map:map,cd:(cu&&cu.day&&!S[cu.day])?cu:null};
 }
 function home(r){
   var n=name();if(!n){login();return}
@@ -147,11 +148,11 @@ function home(r){
   h+='<h2 class="sec">오늘</h2>';
   if(I){
     var P=I.P,tk=I.map[ti],dn=Object.keys(I.S).length;
-    var late=0;for(var dk in I.map){if(dk<ti&&!I.S[I.map[dk]])late++}
+    var late=0,cd=I.cd;for(var dk in I.map){if(dk<ti&&!I.S[I.map[dk]]&&!(cd&&cd.day===I.map[dk]))late++}
     var sub,chip;
     if(ti<P.s){sub='시작 '+dshow(P.s);chip='<span class="chip n">대기</span>'}
-    else if(tk){sub='Day '+tk+' · 15문항';chip=I.S[tk]?'<span class="chip">완료 '+I.S[tk].s+'</span>':(late?'<span class="chip w">밀림 '+late+'일</span>':'<span class="chip n">진행 전</span>')}
-    else{sub='오늘은 숙제 없음';chip=late?'<span class="chip w">밀림 '+late+'일</span>':'<span class="chip n">휴식</span>'}
+    else if(tk){sub='Day '+tk+' · 15문항';chip=I.S[tk]?'<span class="chip">완료 '+I.S[tk].s+'</span>':(cd&&cd.day===tk?'<span class="chip w">진행중 '+Math.min(cd.i,15)+'/15</span>':(late?'<span class="chip w">밀림 '+late+'일</span>':(cd?'<span class="chip w">진행중 D'+cd.day+'</span>':'<span class="chip n">진행 전</span>')))}
+    else{sub='오늘은 숙제 없음';chip=late?'<span class="chip w">밀림 '+late+'일</span>':(cd?'<span class="chip w">진행중 D'+cd.day+'</span>':'<span class="chip n">휴식</span>')}
     h+='<a class="tk" href="'+VB+I.Q.u+'"><i class="bd"></i><div class="tt"><b>데일리보카 '+P.d+'</b><small>'+sub+'</small></div>'+chip+'</a>';
     var dvn=I.dv.length,nd=0;for(var z=0;z<32;z++){if(I.dv.indexOf(z)<0){nd=z+1;break}}
     h+='<a class="tk" href="'+VB+(P.dv==='Pro'?'dvpro/':'dvcore/')+'"><i class="bd" style="background:#2d6a9f"></i><div class="tt"><b>더블보카 '+P.dv+'</b><small>'+(nd?'다음 Day '+nd:'32 Day 완료')+' · 학원 시험 주 3회</small></div><span class="chip n">'+dvn+'/32</span></a>';
@@ -196,7 +197,7 @@ function drawCal(I,ti){
   for(var d=1;d<=days;d++){
     var dt=new Date(y,m,d),key=iso(dt),dayN=I.map[key],cls='dy',sm='';
     var closed=CLOSED.indexOf(key)>=0;
-    if(dayN){cls+=' hw';if(I.S[dayN]){cls+=' dn';sm='D'+dayN+' ✓'}else if(key<ti){cls+=' lt';sm='D'+dayN+' 밀림'}else sm='D'+dayN}
+    if(dayN){cls+=' hw';if(I.S[dayN]){cls+=' dn';sm='D'+dayN+' ✓'}else if(I.cd&&I.cd.day===dayN){cls+=' ip';sm='D'+dayN+' 진행중'}else if(key<ti){cls+=' lt';sm='D'+dayN+' 밀림'}else sm='D'+dayN}
     else if(dt.getDay()===5&&key>=I.P.s)sm='쓰기';
     if(closed){cls+=' cl';sm=(sm?sm+'<br>':'')+'휴원'}
     if(key===ti)cls+=' td';
@@ -265,5 +266,12 @@ if(PV==='B'||PV==='H'){
   post=function(b){var t=iso(new Date());if(b.act==='list')return Promise.resolve({ok:true,today:t,cap:40,max:60,items:[['alpha','알파'],['beyond','넘어서'],['crucial','결정적인'],['dispute','논쟁'],['elaborate','정교한'],['fragile','깨지기 쉬운']].map(function(x){return{w:x[0],m:x[1],src:'미리보기',ask:true,c:1,st:0,nx:t,first:t}})});return Promise.resolve({ok:true})};
 }
 try{var qn=new URLSearchParams(location.search).get('n');if(qn){ss('wn_name',qn.replace(/\s+/g,''));history.replaceState(null,'',location.pathname)}}catch(e){}
+(function(){var oh=home,ol=list,orv=review,sub=false;
+function enter(){if(!sub){try{history.pushState({sub:1},'')}catch(e){return}sub=true}}
+home=function(r){if(sub){history.back();return}oh(r)};
+list=function(){enter();ol.apply(this,arguments)};
+review=function(){enter();orv.apply(this,arguments)};
+window.addEventListener('popstate',function(){if(sub){sub=false;oh()}});
+})();
 home();
 </script></body></html>
