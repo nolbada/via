@@ -827,7 +827,7 @@ function runTeacher(code){
   window.addEventListener('beforeunload',function(e){if(Object.keys(dirty).length){e.preventDefault();e.returnValue=''}});
   document.addEventListener('visibilitychange',function(){if(document.hidden&&Object.keys(dirty).length)flush()});
   app.innerHTML='<div class="hero"><div class="meta">불러오는 중…</div></div>';
-  pull().then(draw,function(){app.innerHTML='<div class="hero"><div class="name">불러오지 못했어요</div><div class="meta">인터넷 연결을 확인하고 다시 열어 주세요.</div></div>'});
+  pull().then(draw,function(){app.innerHTML='<div class="hero"><div class="name">불러오지 못했어요</div><div class="meta">인터넷 연결을 확인하고 다시 열어 주세요.</div><button class="btn" id="rc" type="button" style="margin-top:12px">열기 코드 다시 입력</button></div>';document.getElementById('rc').onclick=function(){try{LS.removeItem('hw_code')}catch(e){}location.reload()}});
   setInterval(function(){if(document.hidden||saving||Object.keys(dirty).length)return;pull().then(function(){var a=document.activeElement;if(!a||(a.tagName!=='INPUT'&&a.tagName!=='SELECT'))draw()},function(){})},30000);
 }
 
@@ -839,8 +839,8 @@ function runTeacher(code){
   if(m){s_('hw_code',m[1]);try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
   var code=g('hw_code');
   if(code){runTeacher(code);return}
-  app.innerHTML='<div class="gate"><div class="name">선생님 입력</div><div class="meta">열기 코드를 한 번 입력하면 이 기기에 저장돼요.</div><input id="kc" type="password" autocomplete="off" placeholder="열기 코드"><button class="btn" id="go">열기</button></div>';
-  document.getElementById('go').onclick=function(){var v=(document.getElementById('kc').value||'').trim();if(/^[A-Za-z0-9]{8,}$/.test(v)){s_('hw_code',v);location.reload()}};
+  app.innerHTML='<form class="gate" id="gf" action="javascript:void(0)"><div class="name">선생님 입력</div><div class="meta">열기 코드를 한 번 입력하면 이 기기에 저장돼요.</div><input id="kc" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="열기 코드"><button class="btn" id="go" type="submit">열기</button><div class="meta" id="ke" style="color:#c0392b;margin-top:8px"></div></form>';
+  document.getElementById('gf').onsubmit=function(e){if(e&&e.preventDefault)e.preventDefault();var v=(document.getElementById('kc').value||'').replace(/\s+/g,'');if(/^[A-Za-z0-9]{8,}$/.test(v)){s_('hw_code',v);location.reload()}else document.getElementById('ke').textContent='열기 코드를 다시 확인해 주세요. 영문·숫자만 입력되고, 한글 자판이면 영문으로 바꿔 주세요.';return false};
 })();
 })();
 </script>
