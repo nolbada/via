@@ -72,7 +72,7 @@ function home(r){
   h+='<div class="seg">'+[40,50,60].filter(function(x){return x<=r.max}).map(function(x){return'<button data-c="'+x+'"'+(x===cap?' class="on"':'')+'>'+x+'개</button>'}).join('')+'</div>';
   h+='<button class="btn pri" id="st"'+(today?'':' disabled')+'>복습 시작</button></div>';
   h+='<div class="card"><div class="sub">쌓인 단어</div><div class="big">'+r.items.length+'개</div><button class="btn" id="ls"'+(r.items.length?'':' disabled')+'>전체 보기</button></div>';
-  h+='<button class="btn" id="rs">'+(resetArm?'한 번 더 누르면 이 기기에서 나갑니다':'처음부터 다시 (다음 학생)')+'</button>';
+  h+='<button class="btn" id="rs">'+(resetArm?'한 번 더 누르면 나갑니다':'나가기 (다음 학생)')+'</button>';
   $.innerHTML=h;
   $.querySelectorAll('.seg button').forEach(function(b){b.onclick=function(){ss('wn_cap',b.dataset.c);home(DATA)}});
   document.getElementById('st').onclick=function(){review(due.sort(byPri).slice(0,today))};
