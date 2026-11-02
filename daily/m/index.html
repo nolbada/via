@@ -25,7 +25,6 @@ button{font:inherit;color:inherit;cursor:pointer}
 .day{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:6px 2px;min-height:62px;text-align:center;font-size:12px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:2px}
 .day b{font-size:13px}
 .day.done{border-color:var(--pri);background:var(--okBg)}
-.hwc{margin:2px 0 12px;font-size:14px;line-height:1.5}.hwc .late{color:var(--ng);font-weight:700;margin-left:6px}.day.today{border:2px solid var(--pri);box-shadow:0 0 0 3px var(--okBg)}.day.late{border-color:var(--ng)}
 .day.next{border:2px solid var(--pri);box-shadow:0 0 0 3px var(--okBg)}
 .stamp{width:34px;height:34px;border-radius:50%;border:2px solid var(--pri);color:var(--pri);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;transform:rotate(-8deg)}
 .day small{color:var(--sub);font-size:10px;line-height:1.1}
@@ -122,35 +121,18 @@ const WD=['일','월','화','수','목','금','토'];
 function dstr(ts){const d=new Date(ts);return (d.getMonth()+1)+'/'+d.getDate()+'('+WD[d.getDay()]+')'}
 let R=null,resetT=null,resetArm=false;
 
-const HWSTART={'김민서':'2026-11-03','이지민':'2026-11-03','정다원':'2026-11-03','윤유란':'2026-11-03','조혜린':'2026-11-03','김소희':'2026-11-03'};
-const HWDAYS=[1,2,3,4,6,0];
-function hwInfo(){
-  const st=HWSTART[WN.name()];if(!st)return null;
-  const a=new Date(st+'T00:00:00'),n=new Date();n.setHours(0,0,0,0);
-  if(n<a)return{pre:true,start:a};
-  let c=0;for(const d=new Date(a);d<=n;d.setDate(d.getDate()+1)){if(HWDAYS.indexOf(d.getDay())>=0)c++}
-  return{pre:false,day:Math.min(c,N),isHw:HWDAYS.indexOf(n.getDay())>=0,date:n};
-}
 function home(){
   R=null;
   const doneN=Object.keys(S.done).length;
   let nxt=0;for(let d=1;d<=N;d++){if(!S.done[d]){nxt=d;break}}
   const wn=Object.keys(S.wrong).length,sn=Object.keys(S.star).length;
-  const T=hwInfo();
   let h='<h1>데일리보카 '+D.level+'</h1><p class="subt">어휘 유형 종합</p>';
   h+='<div class="prog">'+doneN+' / '+N+'일 완료</div><div class="bar"><i style="width:'+(doneN/N*100)+'%"></i></div>';
-  if(T){
-    if(T.pre)h+='<div class="hwc"><b>숙제 시작</b> '+dstr(T.start.getTime())+'</div>';
-    else{
-      let late=0;for(let d=1;d<=T.day;d++){if(!S.done[d]&&!(d===T.day&&T.isHw))late++}
-      h+='<div class="hwc">'+(T.isHw?'<b>오늘 숙제</b> '+T.day+'일 · '+dstr(T.date.getTime()):'<b>오늘은 숙제 없음</b> · '+dstr(T.date.getTime()))+(late?' <span class="late">밀린 숙제 '+late+'일</span>':'')+'</div>';
-    }
-  }
   for(let w=0;w*6<N;w++){
     h+='<div class="wk">'+(w+1)+'주차</div><div class="grid">';
     for(let d=w*6+1;d<=Math.min(N,w*6+6);d++){
       const x=S.done[d];
-      h+='<button class="day'+(x?' done':'')+(!T&&d===nxt?' next':'')+(T&&!T.pre&&d===T.day&&T.isHw&&!x?' today':'')+(T&&!T.pre&&d<=T.day&&!x&&!(d===T.day&&T.isHw)?' late':'')+'" data-day="'+d+'"><b>'+d+'일</b>'+(x?'<span class="stamp">'+x.s+'</span><small>'+dstr(x.t)+'</small>':'')+'</button>';
+      h+='<button class="day'+(x?' done':'')+(d===nxt?' next':'')+'" data-day="'+d+'"><b>'+d+'일</b>'+(x?'<span class="stamp">'+x.s+'</span><small>'+dstr(x.t)+'</small>':'')+'</button>';
     }
     h+='</div>';
   }
