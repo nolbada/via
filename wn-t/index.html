@@ -118,7 +118,7 @@ function build(r,h){
   var t=kst(),y=addd(t,-1),out=[];
   r.students.forEach(function(s){
     var P=PLAN[s.name]||null,o={s:s,P:P,dd:{},dc:{},dpp:{},ddone:0,dvdone:0,dexp:0,behind:0,state:'none',dvlog:[]};
-    h.forEach(function(x){if(x.name!==s.name)return;var L=String(x.level||'');
+    h.forEach(function(x){if(x.name!==s.name)return;var L=String(x.level||'');if(x.score==='진행중'){if(!/Core|Pro/.test(L))(o.pg=o.pg||{})[x.day]=1;return}
       if(/Core/.test(L)){o.dc[x.day]=x.score}else if(/Pro/.test(L)){o.dpp[x.day]=x.score}else{o.dd[x.day]=x.score}});
     var dvm=P&&P.dv==='Pro'?o.dpp:o.dc;o.dvm=dvm;
     o.ddone=Object.keys(o.dd).length;o.dvdone=Object.keys(dvm).length;
@@ -127,7 +127,7 @@ function build(r,h){
         o.dexp=expDays(P.s,y,N);o.behind=Math.max(0,o.dexp-o.ddone);
         var td=dayOf(P.s,t,N),isHw=HWD.indexOf(pd(t).getUTCDay())>=0;
         o.todayDay=td;o.tdone=!!(isHw&&o.dd[td]);
-        o.state=o.behind>0?'late':(isHw?(o.tdone?'ok':'wait'):'off');
+        o.tprog=!!(isHw&&!o.tdone&&o.pg&&o.pg[td]);o.state=o.behind>0?'late':(isHw?(o.tdone?'ok':'wait'):'off');
       }}
     out.push(o)});
   return out;
@@ -137,7 +137,7 @@ function cardH(o){
   if(o.state==='pre')chip='<span class="chip n">'+dshow(P.s).replace(/\(/,' (')+' 시작</span>';
   else if(o.state==='late')chip='<span class="chip w">밀림 '+o.behind+'일</span>';
   else if(o.state==='ok')chip='<span class="chip ok">오늘 완료</span>';
-  else if(o.state==='wait')chip='<span class="chip t">오늘 대기</span>';
+  else if(o.state==='wait')chip='<span class="chip t">'+(o.tprog?'진행중':'오늘 대기')+'</span>';
   else if(o.state==='off')chip='<span class="chip n">오늘 쉬는 날</span>';
   else chip='<span class="chip n">배정 없음</span>';
   var h='<button class="sc'+(o.state==='late'?' late':'')+(o.state==='none'?' none':'')+'" data-n="'+esc(s.name)+'"><div class="h"><b>'+esc(s.name)+'<small>'+esc(s.grade)+(s.school?' '+esc(s.school):'')+'</small></b>'+chip+'</div>';
@@ -210,9 +210,9 @@ function hw(r){
   post({act:'t_hw',from:from}).then(function(h){
     if(!h||!h.ok){b.innerHTML='<div class="msg">불러오지 못했어요.</div>';return}
     var days=['월','화','수','목','토','일'],offs={월:0,화:1,수:2,목:3,토:5,일:6},last=ymd(end);
-    var map={};h.items.forEach(function(x){if(x.date<from||x.date>last)return;(map[x.name]=map[x.name]||{})[x.wd]=x});
+    var map={};h.items.forEach(function(x){if(x.date<from||x.date>last)return;var m0=(map[x.name]=map[x.name]||{}),pv=m0[x.wd];if(x.score==='진행중'&&pv&&pv.score!=='진행중')return;m0[x.wd]=x});
     var t='<div class="top"><button class="sbtn" id="pv">이전 주</button><div class="t" style="text-align:center">'+dshow(from)+' ~ '+dshow(last)+'</div><button class="sbtn" id="nx">다음 주</button></div><div class="card"><table><tr><th>이름</th>'+days.map(function(d){return'<th>'+d+'<div class="sub" style="font-weight:400">'+dshow(ymd(new Date(m.getTime()+offs[d]*86400e3))).replace(/\(.*\)/,'')+'</div></th>'}).join('')+'</tr>';
-    r.students.forEach(function(s){t+='<tr><td>'+esc(s.name)+'</td>'+days.map(function(d){var x=(map[s.name]||{})[d];return x?'<td class="x">'+esc(x.score)+'</td>':'<td></td>'}).join('')+'</tr>'});
+    r.students.forEach(function(s){t+='<tr><td>'+esc(s.name)+'</td>'+days.map(function(d){var x=(map[s.name]||{})[d];return x?'<td class="x"'+(x.score==='진행중'?' style="opacity:.6"':'')+'>'+esc(x.score)+'</td>':'<td></td>'}).join('')+'</tr>'});
     t+='</table></div>';b.innerHTML=t;
     document.getElementById('pv').onclick=function(){WK--;hw(r)};document.getElementById('nx').onclick=function(){WK++;hw(r)};
   },function(){b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
