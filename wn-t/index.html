@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>선생님 오답노트</title>
+<title>로드맵 · 관리</title>
 <style>
 :root{--bg:#f4f6fa;--card:#fff;--ink:#1c2430;--sub:#667085;--line:#dde3ec;--pri:#2b62c4;--priInk:#fff;--ok:#2f7d5b;--okBg:#e4f3ea;--ng:#c0392b;--ngBg:#fbe9e6;--soft:#e8effb}
 @media (prefers-color-scheme:dark){:root{--bg:#12161d;--card:#1b212b;--ink:#e6ebf3;--sub:#98a3b5;--line:#2c3441;--pri:#6b9bf0;--priInk:#0c1220;--ok:#58c28f;--okBg:#183024;--ng:#ec7a6c;--ngBg:#3a1f1b;--soft:#1f2b44}}
@@ -26,6 +26,20 @@ input.tx{width:100%;font-size:18px;padding:12px;border:1px solid var(--line);bor
 table{border-collapse:collapse;width:100%;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:8px 4px;text-align:center}th:first-child,td:first-child{text-align:left}td.x{color:var(--pri);font-weight:700}
 .seg{display:flex;gap:6px}.seg button{flex:1;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 0}.seg button.on{background:var(--soft);border-color:var(--pri);color:var(--pri)}
 .msg{color:var(--sub);font-size:14px;margin-top:8px;min-height:20px}
+
+h2.sec{font-size:15px;margin:20px 2px 8px;color:var(--sub);font-weight:700;letter-spacing:.2px}
+.kp{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 4px}
+.kp div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center}
+.kp b{display:block;font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.15}.kp span{font-size:12px;color:var(--sub)}
+.kp .w b{color:#b4620f}.kp .k b{color:var(--pri)}
+.fl{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 2px}.fl button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}.fl button.on{border-color:var(--pri);background:var(--okBg);color:var(--pri)}
+.sc{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;margin:8px 0}
+.sc.late{border-left:4px solid #c47a1a}.sc.none{opacity:.78}
+.sc .h{display:flex;align-items:center;gap:8px}.sc .h b{font-size:17px;flex:1}.sc .h small{color:var(--sub);font-weight:400;margin-left:6px;font-size:13px}
+.chip{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;white-space:nowrap}.chip.ok{background:var(--okBg);color:var(--ok)}.chip.w{background:#fbefd9;color:#9a5a0c}.chip.n{background:transparent;border:1px solid var(--line);color:var(--sub)}.chip.t{background:var(--soft);color:var(--pri)}
+.ln{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:13px;color:var(--sub)}.ln em{font-style:normal;width:96px;flex:none;white-space:nowrap}.ln .bar{flex:1;height:7px;border-radius:99px;background:var(--line);overflow:hidden}.ln .bar i{display:block;height:100%;background:var(--pri)}.ln .v{width:84px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.dg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:8px}.dg div{border:1px solid var(--line);border-radius:8px;padding:5px 0;text-align:center;font-size:12px;color:var(--sub)}.dg div b{display:block;font-size:13px;color:var(--ink)}.dg .d{background:var(--okBg);border-color:var(--ok)}.dg .l{background:#fbefd9;border-color:#c47a1a}.dg .c{background:repeating-linear-gradient(45deg,transparent 0 4px,var(--line) 4px 5px)}.dg .td{outline:2px solid var(--pri)}
+.kv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}.kv:last-child{border:0}.kv b{font-variant-numeric:tabular-nums}
 </style></head><body><div id="app"></div>
 <script>
 var URL_=window.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',WD=['일','월','화','수','목','금','토'];
@@ -37,18 +51,18 @@ var PW=ls('wn_pw')||'';
 function post(b){b.pw=PW;return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
 function dshow(d){var p=d.split('-');return(+p[1])+'/'+(+p[2])+'('+WD[new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay()]+')'}
 function login(msg){
-  $.innerHTML='<h1>오답노트 · 선생님</h1><div class="card"><input class="tx" id="pw" type="password" autocomplete="off" placeholder="비밀번호"><button class="btn pri" id="go">열기</button><div class="msg" id="m">'+(msg||'')+'</div></div>';
+  $.innerHTML='<h1>로드맵 · 관리</h1><div class="card"><input class="tx" id="pw" type="password" autocomplete="off" placeholder="비밀번호"><button class="btn pri" id="go">열기</button><div class="msg" id="m">'+(msg||'')+'</div></div>';
   document.getElementById('go').onclick=function(){PW=document.getElementById('pw').value;ss('wn_pw',PW);main()};
 }
-var TAB=ls('wn_tab')||'ask',LIM=Number(ls('wn_lim'))||10;
+var TAB=ls('wn_tab')||'st',LIM=Number(ls('wn_lim'))||10;
 function main(){
   $.innerHTML='<div class="msg">불러오는 중...</div>';
   post({act:'t_students'}).then(function(r){
     if(!r||!r.ok){login('비밀번호를 확인해 주세요.');return}
-    var h='<h1>오답노트 · 선생님</h1><div class="tabs"><button data-t="ask"'+(TAB==='ask'?' class="on"':'')+'>질문</button><button data-t="hw"'+(TAB==='hw'?' class="on"':'')+'>숙제 체크</button></div><div id="body"></div>';
+    var h='<h1>로드맵 · 관리</h1><div class="tabs"><button data-t="st"'+(TAB==='st'?' class="on"':'')+'>현황</button><button data-t="ask"'+(TAB==='ask'?' class="on"':'')+'>질문</button><button data-t="hw"'+(TAB==='hw'?' class="on"':'')+'>숙제 체크</button></div><div id="body"></div>';
     $.innerHTML=h;
     $.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){TAB=b.dataset.t;ss('wn_tab',TAB);main()}});
-    if(TAB==='ask')asklist(r);else hw(r);
+    if(TAB==='st')status(r);else if(TAB==='ask')asklist(r);else hw(r);
   },function(){login('연결이 안 됐어요.')});
 }
 function asklist(r){
@@ -88,6 +102,98 @@ function send(it,ok){
   },function(){alert_('연결이 안 됐어요. 다시 눌러 주세요.')});
 }
 function alert_(m){var d=document.getElementById('ans');if(d)d.insertAdjacentHTML('beforeend','<div class="msg">'+m+'</div>')}
+var PLAN={"김서진": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "서승언": {"dv": "Core", "d": "B", "s": "2026-11-09", "m": "고1"}, "장은율": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김지효": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김린": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "이동우": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고2"}, "김도현": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김소희": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "윤유란": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "정다원": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "김민서": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "이지민": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "조혜린": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}};
+var CLOSED=['2026-12-25','2026-12-30','2026-12-31','2027-01-01'],HWD=[1,2,3,4,6,0],DN={B:80,H:112},FROM0='2026-11-02';
+function pd(s){var p=s.split('-');return new Date(Date.UTC(+p[0],+p[1]-1,+p[2]))}
+function kst(){return ymd(new Date(Date.now()+9*3600e3))}
+function addd(s,n){return ymd(new Date(pd(s).getTime()+n*86400e3))}
+function expDays(st,upto,N){if(!st||upto<st)return 0;var c=0,d=st;while(d<=upto){if(HWD.indexOf(pd(d).getUTCDay())>=0)c++;d=addd(d,1)}return Math.min(c,N)}
+function dayOf(st,date,N){return HWD.indexOf(pd(date).getUTCDay())>=0?expDays(st,date,N):0}
+var STAT=null;
+function build(r,h){
+  var t=kst(),y=addd(t,-1),out=[];
+  r.students.forEach(function(s){
+    var P=PLAN[s.name]||null,o={s:s,P:P,dd:{},dc:{},dpp:{},ddone:0,dvdone:0,dexp:0,behind:0,state:'none',dvlog:[]};
+    h.forEach(function(x){if(x.name!==s.name)return;var L=String(x.level||'');
+      if(/Core/.test(L)){o.dc[x.day]=x.score}else if(/Pro/.test(L)){o.dpp[x.day]=x.score}else{o.dd[x.day]=x.score}});
+    var dvm=P&&P.dv==='Pro'?o.dpp:o.dc;o.dvm=dvm;
+    o.ddone=Object.keys(o.dd).length;o.dvdone=Object.keys(dvm).length;
+    if(P){var N=DN[P.d];o.N=N;
+      if(t<P.s){o.state='pre'}else{
+        o.dexp=expDays(P.s,y,N);o.behind=Math.max(0,o.dexp-o.ddone);
+        var td=dayOf(P.s,t,N),isHw=HWD.indexOf(pd(t).getUTCDay())>=0;
+        o.todayDay=td;o.tdone=!!(isHw&&o.dd[td]);
+        o.state=o.behind>0?'late':(isHw?(o.tdone?'ok':'wait'):'off');
+      }}
+    out.push(o)});
+  return out;
+}
+function cardH(o){
+  var s=o.s,P=o.P,c='',chip='';
+  if(o.state==='pre')chip='<span class="chip n">'+dshow(P.s).replace(/\(/,' (')+' 시작</span>';
+  else if(o.state==='late')chip='<span class="chip w">밀림 '+o.behind+'일</span>';
+  else if(o.state==='ok')chip='<span class="chip ok">오늘 완료</span>';
+  else if(o.state==='wait')chip='<span class="chip t">오늘 대기</span>';
+  else if(o.state==='off')chip='<span class="chip n">오늘 쉬는 날</span>';
+  else chip='<span class="chip n">배정 없음</span>';
+  var h='<button class="sc'+(o.state==='late'?' late':'')+(o.state==='none'?' none':'')+'" data-n="'+esc(s.name)+'"><div class="h"><b>'+esc(s.name)+'<small>'+esc(s.grade)+(s.school?' '+esc(s.school):'')+'</small></b>'+chip+'</div>';
+  if(P){
+    h+='<div class="ln"><em>데일리보카 '+P.d+'</em><div class="bar"><i style="width:'+(o.ddone/o.N*100)+'%"></i></div><span class="v">'+o.ddone+' / '+o.N+'일</span></div>';
+    h+='<div class="ln"><em>더블보카 '+P.dv+'</em><div class="bar"><i style="width:'+(o.dvdone/32*100)+'%"></i></div><span class="v">'+o.dvdone+' / 32 Day</span></div>';
+  }
+  h+='<div class="ln"><em>오답노트</em><span class="v" style="width:auto;text-align:left">쌓인 '+s.total+' · 오늘 복습 '+s.due+' · 질문 대기 '+s.askDue+'</span></div></button>';
+  return h;
+}
+var FIL=ls('wn_fil')||'전체';
+function status(r){
+  var b=document.getElementById('body'),t=kst();
+  b.innerHTML='<div class="msg">불러오는 중...</div>';
+  post({act:'t_hw',from:FROM0}).then(function(h){
+    if(!h||!h.ok){b.innerHTML='<div class="msg">불러오지 못했어요.</div>';return}
+    STAT=build(r,h.items);draw(r);
+  },function(){b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
+}
+function draw(r){
+  var b=document.getElementById('body'),all=STAT,gs=['전체'];
+  all.forEach(function(o){if(o.s.grade&&gs.indexOf(o.s.grade)<0)gs.push(o.s.grade)});
+  if(gs.indexOf(FIL)<0)FIL='전체';
+  var L=all.filter(function(o){return FIL==='전체'||o.s.grade===FIL});
+  var ord={late:0,wait:1,ok:2,off:3,pre:4,none:5};
+  L=L.slice().sort(function(a,c){return ord[a.state]-ord[c.state]||(c.behind-a.behind)||(a.s.name<c.s.name?-1:1)});
+  var late=L.filter(function(o){return o.state==='late'}).length,done=L.filter(function(o){return o.state==='ok'}).length,wait=L.filter(function(o){return o.state==='wait'}).length,ask=0;
+  L.forEach(function(o){ask+=o.s.askDue});
+  var h='<div class="msg" style="margin:0 0 6px">'+dshow(kst())+' 기준</div><div class="kp"><div><b>'+L.length+'</b><span>재원</span></div><div class="k"><b>'+done+'</b><span>오늘 완료</span></div><div class="w"><b>'+late+'</b><span>밀림</span></div><div><b>'+ask+'</b><span>질문 대기</span></div></div>';
+  h+='<div class="fl">'+gs.map(function(g){return'<button data-g="'+esc(g)+'"'+(g===FIL?' class="on"':'')+'>'+esc(g)+'</button>'}).join('')+'</div>';
+  if(late)h+='<h2 class="sec">확인이 필요한 학생</h2>';
+  var shown=false;
+  L.forEach(function(o){
+    if(!shown&&o.state!=='late'){h+='<h2 class="sec">'+(late?'그 외 학생':'학생 현황')+'</h2>';shown=true}
+    h+=cardH(o)});
+  b.innerHTML=h;
+  b.querySelectorAll('.fl button').forEach(function(x){x.onclick=function(){FIL=x.dataset.g;ss('wn_fil',FIL);draw(r)}});
+  b.querySelectorAll('.sc').forEach(function(x){x.onclick=function(){detail(x.dataset.n,r)}});
+}
+function detail(n,r){
+  var o=STAT.filter(function(z){return z.s.name===n})[0],s=o.s,P=o.P,t=kst();
+  var h='<div class="top"><button class="sbtn" id="bk">목록</button><div class="t">'+esc(n)+' · '+esc(s.grade)+(s.school?' '+esc(s.school):'')+'</div></div>';
+  if(P){
+    h+='<div class="card"><div class="kv"><span>데일리보카</span><b>'+P.d+' · '+dshow(P.s)+' 시작</b></div><div class="kv"><span>데일리보카 진행</span><b>'+o.ddone+' / '+o.N+'일</b></div><div class="kv"><span>어제까지 해야 할 일수</span><b>'+o.dexp+'일'+(o.behind?' (밀림 '+o.behind+'일)':'')+'</b></div><div class="kv"><span>더블보카 '+P.dv+'</span><b>'+o.dvdone+' / 32 Day</b></div><div class="kv"><span>미니모의고사</span><b>'+esc(P.m)+' · 자유 진행</b></div></div>';
+    h+='<h2 class="sec">최근 14일 데일리보카</h2><div class="dg">';
+    for(var i=13;i>=0;i--){var d=addd(t,-i),w=pd(d).getUTCDay(),cl='',tx='';
+      if(d<P.s)cl='';else if(CLOSED.indexOf(d)>=0){cl='c';tx='휴원'}else if(HWD.indexOf(w)<0){tx='쓰기'}else{var dn=dayOf(P.s,d,o.N);tx='D'+dn;cl=o.dd[dn]?'d':(d<t?'l':'')}
+      if(d===t)cl+=' td';
+      h+='<div class="'+cl+'"><b>'+(+d.slice(8))+'</b>'+tx+'</div>'}
+    h+='</div>';
+    var ks=Object.keys(o.dvm).sort(function(a,c){return a-c});
+    if(ks.length){h+='<h2 class="sec">더블보카 시험 기록</h2><div class="card">'+ks.map(function(k){return'<div class="kv"><span>Day '+k+'</span><b>'+esc(o.dvm[k])+'</b></div>'}).join('')+'</div>'}
+  }
+  h+='<h2 class="sec">오답노트</h2><div class="card"><div class="kv"><span>쌓인 단어</span><b>'+s.total+'</b></div><div class="kv"><span>오늘 복습 대상</span><b>'+s.due+'</b></div><div class="kv"><span>질문 대기</span><b>'+s.askDue+'</b></div></div>';
+  h+='<button class="btn pri" id="qs"'+(s.askDue?'':' disabled style="opacity:.5"')+'>질문 시작</button>';
+  $.innerHTML=h;
+  document.getElementById('bk').onclick=function(){main()};
+  document.getElementById('qs').onclick=function(){ask(n)};
+}
+
 var WK=0;
 function monday(off){var t=new Date(Date.now()+9*3600e3);var d=t.getUTCDay();var diff=(d+6)%7;var m=new Date(Date.UTC(t.getUTCFullYear(),t.getUTCMonth(),t.getUTCDate()-diff+off*7));return m}
 function ymd(d){return d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0')}
