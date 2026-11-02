@@ -70,15 +70,16 @@ input.tx.ok{border-color:var(--ok);background:var(--okBg)}input.tx.ng{border-col
   function name(){return(g('wn_name')||g('recm_name')||g('rec_name')||'').replace(/\s+/g,'')}
   function jq(k){try{return JSON.parse(g(k)||'[]')}catch(e){return[]}}
   function post(b){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b),keepalive:true}).then(function(r){return r.json()})}
-  var busy=false;
+  var busy=false,again=false;
   function flush(){
     var n=name(),Q=jq(QK),H=jq(HK);
-    if(!n||busy||(!Q.length&&!H.length))return Promise.resolve(false);
+    if(busy){again=true;return Promise.resolve(false)}
+    if(!n||(!Q.length&&!H.length))return Promise.resolve(false);
     busy=true;var p=Promise.resolve();
     if(Q.length){var items=[];Q.forEach(function(b){items=items.concat(b)});
       p=p.then(function(){return post({act:'add',name:n,pin:PIN,items:items}).then(function(r){if(r&&r.ok)s(QK,JSON.stringify(jq(QK).slice(Q.length)))})})}
     H.forEach(function(h){p=p.then(function(){return post({act:'hw',name:n,pin:PIN,level:h.level,day:h.day,score:h.score}).then(function(r){if(r&&r.ok)s(HK,JSON.stringify(jq(HK).filter(function(x){return!(x.level===h.level&&x.day===h.day&&x.score===h.score)})))})})});
-    return p.then(function(){busy=false;return true},function(){busy=false;return false});
+    return p.then(function(){busy=false;if(again){again=false;flush()}return true},function(){busy=false;again=false;return false});
   }
   function gate(cb){
     if(name()){cb();flush();return}
