@@ -251,6 +251,13 @@ function result(){
   $.innerHTML=h;document.getElementById('hm').onclick=home;
 }
 function wlist(l){return '<div class="card"><ul class="wl">'+l.map(q=>'<li><b>'+esc(q.wd)+'</b> · '+esc(q.tn)+'</li>').join('')+'</ul></div>'}
+(function(){var oh=home,oq=quiz,orr=result,sub=false;
+function enter(){if(!sub){try{history.pushState({sub:1},'')}catch(e){return}sub=true}}
+home=function(){if(sub){history.back();return}oh()};
+quiz=function(){enter();oq.apply(this,arguments)};
+result=function(){enter();orr.apply(this,arguments)};
+window.addEventListener('popstate',function(){if(sub){sub=false;oh()}});
+})();
 WN.gate(function(){KEY='dv_'+D.level+'_'+WN.name();try{S=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){S={}}S.done=S.done||{};S.wrong=S.wrong||{};S.star=S.star||{};home()});
 </script>
 </body>
