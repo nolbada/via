@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>오답노트</title>
+<style>
+:root{--bg:#f6f7f4;--card:#fff;--ink:#1f2a24;--sub:#6b766f;--line:#dfe4de;--pri:#2f7d5b;--priInk:#fff;--ok:#2f7d5b;--okBg:#e4f3ea;--ng:#c0392b;--ngBg:#fbe9e6}
+@media (prefers-color-scheme:dark){:root{--bg:#141815;--card:#1d231f;--ink:#e8eee9;--sub:#97a39b;--line:#2f3832;--pri:#4fb98a;--priInk:#0e1612;--ok:#58c28f;--okBg:#183024;--ng:#ec7a6c;--ngBg:#3a1f1b}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;line-height:1.55}
+#app{max-width:640px;margin:0 auto;padding:16px 16px 56px}
+h1{font-size:22px;margin:8px 0 14px}
+button{font:inherit;color:inherit;cursor:pointer}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:13px 14px;font-weight:600;width:100%;margin-top:8px}
+.btn.pri{background:var(--pri);color:var(--priInk);border-color:var(--pri)}
+.btn:disabled{opacity:.45}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:10px 0}
+.big{font-size:34px;font-weight:800}
+.sub{color:var(--sub);font-size:14px}
+.seg{display:flex;gap:6px;margin-top:8px}.seg button{flex:1;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 0;font-weight:600}.seg button.on{border-color:var(--pri);background:var(--okBg);color:var(--pri)}
+.word{font-size:30px;font-weight:800;margin:6px 0 14px;word-break:break-word}
+.ch{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:13px;margin:7px 0;font-size:17px}
+.ch.ok{border-color:var(--ok);background:var(--okBg)}.ch.ng{border-color:var(--ng);background:var(--ngBg)}
+.top{display:flex;align-items:center;gap:8px;margin-bottom:8px}.top .t{flex:1;font-size:14px;color:var(--sub)}
+.sbtn{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:6px 12px;font-size:14px}
+.row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.row:first-child{border-top:0}.row b{font-size:16px}.row small{color:var(--sub);display:block}
+.badge{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 9px;color:var(--sub);white-space:nowrap;align-self:flex-start}
+input.tx{width:100%;font-size:18px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
+.msg{color:var(--sub);font-size:14px;margin-top:8px;min-height:20px}
+</style></head><body><div id="app"></div>
+<script>
+var URL_=window.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',PIN='6900',WD=['일','월','화','수','목','금','토'];
+function ls(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function ds(k){try{localStorage.removeItem(k)}catch(e){}}
+var $=document.getElementById('app');
+function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function post(b){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
+function name(){return(ls('wn_name')||ls('recm_name')||ls('rec_name')||'').replace(/\s+/g,'')}
+function dshow(d){if(!d)return'';var p=d.split('-');var w=WD[new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay()];return(+p[1])+'/'+(+p[2])+'('+w+')'}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function rq(){try{return JSON.parse(ls('wn_rq')||'[]')}catch(e){return[]}}
+function flushR(){
+  var Q=rq(),n=name();if(!Q.length||!n)return Promise.resolve();
+  var p=Promise.resolve(),rest=Q.slice();
+  Q.forEach(function(x){p=p.then(function(){return post({act:'review',name:n,pin:PIN,w:x.w,okk:x.okk}).then(function(r){if(r&&(r.ok||r.err==='none')){rest=rest.filter(function(y){return y!==x});ss('wn_rq',JSON.stringify(rest.map(function(y){return{w:y.w,okk:y.okk}})))}})},function(){})});
+  return p.catch(function(){});
+}
+function login(){
+  $.innerHTML='<h1>오답노트</h1><div class="card"><input class="tx" id="nm" type="text" autocomplete="off" placeholder="이름"><button class="btn pri" id="go">시작</button><div class="msg" id="m"></div></div>';
+  document.getElementById('go').onclick=function(){
+    var v=(document.getElementById('nm').value||'').replace(/\s+/g,'');if(!v)return;
+    var b=this;b.disabled=true;document.getElementById('m').textContent='확인 중...';
+    post({act:'list',name:v,pin:PIN}).then(function(r){
+      if(r&&r.ok){ss('wn_name',v);home(r)}
+      else{b.disabled=false;document.getElementById('m').textContent='등록된 이름이 아니에요.'}
+    },function(){b.disabled=false;document.getElementById('m').textContent='연결이 안 됐어요. 인터넷을 확인해 주세요.'});
+  };
+}
+var DATA=null,resetArm=false,resetT=null;
+function home(r){
+  var n=name();if(!n){login();return}
+  if(!r){$.innerHTML='<h1>오답노트</h1><div class="sub">불러오는 중...</div>';
+    flushR().then(function(){return post({act:'list',name:n,pin:PIN})}).then(function(x){
+      if(x&&x.ok)home(x);else{ds('wn_name');login()}
+    },function(){$.innerHTML='<h1>오답노트</h1><div class="card">연결이 안 됐어요. 인터넷을 확인해 주세요.<button class="btn pri" id="rt">다시 불러오기</button></div>';document.getElementById('rt').onclick=function(){home()}});return}
+  DATA=r;
+  var cap=Number(ls('wn_cap'))||r.cap||40;if(cap>r.max)cap=r.max;
+  var due=r.items.filter(function(i){return i.nx&&i.nx<=r.today});
+  var today=Math.min(due.length,cap);
+  var h='<h1>오답노트</h1><div class="card"><div class="sub">오늘 복습</div><div class="big">'+today+'개</div>';
+  if(due.length>cap)h+='<div class="sub">밀린 단어 '+(due.length-cap)+'개는 다음 날로 이어져요</div>';
+  h+='<div class="seg">'+[40,50,60].filter(function(x){return x<=r.max}).map(function(x){return'<button data-c="'+x+'"'+(x===cap?' class="on"':'')+'>'+x+'개</button>'}).join('')+'</div>';
+  h+='<button class="btn pri" id="st"'+(today?'':' disabled')+'>복습 시작</button></div>';
+  h+='<div class="card"><div class="sub">쌓인 단어</div><div class="big">'+r.items.length+'개</div><button class="btn" id="ls"'+(r.items.length?'':' disabled')+'>전체 보기</button></div>';
+  h+='<button class="btn" id="rs">'+(resetArm?'한 번 더 누르면 이 기기에서 나갑니다':'처음부터 다시 (다음 학생)')+'</button>';
+  $.innerHTML=h;
+  $.querySelectorAll('.seg button').forEach(function(b){b.onclick=function(){ss('wn_cap',b.dataset.c);home(DATA)}});
+  document.getElementById('st').onclick=function(){review(due.sort(byPri).slice(0,today))};
+  document.getElementById('ls').onclick=function(){list()};
+  document.getElementById('rs').onclick=function(){
+    if(!resetArm){resetArm=true;clearTimeout(resetT);resetT=setTimeout(function(){resetArm=false;home(DATA)},4000);home(DATA);return}
+    resetArm=false;['wn_name','wn_cap','wn_rq','recm_name','rec_name'].forEach(ds);login();
+  };
+}
+function byPri(a,b){return(b.c-a.c)||(a.nx<b.nx?-1:a.nx>b.nx?1:0)}
+function list(){
+  var items=DATA.items.slice().sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});
+  var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">쌓인 단어 '+items.length+'개</div></div><div class="card">';
+  items.forEach(function(i){h+='<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+'</small></div><span class="badge">'+i.st+'/4 · '+dshow(i.nx)+'</span></div>'});
+  h+='</div>';$.innerHTML=h;document.getElementById('hm').onclick=function(){home(DATA)};
+}
+var R=null;
+function review(items){
+  R={items:items,i:0,res:[]};step();
+}
+function step(){
+  if(R.i>=R.items.length){done();return}
+  var it=R.items[R.i],pool=DATA.items.filter(function(x){return x.w!==it.w&&x.m&&x.m!==it.m}).map(function(x){return x.m});
+  pool=shuffle(Array.from(new Set(pool))).slice(0,3);
+  var flip=pool.length<3||!it.m;
+  var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+(R.i+1)+' / '+R.items.length+'</div></div><div class="card"><div class="word">'+esc(it.w)+'</div><div id="ar"></div></div>';
+  $.innerHTML=h;document.getElementById('hm').onclick=function(){home()};
+  var ar=document.getElementById('ar');
+  if(flip){
+    ar.innerHTML='<button class="btn pri" id="sh">뜻 보기</button>';
+    document.getElementById('sh').onclick=function(){
+      ar.innerHTML='<div class="word" style="font-size:22px">'+esc(it.m||'')+'</div><button class="btn pri" id="y">알았어요</button><button class="btn" id="n">몰랐어요</button>';
+      document.getElementById('y').onclick=function(){mark(true)};document.getElementById('n').onclick=function(){mark(false)};
+    };return;
+  }
+  var ch=shuffle([it.m].concat(pool));
+  ar.innerHTML=ch.map(function(c,k){return'<button class="ch" data-k="'+k+'">'+esc(c)+'</button>'}).join('');
+  ar.querySelectorAll('.ch').forEach(function(b){b.onclick=function(){
+    var ok=ch[+b.dataset.k]===it.m;
+    ar.querySelectorAll('.ch').forEach(function(x){x.disabled=true;if(ch[+x.dataset.k]===it.m)x.classList.add('ok')});
+    if(!ok)b.classList.add('ng');
+    mark(ok,true);
+  }});
+}
+function mark(ok,wait){
+  var it=R.items[R.i];R.res.push(ok?1:0);
+  var n=name(),Q=rq();Q.push({w:it.w,okk:ok});ss('wn_rq',JSON.stringify(Q));flushR();
+  var ar=document.getElementById('ar');
+  if(wait){var b=document.createElement('button');b.className='btn pri';b.textContent=R.i+1>=R.items.length?'결과 보기':'다음';b.onclick=function(){R.i++;step()};ar.appendChild(b)}
+  else{R.i++;step()}
+}
+function done(){
+  var ok=R.res.reduce(function(a,b){return a+b},0),wr=R.items.filter(function(x,i){return!R.res[i]});
+  var h='<h1>복습 끝</h1><div class="card"><div class="big">'+ok+' / '+R.items.length+'</div></div>';
+  if(wr.length)h+='<div class="card"><div class="sub">다시 볼 단어</div>'+wr.map(function(i){return'<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+'</small></div></div>'}).join('')+'</div>';
+  h+='<button class="btn pri" id="hm">홈으로</button>';$.innerHTML=h;
+  document.getElementById('hm').onclick=function(){home()};
+}
+home();
+</script></body></html>
