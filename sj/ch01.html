@@ -1,0 +1,308 @@
+<title>문장줄이기 Ch01</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f6f4ee; --card:#ffffff; --ink:#1c1f26; --mute:#6a6e78; --line:#e3dfd3;
+  --accent:#2b5aa8; --accent-soft:#e6edf8; --lt:#a3a7b0; --pencil:#4b505b;
+  --warn:#9a5b00; --warn-soft:#fbf0dc; --ok:#2d6a4f; --ok-soft:#e3f1ea;
+  --shadow:0 1px 0 rgba(0,0,0,.04),0 6px 20px rgba(30,30,40,.06);
+  --s-bg:#dbeafe;--s-fg:#1e40af;--v-bg:#dfe5ee;--v-fg:#1e293b;--o-bg:#dcfce7;--o-fg:#166534;--io-bg:#cffafe;--io-fg:#155e75;--do-bg:#ecfccb;--do-fg:#3f6212;--c-bg:#ffedd5;--c-fg:#9a3412;--oc-bg:#fef3c7;--oc-fg:#92400e;--x-bg:#e5e7eb;--x-fg:#374151;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14161b; --card:#1c1f26; --ink:#eceef2; --mute:#9aa0ab; --line:#2c303a;
+    --accent:#8fb2ec; --accent-soft:#232c3d; --lt:#626874; --pencil:#c3c8d2;
+    --warn:#e6b25c; --warn-soft:#2f2616; --ok:#7cc5a1; --ok-soft:#1b2b24;
+    --shadow:0 1px 0 rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+    --s-bg:#1e2f5c;--s-fg:#bfdbfe;--v-bg:#3a4658;--v-fg:#e2e8f0;--o-bg:#14392a;--o-fg:#bbf7d0;--io-bg:#0f3a44;--io-fg:#a5f3fc;--do-bg:#2d3a12;--do-fg:#d9f99d;--c-bg:#4a2410;--c-fg:#fed7aa;--oc-bg:#46330a;--oc-fg:#fde68a;--x-bg:#2f3340;--x-fg:#d1d5db;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14161b; --card:#1c1f26; --ink:#eceef2; --mute:#9aa0ab; --line:#2c303a;
+  --accent:#8fb2ec; --accent-soft:#232c3d; --lt:#626874; --pencil:#c3c8d2;
+  --warn:#e6b25c; --warn-soft:#2f2616; --ok:#7cc5a1; --ok-soft:#1b2b24;
+  --shadow:0 1px 0 rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+  --s-bg:#1e2f5c;--s-fg:#bfdbfe;--v-bg:#3a4658;--v-fg:#e2e8f0;--o-bg:#14392a;--o-fg:#bbf7d0;--io-bg:#0f3a44;--io-fg:#a5f3fc;--do-bg:#2d3a12;--do-fg:#d9f99d;--c-bg:#4a2410;--c-fg:#fed7aa;--oc-bg:#46330a;--oc-fg:#fde68a;--x-bg:#2f3340;--x-fg:#d1d5db;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Noto Sans KR",system-ui,sans-serif; font-size:16px; line-height:1.6;
+  padding-block:20px 150px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
+h1{font-size:22px;line-height:1.3;margin:2px 0 0;font-weight:700;text-wrap:balance}
+.demo-btn{flex:none;border:1px solid var(--line);background:var(--card);color:var(--mute);font:inherit;font-size:13px;padding:6px 10px;border-radius:8px;cursor:pointer}
+.tabs{display:flex;gap:2px;overflow-x:auto;border-bottom:1px solid var(--line)}
+.tab{border:0;background:none;color:var(--mute);font:inherit;font-size:15px;padding:10px 11px;white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);font-weight:700;border-bottom-color:var(--accent)}
+.tab .n{font-family:"IBM Plex Mono",monospace;font-size:12px;margin-left:6px;color:var(--accent)}
+.sec-label{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;margin-top:4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px;box-shadow:var(--shadow)}
+.card .top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:6px}
+.src{font-size:12px;color:var(--mute)}
+.sent{font-size:19px;line-height:1.85;word-break:keep-all}
+.w{cursor:pointer;border-radius:4px;padding:0 1px;-webkit-tap-highlight-color:transparent}
+.w.on{background:var(--accent-soft);box-shadow:0 0 0 2px var(--accent-soft)}
+.sol{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+.locked{font-size:13px;color:var(--mute);display:flex;align-items:center;gap:8px}
+.locked::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lt)}
+.reveal-btn{border:1px solid var(--accent);color:var(--accent);background:none;font:inherit;font-size:14px;padding:6px 14px;border-radius:999px;cursor:pointer}
+.core{color:var(--ink)} .lt{color:var(--lt)}
+.skel{font-size:17px;line-height:1.8;margin:4px 0 6px}
+.ko{font-size:15px;line-height:1.75;margin:4px 0}
+.w.bone{background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%);border-radius:2px}
+.ko mark{color:inherit;background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%);padding:0 3px;border-radius:2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.key b{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ok);margin-right:8px;letter-spacing:.06em}
+.hae{margin-top:6px;font-size:14px;color:var(--mute)}
+.easy{margin-top:10px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.easy b{display:block;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);letter-spacing:.06em;margin-bottom:6px;font-weight:500}
+.easy p{margin:0 0 4px;font-size:15px;line-height:1.7}
+.easy .form{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 9px;margin-right:4px;white-space:nowrap}
+.mir{margin:6px 0 10px;display:flex;flex-direction:column;gap:6px}
+.mrow{display:flex;flex-wrap:wrap;align-items:center;gap:4px 5px}
+.mlab{font-size:12px;color:var(--mute);width:44px;flex:none}
+.rc{display:inline-flex;flex-direction:column;align-items:center;line-height:1.15;border-radius:7px;padding:3px 8px 2px;font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500}
+.rc i{font-style:normal;font-family:"Noto Sans KR",sans-serif;font-size:10px;opacity:.85;margin-top:1px}
+.rc.s{background:var(--s-bg);color:var(--s-fg)}.rc.v{background:var(--v-bg);color:var(--v-fg)}.rc.o{background:var(--o-bg);color:var(--o-fg)}.rc.c{background:var(--c-bg);color:var(--c-fg)}.rc.io{background:var(--io-bg);color:var(--io-fg)}.rc.do{background:var(--do-bg);color:var(--do-fg)}.rc.oc{background:var(--oc-bg);color:var(--oc-fg)}.rc.x{background:var(--x-bg);color:var(--x-fg)}
+.rel{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);margin-left:2px}
+.cl{display:flex;flex-direction:column;gap:6px}
+.cl+.cl{margin-top:8px;padding-top:8px;border-top:1px dotted var(--line)}
+.easy .q{font-size:13px;color:var(--mute);margin-right:4px}
+.easy .en{font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:500}
+.easy .a{display:block;margin-top:2px}
+.easy p{margin-bottom:8px}
+.easy p.sum{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-weight:700}
+.empty{color:var(--mute);font-size:14px;padding:22px 4px}
+.wl{display:flex;flex-direction:column;gap:8px}
+.wl-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.wl-w{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:16px}
+.wl-c{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);align-self:center}
+.wl-m{grid-column:1/-1;font-size:14px;color:var(--pencil)}
+.wl-m.miss{color:var(--warn)}
+/* bottom pencil note */
+.note{position:fixed;left:0;right:0;bottom:0;z-index:20;
+  background:var(--card);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(20,20,30,.08);
+  padding:12px max(16px,env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  transform:translateY(110%);transition:transform .18s ease}
+.note.show{transform:none}
+.note-in{max-width:720px;margin:0 auto;display:flex;align-items:flex-start;gap:12px}
+.note-w{font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:500}
+.note-f{font-size:12px;color:var(--mute);margin-top:1px}
+.note-m{font-family:"Noto Sans KR",sans-serif;font-size:19px;font-weight:700;line-height:1.4;color:var(--fg);margin-top:3px}
+.note-m.miss{font-family:"Noto Sans KR",sans-serif;font-size:14px;color:var(--warn)}
+.note-b{font-size:14px;color:var(--mute);margin-top:3px}
+.wl-b{color:var(--mute);font-size:13px}
+.note-x{margin-left:auto;border:0;background:none;color:var(--mute);font-size:22px;line-height:1;cursor:pointer;padding:0 4px}
+/* demo drawer */
+.drawer{background:var(--card);border:1px dashed var(--mute);border-radius:12px;padding:14px 16px;display:none;flex-direction:column;gap:10px}
+.drawer.open{display:flex}
+.drawer h2{font-size:13px;margin:0;color:var(--mute);font-weight:500;letter-spacing:.04em}
+.sw{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:15px}
+.sw input{width:20px;height:20px;accent-color:var(--accent)}
+.miss-list{font-size:13px;color:var(--warn);background:var(--warn-soft);border-radius:8px;padding:8px 10px}
+.mini{border:1px solid var(--line);background:none;color:var(--mute);font:inherit;font-size:12px;padding:4px 10px;border-radius:8px;cursor:pointer;align-self:flex-start}
+
+.card{position:relative}
+.ctl{display:flex;gap:8px;margin-top:12px}
+.cb{flex:0 0 auto;border:1px solid var(--line);background:none;color:var(--mute);font:inherit;font-size:14px;padding:9px 16px;border-radius:10px;cursor:pointer;min-height:44px}
+.cb[disabled]{opacity:.35;cursor:default}
+.cb.main{flex:1;border-color:var(--accent);color:var(--accent);font-weight:700}
+.formbox{margin-top:8px;padding:8px 12px;border:1px solid var(--line);border-radius:10px}
+.formbox .form{display:inline-block;font-size:13px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 10px;margin-right:4px}
+.ink{position:absolute;left:0;top:0;width:100%;height:100%;border-radius:14px;pointer-events:none;touch-action:none;z-index:5}
+body.penon .ink{pointer-events:auto;cursor:crosshair}
+.pen{position:fixed;right:max(10px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.pen-tools{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.pen-tools[hidden]{display:none}
+.pb{border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-size:13px;padding:0 12px;min-height:44px;min-width:44px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow)}
+.pb.main.on,.pb.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pc{width:44px;height:44px;border-radius:50%;border:3px solid var(--card);background:var(--pc);box-shadow:0 0 0 1px var(--line);cursor:pointer}
+.pc.on{box-shadow:0 0 0 3px var(--fg)}
+.pre{margin:14px 0 10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);display:flex;flex-direction:column;gap:10px}
+.pre-h{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--mute)}
+.pre-t{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 10px}
+.pre-s{font-size:20px;line-height:1.5;margin-top:4px}
+.pre-s i{font-style:normal;color:var(--mute);border-bottom:1px dashed var(--mute)}
+.pre-s b{font-weight:500;background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%);padding:0 2px;border-radius:2px}
+.pre-k{font-size:15px;color:var(--mute)}
+.pre-n{font-size:14px;padding-top:8px;border-top:1px dashed var(--line)}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">문장 줄이기 &middot; Chapter 01 &middot; Unit 01-02</div>
+      <h1>명사를 수식하는 형용사(구) ‧ 전명구</h1>
+    </div>
+  </header>
+
+  <div class="pre">
+    <div class="pre-h">미리보기</div>
+    <div class="pre-r"><span class="pre-t">형용사 : 명사를 꾸미는 말</span>
+      <div class="pre-s">The <i>small</i> <b>cat</b> <b>sleeps</b>.</div>
+      <div class="pre-k">작은 고양이가 잔다.</div></div>
+    <div class="pre-r"><span class="pre-t">전명구 : 전치사 + 명사 덩어리</span>
+      <div class="pre-s">The <b>cat</b> <i>on the sofa</i> <b>sleeps</b>.</div>
+      <div class="pre-k">소파 위의 고양이가 잔다.</div></div>
+    <div class="pre-n">꾸미는 말을 빼도 뼈대는 그대로 : cat sleeps</div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tabS" aria-selected="true" type="button">앞면</button>
+    <button class="tab" role="tab" id="tabB" aria-selected="false" type="button">뒷면</button>
+    <button class="tab" role="tab" id="tabR" aria-selected="false" type="button">Review</button>
+    <button class="tab" role="tab" id="tabW" aria-selected="false" type="button">찾아본 단어장<span class="n" id="wc">0</span></button>
+  </div>
+
+  <main id="main"></main>
+</div>
+
+<div class="pen" id="pen">
+  <div class="pen-tools" id="penTools" hidden>
+    <button type="button" class="pc on" data-c="#e5383b" style="--pc:#e5383b" aria-label="빨강"></button>
+    <button type="button" class="pc" data-c="#2f6fed" style="--pc:#2f6fed" aria-label="파랑"></button>
+    <button type="button" class="pc" data-c="#1f9d55" style="--pc:#1f9d55" aria-label="초록"></button>
+    <button type="button" class="pb" id="penErase">지우개</button>
+    <button type="button" class="pb" id="penClear">모두 지움</button>
+  </div>
+  <button type="button" class="pb main" id="penBtn">펜</button>
+</div>
+<div class="note" id="note" role="status" aria-live="polite">
+  <div class="note-in">
+    <div>
+      <div class="note-w" id="nw"></div>
+      <div class="note-f" id="nf"></div>
+      <div class="note-m" id="nm"></div>
+      <div class="note-b" id="nb"></div>
+    </div>
+    <button class="note-x" id="nx" type="button" aria-label="닫기">&times;</button>
+  </div>
+</div>
+
+<script>
+/* 통합 오답노트 연결 스크립트: 각 앱에서 WN.add([{w,m,src,how,ask}]) 로 단어를 보낸다.
+   how: 시험 / 터치 / 별표 / 문제 오답, ask: 선생님 질문 대상 여부(true/false) */
+(function(W){
+  if(W.WN)return;
+  if(/[?&]t=1(&|$)/.test(W.location.search)){W.TEACHER_MODE=true;W.WN={add:function(){return Promise.resolve(false)},hw:function(){return Promise.resolve(false)},gate:function(cb){cb()},flush:function(){return Promise.resolve(false)},name:function(){return'선생님'}};return}
+  var URL_=W.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',PIN='6900',QK='wn_q';
+  function ls(){try{return W.localStorage}catch(e){return null}}
+  function g(k){var l=ls();try{return l&&l.getItem(k)}catch(e){return null}}
+  function s(k,v){var l=ls();try{l&&l.setItem(k,v)}catch(e){}}
+  function name(){return(g('wn_name')||g('recm_name')||g('rec_name')||'').replace(/\s+/g,'')}
+  function q(){try{return JSON.parse(g(QK)||'[]')}catch(e){return[]}}
+  var busy=false,again=false;
+  function flush(){
+    var n=name(),Q=q();
+    if(busy){again=true;return Promise.resolve(false)}
+    if(!n||!Q.length)return Promise.resolve(false);
+    busy=true;
+    var batch=Q.slice(0),items=[];batch.forEach(function(b){items=items.concat(b)});
+    return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'add',name:n,pin:PIN,items:items}),keepalive:true})
+      .then(function(r){return r.json()}).then(function(r){
+        busy=false;if(!r||!r.ok){again=false;return false}
+        var cur=q();s(QK,JSON.stringify(cur.slice(batch.length)));if(again){again=false;flush()}return true;
+      },function(){busy=false;again=false;return false});
+  }
+  W.WN={add:function(items){
+    if(!items||!items.length)return Promise.resolve(false);
+    var Q=q();Q.push(items);s(QK,JSON.stringify(Q));return flush();
+  },flush:flush,name:name};
+  flush();
+})(window);
+
+const SENT=[{"id":"001","tag":"고3 모의응용","en":"Light, portable, and inexpensive cameras created new personal and social photographic records."},{"id":"002","tag":"고3 모의응용","en":"Intentional, quiet, and device-free time supports essential neurological repair."},{"id":"003","tag":"수능응용","en":"The tall, ancient, and mossy tower visible from many places in the town fascinated the tourists."}];
+const SENT2=[{"id":"004","tag":"수능응용","en":"Minor misprints in books and other textual materials may have a significant impact on the content."},{"id":"005","tag":"수능응용","en":"The entrance to a honeybee hive is a place for information exchange about the state of the colony and the environment outside the hive."},{"id":"006","tag":"고3 모의응용","en":"A major shift in day-night timing may cause temporary jet lag, but cues from the new environment can readjust our internal body clocks."}];
+const REV=[{"id":"007","tag":"고3 모의응용","en":"The famous national museum displayed fragile and centuries-old maps of early views of the world."},{"id":"008","tag":"고1 모의응용","en":"Social statistics on crime, homelessness, or the incidence of a disease say nothing about the human suffering behind the numbers."},{"id":"009","tag":"고3 모의응용","en":"Personal assistant robots can interact with users, and their design features suggestive of this ability give them a strong social presence."},{"id":"010","tag":"고3 모의응용","en":"Extensive research by cultural psychologists and anthropologists shows that cultures develop distinct words and concepts for describing emotions."},{"id":"011","tag":"고2 모의응용","en":"A key feature of cities in decline is the excessive supply of housing and infrastructure out of proportion to the strength of their economies."},{"id":"012","tag":"고3 모의응용","en":"Food etiquette in early modern European societies became a sign of social barriers inherent in hierarchical societies and of the impossibility of breaking them down."},{"id":"013","tag":"고3 모의응용","en":"The computer makes available a range of data unattainable in the age of books and replaces traditional ways of learning such as memorization."},{"id":"014","tag":"고1 모의응용","en":"A regular supply of food and other goods enables neighborhood retailers to operate small stores within walking distance of residents’ homes."},{"id":"015","tag":"고2 모의응용","en":"The use of a common resource by large numbers of people can cause problems such as traffic jams, overcrowding, and overuse and reduce its benefits for individual users."},{"id":"016","tag":"고1 모의응용","en":"Examination of human remains from early hunter-gatherer societies has suggested that our ancestors had access to abundant food obtainable without great effort."}];
+const DICT={"light":{"c":"가벼운","b":"light","m":"가벼운; 빛"},"portable":{"c":"휴대가 쉬운","b":"portable","m":"휴대가 쉬운; 휴대용 제품"},"and":{"c":"그리고","b":"and","m":"그리고"},"inexpensive":{"c":"비싸지 않은","b":"inexpensive","m":"비싸지 않은, 저렴한"},"cameras":{"c":"카메라(들)","b":"camera","m":"카메라","f":"명사 camera의 복수형"},"created":{"c":"만들어 냈다","b":"create","m":"만들다, 창조하다","f":"동사 create의 과거형"},"new":{"c":"새로운","b":"new","m":"새로운"},"personal":{"c":"개인적인","b":"personal","m":"개인의, 개인적인"},"social":{"c":"사회적인","b":"social","m":"사회의, 사회적인"},"photographic":{"c":"사진에 의한","b":"photographic","m":"사진에 의한, 사진(술)의"},"records":{"c":"기록물(들)","b":"record","m":"기록(물); 기록하다","f":"명사 record의 복수형"},"intentional":{"c":"의도적인","b":"intentional","m":"의도적인 (↔ unintentional 고의가 아닌)"},"quiet":{"c":"조용한","b":"quiet","m":"조용한"},"device-free":{"c":"기기 없는","b":"device-free","m":"기기가 없는 (device 기기 + free ~이 없는)"},"time":{"c":"시간","b":"time","m":"시간; 때; 횟수"},"supports":{"c":"지원한다","b":"support","m":"지원하다, 지지하다","f":"동사 support의 3인칭 단수 현재형"},"essential":{"c":"필수적인","b":"essential","m":"필수적인, 본질적인"},"neurological":{"c":"신경의","b":"neurological","m":"신경의; 신경학의"},"repair":{"c":"회복","b":"repair","m":"회복; 수리; 수리하다"},"the":{"c":"그","b":"the","m":"그 (특정한 것을 가리킴)"},"tall":{"c":"높은","b":"tall","m":"키가 큰; 높은"},"ancient":{"c":"오래된","b":"ancient","m":"고대의; 아주 오래된"},"mossy":{"c":"이끼가 낀","b":"mossy","m":"이끼가 낀"},"tower":{"c":"탑","b":"tower","m":"탑"},"visible":{"c":"보이는","b":"visible","m":"(눈에) 보이는"},"from":{"c":"~에서","b":"from","m":"~에서, ~로부터"},"many":{"c":"많은","b":"many","m":"많은"},"places":{"c":"곳(들)","b":"place","m":"장소, 곳","f":"명사 place의 복수형"},"in":{"c":"~에 있는","b":"in","m":"~안에, ~에서"},"town":{"c":"마을","b":"town","m":"마을, 소도시"},"fascinated":{"c":"마음을 사로잡았다","b":"fascinate","m":"마음을 사로잡다, 매혹하다","f":"동사 fascinate의 과거형"},"tourists":{"c":"관광객(들)","b":"tourist","m":"관광객","f":"명사 tourist의 복수형"},"statistics":{"c":"통계","b":"statistics","m":"통계(학)"},"on":{"c":"~에 관한","b":"on","m":"~위에; ~에 관하여"},"crime":{"c":"범죄","b":"crime","m":"범죄"},"homelessness":{"c":"노숙","b":"homelessness","m":"노숙(상태) (homeless 집 없는 + -ness 상태)"},"or":{"c":"또는","b":"or","m":"또는, 혹은"},"incidence":{"c":"발생(률)","b":"incidence","m":"발생(률), 빈도"},"of":{"c":"~의","b":"of","m":"~의"},"a":{"c":"하나의 (어떤)","b":"a","m":"하나의, 어떤"},"disease":{"c":"질병","b":"disease","m":"질병"},"say":{"c":"말해 준다","b":"say","m":"말하다"},"nothing":{"c":"아무것도 ~ 않다","b":"nothing","m":"아무것, 아무것도 (~아니다)"},"about":{"c":"~에 대해","b":"about","m":"~에 대하여; 약, 대략"},"human":{"c":"인간의","b":"human","m":"인간의; 인간"},"suffering":{"c":"고통","b":"suffering","m":"고통, 괴로움"},"behind":{"c":"~뒤에 있는","b":"behind","m":"~뒤에; ~뒤의"},"numbers":{"c":"수치(들)","b":"number","m":"수; 숫자","f":"명사 number의 복수형"},"minor":{"c":"사소한","b":"minor","m":"사소한, 작은 (↔ major 큰; 주요한)"},"misprints":{"c":"표기 오류(들)","b":"misprint","m":"표기 오류, 오타","f":"명사 misprint의 복수형"},"books":{"c":"책(들)","b":"book","m":"책","f":"명사 book의 복수형"},"other":{"c":"그 밖의","b":"other","m":"다른, 그 밖의"},"textual":{"c":"글로 된","b":"textual","m":"글로 된; 원문의"},"materials":{"c":"자료(들)","b":"material","m":"자료; 재료","f":"명사 material의 복수형"},"may":{"c":"~일 수 있다","b":"may","m":"~일지도 모른다, ~일 수 있다 (조동사)","f":"조동사, 뒤에 동사원형이 옴"},"have":{"c":"가지다 (impact와 함께 '영향을 미치다')","b":"have","m":"가지다; 먹다"},"significant":{"c":"상당한","b":"significant","m":"(양·정도가) 상당한; 중요한"},"impact":{"c":"영향","b":"impact","m":"영향; 충격"},"content":{"c":"내용","b":"content","m":"내용; 목차"},"entrance":{"c":"입구","b":"entrance","m":"입구; 들어감; 등장"},"to":{"c":"~의 (입구에 대한)","b":"to","m":"~로, ~에게; ~까지"},"honeybee":{"c":"꿀벌","b":"honeybee","m":"꿀벌 (honey 꿀 + bee 벌)"},"hive":{"c":"벌집","b":"hive","m":"벌집"},"is":{"c":"이다","b":"be","m":"~이다; 있다","f":"be동사 be의 3인칭 단수 현재형"},"place":{"c":"장소","b":"place","m":"장소, 곳"},"for":{"c":"~을 위한","b":"for","m":"~을 위해; ~동안"},"information":{"c":"정보","b":"information","m":"정보"},"exchange":{"c":"교환","b":"exchange","m":"교환; 대화; 교환하다"},"state":{"c":"상태","b":"state","m":"상태; 국가; 국가의"},"colony":{"c":"군집","b":"colony","m":"군집; (집단) 거주지; 식민지"},"environment":{"c":"환경","b":"environment","m":"환경"},"outside":{"c":"~밖의","b":"outside","m":"~밖의, 바깥의; 바깥"},"major":{"c":"큰","b":"major","m":"큰; 주요한 (↔ minor 사소한, 작은)"},"shift":{"c":"변화","b":"shift","m":"변화; 옮기다; 바뀌다"},"day-night":{"c":"낮밤","b":"day-night","m":"낮과 밤 (day 낮 + night 밤)"},"timing":{"c":"시간","b":"timing","m":"시기, 타이밍; 시간 맞추기"},"cause":{"c":"유발하다","b":"cause","m":"유발하다, 일으키다; 원인"},"temporary":{"c":"일시적인","b":"temporary","m":"일시적인, 임시의"},"jet":{"c":"시차증 (jet lag)","b":"jet lag","m":"시차증 (jet 제트기 + lag 지연)"},"lag":{"c":"시차증 (jet lag)","b":"jet lag","m":"시차증 (jet 제트기 + lag 지연)"},"but":{"c":"하지만","b":"but","m":"그러나, 하지만"},"cues":{"c":"신호(들)","b":"cue","m":"신호; 단서; 신호를 주다","f":"명사 cue의 복수형"},"can":{"c":"~할 수 있다","b":"can","m":"~할 수 있다 (조동사)","f":"조동사, 뒤에 동사원형이 옴"},"readjust":{"c":"재조정하다","b":"readjust","m":"재조정하다; 다시 적응하다"},"our":{"c":"우리의","b":"we","m":"우리는; 우리","f":"대명사 we의 소유격 our"},"internal":{"c":"내부의","b":"internal","m":"내부의 (↔ external 외부의); 내면의"},"body":{"c":"몸","b":"body","m":"몸, 신체"},"clocks":{"c":"시계(들)","b":"clock","m":"시계","f":"명사 clock의 복수형"},"famous":{"c":"유명한","b":"famous","m":"유명한"},"national":{"c":"국립의","b":"national","m":"국립의; 국가의"},"museum":{"c":"박물관","b":"museum","m":"박물관"},"displayed":{"c":"전시했다","b":"display","m":"전시하다; 전시","f":"동사 display의 과거형"},"fragile":{"c":"손상되기 쉬운","b":"fragile","m":"손상되기 쉬운; 취약한; 섬세한"},"centuries-old":{"c":"수백 년 된","b":"centuries-old","m":"수백 년 된 (century 세기 + old 오래된)","f":"century(세기)의 복수형 centuries + old"},"maps":{"c":"지도(들)","b":"map","m":"지도","f":"명사 map의 복수형"},"early":{"c":"초기의","b":"early","m":"초기의; 이른"},"views":{"c":"관점(들)","b":"view","m":"관점, 견해; 경치","f":"명사 view의 복수형"},"world":{"c":"세계","b":"world","m":"세계, 세상"},"assistant":{"c":"비서 (personal assistant)","b":"assistant","m":"조수, 보조원; 비서 (personal assistant)"},"robots":{"c":"로봇(들)","b":"robot","m":"로봇","f":"명사 robot의 복수형"},"interact":{"c":"상호 작용하다","b":"interact","m":"상호 작용하다; 소통하다"},"with":{"c":"~와","b":"with","m":"~와 함께; ~을 가지고"},"users":{"c":"사용자(들)","b":"user","m":"사용자, 이용자","f":"명사 user의 복수형"},"their":{"c":"그것의","b":"they","m":"그들은; 그것들은","f":"대명사 they의 소유격 their"},"design":{"c":"디자인","b":"design","m":"디자인; 설계하다"},"features":{"c":"특징(들)","b":"feature","m":"특징; 이목구비; 특별히 포함하다","f":"명사 feature의 복수형"},"suggestive":{"c":"암시하는","b":"suggestive","m":"암시하는; 연상시키는"},"this":{"c":"이","b":"this","m":"이, 이것"},"ability":{"c":"능력","b":"ability","m":"능력"},"give":{"c":"부여한다","b":"give","m":"주다, 부여하다","f":"동사 give의 현재형 (주어가 복수)"},"them":{"c":"그것에","b":"they","m":"그들은; 그것들은","f":"대명사 they의 목적격 them"},"strong":{"c":"강한","b":"strong","m":"강한, 튼튼한"},"presence":{"c":"존재(감)","b":"presence","m":"존재(감)"},"extensive":{"c":"광범위한","b":"extensive","m":"광범위한"},"research":{"c":"연구","b":"research","m":"연구; 조사; 연구하다"},"by":{"c":"~에 의한","b":"by","m":"~에 의해; ~옆에; ~까지"},"cultural":{"c":"문화의","b":"cultural","m":"문화의, 문화적인"},"psychologists":{"c":"심리학자(들)","b":"psychologist","m":"심리학자","f":"명사 psychologist의 복수형"},"anthropologists":{"c":"인류학자(들)","b":"anthropologist","m":"인류학자","f":"명사 anthropologist의 복수형"},"shows":{"c":"보여 준다","b":"show","m":"보여 주다","f":"동사 show의 3인칭 단수 현재형"},"that":{"c":"~라는 것(을)","b":"that","m":"~라는 것 (접속사); 저, 저것"},"cultures":{"c":"문화 공동체(들)","b":"culture","m":"문화; 문화 공동체","f":"명사 culture의 복수형"},"develop":{"c":"발달시키다","b":"develop","m":"발달시키다; 개발하다; 발달하다"},"distinct":{"c":"뚜렷이 다른","b":"distinct","m":"뚜렷이 다른, 구별되는; 분명한"},"words":{"c":"단어(들)","b":"word","m":"단어, 말","f":"명사 word의 복수형"},"concepts":{"c":"개념(들)","b":"concept","m":"개념","f":"명사 concept의 복수형"},"describing":{"c":"묘사하는 것","b":"describe","m":"묘사하다, 설명하다","f":"동사 describe의 동명사형 (전치사 for 뒤라서 -ing)"},"emotions":{"c":"감정(들)","b":"emotion","m":"감정","f":"명사 emotion의 복수형"},"key":{"c":"핵심적인","b":"key","m":"핵심적인, 중요한; 열쇠"},"feature":{"c":"특징","b":"feature","m":"특징; 이목구비; 특별히 포함하다"},"cities":{"c":"도시(들)","b":"city","m":"도시","f":"명사 city의 복수형 (y를 i로 바꾸고 -es)"},"decline":{"c":"쇠퇴","b":"decline","m":"쇠퇴, 퇴보; 감소; 줄어들다; 거절하다"},"excessive":{"c":"과도한","b":"excessive","m":"과도한, 지나친"},"supply":{"c":"공급","b":"supply","m":"공급(하다)"},"housing":{"c":"주택","b":"housing","m":"주택; 주거"},"infrastructure":{"c":"사회 기반 시설","b":"infrastructure","m":"사회[공공] 기반 시설"},"out":{"c":"(out of proportion to와 함께 '~와 균형이 맞지 않는')","b":"out","m":"밖으로, 밖에"},"proportion":{"c":"(out of proportion to와 함께 '~와 균형이 맞지 않는')","b":"proportion","m":"비율; 균형"},"strength":{"c":"힘","b":"strength","m":"힘; 강점"},"economies":{"c":"경제(들)","b":"economy","m":"경제","f":"명사 economy의 복수형 (y를 i로 바꾸고 -es)"},"food":{"c":"식품","b":"food","m":"음식, 식품, 식량"},"etiquette":{"c":"예절","b":"etiquette","m":"예절, 예의, 에티켓"},"modern":{"c":"근대의 (early modern 근대 초기의)","b":"modern","m":"현대의; 근대의"},"european":{"c":"유럽의","b":"European","m":"유럽의; 유럽 사람"},"societies":{"c":"사회(들)","b":"society","m":"사회","f":"명사 society의 복수형 (y를 i로 바꾸고 -es)"},"became":{"c":"되었다","b":"become","m":"~이 되다","f":"동사 become의 과거형"},"sign":{"c":"징표","b":"sign","m":"징표, 표시; 신호; 서명하다"},"barriers":{"c":"장벽(들)","b":"barrier","m":"장벽; 장애물; 한계","f":"명사 barrier의 복수형"},"inherent":{"c":"내재하는","b":"inherent","m":"내재하는"},"hierarchical":{"c":"계급에 따른","b":"hierarchical","m":"계급에 따른 (cf. hierarchy 계급)"},"impossibility":{"c":"불가능성","b":"impossibility","m":"불가능(성) (impossible 불가능한 + -ity)"},"breaking":{"c":"(break down과 함께) 부수는 것","b":"break","m":"깨다, 부수다 (break down 부수다; 허물어뜨리다)","f":"동사 break의 동명사형 (전치사 of 뒤라서 -ing)"},"down":{"c":"(break down과 함께 '부수다')","b":"down","m":"아래로 (break down 부수다; 허물어뜨리다)"},"computer":{"c":"컴퓨터","b":"computer","m":"컴퓨터"},"makes":{"c":"~하게 만든다 (makes available: 이용할 수 있게 하다)","b":"make","m":"만들다; ~하게 하다","f":"동사 make의 3인칭 단수 현재형"},"available":{"c":"이용할 수 있는","b":"available","m":"이용할 수 있는; 구할 수 있는"},"range":{"c":"(a range of와 함께 '다양한')","b":"range","m":"범위; 다양성 (a range of 다양한)"},"data":{"c":"자료","b":"data","m":"자료, 데이터"},"unattainable":{"c":"얻기 어려운","b":"unattainable","m":"얻기 어려운 (↔ attainable 이룰 수 있는)"},"age":{"c":"시대","b":"age","m":"시대; 나이"},"replaces":{"c":"대체한다","b":"replace","m":"대체하다","f":"동사 replace의 3인칭 단수 현재형"},"traditional":{"c":"전통적인","b":"traditional","m":"전통적인"},"ways":{"c":"방식(들)","b":"way","m":"방식, 방법; 길","f":"명사 way의 복수형"},"learning":{"c":"학습","b":"learning","m":"학습, 배움"},"such":{"c":"(such as와 함께 '~와 같은')","b":"such","m":"그러한, 그런"},"as":{"c":"(such as와 함께 '~와 같은')","b":"as","m":"~로서; ~처럼; ~할 때"},"memorization":{"c":"암기","b":"memorization","m":"암기, 기억"},"regular":{"c":"정기적인","b":"regular","m":"정기적인; 규칙적인"},"goods":{"c":"상품","b":"goods","m":"((복수형)) 상품, 제품"},"enables":{"c":"~할 수 있게 한다","b":"enable","m":"~할 수 있게 하다","f":"동사 enable의 3인칭 단수 현재형"},"neighborhood":{"c":"지역의","b":"neighborhood","m":"동네, 지역; 이웃"},"retailers":{"c":"소매업자(들)","b":"retailer","m":"소매업(자)","f":"명사 retailer의 복수형"},"operate":{"c":"운영하다","b":"operate","m":"운영[경영]하다; (기계가) 작동하다"},"small":{"c":"소규모의","b":"small","m":"작은; 소규모의"},"stores":{"c":"상점(들)","b":"store","m":"상점, 가게; 저장하다","f":"명사 store의 복수형"},"within":{"c":"~이내에","b":"within","m":"~이내에; ~안에"},"walking":{"c":"걸어가는 (walking distance 걸어갈 수 있는 거리)","b":"walk","m":"걷다, 걸어가다","f":"동사 walk의 -ing형 (명사 distance 앞에서 꾸밈)"},"distance":{"c":"거리","b":"distance","m":"거리, 간격"},"residents’":{"c":"주민들의","b":"resident","m":"주민, 거주자; (특정 장소에) 거주하는","f":"명사 resident의 복수형 residents에 소유격(’)이 붙은 형태"},"homes":{"c":"집(들)","b":"home","m":"집, 가정","f":"명사 home의 복수형"},"use":{"c":"이용","b":"use","m":"이용, 사용; 이용하다"},"common":{"c":"공유의 (common resource 공유자원)","b":"common","m":"공통의, 공유의; 흔한"},"resource":{"c":"자원 (common resource 공유자원)","b":"resource","m":"자원; 재원"},"large":{"c":"(large numbers of와 함께 '많은')","b":"large","m":"큰, 많은"},"people":{"c":"사람(들)","b":"people","m":"사람들"},"problems":{"c":"문제(들)","b":"problem","m":"문제","f":"명사 problem의 복수형"},"traffic":{"c":"교통 (traffic jam 교통 체증)","b":"traffic jam","m":"교통 체증"},"jams":{"c":"체증 (traffic jam 교통 체증)","b":"traffic jam","m":"교통 체증","f":"명사 jam의 복수형 (traffic jams)"},"overcrowding":{"c":"혼잡","b":"overcrowding","m":"혼잡; 과잉 수용"},"overuse":{"c":"과도한 사용","b":"overuse","m":"과도한 사용, 남용; 과도하게 쓰다"},"reduce":{"c":"감소시키다","b":"reduce","m":"줄이다, 감소시키다"},"its":{"c":"그것의","b":"it","m":"그것은; 그것","f":"대명사 it의 소유격 its"},"benefits":{"c":"혜택(들)","b":"benefit","m":"혜택, 이익; 이익을 얻다","f":"명사 benefit의 복수형"},"individual":{"c":"개별의","b":"individual","m":"개별의, 개인의; 개인"},"examination":{"c":"조사","b":"examination","m":"조사, 검사"},"remains":{"c":"유해","b":"remains","m":"유해; 유적","f":"동사 remain(남다)과 모양이 같지만, 여기서는 '유해'라는 뜻의 명사(복수형으로 씀)"},"hunter-gatherer":{"c":"수렵·채집인","b":"hunter-gatherer","m":"수렵·채집인"},"has":{"c":"~해 왔다 (has suggested 현재완료)","b":"have","m":"가지다; (have p.p.) ~해 왔다","f":"동사 have의 3인칭 단수 현재형 (has + p.p. = 현재완료)"},"suggested":{"c":"시사했다","b":"suggest","m":"시사하다, 암시하다; 제안하다","f":"동사 suggest의 과거분사형 (has와 함께 현재완료)"},"ancestors":{"c":"조상(들)","b":"ancestor","m":"조상","f":"명사 ancestor의 복수형"},"had":{"c":"가지고 있었다 (have access to: ~에 접근할 수 있다)","b":"have","m":"가지다","f":"동사 have의 과거형"},"access":{"c":"접근(권)","b":"access","m":"접근(권); 접속하다"},"abundant":{"c":"풍부한","b":"abundant","m":"풍부한"},"obtainable":{"c":"얻을 수 있는","b":"obtainable","m":"얻을 수 있는"},"without":{"c":"~없이","b":"without","m":"~없이"},"great":{"c":"큰","b":"great","m":"큰; 위대한; 훌륭한"},"effort":{"c":"노력","b":"effort","m":"노력"}};
+const REFS={"1":{"k":"1형식","t":[["I","s"],["sleep","v"]],"rel":""},"2":{"k":"2형식","t":[["I","s"],["am","v"],["happy","c"]],"rel":"I = happy"},"3":{"k":"3형식","t":[["I","s"],["like","v"],["apples","o"]],"rel":"I ≠ apples"},"4":{"k":"4형식","t":[["I","s"],["give","v"],["him","io"],["a book","do"]],"rel":"him ≠ a book"},"5":{"k":"5형식","t":[["I","s"],["make","v"],["him","o"],["happy","oc"]],"rel":"him = happy"}};
+const RNAME={"s":"주어","v":"동사","o":"목적어","c":"보어","io":"간접목적어","do":"직접목적어","oc":"목적격보어","x":"덧붙는 말"};
+const ST={"001":[[3,[["cameras","s"],["created","v"],["records","o"]],"cameras ≠ records"]],"002":[[3,[["time","s"],["supports","v"],["repair","o"]],"time ≠ repair"]],"003":[[3,[["tower","s"],["fascinated","v"],["tourists","o"]],"tower ≠ tourists"]],"004":[[3,[["misprints","s"],["may have","v"],["impact","o"],["on the content","x"]],"misprints ≠ impact"]],"005":[[2,[["The entrance to a honeybee hive","s"],["is","v"],["a place for information exchange","c"]],"entrance = place"]],"006":[[3,[["A shift in timing","s"],["may cause","v"],["jet lag","o"]],"shift ≠ jet lag"],[3,[["cues from the environment","s"],["can readjust","v"],["our body clocks","o"]],"cues ≠ clocks"]],"007":[[3,[["The museum","s"],["displayed","v"],["maps","o"]],"museum ≠ maps"]],"008":[[3,[["statistics","s"],["say","v"],["nothing","o"],["about suffering","x"]],"statistics ≠ nothing"]],"009":[[1,[["Personal assistant robots","s"],["can interact","v"],["with users","x"]],""],[4,[["their design features","s"],["give","v"],["them","io"],["a presence","do"]],"them ≠ presence"]],"010":[[3,[["research","s"],["shows","v"],["that cultures develop words and concepts","o"]],"research ≠ that절"],[3,[["cultures","s"],["develop","v"],["words and concepts","o"]],"cultures ≠ words"]],"011":[[2,[["A feature of cities","s"],["is","v"],["the supply of housing and infrastructure","c"]],"feature = supply"]],"012":[[2,[["Food etiquette","s"],["became","v"],["a sign of barriers and of the impossibility","c"]],"etiquette = sign"]],"013":[[5,[["The computer","s"],["makes","v"],["available","oc"],["data","o"]],"data = available"],[3,[["The computer","s"],["replaces","v"],["ways of learning","o"]],"computer ≠ ways"]],"014":[[5,[["A supply of food and other goods","s"],["enables","v"],["neighborhood retailers","o"],["to operate stores","oc"]],"retailers = to operate"]],"015":[[3,[["The use of a common resource","s"],["can cause","v"],["problems","o"]],"use ≠ problems"],[3,[["The use of a common resource","s"],["reduce","v"],["its benefits","o"]],"use ≠ benefits"]],"016":[[3,[["Examination of remains","s"],["has suggested","v"],["that our ancestors had access to food","o"]],"examination ≠ that절"],[3,[["our ancestors","s"],["had","v"],["access","o"],["to food","x"]],"ancestors ≠ access"]]};
+const OVR={"008":{"social":{"c":"사회의","b":"social","m":"사회의, 사회적인"}},"004":{"on":{"c":"~에 대한","b":"on","m":"~위에; ~에 관하여"}},"006":{"in":{"c":"~에서의","b":"in","m":"~안에, ~에서"}},"005":{"in":{"c":"~에 있는","b":"in","m":"~안에, ~에서"}},"010":{"by":{"c":"~이 수행한","b":"by","m":"~에 의해; ~옆에; ~까지"}},"011":{"their":{"c":"그들의 (도시들의)","b":"they","m":"그들은; 그것들은","f":"대명사 they의 소유격 their"},"to":{"c":"(out of proportion to와 함께) ~와","b":"to","m":"~로, ~에게; ~까지"},"is":{"c":"이다","b":"be","m":"~이다; 있다","f":"be동사 be의 3인칭 단수 현재형"}},"012":{"them":{"c":"그것들을 (장벽들을)","b":"they","m":"그들은; 그것들은","f":"대명사 they의 목적격 them"}},"015":{"numbers":{"c":"(large numbers of와 함께 '많은')","b":"number","m":"수; 숫자","f":"명사 number의 복수형"}},"016":{"to":{"c":"~에 (access to: ~에의 접근)","b":"to","m":"~로, ~에게; ~까지"},"food":{"c":"식량","b":"food","m":"음식, 식품, 식량"},"human":{"c":"인간의","b":"human","m":"인간의; 인간"}},"013":{"of":{"c":"~의 (a range of 다양한)","b":"of","m":"~의"},"in":{"c":"~에 (시대에)","b":"in","m":"~안에, ~에서"}},"014":{"to":{"c":"~하도록 (enable A to-v의 to)","b":"to","m":"~로, ~에게; ~까지"}}};
+
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+let tab="s", activeKey=null, looked={}, missed={};
+try{ looked=JSON.parse(localStorage.getItem("sj_looked2")||"{}"); missed=JSON.parse(localStorage.getItem("sj_missed")||"{}"); }catch(e){}
+function save(){ try{ localStorage.setItem("sj_looked2",JSON.stringify(looked)); localStorage.setItem("sj_missed",JSON.stringify(missed)); }catch(e){} }
+function words(s,sid){
+  return s.split(/([A-Za-zé][A-Za-zé'’-]*)/).map((t,i)=> i%2
+    ? '<span class="w'+(activeKey===sid+":"+i?" on":"")+'" data-k="'+sid+":"+i+'" data-w="'+esc(t)+'">'+esc(t)+'</span>'
+    : esc(t)).join("");
+}
+function card(x){
+  return '<section class="card"><div class="top"><span class="num">'+x.id+'</span><span class="src">'+esc(x.tag)+'</span></div>'
+    +'<div class="sent">'+words(x.en,x.id)+'</div></section>';
+}
+function render(){
+  ["S","B","R","W"].forEach(k=>$("#tab"+k).setAttribute("aria-selected",tab===k.toLowerCase()));
+  const keys=Object.keys(looked);
+  $("#wc").textContent=keys.length;
+  let h="";
+  if(tab!=="w"){
+    h+=(tab==="s"?SENT:tab==="b"?SENT2:REV).map(card).join("");
+  } else {
+    if(!keys.length) h='<div class="empty">아직 찾아본 단어가 없습니다.</div>';
+    else h='<div class="wl">'+keys.sort((a,b)=>looked[b].c-looked[a].c||a.localeCompare(b)).map(k=>{
+      const v=looked[k];
+      return '<div class="wl-row"><span class="wl-w">'+esc(k)+'</span><span class="wl-c">'+v.c+'회</span>'
+        +'<span class="wl-m'+(v.x?"":" miss")+'">'+(v.x?esc(v.x)+' <span class="wl-b">('+esc(v.m)+')</span>':"뜻 자료 없음")+'</span></div>';
+    }).join("")+'</div>';
+  }
+  $("#main").innerHTML=h;
+}
+function showNote(word,key){
+  const lower=word.toLowerCase();
+  const sid=key.split(":")[0];
+  const e=(OVR[sid]&&OVR[sid][lower])||DICT[lower];
+  const nm=$("#nm");
+  $("#nw").textContent=word;
+  if(e){
+    $("#nf").textContent=e.f||"";
+    nm.textContent=e.c; nm.classList.remove("miss");
+    $("#nb").textContent="("+e.b+" · "+e.m+")";
+    if(!looked[e.b]) looked[e.b]={c:0,x:e.c,m:e.m};
+    looked[e.b].c++; looked[e.b].x=e.c;
+    if(window.WN)WN.add([{w:e.b,m:e.c,src:"천일문S",how:"터치",ask:true}]);
+  } else {
+    $("#nf").textContent="";
+    nm.textContent="단어 자료에 없음";
+    nm.classList.add("miss");
+    $("#nb").textContent="";
+    missed[lower]=1;
+  }
+  $("#note").classList.add("show");
+  activeKey=key; save();
+}
+function hideNote(){ $("#note").classList.remove("show"); activeKey=null; }
+document.addEventListener("click",e=>{
+  const w=e.target.closest(".w");
+  if(w){
+    const k=w.dataset.k;
+    if(activeKey===k){ hideNote(); render(); return; }
+    showNote(w.dataset.w,k); render();
+  }
+});
+$("#nx").onclick=()=>{ hideNote(); render(); };
+["S","B","R","W"].forEach(k=>{ $("#tab"+k).onclick=()=>{ tab=k.toLowerCase(); hideNote(); render(); }; });
+let tx=null;
+$("#main").addEventListener("touchstart",e=>{ tx=e.touches[0].clientX; },{passive:true});
+$("#main").addEventListener("touchend",e=>{
+  if(tx===null||tab==="w") return;
+  const dx=e.changedTouches[0].clientX-tx; tx=null;
+  if(Math.abs(dx)<70) return;
+  const pg=["s","b","r"], n=pg.indexOf(tab)+(dx<0?1:-1);
+  if(n>=0&&n<pg.length){ tab=pg[n]; hideNote(); render(); window.scrollTo(0,0); }
+},{passive:true});
+render();
+</script>

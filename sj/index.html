@@ -1,0 +1,149 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>문장줄이기</title>
+<style>
+:root{
+  --bg:#f6f4ee; --card:#ffffff; --ink:#1c1f26; --mute:#6a6e78; --line:#e3dfd3;
+  --accent:#2b5aa8; --accent-soft:#e6edf8; --lt:#a3a7b0; --pencil:#4b505b;
+  --warn:#9a5b00; --warn-soft:#fbf0dc; --ok:#2d6a4f; --ok-soft:#e3f1ea;
+  --shadow:0 1px 0 rgba(0,0,0,.04),0 6px 20px rgba(30,30,40,.06);
+  --s-bg:#dbeafe;--s-fg:#1e40af;--v-bg:#dfe5ee;--v-fg:#1e293b;--o-bg:#dcfce7;--o-fg:#166534;--io-bg:#cffafe;--io-fg:#155e75;--do-bg:#ecfccb;--do-fg:#3f6212;--c-bg:#ffedd5;--c-fg:#9a3412;--oc-bg:#fef3c7;--oc-fg:#92400e;--x-bg:#e5e7eb;--x-fg:#374151;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14161b; --card:#1c1f26; --ink:#eceef2; --mute:#9aa0ab; --line:#2c303a;
+    --accent:#8fb2ec; --accent-soft:#232c3d; --lt:#626874; --pencil:#c3c8d2;
+    --warn:#e6b25c; --warn-soft:#2f2616; --ok:#7cc5a1; --ok-soft:#1b2b24;
+    --shadow:0 1px 0 rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+    --s-bg:#1e2f5c;--s-fg:#bfdbfe;--v-bg:#3a4658;--v-fg:#e2e8f0;--o-bg:#14392a;--o-fg:#bbf7d0;--io-bg:#0f3a44;--io-fg:#a5f3fc;--do-bg:#2d3a12;--do-fg:#d9f99d;--c-bg:#4a2410;--c-fg:#fed7aa;--oc-bg:#46330a;--oc-fg:#fde68a;--x-bg:#2f3340;--x-fg:#d1d5db;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14161b; --card:#1c1f26; --ink:#eceef2; --mute:#9aa0ab; --line:#2c303a;
+  --accent:#8fb2ec; --accent-soft:#232c3d; --lt:#626874; --pencil:#c3c8d2;
+  --warn:#e6b25c; --warn-soft:#2f2616; --ok:#7cc5a1; --ok-soft:#1b2b24;
+  --shadow:0 1px 0 rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+  --s-bg:#1e2f5c;--s-fg:#bfdbfe;--v-bg:#3a4658;--v-fg:#e2e8f0;--o-bg:#14392a;--o-fg:#bbf7d0;--io-bg:#0f3a44;--io-fg:#a5f3fc;--do-bg:#2d3a12;--do-fg:#d9f99d;--c-bg:#4a2410;--c-fg:#fed7aa;--oc-bg:#46330a;--oc-fg:#fde68a;--x-bg:#2f3340;--x-fg:#d1d5db;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Noto Sans KR",system-ui,sans-serif; font-size:16px; line-height:1.6;
+  padding-block:20px 150px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
+h1{font-size:22px;line-height:1.3;margin:2px 0 0;font-weight:700;text-wrap:balance}
+.demo-btn{flex:none;border:1px solid var(--line);background:var(--card);color:var(--mute);font:inherit;font-size:13px;padding:6px 10px;border-radius:8px;cursor:pointer}
+.tabs{display:flex;gap:2px;overflow-x:auto;border-bottom:1px solid var(--line)}
+.tab{border:0;background:none;color:var(--mute);font:inherit;font-size:15px;padding:10px 11px;white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);font-weight:700;border-bottom-color:var(--accent)}
+.tab .n{font-family:"IBM Plex Mono",monospace;font-size:12px;margin-left:6px;color:var(--accent)}
+.sec-label{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;margin-top:4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px;box-shadow:var(--shadow)}
+.card .top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:6px}
+.src{font-size:12px;color:var(--mute)}
+.sent{font-size:19px;line-height:1.85;word-break:keep-all}
+.w{cursor:pointer;border-radius:4px;padding:0 1px;-webkit-tap-highlight-color:transparent}
+.w.on{background:var(--accent-soft);box-shadow:0 0 0 2px var(--accent-soft)}
+.sol{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+.locked{font-size:13px;color:var(--mute);display:flex;align-items:center;gap:8px}
+.locked::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lt)}
+.reveal-btn{border:1px solid var(--accent);color:var(--accent);background:none;font:inherit;font-size:14px;padding:6px 14px;border-radius:999px;cursor:pointer}
+.core{color:var(--ink)} .lt{color:var(--lt)}
+.skel{font-size:17px;line-height:1.8;margin:4px 0 6px}
+.ko{font-size:15px;line-height:1.75;margin:4px 0}
+.w.bone{background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%);border-radius:2px}
+.ko mark{color:inherit;background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%);padding:0 3px;border-radius:2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.key b{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ok);margin-right:8px;letter-spacing:.06em}
+.hae{margin-top:6px;font-size:14px;color:var(--mute)}
+.easy{margin-top:10px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.easy b{display:block;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);letter-spacing:.06em;margin-bottom:6px;font-weight:500}
+.easy p{margin:0 0 4px;font-size:15px;line-height:1.7}
+.easy .form{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 9px;margin-right:4px;white-space:nowrap}
+.mir{margin:6px 0 10px;display:flex;flex-direction:column;gap:6px}
+.mrow{display:flex;flex-wrap:wrap;align-items:center;gap:4px 5px}
+.mlab{font-size:12px;color:var(--mute);width:44px;flex:none}
+.rc{display:inline-flex;flex-direction:column;align-items:center;line-height:1.15;border-radius:7px;padding:3px 8px 2px;font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500}
+.rc i{font-style:normal;font-family:"Noto Sans KR",sans-serif;font-size:10px;opacity:.85;margin-top:1px}
+.rc.s{background:var(--s-bg);color:var(--s-fg)}.rc.v{background:var(--v-bg);color:var(--v-fg)}.rc.o{background:var(--o-bg);color:var(--o-fg)}.rc.c{background:var(--c-bg);color:var(--c-fg)}.rc.io{background:var(--io-bg);color:var(--io-fg)}.rc.do{background:var(--do-bg);color:var(--do-fg)}.rc.oc{background:var(--oc-bg);color:var(--oc-fg)}.rc.x{background:var(--x-bg);color:var(--x-fg)}
+.rel{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);margin-left:2px}
+.cl{display:flex;flex-direction:column;gap:6px}
+.cl+.cl{margin-top:8px;padding-top:8px;border-top:1px dotted var(--line)}
+.easy .q{font-size:13px;color:var(--mute);margin-right:4px}
+.easy .en{font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:500}
+.easy .a{display:block;margin-top:2px}
+.easy p{margin-bottom:8px}
+.easy p.sum{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-weight:700}
+.empty{color:var(--mute);font-size:14px;padding:22px 4px}
+.wl{display:flex;flex-direction:column;gap:8px}
+.wl-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.wl-w{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:16px}
+.wl-c{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);align-self:center}
+.wl-m{grid-column:1/-1;font-size:14px;color:var(--pencil)}
+.wl-m.miss{color:var(--warn)}
+/* bottom pencil note */
+.note{position:fixed;left:0;right:0;bottom:0;z-index:20;
+  background:var(--card);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(20,20,30,.08);
+  padding:12px max(16px,env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  transform:translateY(110%);transition:transform .18s ease}
+.note.show{transform:none}
+.note-in{max-width:720px;margin:0 auto;display:flex;align-items:flex-start;gap:12px}
+.note-w{font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:500}
+.note-f{font-size:12px;color:var(--mute);margin-top:1px}
+.note-m{font-family:"Noto Sans KR",sans-serif;font-size:19px;font-weight:700;line-height:1.4;color:var(--fg);margin-top:3px}
+.note-m.miss{font-family:"Noto Sans KR",sans-serif;font-size:14px;color:var(--warn)}
+.note-b{font-size:14px;color:var(--mute);margin-top:3px}
+.wl-b{color:var(--mute);font-size:13px}
+.note-x{margin-left:auto;border:0;background:none;color:var(--mute);font-size:22px;line-height:1;cursor:pointer;padding:0 4px}
+/* demo drawer */
+.drawer{background:var(--card);border:1px dashed var(--mute);border-radius:12px;padding:14px 16px;display:none;flex-direction:column;gap:10px}
+.drawer.open{display:flex}
+.drawer h2{font-size:13px;margin:0;color:var(--mute);font-weight:500;letter-spacing:.04em}
+.sw{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:15px}
+.sw input{width:20px;height:20px;accent-color:var(--accent)}
+.miss-list{font-size:13px;color:var(--warn);background:var(--warn-soft);border-radius:8px;padding:8px 10px}
+.mini{border:1px solid var(--line);background:none;color:var(--mute);font:inherit;font-size:12px;padding:4px 10px;border-radius:8px;cursor:pointer;align-self:flex-start}
+
+.card{position:relative}
+.ctl{display:flex;gap:8px;margin-top:12px}
+.cb{flex:0 0 auto;border:1px solid var(--line);background:none;color:var(--mute);font:inherit;font-size:14px;padding:9px 16px;border-radius:10px;cursor:pointer;min-height:44px}
+.cb[disabled]{opacity:.35;cursor:default}
+.cb.main{flex:1;border-color:var(--accent);color:var(--accent);font-weight:700}
+.formbox{margin-top:8px;padding:8px 12px;border:1px solid var(--line);border-radius:10px}
+.formbox .form{display:inline-block;font-size:13px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 10px;margin-right:4px}
+.ink{position:absolute;left:0;top:0;width:100%;height:100%;border-radius:14px;pointer-events:none;touch-action:none;z-index:5}
+body.penon .ink{pointer-events:auto;cursor:crosshair}
+.pen{position:fixed;right:max(10px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.pen-tools{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.pen-tools[hidden]{display:none}
+.pb{border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-size:13px;padding:0 12px;min-height:44px;min-width:44px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow)}
+.pb.main.on,.pb.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pc{width:44px;height:44px;border-radius:50%;border:3px solid var(--card);background:var(--pc);box-shadow:0 0 0 1px var(--line);cursor:pointer}
+.pc.on{box-shadow:0 0 0 3px var(--fg)}
+.pre{margin:14px 0 10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);display:flex;flex-direction:column;gap:10px}
+.pre-h{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--mute)}
+.pre-t{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 10px}
+.pre-s{font-size:20px;line-height:1.5;margin-top:4px}
+.pre-s i{font-style:normal;color:var(--mute);border-bottom:1px dashed var(--mute)}
+.pre-s b{font-weight:500;background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%);padding:0 2px;border-radius:2px}
+.pre-k{font-size:15px;color:var(--mute)}
+.pre-n{font-size:14px;padding-top:8px;border-top:1px dashed var(--line)}
+</style></head><body><div class="wrap"><header><div><div class="eyebrow">문장 줄이기</div><h1>문장줄이기</h1></div></header>
+<a class="card" style="display:block;text-decoration:none;color:inherit" href="ch01.html"><div class="top"><span class="num">Chapter 01</span><span class="src">Unit 01-02</span></div><div class="sent" style="font-size:17px;line-height:1.5">명사를 수식하는 형용사(구) ‧ 전명구</div></a>
+<a class="card" style="display:block;text-decoration:none;color:inherit" href="ch02.html"><div class="top"><span class="num">Chapter 02</span><span class="src">Unit 03-04</span></div><div class="sent" style="font-size:17px;line-height:1.5">명사를 수식하는 to-v(구) · 분사(구)</div></a>
+<a class="card" style="display:block;text-decoration:none;color:inherit" href="ch03.html"><div class="top"><span class="num">Chapter 03</span><span class="src">Unit 05-06</span></div><div class="sent" style="font-size:17px;line-height:1.5">명사를 수식하는 관계사절</div></a>
+<a class="card" style="display:block;text-decoration:none;color:inherit" href="ch04.html"><div class="top"><span class="num">Chapter 04</span><span class="src">Unit 07-08</span></div><div class="sent" style="font-size:17px;line-height:1.5">관계사절 수식의 확장과 변형</div></a>
+<a class="card" style="display:block;text-decoration:none;color:inherit" href="ch05.html"><div class="top"><span class="num">Chapter 05</span><span class="src">Unit 09-10</span></div><div class="sent" style="font-size:17px;line-height:1.5">문장을 확장하는 부사적 어구</div></a>
+<a class="card" style="display:block;text-decoration:none;color:inherit" href="ch06.html"><div class="top"><span class="num">Chapter 06</span><span class="src">Unit 11-12</span></div><div class="sent" style="font-size:17px;line-height:1.5">주절에 배경을 더하는 부사절</div></a>
+<a class="card" style="display:block;text-decoration:none;color:inherit" href="ch07.html"><div class="top"><span class="num">Chapter 07</span><span class="src">Unit 13-14</span></div><div class="sent" style="font-size:17px;line-height:1.5">주절에 정보를 더하는 분사구문</div></a>
+<a class="card" style="display:block;text-decoration:none;color:inherit" href="ch08.html"><div class="top"><span class="num">Chapter 08</span><span class="src">Unit 15-16</span></div><div class="sent" style="font-size:17px;line-height:1.5">부연 설명을 담은 삽입 · 동격구문</div></a>
+<a class="card" style="display:block;text-decoration:none;color:inherit" href="ch09.html"><div class="top"><span class="num">Chapter 09</span><span class="src">Unit 17-18</span></div><div class="sent" style="font-size:17px;line-height:1.5">병렬구조 · 비교구문</div></a>
+<a class="card" style="display:block;text-decoration:none;color:inherit" href="ch10.html"><div class="top"><span class="num">Chapter 10</span><span class="src">Unit 19-20</span></div><div class="sent" style="font-size:17px;line-height:1.5">짝을 이루는 구문</div></a>
+<a class="card" style="display:block;text-decoration:none;color:inherit" href="ch11.html"><div class="top"><span class="num">Chapter 11</span><span class="src">Unit 21-22</span></div><div class="sent" style="font-size:17px;line-height:1.5">핵심 정보의 구분</div></a>
+<a class="card" style="display:block;text-decoration:none;color:inherit" href="ch12.html"><div class="top"><span class="num">Chapter 12</span><span class="src">Unit 23-24</span></div><div class="sent" style="font-size:17px;line-height:1.5">이해를 돕는 정보의 활용</div></a>
+</div><script>try{var q=location.search;if(q)document.querySelectorAll("a[href^=ch]").forEach(function(a){a.href=a.getAttribute("href")+q})}catch(e){}</script></body></html>

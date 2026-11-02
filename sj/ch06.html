@@ -1,0 +1,314 @@
+<title>문장줄이기 Ch06</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f6f4ee; --card:#ffffff; --ink:#1c1f26; --mute:#6a6e78; --line:#e3dfd3;
+  --accent:#2b5aa8; --accent-soft:#e6edf8; --lt:#a3a7b0; --pencil:#4b505b;
+  --warn:#9a5b00; --warn-soft:#fbf0dc; --ok:#2d6a4f; --ok-soft:#e3f1ea;
+  --shadow:0 1px 0 rgba(0,0,0,.04),0 6px 20px rgba(30,30,40,.06);
+  --s-bg:#dbeafe;--s-fg:#1e40af;--v-bg:#dfe5ee;--v-fg:#1e293b;--o-bg:#dcfce7;--o-fg:#166534;--io-bg:#cffafe;--io-fg:#155e75;--do-bg:#ecfccb;--do-fg:#3f6212;--c-bg:#ffedd5;--c-fg:#9a3412;--oc-bg:#fef3c7;--oc-fg:#92400e;--x-bg:#e5e7eb;--x-fg:#374151;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14161b; --card:#1c1f26; --ink:#eceef2; --mute:#9aa0ab; --line:#2c303a;
+    --accent:#8fb2ec; --accent-soft:#232c3d; --lt:#626874; --pencil:#c3c8d2;
+    --warn:#e6b25c; --warn-soft:#2f2616; --ok:#7cc5a1; --ok-soft:#1b2b24;
+    --shadow:0 1px 0 rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+    --s-bg:#1e2f5c;--s-fg:#bfdbfe;--v-bg:#3a4658;--v-fg:#e2e8f0;--o-bg:#14392a;--o-fg:#bbf7d0;--io-bg:#0f3a44;--io-fg:#a5f3fc;--do-bg:#2d3a12;--do-fg:#d9f99d;--c-bg:#4a2410;--c-fg:#fed7aa;--oc-bg:#46330a;--oc-fg:#fde68a;--x-bg:#2f3340;--x-fg:#d1d5db;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14161b; --card:#1c1f26; --ink:#eceef2; --mute:#9aa0ab; --line:#2c303a;
+  --accent:#8fb2ec; --accent-soft:#232c3d; --lt:#626874; --pencil:#c3c8d2;
+  --warn:#e6b25c; --warn-soft:#2f2616; --ok:#7cc5a1; --ok-soft:#1b2b24;
+  --shadow:0 1px 0 rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+  --s-bg:#1e2f5c;--s-fg:#bfdbfe;--v-bg:#3a4658;--v-fg:#e2e8f0;--o-bg:#14392a;--o-fg:#bbf7d0;--io-bg:#0f3a44;--io-fg:#a5f3fc;--do-bg:#2d3a12;--do-fg:#d9f99d;--c-bg:#4a2410;--c-fg:#fed7aa;--oc-bg:#46330a;--oc-fg:#fde68a;--x-bg:#2f3340;--x-fg:#d1d5db;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Noto Sans KR",system-ui,sans-serif; font-size:16px; line-height:1.6;
+  padding-block:20px 150px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
+h1{font-size:22px;line-height:1.3;margin:2px 0 0;font-weight:700;text-wrap:balance}
+.demo-btn{flex:none;border:1px solid var(--line);background:var(--card);color:var(--mute);font:inherit;font-size:13px;padding:6px 10px;border-radius:8px;cursor:pointer}
+.tabs{display:flex;gap:2px;overflow-x:auto;border-bottom:1px solid var(--line)}
+.tab{border:0;background:none;color:var(--mute);font:inherit;font-size:15px;padding:10px 11px;white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);font-weight:700;border-bottom-color:var(--accent)}
+.tab .n{font-family:"IBM Plex Mono",monospace;font-size:12px;margin-left:6px;color:var(--accent)}
+.sec-label{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;margin-top:4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px;box-shadow:var(--shadow)}
+.card .top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:6px}
+.src{font-size:12px;color:var(--mute)}
+.sent{font-size:19px;line-height:1.85;word-break:keep-all}
+.w{cursor:pointer;border-radius:4px;padding:0 1px;-webkit-tap-highlight-color:transparent}
+.w.on{background:var(--accent-soft);box-shadow:0 0 0 2px var(--accent-soft)}
+.sol{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+.locked{font-size:13px;color:var(--mute);display:flex;align-items:center;gap:8px}
+.locked::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lt)}
+.reveal-btn{border:1px solid var(--accent);color:var(--accent);background:none;font:inherit;font-size:14px;padding:6px 14px;border-radius:999px;cursor:pointer}
+.core{color:var(--ink)} .lt{color:var(--lt)}
+.skel{font-size:17px;line-height:1.8;margin:4px 0 6px}
+.ko{font-size:15px;line-height:1.75;margin:4px 0}
+.w.bone{background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%);border-radius:2px}
+.ko mark{color:inherit;background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%);padding:0 3px;border-radius:2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.key b{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ok);margin-right:8px;letter-spacing:.06em}
+.hae{margin-top:6px;font-size:14px;color:var(--mute)}
+.easy{margin-top:10px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.easy b{display:block;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);letter-spacing:.06em;margin-bottom:6px;font-weight:500}
+.easy p{margin:0 0 4px;font-size:15px;line-height:1.7}
+.easy .form{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 9px;margin-right:4px;white-space:nowrap}
+.mir{margin:6px 0 10px;display:flex;flex-direction:column;gap:6px}
+.mrow{display:flex;flex-wrap:wrap;align-items:center;gap:4px 5px}
+.mlab{font-size:12px;color:var(--mute);width:44px;flex:none}
+.rc{display:inline-flex;flex-direction:column;align-items:center;line-height:1.15;border-radius:7px;padding:3px 8px 2px;font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500}
+.rc i{font-style:normal;font-family:"Noto Sans KR",sans-serif;font-size:10px;opacity:.85;margin-top:1px}
+.rc.s{background:var(--s-bg);color:var(--s-fg)}.rc.v{background:var(--v-bg);color:var(--v-fg)}.rc.o{background:var(--o-bg);color:var(--o-fg)}.rc.c{background:var(--c-bg);color:var(--c-fg)}.rc.io{background:var(--io-bg);color:var(--io-fg)}.rc.do{background:var(--do-bg);color:var(--do-fg)}.rc.oc{background:var(--oc-bg);color:var(--oc-fg)}.rc.x{background:var(--x-bg);color:var(--x-fg)}
+.rel{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);margin-left:2px}
+.cl{display:flex;flex-direction:column;gap:6px}
+.cl+.cl{margin-top:8px;padding-top:8px;border-top:1px dotted var(--line)}
+.easy .q{font-size:13px;color:var(--mute);margin-right:4px}
+.easy .en{font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:500}
+.easy .a{display:block;margin-top:2px}
+.easy p{margin-bottom:8px}
+.easy p.sum{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-weight:700}
+.empty{color:var(--mute);font-size:14px;padding:22px 4px}
+.wl{display:flex;flex-direction:column;gap:8px}
+.wl-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.wl-w{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:16px}
+.wl-c{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);align-self:center}
+.wl-m{grid-column:1/-1;font-size:14px;color:var(--pencil)}
+.wl-m.miss{color:var(--warn)}
+/* bottom pencil note */
+.note{position:fixed;left:0;right:0;bottom:0;z-index:20;
+  background:var(--card);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(20,20,30,.08);
+  padding:12px max(16px,env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  transform:translateY(110%);transition:transform .18s ease}
+.note.show{transform:none}
+.note-in{max-width:720px;margin:0 auto;display:flex;align-items:flex-start;gap:12px}
+.note-w{font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:500}
+.note-f{font-size:12px;color:var(--mute);margin-top:1px}
+.note-m{font-family:"Noto Sans KR",sans-serif;font-size:19px;font-weight:700;line-height:1.4;color:var(--fg);margin-top:3px}
+.note-m.miss{font-family:"Noto Sans KR",sans-serif;font-size:14px;color:var(--warn)}
+.note-b{font-size:14px;color:var(--mute);margin-top:3px}
+.wl-b{color:var(--mute);font-size:13px}
+.note-x{margin-left:auto;border:0;background:none;color:var(--mute);font-size:22px;line-height:1;cursor:pointer;padding:0 4px}
+/* demo drawer */
+.drawer{background:var(--card);border:1px dashed var(--mute);border-radius:12px;padding:14px 16px;display:none;flex-direction:column;gap:10px}
+.drawer.open{display:flex}
+.drawer h2{font-size:13px;margin:0;color:var(--mute);font-weight:500;letter-spacing:.04em}
+.sw{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:15px}
+.sw input{width:20px;height:20px;accent-color:var(--accent)}
+.miss-list{font-size:13px;color:var(--warn);background:var(--warn-soft);border-radius:8px;padding:8px 10px}
+.mini{border:1px solid var(--line);background:none;color:var(--mute);font:inherit;font-size:12px;padding:4px 10px;border-radius:8px;cursor:pointer;align-self:flex-start}
+
+.card{position:relative}
+.ctl{display:flex;gap:8px;margin-top:12px}
+.cb{flex:0 0 auto;border:1px solid var(--line);background:none;color:var(--mute);font:inherit;font-size:14px;padding:9px 16px;border-radius:10px;cursor:pointer;min-height:44px}
+.cb[disabled]{opacity:.35;cursor:default}
+.cb.main{flex:1;border-color:var(--accent);color:var(--accent);font-weight:700}
+.formbox{margin-top:8px;padding:8px 12px;border:1px solid var(--line);border-radius:10px}
+.formbox .form{display:inline-block;font-size:13px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 10px;margin-right:4px}
+.ink{position:absolute;left:0;top:0;width:100%;height:100%;border-radius:14px;pointer-events:none;touch-action:none;z-index:5}
+body.penon .ink{pointer-events:auto;cursor:crosshair}
+.pen{position:fixed;right:max(10px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.pen-tools{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.pen-tools[hidden]{display:none}
+.pb{border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-size:13px;padding:0 12px;min-height:44px;min-width:44px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow)}
+.pb.main.on,.pb.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pc{width:44px;height:44px;border-radius:50%;border:3px solid var(--card);background:var(--pc);box-shadow:0 0 0 1px var(--line);cursor:pointer}
+.pc.on{box-shadow:0 0 0 3px var(--fg)}
+.pre{margin:14px 0 10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);display:flex;flex-direction:column;gap:10px}
+.pre-h{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--mute)}
+.pre-t{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 10px}
+.pre-s{font-size:20px;line-height:1.5;margin-top:4px}
+.pre-s i{font-style:normal;color:var(--mute);border-bottom:1px dashed var(--mute)}
+.pre-s b{font-weight:500;background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%);padding:0 2px;border-radius:2px}
+.pre-k{font-size:15px;color:var(--mute)}
+.pre-n{font-size:14px;padding-top:8px;border-top:1px dashed var(--line)}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">문장 줄이기 &middot; Chapter 06 &middot; Unit 11-12</div>
+      <h1>주절에 배경을 더하는 부사절</h1>
+    </div>
+  </header>
+
+  <div class="pre">
+    <div class="pre-h">미리보기</div>
+    <div class="pre-r"><span class="pre-t">부사절 : 주절에 시간·이유·조건 같은 배경을 더하는 절</span>
+      <div class="pre-s"><b>I eat</b> <i>when I am hungry</i>.</div>
+      <div class="pre-k">나는 배고플 때 먹는다.</div></div>
+    <div class="pre-r"><span class="pre-t">이유·조건 부사절 : 뼈대와 함께 읽는 중요 정보</span>
+      <div class="pre-s"><b>We stay home</b> <i>because it rains</i>.</div>
+      <div class="pre-k">비가 오기 때문에 우리는 집에 있다.</div></div>
+    <div class="pre-r"><span class="pre-t">특이한 접속사 : 명사·분사 모양이지만 접속사처럼 쓰는 말</span>
+      <div class="pre-s"><b>He smiles</b> <i>every time he sees me</i>.</div>
+      <div class="pre-k">그는 나를 볼 때마다 웃는다.</div></div>
+    <div class="pre-r"><span class="pre-t">once : ~하자마자, 일단 ~하면</span>
+      <div class="pre-s"><i>Once you start</i>, <b>it is easy</b>.</div>
+      <div class="pre-k">일단 시작하면, 쉽다.</div></div>
+    <div class="pre-n">부사절을 //로 떼어 내도 주절 뼈대는 그대로 : we stay home</div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tabS" aria-selected="true" type="button">앞면</button>
+    <button class="tab" role="tab" id="tabB" aria-selected="false" type="button">뒷면</button>
+    <button class="tab" role="tab" id="tabR" aria-selected="false" type="button">Review</button>
+    <button class="tab" role="tab" id="tabW" aria-selected="false" type="button">찾아본 단어장<span class="n" id="wc">0</span></button>
+  </div>
+
+  <main id="main"></main>
+</div>
+
+<div class="pen" id="pen">
+  <div class="pen-tools" id="penTools" hidden>
+    <button type="button" class="pc on" data-c="#e5383b" style="--pc:#e5383b" aria-label="빨강"></button>
+    <button type="button" class="pc" data-c="#2f6fed" style="--pc:#2f6fed" aria-label="파랑"></button>
+    <button type="button" class="pc" data-c="#1f9d55" style="--pc:#1f9d55" aria-label="초록"></button>
+    <button type="button" class="pb" id="penErase">지우개</button>
+    <button type="button" class="pb" id="penClear">모두 지움</button>
+  </div>
+  <button type="button" class="pb main" id="penBtn">펜</button>
+</div>
+<div class="note" id="note" role="status" aria-live="polite">
+  <div class="note-in">
+    <div>
+      <div class="note-w" id="nw"></div>
+      <div class="note-f" id="nf"></div>
+      <div class="note-m" id="nm"></div>
+      <div class="note-b" id="nb"></div>
+    </div>
+    <button class="note-x" id="nx" type="button" aria-label="닫기">&times;</button>
+  </div>
+</div>
+
+<script>
+/* 통합 오답노트 연결 스크립트: 각 앱에서 WN.add([{w,m,src,how,ask}]) 로 단어를 보낸다.
+   how: 시험 / 터치 / 별표 / 문제 오답, ask: 선생님 질문 대상 여부(true/false) */
+(function(W){
+  if(W.WN)return;
+  if(/[?&]t=1(&|$)/.test(W.location.search)){W.TEACHER_MODE=true;W.WN={add:function(){return Promise.resolve(false)},hw:function(){return Promise.resolve(false)},gate:function(cb){cb()},flush:function(){return Promise.resolve(false)},name:function(){return'선생님'}};return}
+  var URL_=W.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',PIN='6900',QK='wn_q';
+  function ls(){try{return W.localStorage}catch(e){return null}}
+  function g(k){var l=ls();try{return l&&l.getItem(k)}catch(e){return null}}
+  function s(k,v){var l=ls();try{l&&l.setItem(k,v)}catch(e){}}
+  function name(){return(g('wn_name')||g('recm_name')||g('rec_name')||'').replace(/\s+/g,'')}
+  function q(){try{return JSON.parse(g(QK)||'[]')}catch(e){return[]}}
+  var busy=false,again=false;
+  function flush(){
+    var n=name(),Q=q();
+    if(busy){again=true;return Promise.resolve(false)}
+    if(!n||!Q.length)return Promise.resolve(false);
+    busy=true;
+    var batch=Q.slice(0),items=[];batch.forEach(function(b){items=items.concat(b)});
+    return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'add',name:n,pin:PIN,items:items}),keepalive:true})
+      .then(function(r){return r.json()}).then(function(r){
+        busy=false;if(!r||!r.ok){again=false;return false}
+        var cur=q();s(QK,JSON.stringify(cur.slice(batch.length)));if(again){again=false;flush()}return true;
+      },function(){busy=false;again=false;return false});
+  }
+  W.WN={add:function(items){
+    if(!items||!items.length)return Promise.resolve(false);
+    var Q=q();Q.push(items);s(QK,JSON.stringify(Q));return flush();
+  },flush:flush,name:name};
+  flush();
+})(window);
+
+const SENT=[{"id":"111","tag":"고3 모의응용","en":"Small struggles such as trying to remember a phone number can prepare you for future mental hardships, just as vaccinations protect you against illness."},{"id":"112","tag":"고2 모의응용","en":"The Earth’s rotation is slowing because lunar tidal friction acts as a brake, so that days are lengthening by about 1.7 milliseconds per century."},{"id":"113","tag":"고3 모의응용","en":"If you rely more on yourself to meet your personal needs in everyday life, you can gain greater control over your life and become more independent."}];
+const SENT2=[{"id":"114","tag":"고3 모의응용","en":"Although checking a wound for infection is necessary, it paradoxically interrupts the natural healing process each time the dressing is removed."},{"id":"115","tag":"고3 모의응용","en":"Animals have evolved various ways of staying healthy and restoring their health once they become ill or injured."},{"id":"116","tag":"고1 모의응용","en":"For many people today, staying connected with geographically distant relatives has become much easier now that digital means of communication like group chats enable immediate contact."}];
+const REV=[{"id":"117","tag":"고1 모의응용","en":"Whether it’s washing dishes or taking out the trash, chores in every household are an essential part of daily life."},{"id":"118","tag":"고3 모의응용","en":"Even just maintaining today’s crop yields often requires advances in technology, since pests and diseases continue to evolve and the chemical, physical, and social environment can change over the decades."},{"id":"119","tag":"고3 모의응용","en":"Retrieval that requires learners to recall information without cues leads to deeper and more lasting learning, provided that the retrieval attempt is ultimately successful."},{"id":"120","tag":"고1 모의","en":"Each of us needs people in our lives who encourage us so that we can feel confident in our capabilities and move forward toward our goals."},{"id":"121","tag":"고1 모의응용","en":"Assuming gene editing in humans proves to be safe and effective, it may be reasonable to correct disease-causing mutations at the earliest possible stage of life before they begin causing serious problems."},{"id":"122","tag":"고2 모의응용","en":"In a specialized economy, producing food that people do not need would be pointless unless there is a market in which people can exchange the surplus food for clothing, shelter, and so forth."},{"id":"123","tag":"고3 모의응용","en":"Just as evolution provides animals with enough built-in instincts to survive long enough to learn for themselves, it would be reasonable to provide an AI agent with some initial knowledge along with an ability to learn."},{"id":"124","tag":"고3 모의응용","en":"Describing science as a winner-take-all contest is somewhat inaccurate, given that many important discoveries often gain value through replication and verification by other researchers."},{"id":"125","tag":"고3 모의응용","en":"Experts are less likely to experience difficulty when they perform complex tasks or combine multiple tasks, as their skills have become highly automated through extensive practice."},{"id":"126","tag":"고1 모의응용","en":"The entire fashion industry is built to convince people that fashion matters, so consumers feel they must purchase new clothing, even though the old clothing is still perfectly functional."}];
+const DICT={"small":{"c":"작은","b":"small","m":"작은"},"struggles":{"c":"힘든 일(들)","b":"struggle","m":"힘든 일, 투쟁; 애쓰다","f":"명사 struggle의 복수형"},"such":{"c":"(such as 와 함께 '~와 같은')","b":"such","m":"그러한, 그런"},"as":{"c":"~처럼; ~로서","b":"as","m":"~처럼; ~로서; ~때문에"},"trying":{"c":"~하려고 하는 것","b":"try","m":"노력하다, 시도하다","f":"동사 try의 -ing형(동명사)"},"to":{"c":"~하기 위해; ~에","b":"to","m":"~에, ~으로; (to+동사원형) ~하는 것, ~하기 위해"},"remember":{"c":"기억해 내다","b":"remember","m":"기억하다, 기억해 내다"},"a":{"c":"하나의 (보통 해석하지 않음)","b":"a","m":"하나의, 어떤"},"phone":{"c":"전화","b":"phone","m":"전화(기)"},"number":{"c":"번호","b":"number","m":"번호; 수, 숫자"},"can":{"c":"~할 수 있다","b":"can","m":"~할 수 있다"},"prepare":{"c":"대비시키다","b":"prepare","m":"준비하다, 대비시키다"},"you":{"c":"여러분, 당신","b":"you","m":"너, 당신, 여러분"},"for":{"c":"~에 (대비해)","b":"for","m":"~을 위해; ~에 대비해; ~ 대신"},"future":{"c":"미래의","b":"future","m":"미래(의)"},"mental":{"c":"정신적인","b":"mental","m":"정신의, 정신적인"},"hardships":{"c":"어려움(들)","b":"hardship","m":"어려움, 고난","f":"명사 hardship의 복수형"},"just":{"c":"꼭, 단지","b":"just","m":"꼭, 바로; 단지"},"vaccinations":{"c":"예방 접종(들)","b":"vaccination","m":"예방 접종","f":"명사 vaccination의 복수형"},"protect":{"c":"보호하다","b":"protect","m":"보호하다"},"against":{"c":"~으로부터","b":"against","m":"~에 맞서; ~으로부터 (보호)"},"illness":{"c":"질병","b":"illness","m":"질병, 병; 불쾌함 (cf. ill 아픈, 병든; 나쁜, 유해한)"},"the":{"c":"그","b":"the","m":"그 (특정한 것을 가리킴)"},"earth’s":{"c":"지구의","b":"earth","m":"지구; 땅","f":"명사 Earth에 's가 붙은 소유격"},"rotation":{"c":"자전","b":"rotation","m":"(지구, 천체의) 자전; 회전; 순환"},"is":{"c":"~이다; (진행형·수동태를 만듦)","b":"be","m":"~이다, 있다","f":"동사 be의 3인칭 단수 현재형"},"slowing":{"c":"느려지고 있는","b":"slow","m":"느려지다; 느린","f":"동사 slow의 -ing형(현재분사, 진행형)"},"because":{"c":"~때문에","b":"because","m":"~때문에"},"lunar":{"c":"달의 (작용에 의한)","b":"lunar","m":"달의 (작용에 의한)"},"tidal":{"c":"조석의 (tidal friction 조석 마찰)","b":"tidal","m":"조수의, 조석의"},"friction":{"c":"마찰","b":"friction","m":"마찰; 불화"},"acts":{"c":"작용한다","b":"act","m":"작용하다, 행동하다","f":"동사 act의 3인칭 단수 현재형"},"brake":{"c":"제동 장치","b":"brake","m":"브레이크, 제동 장치"},"so":{"c":"(so that 과 함께 '그 결과')","b":"so","m":"그래서; 그렇게, 매우"},"that":{"c":"(접속사) ~라는 것; (관계사) ~하는","b":"that","m":"저것, 그것; ~라는 것"},"days":{"c":"하루(들), 날(들)","b":"day","m":"하루, 날","f":"명사 day의 복수형"},"are":{"c":"~이다; (진행형을 만듦)","b":"be","m":"~이다, 있다","f":"동사 be의 복수 주어 현재형"},"lengthening":{"c":"길어지고 있는","b":"lengthen","m":"길어지다, 늘어나다 (↔ shorten 짧게 하다)","f":"동사 lengthen의 -ing형(현재분사, 진행형)"},"by":{"c":"~씩, ~만큼","b":"by","m":"~에 의해; ~만큼; ~옆에"},"about":{"c":"약","b":"about","m":"약, 대략; ~에 대하여"},"milliseconds":{"c":"밀리초(들)","b":"millisecond","m":"밀리초 (1,000분의 1초)","f":"명사 millisecond의 복수형"},"per":{"c":"~당","b":"per","m":"~당, ~마다"},"century":{"c":"세기","b":"century","m":"세기, 100년"},"if":{"c":"만약 ~라면","b":"if","m":"만약 ~라면"},"rely":{"c":"의지하다 (rely on 과 함께 '~에 의지하다')","b":"rely","m":"의지하다 (rely on ~에 의지하다; ~을 믿다)"},"more":{"c":"더","b":"much","m":"많이","f":"부사 much의 비교급"},"on":{"c":"(rely on 과 함께) ~에","b":"on","m":"~위에; ~에 관하여"},"yourself":{"c":"당신 자신","b":"yourself","m":"너 자신, 당신 자신","f":"대명사 you의 재귀대명사"},"meet":{"c":"충족시키다","b":"meet","m":"만나다; (필요를) 충족시키다"},"your":{"c":"당신의","b":"you","m":"너, 당신","f":"대명사 you의 소유격 your"},"personal":{"c":"개인적인","b":"personal","m":"개인의, 개인적인"},"needs":{"c":"필요(들)","b":"need","m":"필요; 필요로 하다","f":"명사 need의 복수형"},"in":{"c":"~에서","b":"in","m":"~안에, ~에서"},"everyday":{"c":"일상의","b":"everyday","m":"일상의, 매일의"},"life":{"c":"생활, 삶","b":"life","m":"삶, 생활; 생명"},"gain":{"c":"얻다","b":"gain","m":"얻다; 이득"},"greater":{"c":"더 큰","b":"great","m":"큰; 위대한; 훌륭한","f":"형용사 great의 비교급"},"control":{"c":"통제력","b":"control","m":"통제(력); 통제하다"},"over":{"c":"~에 대한","b":"over","m":"~위에; ~에 대한; ~에 걸쳐"},"and":{"c":"그리고","b":"and","m":"그리고"},"become":{"c":"~이 되다","b":"become","m":"~이 되다"},"independent":{"c":"독립적인","b":"independent","m":"독립적인 (↔ dependent 의존적인)"},"although":{"c":"~이지만","b":"although","m":"비록 ~이지만"},"checking":{"c":"확인하는 것","b":"check","m":"확인하다, 점검하다","f":"동사 check의 -ing형(동명사)"},"wound":{"c":"상처","b":"wound","m":"상처, 부상; 상처를 입히다"},"infection":{"c":"감염","b":"infection","m":"감염; 전염병"},"necessary":{"c":"필수적인","b":"necessary","m":"필요한, 필수적인"},"it":{"c":"그것","b":"it","m":"그것"},"paradoxically":{"c":"역설적으로","b":"paradoxically","m":"역설적으로"},"interrupts":{"c":"방해한다","b":"interrupt","m":"방해하다, 가로막다","f":"동사 interrupt의 3인칭 단수 현재형"},"natural":{"c":"자연적인","b":"natural","m":"자연의, 자연적인"},"healing":{"c":"치유","b":"healing","m":"치유, 치료","f":"동사 heal(치유되다)에 -ing가 붙은 명사형"},"process":{"c":"과정","b":"process","m":"과정; 처리하다"},"each":{"c":"~마다 (each time 과 함께 '~할 때마다'); 각자","b":"each","m":"각각의; 각자"},"time":{"c":"(each time 과 함께 '~할 때마다')","b":"time","m":"시간; 때; 횟수"},"dressing":{"c":"붕대","b":"dressing","m":"붕대; 옷 입기"},"removed":{"c":"제거되는","b":"remove","m":"제거하다, 없애다","f":"동사 remove의 과거분사(수동태 is removed)"},"animals":{"c":"동물들","b":"animal","m":"동물","f":"명사 animal의 복수형"},"have":{"c":"(have+과거분사로 현재완료를 만듦)","b":"have","m":"가지다; (have+과거분사) ~해 왔다"},"evolved":{"c":"발달시켜 왔다","b":"evolve","m":"진화하다; 발달시키다","f":"동사 evolve의 과거분사(현재완료 have evolved)"},"various":{"c":"다양한","b":"various","m":"다양한, 여러 가지의"},"ways":{"c":"방법들","b":"way","m":"방법; 길","f":"명사 way의 복수형"},"of":{"c":"~하는, ~의","b":"of","m":"~의"},"staying":{"c":"유지하는 것","b":"stay","m":"머무르다; (어떤 상태를) 유지하다","f":"동사 stay의 -ing형(동명사)"},"healthy":{"c":"건강한","b":"healthy","m":"건강한"},"restoring":{"c":"회복하는 것","b":"restore","m":"회복시키다; 되찾게 하다","f":"동사 restore의 -ing형(동명사)"},"their":{"c":"그들의, 그것들의","b":"they","m":"그들, 그것들","f":"대명사 they의 소유격 their"},"health":{"c":"건강","b":"health","m":"건강"},"once":{"c":"~하면, 일단 ~하면","b":"once","m":"~하자마자, 일단 ~하면; 한 번"},"they":{"c":"그들, 그것들","b":"they","m":"그들, 그것들"},"ill":{"c":"아픈","b":"ill","m":"아픈, 병든; 나쁜, 유해한"},"or":{"c":"또는","b":"or","m":"또는"},"injured":{"c":"다친","b":"injure","m":"부상을 입다[입히다]","f":"동사 injure의 과거분사(형용사처럼 쓰임)"},"many":{"c":"많은","b":"many","m":"많은"},"people":{"c":"사람들","b":"people","m":"사람들"},"today":{"c":"오늘날","b":"today","m":"오늘; 오늘날"},"connected":{"c":"연결된, 연락하는 (staying connected 연락을 유지하는 것)","b":"connect","m":"연결하다","f":"동사 connect의 과거분사(형용사처럼 쓰임)"},"with":{"c":"~와","b":"with","m":"~와 함께; ~을 가지고"},"geographically":{"c":"지리적으로","b":"geographically","m":"지리적으로"},"distant":{"c":"멀리 떨어져 있는","b":"distant","m":"먼, 멀리 떨어져 있는"},"relatives":{"c":"친척들","b":"relative","m":"친척; 비교적인; 관련된","f":"명사 relative의 복수형"},"has":{"c":"(has+과거분사로 현재완료를 만듦)","b":"have","m":"가지다; (have+과거분사) ~해 왔다","f":"동사 have의 3인칭 단수 현재형"},"much":{"c":"훨씬","b":"much","m":"많은; (비교급 앞) 훨씬"},"easier":{"c":"더 쉬운","b":"easy","m":"쉬운","f":"형용사 easy의 비교급"},"now":{"c":"(now that 과 함께 '이제 ~이므로')","b":"now","m":"지금, 이제"},"digital":{"c":"디지털의","b":"digital","m":"디지털의"},"means":{"c":"수단","b":"means","m":"수단; 방법; 재력"},"communication":{"c":"소통","b":"communication","m":"의사소통, 통신"},"like":{"c":"~와 같은","b":"like","m":"~와 같은; 좋아하다"},"group":{"c":"단체의, 그룹","b":"group","m":"무리, 집단, 그룹"},"chats":{"c":"대화방(들)","b":"chat","m":"채팅, 대화; 대화하다","f":"명사 chat의 복수형"},"enable":{"c":"가능하게 하다","b":"enable","m":"가능하게 하다"},"immediate":{"c":"즉각적인","b":"immediate","m":"즉각적인; 당면한; 아주 가까이에 있는"},"contact":{"c":"연락","b":"contact","m":"연락; 접촉; 연락하다"},"whether":{"c":"~이든 (whether A or B: A든 B든)","b":"whether","m":"~인지 (아닌지); ~이든"},"it’s":{"c":"그것이 ~이다","b":"it is","m":"그것은 ~이다","f":"it is의 줄임말"},"washing":{"c":"씻는 것 (washing dishes 설거지)","b":"wash","m":"씻다","f":"동사 wash의 -ing형(동명사)"},"dishes":{"c":"접시들, 설거지거리","b":"dish","m":"접시; 요리","f":"명사 dish의 복수형"},"taking":{"c":"가지고 나가는 것 (taking out 과 함께 '내놓기')","b":"take","m":"가져가다, 취하다","f":"동사 take의 -ing형(동명사)"},"out":{"c":"밖으로 (take out 과 함께 '내놓다')","b":"out","m":"밖으로"},"trash":{"c":"쓰레기","b":"trash","m":"쓰레기"},"chores":{"c":"집안일들","b":"chore","m":"집안일; 하기 싫은 일","f":"명사 chore의 복수형"},"every":{"c":"모든","b":"every","m":"모든, ~마다"},"household":{"c":"가정","b":"household","m":"가정, 가족; 가정의"},"an":{"c":"하나의 (보통 해석하지 않음)","b":"an","m":"하나의, 어떤 (모음 소리 앞의 a)"},"essential":{"c":"필수적인","b":"essential","m":"필수적인; 본질적인; 필수적인 것"},"part":{"c":"일부분","b":"part","m":"부분, 일부"},"daily":{"c":"일상의","b":"daily","m":"매일의, 일상의"},"even":{"c":"~조차도","b":"even","m":"~조차, ~도; 훨씬"},"maintaining":{"c":"유지하는 것","b":"maintain","m":"유지하다; 주장하다","f":"동사 maintain의 -ing형(동명사)"},"today’s":{"c":"오늘날의","b":"today","m":"오늘; 오늘날","f":"명사 today에 's가 붙은 소유격"},"crop":{"c":"(농)작물","b":"crop","m":"(농)작물; 수확량"},"yields":{"c":"수확량(들)","b":"yield","m":"수확[산출]량; 산출[생산]하다","f":"명사 yield의 복수형"},"often":{"c":"흔히, 자주","b":"often","m":"자주, 흔히"},"requires":{"c":"필요로 한다, 요구한다","b":"require","m":"필요로 하다, 요구하다","f":"동사 require의 3인칭 단수 현재형"},"advances":{"c":"발전(들)","b":"advance","m":"발전, 진보; 나아가다","f":"명사 advance의 복수형"},"technology":{"c":"기술","b":"technology","m":"(과학) 기술"},"since":{"c":"~때문에","b":"since","m":"~때문에; ~이후로"},"pests":{"c":"해충들","b":"pest","m":"해충, 유해 동물","f":"명사 pest의 복수형"},"diseases":{"c":"질병들","b":"disease","m":"질병, 병","f":"명사 disease의 복수형"},"continue":{"c":"계속하다","b":"continue","m":"계속하다"},"evolve":{"c":"진화하다","b":"evolve","m":"진화하다; 발달시키다"},"chemical":{"c":"화학적인","b":"chemical","m":"화학의, 화학적인; 화학 물질"},"physical":{"c":"물리적인","b":"physical","m":"물리적인; 신체의"},"social":{"c":"사회적인","b":"social","m":"사회의, 사회적인"},"environment":{"c":"환경","b":"environment","m":"환경"},"change":{"c":"변하다","b":"change","m":"변하다, 바꾸다; 변화"},"decades":{"c":"수십 년","b":"decade","m":"10년","f":"명사 decade의 복수형"},"retrieval":{"c":"기억 불러오기","b":"retrieval","m":"(기억) 불러오기, 회수"},"learners":{"c":"학습자들","b":"learner","m":"학습자","f":"명사 learner의 복수형"},"recall":{"c":"기억해 내다","b":"recall","m":"기억해 내다, 상기하다; (하자가 있는 제품을) 회수하다"},"information":{"c":"정보","b":"information","m":"정보"},"without":{"c":"~없이","b":"without","m":"~없이"},"cues":{"c":"단서(들)","b":"cue","m":"단서, 신호","f":"명사 cue의 복수형"},"leads":{"c":"이어진다 (leads to 와 함께 '~로 이어지다')","b":"lead","m":"이끌다; (lead to) ~로 이어지다","f":"동사 lead의 3인칭 단수 현재형"},"deeper":{"c":"더 깊은","b":"deep","m":"깊은","f":"형용사 deep의 비교급"},"lasting":{"c":"지속되는","b":"lasting","m":"지속되는, 오래가는","f":"동사 last(지속되다)에 -ing가 붙어 형용사로 쓰임"},"learning":{"c":"학습","b":"learning","m":"학습, 배움","f":"동사 learn에 -ing가 붙은 명사형"},"provided":{"c":"(provided that 과 함께 '~하기만 하면')","b":"provide","m":"제공하다","f":"동사 provide의 과거분사형이 접속사로 쓰임"},"attempt":{"c":"시도","b":"attempt","m":"시도; 시도하다"},"ultimately":{"c":"궁극적으로","b":"ultimately","m":"궁극적으로, 결국"},"successful":{"c":"성공적인","b":"successful","m":"성공적인"},"us":{"c":"우리","b":"we","m":"우리","f":"대명사 we의 목적격 us"},"our":{"c":"우리의","b":"we","m":"우리","f":"대명사 we의 소유격 our"},"lives":{"c":"삶(들)","b":"life","m":"삶, 생활; 생명","f":"명사 life의 복수형 (f를 v로 바꾸고 -es)"},"who":{"c":"(관계사) ~하는","b":"who","m":"누구; (관계대명사) ~하는"},"encourage":{"c":"격려하다","b":"encourage","m":"격려하다, 장려하다"},"we":{"c":"우리","b":"we","m":"우리"},"feel":{"c":"느끼다","b":"feel","m":"느끼다"},"confident":{"c":"자신감 있는","b":"confident","m":"자신감 있는, 확신하는"},"capabilities":{"c":"능력(들)","b":"capability","m":"능력, 역량","f":"명사 capability의 복수형"},"move":{"c":"나아가다","b":"move","m":"움직이다, 나아가다"},"forward":{"c":"앞으로","b":"forward","m":"앞으로"},"toward":{"c":"~을 향해","b":"toward","m":"~을 향해"},"goals":{"c":"목표들","b":"goal","m":"목표","f":"명사 goal의 복수형"},"assuming":{"c":"(~라고) 가정하면","b":"assume","m":"가정하다; 추정하다","f":"동사 assume의 -ing형이 접속사처럼 쓰임"},"gene":{"c":"유전자","b":"gene","m":"유전자"},"editing":{"c":"편집","b":"edit","m":"편집하다; 수정하다","f":"동사 edit의 -ing형(동명사)"},"humans":{"c":"인간들","b":"human","m":"인간; 인간의","f":"명사 human의 복수형"},"proves":{"c":"~임이 드러나다, 입증되다","b":"prove","m":"입증[증명]하다; ~임이 드러나다","f":"동사 prove의 3인칭 단수 현재형"},"be":{"c":"~이다","b":"be","m":"~이다, 있다"},"safe":{"c":"안전한","b":"safe","m":"안전한"},"effective":{"c":"효과적인","b":"effective","m":"효과적인"},"may":{"c":"~일 수도 있다","b":"may","m":"~일 수도 있다; ~해도 된다"},"reasonable":{"c":"합리적인","b":"reasonable","m":"타당한, 합리적인"},"correct":{"c":"바로잡다","b":"correct","m":"바로잡다, 정정하다; 정확한; 적절한"},"disease-causing":{"c":"질병을 일으키는","b":"disease-causing","m":"질병을 일으키는 (disease 질병 + causing 일으키는)"},"mutations":{"c":"돌연변이(들)","b":"mutation","m":"돌연변이; 변화","f":"명사 mutation의 복수형"},"at":{"c":"~에서","b":"at","m":"~에서, ~에"},"earliest":{"c":"가장 이른","b":"early","m":"이른","f":"형용사 early의 최상급"},"possible":{"c":"가능한","b":"possible","m":"가능한"},"stage":{"c":"단계","b":"stage","m":"단계; 무대"},"before":{"c":"~하기 전에","b":"before","m":"~전에"},"begin":{"c":"시작하다","b":"begin","m":"시작하다"},"causing":{"c":"일으키는 것","b":"cause","m":"일으키다, 야기하다; 원인","f":"동사 cause의 -ing형(동명사)"},"serious":{"c":"심각한","b":"serious","m":"심각한; 진지한"},"problems":{"c":"문제들","b":"problem","m":"문제","f":"명사 problem의 복수형"},"specialized":{"c":"전문화된","b":"specialize","m":"전문화하다","f":"동사 specialize의 과거분사(형용사처럼 쓰임)"},"economy":{"c":"경제","b":"economy","m":"경제"},"producing":{"c":"생산하는 것","b":"produce","m":"생산하다","f":"동사 produce의 -ing형(동명사)"},"food":{"c":"식량","b":"food","m":"음식, 식량"},"do":{"c":"(not과 함께 부정문을 만듦)","b":"do","m":"하다; (조동사) 의문문·부정문을 만듦"},"not":{"c":"~않다","b":"not","m":"~않다, ~아니다"},"need":{"c":"필요로 하다","b":"need","m":"필요로 하다; 필요"},"would":{"c":"~일 것이다","b":"will","m":"~할 것이다","f":"조동사 will의 과거형(가정·추측)"},"pointless":{"c":"무의미한","b":"pointless","m":"무의미한"},"unless":{"c":"~하지 않는다면","b":"unless","m":"~하지 않는다면, ~이 아니라면"},"there":{"c":"(there is 와 함께 '~이 있다')","b":"there","m":"거기에; (there is) ~이 있다"},"market":{"c":"시장","b":"market","m":"시장"},"which":{"c":"(관계사, in which) 그곳에서","b":"which","m":"어느 것; (관계대명사) ~하는"},"exchange":{"c":"교환하다","b":"exchange","m":"교환하다; 교환"},"surplus":{"c":"잉여의","b":"surplus","m":"잉여(의), 과잉(의)"},"clothing":{"c":"의복, 옷","b":"clothing","m":"옷, 의복"},"shelter":{"c":"주거지","b":"shelter","m":"주거(지); 대피(처)"},"forth":{"c":"(and so forth 와 함께 '기타 등등')","b":"forth","m":"앞으로; (and so forth) 기타 등등"},"evolution":{"c":"진화","b":"evolution","m":"진화; 발전"},"provides":{"c":"제공한다","b":"provide","m":"제공하다","f":"동사 provide의 3인칭 단수 현재형"},"enough":{"c":"충분한; 충분히","b":"enough","m":"충분한; 충분히"},"built-in":{"c":"내재된","b":"built-in","m":"내재된, 타고난"},"instincts":{"c":"본능(들)","b":"instinct","m":"본능; 타고난 소질","f":"명사 instinct의 복수형"},"survive":{"c":"생존하다","b":"survive","m":"생존하다, 살아남다"},"long":{"c":"오래","b":"long","m":"긴; 오래"},"learn":{"c":"학습하다","b":"learn","m":"배우다, 학습하다"},"themselves":{"c":"그들 자신 (for themselves 스스로)","b":"themselves","m":"그들 자신","f":"대명사 they의 재귀대명사"},"provide":{"c":"제공하다","b":"provide","m":"제공하다"},"ai":{"c":"인공 지능 (AI)","b":"AI","m":"인공 지능 (artificial intelligence)"},"agent":{"c":"에이전트","b":"agent","m":"대리인; 행위자; (AI) 에이전트"},"some":{"c":"약간의","b":"some","m":"약간의, 몇몇의"},"initial":{"c":"초기의","b":"initial","m":"처음의, 초기의"},"knowledge":{"c":"지식","b":"knowledge","m":"지식"},"along":{"c":"(along with 와 함께 '~와 함께')","b":"along","m":"~을 따라; (along with) ~와 함께"},"ability":{"c":"능력","b":"ability","m":"능력"},"describing":{"c":"묘사하는 것","b":"describe","m":"묘사하다, 설명하다","f":"동사 describe의 -ing형(동명사)"},"science":{"c":"과학","b":"science","m":"과학"},"winner-take-all":{"c":"승자독식의","b":"winner-take-all","m":"승자독식의 (winner 승자 + take all 모두 가져가다)"},"contest":{"c":"경쟁","b":"contest","m":"경쟁, 대회"},"somewhat":{"c":"다소","b":"somewhat","m":"다소, 어느 정도, 약간"},"inaccurate":{"c":"부정확한","b":"inaccurate","m":"부정확한 (↔ accurate 정확한)"},"given":{"c":"(given that 과 함께 '~을 고려하면')","b":"give","m":"주다","f":"동사 give의 과거분사형이 접속사처럼 쓰임"},"important":{"c":"중요한","b":"important","m":"중요한"},"discoveries":{"c":"발견들","b":"discovery","m":"발견","f":"명사 discovery의 복수형 (y를 i로 바꾸고 -es)"},"value":{"c":"가치","b":"value","m":"가치; 소중하게 여기다"},"through":{"c":"~을 통해","b":"through","m":"~을 통해; ~사이로"},"replication":{"c":"반복 실험","b":"replication","m":"(일정 조건의) 반복 실험; 사본; 응답"},"verification":{"c":"검증","b":"verification","m":"검증, 입증; 확인, 조회"},"other":{"c":"다른","b":"other","m":"다른"},"researchers":{"c":"연구자들","b":"researcher","m":"연구자","f":"명사 researcher의 복수형"},"experts":{"c":"전문가들","b":"expert","m":"전문가","f":"명사 expert의 복수형"},"less":{"c":"덜","b":"little","m":"적게, 조금","f":"부사 little의 비교급"},"likely":{"c":"~할 가능성이 있는","b":"likely","m":"~할 것 같은, ~할 가능성이 있는"},"experience":{"c":"겪다","b":"experience","m":"경험하다, 겪다; 경험"},"difficulty":{"c":"어려움","b":"difficulty","m":"어려움, 곤란"},"when":{"c":"~할 때","b":"when","m":"~할 때; 언제"},"perform":{"c":"수행하다","b":"perform","m":"수행하다; 공연하다"},"complex":{"c":"복잡한","b":"complex","m":"복잡한"},"tasks":{"c":"과업들","b":"task","m":"과업, 일","f":"명사 task의 복수형"},"combine":{"c":"병행하다","b":"combine","m":"(여러 일을) 병행하다; 결합하다[되다]"},"multiple":{"c":"다수의","b":"multiple","m":"다수의, 많은"},"skills":{"c":"기술들","b":"skill","m":"기술","f":"명사 skill의 복수형"},"highly":{"c":"고도로","b":"highly","m":"고도로, 매우","f":"형용사 high에 -ly가 붙은 부사"},"automated":{"c":"자동화된","b":"automate","m":"자동화하다","f":"동사 automate의 과거분사(형용사처럼 쓰임)"},"extensive":{"c":"광범위한","b":"extensive","m":"광범위한, 대규모의"},"practice":{"c":"연습","b":"practice","m":"연습; 연습하다"},"entire":{"c":"전체적인","b":"entire","m":"전체의, 전체적인"},"fashion":{"c":"패션","b":"fashion","m":"패션, 유행"},"industry":{"c":"산업","b":"industry","m":"산업"},"built":{"c":"만들어진","b":"build","m":"짓다, 만들다","f":"동사 build의 과거분사(수동태 is built)"},"convince":{"c":"설득하다","b":"convince","m":"설득하다; 확신시키다, 납득시키다"},"matters":{"c":"중요하다","b":"matter","m":"중요하다, 문제되다; 문제, 사안","f":"동사 matter의 3인칭 단수 현재형"},"consumers":{"c":"소비자들","b":"consumer","m":"소비자","f":"명사 consumer의 복수형"},"must":{"c":"반드시 ~해야 한다","b":"must","m":"~해야 한다"},"purchase":{"c":"구매하다","b":"purchase","m":"구매하다; 구매"},"new":{"c":"새로운","b":"new","m":"새로운"},"though":{"c":"(even though 와 함께 '~인데도 불구하고')","b":"though","m":"비록 ~이지만"},"old":{"c":"오래된","b":"old","m":"오래된; 늙은"},"still":{"c":"여전히","b":"still","m":"여전히, 아직도"},"perfectly":{"c":"완벽하게","b":"perfectly","m":"완벽하게","f":"형용사 perfect에 -ly가 붙은 부사"},"functional":{"c":"기능하는","b":"functional","m":"기능하는; 실용적인"},"i":{"c":"나","b":"I","m":"나"},"eat":{"c":"먹다","b":"eat","m":"먹다"},"am":{"c":"~이다","b":"be","m":"~이다, 있다","f":"동사 be의 1인칭 단수(I) 현재형"},"hungry":{"c":"배고픈","b":"hungry","m":"배고픈"},"stay":{"c":"머무르다","b":"stay","m":"머무르다; 유지하다"},"home":{"c":"집에","b":"home","m":"집; 집에"},"rains":{"c":"비가 오다","b":"rain","m":"비가 오다; 비","f":"동사 rain의 3인칭 단수 현재형"},"he":{"c":"그","b":"he","m":"그 (남자)"},"smiles":{"c":"웃는다","b":"smile","m":"미소 짓다, 웃다","f":"동사 smile의 3인칭 단수 현재형"},"sees":{"c":"본다","b":"see","m":"보다","f":"동사 see의 3인칭 단수 현재형"},"me":{"c":"나를","b":"I","m":"나","f":"대명사 I의 목적격 me"},"start":{"c":"시작하다","b":"start","m":"시작하다"},"easy":{"c":"쉬운","b":"easy","m":"쉬운"}};
+const REFS={"1":{"k":"1형식","t":[["I","s"],["sleep","v"]],"rel":""},"2":{"k":"2형식","t":[["I","s"],["am","v"],["happy","c"]],"rel":"I = happy"},"3":{"k":"3형식","t":[["I","s"],["like","v"],["apples","o"]],"rel":"I ≠ apples"},"4":{"k":"4형식","t":[["I","s"],["give","v"],["him","io"],["a book","do"]],"rel":"him ≠ a book"},"5":{"k":"5형식","t":[["I","s"],["make","v"],["him","o"],["happy","oc"]],"rel":"him = happy"}};
+const RNAME={"s":"주어","v":"동사","o":"목적어","c":"보어","io":"간접목적어","do":"직접목적어","oc":"목적격보어","x":"덧붙는 말"};
+const ST={"111":[[3,[["struggles","s"],["can prepare","v"],["you","o"],["for hardships","x"]],"struggles ≠ you"],[3,[["vaccinations","s"],["protect","v"],["you","o"],["against illness","x"]],"vaccinations ≠ you"]],"112":[[1,[["The Earth’s rotation","s"],["is slowing","v"]],""],[1,[["tidal friction","s"],["acts","v"],["as a brake","x"]],""],[1,[["days","s"],["are lengthening","v"],["by about 1.7 milliseconds per century","x"]],""]],"113":[[1,[["you","s"],["rely","v"],["on yourself","x"],["to meet your needs","x"]],""],[3,[["you","s"],["can gain","v"],["control","o"]],"you ≠ control"],[2,[["you","s"],["become","v"],["more independent","c"]],"you = independent"]],"114":[[2,[["checking a wound for infection","s"],["is","v"],["necessary","c"]],"checking = necessary"],[3,[["it","s"],["interrupts","v"],["the healing process","o"]],"it ≠ process"],[1,[["the dressing","s"],["is removed","v"]],""]],"115":[[3,[["Animals","s"],["have evolved","v"],["ways of staying healthy and restoring their health","o"]],"Animals ≠ ways"],[2,[["they","s"],["become","v"],["ill or injured","c"]],"they = ill or injured"]],"116":[[2,[["staying connected with relatives","s"],["has become","v"],["much easier","c"]],"staying connected = easier"],[3,[["means of communication","s"],["enable","v"],["contact","o"]],"means ≠ contact"]],"117":[[2,[["chores","s"],["are","v"],["part of daily life","c"]],"chores = part"]],"118":[[3,[["maintaining today’s crop yields","s"],["requires","v"],["advances in technology","o"]],"maintaining ≠ advances"],[3,[["pests and diseases","s"],["continue","v"],["to evolve","o"]],"pests and diseases ≠ to evolve"],[1,[["the environment","s"],["can change","v"],["over the decades","x"]],""]],"119":[[1,[["Retrieval","s"],["leads","v"],["to learning","x"]],""],[5,[["that","s"],["requires","v"],["learners","o"],["to recall information","oc"]],"learners = to recall"],[2,[["the retrieval attempt","s"],["is","v"],["successful","c"]],"attempt = successful"]],"120":[[3,[["Each of us","s"],["needs","v"],["people","o"]],"Each ≠ people"],[3,[["who","s"],["encourage","v"],["us","o"]],"who ≠ us"],[2,[["we","s"],["can feel","v"],["confident","c"]],"we = confident"],[1,[["we","s"],["move","v"],["forward","x"],["toward our goals","x"]],""]],"121":[[2,[["gene editing","s"],["proves","v"],["to be safe and effective","c"]],"gene editing = safe and effective"],[2,[["it (= to correct mutations)","s"],["may be","v"],["reasonable","c"]],"it = reasonable"],[3,[["they","s"],["begin","v"],["causing problems","o"]],"they ≠ causing problems"]],"122":[[2,[["producing food that people do not need","s"],["would be","v"],["pointless","c"]],"producing = pointless"],[3,[["people","s"],["do not need","v"],["that","o"]],"people ≠ that"],[1,[["there","x"],["is","v"],["a market","s"]],""],[3,[["people","s"],["can exchange","v"],["the food","o"],["for clothing, shelter, and so forth","x"]],"people ≠ food"]],"123":[[3,[["evolution","s"],["provides","v"],["animals","o"],["with instincts","x"]],"evolution ≠ animals"],[2,[["it (= to provide an AI agent with knowledge)","s"],["would be","v"],["reasonable","c"]],"it = reasonable"]],"124":[[2,[["Describing science as a contest","s"],["is","v"],["somewhat inaccurate","c"]],"Describing = inaccurate"],[3,[["discoveries","s"],["gain","v"],["value","o"],["through replication and verification","x"]],"discoveries ≠ value"]],"125":[[2,[["Experts","s"],["are","v"],["less likely to experience difficulty","c"]],"Experts = likely"],[3,[["they","s"],["perform","v"],["tasks","o"]],"they ≠ tasks"],[3,[["they","s"],["combine","v"],["tasks","o"]],"they ≠ tasks"],[2,[["their skills","s"],["have become","v"],["highly automated","c"]],"skills = automated"]],"126":[[1,[["The fashion industry","s"],["is built","v"],["to convince people","x"]],""],[1,[["fashion","s"],["matters","v"]],""],[3,[["consumers","s"],["feel","v"],["they must purchase clothing","o"]],"consumers ≠ they must purchase clothing"],[3,[["they","s"],["must purchase","v"],["clothing","o"]],"they ≠ clothing"],[2,[["the clothing","s"],["is","v"],["perfectly functional","c"]],"clothing = functional"]]};
+const OVR={"111":{"as":{"c":"(such as: ~와 같은 / just as: 꼭 ~처럼)","b":"as","m":"~처럼; ~로서; ~때문에"},"to":{"c":"(try to 와 함께 '~하려고 하다')","b":"to","m":"~에, ~으로; (to+동사원형) ~하는 것, ~하기 위해"}},"112":{"as":{"c":"~로서","b":"as","m":"~처럼; ~로서; ~때문에"},"by":{"c":"~씩, ~만큼","b":"by","m":"~에 의해; ~만큼; ~옆에"}},"113":{"to":{"c":"~하기 위해","b":"to","m":"~에, ~으로; (to+동사원형) ~하는 것, ~하기 위해"},"more":{"c":"더 (more independent 더욱 독립적인)","b":"much","m":"많이","f":"부사 much의 비교급"}},"114":{"for":{"c":"~이 있는지 (확인)","b":"for","m":"~을 위해; ~을 찾아; ~에 대비해"}},"115":{"of":{"c":"~하는 (ways of ~하는 방법)","b":"of","m":"~의"}},"116":{"for":{"c":"~에게","b":"for","m":"~을 위해; ~에게"},"means":{"c":"수단","b":"means","m":"수단; 방법; 재력"}},"118":{"over":{"c":"~에 걸쳐","b":"over","m":"~위에; ~에 대한; ~에 걸쳐"},"to":{"c":"(continue to 와 함께 '계속 ~하다')","b":"to","m":"~에, ~으로; (to+동사원형) ~하는 것"}},"119":{"to":{"c":"(require A to: A가 ~하도록 / lead to: ~로 이어지다)","b":"to","m":"~에, ~으로; (to+동사원형) ~하는 것"},"more":{"c":"더 (more lasting 더 오래 지속되는)","b":"much","m":"많이","f":"부사 much의 비교급"},"that":{"c":"(관계사) ~하는 / (provided that) ~하기만 하면","b":"that","m":"저것, 그것; ~라는 것"}},"120":{"so":{"c":"(so that 과 함께 '~하도록')","b":"so","m":"그래서; 그렇게, 매우"},"in":{"c":"~속의; ~에 대해","b":"in","m":"~안에, ~에서"}},"121":{"in":{"c":"~에게서의","b":"in","m":"~안에, ~에서"}},"122":{"for":{"c":"~과 (교환하여)","b":"for","m":"~을 위해; ~과 교환하여"},"so":{"c":"(and so forth 와 함께 '기타 등등')","b":"so","m":"그래서; 그렇게, 매우"},"in":{"c":"~에서 / (in which) 그곳에서","b":"in","m":"~안에, ~에서"},"that":{"c":"(관계사) ~하는","b":"that","m":"저것, 그것; ~라는 것"}},"123":{"as":{"c":"(just as 와 함께 '꼭 ~처럼')","b":"as","m":"~처럼; ~로서; ~때문에"},"with":{"c":"~을 (provide A with B: A에게 B를 제공하다)","b":"with","m":"~와 함께; ~을 가지고"},"for":{"c":"(for themselves 스스로)","b":"for","m":"~을 위해"}},"124":{"as":{"c":"~로 (describe A as B: A를 B로 묘사하다)","b":"as","m":"~처럼; ~로서; ~때문에"},"that":{"c":"(given that) ~을 고려하면","b":"that","m":"저것, 그것; ~라는 것"},"by":{"c":"~에 의한","b":"by","m":"~에 의해; ~만큼; ~옆에"}},"125":{"as":{"c":"~때문에","b":"as","m":"~처럼; ~로서; ~때문에"},"to":{"c":"(be likely to 와 함께 '~할 가능성이 있다')","b":"to","m":"~에, ~으로; (to+동사원형) ~하는 것"}},"126":{"so":{"c":"그래서","b":"so","m":"그래서; 그렇게, 매우"},"that":{"c":"~라는 것 (접속사)","b":"that","m":"저것, 그것; ~라는 것"},"even":{"c":"(even though 와 함께 '~인데도 불구하고')","b":"even","m":"~조차, ~도; 훨씬"},"to":{"c":"~하도록","b":"to","m":"~에, ~으로; (to+동사원형) ~하는 것, ~하기 위해"}},"117":{"in":{"c":"~의, ~에 있는","b":"in","m":"~안에, ~에서"},"of":{"c":"~의","b":"of","m":"~의"}}};
+
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+let tab="s", activeKey=null, looked={}, missed={};
+try{ looked=JSON.parse(localStorage.getItem("sj_looked2")||"{}"); missed=JSON.parse(localStorage.getItem("sj_missed")||"{}"); }catch(e){}
+function save(){ try{ localStorage.setItem("sj_looked2",JSON.stringify(looked)); localStorage.setItem("sj_missed",JSON.stringify(missed)); }catch(e){} }
+function words(s,sid){
+  return s.split(/([A-Za-zé][A-Za-zé'’-]*)/).map((t,i)=> i%2
+    ? '<span class="w'+(activeKey===sid+":"+i?" on":"")+'" data-k="'+sid+":"+i+'" data-w="'+esc(t)+'">'+esc(t)+'</span>'
+    : esc(t)).join("");
+}
+function card(x){
+  return '<section class="card"><div class="top"><span class="num">'+x.id+'</span><span class="src">'+esc(x.tag)+'</span></div>'
+    +'<div class="sent">'+words(x.en,x.id)+'</div></section>';
+}
+function render(){
+  ["S","B","R","W"].forEach(k=>$("#tab"+k).setAttribute("aria-selected",tab===k.toLowerCase()));
+  const keys=Object.keys(looked);
+  $("#wc").textContent=keys.length;
+  let h="";
+  if(tab!=="w"){
+    h+=(tab==="s"?SENT:tab==="b"?SENT2:REV).map(card).join("");
+  } else {
+    if(!keys.length) h='<div class="empty">아직 찾아본 단어가 없습니다.</div>';
+    else h='<div class="wl">'+keys.sort((a,b)=>looked[b].c-looked[a].c||a.localeCompare(b)).map(k=>{
+      const v=looked[k];
+      return '<div class="wl-row"><span class="wl-w">'+esc(k)+'</span><span class="wl-c">'+v.c+'회</span>'
+        +'<span class="wl-m'+(v.x?"":" miss")+'">'+(v.x?esc(v.x)+' <span class="wl-b">('+esc(v.m)+')</span>':"뜻 자료 없음")+'</span></div>';
+    }).join("")+'</div>';
+  }
+  $("#main").innerHTML=h;
+}
+function showNote(word,key){
+  const lower=word.toLowerCase();
+  const sid=key.split(":")[0];
+  const e=(OVR[sid]&&OVR[sid][lower])||DICT[lower];
+  const nm=$("#nm");
+  $("#nw").textContent=word;
+  if(e){
+    $("#nf").textContent=e.f||"";
+    nm.textContent=e.c; nm.classList.remove("miss");
+    $("#nb").textContent="("+e.b+" · "+e.m+")";
+    if(!looked[e.b]) looked[e.b]={c:0,x:e.c,m:e.m};
+    looked[e.b].c++; looked[e.b].x=e.c;
+    if(window.WN)WN.add([{w:e.b,m:e.c,src:"천일문S",how:"터치",ask:true}]);
+  } else {
+    $("#nf").textContent="";
+    nm.textContent="단어 자료에 없음";
+    nm.classList.add("miss");
+    $("#nb").textContent="";
+    missed[lower]=1;
+  }
+  $("#note").classList.add("show");
+  activeKey=key; save();
+}
+function hideNote(){ $("#note").classList.remove("show"); activeKey=null; }
+document.addEventListener("click",e=>{
+  const w=e.target.closest(".w");
+  if(w){
+    const k=w.dataset.k;
+    if(activeKey===k){ hideNote(); render(); return; }
+    showNote(w.dataset.w,k); render();
+  }
+});
+$("#nx").onclick=()=>{ hideNote(); render(); };
+["S","B","R","W"].forEach(k=>{ $("#tab"+k).onclick=()=>{ tab=k.toLowerCase(); hideNote(); render(); }; });
+let tx=null;
+$("#main").addEventListener("touchstart",e=>{ tx=e.touches[0].clientX; },{passive:true});
+$("#main").addEventListener("touchend",e=>{
+  if(tx===null||tab==="w") return;
+  const dx=e.changedTouches[0].clientX-tx; tx=null;
+  if(Math.abs(dx)<70) return;
+  const pg=["s","b","r"], n=pg.indexOf(tab)+(dx<0?1:-1);
+  if(n>=0&&n<pg.length){ tab=pg[n]; hideNote(); render(); window.scrollTo(0,0); }
+},{passive:true});
+render();
+</script>

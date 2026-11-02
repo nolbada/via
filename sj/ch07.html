@@ -1,0 +1,314 @@
+<title>문장줄이기 Ch07</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f6f4ee; --card:#ffffff; --ink:#1c1f26; --mute:#6a6e78; --line:#e3dfd3;
+  --accent:#2b5aa8; --accent-soft:#e6edf8; --lt:#a3a7b0; --pencil:#4b505b;
+  --warn:#9a5b00; --warn-soft:#fbf0dc; --ok:#2d6a4f; --ok-soft:#e3f1ea;
+  --shadow:0 1px 0 rgba(0,0,0,.04),0 6px 20px rgba(30,30,40,.06);
+  --s-bg:#dbeafe;--s-fg:#1e40af;--v-bg:#dfe5ee;--v-fg:#1e293b;--o-bg:#dcfce7;--o-fg:#166534;--io-bg:#cffafe;--io-fg:#155e75;--do-bg:#ecfccb;--do-fg:#3f6212;--c-bg:#ffedd5;--c-fg:#9a3412;--oc-bg:#fef3c7;--oc-fg:#92400e;--x-bg:#e5e7eb;--x-fg:#374151;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14161b; --card:#1c1f26; --ink:#eceef2; --mute:#9aa0ab; --line:#2c303a;
+    --accent:#8fb2ec; --accent-soft:#232c3d; --lt:#626874; --pencil:#c3c8d2;
+    --warn:#e6b25c; --warn-soft:#2f2616; --ok:#7cc5a1; --ok-soft:#1b2b24;
+    --shadow:0 1px 0 rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+    --s-bg:#1e2f5c;--s-fg:#bfdbfe;--v-bg:#3a4658;--v-fg:#e2e8f0;--o-bg:#14392a;--o-fg:#bbf7d0;--io-bg:#0f3a44;--io-fg:#a5f3fc;--do-bg:#2d3a12;--do-fg:#d9f99d;--c-bg:#4a2410;--c-fg:#fed7aa;--oc-bg:#46330a;--oc-fg:#fde68a;--x-bg:#2f3340;--x-fg:#d1d5db;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14161b; --card:#1c1f26; --ink:#eceef2; --mute:#9aa0ab; --line:#2c303a;
+  --accent:#8fb2ec; --accent-soft:#232c3d; --lt:#626874; --pencil:#c3c8d2;
+  --warn:#e6b25c; --warn-soft:#2f2616; --ok:#7cc5a1; --ok-soft:#1b2b24;
+  --shadow:0 1px 0 rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+  --s-bg:#1e2f5c;--s-fg:#bfdbfe;--v-bg:#3a4658;--v-fg:#e2e8f0;--o-bg:#14392a;--o-fg:#bbf7d0;--io-bg:#0f3a44;--io-fg:#a5f3fc;--do-bg:#2d3a12;--do-fg:#d9f99d;--c-bg:#4a2410;--c-fg:#fed7aa;--oc-bg:#46330a;--oc-fg:#fde68a;--x-bg:#2f3340;--x-fg:#d1d5db;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Noto Sans KR",system-ui,sans-serif; font-size:16px; line-height:1.6;
+  padding-block:20px 150px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
+h1{font-size:22px;line-height:1.3;margin:2px 0 0;font-weight:700;text-wrap:balance}
+.demo-btn{flex:none;border:1px solid var(--line);background:var(--card);color:var(--mute);font:inherit;font-size:13px;padding:6px 10px;border-radius:8px;cursor:pointer}
+.tabs{display:flex;gap:2px;overflow-x:auto;border-bottom:1px solid var(--line)}
+.tab{border:0;background:none;color:var(--mute);font:inherit;font-size:15px;padding:10px 11px;white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);font-weight:700;border-bottom-color:var(--accent)}
+.tab .n{font-family:"IBM Plex Mono",monospace;font-size:12px;margin-left:6px;color:var(--accent)}
+.sec-label{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;margin-top:4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px;box-shadow:var(--shadow)}
+.card .top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:6px}
+.src{font-size:12px;color:var(--mute)}
+.sent{font-size:19px;line-height:1.85;word-break:keep-all}
+.w{cursor:pointer;border-radius:4px;padding:0 1px;-webkit-tap-highlight-color:transparent}
+.w.on{background:var(--accent-soft);box-shadow:0 0 0 2px var(--accent-soft)}
+.sol{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+.locked{font-size:13px;color:var(--mute);display:flex;align-items:center;gap:8px}
+.locked::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lt)}
+.reveal-btn{border:1px solid var(--accent);color:var(--accent);background:none;font:inherit;font-size:14px;padding:6px 14px;border-radius:999px;cursor:pointer}
+.core{color:var(--ink)} .lt{color:var(--lt)}
+.skel{font-size:17px;line-height:1.8;margin:4px 0 6px}
+.ko{font-size:15px;line-height:1.75;margin:4px 0}
+.w.bone{background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%);border-radius:2px}
+.ko mark{color:inherit;background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%);padding:0 3px;border-radius:2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.key b{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ok);margin-right:8px;letter-spacing:.06em}
+.hae{margin-top:6px;font-size:14px;color:var(--mute)}
+.easy{margin-top:10px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.easy b{display:block;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);letter-spacing:.06em;margin-bottom:6px;font-weight:500}
+.easy p{margin:0 0 4px;font-size:15px;line-height:1.7}
+.easy .form{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 9px;margin-right:4px;white-space:nowrap}
+.mir{margin:6px 0 10px;display:flex;flex-direction:column;gap:6px}
+.mrow{display:flex;flex-wrap:wrap;align-items:center;gap:4px 5px}
+.mlab{font-size:12px;color:var(--mute);width:44px;flex:none}
+.rc{display:inline-flex;flex-direction:column;align-items:center;line-height:1.15;border-radius:7px;padding:3px 8px 2px;font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500}
+.rc i{font-style:normal;font-family:"Noto Sans KR",sans-serif;font-size:10px;opacity:.85;margin-top:1px}
+.rc.s{background:var(--s-bg);color:var(--s-fg)}.rc.v{background:var(--v-bg);color:var(--v-fg)}.rc.o{background:var(--o-bg);color:var(--o-fg)}.rc.c{background:var(--c-bg);color:var(--c-fg)}.rc.io{background:var(--io-bg);color:var(--io-fg)}.rc.do{background:var(--do-bg);color:var(--do-fg)}.rc.oc{background:var(--oc-bg);color:var(--oc-fg)}.rc.x{background:var(--x-bg);color:var(--x-fg)}
+.rel{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);margin-left:2px}
+.cl{display:flex;flex-direction:column;gap:6px}
+.cl+.cl{margin-top:8px;padding-top:8px;border-top:1px dotted var(--line)}
+.easy .q{font-size:13px;color:var(--mute);margin-right:4px}
+.easy .en{font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:500}
+.easy .a{display:block;margin-top:2px}
+.easy p{margin-bottom:8px}
+.easy p.sum{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-weight:700}
+.empty{color:var(--mute);font-size:14px;padding:22px 4px}
+.wl{display:flex;flex-direction:column;gap:8px}
+.wl-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.wl-w{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:16px}
+.wl-c{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);align-self:center}
+.wl-m{grid-column:1/-1;font-size:14px;color:var(--pencil)}
+.wl-m.miss{color:var(--warn)}
+/* bottom pencil note */
+.note{position:fixed;left:0;right:0;bottom:0;z-index:20;
+  background:var(--card);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(20,20,30,.08);
+  padding:12px max(16px,env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  transform:translateY(110%);transition:transform .18s ease}
+.note.show{transform:none}
+.note-in{max-width:720px;margin:0 auto;display:flex;align-items:flex-start;gap:12px}
+.note-w{font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:500}
+.note-f{font-size:12px;color:var(--mute);margin-top:1px}
+.note-m{font-family:"Noto Sans KR",sans-serif;font-size:19px;font-weight:700;line-height:1.4;color:var(--fg);margin-top:3px}
+.note-m.miss{font-family:"Noto Sans KR",sans-serif;font-size:14px;color:var(--warn)}
+.note-b{font-size:14px;color:var(--mute);margin-top:3px}
+.wl-b{color:var(--mute);font-size:13px}
+.note-x{margin-left:auto;border:0;background:none;color:var(--mute);font-size:22px;line-height:1;cursor:pointer;padding:0 4px}
+/* demo drawer */
+.drawer{background:var(--card);border:1px dashed var(--mute);border-radius:12px;padding:14px 16px;display:none;flex-direction:column;gap:10px}
+.drawer.open{display:flex}
+.drawer h2{font-size:13px;margin:0;color:var(--mute);font-weight:500;letter-spacing:.04em}
+.sw{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:15px}
+.sw input{width:20px;height:20px;accent-color:var(--accent)}
+.miss-list{font-size:13px;color:var(--warn);background:var(--warn-soft);border-radius:8px;padding:8px 10px}
+.mini{border:1px solid var(--line);background:none;color:var(--mute);font:inherit;font-size:12px;padding:4px 10px;border-radius:8px;cursor:pointer;align-self:flex-start}
+
+.card{position:relative}
+.ctl{display:flex;gap:8px;margin-top:12px}
+.cb{flex:0 0 auto;border:1px solid var(--line);background:none;color:var(--mute);font:inherit;font-size:14px;padding:9px 16px;border-radius:10px;cursor:pointer;min-height:44px}
+.cb[disabled]{opacity:.35;cursor:default}
+.cb.main{flex:1;border-color:var(--accent);color:var(--accent);font-weight:700}
+.formbox{margin-top:8px;padding:8px 12px;border:1px solid var(--line);border-radius:10px}
+.formbox .form{display:inline-block;font-size:13px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 10px;margin-right:4px}
+.ink{position:absolute;left:0;top:0;width:100%;height:100%;border-radius:14px;pointer-events:none;touch-action:none;z-index:5}
+body.penon .ink{pointer-events:auto;cursor:crosshair}
+.pen{position:fixed;right:max(10px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.pen-tools{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.pen-tools[hidden]{display:none}
+.pb{border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-size:13px;padding:0 12px;min-height:44px;min-width:44px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow)}
+.pb.main.on,.pb.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pc{width:44px;height:44px;border-radius:50%;border:3px solid var(--card);background:var(--pc);box-shadow:0 0 0 1px var(--line);cursor:pointer}
+.pc.on{box-shadow:0 0 0 3px var(--fg)}
+.pre{margin:14px 0 10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);display:flex;flex-direction:column;gap:10px}
+.pre-h{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--mute)}
+.pre-t{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 10px}
+.pre-s{font-size:20px;line-height:1.5;margin-top:4px}
+.pre-s i{font-style:normal;color:var(--mute);border-bottom:1px dashed var(--mute)}
+.pre-s b{font-weight:500;background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%);padding:0 2px;border-radius:2px}
+.pre-k{font-size:15px;color:var(--mute)}
+.pre-n{font-size:14px;padding-top:8px;border-top:1px dashed var(--line)}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">문장 줄이기 &middot; Chapter 07 &middot; Unit 13-14</div>
+      <h1>주절에 정보를 더하는 분사구문</h1>
+    </div>
+  </header>
+
+  <div class="pre">
+    <div class="pre-h">미리보기</div>
+    <div class="pre-r"><span class="pre-t">분사구문 : 문장 앞·뒤에 붙어 정보를 더하는 -ing/p.p. 덩어리</span>
+      <div class="pre-s"><i>Smiling,</i> <b>the girl waved</b>.</div>
+      <div class="pre-k">웃으면서, 그 소녀는 손을 흔들었다.</div></div>
+    <div class="pre-r"><span class="pre-t">뒤에 오는 분사구문 : 이어지는 동작이나 결과</span>
+      <div class="pre-s"><b>He fell</b>, <i>hurting his leg</i>.</div>
+      <div class="pre-k">그는 넘어져서 다리를 다쳤다.</div></div>
+    <div class="pre-r"><span class="pre-t">with분사구문 : with + 명사 + 분사, ~한 채로</span>
+      <div class="pre-s"><b>She slept</b> <i>with the door closed</i>.</div>
+      <div class="pre-k">그녀는 문을 닫은 채로 잤다.</div></div>
+    <div class="pre-r"><span class="pre-t">의미상 주어가 있는 분사구문 : 분사 앞의 다른 주어</span>
+      <div class="pre-s"><i>The rain stopping,</i> <b>we went out</b>.</div>
+      <div class="pre-k">비가 그쳐서 우리는 밖에 나갔다.</div></div>
+    <div class="pre-n">분사구문을 /로 떼고 주절부터 : the girl waved</div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tabS" aria-selected="true" type="button">앞면</button>
+    <button class="tab" role="tab" id="tabB" aria-selected="false" type="button">뒷면</button>
+    <button class="tab" role="tab" id="tabR" aria-selected="false" type="button">Review</button>
+    <button class="tab" role="tab" id="tabW" aria-selected="false" type="button">찾아본 단어장<span class="n" id="wc">0</span></button>
+  </div>
+
+  <main id="main"></main>
+</div>
+
+<div class="pen" id="pen">
+  <div class="pen-tools" id="penTools" hidden>
+    <button type="button" class="pc on" data-c="#e5383b" style="--pc:#e5383b" aria-label="빨강"></button>
+    <button type="button" class="pc" data-c="#2f6fed" style="--pc:#2f6fed" aria-label="파랑"></button>
+    <button type="button" class="pc" data-c="#1f9d55" style="--pc:#1f9d55" aria-label="초록"></button>
+    <button type="button" class="pb" id="penErase">지우개</button>
+    <button type="button" class="pb" id="penClear">모두 지움</button>
+  </div>
+  <button type="button" class="pb main" id="penBtn">펜</button>
+</div>
+<div class="note" id="note" role="status" aria-live="polite">
+  <div class="note-in">
+    <div>
+      <div class="note-w" id="nw"></div>
+      <div class="note-f" id="nf"></div>
+      <div class="note-m" id="nm"></div>
+      <div class="note-b" id="nb"></div>
+    </div>
+    <button class="note-x" id="nx" type="button" aria-label="닫기">&times;</button>
+  </div>
+</div>
+
+<script>
+/* 통합 오답노트 연결 스크립트: 각 앱에서 WN.add([{w,m,src,how,ask}]) 로 단어를 보낸다.
+   how: 시험 / 터치 / 별표 / 문제 오답, ask: 선생님 질문 대상 여부(true/false) */
+(function(W){
+  if(W.WN)return;
+  if(/[?&]t=1(&|$)/.test(W.location.search)){W.TEACHER_MODE=true;W.WN={add:function(){return Promise.resolve(false)},hw:function(){return Promise.resolve(false)},gate:function(cb){cb()},flush:function(){return Promise.resolve(false)},name:function(){return'선생님'}};return}
+  var URL_=W.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',PIN='6900',QK='wn_q';
+  function ls(){try{return W.localStorage}catch(e){return null}}
+  function g(k){var l=ls();try{return l&&l.getItem(k)}catch(e){return null}}
+  function s(k,v){var l=ls();try{l&&l.setItem(k,v)}catch(e){}}
+  function name(){return(g('wn_name')||g('recm_name')||g('rec_name')||'').replace(/\s+/g,'')}
+  function q(){try{return JSON.parse(g(QK)||'[]')}catch(e){return[]}}
+  var busy=false,again=false;
+  function flush(){
+    var n=name(),Q=q();
+    if(busy){again=true;return Promise.resolve(false)}
+    if(!n||!Q.length)return Promise.resolve(false);
+    busy=true;
+    var batch=Q.slice(0),items=[];batch.forEach(function(b){items=items.concat(b)});
+    return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'add',name:n,pin:PIN,items:items}),keepalive:true})
+      .then(function(r){return r.json()}).then(function(r){
+        busy=false;if(!r||!r.ok){again=false;return false}
+        var cur=q();s(QK,JSON.stringify(cur.slice(batch.length)));if(again){again=false;flush()}return true;
+      },function(){busy=false;again=false;return false});
+  }
+  W.WN={add:function(items){
+    if(!items||!items.length)return Promise.resolve(false);
+    var Q=q();Q.push(items);s(QK,JSON.stringify(Q));return flush();
+  },flush:flush,name:name};
+  flush();
+})(window);
+
+const SENT=[{"id":"131","tag":"고2 모의응용","en":"Built mainly for small-scale lighting in local homes and shops, the central power stations could not meet the power needs of large factories."},{"id":"132","tag":"고3 모의응용","en":"Traditional regulations, designed for businesses operating within a single country, are often unable to address problems arising from global operations."},{"id":"133","tag":"수능","en":"As a form of expression, fashion contains a host of ambiguities, enabling individuals to recreate the meanings associated with specific pieces of clothing."}];
+const SENT2=[{"id":"134","tag":"고3 모의응용","en":"In some cases, practices can become formal, with rules and procedures documented and specialized roles created to enforce them."},{"id":"135","tag":"수능응용","en":"For commercial deliveries, using bicycles is particularly encouraged when combined with policies that restrict motor vehicles’ access to specific areas of a city."},{"id":"136","tag":"고3 모의응용","en":"A local resident, unsure how much she could help but wanting to support a family facing a medical crisis, offered the family a place to stay near the hospital."}];
+const REV=[{"id":"137","tag":"고2 모의응용","en":"Since the Industrial Revolution, advances in technology have changed the nature of workplace skills in high demand, creating certain types of jobs and destroying others, with impacts on employment patterns."},{"id":"138","tag":"고1 모의응용","en":"First mentioned in Robert Browning’s poem “Andrea del Sarto,” the catchphrase “less is more” suggests the value and beauty of simplicity, in contrast to complexity and excess."},{"id":"139","tag":"고1 모의응용","en":"Consumers often choose the option whose price falls in the middle, unaware that the presence of another option that costs much more has influenced their decision."},{"id":"140","tag":"고3 모의응용","en":"Many children, born and raised in big cities where large supermarkets are common, have little exposure to how fruits and vegetables grow."},{"id":"141","tag":"고1 모의응용","en":"When looking at the historical records of ancient civilizations, we can see that certain patterns seem to repeat throughout history."},{"id":"142","tag":"고2 모의","en":"Facing increasingly strict regulation, greenhouse growers realized they had to develop new methods if they were going to maintain product quality with fewer pesticides."},{"id":"143","tag":"고3 모의응용","en":"Easy online access to old news articles has greatly extended the shelf life of journalism, with older stories now regularly cited to provide context for more current ones."},{"id":"144","tag":"고1 모의응용","en":"Fifteen-hundred-meter runners, their muscles screaming and their lungs exploding from oxygen deficit, may experience little psychological suffering because they believe that the pain is necessary for winning."},{"id":"145","tag":"고3 모의응용","en":"Certain substances contained in magma can be released to form gas bubbles, causing major changes in the properties of the magma and sometimes leading to an eruption."},{"id":"146","tag":"고2 모의응용","en":"The use of glass in palaces created open sight-lines that made people feel constantly observed, ultimately contributing to a pervasive atmosphere of caution and respect."}];
+const DICT={"a":{"c":"하나의 (어떤)","b":"a","m":"하나의, 어떤"},"an":{"c":"하나의 (어떤)","b":"an","m":"하나의, 어떤 (모음 소리 앞의 a)","f":"관사 a가 모음 소리(eruption) 앞에서 바뀐 형태"},"the":{"c":"그","b":"the","m":"그 (특정한 것을 가리킴)"},"access":{"c":"접근","b":"access","m":"접근; 이용; 접근하다"},"address":{"c":"(문제를) 처리하다","b":"address","m":"(문제를) 해결하다, 다루다; 연설하다"},"advances":{"c":"진보(들)","b":"advance","m":"진보, 발전; 나아가다","f":"명사 advance의 복수형"},"ambiguities":{"c":"모호함(들)","b":"ambiguity","m":"모호(함)","f":"명사 ambiguity의 복수형 (y를 i로 바꾸고 -es)"},"ancient":{"c":"고대의","b":"ancient","m":"고대의; 아주 오래된"},"and":{"c":"그리고","b":"and","m":"그리고"},"andrea":{"c":"안드레아 (시 제목 Andrea del Sarto의 일부)","b":"Andrea","m":"안드레아 (사람 이름)","f":"고유명사라 대문자로 시작"},"another":{"c":"또 다른","b":"another","m":"또 다른 (하나의); 또 하나"},"are":{"c":"~이다","b":"be","m":"~이다; 있다","f":"be동사 be의 복수 주어 현재형"},"areas":{"c":"지역(들)","b":"area","m":"지역; 분야","f":"명사 area의 복수형"},"arising":{"c":"발생하는","b":"arise","m":"발생하다, 생기다","f":"동사 arise의 현재분사 (뒤에서 problems를 꾸밈)"},"articles":{"c":"기사(들)","b":"article","m":"기사, 글","f":"명사 article의 복수형"},"as":{"c":"~로서","b":"as","m":"~로서; ~처럼; ~할 때"},"associated":{"c":"관련된 (with와 함께 '~와 관련된')","b":"associate","m":"연관 짓다, 관련시키다 (associated with ~와 관련된)","f":"동사 associate의 과거분사 (뒤에서 meanings를 꾸밈)"},"at":{"c":"~을 (look at '~을 보다')","b":"at","m":"~에서; ~을 향해"},"atmosphere":{"c":"분위기","b":"atmosphere","m":"분위기, 기운; (지구의) 대기; 공기"},"be":{"c":"~되다 (be released '방출되다')","b":"be","m":"~이다; 있다; ~되다 (수동태)","f":"조동사 can 뒤라서 동사원형 be"},"beauty":{"c":"아름다움","b":"beauty","m":"아름다움, 미"},"because":{"c":"~때문에","b":"because","m":"~때문에"},"become":{"c":"~이 되다","b":"become","m":"~이 되다, ~해지다","f":"조동사 can 뒤라서 동사원형"},"believe":{"c":"믿다","b":"believe","m":"믿다"},"bicycles":{"c":"자전거(들)","b":"bicycle","m":"자전거","f":"명사 bicycle의 복수형"},"big":{"c":"큰","b":"big","m":"큰"},"born":{"c":"태어난","b":"bear","m":"(아이를) 낳다; 견디다 (be born 태어나다)","f":"동사 bear의 과거분사 (born은 '태어난'의 뜻으로 굳어짐)"},"browning’s":{"c":"브라우닝의","b":"Browning","m":"브라우닝 (사람 이름, 시인 Robert Browning)","f":"고유명사 Browning + ’s (소유격 '~의')"},"bubbles":{"c":"방울(들)","b":"bubble","m":"거품, (공기) 방울","f":"명사 bubble의 복수형"},"built":{"c":"건설된","b":"build","m":"짓다, 건설하다","f":"동사 build의 과거분사 (분사구문: Being built의 Being이 생략된 형태)"},"businesses":{"c":"기업(들)","b":"business","m":"기업, 회사; 사업","f":"명사 business의 복수형"},"but":{"c":"그러나","b":"but","m":"그러나, 하지만"},"can":{"c":"~할 수 있다","b":"can","m":"~할 수 있다 (조동사)","f":"조동사, 뒤에 동사원형이 옴"},"cases":{"c":"경우(들)","b":"case","m":"경우; 사례; 상자","f":"명사 case의 복수형"},"catchphrase":{"c":"유명 문구","b":"catchphrase","m":"유명 문구, 선전 구호"},"causing":{"c":"일으키며","b":"cause","m":"유발하다, 일으키다; 원인","f":"동사 cause의 현재분사 (분사구문: 앞 내용의 결과)"},"caution":{"c":"신중함","b":"caution","m":"신중함, 조심; 주의"},"central":{"c":"중앙의","b":"central","m":"중앙의; 중심적인"},"certain":{"c":"특정한","b":"certain","m":"특정한, 어떤; 확신하는"},"changed":{"c":"변화시켜 왔다 (have changed)","b":"change","m":"변화시키다, 바꾸다; 변화","f":"동사 change의 과거분사 (have + p.p. 현재완료)"},"changes":{"c":"변화(들)","b":"change","m":"변화; 변화시키다, 바꾸다","f":"명사 change의 복수형"},"children":{"c":"아이들","b":"child","m":"아이, 어린이","f":"명사 child의 복수형 (불규칙: child → children)"},"choose":{"c":"선택하다","b":"choose","m":"고르다, 선택하다"},"cited":{"c":"인용되는","b":"cite","m":"인용하다; (이유, 예를) 들다","f":"동사 cite의 과거분사 (with + O + p.p. '~가 …된 채로')"},"cities":{"c":"도시(들)","b":"city","m":"도시","f":"명사 city의 복수형 (y를 i로 바꾸고 -es)"},"city":{"c":"도시","b":"city","m":"도시"},"civilizations":{"c":"문명(들)","b":"civilization","m":"문명 (사회)","f":"명사 civilization의 복수형"},"clothing":{"c":"옷","b":"clothing","m":"옷, 의복"},"combined":{"c":"결합된 (combined with '~와 결합된')","b":"combine","m":"결합하다, 합치다","f":"동사 combine의 과거분사 (when (it is) combined: 접속사를 남긴 분사구문)"},"commercial":{"c":"상업적인","b":"commercial","m":"상업의, 상업적인; 광고"},"common":{"c":"흔한","b":"common","m":"흔한; 공통의"},"complexity":{"c":"복잡함","b":"complexity","m":"복잡함, 복잡성"},"constantly":{"c":"끊임없이","b":"constantly","m":"끊임없이, 계속"},"consumers":{"c":"소비자(들)","b":"consumer","m":"소비자","f":"명사 consumer의 복수형"},"contained":{"c":"함유된","b":"contain","m":"담고 있다; 포함하다","f":"동사 contain의 과거분사 (뒤에서 substances를 꾸밈)"},"contains":{"c":"담고 있다","b":"contain","m":"담고 있다; 포함하다","f":"동사 contain의 3인칭 단수 현재형"},"context":{"c":"맥락","b":"context","m":"맥락, 문맥; 상황"},"contrast":{"c":"대조 (in contrast to '~와는 대조적으로')","b":"contrast","m":"대조, 차이; 대조하다"},"contributing":{"c":"기여하며","b":"contribute","m":"기여하다, 공헌하다 (contribute to ~에 기여하다)","f":"동사 contribute의 현재분사 (분사구문: 앞 내용의 결과)"},"costs":{"c":"(값이) ~이다, 비용이 들다","b":"cost","m":"(값·비용이) ~이다, 들다; 비용","f":"동사 cost의 3인칭 단수 현재형"},"could":{"c":"~할 수 있었다 (could not '~할 수 없었다')","b":"can","m":"~할 수 있다 (조동사)","f":"조동사 can의 과거형"},"country":{"c":"국가","b":"country","m":"국가, 나라; 시골"},"created":{"c":"만들었다","b":"create","m":"만들다, 창조하다","f":"동사 create의 과거형 / 과거분사"},"creating":{"c":"만들어 내며","b":"create","m":"만들다, 창조하다","f":"동사 create의 현재분사 (분사구문: 앞 내용의 결과)"},"crisis":{"c":"위기","b":"crisis","m":"위기"},"current":{"c":"최신의 (more current '더 최신인')","b":"current","m":"현재의, 최신의; 흐름"},"decision":{"c":"결정","b":"decision","m":"결정"},"deficit":{"c":"부족","b":"deficit","m":"부족, 결손; 적자"},"del":{"c":"델 (시 제목 Andrea del Sarto의 일부)","b":"del","m":"델 (이탈리아어 이름에 쓰이는 말)"},"deliveries":{"c":"배달(들)","b":"delivery","m":"배달; 전달","f":"명사 delivery의 복수형 (y를 i로 바꾸고 -es)"},"demand":{"c":"수요","b":"demand","m":"수요; 요구; 요구하다"},"designed":{"c":"만들어진","b":"design","m":"고안하다, 설계하다; 디자인","f":"동사 design의 과거분사 (분사구문: 주어 regulations에 대한 부가 정보)"},"destroying":{"c":"없애며","b":"destroy","m":"없애다; 파괴하다","f":"동사 destroy의 현재분사 (분사구문: creating과 and로 연결)"},"develop":{"c":"개발하다","b":"develop","m":"개발하다; 발달시키다"},"documented":{"c":"서류로 뒷받침되는","b":"document","m":"서류로 뒷받침하다; 기록하다","f":"동사 document의 과거분사 (with + O + p.p. '~가 …된 채로')"},"easy":{"c":"쉬운","b":"easy","m":"쉬운"},"employment":{"c":"고용","b":"employment","m":"고용, 채용; 이용"},"enabling":{"c":"~할 수 있게 해 주며","b":"enable","m":"~할 수 있게 하다 (enable O to-v O가 ~할 수 있게 하다)","f":"동사 enable의 현재분사 (분사구문: 앞 내용의 결과)"},"encouraged":{"c":"장려되는 (is encouraged '장려된다')","b":"encourage","m":"장려하다; 격려하다","f":"동사 encourage의 과거분사 (be + p.p. 수동태)"},"enforce":{"c":"시행하다","b":"enforce","m":"(법률 등을) 시행[집행]하다"},"eruption":{"c":"분출","b":"eruption","m":"분출"},"excess":{"c":"과도함","b":"excess","m":"지나침, 과도, 과잉"},"experience":{"c":"경험하다","b":"experience","m":"경험하다; 경험","f":"조동사 may 뒤라서 동사원형"},"exploding":{"c":"터질 듯한","b":"explode","m":"터지다, 폭발하다","f":"동사 explode의 현재분사 (their lungs exploding: 의미상 주어가 있는 분사구문)"},"exposure":{"c":"노출","b":"exposure","m":"노출; 접함"},"expression":{"c":"표현","b":"expression","m":"표현; 표정"},"extended":{"c":"연장했다 (has extended)","b":"extend","m":"연장하다; 확장하다","f":"동사 extend의 과거분사 (has + p.p. 현재완료)"},"facing":{"c":"~에 직면하여","b":"face","m":"직면하다, 마주하다; 얼굴","f":"동사 face의 현재분사 (분사구문)"},"factories":{"c":"공장(들)","b":"factory","m":"공장","f":"명사 factory의 복수형 (y를 i로 바꾸고 -es)"},"falls":{"c":"해당하다 (falls in '~에 해당하다')","b":"fall","m":"~에 해당하다; 떨어지다","f":"동사 fall의 3인칭 단수 현재형"},"family":{"c":"가족","b":"family","m":"가족"},"fashion":{"c":"패션","b":"fashion","m":"패션, 유행; 방식"},"feel":{"c":"느끼다","b":"feel","m":"느끼다","f":"make + O + 동사원형(feel) 구조라 원형"},"fewer":{"c":"더 적은","b":"few","m":"(수가) 적은, 거의 없는","f":"형용사 few의 비교급"},"fifteen-hundred-meter":{"c":"1500미터의","b":"fifteen-hundred-meter","m":"1500미터의 (fifteen hundred 1500 + meter 미터)"},"first":{"c":"처음","b":"first","m":"처음(으로); 첫 번째의"},"for":{"c":"~을 위해","b":"for","m":"~을 위해; ~동안; ~을 대상으로"},"form":{"c":"형태","b":"form","m":"형태; 형식; 형성하다"},"formal":{"c":"공식적인 (become formal '공식화되다')","b":"formal","m":"공식적인; 격식을 차린"},"from":{"c":"~에서","b":"from","m":"~에서, ~로부터"},"fruits":{"c":"과일(들)","b":"fruit","m":"과일, 열매","f":"명사 fruit의 복수형"},"gas":{"c":"가스","b":"gas","m":"가스, 기체"},"glass":{"c":"유리","b":"glass","m":"유리; 유리잔"},"global":{"c":"세계적인","b":"global","m":"세계적인, 전 세계의"},"going":{"c":"~할 예정인 (be going to '~하려 하다')","b":"go","m":"가다 (be going to ~할 예정이다, ~하려 하다)","f":"동사 go의 현재분사 (be going to 표현)"},"greatly":{"c":"크게","b":"greatly","m":"크게, 대단히"},"greenhouse":{"c":"온실","b":"greenhouse","m":"온실"},"grow":{"c":"자라다","b":"grow","m":"자라다; 기르다"},"growers":{"c":"재배업자(들)","b":"grower","m":"재배자, 재배업자","f":"명사 grower의 복수형"},"had":{"c":"~해야 했다 (had to)","b":"have","m":"가지다 (have to ~해야 한다)","f":"동사 have의 과거형"},"has":{"c":"~해 왔다 (has + p.p. 현재완료)","b":"have","m":"가지다; (have + p.p.) 현재완료를 만듦","f":"동사 have의 3인칭 단수 현재형"},"have":{"c":"가지다","b":"have","m":"가지다; (have + p.p.) 현재완료를 만듦","f":"동사 have의 현재형 (주어가 복수)"},"help":{"c":"도움이 되다","b":"help","m":"돕다, 도움이 되다; 도움","f":"조동사 could 뒤라서 동사원형"},"high":{"c":"높은","b":"high","m":"높은"},"historical":{"c":"역사의","b":"historical","m":"역사의, 역사적인"},"history":{"c":"역사","b":"history","m":"역사"},"homes":{"c":"가정(들)","b":"home","m":"가정; 집","f":"명사 home의 복수형"},"hospital":{"c":"병원","b":"hospital","m":"병원"},"host":{"c":"다수 (a host of '많은')","b":"host","m":"다수 (a host of 많은, 다수의); 주인"},"how":{"c":"얼마나","b":"how","m":"어떻게; 얼마나"},"if":{"c":"만약 ~라면","b":"if","m":"만약 ~라면; ~인지"},"impacts":{"c":"영향(들)","b":"impact","m":"영향; 충격","f":"명사 impact의 복수형"},"in":{"c":"~에서","b":"in","m":"~안에, ~에서"},"increasingly":{"c":"점점 더","b":"increasingly","m":"점점 더"},"individuals":{"c":"개인(들)","b":"individual","m":"개인; 개인의","f":"명사 individual의 복수형"},"industrial":{"c":"산업의 (the Industrial Revolution '산업 혁명')","b":"industrial","m":"산업의"},"influenced":{"c":"영향을 미쳤다 (has influenced)","b":"influence","m":"영향을 미치다; 영향","f":"동사 influence의 과거분사 (has + p.p. 현재완료)"},"is":{"c":"~이다","b":"be","m":"~이다; 있다; ~되다 (수동태)","f":"be동사 be의 3인칭 단수 현재형"},"jobs":{"c":"일자리(들)","b":"job","m":"일자리, 직업","f":"명사 job의 복수형"},"journalism":{"c":"저널리즘","b":"journalism","m":"저널리즘, 언론(업)"},"large":{"c":"대규모의","b":"large","m":"큰, 대규모의"},"leading":{"c":"이어지며 (leading to '~로 이어지며')","b":"lead","m":"이끌다; (lead to) ~로 이어지다","f":"동사 lead의 현재분사 (분사구문: causing과 and로 연결)"},"less":{"c":"더 적은 것","b":"little","m":"적은, 거의 없는","f":"형용사 little의 비교급 (여기서는 '더 적은 것'이라는 명사처럼 쓰임)"},"life":{"c":"기한 (shelf life '유통 기한')","b":"life","m":"생명; 삶; (사용) 기한"},"lighting":{"c":"조명","b":"lighting","m":"조명 (시설)"},"little":{"c":"거의 없는","b":"little","m":"적은, 거의 없는; 작은"},"local":{"c":"지역의","b":"local","m":"지역의, 현지의; 주민"},"looking":{"c":"살펴보는 (looking at '~을 살펴볼')","b":"look","m":"보다 (look at ~을 보다)","f":"동사 look의 현재분사 (When looking: 접속사를 남긴 분사구문)"},"lungs":{"c":"폐(들)","b":"lung","m":"폐, 허파","f":"명사 lung의 복수형"},"made":{"c":"~하게 했다","b":"make","m":"만들다; (make + O + 동사원형) O가 ~하게 하다","f":"동사 make의 과거형"},"magma":{"c":"마그마","b":"magma","m":"마그마"},"mainly":{"c":"주로","b":"mainly","m":"주로, 대부분"},"maintain":{"c":"유지하다","b":"maintain","m":"유지하다; 주장하다"},"major":{"c":"중대한","b":"major","m":"큰; 주요한, 중대한 (↔ minor 사소한, 작은)"},"many":{"c":"많은","b":"many","m":"많은"},"may":{"c":"~일 수도 있다","b":"may","m":"~일지도 모른다, ~일 수 있다 (조동사)","f":"조동사, 뒤에 동사원형이 옴"},"meanings":{"c":"의미(들)","b":"meaning","m":"의미, 뜻","f":"명사 meaning의 복수형"},"medical":{"c":"의료의","b":"medical","m":"의료의, 의학의"},"meet":{"c":"충족시키다","b":"meet","m":"만나다; (요구 등을) 충족시키다"},"mentioned":{"c":"언급된","b":"mention","m":"언급하다; 언급","f":"동사 mention의 과거분사 (분사구문: Being이 생략된 형태)"},"methods":{"c":"방법(들)","b":"method","m":"방법","f":"명사 method의 복수형"},"middle":{"c":"중간","b":"middle","m":"중간, 한가운데; 중간의"},"more":{"c":"더","b":"much / many","m":"많은 (more 더 많은; 더)","f":"much/many의 비교급"},"motor":{"c":"자동차의 (motor vehicles '자동차')","b":"motor","m":"모터; 자동차의"},"much":{"c":"얼마나 많이 (how much)","b":"much","m":"많은; 많이; 훨씬"},"muscles":{"c":"근육(들)","b":"muscle","m":"근육","f":"명사 muscle의 복수형"},"nature":{"c":"본질","b":"nature","m":"본질; 본성; 자연"},"near":{"c":"~근처에","b":"near","m":"~근처에; 가까운"},"necessary":{"c":"필요한","b":"necessary","m":"필요한"},"needs":{"c":"수요(들)","b":"need","m":"필요, 요구; 필요로 하다","f":"명사 need의 복수형"},"new":{"c":"새로운","b":"new","m":"새로운"},"news":{"c":"뉴스","b":"news","m":"뉴스, 소식 (늘 -s로 끝나는 단수 취급 명사)"},"not":{"c":"~않다","b":"not","m":"~않다, ~아니다"},"now":{"c":"이제","b":"now","m":"이제, 지금"},"observed":{"c":"관찰당하는","b":"observe","m":"관찰하다; 준수하다","f":"동사 observe의 과거분사 (feel observed '관찰당하고 있다고 느끼다')"},"of":{"c":"~의","b":"of","m":"~의"},"offered":{"c":"제공했다","b":"offer","m":"제공하다; 제안하다; 제안","f":"동사 offer의 과거형"},"often":{"c":"흔히","b":"often","m":"흔히, 자주"},"old":{"c":"오래된","b":"old","m":"오래된; 나이 든"},"older":{"c":"더 오래된","b":"old","m":"오래된; 나이 든","f":"형용사 old의 비교급"},"on":{"c":"~에 대한","b":"on","m":"~위에; ~에 관하여, ~에 대한"},"ones":{"c":"것들","b":"one","m":"것, 사람 (앞에 나온 명사를 대신함)","f":"대명사 one의 복수형 (여기서는 stories를 대신함)"},"online":{"c":"온라인의","b":"online","m":"온라인의; 온라인으로"},"open":{"c":"훤히 트인","b":"open","m":"열린; 훤히 트인; 열다"},"operating":{"c":"영업하는","b":"operate","m":"영업하다, 운영하다; 작동하다","f":"동사 operate의 현재분사 (뒤에서 businesses를 꾸밈)"},"operations":{"c":"사업(들)","b":"operation","m":"사업; 수술","f":"명사 operation의 복수형"},"option":{"c":"선택지","b":"option","m":"선택지, 선택(권)"},"others":{"c":"다른 것들","b":"other","m":"다른 (것); 다른 사람","f":"대명사 other의 복수형 (여기서는 다른 일자리들)"},"oxygen":{"c":"산소","b":"oxygen","m":"산소"},"pain":{"c":"고통","b":"pain","m":"고통, 통증"},"palaces":{"c":"궁전(들)","b":"palace","m":"궁전; 왕실; 대저택","f":"명사 palace의 복수형"},"particularly":{"c":"특히","b":"particularly","m":"특히"},"patterns":{"c":"양상(들), 패턴(들)","b":"pattern","m":"양상, 패턴; 무늬","f":"명사 pattern의 복수형"},"people":{"c":"사람들","b":"people","m":"사람들 (person의 복수로 쓰임)"},"pervasive":{"c":"만연하는","b":"pervasive","m":"만연하는, (구석구석) 스며드는"},"pesticides":{"c":"농약(들)","b":"pesticide","m":"농약, 살충제","f":"명사 pesticide의 복수형"},"pieces":{"c":"~벌 (pieces of clothing '옷들')","b":"piece","m":"조각, 한 개[벌]","f":"명사 piece의 복수형"},"place":{"c":"장소","b":"place","m":"장소, 곳"},"poem":{"c":"시","b":"poem","m":"시"},"policies":{"c":"정책(들)","b":"policy","m":"정책, 방침","f":"명사 policy의 복수형 (y를 i로 바꾸고 -es)"},"power":{"c":"전력 (power station '발전소')","b":"power","m":"전력; 힘, 권력"},"practices":{"c":"관행(들)","b":"practice","m":"관행, 관례; 실행, 실천; 연습","f":"명사 practice의 복수형"},"presence":{"c":"존재","b":"presence","m":"존재; 있음, 참석"},"price":{"c":"가격","b":"price","m":"가격"},"problems":{"c":"문제(들)","b":"problem","m":"문제","f":"명사 problem의 복수형"},"procedures":{"c":"절차(들)","b":"procedure","m":"절차, 방법; 순서","f":"명사 procedure의 복수형"},"product":{"c":"제품","b":"product","m":"제품, 상품"},"properties":{"c":"성질(들)","b":"property","m":"성질, 속성[특성]; 재산; 건물","f":"명사 property의 복수형 (y를 i로 바꾸고 -es)"},"provide":{"c":"제공하다","b":"provide","m":"제공하다"},"psychological":{"c":"심리적인","b":"psychological","m":"심리적인, 정신의"},"quality":{"c":"품질","b":"quality","m":"(품)질; 우수함; 특성"},"raised":{"c":"자란","b":"raise","m":"기르다; 올리다 (be raised 자라다, 길러지다)","f":"동사 raise의 과거분사 (born and raised '태어나고 자란')"},"realized":{"c":"깨달았다","b":"realize","m":"깨닫다; 실현하다","f":"동사 realize의 과거형"},"records":{"c":"기록(들)","b":"record","m":"기록(물); 기록하다","f":"명사 record의 복수형"},"recreate":{"c":"재창조하다","b":"recreate","m":"재창조하다, 다시 만들다 (re- 다시 + create 만들다)"},"regularly":{"c":"정기적으로","b":"regularly","m":"정기적으로; 규칙적으로"},"regulation":{"c":"규제","b":"regulation","m":"규제; 규정; 규정된"},"regulations":{"c":"규제(들)","b":"regulation","m":"규제; 규정; 규정된","f":"명사 regulation의 복수형"},"released":{"c":"방출되는 (be released '방출되다')","b":"release","m":"방출하다; 풀어 주다","f":"동사 release의 과거분사 (be + p.p. 수동태)"},"repeat":{"c":"반복되다","b":"repeat","m":"반복하다, 반복되다"},"resident":{"c":"주민","b":"resident","m":"주민, 거주자"},"respect":{"c":"존중","b":"respect","m":"존중, 존경; 존중하다"},"restrict":{"c":"제한하다","b":"restrict","m":"제한하다"},"revolution":{"c":"혁명 (the Industrial Revolution '산업 혁명')","b":"revolution","m":"혁명"},"robert":{"c":"로버트 (시인 Robert Browning의 이름)","b":"Robert","m":"로버트 (사람 이름)","f":"고유명사라 대문자로 시작"},"roles":{"c":"역할(들)","b":"role","m":"역할","f":"명사 role의 복수형"},"rules":{"c":"규칙(들)","b":"rule","m":"규칙; 지배하다","f":"명사 rule의 복수형"},"runners":{"c":"달리기 선수(들)","b":"runner","m":"달리기 선수, 주자","f":"명사 runner의 복수형"},"sarto":{"c":"사르토 (시 제목 Andrea del Sarto의 일부)","b":"Sarto","m":"사르토 (사람 이름)","f":"고유명사라 대문자로 시작"},"screaming":{"c":"비명을 지르는","b":"scream","m":"비명을 지르다; 비명","f":"동사 scream의 현재분사 (their muscles screaming: 의미상 주어가 있는 분사구문)"},"see":{"c":"보다","b":"see","m":"보다; 알다","f":"조동사 can 뒤라서 동사원형"},"seem":{"c":"~인 듯하다 (seem to-v '~하는 것 같다')","b":"seem","m":"~인 것 같다, ~인 듯하다"},"she":{"c":"그녀","b":"she","m":"그녀는, 그녀가"},"shelf":{"c":"선반 (shelf life '유통 기한')","b":"shelf","m":"선반 (shelf life 유통 기한)"},"shops":{"c":"상점(들)","b":"shop","m":"상점, 가게","f":"명사 shop의 복수형"},"sight-lines":{"c":"시야(들)","b":"sight-line","m":"시선 (방향), 시야","f":"명사 sight-line의 복수형"},"simplicity":{"c":"단순함","b":"simplicity","m":"단순함, 간단함"},"since":{"c":"~이후로","b":"since","m":"~이후로; ~때문에"},"single":{"c":"하나의","b":"single","m":"단 하나의; 단일의"},"skills":{"c":"기술(들)","b":"skill","m":"기술, 능력","f":"명사 skill의 복수형"},"small-scale":{"c":"소규모의","b":"small-scale","m":"소규모의 (small 작은 + scale 규모)"},"some":{"c":"어떤","b":"some","m":"어떤; 약간의, 일부의"},"sometimes":{"c":"때로는","b":"sometimes","m":"때때로, 때로는"},"specialized":{"c":"전문화된","b":"specialize","m":"전문화하다; 전공하다","f":"동사 specialize의 과거분사 (형용사처럼 roles를 꾸밈)"},"specific":{"c":"특정한","b":"specific","m":"특정한; 구체적인"},"stations":{"c":"소 (power stations '발전소들')","b":"station","m":"역; (특정 업무를 하는) 소, 국 (power station 발전소)","f":"명사 station의 복수형"},"stay":{"c":"머물다","b":"stay","m":"머물다; 계속 ~이다"},"stories":{"c":"기사(들)","b":"story","m":"(신문, 잡지의) 기사; 이야기","f":"명사 story의 복수형 (y를 i로 바꾸고 -es)"},"strict":{"c":"엄격한","b":"strict","m":"엄격한; 엄밀한"},"substances":{"c":"물질(들)","b":"substance","m":"물질","f":"명사 substance의 복수형"},"suffering":{"c":"고통","b":"suffering","m":"고통, 괴로움"},"suggests":{"c":"시사한다","b":"suggest","m":"시사하다, 암시하다; 제안하다","f":"동사 suggest의 3인칭 단수 현재형"},"supermarkets":{"c":"슈퍼마켓(들)","b":"supermarket","m":"슈퍼마켓","f":"명사 supermarket의 복수형"},"support":{"c":"돕다","b":"support","m":"돕다, 지원하다, 지지하다"},"technology":{"c":"기술","b":"technology","m":"기술, 과학 기술"},"that":{"c":"~라는 것 (접속사)","b":"that","m":"~라는 것 (접속사); ~하는 (관계대명사); 저, 그"},"their":{"c":"그들의","b":"they","m":"그들은; 그것들은","f":"대명사 they의 소유격 their"},"them":{"c":"그것들을","b":"they","m":"그들은; 그것들은","f":"대명사 they의 목적격 them"},"they":{"c":"그들","b":"they","m":"그들은; 그것들은"},"throughout":{"c":"~전반에 걸쳐","b":"throughout","m":"~내내, ~전반에 걸쳐"},"to":{"c":"~하기 위해 (to부정사)","b":"to","m":"~로, ~에게; (to + 동사원형) ~하기 위해, ~하는 것, ~할"},"traditional":{"c":"전통적인","b":"traditional","m":"전통적인"},"types":{"c":"유형(들)","b":"type","m":"유형, 종류","f":"명사 type의 복수형"},"ultimately":{"c":"궁극적으로","b":"ultimately","m":"궁극적으로, 결국"},"unable":{"c":"~할 수 없는 (be unable to-v '~할 수 없다')","b":"unable","m":"~할 수 없는 (↔ able ~할 수 있는)"},"unaware":{"c":"~을 알지 못하는","b":"unaware","m":"~을 알지[눈치채지] 못하는"},"unsure":{"c":"확신하지 못하는","b":"unsure","m":"확신하지 못하는 (↔ sure 확신하는)"},"use":{"c":"사용","b":"use","m":"사용; 사용하다"},"using":{"c":"사용하는 것","b":"use","m":"사용하다; 사용","f":"동사 use의 동명사 (using bicycles '자전거를 사용하는 것'이 주어)"},"value":{"c":"가치","b":"value","m":"가치; 소중히 여기다"},"vegetables":{"c":"채소(들)","b":"vegetable","m":"채소","f":"명사 vegetable의 복수형"},"vehicles’":{"c":"차량들의 (motor vehicles’ '자동차의')","b":"vehicle","m":"차량, 탈것","f":"명사 vehicle의 복수형 vehicles + ’ (복수 소유격 '~의')"},"wanting":{"c":"~하고 싶어서 (wanting to-v)","b":"want","m":"원하다 (want to-v ~하고 싶다)","f":"동사 want의 현재분사 (분사구문)"},"we":{"c":"우리","b":"we","m":"우리는, 우리가"},"were":{"c":"~였다 (were going to '~하려 하다')","b":"be","m":"~이다; 있다","f":"be동사 be의 복수 주어 과거형"},"when":{"c":"~할 때","b":"when","m":"~할 때; 언제"},"where":{"c":"~하는 (관계부사, cities를 꾸밈)","b":"where","m":"어디에; ~하는 (곳) (관계부사)"},"whose":{"c":"그것의 ~가 (관계대명사, option을 꾸밈)","b":"whose","m":"누구의; 그것의 ~가 (소유격 관계대명사)","f":"관계대명사 who의 소유격 형태"},"winning":{"c":"승리하는 것","b":"win","m":"이기다, 승리하다","f":"동사 win의 동명사 (for winning '승리하기 위해')"},"with":{"c":"~와 함께","b":"with","m":"~와 함께; ~을 가지고; (with + O + 분사) O가 ~한 채로"},"within":{"c":"~내에서","b":"within","m":"~이내에, ~안에서"},"workplace":{"c":"직장","b":"workplace","m":"직장, 일터"}};
+const REFS={"1":{"k":"1형식","t":[["I","s"],["sleep","v"]],"rel":""},"2":{"k":"2형식","t":[["I","s"],["am","v"],["happy","c"]],"rel":"I = happy"},"3":{"k":"3형식","t":[["I","s"],["like","v"],["apples","o"]],"rel":"I ≠ apples"},"4":{"k":"4형식","t":[["I","s"],["give","v"],["him","io"],["a book","do"]],"rel":"him ≠ a book"},"5":{"k":"5형식","t":[["I","s"],["make","v"],["him","o"],["happy","oc"]],"rel":"him = happy"}};
+const RNAME={"s":"주어","v":"동사","o":"목적어","c":"보어","io":"간접목적어","do":"직접목적어","oc":"목적격보어","x":"덧붙는 말"};
+const ST={"131":[[3,[["the power stations","s"],["could not meet","v"],["the power needs","o"]],"stations ≠ needs"]],"132":[[2,[["regulations","s"],["are","v"],["unable","c"],["to address problems","x"]],"regulations = unable"]],"133":[[3,[["fashion","s"],["contains","v"],["ambiguities","o"]],"fashion ≠ ambiguities"]],"134":[[2,[["practices","s"],["can become","v"],["formal","c"]],"practices = formal"]],"135":[[1,[["using bicycles","s"],["is encouraged","v"]],""],[3,[["that","s"],["restrict","v"],["motor vehicles’ access","o"]],"that ≠ access"]],"136":[[4,[["A resident","s"],["offered","v"],["the family","io"],["a place","do"]],"family ≠ place"]],"137":[[3,[["advances in technology","s"],["have changed","v"],["the nature of workplace skills","o"]],"advances ≠ nature"]],"138":[[3,[["the catchphrase","s"],["suggests","v"],["the value and beauty of simplicity","o"]],"catchphrase ≠ value"]],"139":[[3,[["Consumers","s"],["choose","v"],["the option","o"]],"consumers ≠ option"],[1,[["whose price","s"],["falls","v"],["in the middle","x"]],""],[3,[["the presence of another option","s"],["has influenced","v"],["their decision","o"]],"presence ≠ decision"]],"140":[[3,[["children","s"],["have","v"],["little exposure","o"]],"children ≠ exposure"],[2,[["large supermarkets","s"],["are","v"],["common","c"]],"supermarkets = common"],[1,[["fruits and vegetables","s"],["grow","v"]],""]],"141":[[3,[["we","s"],["can see","v"],["that patterns seem to repeat","o"]],"we ≠ that절"],[2,[["patterns","s"],["seem","v"],["to repeat","c"]],"patterns = to repeat"]],"142":[[3,[["greenhouse growers","s"],["realized","v"],["they had to develop methods","o"]],"growers ≠ (that)절"],[3,[["they","s"],["had to develop","v"],["methods","o"]],"they ≠ methods"],[3,[["they","s"],["were going to maintain","v"],["product quality","o"]],"they ≠ quality"]],"143":[[3,[["access to news articles","s"],["has extended","v"],["the shelf life of journalism","o"]],"access ≠ shelf life"]],"144":[[3,[["runners","s"],["may experience","v"],["little suffering","o"]],"runners ≠ suffering"],[3,[["they","s"],["believe","v"],["that the pain is necessary","o"]],"they ≠ that절"],[2,[["the pain","s"],["is","v"],["necessary","c"]],"pain = necessary"]],"145":[[1,[["substances","s"],["can be released","v"],["to form gas bubbles","x"]],""]],"146":[[3,[["The use of glass","s"],["created","v"],["sight-lines","o"]],"use ≠ sight-lines"],[5,[["that","s"],["made","v"],["people","o"],["feel observed","oc"]],"people = feel observed"]]};
+const OVR={"131":{"for":{"c":"~을 위해","b":"for","m":"~을 위해; ~동안"},"in":{"c":"~의 (가정과 상점의)","b":"in","m":"~안에, ~에서"},"of":{"c":"~의","b":"of","m":"~의"}},"132":{"for":{"c":"~을 대상으로","b":"for","m":"~을 위해; ~을 대상으로"},"to":{"c":"(be unable to) ~할 수 없다","b":"to","m":"(to + 동사원형) ~하기 위해, ~하는 것, ~할"}},"133":{"a":{"c":"하나의 (a form of '한 형태') / a host of '많은'","b":"a","m":"하나의, 어떤"},"to":{"c":"(enable O to-v) O가 ~할 수 있게","b":"to","m":"(to + 동사원형) ~하기 위해, ~하는 것, ~할"},"with":{"c":"~와 (associated with '~와 관련된')","b":"with","m":"~와 함께; ~을 가지고"},"of":{"c":"~의 (a host of '많은', pieces of clothing '옷들')","b":"of","m":"~의"}},"134":{"in":{"c":"~에 (In some cases '어떤 경우에는')","b":"in","m":"~안에, ~에서"},"with":{"c":"(with + O + p.p.) O가 ~된 채로[되면서]","b":"with","m":"~와 함께; (with + O + 분사) O가 ~한 채로"},"them":{"c":"그것들을 (rules and procedures를 가리킴)","b":"they","m":"그들은; 그것들은","f":"대명사 they의 목적격 them"}},"135":{"for":{"c":"~을 위해서","b":"for","m":"~을 위해; ~동안"},"to":{"c":"~으로의 (access to '~에의 접근')","b":"to","m":"~로, ~에게; ~까지"},"with":{"c":"~와 (combined with '~와 결합된')","b":"with","m":"~와 함께; ~을 가지고"},"that":{"c":"~하는 (관계대명사, policies를 꾸밈)","b":"that","m":"~라는 것 (접속사); ~하는 (관계대명사)"},"is":{"c":"~되다 (is encouraged '장려된다')","b":"be","m":"~이다; 있다; ~되다 (수동태)","f":"be동사 be의 3인칭 단수 현재형"}},"136":{"to":{"c":"(want to) ~하고 싶은 / (to stay) 머물 (place를 꾸밈)","b":"to","m":"(to + 동사원형) ~하기 위해, ~하는 것, ~할"},"how":{"c":"얼마나 (how much '얼마나 많이')","b":"how","m":"어떻게; 얼마나"},"facing":{"c":"겪는","b":"face","m":"직면하다, 마주하다; 얼굴","f":"동사 face의 현재분사 (분사구문)"}},"137":{"in":{"c":"~의 / ~이 있는 (in high demand '높은 수요가 있는')","b":"in","m":"~안에, ~에서"},"with":{"c":"~을 가지고 (with impacts on '~에 영향을 미치며')","b":"with","m":"~와 함께; ~을 가지고"},"have":{"c":"~해 왔다 (have + p.p. 현재완료)","b":"have","m":"가지다; (have + p.p.) 현재완료를 만듦","f":"동사 have의 현재형 (주어가 복수)"}},"138":{"in":{"c":"~에서 / (in contrast to) ~와는 대조적으로","b":"in","m":"~안에, ~에서"},"to":{"c":"~와 (in contrast to '~와는 대조적으로')","b":"to","m":"~로, ~에게; ~까지"},"is":{"c":"~이다 (less is more '더 적은 것이 더 많은 것이다')","b":"be","m":"~이다; 있다","f":"be동사 be의 3인칭 단수 현재형"},"more":{"c":"더 많은 것","b":"much / many","m":"많은 (more 더 많은; 더)","f":"much/many의 비교급"},"first":{"c":"처음 (First mentioned '처음 언급되어서')","b":"first","m":"처음(으로); 첫 번째의"}},"139":{"in":{"c":"~에 (falls in the middle '중간에 해당하다')","b":"in","m":"~안에, ~에서"},"that":{"c":"~라는 것 (접속사) / ~하는 (관계대명사, option을 꾸밈)","b":"that","m":"~라는 것 (접속사); ~하는 (관계대명사)"},"much":{"c":"훨씬 (much more '훨씬 더')","b":"much","m":"많은; 많이; 훨씬"},"more":{"c":"더 (비싼)","b":"much / many","m":"많은 (more 더 많은; 더)","f":"much/many의 비교급"},"their":{"c":"그들의 (소비자들의)","b":"they","m":"그들은; 그것들은","f":"대명사 they의 소유격 their"}},"140":{"in":{"c":"~에서","b":"in","m":"~안에, ~에서"},"to":{"c":"~에 대한 (exposure to '~에 대한 노출')","b":"to","m":"~로, ~에게; ~까지"},"how":{"c":"어떻게","b":"how","m":"어떻게; 얼마나"},"have":{"c":"가지다 (have little exposure '노출이 거의 없다')","b":"have","m":"가지다; 먹다","f":"동사 have의 현재형 (주어가 복수)"}},"141":{"that":{"c":"~라는 것 (접속사)","b":"that","m":"~라는 것 (접속사); ~하는 (관계대명사)"},"to":{"c":"(seem to-v) ~하는 듯하다","b":"to","m":"(to + 동사원형) ~하기 위해, ~하는 것, ~할"}},"142":{"to":{"c":"(have to) ~해야 하다 / (be going to) ~하려 하다","b":"to","m":"(to + 동사원형) ~하기 위해, ~하는 것, ~할"},"with":{"c":"~으로 (with fewer pesticides '더 적은 농약으로')","b":"with","m":"~와 함께; ~을 가지고"},"they":{"c":"그들 (온실 재배업자들)","b":"they","m":"그들은; 그것들은"}},"143":{"to":{"c":"~에 대한 (access to) / ~하기 위해 (to provide)","b":"to","m":"~로, ~에게; (to + 동사원형) ~하기 위해"},"for":{"c":"~에 대한 (context for '~에 대한 맥락')","b":"for","m":"~을 위해; ~에 대한"},"with":{"c":"(with + O + p.p.) O가 ~되면서","b":"with","m":"~와 함께; (with + O + 분사) O가 ~한 채로"},"of":{"c":"~의","b":"of","m":"~의"},"more":{"c":"더 (more current '더 최신인')","b":"much / many","m":"많은 (more 더 많은; 더)","f":"much/many의 비교급"}},"144":{"for":{"c":"~하기 위해 (for winning '승리하기 위해')","b":"for","m":"~을 위해; ~동안"},"from":{"c":"~으로 (from oxygen deficit '산소 부족으로')","b":"from","m":"~에서, ~로부터; ~때문에"},"that":{"c":"~라는 것 (접속사)","b":"that","m":"~라는 것 (접속사); ~하는 (관계대명사)"},"their":{"c":"그들의 (선수들의)","b":"they","m":"그들은; 그것들은","f":"대명사 they의 소유격 their"}},"145":{"in":{"c":"~에 (contained in '~에 함유된') / ~의 (changes in '~의 변화')","b":"in","m":"~안에, ~에서"},"to":{"c":"~하여 (to form '형성하도록') / ~로 (leading to '~로 이어지는')","b":"to","m":"~로, ~에게; (to + 동사원형) ~하기 위해"},"can":{"c":"~할 수 있다 (can be released '방출될 수 있다')","b":"can","m":"~할 수 있다 (조동사)","f":"조동사, 뒤에 동사원형이 옴"}},"146":{"in":{"c":"~에서의 (in palaces '궁전에서의')","b":"in","m":"~안에, ~에서"},"that":{"c":"~하는 (관계대명사, sight-lines를 꾸밈)","b":"that","m":"~라는 것 (접속사); ~하는 (관계대명사)"},"to":{"c":"~에 (contributing to '~에 기여하며')","b":"to","m":"~로, ~에게; ~까지"},"created":{"c":"만들었다","b":"create","m":"만들다, 창조하다","f":"동사 create의 과거형 / 과거분사"}}};
+
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+let tab="s", activeKey=null, looked={}, missed={};
+try{ looked=JSON.parse(localStorage.getItem("sj_looked2")||"{}"); missed=JSON.parse(localStorage.getItem("sj_missed")||"{}"); }catch(e){}
+function save(){ try{ localStorage.setItem("sj_looked2",JSON.stringify(looked)); localStorage.setItem("sj_missed",JSON.stringify(missed)); }catch(e){} }
+function words(s,sid){
+  return s.split(/([A-Za-zé][A-Za-zé'’-]*)/).map((t,i)=> i%2
+    ? '<span class="w'+(activeKey===sid+":"+i?" on":"")+'" data-k="'+sid+":"+i+'" data-w="'+esc(t)+'">'+esc(t)+'</span>'
+    : esc(t)).join("");
+}
+function card(x){
+  return '<section class="card"><div class="top"><span class="num">'+x.id+'</span><span class="src">'+esc(x.tag)+'</span></div>'
+    +'<div class="sent">'+words(x.en,x.id)+'</div></section>';
+}
+function render(){
+  ["S","B","R","W"].forEach(k=>$("#tab"+k).setAttribute("aria-selected",tab===k.toLowerCase()));
+  const keys=Object.keys(looked);
+  $("#wc").textContent=keys.length;
+  let h="";
+  if(tab!=="w"){
+    h+=(tab==="s"?SENT:tab==="b"?SENT2:REV).map(card).join("");
+  } else {
+    if(!keys.length) h='<div class="empty">아직 찾아본 단어가 없습니다.</div>';
+    else h='<div class="wl">'+keys.sort((a,b)=>looked[b].c-looked[a].c||a.localeCompare(b)).map(k=>{
+      const v=looked[k];
+      return '<div class="wl-row"><span class="wl-w">'+esc(k)+'</span><span class="wl-c">'+v.c+'회</span>'
+        +'<span class="wl-m'+(v.x?"":" miss")+'">'+(v.x?esc(v.x)+' <span class="wl-b">('+esc(v.m)+')</span>':"뜻 자료 없음")+'</span></div>';
+    }).join("")+'</div>';
+  }
+  $("#main").innerHTML=h;
+}
+function showNote(word,key){
+  const lower=word.toLowerCase();
+  const sid=key.split(":")[0];
+  const e=(OVR[sid]&&OVR[sid][lower])||DICT[lower];
+  const nm=$("#nm");
+  $("#nw").textContent=word;
+  if(e){
+    $("#nf").textContent=e.f||"";
+    nm.textContent=e.c; nm.classList.remove("miss");
+    $("#nb").textContent="("+e.b+" · "+e.m+")";
+    if(!looked[e.b]) looked[e.b]={c:0,x:e.c,m:e.m};
+    looked[e.b].c++; looked[e.b].x=e.c;
+    if(window.WN)WN.add([{w:e.b,m:e.c,src:"천일문S",how:"터치",ask:true}]);
+  } else {
+    $("#nf").textContent="";
+    nm.textContent="단어 자료에 없음";
+    nm.classList.add("miss");
+    $("#nb").textContent="";
+    missed[lower]=1;
+  }
+  $("#note").classList.add("show");
+  activeKey=key; save();
+}
+function hideNote(){ $("#note").classList.remove("show"); activeKey=null; }
+document.addEventListener("click",e=>{
+  const w=e.target.closest(".w");
+  if(w){
+    const k=w.dataset.k;
+    if(activeKey===k){ hideNote(); render(); return; }
+    showNote(w.dataset.w,k); render();
+  }
+});
+$("#nx").onclick=()=>{ hideNote(); render(); };
+["S","B","R","W"].forEach(k=>{ $("#tab"+k).onclick=()=>{ tab=k.toLowerCase(); hideNote(); render(); }; });
+let tx=null;
+$("#main").addEventListener("touchstart",e=>{ tx=e.touches[0].clientX; },{passive:true});
+$("#main").addEventListener("touchend",e=>{
+  if(tx===null||tab==="w") return;
+  const dx=e.changedTouches[0].clientX-tx; tx=null;
+  if(Math.abs(dx)<70) return;
+  const pg=["s","b","r"], n=pg.indexOf(tab)+(dx<0?1:-1);
+  if(n>=0&&n<pg.length){ tab=pg[n]; hideNote(); render(); window.scrollTo(0,0); }
+},{passive:true});
+render();
+</script>
