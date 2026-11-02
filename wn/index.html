@@ -250,6 +250,15 @@ function done(){
   h+='<button class="btn pri" id="hm">홈으로</button>';$.innerHTML=h;
   document.getElementById('hm').onclick=function(){home()};
 }
+var PV=(new URLSearchParams(location.search).get('v')||'').toUpperCase();
+if(PV==='B'||PV==='H'){
+  PLAN['미리보기']={dv:PV==='H'?'Pro':'Core',d:PV,s:'2026-11-02',m:'고1'};
+  name=function(){return'미리보기'};
+  ds=function(){};
+  login=function(){location.href='../wn-t/'};
+  try{localStorage.setItem('dv_'+PV+'_미리보기',JSON.stringify({done:{1:{s:'14/15',t:1}}}));localStorage.setItem((PV==='H'?'dvp':'dvc')+'_done_미리보기','[0]')}catch(e){}
+  post=function(b){var t=iso(new Date());if(b.act==='list')return Promise.resolve({ok:true,today:t,cap:40,max:60,items:[['alpha','알파'],['beyond','넘어서'],['crucial','결정적인'],['dispute','논쟁'],['elaborate','정교한'],['fragile','깨지기 쉬운']].map(function(x){return{w:x[0],m:x[1],src:'미리보기',ask:true,c:1,st:0,nx:t,first:t}})});return Promise.resolve({ok:true})};
+}
 try{var qn=new URLSearchParams(location.search).get('n');if(qn){ss('wn_name',qn.replace(/\s+/g,''));history.replaceState(null,'',location.pathname)}}catch(e){}
 home();
 </script></body></html>
