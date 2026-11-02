@@ -122,7 +122,7 @@ const WD=['일','월','화','수','목','금','토'];
 function dstr(ts){const d=new Date(ts);return (d.getMonth()+1)+'/'+d.getDate()+'('+WD[d.getDay()]+')'}
 let R=null,resetT=null,resetArm=false;
 
-const HWSTART={'김서진':'2026-11-03','장은율':'2026-11-03','김지효':'2026-11-03','김린':'2026-11-03','이동우':'2026-11-03','김도현':'2026-11-03'};
+const HWSTART={'김서진':'2026-11-02','장은율':'2026-11-02','김지효':'2026-11-02','김린':'2026-11-02','이동우':'2026-11-02','김도현':'2026-11-02'};
 const HWDAYS=[1,2,3,4,6,0];
 function hwInfo(){
   const st=HWSTART[WN.name()];if(!st)return null;
