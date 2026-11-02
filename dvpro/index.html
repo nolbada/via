@@ -152,6 +152,7 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
 /* 통합 오답노트 연결 스크립트: WN.add([{w,m,src,how,ask}]) 단어 전송, WN.hw(level,day,score) 숙제 기록, WN.gate(cb) 이름 확인 */
 (function(W){
   if(W.WN)return;
+  if(/[?&]t=1(&|$)/.test(W.location.search)){W.TEACHER_MODE=true;W.WN={add:function(){return Promise.resolve(false)},hw:function(){return Promise.resolve(false)},gate:function(cb){cb()},flush:function(){return Promise.resolve(false)},name:function(){return'선생님'}};return}
   var URL_=W.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',PIN='6900',QK='wn_q',HK='wn_hq';
   function ls(){try{return W.localStorage}catch(e){return null}}
   function g(k){var l=ls();try{return l&&l.getItem(k)}catch(e){return null}}
