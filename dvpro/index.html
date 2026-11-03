@@ -406,7 +406,7 @@ function recordResults(items,exam){
     var k=ikey(it),ok=itemOK(it);it.note='';
     if(!exam&&!anySel(it))return;
     if(ok){if(k in m){m[k]++;if(m[k]>=2){delete m[k];it.note='오답 모음에서 빠짐'}else it.note='오답 모음 · 연속 정답 '+m[k]+'/2'}}
-    else{m[k]=0;it.note='오답 모음 · 연속 정답 0/2';wnSend(it,exam)}
+    else{m[k]=0;it.note='오답 모음 · 연속 정답 0/2';if(exam)wnSend(it,exam)}
   });
   saveWrong(m);
   if(WNB.length){WN.add(WNB);WNB=[]}
