@@ -37,6 +37,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .tag{display:inline-block;font-size:12px;color:var(--sub);border:1px solid var(--line);border-radius:999px;padding:1px 9px;margin-bottom:8px}
 .prompt{font-weight:700;margin:0 0 10px}
 .stem{font-size:17px;margin:0 0 12px;padding:10px 12px;background:var(--bg);border-radius:10px;word-break:keep-all;overflow-wrap:anywhere}
+.kr{font-size:15px;line-height:1.6;color:var(--sub,#667);margin:-4px 0 12px;padding:0 4px;word-break:keep-all}
 u{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:2px}
 .ch{display:flex;gap:8px;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px;margin:7px 0;font-size:16px;align-items:flex-start}
 .ch .n{font-weight:700;color:var(--sub);min-width:20px}
@@ -186,6 +187,7 @@ function quiz(){
   let h='<div class="top"><button class="sbtn" id="bh">홈</button><div class="t">'+title()+' · '+(R.i+1)+' / '+R.list.length+'</div><button class="sbtn'+(S.star[q.id]?' on':'')+'" id="bst">별표</button></div>';
   h+='<div class="card"><span class="tag">'+esc(q.tn)+'</span><p class="prompt">'+esc(q.p)+'</p>';
   if(q.s)h+='<div class="stem">'+hl(q.s,q.h)+'</div>';
+  if(sub&&q.k)h+='<div class="kr">'+esc(q.k).replace(/\n/g,'<br>')+'</div>';
   if(sub){h+='<input class="tx" id="tx" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false"><div id="fbk"></div><button class="btn pri nb" id="ok">확인</button>'}
   else{
     const hs=q.hc?q.hc.split('|'):[];
