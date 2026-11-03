@@ -191,7 +191,7 @@ h2{font-size:18px;font-weight:900;margin:0}
 "use strict";
 var D=window.BDC,BOOKNAME=D.book,BOOK=D.theme,NMAX=BOOK.max,LINKS=D.links||[];
 var KEY='bdc_'+BOOKNAME+'_v1';
-var S={m1:{},m2:{},q:{}};
+var S={m1:{},m2:{},q:{},h:{}};
 try{var r=localStorage.getItem(KEY);if(r){S=Object.assign(S,JSON.parse(r));}}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
 var V={s:'home',i:0,banner:''};
@@ -241,7 +241,7 @@ function linksRow(){if(!LINKS.length){return '';}var h='<div class="links"><span
 
 function home(){
   var h=cover()+'<div><h1>비단챌 활용법</h1><div class="sub" style="margin-top:4px">이 순서대로 하면 숙제 한 번이 단어 공부가 돼요.</div></div>';
-  var G=[['책에 내 해석 쓰기','오늘 번호 문장을 먼저 혼자 해석해서 책에 써요. 동사에도 밑줄을 쳐 봐요.'],['번호 고르기','앱에서 같은 번호를 골라요. 책 번호와 앱 번호는 같아요.'],['미션 1 · 이것만은 꼭','핵심 3개를 읽고, 박스 안 내용을 책에 옮겨 써요.'],['미션 2 · 문장 미션','빈칸 채우기와 동사 찾기를 풀어요. 틀린 번호는 책에 체크해요.'],['정답과 비교하기','미션을 마치면 해석 코너가 열려요. 내 해석이 맞았는지 비교하고, 특히 동사 밑줄을 제대로 쳤는지 꼼꼼히 확인해요. 틀린 곳은 다른 색 펜으로 고쳐요. 빨강은 주절 동사, 파랑은 딸린 절 동사예요.']];
+  var G=[['책에 내 해석 쓰기','오늘 번호 문장을 먼저 혼자 해석해서 책에 써요. 동사에도 밑줄을 쳐 봐요.'],['번호 고르기','앱에서 같은 번호를 골라요. 책 번호와 앱 번호는 같아요.'],['미션 1 · 해석 코너','내 해석이 맞았는지 비교하고, 특히 동사 밑줄을 제대로 쳤는지 꼼꼼히 확인해요. 틀린 곳은 다른 색 펜으로 고쳐요. 빨강은 주절 동사, 파랑은 딸린 절 동사예요.'],['미션 2 · 이것만은 꼭','핵심 3개를 읽고, 박스 안 내용을 책에 옮겨 써요.'],['미션 3 · 문장 미션','빈칸 채우기와 동사 찾기를 풀어요. 틀린 번호는 책에 체크해요.']];
   h+='<ol class="guide">';
   G.forEach(function(g,k){h+='<li><span class="gn">'+(k+1)+'</span><div><b>'+g[0]+'</b><span class="gd">'+g[1]+'</span></div></li>';});
   h+='</ol>';
@@ -252,8 +252,8 @@ function home(){
   h+='</select><button type="button" class="arrow" data-act="next" aria-label="다음 번호" '+(R.start+R.size>NMAX?'disabled':'')+'>'+ICON_R+'</button></div>';
   h+='<div class="seg" role="group" aria-label="한 번에 하는 문장 수"><button type="button" data-act="s10" aria-pressed="'+(R.size===10)+'">10개씩</button><button type="button" data-act="s20" aria-pressed="'+(R.size===20)+'">20개씩</button></div>';
   if(ready()){
-    var n=cur().quiz.length,m1=allDone('m1'),m2=allDone('m2');
-    h+='<div class="stat"><span class="pill'+(m1?' done':'')+'">미션 1 '+(m1?'완료':'전')+'</span><span class="pill'+(m2?' done':(nAns()?' on':''))+'">미션 2 '+(m2?'완료':nAns()+' / '+n)+'</span><span class="pill'+(m2?' done':'')+'">해석 '+(m2?'열림':'잠김')+'</span></div>';
+    var n=cur().quiz.length,h0=allDone('h'),m1=allDone('m1'),m2=allDone('m2');
+    h+='<div class="stat"><span class="pill'+(h0?' done':'')+'">미션 1 '+(h0?'완료':'전')+'</span><span class="pill'+(m1?' done':'')+'">미션 2 '+(m1?'완료':'전')+'</span><span class="pill'+(m2?' done':(nAns()?' on':''))+'">미션 3 '+(m2?'완료':nAns()+' / '+n)+'</span></div>';
     h+='<button type="button" class="btn" data-go="day">이 번호로 시작</button>';
   }else{
     h+='<div class="fb no" style="background:var(--panel2);color:var(--ink)">이 번호는 아직 준비 중이에요. 조금만 기다려 주세요.</div><button type="button" class="btn" disabled>이 번호로 시작</button>';
@@ -264,20 +264,20 @@ function home(){
 }
 
 function day(){
-  var C=cur(),n=C.quiz.length,m1=allDone('m1'),m2=allDone('m2');
+  var C=cur(),n=C.quiz.length,h0=allDone('h'),m1=allDone('m1'),m2=allDone('m2');
   var h=topbar(rangeText(),'home');
   if(V.banner){h+='<div class="banner">'+V.banner+'</div>';V.banner='';}
   h+='<div class="banner"><b>먼저 책에 내 해석을 써 두세요.</b> 그다음 미션을 시작해요.</div><div class="stack">';
-  h+='<button type="button" class="row" data-go="m1"><div class="grow"><div class="t">미션 1 · 이것만은 꼭</div><div class="d">오늘의 핵심 '+C.cards.length+'개를 읽고 책에 옮겨 써요</div></div>'+(m1?'<span class="pill done">완료</span>':'<span class="pill on">시작</span>')+'</button>';
-  h+='<button type="button" class="row" data-go="m2"><div class="grow"><div class="t">미션 2 · 문장 미션</div><div class="d">빈칸 채우기와 동사 찾기 '+n+'문제</div></div>'+(m2?'<span class="pill done">완료</span>':'<span class="pill'+(nAns()?' on':'')+'">'+nAns()+' / '+n+'</span>')+'</button>';
-  h+='<button type="button" class="row" data-go="hae"><div class="grow"><div class="t">해석 코너</div><div class="d">'+(m2?'내 해석과 동사 표시를 확인해 봐요':'미션 1과 2를 마치면 열려요')+'</div></div>'+(m2?'<span class="pill done">열림</span>':'<span class="pill">잠김</span>')+'</button>';
+  h+='<button type="button" class="row" data-go="hae"><div class="grow"><div class="t">미션 1 · 해석 코너</div><div class="d">내 해석과 동사 표시를 확인해 봐요</div></div>'+(h0?'<span class="pill done">완료</span>':'<span class="pill on">시작</span>')+'</button>';
+  h+='<button type="button" class="row" data-go="m1"><div class="grow"><div class="t">미션 2 · 이것만은 꼭</div><div class="d">오늘의 핵심 '+C.cards.length+'개를 읽고 책에 옮겨 써요</div></div>'+(m1?'<span class="pill done">완료</span>':'<span class="pill on">시작</span>')+'</button>';
+  h+='<button type="button" class="row" data-go="m2"><div class="grow"><div class="t">미션 3 · 문장 미션</div><div class="d">빈칸 채우기와 동사 찾기 '+n+'문제</div></div>'+(m2?'<span class="pill done">완료</span>':'<span class="pill'+(nAns()?' on':'')+'">'+nAns()+' / '+n+'</span>')+'</button>';
   if(wrongs().length){h+='<button type="button" class="row" data-go="wr"><div class="grow"><div class="t">오답노트</div><div class="d">틀린 번호는 책에 체크하고 뜻만 적어요</div></div><span class="pill on">'+wrongs().length+'</span></button>';}
   return h+'</div>';
 }
 
 function m1(){
   var C=cur().cards,c=C[V.i],T=TYPES[c.t];
-  var h=topbar('미션 1 · 이것만은 꼭','day')+bar(C.length,V.i);
+  var h=topbar('미션 2 · 이것만은 꼭','day')+bar(C.length,V.i);
   h+='<div class="card"><div class="cardhead"><span class="bigno">'+c.no+'</span>'+chip(c.t)+'<span class="tl '+T.c+'">'+T.n+'</span><span class="no">'+(V.i+1)+' / '+C.length+'</span></div>';
   h+='<div class="word">'+esc(c.w)+'<small>'+esc(c.m)+'</small></div>';
   h+='<div class="body"><b>언제 써요?</b><br>'+esc(c.when)+'</div>';
@@ -292,14 +292,14 @@ function m1(){
   });
   h+='</div></div>';
   h+='<div class="nav"><button type="button" class="btn ghost" id="prev" '+(V.i===0?'disabled':'')+'>이전</button>';
-  h+=(V.i<C.length-1?'<button type="button" class="btn" id="next">다음 카드</button>':'<button type="button" class="btn" id="fin1">미션 1 마치기</button>')+'</div>';
+  h+=(V.i<C.length-1?'<button type="button" class="btn" id="next">다음 카드</button>':'<button type="button" class="btn" id="fin1">미션 2 마치기</button>')+'</div>';
   return h;
 }
 
 function grp(q,k){var g=q.toks[k][2],r=[];if(!q.toks[k][1]){return [k];}q.toks.forEach(function(t,j){if(t[1]&&t[2]===g){r.push(j);}});return r;}
 function m2(){
   var Q=cur().quiz,n=Q.length,i=V.i,q=Q[i],a=S.q[q.no]||{};
-  var h=topbar('미션 2 · 문장 미션','day')+bar(n,i);
+  var h=topbar('미션 3 · 문장 미션','day')+bar(n,i);
   h+='<div class="card"><div class="cardhead"><span class="bigno">'+q.no+'</span><span class="word" style="font-size:20px">'+esc(q.w)+'</span><span class="no">'+(i+1)+' / '+n+'</span></div>';
   if(q.k==='b'){
     var done=a.pick!==undefined;
@@ -330,18 +330,12 @@ function m2(){
   }
   h+='</div><div class="nav"><button type="button" class="btn ghost" id="prev" '+(i===0?'disabled':'')+'>이전</button>';
   if(i<n-1){h+='<button type="button" class="btn" id="next" '+(answered(q)?'':'disabled')+'>다음 문제</button>';}
-  else{h+='<button type="button" class="btn" id="fin2" '+(nAns()<n?'disabled':'')+'>미션 2 마치기</button>';}
+  else{h+='<button type="button" class="btn" id="fin2" '+(nAns()<n?'disabled':'')+'>미션 3 마치기</button>';}
   return h+'</div>';
 }
 
 function hae(){
-  var h=topbar('해석 코너','day'),m2d=allDone('m2');
-  if(!m2d){
-    var n=cur().quiz.length;
-    return h+'<div class="lock">'+ICON_LOCK+'<h2>미션 1과 미션 2를 마치면 열려요</h2><div class="sub">책에 내 해석과 동사 밑줄을 먼저 해 두었나요? 미션을 마치면 정답으로 확인할 수 있어요.</div></div>'+
-      '<div class="stack"><div class="row" style="cursor:default"><div class="grow"><div class="t">미션 1 · 이것만은 꼭</div></div>'+(allDone('m1')?'<span class="pill done">완료</span>':'<span class="pill">전</span>')+'</div>'+
-      '<div class="row" style="cursor:default"><div class="grow"><div class="t">미션 2 · 문장 미션</div></div><span class="pill">'+nAns()+' / '+n+'</span></div></div>';
-  }
+  var h=topbar('미션 1 · 해석 코너','day');
   h+='<div class="banner"><b>내 해석이 맞았는지 확인해요.</b> 특히 동사 밑줄을 제대로 쳤는지 꼼꼼히 봐요. 조동사까지 한 덩어리인지, 주절(빨강)과 딸린 절(파랑)을 구분했는지, 준동사와 부사는 뺐는지 확인하고, 틀린 곳은 다른 색 펜으로 고쳐요.</div><div class="legend"><span class="vm">빨강 굵은 밑줄</span> 이 문장의 주인공(주절) 동사예요. 조동사까지 한 덩어리예요.<br><span class="vs">파랑 점선 밑줄</span> 뒤에 딸린 절(명사절·부사절·형용사절)의 동사예요.<br><b>that · when</b> 같은 말 부터 절이 시작돼요. 그 절이 문장에서 맡은 자리도 적어 뒀어요.</div><div class="stack">';
   cur().sent.forEach(function(s){
     var tags=[];(s.notes||[]).forEach(function(n){if(tags.indexOf(n[1])<0){tags.push(n[1]);}});
@@ -355,7 +349,7 @@ function hae(){
     if(s.dn&&s.dn.length){h+='<details class="dn"><summary>동사 표시 기준 보기</summary><ul>';s.dn.forEach(function(d){h+='<li><b>'+esc(d[1])+'</b> <span class="dk">'+esc(d[0])+'</span><br>'+esc(d[2])+'</li>';});h+='</ul></details>';}
     h+='</div>';
   });
-  return h+'</div><div class="sub">한 번 열린 번호는 그 뒤로 언제나 열려 있어요.</div>';
+  return h+'</div><button type="button" class="btn" id="fin0">미션 1 마치기</button>';
 }
 
 function wr(){
@@ -385,8 +379,9 @@ $app.addEventListener('click',function(e){
   var C=cur();
   if(t.id==='prev'){V.i=Math.max(0,V.i-1);render();return;}
   if(t.id==='next'){V.i=Math.min((V.s==='m1'?C.cards.length:C.quiz.length)-1,V.i+1);render();return;}
-  if(t.id==='fin1'){blocks().forEach(function(b){S.m1[b]=true;});save();V.banner='<b>미션 1을 마쳤어요.</b> 이제 미션 2로 가요.';go('day');return;}
-  if(t.id==='fin2'){blocks().forEach(function(b){S.m2[b]=true;});save();V.banner='<b>해석 코너가 열렸어요.</b> 한 번 열린 번호는 계속 열려 있어요.';go('day');return;}
+  if(t.id==='fin0'){blocks().forEach(function(b){S.h[b]=true;});save();V.banner='<b>미션 1을 마쳤어요.</b> 이제 미션 2로 가요.';go('day');return;}
+  if(t.id==='fin1'){blocks().forEach(function(b){S.m1[b]=true;});save();V.banner='<b>미션 2를 마쳤어요.</b> 이제 미션 3으로 가요.';go('day');return;}
+  if(t.id==='fin2'){blocks().forEach(function(b){S.m2[b]=true;});save();V.banner='<b>미션 3을 마쳤어요.</b> 오늘 번호를 모두 끝냈어요.';go('day');return;}
   var q=C.quiz[V.i];
   if(t.dataset.opt!==undefined){var o=opts(q,V.i)[Number(t.dataset.opt)];S.q[q.no]={pick:o,ok:o===q.a};save();render();return;}
   if(t.dataset.tok!==undefined){
