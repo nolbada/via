@@ -84,7 +84,7 @@ function wlist(n){
   $.innerHTML='<div class="msg">불러오는 중...</div>';
   post({act:'t_list',name:n,all:1,max:300,limit:LIM}).then(function(r){
     if(!r||!r.ok){main();return}
-    WL={n:n,items:r.items,askDue:r.askDue,total:r.total};drawWL();
+    var li=r.items.filter(function(i){return i.src!=='데일리보카'});WL={n:n,items:li,askDue:r.askDue,total:li.length};drawWL();
   },function(){main()});
 }
 function drawWL(){
