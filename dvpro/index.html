@@ -85,6 +85,8 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
 .reset{margin-top:20px;width:100%;border:1px solid var(--line);background:transparent;color:var(--sub);border-radius:14px;padding:12px;font:inherit;cursor:pointer}
 .reset.arm{border-color:var(--bad);color:var(--bad)}
 .homec{margin:auto 0;display:flex;flex-direction:column;gap:12px;padding:20px 0}
+#days,#home{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+#days .homec,#home .homec{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 .homec h1{font-family:"DM Serif Display",serif;font-weight:400;font-size:calc(44px*var(--fs));line-height:1.05;margin:0 0 10px}
 .big{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:18px;padding:18px;font:inherit;text-align:left;cursor:pointer;box-shadow:var(--shadow)}
 .big b{display:block;font-size:calc(18px*var(--fs))}
