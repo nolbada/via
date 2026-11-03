@@ -93,13 +93,16 @@ header p{margin:0;color:var(--muted);font-size:13px}
 .evs .sn{display:inline-block;font-size:12px;font-weight:800;color:var(--accent);margin-right:6px}
 .panel .wr{margin:12px 0 0}
 .rs-btn{display:block;width:100%;margin:20px 0 8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:12px;font:inherit;font-weight:700;min-height:44px;cursor:pointer}.rs-btn.arm{border-color:#c04545;color:#c04545}
+
+.rs-btn.go{display:block;text-align:center;text-decoration:none;border-color:var(--ok);color:var(--ok);background:var(--surface)}
+.rs-btn.dis{text-align:center;color:var(--muted);border-style:dashed;cursor:default}
+.xg{margin-top:20px}.xg .rs-btn{margin:0 0 8px}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header>
   <h1>브릭스 중학독해 3</h1>
-  <p style="margin:6px 0 0"><a href="exit/" style="font-weight:700;color:inherit">Exit test →</a></p>
   <p id="sub"></p>
 </header>
 <div class="units" id="units"></div>
@@ -108,7 +111,9 @@ header p{margin:0;color:var(--muted);font-size:13px}
 </div>
 <script src="data.js"></script>
 <script>
-var KEY="b1";
+var KEY="bricks3";
+var META={"secs":{"1":"Chapter 1","2":"Chapter 2","3":"Chapter 3","4":"Chapter 4","5":"Chapter 5","6":"Chapter 6","7":"Chapter 7","8":"Chapter 8","9":"Chapter 9","10":"Chapter 10"},"labs":{"b3-01-1":"Reading 1","b3-01-2":"Reading 2","b3-01-3":"Reading 3","b3-01-4":"Reading 4","b3-02-1":"Reading 1","b3-02-2":"Reading 2","b3-02-3":"Reading 3","b3-02-4":"Reading 4","b3-03-1":"Reading 1","b3-03-2":"Reading 2","b3-03-3":"Reading 3","b3-03-4":"Reading 4","b3-04-1":"Reading 1","b3-04-2":"Reading 2","b3-04-3":"Reading 3","b3-04-4":"Reading 4","b3-05-1":"Reading 1","b3-05-2":"Reading 2","b3-05-3":"Reading 3","b3-05-4":"Reading 4","b3-06-1":"Reading 1","b3-06-2":"Reading 2","b3-06-3":"Reading 3","b3-06-4":"Reading 4","b3-07-1":"Reading 1","b3-07-2":"Reading 2","b3-07-3":"Reading 3","b3-07-4":"Reading 4","b3-08-1":"Reading 1","b3-08-2":"Reading 2","b3-08-3":"Reading 3","b3-08-4":"Reading 4","b3-09-1":"Reading 1","b3-09-2":"Reading 2","b3-09-3":"Reading 3","b3-09-4":"Reading 4","b3-10-1":"Reading 1","b3-10-2":"Reading 2","b3-10-3":"Reading 3","b3-10-4":"Reading 4"}};
+var LEGACY=["b1done"];
 var TAGS={hl:"형광펜",ul:"밑줄",ci:"동그라미",sl:"슬래시",ar:"화살표",me:"여백 메모",an:"반의어"};
 function localStorage_get(){try{var v=localStorage.getItem(KEY+"unit");if(v&&U[v])return v}catch(e){}return Object.keys(U)[0]}
 var unit=localStorage_get();var P=U[unit];
@@ -116,10 +121,24 @@ var store={get:function(k){try{return localStorage.getItem(k)}catch(e){return nu
 var cur=0;
 var done={};
 try{done=JSON.parse(store.get(KEY+"done")||"{}")||{}}catch(e){done={}}
+(function(){
+  var ids={};Object.keys(U).forEach(function(k){U[k].forEach(function(r){ids[r.id]=1})});
+  var moved=false;
+  LEGACY.forEach(function(lk){var old={};try{old=JSON.parse(store.get(lk)||"{}")||{}}catch(e){old={}}
+    Object.keys(old).forEach(function(k){var m=k.replace(/^o-/,"").match(/^(.*)-([sgq])\d+$/);if(!m||!ids[m[1]])return;
+      if(done[k]==null){done[k]=old[k];moved=true}
+      if(old[k]&&m[2]!=="s"&&k.indexOf("o-")!==0&&done["o-"+k]==null){done["o-"+k]=true;moved=true}})});
+  if(moved)store.set(KEY+"done",JSON.stringify(done));
+  var m=/[?&]r=([^&]+)/.exec(location.search);
+  if(m){var id=decodeURIComponent(m[1]);Object.keys(U).forEach(function(k){U[k].forEach(function(p,i){if(p.id===id){unit=k;cur=i}})})}
+})();
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 function swatch(k){var s=el("span","sw "+k);if(k==="an")s.textContent="↔";s.setAttribute("aria-hidden","true");return s}
+function secName(k){return (META.secs&&META.secs[k])||k}
+function readName(p){return (META.labs&&META.labs[p.id])||String(p.no)}
 var qbtns=[];
 function allOpened(p){for(var i=0;i<p.steps.length;i++)if(!done["o-"+p.id+"-s"+i])return false;return true}
+function examReady(p){var G=p.gist||[],i;if(!allOpened(p))return false;for(i=0;i<G.length;i++)if(!done["o-"+p.id+"-g"+i])return false;for(i=0;i<p.qs.length;i++)if(!done["o-"+p.id+"-q"+i])return false;return true}
 function syncQ(){qbtns.forEach(function(b){b.disabled=!allOpened(P[cur])})}
 function stepCard(p,s,i,kind){
   var key=p.id+"-"+kind+i;
@@ -131,7 +150,7 @@ function stepCard(p,s,i,kind){
   top.appendChild(cb);
   var b=el("div","body");
   var tg=el("div","tags");
-  if(s.req||kind==="q"){tg.appendChild(el("span","rq","필수"))}
+  if(s.req||kind==="q"||kind==="g"){tg.appendChild(el("span","rq","필수"))}
   s.tags.forEach(function(t){var g=el("span","tag");g.appendChild(swatch(t));g.appendChild(document.createTextNode(TAGS[t]));tg.appendChild(g)});
   b.appendChild(tg);
   var at=el("div","at");var em=el("em",null,s.at);at.appendChild(em);at.appendChild(document.createTextNode(" · "+s.st));
@@ -157,8 +176,10 @@ function stepCard(p,s,i,kind){
     s.ans.split("\n").forEach(function(l){var d=el("div",null,l);ap.appendChild(d)});
   }
   if(s.write&&s.write.length){var wb=el("div","wr");wb.appendChild(el("div","wl","책에 쓸 것"));s.write.forEach(function(l){wb.appendChild(el("div",null,l))});if(s.opts)ap.appendChild(wb);else ap.insertBefore(wb,ap.firstChild)}
-  if(kind==="q"){qbtns.push(ab);ab.disabled=!allOpened(p)}
-  ab.addEventListener("click",function(){if(ab.disabled)return;ap.hidden=!ap.hidden;ab.setAttribute("aria-expanded",String(!ap.hidden));if(!ap.hidden&&!cb.checked){cb.checked=true;done[key]=true;c.classList.add("done")}if(kind==="s"){done["o-"+key]=true;syncQ()}store.set(KEY+"done",JSON.stringify(done));progress()});
+  if(kind==="q"||kind==="g"){qbtns.push(ab);ab.disabled=!allOpened(p)}
+  ab.addEventListener("click",function(){if(ab.disabled)return;ap.hidden=!ap.hidden;ab.setAttribute("aria-expanded",String(!ap.hidden));
+    if(!ap.hidden){done["o-"+key]=true;if(!cb.checked){cb.checked=true;done[key]=true;c.classList.add("done")}if(kind==="s")syncQ()}
+    store.set(KEY+"done",JSON.stringify(done));progress()});
   b.appendChild(acts);
   if(hp)b.appendChild(hp);
   b.appendChild(ap);
@@ -166,38 +187,43 @@ function stepCard(p,s,i,kind){
   return c;
 }
 function progress(){
-  var p=P[cur],n=p.steps.length+p.qs.length,d=0,i;
+  var p=P[cur],G=p.gist||[],n=p.steps.length+G.length+p.qs.length,d=0,i;
   for(i=0;i<p.steps.length;i++)if(done[p.id+"-s"+i])d++;
+  for(i=0;i<G.length;i++)if(done[p.id+"-g"+i])d++;
   for(i=0;i<p.qs.length;i++)if(done[p.id+"-q"+i])d++;
   var pc=document.getElementById("pc");if(pc)pc.textContent=d+" / "+n;
   var pb=document.getElementById("pb");if(pb)pb.style.width=(100*d/n)+"%";
-  var ok=true;for(i=0;i<p.steps.length;i++)if(!done[p.id+"-s"+i])ok=false;
-  var qw=document.getElementById("qw");if(qw)qw.classList.toggle("locked",!ok);
+  var qw=document.getElementById("qw");if(qw)qw.classList.toggle("locked",!allOpened(p));
+  var xg=document.getElementById("xg");
+  if(xg){xg.textContent="";
+    if(examReady(p)){var a=el("a","rs-btn go","Exit test 응시");a.href="exit/?r="+encodeURIComponent(p.id);xg.appendChild(a)}
+    else{xg.appendChild(el("div","rs-btn dis","Exit test · 잠김"))}}
 }
 function render(){
   P=U[unit];if(cur>=P.length)cur=0;
   var up=document.getElementById("units");up.textContent="";
-  Object.keys(U).forEach(function(k){var b=el("button","ub","Chapter "+k);b.type="button";b.setAttribute("aria-pressed",String(k===unit));
+  Object.keys(U).forEach(function(k){var b=el("button","ub",secName(k));b.type="button";b.setAttribute("aria-pressed",String(k===unit));
     b.addEventListener("click",function(){unit=k;cur=0;try{localStorage.setItem(KEY+"unit",k)}catch(e){}render()});up.appendChild(b)});
   var tabs=document.getElementById("tabs");tabs.textContent="";
   P.forEach(function(p,i){
     var t=el("button","tab");t.type="button";t.setAttribute("role","tab");t.setAttribute("aria-selected",String(i===cur));
-    t.appendChild(el("b",null,"Reading "+p.no));t.appendChild(el("span",null,p.ko));
+    t.appendChild(el("b",null,readName(p)));t.appendChild(el("span",null,p.ko));
     t.addEventListener("click",function(){cur=i;render();document.getElementById("view").scrollIntoView({block:"start"})});tabs.appendChild(t);
   });
-  var p=P[cur],v=document.getElementById("view");document.getElementById("sub").textContent="Chapter "+unit+" · "+p.pg;v.textContent="";
+  var p=P[cur],v=document.getElementById("view");document.getElementById("sub").textContent=secName(unit)+" · "+readName(p)+" · "+p.pg;v.textContent="";
   var m=el("div","meta");var st=el("strong",null,p.ko);m.appendChild(st);var pc=el("span",null,"");pc.id="pc";m.appendChild(pc);v.appendChild(m);
   var bar=el("div","bar");var bi=el("i");bi.id="pb";bar.appendChild(bi);v.appendChild(bar);
   v.appendChild(el("div","sec","지문 읽기"));
   qbtns=[];
   p.steps.forEach(function(s,i){v.appendChild(stepCard(p,s,i,"s"))});
-  var qw=el("div","qw");qw.id="qw";qw.appendChild(el("div","sec","문제 선지"));
-  var lk=el("div","lockcard","잠김");lk.id="lk";qw.appendChild(lk);
+  var qw=el("div","qw");qw.id="qw";var lk=el("div","lockcard","잠김 · 지문 읽기를 모두 마치면 열려요");lk.id="lk";qw.appendChild(lk);
+  if(p.gist&&p.gist.length){qw.appendChild(el("div","sec","대의 파악 질문"));p.gist.forEach(function(s,i){qw.appendChild(stepCard(p,s,i,"g"))})}
+  qw.appendChild(el("div","sec","문제 선지"));
   p.qs.forEach(function(s,i){qw.appendChild(stepCard(p,s,i,"q"))});v.appendChild(qw);
+  var xg=el("div","xg");xg.id="xg";v.appendChild(xg);
   var rb=el("button","rs-btn","처음부터 다시 (다음 학생)");rb.type="button";var rt=0;
   rb.addEventListener("click",function(){if(!rb.classList.contains("arm")){rb.classList.add("arm");rb.textContent="한 번 더 누르면 모두 지워집니다";clearTimeout(rt);rt=setTimeout(function(){rb.classList.remove("arm");rb.textContent="처음부터 다시 (다음 학생)"},3500);return}done={};store.set(KEY+"done","{}");cur=0;render();window.scrollTo(0,0)});
   v.appendChild(rb);
-  var hm=el("a","rs-btn","Exit test 보러 가기 →");hm.href="exit/";hm.style.textAlign="center";hm.style.textDecoration="none";hm.style.marginTop="0";v.appendChild(hm);
   progress();
 }
 render();
