@@ -36,13 +36,28 @@ h1{font-size:22px;margin:0 0 14px;letter-spacing:-.01em}
 .st a:active{background:var(--line)}
 .st i{flex:none;display:grid;place-content:center;width:28px;height:28px;border-radius:14px;background:var(--c);color:#fff;font-style:normal;font-size:14px;font-weight:800}
 @media (prefers-color-scheme:dark){.st i{color:#0c1f2b}}
-.sd{margin:12px 0 0}
-.sr{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:17px;font-weight:800;color:var(--ink);background:var(--card);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:10px;padding:14px 14px}
+.grp{border:2px solid var(--k);background:var(--kb);border-radius:16px;padding:10px 10px 12px;margin:14px 0 0}
+.gl{display:flex;align-items:baseline;gap:8px;font-size:17px;font-weight:900;letter-spacing:.04em;color:var(--ink);margin:2px 4px 2px}
+.gl small{font-size:12px;font-weight:700;color:var(--sub);letter-spacing:0}
+.g-st{--k:#fdba74;--kb:#fff4e8;--kh:#fed7aa;--c:#ea580c}
+.g-md{--k:#93b4f5;--kb:#eef4ff;--kh:#cfe0ff;--c:#2563eb}
+.g-hi{--k:#f4a3b5;--kb:#fff0f3;--kh:#fbc8d4;--c:#be123c}
+@media (prefers-color-scheme:dark){
+.g-st{--k:#9a5320;--kb:#2a1a0e;--kh:#6b3410;--c:#fb923c}
+.g-md{--k:#2f5aa8;--kb:#101c33;--kh:#1e3a6e;--c:#60a5fa}
+.g-hi{--k:#a3314f;--kb:#2d121b;--kh:#6b1f35;--c:#fb7185}}
+.grp .bk{background:color-mix(in srgb,var(--c) calc(var(--n,1)*9% + 4%),var(--card));border:1px solid color-mix(in srgb,var(--c) calc(var(--n,1)*9% + 24%),var(--card));border-radius:12px;padding:10px 10px 10px;margin:10px 0 0}
+.grp .bk h3{margin:0 2px 8px}
+.grp{--on:#fff}
+@media (prefers-color-scheme:dark){.grp{--on:#0c1f2b}}
+.grp .bk h3:before{width:calc(4px + var(--n,1)*1.5px)}
+.sd{margin:10px 0 0}
+.sr{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:17px;font-weight:800;color:var(--ink);background:var(--kh);border:1px solid var(--k);border-left:8px solid var(--c);border-radius:10px;padding:14px 14px}
 .sr::-webkit-details-marker{display:none}
 .sr small{font-size:13px;font-weight:700;color:var(--sub);margin-left:auto;margin-right:10px}
 .sr:after{content:"+";font-size:22px;font-weight:700;color:var(--c);line-height:1}
-.sd[open]>.sr{background:var(--kh);border-color:var(--k);border-left-color:var(--c)}
-.sd[open]>.sr:after{content:"\2212"}
+.sd[open]>.sr{background:var(--c);color:#fff;border-color:var(--k);border-left-color:var(--c)}
+.sd[open]>.sr:after{content:"\2212";color:var(--on)}.sd[open]>.sr small{color:var(--on)}
 .sd[open]>.bk:first-of-type{margin-top:12px}
 </style>
 </head>
@@ -70,187 +85,195 @@ h1{font-size:22px;margin:0 0 14px;letter-spacing:-.01em}
 <div class="st">
 <a href="https://nolbada.github.io/via/links/books/reading-room/"><i>★</i>학년·렉사일별로 책 고르기</a>
 </div></div>
-<details class="sd" name="rd-series"><summary class="sr">리딩그라피<small>6권</small></summary>
-<div class="bk"><h3>리딩그라피 1<small class="lx">예비중~중1 · 500–700L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/readinggraphy1/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/readinggraphy1/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>리딩그라피 2<small class="lx">중1 · 600–800L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/readinggraphy2/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/readinggraphy2/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>리딩그라피 3<small class="lx">중2 · 700–900L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/readinggraphy3/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/readinggraphy3/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>리딩그라피 4<small class="lx">중3 · 800–1000L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/readinggraphy4/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/readinggraphy4/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>리딩그라피 5<small class="lx">중3~예비고 · 900–1000L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/readinggraphy5/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/readinggraphy5/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>리딩그라피 6<small class="lx">중3~예비고 · 950–1050L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/readinggraphy6/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/readinggraphy6/exit/"><i>2</i>Exit test</a>
-</div></div>
-</details>
-<details class="sd" name="rd-series"><summary class="sr">브릭스 중학독해<small>4권</small></summary>
-<div class="bk"><h3>브릭스 중학독해 1<small class="lx">예비중~중1 · 500–700L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/bricks1/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/bricks1/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>브릭스 중학독해 2<small class="lx">중1~중2 · 600–800L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/bricks2/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/bricks2/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>브릭스 중학독해 3<small class="lx">중2~중3 · 700–900L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/bricks3/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/bricks3/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>브릭스 중학독해 4<small class="lx">중2~중3 · 800–1000L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/bricks4/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/bricks4/exit/"><i>2</i>Exit test</a>
-</div></div>
-</details>
-<details class="sd" name="rd-series"><summary class="sr">해커스 리딩스마트<small>6권</small></summary>
-<div class="bk"><h3>해커스 리딩스마트 스타터 1<small class="lx">초5-6 · 420–600L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/hackersstarter1/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/hackersstarter1/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>해커스 리딩스마트 스타터 2<small class="lx">초5-6 · 550–690L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/hackersstarter2/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/hackersstarter2/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>해커스 리딩스마트 1<small class="lx">예비중 · 710L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/hackers1/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/hackers1/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>해커스 리딩스마트 2<small class="lx">중1 · 770L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/hackers2/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/hackers2/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>해커스 리딩스마트 3<small class="lx">중2 · 850L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/hackers3/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/hackers3/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>해커스 리딩스마트 4<small class="lx">중3 · 900L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/hackers4/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/hackers4/exit/"><i>2</i>Exit test</a>
-</div></div>
-</details>
-<details class="sd" name="rd-series"><summary class="sr">능률 1316 Reading<small>3권</small></summary>
-<div class="bk"><h3>능률 1316 Reading 1<small class="lx">예비중~중1 · 500–700L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/1316reading1/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/1316reading1/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>능률 1316 Reading 2<small class="lx">중1~중2 · 600–800L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/1316reading2/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/1316reading2/exit/"><i>2</i>Exit test</a>
-</div></div>
-<div class="bk"><h3>능률 1316 Reading 3<small class="lx">중2~중3 · 700–900L</small></h3>
-<div class="st">
-<a href="https://nolbada.github.io/via/1316reading3/"><i>1</i>클래스 활동</a>
-<a href="https://nolbada.github.io/via/1316reading3/exit/"><i>2</i>Exit test</a>
-</div></div>
-</details>
-<details class="sd" name="rd-series"><summary class="sr">리딩튜터 스타터<small>3권</small></summary>
-<div class="bk"><h3>리딩튜터 스타터 1<small class="lx">초5 · 200–400L</small></h3>
+<div class="grp g-st"><div class="gl">스타터<small>초등</small></div>
+<details class="sd" name="rd-series"><summary class="sr">리딩튜터 주니어 스타터<small>3권</small></summary>
+<div class="bk" style="--n:1"><h3>리딩튜터 주니어 스타터 1<small class="lx">초5 · 200–400L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/tutorstarter1/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/tutorstarter1/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="bk"><h3>리딩튜터 스타터 2<small class="lx">초5-6 · 300–500L</small></h3>
+<div class="bk" style="--n:2"><h3>리딩튜터 주니어 스타터 2<small class="lx">초5-6 · 300–500L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/tutorstarter2/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/tutorstarter2/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="bk"><h3>리딩튜터 스타터 3<small class="lx">초6 · 400–600L</small></h3>
+<div class="bk" style="--n:3"><h3>리딩튜터 주니어 스타터 3<small class="lx">초6 · 400–600L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/tutorstarter3/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/tutorstarter3/exit/"><i>2</i>Exit test</a>
 </div></div>
 </details>
+<details class="sd" name="rd-series"><summary class="sr">해커스 리딩스마트 스타터<small>2권</small></summary>
+<div class="bk" style="--n:1"><h3>해커스 리딩스마트 스타터 1<small class="lx">초5-6 · 420–600L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/hackersstarter1/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/hackersstarter1/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:2"><h3>해커스 리딩스마트 스타터 2<small class="lx">초5-6 · 550–690L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/hackersstarter2/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/hackersstarter2/exit/"><i>2</i>Exit test</a>
+</div></div>
+</details>
+</div>
+<div class="grp g-md"><div class="gl">중등<small>단계별</small></div>
+<details class="sd" name="rd-series"><summary class="sr">능률 1316 Reading<small>3권</small></summary>
+<div class="bk" style="--n:1"><h3>능률 1316 Reading 1<small class="lx">예비중~중1 · 500–700L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/1316reading1/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/1316reading1/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:2"><h3>능률 1316 Reading 2<small class="lx">중1~중2 · 600–800L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/1316reading2/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/1316reading2/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:3"><h3>능률 1316 Reading 3<small class="lx">중2~중3 · 700–900L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/1316reading3/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/1316reading3/exit/"><i>2</i>Exit test</a>
+</div></div>
+</details>
+<details class="sd" name="rd-series"><summary class="sr">리딩그라피<small>6권</small></summary>
+<div class="bk" style="--n:1"><h3>리딩그라피 1<small class="lx">예비중~중1 · 500–700L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/readinggraphy1/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/readinggraphy1/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:2"><h3>리딩그라피 2<small class="lx">중1 · 600–800L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/readinggraphy2/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/readinggraphy2/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:3"><h3>리딩그라피 3<small class="lx">중2 · 700–900L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/readinggraphy3/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/readinggraphy3/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:4"><h3>리딩그라피 4<small class="lx">중3 · 800–1000L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/readinggraphy4/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/readinggraphy4/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:5"><h3>리딩그라피 5<small class="lx">중3~예비고 · 900–1000L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/readinggraphy5/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/readinggraphy5/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:6"><h3>리딩그라피 6<small class="lx">중3~예비고 · 950–1050L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/readinggraphy6/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/readinggraphy6/exit/"><i>2</i>Exit test</a>
+</div></div>
+</details>
 <details class="sd" name="rd-series"><summary class="sr">리딩튜터 주니어<small>4권</small></summary>
-<div class="bk"><h3>리딩튜터 주니어 1<small class="lx">예비중~중1 · 500–700L</small></h3>
+<div class="bk" style="--n:1"><h3>리딩튜터 주니어 1<small class="lx">예비중~중1 · 500–700L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/tutorjunior1/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/tutorjunior1/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="bk"><h3>리딩튜터 주니어 2<small class="lx">중1 · 600–800L</small></h3>
+<div class="bk" style="--n:2"><h3>리딩튜터 주니어 2<small class="lx">중1 · 600–800L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/tutorjunior2/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/tutorjunior2/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="bk"><h3>리딩튜터 주니어 3<small class="lx">중1~중2 · 700–900L</small></h3>
+<div class="bk" style="--n:3"><h3>리딩튜터 주니어 3<small class="lx">중1~중2 · 700–900L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/tutorjunior3/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/tutorjunior3/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="bk"><h3>리딩튜터 주니어 4<small class="lx">중2~중3 · 800–1000L</small></h3>
+<div class="bk" style="--n:4"><h3>리딩튜터 주니어 4<small class="lx">중2~중3 · 800–1000L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/tutorjunior4/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/tutorjunior4/exit/"><i>2</i>Exit test</a>
 </div></div>
 </details>
+<details class="sd" name="rd-series"><summary class="sr">브릭스 중학독해<small>4권</small></summary>
+<div class="bk" style="--n:1"><h3>브릭스 중학독해 1<small class="lx">예비중~중1 · 500–700L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/bricks1/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/bricks1/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:2"><h3>브릭스 중학독해 2<small class="lx">중1~중2 · 600–800L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/bricks2/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/bricks2/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:3"><h3>브릭스 중학독해 3<small class="lx">중2~중3 · 700–900L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/bricks3/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/bricks3/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:4"><h3>브릭스 중학독해 4<small class="lx">중2~중3 · 800–1000L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/bricks4/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/bricks4/exit/"><i>2</i>Exit test</a>
+</div></div>
+</details>
+<details class="sd" name="rd-series"><summary class="sr">해커스 리딩스마트<small>4권</small></summary>
+<div class="bk" style="--n:1"><h3>해커스 리딩스마트 1<small class="lx">예비중 · 710L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/hackers1/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/hackers1/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:2"><h3>해커스 리딩스마트 2<small class="lx">중1 · 770L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/hackers2/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/hackers2/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:3"><h3>해커스 리딩스마트 3<small class="lx">중2 · 850L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/hackers3/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/hackers3/exit/"><i>2</i>Exit test</a>
+</div></div>
+<div class="bk" style="--n:4"><h3>해커스 리딩스마트 4<small class="lx">중3 · 900L</small></h3>
+<div class="st">
+<a href="https://nolbada.github.io/via/hackers4/"><i>1</i>클래스 활동</a>
+<a href="https://nolbada.github.io/via/hackers4/exit/"><i>2</i>Exit test</a>
+</div></div>
+</details>
+</div>
+<div class="grp g-hi"><div class="gl">고등<small>고등 위주</small></div>
 <details class="sd" name="rd-series"><summary class="sr">리딩튜터 챌린저<small>3권</small></summary>
-<div class="bk"><h3>리딩튜터 챌린저 1<small class="lx">고등 · 900–1100L</small></h3>
+<div class="bk" style="--n:1"><h3>리딩튜터 챌린저 1<small class="lx">고등 · 900–1100L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/tutorchallenger1/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/tutorchallenger1/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="bk"><h3>리딩튜터 챌린저 2<small class="lx">고등 · 1000–1200L</small></h3>
+<div class="bk" style="--n:2"><h3>리딩튜터 챌린저 2<small class="lx">고등 · 1000–1200L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/tutorchallenger2/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/tutorchallenger2/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="bk"><h3>리딩튜터 챌린저 3<small class="lx">고등 · 1100–1300L</small></h3>
+<div class="bk" style="--n:3"><h3>리딩튜터 챌린저 3<small class="lx">고등 · 1100–1300L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/tutorchallenger3/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/tutorchallenger3/exit/"><i>2</i>Exit test</a>
 </div></div>
 </details>
 <details class="sd" name="rd-series"><summary class="sr">해커스 리딩스마트 마스터<small>4권</small></summary>
-<div class="bk"><h3>해커스 리딩스마트 마스터 1<small class="lx">고등 · 850–1050L</small></h3>
+<div class="bk" style="--n:1"><h3>해커스 리딩스마트 마스터 1<small class="lx">고등 · 850–1050L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/hackersmaster1/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/hackersmaster1/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="bk"><h3>해커스 리딩스마트 마스터 2<small class="lx">고등 · 950–1150L</small></h3>
+<div class="bk" style="--n:2"><h3>해커스 리딩스마트 마스터 2<small class="lx">고등 · 950–1150L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/hackersmaster2/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/hackersmaster2/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="bk"><h3>해커스 리딩스마트 마스터 3<small class="lx">고등 · 1050–1250L</small></h3>
+<div class="bk" style="--n:3"><h3>해커스 리딩스마트 마스터 3<small class="lx">고등 · 1050–1250L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/hackersmaster3/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/hackersmaster3/exit/"><i>2</i>Exit test</a>
 </div></div>
-<div class="bk"><h3>해커스 리딩스마트 마스터 4<small class="lx">고등 · 1150–1350L</small></h3>
+<div class="bk" style="--n:4"><h3>해커스 리딩스마트 마스터 4<small class="lx">고등 · 1150–1350L</small></h3>
 <div class="st">
 <a href="https://nolbada.github.io/via/hackersmaster4/"><i>1</i>클래스 활동</a>
 <a href="https://nolbada.github.io/via/hackersmaster4/exit/"><i>2</i>Exit test</a>
 </div></div>
 </details>
+</div>
 </section>
 </main>
 <script>document.querySelectorAll("details.sd").forEach(function(d){d.addEventListener("toggle",function(){if(d.open)document.querySelectorAll("details.sd[open]").forEach(function(o){if(o!==d)o.removeAttribute("open")})})});</script>
