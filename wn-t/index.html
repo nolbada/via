@@ -119,7 +119,7 @@ function build(r,h){
   var t=kst(),y=addd(t,-1),out=[];
   r.students.forEach(function(s){
     var P=PLAN[s.name]||null,o={s:s,P:P,dd:{},dc:{},dpp:{},ddone:0,dvdone:0,dexp:0,behind:0,state:'none',dvlog:[]};
-    h.forEach(function(x){if(x.name!==s.name)return;var L=String(x.level||'');if(x.score==='진행중'){if(!/Core|Pro/.test(L))(o.pg=o.pg||{})[x.day]=1;return}
+    h.forEach(function(x){if(x.name!==s.name)return;var L=String(x.level||'');if(/미니모고/.test(L)){var mm=(o.mm=o.mm||{});if(x.score==='확인완료')mm[x.day]=2;else if(!mm[x.day])mm[x.day]=1;o.mmG=L.replace(/미니모고\s*/,'');return}if(x.score==='진행중'){if(!/Core|Pro/.test(L))(o.pg=o.pg||{})[x.day]=1;return}
       if(/Core/.test(L)){o.dc[x.day]=x.score}else if(/Pro/.test(L)){o.dpp[x.day]=x.score}else{o.dd[x.day]=x.score}});
     var dvm=P&&P.dv==='Pro'?o.dpp:o.dc;o.dvm=dvm;
     o.ddone=Object.keys(o.dd).length;o.dvdone=Object.keys(dvm).length;
@@ -133,6 +133,7 @@ function build(r,h){
     out.push(o)});
   return out;
 }
+function mmL(d){return Math.ceil(d/2)+'회 '+(d%2?'01–06번':'07–12번')}
 function cardH(o){
   var s=o.s,P=o.P,c='',chip='';
   if(o.state==='pre')chip='<span class="chip n">'+dshow(P.s).replace(/\(/,' (')+' 시작</span>';
@@ -146,6 +147,7 @@ function cardH(o){
     h+='<div class="ln"><em>데일리보카 '+P.d+'</em><div class="bar"><i style="width:'+(o.ddone/o.N*100)+'%"></i></div><span class="v">'+o.ddone+' / '+o.N+'일</span></div>';
     h+='<div class="ln"><em>더블보카 '+P.dv+'</em><div class="bar"><i style="width:'+(o.dvdone/32*100)+'%"></i></div><span class="v">'+o.dvdone+' / 32 Day</span></div>';
   }
+  if(o.mm){var mk=Object.keys(o.mm).map(Number).sort(function(a,c){return a-c}),md=mk.filter(function(k){return o.mm[k]===2}),mp=mk.filter(function(k){return o.mm[k]===1});h+='<div class="ln"><em>미니모고 '+esc(o.mmG||'')+'</em><span class="v" style="width:auto;text-align:left">해설 확인완료 '+md.length+' / 48세트'+(mp.length?' · 진행중 '+mp.slice(-2).map(mmL).join(', '):'')+'</span></div>'}
   h+='<div class="ln"><em>오답노트</em><span class="v" style="width:auto;text-align:left">쌓인 '+s.total+' · 오늘 복습 '+s.due+' · 질문 대기 '+s.askDue+'</span></div></button>';
   return h;
 }
@@ -194,6 +196,7 @@ function detail(n,r){
     var ks=Object.keys(o.dvm).sort(function(a,c){return a-c});
     if(ks.length){h+='<h2 class="sec">더블보카 시험 기록</h2><div class="card">'+ks.map(function(k){return'<div class="kv"><span>Day '+k+'</span><b>'+esc(o.dvm[k])+'</b></div>'}).join('')+'</div>'}
   }
+  if(o.mm){var mk2=Object.keys(o.mm).map(Number).sort(function(a,c){return a-c});h+='<h2 class="sec">미니모의고사 해설 확인 ('+esc(o.mmG||'')+')</h2><div class="card">'+mk2.map(function(k){return'<div class="kv"><span>'+mmL(k)+'</span><b>'+(o.mm[k]===2?'확인완료':'진행중')+'</b></div>'}).join('')+'</div>'}
   h+='<h2 class="sec">오답노트</h2><div class="card"><div class="kv"><span>쌓인 단어</span><b>'+s.total+'</b></div><div class="kv"><span>오늘 복습 대상</span><b>'+s.due+'</b></div><div class="kv"><span>질문 대기</span><b>'+s.askDue+'</b></div></div>';
   h+='<button class="btn pri" id="qs"'+(s.askDue?'':' disabled style="opacity:.5"')+'>질문 시작</button>';
   $.innerHTML=h;
@@ -211,7 +214,7 @@ function hw(r){
   post({act:'t_hw',from:from}).then(function(h){
     if(!h||!h.ok){b.innerHTML='<div class="msg">불러오지 못했어요.</div>';return}
     var days=['월','화','수','목','토','일'],offs={월:0,화:1,수:2,목:3,토:5,일:6},last=ymd(end);
-    var map={};h.items.forEach(function(x){if(x.date<from||x.date>last)return;var m0=(map[x.name]=map[x.name]||{}),pv=m0[x.wd];if(x.score==='진행중'&&pv&&pv.score!=='진행중')return;m0[x.wd]=x});
+    var map={};h.items.forEach(function(x){if(x.date<from||x.date>last)return;if(/미니모고/.test(String(x.level||'')))return;var m0=(map[x.name]=map[x.name]||{}),pv=m0[x.wd];if(x.score==='진행중'&&pv&&pv.score!=='진행중')return;m0[x.wd]=x});
     var t='<div class="top"><button class="sbtn" id="pv">이전 주</button><div class="t" style="text-align:center">'+dshow(from)+' ~ '+dshow(last)+'</div><button class="sbtn" id="nx">다음 주</button></div><div class="card"><table><tr><th>이름</th>'+days.map(function(d){return'<th>'+d+'<div class="sub" style="font-weight:400">'+dshow(ymd(new Date(m.getTime()+offs[d]*86400e3))).replace(/\(.*\)/,'')+'</div></th>'}).join('')+'</tr>';
     r.students.forEach(function(s){t+='<tr><td>'+esc(s.name)+'</td>'+days.map(function(d){var x=(map[s.name]||{})[d];return x?'<td class="x"'+(x.score==='진행중'?' style="opacity:.6"':'')+'>'+esc(x.score)+'</td>':'<td></td>'}).join('')+'</tr>'});
     t+='</table></div>';b.innerHTML=t;
