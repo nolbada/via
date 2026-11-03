@@ -126,6 +126,7 @@ function home(r){
     },function(){$.innerHTML='<h1>로드맵</h1><div class="card">연결이 안 됐어요. 인터넷을 확인해 주세요.<button class="btn pri" id="rt">다시 불러오기</button></div>';document.getElementById('rt').onclick=function(){home()}});return
   }
   DATA=r;
+  var LI=r.items.filter(isL);
   var cap=Number(ls('wn_cap'))||r.cap||40;if(cap>r.max)cap=r.max;
   var due=r.items.filter(function(i){return i.nx&&i.nx<=r.today});
   var today=Math.min(due.length,cap);
@@ -174,7 +175,7 @@ function home(r){
     h+='<h2 class="sec">캘린더</h2><div class="cal" id="cal"></div>';
   }
   h+='<h2 class="sec">오답 단어 리스트</h2>';
-  h+='<div class="card" style="margin-top:0"><div class="sub">쌓인 오답 단어</div><div class="big">'+r.items.length+'개</div><button class="btn" id="ls"'+(r.items.length?'':' disabled')+'>오답 단어 리스트 보기</button></div>';
+  h+='<div class="card" style="margin-top:0"><div class="sub">쌓인 오답 단어</div><div class="big">'+LI.length+'개</div><button class="btn" id="ls"'+(LI.length?'':' disabled')+'>오답 단어 리스트 보기</button></div>';
   h+='<button class="btn" id="rs">'+(resetArm?'한 번 더 누르면 나갑니다':'나가기 (다음 학생)')+'</button>';
   $.innerHTML=h;
   $.querySelectorAll('.seg button').forEach(function(b){b.onclick=function(){ss('wn_cap',b.dataset.c);home(DATA)}});
@@ -206,9 +207,10 @@ function drawCal(I,ti){
   document.getElementById('pm').onclick=function(){CALM=new Date(y,m-1,1);drawCal(I,ti)};
   document.getElementById('nm2').onclick=function(){CALM=new Date(y,m+1,1);drawCal(I,ti)};
 }
+function isL(i){return i.src!=='데일리보카'}
 function byPri(a,b){return(b.c-a.c)||(a.nx<b.nx?-1:a.nx>b.nx?1:0)}
 function list(){
-  var items=DATA.items.slice().sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});
+  var items=DATA.items.filter(isL).sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});
   var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">오답 단어 리스트 '+items.length+'개</div></div><div class="card">';
   items.forEach(function(i){h+='<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+'</small></div><span class="badge">'+i.st+'/4 · '+dshow(i.nx)+'</span></div>'});
   h+='</div>';$.innerHTML=h;document.getElementById('hm').onclick=function(){home(DATA)};
