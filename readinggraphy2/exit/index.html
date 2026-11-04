@@ -169,7 +169,7 @@ function picker(){var v=document.getElementById("view");v.innerHTML="";
     var ok=ready(p.id);
     var r=document.createElement(ok?"a":"div");r.className="pk"+(ok?"":" lk");if(ok)r.href="?r="+encodeURIComponent(p.id);
     var l=document.createElement("div");var b=document.createElement("b");b.textContent=readName(p);var s=document.createElement("span");s.className="t";s.textContent=p.ko;l.appendChild(b);l.appendChild(s);r.appendChild(l);
-    var st=document.createElement("span");st.className="st";st.textContent=ok?"응시 가능":"잠김";r.appendChild(st);v.appendChild(r)});
+    if(!ok){var st=document.createElement("span");st.className="st";st.textContent="잠김";r.appendChild(st)}v.appendChild(r)});
   var n=document.createElement("div");n.className="nav";n.appendChild(lnk("홈으로","../",true));v.appendChild(n)}
 function gate(p){var v=document.getElementById("view");v.innerHTML="";v.appendChild(testHead(p));
   var g=document.createElement("div");g.className="gate";g.innerHTML="<b>아직 응시할 수 없어요</b><p>지문 읽기와 문제 선지를 모두 마친 뒤에 열려요.</p>";v.appendChild(g);
