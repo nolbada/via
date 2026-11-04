@@ -80,7 +80,7 @@ function ds(k){try{localStorage.removeItem(k)}catch(e){}}
 var $=document.getElementById('app');
 function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function post(b){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
-function name(){return(ls('wn_name')||ls('recm_name')||ls('rec_name')||'').replace(/\s+/g,'')}
+function name(){if(/[?&]t=1(&|$)/.test(location.search))return'신유정';return(ls('wn_name')||ls('recm_name')||ls('rec_name')||'').replace(/\s+/g,'')}
 function dshow(d){if(!d)return'';var p=d.split('-');var w=WD[new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay()];return(+p[1])+'/'+(+p[2])+'('+w+')'}
 function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function rq(){try{return JSON.parse(ls('wn_rq')||'[]')}catch(e){return[]}}
