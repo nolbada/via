@@ -1,0 +1,33 @@
+from gen import *
+I=[]
+I.append(mk("[[It]] [[has stood]] [[tall]] for over a century, and it is now a famous landmark that attracts many tourists every year.",
+"그것은 우뚝 서 있었다.","2형식",
+[["It","s"],["has stood","v"],["tall","c"],["for over a century,","x"],["and it is now a famous landmark that attracts many tourists every year.","x"]],"It = tall",
+[["먼저 뼈대부터:","It has stood tall","그것은 우뚝 서 있었다(stand 서 있다)."],["얼마나?","for over a century","한 세기가 넘도록."],["그리고 지금은?","it is now a famous landmark","이제는 유명한 랜드마크이다."],["어떤 랜드마크?","that attracts many tourists every year","매년 많은 관광객을 끌어모으는(attract 끌어모으다)."],["요약: 에펠탑은 100년 넘게 서 있고 지금은 관광객이 몰리는 명소다."]],
+["<b>that 뒤 동사</b>는 선행사에 맞춘다: landmark(단수) → attract(X) <b>attracts</b>","<b>for + 기간</b>(~ 동안)은 지금까지 이어진 일 → 현재완료(has stood)"]))
+I.append(mk("If you send an email, [[it]] [[will deliver]] [[information]] almost instantly.",
+"그것은 정보를 전달할 것이다.","3형식",
+[["If you send an email,","x"],["it","s"],["will deliver","v"],["information","o"],["almost instantly.","x"]],"it ≠ information",
+[["먼저 뼈대부터:","it will deliver information","그것은 정보를 전달할 것이다(deliver 전달하다)."],["언제 보내면?","If you send an email","이메일을 보내면(send 보내다)."],["얼마나 빨리?","almost instantly","거의 즉각적으로."],["요약: 이메일은 보내면 거의 바로 정보를 전해 준다."]],
+["<b>동사를 꾸미는 말은 부사</b>: deliver(전달하다)를 꾸미니까 instant(X) → <b>instantly</b>(즉각적으로)","<b>If 조건절</b>에서는 미래라도 현재시제(send). 뒤 문장은 will"]))
+I.append(mk("Dorothy's parents, who were very worried, [[rushed]] to her room and quickly [[found]] [[her]] because Samantha had called them.",
+"부모님은 달려가서 그녀를 발견했다.","3형식",
+[["Dorothy's parents","s"],[", who were very worried,","x"],["rushed","v"],["to her room and","x"],["quickly found","v"],["her","o"],["because Samantha had called them.","x"]],"parents ≠ her",
+[["먼저 뼈대부터:","Parents rushed and found her","부모님은 달려가서 그녀를 발견했다(rush 서둘러 가다, find 찾다)."],["어떤 부모님?","who were very worried","매우 걱정하던."],["어디로?","to her room","그녀의 방으로."],["왜 찾았지?","because Samantha had called them","Samantha가 그들에게 전화했었기 때문에(call 전화하다)."],["요약: 친구의 전화를 받은 부모님이 급히 달려가 딸을 찾았다."]],
+["<b>who 뒤 동사</b>는 선행사에 맞춘다: parents(복수) → was(X) <b>were</b>","<b>had called</b>: 전화한 일이 달려간 때보다 먼저 → 과거완료"]))
+I.append(mk("Once you taste our fresh fruits and vegetables, [[you]] [[will understand]] [[why our customers, who value quality highly, always come back for more]].",
+"당신은 이해하게 될 것이다.","3형식",
+[["Once you taste our fresh fruits and vegetables,","x"],["you","s"],["will understand","v"],["why our customers, who value quality highly, always come back for more.","o"]],"you ≠ why절",
+[["먼저 뼈대부터:","you will understand (why ~)","당신은 왜 ~인지 이해하게 될 것이다(understand 이해하다)."],["언제?","Once you taste our fresh fruits and vegetables","우리의 신선한 과일과 채소를 맛보면(taste 맛보다)."],["무엇을?","why our customers always come back for more","우리 고객들이 왜 항상 더 사러 다시 오는지(come back 돌아오다)."],["어떤 고객?","who value quality highly","품질을 높이 평가하는(value 가치를 두다)."],["요약: 한 번 맛보면 품질을 아는 손님들이 왜 다시 오는지 알게 된다."]],
+["<b>동사 value(가치를 두다)를 꾸미는 말은 부사</b>: high(X) → <b>highly</b>(매우, 높이 평가하여)","<b>high</b>는 '높이/높은', <b>highly</b>는 '매우'. 모양이 비슷해 헷갈리니 뜻으로 고르기"]))
+I.append(mk("On that day, [[he]] [[was]] very [[disappointed]] because he had wanted to meet his favorite writer.",
+"그는 실망했다.","2형식",
+[["On that day,","x"],["he","s"],["was","v"],["very disappointed","c"],["because he had wanted to meet his favorite writer.","x"]],"he = disappointed",
+[["먼저 뼈대부터:","he was disappointed","그는 실망했다(disappoint 실망시키다)."],["언제?","On that day","그날."],["얼마나?","very","매우."],["왜?","because he had wanted to meet his favorite writer","가장 좋아하는 작가를 만나고 싶어 했었기 때문에(want 원하다, meet 만나다)."],["요약: 좋아하는 작가를 꼭 만나고 싶었기에 그날 많이 실망했다."]],
+["<b>want + to부정사</b>: wanted to meet(O) / wanted meeting(X). 예: want to go","<b>had wanted</b>: 만나고 싶었던 마음이 실망한 때보다 먼저 → 과거완료"]))
+I.append(mk("Also, if you set your own path in life, [[you]] [[will need]] [[to decide for yourself if you will achieve great things more importantly than money]].",
+"당신은 결정해야 할 것이다.","3형식",
+[["Also, if you set your own path in life,","x"],["you","s"],["will need","v"],["to decide for yourself if you will achieve great things more importantly than money.","o"]],"you ≠ to decide",
+[["먼저 뼈대부터:","you will need to decide","당신은 결정해야 할 것이다(need 필요하다, decide 결정하다)."],["언제?","if you set your own path in life","인생에서 자신만의 길을 정한다면(set 정하다)."],["무엇을?","if you will achieve great things","위대한 것들을 이룰 것인지(achieve 이루다)."],["어떻게?","more importantly than money","돈보다 더 중요하게."],["요약: 내 길을 정하려면 돈보다 위대한 것을 이룰지 스스로 정해야 한다."]],
+["<b>동사 achieve(이루다)를 꾸미는 말은 부사</b>: important(X) → <b>importantly</b>","<b>if가 두 종류</b>: 앞의 if(~한다면)는 현재시제(set), 뒤의 if(~인지)는 명사절이라 will 그대로"]))
+save("ch02-p28.html",I)

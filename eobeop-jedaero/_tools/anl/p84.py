@@ -1,0 +1,53 @@
+from _h07 import *
+L=[]
+L.append(it("No one has read the newspapers delivered in the past few days, though the [[pile]] [[grows]] larger every day.",
+"그 더미는 더 커진다.","2",
+[["No one has read the newspapers delivered in the past few days,","x"],["though the pile","s"],["grows","v"],["larger","c"],["every day.","x"]],"pile = larger",
+[["먼저 뼈대부터:","The pile grows larger","그 더미는 점점 커진다."],["어떤 더미?","the pile (of newspapers)","신문 더미."],["얼마나 자주?","every day","매일."],["요약: 며칠 치 신문을 아무도 안 읽었고 더미는 매일 커진다."]],
+["<b>절에는 진짜 동사가 꼭 있어야 한다.</b> growing(-ing)만 쓰면 동사가 아님 → grows ○","grow(자라다/커지다) + 형용사 = ~하게 되다: grows larger (더 커진다)","delivered in the past few days는 newspapers를 꾸미는 말"]))
+L.append(it("The number of working women has increased in the last decade, and this [[trend]] [[reflects]] broader social changes and [[affects]] family life too.",
+"이 추세는 변화를 반영하고 영향을 미친다.","3",
+[["The number of working women has increased in the last decade,","x"],["and this trend","s"],["reflects","v"],["broader social changes","o"],["and affects family life too.","x"]],"trend ≠ changes",
+[["먼저 뼈대부터:","This trend reflects changes and affects life","이 추세는 변화를 반영하고 삶에 영향을 미친다."],["어떤 변화?","broader social changes","더 넓은 사회적 변화."],["어떤 삶에도?","family life too","가정생활에도."],["요약: 일하는 여성이 늘며 사회 변화가 나타나고 가정에도 영향이 간다."]],
+["<b>and로 이어지는 말은 같은 모양끼리</b> 예) reflects와 affects (둘 다 주어 this trend의 동사)","affect(영향을 미치다)는 주어가 단수라 affects","working women: 일하는(-ing) 여성들, The number of ~ (~의 수)는 단수 취급"]))
+L.append(it("[[You]] [[can choose]] [[any one of the five desserts]] listed on the restaurant's menu, surprised by how many flavors are available this month.",
+"당신은 디저트 하나를 고를 수 있다.","3",
+[["You","s"],["can choose","v"],["any one of the five desserts listed on the restaurant's menu,","o"],["surprised by how many flavors are available this month.","x"]],"you ≠ dessert",
+[["먼저 뼈대부터:","You can choose one dessert","당신은 디저트 하나를 고를 수 있다."],["어떤 디저트?","the five desserts listed on the menu","메뉴에 나열된 다섯 가지 디저트."],["어떤 기분으로?","surprised by how many flavors are available","얼마나 많은 맛이 있는지에 놀라면서."],["요약: 메뉴의 다섯 디저트 중 하나를 고르면 된다, 맛이 많아서 놀랄 것이다."]],
+["<b>분사구문</b>: 주어가 감정을 느끼면 p.p. 예) (You) surprised by ~ (놀라면서)","you는 놀라게 하는 쪽이 아니라 <b>놀라는</b> 쪽 → surprise(놀라게 하다)의 p.p. surprised","listed on ~ (~에 나열된)은 desserts를 뒤에서 꾸미는 말"]))
+L.append(it("English is the most spoken language worldwide, with millions of total speakers, and its [[influence]] [[remains]] [[strong]] across many industries.",
+"그 영향력은 여전히 강하다.","2",
+[["English is the most spoken language worldwide, with millions of total speakers,","x"],["and its influence","s"],["remains","v"],["strong","c"],["across many industries.","x"]],"influence = strong",
+[["먼저 뼈대부터:","Its influence remains strong","그 영향력은 여전히 강하다."],["어떤 영향력?","its influence","그것(영어)의 영향력."],["어디서?","across many industries","여러 산업 분야에서."],["요약: 영어는 가장 많이 쓰이고 영향력도 여전히 강하다."]],
+["<b>remain/become/stay + 형용사</b> (부사 ✕). 예) remains strong (여전히 강하다)","보어 자리는 '어떤 상태인지' 말하는 곳이라 형용사 strong","most spoken language: 가장 많이 말해지는(p.p.) 언어"]))
+L.append(it("The [[tour guide]] showing us the castle [[explained]] [[its long history]], leaving the visitors amazed at how old the walls were.",
+"가이드가 오랜 역사를 설명했다.","3",
+[["The tour guide showing us the castle","s"],["explained","v"],["its long history,","o"],["leaving the visitors amazed at how old the walls were.","x"]],"guide ≠ history",
+[["먼저 뼈대부터:","The guide explained history","가이드가 역사를 설명했다."],["어떤 가이드?","showing us the castle","우리에게 성을 보여 주는."],["그 결과는?","leaving the visitors amazed","방문객들이 놀란 상태가 되게 하면서."],["왜 놀랐나?","at how old the walls were","벽이 얼마나 오래되었는지에."],["요약: 가이드가 성의 역사를 설명해 방문객들이 놀랐다."]],
+["<b>감정을 느끼는 사람 → p.p.</b> 예) leave the visitors amazed (방문객들을 놀란 상태로 두다)","visitors는 놀라게 하는 쪽이 아니라 <b>놀라는</b> 쪽 → amaze(놀라게 하다)의 p.p. amazed","주어 The tour guide 뒤의 showing ~ 은 꾸미는 말, 진짜 동사는 explained"]))
+L.append(it("[[Claude Bolling]] [[became]] [[interested in Fats Waller]], an excellent jazz musician of his time, after listening to a recording performed decades earlier.",
+"Claude Bolling은 관심을 갖게 되었다.","2",
+[["Claude Bolling","s"],["became","v"],["interested in Fats Waller,","c"],["an excellent jazz musician of his time,","x"],["after listening to a recording performed decades earlier.","x"]],"Bolling = interested",
+[["먼저 뼈대부터:","Bolling became interested","Bolling은 관심을 갖게 되었다."],["누구에게?","Fats Waller, an excellent jazz musician","뛰어난 재즈 음악가 Fats Waller에게."],["언제?","after listening to a recording","녹음을 들은 후에."],["어떤 녹음?","performed decades earlier","수십 년 전에 연주된."],["요약: 옛 연주 녹음을 듣고 Waller에게 관심이 생겼다."]],
+["<b>명사 + 분사</b>: 명사가 ~되는 쪽이면 p.p. 예) a recording performed (연주된 녹음)","녹음은 연주하는 게 아니라 <b>연주되는</b> 것 → perform(연주하다)의 p.p. performed","become + 형용사(interested): 되다 (2형식)"]))
+L.append(it("[[Depressed teenagers]] usually [[seek]] [[comfort]] by talking to their close friends, and rarely do they turn to strangers for advice.",
+"십대들은 위안을 찾는다.","3",
+[["Depressed teenagers","s"],["usually seek","v"],["comfort","o"],["by talking to their close friends,","x"],["and rarely do they turn to strangers for advice.","x"]],"teenagers ≠ comfort",
+[["먼저 뼈대부터:","Teenagers seek comfort","십대들은 위안을 찾는다."],["어떻게?","by talking to their close friends","가까운 친구들과 이야기함으로써."],["그리고 반대로?","rarely do they turn to strangers","그들은 낯선 사람에게 좀처럼 가지 않는다."],["왜 가나?","for advice","조언을 구하러."],["요약: 우울한 십대는 친구에게 기대고 낯선 사람에겐 거의 안 간다."]],
+["<b>부정 부사(rarely, never, hardly)가 문장 맨 앞 → do/does/did + 주어 + 동사원형</b> 예) rarely do they turn","원래 문장: they rarely turn → 앞으로 나오면 순서가 바뀐다","turn to ~ (~에게 의지하다)"]))
+L.append(it("Driving for a long time requires continuous attention and can be very tiring, so [[experts]] [[recommend]] [[regular breaks]] every two hours.",
+"전문가들은 규칙적인 휴식을 권한다.","3",
+[["Driving for a long time requires continuous attention and can be very tiring,","x"],["so experts","s"],["recommend","v"],["regular breaks","o"],["every two hours.","x"]],"experts ≠ breaks",
+[["먼저 뼈대부터:","Experts recommend breaks","전문가들은 휴식을 권한다."],["어떤 휴식?","regular breaks","규칙적인 휴식."],["얼마나 자주?","every two hours","두 시간마다."],["요약: 장시간 운전은 피곤해서 전문가들이 두 시간마다 쉬라고 한다."]],
+["<b>절에는 진짜 동사가 꼭 있어야 한다.</b> recommending(-ing)만으로는 동사가 아님 → recommend ○","experts가 복수라서 동사는 recommend (s 없음)","Driving for a long time(오래 운전하는 것)이 앞 절의 주어"]))
+L.append(it("A sudden loud noise left the baby shocked and she started to cry, and her [[mother]] [[rushed]] over to comfort her right away.",
+"엄마가 달려왔다.","1",
+[["A sudden loud noise left the baby shocked and she started to cry,","x"],["and her mother","s"],["rushed","v"],["over to comfort her right away.","x"]],"",
+[["먼저 뼈대부터:","Her mother rushed","엄마가 달려왔다."],["어디로?","over","이쪽으로."],["왜?","to comfort her","그녀를 달래려고."],["언제?","right away","즉시."],["요약: 큰 소리에 아기가 울자 엄마가 바로 달려와 달랬다."]],
+["<b>절에는 진짜 동사가 꼭 있어야 한다.</b> rushing(-ing)만 쓰면 동사가 아님 → rushed(과거형) ○","rush(서두르다)의 과거형 rushed가 이 절의 동사","left the baby shocked: 아기를 놀란 상태로 두었다 (아기는 놀라는 쪽 → p.p.)"]))
+L.append(it("The baseball game was discouraging, so [[many fans]] [[left]] before it was over, disappointed by the team's performance.",
+"많은 팬들이 떠났다.","1",
+[["The baseball game was discouraging,","x"],["so many fans","s"],["left","v"],["before it was over,","x"],["disappointed by the team's performance.","x"]],"",
+[["먼저 뼈대부터:","Many fans left","많은 팬들이 떠났다."],["언제?","before it was over","경기가 끝나기 전에."],["어떤 기분으로?","disappointed by the team's performance","팀의 경기력에 실망하면서."],["요약: 경기가 실망스러워 팬들이 끝나기 전에 실망한 채 떠났다."]],
+["<b>분사구문</b>: 주어가 감정을 느끼면 p.p. 예) (They) disappointed by ~ (실망하면서)","fans는 실망시키는 쪽이 아니라 <b>실망하는</b> 쪽 → disappoint(실망시키다)의 p.p. disappointed","discouraging은 '경기가 사람을 낙담시키는' 쪽이라 -ing, fans는 -ed: 짝으로 비교"]))
+save('ch07-p84.html',L)

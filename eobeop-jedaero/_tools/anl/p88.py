@@ -1,0 +1,33 @@
+from _h07 import *
+L=[]
+L.append(it("Bitten by the dog, one of the lambs was crying in pain, although the farmer tried to calm it down.",
+"양들 중 한 마리가 울고 있었다.","1",
+[["Bitten by the dog,","x"],["one of the lambs","s"],["was crying","v"],["in pain,","x"],["although the farmer tried to calm it down.","x"]],"",
+[["먼저 뼈대부터:","One of the lambs was crying","양들 중 한 마리가 울고 있었다."],["왜?","Bitten by the dog, in pain","개에게 물려서 고통스럽게."],["그런데?","although the farmer tried to calm it down","비록 농부가 그것을 진정시키려 했지만."],["요약: 개에게 물린 양이 농부가 달래도 아파서 계속 울었다."]],
+["<b>although = 접속사(+ 주어 + 동사)</b>, despite = 전치사(+ 명사). 예) although the farmer tried / despite the farmer's effort","뒤에 the farmer tried(주어+동사)가 오니 접속사 although","Bitten by ~ (물려서): 양이 '물린' 쪽이라 p.p."]))
+L.append(it("With unplanned events, we get confused because we have to change our schedules again and again, and this often leaves us blaming ourselves for the disruption.",
+"이것은 우리가 스스로를 탓하게 만든다.","5",
+[["With unplanned events, we get confused because we have to change our schedules again and again, and","x"],["this","s"],["often leaves","v"],["us","o"],["blaming ourselves for the disruption.","oc"]],"us = blaming (우리가 탓한다)",
+[["먼저 뼈대부터:","This leaves us blaming ourselves","이것은 우리가 스스로를 탓하게 만든다."],["무엇 때문에?","for the disruption","그 혼란 때문에."],["앞 절은?","we get confused because we have to change schedules","일정을 계속 바꿔야 해서 혼란스러워진다."],["요약: 계획이 틀어지면 혼란스럽고 결국 스스로를 탓하게 된다."]],
+["<b>주어와 같은 사람이 목적어면 재귀대명사(-self/-selves)</b> 예) blaming ourselves (우리 자신을 탓하다)","blaming의 하는 사람이 us이고 탓하는 대상도 같은 us → ourselves (us ✕)","leave + 목적어 + -ing: 목적어가 ~하는 상태로 두다"]))
+L.append(it("They may say things designed to annoy you and to make you lose focus.",
+"그들은 말들을 할 수도 있다.","3",
+[["They","s"],["may say","v"],["things designed to annoy you and to make you lose focus.","o"]],"They ≠ things",
+[["먼저 뼈대부터:","They may say things","그들은 말들을 할 수도 있다."],["어떤 말?","designed to annoy you","당신을 짜증나게 하려고 계획된."],["또 무엇을?","and to make you lose focus","그리고 당신이 집중력을 잃게 만들려고."],["요약: 상대가 화나게 하려고 일부러 하는 말을 할 수 있다."]],
+["<b>and로 이어지는 말은 같은 모양끼리</b> 예) to annoy ~ and to make ~ (to부정사끼리)","make + 목적어 + 동사원형: 목적어가 …하게 만들다 (make you lose)","things designed to ~ : 말(things)이 '계획된' 쪽이라 p.p."]))
+L.append(it("As he let his younger brother out of the tent, Nolan yelled, \"Don't come back in until I get this tent cleaned up!\"",
+"Nolan은 소리쳤다.","1",
+[["As he let his younger brother out of the tent,","x"],["Nolan","s"],["yelled,","v"],["\"Don't come back in until I get this tent cleaned up!\"","x"]],"",
+[["먼저 뼈대부터:","Nolan yelled","Nolan이 소리쳤다."],["언제?","as he let his brother out of the tent","남동생을 텐트 밖으로 내보내면서."],["무슨 말?","Don't come back in until I get this tent cleaned up","내가 이 텐트를 다 치울 때까지 다시 들어오지 마."],["요약: Nolan은 텐트를 치울 때까지 동생을 못 들어오게 했다."]],
+["<b>get + 목적어 + p.p.</b> = 목적어가 ~되게 하다/~해 놓다. 예) get this tent cleaned up (이 텐트가 치워지게 하다)","텐트는 치우는 게 아니라 <b>치워지는</b> 것 → clean up(치우다)의 p.p. cleaned up","until 뒤 I get ~ : 시간 부사절은 미래 뜻이어도 현재형"]))
+L.append(it("When received at our office, the items will be checked for damage before we send a refund payment to your credit card.",
+"물품은 확인될 것이다.","1",
+[["When received at our office,","x"],["the items","s"],["will be checked","v"],["for damage","x"],["before we send a refund payment to your credit card.","x"]],"",
+[["먼저 뼈대부터:","The items will be checked","물품은 확인될 것이다."],["언제?","when received at our office","저희 사무실에 도착하면."],["무엇을 위해?","for damage","손상 여부를."],["그 전에?","before we send a refund payment to your credit card","신용카드로 환불을 보내기 전에."],["요약: 반품이 사무실에 도착하면 손상 확인 후 환불해 준다."]],
+["<b>분사구문</b>: 주어가 ~받는 쪽이면 p.p. 예) When (they are) received (도착하면)","the items는 받는 쪽이 아니라 <b>받아지는</b> 쪽 → receive(받다)의 p.p. received","will be checked = 수동태 (확인될 것이다)"]))
+L.append(it("People wanting to protect nature, for example, may choose to wear clothes made of recycled cloth.",
+"사람들은 입기로 선택할 수도 있다.","3",
+[["People wanting to protect nature,","s"],["for example,","x"],["may choose","v"],["to wear clothes made of recycled cloth.","o"]],"People ≠ to wear",
+[["먼저 뼈대부터:","People may choose to wear clothes","사람들은 옷을 입기로 선택할 수도 있다."],["어떤 사람들?","wanting to protect nature","자연을 보호하고 싶어 하는."],["어떤 옷?","clothes made of recycled cloth","재활용 천으로 만든 옷."],["요약: 환경을 아끼는 사람은 재활용 천 옷을 입기도 한다."]],
+["<b>명사 + 분사</b>: 명사가 ~하는 쪽이면 -ing. 예) People wanting to ~ (~하고 싶어 하는 사람들)","사람들이 원하는 쪽 → want(원하다)의 -ing wanting (wanted ✕)","clothes made of ~ (~로 만든 옷): 옷이 만들어진 쪽이라 p.p."]))
+save('ch07-p88.html',L)

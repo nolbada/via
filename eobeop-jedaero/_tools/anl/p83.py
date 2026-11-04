@@ -1,0 +1,43 @@
+from _h07 import *
+L=[]
+L.append(it("The new policy allows employees to work from home every Friday, and many [[workers]] [[appreciate]] [[the flexibility]] it offers.",
+"직원들이 유연성을 고맙게 여긴다.","3",
+[["The new policy allows employees to work from home every Friday,","x"],["and many workers","s"],["appreciate","v"],["the flexibility it offers.","o"]],"workers ≠ flexibility",
+[["먼저 뼈대부터:","Workers appreciate the flexibility","직원들이 유연성을 고맙게 여긴다."],["어떤 직원?","many workers","많은 직원들."],["어떤 유연성?","the flexibility it offers","그것(정책)이 주는 유연성."],["요약: 정책이 금요일 재택을 허용해 주어서 직원들이 고마워한다."]],
+["<b>절에는 진짜 동사가 꼭 있어야 한다.</b> -ing만 있으면 동사가 아님 → appreciating ✕, appreciate ○","주어 many workers가 복수라서 동사는 appreciate (s 없음)","the flexibility (that) it offers: 앞 명사를 꾸미는 절, 뼈대 밖"]))
+L.append(it("Over the past 30 years, I have seen many of the city's beautiful old buildings destroyed, so more historic sites [[must have disappeared]] by next year.",
+"유적지들이 사라졌을 것이 틀림없다.","1",
+[["Over the past 30 years, I have seen many of the city's beautiful old buildings destroyed,","x"],["so more historic sites","s"],["must have disappeared","v"],["by next year.","x"]],"",
+[["먼저 뼈대부터:","Sites must have disappeared","유적지들이 사라졌음이 틀림없다."],["어떤 유적지?","more historic sites","더 많은 유적지들."],["언제쯤이면?","by next year","내년쯤이면."],["요약: 30년간 건물이 많이 철거되었으니 내년이면 유적지가 더 사라질 것이다."]],
+["<b>조동사 뒤에는 동사원형</b>: must have p.p. = ~했음이 틀림없다. 예) must have disappeared","조동사 뒤에서 has ✕, have ○ (have는 원형)","have seen A destroyed: A가 철거되는 것을 봐 왔다 (A와 destroyed는 수동 관계)"]))
+L.append(it("If there are any errors in my report, I [[would appreciate]] [[it]] if you would let me know, especially any numbers based on the outdated data.",
+"알려 주시면 감사하겠습니다.","3",
+[["If there are any errors in my report,","x"],["I","s"],["would appreciate","v"],["it","o"],["if you would let me know, especially any numbers based on the outdated data.","x"]],"I ≠ it",
+[["먼저 뼈대부터:","I would appreciate it","저는 감사하겠습니다."],["어떤 경우에?","if you would let me know","당신이 제게 알려 주신다면."],["무엇을?","any numbers based on the outdated data","오래된 자료에 근거한 수치들."],["요약: 보고서에 오류가 있으면, 특히 낡은 자료 쪽 수치를 알려 주세요."]],
+["<b>명사 + 분사</b>: 명사가 낡아진 상태이면 p.p. 예) the outdated data (낡은 자료)","data는 낡게 만드는 쪽이 아니라 <b>낡아진</b> 쪽 → outdate(구식으로 만들다)의 p.p. outdated","based on ~ (~에 근거한)은 numbers를 뒤에서 꾸미는 말"]))
+L.append(it("Usually, you will find Charlie reading a book in his room, although he prefers going outside on sunny days.",
+"당신은 Charlie가 책 읽는 것을 발견할 것이다.","5",
+[["Usually,","x"],["you","s"],["will find","v"],["Charlie","o"],["reading a book in his room,","oc"],["although he prefers going outside on sunny days.","x"]],"Charlie = reading (책을 읽고 있다)",
+[["먼저 뼈대부터:","You will find Charlie reading","당신은 Charlie가 읽고 있는 것을 발견할 것이다."],["무엇을 읽고 있나?","a book in his room","자기 방에서 책을."],["어떤 말이 이어지나?","although he prefers going outside","비록 그는 밖에 나가는 것을 더 좋아하지만."],["요약: Charlie는 보통 방에서 책을 읽지만 사실 밖을 더 좋아한다."]],
+["<b>although = 접속사(+ 주어 + 동사)</b>, despite = 전치사(+ 명사). 예) although he prefers ~ / despite the rain","뒤에 he prefers(주어+동사)가 있으니 접속사 although","find + 목적어 + -ing: ~가 …하고 있는 것을 발견하다"]))
+L.append(it("My knee hurts, so I need to get it checked before I can play any sports, and the [[doctor]] [[will have]] [[me]] [[do]] some stretches beforehand.",
+"의사가 나에게 스트레칭을 시킬 것이다.","5",
+[["My knee hurts, so I need to get it checked before I can play any sports,","x"],["and the doctor","s"],["will have","v"],["me","o"],["do","oc"],["some stretches beforehand.","x"]],"me = do (내가 한다)",
+[["먼저 뼈대부터:","The doctor will have me do","의사가 내가 하게 시킬 것이다."],["무엇을?","some stretches","스트레칭을 좀."],["언제?","beforehand","그 전에 미리."],["요약: 무릎 검사를 받아야 하고 의사가 먼저 스트레칭을 시킬 것이다."]],
+["<b>사역동사 have + 목적어 + 동사원형</b> 예) have me do (내가 하게 시키다)","사역동사 뒤에는 to ✕: will have me to do ✕","get it checked: 그것이 검사되게 하다 (it은 검사받는 쪽이라 p.p.)"]))
+L.append(it("Taking slow and deep breaths can help people calm their minds, especially when many distractions surround them.",
+"숨 쉬는 것은 사람들을 도울 수 있다.","3",
+[["Taking slow and deep breaths","s"],["can help","v"],["people calm their minds,","o"],["especially when many distractions surround them.","x"]],"breaths ≠ people",
+[["먼저 뼈대부터:","Taking breaths can help people","숨 쉬는 것은 사람들을 도울 수 있다."],["어떤 숨?","slow and deep breaths","느리고 깊은 숨."],["무엇을 하도록?","calm their minds","그들의 마음을 진정시키도록."],["언제 특히?","when many distractions surround them","많은 방해 요소들이 그들을 둘러쌀 때."],["요약: 깊은 호흡은 방해가 많을 때 마음을 가라앉히는 데 도움이 된다."]],
+["<b>many + 셀 수 있는 복수명사 / much + 셀 수 없는 명사</b> 예) many distractions, much water","distractions는 하나, 둘 셀 수 있는 복수 → many","help + 목적어 + 동사원형: ~가 …하도록 돕다"]))
+L.append(it("[[Sophia]] [[felt]] [[a breeze touch her neck]] and put on her coat, feeling surprised by the sudden change in temperature.",
+"Sophia는 산들바람이 목에 닿는 것을 느꼈다.","5",
+[["Sophia","s"],["felt","v"],["a breeze","o"],["touch her neck","oc"],["and put on her coat,","x"],["feeling surprised by the sudden change in temperature.","x"]],"a breeze = touch (바람이 닿는다)",
+[["먼저 뼈대부터:","Sophia felt a breeze touch","Sophia는 바람이 닿는 것을 느꼈다."],["어디에?","her neck","그녀의 목에."],["그리고?","put on her coat","코트를 입었다."],["왜 그런 기분으로?","feeling surprised by the sudden change in temperature","갑작스러운 기온 변화에 놀라면서."],["요약: 바람이 목에 닿자 놀라서 Sophia는 코트를 입었다."]],
+["<b>감정을 느끼는 사람 → p.p.</b> 예) feel surprised (놀란), 놀라게 하는 것 → surprising","주어 Sophia는 놀라게 하는 쪽이 아니라 <b>놀라는</b> 쪽 → surprise(놀라게 하다)의 p.p. surprised","feel(느끼다) + 목적어 + 동사원형: 목적어가 ~하는 것을 느끼다"]))
+L.append(it("Curiosity often makes us view a tough problem as an interesting challenge, and if we approached failure this way, [[we]] [[would learn]] much faster.",
+"우리는 훨씬 더 빨리 배울 것이다.","1",
+[["Curiosity often makes us view a tough problem as an interesting challenge, and if we approached failure this way,","x"],["we","s"],["would learn","v"],["much faster.","x"]],"",
+[["먼저 뼈대부터:","Curiosity makes us view; we would learn","호기심은 우리가 보게 만든다. 우리는 배울 것이다."],["무엇을 보게?","a tough problem as an interesting challenge","어려운 문제를 흥미로운 도전으로."],["어떤 가정?","if we approached failure this way","만약 우리가 실패에 이렇게 접근한다면."],["요약: 실패를 도전으로 보면 훨씬 빨리 배울 수 있다."]],
+["<b>가정법 과거: If + 과거형, 주어 + would + 동사원형</b> 예) If we approached ~, we would learn","if절이 과거형(approached)이면 주절은 will ✕, would ○","주절 뼈대는 we would learn (1형식), 앞 절의 make + 목적어 + 동사원형(view)도 함께 알아 두기"]))
+save('ch07-p83.html',L)
