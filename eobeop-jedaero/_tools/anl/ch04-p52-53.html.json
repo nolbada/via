@@ -1,1230 +1,1230 @@
 [
-{
-"en": "[[Among all my students]] [[were]] [[several truly gifted musicians like him]].",
-"key": "내 학생들 중에 재능 있는 음악가들이 여러 명 있었다.",
-"form": "1형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"sleep",
-"v"
-]
-],
-"refrel": "",
-"me": [
-[
-"Among all my students",
-"x"
-],
-[
-"were",
-"v"
-],
-[
-"several truly gifted musicians like him.",
-"s"
-]
-],
-"merel": "",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Musicians were (among students)",
-"음악가들이 (학생들 중에) 있었다(be 있다)."
-],
-[
-"진짜 주어는?",
-"several truly gifted musicians like him",
-"그처럼 정말 재능 있는 몇몇 음악가들."
-],
-[
-"왜 순서가 뒤집혔어?",
-"Among all my students were ...",
-"장소 말을 앞으로 보내서 '동사 + 주어' 순서가 되었다."
-],
-[
-"요약: 내 학생들 중에는 그 아이 같은 재능 있는 음악가가 여럿 있었다."
-]
-],
-"notes": [
-"<b>장소 부사구가 문두 → 도치(동사 + 주어)</b>: 동사는 뒤의 진짜 주어에 맞춘다",
-"주어가 복수(musicians) → were (was ✕)"
-]
-},
-{
-"en": "[[His parents]] [[suggested]] [[that he take lessons]], but he preferred to teach himself.",
-"key": "그의 부모님은 그가 수업을 들으라고 제안했다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"His parents",
-"s"
-],
-[
-"suggested",
-"v"
-],
-[
-"that he take lessons,",
-"o"
-],
-[
-"but he preferred to teach himself.",
-"x"
-]
-],
-"merel": "parents ≠ that절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"His parents suggested that ...",
-"부모님은 ~라고 제안했다(suggest 제안하다)."
-],
-[
-"무엇을 제안했어?",
-"that he take lessons",
-"그가 수업을 들으라고 (take 받다)."
-],
-[
-"그런데 그는?",
-"he preferred to teach himself",
-"그는 독학하는 것을 더 좋아했다 (prefer 선호하다, teach 가르치다)."
-],
-[
-"요약: 부모님은 수업을 권했지만, 그는 혼자 배우는 걸 택했다."
-]
-],
-"notes": [
-"<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (takes ✕ → take ○)",
-"but 뒤의 preferred는 사실을 말하는 일반 과거"
-]
-},
-{
-"en": "The boy never learned the piano in class, but [[he]] [[really did play]] well nevertheless.",
-"key": "그는 그럼에도 정말 잘 연주했다.",
-"form": "1형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"sleep",
-"v"
-]
-],
-"refrel": "",
-"me": [
-[
-"The boy never learned the piano in class, but",
-"x"
-],
-[
-"he",
-"s"
-],
-[
-"really did play",
-"v"
-],
-[
-"well nevertheless.",
-"x"
-]
-],
-"merel": "",
-"easy": [
-[
-"먼저 뼈대부터:",
-"He did play well",
-"그는 정말 잘 연주했다(play 연주하다)."
-],
-[
-"어떤 말이 앞에 있어?",
-"The boy never learned the piano in class",
-"그 소년은 수업에서 피아노를 배운 적이 없다 (learn 배우다)."
-],
-[
-"그래도?",
-"nevertheless",
-"그럼에도 불구하고."
-],
-[
-"요약: 피아노 수업을 받은 적 없는데도, 그는 정말 잘 쳤다."
-]
-],
-"notes": [
-"<b>강조의 do/does/did + 동사원형</b> (did + 과거형 ✕) (did played ✕ → did play ○)",
-"did와 동사 사이에 really가 끼어도 <b>did 뒤는 원형</b>"
-]
-},
-{
-"en": "I don't know if the little boy plays the piano on stage now, but [[I]] [[hope]] [[he does]].",
-"key": "나는 그가 그러길 바란다(무대에서 피아노를 치길).",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"I don't know if the little boy plays the piano on stage now, but",
-"x"
-],
-[
-"I",
-"s"
-],
-[
-"hope",
-"v"
-],
-[
-"he does.",
-"o"
-]
-],
-"merel": "I ≠ he does",
-"easy": [
-[
-"먼저 뼈대부터:",
-"I hope he does",
-"나는 그가 그러길 바란다(hope 바라다)."
-],
-[
-"does는 무슨 뜻?",
-"does (= plays the piano on stage)",
-"앞의 plays(연주하다)를 대신함."
-],
-[
-"어떤 말이 앞에 있어?",
-"I don't know if ...",
-"~인지 나는 모른다 (know 알다)."
-],
-[
-"요약: 그 소년이 지금 무대에서 피아노를 치는지 모르지만, 치고 있기를 바란다."
-]
-],
-"notes": [
-"<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕) (plays를 does가 대신, is ✕)",
-"주어 he는 3인칭 단수, 현재형 → does"
-]
-},
-{
-"en": "I didn't say anything to him then, but sometimes [[I]] [[think]] [[I should have told him to keep playing the piano]].",
-"key": "가끔 나는 그에게 계속 연주하라고 말했어야 했다고 생각한다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"I didn't say anything to him then, but sometimes",
-"x"
-],
-[
-"I",
-"s"
-],
-[
-"think",
-"v"
-],
-[
-"I should have told him to keep playing the piano.",
-"o"
-]
-],
-"merel": "I ≠ 절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"I think I should have told him",
-"나는 그에게 말했어야 했다고 생각한다(think 생각하다, tell 말하다)."
-],
-[
-"무엇을 말했어야?",
-"to keep playing the piano",
-"계속 피아노를 치라고 (keep 계속하다)."
-],
-[
-"그때는?",
-"I didn't say anything to him then",
-"그때는 아무 말도 하지 않았다 (say 말하다)."
-],
-[
-"요약: 그때 말 못 했지만, 계속 연주하라고 말해 줄 걸 하고 가끔 후회한다."
-]
-],
-"notes": [
-"<b>후회·아쉬움 = should have p.p.</b> (~했어야 했는데 안 했다) (should tell ✕)",
-"then(그때)처럼 <b>지나간 때</b>가 단서"
-]
-},
-{
-"en": "Many students and parents think that phones in the classroom aren't a problem, but [[a large number of schoolteachers]] [[think]] [[that they are]].",
-"key": "많은 교사들은 그렇다(문제다)고 생각한다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"Many students and parents think that phones in the classroom aren't a problem, but",
-"x"
-],
-[
-"a large number of schoolteachers",
-"s"
-],
-[
-"think",
-"v"
-],
-[
-"that they are.",
-"o"
-]
-],
-"merel": "teachers ≠ that절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Teachers think that they are",
-"교사들은 그렇다고 생각한다(think 생각하다)."
-],
-[
-"they are는 무슨 뜻?",
-"they are (= phones are a problem)",
-"휴대폰이 문제라는 뜻. 앞의 aren't(아니다)와 같은 be동사로 이어짐."
-],
-[
-"누구와 반대야?",
-"Many students and parents",
-"많은 학생과 학부모."
-],
-[
-"요약: 학생·학부모는 문제없다고 보지만, 많은 교사는 문제라고 생각한다."
-]
-],
-"notes": [
-"<b>앞의 be동사 대신 → be동사</b> (aren't ↔ are) (have ✕)",
-"<b>a large number of + 복수명사</b> = 많은 ~ (복수 취급)"
-]
-},
-{
-"en": "Many [[teachers]] [[do believe]] [[that phone use directly lowers students' focus in class]].",
-"key": "많은 교사들은 휴대폰 사용이 집중력을 낮춘다고 정말 믿는다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"Many teachers",
-"s"
-],
-[
-"do believe",
-"v"
-],
-[
-"that phone use directly lowers students' focus in class.",
-"o"
-]
-],
-"merel": "teachers ≠ that절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Teachers do believe that ...",
-"교사들은 ~라고 정말 믿는다(believe 믿다)."
-],
-[
-"무엇을 믿어?",
-"that phone use lowers students' focus",
-"휴대폰 사용이 학생들의 집중을 낮춘다고 (lower 낮추다)."
-],
-[
-"어떻게?",
-"directly",
-"직접적으로."
-],
-[
-"요약: 많은 교사가 휴대폰이 수업 집중을 직접 떨어뜨린다고 굳게 믿는다."
-]
-],
-"notes": [
-"<b>강조의 do/does/did + 동사원형</b> (did + 과거형 ✕) (do believed ✕ → do believe ○)",
-"주어 teachers가 복수 → do"
-]
-},
-{
-"en": "[[They]] [[said]] [[that the government must ban the use of phones in the classroom]] and pointed at a recent report by experts.",
-"key": "그들은 정부가 휴대폰 사용을 금지해야 한다고 말했다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"They",
-"s"
-],
-[
-"said",
-"v"
-],
-[
-"that the government must ban the use of phones in the classroom",
-"o"
-],
-[
-"and pointed at a recent report by experts.",
-"x"
-]
-],
-"merel": "They ≠ that절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"They said that ...",
-"그들은 ~라고 말했다(say 말하다)."
-],
-[
-"무엇을 말했어?",
-"that the government must ban the use of phones",
-"정부가 휴대폰 사용을 금지해야 한다고 (ban 금지하다)."
-],
-[
-"또 뭘 했어?",
-"pointed at a recent report",
-"최근 보고서를 가리켰다 (point 가리키다)."
-],
-[
-"요약: 교사들은 교실 휴대폰을 금지해야 한다며 전문가 보고서를 근거로 들었다."
-]
-],
-"notes": [
-"<b>앞으로 해야 할 일 = 조동사 + 동사원형</b> (must have banned ✕ → must ban ○)",
-"<b>must have p.p.</b>는 지난 일에 대한 추측일 때만 (이 문장은 '해야 한다'는 의무)"
-]
-},
-{
-"en": "[[The safety risks of phone use]] [[are]] [[far greater]] than those of other classroom distractions.",
-"key": "휴대폰 사용의 안전 위험은 훨씬 더 크다.",
-"form": "2형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"am",
-"v"
-],
-[
-"happy",
-"c"
-]
-],
-"refrel": "I = happy",
-"me": [
-[
-"The safety risks of phone use",
-"s"
-],
-[
-"are",
-"v"
-],
-[
-"far greater",
-"c"
-],
-[
-"than those of other classroom distractions.",
-"x"
-]
-],
-"merel": "risks = greater",
-"easy": [
-[
-"먼저 뼈대부터:",
-"The risks are greater",
-"위험은 더 크다(be 이다)."
-],
-[
-"무엇의 위험?",
-"of phone use",
-"휴대폰 사용의."
-],
-[
-"무엇과 비교해?",
-"than those of other classroom distractions",
-"다른 수업 방해 요소의 위험보다. those = risks(위험들)."
-],
-[
-"요약: 휴대폰의 안전 위험이 다른 수업 방해 요소의 위험보다 훨씬 크다."
-]
-],
-"notes": [
-"<b>비교 대상의 반복 복수명사 → those</b> (them ✕), 단수면 that",
-"<b>those of ~</b> = ~의 그것들 (of가 꾸며 줌)"
-]
-},
-{
-"en": "[[The schoolteachers]] [[suggested]] [[that the government understand the importance of this issue and try to persuade students and parents]].",
-"key": "교사들은 정부가 이 문제의 중요성을 이해하라고 제안했다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"The schoolteachers",
-"s"
-],
-[
-"suggested",
-"v"
-],
-[
-"that the government understand the importance of this issue and try to persuade students and parents.",
-"o"
-]
-],
-"merel": "teachers ≠ that절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"The teachers suggested that ...",
-"교사들은 ~라고 제안했다(suggest 제안하다)."
-],
-[
-"무엇을 제안했어?",
-"that the government understand the importance",
-"정부가 중요성을 이해하라고 (understand 이해하다)."
-],
-[
-"또 뭘?",
-"try to persuade students and parents",
-"학생과 학부모를 설득하려 노력하라고 (persuade 설득하다)."
-],
-[
-"요약: 정부가 이 문제의 중요성을 이해하고 학생·학부모를 설득하라고 제안했다."
-]
-],
-"notes": [
-"<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (understood ✕ → understand ○)",
-"and로 이어진 <b>try도 같은 원형</b> (try to persuade)"
-]
-},
-{
-"en": "[[Her supervisor]] [[recommended]] [[that she train new recruits in flight safety]].",
-"key": "그녀의 상사는 그녀가 신입을 훈련시키라고 권했다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"Her supervisor",
-"s"
-],
-[
-"recommended",
-"v"
-],
-[
-"that she train new recruits in flight safety.",
-"o"
-]
-],
-"merel": "supervisor ≠ that절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Her supervisor recommended that ...",
-"상사는 ~라고 권했다(recommend 권하다)."
-],
-[
-"무엇을 권했어?",
-"that she train new recruits",
-"그녀가 신입 직원을 훈련시키라고 (train 훈련시키다)."
-],
-[
-"무엇에 대해?",
-"in flight safety",
-"비행 안전에 관해."
-],
-[
-"요약: 상사는 그녀에게 신입들에게 비행 안전을 가르치라고 권했다."
-]
-],
-"notes": [
-"<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (trains ✕ → train ○)",
-"주어 she는 3인칭 단수지만 <b>원형 그대로</b>"
-]
-},
-{
-"en": "Many other nurses admired her courage, and [[some]] [[did]] too, even decades after her death.",
-"key": "일부도 그렇게 했다(그녀의 용기를 존경했다).",
-"form": "1형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"sleep",
-"v"
-]
-],
-"refrel": "",
-"me": [
-[
-"Many other nurses admired her courage, and",
-"x"
-],
-[
-"some",
-"s"
-],
-[
-"did too,",
-"v"
-],
-[
-"even decades after her death.",
-"x"
-]
-],
-"merel": "did too = admired도 대신함",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Some did too",
-"일부도 그랬다."
-],
-[
-"무슨 뜻?",
-"did too (= admired her courage)",
-"앞의 admired(존경했다, admire)를 대신한 말."
-],
-[
-"언제까지?",
-"even decades after her death",
-"그녀가 죽고 수십 년 뒤에도."
-],
-[
-"요약: 많은 간호사가 그녀의 용기를 존경했고, 일부는 수십 년 후에도 존경했다."
-]
-],
-"notes": [
-"<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕) (admired를 did가 대신, have ✕)",
-"과거형 admired → 대신하는 말도 <b>did</b>"
-]
-},
-{
-"en": "In recognition of her achievements, several aviation organizations honored her with awards, and [[a memorial]] [[was dedicated]] in her hometown years later.",
-"key": "기념비가 수년 뒤 그녀의 고향에 헌정되었다.",
-"form": "3형식(수동태)",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"In recognition of her achievements, several aviation organizations honored her with awards, and",
-"x"
-],
-[
-"a memorial",
-"s"
-],
-[
-"was dedicated",
-"v"
-],
-[
-"in her hometown years later.",
-"x"
-]
-],
-"merel": "memorial = 헌정되는 대상",
-"easy": [
-[
-"먼저 뼈대부터:",
-"A memorial was dedicated",
-"기념비가 헌정되었다(dedicate 바치다)."
-],
-[
-"어디에?",
-"in her hometown",
-"그녀의 고향에."
-],
-[
-"언제?",
-"years later",
-"수년 뒤에."
-],
-[
-"요약: 항공 단체들이 상을 주었고, 몇 해 뒤 고향에 기념비도 세워졌다."
-]
-],
-"notes": [
-"<b>수동태 = be + p.p.</b>: 주어가 '~되는' 쪽이면 수동 (dedicated ✕ → was dedicated ○)",
-"a memorial은 <b>누가 바치는</b> 대상이지 스스로 바치지 않는다"
-]
-},
-{
-"en": "[[Her story]] [[continues to inspire]] [[nursing students]] today, many of whom feel amazed when they learn about her achievements.",
-"key": "그녀의 이야기는 간호학과 학생들에게 계속 영감을 준다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"Her story",
-"s"
-],
-[
-"continues to inspire",
-"v"
-],
-[
-"nursing students",
-"o"
-],
-[
-"today, many of whom feel amazed when they learn about her achievements.",
-"x"
-]
-],
-"merel": "story ≠ students",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Her story continues to inspire students",
-"그녀의 이야기는 학생들에게 계속 영감을 준다(continue 계속하다, inspire 영감을 주다)."
-],
-[
-"many of whom은 누구?",
-"many of whom (= many of the students)",
-"그 학생들 중 많은 학생."
-],
-[
-"그 학생들은 어때?",
-"feel amazed when they learn about her achievements",
-"그녀의 업적을 알게 되면 놀라워한다 (feel 느끼다, learn 알다)."
-],
-[
-"요약: 그녀의 이야기는 오늘날에도 학생들에게 영감을 주고, 많은 학생이 감탄한다."
-]
-],
-"notes": [
-"<b>감정 분사</b>: 감정을 '느끼는' 사람이 주어면 p.p. (amazing ✕ → amazed ○)",
-"amazing = 놀라게 하는 것(원인), <b>amazed = 놀란 사람(느끼는 쪽)</b>"
-]
-},
-{
-"en": "[[Today's young people hoping to become nurses]] [[should consider]] [[the example set by Ms. Church]].",
-"key": "간호사가 되기를 바라는 요즘 젊은이들은 처치 씨의 본보기를 생각해 봐야 한다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"Today's young people hoping to become nurses",
-"s"
-],
-[
-"should consider",
-"v"
-],
-[
-"the example set by Ms. Church.",
-"o"
-]
-],
-"merel": "people ≠ example",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Young people should consider the example",
-"젊은이들은 본보기를 생각해 봐야 한다(consider 고려하다)."
-],
-[
-"어떤 젊은이?",
-"young people hoping to become nurses",
-"간호사가 되기를 바라는 젊은이들 (hope 바라다)."
-],
-[
-"어떤 본보기?",
-"the example set by Ms. Church",
-"처치 씨가 세운 본보기 (set 세우다)."
-],
-[
-"요약: 간호사를 꿈꾸는 젊은이들은 처치 씨의 모범을 생각해 봐야 한다."
-]
-],
-"notes": [
-"<b>지금의 충고·의무 = 조동사 + 동사원형</b> (should have considered ✕ → should consider ○)",
-"<b>should have p.p.</b>는 '했어야 했는데 안 한' 지난 일에만"
-]
-},
-{
-"en": "[[His management style]] [[was]] [[harsher]] [[than that of most other CEOs]], according to former employees.",
-"key": "그의 경영 스타일은 더 엄격했다.",
-"form": "2형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"am",
-"v"
-],
-[
-"happy",
-"c"
-]
-],
-"refrel": "I = happy",
-"me": [
-[
-"His management style",
-"s"
-],
-[
-"was",
-"v"
-],
-[
-"harsher than that of most other CEOs,",
-"c"
-],
-[
-"according to former employees.",
-"x"
-]
-],
-"merel": "style = harsher",
-"easy": [
-[
-"먼저 뼈대부터:",
-"His style was harsher",
-"그의 스타일은 더 엄격했다(be 이다)."
-],
-[
-"무엇과 비교해?",
-"than that of most other CEOs",
-"대부분의 다른 CEO의 것(스타일)보다. that = style(스타일)."
-],
-[
-"누가 말했어?",
-"according to former employees",
-"전직 직원들에 따르면."
-],
-[
-"요약: 전직 직원들 말로는, 그의 경영 방식은 다른 CEO들보다 더 가혹했다."
-]
-],
-"notes": [
-"<b>같은 종류끼리 비교</b>: 스타일 vs 스타일 → than that of ~ (than most other CEOs ✕: 스타일을 사람과 비교)",
-"that = 앞의 <b>단수명사(style)를 대신</b>"
-]
-},
-{
-"en": "[[He]] [[never showed]] [[his employees]] [[the same amount of respect that they did to him]].",
-"key": "그는 직원들에게 그들이 그에게 한 것만큼의 존경을 보이지 않았다.",
-"form": "4형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"give",
-"v"
-],
-[
-"him",
-"io"
-],
-[
-"a book",
-"do"
-]
-],
-"refrel": "him ≠ a book",
-"me": [
-[
-"He",
-"s"
-],
-[
-"never showed",
-"v"
-],
-[
-"his employees",
-"io"
-],
-[
-"the same amount of respect that they did to him.",
-"do"
-]
-],
-"merel": "employees ≠ respect",
-"easy": [
-[
-"먼저 뼈대부터:",
-"He never showed employees respect",
-"그는 직원들에게 존경을 보인 적이 없다(show 보이다)."
-],
-[
-"누구에게?",
-"his employees",
-"그의 직원들에게."
-],
-[
-"어느 정도의 존경?",
-"the same amount of respect that they did to him",
-"그들이 그에게 보인 것과 같은 양의 존경. did = showed(보였다)."
-],
-[
-"요약: 직원들은 그를 존경했지만, 그는 그만큼 직원들을 존중하지 않았다."
-]
-],
-"notes": [
-"<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕) (showed를 did가 대신, were ✕)",
-"4형식 <b>show + 사람 + 보여 줄 것</b>"
-]
-},
-{
-"en": "[[Employees]] often [[wondered]] [[why he never listened to feedback]].",
-"key": "직원들은 왜 그가 피드백을 듣지 않았는지 궁금해했다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"Employees",
-"s"
-],
-[
-"often wondered",
-"v"
-],
-[
-"why he never listened to feedback.",
-"o"
-]
-],
-"merel": "Employees ≠ why절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Employees wondered why ...",
-"직원들은 왜 ~인지 궁금해했다(wonder 궁금해하다)."
-],
-[
-"무엇이 궁금해?",
-"why he never listened to feedback",
-"왜 그가 피드백을 전혀 듣지 않았는지 (listen 듣다)."
-],
-[
-"얼마나 자주?",
-"often",
-"자주."
-],
-[
-"요약: 직원들은 왜 그가 피드백을 안 들었는지 자주 궁금해했다."
-]
-],
-"notes": [
-"<b>간접의문문 = 의문사 + 주어 + 동사</b> (why did he listen ✕ → why he listened ○)",
-"did는 의문문일 때만 쓰고, 문장 안에 들어가면 <b>동사에 과거형을 직접 쓴다</b>"
-]
-},
-{
-"en": "Looking back, [[he]] [[must have felt]] [[regret for treating his staff so poorly]].",
-"key": "그는 분명 후회를 느꼈을 것이다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"Looking back,",
-"x"
-],
-[
-"he",
-"s"
-],
-[
-"must have felt",
-"v"
-],
-[
-"regret for treating his staff so poorly.",
-"o"
-]
-],
-"merel": "he ≠ regret",
-"easy": [
-[
-"먼저 뼈대부터:",
-"He must have felt regret",
-"그는 분명 후회를 느꼈을 것이다(feel 느끼다)."
-],
-[
-"무엇에 대한 후회?",
-"for treating his staff so poorly",
-"직원들을 그렇게 형편없이 대한 것에 대한 (treat 대하다)."
-],
-[
-"언제 돌아보면?",
-"Looking back",
-"돌아보면."
-],
-[
-"요약: 돌이켜 보면 그는 직원을 함부로 대한 걸 분명 후회했을 것이다."
-]
-],
-"notes": [
-"<b>과거에 대한 강한 추측 = must have p.p.</b> (must + 과거형 ✕)",
-"Looking back(돌아보면)은 <b>지난 일</b>임을 알려 주는 단서"
-]
-},
-{
-"en": "[[He]] [[did believe]] [[his approach was effective]], even as morale dropped.",
-"key": "그는 자신의 방식이 효과적이라고 정말 믿었다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"He",
-"s"
-],
-[
-"did believe",
-"v"
-],
-[
-"his approach was effective,",
-"o"
-],
-[
-"even as morale dropped.",
-"x"
-]
-],
-"merel": "He ≠ 절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"He did believe his approach was effective",
-"그는 자신의 방식이 효과적이라고 정말 믿었다(believe 믿다)."
-],
-[
-"무엇이 효과적?",
-"his approach",
-"그의 접근 방식."
-],
-[
-"어떤 상황에서도?",
-"even as morale dropped",
-"사기가 떨어지는 때에도 (drop 떨어지다)."
-],
-[
-"요약: 직원들 사기가 떨어져도, 그는 자기 방식이 효과적이라고 굳게 믿었다."
-]
-],
-"notes": [
-"<b>강조의 do/does/did + 동사원형</b> (did + 과거형 ✕) (did believed ✕)",
-"believe 뒤에 <b>that이 생략</b>된 절이 목적어"
-]
-}
+ {
+  "en": "Among all my students [[were]] [[several truly gifted musicians like him]].",
+  "key": "내 학생들 중에 재능 있는 음악가들이 여러 명 있었다.",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "Among all my students",
+    "x"
+   ],
+   [
+    "were",
+    "v"
+   ],
+   [
+    "several truly gifted musicians like him.",
+    "s"
+   ]
+  ],
+  "merel": "",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Musicians were (among students)",
+    "음악가들이 (학생들 중에) 있었다(be 있다)."
+   ],
+   [
+    "진짜 주어는?",
+    "several truly gifted musicians like him",
+    "그처럼 정말 재능 있는 몇몇 음악가들."
+   ],
+   [
+    "왜 순서가 뒤집혔어?",
+    "Among all my students were ...",
+    "장소 말을 앞으로 보내서 '동사 + 주어' 순서가 되었다."
+   ],
+   [
+    "요약: 내 학생들 중에는 그 아이 같은 재능 있는 음악가가 여럿 있었다."
+   ]
+  ],
+  "notes": [
+   "<b>장소 부사구가 문두 → 도치(동사 + 주어)</b>: 동사는 뒤의 진짜 주어에 맞춘다",
+   "주어가 복수(musicians) → were (was ✕)"
+  ]
+ },
+ {
+  "en": "[[His parents]] [[suggested]] [[that he take lessons]], but he preferred to teach himself.",
+  "key": "그의 부모님은 그가 수업을 들으라고 제안했다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "His parents",
+    "s"
+   ],
+   [
+    "suggested",
+    "v"
+   ],
+   [
+    "that he take lessons,",
+    "o"
+   ],
+   [
+    "but he preferred to teach himself.",
+    "x"
+   ]
+  ],
+  "merel": "parents ≠ that절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "His parents suggested that ...",
+    "부모님은 ~라고 제안했다(suggest 제안하다)."
+   ],
+   [
+    "무엇을 제안했어?",
+    "that he take lessons",
+    "그가 수업을 들으라고 (take 받다)."
+   ],
+   [
+    "그런데 그는?",
+    "he preferred to teach himself",
+    "그는 독학하는 것을 더 좋아했다 (prefer 선호하다, teach 가르치다)."
+   ],
+   [
+    "요약: 부모님은 수업을 권했지만, 그는 혼자 배우는 걸 택했다."
+   ]
+  ],
+  "notes": [
+   "<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (takes ✕ → take ○)",
+   "but 뒤의 preferred는 사실을 말하는 일반 과거"
+  ]
+ },
+ {
+  "en": "The boy never learned the piano in class, but [[he]] [[really did play]] well nevertheless.",
+  "key": "그는 그럼에도 정말 잘 연주했다.",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "The boy never learned the piano in class, but",
+    "x"
+   ],
+   [
+    "he",
+    "s"
+   ],
+   [
+    "really did play",
+    "v"
+   ],
+   [
+    "well nevertheless.",
+    "x"
+   ]
+  ],
+  "merel": "",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "He did play well",
+    "그는 정말 잘 연주했다(play 연주하다)."
+   ],
+   [
+    "어떤 말이 앞에 있어?",
+    "The boy never learned the piano in class",
+    "그 소년은 수업에서 피아노를 배운 적이 없다 (learn 배우다)."
+   ],
+   [
+    "그래도?",
+    "nevertheless",
+    "그럼에도 불구하고."
+   ],
+   [
+    "요약: 피아노 수업을 받은 적 없는데도, 그는 정말 잘 쳤다."
+   ]
+  ],
+  "notes": [
+   "<b>강조의 do/does/did + 동사원형</b> (did + 과거형 ✕) (did played ✕ → did play ○)",
+   "did와 동사 사이에 really가 끼어도 <b>did 뒤는 원형</b>"
+  ]
+ },
+ {
+  "en": "I don't know if the little boy plays the piano on stage now, but [[I]] [[hope]] [[he does]].",
+  "key": "나는 그가 그러길 바란다(무대에서 피아노를 치길).",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "I don't know if the little boy plays the piano on stage now, but",
+    "x"
+   ],
+   [
+    "I",
+    "s"
+   ],
+   [
+    "hope",
+    "v"
+   ],
+   [
+    "he does.",
+    "o"
+   ]
+  ],
+  "merel": "I ≠ he does",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "I hope he does",
+    "나는 그가 그러길 바란다(hope 바라다)."
+   ],
+   [
+    "does는 무슨 뜻?",
+    "does (= plays the piano on stage)",
+    "앞의 plays(연주하다)를 대신함."
+   ],
+   [
+    "어떤 말이 앞에 있어?",
+    "I don't know if ...",
+    "~인지 나는 모른다 (know 알다)."
+   ],
+   [
+    "요약: 그 소년이 지금 무대에서 피아노를 치는지 모르지만, 치고 있기를 바란다."
+   ]
+  ],
+  "notes": [
+   "<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕) (plays를 does가 대신, is ✕)",
+   "주어 he는 3인칭 단수, 현재형 → does"
+  ]
+ },
+ {
+  "en": "I didn't say anything to him then, but sometimes [[I]] [[think]] [[I should have told him to keep playing the piano]].",
+  "key": "가끔 나는 그에게 계속 연주하라고 말했어야 했다고 생각한다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "I didn't say anything to him then, but sometimes",
+    "x"
+   ],
+   [
+    "I",
+    "s"
+   ],
+   [
+    "think",
+    "v"
+   ],
+   [
+    "I should have told him to keep playing the piano.",
+    "o"
+   ]
+  ],
+  "merel": "I ≠ 절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "I think I should have told him",
+    "나는 그에게 말했어야 했다고 생각한다(think 생각하다, tell 말하다)."
+   ],
+   [
+    "무엇을 말했어야?",
+    "to keep playing the piano",
+    "계속 피아노를 치라고 (keep 계속하다)."
+   ],
+   [
+    "그때는?",
+    "I didn't say anything to him then",
+    "그때는 아무 말도 하지 않았다 (say 말하다)."
+   ],
+   [
+    "요약: 그때 말 못 했지만, 계속 연주하라고 말해 줄 걸 하고 가끔 후회한다."
+   ]
+  ],
+  "notes": [
+   "<b>후회·아쉬움 = should have p.p.</b> (~했어야 했는데 안 했다) (should tell ✕)",
+   "then(그때)처럼 <b>지나간 때</b>가 단서"
+  ]
+ },
+ {
+  "en": "Many students and parents think that phones in the classroom aren't a problem, but [[a large number of schoolteachers]] [[think]] [[that they are]].",
+  "key": "많은 교사들은 그렇다(문제다)고 생각한다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Many students and parents think that phones in the classroom aren't a problem, but",
+    "x"
+   ],
+   [
+    "a large number of schoolteachers",
+    "s"
+   ],
+   [
+    "think",
+    "v"
+   ],
+   [
+    "that they are.",
+    "o"
+   ]
+  ],
+  "merel": "teachers ≠ that절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Teachers think that they are",
+    "교사들은 그렇다고 생각한다(think 생각하다)."
+   ],
+   [
+    "they are는 무슨 뜻?",
+    "they are (= phones are a problem)",
+    "휴대폰이 문제라는 뜻. 앞의 aren't(아니다)와 같은 be동사로 이어짐."
+   ],
+   [
+    "누구와 반대야?",
+    "Many students and parents",
+    "많은 학생과 학부모."
+   ],
+   [
+    "요약: 학생·학부모는 문제없다고 보지만, 많은 교사는 문제라고 생각한다."
+   ]
+  ],
+  "notes": [
+   "<b>앞의 be동사 대신 → be동사</b> (aren't ↔ are) (have ✕)",
+   "<b>a large number of + 복수명사</b> = 많은 ~ (복수 취급)"
+  ]
+ },
+ {
+  "en": "Many [[teachers]] [[do believe]] [[that phone use directly lowers students' focus in class]].",
+  "key": "많은 교사들은 휴대폰 사용이 집중력을 낮춘다고 정말 믿는다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Many teachers",
+    "s"
+   ],
+   [
+    "do believe",
+    "v"
+   ],
+   [
+    "that phone use directly lowers students' focus in class.",
+    "o"
+   ]
+  ],
+  "merel": "teachers ≠ that절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Teachers do believe that ...",
+    "교사들은 ~라고 정말 믿는다(believe 믿다)."
+   ],
+   [
+    "무엇을 믿어?",
+    "that phone use lowers students' focus",
+    "휴대폰 사용이 학생들의 집중을 낮춘다고 (lower 낮추다)."
+   ],
+   [
+    "어떻게?",
+    "directly",
+    "직접적으로."
+   ],
+   [
+    "요약: 많은 교사가 휴대폰이 수업 집중을 직접 떨어뜨린다고 굳게 믿는다."
+   ]
+  ],
+  "notes": [
+   "<b>강조의 do/does/did + 동사원형</b> (did + 과거형 ✕) (do believed ✕ → do believe ○)",
+   "주어 teachers가 복수 → do"
+  ]
+ },
+ {
+  "en": "[[They]] [[said]] [[that the government must ban the use of phones in the classroom]] and pointed at a recent report by experts.",
+  "key": "그들은 정부가 휴대폰 사용을 금지해야 한다고 말했다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "They",
+    "s"
+   ],
+   [
+    "said",
+    "v"
+   ],
+   [
+    "that the government must ban the use of phones in the classroom",
+    "o"
+   ],
+   [
+    "and pointed at a recent report by experts.",
+    "x"
+   ]
+  ],
+  "merel": "They ≠ that절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "They said that ...",
+    "그들은 ~라고 말했다(say 말하다)."
+   ],
+   [
+    "무엇을 말했어?",
+    "that the government must ban the use of phones",
+    "정부가 휴대폰 사용을 금지해야 한다고 (ban 금지하다)."
+   ],
+   [
+    "또 뭘 했어?",
+    "pointed at a recent report",
+    "최근 보고서를 가리켰다 (point 가리키다)."
+   ],
+   [
+    "요약: 교사들은 교실 휴대폰을 금지해야 한다며 전문가 보고서를 근거로 들었다."
+   ]
+  ],
+  "notes": [
+   "<b>앞으로 해야 할 일 = 조동사 + 동사원형</b> (must have banned ✕ → must ban ○)",
+   "<b>must have p.p.</b>는 지난 일에 대한 추측일 때만 (이 문장은 '해야 한다'는 의무)"
+  ]
+ },
+ {
+  "en": "[[The safety risks of phone use]] [[are]] [[far greater]] than those of other classroom distractions.",
+  "key": "휴대폰 사용의 안전 위험은 훨씬 더 크다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "The safety risks of phone use",
+    "s"
+   ],
+   [
+    "are",
+    "v"
+   ],
+   [
+    "far greater",
+    "c"
+   ],
+   [
+    "than those of other classroom distractions.",
+    "x"
+   ]
+  ],
+  "merel": "risks = greater",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "The risks are greater",
+    "위험은 더 크다(be 이다)."
+   ],
+   [
+    "무엇의 위험?",
+    "of phone use",
+    "휴대폰 사용의."
+   ],
+   [
+    "무엇과 비교해?",
+    "than those of other classroom distractions",
+    "다른 수업 방해 요소의 위험보다. those = risks(위험들)."
+   ],
+   [
+    "요약: 휴대폰의 안전 위험이 다른 수업 방해 요소의 위험보다 훨씬 크다."
+   ]
+  ],
+  "notes": [
+   "<b>비교 대상의 반복 복수명사 → those</b> (them ✕), 단수면 that",
+   "<b>those of ~</b> = ~의 그것들 (of가 꾸며 줌)"
+  ]
+ },
+ {
+  "en": "[[The schoolteachers]] [[suggested]] [[that the government understand the importance of this issue and try to persuade students and parents]].",
+  "key": "교사들은 정부가 이 문제의 중요성을 이해하라고 제안했다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "The schoolteachers",
+    "s"
+   ],
+   [
+    "suggested",
+    "v"
+   ],
+   [
+    "that the government understand the importance of this issue and try to persuade students and parents.",
+    "o"
+   ]
+  ],
+  "merel": "teachers ≠ that절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "The teachers suggested that ...",
+    "교사들은 ~라고 제안했다(suggest 제안하다)."
+   ],
+   [
+    "무엇을 제안했어?",
+    "that the government understand the importance",
+    "정부가 중요성을 이해하라고 (understand 이해하다)."
+   ],
+   [
+    "또 뭘?",
+    "try to persuade students and parents",
+    "학생과 학부모를 설득하려 노력하라고 (persuade 설득하다)."
+   ],
+   [
+    "요약: 정부가 이 문제의 중요성을 이해하고 학생·학부모를 설득하라고 제안했다."
+   ]
+  ],
+  "notes": [
+   "<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (understood ✕ → understand ○)",
+   "and로 이어진 <b>try도 같은 원형</b> (try to persuade)"
+  ]
+ },
+ {
+  "en": "[[Her supervisor]] [[recommended]] [[that she train new recruits in flight safety]].",
+  "key": "그녀의 상사는 그녀가 신입을 훈련시키라고 권했다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Her supervisor",
+    "s"
+   ],
+   [
+    "recommended",
+    "v"
+   ],
+   [
+    "that she train new recruits in flight safety.",
+    "o"
+   ]
+  ],
+  "merel": "supervisor ≠ that절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Her supervisor recommended that ...",
+    "상사는 ~라고 권했다(recommend 권하다)."
+   ],
+   [
+    "무엇을 권했어?",
+    "that she train new recruits",
+    "그녀가 신입 직원을 훈련시키라고 (train 훈련시키다)."
+   ],
+   [
+    "무엇에 대해?",
+    "in flight safety",
+    "비행 안전에 관해."
+   ],
+   [
+    "요약: 상사는 그녀에게 신입들에게 비행 안전을 가르치라고 권했다."
+   ]
+  ],
+  "notes": [
+   "<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (trains ✕ → train ○)",
+   "주어 she는 3인칭 단수지만 <b>원형 그대로</b>"
+  ]
+ },
+ {
+  "en": "Many other nurses admired her courage, and [[some]] [[did]] too, even decades after her death.",
+  "key": "일부도 그렇게 했다(그녀의 용기를 존경했다).",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "Many other nurses admired her courage, and",
+    "x"
+   ],
+   [
+    "some",
+    "s"
+   ],
+   [
+    "did too,",
+    "v"
+   ],
+   [
+    "even decades after her death.",
+    "x"
+   ]
+  ],
+  "merel": "did too = admired도 대신함",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Some did too",
+    "일부도 그랬다."
+   ],
+   [
+    "무슨 뜻?",
+    "did too (= admired her courage)",
+    "앞의 admired(존경했다, admire)를 대신한 말."
+   ],
+   [
+    "언제까지?",
+    "even decades after her death",
+    "그녀가 죽고 수십 년 뒤에도."
+   ],
+   [
+    "요약: 많은 간호사가 그녀의 용기를 존경했고, 일부는 수십 년 후에도 존경했다."
+   ]
+  ],
+  "notes": [
+   "<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕) (admired를 did가 대신, have ✕)",
+   "과거형 admired → 대신하는 말도 <b>did</b>"
+  ]
+ },
+ {
+  "en": "In recognition of her achievements, several aviation organizations honored her with awards, and [[a memorial]] [[was dedicated]] in her hometown years later.",
+  "key": "기념비가 수년 뒤 그녀의 고향에 헌정되었다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "In recognition of her achievements, several aviation organizations honored her with awards, and",
+    "x"
+   ],
+   [
+    "a memorial",
+    "s"
+   ],
+   [
+    "was dedicated",
+    "v"
+   ],
+   [
+    "in her hometown years later.",
+    "x"
+   ]
+  ],
+  "merel": "수동태 (memorial이 헌정되는 대상)",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "A memorial was dedicated",
+    "기념비가 헌정되었다(dedicate 바치다)."
+   ],
+   [
+    "어디에?",
+    "in her hometown",
+    "그녀의 고향에."
+   ],
+   [
+    "언제?",
+    "years later",
+    "수년 뒤에."
+   ],
+   [
+    "요약: 항공 단체들이 상을 주었고, 몇 해 뒤 고향에 기념비도 세워졌다."
+   ]
+  ],
+  "notes": [
+   "<b>수동태 = be + p.p.</b>: 주어가 '~되는' 쪽이면 수동 (dedicated ✕ → was dedicated ○)",
+   "a memorial은 <b>누가 바치는</b> 대상이지 스스로 바치지 않는다"
+  ]
+ },
+ {
+  "en": "[[Her story]] [[continues to inspire]] [[nursing students]] today, many of whom feel amazed when they learn about her achievements.",
+  "key": "그녀의 이야기는 간호학과 학생들에게 계속 영감을 준다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Her story",
+    "s"
+   ],
+   [
+    "continues to inspire",
+    "v"
+   ],
+   [
+    "nursing students",
+    "o"
+   ],
+   [
+    "today, many of whom feel amazed when they learn about her achievements.",
+    "x"
+   ]
+  ],
+  "merel": "story ≠ students",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Her story continues to inspire students",
+    "그녀의 이야기는 학생들에게 계속 영감을 준다(continue 계속하다, inspire 영감을 주다)."
+   ],
+   [
+    "many of whom은 누구?",
+    "many of whom (= many of the students)",
+    "그 학생들 중 많은 학생."
+   ],
+   [
+    "그 학생들은 어때?",
+    "feel amazed when they learn about her achievements",
+    "그녀의 업적을 알게 되면 놀라워한다 (feel 느끼다, learn 알다)."
+   ],
+   [
+    "요약: 그녀의 이야기는 오늘날에도 학생들에게 영감을 주고, 많은 학생이 감탄한다."
+   ]
+  ],
+  "notes": [
+   "<b>감정 분사</b>: 감정을 '느끼는' 사람이 주어면 p.p. (amazing ✕ → amazed ○)",
+   "amazing = 놀라게 하는 것(원인), <b>amazed = 놀란 사람(느끼는 쪽)</b>"
+  ]
+ },
+ {
+  "en": "[[Today's young people hoping to become nurses]] [[should consider]] [[the example set by Ms. Church]].",
+  "key": "간호사가 되기를 바라는 요즘 젊은이들은 처치 씨의 본보기를 생각해 봐야 한다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Today's young people hoping to become nurses",
+    "s"
+   ],
+   [
+    "should consider",
+    "v"
+   ],
+   [
+    "the example set by Ms. Church.",
+    "o"
+   ]
+  ],
+  "merel": "people ≠ example",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Young people should consider the example",
+    "젊은이들은 본보기를 생각해 봐야 한다(consider 고려하다)."
+   ],
+   [
+    "어떤 젊은이?",
+    "young people hoping to become nurses",
+    "간호사가 되기를 바라는 젊은이들 (hope 바라다)."
+   ],
+   [
+    "어떤 본보기?",
+    "the example set by Ms. Church",
+    "처치 씨가 세운 본보기 (set 세우다)."
+   ],
+   [
+    "요약: 간호사를 꿈꾸는 젊은이들은 처치 씨의 모범을 생각해 봐야 한다."
+   ]
+  ],
+  "notes": [
+   "<b>지금의 충고·의무 = 조동사 + 동사원형</b> (should have considered ✕ → should consider ○)",
+   "<b>should have p.p.</b>는 '했어야 했는데 안 한' 지난 일에만"
+  ]
+ },
+ {
+  "en": "[[His management style]] [[was]] [[harsher]] [[than that of most other CEOs]], according to former employees.",
+  "key": "그의 경영 스타일은 더 엄격했다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "His management style",
+    "s"
+   ],
+   [
+    "was",
+    "v"
+   ],
+   [
+    "harsher than that of most other CEOs,",
+    "c"
+   ],
+   [
+    "according to former employees.",
+    "x"
+   ]
+  ],
+  "merel": "style = harsher",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "His style was harsher",
+    "그의 스타일은 더 엄격했다(be 이다)."
+   ],
+   [
+    "무엇과 비교해?",
+    "than that of most other CEOs",
+    "대부분의 다른 CEO의 것(스타일)보다. that = style(스타일)."
+   ],
+   [
+    "누가 말했어?",
+    "according to former employees",
+    "전직 직원들에 따르면."
+   ],
+   [
+    "요약: 전직 직원들 말로는, 그의 경영 방식은 다른 CEO들보다 더 가혹했다."
+   ]
+  ],
+  "notes": [
+   "<b>같은 종류끼리 비교</b>: 스타일 vs 스타일 → than that of ~ (than most other CEOs ✕: 스타일을 사람과 비교)",
+   "that = 앞의 <b>단수명사(style)를 대신</b>"
+  ]
+ },
+ {
+  "en": "[[He]] [[never showed]] [[his employees]] [[the same amount of respect that they did to him]].",
+  "key": "그는 직원들에게 그들이 그에게 한 것만큼의 존경을 보이지 않았다.",
+  "form": "4형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "give",
+    "v"
+   ],
+   [
+    "him",
+    "io"
+   ],
+   [
+    "a book",
+    "do"
+   ]
+  ],
+  "refrel": "him ≠ a book",
+  "me": [
+   [
+    "He",
+    "s"
+   ],
+   [
+    "never showed",
+    "v"
+   ],
+   [
+    "his employees",
+    "io"
+   ],
+   [
+    "the same amount of respect that they did to him.",
+    "do"
+   ]
+  ],
+  "merel": "employees ≠ respect",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "He never showed employees respect",
+    "그는 직원들에게 존경을 보인 적이 없다(show 보이다)."
+   ],
+   [
+    "누구에게?",
+    "his employees",
+    "그의 직원들에게."
+   ],
+   [
+    "어느 정도의 존경?",
+    "the same amount of respect that they did to him",
+    "그들이 그에게 보인 것과 같은 양의 존경. did = showed(보였다)."
+   ],
+   [
+    "요약: 직원들은 그를 존경했지만, 그는 그만큼 직원들을 존중하지 않았다."
+   ]
+  ],
+  "notes": [
+   "<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕) (showed를 did가 대신, were ✕)",
+   "4형식 <b>show + 사람 + 보여 줄 것</b>"
+  ]
+ },
+ {
+  "en": "[[Employees]] often [[wondered]] [[why he never listened to feedback]].",
+  "key": "직원들은 왜 그가 피드백을 듣지 않았는지 궁금해했다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Employees",
+    "s"
+   ],
+   [
+    "often wondered",
+    "v"
+   ],
+   [
+    "why he never listened to feedback.",
+    "o"
+   ]
+  ],
+  "merel": "Employees ≠ why절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Employees wondered why ...",
+    "직원들은 왜 ~인지 궁금해했다(wonder 궁금해하다)."
+   ],
+   [
+    "무엇이 궁금해?",
+    "why he never listened to feedback",
+    "왜 그가 피드백을 전혀 듣지 않았는지 (listen 듣다)."
+   ],
+   [
+    "얼마나 자주?",
+    "often",
+    "자주."
+   ],
+   [
+    "요약: 직원들은 왜 그가 피드백을 안 들었는지 자주 궁금해했다."
+   ]
+  ],
+  "notes": [
+   "<b>간접의문문 = 의문사 + 주어 + 동사</b> (why did he listen ✕ → why he listened ○)",
+   "did는 의문문일 때만 쓰고, 문장 안에 들어가면 <b>동사에 과거형을 직접 쓴다</b>"
+  ]
+ },
+ {
+  "en": "Looking back, [[he]] [[must have felt]] [[regret for treating his staff so poorly]].",
+  "key": "그는 분명 후회를 느꼈을 것이다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Looking back,",
+    "x"
+   ],
+   [
+    "he",
+    "s"
+   ],
+   [
+    "must have felt",
+    "v"
+   ],
+   [
+    "regret for treating his staff so poorly.",
+    "o"
+   ]
+  ],
+  "merel": "he ≠ regret",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "He must have felt regret",
+    "그는 분명 후회를 느꼈을 것이다(feel 느끼다)."
+   ],
+   [
+    "무엇에 대한 후회?",
+    "for treating his staff so poorly",
+    "직원들을 그렇게 형편없이 대한 것에 대한 (treat 대하다)."
+   ],
+   [
+    "언제 돌아보면?",
+    "Looking back",
+    "돌아보면."
+   ],
+   [
+    "요약: 돌이켜 보면 그는 직원을 함부로 대한 걸 분명 후회했을 것이다."
+   ]
+  ],
+  "notes": [
+   "<b>과거에 대한 강한 추측 = must have p.p.</b> (must + 과거형 ✕)",
+   "Looking back(돌아보면)은 <b>지난 일</b>임을 알려 주는 단서"
+  ]
+ },
+ {
+  "en": "[[He]] [[did believe]] [[his approach was effective]], even as morale dropped.",
+  "key": "그는 자신의 방식이 효과적이라고 정말 믿었다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "He",
+    "s"
+   ],
+   [
+    "did believe",
+    "v"
+   ],
+   [
+    "his approach was effective,",
+    "o"
+   ],
+   [
+    "even as morale dropped.",
+    "x"
+   ]
+  ],
+  "merel": "He ≠ 절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "He did believe his approach was effective",
+    "그는 자신의 방식이 효과적이라고 정말 믿었다(believe 믿다)."
+   ],
+   [
+    "무엇이 효과적?",
+    "his approach",
+    "그의 접근 방식."
+   ],
+   [
+    "어떤 상황에서도?",
+    "even as morale dropped",
+    "사기가 떨어지는 때에도 (drop 떨어지다)."
+   ],
+   [
+    "요약: 직원들 사기가 떨어져도, 그는 자기 방식이 효과적이라고 굳게 믿었다."
+   ]
+  ],
+  "notes": [
+   "<b>강조의 do/does/did + 동사원형</b> (did + 과거형 ✕) (did believed ✕)",
+   "believe 뒤에 <b>that이 생략</b>된 절이 목적어"
+  ]
+ }
 ]

@@ -1,1214 +1,1214 @@
 [
-{
-"en": "[[A recent report]] [[shows]] [[that Japan's population grew at a slower rate in 2022 than it did in previous years]].",
-"key": "최근 보고서는 일본 인구가 더 느리게 늘었다고 보여 준다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"A recent report",
-"s"
-],
-[
-"shows",
-"v"
-],
-[
-"that Japan's population grew at a slower rate in 2022 than it did in previous years.",
-"o"
-]
-],
-"merel": "report ≠ that절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"A report shows that ...",
-"보고서는 ~을 보여 준다(show 보여 주다)."
-],
-[
-"무엇을 보여 줘?",
-"that Japan's population grew at a slower rate",
-"일본 인구가 더 느린 속도로 늘었다는 것 (grow 늘다)."
-],
-[
-"무엇과 비교해?",
-"than it did in previous years",
-"이전 해들보다. did는 grew(늘었다)를 대신함."
-],
-[
-"요약: 2022년 일본 인구는 이전 해들보다 더 느리게 늘었다."
-]
-],
-"notes": [
-"<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕) (grew를 did가 대신, was ✕)",
-"than 뒤 반복 동사 → 대동사"
-]
-},
-{
-"en": "If this trend continues, [[the country's workforce]] [[could shrink]] dramatically within a decade.",
-"key": "그 나라의 노동력은 급격히 줄어들 수 있다.",
-"form": "1형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"sleep",
-"v"
-]
-],
-"refrel": "",
-"me": [
-[
-"If this trend continues,",
-"x"
-],
-[
-"the country's workforce",
-"s"
-],
-[
-"could shrink",
-"v"
-],
-[
-"dramatically within a decade.",
-"x"
-]
-],
-"merel": "",
-"easy": [
-[
-"먼저 뼈대부터:",
-"The workforce could shrink",
-"노동력이 줄어들 수 있다(shrink 줄다)."
-],
-[
-"언제 그래?",
-"If this trend continues",
-"이 경향이 계속되면 (continue 계속되다)."
-],
-[
-"얼마나?",
-"dramatically within a decade",
-"10년 안에 급격하게."
-],
-[
-"요약: 이런 추세가 이어지면 10년 안에 노동력이 크게 줄 수 있다."
-]
-],
-"notes": [
-"<b>조건 if절은 미래도 현재시제</b> (will continue ✕ → continues ○)",
-"'~하면 …할 것이다'에서 <b>if 쪽만 현재</b>, 주절은 will/could"
-]
-},
-{
-"en": "[[Many policies]] [[were proposed]] to slow down this decline, but none of them were successful.",
-"key": "많은 정책들이 제안되었다.",
-"form": "3형식(수동태)",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"Many policies",
-"s"
-],
-[
-"were proposed",
-"v"
-],
-[
-"to slow down this decline,",
-"x"
-],
-[
-"but none of them were successful.",
-"x"
-]
-],
-"merel": "policies = 제안되는 대상",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Many policies were proposed",
-"많은 정책이 제안되었다(propose 제안하다)."
-],
-[
-"왜 제안했어?",
-"to slow down this decline",
-"이 감소를 늦추기 위해 (slow 늦추다)."
-],
-[
-"결과는?",
-"none of them were successful",
-"그것들 중 어느 것도 성공적이지 못했다."
-],
-[
-"요약: 감소를 늦추려는 정책이 많이 나왔지만 성공하지 못했다."
-]
-],
-"notes": [
-"<b>수동태 = be + p.p.</b> (proposed ✕ → were proposed ○)",
-"policies는 '제안하는' 쪽이 아니라 <b>제안되는</b> 대상"
-]
-},
-{
-"en": "[[Experts]] [[recommended]] [[that the government provide more support for young families]].",
-"key": "전문가들은 정부가 더 많은 지원을 제공하라고 권했다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"Experts",
-"s"
-],
-[
-"recommended",
-"v"
-],
-[
-"that the government provide more support for young families.",
-"o"
-]
-],
-"merel": "Experts ≠ that절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Experts recommended that ...",
-"전문가들은 ~라고 권했다(recommend 권하다)."
-],
-[
-"무엇을 권했어?",
-"that the government provide more support",
-"정부가 더 많은 지원을 제공하라고 (provide 제공하다)."
-],
-[
-"누구에게?",
-"for young families",
-"젊은 가정들에."
-],
-[
-"요약: 전문가들은 정부가 젊은 가정에 더 지원하라고 권했다."
-]
-],
-"notes": [
-"<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (provides ✕ → provide ○)",
-"the government는 3인칭 단수지만 <b>원형</b>"
-]
-},
-{
-"en": "[[Japanese people]] [[believe]] [[the government should have acted quickly to slow the decline many years ago]].",
-"key": "일본 사람들은 정부가 빨리 행동했어야 했다고 믿는다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"Japanese people",
-"s"
-],
-[
-"believe",
-"v"
-],
-[
-"the government should have acted quickly to slow the decline many years ago.",
-"o"
-]
-],
-"merel": "people ≠ 절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Japanese people believe ...",
-"일본 사람들은 ~라고 믿는다(believe 믿다)."
-],
-[
-"무엇을 믿어?",
-"the government should have acted quickly",
-"정부가 빨리 행동했어야 했다고 (act 행동하다)."
-],
-[
-"왜 행동했어야?",
-"to slow the decline",
-"감소를 늦추기 위해."
-],
-[
-"요약: 일본 사람들은 정부가 수년 전에 서둘러 대응했어야 했다고 본다."
-]
-],
-"notes": [
-"<b>후회·아쉬움 = should have p.p.</b> (should act ✕ → should have acted ○)",
-"many years ago(수년 전)는 <b>과거 시점 단서</b>"
-]
-},
-{
-"en": "[[He]] [[must have spent]] [[a fortune]] on gadgets he barely uses, based on his monthly bank statements.",
-"key": "그는 분명 큰돈을 썼을 것이다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"He",
-"s"
-],
-[
-"must have spent",
-"v"
-],
-[
-"a fortune",
-"o"
-],
-[
-"on gadgets he barely uses, based on his monthly bank statements.",
-"x"
-]
-],
-"merel": "He ≠ fortune",
-"easy": [
-[
-"먼저 뼈대부터:",
-"He must have spent a fortune",
-"그는 분명 큰돈을 썼을 것이다(spend 쓰다)."
-],
-[
-"어디에?",
-"on gadgets he barely uses",
-"거의 쓰지 않는 기기들에 (use 사용하다)."
-],
-[
-"왜 그렇게 알아?",
-"based on his monthly bank statements",
-"월별 은행 명세서를 근거로."
-],
-[
-"요약: 은행 명세서를 보면 그는 잘 안 쓰는 기기에 분명 큰돈을 썼을 거다."
-]
-],
-"notes": [
-"<b>과거에 대한 강한 추측 = must have p.p.</b> (must + 과거형 ✕)",
-"은행 명세서(과거 기록)가 <b>근거</b>"
-]
-},
-{
-"en": "When his old phone breaks, [[he]] always [[buys]] [[a new one]] instead of repairing it.",
-"key": "그는 새것을 산다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"When his old phone breaks,",
-"x"
-],
-[
-"he",
-"s"
-],
-[
-"always buys",
-"v"
-],
-[
-"a new one",
-"o"
-],
-[
-"instead of repairing it.",
-"x"
-]
-],
-"merel": "he ≠ one",
-"easy": [
-[
-"먼저 뼈대부터:",
-"He buys a new one",
-"그는 새것을 산다(buy 사다)."
-],
-[
-"언제?",
-"When his old phone breaks",
-"오래된 폰이 고장 나면 (break 고장 나다)."
-],
-[
-"대신 뭘 안 해?",
-"instead of repairing it",
-"그것을 고치는 대신 (repair 고치다)."
-],
-[
-"요약: 폰이 고장 나면 고치지 않고 늘 새 폰을 산다."
-]
-],
-"notes": [
-"<b>one = 같은 종류의 아무거나(불특정)</b>, it = 바로 그것 (a new it ✕ → a new one ○)",
-"'새 폰'은 고장 난 그 폰이 아니라 <b>다른 새 폰</b>이라서 one"
-]
-},
-{
-"en": "[[It]] [[is]] [[such a waste of money]] every time he does this, according to his friends.",
-"key": "그것은 정말 돈 낭비이다.",
-"form": "2형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"am",
-"v"
-],
-[
-"happy",
-"c"
-]
-],
-"refrel": "I = happy",
-"me": [
-[
-"It",
-"s"
-],
-[
-"is",
-"v"
-],
-[
-"such a waste of money",
-"c"
-],
-[
-"every time he does this, according to his friends.",
-"x"
-]
-],
-"merel": "It = such a waste",
-"easy": [
-[
-"먼저 뼈대부터:",
-"It is a waste of money",
-"그것은 돈 낭비이다(be 이다)."
-],
-[
-"언제 그래?",
-"every time he does this",
-"그가 이렇게 할 때마다 (do 하다)."
-],
-[
-"누가 말했어?",
-"according to his friends",
-"친구들에 따르면."
-],
-[
-"요약: 친구들 말로는 그가 이럴 때마다 돈 낭비이다."
-]
-],
-"notes": [
-"<b>such + a + 명사</b> (명사 꾸밈), so + 형용사/부사 (so waste ✕ → such a waste ○)",
-"waste는 <b>명사</b>라서 so가 아니라 such"
-]
-},
-{
-"en": "And [[many people in modern times]] [[have]] [[similar problems]] as my brother does.",
-"key": "요즘 많은 사람들이 비슷한 문제를 가지고 있다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"And",
-"x"
-],
-[
-"many people in modern times",
-"s"
-],
-[
-"have",
-"v"
-],
-[
-"similar problems",
-"o"
-],
-[
-"as my brother does.",
-"x"
-]
-],
-"merel": "people ≠ problems",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Many people have problems",
-"많은 사람들이 문제를 가지고 있다(have 가지다)."
-],
-[
-"어떤 사람들?",
-"many people in modern times",
-"요즘 시대의 많은 사람들."
-],
-[
-"누구와 같아?",
-"as my brother does",
-"내 남동생이 (그런 문제를) 가진 것처럼. does는 has(가지고 있다)를 대신함."
-],
-[
-"요약: 요즘 많은 사람이 내 남동생과 비슷한 소비 문제를 겪는다."
-]
-],
-"notes": [
-"<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕) (have를 does가 대신, is ✕)",
-"주어 my brother가 3인칭 단수 현재 → does"
-]
-},
-{
-"en": "[[A financial advisor]] [[suggested]] [[that he track his spending more carefully]].",
-"key": "재정 상담가는 그가 지출을 더 주의 깊게 추적하라고 제안했다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"A financial advisor",
-"s"
-],
-[
-"suggested",
-"v"
-],
-[
-"that he track his spending more carefully.",
-"o"
-]
-],
-"merel": "advisor ≠ that절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"An advisor suggested that ...",
-"상담가는 ~라고 제안했다(suggest 제안하다)."
-],
-[
-"무엇을 제안했어?",
-"that he track his spending",
-"그가 지출을 추적하라고 (track 추적하다)."
-],
-[
-"어떻게?",
-"more carefully",
-"더 주의 깊게."
-],
-[
-"요약: 재정 상담가는 그가 돈 쓴 내역을 더 꼼꼼히 기록하라고 제안했다."
-]
-],
-"notes": [
-"<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (tracks ✕ → track ○)",
-"주어 he는 3인칭 단수여도 <b>원형</b>"
-]
-},
-{
-"en": "Within a short time, [[a flash flood]] [[can cause]] [[lots of problems]].",
-"key": "돌발 홍수는 많은 문제를 일으킬 수 있다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"Within a short time,",
-"x"
-],
-[
-"a flash flood",
-"s"
-],
-[
-"can cause",
-"v"
-],
-[
-"lots of problems.",
-"o"
-]
-],
-"merel": "flood ≠ problems",
-"easy": [
-[
-"먼저 뼈대부터:",
-"A flash flood can cause problems",
-"돌발 홍수는 문제를 일으킬 수 있다(cause 일으키다)."
-],
-[
-"어떤 문제?",
-"lots of problems",
-"많은 문제."
-],
-[
-"얼마 만에?",
-"Within a short time",
-"짧은 시간 안에."
-],
-[
-"요약: 돌발 홍수는 짧은 시간에 많은 문제를 일으킨다."
-]
-],
-"notes": [
-"<b>목적어가 있는 동사는 능동태</b>: cause + 목적어 (can be caused lots of problems ✕)",
-"수동태로 바꾸면 <b>목적어가 주어 자리로 가야</b> 한다 (lots of problems can be caused)"
-]
-},
-{
-"en": "[[It]] [[is]] [[the only natural disaster that strikes with almost no warning]].",
-"key": "그것은 유일한 자연재해이다.",
-"form": "2형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"am",
-"v"
-],
-[
-"happy",
-"c"
-]
-],
-"refrel": "I = happy",
-"me": [
-[
-"It",
-"s"
-],
-[
-"is",
-"v"
-],
-[
-"the only natural disaster that strikes with almost no warning.",
-"c"
-]
-],
-"merel": "It = disaster",
-"easy": [
-[
-"먼저 뼈대부터:",
-"It is the only disaster",
-"그것은 유일한 재해이다(be 이다)."
-],
-[
-"어떤 재해?",
-"natural disaster",
-"자연재해."
-],
-[
-"그 재해는 어때?",
-"that strikes with almost no warning",
-"거의 경고 없이 닥치는 (strike 닥치다)."
-],
-[
-"요약: 돌발 홍수는 거의 경고 없이 닥치는 유일한 자연재해이다."
-]
-],
-"notes": [
-"<b>the only, the first, the last, 최상급 + 선행사</b> → 관계대명사는 that (which ✕)",
-"<b>the only</b>가 붙으면 that이 기본"
-]
-},
-{
-"en": "[[Most of the damage caused by flash floods]] [[occurs]] within the first hour.",
-"key": "대부분의 피해는 발생한다.",
-"form": "1형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"sleep",
-"v"
-]
-],
-"refrel": "",
-"me": [
-[
-"Most of the damage caused by flash floods",
-"s"
-],
-[
-"occurs",
-"v"
-],
-[
-"within the first hour.",
-"x"
-]
-],
-"merel": "",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Most of the damage occurs",
-"대부분의 피해는 발생한다(occur 발생하다)."
-],
-[
-"어떤 피해?",
-"the damage caused by flash floods",
-"돌발 홍수가 일으킨 피해 (cause 일으키다)."
-],
-[
-"언제?",
-"within the first hour",
-"첫 한 시간 안에."
-],
-[
-"요약: 돌발 홍수 피해의 대부분은 첫 한 시간 안에 생긴다."
-]
-],
-"notes": [
-"<b>Most of + 명사</b> → 동사는 of 뒤 명사에 맞춘다: damage(셀 수 없는 단수) → occurs (occur ✕)",
-"<b>caused by ~</b>는 damage를 뒤에서 꾸미는 말 (주어의 일부)"
-]
-},
-{
-"en": "Flash floods often destroy homes, and [[mudslides]] [[do]] too, especially in mountainous areas.",
-"key": "산사태도 그렇게 한다(집을 파괴한다).",
-"form": "1형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"sleep",
-"v"
-]
-],
-"refrel": "",
-"me": [
-[
-"Flash floods often destroy homes, and",
-"x"
-],
-[
-"mudslides",
-"s"
-],
-[
-"do too,",
-"v"
-],
-[
-"especially in mountainous areas.",
-"x"
-]
-],
-"merel": "do too = destroy도 대신함",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Mudslides do too",
-"산사태도 그렇다."
-],
-[
-"무슨 뜻?",
-"do too (= destroy homes)",
-"앞의 destroy(파괴하다)를 대신한 말."
-],
-[
-"특히 어디서?",
-"especially in mountainous areas",
-"특히 산악 지역에서."
-],
-[
-"요약: 돌발 홍수는 집을 부수고, 특히 산악 지역에서는 산사태도 그렇다."
-]
-],
-"notes": [
-"<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕) (destroy를 do가 대신, have ✕)",
-"주어 mudslides가 복수 현재 → do"
-]
-},
-{
-"en": "[[Communities that prepare in advance]] [[did reduce]] [[their casualty rates]] significantly.",
-"key": "미리 준비한 지역사회는 사상률을 정말 크게 줄였다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"Communities that prepare in advance",
-"s"
-],
-[
-"did reduce",
-"v"
-],
-[
-"their casualty rates",
-"o"
-],
-[
-"significantly.",
-"x"
-]
-],
-"merel": "communities ≠ rates",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Communities did reduce their rates",
-"지역사회는 사상률을 정말 줄였다(reduce 줄이다)."
-],
-[
-"어떤 지역사회?",
-"communities that prepare in advance",
-"미리 준비하는 지역사회 (prepare 준비하다)."
-],
-[
-"얼마나?",
-"significantly",
-"크게."
-],
-[
-"요약: 미리 대비한 지역사회는 사상자 비율을 확실히 낮췄다."
-]
-],
-"notes": [
-"<b>강조의 do/does/did + 동사원형</b> (did + 과거형 ✕) (did reduced ✕ → did reduce ○)",
-"that prepare는 communities를 꾸미는 말, <b>핵심 주어는 Communities</b>"
-]
-},
-{
-"en": "[[The opening of an exhibit of 16th-century artworks]] [[has been announced]] by a museum in Derbyshire.",
-"key": "전시 개막이 발표되었다.",
-"form": "3형식(수동태)",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"The opening of an exhibit of 16th-century artworks",
-"s"
-],
-[
-"has been announced",
-"v"
-],
-[
-"by a museum in Derbyshire.",
-"x"
-]
-],
-"merel": "opening = 발표되는 대상",
-"easy": [
-[
-"먼저 뼈대부터:",
-"The opening has been announced",
-"개막이 발표되었다(announce 발표하다)."
-],
-[
-"무엇의 개막?",
-"an exhibit of 16th-century artworks",
-"16세기 예술품 전시의."
-],
-[
-"누가 발표했어?",
-"by a museum in Derbyshire",
-"더비셔의 한 박물관에 의해."
-],
-[
-"요약: 더비셔의 박물관이 16세기 작품 전시 개막을 발표했다."
-]
-],
-"notes": [
-"<b>수동태 = be + p.p.</b> (has announced ✕ → has been announced ○)",
-"<b>by ~</b>가 있으면 대개 수동태, 'opening'은 발표를 '하는' 쪽이 아니다"
-]
-},
-{
-"en": "[[They]] [[consist of]] 13 large pieces.",
-"key": "그것들은 13개의 큰 작품으로 이루어져 있다.",
-"form": "1형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"sleep",
-"v"
-]
-],
-"refrel": "",
-"me": [
-[
-"They",
-"s"
-],
-[
-"consist of",
-"v"
-],
-[
-"13 large pieces.",
-"x"
-]
-],
-"merel": "",
-"easy": [
-[
-"먼저 뼈대부터:",
-"They consist of pieces",
-"그것들은 작품들로 이루어져 있다(consist of ~로 이루어지다)."
-],
-[
-"무엇이 '그것들'?",
-"They = the artworks",
-"그 예술 작품들."
-],
-[
-"몇 개?",
-"13 large pieces",
-"큰 작품 13점."
-],
-[
-"요약: 이 작품들은 큰 작품 13점으로 이루어져 있다."
-]
-],
-"notes": [
-"<b>consist of = ~로 이루어지다</b>는 <b>수동태로 쓰지 않는다</b> (are consisted of ✕)",
-"consist는 <b>목적어 없는 자동사</b>라서 수동태가 안 된다"
-]
-},
-{
-"en": "[[Restoration experts]] [[recommended]] [[that the museum extend the exhibit's opening date by several months]].",
-"key": "복원 전문가들은 박물관이 개막일을 연장하라고 권했다.",
-"form": "3형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"like",
-"v"
-],
-[
-"apples",
-"o"
-]
-],
-"refrel": "I ≠ apples",
-"me": [
-[
-"Restoration experts",
-"s"
-],
-[
-"recommended",
-"v"
-],
-[
-"that the museum extend the exhibit's opening date by several months.",
-"o"
-]
-],
-"merel": "experts ≠ that절",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Experts recommended that ...",
-"전문가들은 ~라고 권했다(recommend 권하다)."
-],
-[
-"무엇을 권했어?",
-"that the museum extend the opening date",
-"박물관이 개막일을 늦추라고 (extend 연장하다)."
-],
-[
-"얼마나?",
-"by several months",
-"몇 달만큼."
-],
-[
-"요약: 복원 전문가들은 전시 개막일을 몇 달 미루라고 권했다."
-]
-],
-"notes": [
-"<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (extends ✕ → extend ○)",
-"the museum은 단수지만 <b>원형</b>"
-]
-},
-{
-"en": "There [[is]] [[little chance of their completing the restoration any faster]], according to the lead curator.",
-"key": "그들이 복원을 더 빨리 끝낼 가능성은 거의 없다.",
-"form": "1형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"sleep",
-"v"
-]
-],
-"refrel": "",
-"me": [
-[
-"There is",
-"v"
-],
-[
-"little chance of their completing the restoration any faster,",
-"s"
-],
-[
-"according to the lead curator.",
-"x"
-]
-],
-"merel": "",
-"easy": [
-[
-"먼저 뼈대부터:",
-"There is little chance",
-"가능성이 거의 없다(be 있다)."
-],
-[
-"무슨 가능성?",
-"of their completing the restoration any faster",
-"그들이 복원을 더 빨리 끝낼 (complete 끝내다)."
-],
-[
-"누가 말했어?",
-"according to the lead curator",
-"수석 큐레이터에 따르면."
-],
-[
-"요약: 수석 큐레이터는 복원을 더 빨리 끝낼 가능성이 거의 없다고 한다."
-]
-],
-"notes": [
-"<b>동명사의 의미상 주어 = 소유격(또는 목적격)</b>: of their completing (they ✕)",
-"주격 they는 <b>동사 앞 주어</b> 자리에만 쓴다"
-]
-},
-{
-"en": "Nevertheless, [[their condition]] [[must be]] [[excellent]] now since so much effort has been put into it.",
-"key": "그것들의 상태는 지금 분명 훌륭할 것이다.",
-"form": "2형식",
-"ref": [
-[
-"I",
-"s"
-],
-[
-"am",
-"v"
-],
-[
-"happy",
-"c"
-]
-],
-"refrel": "I = happy",
-"me": [
-[
-"Nevertheless,",
-"x"
-],
-[
-"their condition",
-"s"
-],
-[
-"must be",
-"v"
-],
-[
-"excellent",
-"c"
-],
-[
-"now since so much effort has been put into it.",
-"x"
-]
-],
-"merel": "condition = excellent",
-"easy": [
-[
-"먼저 뼈대부터:",
-"Their condition must be excellent",
-"그것들의 상태는 분명 훌륭할 것이다(be 이다)."
-],
-[
-"언제?",
-"now",
-"지금."
-],
-[
-"왜 그렇게 생각해?",
-"since so much effort has been put into it",
-"많은 노력이 거기에 들어갔기 때문에 (put 넣다)."
-],
-[
-"요약: 노력을 많이 들였으니, 작품 상태는 지금 분명 훌륭할 것이다."
-]
-],
-"notes": [
-"<b>현재에 대한 강한 추측 = must + 동사원형</b> (must have been ✕)",
-"<b>now</b>가 현재 시점 단서, 과거 추측이면 must have p.p."
-]
-}
+ {
+  "en": "[[A recent report]] [[shows]] [[that Japan's population grew at a slower rate in 2022 than it did in previous years]].",
+  "key": "최근 보고서는 일본 인구가 더 느리게 늘었다고 보여 준다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "A recent report",
+    "s"
+   ],
+   [
+    "shows",
+    "v"
+   ],
+   [
+    "that Japan's population grew at a slower rate in 2022 than it did in previous years.",
+    "o"
+   ]
+  ],
+  "merel": "report ≠ that절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "A report shows that ...",
+    "보고서는 ~을 보여 준다(show 보여 주다)."
+   ],
+   [
+    "무엇을 보여 줘?",
+    "that Japan's population grew at a slower rate",
+    "일본 인구가 더 느린 속도로 늘었다는 것 (grow 늘다)."
+   ],
+   [
+    "무엇과 비교해?",
+    "than it did in previous years",
+    "이전 해들보다. did는 grew(늘었다)를 대신함."
+   ],
+   [
+    "요약: 2022년 일본 인구는 이전 해들보다 더 느리게 늘었다."
+   ]
+  ],
+  "notes": [
+   "<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕) (grew를 did가 대신, was ✕)",
+   "than 뒤 반복 동사 → 대동사"
+  ]
+ },
+ {
+  "en": "If this trend continues, [[the country's workforce]] [[could shrink]] dramatically within a decade.",
+  "key": "그 나라의 노동력은 급격히 줄어들 수 있다.",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "If this trend continues,",
+    "x"
+   ],
+   [
+    "the country's workforce",
+    "s"
+   ],
+   [
+    "could shrink",
+    "v"
+   ],
+   [
+    "dramatically within a decade.",
+    "x"
+   ]
+  ],
+  "merel": "",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "The workforce could shrink",
+    "노동력이 줄어들 수 있다(shrink 줄다)."
+   ],
+   [
+    "언제 그래?",
+    "If this trend continues",
+    "이 경향이 계속되면 (continue 계속되다)."
+   ],
+   [
+    "얼마나?",
+    "dramatically within a decade",
+    "10년 안에 급격하게."
+   ],
+   [
+    "요약: 이런 추세가 이어지면 10년 안에 노동력이 크게 줄 수 있다."
+   ]
+  ],
+  "notes": [
+   "<b>조건 if절은 미래도 현재시제</b> (will continue ✕ → continues ○)",
+   "'~하면 …할 것이다'에서 <b>if 쪽만 현재</b>, 주절은 will/could"
+  ]
+ },
+ {
+  "en": "[[Many policies]] [[were proposed]] to slow down this decline, but none of them were successful.",
+  "key": "많은 정책들이 제안되었다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Many policies",
+    "s"
+   ],
+   [
+    "were proposed",
+    "v"
+   ],
+   [
+    "to slow down this decline,",
+    "x"
+   ],
+   [
+    "but none of them were successful.",
+    "x"
+   ]
+  ],
+  "merel": "수동태 (policies가 제안되는 대상)",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Many policies were proposed",
+    "많은 정책이 제안되었다(propose 제안하다)."
+   ],
+   [
+    "왜 제안했어?",
+    "to slow down this decline",
+    "이 감소를 늦추기 위해 (slow 늦추다)."
+   ],
+   [
+    "결과는?",
+    "none of them were successful",
+    "그것들 중 어느 것도 성공적이지 못했다."
+   ],
+   [
+    "요약: 감소를 늦추려는 정책이 많이 나왔지만 성공하지 못했다."
+   ]
+  ],
+  "notes": [
+   "<b>수동태 = be + p.p.</b> (proposed ✕ → were proposed ○)",
+   "policies는 '제안하는' 쪽이 아니라 <b>제안되는</b> 대상"
+  ]
+ },
+ {
+  "en": "[[Experts]] [[recommended]] [[that the government provide more support for young families]].",
+  "key": "전문가들은 정부가 더 많은 지원을 제공하라고 권했다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Experts",
+    "s"
+   ],
+   [
+    "recommended",
+    "v"
+   ],
+   [
+    "that the government provide more support for young families.",
+    "o"
+   ]
+  ],
+  "merel": "Experts ≠ that절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Experts recommended that ...",
+    "전문가들은 ~라고 권했다(recommend 권하다)."
+   ],
+   [
+    "무엇을 권했어?",
+    "that the government provide more support",
+    "정부가 더 많은 지원을 제공하라고 (provide 제공하다)."
+   ],
+   [
+    "누구에게?",
+    "for young families",
+    "젊은 가정들에."
+   ],
+   [
+    "요약: 전문가들은 정부가 젊은 가정에 더 지원하라고 권했다."
+   ]
+  ],
+  "notes": [
+   "<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (provides ✕ → provide ○)",
+   "the government는 3인칭 단수지만 <b>원형</b>"
+  ]
+ },
+ {
+  "en": "[[Japanese people]] [[believe]] [[the government should have acted quickly to slow the decline many years ago]].",
+  "key": "일본 사람들은 정부가 빨리 행동했어야 했다고 믿는다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Japanese people",
+    "s"
+   ],
+   [
+    "believe",
+    "v"
+   ],
+   [
+    "the government should have acted quickly to slow the decline many years ago.",
+    "o"
+   ]
+  ],
+  "merel": "people ≠ 절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Japanese people believe ...",
+    "일본 사람들은 ~라고 믿는다(believe 믿다)."
+   ],
+   [
+    "무엇을 믿어?",
+    "the government should have acted quickly",
+    "정부가 빨리 행동했어야 했다고 (act 행동하다)."
+   ],
+   [
+    "왜 행동했어야?",
+    "to slow the decline",
+    "감소를 늦추기 위해."
+   ],
+   [
+    "요약: 일본 사람들은 정부가 수년 전에 서둘러 대응했어야 했다고 본다."
+   ]
+  ],
+  "notes": [
+   "<b>후회·아쉬움 = should have p.p.</b> (should act ✕ → should have acted ○)",
+   "many years ago(수년 전)는 <b>과거 시점 단서</b>"
+  ]
+ },
+ {
+  "en": "[[He]] [[must have spent]] [[a fortune]] on gadgets he barely uses, based on his monthly bank statements.",
+  "key": "그는 분명 큰돈을 썼을 것이다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "He",
+    "s"
+   ],
+   [
+    "must have spent",
+    "v"
+   ],
+   [
+    "a fortune",
+    "o"
+   ],
+   [
+    "on gadgets he barely uses, based on his monthly bank statements.",
+    "x"
+   ]
+  ],
+  "merel": "He ≠ fortune",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "He must have spent a fortune",
+    "그는 분명 큰돈을 썼을 것이다(spend 쓰다)."
+   ],
+   [
+    "어디에?",
+    "on gadgets he barely uses",
+    "거의 쓰지 않는 기기들에 (use 사용하다)."
+   ],
+   [
+    "왜 그렇게 알아?",
+    "based on his monthly bank statements",
+    "월별 은행 명세서를 근거로."
+   ],
+   [
+    "요약: 은행 명세서를 보면 그는 잘 안 쓰는 기기에 분명 큰돈을 썼을 거다."
+   ]
+  ],
+  "notes": [
+   "<b>과거에 대한 강한 추측 = must have p.p.</b> (must + 과거형 ✕)",
+   "은행 명세서(과거 기록)가 <b>근거</b>"
+  ]
+ },
+ {
+  "en": "When his old phone breaks, [[he]] always [[buys]] [[a new one]] instead of repairing it.",
+  "key": "그는 새것을 산다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "When his old phone breaks,",
+    "x"
+   ],
+   [
+    "he",
+    "s"
+   ],
+   [
+    "always buys",
+    "v"
+   ],
+   [
+    "a new one",
+    "o"
+   ],
+   [
+    "instead of repairing it.",
+    "x"
+   ]
+  ],
+  "merel": "he ≠ one",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "He buys a new one",
+    "그는 새것을 산다(buy 사다)."
+   ],
+   [
+    "언제?",
+    "When his old phone breaks",
+    "오래된 폰이 고장 나면 (break 고장 나다)."
+   ],
+   [
+    "대신 뭘 안 해?",
+    "instead of repairing it",
+    "그것을 고치는 대신 (repair 고치다)."
+   ],
+   [
+    "요약: 폰이 고장 나면 고치지 않고 늘 새 폰을 산다."
+   ]
+  ],
+  "notes": [
+   "<b>one = 같은 종류의 아무거나(불특정)</b>, it = 바로 그것 (a new it ✕ → a new one ○)",
+   "'새 폰'은 고장 난 그 폰이 아니라 <b>다른 새 폰</b>이라서 one"
+  ]
+ },
+ {
+  "en": "[[It]] [[is]] [[such a waste of money]] every time he does this, according to his friends.",
+  "key": "그것은 정말 돈 낭비이다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "It",
+    "s"
+   ],
+   [
+    "is",
+    "v"
+   ],
+   [
+    "such a waste of money",
+    "c"
+   ],
+   [
+    "every time he does this, according to his friends.",
+    "x"
+   ]
+  ],
+  "merel": "It = such a waste",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "It is a waste of money",
+    "그것은 돈 낭비이다(be 이다)."
+   ],
+   [
+    "언제 그래?",
+    "every time he does this",
+    "그가 이렇게 할 때마다 (do 하다)."
+   ],
+   [
+    "누가 말했어?",
+    "according to his friends",
+    "친구들에 따르면."
+   ],
+   [
+    "요약: 친구들 말로는 그가 이럴 때마다 돈 낭비이다."
+   ]
+  ],
+  "notes": [
+   "<b>such + a + 명사</b> (명사 꾸밈), so + 형용사/부사 (so waste ✕ → such a waste ○)",
+   "waste는 <b>명사</b>라서 so가 아니라 such"
+  ]
+ },
+ {
+  "en": "And [[many people in modern times]] [[have]] [[similar problems]] as my brother does.",
+  "key": "요즘 많은 사람들이 비슷한 문제를 가지고 있다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "And",
+    "x"
+   ],
+   [
+    "many people in modern times",
+    "s"
+   ],
+   [
+    "have",
+    "v"
+   ],
+   [
+    "similar problems",
+    "o"
+   ],
+   [
+    "as my brother does.",
+    "x"
+   ]
+  ],
+  "merel": "people ≠ problems",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Many people have problems",
+    "많은 사람들이 문제를 가지고 있다(have 가지다)."
+   ],
+   [
+    "어떤 사람들?",
+    "many people in modern times",
+    "요즘 시대의 많은 사람들."
+   ],
+   [
+    "누구와 같아?",
+    "as my brother does",
+    "내 남동생이 (그런 문제를) 가진 것처럼. does는 has(가지고 있다)를 대신함."
+   ],
+   [
+    "요약: 요즘 많은 사람이 내 남동생과 비슷한 소비 문제를 겪는다."
+   ]
+  ],
+  "notes": [
+   "<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕) (have를 does가 대신, is ✕)",
+   "주어 my brother가 3인칭 단수 현재 → does"
+  ]
+ },
+ {
+  "en": "[[A financial advisor]] [[suggested]] [[that he track his spending more carefully]].",
+  "key": "재정 상담가는 그가 지출을 더 주의 깊게 추적하라고 제안했다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "A financial advisor",
+    "s"
+   ],
+   [
+    "suggested",
+    "v"
+   ],
+   [
+    "that he track his spending more carefully.",
+    "o"
+   ]
+  ],
+  "merel": "advisor ≠ that절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "An advisor suggested that ...",
+    "상담가는 ~라고 제안했다(suggest 제안하다)."
+   ],
+   [
+    "무엇을 제안했어?",
+    "that he track his spending",
+    "그가 지출을 추적하라고 (track 추적하다)."
+   ],
+   [
+    "어떻게?",
+    "more carefully",
+    "더 주의 깊게."
+   ],
+   [
+    "요약: 재정 상담가는 그가 돈 쓴 내역을 더 꼼꼼히 기록하라고 제안했다."
+   ]
+  ],
+  "notes": [
+   "<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (tracks ✕ → track ○)",
+   "주어 he는 3인칭 단수여도 <b>원형</b>"
+  ]
+ },
+ {
+  "en": "Within a short time, [[a flash flood]] [[can cause]] [[lots of problems]].",
+  "key": "돌발 홍수는 많은 문제를 일으킬 수 있다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Within a short time,",
+    "x"
+   ],
+   [
+    "a flash flood",
+    "s"
+   ],
+   [
+    "can cause",
+    "v"
+   ],
+   [
+    "lots of problems.",
+    "o"
+   ]
+  ],
+  "merel": "flood ≠ problems",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "A flash flood can cause problems",
+    "돌발 홍수는 문제를 일으킬 수 있다(cause 일으키다)."
+   ],
+   [
+    "어떤 문제?",
+    "lots of problems",
+    "많은 문제."
+   ],
+   [
+    "얼마 만에?",
+    "Within a short time",
+    "짧은 시간 안에."
+   ],
+   [
+    "요약: 돌발 홍수는 짧은 시간에 많은 문제를 일으킨다."
+   ]
+  ],
+  "notes": [
+   "<b>목적어가 있는 동사는 능동태</b>: cause + 목적어 (can be caused lots of problems ✕)",
+   "수동태로 바꾸면 <b>목적어가 주어 자리로 가야</b> 한다 (lots of problems can be caused)"
+  ]
+ },
+ {
+  "en": "[[It]] [[is]] [[the only natural disaster that strikes with almost no warning]].",
+  "key": "그것은 유일한 자연재해이다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "It",
+    "s"
+   ],
+   [
+    "is",
+    "v"
+   ],
+   [
+    "the only natural disaster that strikes with almost no warning.",
+    "c"
+   ]
+  ],
+  "merel": "It = disaster",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "It is the only disaster",
+    "그것은 유일한 재해이다(be 이다)."
+   ],
+   [
+    "어떤 재해?",
+    "natural disaster",
+    "자연재해."
+   ],
+   [
+    "그 재해는 어때?",
+    "that strikes with almost no warning",
+    "거의 경고 없이 닥치는 (strike 닥치다)."
+   ],
+   [
+    "요약: 돌발 홍수는 거의 경고 없이 닥치는 유일한 자연재해이다."
+   ]
+  ],
+  "notes": [
+   "<b>the only, the first, the last, 최상급 + 선행사</b> → 관계대명사는 that (which ✕)",
+   "<b>the only</b>가 붙으면 that이 기본"
+  ]
+ },
+ {
+  "en": "[[Most of the damage caused by flash floods]] [[occurs]] within the first hour.",
+  "key": "대부분의 피해는 발생한다.",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "Most of the damage caused by flash floods",
+    "s"
+   ],
+   [
+    "occurs",
+    "v"
+   ],
+   [
+    "within the first hour.",
+    "x"
+   ]
+  ],
+  "merel": "",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Most of the damage occurs",
+    "대부분의 피해는 발생한다(occur 발생하다)."
+   ],
+   [
+    "어떤 피해?",
+    "the damage caused by flash floods",
+    "돌발 홍수가 일으킨 피해 (cause 일으키다)."
+   ],
+   [
+    "언제?",
+    "within the first hour",
+    "첫 한 시간 안에."
+   ],
+   [
+    "요약: 돌발 홍수 피해의 대부분은 첫 한 시간 안에 생긴다."
+   ]
+  ],
+  "notes": [
+   "<b>Most of + 명사</b> → 동사는 of 뒤 명사에 맞춘다: damage(셀 수 없는 단수) → occurs (occur ✕)",
+   "<b>caused by ~</b>는 damage를 뒤에서 꾸미는 말 (주어의 일부)"
+  ]
+ },
+ {
+  "en": "Flash floods often destroy homes, and [[mudslides]] [[do]] too, especially in mountainous areas.",
+  "key": "산사태도 그렇게 한다(집을 파괴한다).",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "Flash floods often destroy homes, and",
+    "x"
+   ],
+   [
+    "mudslides",
+    "s"
+   ],
+   [
+    "do too,",
+    "v"
+   ],
+   [
+    "especially in mountainous areas.",
+    "x"
+   ]
+  ],
+  "merel": "do too = destroy도 대신함",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Mudslides do too",
+    "산사태도 그렇다."
+   ],
+   [
+    "무슨 뜻?",
+    "do too (= destroy homes)",
+    "앞의 destroy(파괴하다)를 대신한 말."
+   ],
+   [
+    "특히 어디서?",
+    "especially in mountainous areas",
+    "특히 산악 지역에서."
+   ],
+   [
+    "요약: 돌발 홍수는 집을 부수고, 특히 산악 지역에서는 산사태도 그렇다."
+   ]
+  ],
+  "notes": [
+   "<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕) (destroy를 do가 대신, have ✕)",
+   "주어 mudslides가 복수 현재 → do"
+  ]
+ },
+ {
+  "en": "[[Communities that prepare in advance]] [[did reduce]] [[their casualty rates]] significantly.",
+  "key": "미리 준비한 지역사회는 사상률을 정말 크게 줄였다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Communities that prepare in advance",
+    "s"
+   ],
+   [
+    "did reduce",
+    "v"
+   ],
+   [
+    "their casualty rates",
+    "o"
+   ],
+   [
+    "significantly.",
+    "x"
+   ]
+  ],
+  "merel": "communities ≠ rates",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Communities did reduce their rates",
+    "지역사회는 사상률을 정말 줄였다(reduce 줄이다)."
+   ],
+   [
+    "어떤 지역사회?",
+    "communities that prepare in advance",
+    "미리 준비하는 지역사회 (prepare 준비하다)."
+   ],
+   [
+    "얼마나?",
+    "significantly",
+    "크게."
+   ],
+   [
+    "요약: 미리 대비한 지역사회는 사상자 비율을 확실히 낮췄다."
+   ]
+  ],
+  "notes": [
+   "<b>강조의 do/does/did + 동사원형</b> (did + 과거형 ✕) (did reduced ✕ → did reduce ○)",
+   "that prepare는 communities를 꾸미는 말, <b>핵심 주어는 Communities</b>"
+  ]
+ },
+ {
+  "en": "[[The opening of an exhibit of 16th-century artworks]] [[has been announced]] by a museum in Derbyshire.",
+  "key": "전시 개막이 발표되었다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "The opening of an exhibit of 16th-century artworks",
+    "s"
+   ],
+   [
+    "has been announced",
+    "v"
+   ],
+   [
+    "by a museum in Derbyshire.",
+    "x"
+   ]
+  ],
+  "merel": "수동태 (opening이 발표되는 대상)",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "The opening has been announced",
+    "개막이 발표되었다(announce 발표하다)."
+   ],
+   [
+    "무엇의 개막?",
+    "an exhibit of 16th-century artworks",
+    "16세기 예술품 전시의."
+   ],
+   [
+    "누가 발표했어?",
+    "by a museum in Derbyshire",
+    "더비셔의 한 박물관에 의해."
+   ],
+   [
+    "요약: 더비셔의 박물관이 16세기 작품 전시 개막을 발표했다."
+   ]
+  ],
+  "notes": [
+   "<b>수동태 = be + p.p.</b> (has announced ✕ → has been announced ○)",
+   "<b>by ~</b>가 있으면 대개 수동태, 'opening'은 발표를 '하는' 쪽이 아니다"
+  ]
+ },
+ {
+  "en": "[[They]] [[consist of]] 13 large pieces.",
+  "key": "그것들은 13개의 큰 작품으로 이루어져 있다.",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "They",
+    "s"
+   ],
+   [
+    "consist of",
+    "v"
+   ],
+   [
+    "13 large pieces.",
+    "x"
+   ]
+  ],
+  "merel": "",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "They consist of pieces",
+    "그것들은 작품들로 이루어져 있다(consist of ~로 이루어지다)."
+   ],
+   [
+    "무엇이 '그것들'?",
+    "They = the artworks",
+    "그 예술 작품들."
+   ],
+   [
+    "몇 개?",
+    "13 large pieces",
+    "큰 작품 13점."
+   ],
+   [
+    "요약: 이 작품들은 큰 작품 13점으로 이루어져 있다."
+   ]
+  ],
+  "notes": [
+   "<b>consist of = ~로 이루어지다</b>는 <b>수동태로 쓰지 않는다</b> (are consisted of ✕)",
+   "consist는 <b>목적어 없는 자동사</b>라서 수동태가 안 된다"
+  ]
+ },
+ {
+  "en": "[[Restoration experts]] [[recommended]] [[that the museum extend the exhibit's opening date by several months]].",
+  "key": "복원 전문가들은 박물관이 개막일을 연장하라고 권했다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Restoration experts",
+    "s"
+   ],
+   [
+    "recommended",
+    "v"
+   ],
+   [
+    "that the museum extend the exhibit's opening date by several months.",
+    "o"
+   ]
+  ],
+  "merel": "experts ≠ that절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Experts recommended that ...",
+    "전문가들은 ~라고 권했다(recommend 권하다)."
+   ],
+   [
+    "무엇을 권했어?",
+    "that the museum extend the opening date",
+    "박물관이 개막일을 늦추라고 (extend 연장하다)."
+   ],
+   [
+    "얼마나?",
+    "by several months",
+    "몇 달만큼."
+   ],
+   [
+    "요약: 복원 전문가들은 전시 개막일을 몇 달 미루라고 권했다."
+   ]
+  ],
+  "notes": [
+   "<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (extends ✕ → extend ○)",
+   "the museum은 단수지만 <b>원형</b>"
+  ]
+ },
+ {
+  "en": "There [[is]] [[little chance of their completing the restoration any faster]], according to the lead curator.",
+  "key": "그들이 복원을 더 빨리 끝낼 가능성은 거의 없다.",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "There is",
+    "v"
+   ],
+   [
+    "little chance of their completing the restoration any faster,",
+    "s"
+   ],
+   [
+    "according to the lead curator.",
+    "x"
+   ]
+  ],
+  "merel": "",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "There is little chance",
+    "가능성이 거의 없다(be 있다)."
+   ],
+   [
+    "무슨 가능성?",
+    "of their completing the restoration any faster",
+    "그들이 복원을 더 빨리 끝낼 (complete 끝내다)."
+   ],
+   [
+    "누가 말했어?",
+    "according to the lead curator",
+    "수석 큐레이터에 따르면."
+   ],
+   [
+    "요약: 수석 큐레이터는 복원을 더 빨리 끝낼 가능성이 거의 없다고 한다."
+   ]
+  ],
+  "notes": [
+   "<b>동명사의 의미상 주어 = 소유격(또는 목적격)</b>: of their completing (they ✕)",
+   "주격 they는 <b>동사 앞 주어</b> 자리에만 쓴다"
+  ]
+ },
+ {
+  "en": "Nevertheless, [[their condition]] [[must be]] [[excellent]] now since so much effort has been put into it.",
+  "key": "그것들의 상태는 지금 분명 훌륭할 것이다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "Nevertheless,",
+    "x"
+   ],
+   [
+    "their condition",
+    "s"
+   ],
+   [
+    "must be",
+    "v"
+   ],
+   [
+    "excellent",
+    "c"
+   ],
+   [
+    "now since so much effort has been put into it.",
+    "x"
+   ]
+  ],
+  "merel": "condition = excellent",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Their condition must be excellent",
+    "그것들의 상태는 분명 훌륭할 것이다(be 이다)."
+   ],
+   [
+    "언제?",
+    "now",
+    "지금."
+   ],
+   [
+    "왜 그렇게 생각해?",
+    "since so much effort has been put into it",
+    "많은 노력이 거기에 들어갔기 때문에 (put 넣다)."
+   ],
+   [
+    "요약: 노력을 많이 들였으니, 작품 상태는 지금 분명 훌륭할 것이다."
+   ]
+  ],
+  "notes": [
+   "<b>현재에 대한 강한 추측 = must + 동사원형</b> (must have been ✕)",
+   "<b>now</b>가 현재 시점 단서, 과거 추측이면 must have p.p."
+  ]
+ }
 ]
