@@ -1,0 +1,754 @@
+[
+{
+"en": "I should have said sorry to Tanya sooner, but she left the party before I got a chance, and my [[friend]] [[did]] too, though she never got the chance to apologize either.",
+"key": "내 친구도 그렇게 했다(사과하지 못했다).",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"I should have said sorry to Tanya sooner, but she left the party before I got a chance, and",
+"x"
+],
+[
+"my friend",
+"s"
+],
+[
+"did too,",
+"v"
+],
+[
+"though she never got the chance to apologize either.",
+"x"
+]
+],
+"merel": "did too = 앞의 말을 대신함",
+"easy": [
+[
+"먼저 뼈대부터:",
+"My friend did too",
+"내 친구도 그랬다."
+],
+[
+"무슨 뜻?",
+"did too (= should have said sorry)",
+"앞의 '사과했어야 했다(say 말하다)'를 대신한 말."
+],
+[
+"어떤 말이 덧붙었어?",
+"though she never got the chance to apologize",
+"비록 그녀도 사과할 기회를 얻지 못했지만 (apologize 사과하다)."
+],
+[
+"요약: 나도 친구도 타냐에게 제때 사과했어야 했는데, 둘 다 기회가 없었다."
+]
+],
+"notes": [
+"<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕)",
+"앞 동사가 should have said처럼 길어도 <b>일반동사 덩어리를 do가 대신</b>한다"
+]
+},
+{
+"en": "[[Reading books]] [[does widen]] [[one's knowledge]] and expand one's view of the world, making people much more open-minded than those who avoid it.",
+"key": "책을 읽는 것은 지식을 정말 넓혀 준다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"Reading books",
+"s"
+],
+[
+"does widen",
+"v"
+],
+[
+"one's knowledge",
+"o"
+],
+[
+"and expand one's view of the world, making people much more open-minded than those who avoid it.",
+"x"
+]
+],
+"merel": "Reading ≠ knowledge",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Reading books does widen knowledge",
+"책 읽기는 지식을 정말 넓혀 준다(widen 넓히다)."
+],
+[
+"또 뭘 해?",
+"expand one's view of the world",
+"세상을 보는 시각도 넓힌다 (expand 확장하다)."
+],
+[
+"그 결과는?",
+"making people much more open-minded",
+"사람들을 훨씬 더 열린 마음으로 만들면서 (make 만들다)."
+],
+[
+"요약: 책을 읽으면 지식과 시야가 넓어져 훨씬 열린 마음을 갖게 된다."
+]
+],
+"notes": [
+"<b>비교급 강조 = much, even, far, a lot, still</b> (very ✕) → much more open-minded",
+"<b>very는 원급 강조</b>: very open-minded ○ / very more ✕"
+]
+},
+{
+"en": "I've never been to any country in South America, but my brother has, and [[he]] [[did travel]] there twice last year alone.",
+"key": "그는 작년에만 두 번 그곳에 정말 다녀왔다.",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"I've never been to any country in South America, but my brother has, and",
+"x"
+],
+[
+"he",
+"s"
+],
+[
+"did travel",
+"v"
+],
+[
+"there twice last year alone.",
+"x"
+]
+],
+"merel": "",
+"easy": [
+[
+"먼저 뼈대부터:",
+"He did travel",
+"그는 정말 여행했다(travel 여행하다)."
+],
+[
+"어디로?",
+"there",
+"남미로."
+],
+[
+"얼마나?",
+"twice last year alone",
+"작년에만 두 번."
+],
+[
+"요약: 나는 남미에 가 본 적 없지만, 형은 작년에만 두 번 정말 다녀왔다."
+]
+],
+"notes": [
+"<b>강조의 do/does/did + 동사원형</b> (did + 과거형 ✕) (did traveled ✕)",
+"last year → <b>단순과거</b>라서 did로 과거를 표시하고 동사는 원형"
+]
+},
+{
+"en": "[[Focusing on studying]] [[could have been]] [[tough]] when there are so many distractions, especially with a poorly-managed schedule leaving little free time.",
+"key": "공부에 집중하는 것은 힘들 수도 있었다.",
+"form": "2형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"am",
+"v"
+],
+[
+"happy",
+"c"
+]
+],
+"refrel": "I = happy",
+"me": [
+[
+"Focusing on studying",
+"s"
+],
+[
+"could have been",
+"v"
+],
+[
+"tough",
+"c"
+],
+[
+"when there are so many distractions, especially with a poorly-managed schedule leaving little free time.",
+"x"
+]
+],
+"merel": "Focusing = tough",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Focusing could have been tough",
+"집중하는 것은 힘들었을 수도 있다(be 이다)."
+],
+[
+"언제 힘들어?",
+"when there are so many distractions",
+"방해 요소가 아주 많을 때 (distraction 방해)."
+],
+[
+"특히 어떨 때?",
+"with a poorly-managed schedule",
+"제대로 관리되지 않은 일정이 있을 때 (manage 관리하다)."
+],
+[
+"요약: 방해가 많고 일정이 엉망이면 공부에 집중하기가 힘들 수 있다."
+]
+],
+"notes": [
+"<b>명사 꾸미는 분사</b>: 명사가 '~되는' 대상이면 과거분사 (a schedule ← manage 관리하다 → managed)",
+"능동(~하는)이면 -ing, <b>수동(~되는)이면 p.p.</b>"
+]
+},
+{
+"en": "Because his financial advisor suggests that he prepare changes in economy, Mr. Davidson is saving more cash, since [[experts]] [[believe]] [[the market must have shifted significantly over the past decade]].",
+"key": "전문가들은 시장이 크게 바뀌었을 것이라고 믿는다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"Because his financial advisor suggests that he prepare changes in economy, Mr. Davidson is saving more cash, since",
+"x"
+],
+[
+"experts",
+"s"
+],
+[
+"believe",
+"v"
+],
+[
+"the market must have shifted significantly over the past decade.",
+"o"
+]
+],
+"merel": "experts ≠ 절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Experts believe ...",
+"전문가들은 ~라고 믿는다(believe 믿다)."
+],
+[
+"무엇을 믿어?",
+"the market must have shifted",
+"시장이 분명 바뀌었을 것이라고 (shift 바뀌다)."
+],
+[
+"얼마나?",
+"significantly over the past decade",
+"지난 10년에 걸쳐 크게."
+],
+[
+"요약: 시장이 10년간 크게 변했다고 전문가들이 봐서, 다비슨 씨는 현금을 더 모은다."
+]
+],
+"notes": [
+"<b>과거에 대한 강한 추측 = must have p.p.</b> (must + 과거형 ✕)",
+"over the past decade는 <b>이미 지나간 기간</b>이라는 단서"
+]
+},
+{
+"en": "Children usually hate eating carrots, and when they do eat them, they often make funny faces, because [[each child]] [[has]] [[his or her own reason for disliking the taste]], according to a study on picky eaters.",
+"key": "각 아이는 자기만의 이유를 가지고 있다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"Children usually hate eating carrots, and when they do eat them, they often make funny faces, because",
+"x"
+],
+[
+"each child",
+"s"
+],
+[
+"has",
+"v"
+],
+[
+"his or her own reason for disliking the taste,",
+"o"
+],
+[
+"according to a study on picky eaters.",
+"x"
+]
+],
+"merel": "child ≠ reason",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Each child has a reason",
+"각 아이는 이유를 가지고 있다(have 가지다)."
+],
+[
+"어떤 이유?",
+"his or her own reason for disliking the taste",
+"맛을 싫어하는 자기만의 이유 (dislike 싫어하다)."
+],
+[
+"어디서 나온 말?",
+"according to a study on picky eaters",
+"편식하는 아이들에 대한 연구에 따르면."
+],
+[
+"요약: 연구에 따르면 아이마다 당근 맛을 싫어하는 자기만의 이유가 있다."
+]
+],
+"notes": [
+"<b>each + 단수명사</b>는 단수 취급 → 대명사도 단수 (their ✕ → his or her)",
+"each child = 아이 <b>한 명 한 명</b>"
+]
+},
+{
+"en": "The people in the city usually have easier access to diverse cultures than the people in the countryside have, so many [[experts]] [[suggest]] [[that city planners invest more in rural cultural programs]].",
+"key": "많은 전문가들이 도시 계획자들이 더 투자하라고 제안한다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"The people in the city usually have easier access to diverse cultures than the people in the countryside have, so",
+"x"
+],
+[
+"many experts",
+"s"
+],
+[
+"suggest",
+"v"
+],
+[
+"that city planners invest more in rural cultural programs.",
+"o"
+]
+],
+"merel": "experts ≠ that절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Experts suggest that ...",
+"전문가들은 ~라고 제안한다(suggest 제안하다)."
+],
+[
+"무엇을 제안해?",
+"that city planners invest more",
+"도시 계획자들이 더 투자하라고 (invest 투자하다)."
+],
+[
+"어디에?",
+"in rural cultural programs",
+"시골 지역의 문화 프로그램에."
+],
+[
+"요약: 도시 사람이 문화를 더 쉽게 접하니, 시골 문화 사업에 더 투자하라고 전문가들이 제안한다."
+]
+],
+"notes": [
+"<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (invests ✕ → invest ○)",
+"'제안하다'는 뜻일 때만! 같은 suggest라도 '~을 보여 주다'이면 일반 동사처럼 일치"
+]
+},
+{
+"en": "The players might be hurt, but fortunately the referee called a time-out to stop the match, because [[one player]] [[had already collided]] with another before the whistle blew.",
+"key": "한 선수가 이미 부딪쳤었다.",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"The players might be hurt, but fortunately the referee called a time-out to stop the match, because",
+"x"
+],
+[
+"one player",
+"s"
+],
+[
+"had already collided",
+"v"
+],
+[
+"with another before the whistle blew.",
+"x"
+]
+],
+"merel": "",
+"easy": [
+[
+"먼저 뼈대부터:",
+"One player had already collided",
+"한 선수가 이미 부딪쳤었다(collide 부딪치다)."
+],
+[
+"누구와?",
+"with another",
+"다른 선수와."
+],
+[
+"언제보다 먼저?",
+"before the whistle blew",
+"호루라기가 불리기 전에 (blow 불다)."
+],
+[
+"요약: 호루라기가 울리기 전에 이미 선수끼리 부딪쳐서 심판이 경기를 멈췄다."
+]
+],
+"notes": [
+"<b>과거의 한 시점보다 먼저 일어난 일 = 과거완료(had p.p.)</b> (has collided ✕)",
+"blew(과거)보다 <b>한 단계 앞선 일</b> → had collided"
+]
+},
+{
+"en": "The buyer insists that he paid for the order, but he doesn't have a receipt, and his [[assistant]] [[did]] too, even though neither of them can prove it.",
+"key": "그의 조수도 그렇게 했다(주문 값을 냈다고 주장한다).",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"The buyer insists that he paid for the order, but he doesn't have a receipt, and",
+"x"
+],
+[
+"his assistant",
+"s"
+],
+[
+"did too,",
+"v"
+],
+[
+"even though neither of them can prove it.",
+"x"
+]
+],
+"merel": "did too = paid도 대신함",
+"easy": [
+[
+"먼저 뼈대부터:",
+"His assistant did too",
+"그의 조수도 그랬다."
+],
+[
+"무슨 뜻?",
+"did too (= paid for the order)",
+"앞의 paid(값을 내다, pay)를 대신한 말."
+],
+[
+"어떤 말이 덧붙었어?",
+"even though neither of them can prove it",
+"둘 다 그것을 증명할 수 없지만 (prove 증명하다)."
+],
+[
+"요약: 구매자도 조수도 값을 냈다고 하지만, 둘 다 증명하지 못한다."
+]
+],
+"notes": [
+"<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕)",
+"앞 동사 paid가 <b>과거형</b>이라 대신하는 말도 <b>did</b>"
+]
+},
+{
+"en": "I don't know if the customers were satisfied with our service, but I hope they were, and seldom do [[we]] [[receive]] [[such positive feedback]] so quickly.",
+"key": "우리는 이런 긍정적인 피드백을 좀처럼 받지 못한다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"I don't know if the customers were satisfied with our service, but I hope they were, and",
+"x"
+],
+[
+"seldom do",
+"x"
+],
+[
+"we",
+"s"
+],
+[
+"receive",
+"v"
+],
+[
+"such positive feedback",
+"o"
+],
+[
+"so quickly.",
+"x"
+]
+],
+"merel": "we ≠ feedback",
+"easy": [
+[
+"먼저 뼈대부터:",
+"We receive feedback",
+"우리는 피드백을 받는다(receive 받다)."
+],
+[
+"어떤 피드백?",
+"such positive feedback",
+"이렇게 긍정적인 피드백."
+],
+[
+"얼마나 드물어?",
+"seldom ... so quickly",
+"이렇게 빨리는 좀처럼 받지 못한다."
+],
+[
+"요약: 이렇게 좋은 피드백을 이렇게 빨리 받는 일은 드물다."
+]
+],
+"notes": [
+"<b>seldom, never, hardly 같은 부정어가 문장 맨 앞</b> → <b>조동사 + 주어 + 동사원형</b> (seldom do we receive)",
+"평소 어순은 we seldom receive, 강조하려고 앞으로 보내면 do가 튀어나온다"
+]
+},
+{
+"en": "He did confidently show the scientists his new invention, and it surprised everyone, and [[they]] [[must have felt]] [[amazed by its creativity]].",
+"key": "그들은 분명 놀랐다고 느꼈을 것이다.",
+"form": "2형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"am",
+"v"
+],
+[
+"happy",
+"c"
+]
+],
+"refrel": "I = happy",
+"me": [
+[
+"He did confidently show the scientists his new invention, and it surprised everyone, and",
+"x"
+],
+[
+"they",
+"s"
+],
+[
+"must have felt",
+"v"
+],
+[
+"amazed by its creativity.",
+"c"
+]
+],
+"merel": "they = amazed",
+"easy": [
+[
+"먼저 뼈대부터:",
+"They must have felt amazed",
+"그들은 분명 놀랍다고 느꼈을 것이다(feel 느끼다)."
+],
+[
+"무엇 때문에?",
+"by its creativity",
+"그 창의성 때문에."
+],
+[
+"누가 '그들'?",
+"they = the scientists",
+"그들은 과학자들이다."
+],
+[
+"요약: 발명품을 본 과학자들은 그 창의성에 분명 감탄했을 것이다."
+]
+],
+"notes": [
+"<b>과거에 대한 강한 추측 = must have p.p.</b> (must + 과거형 ✕)",
+"감정을 <b>느끼는 사람</b>이 주어일 때는 amazed(놀란), 감정을 일으키는 것이면 amazing"
+]
+},
+{
+"en": "The doctor strongly recommends that patients be careful about their diet and exercise regularly, though [[many people]] [[don't realize]] [[that good habits require consistent effort over time]].",
+"key": "많은 사람들은 좋은 습관에 꾸준한 노력이 필요함을 깨닫지 못한다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"The doctor strongly recommends that patients be careful about their diet and exercise regularly, though",
+"x"
+],
+[
+"many people",
+"s"
+],
+[
+"don't realize",
+"v"
+],
+[
+"that good habits require consistent effort over time.",
+"o"
+]
+],
+"merel": "people ≠ that절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"People don't realize that ...",
+"사람들은 ~을 깨닫지 못한다(realize 깨닫다)."
+],
+[
+"무엇을?",
+"that good habits require effort",
+"좋은 습관에는 노력이 필요하다는 것을 (require 필요로 하다)."
+],
+[
+"어떤 노력?",
+"consistent effort over time",
+"시간에 걸친 꾸준한 노력."
+],
+[
+"요약: 의사는 식단·운동을 권하지만, 사람들은 좋은 습관에 꾸준한 노력이 필요한 줄 모른다."
+]
+],
+"notes": [
+"<b>that + 완전한 절</b> (주어, 동사, 목적어가 다 있음) / what + 불완전한 절",
+"that절은 realize의 <b>목적어(~라는 것)</b> 역할"
+]
+}
+]

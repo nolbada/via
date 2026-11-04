@@ -1,0 +1,629 @@
+[
+{
+"en": "In the coming days, we might visit the exhibition about modern art, and my [[roommate]] [[does]] too, even though she rarely goes to galleries.",
+"key": "내 룸메이트도 그렇게 한다(전시회를 방문한다).",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"In the coming days, we might visit the exhibition about modern art, and",
+"x"
+],
+[
+"my roommate",
+"s"
+],
+[
+"does too,",
+"v"
+],
+[
+"even though she rarely goes to galleries.",
+"x"
+]
+],
+"merel": "does too = might visit도 대신함",
+"easy": [
+[
+"먼저 뼈대부터:",
+"my roommate does too",
+"내 룸메이트도 그렇다."
+],
+[
+"무슨 뜻?",
+"does too (= visit the exhibition)",
+"does too는 앞의 visit(방문하다)을 대신한 말이다."
+],
+[
+"어떤 말이 덧붙었어?",
+"even though she rarely goes to galleries",
+"비록 그녀가 갤러리에 거의 가지 않지만 (go 가다)."
+],
+[
+"요약: 우리도 전시회에 갈지 모르는데, 룸메이트도 간다. 룸메이트는 갤러리엔 잘 안 가는데도."
+]
+],
+"notes": [
+"<b>앞의 일반동사 대신 → do/does/did</b> (visit을 does가 대신함, is는 be동사라서 안 됨)",
+"<b>주어 my roommate는 3인칭 단수</b> → 현재형 does"
+]
+},
+{
+"en": "Kevin cannot have finished his report last week because he hasn't even started it, and [[finishing all sections on time]] [[was]] never [[realistic]] anyway.",
+"key": "모든 부분을 제시간에 끝내는 것은 현실적이지 않았다.",
+"form": "2형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"am",
+"v"
+],
+[
+"happy",
+"c"
+]
+],
+"refrel": "I = happy",
+"me": [
+[
+"Kevin cannot have finished his report last week because he hasn't even started it, and",
+"x"
+],
+[
+"finishing all sections on time",
+"s"
+],
+[
+"was",
+"v"
+],
+[
+"never realistic",
+"c"
+],
+[
+"anyway.",
+"x"
+]
+],
+"merel": "finishing ... = 현실적이지 않은 것(주어가 보어와 같음)",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Finishing was realistic",
+"끝내는 것은 현실적이었다(be 이다/였다)."
+],
+[
+"무엇이 주어야?",
+"finishing all sections on time",
+"모든 부분을 제시간에 끝내는 것."
+],
+[
+"어떤 말이 덧붙었어?",
+"never ... anyway",
+"결코 ~않았다, 어차피."
+],
+[
+"요약: 모든 부분을 제시간에 끝내는 건 애초에 현실적이지 않았다."
+]
+],
+"notes": [
+"<b>동명사구(~하는 것)가 주어면 단수 취급</b> → 동사도 단수 (was)",
+"동사 앞에 긴 말이 있으면 <b>진짜 주어의 핵심</b>(finishing)을 찾아 수를 맞춘다"
+]
+},
+{
+"en": "Her [[friend]] [[suggested]] [[that she retrace her steps to find it]].",
+"key": "그녀의 친구가 (그녀가 되짚어 가라고) 제안했다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"Her friend",
+"s"
+],
+[
+"suggested",
+"v"
+],
+[
+"that she retrace her steps to find it.",
+"o"
+]
+],
+"merel": "friend ≠ that절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Her friend suggested that ...",
+"친구가 ~라고 제안했다(suggest 제안하다)."
+],
+[
+"무엇을 제안했어?",
+"that she retrace her steps",
+"그녀가 왔던 길을 되짚어 가는 것 (retrace 되짚다)."
+],
+[
+"왜 되짚어?",
+"to find it",
+"그것(휴대폰)을 찾기 위해 (find 찾다)."
+],
+[
+"요약: 친구가 휴대폰을 찾으려면 왔던 길을 되짚어 보라고 제안했다."
+]
+],
+"notes": [
+"<b>제안·주장·요구·명령 동사 + that절</b> → 동사는 (should) + 동사원형 (retraces ✕ → retrace ○)",
+"suggest 뒤에 <b>that절이 통째로 목적어</b>가 된다"
+]
+},
+{
+"en": "You should book a table by tomorrow if you're going to the buffet this Friday, and the [[manager]] [[wants]] [[you]] [[to contact]] the restaurant directly to confirm.",
+"key": "매니저는 당신이 식당에 연락하기를 원한다.",
+"form": "5형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"make",
+"v"
+],
+[
+"him",
+"o"
+],
+[
+"happy",
+"oc"
+]
+],
+"refrel": "him = happy",
+"me": [
+[
+"You should book a table by tomorrow if you're going to the buffet this Friday, and",
+"x"
+],
+[
+"the manager",
+"s"
+],
+[
+"wants",
+"v"
+],
+[
+"you",
+"o"
+],
+[
+"to contact the restaurant directly to confirm.",
+"oc"
+]
+],
+"merel": "you = 연락하는 사람",
+"easy": [
+[
+"먼저 뼈대부터:",
+"The manager wants you to contact",
+"매니저는 당신이 연락하기를 원한다(want 원하다)."
+],
+[
+"누가 연락해?",
+"you",
+"당신이."
+],
+[
+"어떻게 연락해?",
+"to contact the restaurant directly",
+"식당에 직접 연락하는 것 (contact 연락하다)."
+],
+[
+"왜?",
+"to confirm",
+"확인하기 위해 (confirm 확인하다)."
+],
+[
+"요약: 매니저는 당신이 직접 식당에 연락해서 확인하길 바란다."
+]
+],
+"notes": [
+"<b>want + 목적어 + to부정사</b> (want you to contact ○, want you contact ✕)",
+"원형이 아닌 to부정사를 쓰는 동사: want, ask, tell, expect, allow ..."
+]
+},
+{
+"en": "I could have joined the basketball team, but I chose to focus on my studies instead, and [[I]] [[did believe]] [[that decision was the right one for my future]].",
+"key": "나는 그 결정이 옳다고 정말 믿었다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"I could have joined the basketball team, but I chose to focus on my studies instead, and",
+"x"
+],
+[
+"I",
+"s"
+],
+[
+"did believe",
+"v"
+],
+[
+"that decision was the right one for my future.",
+"o"
+]
+],
+"merel": "I ≠ that절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"I did believe that ...",
+"나는 ~라고 정말 믿었다(believe 믿다)."
+],
+[
+"무엇을 믿었어?",
+"that decision was the right one",
+"그 결정이 옳은 것이었다고."
+],
+[
+"어떤 결정?",
+"for my future",
+"내 미래를 위해."
+],
+[
+"요약: 나는 공부에 집중한 결정이 내 미래에 옳았다고 진심으로 믿었다."
+]
+],
+"notes": [
+"<b>강조의 do/does/did + 동사원형</b> (did believed ✕ → did believe ○)",
+"did가 이미 과거를 나타내므로 <b>뒤 동사는 원형</b>"
+]
+},
+{
+"en": "Professor Albert suggested that Dominic look for a recent article to write his paper, since [[Dominic]] [[must have struggled]] to find good sources on his own before this recommendation.",
+"key": "Dominic은 분명 애를 먹었을 것이다.",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"Professor Albert suggested that Dominic look for a recent article to write his paper, since",
+"x"
+],
+[
+"Dominic",
+"s"
+],
+[
+"must have struggled",
+"v"
+],
+[
+"to find good sources on his own before this recommendation.",
+"x"
+]
+],
+"merel": "",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Dominic must have struggled",
+"Dominic은 분명 애를 먹었을 것이다(struggle 애쓰다)."
+],
+[
+"왜 애를 먹었어?",
+"to find good sources on his own",
+"혼자서 좋은 자료를 찾느라 (find 찾다)."
+],
+[
+"언제?",
+"before this recommendation",
+"이 조언 전에."
+],
+[
+"요약: 조언을 받기 전에 Dominic은 혼자 자료를 찾느라 분명 고생했을 것이다."
+]
+],
+"notes": [
+"<b>과거에 대한 강한 추측 = must have p.p.</b> (must struggled ✕ → must have struggled ○)",
+"before this recommendation처럼 <b>지나간 때 표현</b>이 단서"
+]
+},
+{
+"en": "The [[customer]] [[demanded]] [[that delivery be completed within two weeks]], although the warehouse was already short-staffed that month.",
+"key": "고객은 배송이 2주 안에 끝나야 한다고 요구했다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"The customer",
+"s"
+],
+[
+"demanded",
+"v"
+],
+[
+"that delivery be completed within two weeks,",
+"o"
+],
+[
+"although the warehouse was already short-staffed that month.",
+"x"
+]
+],
+"merel": "customer ≠ that절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"The customer demanded that ...",
+"고객은 ~라고 요구했다(demand 요구하다)."
+],
+[
+"무엇을 요구했어?",
+"that delivery be completed within two weeks",
+"배송이 2주 안에 완료되어야 한다고 (complete 완료하다)."
+],
+[
+"어떤 말이 덧붙었어?",
+"although the warehouse was already short-staffed",
+"비록 창고 인력이 이미 부족했지만."
+],
+[
+"요약: 창고가 일손이 부족한데도 고객은 2주 안에 배송하라고 요구했다."
+]
+],
+"notes": [
+"<b>although + 절(주어+동사)</b>, despite + 명사(구) → 절 앞에는 although",
+"demand 뒤 that절은 <b>(should) + 동사원형</b> (be completed)"
+]
+},
+{
+"en": "Some people insist that they really saw a UFO, and my [[neighbor]] [[did]] too, describing it in vivid detail.",
+"key": "내 이웃도 그렇게 했다(UFO를 보았다).",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"Some people insist that they really saw a UFO, and",
+"x"
+],
+[
+"my neighbor",
+"s"
+],
+[
+"did too,",
+"v"
+],
+[
+"describing it in vivid detail.",
+"x"
+]
+],
+"merel": "did too = saw a UFO도 대신함",
+"easy": [
+[
+"먼저 뼈대부터:",
+"My neighbor did too",
+"내 이웃도 그랬다."
+],
+[
+"무슨 뜻?",
+"did too (= saw a UFO)",
+"앞의 saw(보았다, see)를 대신한 말."
+],
+[
+"어떤 말이 덧붙었어?",
+"describing it in vivid detail",
+"그것을 생생하게 묘사하면서 (describe 묘사하다)."
+],
+[
+"요약: 어떤 사람들이 UFO를 봤다고 하는데, 내 이웃도 봤다며 생생히 설명했다."
+]
+],
+"notes": [
+"<b>앞에 나온 동사를 대신</b>: 일반동사 → do/does/did, be동사 → be동사 (is가 아니라 does/did)",
+"<b>~, 동사ing</b>는 '~하면서'라는 덧붙는 말 (describing)"
+]
+},
+{
+"en": "My doctor proposed that I eat more vegetables with my meals, though [[I]] [[hardly had]] [[time to prepare fresh meals lately]].",
+"key": "나는 신선한 식사를 준비할 시간이 거의 없었다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"My doctor proposed that I eat more vegetables with my meals, though",
+"x"
+],
+[
+"I",
+"s"
+],
+[
+"hardly had",
+"v"
+],
+[
+"time to prepare fresh meals lately.",
+"o"
+]
+],
+"merel": "I ≠ time",
+"easy": [
+[
+"먼저 뼈대부터:",
+"I hardly had time",
+"나는 시간이 거의 없었다(have 가지다)."
+],
+[
+"어떤 시간?",
+"time to prepare fresh meals",
+"신선한 식사를 준비할 시간 (prepare 준비하다)."
+],
+[
+"언제?",
+"lately",
+"최근에."
+],
+[
+"요약: 의사는 채소를 더 먹으라고 했지만, 나는 요즘 요리할 시간이 거의 없었다."
+]
+],
+"notes": [
+"<b>hard = 열심히/딱딱한, hardly = 거의 ~않다</b> (뜻이 아예 달라요)",
+"hardly는 <b>일반동사 앞</b>에 온다 (hardly had)"
+]
+},
+{
+"en": "Frequent delays of flights suggest that the airline has financial or technical problems, and [[passengers]] [[must have waited]] for hours without any explanation last month.",
+"key": "승객들은 분명 몇 시간을 기다렸을 것이다.",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"Frequent delays of flights suggest that the airline has financial or technical problems, and",
+"x"
+],
+[
+"passengers",
+"s"
+],
+[
+"must have waited",
+"v"
+],
+[
+"for hours without any explanation last month.",
+"x"
+]
+],
+"merel": "",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Passengers must have waited",
+"승객들은 분명 기다렸을 것이다(wait 기다리다)."
+],
+[
+"얼마나?",
+"for hours",
+"몇 시간 동안."
+],
+[
+"어떤 상황?",
+"without any explanation last month",
+"지난달 아무 설명도 없이."
+],
+[
+"요약: 지난달 승객들은 설명도 못 들은 채 몇 시간을 기다렸을 것이다."
+]
+],
+"notes": [
+"<b>과거에 대한 강한 추측 = must have p.p.</b> (must waited ✕)",
+"last month는 <b>과거 시점 단서</b>"
+]
+}
+]

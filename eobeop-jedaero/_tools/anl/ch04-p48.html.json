@@ -1,0 +1,738 @@
+[
+{
+"en": "Our rooms aren't ready, but the hotel will call us when they are, since the [[manager]] [[requested]] [[that guests wait in the lobby during peak hours]].",
+"key": "매니저는 손님들이 로비에서 기다리라고 요청했다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"Our rooms aren't ready, but the hotel will call us when they are, since",
+"x"
+],
+[
+"the manager",
+"s"
+],
+[
+"requested",
+"v"
+],
+[
+"that guests wait in the lobby during peak hours.",
+"o"
+]
+],
+"merel": "manager ≠ that절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"The manager requested that ...",
+"매니저는 ~라고 요청했다(request 요청하다)."
+],
+[
+"무엇을 요청했어?",
+"that guests wait in the lobby",
+"손님들이 로비에서 기다리라고 (wait 기다리다)."
+],
+[
+"언제?",
+"during peak hours",
+"가장 붐비는 시간 동안."
+],
+[
+"요약: 방이 아직 안 됐으니, 붐비는 시간엔 로비에서 기다려 달라고 매니저가 요청했다."
+]
+],
+"notes": [
+"<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (waits ✕ → wait ○)",
+"request(요청하다)도 제안 계열 동사!"
+]
+},
+{
+"en": "The [[bill]] [[was]] [[one of several items that were left on the table by mistake]].",
+"key": "그 지폐는 여러 물건 중 하나였다.",
+"form": "2형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"am",
+"v"
+],
+[
+"happy",
+"c"
+]
+],
+"refrel": "I = happy",
+"me": [
+[
+"The bill",
+"s"
+],
+[
+"was",
+"v"
+],
+[
+"one of several items that were left on the table by mistake.",
+"c"
+]
+],
+"merel": "bill = one of items",
+"easy": [
+[
+"먼저 뼈대부터:",
+"The bill was one of the items",
+"그 지폐는 물건들 중 하나였다(be 이다)."
+],
+[
+"어떤 물건들?",
+"several items",
+"여러 개의 물건."
+],
+[
+"그 물건들은 어땠어?",
+"that were left on the table by mistake",
+"실수로 탁자 위에 남겨진 (leave 남기다)."
+],
+[
+"요약: 그 지폐는 실수로 탁자에 남겨진 여러 물건 중 하나였다."
+]
+],
+"notes": [
+"<b>관계대명사절의 동사는 선행사에 수일치</b>: items(복수) → were (was ✕)",
+"<b>선행사 = that 바로 앞 명사</b> (several items), one이 아니다"
+]
+},
+{
+"en": "I did really enjoy exploring new hiking trails in the mountains during the weekends, and [[I]] [[must have returned]] to that same trail at least five times last summer.",
+"key": "나는 분명 그 같은 길로 다섯 번 이상 돌아갔을 것이다.",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"I did really enjoy exploring new hiking trails in the mountains during the weekends, and",
+"x"
+],
+[
+"I",
+"s"
+],
+[
+"must have returned",
+"v"
+],
+[
+"to that same trail at least five times last summer.",
+"x"
+]
+],
+"merel": "",
+"easy": [
+[
+"먼저 뼈대부터:",
+"I must have returned",
+"나는 분명 돌아갔을 것이다(return 돌아가다)."
+],
+[
+"어디로?",
+"to that same trail",
+"그 같은 산길로."
+],
+[
+"얼마나?",
+"at least five times last summer",
+"지난여름 적어도 다섯 번."
+],
+[
+"요약: 새 산길 걷기를 좋아하는데도, 지난여름 같은 길을 다섯 번은 다시 갔을 거다."
+]
+],
+"notes": [
+"<b>과거에 대한 강한 추측 = must have p.p.</b> (must + 과거형 ✕)",
+"last summer는 <b>과거 시점 단서</b>"
+]
+},
+{
+"en": "So [[great]] [[is]] [[this need]] that many teachers work extra unpaid hours.",
+"key": "이 필요는 매우 크다.",
+"form": "2형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"am",
+"v"
+],
+[
+"happy",
+"c"
+]
+],
+"refrel": "I = happy",
+"me": [
+[
+"So great",
+"c"
+],
+[
+"is",
+"v"
+],
+[
+"this need",
+"s"
+],
+[
+"that many teachers work extra unpaid hours.",
+"x"
+]
+],
+"merel": "this need = great",
+"easy": [
+[
+"먼저 뼈대부터:",
+"This need is great",
+"이 필요는 크다(be 이다)."
+],
+[
+"얼마나 커?",
+"so great ... that many teachers work extra unpaid hours",
+"너무 커서 많은 교사들이 무급으로 추가 근무를 한다 (work 일하다)."
+],
+[
+"왜 순서가 뒤집혔어?",
+"So great is this need",
+"so great를 앞으로 보내 강조하면서 주어·동사 순서가 바뀜."
+],
+[
+"요약: 필요가 너무 커서 많은 교사들이 무급으로 더 일한다."
+]
+],
+"notes": [
+"<b>So + 형용사</b>가 문장 맨 앞 → <b>동사 + 주어</b>로 도치 (this need is ✕ → is this need ○)",
+"<b>so ~ that ...</b> = 너무 ~해서 …하다"
+]
+},
+{
+"en": "All travelers should bring their passports when they go to the airport, and most experienced [[tourists]] [[do]] too, so lines move quickly at security.",
+"key": "대부분의 경험 많은 관광객도 그렇게 한다(여권을 챙긴다).",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"All travelers should bring their passports when they go to the airport, and",
+"x"
+],
+[
+"most experienced tourists",
+"s"
+],
+[
+"do too,",
+"v"
+],
+[
+"so lines move quickly at security.",
+"x"
+]
+],
+"merel": "do too = bring도 대신함",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Tourists do too",
+"관광객들도 그렇다."
+],
+[
+"무슨 뜻?",
+"do too (= bring their passports)",
+"앞의 bring(가져오다)을 대신한 말."
+],
+[
+"어떤 관광객?",
+"most experienced tourists",
+"경험 많은 대부분의 관광객."
+],
+[
+"요약: 여행객은 여권을 챙겨야 하고, 경험 많은 사람들도 챙기니 보안 검색이 빠르다."
+]
+],
+"notes": [
+"<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕)",
+"조동사 should가 있어도 bring은 일반동사 → 대신하는 말은 <b>do</b> (have ✕)"
+]
+},
+{
+"en": "[[Computers]] [[process]] [[information]] quickly, just like our brains do when we solve problems, and calculate results and store data efficiently as well.",
+"key": "컴퓨터는 정보를 처리한다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"Computers",
+"s"
+],
+[
+"process",
+"v"
+],
+[
+"information",
+"o"
+],
+[
+"quickly, just like our brains do when we solve problems, and calculate results and store data efficiently as well.",
+"x"
+]
+],
+"merel": "Computers ≠ information",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Computers process information",
+"컴퓨터는 정보를 처리한다(process 처리하다)."
+],
+[
+"또 뭘 해?",
+"calculate results and store data",
+"결과를 계산하고 (calculate 계산하다) 자료를 저장한다 (store 저장하다)."
+],
+[
+"무엇과 같아?",
+"just like our brains do",
+"우리 뇌가 하는 것처럼 (do = process 처리하다)."
+],
+[
+"요약: 컴퓨터는 뇌처럼 정보를 빠르게 처리하고, 계산하고 저장도 한다."
+]
+],
+"notes": [
+"<b>and로 이어지면 같은 모양(병렬)</b>: process, calculate, store 모두 동사원형 (storing ✕)",
+"주어가 복수(computers)라서 동사 모두 원형 그대로"
+]
+},
+{
+"en": "Susan could have taken the bus this morning, but she walked to work instead, even though [[she]] [[did complain]] about the distance later that day.",
+"key": "그녀는 그날 늦게 거리에 대해 정말 불평했다.",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"Susan could have taken the bus this morning, but she walked to work instead, even though",
+"x"
+],
+[
+"she",
+"s"
+],
+[
+"did complain",
+"v"
+],
+[
+"about the distance later that day.",
+"x"
+]
+],
+"merel": "",
+"easy": [
+[
+"먼저 뼈대부터:",
+"She did complain",
+"그녀는 정말 불평했다(complain 불평하다)."
+],
+[
+"무엇에 대해?",
+"about the distance",
+"거리에 대해."
+],
+[
+"언제?",
+"later that day",
+"그날 늦게."
+],
+[
+"요약: 수잔은 걸어서 출근했지만, 그날 늦게 거리가 멀다고 정말 투덜댔다."
+]
+],
+"notes": [
+"<b>강조의 do/does/did + 동사원형</b> (did + 과거형 ✕) (did complained ✕ → did complain ○)",
+"<b>could have p.p.</b> = ~할 수도 있었는데 (안 했음)"
+]
+},
+{
+"en": "I do have a key to the office right now, but it's downstairs in my car, and if I need it later, [[I]] [[could just walk down and get]] [[it]].",
+"key": "나는 내려가서 그것을 가져올 수 있다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"I do have a key to the office right now, but it's downstairs in my car, and",
+"x"
+],
+[
+"if I need it later,",
+"x"
+],
+[
+"I",
+"s"
+],
+[
+"could just walk down and get",
+"v"
+],
+[
+"it.",
+"o"
+]
+],
+"merel": "I ≠ it",
+"easy": [
+[
+"먼저 뼈대부터:",
+"I could walk down and get it",
+"나는 내려가서 그것을 가져올 수 있다(get 가져오다)."
+],
+[
+"언제 그래?",
+"if I need it later",
+"나중에 그것이 필요하면 (need 필요하다)."
+],
+[
+"그게 뭐야?",
+"it = a key",
+"그것은 열쇠이다."
+],
+[
+"요약: 열쇠는 차에 있지만, 나중에 필요하면 내려가서 가져오면 된다."
+]
+],
+"notes": [
+"<b>if절(조건)에서는 미래도 현재시제</b>: if I need ○, if I would need ✕",
+"would는 가정법이 아니라 <b>실제로 일어날 수 있는 일</b>이라서 쓰지 않는다"
+]
+},
+{
+"en": "The report suggests that the company's profits dropped sharply in the past year, so the [[board]] [[recommended]] [[that the CEO address the issue immediately]].",
+"key": "이사회는 CEO가 그 문제를 다루라고 권했다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"The report suggests that the company's profits dropped sharply in the past year, so",
+"x"
+],
+[
+"the board",
+"s"
+],
+[
+"recommended",
+"v"
+],
+[
+"that the CEO address the issue immediately.",
+"o"
+]
+],
+"merel": "board ≠ that절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"The board recommended that ...",
+"이사회는 ~라고 권했다(recommend 권하다)."
+],
+[
+"무엇을 권했어?",
+"that the CEO address the issue",
+"CEO가 그 문제를 다루라고 (address 다루다)."
+],
+[
+"어떻게?",
+"immediately",
+"즉시."
+],
+[
+"요약: 이익이 급감해서 이사회는 CEO가 바로 대응하라고 권했다."
+]
+],
+"notes": [
+"<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (addresses ✕ → address ○)",
+"첫 문장 suggests는 '~을 보여 준다'는 뜻이라 s가 붙는 일반 동사 (제안 아님)"
+]
+},
+{
+"en": "Many beaches have not reopened since last week's typhoon, but this beach has, since [[many visitors]] [[have complained]] about the lingering debris.",
+"key": "많은 방문객이 불평해 왔다.",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"Many beaches have not reopened since last week's typhoon, but this beach has, since",
+"x"
+],
+[
+"many visitors",
+"s"
+],
+[
+"have complained",
+"v"
+],
+[
+"about the lingering debris.",
+"x"
+]
+],
+"merel": "",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Many visitors have complained",
+"많은 방문객이 불평해 왔다(complain 불평하다)."
+],
+[
+"어떤 방문객?",
+"many visitors",
+"많은 방문객들."
+],
+[
+"무엇에 대해?",
+"about the lingering debris",
+"남아 있는 잔해에 대해."
+],
+[
+"요약: 태풍 뒤 해변이 다시 열렸지만, 남은 잔해에 방문객들이 불평했다."
+]
+],
+"notes": [
+"<b>many + 셀 수 있는 복수명사</b>, much + 셀 수 없는 명사 (much visitors ✕)",
+"visitors는 -s가 붙은 <b>복수</b> → many"
+]
+},
+{
+"en": "Every mammal does eventually leave its parents at some point, and [[scientists]] [[believe]] [[this instinct must have developed over millions of years of evolution]].",
+"key": "과학자들은 이 본능이 발달했을 것이라고 믿는다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"Every mammal does eventually leave its parents at some point, and",
+"x"
+],
+[
+"scientists",
+"s"
+],
+[
+"believe",
+"v"
+],
+[
+"this instinct must have developed over millions of years of evolution.",
+"o"
+]
+],
+"merel": "scientists ≠ 절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Scientists believe ...",
+"과학자들은 ~라고 믿는다(believe 믿다)."
+],
+[
+"무엇을 믿어?",
+"this instinct must have developed",
+"이 본능이 분명 발달했을 것이라고 (develop 발달하다)."
+],
+[
+"얼마나 오래?",
+"over millions of years of evolution",
+"수백만 년의 진화에 걸쳐."
+],
+[
+"요약: 이 본능은 수백만 년의 진화를 거치며 생겼을 거라고 과학자들은 믿는다."
+]
+],
+"notes": [
+"<b>과거에 대한 강한 추측 = must have p.p.</b> (must + 과거형 ✕)",
+"수백만 년의 진화는 <b>이미 지나간 일</b>이라서 have p.p."
+]
+},
+{
+"en": "The amount of snowfall this December will be significantly higher than it was in December of last year, so [[city crews]] [[are preparing]] extremely carefully for the storms ahead.",
+"key": "시 직원들이 폭풍에 대비하고 있다.",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"The amount of snowfall this December will be significantly higher than it was in December of last year, so",
+"x"
+],
+[
+"city crews",
+"s"
+],
+[
+"are preparing",
+"v"
+],
+[
+"extremely carefully for the storms ahead.",
+"x"
+]
+],
+"merel": "",
+"easy": [
+[
+"먼저 뼈대부터:",
+"City crews are preparing",
+"시 작업팀이 준비하고 있다(prepare 준비하다)."
+],
+[
+"어떻게 준비해?",
+"extremely carefully",
+"매우 신중하게."
+],
+[
+"무엇에 대비해?",
+"for the storms ahead",
+"앞으로 올 폭풍에."
+],
+[
+"요약: 눈이 더 많이 올 거라서 시 작업팀은 폭풍을 아주 신중히 준비 중이다."
+]
+],
+"notes": [
+"<b>부사(carefully)를 꾸미는 말도 부사</b>: extreme ✕ → extremely ○",
+"형용사(extreme)는 명사를, <b>부사(extremely)는 형용사·부사·동사</b>를 꾸민다"
+]
+}
+]

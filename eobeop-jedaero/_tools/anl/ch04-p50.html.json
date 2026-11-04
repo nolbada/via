@@ -1,0 +1,384 @@
+[
+{
+"en": "No one on my team had solved that kind of problem before, but I had once before, and that [[experience]] [[must have taught]] [[me]] [[valuable lessons about staying calm]].",
+"key": "그 경험은 나에게 귀중한 교훈을 가르쳐 주었을 것이다.",
+"form": "4형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"give",
+"v"
+],
+[
+"him",
+"io"
+],
+[
+"a book",
+"do"
+]
+],
+"refrel": "him ≠ a book",
+"me": [
+[
+"No one on my team had solved that kind of problem before, but I had once before, and",
+"x"
+],
+[
+"that experience",
+"s"
+],
+[
+"must have taught",
+"v"
+],
+[
+"me",
+"io"
+],
+[
+"valuable lessons about staying calm.",
+"do"
+]
+],
+"merel": "me ≠ lessons",
+"easy": [
+[
+"먼저 뼈대부터:",
+"That experience must have taught me lessons",
+"그 경험이 나에게 교훈을 가르쳤을 것이다(teach 가르치다)."
+],
+[
+"누구에게?",
+"me",
+"나에게."
+],
+[
+"어떤 교훈?",
+"valuable lessons about staying calm",
+"침착함을 유지하는 것에 대한 귀중한 교훈 (stay 유지하다)."
+],
+[
+"요약: 전에 비슷한 문제를 풀어 본 경험이 나에게 침착하라는 교훈을 줬을 것이다."
+]
+],
+"notes": [
+"<b>과거에 대한 강한 추측 = must have p.p.</b> (must + 과거형 ✕)",
+"4형식 <b>teach + 사람 + 가르칠 것</b>: me(나에게) + lessons(교훈을)"
+]
+},
+{
+"en": "The office's Internet should be connected normally now, as the repairs have been completed, and [[employees]] [[are looking forward to being informed]] about any updates soon.",
+"key": "직원들은 곧 소식을 안내받기를 기대하고 있다.",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"The office's Internet should be connected normally now, as the repairs have been completed, and",
+"x"
+],
+[
+"employees",
+"s"
+],
+[
+"are looking forward to being informed",
+"v"
+],
+[
+"about any updates soon.",
+"x"
+]
+],
+"merel": "",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Employees are looking forward to being informed",
+"직원들은 안내받기를 기대하고 있다(look forward to 기대하다, inform 알리다)."
+],
+[
+"무엇에 대해?",
+"about any updates",
+"어떤 새 소식이든 (update 새 소식)."
+],
+[
+"언제?",
+"soon",
+"곧."
+],
+[
+"요약: 수리가 끝나서, 직원들은 새 소식을 곧 안내받기를 기대한다."
+]
+],
+"notes": [
+"<b>look forward to + 동명사</b>: 직원이 '안내받는' 쪽이면 <b>being p.p.</b> (informing ✕ → being informed ○)",
+"이 to는 to부정사가 아니라 <b>전치사</b>라서 뒤에 -ing"
+]
+},
+{
+"en": "In addition, Tristram Stuart, an anti-waste campaigner, insists that many stores are throwing away a lot of food in good condition just to emphasize freshness, and [[he]] [[proposed]] [[that supermarkets adopt clearer labeling to reduce this waste]].",
+"key": "그는 슈퍼마켓이 더 분명한 표시를 도입하라고 제안했다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"In addition, Tristram Stuart, an anti-waste campaigner, insists that many stores are throwing away a lot of food in good condition just to emphasize freshness, and",
+"x"
+],
+[
+"he",
+"s"
+],
+[
+"proposed",
+"v"
+],
+[
+"that supermarkets adopt clearer labeling to reduce this waste.",
+"o"
+]
+],
+"merel": "he ≠ that절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"He proposed that ...",
+"그는 ~라고 제안했다(propose 제안하다)."
+],
+[
+"무엇을 제안했어?",
+"that supermarkets adopt clearer labeling",
+"슈퍼마켓이 더 분명한 표시를 도입하라고 (adopt 도입하다)."
+],
+[
+"왜?",
+"to reduce this waste",
+"이 낭비를 줄이기 위해 (reduce 줄이다)."
+],
+[
+"요약: 그는 낭비를 줄이려고 슈퍼마켓이 더 분명한 표시를 쓰자고 제안했다."
+]
+],
+"notes": [
+"<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (adopts ✕ → adopt ○)",
+"앞의 insists 뒤 that절은 <b>사실을 말하는 것</b>이라 are throwing처럼 일반 시제"
+]
+},
+{
+"en": "[[Fewer people]] [[may have visited]] [[the previous events]] because tickets were more expensive then, a trend that organizers hope will continue into next year.",
+"key": "더 적은 사람들이 이전 행사를 방문했을지도 모른다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"Fewer people",
+"s"
+],
+[
+"may have visited",
+"v"
+],
+[
+"the previous events",
+"o"
+],
+[
+"because tickets were more expensive then,",
+"x"
+],
+[
+"a trend that organizers hope will continue into next year.",
+"x"
+]
+],
+"merel": "people ≠ events",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Fewer people may have visited the events",
+"더 적은 사람들이 행사를 방문했을지도 모른다(visit 방문하다)."
+],
+[
+"왜?",
+"because tickets were more expensive then",
+"그때는 표가 더 비쌌기 때문에."
+],
+[
+"a trend는 뭐야?",
+"a trend that organizers hope will continue",
+"주최 측이 계속되기를 바라는 경향 (continue 계속되다)."
+],
+[
+"요약: 표가 비싸서 이전엔 방문객이 적었는데, 주최 측은 이 경향이 내년에도 이어지길 바란다."
+]
+],
+"notes": [
+"<b>앞 명사를 꾸미는 관계대명사 = that/which</b>, what은 앞에 명사를 두지 않는다 (a trend that ○, a trend what ✕)",
+"what = the thing that (명사 없이 혼자 '~하는 것')"
+]
+},
+{
+"en": "Owls are known for their cute looks, but when they do hunt, they turn into really scary predators, and other [[birds of prey]] [[do]] too, according to wildlife researchers.",
+"key": "다른 맹금류도 그렇게 한다(무서운 포식자로 변한다).",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"Owls are known for their cute looks, but when they do hunt, they turn into really scary predators, and",
+"x"
+],
+[
+"other birds of prey",
+"s"
+],
+[
+"do too,",
+"v"
+],
+[
+"according to wildlife researchers.",
+"x"
+]
+],
+"merel": "do too = turn into도 대신함",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Other birds of prey do too",
+"다른 맹금류도 그렇다."
+],
+[
+"무슨 뜻?",
+"do too (= turn into scary predators)",
+"앞의 turn into(~로 변하다, turn)를 대신한 말."
+],
+[
+"누가 말했어?",
+"according to wildlife researchers",
+"야생동물 연구자들에 따르면."
+],
+[
+"요약: 부엉이는 귀여워도 사냥할 땐 무서워지고, 다른 맹금류도 마찬가지다."
+]
+],
+"notes": [
+"<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕)",
+"turn into처럼 <b>두 단어짜리 동사도 일반동사</b> → do"
+]
+},
+{
+"en": "If a person buys a shirt, he does really feel like he saved money at the cash register, and [[he]] [[did believe]] [[he made a smart choice at first]].",
+"key": "그는 처음에 자신이 현명한 선택을 했다고 정말 믿었다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"If a person buys a shirt, he does really feel like he saved money at the cash register, and",
+"x"
+],
+[
+"he",
+"s"
+],
+[
+"did believe",
+"v"
+],
+[
+"he made a smart choice at first.",
+"o"
+]
+],
+"merel": "he ≠ 절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"He did believe he made a choice",
+"그는 선택을 했다고 정말 믿었다(believe 믿다, make 하다)."
+],
+[
+"어떤 선택?",
+"a smart choice",
+"현명한 선택."
+],
+[
+"언제?",
+"at first",
+"처음에는."
+],
+[
+"요약: 셔츠를 사면 처음엔 돈을 아낀 현명한 선택이라고 진짜로 믿는다."
+]
+],
+"notes": [
+"<b>강조의 do/does/did + 동사원형</b> (did + 과거형 ✕) (did believed ✕)",
+"believe 뒤에 <b>that이 생략</b>된 절이 목적어"
+]
+}
+]

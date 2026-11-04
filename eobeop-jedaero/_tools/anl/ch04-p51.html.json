@@ -1,0 +1,134 @@
+[
+{
+"en": "Today, [[people]] [[use]] [[much more plastic]] than people in the past did.",
+"key": "오늘날 사람들은 훨씬 더 많은 플라스틱을 사용한다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"Today,",
+"x"
+],
+[
+"people",
+"s"
+],
+[
+"use",
+"v"
+],
+[
+"much more plastic",
+"o"
+],
+[
+"than people in the past did.",
+"x"
+]
+],
+"merel": "people ≠ plastic",
+"easy": [
+[
+"먼저 뼈대부터:",
+"People use plastic",
+"사람들은 플라스틱을 사용한다(use 사용하다)."
+],
+[
+"얼마나 더?",
+"much more plastic",
+"훨씬 더 많은 플라스틱."
+],
+[
+"누구와 비교해?",
+"than people in the past did",
+"과거 사람들이 (그랬던 것)보다. did는 used(사용했다)를 대신함."
+],
+[
+"요약: 오늘날 사람들은 과거보다 플라스틱을 훨씬 많이 쓴다."
+]
+],
+"notes": [
+"<b>앞의 일반동사 대신 → do/does/did</b> (use를 did가 대신함, was ✕)",
+"<b>강조의 do/does/did + 동사원형</b>: 다음 문장 This issue truly does need (does needs ✕)",
+"than 뒤에 반복되는 동사도 <b>대동사</b>로 줄인다"
+]
+},
+{
+"en": "Doris arrived at the meeting late, so [[she]] [[must have missed]] [[the announcement about her promotion]].",
+"key": "그녀는 분명 승진 발표를 놓쳤을 것이다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"Doris arrived at the meeting late, so",
+"x"
+],
+[
+"she",
+"s"
+],
+[
+"must have missed",
+"v"
+],
+[
+"the announcement about her promotion.",
+"o"
+]
+],
+"merel": "she ≠ announcement",
+"easy": [
+[
+"먼저 뼈대부터:",
+"She must have missed the announcement",
+"그녀는 분명 발표를 놓쳤을 것이다(miss 놓치다)."
+],
+[
+"어떤 발표?",
+"the announcement about her promotion",
+"그녀의 승진에 대한 발표 (announce 발표하다)."
+],
+[
+"왜 그렇게 생각해?",
+"Doris arrived at the meeting late",
+"도리스가 회의에 늦게 도착했기 때문에 (arrive 도착하다)."
+],
+[
+"요약: 회의에 늦었으니 도리스는 자기 승진 발표를 분명 놓쳤을 것이다."
+]
+],
+"notes": [
+"<b>과거에 대한 강한 추측 = must have p.p.</b> (must miss ✕)",
+"<b>앞으로에 대한 추측 = 조동사 + 동사원형</b>: She might need a moment (might have needed ✕)",
+"might have p.p.는 <b>이미 지난 일</b>에 대해서만 쓴다"
+]
+}
+]

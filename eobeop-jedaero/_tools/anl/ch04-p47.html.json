@@ -1,0 +1,632 @@
+[
+{
+"en": "Don't be afraid to try new things, because if you are, you may miss great opportunities, and [[people]] who did succeed often [[say]] [[they took the biggest risks]].",
+"key": "성공한 사람들은 가장 큰 위험을 감수했다고 말한다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"Don't be afraid to try new things, because if you are, you may miss great opportunities, and",
+"x"
+],
+[
+"people who did succeed",
+"s"
+],
+[
+"often say",
+"v"
+],
+[
+"they took the biggest risks.",
+"o"
+]
+],
+"merel": "people ≠ they took ...",
+"easy": [
+[
+"먼저 뼈대부터:",
+"People say they took risks",
+"사람들은 위험을 감수했다고 말한다(say 말하다)."
+],
+[
+"어떤 사람들?",
+"people who did succeed",
+"정말로 성공한 사람들 (succeed 성공하다)."
+],
+[
+"뭐라고 말해?",
+"they took the biggest risks",
+"가장 큰 위험을 감수했다고 (take 감수하다)."
+],
+[
+"요약: 새로운 걸 두려워 마라. 진짜 성공한 사람들은 가장 큰 모험을 했다고 말한다."
+]
+],
+"notes": [
+"<b>강조의 do/does/did + 동사원형</b> (did + 과거형 ✕) (did succeed ○, did succeeded ✕)",
+"<b>who did succeed</b>는 앞의 people을 꾸미는 관계절 → 주어 덩어리가 길어도 핵심은 people"
+]
+},
+{
+"en": "From 2014 to 2016, Istanbul received more tourists than Antalya did, and [[the city]] [[attracted]] [[a record number of visitors]] last year.",
+"key": "그 도시는 기록적인 수의 방문객을 끌어들였다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"From 2014 to 2016, Istanbul received more tourists than Antalya did, and",
+"x"
+],
+[
+"the city",
+"s"
+],
+[
+"attracted",
+"v"
+],
+[
+"a record number of visitors",
+"o"
+],
+[
+"last year.",
+"x"
+]
+],
+"merel": "city ≠ visitors",
+"easy": [
+[
+"먼저 뼈대부터:",
+"The city attracted visitors",
+"그 도시는 방문객을 끌어들였다(attract 끌다)."
+],
+[
+"어떤 방문객?",
+"a record number of visitors",
+"기록적인 수의 방문객."
+],
+[
+"언제?",
+"last year",
+"작년에."
+],
+[
+"요약: 이스탄불은 작년에 기록적인 방문객을 끌어모았다."
+]
+],
+"notes": [
+"<b>last year 같은 명백한 과거 시점 → 단순과거</b> (has attracted ✕ → attracted ○)",
+"현재완료는 <b>과거 시점 표현(last year, yesterday, ago)과 함께 못 쓴다</b>"
+]
+},
+{
+"en": "The hot summer weather has not affected the taste of the fruit, but the lack of rainfall has, so [[farmers]] [[must have struggled]] to keep their crops alive last season.",
+"key": "농부들은 분명 애를 먹었을 것이다.",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"The hot summer weather has not affected the taste of the fruit, but the lack of rainfall has, so",
+"x"
+],
+[
+"farmers",
+"s"
+],
+[
+"must have struggled",
+"v"
+],
+[
+"to keep their crops alive last season.",
+"x"
+]
+],
+"merel": "",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Farmers must have struggled",
+"농부들은 분명 애를 먹었을 것이다(struggle 애쓰다)."
+],
+[
+"왜 애를 먹었어?",
+"to keep their crops alive",
+"작물을 살려 두느라 (keep 유지하다)."
+],
+[
+"언제?",
+"last season",
+"지난 시즌에."
+],
+[
+"요약: 비가 모자라서 농부들은 지난 시즌 작물을 살리느라 분명 고생했다."
+]
+],
+"notes": [
+"<b>과거에 대한 강한 추측 = must have p.p.</b> (must + 과거형 ✕)",
+"last season은 <b>과거 시점 단서</b>"
+]
+},
+{
+"en": "The temperature outside was much lower than it was earlier in the day, and [[today]] [[felt]] [[colder than yesterday]] despite the sunshine.",
+"key": "오늘은 어제보다 더 춥게 느껴졌다.",
+"form": "2형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"am",
+"v"
+],
+[
+"happy",
+"c"
+]
+],
+"refrel": "I = happy",
+"me": [
+[
+"The temperature outside was much lower than it was earlier in the day, and",
+"x"
+],
+[
+"today",
+"s"
+],
+[
+"felt",
+"v"
+],
+[
+"colder than yesterday",
+"c"
+],
+[
+"despite the sunshine.",
+"x"
+]
+],
+"merel": "today = colder",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Today felt colder",
+"오늘은 더 춥게 느껴졌다(feel 느끼다)."
+],
+[
+"얼마나 더?",
+"than yesterday",
+"어제보다."
+],
+[
+"어떤 말이 덧붙었어?",
+"despite the sunshine",
+"햇빛이 있었는데도."
+],
+[
+"요약: 해가 났는데도 오늘이 어제보다 더 춥게 느껴졌다."
+]
+],
+"notes": [
+"<b>비교급 + than</b>: 1음절 형용사는 -er (cold → colder)",
+"<b>felt + 형용사</b> = ~하게 느껴지다 (2형식, 보어 자리에 형용사)"
+]
+},
+{
+"en": "The company sells good products, and it does so with excellent customer service, so the [[board]] [[proposed]] [[that the firm expand into new markets next year]].",
+"key": "이사회는 회사가 새 시장으로 확장하라고 제안했다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"The company sells good products, and it does so with excellent customer service, so",
+"x"
+],
+[
+"the board",
+"s"
+],
+[
+"proposed",
+"v"
+],
+[
+"that the firm expand into new markets next year.",
+"o"
+]
+],
+"merel": "board ≠ that절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"The board proposed that ...",
+"이사회는 ~라고 제안했다(propose 제안하다)."
+],
+[
+"무엇을 제안했어?",
+"that the firm expand into new markets",
+"회사가 새 시장으로 확장하라고 (expand 확장하다)."
+],
+[
+"언제?",
+"next year",
+"내년에."
+],
+[
+"요약: 제품과 서비스가 좋으니 이사회는 내년에 새 시장으로 넓히라고 제안했다."
+]
+],
+"notes": [
+"<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (expands ✕ → expand ○)",
+"propose, suggest, recommend, insist ... 가 <b>당위성</b>(~해야 한다)을 말할 때 적용"
+]
+},
+{
+"en": "John does always arrive on time for his appointments, and his [[coworkers]] [[do]] too, unlike the interns who are frequently late.",
+"key": "그의 동료들도 그렇게 한다(제시간에 온다).",
+"form": "1형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"sleep",
+"v"
+]
+],
+"refrel": "",
+"me": [
+[
+"John does always arrive on time for his appointments, and",
+"x"
+],
+[
+"his coworkers",
+"s"
+],
+[
+"do too,",
+"v"
+],
+[
+"unlike the interns who are frequently late.",
+"x"
+]
+],
+"merel": "do too = arrive on time도 대신함",
+"easy": [
+[
+"먼저 뼈대부터:",
+"His coworkers do too",
+"그의 동료들도 그렇다."
+],
+[
+"무슨 뜻?",
+"do too (= arrive on time)",
+"앞의 arrive(도착하다)를 대신한 말."
+],
+[
+"누구와 달라?",
+"unlike the interns who are frequently late",
+"자주 지각하는 인턴들과 달리 (be late 늦다)."
+],
+[
+"요약: John도 동료들도 약속 시간에 오는데, 인턴들은 자주 늦는다."
+]
+],
+"notes": [
+"<b>앞의 일반동사 대신 → do/does/did</b> (be동사/have동사 ✕)",
+"주어 coworkers가 복수 → 대동사도 <b>do</b>(does ✕)"
+]
+},
+{
+"en": "The project team does quickly finish their work ahead of last week's deadline, and [[this]] [[is]] [[the reason why their manager gave them a bonus this month]].",
+"key": "이것이 매니저가 보너스를 준 이유이다.",
+"form": "2형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"am",
+"v"
+],
+[
+"happy",
+"c"
+]
+],
+"refrel": "I = happy",
+"me": [
+[
+"The project team does quickly finish their work ahead of last week's deadline, and",
+"x"
+],
+[
+"this",
+"s"
+],
+[
+"is",
+"v"
+],
+[
+"the reason why their manager gave them a bonus this month.",
+"c"
+]
+],
+"merel": "this = the reason",
+"easy": [
+[
+"먼저 뼈대부터:",
+"This is the reason",
+"이것이 그 이유이다(be 이다)."
+],
+[
+"어떤 이유?",
+"why their manager gave them a bonus",
+"매니저가 그들에게 보너스를 준 (give 주다)."
+],
+[
+"언제?",
+"this month",
+"이번 달에."
+],
+[
+"요약: 팀이 일을 일찍 끝냈고, 그래서 매니저가 이번 달 보너스를 줬다."
+]
+],
+"notes": [
+"<b>the reason + why + 완전한 절</b> (관계부사 why: 이유)",
+"which 뒤에는 <b>빠진 말이 있는 절</b>, why 뒤에는 <b>완전한 절</b>이 온다"
+]
+},
+{
+"en": "My dog does provide unconditional love to me and my family members, so the [[vet]] [[recommended]] [[that we walk him daily for his health]].",
+"key": "수의사는 우리가 매일 산책시키라고 권했다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"My dog does provide unconditional love to me and my family members, so",
+"x"
+],
+[
+"the vet",
+"s"
+],
+[
+"recommended",
+"v"
+],
+[
+"that we walk him daily for his health.",
+"o"
+]
+],
+"merel": "vet ≠ that절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"The vet recommended that ...",
+"수의사는 ~라고 권했다(recommend 권하다)."
+],
+[
+"무엇을 권했어?",
+"that we walk him daily",
+"우리가 그를(개를) 매일 산책시키라고 (walk 걷게 하다)."
+],
+[
+"왜?",
+"for his health",
+"그의 건강을 위해."
+],
+[
+"요약: 개는 우리에게 큰 사랑을 주니, 수의사는 건강을 위해 매일 산책시키라고 권했다."
+]
+],
+"notes": [
+"<b>제안·주장·요구·명령·권고 동사 + that절</b> → (should) + 동사원형 (s를 안 붙인다) (walks ✕ → walk ○)",
+"주어가 we라서 원형이 자연스럽지만, <b>he/she가 주어여도 s를 붙이지 않는다</b>"
+]
+},
+{
+"en": "When we feel sad, we often do speak slowly and in a low voice, and [[we]] [[tend to avoid]] [[eye contact with others]] too.",
+"key": "우리는 다른 사람과 눈을 피하는 경향이 있다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"When we feel sad, we often do speak slowly and in a low voice, and",
+"x"
+],
+[
+"we",
+"s"
+],
+[
+"tend to avoid",
+"v"
+],
+[
+"eye contact with others too.",
+"o"
+]
+],
+"merel": "we ≠ eye contact",
+"easy": [
+[
+"먼저 뼈대부터:",
+"We tend to avoid eye contact",
+"우리는 눈 마주침을 피하는 경향이 있다(tend 경향이 있다, avoid 피하다)."
+],
+[
+"누구와의 눈맞춤?",
+"eye contact with others",
+"다른 사람들과의 눈 마주침."
+],
+[
+"어떤 말이 덧붙었어?",
+"too",
+"~도 또한."
+],
+[
+"요약: 슬플 때 우리는 느리고 낮게 말하고, 눈도 잘 피한다."
+]
+],
+"notes": [
+"<b>tend + to부정사</b> (tend avoiding ✕ → tend to avoid ○)",
+"to부정사만 목적어로 받는 동사: want, hope, decide, plan, tend ..."
+]
+},
+{
+"en": "Tim Marshall, an artist, does regularly try different styles to develop his technique, and [[critics]] [[say]] [[he must have experimented with abstract art long before he became famous]].",
+"key": "비평가들은 그가 추상 미술을 실험했을 것이라고 말한다.",
+"form": "3형식",
+"ref": [
+[
+"I",
+"s"
+],
+[
+"like",
+"v"
+],
+[
+"apples",
+"o"
+]
+],
+"refrel": "I ≠ apples",
+"me": [
+[
+"Tim Marshall, an artist, does regularly try different styles to develop his technique, and",
+"x"
+],
+[
+"critics",
+"s"
+],
+[
+"say",
+"v"
+],
+[
+"he must have experimented with abstract art long before he became famous.",
+"o"
+]
+],
+"merel": "critics ≠ 절",
+"easy": [
+[
+"먼저 뼈대부터:",
+"Critics say he must have experimented",
+"비평가들은 그가 분명 실험했을 것이라고 말한다(say 말하다, experiment 실험하다)."
+],
+[
+"무엇을 실험했어?",
+"with abstract art",
+"추상 미술을."
+],
+[
+"언제?",
+"long before he became famous",
+"그가 유명해지기 훨씬 전에 (become 되다)."
+],
+[
+"요약: 비평가들은 팀이 유명해지기 훨씬 전부터 추상 미술을 시도했을 거라고 한다."
+]
+],
+"notes": [
+"<b>과거에 대한 강한 추측 = must have p.p.</b> (must + 과거형 ✕)",
+"long before he became famous는 <b>이미 지난 일</b>임을 알려 주는 단서"
+]
+}
+]
