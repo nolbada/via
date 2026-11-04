@@ -462,6 +462,7 @@ function startPractice(only,scope){
   showView('testv');renderT();
 }
 function examGate(msg){
+  if(window.TEACHER_MODE&&!msg){startExam('선생님','dvc_exam_t_tmp');return}
   var tv=document.getElementById('testv');tv.innerHTML='';showView('testv');
   tv.appendChild(el('div','top','<b>시험</b><span></span><button class="home-btn" id="hbx" type="button">처음으로</button>'));
   var wrap=el('div','');wrap.style.cssText='flex:1;min-height:0';
