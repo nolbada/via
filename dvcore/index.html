@@ -24,7 +24,7 @@
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;font-size:calc(14px*var(--fs));line-height:1.5;overflow:hidden;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.app{height:100dvh;display:flex;flex-direction:column;max-width:560px;margin:0 auto;padding-block:10px 12px}
+.app{height:100%;height:100dvh;display:flex;flex-direction:column;max-width:560px;margin:0 auto;padding-block:10px calc(12px + env(safe-area-inset-bottom,0px))}
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 2px 8px}
 .top b{font-family:"DM Serif Display",serif;font-weight:400;font-size:calc(18px*var(--fs));letter-spacing:.2px}
 .top span{color:var(--sub);font-size:calc(12px*var(--fs));font-variant-numeric:tabular-nums}
@@ -503,7 +503,7 @@ function renderT(){
   tv.appendChild(el('div','bar','<i style="width:'+(answered/n*100)+'%"></i>'));
   var wrap=el('div','');wrap.style.cssText='flex:1;min-height:0';
   var c=el('div','card');
-  c.appendChild(el('div','no','DAY '+pad2(it.di+1)+' · '+w.n));c.appendChild(hrow(w));
+  wrap.style.cssText='flex:1;min-height:0;display:flex;flex-direction:column';c.style.cssText='height:auto;flex:1;min-height:0';c.appendChild(el('div','no','DAY '+pad2(it.di+1)+' · '+w.n));c.appendChild(hrow(w));
   var kb=el('div','kan');kb.appendChild(el('div','q',qtext(k)));
   var grid=el('div','opts');
   it.o.forEach(function(o){
