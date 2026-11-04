@@ -97,12 +97,16 @@ function login(){
     var b=this;b.disabled=true;document.getElementById('m').textContent='확인 중...';
     post({act:'list',name:v,pin:PIN}).then(function(r){
       if(r&&r.ok){ss('wn_name',v);home(r)}
+      else if(isAdm(v)){ss('wn_name',v);home(admData())}
       else{b.disabled=false;document.getElementById('m').textContent='등록된 이름이 아니에요.'}
-    },function(){b.disabled=false;document.getElementById('m').textContent='연결이 안 됐어요. 인터넷을 확인해 주세요.'});
+    },function(){if(isAdm(v)){ss('wn_name',v);home(admData());return}b.disabled=false;document.getElementById('m').textContent='연결이 안 됐어요. 인터넷을 확인해 주세요.'});
   };
 }
 var DATA=null,resetArm=false,resetT=null,CALM=null;
-var PLAN={"김서진": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "서승언": {"dv": "Core", "d": "B", "s": "2026-11-09", "m": "고1"}, "장은율": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김지효": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김린": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "이동우": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고2"}, "김도현": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김소희": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "윤유란": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "정다원": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "김민서": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "이지민": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "조혜린": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}};
+var PLAN={"김서진": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "서승언": {"dv": "Core", "d": "B", "s": "2026-11-09", "m": "고1"}, "장은율": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김지효": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김린": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "이동우": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고2"}, "김도현": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김소희": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "윤유란": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "정다원": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "김민서": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "이지민": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "조혜린": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "최의준": {"dv": "Core", "d": "B", "s": "2026-11-04", "m": "고1"}};
+var ADMIN=['신유정'];
+function isAdm(n){return ADMIN.indexOf(n)>=0}
+function admData(){return{ok:true,items:[],cap:40,max:60,today:iso(new Date())}}
 var CLOSED=['2026-12-25','2026-12-30','2026-12-31','2027-01-01'];
 var HWD=[1,2,3,4,6,0];
 var DQ={B:{n:80,q:1200,u:'daily/b/'},H:{n:112,q:1680,u:'daily/h/'}};
@@ -122,7 +126,7 @@ function home(r){
   var n=name();if(!n){login();return}
   if(!r){$.innerHTML='<h1>로드맵</h1><div class="sub">불러오는 중...</div>';
     flushR().then(function(){return post({act:'list',name:n,pin:PIN})}).then(function(x){
-      if(x&&x.ok)home(x);else{ds('wn_name');login()}
+      if(x&&x.ok)home(x);else if(isAdm(n))home(admData());else{ds('wn_name');login()}
     },function(){$.innerHTML='<h1>로드맵</h1><div class="card">연결이 안 됐어요. 인터넷을 확인해 주세요.<button class="btn pri" id="rt">다시 불러오기</button></div>';document.getElementById('rt').onclick=function(){home()}});return
   }
   DATA=r;
@@ -146,7 +150,11 @@ function home(r){
   h+='<div class="kp"><div><b>'+streak+'</b><span>연속 완료일</span></div><div><b>'+(I?wk+'/'+wkN:'-')+'</b><span>이번 주 숙제</span></div><div><b>'+today+'</b><span>오늘 복습</span></div></div></div>';
   /* today */
   h+='<h2 class="sec">오늘</h2>';
-  if(I){
+  if(isAdm(n)){
+    [['데일리보카 B',VB+'daily/b/?t=1','#2a8a5c'],['데일리보카 H',VB+'daily/h/?t=1','#2a8a5c'],['더블보카 Core',VB+'dvcore/?t=1','#2d6a9f'],['더블보카 Pro',VB+'dvpro/?t=1','#2d6a9f'],['미니모의고사 고1',MM['고1'],'#8a5a9e'],['미니모의고사 고2',MM['고2'],'#8a5a9e'],['천일문S 문장줄이기',VB+'sj/','#2b5aa8']].forEach(function(t){
+      h+='<a class="tk" href="'+t[1]+'"><i class="bd" style="background:'+t[2]+'"></i><div class="tt"><b>'+t[0]+'</b></div><span class="chip n">자유</span></a>';
+    });
+  }else if(I){
     var P=I.P,tk=I.map[ti],dn=Object.keys(I.S).length;
     var late=0;for(var dk in I.map){if(dk<ti&&!I.S[I.map[dk]])late++}
     var sub,chip;
