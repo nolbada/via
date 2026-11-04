@@ -1,12 +1,682 @@
 [
-{"en":"The [[concert]] [[was canceled]] because of a thunderstorm hitting the country, leaving thousands of fans disappointed outside the arena.","key":"그 콘서트는 취소되었다.","form":"1형식","ref":[["I","s"],["sleep","v"]],"refrel":"","me":[["The concert","s"],["was canceled","v"],["because of a thunderstorm hitting the country,","x"],["leaving thousands of fans disappointed outside the arena.","x"]],"merel":"","easy":[["먼저 뼈대부터:","The concert was canceled","그 콘서트는 취소되었다."],["왜?","because of a thunderstorm hitting the country","그 나라를 강타한 뇌우 때문에."],["그 결과는?","leaving thousands of fans disappointed outside the arena","수천 명의 팬들을 경기장 밖에서 실망한 채로 남겨 두면서."],["요약: 뇌우 때문에 콘서트가 취소되어 팬들이 실망했다."]],"notes":["<b>감정을 느끼는 쪽 = 과거분사(-ed)</b>, 감정을 일으키는 쪽 = 현재분사(-ing). 팬들은 실망을 '느끼니까' disappointed(실망한)","<b>leave(남겨 두다) A B</b> = A를 B인 채로 두다 → B 자리에 형용사나 분사가 온다"]},
-{"en":"The [[parents]] [[sat]] and [[enjoyed]] [[a conversation]] while their children played in the park, a peaceful routine that always brings them closer as a family.","key":"부모는 앉아서 대화를 즐겼다.","form":"3형식","ref":[["I","s"],["like","v"],["apples","o"]],"refrel":"I ≠ apples","me":[["The parents","s"],["sat and enjoyed","v"],["a conversation","o"],["while their children played in the park,","x"],["a peaceful routine that always brings them closer as a family.","x"]],"merel":"parents ≠ conversation","easy":[["먼저 뼈대부터:","The parents sat and enjoyed a conversation","부모는 앉아서 대화를 즐겼다."],["언제?","while their children played in the park","아이들이 공원에서 노는 동안."],["어떤 일상?","a peaceful routine that always brings them closer as a family","그들을 가족으로서 항상 더 가깝게 만들어 주는 평화로운 일상."],["요약: 아이들이 놀 때 부모가 대화하는 일상이 가족을 더 가깝게 해 준다."]],"notes":["<b>관계대명사절의 동사는 선행사에 수일치</b>: 선행사 a peaceful routine(평화로운 일상)이 단수 → bring(가져오다)이 아니라 brings","<b>콤마 뒤 명사(a peaceful routine)</b>는 앞 내용을 다시 설명해 주는 말이고, that 이하가 그 명사를 꾸민다"]},
-{"en":"Despite heavy traffic on the city roads, [[Sarah]] [[arrived]] at the meeting on time, feeling proud of herself as she had planned every minute of her commute.","key":"Sarah가 도착했다.","form":"1형식","ref":[["I","s"],["sleep","v"]],"refrel":"","me":[["Despite heavy traffic on the city roads,","x"],["Sarah","s"],["arrived","v"],["at the meeting on time,","x"],["feeling proud of herself as she had planned every minute of her commute.","x"]],"merel":"","easy":[["먼저 뼈대부터:","Sarah arrived","Sarah가 도착했다."],["어떤 상황에도?","Despite heavy traffic on the city roads","도시 도로의 극심한 교통 체증에도 불구하고."],["어디에, 언제?","at the meeting on time","제시간에 회의에."],["기분은?","feeling proud of herself as she had planned every minute of her commute","통근의 매 순간을 계획해 둔 것처럼 스스로가 자랑스러워하며."],["요약: Sarah는 교통 체증에도 제시간에 도착해 뿌듯했다."]],"notes":["<b>like는 전치사</b>(뒤에 명사만), <b>as는 전치사 + 접속사</b>(뒤에 주어+동사 가능). 뒤에 절(she had planned)이 오면 as","<b>Despite + 명사(구)</b> = ~에도 불구하고 (뒤에 절이 오지 않는다)"]},
-{"en":"Though the dog barked loudly, [[it]] [[didn't bother]] [[the neighbors]], although it continued barking well into the night without any sign of stopping.","key":"그것은 이웃들을 성가시게 하지 않았다.","form":"3형식","ref":[["I","s"],["like","v"],["apples","o"]],"refrel":"I ≠ apples","me":[["Though the dog barked loudly,","x"],["it","s"],["didn't bother","v"],["the neighbors,","o"],["although it continued barking well into the night without any sign of stopping.","x"]],"merel":"it ≠ neighbors","easy":[["먼저 뼈대부터:","it didn't bother the neighbors","그것은 이웃들을 성가시게 하지 않았다."],["무엇이 그랬나?","Though the dog barked loudly","그 개가 크게 짖었지만."],["또 무슨 사정이?","although it continued barking well into the night","비록 그 개가 밤늦게까지 계속 짖었지만."],["어떻게?","without any sign of stopping","멈출 기미도 없이."],["요약: 개가 밤새 짖었는데도 이웃은 불편해하지 않았다."]],"notes":["<b>although / though + 주어+동사</b>(절), <b>despite + 명사(구)</b>. 뒤에 절이 이어지면 although","<b>continue(계속하다) + -ing</b> = 계속 ~하다 (continued barking = 계속 짖었다)"]},
-{"en":"[[Ms. Undset]] [[escaped]] [[Norway]] during the German attack, but she returned after WWII, a journey she completed alone back in 1940.","key":"Undset 여사는 노르웨이를 탈출했다.","form":"3형식","ref":[["I","s"],["like","v"],["apples","o"]],"refrel":"I ≠ apples","me":[["Ms. Undset","s"],["escaped","v"],["Norway","o"],["during the German attack,","x"],["but she returned after WWII,","x"],["a journey she completed alone back in 1940.","x"]],"merel":"Undset ≠ Norway","easy":[["먼저 뼈대부터:","Ms. Undset escaped Norway","Undset 여사는 노르웨이를 탈출했다."],["언제?","during the German attack","독일의 공격 동안."],["그 뒤에?","but she returned after WWII","하지만 2차 세계대전 이후 돌아왔다."],["어떤 여정?","a journey she completed alone back in 1940","1940년에 그녀가 홀로 끝낸 여정."],["요약: Undset 여사는 1940년에 홀로 탈출했고 전쟁 후 돌아왔다."]],"notes":["<b>in 1940, yesterday, ago처럼 분명한 과거 시점 표현</b>이 있으면 현재완료가 아니라 단순과거. 예: I finished it in 1940.","a journey 뒤의 she completed는 '그녀가 끝낸'이라고 앞 명사 journey(여정)를 꾸민다 (that이 생략된 형태)"]},
-{"en":"[[I]] [[moved]] to this city in 2010, and since that year, I have witnessed its remarkable growth, though I am still not sure what changes matter the most to my neighbors.","key":"나는 이사했다.","form":"1형식","ref":[["I","s"],["sleep","v"]],"refrel":"","me":[["I","s"],["moved","v"],["to this city in 2010,","x"],["and since that year, I have witnessed its remarkable growth,","x"],["though I am still not sure what changes matter the most to my neighbors.","x"]],"merel":"","easy":[["먼저 뼈대부터:","I moved","나는 이사했다."],["어디로, 언제?","to this city in 2010","2010년에 이 도시로."],["그 뒤로?","since that year, I have witnessed its remarkable growth","그 해 이래로 나는 이 도시의 눈부신 성장을 지켜봐 왔다."],["그런데?","though I am still not sure what changes matter the most to my neighbors","비록 어떤 변화가 이웃들에게 가장 중요한지는 여전히 확신하지 못하지만."],["요약: 2010년 이사 온 뒤 도시의 성장을 봐 왔지만, 무엇이 가장 중요한지는 아직 모른다."]],"notes":["<b>that은 뒤에 완전한 절</b>, <b>what은 뒤가 불완전한 절</b>(주어나 목적어가 빠짐). 여기서는 what이 와서 '어떤 변화가 ~인지'가 된다","<b>since ~(~이래로)</b>가 나오면 현재완료와 잘 짝을 이룬다 (have witnessed = 지켜봐 왔다, witness(목격하다))"]},
-{"en":"The [[students]] [[celebrated]] by going out for dinner after they finished the college entrance exams, a tradition that has been celebrated by nearly every graduating class at their school.","key":"학생들은 자축했다.","form":"1형식","ref":[["I","s"],["sleep","v"]],"refrel":"","me":[["The students","s"],["celebrated","v"],["by going out for dinner after they finished the college entrance exams,","x"],["a tradition that has been celebrated by nearly every graduating class at their school.","x"]],"merel":"","easy":[["먼저 뼈대부터:","The students celebrated","학생들은 자축했다."],["어떻게, 언제?","by going out for dinner after they finished the college entrance exams","대입 시험을 마친 후 저녁을 먹으러 나감으로써."],["어떤 전통?","a tradition that has been celebrated by nearly every graduating class","거의 모든 졸업반이 기념해 온 전통."],["요약: 시험이 끝나면 저녁을 먹으며 자축하는 건 오랜 전통이다."]],"notes":["<b>주어가 동작을 '당하면' 수동태(be + p.p.)</b>: 전통(tradition)은 기념하는 쪽이 아니라 기념되는 쪽 → has been celebrated(기념되어 왔다) + by ~","<b>by + -ing</b> = ~함으로써 (by going out = 나감으로써, go out(나가다))"]},
-{"en":"With the same green eyes and red hair, [[Natalie]] [[looks like her mother]], a resemblance that grows stronger as she grows older each year.","key":"Natalie는 어머니를 닮았다.","form":"2형식","ref":[["I","s"],["am","v"],["happy","c"]],"refrel":"I = happy","me":[["With the same green eyes and red hair,","x"],["Natalie","s"],["looks","v"],["like her mother,","c"],["a resemblance that grows stronger as she grows older each year.","x"]],"merel":"Natalie = like her mother","easy":[["먼저 뼈대부터:","Natalie looks like her mother","Natalie는 어머니를 닮았다."],["어떤 모습으로?","With the same green eyes and red hair","같은 녹색 눈과 붉은 머리로."],["어떤 닮음?","a resemblance that grows stronger","더 강해지는 닮음."],["언제 더 강해져?","as she grows older each year","그녀가 매년 나이가 들수록."],["요약: Natalie는 나이 들수록 어머니를 더 닮아 간다."]],"notes":["<b>비교급 만들기</b>: 짧은(1음절) 형용사는 -er (old → older(더 나이 든)), 긴 형용사는 more + 원급 (beautiful → more beautiful). old에 more를 붙이면 ✕","<b>grow + 형용사</b> = ~해지다 (grows stronger = 더 강해진다)"]},
-{"en":"[[We]] [[worked]] hard until the late hours of the night to complete the project successfully, though nobody could say what caused the biggest delay in the process.","key":"우리는 열심히 일했다.","form":"1형식","ref":[["I","s"],["sleep","v"]],"refrel":"","me":[["We","s"],["worked","v"],["hard until the late hours of the night to complete the project successfully,","x"],["though nobody could say what caused the biggest delay in the process.","x"]],"merel":"","easy":[["먼저 뼈대부터:","We worked","우리는 일했다."],["어떻게, 왜?","hard until the late hours of the night to complete the project successfully","프로젝트를 성공적으로 끝내려고 밤늦게까지 열심히."],["그런데?","though nobody could say what caused the biggest delay in the process","비록 무엇이 과정에서 가장 큰 지연을 일으켰는지는 아무도 말하지 못했지만."],["요약: 밤늦게까지 일해 프로젝트를 끝냈지만, 지연의 원인은 아무도 몰랐다."]],"notes":["<b>what + 동사(주어가 빠진 불완전한 절)</b> = 무엇이 ~했는지. if는 '~인지 아닌지'이며 뒤에 완전한 절이 와야 한다","<b>to + 동사원형</b> = ~하기 위해 (to complete = 완성하기 위해, complete(완성하다))"]},
-{"en":"[[People]] naturally [[get]] [[used to things around them]] as time passes, embracing what comes next in their daily routine.","key":"사람들은 주변의 것들에 익숙해진다.","form":"2형식","ref":[["I","s"],["am","v"],["happy","c"]],"refrel":"I = happy","me":[["People","s"],["naturally","x"],["get","v"],["used to things around them","c"],["as time passes,","x"],["embracing what comes next in their daily routine.","x"]],"merel":"People = used to things","easy":[["먼저 뼈대부터:","People get used to things","사람들은 것들에 익숙해진다."],["어떤 것들?","things around them","그들 주변의 것들."],["언제?","as time passes","시간이 지남에 따라."],["그러면서?","embracing what comes next in their daily routine","일상에서 다음에 오는 것을 받아들이면서."],["요약: 사람들은 시간이 지나면 일상에서 다음에 오는 것도 받아들인다."]],"notes":["<b>what = ~하는 것</b>(앞에 꾸밀 명사가 필요 없음). 꾸밀 명사(선행사) 없이 '~하는 것'이면 which ✕ what","<b>get used to + 명사</b> = ~에 익숙해지다"]}
+ {
+  "en": "The [[concert]] [[was canceled]] because of a thunderstorm hitting the country, leaving thousands of fans disappointed outside the arena.",
+  "key": "그 콘서트는 취소되었다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "The concert",
+    "s"
+   ],
+   [
+    "was canceled",
+    "v"
+   ],
+   [
+    "because of a thunderstorm hitting the country,",
+    "x"
+   ],
+   [
+    "leaving thousands of fans disappointed outside the arena.",
+    "x"
+   ]
+  ],
+  "merel": "수동태",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "The concert was canceled",
+    "그 콘서트는 취소되었다."
+   ],
+   [
+    "왜?",
+    "because of a thunderstorm hitting the country",
+    "그 나라를 강타한 뇌우 때문에."
+   ],
+   [
+    "그 결과는?",
+    "leaving thousands of fans disappointed outside the arena",
+    "수천 명의 팬들을 경기장 밖에서 실망한 채로 남겨 두면서."
+   ],
+   [
+    "요약: 뇌우 때문에 콘서트가 취소되어 팬들이 실망했다."
+   ]
+  ],
+  "notes": [
+   "<b>감정을 느끼는 쪽 = 과거분사(-ed)</b>, 감정을 일으키는 쪽 = 현재분사(-ing). 팬들은 실망을 '느끼니까' disappointed(실망한)",
+   "<b>leave(남겨 두다) A B</b> = A를 B인 채로 두다 → B 자리에 형용사나 분사가 온다"
+  ]
+ },
+ {
+  "en": "The [[parents]] [[sat]] and [[enjoyed]] [[a conversation]] while their children played in the park, a peaceful routine that always brings them closer as a family.",
+  "key": "부모는 앉아서 대화를 즐겼다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "The parents",
+    "s"
+   ],
+   [
+    "sat and enjoyed",
+    "v"
+   ],
+   [
+    "a conversation",
+    "o"
+   ],
+   [
+    "while their children played in the park,",
+    "x"
+   ],
+   [
+    "a peaceful routine that always brings them closer as a family.",
+    "x"
+   ]
+  ],
+  "merel": "parents ≠ conversation",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "The parents sat and enjoyed a conversation",
+    "부모는 앉아서 대화를 즐겼다."
+   ],
+   [
+    "언제?",
+    "while their children played in the park",
+    "아이들이 공원에서 노는 동안."
+   ],
+   [
+    "어떤 일상?",
+    "a peaceful routine that always brings them closer as a family",
+    "그들을 가족으로서 항상 더 가깝게 만들어 주는 평화로운 일상."
+   ],
+   [
+    "요약: 아이들이 놀 때 부모가 대화하는 일상이 가족을 더 가깝게 해 준다."
+   ]
+  ],
+  "notes": [
+   "<b>관계대명사절의 동사는 선행사에 수일치</b>: 선행사 a peaceful routine(평화로운 일상)이 단수 → bring(가져오다)이 아니라 brings",
+   "<b>콤마 뒤 명사(a peaceful routine)</b>는 앞 내용을 다시 설명해 주는 말이고, that 이하가 그 명사를 꾸민다"
+  ]
+ },
+ {
+  "en": "Despite heavy traffic on the city roads, [[Sarah]] [[arrived]] at the meeting on time, feeling proud of herself as she had planned every minute of her commute.",
+  "key": "Sarah가 도착했다.",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "Despite heavy traffic on the city roads,",
+    "x"
+   ],
+   [
+    "Sarah",
+    "s"
+   ],
+   [
+    "arrived",
+    "v"
+   ],
+   [
+    "at the meeting on time,",
+    "x"
+   ],
+   [
+    "feeling proud of herself as she had planned every minute of her commute.",
+    "x"
+   ]
+  ],
+  "merel": "",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Sarah arrived",
+    "Sarah가 도착했다."
+   ],
+   [
+    "어떤 상황에도?",
+    "Despite heavy traffic on the city roads",
+    "도시 도로의 극심한 교통 체증에도 불구하고."
+   ],
+   [
+    "어디에, 언제?",
+    "at the meeting on time",
+    "제시간에 회의에."
+   ],
+   [
+    "기분은?",
+    "feeling proud of herself as she had planned every minute of her commute",
+    "통근의 매 순간을 계획해 둔 것처럼 스스로가 자랑스러워하며."
+   ],
+   [
+    "요약: Sarah는 교통 체증에도 제시간에 도착해 뿌듯했다."
+   ]
+  ],
+  "notes": [
+   "<b>like는 전치사</b>(뒤에 명사만), <b>as는 전치사 + 접속사</b>(뒤에 주어+동사 가능). 뒤에 절(she had planned)이 오면 as",
+   "<b>Despite + 명사(구)</b> = ~에도 불구하고 (뒤에 절이 오지 않는다)"
+  ]
+ },
+ {
+  "en": "Though the dog barked loudly, [[it]] [[didn't bother]] [[the neighbors]], although it continued barking well into the night without any sign of stopping.",
+  "key": "그것은 이웃들을 성가시게 하지 않았다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Though the dog barked loudly,",
+    "x"
+   ],
+   [
+    "it",
+    "s"
+   ],
+   [
+    "didn't bother",
+    "v"
+   ],
+   [
+    "the neighbors,",
+    "o"
+   ],
+   [
+    "although it continued barking well into the night without any sign of stopping.",
+    "x"
+   ]
+  ],
+  "merel": "it ≠ neighbors",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "it didn't bother the neighbors",
+    "그것은 이웃들을 성가시게 하지 않았다."
+   ],
+   [
+    "무엇이 그랬나?",
+    "Though the dog barked loudly",
+    "그 개가 크게 짖었지만."
+   ],
+   [
+    "또 무슨 사정이?",
+    "although it continued barking well into the night",
+    "비록 그 개가 밤늦게까지 계속 짖었지만."
+   ],
+   [
+    "어떻게?",
+    "without any sign of stopping",
+    "멈출 기미도 없이."
+   ],
+   [
+    "요약: 개가 밤새 짖었는데도 이웃은 불편해하지 않았다."
+   ]
+  ],
+  "notes": [
+   "<b>although / though + 주어+동사</b>(절), <b>despite + 명사(구)</b>. 뒤에 절이 이어지면 although",
+   "<b>continue(계속하다) + -ing</b> = 계속 ~하다 (continued barking = 계속 짖었다)"
+  ]
+ },
+ {
+  "en": "[[Ms. Undset]] [[escaped]] [[Norway]] during the German attack, but she returned after WWII, a journey she completed alone back in 1940.",
+  "key": "Undset 여사는 노르웨이를 탈출했다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Ms. Undset",
+    "s"
+   ],
+   [
+    "escaped",
+    "v"
+   ],
+   [
+    "Norway",
+    "o"
+   ],
+   [
+    "during the German attack,",
+    "x"
+   ],
+   [
+    "but she returned after WWII,",
+    "x"
+   ],
+   [
+    "a journey she completed alone back in 1940.",
+    "x"
+   ]
+  ],
+  "merel": "Undset ≠ Norway",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Ms. Undset escaped Norway",
+    "Undset 여사는 노르웨이를 탈출했다."
+   ],
+   [
+    "언제?",
+    "during the German attack",
+    "독일의 공격 동안."
+   ],
+   [
+    "그 뒤에?",
+    "but she returned after WWII",
+    "하지만 2차 세계대전 이후 돌아왔다."
+   ],
+   [
+    "어떤 여정?",
+    "a journey she completed alone back in 1940",
+    "1940년에 그녀가 홀로 끝낸 여정."
+   ],
+   [
+    "요약: Undset 여사는 1940년에 홀로 탈출했고 전쟁 후 돌아왔다."
+   ]
+  ],
+  "notes": [
+   "<b>in 1940, yesterday, ago처럼 분명한 과거 시점 표현</b>이 있으면 현재완료가 아니라 단순과거. 예: I finished it in 1940.",
+   "a journey 뒤의 she completed는 '그녀가 끝낸'이라고 앞 명사 journey(여정)를 꾸민다 (that이 생략된 형태)"
+  ]
+ },
+ {
+  "en": "[[I]] [[moved]] to this city in 2010, and since that year, I have witnessed its remarkable growth, though I am still not sure what changes matter the most to my neighbors.",
+  "key": "나는 이사했다.",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "moved",
+    "v"
+   ],
+   [
+    "to this city in 2010,",
+    "x"
+   ],
+   [
+    "and since that year, I have witnessed its remarkable growth,",
+    "x"
+   ],
+   [
+    "though I am still not sure what changes matter the most to my neighbors.",
+    "x"
+   ]
+  ],
+  "merel": "",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "I moved",
+    "나는 이사했다."
+   ],
+   [
+    "어디로, 언제?",
+    "to this city in 2010",
+    "2010년에 이 도시로."
+   ],
+   [
+    "그 뒤로?",
+    "since that year, I have witnessed its remarkable growth",
+    "그 해 이래로 나는 이 도시의 눈부신 성장을 지켜봐 왔다."
+   ],
+   [
+    "그런데?",
+    "though I am still not sure what changes matter the most to my neighbors",
+    "비록 어떤 변화가 이웃들에게 가장 중요한지는 여전히 확신하지 못하지만."
+   ],
+   [
+    "요약: 2010년 이사 온 뒤 도시의 성장을 봐 왔지만, 무엇이 가장 중요한지는 아직 모른다."
+   ]
+  ],
+  "notes": [
+   "<b>that은 뒤에 완전한 절</b>, <b>what은 뒤가 불완전한 절</b>(주어나 목적어가 빠짐). 여기서는 what이 와서 '어떤 변화가 ~인지'가 된다",
+   "<b>since ~(~이래로)</b>가 나오면 현재완료와 잘 짝을 이룬다 (have witnessed = 지켜봐 왔다, witness(목격하다))"
+  ]
+ },
+ {
+  "en": "The [[students]] [[celebrated]] by going out for dinner after they finished the college entrance exams, a tradition that has been celebrated by nearly every graduating class at their school.",
+  "key": "학생들은 자축했다.",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "The students",
+    "s"
+   ],
+   [
+    "celebrated",
+    "v"
+   ],
+   [
+    "by going out for dinner after they finished the college entrance exams,",
+    "x"
+   ],
+   [
+    "a tradition that has been celebrated by nearly every graduating class at their school.",
+    "x"
+   ]
+  ],
+  "merel": "",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "The students celebrated",
+    "학생들은 자축했다."
+   ],
+   [
+    "어떻게, 언제?",
+    "by going out for dinner after they finished the college entrance exams",
+    "대입 시험을 마친 후 저녁을 먹으러 나감으로써."
+   ],
+   [
+    "어떤 전통?",
+    "a tradition that has been celebrated by nearly every graduating class",
+    "거의 모든 졸업반이 기념해 온 전통."
+   ],
+   [
+    "요약: 시험이 끝나면 저녁을 먹으며 자축하는 건 오랜 전통이다."
+   ]
+  ],
+  "notes": [
+   "<b>주어가 동작을 '당하면' 수동태(be + p.p.)</b>: 전통(tradition)은 기념하는 쪽이 아니라 기념되는 쪽 → has been celebrated(기념되어 왔다) + by ~",
+   "<b>by + -ing</b> = ~함으로써 (by going out = 나감으로써, go out(나가다))"
+  ]
+ },
+ {
+  "en": "With the same green eyes and red hair, [[Natalie]] [[looks like her mother]], a resemblance that grows stronger as she grows older each year.",
+  "key": "Natalie는 어머니를 닮았다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "With the same green eyes and red hair,",
+    "x"
+   ],
+   [
+    "Natalie",
+    "s"
+   ],
+   [
+    "looks",
+    "v"
+   ],
+   [
+    "like her mother,",
+    "c"
+   ],
+   [
+    "a resemblance that grows stronger as she grows older each year.",
+    "x"
+   ]
+  ],
+  "merel": "Natalie = like her mother",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Natalie looks like her mother",
+    "Natalie는 어머니를 닮았다."
+   ],
+   [
+    "어떤 모습으로?",
+    "With the same green eyes and red hair",
+    "같은 녹색 눈과 붉은 머리로."
+   ],
+   [
+    "어떤 닮음?",
+    "a resemblance that grows stronger",
+    "더 강해지는 닮음."
+   ],
+   [
+    "언제 더 강해져?",
+    "as she grows older each year",
+    "그녀가 매년 나이가 들수록."
+   ],
+   [
+    "요약: Natalie는 나이 들수록 어머니를 더 닮아 간다."
+   ]
+  ],
+  "notes": [
+   "<b>비교급 만들기</b>: 짧은(1음절) 형용사는 -er (old → older(더 나이 든)), 긴 형용사는 more + 원급 (beautiful → more beautiful). old에 more를 붙이면 ✕",
+   "<b>grow + 형용사</b> = ~해지다 (grows stronger = 더 강해진다)"
+  ]
+ },
+ {
+  "en": "[[We]] [[worked]] hard until the late hours of the night to complete the project successfully, though nobody could say what caused the biggest delay in the process.",
+  "key": "우리는 열심히 일했다.",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "We",
+    "s"
+   ],
+   [
+    "worked",
+    "v"
+   ],
+   [
+    "hard until the late hours of the night to complete the project successfully,",
+    "x"
+   ],
+   [
+    "though nobody could say what caused the biggest delay in the process.",
+    "x"
+   ]
+  ],
+  "merel": "",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "We worked",
+    "우리는 일했다."
+   ],
+   [
+    "어떻게, 왜?",
+    "hard until the late hours of the night to complete the project successfully",
+    "프로젝트를 성공적으로 끝내려고 밤늦게까지 열심히."
+   ],
+   [
+    "그런데?",
+    "though nobody could say what caused the biggest delay in the process",
+    "비록 무엇이 과정에서 가장 큰 지연을 일으켰는지는 아무도 말하지 못했지만."
+   ],
+   [
+    "요약: 밤늦게까지 일해 프로젝트를 끝냈지만, 지연의 원인은 아무도 몰랐다."
+   ]
+  ],
+  "notes": [
+   "<b>what + 동사(주어가 빠진 불완전한 절)</b> = 무엇이 ~했는지. if는 '~인지 아닌지'이며 뒤에 완전한 절이 와야 한다",
+   "<b>to + 동사원형</b> = ~하기 위해 (to complete = 완성하기 위해, complete(완성하다))"
+  ]
+ },
+ {
+  "en": "[[People]] naturally [[get]] [[used to things around them]] as time passes, embracing what comes next in their daily routine.",
+  "key": "사람들은 주변의 것들에 익숙해진다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "People",
+    "s"
+   ],
+   [
+    "naturally",
+    "x"
+   ],
+   [
+    "get",
+    "v"
+   ],
+   [
+    "used to things around them",
+    "c"
+   ],
+   [
+    "as time passes,",
+    "x"
+   ],
+   [
+    "embracing what comes next in their daily routine.",
+    "x"
+   ]
+  ],
+  "merel": "People = used to things",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "People get used to things",
+    "사람들은 것들에 익숙해진다."
+   ],
+   [
+    "어떤 것들?",
+    "things around them",
+    "그들 주변의 것들."
+   ],
+   [
+    "언제?",
+    "as time passes",
+    "시간이 지남에 따라."
+   ],
+   [
+    "그러면서?",
+    "embracing what comes next in their daily routine",
+    "일상에서 다음에 오는 것을 받아들이면서."
+   ],
+   [
+    "요약: 사람들은 시간이 지나면 일상에서 다음에 오는 것도 받아들인다."
+   ]
+  ],
+  "notes": [
+   "<b>what = ~하는 것</b>(앞에 꾸밀 명사가 필요 없음). 꾸밀 명사(선행사) 없이 '~하는 것'이면 which ✕ what",
+   "<b>get used to + 명사</b> = ~에 익숙해지다"
+  ]
+ }
 ]

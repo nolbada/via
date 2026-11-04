@@ -1,1 +1,130 @@
-[{"en": "Dining is a sign of human community and [[distinguishes]] men from beasts.", "key": "식사는 표시이다.", "form": "2형식", "ref": [["I", "s"], ["am", "v"], ["happy", "c"]], "refrel": "I = happy", "me": [["Dining", "s"], ["is", "v"], ["a sign of human community", "c"], ["and distinguishes men from beasts.", "x"]], "merel": "Dining = a sign", "easy": [["먼저 뼈대부터:", "Dining is a sign", "식사는 표시이다."], ["무엇의?", "of human community", "인간 공동체의."], ["그리고?", "and distinguishes men from beasts", "그리고 인간을 짐승과 구별해 준다."], ["요약: 함께 식사하는 것은 인간만의 공동체 표시이다."]], "notes": ["<b>and로 이어진 동사는 같은 모양</b>: is와 distinguishes(distinguish 구별하다의 -es형) → 주어 Dining 뒤 현재형", "distinguishing(-ing)은 혼자 동사가 못 돼요", "(다음 문장) <b>Animals eat ~ but care ~</b>: but 앞뒤 동사 eat과 care → 같은 동사원형, to care ✕"]}, {"en": "Can [[your life]] either [[get]] worse or become better just because of the thoughts you have?", "key": "당신의 삶이 나빠지거나 좋아질 수 있을까?", "form": "2형식", "ref": [["I", "s"], ["am", "v"], ["happy", "c"]], "refrel": "I = happy", "me": [["Can", "x"], ["your life", "s"], ["either get", "v"], ["worse or become better just because of the thoughts you have?", "c"]], "merel": "life = worse", "easy": [["먼저 뼈대부터:", "your life can get worse or better", "삶은 나빠지거나 좋아질 수 있다."], ["무엇이 되나?", "either get worse or become better", "나빠지거나 좋아지거나."], ["왜?", "just because of the thoughts you have", "단지 당신이 가진 생각 때문에."], ["요약: 내 생각이 삶을 좋게도 나쁘게도 바꿀 수 있을까?"]], "notes": ["<b>either A or B</b>: get(되다)과 become(되다)은 같은 모양 → 조동사 Can 뒤 동사원형, becoming ✕", "get/become + 형용사 = ~하게 되다 (get worse 나빠지다, become better 좋아지다)", "(다음 문장) found, passed, <b>recovered</b>: or로 이어진 동사는 모두 과거형 → to recover ✕"]}]
+[
+ {
+  "en": "[[Dining]] [[is]] [[a sign]] of human community and distinguishes men from beasts.",
+  "key": "식사는 표시이다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "Dining",
+    "s"
+   ],
+   [
+    "is",
+    "v"
+   ],
+   [
+    "a sign of human community",
+    "c"
+   ],
+   [
+    "and distinguishes men from beasts.",
+    "x"
+   ]
+  ],
+  "merel": "Dining = a sign",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Dining is a sign",
+    "식사는 표시이다."
+   ],
+   [
+    "무엇의?",
+    "of human community",
+    "인간 공동체의."
+   ],
+   [
+    "그리고?",
+    "and distinguishes men from beasts",
+    "그리고 인간을 짐승과 구별해 준다."
+   ],
+   [
+    "요약: 함께 식사하는 것은 인간만의 공동체 표시이다."
+   ]
+  ],
+  "notes": [
+   "<b>and로 이어진 동사는 같은 모양</b>: is와 distinguishes(distinguish 구별하다의 -es형) → 주어 Dining 뒤 현재형",
+   "distinguishing(-ing)은 혼자 동사가 못 돼요",
+   "(다음 문장) <b>Animals eat ~ but care ~</b>: but 앞뒤 동사 eat과 care → 같은 동사원형, to care ✕"
+  ]
+ },
+ {
+  "en": "Can [[your life]] either [[get]] worse or become better just because of the thoughts you have?",
+  "key": "당신의 삶이 나빠지거나 좋아질 수 있을까?",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "Can",
+    "x"
+   ],
+   [
+    "your life",
+    "s"
+   ],
+   [
+    "either get",
+    "v"
+   ],
+   [
+    "worse or become better just because of the thoughts you have?",
+    "c"
+   ]
+  ],
+  "merel": "life = worse",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "your life can get worse or better",
+    "삶은 나빠지거나 좋아질 수 있다."
+   ],
+   [
+    "무엇이 되나?",
+    "either get worse or become better",
+    "나빠지거나 좋아지거나."
+   ],
+   [
+    "왜?",
+    "just because of the thoughts you have",
+    "단지 당신이 가진 생각 때문에."
+   ],
+   [
+    "요약: 내 생각이 삶을 좋게도 나쁘게도 바꿀 수 있을까?"
+   ]
+  ],
+  "notes": [
+   "<b>either A or B</b>: get(되다)과 become(되다)은 같은 모양 → 조동사 Can 뒤 동사원형, becoming ✕",
+   "get/become + 형용사 = ~하게 되다 (get worse 나빠지다, become better 좋아지다)",
+   "(다음 문장) found, passed, <b>recovered</b>: or로 이어진 동사는 모두 과거형 → to recover ✕"
+  ]
+ }
+]
