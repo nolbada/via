@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1e293b">
+<meta name="application-name" content="REC">
+<meta name="apple-mobile-web-app-title" content="REC">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<title>REC</title>
+<style>
+:root{--bg:#f4f6f8;--card:#ffffff;--ink:#14202b;--line:#d9e0e7}
+@media (prefers-color-scheme:dark){:root{--bg:#0c1f2b;--card:#14303f;--ink:#e8eef2;--line:#24465a}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+main{max-width:560px;margin:0 auto;padding:28px 16px calc(40px + env(safe-area-inset-bottom,0px))}
+h1{margin:0 0 20px;font-size:26px;letter-spacing:.5px}
+a.app{display:block;background:var(--card);border:1px solid var(--line);border-left:8px solid var(--c);border-radius:12px;padding:22px 18px;margin:0 0 12px;color:var(--ink);text-decoration:none;font-size:20px;font-weight:700}
+a.app:active{background:var(--line)}
+</style>
+</head>
+<body>
+<main>
+<h1>REC</h1>
+<a class="app" style="--c:#16a34a" href="https://nolbada.github.io/via/hw/">숙제 확인</a>
+<a class="app" style="--c:#0f766e" href="https://nolbada.github.io/via-mid/m/yonga-mid2/records/">REC 중등</a>
+<a class="app" style="--c:#2f6fe4" href="https://nolbada.github.io/via-high/h/rec/">REC 고등</a>
+<a class="app" style="--c:#ea580c" href="https://nolbada.github.io/via/attend/">출석부</a>
+</main>
+</body>
+</html>
