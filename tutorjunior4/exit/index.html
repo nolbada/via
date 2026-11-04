@@ -111,7 +111,7 @@ var rdone={};try{rdone=JSON.parse(localStorage.getItem(KEY+"done")||"{}")||{}}ca
 var BYPASS=/[?&]open=1(&|$)/.test(location.search);
 function secName(k){return (META.secs&&META.secs[k])||String(k)}
 function readName(p){return (META.labs&&META.labs[p.id])||String(p.no)}
-function ready(id){if(BYPASS)return true;var n=NS[id];if(!n)return false;var i;
+function ready(id){return true;var n=NS[id];if(!n)return false;var i;
   for(i=0;i<n[0];i++)if(!rdone["o-"+id+"-s"+i])return false;
   for(i=0;i<n[1];i++)if(!rdone["o-"+id+"-g"+i])return false;
   for(i=0;i<n[2];i++)if(!rdone["o-"+id+"-q"+i])return false;
