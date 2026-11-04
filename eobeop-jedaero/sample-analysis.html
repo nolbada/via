@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>어법제대로 변형 해설 · 문장분석 샘플</title>
+<style>
+:root{--bg:#f6f4ee;--card:#fff;--ink:#1c1f26;--mute:#6a6e78;--line:#e3dfd3;--accent:#2b5aa8;--accent-soft:#e6edf8;--ok:#2d6a4f;--ok-soft:#e3f1ea;--warn:#9a5b00;--warn-soft:#fbf0dc;--red:#b3261e;
+--s-bg:#dbeafe;--s-fg:#1e40af;--v-bg:#dfe5ee;--v-fg:#1e293b;--o-bg:#dcfce7;--o-fg:#166534;--c-bg:#ffedd5;--c-fg:#9a3412;--x-bg:#e5e7eb;--x-fg:#374151;--note:#c2410c;--note-bg:#fff4e8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161b;--card:#1c1f26;--ink:#eceef2;--mute:#9aa0ab;--line:#2c303a;--accent:#8fb2ec;--accent-soft:#232c3d;--ok:#7cc5a1;--ok-soft:#1b2b24;--warn:#e6b25c;--warn-soft:#2f2616;--red:#ff8a80;
+--s-bg:#1e2f5c;--s-fg:#bfdbfe;--v-bg:#3a4658;--v-fg:#e2e8f0;--o-bg:#14392a;--o-fg:#bbf7d0;--c-bg:#4a2410;--c-fg:#fed7aa;--x-bg:#2f3340;--x-fg:#d1d5db;--note:#fdba74;--note-bg:#33200f;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;font-size:16px;line-height:1.65;padding:20px 16px 150px}
+.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--mute)}
+h1{font-size:21px;margin:2px 0 0;line-height:1.35}
+.pre{background:var(--accent-soft);border-radius:10px;padding:10px 14px;font-size:14.5px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 6px 20px rgba(30,30,40,.06)}
+.num{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:6px}
+.src{font-size:12px;color:var(--mute);margin-left:8px}
+.sent{font-size:19px;line-height:1.9;margin:12px 0 4px;word-break:keep-all}
+.w{cursor:pointer;border-radius:4px;padding:0 1px}
+.w.on{background:var(--accent-soft);box-shadow:0 0 0 2px var(--accent-soft)}
+.w.bone{background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%)}
+.w.err{color:var(--red);font-weight:700;text-decoration:underline}
+.sol{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;display:flex;flex-direction:column;gap:10px}
+.lab{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute);letter-spacing:.06em;display:block;margin-bottom:4px}
+.ko mark{background:linear-gradient(transparent 38%,rgba(255,214,0,.55) 38%,rgba(255,214,0,.55) 92%,transparent 92%);padding:0 3px;color:inherit}
+.ans{background:var(--ok-soft);border-left:5px solid var(--ok);padding:8px 12px;border-radius:0 8px 8px 0;font-weight:700}
+.ans s{color:var(--mute);font-weight:400}
+.rc{display:inline-flex;flex-direction:column;align-items:center;line-height:1.15;border-radius:7px;padding:3px 8px 2px;font-family:"IBM Plex Mono",monospace;font-size:13px;margin:2px 3px 2px 0}
+.rc i{font-style:normal;font-family:"Noto Sans KR",sans-serif;font-size:10px;opacity:.85}
+.rc.s{background:var(--s-bg);color:var(--s-fg)}.rc.v{background:var(--v-bg);color:var(--v-fg)}.rc.o{background:var(--o-bg);color:var(--o-fg)}.rc.c{background:var(--c-bg);color:var(--c-fg)}.rc.x{background:var(--x-bg);color:var(--x-fg)}
+.rel{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mute)}
+.mrow{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px;margin:3px 0}
+.mlab{font-size:12px;color:var(--mute);width:48px;flex:none}
+.form{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 9px}
+.easy{padding:10px 14px;border:1px solid var(--line);border-radius:10px}
+.easy p{margin:0 0 8px;font-size:15px}.easy .q{font-size:13px;color:var(--mute)}.easy .en{font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:500}.easy .a{display:block}
+.easy p.sum{border-top:1px dashed var(--line);padding-top:8px;font-weight:700;margin:0}
+.wl{display:flex;flex-direction:column;gap:6px}
+.wr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:2px 12px;padding:6px 0;border-bottom:1px dotted var(--line);font-size:15px}
+.wr b{font-family:"IBM Plex Mono",monospace;font-size:14px}.wr small{color:var(--mute);grid-column:1/-1}
+.idiom{background:var(--warn-soft);border-left:5px solid var(--warn);padding:8px 12px;border-radius:0 8px 8px 0;font-size:15px}
+.note{background:var(--note-bg);border:2px dashed var(--note);border-radius:12px;padding:12px 14px}
+.note .tag{display:inline-block;background:var(--note);color:#fff;font-weight:700;font-size:13px;padding:2px 10px;border-radius:999px;margin-bottom:6px}
+[data-theme] .note .tag, .note .tag{color:#fff}
+.note ol{margin:4px 0 8px;padding-left:20px;font-size:15.5px}.note li{margin:3px 0}
+.note label{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.note input{width:20px;height:20px}
+.ctl{display:flex;gap:8px;margin-top:12px}
+.cb{flex:1;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:15px;padding:9px;border-radius:10px;cursor:pointer}
+.cb.main{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700}.cb:disabled{opacity:.4}
+#note{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:2px solid var(--accent);box-shadow:0 -6px 20px rgba(0,0,0,.15);padding:12px 16px calc(12px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .2s}
+#note.show{transform:none}
+#note .in{max-width:720px;margin:0 auto;display:flex;justify-content:space-between;gap:12px}
+#nw{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:18px}#nf{font-size:13px;color:var(--mute)}#nm{font-size:16px}
+#nx{border:0;background:none;font-size:26px;color:var(--mute);cursor:pointer}
+.back{font-size:14px}.back a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div><div class="eyebrow">어법 제대로 · 변형 해설 · 문장분석 샘플</div><h1>해설 + 문장분석 + ✍ 노트정리</h1></div>
+  <div class="pre">샘플 1문항입니다. <b>[다음]</b>을 눌러 한 단계씩 열어 보세요. 영어 단어를 <b>톡</b> 누르면 아래에 뜻이 나옵니다. 맨 끝 <span style="color:var(--note);font-weight:700">✍ 노트정리</span>는 <b>알고 있어도 노트에 한 번 직접 쓰는</b> 부분입니다.</div>
+  <div id="main"></div>
+  <div class="back"><a href="ch01-p07.html">← CH01 p.7 해설로 돌아가기</a></div>
+</div>
+<div id="note" role="status"><div class="in"><div><div id="nw"></div><div id="nf"></div><div id="nm"></div></div><button id="nx" type="button" aria-label="닫기">&times;</button></div></div>
+<script>
+const RNAME={s:"주어",v:"동사",o:"목적어",c:"보어",x:"덧붙는 말"};
+// 문항 데이터 (이 한 문항이 샘플)
+const X={
+ id:"1", tag:"CH01 p.7 지문1 · ① ", 
+ // 단어 단위 토큰: [표시, 사전키, 상태] 상태: b=뼈대(노랑), e=오류자리
+ tokens:[["A","a"],["number","number","b"],["of","of"],["movies","movies","b"],["today","today"],["feature","feature","b e"],["digital","digital"],["special","special"],["effects.","effects","b"]],
+ key:"영화들이 특수효과를 특징으로 한다 (사용한다).",
+ fix:["features","feature"], badge:"Chapter 01 POINT 5 · 수일치(a number of + 복수명사)",
+ why:"<b>a number of + 복수명사</b>는 '많은 ~'이라는 뜻의 <b>복수</b> 주어입니다. 그래서 동사도 복수형 <b>feature</b>를 씁니다. (the number of ~는 '~의 수'라서 단수 취급)",
+ form:"3형식",
+ refs:{t:[["I","s"],["like","v"],["apples","o"]],rel:"I ≠ apples"},
+ me:[["A number of movies today","s"],["feature","v"],["digital special effects","o"]], merel:"movies ≠ effects",
+ easy:[["먼저 뼈대부터:","Movies feature effects","영화들이 효과를 특징으로 한다(포함한다)."],
+       ["어떤 영화?","A number of movies today","오늘날의 많은 영화들."],
+       ["어떤 효과?","digital special effects","디지털 특수효과."],
+       ["요약: 오늘날 많은 영화가 디지털 특수효과를 사용한다."]],
+ words:{
+  a:{c:"하나의",b:"a",m:"하나의 (부정관사)"},
+  number:{c:"수",b:"number",m:"수, 숫자",f:"a number of ~ = 많은 ~"},
+  of:{c:"~의",b:"of",m:"~의"},
+  movies:{c:"영화들",b:"movie",m:"영화",f:"명사 movie의 복수형"},
+  today:{c:"오늘날",b:"today",m:"오늘날, 요즘",f:"문장 전체를 꾸미는 부사 (덧붙는 말)"},
+  feature:{c:"특징으로 하다",b:"feature",m:"~을 특징으로 하다, 포함하다 (명사: 특징)",f:"복수 주어 뒤 동사원형"},
+  digital:{c:"디지털의",b:"digital",m:"디지털의"},
+  special:{c:"특별한",b:"special",m:"특별한, 특수한"},
+  effects:{c:"효과들",b:"effect",m:"효과, 영향",f:"명사 effect의 복수형 · special effects = 특수효과"}
+ },
+ idioms:[["a number of + 복수명사","많은 ~ (복수 취급)","↔ the number of + 복수명사 = ~의 수 (단수 취급)"],["special effects","특수효과 (영화 속 시각 효과)",""]],
+ notes:["<b>a number of + 복수명사 → 복수동사</b> (= 많은 ~)","<b>the number of + 복수명사 → 단수동사</b> (= ~의 수)","주어 찾기: <b>of 앞의 number가 아니라 뒤의 movies</b>가 동사의 진짜 짝인지 확인 (a number of는 '많은'이라는 꾸밈말처럼 작동)","단어: <b>feature</b> 동사 = ~을 특징으로 하다 / 명사 = 특징"]
+};
+const STAGES=["오류·정답","뼈대","문형","풀어보기","단어·숙어","✍ 노트정리"];
+let n=0, active=null;
+const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const chips=a=>a.map(x=>'<span class="rc '+x[1]+'">'+esc(x[0])+'<i>'+RNAME[x[1]]+'</i></span>').join("");
+function sentHTML(){
+  return X.tokens.map(t=>{
+    let cls="w"; if(n>=1&&(t[2]||"").includes("b")) cls+=" bone"; if(n>=0&&(t[2]||"").includes("e")) cls+=" err";
+    return '<span class="'+cls+(active===t[1]?' on':'')+'" data-k="'+t[1]+'" data-w="'+esc(t[0].replace(/[.,]/g,""))+'">'+esc(t[0])+'</span>';
+  }).join(" ");
+}
+function wordsTable(){
+  return '<div class="wl">'+X.tokens.filter((t,i,a)=>a.findIndex(u=>u[1]===t[1])===i).map(t=>{const d=X.words[t[1]];
+    return '<div class="wr"><b>'+esc(t[0].replace(/[.,]/g,""))+'</b><span>'+esc(d.m)+'</span>'+(d.f?'<small>'+esc(d.f)+'</small>':'')+'</div>';}).join("")+'</div>';
+}
+function render(){
+  let s="";
+  s+='<div class="ans"><s>'+X.fix[0]+'</s> → '+X.fix[1]+'</div><div class="ko" style="font-size:15px">'+X.why+'<br><span class="rel" style="font-family:inherit">'+X.badge+'</span></div>';
+  if(n>=1) s+='<div class="ko"><span class="lab">뼈대 (노란 줄)</span><mark>'+esc(X.key)+'</mark></div>';
+  if(n>=2) s+='<div><span class="lab">문형</span><span class="form">'+X.form+'</span><div class="mrow"><span class="mlab">닮은꼴</span>'+chips(X.refs.t)+'<span class="rel">'+X.refs.rel+'</span></div><div class="mrow"><span class="mlab">이 문장</span>'+chips(X.me)+'<span class="rel">'+X.merel+'</span></div></div>';
+  if(n>=3) s+='<div class="easy"><span class="lab">풀어보기</span>'+X.easy.map(t=>t.length>1?'<p><span class="q">'+esc(t[0])+'</span> <span class="en">'+esc(t[1])+'</span><span class="a">'+esc(t[2])+'</span></p>':'<p class="sum">'+esc(t[0])+'</p>').join("")+'</div>';
+  if(n>=4) s+='<div><span class="lab">단어 · 숙어</span>'+wordsTable()+'<div class="idiom" style="margin-top:8px">'+X.idioms.map(i=>'<b>'+esc(i[0])+'</b> — '+esc(i[1])+(i[2]?'<br><small>'+esc(i[2])+'</small>':'')).join('<br>')+'</div></div>';
+  if(n>=5) s+='<div class="note"><span class="tag">✍ 노트정리</span><div style="font-size:13px;color:var(--mute)">알고 있어도 <b>노트에 한 번만 직접 쓰세요.</b></div><ol>'+X.notes.map(t=>'<li>'+t+'</li>').join("")+'</ol><label><input type="checkbox" id="done"> 노트에 썼어요</label></div>';
+  const nx=STAGES[n+1];
+  document.getElementById("main").innerHTML='<section class="card"><span class="num">'+X.id+'</span><span class="src">'+X.tag+'</span><div class="sent">'+sentHTML()+'</div><div class="sol">'+s+'</div><div class="ctl"><button class="cb" id="pv"'+(n?'':' disabled')+'>이전</button><button class="cb main" id="nxt">'+(nx||'처음으로')+'</button></div></section>';
+  const d=document.getElementById("done"); if(d){ try{ d.checked=localStorage.getItem("nt_s1")==="1"; }catch(e){} d.onchange=()=>{ try{ localStorage.setItem("nt_s1",d.checked?"1":"0"); }catch(e){} }; }
+}
+document.addEventListener("click",e=>{
+  const w=e.target.closest(".w");
+  if(w){ const k=w.dataset.k, d=X.words[k]; if(active===k){active=null;document.getElementById("note").classList.remove("show");} else{active=k;
+    nw.textContent=w.dataset.w; nf.textContent=d.f?d.f+" · 원형 "+d.b:"원형 "+d.b; nm.textContent=d.m; document.getElementById("note").classList.add("show");} render(); return; }
+  if(e.target.id==="nxt"){ n=n>=STAGES.length-1?0:n+1; render(); }
+  if(e.target.id==="pv"){ n=Math.max(0,n-1); render(); }
+});
+document.getElementById("nx").onclick=()=>{active=null;document.getElementById("note").classList.remove("show");render();};
+const nw=document.getElementById("nw"),nf=document.getElementById("nf"),nm=document.getElementById("nm");
+render();
+</script>
+</body>
+</html>
