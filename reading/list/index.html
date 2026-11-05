@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d9488">
+<meta name="robots" content="noindex,nofollow">
+<meta name="application-name" content="독해">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="독해">
+<link rel="icon" type="image/png" href="../icon-192.png">
+<title>독해</title>
+<style>
+:root{--bg:#e6f7f4;--card:#fff;--ink:#12272a;--sub:#5a7378;--line:#cfe6e2}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;-webkit-text-size-adjust:100%}
+main{max-width:560px;margin:0 auto;padding:22px 14px 56px}
+header{display:flex;align-items:center;gap:12px;margin:0 2px 16px}
+header img{width:46px;height:46px;border-radius:12px}
+h1{flex:1;margin:0;font-size:26px;font-weight:900;letter-spacing:-.01em}
+#gear{border:0;background:none;font-size:20px;color:var(--sub);padding:8px;cursor:pointer}
+details{margin:0 0 10px;background:var(--card);border:2px solid var(--c);border-radius:16px;overflow:hidden}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:15px 14px;font-size:18px;font-weight:800;background:var(--kb)}
+summary::-webkit-details-marker{display:none}
+summary small{margin-left:auto;font-size:13px;font-weight:700;color:var(--sub)}
+summary:after{content:"+";font-size:24px;font-weight:700;color:var(--c);line-height:1}
+details[open] summary:after{content:"\2212"}
+.dot{flex:none;width:12px;height:12px;border-radius:6px;background:var(--c)}
+.bks{display:grid;gap:8px;padding:10px}
+.bk{display:flex;align-items:stretch;gap:8px}
+.bk a.main{flex:1;min-width:0;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:17px;font-weight:700;border:1px solid var(--line);border-left:6px solid var(--c);border-radius:10px;padding:14px 12px;background:#fff}
+.bk a.main:active{background:var(--kb)}
+.bk a.ex{flex:none;display:grid;place-content:center;text-decoration:none;font-size:13px;font-weight:800;color:var(--c);border:2px solid var(--c);border-radius:10px;padding:0 12px;background:#fff}
+.bk label{display:none;align-items:center;gap:6px;font-size:13px;color:var(--sub)}
+.edit .bk label{display:flex}
+.bk.off{opacity:.45}
+body:not(.edit) .bk.off{display:none}
+#bar{display:none;margin:0 0 12px;padding:10px 12px;border-radius:12px;background:#fff;border:1px dashed var(--c0,#0d9488);font-size:13px;color:var(--sub);line-height:1.5}
+.edit #bar{display:block}
+#bar button{margin-top:6px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-weight:700;color:var(--ink)}
+input[type=checkbox]{width:20px;height:20px;accent-color:#0d9488}
+</style>
+</head>
+<body>
+<main>
+<header><a href="../"><img src="../icon-192.png" alt=""></a><h1>전체 목록</h1><button id="gear" aria-label="관리">⚙</button></header>
+<div id="bar">체크하면 이 기기에서 그 책이 목록에서 숨겨져요. 다시 열려면 체크를 풀어 주세요.<br><button id="reset">모두 다시 보이기</button></div>
+<div id="list"></div>
+<p style="text-align:center;margin:18px 0 0"><a href="../" style="color:#0d9488;font-weight:800;text-decoration:none;font-size:15px">← 책 고르기 안내로</a></p>
+</main>
+<script>
+/* 책 추가·수정은 여기만 고치면 됩니다. [폴더이름, 책 이름] */
+const SERIES=[
+ {n:"리딩튜터 주니어 스타터",c:"#ea580c",kb:"#fff4e8",b:[["tutorstarter1","1"],["tutorstarter2","2"],["tutorstarter3","3"]]},
+ {n:"해커스 리딩스마트 스타터",c:"#d97706",kb:"#fff7e0",b:[["hackersstarter1","1"],["hackersstarter2","2"]]},
+ {n:"리딩튜터 주니어",c:"#16a34a",kb:"#eafaf0",b:[["tutorjunior1","1"],["tutorjunior2","2"],["tutorjunior3","3"],["tutorjunior4","4"]]},
+ {n:"해커스 리딩스마트",c:"#0891b2",kb:"#e6f7fb",b:[["hackers1","1"],["hackers2","2"],["hackers3","3"],["hackers4","4"]]},
+ {n:"능률 1316 Reading",c:"#2563eb",kb:"#eef4ff",b:[["1316reading1","1"],["1316reading2","2"],["1316reading3","3"]]},
+ {n:"브릭스 중학독해",c:"#7c3aed",kb:"#f3efff",b:[["bricks1","1"],["bricks2","2"],["bricks3","3"],["bricks4","4"]]},
+ {n:"리딩그라피",c:"#c026d3",kb:"#fcefff",b:[["readinggraphy1","1"],["readinggraphy2","2"],["readinggraphy3","3"],["readinggraphy4","4"],["readinggraphy5","5"],["readinggraphy6","6"]]},
+ {n:"리딩튜터 챌린저",c:"#be123c",kb:"#fff0f3",b:[["tutorchallenger1","1"],["tutorchallenger2","2"],["tutorchallenger3","3"]]},
+ {n:"해커스 리딩스마트 마스터",c:"#334155",kb:"#eef1f5",b:[["hackersmaster1","1"],["hackersmaster2","2"],["hackersmaster3","3"],["hackersmaster4","4"]]}
+];
+const L=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
+const S=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let hidden=L('rd-hidden',{}),opened=L('rd-open',{});
+const list=document.getElementById('list');
+function render(){
+  list.innerHTML='';
+  SERIES.forEach((s,i)=>{
+    const d=document.createElement('details');
+    d.style.cssText='--c:'+s.c+';--kb:'+s.kb;
+    d.open=!!opened[i];
+    d.addEventListener('toggle',()=>{opened[i]=d.open;S('rd-open',opened)});
+    const shown=s.b.filter(b=>!hidden[b[0]]).length;
+    d.innerHTML='<summary><span class="dot"></span>'+s.n+'<small>'+(document.body.classList.contains('edit')?s.b.length:shown)+'권</small></summary>';
+    const w=document.createElement('div');w.className='bks';
+    s.b.forEach(b=>{
+      const r=document.createElement('div');r.className='bk'+(hidden[b[0]]?' off':'');
+      r.innerHTML='<label><input type="checkbox" '+(hidden[b[0]]?'checked':'')+' data-id="'+b[0]+'"></label>'+
+        '<a class="main" href="../../'+b[0]+'/">'+s.n+' '+b[1]+'</a><a class="ex" href="../../'+b[0]+'/exit/">Exit test</a>';
+      w.appendChild(r);
+    });
+    d.appendChild(w);
+    if(shown||document.body.classList.contains('edit'))list.appendChild(d);
+  });
+}
+list.addEventListener('change',e=>{const id=e.target.dataset.id;if(!id)return;if(e.target.checked)hidden[id]=1;else delete hidden[id];S('rd-hidden',hidden);render()});
+document.getElementById('gear').onclick=()=>{document.body.classList.toggle('edit');render()};
+document.getElementById('reset').onclick=()=>{hidden={};S('rd-hidden',hidden);render()};
+render();
+if('serviceWorker' in navigator)navigator.serviceWorker.register('../sw.js').catch(()=>{});
+</script>
+</body>
+</html>
