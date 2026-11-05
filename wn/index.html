@@ -260,6 +260,7 @@ function examPlan(n,I,ti){
   for(i=0;i<130&&day<=32;i++,cur.setDate(cur.getDate()+1)){
     key=iso(cur);w=cur.getDay();
     if(key===ti&&st.todayT)continue;
+    if(CLOSED.indexOf(key)>=0)continue;
     if(fri1&&key<FRI1)continue;
     if(fri1&&key===FRI1){map[key]=day;day++;continue}
     if(ds.indexOf(w)>=0&&key>=FIRSTEX[grp]){map[key]=day;day++}
@@ -288,7 +289,7 @@ function drawDP(I,ti,EP){
   }
   var ex='';
   if(!isPast){
-    if(w===5)ex+='<div class="tk off" style="opacity:1"><i class="bd" style="background:#8a5a9e"></i><div class="tt"><b>누적보카 말하기</b><small>학원 시험</small></div></div>';
+    if(w===5&&CLOSED.indexOf(K)<0)ex+='<div class="tk off" style="opacity:1"><i class="bd" style="background:#8a5a9e"></i><div class="tt"><b>누적보카 말하기</b><small>학원 시험</small></div></div>';
     if(EP[K]){
       var cc=exStat(n,ti);
       ex+='<div class="tk off" style="opacity:1"><i class="bd" style="background:#2d6a9f"></i><div class="tt"><b>더블보카 '+P.dv+' Day '+EP[K]+' 시험</b><small>학원 시험'+(w===5&&EP[K]===1?' · Day 1 시험 기록이 없는 학생':'')+'</small></div>'+(isT&&cc.todayT?'<span class="chip">완료</span>':'')+'</div>';
@@ -310,7 +311,7 @@ function drawCal(I,ti){
     var dt=new Date(y,m,d),key=iso(dt),dayN=I.map[key],cls='dy',sm='';
     var closed=CLOSED.indexOf(key)>=0;
     if(dayN){cls+=' hw';if(I.S[dayN]){cls+=' dn';sm='D'+dayN+' ✓'}else if(key<ti&&!inHold(ctlOf(CTLM,name()),key)){cls+=' lt';sm='D'+dayN+' 밀림'}else sm='D'+dayN}
-    else if(dt.getDay()===5&&key>=I.P.s)sm='<b class="rd">말하기</b>';
+    else if(dt.getDay()===5&&key>=I.P.s&&!closed)sm='<b class="rd">말하기</b>';
     if(EP[key]&&sm.indexOf('시험')<0)sm+=(sm?'<br>':'')+'<b>시험</b>';
     if(closed){cls+=' cl';sm=(sm?sm+'<br>':'')+'휴원'}
     if(key===ti)cls+=' td';
