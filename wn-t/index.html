@@ -307,7 +307,7 @@ function hw(r){
     h.items.forEach(function(x){if(x.date<from||x.date>last)return;var c=cat(x.level);if(SC?(c==='d'):(c!=='d'))return;if(F!=='all'&&F!==c)return;put(x)});
     if(!SC&&revOk&&(F==='all'||F==='r'))rv.items.forEach(function(x){if(x.date<from||x.date>last)return;put({name:x.name,wd:x.wd,level:'누적복습',score:x.n+'개'})});
     function lab(e){var L=String(e.level||'');return /더블/.test(L)?['더블','#2d6a9f']:(/미니/.test(L)?['미니모의','#b5651d']:(/누적/.test(L)?['누적','#8a5a9e']:['데일리','#2a8a5c']))}
-    function tone(sc){var q=String(sc).match(/^(\d+)\s*\/\s*(\d+)/);if(!q)return '#888';var r2=q[1]/q[2];return r2>=0.8?'#1f7a4d':(r2>=0.5?'#333':'#c2392b')}
+    function tone(sc){var q=String(sc).match(/^(\d+)\s*\/\s*(\d+)/);if(!q)return '#888';var r2=q[1]/q[2];return r2>=0.8?'#1f7a4d':'#e07b00'}
     var fl=SC?[['all','전체'],['v','더블보카'],['m','미니모의']]:[['all','전체'],['d','데일리'],['r','누적복습']];
     var t='<div class="top"><button class="sbtn" id="pv">이전 주</button><div class="t" style="text-align:center">'+dshow(from)+' ~ '+dshow(last)+'</div><button class="sbtn" id="nx">다음 주</button></div><div style="display:flex;gap:6px;margin:8px 0">'+fl.map(function(f){return'<button class="sbtn" data-f="'+f[0]+'" style="flex:1;padding:6px 2px;'+(F===f[0]?'background:var(--soft);border-color:var(--pri)':'')+'">'+f[1]+'</button>'}).join('')+'</div>';
     if(!SC&&!revOk&&F==='r')t+='<div class="msg">누적복습 기록은 서버를 새로 배포하면 보여요.</div>';
