@@ -372,7 +372,7 @@ if(PV==='B'||PV==='H'){
     document.querySelectorAll('link[rel="icon"],link[rel="apple-touch-icon"]').forEach(function(l){l.setAttribute('href',l.getAttribute('sizes')==='32x32'?u32:u192)});
     var m=document.createElement('meta');m.name='apple-mobile-web-app-title';m.content=V.t;document.head.appendChild(m);
   })();
-  post=function(b){var t=iso(new Date());if(b.act==='list')return Promise.resolve({ok:true,today:t,cap:40,max:60,items:[['alpha','알파'],['beyond','넘어서'],['crucial','결정적인'],['dispute','논쟁'],['elaborate','정교한'],['fragile','깨지기 쉬운']].map(function(x){return{w:x[0],m:x[1],src:'더블보카',ask:true,c:1,st:0,nx:t,first:t}})});return Promise.resolve({ok:true})};
+  post=function(b){var t=iso(new Date());if(b.act==='list')return Promise.resolve({ok:true,today:t,cap:40,max:60,items:[['alpha','알파','더블보카 Core · Day 1'],['beyond','넘어서','더블보카 Pro · Day 12'],['crucial','결정적인','미니모고 · 3회'],['dispute','논쟁','모의고사 · 22년 11월'],['elaborate','정교한','천일문S · Ch.1'],['fragile','깨지기 쉬운','더블보카 Core · Day 7']].map(function(x){return{w:x[0],m:x[1],src:x[2],ask:true,c:1,st:0,nx:t,first:t}})});return Promise.resolve({ok:true})};
   var _home=home;
   home=function(r){_home(r);
     $.querySelectorAll('a.tk').forEach(function(a){var u=a.getAttribute('href')||'';if(/\/(daily\/[bh]|dvcore|dvpro)\/$/.test(u))a.setAttribute('href',u+'?t=1')});
