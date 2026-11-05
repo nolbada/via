@@ -97,6 +97,11 @@ a.tk,button.tk,div.tk{display:flex;align-items:center;gap:12px;width:100%;text-a
 .mc{position:relative;text-align:center;padding:6px 0;border-radius:8px;background:#f3f3f1;color:#999;font-weight:600;font-size:12px}
 .mc.hw{background:#fff;border:1px solid #d9d9d4;color:#333}.mc.dn{background:#cfeadb;color:#1f6b45}.mc.lt{background:#fbe3c2;color:#a8620f}.mc.cl{opacity:.45}.mc.td{outline:2px solid #244238}
 .mc i{position:absolute;right:2px;top:2px;width:6px;height:6px;border-radius:50%}.mc i.ex{background:#d33}.mc i.rd{background:#1f8a56}
+.xm{display:block;text-decoration:none;color:#fff;border-radius:20px;padding:18px 18px 14px;margin:0 0 4px;background:radial-gradient(120% 100% at 100% 0%,rgba(201,166,107,.35) 0%,rgba(201,166,107,0) 55%),linear-gradient(155deg,#16372d 0%,#244238 100%);border:1px solid #c9a66b;box-shadow:0 8px 22px rgba(36,66,56,.28)}
+.xm .xt{display:flex;justify-content:space-between;align-items:center}.xm .xb{font-size:11px;font-weight:700;letter-spacing:.24em;color:#d9bd86}.xm .xc{background:#d33;color:#fff;font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px}
+.xm .xn{font-size:26px;font-weight:800;margin:10px 0 4px;letter-spacing:-.01em}.xm .xd{font-size:14px;opacity:.9}.xm .xd b{font-size:17px;color:#f3dfae}
+.xm .xp{height:6px;border-radius:4px;background:rgba(255,255,255,.18);margin:14px 0 8px;overflow:hidden}.xm .xp i{display:block;height:100%;background:#d9bd86;border-radius:4px}
+.xm .xf{display:flex;justify-content:space-between;font-size:12px;opacity:.8}
 details.mo{margin-top:10px}details.mo>summary{cursor:pointer;font-size:14px;font-weight:700;padding:10px 4px;list-style:none}details.mo>summary::-webkit-details-marker{display:none}
 </style></head><body><div id="app"></div>
 <script>
@@ -233,6 +238,11 @@ function home(r){
   /* today */
   var IU=!!I&&!isAdm(n);
   if(IU)h+='<div class="cal" id="wk" style="margin-top:12px"></div><div id="dp"></div><details class="mo"><summary>전체 주차 한눈에 보기 ▾</summary><div class="cal" id="cal"></div></details>';
+  if(IU){
+    var XP=I.P,XEP=examPlan(n,I,ti),XS=exStat(n,ti),xk=Object.keys(XEP).sort().filter(function(k){return k>=ti})[0],xn=Object.keys(XS.tk).length;
+    var xline=xk?((xk===ti?'오늘':dshow(xk))+' · Day '+XEP[xk]):(XS.nx?'다음 시험 일정을 안내해 드려요':'32 Day 시험 완료');
+    h+='<h2 class="sec">학원 테스트</h2><a class="xm" href="'+VB+(XP.dv==='Pro'?'dvpro/':'dvcore/')+'"><div class="xt"><span class="xb">ACADEMY TEST</span><span class="xc">시험</span></div><div class="xn">더블보카 '+XP.dv+'</div><div class="xd">'+(xk?'다음 시험  ':'')+'<b>'+xline+'</b></div><div class="xp"><i style="width:'+(xn/32*100)+'%"></i></div><div class="xf"><span>시험 응시 '+xn+' / 32 Day</span><span>연습 '+I.dv.length+' / 32 Day</span></div></a>';
+  }
   h+='<h2 class="sec">'+(IU?'내 속도로 하는 활동':'오늘')+'</h2>';
   if(isAdm(n)){
     [['데일리보카 B',VB+'daily/b/?t=1','#2a8a5c'],['데일리보카 H',VB+'daily/h/?t=1','#2a8a5c'],['더블보카 Core',VB+'dvcore/?t=1','#2d6a9f'],['더블보카 Pro',VB+'dvpro/?t=1','#2d6a9f'],['미니모의고사 고1',MM['고1'],'#8a5a9e'],['미니모의고사 고2',MM['고2'],'#8a5a9e'],['천일문S 문장줄이기',VB+'sj/','#c2557a'],['그래머콕 개념노트',GC,'#17939e']].forEach(function(t){
@@ -241,7 +251,6 @@ function home(r){
   }else if(I){
     var P=I.P;
     var dvn=I.dv.length,nd=0;for(var z=0;z<32;z++){if(I.dv.indexOf(z)<0){nd=z+1;break}}
-    h+='<a class="tk" href="'+VB+(P.dv==='Pro'?'dvpro/':'dvcore/')+'"><i class="bd" style="background:#2d6a9f"></i><div class="tt"><b>더블보카 '+P.dv+'</b><small>'+(nd?'다음 Day '+nd:'32 Day 완료')+'</small></div><span class="chip n">'+dvn+'/32</span></a>';
     h+='<a class="tk" href="'+(MM[P.m]||MM['고1'])+'"><i class="bd" style="background:#8a5a9e"></i><div class="tt"><b>미니모의고사</b><small>24회 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
     h+='<a class="tk" href="'+VB+'sj/"><i class="bd" style="background:#c2557a"></i><div class="tt"><b>천일문S 문장줄이기</b><small>12챕터 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
     h+='<a class="tk" href="'+GC+'"><i class="bd" style="background:#17939e"></i><div class="tt"><b>그래머콕 개념노트</b><small>문법 개념 · 필요할 때 찾아보기</small></div><span class="chip n">자유</span></a>';
