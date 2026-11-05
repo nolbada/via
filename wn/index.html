@@ -123,14 +123,32 @@ function planInfo(n){
   return{P:P,Q:Q,S:S,dv:dv,st:st,map:map};
 }
 var TT=['김소희','윤유란','정다원','김민서','이지민','조혜린'];
+function exTaken(n,pre){
+  var r={},low=String(n).toLowerCase(),a='dvc_exam_',b='dvp_exam_',k,m,v;
+  try{for(var q=0;q<localStorage.length;q++){k=localStorage.key(q)||'';
+    if(k.indexOf(a)!==0&&k.indexOf(b)!==0)continue;
+    m=/^dv[cp]_exam_(\d+)_(.+)$/.exec(k);if(!m||m[2]!==low)continue;
+    v=JSON.parse(localStorage.getItem(k)||'null');if(v&&v.done)r[+m[1]]=v.t||0}}catch(e){}
+  return r;
+}
 function exNote(n,now,ti,nd){
   var w=now.getDay(),sp=(n==='최의준'&&ti<='2026-11-06'),bx='<div style="margin:-2px 2px 8px;padding:8px 12px;border-radius:10px;background:#fbefd9;color:#6b3f06;font-size:13px;line-height:1.5">';
-  if(!nd&&!sp)return'';
-  if(w===5&&!sp)return bx+'오늘은 오답노트 단어 구두테스트예요. 오늘 복습 단어를 다시 확인해요.</div>';
-  var ds=TT.indexOf(n)>=0?[2,4]:[1,3];
-  if(sp){var dn=ti==='2026-11-06'?'오늘 더블보카 Day 1 시험이 있어요 (말하기 시험 대신)':'다음 시험 '+dshow('2026-11-06')+' · Day 1 단어를 미리 공부하세요';return bx+dn+'</div>'}
-  if(ds.indexOf(w)>=0)return bx+'오늘 더블보카 Day '+nd+' 시험이 있어요. 마지막으로 확인해요.</div>';
-  for(var k=1;k<=7;k++){var d=new Date(now);d.setDate(d.getDate()+k);if(ds.indexOf(d.getDay())>=0)return bx+'다음 시험 '+dshow(iso(d))+' · Day '+nd+' 단어를 미리 공부하세요</div>'}
+  var ds=TT.indexOf(n)>=0?[2,4]:[1,3],tk=exTaken(n),has=Object.keys(tk).length>0,nx=nd;
+  if(has){nx=0;for(var z=1;z<=32;z++){if(!tk[z]){nx=z;break}}}
+  if(sp){
+    if(ti==='2026-11-06')return bx+(tk[1]?'Day 1 시험을 봤어요. 수고했어요.':'오늘 더블보카 Day 1 시험이 있어요 (말하기 시험 대신)')+'</div>';
+    return bx+'다음 시험 '+dshow('2026-11-06')+' · Day 1 단어를 미리 공부하세요</div>';
+  }
+  if(!nx)return'';
+  var mon=new Date(now);mon.setDate(mon.getDate()-((mon.getDay()+6)%7));var mt=mon.getTime(),wk=0,k2;
+  for(k2 in tk){if(tk[k2]>=mt)wk++}
+  var todayT=false;for(k2 in tk){if(tk[k2]>=now.getTime())todayT=true}
+  if(w===5){
+    var must=2,miss=has?Math.max(0,must-wk):0;
+    return bx+'오늘은 오답노트 단어 구두테스트예요. 오늘 복습 단어를 다시 확인해요.'+(miss?'<br>이번 주 못 본 더블보카 시험 '+miss+'개는 말하기 시험으로 봐요 (Day '+nx+(miss>1?'부터':'')+').':'')+'</div>';
+  }
+  if(ds.indexOf(w)>=0&&!todayT)return bx+'오늘 더블보카 Day '+nx+' 시험이 있어요. 마지막으로 확인해요.</div>';
+  for(var k=1;k<=7;k++){var d=new Date(now);d.setDate(d.getDate()+k);if(ds.indexOf(d.getDay())>=0)return bx+'다음 시험 '+dshow(iso(d))+' · Day '+nx+' 단어를 미리 공부하세요</div>'}
   return'';
 }
 function home(r){
