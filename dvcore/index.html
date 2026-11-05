@@ -106,6 +106,7 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
 .big span{color:var(--sub);font-size:calc(13px*var(--fs))}
 .trow{display:flex;gap:8px}
 .trow .big{flex:1;text-align:center;font-weight:700;padding:16px 8px}
+.strow{display:flex;gap:8px;align-items:center}.home-btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 .home-btn{border:1px solid var(--line);background:var(--card);color:var(--sub);border-radius:10px;padding:4px 10px;font:inherit;font-size:calc(12px*var(--fs));cursor:pointer}
 .timer{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink)!important;font-size:calc(15px*var(--fs))!important}
 .timer.low{color:var(--bad)!important}
@@ -197,11 +198,11 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
     <div class="no">유의어 · 반의어</div>
     <h1 id="dayh">Day 01</h1>
     <button class="big" id="mLearn" type="button"><b>뉘앙스 학습</b><span id="mLearnS">같은 뜻, 다른 쓰임 · 언제 쓰는지까지</span></button>
+    <div class="strow" id="strow" hidden><button class="home-btn" id="mStarOnly" type="button"></button><button class="home-btn" id="mClrStar" type="button">모두 지우기</button></div>
     <button class="big" id="mPrac" type="button"><b>관계 지도 연습</b><span id="mPracS">한 문제씩 풀고 · 바로 지도로 확인</span></button>
     <button class="big" id="mPracX" type="button"><b>실전 예행연습</b><span id="mPracXS">시험처럼 한번에 · 틀린 것만 다시</span></button>
-    <button class="big" id="mStar" type="button"><b>★ 별표 단어 복습</b><span id="mStarN"></span></button>
     <button class="big" id="mExam" type="button"><b>시험</b><span>1회 · 타임어택</span></button>
-    <button class="home-btn" id="mClrStar" type="button" style="align-self:flex-start" hidden>★ 별표 모두 지우기</button><button class="home-btn" id="mReset" type="button" style="align-self:flex-start" hidden>이어풀기 지우고 처음부터</button><button class="home-btn" id="hbd" type="button" style="align-self:flex-start">Day 목록</button>
+    <button class="home-btn" id="mReset" type="button" style="align-self:flex-start" hidden>이어풀기 지우고 처음부터</button><button class="home-btn" id="hbd" type="button" style="align-self:flex-start">Day 목록</button>
   </div>
 </div>
 <div class="app" id="learn" hidden>
@@ -451,7 +452,7 @@ document.getElementById('prev').onclick=function(){go(cur-1)};
 document.getElementById('next').onclick=function(){go(cur+1)};
 deck.addEventListener('scroll',function(){clearTimeout(deck._t);deck._t=setTimeout(update,60)});
 window.addEventListener('resize',update);
-var RES=0;function lKey(){return 'dvc_l'+DN}function pKeyI(){return pKey()+'i'}function pKey(){return 'dvc_p'+DN}function saveL(){try{if(!Object.keys(st).length)return;RES=cur;sset(lKey(),JSON.stringify({st:st,i:cur}))}catch(e){}}function loadL(){try{var sv=JSON.parse(sget(lKey())||'null');if(sv&&sv.st&&!Object.keys(st).length){st=sv.st;ST[DI]=st;RES=sv.i||0}else if(!sv)RES=0}catch(e){RES=0}}function loadP(inst){try{var sv=JSON.parse(sget(inst?pKeyI():pKey())||'null');if(sv&&sv.items&&sv.items.length&&sv.items.every(function(x){return W[x.wi]&&W[x.wi].kan[x.ki]}))return sv}catch(e){}return null}function saveP(){try{if(T&&T.mode=='P'&&!T.only&&!T.retry&&T.scope=='day')sset(T.inst?pKeyI():pKey(),JSON.stringify({items:T.items,i:T.i}))}catch(e){}}function doneWords(){return Object.keys(st).filter(function(k){return st[k].k.every(function(x){return x.done})}).length}function touched(){return Object.keys(st).filter(function(k){return st[k].k.some(function(x){return x.done||Object.keys(x.sel).some(function(z){return x.sel[z]})})}).length} var T=null,MEM={},TCODE='7372';
+var STARONLY=false;var RES=0;function lKey(){return 'dvc_l'+DN}function pKeyI(){return pKey()+'i'}function pKey(){return 'dvc_p'+DN}function saveL(){try{if(!Object.keys(st).length)return;RES=cur;sset(lKey(),JSON.stringify({st:st,i:cur}))}catch(e){}}function loadL(){try{var sv=JSON.parse(sget(lKey())||'null');if(sv&&sv.st&&!Object.keys(st).length){st=sv.st;ST[DI]=st;RES=sv.i||0}else if(!sv)RES=0}catch(e){RES=0}}function loadP(inst){try{var sv=JSON.parse(sget(inst?pKeyI():pKey())||'null');if(sv&&sv.items&&sv.items.length&&sv.items.every(function(x){return W[x.wi]&&W[x.wi].kan[x.ki]}))return sv}catch(e){}return null}function saveP(){try{if(T&&T.mode=='P'&&!T.only&&!T.retry&&T.scope=='day')sset(T.inst?pKeyI():pKey(),JSON.stringify({items:T.items,i:T.i}))}catch(e){}}function doneWords(){return Object.keys(st).filter(function(k){return st[k].k.every(function(x){return x.done})}).length}function touched(){return Object.keys(st).filter(function(k){return st[k].k.some(function(x){return x.done||Object.keys(x.sel).some(function(z){return x.sel[z]})})}).length} var T=null,MEM={},TCODE='7372';
 function sget(k){try{var v=localStorage.getItem(k);return v==null?(MEM[k]||null):v}catch(e){return MEM[k]||null}}
 function sset(k,v){MEM[k]=v;try{localStorage.setItem(k,v)}catch(e){}}
 function sdel(k){delete MEM[k];try{localStorage.removeItem(k)}catch(e){}}
@@ -489,7 +490,7 @@ function recordResults(items,exam){
   if(WNB.length){WN.add(WNB);WNB=[]}
 }
 function wrongCount(di){var n=0,m=wrongMap();Object.keys(m).forEach(function(k){if(di==null||parseInt(k,10)==di)n++});return n}
-function homeRefresh(){var n=starCount(DI),b=document.getElementById('mStar');b.disabled=!n;document.getElementById('mStarN').textContent=n?(n+'단어 · 반복 연습'):'뉘앙스 학습에서 ★를 눌러 모아요';document.getElementById('mClrStar').hidden=!n;
+function homeRefresh(){var n=starCount(DI);if(!n)STARONLY=false;document.getElementById('strow').hidden=!n;var so=document.getElementById('mStarOnly');so.textContent=(STARONLY?'★ 별표 ':'☆ 별표 ')+n+'단어만 연습'+(STARONLY?' ✓':'');so.className='home-btn'+(STARONLY?' on':'');
   document.getElementById('dayh').textContent='Day '+pad2(DN);var dw=doneWords(),tc=touched(),pv=loadP();document.getElementById('mLearnS').textContent=dw>=W.length?'모두 풀었어요':(tc||RES>0)?('이어서 · '+Math.min(W.length,Math.floor(RES/2)+1)+' / '+W.length+' 단어'):'같은 뜻, 다른 쓰임 · 언제 쓰는지까지';var pvi=loadP(true);document.getElementById('mPracS').textContent=pvi?('이어서 · '+(pvi.i+1)+' / '+pvi.items.length):'한 문제씩 풀고 · 바로 지도로 확인';document.getElementById('mPracXS').textContent=pv?('이어서 · '+(pv.i+1)+' / '+pv.items.length):'시험처럼 한번에 · 틀린 것만 다시';document.getElementById('mReset').hidden=!(tc||RES>0||pv||pvi)}
 function doneSet(){try{return JSON.parse(localStorage.getItem('dvc_done_'+WN.name())||'[]')}catch(e){return[]}}
 function markDone(di){try{var s=doneSet();if(s.indexOf(di)<0){s.push(di);localStorage.setItem('dvc_done_'+WN.name(),JSON.stringify(s))}}catch(e){}}
@@ -766,8 +767,7 @@ function submitT(){ if(!T||T.done)return;if(T.mode=='P'&&!T.only&&T.scope=='day'
   rvShow(tv,E,head,good,bad);
 }
 document.getElementById('mLearn').onclick=startLearn;
-document.getElementById('mPrac').onclick=function(){startPractice(false,'day',true)};document.getElementById('mPracX').onclick=function(){startPractice(false,'day',false)};
-document.getElementById('mStar').onclick=function(){startPractice(true,'day',true)};
+document.getElementById('mPrac').onclick=function(){startPractice(STARONLY,'day',true)};document.getElementById('mPracX').onclick=function(){startPractice(STARONLY,'day',false)};document.getElementById('mStarOnly').onclick=function(){STARONLY=!STARONLY;homeRefresh()};
 document.getElementById('mAllStar').onclick=function(){startPractice(true,'all',true)};
 document.getElementById('mExam').onclick=function(){examGate()};
 document.getElementById('mReset').onclick=function(){var b=this;if(!b._a){b._a=1;b.textContent='한 번 더 누르면 지워져요';return}b._a=0;b.textContent='이어풀기 지우고 처음부터';sdel(lKey());sdel(pKey());sdel(pKeyI());ST[DI]={};st=ST[DI];RES=0;build();deck.scrollLeft=0;update();homeRefresh()};document.getElementById('hb1').onclick=goHome;
