@@ -71,10 +71,18 @@ a.tk,button.tk,div.tk{display:flex;align-items:center;gap:12px;width:100%;text-a
 .cg .dy.cl{background:repeating-linear-gradient(135deg,transparent 0 5px,var(--line) 5px 6px)}
 .cg .dy.td{outline:2px solid var(--pri);outline-offset:-1px}
 .cg .dy{cursor:pointer}.cg .dy.sl{background:var(--priBg,#e8f0fb);border-color:var(--pri)}.cg .dy small b{color:var(--pri)}
-.cg .dy small b.rd{color:#d33a2f}
-@media (prefers-color-scheme:dark){.cg .dy small b.rd{color:#ff7b70}}
+.cg .dy small b.rd{color:#1f8a56}
+@media (prefers-color-scheme:dark){.cg .dy small b.rd{color:#5fd19a}}
 .dpl{margin:10px 0 0}.dpl .dh{font-size:14px;font-weight:700;margin:2px 4px 8px}.dpl .sm{font-size:12px;color:var(--sub);margin:12px 4px 6px}
 .cg .dy.ot{opacity:.35}
+.cg .dy small b.ex,.lg b.ex{display:inline-block;background:#d33a2f;color:#fff;border-radius:5px;padding:0 5px;font-size:10.5px;margin-top:2px}
+.cg .dy small .dl{display:block}
+.hero .lb{display:flex;justify-content:space-between;align-items:center}.hero .who{letter-spacing:0;text-transform:none;font-size:12px;opacity:.9}
+.wb{display:flex;gap:3px;margin:14px 0 6px}.wb i{flex:1;height:9px;border-radius:5px;background:rgba(255,255,255,.2)}.wb i.dn{background:#5fd19a}.wb i.lt{background:#f0b765}.wb i.cur{background:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.45)}
+.wbt{display:flex;justify-content:space-between;font-size:13px;opacity:.92}
+.lg{font-size:12px;color:var(--sub);margin:10px 2px 0;line-height:1.7}.lg b.rd{color:#1f8a56}
+.cg.wk .dy{min-height:74px}
+details.mo{margin-top:10px}details.mo>summary{cursor:pointer;font-size:14px;font-weight:700;padding:10px 4px;list-style:none}details.mo>summary::-webkit-details-marker{display:none}
 </style></head><body><div id="app"></div>
 <script>
 var URL_=window.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',PIN='6900',WD=['일','월','화','수','목','금','토'];
@@ -195,11 +203,20 @@ function home(r){
     var mon=new Date(now);mon.setDate(mon.getDate()-((mon.getDay()+6)%7));
     for(var q=0;q<7;q++){var d2=new Date(mon);d2.setDate(mon.getDate()+q);var k2=I.map[iso(d2)];if(k2){wkN++;if(I.S[k2])wk++}}
   }
-  h+='<div class="hero"><div class="lb">Roadmap</div><div class="hn">'+esc(n)+'</div><div class="hd">'+dshow(ti)+' · 11/2 ~ 2/28 4개월 과정</div>';
-  h+='</div>';
+  if(I&&!isAdm(n)){
+    var CS=new Date('2026-11-02T00:00:00'),NW=17,cw=Math.floor((now-CS)/604800000),bar='';
+    for(var q2=0;q2<NW;q2++){
+      var ws=new Date(CS);ws.setDate(CS.getDate()+q2*7);var tot=0,dn3=0,late=false;
+      for(var q3=0;q3<7;q3++){var d3=new Date(ws);d3.setDate(ws.getDate()+q3);var k3=I.map[iso(d3)];if(k3){tot++;if(I.S[k3])dn3++;else if(iso(d3)<ti&&!inHold(ctlOf(CTLM,n),iso(d3)))late=true}}
+      bar+='<i class="'+(q2===cw?'cur':(tot&&dn3===tot?'dn':(late?'lt':'')))+'"></i>';
+    }
+    h+='<div class="hero"><div class="lb">Roadmap<span class="who">'+esc(n)+'</span></div><div class="hn">나의 4개월 로드맵</div><div class="hd">'+dshow(ti)+' · 11/2 ~ 2/28</div><div class="wb">'+bar+'</div><div class="wbt"><span>'+(cw<0?'시작 전':(cw>=NW?'과정 종료':(cw+1)+'주차 / '+NW+'주'))+'</span><span>이번 주 숙제 '+wk+'/'+wkN+' 완료</span></div></div>';
+  }else{
+    h+='<div class="hero"><div class="lb">Roadmap</div><div class="hn">'+esc(n)+'</div><div class="hd">'+dshow(ti)+' · 11/2 ~ 2/28 4개월 과정</div></div>';
+  }
   /* today */
   var IU=!!I&&!isAdm(n);
-  if(IU)h+='<div class="cal" id="cal" style="margin-top:12px"></div><div id="dp"></div>';
+  if(IU)h+='<div class="cal" id="wk" style="margin-top:12px"></div><div id="dp"></div><details class="mo"><summary>한 달 달력 보기 ▾</summary><div class="cal" id="cal"></div></details>';
   h+='<h2 class="sec">'+(IU?'내 속도로 하는 활동':'오늘')+'</h2>';
   if(isAdm(n)){
     [['데일리보카 B',VB+'daily/b/?t=1','#2a8a5c'],['데일리보카 H',VB+'daily/h/?t=1','#2a8a5c'],['더블보카 Core',VB+'dvcore/?t=1','#2d6a9f'],['더블보카 Pro',VB+'dvpro/?t=1','#2d6a9f'],['미니모의고사 고1',MM['고1'],'#8a5a9e'],['미니모의고사 고2',MM['고2'],'#8a5a9e'],['천일문S 문장줄이기',VB+'sj/','#2b5aa8'],['그래머콕 개념노트',GC,'#1f6f5f']].forEach(function(t){
@@ -273,7 +290,7 @@ function drawDP(I,ti,EP){
   var isT=K===ti,isPast=K<ti,w=new Date(K+'T00:00:00').getDay(),dn=I.map[K];
   if(hc.hold&&ti<=hc.hold)h+='<div style="margin:0 2px 8px;padding:8px 12px;border-radius:10px;background:#fbefd9;color:#6b3f06;font-size:13px;line-height:1.5">진도 안내를 잠시 멈췄어요. '+(hc.hold<'9999'?dshow(hc.hold)+'에 다시 시작해요.':'선생님이 다시 알려 줄 거예요.')+'</div>';
   if(dn&&K>=P.s){
-    var sub='Day '+dn+' · 15문항',chip;
+    var sub=dn+'일차 · 15문항',chip;
     if(I.S[dn])chip='<span class="chip">완료 '+I.S[dn].s+'</span>';
     else if(isPast&&!inHold(hc,K))chip='<span class="chip w">밀림</span>';
     else chip='<span class="chip n">'+(isT?'진행 전':'예정')+'</span>';
@@ -300,6 +317,31 @@ function drawDP(I,ti,EP){
   el.querySelectorAll('.seg button').forEach(function(b){b.onclick=function(){ss('wn_cap',b.dataset.c);drawDP(I,ti,EP)}});
   var stb=document.getElementById('st');if(stb)stb.onclick=function(){review(due.sort(byPri).slice(0,today))};
 }
+function cellH(dt,I,ti,EP){
+  var key=iso(dt),dayN=I.map[key],cls='dy',sm='',closed=CLOSED.indexOf(key)>=0;
+  if(dayN){cls+=' hw';if(I.S[dayN]){cls+=' dn';sm='<span class="dl">데일리 '+dayN+' ✓</span>'}else if(key<ti&&!inHold(ctlOf(CTLM,name()),key)){cls+=' lt';sm='<span class="dl">데일리 '+dayN+' 밀림</span>'}else sm='<span class="dl">데일리 '+dayN+'</span>'}
+  else if(dt.getDay()===5&&key>=I.P.s&&!closed)sm='<b class="rd">말하기</b>';
+  if(EP[key])sm+=(sm?'<br>':'')+'<b class="ex">시험</b>';
+  if(closed){cls+=' cl';sm=(sm?sm+'<br>':'')+'휴원'}
+  if(key===ti)cls+=' td';
+  if(key===SEL)cls+=' sl';
+  return'<div class="'+cls+'" data-k="'+key+'"><span class="n">'+dt.getDate()+'</span><small>'+sm+'</small></div>';
+}
+function drawWeek(I,ti,EP){
+  var el=document.getElementById('wk');if(!el)return;
+  var CS=new Date('2026-11-02T00:00:00'),CE=new Date('2027-02-28T00:00:00');
+  var sd=new Date((SEL||ti)+'T00:00:00'),mon=new Date(sd);mon.setDate(sd.getDate()-((sd.getDay()+6)%7));
+  var sun=new Date(mon);sun.setDate(mon.getDate()+6),wn=Math.round((mon-CS)/604800000)+1;
+  var h='<div class="ch2"><button id="pw"'+(mon<=CS?' disabled':'')+'>&lsaquo;</button><b>'+(wn>=1&&wn<=17?wn+'주차 · ':'')+dshow(iso(mon))+' ~ '+dshow(iso(sun))+'</b><button id="nw"'+(sun>=CE?' disabled':'')+'>&rsaquo;</button></div><div class="cg wk">';
+  ['월','화','수','목','금','토','일'].forEach(function(w){h+='<div class="wd">'+w+'</div>'});
+  for(var k=0;k<7;k++){var dt=new Date(mon);dt.setDate(mon.getDate()+k);h+=cellH(dt,I,ti,EP)}
+  h+='</div><div class="lg">데일리 = 매일 하는 숙제 · <b class="ex">시험</b> = 학원 더블보카 시험 · <b class="rd">말하기</b> = 금요일 구두 테스트</div>';
+  el.innerHTML=h;
+  el.querySelectorAll('.dy[data-k]').forEach(function(c){c.onclick=function(){SEL=c.dataset.k;CALM=new Date(+SEL.slice(0,4),+SEL.slice(5,7)-1,1);drawCal(I,ti)}});
+  var mv=function(dd){var t=new Date((SEL||ti)+'T00:00:00');t.setDate(t.getDate()+dd);SEL=iso(t);CALM=new Date(t.getFullYear(),t.getMonth(),1);drawCal(I,ti)};
+  var pw=document.getElementById('pw'),nw=document.getElementById('nw');
+  if(pw)pw.onclick=function(){mv(-7)};if(nw)nw.onclick=function(){mv(7)};
+}
 function drawCal(I,ti){
   var el=document.getElementById('cal');if(!el)return;
   var EP=examPlan(name(),I,ti),y=CALM.getFullYear(),m=CALM.getMonth(),first=new Date(y,m,1),lo=new Date(2026,10,1),hi=new Date(2027,2,1);
@@ -307,19 +349,10 @@ function drawCal(I,ti){
   ['월','화','수','목','금','토','일'].forEach(function(w){h+='<div class="wd">'+w+'</div>'});
   var off=(first.getDay()+6)%7,days=new Date(y,m+1,0).getDate(),k;
   for(k=0;k<off;k++)h+='<div></div>';
-  for(var d=1;d<=days;d++){
-    var dt=new Date(y,m,d),key=iso(dt),dayN=I.map[key],cls='dy',sm='';
-    var closed=CLOSED.indexOf(key)>=0;
-    if(dayN){cls+=' hw';if(I.S[dayN]){cls+=' dn';sm='D'+dayN+' ✓'}else if(key<ti&&!inHold(ctlOf(CTLM,name()),key)){cls+=' lt';sm='D'+dayN+' 밀림'}else sm='D'+dayN}
-    else if(dt.getDay()===5&&key>=I.P.s&&!closed)sm='<b class="rd">말하기</b>';
-    if(EP[key]&&sm.indexOf('시험')<0)sm+=(sm?'<br>':'')+'<b>시험</b>';
-    if(closed){cls+=' cl';sm=(sm?sm+'<br>':'')+'휴원'}
-    if(key===ti)cls+=' td';
-    if(key===SEL)cls+=' sl';
-    h+='<div class="'+cls+'" data-k="'+key+'"><span class="n">'+d+'</span><small>'+sm+'</small></div>';
-  }
+  for(var d=1;d<=days;d++){h+=cellH(new Date(y,m,d),I,ti,EP)}
   el.innerHTML=h+'</div>';
   el.querySelectorAll('.dy[data-k]').forEach(function(c){c.onclick=function(){SEL=c.dataset.k;drawCal(I,ti)}});
+  drawWeek(I,ti,EP);
   drawDP(I,ti,EP);
   document.getElementById('pm').onclick=function(){CALM=new Date(y,m-1,1);drawCal(I,ti)};
   document.getElementById('nm2').onclick=function(){CALM=new Date(y,m+1,1);drawCal(I,ti)};
