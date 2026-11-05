@@ -165,6 +165,8 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
 .rvchips button{border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:999px;padding:5px 12px;font:inherit;cursor:pointer}
 .rvchips.bad button{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
 .rvchips.ok button{border-color:var(--good);background:var(--good-bg);color:var(--good);cursor:default}
+.dbtn i{color:var(--star)}
+.starb{z-index:2}
 </style>
 
 <div class="app" id="days">
@@ -173,17 +175,17 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
     <h1>더블보카 Pro</h1>
     <div class="prog" id="prog"></div>
     <div class="dgrid" id="dgrid"></div>
-    <button class="big" id="mAllStar" type="button"><b>내 오답 모음</b><span id="mAllStarN"></span></button>
+    <button class="big" id="mAllStar" type="button"><b>★ 별표 단어 모아 복습</b><span id="mAllStarN"></span></button>
   </div>
 </div>
 <div class="app" id="home" hidden>
   <div class="homec">
     <div class="no">유의어 · 반의어</div>
     <h1 id="dayh">Day 01</h1>
-    <button class="big" id="mLearn" type="button"><b>학습</b><span id="mLearnS">퀴즈로 익히기</span></button>
-    <button class="big" id="mPrac" type="button"><b>연습</b><span id="mPracS">한 문제씩 · 바로 확인</span></button>
-    <button class="big" id="mPracX" type="button"><b>시험처럼 한번에 풀기</b><span id="mPracXS">랜덤 섞기 · 끝에 제출 후 채점</span></button>
-    <button class="big" id="mStar" type="button"><b>틀린 문제만 연습</b><span id="mStarN"></span></button>
+    <button class="big" id="mLearn" type="button"><b>뉘앙스 학습</b><span id="mLearnS">같은 뜻, 다른 쓰임 · 언제 쓰는지까지</span></button>
+    <button class="big" id="mPrac" type="button"><b>관계 지도 연습</b><span id="mPracS">한 문제씩 풀고 · 바로 지도로 확인</span></button>
+    <button class="big" id="mPracX" type="button"><b>실전 예행연습</b><span id="mPracXS">시험처럼 한번에 · 틀린 것만 다시</span></button>
+    <button class="big" id="mStar" type="button"><b>★ 별표 단어 복습</b><span id="mStarN"></span></button>
     <button class="big" id="mExam" type="button"><b>시험</b><span>1회 · 타임어택</span></button>
     <button class="home-btn" id="mReset" type="button" style="align-self:flex-start" hidden>이어풀기 지우고 처음부터</button><button class="home-btn" id="hbd" type="button" style="align-self:flex-start">Day 목록</button>
   </div>
@@ -337,7 +339,7 @@ function build(){
     var S=state(wi);
     var s1=el('section','slide'),c1=el('div','card');
     c1.appendChild(el('div','no','DAY '+pad2(DN)+' · '+w.n));
-    c1.appendChild(hrow(w));
+    c1.appendChild(hrow(w));c1.appendChild(starB(w));
     w.kan.forEach(function(k,ki){
       var box=el('div','kan'),ks=S.k[ki];
       var mk=(k.sense.match(/^[❶❷❸❹❺❻]+/)||[''])[0];
@@ -367,7 +369,7 @@ function build(){
         ks.done=true;go.style.display='none';reveal();
         [].forEach.call(grid.children,function(b){b._paint()});
         var ok=os.every(function(o){return !!ks.sel[o.w+'|'+o.g]==o.ok});
-        res.className='res '+(ok?'ok':'no2');res.textContent=ok?'정답':'오답';
+        res.className='res '+(ok?'ok':'no2');res.textContent=ok?'정답':'오답';if(!ok)putStar(w.h,true);
         update();refreshBack(wi);
       };
       if(ks.done){go.style.display='none';reveal();[].forEach.call(grid.children,function(b){b._paint()});var ok=os.every(function(o){return !!ks.sel[o.w+'|'+o.g]==o.ok});res.className='res '+(ok?'ok':'no2');res.textContent=ok?'정답':'오답'}
@@ -402,7 +404,7 @@ function fillBack(wi,c){
   if(w.other)inner.appendChild(el('div','other',esc(w.other)));
   inner.appendChild(el('div','lab','쓰는 타이밍'));
   inner.appendChild(el('div','timing',esc(w.timing)));
-  c.appendChild(inner);
+  c.appendChild(inner);c.appendChild(starB(w));
 }
 function refreshBack(wi){var c=document.getElementById('back'+wi);if(c)fillBack(wi,c);fillEnd()}
 function fillEnd(){
@@ -427,7 +429,7 @@ document.getElementById('prev').onclick=function(){go(cur-1)};
 document.getElementById('next').onclick=function(){go(cur+1)};
 deck.addEventListener('scroll',function(){clearTimeout(deck._t);deck._t=setTimeout(update,60)});
 window.addEventListener('resize',update);
-var RES=0;function lKey(){return 'dvp_l'+DN}function pKeyI(){return pKey()+'i'}function pKey(){return 'dvp_p'+DN}function saveL(){try{if(!Object.keys(st).length)return;RES=cur;sset(lKey(),JSON.stringify({st:st,i:cur}))}catch(e){}}function loadL(){try{var sv=JSON.parse(sget(lKey())||'null');if(sv&&sv.st&&!Object.keys(st).length){st=sv.st;ST[DI]=st;RES=sv.i||0}else if(!sv)RES=0}catch(e){RES=0}}function loadP(inst){try{var sv=JSON.parse(sget(inst?pKeyI():pKey())||'null');if(sv&&sv.items&&sv.items.length&&sv.items.every(function(x){return W[x.wi]&&W[x.wi].kan[x.ki]}))return sv}catch(e){}return null}function saveP(){try{if(T&&T.mode=='P'&&!T.only&&T.scope=='day')sset(T.inst?pKeyI():pKey(),JSON.stringify({items:T.items,i:T.i}))}catch(e){}}function doneWords(){return Object.keys(st).filter(function(k){return st[k].k.every(function(x){return x.done})}).length}function touched(){return Object.keys(st).filter(function(k){return st[k].k.some(function(x){return x.done||Object.keys(x.sel).some(function(z){return x.sel[z]})})}).length} var T=null,MEM={},TCODE='7372';
+var RES=0;function lKey(){return 'dvp_l'+DN}function pKeyI(){return pKey()+'i'}function pKey(){return 'dvp_p'+DN}function saveL(){try{if(!Object.keys(st).length)return;RES=cur;sset(lKey(),JSON.stringify({st:st,i:cur}))}catch(e){}}function loadL(){try{var sv=JSON.parse(sget(lKey())||'null');if(sv&&sv.st&&!Object.keys(st).length){st=sv.st;ST[DI]=st;RES=sv.i||0}else if(!sv)RES=0}catch(e){RES=0}}function loadP(inst){try{var sv=JSON.parse(sget(inst?pKeyI():pKey())||'null');if(sv&&sv.items&&sv.items.length&&sv.items.every(function(x){return W[x.wi]&&W[x.wi].kan[x.ki]}))return sv}catch(e){}return null}function saveP(){try{if(T&&T.mode=='P'&&!T.only&&!T.retry&&T.scope=='day')sset(T.inst?pKeyI():pKey(),JSON.stringify({items:T.items,i:T.i}))}catch(e){}}function doneWords(){return Object.keys(st).filter(function(k){return st[k].k.every(function(x){return x.done})}).length}function touched(){return Object.keys(st).filter(function(k){return st[k].k.some(function(x){return x.done||Object.keys(x.sel).some(function(z){return x.sel[z]})})}).length} var T=null,MEM={},TCODE='7372';
 function sget(k){try{var v=localStorage.getItem(k);return v==null?(MEM[k]||null):v}catch(e){return MEM[k]||null}}
 function sset(k,v){MEM[k]=v;try{localStorage.setItem(k,v)}catch(e){}}
 function sdel(k){delete MEM[k];try{localStorage.removeItem(k)}catch(e){}}
@@ -440,6 +442,12 @@ function itemOK(it){return it.o.every(function(x){return !!it.sel[x.w+'|'+x.g]==
 function anySel(it){return Object.keys(it.sel).some(function(z){return it.sel[z]})}
 function iw(it){return DAYS[it.di][it.wi]}
 function ikey(it){return it.di+'|'+iw(it).h+'|'+it.ki}
+function sKey(di){return pKey().slice(0,4)+'star_'+WN.name()+'_'+di}
+function getStars(di){try{return JSON.parse(sget(sKey(di))||'{}')}catch(e){return{}}}
+function setStarUI(){[].forEach.call(deck.querySelectorAll('.starb'),function(b){b.className='starb'+(getStars(DI)[b.getAttribute('data-h')]?' on':'')})}
+function putStar(h,on){var m=getStars(DI);if(on)m[h]=1;else delete m[h];sset(sKey(DI),JSON.stringify(m));setStarUI()}
+function starCount(di){var n=0;DAYS.forEach(function(D,i){if(di!=null&&i!=di)return;var m=getStars(i);D.forEach(function(w){if(m[w.h])n++})});return n}
+function starB(w){var b=el('button','starb'+(getStars(DI)[w.h]?' on':''),'★');b.type='button';b.setAttribute('data-h',w.h);b.setAttribute('aria-label','별표');b.onclick=function(e){e.stopPropagation();putStar(w.h,!getStars(DI)[w.h])};return b}
 function wrongMap(){try{return JSON.parse(sget('dvp_wrong_'+WN.name())||'{}')}catch(e){return {}}}
 function saveWrong(m){sset('dvp_wrong_'+WN.name(),JSON.stringify(m))}
 function wnSend(it,exam){try{var w=iw(it),k=w.kan[it.ki],rl=kind(k)=='syn'?k.syn:k.ant;
@@ -458,8 +466,8 @@ function recordResults(items,exam){
   if(WNB.length){WN.add(WNB);WNB=[]}
 }
 function wrongCount(di){var n=0,m=wrongMap();Object.keys(m).forEach(function(k){if(di==null||parseInt(k,10)==di)n++});return n}
-function homeRefresh(){var n=wrongCount(DI),b=document.getElementById('mStar');b.disabled=!n;document.getElementById('mStarN').textContent=n?(n+'문제'):'틀린 문제 없음';
-  document.getElementById('dayh').textContent='Day '+pad2(DN);var dw=doneWords(),tc=touched(),pv=loadP();document.getElementById('mLearnS').textContent=dw>=W.length?'모두 풀었어요':(tc||RES>0)?('이어서 · '+Math.min(W.length,Math.floor(RES/2)+1)+' / '+W.length+' 단어'):'퀴즈로 익히기';var pvi=loadP(true);document.getElementById('mPracS').textContent=pvi?('이어서 · '+(pvi.i+1)+' / '+pvi.items.length):'한 문제씩 · 바로 확인';document.getElementById('mPracXS').textContent=pv?('이어서 · '+(pv.i+1)+' / '+pv.items.length):'랜덤 섞기 · 끝에 제출 후 채점';document.getElementById('mReset').hidden=!(tc||RES>0||pv||pvi)}
+function homeRefresh(){var n=starCount(DI),b=document.getElementById('mStar');b.disabled=!n;document.getElementById('mStarN').textContent=n?(n+'단어 · 반복 연습'):'뉘앙스 학습에서 ★를 눌러 모아요';
+  document.getElementById('dayh').textContent='Day '+pad2(DN);var dw=doneWords(),tc=touched(),pv=loadP();document.getElementById('mLearnS').textContent=dw>=W.length?'모두 풀었어요':(tc||RES>0)?('이어서 · '+Math.min(W.length,Math.floor(RES/2)+1)+' / '+W.length+' 단어'):'같은 뜻, 다른 쓰임 · 언제 쓰는지까지';var pvi=loadP(true);document.getElementById('mPracS').textContent=pvi?('이어서 · '+(pvi.i+1)+' / '+pvi.items.length):'한 문제씩 풀고 · 바로 지도로 확인';document.getElementById('mPracXS').textContent=pv?('이어서 · '+(pv.i+1)+' / '+pv.items.length):'시험처럼 한번에 · 틀린 것만 다시';document.getElementById('mReset').hidden=!(tc||RES>0||pv||pvi)}
 function doneSet(){try{return JSON.parse(localStorage.getItem('dvp_done_'+WN.name())||'[]')}catch(e){return[]}}
 function markDone(di){try{var s=doneSet();if(s.indexOf(di)<0){s.push(di);localStorage.setItem('dvp_done_'+WN.name(),JSON.stringify(s))}}catch(e){}}
 function progStat(){
@@ -475,11 +483,11 @@ function daysRefresh(){
   pe.innerHTML='<div class="big2">'+P.a.toLocaleString()+'<small>단어 마주침</small></div><div class="psub">표제어 '+P.h+' / '+P.H+' · 보기 포함 전체 '+P.A.toLocaleString()+' · '+P.d+' / '+DAYS.length+'일 완료</div><div class="bar"><b style="width:'+Math.round(P.a/P.A*100)+'%"></b></div>';
   var g=document.getElementById('dgrid');g.innerHTML='';
   DAYS.forEach(function(d,i){
-    var n=wrongCount(i),b=el('button','dbtn',pad2(i+1)+(n?'<i>'+n+'</i>':''));b.type='button';if(doneSet().indexOf(i)>=0)b.className+=' dn';
+    var n=starCount(i),b=el('button','dbtn',pad2(i+1)+(n?'<i>★'+n+'</i>':''));b.type='button';if(doneSet().indexOf(i)>=0)b.className+=' dn';
     b.onclick=function(){selectDay(i)};g.appendChild(b);
   });
-  var tot=wrongCount(null),a=document.getElementById('mAllStar');a.disabled=!tot;
-  document.getElementById('mAllStarN').textContent=tot?(tot+'문제'):'틀린 문제 없음';
+  var tot=starCount(null),a=document.getElementById('mAllStar');a.disabled=!tot;
+  document.getElementById('mAllStarN').textContent=tot?(tot+'단어'):'';
 }
 function selectDay(i){
   DI=i;DN=i+1;W=DAYS[i];st=ST[i]||(ST[i]={});
@@ -494,10 +502,10 @@ function goHome(){
 function goDays(){if(T&&T.tm)clearInterval(T.tm);T=null;daysRefresh();showView('days')}
 function startLearn(){showView('learn');if(RES>0)deck.scrollLeft=RES*(deck.clientWidth+12);update()}
 function mkItems(only,salt,scope){
-  var a=[],wm=wrongMap();
+  var a=[];
   DAYS.forEach(function(D,di){
-    if(scope!='all'&&di!=DI)return;
-    D.forEach(function(w,wi){w.kan.forEach(function(k,ki){if(only&&!((di+'|'+w.h+'|'+ki) in wm))return;a.push({di:di,wi:wi,ki:ki,o:opts(k,w.h,ki,salt),sel:{}})})});
+    if(scope!='all'&&di!=DI)return;var sm=only?getStars(di):null;
+    D.forEach(function(w,wi){w.kan.forEach(function(k,ki){if(only&&!sm[w.h])return;a.push({di:di,wi:wi,ki:ki,o:opts(k,w.h,ki,salt),sel:{}})})});
   });
   return shuf(a,'o'+salt);
 }
@@ -551,7 +559,7 @@ function tick(){
 function renderT(){ if(T.inst&&T.mode=='P')return renderI();saveP();var tv=document.getElementById('testv');tv.innerHTML='';showView('testv');
   var n=T.items.length,it=T.items[T.i],w=iw(it),k=w.kan[it.ki],E=T.mode=='E';
   var answered=T.items.filter(anySel).length;
-  tv.appendChild(el('div','top',E?('<b>시험</b><span class="timer'+(T.left<=30?' low':'')+'" id="tmr">'+fmt(T.left)+'</span><span>'+(T.i+1)+' / '+n+'</span>'):('<b>연습</b><span>'+(T.i+1)+' / '+n+'</span><button class="home-btn" id="hbp" type="button">처음으로</button>')));
+  tv.appendChild(el('div','top',E?('<b>시험</b><span class="timer'+(T.left<=30?' low':'')+'" id="tmr">'+fmt(T.left)+'</span><span>'+(T.i+1)+' / '+n+'</span>'):('<b>'+(T.retry?'틀린 것 다시':'실전 예행연습')+'</b><span>'+(T.i+1)+' / '+n+'</span><button class="home-btn" id="hbp" type="button">처음으로</button>')));
   tv.appendChild(el('div','bar','<i style="width:'+(answered/n*100)+'%"></i>'));
   var wrap=el('div','');wrap.style.cssText='flex:1;min-height:0';
   var c=el('div','card');
@@ -582,46 +590,39 @@ function ritem(it,good){
   var d=el('div','ritem '+(good?'ok':'bad'),'<div>'+lab+'<b>'+esc(w.h)+'</b> '+tags(k)+'<span class="sense">'+esc(k.sense.replace(/^[❶❷❸❹❺❻]+\s*/,''))+'</span></div><div class="st">'+(good?'정답':'오답')+'</div>'+(good?'':'<div class="mine">내 답: '+esc(mine)+'</div>')+'<div>'+(kind(k)=='syn'?'비슷한 뜻':'반대 뜻')+': '+esc(ans)+'</div>');
   if(it.note)d.appendChild(el('div','mine',esc(it.note)));return d;
 }
-/* 연습(바로 확인): 한 문제씩 풀고 '확인' → 바로 맞/틀 + 단어·뜻만 → 틀리면 관계 지도 */
+/* 관계 지도 연습: 한 문제씩 풀고 '확인' → 바로 관계 지도로 뒤집힘 */
 function renderI(){ saveP();var tv=document.getElementById('testv');tv.innerHTML='';showView('testv');
   var n=T.items.length,it=T.items[T.i],w=iw(it),k=w.kan[it.ki],rev=!!it.rev,last=T.i>=n-1;
-  var ok=itemOK(it),seen=T.items.filter(function(x){return x.rev}).length;
-  tv.appendChild(el('div','top','<b>연습</b><span>'+(T.i+1)+' / '+n+'</span><button class="home-btn" id="hbp" type="button">처음으로</button>'));
+  var seen=T.items.filter(function(x){return x.rev}).length;
+  tv.appendChild(el('div','top','<b>'+(T.only?'★ 별표 복습':'관계 지도 연습')+'</b><span>'+(T.i+1)+' / '+n+'</span><button class="home-btn" id="hbp" type="button">처음으로</button>'));
   tv.appendChild(el('div','bar','<i style="width:'+(seen/n*100)+'%"></i>'));
   var wrap=el('div','');wrap.style.cssText='flex:1;min-height:0;display:flex;flex-direction:column';
-  if(rev&&T.mapv){
+  if(rev){
     var sw=el('div','slide on');sw.style.cssText='flex:1;min-height:0;height:auto';sw.appendChild(rvCard(it));wrap.appendChild(sw);
   }else{
     var c=el('div','card');c.style.cssText='height:auto;flex:1;min-height:0';
     c.appendChild(el('div','no','DAY '+pad2(it.di+1)+' · '+w.n));c.appendChild(hrow(w));
     var kb=el('div','kan');kb.appendChild(el('div','q',qtext(k)));
-    if(rev)kb.appendChild(el('div','res '+(ok?'ok':'no2'),ok?'정답':(anySel(it)?'오답':'오답 · 안 골랐어요')));
     var grid=el('div','opts');
     it.o.forEach(function(o){
-      var key2=o.w+'|'+o.g,sel=!!it.sel[key2],cls='opt';
-      if(!rev){if(sel)cls+=' sel'}else if(sel&&o.ok)cls+=' good';else if(sel)cls+=' bad';else if(o.ok)cls+=' miss';
-      var b=el('button',cls,'<span>'+esc(o.w)+'</span>'+(rev?'<small>'+esc(o.g)+'</small>':'')+((rev&&!sel&&o.ok)?'<em class="mtag">놓친 정답</em>':''));
+      var key2=o.w+'|'+o.g,b=el('button','opt'+(it.sel[key2]?' sel':''),'<span>'+esc(o.w)+'</span>');
       b.type='button';if(o.w.length>10)b.style.gridColumn='1 / -1';b.appendChild(optSpk(o.w,k.pos));
-      if(rev)b.disabled=true;else b.onclick=function(){it.sel[key2]=!it.sel[key2];renderI()};
-      grid.appendChild(b);
+      b.onclick=function(){it.sel[key2]=!it.sel[key2];renderI()};grid.appendChild(b);
     });
     kb.appendChild(grid);c.appendChild(kb);wrap.appendChild(c);
   }
   tv.appendChild(wrap);
-  var bt=el('div','');bt.style.cssText='display:flex;flex-direction:column;gap:8px;margin-top:10px';
+  var bt=el('div','');bt.style.cssText='margin-top:10px';
   if(!rev){
     var go=el('button','go','확인');go.type='button';go.style.marginTop='0';go.disabled=!anySel(it);
-    go.onclick=function(){it.rev=true;T.mapv=false;recordResults([it],false);renderI()};bt.appendChild(go);
-    var dk=el('button','home-btn','모르겠어요 · 정답 보기');dk.type='button';dk.style.alignSelf='center';
-    dk.onclick=function(){it.rev=true;T.mapv=false;renderI()};bt.appendChild(dk);
+    go.onclick=function(){it.rev=true;recordResults([it],false);renderI()};bt.appendChild(go);
   }else{
-    if(!ok){var mp=el('button','sub2',T.mapv?'돌아가기':'관계 지도 보기');mp.type='button';mp.style.marginTop='0';mp.onclick=function(){T.mapv=!T.mapv;renderI()};bt.appendChild(mp)}
     var nx=el('button','go',last?'결과 보기':'다음 문제');nx.type='button';nx.style.marginTop='0';
-    nx.onclick=function(){if(last){submitT();return}T.i++;T.mapv=false;renderI()};bt.appendChild(nx);
+    nx.onclick=function(){if(last){submitT();return}T.i++;renderI()};bt.appendChild(nx);
   }
   tv.appendChild(bt);
   document.getElementById('hbp').onclick=goHome;
-  if(rev&&T.mapv)setTimeout(rvRedraw,30);
+  if(rev)setTimeout(rvRedraw,30);
 }
 /* 결과 화면: 틀린 단어마다 카드 한 장 — 관계어 지도(비슷한 뜻 왼쪽 · 반대 뜻 오른쪽 · 관계없음 아래 따로) */
 function rvChip(x,side,st,pos){
@@ -642,10 +643,11 @@ function rvLines(map){
 }
 function rvRedraw(){[].forEach.call(document.querySelectorAll('#testv .map'),rvLines)}
 function rvCard(it){
-  var w=iw(it),k=w.kan[it.ki],syn=kind(k)=='syn',c=el('div','card'),rel={},hit={};
+  var w=iw(it),k=w.kan[it.ki],syn=kind(k)=='syn',c=el('div','card'),rel={},ok=itemOK(it);
   (syn?k.syn:k.ant).forEach(function(x){rel[x[0]+'|'+x[1]]=1});
-  function st(x){var key=x[0]+'|'+x[1],sel=!!it.sel[key];var s=rel[key]?(sel?'ok':'miss'):(sel?'bad':'');if(s=='miss'||s=='bad')hit[x[0]]=1;return s}
-  c.appendChild(el('div','no','DAY '+pad2(it.di+1)+' · '+w.n+(anySel(it)?'':' · 안 푼 문제')));
+  function st(x){var key=x[0]+'|'+x[1],sel=!!it.sel[key];return rel[key]?(sel?'ok':'miss'):(sel?'bad':'')}
+  c.appendChild(el('div','no','DAY '+pad2(it.di+1)+' · '+w.n));
+  var v=el('div','res '+(ok?'ok':'no2'),ok?'정답':'오답');v.style.cssText='font-size:calc(20px*var(--fs));margin:4px 0 0';c.appendChild(v);
   var map=el('div','map');map.appendChild(document.createElementNS('http://www.w3.org/2000/svg','svg'));
   var mc=el('div','mc','<div class="mch"><span>'+esc(w.h)+'</span></div><div class="ms">'+tags(k)+esc(k.sense.replace(/^[❶❷❸❹❺❻]+\s*/,''))+'</div>');
   var sp=el('button','spk2',SPKSVG);sp.type='button';sp.setAttribute('aria-label','발음 듣기');sp.onclick=function(){speak(w)};mc.firstChild.appendChild(sp);
@@ -664,22 +666,23 @@ function rvCard(it){
     dz.appendChild(rows);map.appendChild(dz);
   }
   c.appendChild(map);
-  var nt=(k.notes||[]).filter(function(x){return hit[x[0]]});
-  if(nt.length){c.appendChild(el('div','lab','헷갈린 단어 쓰임 차이'));nt.forEach(function(x){c.appendChild(el('div','note','<b>'+esc(x[0])+'</b> '+esc(x[1].indexOf(x[0]+' ')==0?x[1].slice(x[0].length+1):x[1])))})}
-  var stem=w.h.split(' ')[0].replace(/e$/,'').replace(/y$/,''),exh=esc(k.ex[0]);
-  try{exh=exh.replace(new RegExp('\\b('+stem.replace(/[^A-Za-z]/g,'')+'\\w*)','i'),'<mark>$1</mark>')}catch(e){}
-  c.appendChild(el('div','lab','예문'));
-  c.appendChild(el('div','ex','<b>'+exh+'</b><span>'+esc(k.ex[1])+'</span>'));
-  if(it.note)c.appendChild(el('div','rvnote',esc(it.note)));
   return c;
 }
+function retryBad(bad){
+  var items=shuf(bad.map(function(it){var w=iw(it),k=w.kan[it.ki];return{di:it.di,wi:it.wi,ki:it.ki,o:opts(k,w.h,it.ki,String(Math.random())),sel:{}}}),'r'+Math.random());
+  if(T&&T.tm)clearInterval(T.tm);
+  T={mode:'P',inst:false,retry:true,only:false,scope:T.scope,items:items,i:0,done:false,armed:false};
+  showView('testv');renderT();
+}
 function rvShow(tv,E,head,good,bad){
-  var n=T.items.length;
+  var n=T.items.length,X=!E&&!T.inst;
   tv.appendChild(el('div','top','<b>'+(E?'시험 결과':'연습 결과')+'</b><span id="rvc"></span>'));
   tv.appendChild(el('div','bar','<i id="rvb"></i>'));
   var dk=el('div','deck'),sl=[];
   function add(card){var s=el('section','slide');s.appendChild(card);dk.appendChild(s);sl.push(s)}
   function jump(i){var s=sl[i];if(s)dk.scrollTo({left:s.offsetLeft-dk.offsetLeft,behavior:'smooth'})}
+  function retryBtn(){var b=el('button','sub2','틀린 것만 다시 풀기 ('+bad.length+'개)');b.type='button';b.style.marginTop='10px';b.onclick=function(){retryBad(bad)};return b}
+  function fullBtn(){var b=el('button','sub2','처음부터 전체 풀기 (리셋)');b.type='button';b.onclick=function(){sdel(pKey());startPractice(false,T.scope,false)};return b}
   var c0=el('div','card end');
   c0.innerHTML='<div class="no">'+head+'</div><h2>'+good.length+' / '+n+'</h2><div>'+(bad.length?('틀린 단어 '+bad.length+'개 · 카드로 하나씩 짚어 봐요'):'전부 맞혔어요')+'</div>';
   if(bad.length){
@@ -687,14 +690,19 @@ function rvShow(tv,E,head,good,bad){
     bad.forEach(function(it,i){var b=el('button','',esc(iw(it).h));b.type='button';b.onclick=function(){jump(i+1)};ch.appendChild(b)});
     c0.appendChild(ch);
     var stb=el('button','go','틀린 단어 카드 보기');stb.type='button';stb.onclick=function(){jump(1)};c0.appendChild(stb);
+    if(X)c0.appendChild(retryBtn());
   }
   add(c0);
   bad.forEach(function(it){add(rvCard(it))});
   var ce=el('div','card end');ce.innerHTML='<div class="no">마무리</div>';
   if(good.length){ce.appendChild(el('div','lab','맞힌 문제 '+good.length+'개'));
     var gc=el('div','rvchips ok');good.forEach(function(it){gc.appendChild(el('button','',esc(iw(it).h)))});ce.appendChild(gc)}
-  if(!E){
-    var again=el('button','sub2','다시 연습 (랜덤 섞기)');again.type='button';again.onclick=function(){startPractice(T.only,T.scope,T.inst)};ce.appendChild(again);
+  if(X){
+    if(bad.length)ce.appendChild(retryBtn());
+    ce.appendChild(fullBtn());
+    var hm0=el('button','reset','처음으로');hm0.type='button';hm0.onclick=goHome;ce.appendChild(hm0);
+  }else if(!E){
+    var again=el('button','sub2','다시 연습');again.type='button';again.onclick=function(){startPractice(T.only,T.scope,T.inst)};ce.appendChild(again);
     var hm=el('button','reset','처음으로');hm.type='button';hm.onclick=goHome;ce.appendChild(hm);
   }else{
     var l=el('button','sub2','학습으로 복습');l.type='button';l.onclick=startLearn;ce.appendChild(l);
@@ -724,7 +732,7 @@ function submitT(){ if(!T||T.done)return;if(T.mode=='P'&&!T.only&&T.scope=='day'
   var used=E?T.total-T.left:0;
   if(!T.inst)recordResults(T.items,E);
   if(E)sset(T.key,JSON.stringify({done:true,score:good.length,total:n,used:used,t:Date.now()}));if(E)WN.hw('더블보카 Pro',DN,good.length+'/'+n);
-  var head=E?('시험 · '+esc(T.name)+' · 걸린 시간 '+fmt(used)):'연습';
+  var head=E?('시험 · '+esc(T.name)+' · 걸린 시간 '+fmt(used)):(T.inst?(T.only?'★ 별표 복습':'관계 지도 연습'):(T.retry?'실전 예행연습 · 틀린 것 다시':'실전 예행연습'));
   rvShow(tv,E,head,good,bad);
 }
 document.getElementById('mLearn').onclick=startLearn;
