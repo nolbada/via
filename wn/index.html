@@ -234,7 +234,7 @@ function home(r){
       bar+='<i class="'+(q2===cw?'cur':(tot&&dn3===tot?'dn':(late?'lt':'')))+'"></i>';
     }
     var HS=exStat(n,ti),mmL=lj('wn_mm_'+n,[]),mmN=mmL.length+1;
-    var st3Html='<button data-i="dv"><small>단어</small><b>'+(HS.nx?'Day '+HS.nx:'완료')+'</b></button><button data-i="mm"><small>모고</small><b>'+mmN+'회</b></button><button data-i="gr"><small>어법</small><b>—</b></button>';
+    var st3Html='<button data-i="dv"><small>다음 시험</small><b>'+(HS.nx?'Day '+HS.nx:'완료')+'</b></button><button data-i="mm"><small>다음 모고</small><b>'+mmN+'회</b></button><button data-i="gr"><small>다음 어법</small><b>—</b></button>';
     var wkTxt=(cw<0?'시작 전':(cw>=NW?'종료':(cw+1)));
     h+='<div class="hero pm"><div class="lb"><span class="lg"><img src="logo.png" alt="비타민 영어클리닉"></span><span class="dt">'+dshow(ti)+'</span></div><div class="hn mt"><em>성공</em>은 매일 부단하게 반복된<br>작은 노력의 <em>합산</em>이다.</div><div class="st3">'+st3Html+'</div><div class="sp" id="sp"></div></div>';
   }else{
@@ -414,12 +414,12 @@ function openSp(I,n,ti,key,btn){
   sp.dataset.k=key;
   if(key==='dv'){
     var R=exRecs(n);
-    html='<div class="pn"><b>단어 · 더블보카 '+P.dv+' 시험 기록</b>'+(R.length?R.map(function(r){return'<div class="rw"><span>Day '+r.d+'</span><span>'+(r.t?r.s+' / '+r.t:'응시 완료')+(r.at?' <span class="no">· '+md(r.at)+'</span>':'')+'</span></div>'}).join(''):'<div class="rw"><span class="no">아직 시험 기록이 없어요</span></div>')+'<a class="go" href="'+VB+(P.dv==='Pro'?'dvpro/':'dvcore/')+'">더블보카 바로가기</a></div>';
+    html='<div class="pn"><b>더블보카 시험 기록</b>'+(R.length?R.map(function(r){return'<div class="rw"><span>Day '+r.d+'</span><span>'+(r.t?r.s+' / '+r.t:'응시 완료')+(r.at?' <span class="no">· '+md(r.at)+'</span>':'')+'</span></div>'}).join(''):'<div class="rw"><span class="no">아직 시험 기록이 없어요</span></div>')+'</div>';
   }else if(key==='mm'){
     var L=lj('wn_mm_'+n,[]);
-    html='<div class="pn"><b>모고 · 미니모의고사 기록</b>'+(L.length?L.map(function(r,i){return'<div class="rw"><span>'+(i+1)+'회</span><span>'+r.score+(r.total?' / '+r.total:'')+'</span></div>'}).join(''):'<div class="rw"><span class="no">아직 기록이 없어요</span></div>')+'<a class="go" href="'+(MM[P.m]||MM['고1'])+'">미니모의고사 바로가기</a></div>';
+    html='<div class="pn"><b>미니모의고사 기록</b>'+(L.length?L.map(function(r,i){return'<div class="rw"><span>'+(i+1)+'회</span><span>'+r.score+(r.total?' / '+r.total:'')+'</span></div>'}).join(''):'<div class="rw"><span class="no">아직 기록이 없어요</span></div>')+'</div>';
   }else{
-    html='<div class="pn"><b>어법</b><div class="rw"><span class="no">곧 어법 바로가기가 들어와요</span></div></div>';
+    html='<div class="pn"><b>어법 기록</b><div class="rw"><span class="no">아직 기록이 없어요</span></div></div>';
   }
   sp.innerHTML=html;
 }
