@@ -118,7 +118,7 @@ h1{font-size:22px;line-height:1.3;margin:2px 0 0;font-weight:700;text-wrap:balan
 .cb{flex:0 0 auto;border:1px solid var(--line);background:none;color:var(--mute);font:inherit;font-size:14px;padding:9px 16px;border-radius:10px;cursor:pointer;min-height:44px}
 .cb[disabled]{opacity:.35;cursor:default}
 .cb.main{flex:1;border-color:var(--accent);color:var(--accent);font-weight:700}
-.skel{margin:8px 0 0;font-size:15px;line-height:1.6}.skel b{display:inline-block;font-size:12px;color:var(--mute);margin-right:8px}.skel .en{font-weight:600;margin-right:8px}.skel .a{color:var(--mute)}.fin{margin-top:10px;font-size:17px;line-height:1.8}.fin b{display:block;font-size:12px;color:var(--mute);margin-bottom:2px;font-weight:600}.fin b i{font-style:normal;margin-left:6px}.fin .k1,.fb{color:#d62828;font-weight:700}.fin .k2,.fm{color:#4b4b4b}.cl .form{align-self:flex-start}.formbox{margin-top:8px;padding:8px 12px;border:1px solid var(--line);border-radius:10px}
+.mir .tmpl{font-size:14px;color:var(--mute)}.mir .tmpl b{font-size:12px;margin-right:6px}.mir .tmpl em{font-style:normal;margin-left:6px}.cols{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-start;margin-top:4px}.col{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:44px}.col .arr{font-size:16px;line-height:1;color:var(--accent)}.col .rc{font-size:16px;padding:5px 11px 4px}.col .rc i{font-size:11px}.rc.none{background:transparent;color:var(--mute);border:1px dashed var(--line)}.scell .rc{white-space:normal;text-align:center}.mir .rel{font-size:14px;color:var(--mute)}.skel{margin:8px 0 0;font-size:15px;line-height:1.6}.skel b{display:inline-block;font-size:12px;color:var(--mute);margin-right:8px}.skel .en{font-weight:600;margin-right:8px}.skel .a{display:block;color:inherit;font-weight:500;margin-top:2px}.fin{margin-top:10px;font-size:17px;line-height:1.8}.fin b{display:block;font-size:12px;color:var(--mute);margin-bottom:2px;font-weight:600}.fin b i{font-style:normal;margin-left:6px}.fin .k1,.fb{color:#d62828;font-weight:700}.fin .k2,.fm{color:#4b4b4b}.cl .form{align-self:flex-start}.formbox{margin-top:8px;padding:8px 12px;border:1px solid var(--line);border-radius:10px}
 .formbox .form{display:inline-block;font-size:13px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 10px;margin-right:4px}
 .ink{position:absolute;left:0;top:0;width:100%;height:100%;border-radius:14px;pointer-events:none;touch-action:none;z-index:5}
 body.penon .ink{pointer-events:auto;cursor:crosshair}
@@ -235,11 +235,20 @@ function chips(arr){ return arr.map(a=>'<span class="rc '+a[1]+'">'+esc(a[0])+'<
 function mirror(id){
   const L=ST[id]; if(!L) return "";
   const LB=(typeof STL!=="undefined"&&STL[id])||[];
+  const TKO={"1":"나는 잔다.","2":"나는 행복하다.","3":"나는 사과를 좋아한다.","4":"나는 그에게 책을 준다.","5":"나는 그를 행복하게 만든다."};
+  const TEN={"1":"I sleep.","2":"I am happy.","3":"I like apples.","4":"I give him a book.","5":"I make him happy."};
   return '<span class="mir">'+L.map((c,i)=>{
-    const r=REFS[c[0]], nm=(LB[i]&&L.length>1?LB[i]+" ":"")+r.k;
+    const r=REFS[c[0]], nm=(LB[i]&&L.length>1?LB[i]+" ":"")+r.k, used=new Set();
+    const cols=c[1].map(a=>{
+      let k=-1; r.t.forEach((t,j)=>{ if(k<0&&t[1]===a[1]&&!used.has(j)) k=j; });
+      if(k>=0) used.add(k);
+      return '<span class="col"><span class="tcell">'+(k>=0?chips([r.t[k]]):'<span class="rc none">+</span>')+'</span>'
+        +'<span class="arr">'+(k>=0?"↓":"")+'</span><span class="scell">'+chips([a])+'</span></span>';
+    }).join("");
     return '<span class="cl"><span class="form">'+esc(nm)+'</span>'
-      +'<span class="mrow"><span class="mlab">닮은꼴</span>'+chips(r.t)+(r.rel?'<span class="rel">'+esc(r.rel)+'</span>':'')+'</span>'
-      +'<span class="mrow"><span class="mlab">이 문장</span>'+chips(c[1])+(c[2]?'<span class="rel">'+esc(c[2])+'</span>':'')+'</span></span>';
+      +'<span class="tmpl"><b>닮은꼴</b> '+TEN[c[0]]+' <em>'+TKO[c[0]]+'</em></span>'
+      +'<span class="cols">'+cols+'</span>'
+      +(c[2]?'<span class="rel">'+esc(c[2])+'</span>':'')+'</span>';
   }).join("")+'</span>';
 }
 function fin(x){
@@ -262,7 +271,7 @@ function card(x){
   let rows="",ri=0,first=true;
   (x.easy||[]).forEach(t=>{
     if(t.length===1){ sm=t[0]; return; }
-    if(first){ first=false; sk='<p class="skel"><b>뼈대</b><span class="en">'+esc(t[1])+'</span><span class="a">'+esc(t[2])+'</span></p>'; return; }
+    if(first){ first=false; sk='<p class="skel"><b>뼈대 해석</b><span class="en">'+esc(t[1])+'</span><span class="a">'+esc(t[2])+'</span></p>'; return; }
     const i=ri++; if(R.has("e"+i)) rows+='<p><span class="q">'+esc(t[0])+'</span> <span class="en">'+esc(t[1])+'</span>'+'<span class="a">'+esc(t[2])+'</span>'+'</p>';
   });
   if(R.has("form")) sol+='<div class="formbox">'+(ST[x.id]?mirror(x.id):"")+sk+'</div>';
