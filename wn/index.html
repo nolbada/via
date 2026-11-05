@@ -355,6 +355,22 @@ if(PV==='B'||PV==='H'){
   ls=function(k){try{return localStorage.getItem(/^wn_/.test(k)?'demo_'+k:k)}catch(e){return null}};
   ss=function(k,v){try{localStorage.setItem(/^wn_/.test(k)?'demo_'+k:k,v)}catch(e){}};
   ctlRead=function(){return Promise.resolve({})};
+  /* 홈 화면용 앱 이름·아이콘: 보카코어(v=B) / 보카프로(v=H) */
+  (function(){
+    var V={B:{t:'보카코어',k:'코어',a:'#1a68c8',b:'#348ee8'},H:{t:'보카프로',k:'프로',a:'#b01c54',b:'#e0467c'}}[PV];
+    function mk(S){var c=document.createElement('canvas');c.width=c.height=S;var g=c.getContext('2d'),r=g.createLinearGradient(0,0,S,S);
+      r.addColorStop(0,V.a);r.addColorStop(1,V.b);g.fillStyle=r;g.fillRect(0,0,S,S);
+      g.fillStyle='#fff';g.textAlign='center';g.textBaseline='middle';
+      var f='"Noto Sans KR","Malgun Gothic","Noto Sans CJK KR",sans-serif';
+      g.font='500 '+S*0.19+'px '+f;g.fillText('보카',S/2,S*0.3);
+      g.fillRect(S*0.34,S*0.44,S*0.32,S*0.015);
+      g.font='700 '+S*0.4+'px '+f;g.fillText(V.k,S/2,S*0.65);
+      return c.toDataURL('image/png')}
+    var u32=mk(32),u192=mk(192);
+    document.title=V.t;
+    document.querySelectorAll('link[rel="icon"],link[rel="apple-touch-icon"]').forEach(function(l){l.setAttribute('href',l.getAttribute('sizes')==='32x32'?u32:u192)});
+    var m=document.createElement('meta');m.name='apple-mobile-web-app-title';m.content=V.t;document.head.appendChild(m);
+  })();
   post=function(b){var t=iso(new Date());if(b.act==='list')return Promise.resolve({ok:true,today:t,cap:40,max:60,items:[['alpha','알파'],['beyond','넘어서'],['crucial','결정적인'],['dispute','논쟁'],['elaborate','정교한'],['fragile','깨지기 쉬운']].map(function(x){return{w:x[0],m:x[1],src:'미리보기',ask:true,c:1,st:0,nx:t,first:t}})});return Promise.resolve({ok:true})};
   var _home=home;
   home=function(r){_home(r);
