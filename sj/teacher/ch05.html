@@ -259,7 +259,7 @@ function mirror(id){
   }); });
   // 2) 형용사절·부사절 등
   const AD={because:"이유",since:"이유",as:"이유·시간",so:"결과",when:"시간",while:"시간·양보",before:"시간",after:"시간",until:"시간",once:"시간","if":"조건",unless:"조건",although:"양보",though:"양보"};
-  const OV={"035":"양보","041":"시간","111":"양태(~처럼)","123":"양태(~처럼)","153":"시간(~함에 따라)","161":"시간(~함에 따라)","237":"시간(~함에 따라)","125":"이유"};
+  const OV={"035":"양보","041":"시간","111":"양태(~처럼)","123":"양태(~처럼)","153":"시간(~함에 따라)","161":"시간(~함에 따라)","237":"시간(~함에 따라)","125":"이유","091":"이유","206":"시간","241":"양보(대조)"};
   const PREP=new Set(["in","on","at","with","by","for","from","to","of","through","during","about","under","over","into"]);
   L.forEach((c,q)=>{
     if(isKid.has(q)||MAIN(q)||q===0) return;
@@ -299,6 +299,7 @@ function mirror(id){
       const comma=new RegExp(",\\s*"+(marker||"zzz")+"\\b","i").test(en)?" · 계속적 용법":"";
       k=detail.startsWith("RA:")?"형용사절·관계부사 ("+detail.slice(3)+" 생략)":"형용사절·관계대명사 "+role+(marker?" ("+marker+")":"")+comma;
       if(gap0&&!marker&&!ant){ ant=gap0.split(/\s+/).pop().toLowerCase(); }
+      if(ant&&!/^[(]/.test(ant)) k+=" · 선행사 "+ant;
       if(ant){ for(let p=q-1;p>=0&&!place;p--){ L[p][1].forEach((a,j)=>{ if(!place&&(clean(a[0]).toLowerCase().match(/[a-z’'-]+/g)||[]).includes(ant)) place=p+":"+j; }); } }
     } else if(lbw==="how"&&!ADV.test(LB[q]||"")) { k="명사절·how절 (~하는 방법)"; }
     else if(["where","when","why"].includes(lbw)&&!ADV.test(LB[q]||"")) { k="형용사절·관계부사 ("+lbw+")"; }
@@ -308,13 +309,14 @@ function mirror(id){
       const findp=(wd)=>{ for(let p=q-1;p>=0&&!place;p--){ L[p][1].forEach((a,j)=>{ if(!place&&(clean(a[0]).toLowerCase().match(/[a-z’'-]+/g)||[]).includes(wd)) place=p+":"+j; }); } };
       if(gap0){ findp(gap0.split(/\s+/).pop().toLowerCase()); if(place) k="형용사절·관계대명사 목적격(생략)"; }
       else if(RA[pw]){ findp(pw); k="형용사절·관계부사 ("+RA[pw]+" 생략)"; }
-      else if(L.some((cc,qq)=>qq<q&&ADV.test(LB[qq]||""))) k="주절 (앞 부사절의 짝)"; else k="주절 (이어지는 문장)";
+      else if(L.some((cc,qq)=>qq<q&&ADV.test(LB[qq]||""))) k="주절 (부사절과 짝)"; else k="주절 (이어지는 문장)";
     }
+    const OVK={"068":{when:"형용사절·관계부사 (when) · 계속적 용법"},"234":{when:"명사절·when절 (언제 ~하는지)"}}; if(OVK[id]&&OVK[id][lbw]) k=OVK[id][lbw];
     kind[q]=k; isKid.add(q);
     if(place){ (kidAt[place]=kidAt[place]||[]).push({q,k}); }
     else{ (tail[q-1]=tail[q-1]||[]).push({q,k}); }
   });
-  function head(q){ const r=REFS[L[q][0]]; return '<span class="form pf">'+esc((LB[q]||"")+" "+r.k)+'</span><span class="tmpl"><b>닮은꼴</b> '+TEN[L[q][0]]+' <em>'+TSK[L[q][0]]+'</em></span>'; }
+  function head(q){ const r=REFS[L[q][0]]; let lab=LB[q]||""; if(q===0&&ADV.test(lab)){ const b=lab.replace("절",""); lab="부사절·"+((OV[id]&&/^(as|while|since)$/.test(b))?OV[id]:(AD[b]||""))+" ("+lab+")"; } return '<span class="form pf">'+esc(lab+" "+r.k)+'</span><span class="tmpl"><b>닮은꼴</b> '+TEN[L[q][0]]+' <em>'+TSK[L[q][0]]+'</em></span>'; }
   function blk(q,k,kr){
     const en2=L[q][1].map(a=>clean(a[0])).join(" ");
     return '<details class="nest" open><summary class="mr"><b class="rl">'+k+'</b><span class="tm plus">↳</span><span class="rc peach">'+esc(en2)+'<i>'+esc(LB[q]||"")+' · 안쪽 구조 ▾</i></span>'+(kr?'<div class="kr">'+kr+'</div>':'')+'</summary><div class="inner">'+head(q)+rows(q)+(L[q][2]?'<span class="rel">'+esc(L[q][2])+'</span>':'')+'</div></details>';
@@ -339,7 +341,7 @@ function mirror(id){
   }
   return '<span class="mir">'+L.map((c,ci)=>{
     if(isKid.has(ci)) return "";
-    const r=REFS[c[0]], nm=(LB[ci]&&L.length>1?LB[ci]+" ":"")+r.k;
+    const r=REFS[c[0]]; let lb0=LB[ci]||""; if(ADV.test(lb0)){ const b=lb0.replace("절",""); lb0="부사절·"+((OV[id]&&/^(as|while|since)$/.test(b))?OV[id]:(AD[b]||""))+" ("+lb0+")"; } const nm=(lb0&&L.length>1?lb0+" ":"")+r.k;
     return '<span class="cl"><span class="form">'+esc(nm)+'</span>'
       +'<span class="tmpl"><b>닮은꼴</b> '+TEN[c[0]]+' <em>'+TSK[c[0]]+'</em></span>'
       +'<span class="rws">'+rows(ci)+'</span>'
