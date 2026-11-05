@@ -344,7 +344,7 @@ function drawWeek(I,ti,EP){
   var h='<div class="ch2"><button id="pw"'+(mon<=CS?' disabled':'')+'>&lsaquo;</button><b>'+(wn>=1&&wn<=17?wn+'주차 · ':'')+dshow(iso(mon))+' ~ '+dshow(iso(sun))+'</b><button id="nw"'+(sun>=CE?' disabled':'')+'>&rsaquo;</button></div><div class="cg wk">';
   ['월','화','수','목','금','토','일'].forEach(function(w){h+='<div class="wd">'+w+'</div>'});
   for(var k=0;k<7;k++){var dt=new Date(mon);dt.setDate(mon.getDate()+k);h+=cellH(dt,I,ti,EP)}
-  h+='</div><div class="lg">데일리 = 매일 하는 숙제 · <b class="ex">시험</b> = 학원 더블보카 시험 · <b class="rd">말하기</b> = 금요일 구두 테스트</div>';
+  h+='</div><div class="lg"><div><b>데일리</b> = 데일리보카</div><div><b class="ex">시험</b> = 학원 더블보카 테스트</div><div><b class="rd">말하기</b> = 금요일 누적보카 테스트</div></div>';
   el.innerHTML=h;
   el.querySelectorAll('.dy[data-k]').forEach(function(c){c.onclick=function(){SEL=c.dataset.k;CALM=new Date(+SEL.slice(0,4),+SEL.slice(5,7)-1,1);drawCal(I,ti)}});
   var mv=function(dd){var t=new Date((SEL||ti)+'T00:00:00');t.setDate(t.getDate()+dd);SEL=iso(t);CALM=new Date(t.getFullYear(),t.getMonth(),1);drawCal(I,ti)};
