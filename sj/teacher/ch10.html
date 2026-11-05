@@ -268,7 +268,7 @@ function mirror(id){
     let place=null,k="덧붙는 절";
     const lbw=(LB[q]||"").replace("절","");
     const RELRX=/(?:^|\s)(that|which|whom|who|whose)(?=\s|$)/i;
-    const relChip=c[1].find(a=>RELRX.test(a[0].replace(/\s*\(=.*?\)/g,"")));
+    const relChip=c[1].find(a=>/^(?:\w+\s+){0,2}(?:that|which|whom|who)$/i.test(a[0].replace(/\s*\(=.*?\)/g,"").trim()));
     const annot=relChip&&(relChip[0].match(/\(=\s*(?:가주어:\s*)?([A-Za-z’' -]+?)(?:\s+[^A-Za-z\s]|\))/)||[])[1];
     const f0=c[1][0], g0=(f0&&f0[1]==="o")?f0:c[1].find(z=>z[1]==="o"&&/^\(/.test(z[0])), gap0=g0&&!ADV.test(LB[q]||"")&&!NC.test(LB[q]||"")?clean(g0[0]).replace(/[()]/g,"").trim():"";
     let isRel=REL.has(w)||LB[q]==="관계절"||(!!relChip&&!ADV.test(LB[q]||"")&&!(relChip===f0&&relChip[1]==="s"&&false)), detail="";
@@ -288,7 +288,7 @@ function mirror(id){
       let role="";
       const first=c[1][0];
       if(marker==="whose") role="소유격";
-      else if(marker&&relChip&&relChip[1]!=="s"){ const pp=(clean(relChip[0]).match(/^(\w+) (?:of )?\w*$/)||[])[1]; role=/\bof (whom|which)\b/i.test(clean(relChip[0]))?"목적격(of "+marker+")":"목적격"; }
+      else if(marker&&relChip&&relChip[1]!=="s"){ const pp=(clean(relChip[0]).match(/^(\w+) (?:of )?\w*$/)||[])[1]; role="목적격"; const pm=clean(relChip[0]).trim().match(/^((?:\w+\s+){1,2})(?:which|whom)$/i); if(pm) marker=pm[1].trim()+" "+marker; }
       else if(marker&&first&&REL.has(clean(first[0]).toLowerCase())&&first[1]==="s") role=prep?"목적격("+prep+" "+marker+")":"주격";
       else if(marker) role="목적격";
       else role="목적격(생략)";
@@ -300,14 +300,15 @@ function mirror(id){
       k=detail.startsWith("RA:")?"형용사절·관계부사 ("+detail.slice(3)+" 생략)":"형용사절·관계대명사 "+role+(marker?" ("+marker+")":"")+comma;
       if(gap0&&!marker&&!ant){ ant=gap0.split(/\s+/).pop().toLowerCase(); }
       if(ant){ for(let p=q-1;p>=0&&!place;p--){ L[p][1].forEach((a,j)=>{ if(!place&&(clean(a[0]).toLowerCase().match(/[a-z’'-]+/g)||[]).includes(ant)) place=p+":"+j; }); } }
-    } else if(["where","when","why","how"].includes(lbw)&&!ADV.test(LB[q]||"")) { k="형용사절·관계부사 ("+lbw+")"; }
+    } else if(lbw==="how"&&!ADV.test(LB[q]||"")) { k="명사절·how절 (~하는 방법)"; }
+    else if(["where","when","why"].includes(lbw)&&!ADV.test(LB[q]||"")) { k="형용사절·관계부사 ("+lbw+")"; }
     else if(!ADV.test(LB[q]||"")&&!isRel){
       const spos=low.indexOf(sw), pw=spos>0?low[spos-1]:"";
       const RA={way:"how",reason:"why",place:"where",time:"when",day:"when",situation:"where",moment:"when",point:"where",country:"where",city:"where"};
       const findp=(wd)=>{ for(let p=q-1;p>=0&&!place;p--){ L[p][1].forEach((a,j)=>{ if(!place&&(clean(a[0]).toLowerCase().match(/[a-z’'-]+/g)||[]).includes(wd)) place=p+":"+j; }); } };
       if(gap0){ findp(gap0.split(/\s+/).pop().toLowerCase()); if(place) k="형용사절·관계대명사 목적격(생략)"; }
       else if(RA[pw]){ findp(pw); k="형용사절·관계부사 ("+RA[pw]+" 생략)"; }
-      else if(L.some((cc,qq)=>qq<q&&ADV.test(LB[qq]||""))) k="주절 (앞 부사절의 짝)";
+      else if(L.some((cc,qq)=>qq<q&&ADV.test(LB[qq]||""))) k="주절 (앞 부사절의 짝)"; else k="주절 (이어지는 문장)";
     }
     kind[q]=k; isKid.add(q);
     if(place){ (kidAt[place]=kidAt[place]||[]).push({q,k}); }
