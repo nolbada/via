@@ -122,6 +122,14 @@ function planInfo(n){
   for(;cur<=end&&c<Q.n;cur.setDate(cur.getDate()+1)){if(HWD.indexOf(cur.getDay())>=0){c++;map[iso(cur)]=c}}
   return{P:P,Q:Q,S:S,dv:dv,st:st,map:map};
 }
+var KV_URL='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec',CTL_ID='WNCTL';
+var CTL_SEED={'김서진':{ex:[{d:1,at:'2026-11-04'}]},'장은율':{ex:[{d:1,at:'2026-11-04'}],hide:['천일문S']},'김지효':{ex:[{d:1,at:'2026-11-04'}]},'김린':{ex:[{d:1,at:'2026-11-04'}]},'이동우':{ex:[{d:1,at:'2026-11-04'}]},'김도현':{ex:[{d:1,at:'2026-11-04'}]}};
+function ctlParse(d){var m={};try{for(var k in d){var x=d[k],s=(x&&x.v&&typeof x.v.s==='string')?x.v.s:(x&&typeof x.s==='string'?x.s:null);if(s)m[k]=JSON.parse(s)}}catch(e){}return m}
+function ctlOf(M,n){return (M&&M[n])||CTL_SEED[n]||{}}
+function ctlRead(){return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:{}})}).then(function(r){return r.json()}).then(function(r){return ctlParse(r&&r.data||{})})}
+function ctlWrite(n,o){var d={};d[n]={v:{s:JSON.stringify(o)},t:Date.now()};return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:d})}).then(function(r){return r.json()})}
+var CTLM=null,CTLL=0;
+function inHold(c,dk){return !!(c&&c.hold&&c.hs&&dk>=c.hs&&dk<=c.hold)}
 var TT=['김소희','윤유란','정다원','김민서','이지민','조혜린'];
 function exTaken(n,pre){
   var r={},low=String(n).toLowerCase(),a='dvc_exam_',b='dvp_exam_',k,m,v;
@@ -129,26 +137,31 @@ function exTaken(n,pre){
     if(k.indexOf(a)!==0&&k.indexOf(b)!==0)continue;
     m=/^dv[cp]_exam_(\d+)_(.+)$/.exec(k);if(!m||m[2]!==low)continue;
     v=JSON.parse(localStorage.getItem(k)||'null');if(v&&v.done)r[+m[1]]=v.t||0}}catch(e){}
+  var c=ctlOf(CTLM,n);(c.ex||[]).forEach(function(e){var t=new Date(e.at+'T12:00:00').getTime();if(!r[e.d]||r[e.d]<t)r[e.d]=t});
   return r;
 }
+var FIRSTEX={'mw':'2026-11-04','tt':'2026-11-05'};
 function exNote(n,now,ti,nd){
   var w=now.getDay(),sp=(n==='최의준'&&ti<='2026-11-06'),bx='<div style="margin:-2px 2px 8px;padding:8px 12px;border-radius:10px;background:#fbefd9;color:#6b3f06;font-size:13px;line-height:1.5">';
-  var ds=TT.indexOf(n)>=0?[2,4]:[1,3],tk=exTaken(n),has=Object.keys(tk).length>0,nx=nd;
+  var c=ctlOf(CTLM,n),grp=TT.indexOf(n)>=0?'tt':'mw',ds=grp==='tt'?[2,4]:[1,3],tk=exTaken(n),has=Object.keys(tk).length>0,nx=nd;
+  if(c.hold&&ti<=c.hold)return bx+'진도 안내를 잠시 멈췄어요. '+(c.hold<'9999'?dshow(c.hold)+'에 다시 시작해요.':'선생님이 다시 알려 줄 거예요.')+'</div>';
   if(has){nx=0;for(var z=1;z<=32;z++){if(!tk[z]){nx=z;break}}}
   if(sp){
     if(ti==='2026-11-06')return bx+(tk[1]?'Day 1 시험을 봤어요. 수고했어요.':'오늘 더블보카 Day 1 시험이 있어요 (말하기 시험 대신)')+'</div>';
     return bx+'다음 시험 '+dshow('2026-11-06')+' · Day 1 단어를 미리 공부하세요</div>';
   }
   if(!nx)return'';
+  if(PLAN[n]&&ti<PLAN[n].s)return'';
   var mon=new Date(now);mon.setDate(mon.getDate()-((mon.getDay()+6)%7));var mt=mon.getTime(),wk=0,k2;
   for(k2 in tk){if(tk[k2]>=mt)wk++}
   var todayT=false;for(k2 in tk){if(tk[k2]>=now.getTime())todayT=true}
   if(w===5){
-    var must=2,miss=has?Math.max(0,must-wk):0;
+    var must=0;ds.forEach(function(dw){var dd=new Date(mon);dd.setDate(mon.getDate()+dw-1);if(iso(dd)>=FIRSTEX[grp]&&dd<now)must++});
+    var miss=Math.max(0,must-wk);
     return bx+'오늘은 오답노트 단어 구두테스트예요. 오늘 복습 단어를 다시 확인해요.'+(miss?'<br>이번 주 못 본 더블보카 시험 '+miss+'개는 말하기 시험으로 봐요 (Day '+nx+(miss>1?'부터':'')+').':'')+'</div>';
   }
-  if(ds.indexOf(w)>=0&&!todayT)return bx+'오늘 더블보카 Day '+nx+' 시험이 있어요. 마지막으로 확인해요.</div>';
-  for(var k=1;k<=7;k++){var d=new Date(now);d.setDate(d.getDate()+k);if(ds.indexOf(d.getDay())>=0)return bx+'다음 시험 '+dshow(iso(d))+' · Day '+nx+' 단어를 미리 공부하세요</div>'}
+  if(ds.indexOf(w)>=0&&!todayT&&ti>=FIRSTEX[grp])return bx+'오늘 더블보카 Day '+nx+' 시험이 있어요. 마지막으로 확인해요.</div>';
+  for(var k=1;k<=7;k++){var d=new Date(now);d.setDate(d.getDate()+k);if(ds.indexOf(d.getDay())>=0&&iso(d)>=FIRSTEX[grp])return bx+'다음 시험 '+dshow(iso(d))+' · Day '+nx+' 단어를 미리 공부하세요</div>'}
   return'';
 }
 function home(r){
@@ -158,7 +171,9 @@ function home(r){
       if(x&&x.ok)home(x);else if(isAdm(n))home(admData());else{ds('wn_name');login()}
     },function(){$.innerHTML='<h1>로드맵</h1><div class="card">연결이 안 됐어요. 인터넷을 확인해 주세요.<button class="btn pri" id="rt">다시 불러오기</button></div>';document.getElementById('rt').onclick=function(){home()}});return
   }
+  var hc=ctlOf(CTLM,n);if(hc.hide&&hc.hide.length){r=Object.assign({},r,{items:r.items.filter(function(i){return hc.hide.indexOf(i.src)<0})})}
   DATA=r;
+  if(!CTLL){CTLL=1;ctlRead().then(function(m){CTLM=m;if(DATA)home(DATA)},function(){})}
   var LI=r.items.filter(isL);
   var cap=Number(ls('wn_cap'))||r.cap||40;if(cap>r.max)cap=r.max;
   var due=r.items.filter(function(i){return i.nx&&i.nx<=r.today});
@@ -185,7 +200,7 @@ function home(r){
     });
   }else if(I){
     var P=I.P,tk=I.map[ti],dn=Object.keys(I.S).length;
-    var late=0;for(var dk in I.map){if(dk<ti&&!I.S[I.map[dk]])late++}
+    var late=0;for(var dk in I.map){if(dk<ti&&!I.S[I.map[dk]]&&!inHold(hc,dk))late++}
     var sub,chip;
     if(ti<P.s){sub='시작 '+dshow(P.s);chip='<span class="chip n">대기</span>'}
     else if(tk){sub='Day '+tk+' · 15문항';chip=I.S[tk]?'<span class="chip">완료 '+I.S[tk].s+'</span>':(late?'<span class="chip w">밀림 '+late+'일</span>':'<span class="chip n">진행 전</span>')}
@@ -235,7 +250,7 @@ function drawCal(I,ti){
   for(var d=1;d<=days;d++){
     var dt=new Date(y,m,d),key=iso(dt),dayN=I.map[key],cls='dy',sm='';
     var closed=CLOSED.indexOf(key)>=0;
-    if(dayN){cls+=' hw';if(I.S[dayN]){cls+=' dn';sm='D'+dayN+' ✓'}else if(key<ti){cls+=' lt';sm='D'+dayN+' 밀림'}else sm='D'+dayN}
+    if(dayN){cls+=' hw';if(I.S[dayN]){cls+=' dn';sm='D'+dayN+' ✓'}else if(key<ti&&!inHold(ctlOf(CTLM,name()),key)){cls+=' lt';sm='D'+dayN+' 밀림'}else sm='D'+dayN}
     else if(dt.getDay()===5&&key>=I.P.s)sm='쓰기';
     if(closed){cls+=' cl';sm=(sm?sm+'<br>':'')+'휴원'}
     if(key===ti)cls+=' td';

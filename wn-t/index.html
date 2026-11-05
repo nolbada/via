@@ -64,10 +64,10 @@ function main(){
   $.innerHTML='<div class="msg">불러오는 중...</div>';
   post({act:'t_students'}).then(function(r){
     if(!r||!r.ok){login('비밀번호를 확인해 주세요.');return}
-    var h='<h1>REC H</h1><div class="tabs"><button data-t="st"'+(TAB==='st'?' class="on"':'')+'>현황</button><button data-t="ask"'+(TAB==='ask'?' class="on"':'')+'>질문</button><button data-t="hw"'+(TAB==='hw'?' class="on"':'')+'>숙제 체크</button></div><div id="body"></div>';
+    var h='<h1>REC H</h1><div class="tabs"><button data-t="st"'+(TAB==='st'?' class="on"':'')+'>현황</button><button data-t="ask"'+(TAB==='ask'?' class="on"':'')+'>질문</button><button data-t="hw"'+(TAB==='hw'?' class="on"':'')+'>숙제 체크</button><button data-t="ct"'+(TAB==='ct'?' class="on"':'')+'>컨트롤</button></div><div id="body"></div>';
     $.innerHTML=h;
     $.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){TAB=b.dataset.t;ss('wn_tab',TAB);main()}});
-    if(TAB==='st')status(r);else if(TAB==='ask')asklist(r);else hw(r);
+    if(TAB==='st')status(r);else if(TAB==='ask')asklist(r);else if(TAB==='ct')control(r);else hw(r);
   },function(){login('연결이 안 됐어요.')});
 }
 function asklist(r){
@@ -137,6 +137,44 @@ function kst(){return ymd(new Date(Date.now()+9*3600e3))}
 function addd(s,n){return ymd(new Date(pd(s).getTime()+n*86400e3))}
 function expDays(st,upto,N){if(!st||upto<st)return 0;var c=0,d=st;while(d<=upto){if(HWD.indexOf(pd(d).getUTCDay())>=0)c++;d=addd(d,1)}return Math.min(c,N)}
 function dayOf(st,date,N){return HWD.indexOf(pd(date).getUTCDay())>=0?expDays(st,date,N):0}
+var KV_URL='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec',CTL_ID='WNCTL';
+var CTL_SEED={'김서진':{ex:[{d:1,at:'2026-11-04'}]},'장은율':{ex:[{d:1,at:'2026-11-04'}],hide:['천일문S']},'김지효':{ex:[{d:1,at:'2026-11-04'}]},'김린':{ex:[{d:1,at:'2026-11-04'}]},'이동우':{ex:[{d:1,at:'2026-11-04'}]},'김도현':{ex:[{d:1,at:'2026-11-04'}]}};
+function ctlParse(d){var m={};try{for(var k in d){var x=d[k],s=(x&&x.v&&typeof x.v.s==='string')?x.v.s:(x&&typeof x.s==='string'?x.s:null);if(s)m[k]=JSON.parse(s)}}catch(e){}return m}
+function ctlOf(M,n){return (M&&M[n])||CTL_SEED[n]||{}}
+function ctlRead(){return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:{}})}).then(function(r){return r.json()}).then(function(r){return ctlParse(r&&r.data||{})})}
+function ctlWrite(n,o){var d={};d[n]={v:{s:JSON.stringify(o)},t:Date.now()};return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:d})}).then(function(r){return r.json()})}
+
+var CTM=null;
+function tdy(){return kst()}
+function control(r){
+  var b=document.getElementById('body');b.innerHTML='<div class="msg">불러오는 중...</div>';
+  ctlRead().then(function(m){CTM=m;cdraw(r)},function(){b.innerHTML='<div class="msg">연결이 안 됐어요. 잠시 뒤 다시 눌러 주세요.</div>'});
+}
+function cdraw(r){
+  var b=document.getElementById('body'),h='<div class="msg" style="margin:0 0 6px">학생 화면의 안내를 바로 바꿔요. 누르면 저장돼요.</div>';
+  var L=r.students.slice().sort(function(a,c){return a.name<c.name?-1:1});
+  L.forEach(function(s){
+    var n=s.name,c=ctlOf(CTM,n),exn=0;(c.ex||[]).forEach(function(e){if(e.d>exn)exn=e.d});
+    var holdOn=c.hold&&c.hold>=tdy();
+    h+='<div class="card" data-n="'+esc(n)+'"><b>'+esc(n)+'</b><small style="color:var(--sub)"> '+esc(s.grade||'')+'</small>';
+    h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">시험 본 Day <b>'+(exn?exn+'까지':'없음')+'</b></span><button class="sbtn" data-a="exm">−1</button><button class="sbtn" data-a="exp">시험 봄 +1</button></div>';
+    h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">안내 멈춤 '+(holdOn?'<b>'+(c.hold<'9999'?dshow(c.hold)+'까지':'계속')+'</b>':'<span style="color:var(--sub)">안 함</span>')+'</span>'+(holdOn?'<button class="sbtn" data-a="hoff">해제</button>':'<input type="date" id="hd_'+esc(n)+'" class="sbtn" style="padding:4px 6px"><button class="sbtn" data-a="hon">멈춤</button>')+'</div>';
+    h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">천일문S 오답 숨기기</span><button class="sbtn" data-a="hide" style="'+((c.hide||[]).indexOf('천일문S')>=0?'background:var(--soft);border-color:var(--pri)':'')+'">'+((c.hide||[]).indexOf('천일문S')>=0?'숨김 중':'숨기기')+'</button></div>';
+    h+='<div class="msg" id="sv_'+esc(n)+'"></div></div>';
+  });
+  b.innerHTML=h;
+  b.querySelectorAll('.card button[data-a]').forEach(function(x){x.onclick=function(){
+    var card=x.closest('.card'),n=card.dataset.n,c=JSON.parse(JSON.stringify(ctlOf(CTM,n))),a=x.dataset.a,t=tdy();
+    c.ex=c.ex||[];
+    if(a==='exp'){var m=0;c.ex.forEach(function(e){if(e.d>m)m=e.d});c.ex.push({d:m+1,at:t})}
+    else if(a==='exm'){var m2=0;c.ex.forEach(function(e){if(e.d>m2)m2=e.d});c.ex=c.ex.filter(function(e){return e.d!==m2})}
+    else if(a==='hon'){var v=(card.querySelector('input[type=date]')||{}).value||'9999-12-31';c.hold=v;c.hs=t}
+    else if(a==='hoff'){c.hold='';c.hs=''}
+    else if(a==='hide'){var hh=c.hide||[],ix=hh.indexOf('천일문S');if(ix>=0)hh.splice(ix,1);else hh.push('천일문S');c.hide=hh}
+    var sv=document.getElementById('sv_'+n);if(sv)sv.textContent='저장 중...';
+    ctlWrite(n,c).then(function(res){if(res&&res.ok===false)throw 0;CTM=CTM||{};CTM[n]=c;cdraw(r);var s2=document.getElementById('sv_'+n);if(s2)s2.textContent='저장됐어요.'},function(){var s3=document.getElementById('sv_'+n);if(s3)s3.textContent='저장이 안 됐어요. 다시 눌러 주세요.'});
+  }});
+}
 var STAT=null;
 function build(r,h){
   var t=kst(),y=addd(t,-1),out=[];
@@ -153,6 +191,7 @@ function build(r,h){
         o.todayDay=td;o.tdone=!!(isHw&&o.dd[td]);
         o.state=o.behind>0?'late':(isHw?(o.tdone?'ok':'wait'):'off');
       }}
+    var cc=ctlOf(CTM,s.name);if(P&&cc.hold&&cc.hold>=t){o.state='hold';o.behind=0}
     out.push(o)});
   return out;
 }
@@ -163,6 +202,7 @@ function cardH(o){
   else if(o.state==='ok')chip='<span class="chip ok">오늘 완료</span>';
   else if(o.state==='wait')chip='<span class="chip t">오늘 대기</span>';
   else if(o.state==='off')chip='<span class="chip n">오늘 쉬는 날</span>';
+  else if(o.state==='hold')chip='<span class="chip n">안내 멈춤</span>';
   else chip='<span class="chip n">배정 없음</span>';
   var h='<button class="sc'+(o.state==='late'?' late':'')+(o.state==='none'?' none':'')+'" data-n="'+esc(s.name)+'"><div class="h"><b>'+esc(s.name)+'<small>'+esc(s.grade)+(s.school?' '+esc(s.school):'')+'</small></b>'+chip+'</div>';
   if(P){
@@ -176,7 +216,7 @@ var FIL=ls('wn_fil')||'전체';
 function status(r){
   var b=document.getElementById('body'),t=kst();
   b.innerHTML='<div class="msg">불러오는 중...</div>';
-  post({act:'t_hw',from:FROM0}).then(function(h){
+  ctlRead().then(function(m){CTM=m},function(){}).then(function(){return post({act:'t_hw',from:FROM0})}).then(function(h){
     if(!h||!h.ok){b.innerHTML='<div class="msg">불러오지 못했어요.</div>';return}
     STAT=build(r,h.items);draw(r);
   },function(){b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
@@ -186,7 +226,7 @@ function draw(r){
   all.forEach(function(o){if(o.s.grade&&gs.indexOf(o.s.grade)<0)gs.push(o.s.grade)});
   if(gs.indexOf(FIL)<0)FIL='전체';
   var L=all.filter(function(o){return FIL==='전체'||o.s.grade===FIL});
-  var ord={late:0,wait:1,ok:2,off:3,pre:4,none:5};
+  var ord={late:0,wait:1,ok:2,off:3,hold:3,pre:4,none:5};
   L=L.slice().sort(function(a,c){return ord[a.state]-ord[c.state]||(c.behind-a.behind)||(a.s.name<c.s.name?-1:1)});
   var late=L.filter(function(o){return o.state==='late'}).length,done=L.filter(function(o){return o.state==='ok'}).length,wait=L.filter(function(o){return o.state==='wait'}).length,ask=0;
   L.forEach(function(o){ask+=o.s.askDue});
