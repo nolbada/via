@@ -112,6 +112,7 @@ var HWD=[1,2,3,4,6,0];
 var DQ={B:{n:80,q:1200,u:'daily/b/'},H:{n:112,q:1680,u:'daily/h/'}};
 var VB='https://nolbada.github.io/via/';
 var MM={'고1':'https://nolbada.github.io/via-high/h/minimock/h1/','고2':'https://nolbada.github.io/via-high/h/minimock/h2/'};
+var GC='https://nolbada.github.io/via-mid/m/grammarcock/';
 function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
 function lj(k,def){try{return JSON.parse(ls(k)||'')||def}catch(e){return def}}
 function planInfo(n){
@@ -195,7 +196,7 @@ function home(r){
   /* today */
   h+='<h2 class="sec">오늘</h2>';
   if(isAdm(n)){
-    [['데일리보카 B',VB+'daily/b/?t=1','#2a8a5c'],['데일리보카 H',VB+'daily/h/?t=1','#2a8a5c'],['더블보카 Core',VB+'dvcore/?t=1','#2d6a9f'],['더블보카 Pro',VB+'dvpro/?t=1','#2d6a9f'],['미니모의고사 고1',MM['고1'],'#8a5a9e'],['미니모의고사 고2',MM['고2'],'#8a5a9e'],['천일문S 문장줄이기',VB+'sj/','#2b5aa8']].forEach(function(t){
+    [['데일리보카 B',VB+'daily/b/?t=1','#2a8a5c'],['데일리보카 H',VB+'daily/h/?t=1','#2a8a5c'],['더블보카 Core',VB+'dvcore/?t=1','#2d6a9f'],['더블보카 Pro',VB+'dvpro/?t=1','#2d6a9f'],['미니모의고사 고1',MM['고1'],'#8a5a9e'],['미니모의고사 고2',MM['고2'],'#8a5a9e'],['천일문S 문장줄이기',VB+'sj/','#2b5aa8'],['그래머콕 개념노트',GC,'#1f6f5f']].forEach(function(t){
       h+='<a class="tk" href="'+t[1]+'"><i class="bd" style="background:'+t[2]+'"></i><div class="tt"><b>'+t[0]+'</b></div><span class="chip n">자유</span></a>';
     });
   }else if(I){
@@ -211,6 +212,7 @@ function home(r){
     h+=exNote(n,now,ti,nd);
     h+='<a class="tk" href="'+(MM[P.m]||MM['고1'])+'"><i class="bd" style="background:#8a5a9e"></i><div class="tt"><b>미니모의고사</b><small>24회 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
     h+='<a class="tk" href="'+VB+'sj/"><i class="bd" style="background:#2b5aa8"></i><div class="tt"><b>천일문S 문장줄이기</b><small>12챕터 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
+    h+='<a class="tk" href="'+GC+'"><i class="bd" style="background:#1f6f5f"></i><div class="tt"><b>그래머콕 개념노트</b><small>문법 개념 · 필요할 때 찾아보기</small></div><span class="chip n">자유</span></a>';
   }
   h+='<button class="tk" id="st"'+(today?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적테스트</b><small>'+(due.length>cap?'밀린 '+(due.length-cap)+'개는 다음 날로 이어짐':'1 · 3 · 7 · 15일 주기')+'</small></div><span class="chip'+(today?' w':' n')+'">'+today+'개</span></button>';
   h+='<div class="seg">'+[40,50,60].filter(function(x){return x<=r.max}).map(function(x){return'<button data-c="'+x+'"'+(x===cap?' class="on"':'')+'>'+x+'개</button>'}).join('')+'</div>';
