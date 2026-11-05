@@ -1,5 +1,5 @@
 <title>더블보카 유의어 반의어</title>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><script src="../common/base.js?v=261105a"></script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+KR:wght@400;500;700&display=swap">
 <style>
@@ -54,7 +54,7 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
 .opt.sel{border-color:var(--accent);background:var(--accent-soft)}
 .opt.good{border-color:var(--good);background:var(--good-bg)}
 .opt.bad{border-color:var(--bad);background:var(--bad-bg)}
-.opt.miss{border-color:var(--miss);background:var(--miss-bg)}
+.mtag{display:block;font-style:normal;font-weight:700;font-size:calc(11px*var(--fs));color:var(--miss);margin-top:3px} .opt.miss{border-color:var(--miss);background:var(--miss-bg)}
 .opt[disabled]{cursor:default}
 .go{margin-top:14px;width:100%;border:0;border-radius:14px;padding:13px;background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:700;cursor:pointer}
 .go[disabled]{opacity:.35;cursor:default}
@@ -135,11 +135,11 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
   <div class="homec">
     <div class="no">유의어 · 반의어</div>
     <h1 id="dayh">Day 01</h1>
-    <button class="big" id="mLearn" type="button"><b>학습</b><span>퀴즈로 익히기</span></button>
-    <button class="big" id="mPrac" type="button"><b>연습</b><span>랜덤 섞기 · 제출 후 채점</span></button>
+    <button class="big" id="mLearn" type="button"><b>학습</b><span id="mLearnS">퀴즈로 익히기</span></button>
+    <button class="big" id="mPrac" type="button"><b>연습</b><span id="mPracS">랜덤 섞기 · 제출 후 채점</span></button>
     <button class="big" id="mStar" type="button"><b>틀린 문제만 연습</b><span id="mStarN"></span></button>
     <button class="big" id="mExam" type="button"><b>시험</b><span>1회 · 타임어택</span></button>
-    <button class="home-btn" id="hbd" type="button" style="align-self:flex-start">Day 목록</button>
+    <button class="home-btn" id="mReset" type="button" style="align-self:flex-start" hidden>이어풀기 지우고 처음부터</button><button class="home-btn" id="hbd" type="button" style="align-self:flex-start">Day 목록</button>
   </div>
 </div>
 <div class="app" id="learn" hidden>
@@ -309,10 +309,10 @@ function build(){
           if(!ks.done){if(sel)b.className='opt sel';return}
           b.disabled=true;
           if(sel&&o.ok)b.className='opt good';else if(sel&&!o.ok)b.className='opt bad';else if(!sel&&o.ok)b.className='opt miss';
-          b.innerHTML='<span>'+esc(o.w)+'</span><small>'+esc(o.g)+'</small>';
+          b.innerHTML='<span>'+esc(o.w)+'</span><small>'+esc(o.g)+'</small>';if(b.className=='opt miss')b.insertAdjacentHTML('beforeend','<em class="mtag">놓친 정답</em>');
         }
         b.onclick=function(){if(ks.done)return;ks.sel[key]=!ks.sel[key];paint();go.disabled=!Object.keys(ks.sel).some(function(z){return ks.sel[z]})};
-        b._paint=paint;grid.appendChild(b);
+        b._paint=paint;paint();grid.appendChild(b);
       });
       box.appendChild(grid);
       var go=el('button','go','확인');go.type='button';go.disabled=true;
@@ -375,13 +375,13 @@ function update(){
   document.getElementById('cnt').textContent=i>=W.length*2?'결과':(wi+' / '+W.length+(i%2?' · 뒷면':''));
   var d=0;W.forEach(function(w,k){if(wordDone(k))d++});
   document.getElementById('bar').style.width=(d/W.length*100)+'%';
-  document.getElementById('prev').disabled=i<=0;document.getElementById('next').disabled=i>=total-1;
+  document.getElementById('prev').disabled=i<=0;document.getElementById('next').disabled=i>=total-1;if(!document.getElementById('learn').hidden)saveL();
 }
 document.getElementById('prev').onclick=function(){go(cur-1)};
 document.getElementById('next').onclick=function(){go(cur+1)};
 deck.addEventListener('scroll',function(){clearTimeout(deck._t);deck._t=setTimeout(update,60)});
 window.addEventListener('resize',update);
-var T=null,MEM={},TCODE='7372';
+var RES=0;function lKey(){return 'dvc_l'+DN}function pKey(){return 'dvc_p'+DN}function saveL(){try{if(!Object.keys(st).length)return;RES=cur;sset(lKey(),JSON.stringify({st:st,i:cur}))}catch(e){}}function loadL(){try{var sv=JSON.parse(sget(lKey())||'null');if(sv&&sv.st&&!Object.keys(st).length){st=sv.st;ST[DI]=st;RES=sv.i||0}else if(!sv)RES=0}catch(e){RES=0}}function loadP(){try{var sv=JSON.parse(sget(pKey())||'null');if(sv&&sv.items&&sv.items.length&&sv.items.every(function(x){return W[x.wi]&&W[x.wi].kan[x.ki]}))return sv}catch(e){}return null}function saveP(){try{if(T&&T.mode=='P'&&!T.only&&T.scope=='day')sset(pKey(),JSON.stringify({items:T.items,i:T.i}))}catch(e){}}function doneWords(){return Object.keys(st).filter(function(k){return st[k].k.every(function(x){return x.done})}).length}function touched(){return Object.keys(st).filter(function(k){return st[k].k.some(function(x){return x.done||Object.keys(x.sel).some(function(z){return x.sel[z]})})}).length} var T=null,MEM={},TCODE='7372';
 function sget(k){try{var v=localStorage.getItem(k);return v==null?(MEM[k]||null):v}catch(e){return MEM[k]||null}}
 function sset(k,v){MEM[k]=v;try{localStorage.setItem(k,v)}catch(e){}}
 function sdel(k){delete MEM[k];try{localStorage.removeItem(k)}catch(e){}}
@@ -413,7 +413,7 @@ function recordResults(items,exam){
 }
 function wrongCount(di){var n=0,m=wrongMap();Object.keys(m).forEach(function(k){if(di==null||parseInt(k,10)==di)n++});return n}
 function homeRefresh(){var n=wrongCount(DI),b=document.getElementById('mStar');b.disabled=!n;document.getElementById('mStarN').textContent=n?(n+'문제'):'틀린 문제 없음';
-  document.getElementById('dayh').textContent='Day '+pad2(DN)}
+  document.getElementById('dayh').textContent='Day '+pad2(DN);var dw=doneWords(),tc=touched(),pv=loadP();document.getElementById('mLearnS').textContent=dw>=W.length?'모두 풀었어요':(tc||RES>0)?('이어서 · '+Math.min(W.length,Math.floor(RES/2)+1)+' / '+W.length+' 단어'):'퀴즈로 익히기';document.getElementById('mPracS').textContent=pv?('이어서 · '+(pv.i+1)+' / '+pv.items.length):'랜덤 섞기 · 제출 후 채점';document.getElementById('mReset').hidden=!(tc||RES>0||pv)}
 function doneSet(){try{return JSON.parse(localStorage.getItem('dvc_done_'+WN.name())||'[]')}catch(e){return[]}}
 function markDone(di){try{var s=doneSet();if(s.indexOf(di)<0){s.push(di);localStorage.setItem('dvc_done_'+WN.name(),JSON.stringify(s))}}catch(e){}}
 function progStat(){
@@ -438,7 +438,7 @@ function daysRefresh(){
 function selectDay(i){
   DI=i;DN=i+1;W=DAYS[i];st=ST[i]||(ST[i]={});
   document.getElementById('lt').textContent='Day '+pad2(DN);
-  build();deck.scrollLeft=0;update();homeRefresh();showView('home');
+  loadL();build();deck.scrollLeft=0;update();homeRefresh();showView('home');
 }
 function goHome(){
   if(T&&T.tm)clearInterval(T.tm);
@@ -446,7 +446,7 @@ function goHome(){
   if(all){daysRefresh();showView('days')}else{homeRefresh();showView('home')}
 }
 function goDays(){if(T&&T.tm)clearInterval(T.tm);T=null;daysRefresh();showView('days')}
-function startLearn(){showView('learn');update()}
+function startLearn(){showView('learn');if(RES>0)deck.scrollLeft=RES*(deck.clientWidth+12);update()}
 function mkItems(only,salt,scope){
   var a=[],wm=wrongMap();
   DAYS.forEach(function(D,di){
@@ -455,10 +455,9 @@ function mkItems(only,salt,scope){
   });
   return shuf(a,'o'+salt);
 }
-function startPractice(only,scope){
-  var items=mkItems(only,String(Math.random()),scope);if(!items.length)return;
+function startPractice(only,scope){ var sv=(!only&&scope=='day')?loadP():null,items=sv?sv.items:mkItems(only,String(Math.random()),scope);if(!items.length)return;
   if(T&&T.tm)clearInterval(T.tm);
-  T={mode:'P',only:only,scope:scope,items:items,i:0,done:false,armed:false};
+  T={mode:'P',only:only,scope:scope,items:items,i:sv?Math.min(sv.i||0,items.length-1):0,done:false,armed:false};
   showView('testv');renderT();
 }
 function examGate(msg){
@@ -496,8 +495,7 @@ function tick(){
   var t=document.getElementById('tmr');if(t){t.textContent=fmt(T.left);t.className='timer'+(T.left<=30?' low':'')}
   if(T.left<=0)submitT();
 }
-function renderT(){
-  var tv=document.getElementById('testv');tv.innerHTML='';showView('testv');
+function renderT(){ saveP();var tv=document.getElementById('testv');tv.innerHTML='';showView('testv');
   var n=T.items.length,it=T.items[T.i],w=iw(it),k=w.kan[it.ki],E=T.mode=='E';
   var answered=T.items.filter(anySel).length;
   tv.appendChild(el('div','top',E?('<b>시험</b><span class="timer'+(T.left<=30?' low':'')+'" id="tmr">'+fmt(T.left)+'</span><span>'+(T.i+1)+' / '+n+'</span>'):('<b>연습</b><span>'+(T.i+1)+' / '+n+'</span><button class="home-btn" id="hbp" type="button">처음으로</button>')));
@@ -531,8 +529,7 @@ function ritem(it,good){
   var d=el('div','ritem '+(good?'ok':'bad'),'<div>'+lab+'<b>'+esc(w.h)+'</b> '+tags(k)+'<span class="sense">'+esc(k.sense.replace(/^[❶❷❸❹❺❻]+\s*/,''))+'</span></div><div class="st">'+(good?'정답':'오답')+'</div>'+(good?'':'<div class="mine">내 답: '+esc(mine)+'</div>')+'<div>'+(kind(k)=='syn'?'비슷한 뜻':'반대 뜻')+': '+esc(ans)+'</div>');
   if(it.note)d.appendChild(el('div','mine',esc(it.note)));return d;
 }
-function submitT(){
-  if(!T||T.done)return;
+function submitT(){ if(!T||T.done)return;if(T.mode=='P'&&!T.only&&T.scope=='day')sdel(pKey());
   T.done=true;if(T.tm)clearInterval(T.tm);
   var E=T.mode=='E',tv=document.getElementById('testv');tv.innerHTML='';
   var n=T.items.length,good=T.items.filter(itemOK),bad=T.items.filter(function(x){return !itemOK(x)});
@@ -558,7 +555,7 @@ document.getElementById('mPrac').onclick=function(){startPractice(false,'day')};
 document.getElementById('mStar').onclick=function(){startPractice(true,'day')};
 document.getElementById('mAllStar').onclick=function(){startPractice(true,'all')};
 document.getElementById('mExam').onclick=function(){examGate()};
-document.getElementById('hb1').onclick=goHome;
+document.getElementById('mReset').onclick=function(){var b=this;if(!b._a){b._a=1;b.textContent='한 번 더 누르면 지워져요';return}b._a=0;b.textContent='이어풀기 지우고 처음부터';sdel(lKey());sdel(pKey());ST[DI]={};st=ST[DI];RES=0;build();deck.scrollLeft=0;update();homeRefresh()};document.getElementById('hb1').onclick=goHome;
 document.getElementById('hbd').onclick=goDays;
 WN.gate(function(){daysRefresh();showView('days')});
 
