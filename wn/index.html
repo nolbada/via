@@ -173,7 +173,7 @@ function home(r){
   }
   var hc=ctlOf(CTLM,n);if(hc.hide&&hc.hide.length){r=Object.assign({},r,{items:r.items.filter(function(i){return hc.hide.indexOf(i.src)<0})})}
   DATA=r;
-  if(!CTLL){CTLL=1;ctlRead().then(function(m){CTLM=m;if(DATA)home(DATA)},function(){})}
+  if(!CTLL){CTLL=1;ctlRead().then(function(m){CTLM=m;try{var nn=name(),rc=ctlOf(m,nn);(rc.rs||[]).forEach(function(z){['dvc_exam_','dvp_exam_'].forEach(function(pf){var k=pf+z.d+'_'+String(nn).toLowerCase(),rv=ls(k);if(rv){try{if((JSON.parse(rv).t||0)<z.at)localStorage.removeItem(k)}catch(e){localStorage.removeItem(k)}}})})}catch(e){}if(DATA)home(DATA)},function(){})}
   var LI=r.items.filter(isL);
   var cap=Number(ls('wn_cap'))||r.cap||40;if(cap>r.max)cap=r.max;
   var due=r.items.filter(function(i){return i.nx&&i.nx<=r.today});
