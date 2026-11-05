@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>어법제대로 해설 · 선생님 열기</title>
+<style>
+:root{--bg:#f6f4ee;--card:#fff;--ink:#1c1f26;--mute:#6a6e78;--line:#e3dfd3;--ok:#2d6a4f;--okbg:#e3f1ea;--acc:#2b5aa8}
+@media (prefers-color-scheme:dark){:root{--bg:#14161b;--card:#1c1f26;--ink:#eceef2;--mute:#9aa0ab;--line:#2c303a;--ok:#7cc5a1;--okbg:#1b2b24;--acc:#8fb2ec}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Malgun Gothic","Noto Sans KR",sans-serif;padding:18px 16px 80px;line-height:1.6}
+.w{max-width:640px;margin:0 auto}h1{font-size:20px;margin:0 0 4px}.sub{font-size:14px;color:var(--mute);margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.hd b{font-size:16px}
+.btns{display:flex;gap:6px}.sm{border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:13px;padding:5px 10px;border-radius:8px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pg{border:1.5px solid var(--line);background:var(--card);color:var(--mute);font:inherit;font-size:15px;padding:12px 4px;border-radius:10px}
+.pg.on{border-color:var(--ok);background:var(--okbg);color:var(--ok);font-weight:700}
+.pg small{display:block;font-size:11px;font-weight:400}
+.top{display:flex;gap:8px;flex-wrap:wrap}.top .sm{font-size:14px;padding:8px 12px}
+#st{font-size:13px;color:var(--mute);margin:6px 0}
+.tg.on{border-color:var(--acc);color:var(--acc);font-weight:700}
+</style></head><body><div class="w">
+<h1>어법제대로 해설 · 선생님 열기</h1>
+<div class="sub">쪽수를 누르면 그 쪽의 해설이 학생에게 열려요. 초록색이 열린 쪽이에요.</div>
+<div class="top"><button class="sm" id="allc">전체 닫기</button><button class="sm tg" id="tv">이 폰에서 전부 보기: 꺼짐</button></div>
+<div id="st"></div><div id="list"></div></div>
+<script>
+var KV='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec',ID='EJCTL';
+var CH=[{"ch": "ch01", "n": 1, "pages": [{"k": "ch01-p06", "l": "p.06"}, {"k": "ch01-p07", "l": "p.07"}]}, {"ch": "ch02", "n": 2, "pages": [{"k": "ch02-p24", "l": "p.24"}, {"k": "ch02-p25", "l": "p.25"}, {"k": "ch02-p26", "l": "p.26"}, {"k": "ch02-p27", "l": "p.27"}, {"k": "ch02-p28", "l": "p.28"}, {"k": "ch02-p29", "l": "p.29"}, {"k": "ch02-p30-31", "l": "p.30~31"}, {"k": "ch02-p32-33", "l": "p.32~33"}]}, {"ch": "ch03", "n": 3, "pages": [{"k": "ch03-p36", "l": "p.36"}, {"k": "ch03-p37", "l": "p.37"}, {"k": "ch03-p38", "l": "p.38"}, {"k": "ch03-p39", "l": "p.39"}, {"k": "ch03-p40", "l": "p.40"}, {"k": "ch03-p41", "l": "p.41"}, {"k": "ch03-p42-43", "l": "p.42~43"}]}, {"ch": "ch04", "n": 4, "pages": [{"k": "ch04-p46", "l": "p.46"}, {"k": "ch04-p47", "l": "p.47"}, {"k": "ch04-p48", "l": "p.48"}, {"k": "ch04-p49", "l": "p.49"}, {"k": "ch04-p50", "l": "p.50"}, {"k": "ch04-p51", "l": "p.51"}, {"k": "ch04-p52-53", "l": "p.52~53"}, {"k": "ch04-p54-55", "l": "p.54~55"}]}, {"ch": "ch05", "n": 5, "pages": [{"k": "ch05-p58", "l": "p.58"}, {"k": "ch05-p59", "l": "p.59"}, {"k": "ch05-p60", "l": "p.60"}, {"k": "ch05-p61", "l": "p.61"}, {"k": "ch05-p62", "l": "p.62"}, {"k": "ch05-p63", "l": "p.63"}, {"k": "ch05-p64-65", "l": "p.64~65"}]}, {"ch": "ch06", "n": 6, "pages": [{"k": "ch06-p68", "l": "p.68"}, {"k": "ch06-p69", "l": "p.69"}, {"k": "ch06-p70", "l": "p.70"}, {"k": "ch06-p71", "l": "p.71"}, {"k": "ch06-p72", "l": "p.72"}, {"k": "ch06-p73", "l": "p.73"}, {"k": "ch06-p74", "l": "p.74"}, {"k": "ch06-p75", "l": "p.75"}, {"k": "ch06-p76-77", "l": "p.76~77"}, {"k": "ch06-p78-79", "l": "p.78~79"}]}, {"ch": "ch07", "n": 7, "pages": [{"k": "ch07-p82", "l": "p.82"}, {"k": "ch07-p83", "l": "p.83"}, {"k": "ch07-p84", "l": "p.84"}, {"k": "ch07-p85", "l": "p.85"}, {"k": "ch07-p86", "l": "p.86"}, {"k": "ch07-p87", "l": "p.87"}, {"k": "ch07-p88", "l": "p.88"}, {"k": "ch07-p89", "l": "p.89"}, {"k": "ch07-p90-91", "l": "p.90~91"}]}, {"ch": "ch08", "n": 8, "pages": [{"k": "ch08-p93", "l": "p.93"}, {"k": "ch08-p94", "l": "p.94"}, {"k": "ch08-p95", "l": "p.95"}, {"k": "ch08-p96", "l": "p.96"}, {"k": "ch08-p97", "l": "p.97"}, {"k": "ch08-p98", "l": "p.98"}, {"k": "ch08-p99", "l": "p.99"}, {"k": "ch08-p100-101", "l": "p.100~101"}, {"k": "ch08-p102-103", "l": "p.102~103"}]}, {"ch": "ch09", "n": 9, "pages": [{"k": "ch09-p106", "l": "p.106"}, {"k": "ch09-p107", "l": "p.107"}, {"k": "ch09-p108", "l": "p.108"}, {"k": "ch09-p109", "l": "p.109"}, {"k": "ch09-p110", "l": "p.110"}, {"k": "ch09-p111", "l": "p.111"}, {"k": "ch09-p112-113", "l": "p.112~113"}]}];
+var OPEN={},$=function(i){return document.getElementById(i)};
+function ls(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function post(d){return fetch(KV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:ID,data:d})}).then(function(r){return r.json()})}
+function parse(d){var m={};for(var k in d){try{var x=d[k],s=(x&&x.v&&typeof x.v.s==='string')?x.v.s:(x&&typeof x.s==='string'?x.s:null);if(s)m[k]=JSON.parse(s).o?1:0}catch(e){}}return m}
+function st(t){$('st').textContent=t}
+function draw(){
+  var h='';
+  CH.forEach(function(c){
+    var n=c.pages.filter(function(p){return OPEN[p.k]}).length;
+    h+='<div class="card"><div class="hd"><b>CHAPTER '+(c.n<10?'0':'')+c.n+' <span style="font-weight:400;font-size:13px;color:var(--mute)">'+n+'/'+c.pages.length+'쪽 열림</span></b><div class="btns"><button class="sm" data-ca="'+c.ch+'" data-v="1">전체 열기</button><button class="sm" data-ca="'+c.ch+'" data-v="0">닫기</button></div></div><div class="grid">';
+    c.pages.forEach(function(p){h+='<button class="pg'+(OPEN[p.k]?' on':'')+'" data-k="'+p.k+'">'+p.l+'<small>'+(OPEN[p.k]?'열림':'잠김')+'</small></button>'});
+    h+='</div></div>';
+  });
+  $('list').innerHTML=h;
+}
+function save(keys,v){
+  var d={},t=Date.now();keys.forEach(function(k){OPEN[k]=v;d[k]={v:{s:JSON.stringify({o:v})},t:t}});draw();st('저장 중...');
+  post(d).then(function(r){st(r&&r.ok===false?'저장이 안 됐어요. 다시 눌러 주세요.':'저장됐어요.')},function(){st('연결이 안 됐어요. 다시 눌러 주세요.')});
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-k]');if(b){save([b.dataset.k],OPEN[b.dataset.k]?0:1);return}
+  var c=e.target.closest('[data-ca]');if(c){var ks=[];CH.forEach(function(x){if(x.ch===c.dataset.ca)x.pages.forEach(function(p){ks.push(p.k)})});save(ks,+c.dataset.v)}
+});
+$('allc').onclick=function(){if(!confirm('모든 쪽을 닫을까요?'))return;var ks=[];CH.forEach(function(x){x.pages.forEach(function(p){ks.push(p.k)})});save(ks,0)};
+function tvu(){var on=ls('ej_teacher')==='1';$('tv').className='sm tg'+(on?' on':'');$('tv').textContent='이 폰에서 전부 보기: '+(on?'켜짐':'꺼짐')}
+$('tv').onclick=function(){ss('ej_teacher',ls('ej_teacher')==='1'?'0':'1');tvu()};
+tvu();draw();st('불러오는 중...');
+post({}).then(function(r){OPEN=parse((r&&r.data)||{});draw();st('')},function(){st('연결이 안 됐어요. 새로고침해 주세요.')});
+</script></body></html>
