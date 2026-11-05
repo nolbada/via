@@ -83,7 +83,8 @@ a.tk,button.tk,div.tk{display:flex;align-items:center;gap:12px;width:100%;text-a
 .hero.pm .lb{font-size:12px;display:flex;justify-content:space-between;align-items:center;opacity:1;letter-spacing:0}
 .hero.pm .lg{background:none;padding:0;display:inline-flex}.hero.pm .lg img{height:58px;display:block}
 .hero.pm .dt{font-weight:600;color:#a58a5a;font-size:12px;opacity:1;letter-spacing:0}
-.hero.pm .hn{font-size:26px;font-weight:800;margin:8px 0 2px;color:#244238}.hero.pm .hd{font-size:13px;color:#8a7a5c;opacity:1}
+.hero.pm .hn{font-size:26px;font-weight:800;margin:8px 0 2px;color:#244238}.hero.pm .hn.mt{font-size:20px;line-height:1.4;font-weight:800;margin:12px 0 6px;letter-spacing:-.02em}
+.hero.pm .hd{font-size:13px;color:#8a7a5c;opacity:1}
 .hero.pm .wb{margin:16px 0 14px}.hero.pm .wb i{height:7px;background:#e8e2d3}.hero.pm .wb i.dn{background:#244238}.hero.pm .wb i.lt{background:#c9a66b}.hero.pm .wb i.cur{background:#a58a5a;box-shadow:0 0 0 2px rgba(165,138,90,.35)}
 .st3{display:flex;border-top:1px solid #e9e0cc;padding-top:12px}.st3>div{flex:1;text-align:center}.st3>div+div{border-left:1px solid #e9e0cc}
 .st3 b{display:block;font-size:22px;font-weight:800;line-height:1.1;color:#244238}.st3 em{font-style:normal;font-size:13px;font-weight:600;color:#a58a5a;margin-left:1px}.st3 small{display:block;font-size:11px;color:#8a7a5c;margin-top:3px}
@@ -225,9 +226,9 @@ function home(r){
       bar+='<i class="'+(q2===cw?'cur':(tot&&dn3===tot?'dn':(late?'lt':'')))+'"></i>';
     }
     var wkTxt=(cw<0?'시작 전':(cw>=NW?'종료':(cw+1)));
-    h+='<div class="hero pm"><div class="lb"><span class="lg"><img src="logo.png" alt="비타민 영어클리닉"></span><span class="dt">'+dshow(ti)+'</span></div><div class="hn">4개월 로드맵</div><div class="hd">11/2 ~ 2/28 · 17주 과정</div><div class="wb">'+bar+'</div><div class="st3"><div><b>'+wkTxt+'</b><small>'+(cw>=0&&cw<NW?'/ '+NW+'주차':'주차')+'</small></div><div><b>'+wk+'<em>/'+wkN+'</em></b><small>이번 주 숙제</small></div><div><b>'+streak+'<em>일</em></b><small>연속 완료</small></div></div></div>';
+    h+='<div class="hero pm"><div class="lb"><span class="lg"><img src="logo.png" alt="비타민 영어클리닉"></span><span class="dt">'+dshow(ti)+'</span></div><div class="hn mt">성공은 매일 부단하게 반복된<br>작은 노력의 합산이다.</div><div class="hd">11/2 ~ 2/28 · 17주 과정</div><div class="wb">'+bar+'</div><div class="st3"><div><b>'+wkTxt+'</b><small>'+(cw>=0&&cw<NW?'/ '+NW+'주차':'주차')+'</small></div><div><b>'+wk+'<em>/'+wkN+'</em></b><small>이번 주 숙제</small></div><div><b>'+streak+'<em>일</em></b><small>연속 완료</small></div></div></div>';
   }else{
-    h+='<div class="hero pm"><div class="lb"><span class="lg"><img src="logo.png" alt="비타민 영어클리닉"></span><span class="dt">'+dshow(ti)+'</span></div><div class="hn">4개월 로드맵</div><div class="hd">11/2 ~ 2/28 · 17주 과정</div></div>';
+    h+='<div class="hero pm"><div class="lb"><span class="lg"><img src="logo.png" alt="비타민 영어클리닉"></span><span class="dt">'+dshow(ti)+'</span></div><div class="hn mt">성공은 매일 부단하게 반복된<br>작은 노력의 합산이다.</div><div class="hd">11/2 ~ 2/28 · 17주 과정</div></div>';
   }
   /* today */
   var IU=!!I&&!isAdm(n);
