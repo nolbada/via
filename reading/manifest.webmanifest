@@ -1,0 +1,13 @@
+{
+"name":"독해",
+"short_name":"독해",
+"start_url":"./",
+"scope":"./",
+"display":"browser",
+"background_color":"#e6f7f4",
+"theme_color":"#0d9488",
+"icons":[
+{"src":"icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+{"src":"icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"}
+]
+}
