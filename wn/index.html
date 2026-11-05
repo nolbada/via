@@ -61,6 +61,7 @@ a.tk,button.tk,div.tk{display:flex;align-items:center;gap:12px;width:100%;text-a
 .pl .c .pbar{background:rgba(255,255,255,.7)}
 .pbar{height:6px;background:var(--line);border-radius:3px;margin-top:10px;overflow:hidden}.pbar i{display:block;height:100%;background:var(--pri)}
 .pl .c .pg{font-size:12px;color:var(--sub);margin-top:4px;font-variant-numeric:tabular-nums}
+.fx{margin:10px 2px 0;padding:9px 12px;border-radius:10px;background:#f3ecf7;border-left:4px solid #8a5a9e;color:#4d2d5e;font-size:13px;line-height:1.5}.fx b{color:#6f4585}
 .frm{font-size:13px;color:var(--sub);margin:10px 4px 0;line-height:1.6}
 .cal{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px}
 .ch2{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.ch2 b{font-size:17px}
@@ -272,11 +273,11 @@ function home(r){
   if(I){
     var P2=I.P,dn2=Object.keys(I.S).length;
     h+='<h2 class="sec">플랜 규모</h2><div class="pl">';
-    h+='<div class="c"><div class="nm">288<small>지문</small></div><div class="lb">독해 · 미니모의고사</div><div class="ds">24회 × 12지문, 모의고사 3개년 분량</div></div>';
-    h+='<div class="c"><div class="nm">'+I.Q.q.toLocaleString()+'<small>문항</small></div><div class="lb">어휘 유형 · 데일리보카 '+P2.d+'</div><div class="ds">'+I.Q.n+'일 × 15문항</div><div class="pbar"><i style="width:'+(dn2/I.Q.n*100)+'%"></i></div><div class="pg">내 진행 '+dn2+' / '+I.Q.n+'일</div></div>';
+    h+='<div class="c"><div class="nm">288<small>지문</small></div><div class="lb">독해<br>미니모의고사</div><div class="ds">24회 × 12지문<br>모의고사 3개년 분량</div></div>';
+    h+='<div class="c"><div class="nm">'+I.Q.q.toLocaleString()+'<small>문항</small></div><div class="lb">어휘 유형<br>데일리보카 '+P2.d+'</div><div class="ds">'+I.Q.n+'일 × 15문항</div><div class="pbar"><i style="width:'+(dn2/I.Q.n*100)+'%"></i></div><div class="pg">내 진행 '+dn2+' / '+I.Q.n+'일</div></div>';
     var DVN={Core:[2504,2989,5],Pro:[2824,3836,6]}[P2.dv];
-    h+='<div class="c"><div class="nm">'+DVN[0].toLocaleString()+'<small>단어</small></div><div class="lb">유의어·반의어 · 더블보카 '+P2.dv+'</div><div class="ds">표제어 640개 + 유의어·반의어 + 사지선다 보기까지 (중복 제외)</div><div class="pbar"><i style="width:'+(I.dv.length/32*100)+'%"></i></div><div class="pg">내 진행 '+I.dv.length+' / 32 Day</div></div>';
-    h+='<div class="c"><div class="nm">12<small>챕터</small></div><div class="lb">구문 · 천일문S 문장줄이기</div><div class="ds">총 190문장</div></div>';
+    h+='<div class="c"><div class="nm">'+DVN[0].toLocaleString()+'<small>단어</small></div><div class="lb">유의어·반의어<br>더블보카 '+P2.dv+'</div><div class="ds">표제어 640개 + 유의어·반의어 + 사지선다 보기까지 (중복 제외)</div><div class="pbar"><i style="width:'+(I.dv.length/32*100)+'%"></i></div><div class="pg">내 진행 '+I.dv.length+' / 32 Day</div></div>';
+    h+='<div class="c"><div class="nm">12<small>챕터</small></div><div class="lb">구문<br>천일문S 문장줄이기</div><div class="ds">총 190문장</div></div>';
     h+='</div><div class="frm">더블보카는 단어를 낱개로 외우지 않고 뜻이 비슷한 단어와 반대인 단어를 묶어 관계로 외우는 방식. 표제어 하나에 연결 단어 약 '+DVN[2]+'개가 함께 붙어, 유의어·반의어 연결만 '+DVN[1].toLocaleString()+'개. 목표 기준은 모의고사 3개년 분량의 독해, 주 6일 어휘, 누적 복습 1 · 3 · 7 · 15일.</div>';
   }
   h+='<h2 class="sec">오답 단어 리스트</h2>';
@@ -339,15 +340,6 @@ function drawDP(I,ti,EP){
   }else{
     h+='<div class="tk off"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적테스트</b><small>매일 개인 숙제 · 1 · 3 · 7 · 15일 주기</small></div><span class="chip n">'+(isPast?'지남':'예정')+'</span></div>';
   }
-  var ex='';
-  if(!isPast){
-    if(w===5&&CLOSED.indexOf(K)<0)ex+='<div class="tk off" style="opacity:1"><i class="bd" style="background:#8a5a9e"></i><div class="tt"><b>누적보카 말하기</b><small>학원 시험</small></div></div>';
-    if(EP[K]){
-      var cc=exStat(n,ti);
-      ex+='<div class="tk off" style="opacity:1"><i class="bd" style="background:#2d6a9f"></i><div class="tt"><b>더블보카 '+P.dv+' Day '+EP[K]+' 시험</b><small>학원 시험'+(w===5&&EP[K]===1?' · Day 1 시험 기록이 없는 학생':'')+'</small></div>'+(isT&&cc.todayT?'<span class="chip">완료</span>':'')+'</div>';
-    }
-  }
-  if(ex)h+='<div class="sm">학원 시험</div>'+ex;
   el.innerHTML=h+'</div>';
   el.querySelectorAll('.seg button').forEach(function(b){b.onclick=function(){ss('wn_cap',b.dataset.c);drawDP(I,ti,EP)}});
   var stb=document.getElementById('st');if(stb)stb.onclick=function(){review(due.sort(byPri).slice(0,today))};
@@ -370,7 +362,7 @@ function drawWeek(I,ti,EP){
   var h='<div class="ch2"><button id="pw"'+(mon<=CS?' disabled':'')+'>&lsaquo;</button><b>'+(wn>=1&&wn<=17?wn+'주차 · ':'')+dshow(iso(mon))+' ~ '+dshow(iso(sun))+'</b><button id="nw"'+(sun>=CE?' disabled':'')+'>&rsaquo;</button></div><div class="cg wk">';
   ['월','화','수','목','금','토','일'].forEach(function(w){h+='<div class="wd">'+w+'</div>'});
   for(var k=0;k<7;k++){var dt=new Date(mon);dt.setDate(mon.getDate()+k);h+=cellH(dt,I,ti,EP)}
-  h+='</div><div class="lg"><div><b>데일리</b> = 데일리보카</div><div><b class="ex">시험</b> = 학원 더블보카 테스트</div><div><b class="rd">말하기</b> = 금요일 누적보카 테스트</div></div>';
+  h+='</div><div class="fx"><b>매주 금요일</b> 누적보카 말하기 시험 (학원)</div><div class="lg"><div><b>데일리</b> = 데일리보카</div><div><b class="ex">시험</b> = 학원 더블보카 테스트</div><div><b class="rd">말하기</b> = 금요일 누적보카 테스트</div></div>';
   el.innerHTML=h;
   el.querySelectorAll('.dy[data-k]').forEach(function(c){c.onclick=function(){SEL=c.dataset.k;CALM=new Date(+SEL.slice(0,4),+SEL.slice(5,7)-1,1);drawCal(I,ti)}});
   var mv=function(dd){var t=new Date((SEL||ti)+'T00:00:00');t.setDate(t.getDate()+dd);SEL=iso(t);CALM=new Date(t.getFullYear(),t.getMonth(),1);drawCal(I,ti)};
