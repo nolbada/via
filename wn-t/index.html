@@ -275,9 +275,16 @@ function detail(n,r){
   }
   h+='<h2 class="sec">오답노트</h2><div class="card"><div class="kv"><span>쌓인 단어</span><b>'+s.total+'</b></div><div class="kv"><span>오늘 복습 대상</span><b>'+s.due+'</b></div><div class="kv"><span>질문 대기</span><b>'+s.askDue+'</b></div></div>';
   h+='<button class="btn pri" id="qs"'+(s.askDue?'':' disabled style="opacity:.5"')+'>질문 시작</button>';
+  h+='<button class="btn" id="wl" style="margin-top:8px">쌓인 단어 보기</button><div id="wlb"></div>';
   $.innerHTML=h;
   document.getElementById('bk').onclick=function(){main()};
   document.getElementById('qs').onclick=function(){ask(n)};
+  document.getElementById('wl').onclick=function(){var bx=document.getElementById('wlb');bx.innerHTML='<div class="msg">불러오는 중...</div>';
+    post({act:'t_list',name:n,all:1,max:300}).then(function(r){
+      if(!r||!r.ok){bx.innerHTML='<div class="msg">불러오지 못했어요.</div>';return}
+      if(!r.items.length){bx.innerHTML='<div class="msg">쌓인 단어가 없어요.</div>';return}
+      bx.innerHTML='<div class="card" style="margin-top:8px">'+r.items.map(function(x){return'<div style="padding:8px 0;border-bottom:1px solid var(--line)"><b>'+esc(x.w)+'</b> <small style="color:#888">'+esc(x.src||'')+(x.first?' · '+esc(String(x.first).slice(5)):'')+'</small><div style="font-size:13px;color:#555;margin-top:2px">'+esc(x.m||'')+'</div></div>'}).join('')+'</div>';
+    },function(){bx.innerHTML='<div class="msg">연결이 안 됐어요.</div>'})};
 }
 
 var WK=0,HF='all';
