@@ -280,7 +280,7 @@ function detail(n,r){
   document.getElementById('qs').onclick=function(){ask(n)};
 }
 
-var WK=0;
+var WK=0,HF='all';
 function monday(off){var t=new Date(Date.now()+9*3600e3);var d=t.getUTCDay();var diff=(d+6)%7;var m=new Date(Date.UTC(t.getUTCFullYear(),t.getUTCMonth(),t.getUTCDate()-diff+off*7));return m}
 function ymd(d){return d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0')}
 function hw(r){
@@ -290,11 +290,11 @@ function hw(r){
   post({act:'t_hw',from:from}).then(function(h){
     if(!h||!h.ok){b.innerHTML='<div class="msg">불러오지 못했어요.</div>';return}
     var days=['월','화','수','목','토','일'],offs={월:0,화:1,수:2,목:3,토:5,일:6},last=ymd(end);
-    var map={};h.items.forEach(function(x){if(x.date<from||x.date>last)return;var q=(map[x.name]=map[x.name]||{});(q[x.wd]=q[x.wd]||[]).push(x)});
-    var t='<div class="top"><button class="sbtn" id="pv">이전 주</button><div class="t" style="text-align:center">'+dshow(from)+' ~ '+dshow(last)+'</div><button class="sbtn" id="nx">다음 주</button></div><div class="card"><table><tr><th>이름</th>'+days.map(function(d){return'<th>'+d+'<div class="sub" style="font-weight:400">'+dshow(ymd(new Date(m.getTime()+offs[d]*86400e3))).replace(/\(.*\)/,'')+'</div></th>'}).join('')+'</tr>';
+    var map={};h.items.forEach(function(x){if(x.date<from||x.date>last)return;var dvx=/더블/.test(String(x.level||''));if(HF==='d'&&dvx)return;if(HF==='v'&&!dvx)return;var q=(map[x.name]=map[x.name]||{});(q[x.wd]=q[x.wd]||[]).push(x)});
+    var t='<div class="top"><button class="sbtn" id="pv">이전 주</button><div class="t" style="text-align:center">'+dshow(from)+' ~ '+dshow(last)+'</div><button class="sbtn" id="nx">다음 주</button></div><div style="display:flex;gap:6px;margin:8px 0">'+[['all','전체'],['d','데일리보카'],['v','더블보카']].map(function(f){return'<button class="sbtn" data-f="'+f[0]+'" style="flex:1;'+(HF===f[0]?'background:var(--soft);border-color:var(--pri)':'')+'">'+f[1]+'</button>'}).join('')+'</div><div class="card"><table><tr><th>이름</th>'+days.map(function(d){return'<th>'+d+'<div class="sub" style="font-weight:400">'+dshow(ymd(new Date(m.getTime()+offs[d]*86400e3))).replace(/\(.*\)/,'')+'</div></th>'}).join('')+'</tr>';
     r.students.forEach(function(s){t+='<tr><td>'+esc(s.name)+'</td>'+days.map(function(d){var x=(map[s.name]||{})[d];return x?'<td class="x">'+x.map(function(e){var dv=/더블/.test(String(e.level||''));return'<div style="line-height:1.25"><small style="display:block;font-size:10px;font-weight:400;color:'+(dv?'#2d6a9f':'#2a8a5c')+'">'+(dv?'더블':'데일리')+'</small>'+esc(e.score)+'</div>'}).join('')+'</td>':'<td></td>'}).join('')+'</tr>'});
     t+='</table></div>';b.innerHTML=t;
-    document.getElementById('pv').onclick=function(){WK--;hw(r)};document.getElementById('nx').onclick=function(){WK++;hw(r)};
+    Array.prototype.forEach.call(b.querySelectorAll('[data-f]'),function(x){x.onclick=function(){HF=x.dataset.f;hw(r)}});document.getElementById('pv').onclick=function(){WK--;hw(r)};document.getElementById('nx').onclick=function(){WK++;hw(r)};
   },function(){b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
 }
 if(PW)main();else login();
