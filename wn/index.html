@@ -79,6 +79,12 @@ a.tk,button.tk,div.tk{display:flex;align-items:center;gap:12px;width:100%;text-a
 .cg .dy small .dl{display:block}
 .hero .lb{display:flex;justify-content:space-between;align-items:center}.hero .who{letter-spacing:0;text-transform:none;font-size:12px;opacity:.9}
 .wb{display:flex;gap:3px;margin:14px 0 6px}.wb i{flex:1;height:9px;border-radius:5px;background:rgba(255,255,255,.2)}.wb i.dn{background:#5fd19a}.wb i.lt{background:#f0b765}.wb i.cur{background:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.45)}
+.hero.pm{background:radial-gradient(120% 90% at 100% 0%,rgba(120,220,170,.28) 0%,rgba(120,220,170,0) 55%),linear-gradient(155deg,#0f2d24 0%,#1a4a3a 60%,#235e49 100%);padding:22px 20px 18px;border-radius:22px;box-shadow:0 10px 28px rgba(15,45,36,.28);border:1px solid rgba(255,255,255,.08)}
+.hero.pm .lb{font-size:11px;font-weight:700;letter-spacing:.28em;opacity:.75}.hero.pm .dt{letter-spacing:0;font-weight:500;opacity:.85;font-size:12px}
+.hero.pm .hn{font-size:27px;font-weight:800;margin:10px 0 2px}.hero.pm .hd{font-size:13px;opacity:.7}
+.hero.pm .wb{margin:16px 0 14px}.hero.pm .wb i{height:7px}
+.st3{display:flex;border-top:1px solid rgba(255,255,255,.16);padding-top:12px}.st3>div{flex:1;text-align:center}.st3>div+div{border-left:1px solid rgba(255,255,255,.14)}
+.st3 b{display:block;font-size:22px;font-weight:800;line-height:1.1}.st3 em{font-style:normal;font-size:13px;font-weight:600;opacity:.7;margin-left:1px}.st3 small{display:block;font-size:11px;opacity:.7;margin-top:3px}
 .wbt{display:flex;justify-content:space-between;font-size:13px;opacity:.92}
 .lg{font-size:12px;color:var(--sub);margin:10px 2px 0;line-height:1.7}.lg b.rd{color:#1f8a56}
 .cg.wk .dy{min-height:74px}
@@ -210,9 +216,10 @@ function home(r){
       for(var q3=0;q3<7;q3++){var d3=new Date(ws);d3.setDate(ws.getDate()+q3);var k3=I.map[iso(d3)];if(k3){tot++;if(I.S[k3])dn3++;else if(iso(d3)<ti&&!inHold(ctlOf(CTLM,n),iso(d3)))late=true}}
       bar+='<i class="'+(q2===cw?'cur':(tot&&dn3===tot?'dn':(late?'lt':'')))+'"></i>';
     }
-    h+='<div class="hero"><div class="lb">Roadmap<span class="who">'+esc(n)+'</span></div><div class="hn">나의 4개월 로드맵</div><div class="hd">'+dshow(ti)+' · 11/2 ~ 2/28</div><div class="wb">'+bar+'</div><div class="wbt"><span>'+(cw<0?'시작 전':(cw>=NW?'과정 종료':(cw+1)+'주차 / '+NW+'주'))+'</span><span>이번 주 숙제 '+wk+'/'+wkN+' 완료</span></div></div>';
+    var wkTxt=(cw<0?'시작 전':(cw>=NW?'종료':(cw+1)));
+    h+='<div class="hero pm"><div class="lb"><span>ROADMAP</span><span class="dt">'+dshow(ti)+'</span></div><div class="hn">4개월 로드맵</div><div class="hd">11/2 ~ 2/28 · 17주 과정</div><div class="wb">'+bar+'</div><div class="st3"><div><b>'+wkTxt+'</b><small>'+(cw>=0&&cw<NW?'/ '+NW+'주차':'주차')+'</small></div><div><b>'+wk+'<em>/'+wkN+'</em></b><small>이번 주 숙제</small></div><div><b>'+streak+'<em>일</em></b><small>연속 완료</small></div></div></div>';
   }else{
-    h+='<div class="hero"><div class="lb">Roadmap</div><div class="hn">'+esc(n)+'</div><div class="hd">'+dshow(ti)+' · 11/2 ~ 2/28 4개월 과정</div></div>';
+    h+='<div class="hero pm"><div class="lb"><span>ROADMAP</span><span class="dt">'+dshow(ti)+'</span></div><div class="hn">4개월 로드맵</div><div class="hd">11/2 ~ 2/28 · 17주 과정</div></div>';
   }
   /* today */
   var IU=!!I&&!isAdm(n);
