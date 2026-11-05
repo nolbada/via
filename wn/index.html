@@ -308,8 +308,8 @@ function drawCal(I,ti){
     var dt=new Date(y,m,d),key=iso(dt),dayN=I.map[key],cls='dy',sm='';
     var closed=CLOSED.indexOf(key)>=0;
     if(dayN){cls+=' hw';if(I.S[dayN]){cls+=' dn';sm='D'+dayN+' ✓'}else if(key<ti&&!inHold(ctlOf(CTLM,name()),key)){cls+=' lt';sm='D'+dayN+' 밀림'}else sm='D'+dayN}
-    else if(dt.getDay()===5&&key>=I.P.s)sm='말하기';
-    if(EP[key])sm+=(sm?'<br>':'')+'<b>시험</b>';
+    else if(dt.getDay()===5&&key>=I.P.s)sm='말하기<br><b>시험</b>';
+    if(EP[key]&&sm.indexOf('시험')<0)sm+=(sm?'<br>':'')+'<b>시험</b>';
     if(closed){cls+=' cl';sm=(sm?sm+'<br>':'')+'휴원'}
     if(key===ti)cls+=' td';
     if(key===SEL)cls+=' sl';
