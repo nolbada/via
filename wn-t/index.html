@@ -144,7 +144,24 @@ function ctlOf(M,n){return (M&&M[n])||CTL_SEED[n]||{}}
 function ctlRead(){return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:{}})}).then(function(r){return r.json()}).then(function(r){return ctlParse(r&&r.data||{})})}
 function ctlWrite(n,o){var d={};d[n]={v:{s:JSON.stringify(o)},t:Date.now()};return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:d})}).then(function(r){return r.json()})}
 
-var CTM=null;
+var CTM=null,VARM={};
+function voidSj(x){
+  var n=x.closest('.card').dataset.n,sv=document.getElementById('sv_'+n);
+  if(!VARM[n]){
+    sv.textContent='확인 중...';
+    post({act:'t_void',name:n,src:'천일문S',dry:1}).then(function(r){
+      if(!r||!r.ok){sv.textContent='아직 서버가 준비되지 않았어요. 서버 코드 업데이트가 필요해요.';return}
+      if(!r.count){sv.textContent='지울 천일문S 오답이 없어요.';return}
+      VARM[n]=1;x.textContent='정말 지우기';
+      sv.textContent=r.del+'개를 지우고'+(r.keep?', 다른 출처가 같이 있는 '+r.keep+'개는 천일문S 표시만 빼요.':'요.')+' 한 번 더 누르면 되돌릴 수 없어요.';
+    },function(){sv.textContent='연결이 안 됐어요.'});return
+  }
+  VARM[n]=0;sv.textContent='지우는 중...';
+  post({act:'t_void',name:n,src:'천일문S'}).then(function(r){
+    x.textContent='지우기';
+    sv.textContent=(r&&r.ok)?(r.deleted+'개를 지웠어요.'):'지우지 못했어요. 다시 눌러 주세요.';
+  },function(){x.textContent='지우기';sv.textContent='연결이 안 됐어요.'});
+}
 function tdy(){return kst()}
 function control(r){
   var b=document.getElementById('body');b.innerHTML='<div class="msg">불러오는 중...</div>';
@@ -160,10 +177,12 @@ function cdraw(r){
     h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">시험 본 Day <b>'+(exn?exn+'까지':'없음')+'</b></span><button class="sbtn" data-a="exm">−1</button><button class="sbtn" data-a="exp">시험 봄 +1</button></div>';
     h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">안내 멈춤 '+(holdOn?'<b>'+(c.hold<'9999'?dshow(c.hold)+'까지':'계속')+'</b>':'<span style="color:var(--sub)">안 함</span>')+'</span>'+(holdOn?'<button class="sbtn" data-a="hoff">해제</button>':'<input type="date" id="hd_'+esc(n)+'" class="sbtn" style="padding:4px 6px"><button class="sbtn" data-a="hon">멈춤</button>')+'</div>';
     h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">천일문S 오답 숨기기</span><button class="sbtn" data-a="hide" style="'+((c.hide||[]).indexOf('천일문S')>=0?'background:var(--soft);border-color:var(--pri)':'')+'">'+((c.hide||[]).indexOf('천일문S')>=0?'숨김 중':'숨기기')+'</button></div>';
+    h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">천일문S 오답 서버에서 지우기</span><button class="sbtn" data-a="void" style="border-color:var(--ng);color:var(--ng)">지우기</button></div>';
     h+='<div class="msg" id="sv_'+esc(n)+'"></div></div>';
   });
   b.innerHTML=h;
   b.querySelectorAll('.card button[data-a]').forEach(function(x){x.onclick=function(){
+    if(x.dataset.a==='void'){voidSj(x);return}
     var card=x.closest('.card'),n=card.dataset.n,c=JSON.parse(JSON.stringify(ctlOf(CTM,n))),a=x.dataset.a,t=tdy();
     c.ex=c.ex||[];
     if(a==='exp'){var m=0;c.ex.forEach(function(e){if(e.d>m)m=e.d});c.ex.push({d:m+1,at:t})}
