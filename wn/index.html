@@ -196,7 +196,7 @@ function home(r){
     for(var q=0;q<7;q++){var d2=new Date(mon);d2.setDate(mon.getDate()+q);var k2=I.map[iso(d2)];if(k2){wkN++;if(I.S[k2])wk++}}
   }
   h+='<div class="hero"><div class="lb">Roadmap</div><div class="hn">'+esc(n)+'</div><div class="hd">'+dshow(ti)+' · 11/2 ~ 2/28 4개월 과정</div>';
-  h+='<div class="kp"><div><b>'+streak+'</b><span>연속 완료일</span></div><div><b>'+(I?wk+'/'+wkN:'-')+'</b><span>이번 주 숙제</span></div><div><b>'+today+'</b><span>오늘 복습</span></div></div></div>';
+  h+='</div>';
   /* today */
   var IU=!!I&&!isAdm(n);
   if(IU)h+='<div class="cal" id="cal" style="margin-top:12px"></div><div id="dp"></div>';
