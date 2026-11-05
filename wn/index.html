@@ -90,6 +90,12 @@ a.tk,button.tk,div.tk{display:flex;align-items:center;gap:12px;width:100%;text-a
 .wbt{display:flex;justify-content:space-between;font-size:13px;opacity:.92}
 .lg{font-size:12px;color:var(--sub);margin:10px 2px 0;line-height:1.7}.lg b.rd{color:#1f8a56}
 .cg.wk .dy{min-height:74px}
+.mg{font-size:12px}.mh{font-weight:800;font-size:13px;margin:10px 0 4px;color:#244238}.mh:first-child{margin-top:0}
+.mr{display:grid;grid-template-columns:30px repeat(7,1fr);gap:3px;align-items:center;padding:3px 2px;border-radius:10px;cursor:pointer}.mr.on{background:#f1ede0}
+.mr .wl{font-size:11px;color:var(--sub);font-weight:700}
+.mc{position:relative;text-align:center;padding:6px 0;border-radius:8px;background:#f3f3f1;color:#999;font-weight:600;font-size:12px}
+.mc.hw{background:#fff;border:1px solid #d9d9d4;color:#333}.mc.dn{background:#cfeadb;color:#1f6b45}.mc.lt{background:#fbe3c2;color:#a8620f}.mc.cl{opacity:.45}.mc.td{outline:2px solid #244238}
+.mc i{position:absolute;right:2px;top:2px;width:6px;height:6px;border-radius:50%}.mc i.ex{background:#d33}.mc i.rd{background:#1f8a56}
 details.mo{margin-top:10px}details.mo>summary{cursor:pointer;font-size:14px;font-weight:700;padding:10px 4px;list-style:none}details.mo>summary::-webkit-details-marker{display:none}
 </style></head><body><div id="app"></div>
 <script>
@@ -225,7 +231,7 @@ function home(r){
   }
   /* today */
   var IU=!!I&&!isAdm(n);
-  if(IU)h+='<div class="cal" id="wk" style="margin-top:12px"></div><div id="dp"></div><details class="mo"><summary>한 달 달력 보기 ▾</summary><div class="cal" id="cal"></div></details>';
+  if(IU)h+='<div class="cal" id="wk" style="margin-top:12px"></div><div id="dp"></div><details class="mo"><summary>전체 주차 한눈에 보기 ▾</summary><div class="cal" id="cal"></div></details>';
   h+='<h2 class="sec">'+(IU?'내 속도로 하는 활동':'오늘')+'</h2>';
   if(isAdm(n)){
     [['데일리보카 B',VB+'daily/b/?t=1','#2a8a5c'],['데일리보카 H',VB+'daily/h/?t=1','#2a8a5c'],['더블보카 Core',VB+'dvcore/?t=1','#2d6a9f'],['더블보카 Pro',VB+'dvpro/?t=1','#2d6a9f'],['미니모의고사 고1',MM['고1'],'#8a5a9e'],['미니모의고사 고2',MM['고2'],'#8a5a9e'],['천일문S 문장줄이기',VB+'sj/','#2b5aa8'],['그래머콕 개념노트',GC,'#1f6f5f']].forEach(function(t){
@@ -351,20 +357,30 @@ function drawWeek(I,ti,EP){
   var pw=document.getElementById('pw'),nw=document.getElementById('nw');
   if(pw)pw.onclick=function(){mv(-7)};if(nw)nw.onclick=function(){mv(7)};
 }
+function mcell(dt,I,ti,EP){
+  var key=iso(dt),dayN=I.map[key],cls='mc',closed=CLOSED.indexOf(key)>=0,t=dt.getDate();
+  if(t===1)t=(dt.getMonth()+1)+'/1';
+  if(dayN){cls+=I.S[dayN]?' dn':(key<ti&&!inHold(ctlOf(CTLM,name()),key)?' lt':' hw')}
+  if(closed)cls+=' cl';
+  var dot=EP[key]?'<i class="ex"></i>':(!dayN&&dt.getDay()===5&&key>=I.P.s&&!closed?'<i class="rd"></i>':'');
+  if(key===ti)cls+=' td';
+  return'<div class="'+cls+'">'+t+dot+'</div>';
+}
 function drawCal(I,ti){
   var el=document.getElementById('cal');if(!el)return;
-  var EP=examPlan(name(),I,ti),y=CALM.getFullYear(),m=CALM.getMonth(),first=new Date(y,m,1),lo=new Date(2026,10,1),hi=new Date(2027,2,1);
-  var h='<div class="ch2"><button id="pm"'+(first<=lo?' disabled':'')+'>&lsaquo;</button><b>'+y+'년 '+(m+1)+'월</b><button id="nm2"'+(first>=hi?' disabled':'')+'>&rsaquo;</button></div><div class="cg">';
-  ['월','화','수','목','금','토','일'].forEach(function(w){h+='<div class="wd">'+w+'</div>'});
-  var off=(first.getDay()+6)%7,days=new Date(y,m+1,0).getDate(),k;
-  for(k=0;k<off;k++)h+='<div></div>';
-  for(var d=1;d<=days;d++){h+=cellH(new Date(y,m,d),I,ti,EP)}
-  el.innerHTML=h+'</div>';
-  el.querySelectorAll('.dy[data-k]').forEach(function(c){c.onclick=function(){SEL=c.dataset.k;drawCal(I,ti)}});
+  var EP=examPlan(name(),I,ti),CS=new Date('2026-11-02T00:00:00'),sel=SEL||ti,h='',lastM=-1;
+  var sd=new Date(sel+'T00:00:00'),selMon=new Date(sd);selMon.setDate(sd.getDate()-((sd.getDay()+6)%7));
+  for(var w=0;w<17;w++){
+    var mon=new Date(CS);mon.setDate(CS.getDate()+w*7);
+    if(mon.getMonth()!==lastM){lastM=mon.getMonth();h+='<div class="mh">'+(lastM+1)+'월</div>'}
+    h+='<div class="mr'+(iso(mon)===iso(selMon)?' on':'')+'" data-k="'+iso(mon)+'"><span class="wl">'+(w+1)+'주</span>';
+    for(var k=0;k<7;k++){var dt=new Date(mon);dt.setDate(mon.getDate()+k);h+=mcell(dt,I,ti,EP)}
+    h+='</div>';
+  }
+  el.innerHTML='<div class="mg">'+h+'</div>';
+  el.querySelectorAll('.mr').forEach(function(r){r.onclick=function(){SEL=r.dataset.k;CALM=new Date(SEL.slice(0,4),+SEL.slice(5,7)-1,1);drawCal(I,ti);var t=document.getElementById('wk');if(t)t.scrollIntoView({behavior:'smooth',block:'start'})}});
   drawWeek(I,ti,EP);
   drawDP(I,ti,EP);
-  document.getElementById('pm').onclick=function(){CALM=new Date(y,m-1,1);drawCal(I,ti)};
-  document.getElementById('nm2').onclick=function(){CALM=new Date(y,m+1,1);drawCal(I,ti)};
 }
 function isL(i){return i.src!=='데일리보카'}
 function srcTag(i){return i.src?'<span class="src">'+esc(String(i.src).replace(/,/g,' · '))+'</span>':''}
