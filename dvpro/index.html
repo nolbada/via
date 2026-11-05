@@ -460,6 +460,13 @@ function startPractice(only,scope){ var sv=(!only&&scope=='day')?loadP():null,it
   T={mode:'P',only:only,scope:scope,items:items,i:sv?Math.min(sv.i||0,items.length-1):0,done:false,armed:false};
   showView('testv');renderT();
 }
+var RSK='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec',PFXE='dvp_exam_';
+/* 선생님 시험 리셋: 서버 설정(WNCTL)의 리셋 표시보다 오래된 이 기기의 시험 기록을 지운다 (3.5초 안에 못 읽으면 그대로 진행) */
+function rsSync(n){return new Promise(function(res){var dn=false,t=setTimeout(function(){if(!dn){dn=true;res()}},3500);
+  function fin(){if(!dn){dn=true;clearTimeout(t);res()}}
+  fetch(RSK,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:'WNCTL',data:{}})}).then(function(r){return r.json()}).then(function(r){
+    var d=(r&&r.data)||{},e=d[n],o=null;try{var s0=e&&e.v&&e.v.s;o=s0?JSON.parse(s0):null}catch(x){}
+    (o&&o.rs||[]).forEach(function(z){var k=PFXE+z.d+'_'+n.toLowerCase(),rec=sget(k);if(rec){try{var j=JSON.parse(rec);if((j.t||0)<z.at)sdel(k)}catch(x){sdel(k)}}});fin()},fin)})}
 function examGate(msg){
   if(window.TEACHER_MODE&&!msg){startExam('선생님','dvc_exam_t_tmp');return}
   var tv=document.getElementById('testv');tv.innerHTML='';showView('testv');
@@ -467,7 +474,7 @@ function examGate(msg){
   var wrap=el('div','');wrap.style.cssText='flex:1;min-height:0';
   var c=el('div','card');c.innerHTML='<div class="no">DAY '+pad2(DN)+'</div><div class="ask">이름</div><input class="inp" id="nm" type="text" autocomplete="off" readonly value="'+esc(WN.name()).replace(/"/g,'')+'"><div class="msg" id="gmsg">'+esc(msg||'')+'</div>';
   var gob=el('button','go','시작');gob.type='button';
-  gob.onclick=function(){var n=document.getElementById('nm').value.replace(/\s+/g,' ').trim();if(!n)return;var key='dvp_exam_'+DN+'_'+n.toLowerCase(),rec=sget(key);if(rec){examLocked(n,key,JSON.parse(rec))}else startExam(n,key)};
+  gob.onclick=function(){var n=document.getElementById('nm').value.replace(/\s+/g,' ').trim();if(!n)return;gob.disabled=true;rsSync(n).then(function(){gob.disabled=false;var key='dvp_exam_'+DN+'_'+n.toLowerCase(),rec=sget(key);if(rec){examLocked(n,key,JSON.parse(rec))}else startExam(n,key)})};
   c.appendChild(gob);wrap.appendChild(c);tv.appendChild(wrap);
   document.getElementById('hbx').onclick=goHome;
 }
