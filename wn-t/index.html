@@ -162,6 +162,26 @@ function voidSj(x){
     sv.textContent=(r&&r.ok)?(r.deleted+'개를 지웠어요.'):'지우지 못했어요. 다시 눌러 주세요.';
   },function(){x.textContent=lb;sv.textContent='연결이 안 됐어요.'});
 }
+var DRM={};
+function dvReset(x){
+  var card=x.closest('.card'),n=card.dataset.n,sv=document.getElementById('sv_'+n),lv=card.querySelector('.dvl').value,d=+card.querySelector('.dvd').value,L='더블보카 '+lv,k=n+'|'+lv+'|'+d;
+  if(!DRM[k]){
+    sv.textContent='확인 중...';
+    post({act:'t_dvreset',name:n,level:L,day:d,dry:1}).then(function(r){
+      if(!r||!r.ok){sv.textContent='서버에 시험 리셋 기능이 아직 없어요. 서버 코드 업데이트가 필요해요.';return}
+      var sc=(r.scores||[]).map(function(z){return z.score}).join(', ');
+      DRM[k]=1;x.textContent='정말 리셋';
+      sv.textContent=L+' Day '+d+' · 점수 '+(sc||'기록 없음')+' 삭제 · 오답 '+r.del+'개 삭제'+(r.keep?' (다른 출처가 같이 있는 '+r.keep+'개는 더블보카 표시만 뺌)':'')+'. 한 번 더 누르면 되돌릴 수 없어요.';
+    },function(){sv.textContent='연결이 안 됐어요.'});return
+  }
+  DRM[k]=0;sv.textContent='리셋하는 중...';
+  post({act:'t_dvreset',name:n,level:L,day:d}).then(function(r){
+    if(!r||!r.ok)throw 0;
+    var c=JSON.parse(JSON.stringify(ctlOf(CTM,n)));c.ex=(c.ex||[]).filter(function(e){return e.d!==d});
+    c.rs=(c.rs||[]).filter(function(e){return e.d!==d});c.rs.push({d:d,at:Date.now()});
+    return ctlWrite(n,c).then(function(res){if(res&&res.ok===false)throw 0;CTM=CTM||{};CTM[n]=c;x.textContent='리셋';sv.textContent=L+' Day '+d+' 시험을 리셋했어요. 점수 '+r.scoreDeleted+'개 · 오답 '+r.deleted+'개 삭제. 학생 기기의 시험 기록은 학생이 앱을 열 때 지워져요.'});
+  }).catch(function(){x.textContent='리셋';sv.textContent='리셋하지 못했어요. 다시 눌러 주세요.'});
+}
 function tdy(){return kst()}
 function control(r){
   var b=document.getElementById('body');b.innerHTML='<div class="msg">불러오는 중...</div>';
@@ -177,12 +197,14 @@ function cdraw(r){
     h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">시험 본 Day <b>'+(exn?exn+'까지':'없음')+'</b></span><button class="sbtn" data-a="exm">−1</button><button class="sbtn" data-a="exp">시험 봄 +1</button></div>';
     h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">안내 멈춤 '+(holdOn?'<b>'+(c.hold<'9999'?dshow(c.hold)+'까지':'계속')+'</b>':'<span style="color:var(--sub)">안 함</span>')+'</span>'+(holdOn?'<button class="sbtn" data-a="hoff">해제</button>':'<input type="date" id="hd_'+esc(n)+'" class="sbtn" style="padding:4px 6px"><button class="sbtn" data-a="hon">멈춤</button>')+'</div>';
     h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">천일문S 오답 서버에서 지우기</span><button class="sbtn" data-a="void" style="border-color:var(--ng);color:var(--ng)">지우기</button></div>';
-    h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">더블보카 오답 서버에서 지우기</span><button class="sbtn" data-a="void" data-s="더블보카" style="border-color:var(--ng);color:var(--ng)">지우기</button></div>';
+    var dvp=(PLAN[n]&&PLAN[n].dv)||'Core',dvo='';for(var dz=1;dz<=32;dz++)dvo+='<option value="'+dz+'"'+(dz===(exn||1)?' selected':'')+'>Day '+dz+'</option>';
+    h+='<div style="display:flex;align-items:center;gap:6px;margin-top:10px"><span style="flex:1">더블보카 시험 리셋</span><select class="dvl sbtn" style="padding:4px 4px"><option'+(dvp==='Core'?' selected':'')+'>Core</option><option'+(dvp==='Pro'?' selected':'')+'>Pro</option></select><select class="dvd sbtn" style="padding:4px 4px">'+dvo+'</select><button class="sbtn" data-a="dvr" style="border-color:var(--ng);color:var(--ng)">리셋</button></div>';
     h+='<div class="msg" id="sv_'+esc(n)+'"></div></div>';
   });
   b.innerHTML=h;
   b.querySelectorAll('.card button[data-a]').forEach(function(x){x.onclick=function(){
     if(x.dataset.a==='void'){voidSj(x);return}
+    if(x.dataset.a==='dvr'){dvReset(x);return}
     var card=x.closest('.card'),n=card.dataset.n,c=JSON.parse(JSON.stringify(ctlOf(CTM,n))),a=x.dataset.a,t=tdy();
     c.ex=c.ex||[];
     if(a==='exp'){var m=0;c.ex.forEach(function(e){if(e.d>m)m=e.d});c.ex.push({d:m+1,at:t})}
