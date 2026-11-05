@@ -16,7 +16,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .btn{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 14px;font-weight:600;width:100%;margin-top:8px}
 .btn.pri{background:var(--pri);color:var(--priInk);border-color:var(--pri)}
 .btn.ok{background:var(--okBg);border-color:var(--ok);color:var(--ok)}.btn.ng{background:var(--ngBg);border-color:var(--ng);color:var(--ng)}
-.tabs{display:flex;gap:6px;margin-bottom:10px}.tabs button{flex:1;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 0;font-weight:600}.tabs button.on{background:var(--soft);border-color:var(--pri);color:var(--pri)}
+.tabs{display:flex;gap:6px;margin-bottom:10px}.tabs button{flex:1;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 0;font-weight:600;font-size:13.5px}.tabs button.on{background:var(--soft);border-color:var(--pri);color:var(--pri)}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:8px 0}
 .st{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:14px;padding:12px 14px;margin:7px 0}
 .st .nm{font-weight:700;font-size:17px;flex:1}.st small{color:var(--sub);display:block;font-weight:400}
@@ -64,7 +64,7 @@ function main(){
   $.innerHTML='<div class="msg">불러오는 중...</div>';
   post({act:'t_students'}).then(function(r){
     if(!r||!r.ok){login('비밀번호를 확인해 주세요.');return}
-    var h='<h1>REC H</h1><div class="tabs"><button data-t="st"'+(TAB==='st'?' class="on"':'')+'>현황</button><button data-t="ask"'+(TAB==='ask'?' class="on"':'')+'>질문</button><button data-t="hw"'+(TAB==='hw'?' class="on"':'')+'>숙제 체크</button><button data-t="ct"'+(TAB==='ct'?' class="on"':'')+'>컨트롤</button></div><div id="body"></div>';
+    var h='<h1>REC H</h1><div class="tabs"><button data-t="st"'+(TAB==='st'?' class="on"':'')+'>현황</button><button data-t="ask"'+(TAB==='ask'?' class="on"':'')+'>질문</button><button data-t="hw"'+(TAB==='hw'?' class="on"':'')+'>숙제 체크</button><button data-t="sc"'+(TAB==='sc'?' class="on"':'')+'>점수 체크</button><button data-t="ct"'+(TAB==='ct'?' class="on"':'')+'>컨트롤</button></div><div id="body"></div>';
     $.innerHTML=h;
     $.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){TAB=b.dataset.t;ss('wn_tab',TAB);main()}});
     if(TAB==='st')status(r);else if(TAB==='ask')asklist(r);else if(TAB==='ct')control(r);else hw(r);
@@ -291,27 +291,34 @@ function detail(n,r){
 var WK=0,HF='all';
 function monday(off){var t=new Date(Date.now()+9*3600e3);var d=t.getUTCDay();var diff=(d+6)%7;var m=new Date(Date.UTC(t.getUTCFullYear(),t.getUTCMonth(),t.getUTCDate()-diff+off*7));return m}
 function ymd(d){return d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0')}
+var HFS={hw:'all',sc:'all'};
 function hw(r){
-  var b=document.getElementById('body'),m=monday(WK),from=ymd(m);
+  var SC=(TAB==='sc'),b=document.getElementById('body'),m=monday(WK),from=ymd(m);
   var end=new Date(m.getTime()+6*86400e3);
   b.innerHTML='<div class="msg">불러오는 중...</div>';
-  Promise.all([post({act:'t_hw',from:from}),post({act:'t_rev',from:from}).catch(function(){return null})]).then(function(rs){
-    var h=rs[0],rv=rs[1];
+  Promise.all([post({act:'t_hw',from:from}),SC?Promise.resolve(null):post({act:'t_rev',from:from}).catch(function(){return null})]).then(function(rs){
+    var h=rs[0],rv=rs[1],F=HFS[SC?'sc':'hw'];
     if(!h||!h.ok){b.innerHTML='<div class="msg">불러오지 못했어요.</div>';return}
     var revOk=!!(rv&&rv.ok);
     var days=['월','화','수','목','금','토','일'],offs={월:0,화:1,수:2,목:3,금:4,토:5,일:6},last=ymd(end);
     var map={};
     function put(x){var q=(map[x.name]=map[x.name]||{});(q[x.wd]=q[x.wd]||[]).push(x)}
-    h.items.forEach(function(x){if(x.date<from||x.date>last)return;var L0=String(x.level||''),ct=/더블/.test(L0)?'v':(/미니/.test(L0)?'m':'d');if(HF==='r')return;if(HF!=='all'&&HF!==ct)return;put(x)});
-    if(revOk&&(HF==='all'||HF==='r'))rv.items.forEach(function(x){if(x.date<from||x.date>last)return;put({name:x.name,wd:x.wd,level:'누적복습',score:x.n+'개'})});
+    function cat(L){L=String(L||'');return /더블/.test(L)?'v':(/미니/.test(L)?'m':'d')}
+    h.items.forEach(function(x){if(x.date<from||x.date>last)return;var c=cat(x.level);if(SC?(c==='d'):(c!=='d'))return;if(F!=='all'&&F!==c)return;put(x)});
+    if(!SC&&revOk&&(F==='all'||F==='r'))rv.items.forEach(function(x){if(x.date<from||x.date>last)return;put({name:x.name,wd:x.wd,level:'누적복습',score:x.n+'개'})});
     function lab(e){var L=String(e.level||'');return /더블/.test(L)?['더블','#2d6a9f']:(/미니/.test(L)?['미니모의','#b5651d']:(/누적/.test(L)?['누적','#8a5a9e']:['데일리','#2a8a5c']))}
-    var fl=[['all','전체'],['d','데일리'],['r','누적'],['v','더블'],['m','미니모의']];
-    var t='<div class="top"><button class="sbtn" id="pv">이전 주</button><div class="t" style="text-align:center">'+dshow(from)+' ~ '+dshow(last)+'</div><button class="sbtn" id="nx">다음 주</button></div><div style="display:flex;gap:6px;margin:8px 0">'+fl.map(function(f){return'<button class="sbtn" data-f="'+f[0]+'" style="flex:1;padding:6px 2px;'+(HF===f[0]?'background:var(--soft);border-color:var(--pri)':'')+'">'+f[1]+'</button>'}).join('')+'</div>';
-    if(!revOk&&(HF==='r'))t+='<div class="msg">누적복습 기록은 서버를 새로 배포하면 보여요.</div>';
+    function tone(sc){var q=String(sc).match(/^(\d+)\s*\/\s*(\d+)/);if(!q)return '#888';var r2=q[1]/q[2];return r2>=0.8?'#1f7a4d':(r2>=0.5?'#333':'#c2392b')}
+    var fl=SC?[['all','전체'],['v','더블보카'],['m','미니모의']]:[['all','전체'],['d','데일리'],['r','누적복습']];
+    var t='<div class="top"><button class="sbtn" id="pv">이전 주</button><div class="t" style="text-align:center">'+dshow(from)+' ~ '+dshow(last)+'</div><button class="sbtn" id="nx">다음 주</button></div><div style="display:flex;gap:6px;margin:8px 0">'+fl.map(function(f){return'<button class="sbtn" data-f="'+f[0]+'" style="flex:1;padding:6px 2px;'+(F===f[0]?'background:var(--soft);border-color:var(--pri)':'')+'">'+f[1]+'</button>'}).join('')+'</div>';
+    if(!SC&&!revOk&&F==='r')t+='<div class="msg">누적복습 기록은 서버를 새로 배포하면 보여요.</div>';
     t+='<div class="card"><table style="font-size:12.5px"><tr><th>이름</th>'+days.map(function(d){return'<th>'+d+'<div class="sub" style="font-weight:400">'+dshow(ymd(new Date(m.getTime()+offs[d]*86400e3))).replace(/\(.*\)/,'')+'</div></th>'}).join('')+'</tr>';
-    r.students.forEach(function(s){t+='<tr><td>'+esc(s.name)+'</td>'+days.map(function(d){var x=(map[s.name]||{})[d];return x?'<td class="x">'+x.map(function(e){var l=lab(e);return'<div style="line-height:1.25"><small style="display:block;font-size:9.5px;font-weight:400;color:'+l[1]+'">'+l[0]+'</small>'+esc(e.score)+'</div>'}).join('')+'</td>':'<td></td>'}).join('')+'</tr>'});
+    r.students.forEach(function(s){t+='<tr><td>'+esc(s.name)+'</td>'+days.map(function(d){var x=(map[s.name]||{})[d];if(!x)return'<td></td>';
+      return'<td class="x">'+x.map(function(e){var l=lab(e),sc=String(e.score||'');
+        if(SC)return'<div style="line-height:1.25"><small style="display:block;font-size:9.5px;font-weight:400;color:'+l[1]+'">'+l[0]+'</small><b style="color:'+tone(sc)+'">'+esc(sc.replace(/\s*✓/,''))+'</b></div>';
+        var prog=/진행중/.test(sc);
+        return'<div style="line-height:1.2"><small style="display:block;font-size:9.5px;font-weight:400;color:'+l[1]+'">'+l[0]+'</small><span style="font-size:15px;color:'+(prog?'#999':'#1f7a4d')+'">'+(prog?'…':'✔')+'</span><small style="display:block;font-size:9.5px;font-weight:400;color:#888">'+(prog?'진행중':esc(sc))+'</small></div>'}).join('')+'</td>'}).join('')+'</tr>'});
     t+='</table></div>';b.innerHTML=t;
-    Array.prototype.forEach.call(b.querySelectorAll('[data-f]'),function(x){x.onclick=function(){HF=x.dataset.f;hw(r)}});document.getElementById('pv').onclick=function(){WK--;hw(r)};document.getElementById('nx').onclick=function(){WK++;hw(r)};
+    Array.prototype.forEach.call(b.querySelectorAll('[data-f]'),function(x){x.onclick=function(){HFS[SC?'sc':'hw']=x.dataset.f;hw(r)}});document.getElementById('pv').onclick=function(){WK--;hw(r)};document.getElementById('nx').onclick=function(){WK++;hw(r)};
   },function(){b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
 }
 if(PW)main();else login();
