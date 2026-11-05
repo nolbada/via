@@ -71,6 +71,8 @@ a.tk,button.tk,div.tk{display:flex;align-items:center;gap:12px;width:100%;text-a
 .cg .dy.cl{background:repeating-linear-gradient(135deg,transparent 0 5px,var(--line) 5px 6px)}
 .cg .dy.td{outline:2px solid var(--pri);outline-offset:-1px}
 .cg .dy{cursor:pointer}.cg .dy.sl{background:var(--priBg,#e8f0fb);border-color:var(--pri)}.cg .dy small b{color:var(--pri)}
+.cg .dy small b.rd{color:#d33a2f}
+@media (prefers-color-scheme:dark){.cg .dy small b.rd{color:#ff7b70}}
 .dpl{margin:10px 0 0}.dpl .dh{font-size:14px;font-weight:700;margin:2px 4px 8px}.dpl .sm{font-size:12px;color:var(--sub);margin:12px 4px 6px}
 .cg .dy.ot{opacity:.35}
 </style></head><body><div id="app"></div>
@@ -308,7 +310,7 @@ function drawCal(I,ti){
     var dt=new Date(y,m,d),key=iso(dt),dayN=I.map[key],cls='dy',sm='';
     var closed=CLOSED.indexOf(key)>=0;
     if(dayN){cls+=' hw';if(I.S[dayN]){cls+=' dn';sm='D'+dayN+' ✓'}else if(key<ti&&!inHold(ctlOf(CTLM,name()),key)){cls+=' lt';sm='D'+dayN+' 밀림'}else sm='D'+dayN}
-    else if(dt.getDay()===5&&key>=I.P.s)sm='말하기<br><b>시험</b>';
+    else if(dt.getDay()===5&&key>=I.P.s)sm='<b class="rd">말하기</b>';
     if(EP[key]&&sm.indexOf('시험')<0)sm+=(sm?'<br>':'')+'<b>시험</b>';
     if(closed){cls+=' cl';sm=(sm?sm+'<br>':'')+'휴원'}
     if(key===ti)cls+=' td';
