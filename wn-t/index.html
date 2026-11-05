@@ -138,7 +138,7 @@ function addd(s,n){return ymd(new Date(pd(s).getTime()+n*86400e3))}
 function expDays(st,upto,N){if(!st||upto<st)return 0;var c=0,d=st;while(d<=upto){if(HWD.indexOf(pd(d).getUTCDay())>=0)c++;d=addd(d,1)}return Math.min(c,N)}
 function dayOf(st,date,N){return HWD.indexOf(pd(date).getUTCDay())>=0?expDays(st,date,N):0}
 var KV_URL='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec',CTL_ID='WNCTL';
-var CTL_SEED={'김서진':{ex:[{d:1,at:'2026-11-04'}]},'장은율':{ex:[{d:1,at:'2026-11-04'}],hide:['천일문S']},'김지효':{ex:[{d:1,at:'2026-11-04'}]},'김린':{ex:[{d:1,at:'2026-11-04'}]},'이동우':{ex:[{d:1,at:'2026-11-04'}]},'김도현':{ex:[{d:1,at:'2026-11-04'}]}};
+var CTL_SEED={'김서진':{ex:[{d:1,at:'2026-11-04'}]},'장은율':{ex:[{d:1,at:'2026-11-04'}]},'김지효':{ex:[{d:1,at:'2026-11-04'}]},'김린':{ex:[{d:1,at:'2026-11-04'}]},'이동우':{ex:[{d:1,at:'2026-11-04'}]},'김도현':{ex:[{d:1,at:'2026-11-04'}]}};
 function ctlParse(d){var m={};try{for(var k in d){var x=d[k],s=(x&&x.v&&typeof x.v.s==='string')?x.v.s:(x&&typeof x.s==='string'?x.s:null);if(s)m[k]=JSON.parse(s)}}catch(e){}return m}
 function ctlOf(M,n){return (M&&M[n])||CTL_SEED[n]||{}}
 function ctlRead(){return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:{}})}).then(function(r){return r.json()}).then(function(r){return ctlParse(r&&r.data||{})})}
