@@ -233,9 +233,9 @@ function home(r){
     var HS=exStat(n,ti),mmL=lj('wn_mm_'+n,[]),mmN=mmL.length+1;
     var st3Html='<button data-i="dv"><small>단어</small><b>'+(HS.nx?'Day '+HS.nx:'완료')+'</b></button><button data-i="mm"><small>모고</small><b>'+mmN+'회</b></button><button data-i="gr"><small>어법</small><b>—</b></button>';
     var wkTxt=(cw<0?'시작 전':(cw>=NW?'종료':(cw+1)));
-    h+='<div class="hero pm"><div class="lb"><span class="lg"><img src="logo.png" alt="비타민 영어클리닉"></span><span class="dt">'+dshow(ti)+'</span></div><div class="hn mt">성공은 매일 부단하게 반복된<br>작은 노력의 합산이다.</div><div class="hd">11/2 ~ 2/28 · 17주 과정</div><div class="wb">'+bar+'</div><div class="st3">'+st3Html+'</div><div class="sp" id="sp"></div></div>';
+    h+='<div class="hero pm"><div class="lb"><span class="lg"><img src="logo.png" alt="비타민 영어클리닉"></span><span class="dt">'+dshow(ti)+'</span></div><div class="hn mt">성공은 매일 부단하게 반복된<br>작은 노력의 합산이다.</div><div class="st3">'+st3Html+'</div><div class="sp" id="sp"></div></div>';
   }else{
-    h+='<div class="hero pm"><div class="lb"><span class="lg"><img src="logo.png" alt="비타민 영어클리닉"></span><span class="dt">'+dshow(ti)+'</span></div><div class="hn mt">성공은 매일 부단하게 반복된<br>작은 노력의 합산이다.</div><div class="hd">11/2 ~ 2/28 · 17주 과정</div></div>';
+    h+='<div class="hero pm"><div class="lb"><span class="lg"><img src="logo.png" alt="비타민 영어클리닉"></span><span class="dt">'+dshow(ti)+'</span></div><div class="hn mt">성공은 매일 부단하게 반복된<br>작은 노력의 합산이다.</div></div>';
   }
   /* today */
   var IU=!!I&&!isAdm(n);
@@ -269,8 +269,8 @@ function home(r){
     h+='<div class="c"><div class="nm">'+I.Q.q.toLocaleString()+'<small>문항</small></div><div class="lb">어휘 유형 · 데일리보카 '+P2.d+'</div><div class="ds">'+I.Q.n+'일 × 15문항</div><div class="pbar"><i style="width:'+(dn2/I.Q.n*100)+'%"></i></div><div class="pg">내 진행 '+dn2+' / '+I.Q.n+'일</div></div>';
     var DVN={Core:[2504,2989,5],Pro:[2824,3836,6]}[P2.dv];
     h+='<div class="c"><div class="nm">'+DVN[0].toLocaleString()+'<small>단어</small></div><div class="lb">유의어·반의어 · 더블보카 '+P2.dv+'</div><div class="ds">표제어 640개 + 유의어·반의어 + 사지선다 보기까지 (중복 제외)</div><div class="pbar"><i style="width:'+(I.dv.length/32*100)+'%"></i></div><div class="pg">내 진행 '+I.dv.length+' / 32 Day</div></div>';
-    h+='<div class="c"><div class="nm">12<small>챕터</small></div><div class="lb">구문 · 천일문S 문장줄이기</div><div class="ds">총 190문장, 2개월 과정</div></div>';
-    h+='</div><div class="frm">더블보카는 단어를 낱개로 외우지 않고 뜻이 비슷한 단어와 반대인 단어를 묶어 관계로 외우는 방식. 표제어 하나에 연결 단어 약 '+DVN[2]+'개가 함께 붙어, 유의어·반의어 연결만 '+DVN[1].toLocaleString()+'개. 목표 기준은 모의고사 3개년 분량의 독해, 주 6일 어휘, 누적 복습 1 · 3 · 7 · 15일이고 이를 4개월에 나눈 일정.</div>';
+    h+='<div class="c"><div class="nm">12<small>챕터</small></div><div class="lb">구문 · 천일문S 문장줄이기</div><div class="ds">총 190문장</div></div>';
+    h+='</div><div class="frm">더블보카는 단어를 낱개로 외우지 않고 뜻이 비슷한 단어와 반대인 단어를 묶어 관계로 외우는 방식. 표제어 하나에 연결 단어 약 '+DVN[2]+'개가 함께 붙어, 유의어·반의어 연결만 '+DVN[1].toLocaleString()+'개. 목표 기준은 모의고사 3개년 분량의 독해, 주 6일 어휘, 누적 복습 1 · 3 · 7 · 15일.</div>';
   }
   h+='<h2 class="sec">오답 단어 리스트</h2>';
   h+='<div class="card" style="margin-top:0"><div class="sub">쌓인 오답 단어</div><div class="big">'+LI.length+'개</div><button class="btn" id="ls"'+(LI.length?'':' disabled')+'>오답 단어 리스트 보기</button></div>';
