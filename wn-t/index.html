@@ -295,12 +295,21 @@ function hw(r){
   var b=document.getElementById('body'),m=monday(WK),from=ymd(m);
   var end=new Date(m.getTime()+6*86400e3);
   b.innerHTML='<div class="msg">불러오는 중...</div>';
-  post({act:'t_hw',from:from}).then(function(h){
+  Promise.all([post({act:'t_hw',from:from}),post({act:'t_rev',from:from}).catch(function(){return null})]).then(function(rs){
+    var h=rs[0],rv=rs[1];
     if(!h||!h.ok){b.innerHTML='<div class="msg">불러오지 못했어요.</div>';return}
-    var days=['월','화','수','목','토','일'],offs={월:0,화:1,수:2,목:3,토:5,일:6},last=ymd(end);
-    var map={};h.items.forEach(function(x){if(x.date<from||x.date>last)return;var dvx=/더블/.test(String(x.level||''));if(HF==='d'&&dvx)return;if(HF==='v'&&!dvx)return;var q=(map[x.name]=map[x.name]||{});(q[x.wd]=q[x.wd]||[]).push(x)});
-    var t='<div class="top"><button class="sbtn" id="pv">이전 주</button><div class="t" style="text-align:center">'+dshow(from)+' ~ '+dshow(last)+'</div><button class="sbtn" id="nx">다음 주</button></div><div style="display:flex;gap:6px;margin:8px 0">'+[['all','전체'],['d','데일리보카'],['v','더블보카']].map(function(f){return'<button class="sbtn" data-f="'+f[0]+'" style="flex:1;'+(HF===f[0]?'background:var(--soft);border-color:var(--pri)':'')+'">'+f[1]+'</button>'}).join('')+'</div><div class="card"><table><tr><th>이름</th>'+days.map(function(d){return'<th>'+d+'<div class="sub" style="font-weight:400">'+dshow(ymd(new Date(m.getTime()+offs[d]*86400e3))).replace(/\(.*\)/,'')+'</div></th>'}).join('')+'</tr>';
-    r.students.forEach(function(s){t+='<tr><td>'+esc(s.name)+'</td>'+days.map(function(d){var x=(map[s.name]||{})[d];return x?'<td class="x">'+x.map(function(e){var dv=/더블/.test(String(e.level||''));return'<div style="line-height:1.25"><small style="display:block;font-size:10px;font-weight:400;color:'+(dv?'#2d6a9f':'#2a8a5c')+'">'+(dv?'더블':'데일리')+'</small>'+esc(e.score)+'</div>'}).join('')+'</td>':'<td></td>'}).join('')+'</tr>'});
+    var revOk=!!(rv&&rv.ok);
+    var days=['월','화','수','목','금','토','일'],offs={월:0,화:1,수:2,목:3,금:4,토:5,일:6},last=ymd(end);
+    var map={};
+    function put(x){var q=(map[x.name]=map[x.name]||{});(q[x.wd]=q[x.wd]||[]).push(x)}
+    h.items.forEach(function(x){if(x.date<from||x.date>last)return;var dvx=/더블/.test(String(x.level||''));if(HF==='r')return;if(HF==='d'&&dvx)return;if(HF==='v'&&!dvx)return;put(x)});
+    if(revOk&&(HF==='all'||HF==='r'))rv.items.forEach(function(x){if(x.date<from||x.date>last)return;put({name:x.name,wd:x.wd,level:'누적복습',score:x.n+'개'})});
+    function lab(e){var L=String(e.level||'');return /더블/.test(L)?['더블','#2d6a9f']:(/누적/.test(L)?['누적','#8a5a9e']:['데일리','#2a8a5c'])}
+    var fl=[['all','전체'],['d','데일리'],['r','누적복습'],['v','더블보카']];
+    var t='<div class="top"><button class="sbtn" id="pv">이전 주</button><div class="t" style="text-align:center">'+dshow(from)+' ~ '+dshow(last)+'</div><button class="sbtn" id="nx">다음 주</button></div><div style="display:flex;gap:6px;margin:8px 0">'+fl.map(function(f){return'<button class="sbtn" data-f="'+f[0]+'" style="flex:1;padding:6px 2px;'+(HF===f[0]?'background:var(--soft);border-color:var(--pri)':'')+'">'+f[1]+'</button>'}).join('')+'</div>';
+    if(!revOk&&(HF==='r'))t+='<div class="msg">누적복습 기록은 서버를 새로 배포하면 보여요.</div>';
+    t+='<div class="card"><table style="font-size:12.5px"><tr><th>이름</th>'+days.map(function(d){return'<th>'+d+'<div class="sub" style="font-weight:400">'+dshow(ymd(new Date(m.getTime()+offs[d]*86400e3))).replace(/\(.*\)/,'')+'</div></th>'}).join('')+'</tr>';
+    r.students.forEach(function(s){t+='<tr><td>'+esc(s.name)+'</td>'+days.map(function(d){var x=(map[s.name]||{})[d];return x?'<td class="x">'+x.map(function(e){var l=lab(e);return'<div style="line-height:1.25"><small style="display:block;font-size:9.5px;font-weight:400;color:'+l[1]+'">'+l[0]+'</small>'+esc(e.score)+'</div>'}).join('')+'</td>':'<td></td>'}).join('')+'</tr>'});
     t+='</table></div>';b.innerHTML=t;
     Array.prototype.forEach.call(b.querySelectorAll('[data-f]'),function(x){x.onclick=function(){HF=x.dataset.f;hw(r)}});document.getElementById('pv').onclick=function(){WK--;hw(r)};document.getElementById('nx').onclick=function(){WK++;hw(r)};
   },function(){b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
