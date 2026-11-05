@@ -176,7 +176,6 @@ function cdraw(r){
     h+='<div class="card" data-n="'+esc(n)+'"><b>'+esc(n)+'</b><small style="color:var(--sub)"> '+esc(s.grade||'')+'</small>';
     h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">시험 본 Day <b>'+(exn?exn+'까지':'없음')+'</b></span><button class="sbtn" data-a="exm">−1</button><button class="sbtn" data-a="exp">시험 봄 +1</button></div>';
     h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">안내 멈춤 '+(holdOn?'<b>'+(c.hold<'9999'?dshow(c.hold)+'까지':'계속')+'</b>':'<span style="color:var(--sub)">안 함</span>')+'</span>'+(holdOn?'<button class="sbtn" data-a="hoff">해제</button>':'<input type="date" id="hd_'+esc(n)+'" class="sbtn" style="padding:4px 6px"><button class="sbtn" data-a="hon">멈춤</button>')+'</div>';
-    h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">천일문S 오답 숨기기</span><button class="sbtn" data-a="hide" style="'+((c.hide||[]).indexOf('천일문S')>=0?'background:var(--soft);border-color:var(--pri)':'')+'">'+((c.hide||[]).indexOf('천일문S')>=0?'숨김 중':'숨기기')+'</button></div>';
     h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">천일문S 오답 서버에서 지우기</span><button class="sbtn" data-a="void" style="border-color:var(--ng);color:var(--ng)">지우기</button></div>';
     h+='<div class="msg" id="sv_'+esc(n)+'"></div></div>';
   });
