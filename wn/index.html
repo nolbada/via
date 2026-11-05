@@ -151,13 +151,13 @@ function exNote(n,now,ti,nd){
     return bx+'다음 시험 '+dshow('2026-11-06')+' · Day 1 단어를 미리 공부하세요</div>';
   }
   if(!nx)return'';
-  if(PLAN[n]&&ti<PLAN[n].s)return'';
   var mon=new Date(now);mon.setDate(mon.getDate()-((mon.getDay()+6)%7));var mt=mon.getTime(),wk=0,k2;
   for(k2 in tk){if(tk[k2]>=mt)wk++}
   var todayT=false;for(k2 in tk){if(tk[k2]>=now.getTime())todayT=true}
+  var must=0;ds.forEach(function(dw){var dd=new Date(mon);dd.setDate(mon.getDate()+dw-1);if(iso(dd)>=FIRSTEX[grp]&&dd<now)must++});
+  var miss=Math.max(0,must-wk),fri=new Date(mon);fri.setDate(mon.getDate()+4);
+  if(w>=1&&w<=4&&miss>0&&ds.indexOf(w)<0)return bx+'이번 주 못 본 더블보카 Day '+nx+' 시험은 '+dshow(iso(fri))+'에 말하기 시험으로 봐요.</div>';
   if(w===5){
-    var must=0;ds.forEach(function(dw){var dd=new Date(mon);dd.setDate(mon.getDate()+dw-1);if(iso(dd)>=FIRSTEX[grp]&&dd<now)must++});
-    var miss=Math.max(0,must-wk);
     return bx+'오늘은 오답노트 단어 구두테스트예요. 오늘 복습 단어를 다시 확인해요.'+(miss?'<br>이번 주 못 본 더블보카 시험 '+miss+'개는 말하기 시험으로 봐요 (Day '+nx+(miss>1?'부터':'')+').':'')+'</div>';
   }
   if(ds.indexOf(w)>=0&&!todayT&&ti>=FIRSTEX[grp])return bx+'오늘 더블보카 Day '+nx+' 시험이 있어요. 마지막으로 확인해요.</div>';
