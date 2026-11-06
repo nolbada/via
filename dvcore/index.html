@@ -773,7 +773,7 @@ document.getElementById('mAllStar').onclick=function(){startPractice(true,'all',
 document.getElementById('mExam').onclick=function(){examGate()};
 document.getElementById('mReset').onclick=function(){var b=this;if(!b._a){b._a=1;b.textContent='한 번 더 누르면 지워져요';return}b._a=0;b.textContent='이어풀기 지우고 처음부터';sdel(lKey());sdel(pKey());sdel(pKeyI());ST[DI]={};st=ST[DI];RES=0;build();deck.scrollLeft=0;update();homeRefresh()};document.getElementById('hb1').onclick=goHome;
 document.getElementById('hbd').onclick=goDays;
-function twoTap(id,txt,fn){var b=document.getElementById(id),t0=b.textContent;b.onclick=function(){if(!b._a){b._a=1;b.textContent='한 번 더 누르면 지워져요';setTimeout(function(){b._a=0;b.textContent=t0},3000);return}b._a=0;b.textContent=t0;fn()}}
+function twoTap(id,txt,fn){var b=document.getElementById(id),t0=b.textContent;b.onclick=function(){if(!b._a){b._a=1;b.textContent='한 번 더 누르면 지워져요';b.style.cssText='background:#d33;color:#fff;border-color:#d33';setTimeout(function(){b._a=0;b.textContent=t0;b.style.cssText=''},5000);return}b._a=0;b.textContent=t0;b.style.cssText='';fn()}}
 twoTap('mClrStar','',function(){clearStars(DI);homeRefresh()});twoTap('mAllClr','',function(){clearStars(null);daysRefresh()});
 WN.gate(function(){daysRefresh();showView('days')});
 
