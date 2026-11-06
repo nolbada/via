@@ -111,23 +111,56 @@ function ask(n){
   },function(){main()});
 }
 function qstep(){
-  if(Q.i>=Q.items.length){
+  if(Q.i>=Q.items.length){pump();
     $.innerHTML='<h1>'+esc(Q.n)+'</h1><div class="card"><div class="word">'+Q.ok+' / '+Q.items.length+'</div><div class="sub">맞음 '+Q.ok+' · 틀림 '+Q.ng+'</div></div><button class="btn pri" id="hm">목록으로</button>';
-    document.getElementById('hm').onclick=Q.back?function(){wlist(Q.n)}:main;return;
+    document.getElementById('hm').onclick=function(){whenDrained(Q.back?function(){wlist(Q.n)}:main)};return;
   }
   var it=Q.items[Q.i];
   $.innerHTML='<div class="top"><button class="sbtn" id="hm">목록</button><div class="t">'+esc(Q.n)+' · '+(Q.i+1)+' / '+Q.items.length+'</div></div><div class="card"><div class="word">'+esc(it.w)+'</div><div class="sub">'+esc(it.src)+' · 틀린 횟수 '+it.c+' · '+it.st+'/4단계</div><div id="ans"><button class="btn pri" id="sh">뜻 보기</button></div></div>';
-  document.getElementById('hm').onclick=Q.back?function(){wlist(Q.n)}:main;
+  document.getElementById('hm').onclick=function(){whenDrained(Q.back?function(){wlist(Q.n)}:main)};
   document.getElementById('sh').onclick=function(){
     document.getElementById('ans').innerHTML='<div class="mean">'+esc(it.m||'뜻 없음')+'</div><button class="btn ok" id="y">맞음</button><button class="btn ng" id="n">틀림</button>';
     document.getElementById('y').onclick=function(){send(it,true)};document.getElementById('n').onclick=function(){send(it,false)};
   };
 }
+var PQ=[],PBUSY=false,PTM=null;
+try{PQ=JSON.parse(ls('wn_pq')||'[]')||[]}catch(e){PQ=[]}
+function pqSave(){ss('wn_pq',JSON.stringify(PQ))}
+function pstat(){
+  var d=document.getElementById('pq');
+  if(!d){d=document.createElement('div');d.id='pq';d.style.cssText='position:fixed;right:10px;bottom:10px;background:#1f2a44;color:#fff;font-size:12px;padding:6px 10px;border-radius:14px;opacity:.9;z-index:9';document.body.appendChild(d)}
+  if(PQ.length){d.textContent='저장 중 '+PQ.length+'개';d.style.display='block'}else d.style.display='none';
+}
+function pump(){
+  pstat();
+  if(PBUSY||!PQ.length||!PW)return;
+  PBUSY=true;
+  var batch=PQ.slice(),idx=0,act=0;
+  function next(){
+    while(act<3&&idx<batch.length){
+      (function(j){
+        act++;
+        post({act:'t_ask',name:j.n,w:j.w,okk:j.ok}).then(function(r){
+          if(r&&r.ok){PQ=PQ.filter(function(x){return x!==j});pqSave()}
+        },function(){}).then(function(){act--;pstat();next()});
+      })(batch[idx++]);
+    }
+    if(act===0&&idx>=batch.length){
+      PBUSY=false;
+      if(PQ.length){clearTimeout(PTM);PTM=setTimeout(pump,4000)}else pstat();
+    }
+  }
+  next();
+}
+function whenDrained(fn){
+  if(!PQ.length){fn();return}
+  $.innerHTML='<div class="msg">저장 중... ('+PQ.length+'개 남음)</div>';
+  pump();
+  var t=setInterval(function(){if(!PQ.length){clearInterval(t);fn()}else $.innerHTML='<div class="msg">저장 중... ('+PQ.length+'개 남음)</div>'},400);
+}
 function send(it,ok){
-  post({act:'t_ask',name:Q.n,w:it.w,okk:ok}).then(function(r){
-    if(!r||!r.ok){alert_('저장이 안 됐어요. 다시 눌러 주세요.');return}
-    if(ok)Q.ok++;else Q.ng++;Q.i++;qstep();
-  },function(){alert_('연결이 안 됐어요. 다시 눌러 주세요.')});
+  PQ.push({n:Q.n,w:it.w,ok:ok});pqSave();
+  if(ok)Q.ok++;else Q.ng++;Q.i++;qstep();
 }
 function alert_(m){var d=document.getElementById('ans');if(d)d.insertAdjacentHTML('beforeend','<div class="msg">'+m+'</div>')}
 var PLAN={"김서진": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "서승언": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "장은율": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김지효": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김린": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "이동우": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고2"}, "김도현": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김소희": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "윤유란": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "정다원": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "김민서": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "이지민": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "조혜린": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "최의준": {"dv": "Core", "d": "B", "s": "2026-11-05", "m": "고1"}};
@@ -345,4 +378,6 @@ function hw(r){
   },function(){b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
 }
 if(PW)main();else login();
+pump();
+window.addEventListener('beforeunload',function(e){if(PQ.length){e.preventDefault();e.returnValue=''}});
 </script></body></html>
