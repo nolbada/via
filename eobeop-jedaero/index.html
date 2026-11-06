@@ -14,9 +14,17 @@ h2{font-size:16px;color:#fff;background:#12314f;border-radius:8px;padding:8px 12
 a.pg{display:flex;flex-direction:column;justify-content:center;min-height:56px;background:#fff;border:1px solid #dbe3e0;border-left:5px solid #12314f;border-radius:10px;padding:10px 12px;color:#16211f;text-decoration:none;font-size:18px;font-weight:bold}
 a.pg span{font-size:12.5px;font-weight:400;color:#5b6b67;margin-top:2px}
 a.pg:active{background:#dbe3e0}
+a.pg.lk{opacity:.45;border-left-color:#9aa6a3}
+a.pg.lk span:after{content:" 🔒";font-size:12px}
+.go{display:flex;gap:8px;margin:14px 0 0}
+.go input{flex:1;min-width:0;font:inherit;font-size:18px;padding:11px 12px;border:1.5px solid #12314f;border-radius:10px;background:#fff;color:#16211f}
+.go button{font:inherit;font-size:16px;font-weight:700;padding:0 18px;border:0;border-radius:10px;background:#12314f;color:#fff}
+#gm{font-size:14px;color:#b3261e;margin:8px 2px 0;min-height:20px}
 </style></head><body><main>
 <h1>해커스 어법 제대로 어법변형문제</h1>
-<p class="note">챕터와 페이지를 눌러 정답·해설을 보세요.</p>
+<p class="note">교재 쪽수를 넣거나, 아래에서 쪽을 눌러 정답·해설을 보세요.</p>
+<div class="go"><input id="pn" type="text" inputmode="numeric" placeholder="쪽수 (예: 60)" autocomplete="off"><button id="pb" type="button">열기</button></div><div id="gm"></div>
+<p class="note" style="margin-top:10px">🔒 표시는 선생님이 아직 열지 않은 쪽이에요.</p>
 <h2>CHAPTER 01</h2><div class="grid"><a class="pg" href="ch01-p06.html">p.6<span>1~4번 지문</span></a><a class="pg" href="ch01-p07.html">p.7<span>1~4번 지문</span></a></div>
 <h2>CHAPTER 02</h2><div class="grid"><a class="pg" href="ch02-p24.html">p.24<span></span></a><a class="pg" href="ch02-p25.html">p.25<span></span></a><a class="pg" href="ch02-p26.html">p.26<span></span></a><a class="pg" href="ch02-p27.html">p.27<span></span></a><a class="pg" href="ch02-p28.html">p.28<span></span></a><a class="pg" href="ch02-p29.html">p.29<span></span></a><a class="pg" href="ch02-p30-31.html">p.30-31<span>수능 대비</span></a><a class="pg" href="ch02-p32-33.html">p.32-33<span>MINI TEST CH01-02</span></a></div>
 <h2>CHAPTER 03</h2><div class="grid"><a class="pg" href="ch03-p36.html">p.36<span></span></a><a class="pg" href="ch03-p37.html">p.37<span></span></a><a class="pg" href="ch03-p38.html">p.38<span></span></a><a class="pg" href="ch03-p39.html">p.39<span></span></a><a class="pg" href="ch03-p40.html">p.40<span></span></a><a class="pg" href="ch03-p41.html">p.41<span>내신 서술형</span></a><a class="pg" href="ch03-p42-43.html">p.42-43<span>수능 대비</span></a></div>
@@ -26,4 +34,24 @@ a.pg:active{background:#dbe3e0}
 <h2>CHAPTER 07</h2><div class="grid"><a class="pg" href="ch07-p82.html">p.82<span></span></a><a class="pg" href="ch07-p83.html">p.83<span></span></a><a class="pg" href="ch07-p84.html">p.84<span></span></a><a class="pg" href="ch07-p85.html">p.85<span></span></a><a class="pg" href="ch07-p86.html">p.86<span></span></a><a class="pg" href="ch07-p87.html">p.87<span></span></a><a class="pg" href="ch07-p88.html">p.88<span></span></a><a class="pg" href="ch07-p89.html">p.89<span>내신 서술형</span></a><a class="pg" href="ch07-p90-91.html">p.90-91<span>수능 대비</span></a></div>
 <h2>CHAPTER 08</h2><div class="grid"><a class="pg" href="ch08-p93.html">p.93<span></span></a><a class="pg" href="ch08-p94.html">p.94<span></span></a><a class="pg" href="ch08-p95.html">p.95<span></span></a><a class="pg" href="ch08-p96.html">p.96<span></span></a><a class="pg" href="ch08-p97.html">p.97<span></span></a><a class="pg" href="ch08-p98.html">p.98<span></span></a><a class="pg" href="ch08-p99.html">p.99<span>내신 서술형</span></a><a class="pg" href="ch08-p100-101.html">p.100-101<span>수능 대비</span></a><a class="pg" href="ch08-p102-103.html">p.102-103<span>MINI TEST CH07-08</span></a></div>
 <h2>CHAPTER 09</h2><div class="grid"><a class="pg" href="ch09-p106.html">p.106<span></span></a><a class="pg" href="ch09-p107.html">p.107<span></span></a><a class="pg" href="ch09-p108.html">p.108<span></span></a><a class="pg" href="ch09-p109.html">p.109<span></span></a><a class="pg" href="ch09-p110.html">p.110<span></span></a><a class="pg" href="ch09-p111.html">p.111<span>내신 서술형</span></a><a class="pg" href="ch09-p112-113.html">p.112-113<span>수능 대비</span></a></div>
-</main></body></html>
+</main><script>
+(function(){
+var KV='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec',ID='EJCTL';
+var A=[].slice.call(document.querySelectorAll('a.pg')),OPEN=null;
+function key(a){return a.getAttribute('href').replace('.html','')}
+function ls(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function teacher(){return ls('ej_teacher')==='1'}
+function mark(){A.forEach(function(a){var o=teacher()||(OPEN&&OPEN[key(a)]);if(OPEN===null&&!teacher()){a.classList.remove('lk');return}a.classList.toggle('lk',!o)})}
+function range(a){var m=key(a).match(/-p(\d+)(?:-(\d+))?$/);return m?[+m[1],+(m[2]||m[1])]:[0,0]}
+fetch(KV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:ID,data:{}})}).then(function(r){return r.json()}).then(function(r){
+ var d=(r&&r.data)||{};OPEN={};for(var k in d){try{var x=d[k],s=(x&&x.v&&typeof x.v.s==='string')?x.v.s:null;if(s&&JSON.parse(s).o)OPEN[k]=1}catch(e){}}mark()},function(){});
+function go(){var n=parseInt(document.getElementById('pn').value,10),m=document.getElementById('gm');
+ if(!n){m.textContent='쪽수를 숫자로 넣어 주세요.';return}
+ for(var i=0;i<A.length;i++){var r=range(A[i]);if(n>=r[0]&&n<=r[1]){
+  if(teacher()||OPEN===null||OPEN[key(A[i])]){location.href=A[i].getAttribute('href');return}
+  m.textContent='🔒 '+n+'쪽은 아직 열리지 않았어요. 선생님이 열어 주면 볼 수 있어요.';return}}
+ m.textContent=n+'쪽 해설은 없어요. 아래 목록에서 골라 보세요.'}
+document.getElementById('pb').onclick=go;
+document.getElementById('pn').onkeydown=function(e){if(e.key==='Enter')go()};
+})();
+</script></body></html>
