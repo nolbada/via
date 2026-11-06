@@ -390,6 +390,7 @@ function hw(r){
     h.items.forEach(function(x){if(x.date<from||x.date>last)return;var c=cat(x.level);if(SC?(c==='d'):(c!=='d'))return;if(F!=='all'&&F!==c)return;put(x)});
     if(!SC&&revOk&&(F==='all'||F==='r'))rv.items.forEach(function(x){if(x.date<from||x.date>last)return;put({name:x.name,wd:x.wd,level:'누적복습',score:x.n+'개'})});
     function lab(e){var L=String(e.level||'');return /더블/.test(L)?['더블','#2d6a9f']:(/미니/.test(L)?['미니모의','#b5651d']:(/누적/.test(L)?['누적','#8a5a9e']:['데일리','#2a8a5c']))}
+    function mmt(e){var L=String(e.level||'');if(!/미니/.test(L))return'';var d=+e.day;if(!d)return'';return'<small style="display:block;font-size:9.5px;font-weight:400;color:#b5651d">'+esc(L.replace('미니모고','').replace(/\s+/g,''))+' '+Math.ceil(d/2)+'회 '+(d%2?'01–06':'07–12')+'</small>'}
     function tone(sc){var q=String(sc).match(/^(\d+)\s*\/\s*(\d+)/);if(!q)return '#888';var r2=q[1]/q[2];return r2>=0.8?'#1f7a4d':'#e07b00'}
     var fl=SC?[['all','전체'],['v','더블보카'],['m','미니모의']]:[['all','전체'],['d','데일리'],['r','누적복습']];
     var t='<div class="top"><button class="sbtn" id="pv">이전 주</button><div class="t" style="text-align:center">'+dshow(from)+' ~ '+dshow(last)+'</div><button class="sbtn" id="nx">다음 주</button></div><div style="display:flex;gap:6px;margin:8px 0">'+fl.map(function(f){return'<button class="sbtn" data-f="'+f[0]+'" style="flex:1;padding:6px 2px;'+(F===f[0]?'background:var(--soft);border-color:var(--pri)':'')+'">'+f[1]+'</button>'}).join('')+'</div>';
@@ -397,9 +398,9 @@ function hw(r){
     t+='<div class="card"><table style="font-size:12.5px"><tr><th>이름</th>'+days.map(function(d){return'<th>'+d+'<div class="sub" style="font-weight:400">'+dshow(ymd(new Date(m.getTime()+offs[d]*86400e3))).replace(/\(.*\)/,'')+'</div></th>'}).join('')+'</tr>';
     r.students.forEach(function(s){t+='<tr><td>'+esc(s.name)+'</td>'+days.map(function(d){var x=(map[s.name]||{})[d];if(!x)return'<td></td>';
       return'<td class="x">'+x.map(function(e){var l=lab(e),sc=String(e.score||'');
-        if(SC)return'<div style="line-height:1.25"><small style="display:block;font-size:9.5px;font-weight:400;color:'+l[1]+'">'+l[0]+'</small><b style="color:'+tone(sc)+'">'+esc(sc.replace(/\s*✓/,''))+'</b></div>';
+        if(SC)return'<div style="line-height:1.25"><small style="display:block;font-size:9.5px;font-weight:400;color:'+l[1]+'">'+l[0]+'</small>'+mmt(e)+'<b style="color:'+tone(sc)+'">'+esc(sc.replace(/\s*✓/,''))+'</b></div>';
         var prog=/진행중/.test(sc);
-        return'<div style="line-height:1.2"><small style="display:block;font-size:9.5px;font-weight:400;color:'+l[1]+'">'+l[0]+'</small><span style="font-size:15px;color:'+(prog?'#999':'#1f7a4d')+'">'+(prog?'…':'✔')+'</span><small style="display:block;font-size:9.5px;font-weight:400;color:#888">'+(prog?'진행중':esc(sc))+'</small></div>'}).join('')+'</td>'}).join('')+'</tr>'});
+        return'<div style="line-height:1.2"><small style="display:block;font-size:9.5px;font-weight:400;color:'+l[1]+'">'+l[0]+'</small>'+mmt(e)+'<span style="font-size:15px;color:'+(prog?'#999':'#1f7a4d')+'">'+(prog?'…':'✔')+'</span><small style="display:block;font-size:9.5px;font-weight:400;color:#888">'+(prog?'진행중':esc(sc))+'</small></div>'}).join('')+'</td>'}).join('')+'</tr>'});
     t+='</table></div>';b.innerHTML=t;
     Array.prototype.forEach.call(b.querySelectorAll('[data-f]'),function(x){x.onclick=function(){HFS[SC?'sc':'hw']=x.dataset.f;hw(r)}});document.getElementById('pv').onclick=function(){WK--;hw(r)};document.getElementById('nx').onclick=function(){WK++;hw(r)};
   },function(){b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
