@@ -60,7 +60,7 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
 .go[disabled]{opacity:.35;cursor:default}
 .res{margin-top:12px;font-weight:700}
 .res.ok{color:var(--good)} .res.no2{color:var(--bad)}
-.back .lock{filter:blur(7px);pointer-events:none;user-select:none}.lockmsg{font-size:calc(13px*var(--fs));font-weight:700;color:var(--accent);text-align:center;margin:12px 0 2px}
+.back .lock{filter:blur(7px);pointer-events:none;user-select:none}.lockmsg{display:block;width:100%;font:inherit;font-size:calc(14px*var(--fs));font-weight:700;color:var(--accent);background:var(--accent-soft);border:0;border-radius:12px;padding:12px;margin:12px 0 4px;cursor:pointer}
 .row{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
 .pill{border-radius:999px;padding:3px 10px;font-size:calc(13px*var(--fs));font-weight:500}
 .pill{border:0;font-family:inherit;display:inline-flex;align-items:center;gap:4px;cursor:pointer}
@@ -358,7 +358,7 @@ function build(){
     c1.appendChild(el('div','no','DAY '+pad2(DN)+' · '+w.n));
     c1.appendChild(hrow(w));c1.appendChild(starB(w));
     w.kan.forEach(function(k,ki){
-      var box=el('div','kan'),ks=S.k[ki];
+      var box=el('div','kan'),ks=S.k[ki];box.id='qb'+wi+'_'+ki;
       var mk=(k.sense.match(/^[❶❷❸❹❺❻]+/)||[''])[0];
       var hint=el('div','','<span class="tag">'+k.pos+'</span>'+(mk?'<span class="tag">'+mk+'</span>':''));
       box.appendChild(hint);
@@ -406,7 +406,7 @@ function fillBack(wi,c){
   inner.appendChild(el('div','no','DAY '+pad2(DN)+' · '+w.n));
   inner.appendChild(hrow(w));
   w.kan.forEach(function(k,ki){
-    var kd=state(wi).k[ki].done;if(!kd)inner.appendChild(el('div','lockmsg','이 뜻의 문제를 풀면 열려요'));
+    var kd=state(wi).k[ki].done;if(!kd){var lm=el('button','lockmsg','아직 안 푼 문제가 있어요 · 눌러서 풀러 가기 ▸');lm.type='button';lm.onclick=function(){var sl=deck.children[wi*2];if(!sl)return;deck.scrollTo({left:sl.offsetLeft-deck.offsetLeft,behavior:'smooth'});setTimeout(function(){var q=document.getElementById('qb'+wi+'_'+ki);if(q)q.scrollIntoView({block:'center',behavior:'smooth'})},350)};inner.appendChild(lm)}
     var d=el('div','kan'+(kd?'':' lock'));
     d.appendChild(el('div','','<span class="tag">'+k.pos+'</span><span class="sense">'+esc(k.sense)+'</span>'));
     if(k.syn.length){var r=el('div','row');k.syn.forEach(function(x){r.appendChild(pillBtn(x,'s',k.pos))});d.appendChild(el('div','lab','비슷한 뜻'));d.appendChild(r)}
