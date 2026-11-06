@@ -45,6 +45,7 @@ h2.sec{font-size:15px;margin:20px 2px 8px;color:var(--sub);font-weight:700;lette
 .ln{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:13px;color:var(--sub)}.ln em{font-style:normal;width:96px;flex:none;white-space:nowrap}.ln .bar{flex:1;height:7px;border-radius:99px;background:var(--line);overflow:hidden}.ln .bar i{display:block;height:100%;background:var(--pri)}.ln .v{width:84px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
 .dg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:8px}.dg div{border:1px solid var(--line);border-radius:8px;padding:5px 0;text-align:center;font-size:12px;color:var(--sub)}.dg div b{display:block;font-size:13px;color:var(--ink)}.dg .d{background:var(--okBg);border-color:var(--ok)}.dg .l{background:#fbefd9;border-color:#c47a1a}.dg .c{background:repeating-linear-gradient(45deg,transparent 0 4px,var(--line) 4px 5px)}.dg .td{outline:2px solid var(--pri)}
 .sc.pv{text-decoration:none;color:inherit}.kv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}.kv:last-child{border:0}.kv b{font-variant-numeric:tabular-nums}
+.ox{display:flex;gap:6px;flex:none}.obtn{width:46px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-weight:800;font-size:17px}.obtn.o.on{background:var(--ok);color:#fff;border-color:var(--ok)}.obtn.x.on{background:var(--ng);color:#fff;border-color:var(--ng)}
 </style></head><body><div id="app"></div>
 <script>
 var URL_=window.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',WD=['일','월','화','수','목','금','토'];
@@ -111,16 +112,35 @@ function ask(n){
   },function(){main()});
 }
 function qstep(){
-  if(Q.i>=Q.items.length){pump();
-    $.innerHTML='<h1>'+esc(Q.n)+'</h1><div class="card"><div class="word">'+Q.ok+' / '+Q.items.length+'</div><div class="sub">맞음 '+Q.ok+' · 틀림 '+Q.ng+'</div></div><button class="btn pri" id="hm">목록으로</button>';
-    document.getElementById('hm').onclick=function(){whenDrained(Q.back?function(){wlist(Q.n)}:main)};return;
+  if(!Q.res)Q.res={};
+  var N=Q.items.length;
+  function back(){whenDrained(Q.back?function(){wlist(Q.n)}:main)}
+  if(Q.done){
+    var a=Q.ok+Q.ng;
+    $.innerHTML='<h1>'+esc(Q.n)+'</h1><div class="card"><div class="word">'+Q.ok+' / '+a+'</div><div class="sub">맞음 '+Q.ok+' · 틀림 '+Q.ng+(N>a?' · 안 물어봄 '+(N-a):'')+'</div></div><button class="btn pri" id="hm">목록으로</button>';
+    document.getElementById('hm').onclick=back;return;
   }
-  var it=Q.items[Q.i];
-  $.innerHTML='<div class="top"><button class="sbtn" id="hm">목록</button><div class="t">'+esc(Q.n)+' · '+(Q.i+1)+' / '+Q.items.length+'</div></div><div class="card"><div class="word">'+esc(it.w)+'</div><div class="sub">'+esc(it.src)+' · 틀린 횟수 '+it.c+' · '+it.st+'/4단계</div><div id="ans"><button class="btn pri" id="sh">뜻 보기</button></div></div>';
-  document.getElementById('hm').onclick=function(){whenDrained(Q.back?function(){wlist(Q.n)}:main)};
-  document.getElementById('sh').onclick=function(){
-    document.getElementById('ans').innerHTML='<div class="mean">'+esc(it.m||'뜻 없음')+'</div><button class="btn ok" id="y">맞음</button><button class="btn ng" id="n">틀림</button>';
-    document.getElementById('y').onclick=function(){send(it,true)};document.getElementById('n').onclick=function(){send(it,false)};
+  var h='<div class="top"><button class="sbtn" id="hm">목록</button><div class="t">'+esc(Q.n)+' · '+N+'개</div></div><div class="card" style="padding:4px 14px">';
+  Q.items.forEach(function(it,i){
+    var v=Q.res[i];
+    h+='<div class="row"><div><b>'+esc(it.w)+'</b><small>'+esc(it.m||'뜻 없음')+' · '+esc(it.src)+' · 틀린 횟수 '+it.c+'</small></div><span class="ox"><button class="obtn o'+(v===true?' on':'')+'" data-i="'+i+'" data-v="1">O</button><button class="obtn x'+(v===false?' on':'')+'" data-i="'+i+'" data-v="0">X</button></span></div>';
+  });
+  h+='</div><button class="btn pri" id="sv">저장</button>';
+  $.innerHTML=h;
+  function cnt(){var n=0;for(var k in Q.res)if(Q.res[k]!==undefined)n++;var b=document.getElementById('sv');b.textContent='저장 ('+n+' / '+N+')';b.disabled=!n;b.style.opacity=n?1:.5;return n}
+  cnt();
+  document.getElementById('hm').onclick=function(){if(cnt()&&!window.confirm('저장하지 않은 답이 있어요. 나갈까요?'))return;back()};
+  $.querySelectorAll('.obtn').forEach(function(b){b.onclick=function(){
+    var i=+b.dataset.i,v=b.dataset.v==='1';
+    if(Q.res[i]===v)delete Q.res[i];else Q.res[i]=v;
+    var row=b.parentNode;row.querySelector('.o').classList.toggle('on',Q.res[i]===true);row.querySelector('.x').classList.toggle('on',Q.res[i]===false);
+    cnt();
+  }});
+  document.getElementById('sv').onclick=function(){
+    var ok=0,ng=0;
+    Q.items.forEach(function(it,i){var v=Q.res[i];if(v===undefined)return;PQ.push({n:Q.n,w:it.w,ok:v});if(v)ok++;else ng++});
+    if(!ok&&!ng)return;
+    pqSave();Q.ok=ok;Q.ng=ng;Q.done=true;pump();qstep();
   };
 }
 var PQ=[],PBUSY=false,PTM=null;
