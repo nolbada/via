@@ -20,6 +20,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:8px 0}
 .st{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:14px;padding:12px 14px;margin:7px 0}
 .st .nm{font-weight:700;font-size:17px;flex:1}.st small{color:var(--sub);display:block;font-weight:400}
+.mk{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:var(--sub);white-space:nowrap;background:var(--card)}
 .st.done{background:var(--okBg);border-color:var(--ok)}.st.done .pill{background:var(--ok);color:var(--priInk)}
 .pill{font-size:13px;border-radius:999px;padding:2px 10px;background:var(--soft);color:var(--pri);font-weight:700;white-space:nowrap}.pill.z{background:transparent;border:1px solid var(--line);color:var(--sub);font-weight:400}
 .top{display:flex;align-items:center;gap:8px;margin-bottom:8px}.top .t{flex:1;font-size:14px;color:var(--sub)}
@@ -79,10 +80,11 @@ function asklist(r){
   var ss_=r.students.slice().sort(function(a,c){return c.total-a.total||(a.name<c.name?-1:1)});
   var h='<div class="seg" id="lim">'+[5,10,15].map(function(x){return'<button data-l="'+x+'"'+(x===LIM?' class="on"':'')+'>'+x+'개</button>'}).join('')+'</div>';
   var T=tget();
-  ss_.forEach(function(s){var t=T[s.name];h+='<button class="st'+(t?' done':'')+'" data-n="'+esc(s.name)+'"><span class="nm">'+esc(s.name)+'<small>'+esc(s.grade)+(s.school?' · '+esc(s.school):'')+' · 질문 대기 '+s.askDue+(t?' · 오늘 시험 완료 '+t.ok+'/'+(t.ok+t.ng):'')+'</small></span><span class="pill'+(s.total?'':' z')+'">'+s.total+'개</span></button>'});
+  ss_.forEach(function(s){var t=T[s.name];h+='<button class="st'+(t?' done':'')+'" data-n="'+esc(s.name)+'"><span class="nm">'+esc(s.name)+'<small>'+esc(s.grade)+(s.school?' · '+esc(s.school):'')+' · 질문 대기 '+s.askDue+(t?' · 오늘 시험 완료'+((t.ok+t.ng)?' '+t.ok+'/'+(t.ok+t.ng):''):'')+'</small></span><span class="mk" data-m="'+esc(s.name)+'">'+(t?'해제':'시험 봄')+'</span><span class="pill'+(s.total?'':' z')+'">'+s.total+'개</span></button>'});
   b.innerHTML=h;
   b.querySelectorAll('#lim button').forEach(function(x){x.onclick=function(){LIM=+x.dataset.l;ss('wn_lim',LIM);asklist(r)}});
   b.querySelectorAll('.st').forEach(function(x){x.onclick=function(){wlist(x.dataset.n)}});
+  b.querySelectorAll('.mk').forEach(function(x){x.onclick=function(e){e.stopPropagation();var n=x.dataset.m,o;try{o=JSON.parse(ls('wn_tested')||'{}')}catch(er){o={}}var m=(o.d===kst()?o.m:null)||{};if(m[n])delete m[n];else m[n]={ok:0,ng:0};ss('wn_tested',JSON.stringify({d:kst(),m:m}));asklist(r)}});
 }
 var Q=null,WL=null;
 function wlist(n){
