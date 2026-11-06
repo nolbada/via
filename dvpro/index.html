@@ -60,7 +60,7 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
 .go[disabled]{opacity:.35;cursor:default}
 .res{margin-top:12px;font-weight:700}
 .res.ok{color:var(--good)} .res.no2{color:var(--bad)}
-.back .lock{filter:blur(7px);pointer-events:none;user-select:none}
+.back .lock{filter:blur(7px);pointer-events:none;user-select:none}.lockmsg{font-size:calc(13px*var(--fs));font-weight:700;color:var(--accent);text-align:center;margin:12px 0 2px}
 .row{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
 .pill{border-radius:999px;padding:3px 10px;font-size:calc(13px*var(--fs));font-weight:500}
 .pill{border:0;font-family:inherit;display:inline-flex;align-items:center;gap:4px;cursor:pointer}
@@ -402,11 +402,12 @@ function build(){
 function fillBack(wi,c){
   var w=W[wi],locked=!wordDone(wi);
   c.innerHTML='';
-  var inner=el('div',locked?'lock':'');
+  var inner=el('div','');
   inner.appendChild(el('div','no','DAY '+pad2(DN)+' · '+w.n));
   inner.appendChild(hrow(w));
   w.kan.forEach(function(k,ki){
-    var d=el('div','kan');
+    var kd=state(wi).k[ki].done;if(!kd)inner.appendChild(el('div','lockmsg','이 뜻의 문제를 풀면 열려요'));
+    var d=el('div','kan'+(kd?'':' lock'));
     d.appendChild(el('div','','<span class="tag">'+k.pos+'</span><span class="sense">'+esc(k.sense)+'</span>'));
     if(k.syn.length){var r=el('div','row');k.syn.forEach(function(x){r.appendChild(pillBtn(x,'s',k.pos))});d.appendChild(el('div','lab','비슷한 뜻'));d.appendChild(r)}
     if(k.ant.length){var r2=el('div','row');k.ant.forEach(function(x){r2.appendChild(pillBtn(x,'a',k.pos))});d.appendChild(el('div','lab','반대 뜻'));d.appendChild(r2)}
@@ -426,9 +427,9 @@ function fillBack(wi,c){
     d.appendChild(el('div','ex','<b>'+exh+'</b><span>'+esc(k.ex[1])+'</span>'));
     inner.appendChild(d);
   });
-  if(w.other)inner.appendChild(el('div','other',esc(w.other)));
-  inner.appendChild(el('div','lab','쓰는 타이밍'));
-  inner.appendChild(el('div','timing',esc(w.timing)));
+  if(w.other)inner.appendChild(el('div','other'+(locked?' lock':''),esc(w.other)));
+  inner.appendChild(el('div','lab'+(locked?' lock':''),'쓰는 타이밍'));
+  inner.appendChild(el('div','timing'+(locked?' lock':''),esc(w.timing)));
   c.appendChild(inner);c.appendChild(starB(w));
 }
 function refreshBack(wi){var c=document.getElementById('back'+wi);if(c)fillBack(wi,c);fillEnd()}
