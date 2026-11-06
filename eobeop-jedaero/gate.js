@@ -5,7 +5,7 @@
   function ls(k){try{return localStorage.getItem(k)}catch(e){return null}}
   function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
   var hide=document.getElementById('ej-hide');
-  function show(){ if(hide&&hide.parentNode) hide.parentNode.removeChild(hide); var o=document.getElementById('ej-lock'); if(o) o.parentNode.removeChild(o); }
+  function show(){ if(hide&&hide.parentNode) hide.parentNode.removeChild(hide); var o=document.getElementById('ej-lock'); if(o) o.parentNode.removeChild(o); if(location.hash){ setTimeout(function(){ var t=document.getElementById(decodeURIComponent(location.hash.slice(1))); if(t) t.scrollIntoView(); },60); } }
   if(ls('ej_teacher')==='1'||!key||key==='index'){ show(); return; }
   function read(){
     return fetch(KV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:ID,data:{}})})
