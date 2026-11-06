@@ -116,7 +116,7 @@ details.mo{margin-top:10px}details.mo>summary{cursor:pointer;font-size:14px;font
 .nt .nb{font-size:56px;font-weight:800;line-height:1.05;margin:4px 0 2px;letter-spacing:-.02em}.nt .nb small{font-size:19px;font-weight:600;margin-left:4px;opacity:.9}
 .nt .ns{font-size:12px;opacity:.85;margin:0 0 7px}
 .nt .nbar{display:flex;height:12px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.15)}.nt .nbar i{display:block;height:100%}.nt .nbar i+i{margin-left:2px}
-.nt .nlg{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px}.nt .nlg span{font-size:12px;display:flex;align-items:center;gap:6px}.nt .nlg em{width:8px;height:8px;border-radius:50%;display:inline-block}.nt .nlg b{font-weight:800}
+.nt .nlg{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;margin-top:10px}.nt .nlg span{font-size:12px;display:flex;align-items:center;gap:6px}.nt .nlg em{width:8px;height:8px;border-radius:50%;display:inline-block}.nt .nlg b{font-weight:800}
 .nt .ns2{margin:16px 0 0;padding-top:14px;border-top:1px solid rgba(201,166,107,.35)}.nt .ns2 h3{margin:0 0 9px;font-size:13px;font-weight:700;color:#d9bd86;letter-spacing:.02em}
 .nt .nstg{display:flex;gap:7px}.nt .nstg div{flex:1;text-align:center;border-radius:12px;padding:9px 2px;background:rgba(255,255,255,.12)}.nt .nstg b{display:block;font-size:19px;font-weight:800}.nt .nstg span{font-size:11px;opacity:.88}.nt .nstg .g{background:rgba(217,189,134,.28)}
 .nt .nx{font-size:12px;opacity:.85;margin:10px 0 0;line-height:1.5}
@@ -216,10 +216,9 @@ function exNote(n,now,ti,nd){
 }
 function noteCard(r,cap,due,today,LN){
   var it=r.items,tot=it.length,gr=it.filter(function(i){return i.st>=4}).length,live=it.filter(function(i){return!(i.st>=4)});
-  var sc={},so=[],SC=['#d9bd86','#8fd3b6','#9ec5ff','#ffb3a7','#c9b8ff','#b8c4cc'];
-  it.forEach(function(i){var k=String(i.src||'기타').split(',')[0].trim().split(/\s*·\s*|\s+/)[0]||'기타';if(!sc[k]){sc[k]=0;so.push(k)}sc[k]++});
-  so.sort(function(a,b){return sc[b]-sc[a]});
-  var bar='',lg='';so.forEach(function(k,x){var c=SC[Math.min(x,SC.length-1)];bar+='<i style="flex:'+sc[k]+';background:'+c+'"></i>';lg+='<span><em style="background:'+c+'"></em>'+esc(k)+' <b>'+sc[k]+'</b></span>'});
+  var sc={},so=['데일리보카','더블보카','천일문S','미니모고'],SC={'데일리보카':'#ffb3a7','더블보카':'#9ec5ff','천일문S':'#8fd3b6','미니모고':'#d9bd86'};so.forEach(function(k){sc[k]=0});
+  it.forEach(function(i){var k=String(i.src||'기타').split(',')[0].trim().split(/\s*·\s*|\s+/)[0]||'기타';if(/^미니모|^모의고사/.test(k))k='미니모고';else if(/^천일문/.test(k))k='천일문S';if(!(k in sc)){sc[k]=0;so.push(k);SC[k]='#b8c4cc'}sc[k]++});
+  var bar='',lg='';so.forEach(function(k){var c=SC[k];if(sc[k])bar+='<i style="flex:'+sc[k]+';background:'+c+'"></i>';lg+='<span><em style="background:'+c+'"></em>'+esc(k)+' <b>'+sc[k]+'</b></span>'});
   var sg=[0,0,0,0];live.forEach(function(i){sg[Math.max(0,Math.min(3,i.st|0))]++});
   var IV=['1일','3일','7일','15일'];
   var h='<div class="nt"><div class="nl">누적 모인 단어</div><div class="nb">'+tot+'<small>개</small></div>';
