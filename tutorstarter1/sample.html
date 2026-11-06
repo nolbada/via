@@ -122,6 +122,7 @@ header p{margin:0;color:var(--muted);font-size:13px}
 .sbm:disabled{opacity:.35;cursor:not-allowed}
 .lockcard{display:block;border:1px dashed var(--muted);border-radius:10px;padding:18px;text-align:center;color:var(--muted);font-weight:700;margin:22px 0 10px}
 .bqh .ox{margin-left:auto}
+.ain.wn{border-style:dashed;background:transparent}.ain.wn .ah{margin-bottom:4px}.wnt{font-size:14px;font-weight:700;color:var(--accent)}
 </style>
 </head>
 <body>
@@ -362,6 +363,8 @@ function inputSection(p,BI){
         tr.appendChild(row2);card.appendChild(tr)})(k2)}
     }
     sec.appendChild(card)});
+  var wr=[];(p.qs||[]).forEach(function(q){if(q.opts&&q.opts.length)return;var m=/(\d+)쪽\s*·\s*(\d+번)/.exec(q.at||"");if(m)wr.push(m[1]+"쪽 "+m[2])});
+  if(wr.length){var wn=el("div","ain wn");var wh=el("div","ah");wh.appendChild(el("b",null,"책에 쓰는 문제"));wh.appendChild(el("span",null,wr.join(" · ")));wn.appendChild(wh);wn.appendChild(el("div","wnt","책에 직접 쓰고, 해설이 열리면 확인해요"));sec.appendChild(wn)}
   if(!sub){
     btn.addEventListener("click",function(){if(btn.disabled)return;st.sub=true;bkSave(p,st);render();var t=document.getElementById("bki");if(t)t.scrollIntoView()});
     sec.appendChild(btn);sync()}
