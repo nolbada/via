@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>오답노트 샘플</title>
+<style>
+:root{--bg:#f6f7f4;--card:#fff;--ink:#1f2a24;--sub:#6b766f;--line:#dfe4de;--pri:#2f7d5b;--okBg:#e4f3ea;--ok:#2f7d5b}
+@media (prefers-color-scheme:dark){:root{--bg:#141815;--card:#1d231f;--ink:#e8eee9;--sub:#97a39b;--line:#2f3832;--pri:#4fb98a;--okBg:#183024;--ok:#58c28f}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Noto Sans KR","Malgun Gothic",sans-serif;padding:14px 14px 40px;max-width:520px;margin:0 auto}
+.top{display:flex;justify-content:space-between;align-items:center;margin:4px 2px 12px}
+.top b{font-size:17px}
+.tag{font-size:11px;color:var(--sub);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+
+/* hero */
+.hero{border-radius:22px;padding:22px 20px 18px;color:#f1f7f3;background:linear-gradient(155deg,#1c4d38 0%,#2f7d5b 55%,#3f9c73 100%);box-shadow:0 10px 28px rgba(31,77,56,.28);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.07)}
+.hero .lb{font-size:13px;opacity:.85;letter-spacing:.02em}
+.hero .big{font-size:60px;font-weight:800;line-height:1.05;margin:4px 0 2px;letter-spacing:-.02em}
+.hero .big small{font-size:20px;font-weight:600;margin-left:4px;opacity:.9}
+.hero .cap{font-size:13px;opacity:.85}
+.mini{display:flex;gap:10px;margin:18px 0 16px}
+.mini div{flex:1;background:rgba(255,255,255,.13);border-radius:14px;padding:11px 12px}
+.mini b{display:block;font-size:24px;font-weight:800;line-height:1.1}
+.mini span{font-size:12px;opacity:.88}
+.mini .go{background:#fff;color:#1c4d38}
+.mini .go span{opacity:.8}
+
+.srcT{font-size:12px;opacity:.85;margin:0 0 7px}
+.bar{display:flex;height:14px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.15)}
+.bar i{display:block;height:100%;cursor:pointer;transition:opacity .2s,flex .6s}
+.bar i + i{margin-left:2px}
+.leg{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.leg button{border:0;font:inherit;font-size:12px;color:#f1f7f3;background:rgba(255,255,255,.13);border-radius:999px;padding:5px 10px;display:flex;align-items:center;gap:6px;cursor:pointer}
+.leg button.on{background:#fff;color:#1c4d38;font-weight:700}
+.leg em{width:8px;height:8px;border-radius:50%;display:inline-block;font-style:normal}
+.leg b{font-weight:800}
+
+/* panel */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:12px}
+.panel h3{margin:0 0 12px;font-size:15px;display:flex;justify-content:space-between;align-items:baseline}
+.panel h3 span{font-size:12px;font-weight:500;color:var(--sub)}
+.wl{display:flex;flex-direction:column}
+.w{display:flex;align-items:center;gap:10px;padding:10px 2px;border-top:1px solid var(--line)}
+.w:first-child{border-top:0}
+.w .e{font-weight:700;font-size:16px}
+.w .k{font-size:13px;color:var(--sub);flex:1}
+.st{font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--okBg);color:var(--ok);white-space:nowrap}
+
+/* stages */
+.stg{display:flex;gap:8px}
+.stg div{flex:1;text-align:center;border-radius:12px;padding:10px 4px;background:var(--bg);border:1px solid var(--line)}
+.stg b{display:block;font-size:20px}
+.stg span{font-size:11px;color:var(--sub)}
+.stg .g{background:var(--okBg);border-color:transparent}
+.stg .g b{color:var(--ok)}
+
+/* shelf */
+.shelf{display:flex;flex-wrap:wrap;gap:7px}
+.shelf span{font-size:13px;font-weight:600;background:var(--okBg);color:var(--ok);border-radius:10px;padding:6px 11px;opacity:0;transform:translateY(6px);animation:up .5s forwards}
+.shelf .more{background:transparent;border:1px dashed var(--line);color:var(--sub)}
+@keyframes up{to{opacity:1;transform:none}}
+
+/* tiles */
+.tk{display:flex;align-items:center;gap:12px;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:8px 0 0;cursor:pointer}
+.tk .tt{flex:1}
+.tk b{display:block;font-size:15px}
+.tk small{color:var(--sub);font-size:12px}
+.bd{width:6px;height:34px;border-radius:3px;flex:none}
+.chip{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--bg);color:var(--sub);border:1px solid var(--line);white-space:nowrap}
+.chip.ok{background:var(--okBg);color:var(--ok);border-color:transparent}
+</style>
+</head>
+<body>
+<div class="top"><b>나의 오답노트</b><span class="tag">샘플 화면</span></div>
+
+<section class="hero">
+  <div class="lb">내가 틀려서 모은 단어</div>
+  <div class="big"><span id="tot">0</span><small>개</small></div>
+  <div class="cap">네 곳의 오답을 한곳에</div>
+  <div class="mini">
+    <div class="go"><b id="due">0</b><span>오늘 다시 볼 단어</span></div>
+    <div><b id="grad">0</b><span>졸업한 단어</span></div>
+  </div>
+  <p class="srcT">어디서 틀렸나</p>
+  <div class="bar" id="bar"></div>
+  <div class="leg" id="leg"></div>
+</section>
+
+<section class="panel" id="drill" style="display:none">
+  <h3><span id="dT" style="font-size:15px;font-weight:700;color:var(--ink)"></span><span id="dN"></span></h3>
+  <div class="wl" id="dL"></div>
+</section>
+
+<section class="panel">
+  <h3>복습 단계<span>1 · 3 · 7 · 15일</span></h3>
+  <div class="stg" id="stg"></div>
+</section>
+
+<section class="panel">
+  <h3>졸업한 단어<span id="gN"></span></h3>
+  <div class="shelf" id="shelf"></div>
+</section>
+
+<button class="tk"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>누적 단어 테스트</b><small>데일리보카 포함 · 1 · 3 · 7 · 15일 주기</small></div><span class="chip ok">15개</span></button>
+<button class="tk"><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>말하기 시험 단어 · 데일리보카 제외</small></div><span class="chip">104개</span></button>
+
+<script>
+var SRC=[
+ {k:'미니모고',c:'#ffd166',n:46,w:[['reluctant','마지못한',3],['abandon','버리다',1],['thrive','번성하다',7],['conceal','숨기다',1],['fragile','깨지기 쉬운',3]]},
+ {k:'천일문',c:'#8fd3b6',n:31,w:[['subsequent','그 다음의',7],['accomplish','이루다',3],['inevitable','피할 수 없는',1],['reinforce','강화하다',15],['restrain','억제하다',3]]},
+ {k:'더블보카',c:'#9ec5ff',n:27,w:[['abundant','풍부한',3],['hinder','방해하다',1],['trivial','사소한',7],['diminish','줄이다',3],['obscure','모호한',1]]},
+ {k:'데일리보카',c:'#ffb3a7',n:24,w:[['adequate','충분한',1],['dispute','논쟁',3],['assume','추정하다',1],['capable','할 수 있는',7],['modest','겸손한',3]]}
+];
+var DUE=15,GRAD=41;
+var STG=[['1일',22],['3일',28],['7일',24],['15일',13]];
+var GW=['accommodate','prevail','hesitate','genuine','submit','persuade','absurd','ambiguous','cooperate','deliberate','endure','flexible'];
+var TOT=SRC.reduce(function(a,s){return a+s.n},0);
+function cnt(id,to,ms){var el=document.getElementById(id),t0=null;function f(t){if(!t0)t0=t;var p=Math.min((t-t0)/ms,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
+cnt('tot',TOT,1100);cnt('due',DUE,800);cnt('grad',GRAD,900);
+var bar=document.getElementById('bar'),leg=document.getElementById('leg'),sel=-1;
+function draw(){
+ bar.innerHTML='';leg.innerHTML='';
+ SRC.forEach(function(s,i){
+  var b=document.createElement('i');b.style.flex=s.n;b.style.background=s.c;b.style.opacity=(sel<0||sel===i)?1:.3;b.onclick=function(){pick(i)};bar.appendChild(b);
+  var l=document.createElement('button');l.className=sel===i?'on':'';l.innerHTML='<em style="background:'+s.c+'"></em>'+s.k+' <b>'+s.n+'</b>';l.onclick=function(){pick(i)};leg.appendChild(l);
+ });
+}
+function pick(i){
+ sel=(sel===i)?-1:i;draw();
+ var d=document.getElementById('drill');
+ if(sel<0){d.style.display='none';return}
+ var s=SRC[sel];d.style.display='block';
+ document.getElementById('dT').textContent=s.k+'에서 모은 단어';
+ document.getElementById('dN').textContent=s.n+'개 중 일부';
+ document.getElementById('dL').innerHTML=s.w.map(function(w){return '<div class="w"><span class="e">'+w[0]+'</span><span class="k">'+w[1]+'</span><span class="st">'+w[2]+'일 후 복습</span></div>'}).join('');
+}
+draw();
+document.getElementById('stg').innerHTML=STG.map(function(s){return '<div><b>'+s[1]+'</b><span>'+s[0]+' 단계</span></div>'}).join('')+'<div class="g"><b>'+GRAD+'</b><span>졸업</span></div>';
+document.getElementById('gN').textContent=GRAD+'개';
+document.getElementById('shelf').innerHTML=GW.map(function(w,i){return '<span style="animation-delay:'+(0.2+i*0.07)+'s">'+w+'</span>'}).join('')+'<span class="more" style="animation-delay:1.2s">외 '+(GRAD-GW.length)+'개</span>';
+</script>
+</body>
+</html>
