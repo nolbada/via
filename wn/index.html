@@ -280,13 +280,16 @@ function home(r){
     h+='<div class="c"><div class="nm">12<small>챕터</small></div><div class="lb">구문<br>천일문S 문장줄이기</div><div class="ds">총 190문장</div></div>';
     h+='</div><div class="frm">더블보카는 단어를 낱개로 외우지 않고 뜻이 비슷한 단어와 반대인 단어를 묶어 관계로 외우는 방식. 표제어 하나에 연결 단어 약 '+DVN[2]+'개가 함께 붙어, 유의어·반의어 연결만 '+DVN[1].toLocaleString()+'개. 목표 기준은 모의고사 3개년 분량의 독해, 주 6일 어휘, 누적 복습 1 · 3 · 7 · 15일.</div>';
   }
-  h+='<h2 class="sec">오답 단어 리스트</h2>';
-  h+='<div class="card" style="margin-top:0"><div class="sub">쌓인 오답 단어</div><div class="big">'+LI.length+'개</div><button class="btn" id="ls"'+(LI.length?'':' disabled')+'>오답 단어 리스트 보기</button></div>';
+  h+='<h2 class="sec">오답노트</h2>';
+  h+='<div class="card" style="margin-top:0">';
+  if(IU)h+='<div class="sub">오늘 복습 · 누적테스트</div><div class="big">'+today+'개</div><div class="sub" style="font-size:12px">데일리보카 포함 · 1 · 3 · 7 · 15일 주기</div><button class="btn pri" id="st2"'+(today?'':' disabled')+'>누적테스트 시작</button><div style="border-top:1px solid var(--line);margin:14px 0"></div>';
+  h+='<div class="sub">금요일 말하기 대비</div><div class="big">'+LI.length+'개</div><div class="sub" style="font-size:12px">말하기 시험 단어 · 데일리보카 제외</div><button class="btn" id="ls"'+(LI.length?'':' disabled')+'>오답 단어 리스트 보기</button></div>';
   h+='<button class="btn" id="rs">'+(resetArm?'한 번 더 누르면 나갑니다':'나가기 (다음 학생)')+'</button>';
   $.innerHTML=h;
   $.querySelectorAll('.seg button').forEach(function(b){b.onclick=function(){ss('wn_cap',b.dataset.c);home(DATA)}});
   var stb=document.getElementById('st');if(stb)stb.onclick=function(){review(due.sort(byPri).slice(0,today))};
   document.getElementById('ls').onclick=function(){list()};
+  var st2=document.getElementById('st2');if(st2)st2.onclick=function(){review(due.sort(byPri).slice(0,today))};
   document.getElementById('rs').onclick=function(){
     if(!resetArm){resetArm=true;clearTimeout(resetT);resetT=setTimeout(function(){resetArm=false;home(DATA)},4000);home(DATA);return}
     resetArm=false;['wn_name','wn_cap','wn_rq','recm_name','rec_name'].forEach(ds);login();
