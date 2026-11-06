@@ -107,7 +107,7 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
 .big span{color:var(--sub);font-size:calc(13px*var(--fs))}
 .trow{display:flex;gap:8px}
 .trow .big{flex:1;text-align:center;font-weight:700;padding:16px 8px}
-.strow{display:flex;gap:8px;align-items:center}.home-btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.strow{display:flex;gap:8px;align-items:center}.wl{align-self:flex-start;margin:-4px 0 0 4px}.wlnote{font-size:calc(12px*var(--fs));color:var(--sub);margin:2px 4px 0}.home-btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 .home-btn{border:1px solid var(--line);background:var(--card);color:var(--sub);border-radius:10px;padding:4px 10px;font:inherit;font-size:calc(12px*var(--fs));cursor:pointer}
 .timer{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink)!important;font-size:calc(15px*var(--fs))!important}
 .timer.low{color:var(--bad)!important}
@@ -190,8 +190,6 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
     <h1>더블보카</h1>
     <div class="prog" id="prog"></div>
     <div class="dgrid" id="dgrid"></div>
-    <button class="home-btn" id="mAllClr" type="button" style="align-self:flex-start" hidden>★ 별표 전체 지우기</button>
-    <button class="big" id="mAllStar" type="button"><b>★ 별표 단어 모아 복습</b><span id="mAllStarN"></span></button>
   </div>
 </div>
 <div class="app" id="home" hidden>
@@ -199,10 +197,13 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
     <div class="no">유의어 · 반의어</div>
     <h1 id="dayh">Day 01</h1>
     <button class="big" id="mLearn" type="button"><b>뉘앙스 학습</b><span id="mLearnS">같은 뜻, 다른 쓰임 · 언제 쓰는지까지</span></button>
-    <div class="strow" id="strow" hidden><button class="home-btn" id="mStarOnly" type="button"></button><button class="home-btn" id="mClrStar" type="button">모두 지우기</button></div>
+    <div class="strow" id="strow" hidden><button class="home-btn" id="mClrStar" type="button">★ 별표 모두 지우기</button></div>
     <button class="big" id="mPrac" type="button"><b>관계 지도 연습</b><span id="mPracS">한 문제씩 풀고 · 바로 지도로 확인</span></button>
+    <button class="home-btn wl" id="mPracW" type="button" hidden></button>
     <button class="big" id="mPracX" type="button"><b>실전 예행연습</b><span id="mPracXS">시험처럼 한번에 · 틀린 것만 다시</span></button>
+    <button class="home-btn wl" id="mPracXW" type="button" hidden></button>
     <button class="big" id="mExam" type="button"><b>시험</b><span>1회 · 타임어택</span></button>
+    <div class="wlnote">오답노트에는 시험 오답만 쌓여요</div>
     <button class="home-btn" id="mReset" type="button" style="align-self:flex-start" hidden>이어풀기 지우고 처음부터</button><button class="home-btn" id="hbd" type="button" style="align-self:flex-start">Day 목록</button>
   </div>
 </div>
@@ -473,25 +474,24 @@ function putStar(h,on,di){var d=di==null?DI:di,m=getStars(d);if(on)m[h]=1;else d
 function clearStars(di){DAYS.forEach(function(D,i){if(di==null||i==di)sset(sKey(i),'{}')});setStarUI()}
 function starCount(di){var n=0;DAYS.forEach(function(D,i){if(di!=null&&i!=di)return;var m=getStars(i);D.forEach(function(w){if(m[w.h])n++})});return n}
 function starB(w){var b=el('button','starb'+(getStars(DI)[w.h]?' on':''),'★');b.type='button';b.setAttribute('data-h',w.h);b.setAttribute('aria-label','별표');b.onclick=function(e){e.stopPropagation();putStar(w.h,!getStars(DI)[w.h])};return b}
-function wrongMap(){try{return JSON.parse(sget('dvc_wrong_'+WN.name())||'{}')}catch(e){return {}}}
-function saveWrong(m){sset('dvc_wrong_'+WN.name(),JSON.stringify(m))}
+function wlGet(md){try{return JSON.parse(sget(pKey().slice(0,4)+'wl_'+md+'_'+WN.name())||'{}')}catch(e){return{}}}function wlSet(md,m){sset(pKey().slice(0,4)+'wl_'+md+'_'+WN.name(),JSON.stringify(m))}function wlCount(md,di){var n=0,m=wlGet(md);Object.keys(m).forEach(function(k){if(parseInt(k,10)==di)n++});return n}
 function wnSend(it,exam){try{var w=iw(it),k=w.kan[it.ki],rl=kind(k)=='syn'?k.syn:k.ant;
 var m=k.sense.replace(/^[❶❷❸❹❺❻]+\s*/,'')+' ('+(kind(k)=='syn'?'비슷: ':'반대: ')+rl.map(function(x){return x[0]}).join(', ')+')';
 WNB.push({w:w.h,m:m,src:'더블보카',how:exam?'시험':'문제 오답',ask:!!exam})}catch(e){}}
 var WNB=[];
 function recordResults(items,exam){
-  var m=wrongMap();items.forEach(function(it){if(exam||anySel(it))markDone(it.di)});
+  items.forEach(function(it){if(exam||anySel(it))markDone(it.di)});
+  var md=exam?null:(T&&T.inst?'i':'x'),m=md?wlGet(md):null;
   items.forEach(function(it){
     var k=ikey(it),ok=itemOK(it);it.note='';
     if(!exam&&!anySel(it))return;
-    if(ok){if(k in m){m[k]++;if(m[k]>=2){delete m[k];it.note='오답 모음에서 빠짐'}else it.note='오답 모음 · 연속 정답 '+m[k]+'/2'}}
-    else{m[k]=0;it.note='오답 모음 · 연속 정답 0/2';if(exam)wnSend(it,exam)}
+    if(m){if(ok){if(k in m){delete m[k];it.note='틀린 모음에서 빠졌어요'}}else m[k]=1}
+    if(!ok&&exam)wnSend(it,exam);
   });
-  saveWrong(m);
+  if(m)wlSet(md,m);
   if(WNB.length){WN.add(WNB);WNB=[]}
 }
-function wrongCount(di){var n=0,m=wrongMap();Object.keys(m).forEach(function(k){if(di==null||parseInt(k,10)==di)n++});return n}
-function homeRefresh(){var n=starCount(DI);if(!n)STARONLY=false;document.getElementById('strow').hidden=!n;var so=document.getElementById('mStarOnly');so.textContent=(STARONLY?'★ 별표 ':'☆ 별표 ')+n+'단어만 연습'+(STARONLY?' ✓':'');so.className='home-btn'+(STARONLY?' on':'');
+function homeRefresh(){var n=starCount(DI);document.getElementById('strow').hidden=!n;document.getElementById('mClrStar').textContent='★ 별표 '+n+'개 모두 지우기';var wa=wlCount('i',DI),wb=wlCount('x',DI),ea=document.getElementById('mPracW'),eb=document.getElementById('mPracXW');ea.hidden=!wa;ea.textContent='틀린 '+wa+'개만 다시';eb.hidden=!wb;eb.textContent='틀린 '+wb+'개만 다시';
   document.getElementById('dayh').textContent='Day '+pad2(DN);var dw=doneWords(),tc=touched(),pv=loadP();document.getElementById('mLearnS').textContent=dw>=W.length?'모두 풀었어요':(tc||RES>0)?('이어서 · '+Math.min(W.length,Math.floor(RES/2)+1)+' / '+W.length+' 단어'):'같은 뜻, 다른 쓰임 · 언제 쓰는지까지';var pvi=loadP(true);document.getElementById('mPracS').textContent=pvi?('이어서 · '+(pvi.i+1)+' / '+pvi.items.length):'한 문제씩 풀고 · 바로 지도로 확인';document.getElementById('mPracXS').textContent=pv?('이어서 · '+(pv.i+1)+' / '+pv.items.length):'시험처럼 한번에 · 틀린 것만 다시';document.getElementById('mReset').hidden=!(tc||RES>0||pv||pvi)}
 function doneSet(){try{return JSON.parse(localStorage.getItem('dvc_done_'+WN.name())||'[]')}catch(e){return[]}}
 function markDone(di){try{var s=doneSet();if(s.indexOf(di)<0){s.push(di);localStorage.setItem('dvc_done_'+WN.name(),JSON.stringify(s))}}catch(e){}}
@@ -511,8 +511,6 @@ function daysRefresh(){
     var n=starCount(i),b=el('button','dbtn',pad2(i+1)+(n?'<i>★'+n+'</i>':''));b.type='button';if(doneSet().indexOf(i)>=0)b.className+=' dn';
     b.onclick=function(){selectDay(i)};g.appendChild(b);
   });
-  var tot=starCount(null),a=document.getElementById('mAllStar');a.disabled=!tot;
-  document.getElementById('mAllStarN').textContent=tot?(tot+'단어'):'';document.getElementById('mAllClr').hidden=!tot;
 }
 function selectDay(i){
   DI=i;DN=i+1;W=DAYS[i];st=ST[i]||(ST[i]={});
@@ -526,15 +524,15 @@ function goHome(){
 }
 function goDays(){if(T&&T.tm)clearInterval(T.tm);T=null;daysRefresh();showView('days')}
 function startLearn(){showView('learn');if(RES>0)deck.scrollLeft=RES*(deck.clientWidth+12);update()}
-function mkItems(only,salt,scope){
-  var a=[];
+function mkItems(only,salt,scope,md){
+  var a=[],wm=only?wlGet(md):null;
   DAYS.forEach(function(D,di){
-    if(scope!='all'&&di!=DI)return;var sm=only?getStars(di):null;
-    D.forEach(function(w,wi){w.kan.forEach(function(k,ki){if(only&&!sm[w.h])return;a.push({di:di,wi:wi,ki:ki,o:opts(k,w.h,ki,salt),sel:{}})})});
+    if(scope!='all'&&di!=DI)return;
+    D.forEach(function(w,wi){w.kan.forEach(function(k,ki){if(only&&!wm[di+'|'+w.h+'|'+ki])return;a.push({di:di,wi:wi,ki:ki,o:opts(k,w.h,ki,salt),sel:{}})})});
   });
   return shuf(a,'o'+salt);
 }
-function startPractice(only,scope,inst){ var sv=(!only&&scope=='day')?loadP(inst):null,items=sv?sv.items:mkItems(only,String(Math.random()),scope);if(!items.length)return;
+function startPractice(only,scope,inst){ var sv=(!only&&scope=='day')?loadP(inst):null,items=sv?sv.items:mkItems(only,String(Math.random()),scope,inst?'i':'x');if(!items.length)return;
   if(T&&T.tm)clearInterval(T.tm);
   T={mode:'P',inst:!!inst,mapv:false,only:only,scope:scope,items:items,i:sv?Math.min(sv.i||0,items.length-1):0,done:false,armed:false};
   showView('testv');renderT();
@@ -584,7 +582,7 @@ function tick(){
 function renderT(){ if(T.inst&&T.mode=='P')return renderI();saveP();var tv=document.getElementById('testv');tv.innerHTML='';showView('testv');
   var n=T.items.length,it=T.items[T.i],w=iw(it),k=w.kan[it.ki],E=T.mode=='E';
   var answered=T.items.filter(anySel).length;
-  tv.appendChild(el('div','top',E?('<b>시험</b><span class="timer'+(T.left<=30?' low':'')+'" id="tmr">'+fmt(T.left)+'</span><span>'+(T.i+1)+' / '+n+'</span>'):('<b>'+(T.retry?'틀린 것 다시':'실전 예행연습')+'</b><span>'+(T.i+1)+' / '+n+'</span><button class="home-btn" id="hbp" type="button">처음으로</button>')));
+  tv.appendChild(el('div','top',E?('<b>시험</b><span class="timer'+(T.left<=30?' low':'')+'" id="tmr">'+fmt(T.left)+'</span><span>'+(T.i+1)+' / '+n+'</span>'):('<b>'+(T.retry||T.only?'틀린 것 다시':'실전 예행연습')+'</b><span>'+(T.i+1)+' / '+n+'</span><button class="home-btn" id="hbp" type="button">처음으로</button>')));
   tv.appendChild(el('div','bar','<i style="width:'+(answered/n*100)+'%"></i>'));
   var wrap=el('div','');wrap.style.cssText='flex:1;min-height:0';
   var c=el('div','card');
@@ -619,7 +617,7 @@ function ritem(it,good){
 function renderI(){ saveP();var tv=document.getElementById('testv');tv.innerHTML='';showView('testv');
   var n=T.items.length,it=T.items[T.i],w=iw(it),k=w.kan[it.ki],rev=!!it.rev,last=T.i>=n-1;
   var seen=T.items.filter(function(x){return x.rev}).length;
-  tv.appendChild(el('div','top','<b>'+(T.only?'★ 별표 복습':'관계 지도 연습')+'</b><span>'+(T.i+1)+' / '+n+'</span><button class="home-btn" id="hbp" type="button">처음으로</button>'));
+  tv.appendChild(el('div','top','<b>'+(T.only?'틀린 것 다시':'관계 지도 연습')+'</b><span>'+(T.i+1)+' / '+n+'</span><button class="home-btn" id="hbp" type="button">처음으로</button>'));
   tv.appendChild(el('div','bar','<i style="width:'+(seen/n*100)+'%"></i>'));
   var wrap=el('div','');wrap.style.cssText='flex:1;min-height:0;display:flex;flex-direction:column';
   if(rev){
@@ -642,9 +640,6 @@ function renderI(){ saveP();var tv=document.getElementById('testv');tv.innerHTML
     var go=el('button','go','확인');go.type='button';go.style.marginTop='0';go.disabled=!anySel(it);
     go.onclick=function(){it.rev=true;recordResults([it],false);renderI()};bt.appendChild(go);
   }else{
-    if(T.only){var sb=el('button','sub2','');sb.type='button';sb.style.marginTop='0';sb.style.marginBottom='8px';
-      var lab=function(){sb.textContent=getStars(it.di)[w.h]?'★ 별표 해제 (외웠어요)':'☆ 다시 별표'};lab();
-      sb.onclick=function(){putStar(w.h,!getStars(it.di)[w.h],it.di);lab()};bt.appendChild(sb)}
     var nx=el('button','go',last?'결과 보기':'다음 문제');nx.type='button';nx.style.marginTop='0';
     nx.onclick=function(){if(last){submitT();return}T.i++;renderI()};bt.appendChild(nx);
   }
@@ -713,7 +708,6 @@ function rvShow(tv,E,head,good,bad){
   function fullBtn(){var b=el('button','sub2','처음부터 전체 풀기 (리셋)');b.type='button';b.onclick=function(){sdel(pKey());startPractice(false,T.scope,false)};return b}
   var badW={};bad.forEach(function(it){badW[iw(it).h+'|'+it.di]=1});var rightW={};good.forEach(function(it){var kk=iw(it).h+'|'+it.di;if(!badW[kk])rightW[kk]=it.di});
   var rn=Object.keys(rightW).length;
-  function unstarBtn(){var b=el('button','sub2','맞힌 단어 별표 모두 해제 ('+rn+'개)');b.type='button';b.style.marginTop='10px';b.onclick=function(){Object.keys(rightW).forEach(function(kk){putStar(kk.split('|')[0],false,rightW[kk])});b.textContent='해제했어요';b.disabled=true};return b}
   var c0=el('div','card end');
   c0.innerHTML='<div class="no">'+head+'</div><h2>'+good.length+' / '+n+'</h2><div>'+(bad.length?('틀린 단어 '+bad.length+'개 · 카드로 하나씩 짚어 봐요'):'전부 맞혔어요')+'</div>';
   if(bad.length){
@@ -723,7 +717,6 @@ function rvShow(tv,E,head,good,bad){
     var stb=el('button','go','틀린 단어 카드 보기');stb.type='button';stb.onclick=function(){jump(1)};c0.appendChild(stb);
     if(X)c0.appendChild(retryBtn());
   }
-  if(T.only&&rn)c0.appendChild(unstarBtn());
   add(c0);
   bad.forEach(function(it){add(rvCard(it))});
   var ce=el('div','card end');ce.innerHTML='<div class="no">마무리</div>';
@@ -764,17 +757,16 @@ function submitT(){ if(!T||T.done)return;if(T.mode=='P'&&!T.only&&T.scope=='day'
   var used=E?T.total-T.left:0;
   if(!T.inst)recordResults(T.items,E);
   if(E)sset(T.key,JSON.stringify({done:true,score:good.length,total:n,used:used,t:Date.now()}));if(E)WN.hw('더블보카 Core',DN,good.length+'/'+n);
-  var head=E?('시험 · '+esc(T.name)+' · 걸린 시간 '+fmt(used)):(T.inst?(T.only?'★ 별표 복습':'관계 지도 연습'):(T.retry?'실전 예행연습 · 틀린 것 다시':'실전 예행연습'));
+  var head=E?('시험 · '+esc(T.name)+' · 걸린 시간 '+fmt(used)):(T.inst?(T.only?'틀린 것 다시':'관계 지도 연습'):(T.retry||T.only?'실전 예행연습 · 틀린 것 다시':'실전 예행연습'));
   rvShow(tv,E,head,good,bad);
 }
 document.getElementById('mLearn').onclick=startLearn;
-document.getElementById('mPrac').onclick=function(){startPractice(STARONLY,'day',true)};document.getElementById('mPracX').onclick=function(){startPractice(STARONLY,'day',false)};document.getElementById('mStarOnly').onclick=function(){STARONLY=!STARONLY;homeRefresh()};
-document.getElementById('mAllStar').onclick=function(){startPractice(true,'all',true)};
+document.getElementById('mPrac').onclick=function(){startPractice(false,'day',true)};document.getElementById('mPracX').onclick=function(){startPractice(false,'day',false)};document.getElementById('mPracW').onclick=function(){startPractice(true,'day',true)};document.getElementById('mPracXW').onclick=function(){startPractice(true,'day',false)};
 document.getElementById('mExam').onclick=function(){examGate()};
 document.getElementById('mReset').onclick=function(){var b=this;if(!b._a){b._a=1;b.textContent='한 번 더 누르면 지워져요';return}b._a=0;b.textContent='이어풀기 지우고 처음부터';sdel(lKey());sdel(pKey());sdel(pKeyI());ST[DI]={};st=ST[DI];RES=0;build();deck.scrollLeft=0;update();homeRefresh()};document.getElementById('hb1').onclick=goHome;
 document.getElementById('hbd').onclick=goDays;
 function twoTap(id,txt,fn){document.getElementById(id).onclick=fn}
-twoTap('mClrStar','',function(){clearStars(DI);homeRefresh()});twoTap('mAllClr','',function(){clearStars(null);daysRefresh()});
+twoTap('mClrStar','',function(){clearStars(DI);homeRefresh()});
 WN.gate(function(){daysRefresh();showView('days')});
 
 </script>
