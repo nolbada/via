@@ -363,7 +363,7 @@ function build(){
       var hint=el('div','','<span class="tag">'+k.pos+'</span>'+(mk?'<span class="tag">'+mk+'</span>':''));
       box.appendChild(hint);
       function reveal(){if(hint.querySelector('.sense'))return;hint.insertAdjacentHTML('beforeend','<span class="sense">'+esc(k.sense.replace(/^[❶❷❸❹❺❻]+\s*/,''))+'</span>')}
-      reveal();box.appendChild(el('div','q',kind(k)=='syn'?'뜻이 비슷한 것을 모두 고르시오.':'뜻이 반대인 것을 모두 고르시오.'));
+      box.appendChild(el('div','q',kind(k)=='syn'?'뜻이 비슷한 것을 모두 고르시오.':'뜻이 반대인 것을 모두 고르시오.'));
       var grid=el('div','opts'),os=opts(k,w.h,ki);
       os.forEach(function(o){
         var key=o.w+'|'+o.g,b=el('button','opt','<span>'+esc(o.w)+'</span>');
