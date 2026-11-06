@@ -105,6 +105,24 @@ header p{margin:0;color:var(--muted);font-size:13px}
 .hlb{display:grid;gap:6px}.lb2{font-size:12px;font-weight:800;color:var(--muted)}.hlb .evs mark{background:var(--hl);color:#1b2130;padding:1px 3px;font-weight:700}.wbig{margin:0}.wbig .wl{font-size:12px;margin-bottom:4px}.wln{font-weight:700;padding:2px 0}details.rd{font-size:13px;color:var(--muted)}details.rd summary{cursor:pointer;padding:6px 0}
 .wlc{font-size:12px;font-weight:800;color:var(--accent);margin:2px 0}.wans{color:var(--ink);background:var(--okbg);border-radius:6px;padding:4px 6px}.wlc2{color:var(--accent);white-space:nowrap}
 .wcf{font-weight:600;font-size:14px;color:var(--muted)}
+
+.ain{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.ain .ah{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px;font-size:13px;color:var(--muted)}
+.ain .ah b{color:var(--ink);font-size:14px}
+.ain .ah .ox{margin-left:auto}
+.cr{display:flex;gap:8px;flex-wrap:wrap}
+.cb{font:inherit;font-size:17px;font-weight:700;min-width:50px;min-height:46px;padding:0 12px;border:2px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer}
+.cb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.cb:disabled{cursor:default}
+.tr{display:flex;align-items:center;gap:10px;margin-bottom:8px}.tr:last-child{margin-bottom:0}
+.tr .tl{flex:none;min-width:34px;font-weight:700}
+.ox{display:inline-grid;place-content:center;width:28px;height:28px;border-radius:50%;font-weight:800;font-size:16px;color:#fff;flex:none}
+.ox.o{background:var(--ok)}.ox.x{background:var(--ci)}
+.sbm{display:block;width:100%;margin:6px 0 4px;min-height:48px;border:2px solid var(--accent);background:var(--accent);color:#fff;border-radius:8px;font:inherit;font-weight:700;font-size:16px;cursor:pointer}
+.sbm:disabled{opacity:.35;cursor:not-allowed}
+.lockcard{display:block;border:1px dashed var(--muted);border-radius:10px;padding:18px;text-align:center;color:var(--muted);font-weight:700;margin:22px 0 10px}
+.bqh .ox{margin-left:auto}
+.ain.wn{border-style:dashed;background:transparent}.ain.wn .ah{margin-bottom:4px}.wnt{font-size:14px;font-weight:700;color:var(--accent)}
 </style>
 </head>
 <body>
@@ -237,7 +255,7 @@ var CIR="①②③④⑤⑥";
 function arRow(label,text,sub){var a=el("div","ar");a.appendChild(el("span","pl","정답"));if(label)a.appendChild(el("b","al",label));if(text)a.appendChild(el("span","at2",text));if(sub)a.appendChild(el("div","gl",sub));return a}
 function bookCard(p,s){
   var card=el("div","bq");
-  var h=el("div","bqh");h.appendChild(el("span","bqat",atLabel(s.at)));h.appendChild(el("span","bqst",s.st));card.appendChild(h);
+  var h=el("div","bqh");h.appendChild(el("span","bqat",atLabel(s.at)));h.appendChild(el("span","bqst",s.st));var rr=bkResult(p,p.qs.indexOf(s));if(rr!==null){var oxb=el("span","ox "+(rr?"o":"x"),rr?"○":"×");oxb.setAttribute("aria-label",rr?"맞음":"틀림");h.appendChild(oxb)}card.appendChild(h);
   if(s.flow){
     var f=s.flow,ix=-1;(s.opts||[]).forEach(function(o,k){if(/^정답/.test(o[3]))ix=k});
     card.appendChild(arRow((ix>=0?CIR.charAt(ix)+" ":"")+"("+f.ans+")","흐름과 관계없는 문장"));
@@ -290,7 +308,99 @@ function gramCard(p){
   var dd=el("div","do");var l1=el("p",null);l1.appendChild(el("span","dt","밑줄"));l1.appendChild(document.createTextNode("본문에서 이 문장을 찾아 〈"+g.u+"〉에 밑줄"));dd.appendChild(l1);b.appendChild(dd);
   var mb=el("div","wr");mb.appendChild(el("div","wl","밑줄 친 문장 옆 여백에 이대로 쓰세요"));mb.appendChild(el("div","wln","✍ "+g.m));if(g.ex)mb.appendChild(el("div","wln","✍ 예) "+g.ex[0]+" ("+g.ex[1]+")"));if(g.cf)mb.appendChild(el("div","wln wcf","✍ cf. "+g.cf[0]+" — "+g.cf[1]+" ("+g.cf[2]+")"));mb.appendChild(el("div","hint","알고 있어도 직접 한 번 쓰세요."));b.appendChild(mb);
   card.appendChild(b);return card}
+var BKEY=KEY+"bk";
+var CIRC="①②③④⑤⑥⑦⑧⑨⑩";
+function bkAll(){var o={};try{o=JSON.parse(store.get(BKEY)||"{}")||{}}catch(e){o={}}return o}
+function bkState(p){var a=bkAll();return a[p.id]||{a:{},sub:false}}
+function bkSave(p,st){var a=bkAll();a[p.id]=st;store.set(BKEY,JSON.stringify(a))}
+function bookInputs(p){
+  var r=[];
+  (p.qs||[]).forEach(function(s,qi){
+    if(!s.opts||!s.opts.length)return;
+    var n=s.opts.length;
+    var mk=s.opts.map(function(o){var m=/^(T|F)\b/.exec(o[3]||"");return m?m[1]:null});
+    if(mk.every(Boolean)){r.push({qi:qi,s:s,kind:"tf",n:n,ans:mk});return}
+    var circ=n>=2&&s.opts.every(function(o,k){return o[0]===CIRC.charAt(k)});
+    if(!circ)return;
+    var ok=[];s.opts.forEach(function(o,k){var t=o[3]||"";if(!/^오답/.test(t)&&/^정답|^[^.。]{0,10}\(정답/.test(t))ok.push(k)});
+    if(ok.length===1)r.push({qi:qi,s:s,kind:"mc",n:n,ans:ok[0]});
+    else if(ok.length>=2&&ok.length<n)r.push({qi:qi,s:s,kind:"ms",n:n,k:ok.length,ans:ok});
+  });
+  return r}
+function bkOk(it,v){
+  if(v==null)return false;
+  if(it.kind==="mc")return v===it.ans;
+  if(it.kind==="ms")return Array.isArray(v)&&v.length===it.ans.length&&it.ans.every(function(a){return v.indexOf(a)>=0});
+  return it.ans.every(function(a,k){return v[k]===a})}
+function bkDone(it,v){
+  if(v==null)return false;
+  if(it.kind==="mc")return typeof v==="number";
+  if(it.kind==="ms")return Array.isArray(v)&&v.length===it.k;
+  for(var k=0;k<it.n;k++)if(!v[k])return false;return true}
+function bkResult(p,qi){
+  var st=bkState(p);if(!st.sub)return null;
+  var r=null;bookInputs(p).forEach(function(it){if(it.qi===qi)r=bkOk(it,st.a[qi])});
+  return r}
+function pgLabel(at){var m=/([\d~]+)쪽\s*·\s*(\d+번)/.exec(at||"");return m?"책 p."+m[1]+" · "+m[2]:(at||"")}
+function inputSection(p,BI){
+  var st=bkState(p),sub=!!st.sub;
+  var sec=el("div");sec.id="bki";
+  sec.appendChild(el("div","sec","책 문제 답"));
+  var btn=el("button","sbm","제출");btn.type="button";
+  function sync(){btn.disabled=!BI.every(function(it){return bkDone(it,st.a[it.qi])})}
+  BI.forEach(function(it){
+    var card=el("div","ain");var h=el("div","ah");h.appendChild(el("b",null,pgLabel(it.s.at)));h.appendChild(el("span",null,it.s.st+(it.kind==="ms"?" · "+it.k+"개":"")));
+    if(sub){var ok=bkOk(it,st.a[it.qi]);var ox=el("span","ox "+(ok?"o":"x"),ok?"○":"×");ox.setAttribute("aria-label",ok?"맞음":"틀림");h.appendChild(ox)}
+    card.appendChild(h);
+    if(it.kind==="mc"){
+      var row=el("div","cr");var bs=[];
+      for(var k=0;k<it.n;k++){(function(k){
+        var b=el("button","cb",CIRC.charAt(k));b.type="button";b.disabled=sub;b.setAttribute("aria-pressed",String(st.a[it.qi]===k));
+        b.addEventListener("click",function(){st.a[it.qi]=k;bkSave(p,st);bs.forEach(function(x,j){x.setAttribute("aria-pressed",String(j===k))});sync()});
+        bs.push(b);row.appendChild(b)})(k)}
+      card.appendChild(row)
+    }else if(it.kind==="ms"){
+      var row3=el("div","cr");var bs3=[];if(!Array.isArray(st.a[it.qi]))st.a[it.qi]=[];
+      for(var k3=0;k3<it.n;k3++){(function(k3){
+        var b=el("button","cb",CIRC.charAt(k3));b.type="button";b.disabled=sub;b.setAttribute("aria-pressed",String(st.a[it.qi].indexOf(k3)>=0));
+        b.addEventListener("click",function(){var a=st.a[it.qi],i=a.indexOf(k3);if(i>=0)a.splice(i,1);else a.push(k3);a.sort();bkSave(p,st);b.setAttribute("aria-pressed",String(i<0));sync()});
+        bs3.push(b);row3.appendChild(b)})(k3)}
+      card.appendChild(row3)
+    }else{
+      var cur2=st.a[it.qi]||[];st.a[it.qi]=cur2;
+      for(var k2=0;k2<it.n;k2++){(function(k2){
+        var tr=el("div","tr");tr.appendChild(el("span","tl",it.s.opts[k2][0]));
+        var row2=el("div","cr");var pair={};
+        ["T","F"].forEach(function(v){
+          var b=el("button","cb",v);b.type="button";b.disabled=sub;b.setAttribute("aria-pressed",String(cur2[k2]===v));
+          b.addEventListener("click",function(){cur2[k2]=v;bkSave(p,st);Object.keys(pair).forEach(function(q){pair[q].setAttribute("aria-pressed",String(q===v))});sync()});
+          pair[v]=b;row2.appendChild(b)});
+        tr.appendChild(row2);card.appendChild(tr)})(k2)}
+    }
+    sec.appendChild(card)});
+  var inp={};BI.forEach(function(it){inp[it.qi]=1});
+  var wr=[];(p.qs||[]).forEach(function(q,qi){if(inp[qi])return;var m=/([\d~]+)쪽\s*·\s*(\d+번)/.exec(q.at||"");if(m)wr.push(m[1]+"쪽 "+m[2])});
+  if(wr.length){var wn=el("div","ain wn");var wh=el("div","ah");wh.appendChild(el("b",null,"책에 직접 푸는 문제"));wh.appendChild(el("span",null,wr.join(" · ")));wn.appendChild(wh);wn.appendChild(el("div","wnt","책에 직접 풀고, 해설이 열리면 확인해요"));sec.appendChild(wn)}
+  if(!sub){
+    btn.addEventListener("click",function(){if(btn.disabled)return;st.sub=true;bkSave(p,st);render();var t=document.getElementById("bki");if(t)t.scrollIntoView()});
+    sec.appendChild(btn);sync()}
+  return sec}
+function renderBook(p){
+  var bks=document.getElementById("bks");if(!bks||!p.qs||!p.qs.length)return;
+  var BI=bookInputs(p),subOk=!BI.length||bkState(p).sub;
+  var C=p.core||[],coreOk=C.every(function(c,i){return done[p.id+"-c"+i]});
+  var sig=!subOk?"n":(coreOk?"o":"l");
+  if(bks.dataset.s===sig)return;bks.dataset.s=sig;bks.textContent="";
+  if(sig==="n")return;
+  if(sig==="l"){bks.appendChild(el("div","lockcard","핵심 질문을 모두 확인하면 책 문제 해설이 열려요"));return}
+  var pgs=[];p.qs.forEach(function(s){var m2=/(\d+)쪽/.exec(s.at||"");if(m2)pgs.push(+m2[1])});
+  var lo=Math.min.apply(null,pgs),hi=Math.max.apply(null,pgs);
+  var bk=el("div","bk");var bh=el("div","bkh");bh.appendChild(el("b",null,"책 문제 해설"));
+  if(pgs.length)bh.appendChild(el("span",null,"책 p."+lo+(hi>lo?"–"+hi:"")));
+  bk.appendChild(bh);
+  p.qs.forEach(function(s){bk.appendChild(bookCard(p,s))});bks.appendChild(bk)}
 function progress(){
+  renderBook(P[cur]);
   var p=P[cur],C=p.core||[],n=C.length,d=0,i;
   for(i=0;i<C.length;i++)if(done[p.id+"-c"+i])d++;
   var pc=document.getElementById("pc");if(pc)pc.textContent=d+" / "+n;
@@ -316,16 +426,15 @@ function render(){
   bb.addEventListener("click",function(){if(history.state&&history.state.v){history.back()}else{cur=-1;render();window.scrollTo(0,0)}});v.appendChild(bb);
   var m=el("div","meta");var st=el("strong",null,p.ko);m.appendChild(st);var pc=el("span",null,"");pc.id="pc";m.appendChild(pc);v.appendChild(m);
   var bar=el("div","bar");var bi=el("i");bi.id="pb";bar.appendChild(bi);v.appendChild(bar);
-  v.appendChild(el("div","sec","핵심 질문"));
-  (p.core||[]).forEach(function(c,i){v.appendChild(coreCard(p,c,i))});
-  if(p.g){v.appendChild(el("div","sec","문법 한 가지"));v.appendChild(gramCard(p))}
-  if(p.qs&&p.qs.length){
-    var pgs=[];p.qs.forEach(function(s){var m2=/(\d+)쪽/.exec(s.at||"");if(m2)pgs.push(+m2[1])});
-    var lo=Math.min.apply(null,pgs),hi=Math.max.apply(null,pgs);
-    var bk=el("div","bk");var bh=el("div","bkh");bh.appendChild(el("b",null,"책 문제 확인"));
-    if(pgs.length)bh.appendChild(el("span",null,"책 p."+lo+(hi>lo?"–"+hi:"")));
-    bh.appendChild(el("span",null,"문제를 푼 뒤 바로 답을 맞춰 보세요"));bk.appendChild(bh);
-    p.qs.forEach(function(s){bk.appendChild(bookCard(p,s))});v.appendChild(bk)}
+  var BI=bookInputs(p);
+  if(BI.length)v.appendChild(inputSection(p,BI));
+  if(BI.length&&!bkState(p).sub){v.appendChild(el("div","lockcard","책 문제 답을 제출하면 핵심 질문이 열려요"))}
+  else{
+    v.appendChild(el("div","sec","핵심 질문"));
+    (p.core||[]).forEach(function(c,i){v.appendChild(coreCard(p,c,i))});
+    if(p.g){v.appendChild(el("div","sec","문법 한 가지"));v.appendChild(gramCard(p))}
+  }
+  var bks=el("div");bks.id="bks";v.appendChild(bks);
   var xg=el("div","xg");xg.id="xg";v.appendChild(xg);
   progress();
 }
