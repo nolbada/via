@@ -114,13 +114,12 @@ details.mo{margin-top:10px}details.mo>summary{cursor:pointer;font-size:14px;font
 .nt{border-radius:20px;padding:20px 18px 16px;margin:12px 0 0;color:#fff;background:radial-gradient(120% 100% at 100% 0%,rgba(201,166,107,.35) 0%,rgba(201,166,107,0) 55%),linear-gradient(155deg,#16372d 0%,#244138 100%);border:1px solid #c9a66b;box-shadow:0 8px 22px rgba(36,66,56,.28)}
 .nt .nl{font-size:13px;font-weight:700;letter-spacing:.04em;color:#d9bd86}
 .nt .nb{font-size:56px;font-weight:800;line-height:1.05;margin:4px 0 2px;letter-spacing:-.02em}.nt .nb small{font-size:19px;font-weight:600;margin-left:4px;opacity:.9}
-.nt .nm{display:flex;gap:10px;margin:16px 0 14px}.nt .nm div{flex:1;background:rgba(255,255,255,.12);border-radius:14px;padding:10px 12px}.nt .nm b{display:block;font-size:23px;font-weight:800;line-height:1.1}.nt .nm span{font-size:12px;opacity:.88}
 .nt .ns{font-size:12px;opacity:.85;margin:0 0 7px}
 .nt .nbar{display:flex;height:12px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.15)}.nt .nbar i{display:block;height:100%}.nt .nbar i+i{margin-left:2px}
 .nt .nlg{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px}.nt .nlg span{font-size:12px;display:flex;align-items:center;gap:6px}.nt .nlg em{width:8px;height:8px;border-radius:50%;display:inline-block}.nt .nlg b{font-weight:800}
-.np{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0 0}.np h3{margin:0 0 10px;font-size:14px}
-.np .nstg{display:flex;gap:7px}.np .nstg div{flex:1;text-align:center;border-radius:12px;padding:9px 2px;background:var(--bg);border:1px solid var(--line)}.np .nstg b{display:block;font-size:19px}.np .nstg span{font-size:11px;color:var(--sub)}.np .nstg .g{background:var(--okBg);border-color:transparent}.np .nstg .g b{color:var(--ok)}
-.np .nx{font-size:12px;color:var(--sub);margin:10px 2px 0;line-height:1.5}
+.nt .ns2{margin:16px 0 0;padding-top:14px;border-top:1px solid rgba(201,166,107,.35)}.nt .ns2 h3{margin:0 0 9px;font-size:13px;font-weight:700;color:#d9bd86;letter-spacing:.02em}
+.nt .nstg{display:flex;gap:7px}.nt .nstg div{flex:1;text-align:center;border-radius:12px;padding:9px 2px;background:rgba(255,255,255,.12)}.nt .nstg b{display:block;font-size:19px;font-weight:800}.nt .nstg span{font-size:11px;opacity:.88}.nt .nstg .g{background:rgba(217,189,134,.28)}
+.nt .nx{font-size:12px;opacity:.85;margin:10px 0 0;line-height:1.5}
 </style></head><body><div id="app"></div>
 <script>
 var URL_=window.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',PIN='6900',WD=['일','월','화','수','목','금','토'];
@@ -223,9 +222,9 @@ function noteCard(r,cap,due,today,LN){
   var bar='',lg='';so.forEach(function(k,x){var c=SC[Math.min(x,SC.length-1)];bar+='<i style="flex:'+sc[k]+';background:'+c+'"></i>';lg+='<span><em style="background:'+c+'"></em>'+esc(k)+' <b>'+sc[k]+'</b></span>'});
   var sg=[0,0,0,0];live.forEach(function(i){sg[Math.max(0,Math.min(3,i.st|0))]++});
   var IV=['1일','3일','7일','15일'];
-  var h='<div class="nt"><div class="nl">누적 모인 단어</div><div class="nb">'+tot+'<small>개</small></div><div class="nm"><div><b>'+today+'</b><span>오늘 복습</span></div>'+(gr?'<div><b>'+gr+'</b><span>졸업</span></div>':'')+'</div>';
+  var h='<div class="nt"><div class="nl">누적 모인 단어</div><div class="nb">'+tot+'<small>개</small></div>';
   if(tot)h+='<p class="ns">모인 곳</p><div class="nbar">'+bar+'</div><div class="nlg">'+lg+'</div>';
-  h+='</div><div class="np"><h3>복습 단계별 단어 수</h3><div class="nstg">'+sg.map(function(v,x){return'<div><b>'+v+'</b><span>'+IV[x]+' 단계</span></div>'}).join('')+(gr?'<div class="g"><b>'+gr+'</b><span>졸업</span></div>':'')+'</div><p class="nx">맞히면 다음 단계로 · 15일 단계까지 통과하면 졸업</p></div>';
+  h+='<div class="ns2"><h3>복습 단계별 단어 수</h3><div class="nstg">'+sg.map(function(v,x){return'<div><b>'+v+'</b><span>'+IV[x]+' 단계</span></div>'}).join('')+(gr?'<div class="g"><b>'+gr+'</b><span>졸업</span></div>':'')+'</div><p class="nx">맞히면 다음 단계로 · 15일 단계까지 통과하면 졸업</p></div></div>';
   h+='<button class="tk" id="st"'+(today?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적테스트</b><small>'+(due.length>cap?'밀린 '+(due.length-cap)+'개는 다음 날로 이어짐':'데일리보카 포함 · 1 · 3 · 7 · 15일 주기')+'</small></div><span class="chip'+(today?' w':' n')+'">'+today+'개</span></button>';
   h+='<div class="seg">'+[40,50,60].filter(function(x){return x<=r.max}).map(function(x){return'<button data-c="'+x+'"'+(x===cap?' class="on"':'')+'>'+x+'개</button>'}).join('')+'</div>';
   h+='<button class="tk" id="ls2"'+(LN?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>말하기 시험 단어 · 데일리보카 제외</small></div><span class="chip n">'+LN+'개</span></button>';
