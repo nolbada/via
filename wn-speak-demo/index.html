@@ -27,6 +27,10 @@ h1{font-size:19px;margin:4px 2px 2px}.sub{color:var(--sub);font-size:13px;margin
 .res{margin-top:12px;padding:10px 12px;border-radius:12px;background:#eef5f1;font-size:13.5px}
 .cnt{color:var(--sub);font-size:13px;text-align:center;margin-bottom:6px}
 .hide{display:none}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;margin:2px 6px 2px 0;font:inherit;font-size:14px;color:var(--pri)}
+.no{color:var(--sub)}
+.nv{display:flex;gap:8px}.nv .btn:disabled{opacity:.4}
+.rel>div{display:flex;align-items:center;flex-wrap:wrap;margin:6px 0}
 </style></head><body><div class="w">
 <div class="demo">샘플 화면 · 기록은 저장되지 않음 · 단어와 유의어·반의어는 예시</div>
 <div class="tabs"><button id="t1" class="on">학생 화면</button><button id="t2">선생님 화면</button></div>
@@ -45,37 +49,29 @@ var W=[
 ['fragile','깨지기 쉬운',['delicate','breakable'],['sturdy','durable']]];
 var app=document.getElementById('app'),mode='stu',sub='list',i=0,shown=false,open={},tc=0,res=null;
 function say(t){try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.9;speechSynthesis.speak(u)}catch(e){}}
-function rel(w){var h='<div class="rel">';h+='<div><b>유의어</b>'+(w[2].length?w[2].join(', '):'-')+'</div>';h+='<div><b>반의어</b>'+(w[3].length?w[3].join(', '):'-')+'</div></div>';return h}
+function chips(a){return a.length?a.map(function(x){return'<button class="chip" data-t="'+x+'">'+x+'</button>'}).join(''):'<span class="no">-</span>'}
+function rel(w){return'<div class="rel"><div><b>유의어</b>'+chips(w[2])+'</div><div><b>반의어</b>'+chips(w[3])+'</div></div>'}
+function bind(){app.querySelectorAll('[data-t]').forEach(function(b){b.onclick=function(e){e.stopPropagation();say(b.dataset.t)}})}
 function stu(){
-  var h='<h1>금요일 말하기 대비</h1><div class="sub">단어 '+W.length+'개</div>';
-  h+='<div class="seg"><button data-s="list" class="'+(sub==='list'?'on':'')+'">단어 목록</button><button data-s="say" class="'+(sub==='say'?'on':'')+'">말해보기</button></div>';
-  if(sub==='list'){
-    W.forEach(function(w,k){h+='<div class="c" data-k="'+k+'"><div class="r1"><div class="wd">'+w[0]+'</div><button class="snd" data-p="'+k+'">듣기</button></div><div class="mn">'+w[1]+'</div>'+(open[k]?rel(w):'')+'</div>'});
-  }else{
-    var w=W[i];
-    h+='<div class="cnt">'+(i+1)+' / '+W.length+'</div><div class="c"><div class="big">'+w[1]+'</div>';
-    if(shown){h+='<div class="big" style="margin-top:6px;color:var(--pri)">'+w[0]+'</div><div style="text-align:center"><button class="snd" data-p="'+i+'">듣기</button></div>'+rel(w)}
-    h+='</div>';
-    h+=shown?'<button class="btn pri" id="nx">다음</button>':'<button class="btn" id="sh">확인</button>';
-  }
-  app.innerHTML=h;
-  app.querySelectorAll('.seg button').forEach(function(b){b.onclick=function(){sub=b.dataset.s;i=0;shown=false;stu()}});
-  app.querySelectorAll('.snd').forEach(function(b){b.onclick=function(e){e.stopPropagation();say(W[+b.dataset.p][0])}});
-  app.querySelectorAll('.c[data-k]').forEach(function(c){c.onclick=function(){var k=+c.dataset.k;open[k]=!open[k];stu()}});
-  var sh=document.getElementById('sh');if(sh)sh.onclick=function(){shown=true;say(W[i][0]);stu()};
-  var nx=document.getElementById('nx');if(nx)nx.onclick=function(){i=(i+1)%W.length;shown=false;stu()};
+  var w=W[i];
+  var h='<h1>금요일 말하기 대비</h1><div class="sub">단어 '+W.length+'개</div><div class="cnt">'+(i+1)+' / '+W.length+'</div>';
+  h+='<div class="c"><div class="r1"><div class="wd" style="font-size:26px" data-t="'+w[0]+'">'+w[0]+'</div><button class="snd" data-t="'+w[0]+'">듣기</button></div><div class="mn">'+w[1]+'</div>'+rel(w)+'</div>';
+  h+='<div class="nv"><button class="btn" id="pv"'+(i?'':' disabled')+'>이전</button><button class="btn pri" id="nx"'+(i<W.length-1?'':' disabled')+'>다음</button></div>';
+  app.innerHTML=h;bind();
+  document.getElementById('pv').onclick=function(){i--;stu()};
+  document.getElementById('nx').onclick=function(){i++;stu()};
 }
 function tch(){
   var w=W[tc];
   var h='<h1>금요일 말하기 시험</h1><div class="sub">홍길동</div><div class="cnt">'+(tc+1)+' / '+W.length+'</div>';
-  h+='<div class="c"><div class="r1"><div class="wd" style="font-size:24px">'+w[0]+'</div><button class="snd" id="sd">듣기</button></div><div class="mn">'+w[1]+'</div>'+rel(w)+'</div>';
+  h+='<div class="c"><div class="r1"><div class="wd" style="font-size:24px">'+w[0]+'</div><button class="snd" data-t="'+w[0]+'">듣기</button></div><div class="mn">'+w[1]+'</div>'+rel(w)+'</div>';
   if(!res){h+='<div class="g3"><button class="o" data-r="o">O</button><button class="h" data-r="h">반쪽</button><button class="x" data-r="x">X</button></div>'}
   else{
     var m={o:'정답 · 다음 복습 단계로 올라감 (예: 3일 뒤 → 7일 뒤)',h:'반쪽 · 단계 그대로 (예: 3일 뒤 복습 유지)',x:'오답 · 1일 뒤 복습부터 다시'};
     h+='<div class="res">'+m[res]+'</div><button class="btn pri" id="nt">'+(tc<W.length-1?'다음 단어':'처음으로')+'</button>';
   }
   app.innerHTML=h;
-  document.getElementById('sd').onclick=function(){say(w[0])};
+  bind();
   app.querySelectorAll('.g3 button').forEach(function(b){b.onclick=function(){res=b.dataset.r;tch()}});
   var nt=document.getElementById('nt');if(nt)nt.onclick=function(){tc=(tc+1)%W.length;res=null;tch()};
 }
