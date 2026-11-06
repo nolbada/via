@@ -279,9 +279,9 @@ var STAT=null;
 function build(r,h){
   var t=kst(),y=addd(t,-1),out=[];
   r.students.forEach(function(s){
-    var P=PLAN[s.name]||null,o={s:s,P:P,dd:{},dc:{},dpp:{},ddone:0,dvdone:0,dexp:0,behind:0,state:'none',dvlog:[]};
+    var P=PLAN[s.name]||null,o={s:s,P:P,dd:{},dc:{},dpp:{},ddone:0,dvdone:0,dexp:0,behind:0,state:'none',dvlog:[],mm:[]};
     h.forEach(function(x){if(x.name!==s.name)return;var L=String(x.level||'');
-      if(/Core/.test(L)){o.dc[x.day]=x.score}else if(/Pro/.test(L)){o.dpp[x.day]=x.score}else{o.dd[x.day]=x.score}});
+      if(/미니모/.test(L)){o.mm.push({L:L,day:+x.day,score:String(x.score||'')})}else if(/Core/.test(L)){o.dc[x.day]=x.score}else if(/Pro/.test(L)){o.dpp[x.day]=x.score}else{o.dd[x.day]=x.score}});
     var dvm=P&&P.dv==='Pro'?o.dpp:o.dc;o.dvm=dvm;
     o.ddone=Object.keys(o.dd).length;o.dvdone=Object.keys(dvm).length;
     if(P){var N=DN[P.d];o.N=N;
@@ -355,6 +355,10 @@ function detail(n,r){
     var ks=Object.keys(o.dvm).sort(function(a,c){return a-c});
     if(ks.length){h+='<h2 class="sec">더블보카 시험 기록</h2><div class="card">'+ks.map(function(k){return'<div class="kv"><span>Day '+k+'</span><b>'+esc(o.dvm[k])+'</b></div>'}).join('')+'</div>'}
   }
+  if(o.mm.length){var G={};o.mm.forEach(function(z){var k=z.L+'|'+Math.ceil(z.day/2);(G[k]=G[k]||{L:z.L,n:Math.ceil(z.day/2),p:{}}).p[z.day%2?'a':'b']=z.score});
+    h+='<h2 class="sec">미니모의고사 기록</h2><div class="card">'+Object.keys(G).sort(function(a,c){return G[a].L<G[c].L?-1:G[a].L>G[c].L?1:G[a].n-G[c].n}).map(function(k){var g=G[k],a=g.p.a,b=g.p.b,ma=/^(\d+)\/(\d+)/.exec(a||''),mb=/^(\d+)\/(\d+)/.exec(b||''),tx;
+      if(ma&&mb)tx=(+ma[1]+ +mb[1])+' / '+(+ma[2]+ +mb[2])+'점';else if(ma||mb){var m=ma||mb;tx=(ma?'앞 ':'뒤 ')+m[1]+' / '+m[2]+'점 · '+(ma?'뒤 ':'앞 ')+((ma?b:a)||'안 함')}else tx=(a||b||'진행중');
+      return'<div class="kv"><span>'+esc(g.L.replace('미니모고 ',''))+' '+g.n+'회</span><b>'+esc(tx)+'</b></div>'}).join('')+'</div>'}
   h+='<h2 class="sec">오답노트</h2><div class="card"><div class="kv"><span>쌓인 단어</span><b>'+s.total+'</b></div><div class="kv"><span>오늘 복습 대상</span><b>'+s.due+'</b></div><div class="kv"><span>질문 대기</span><b>'+s.askDue+'</b></div></div>';
   h+='<button class="btn pri" id="qs"'+(s.askDue?'':' disabled style="opacity:.5"')+'>질문 시작</button>';
   h+='<button class="btn" id="wl" style="margin-top:8px">쌓인 단어 보기</button><div id="wlb"></div>';
