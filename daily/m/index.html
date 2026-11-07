@@ -111,7 +111,7 @@ let KEY='dv_'+D.level;
 let S={};
 try{S=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){S={}}
 S.done=S.done||{};S.wrong=S.wrong||{};S.star=S.star||{};
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function save(){try{var c=JSON.parse(localStorage.getItem(KEY))||{};['done','pg'].forEach(function(f){if(c[f]){S[f]=S[f]||{};for(var k in c[f])if(!S[f][k])S[f][k]=c[f][k]}});localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 const $=document.getElementById('app');
 const QS={};D.sets.forEach(s=>s.q.forEach((q,i)=>{q.id=s.day+'-'+(i+1);q.day=s.day;QS[q.id]=q}));
 const N=D.sets.length;
