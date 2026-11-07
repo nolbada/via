@@ -410,7 +410,7 @@ function drawWeek(I,ti,EP){
   for(var k=0;k<7;k++){var dt=new Date(mon);dt.setDate(mon.getDate()+k);h+=cellH(dt,I,ti,EP)}
   h+='</div><div class="fx"><b>매주 금요일</b> 누적보카 말하기 시험 (학원)</div><div class="lg"><div><b>데일리</b> = 데일리보카</div><div><b class="ex">시험</b> = 학원 더블보카 테스트</div><div><b class="rd">말하기</b> = 금요일 누적보카 테스트</div></div>';
   el.innerHTML=h;
-  el.querySelectorAll('.dy[data-k]').forEach(function(c){c.onclick=function(){SEL=c.dataset.k;CALM=new Date(+SEL.slice(0,4),+SEL.slice(5,7)-1,1);drawCal(I,ti)}});
+  el.querySelectorAll('.dy[data-k]').forEach(function(c){c.onclick=function(){SEL=c.dataset.k;CALM=new Date(+SEL.slice(0,4),+SEL.slice(5,7)-1,1);drawCal(I,ti);var d=document.getElementById('dp'),tk=d?d.querySelectorAll('.tk'):[];if(tk.length===1&&tk[0].tagName==='A'&&tk[0].getAttribute('href'))location.href=tk[0].getAttribute('href')}});
   var mv=function(dd){var t=new Date((SEL||ti)+'T00:00:00');t.setDate(t.getDate()+dd);SEL=iso(t);CALM=new Date(t.getFullYear(),t.getMonth(),1);drawCal(I,ti)};
   var pw=document.getElementById('pw'),nw=document.getElementById('nw');
   if(pw)pw.onclick=function(){mv(-7)};if(nw)nw.onclick=function(){mv(7)};
