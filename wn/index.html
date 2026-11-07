@@ -100,7 +100,17 @@ a.tk,button.tk,div.tk{display:flex;align-items:center;gap:12px;width:100%;text-a
 .st3 b{font-family:Pretendard,-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;display:block;font-size:20px;font-weight:800;line-height:1.1;color:#244138}.st3 em{font-style:normal;font-size:13px;font-weight:600;color:#a38558;margin-left:1px}.st3 small{display:block;font-size:12px;color:#8a7a5c;margin:0 0 4px;font-weight:600}.sp{margin-top:10px;font-size:13px;color:#244138}.sp:empty{display:none}.sp .pn{background:rgba(255,255,255,.6);border:1px solid #e4d5ac;border-radius:14px;padding:10px 12px}.sp .rw{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #dccb9d}.sp .rw:last-of-type{border:0}.sp .no{color:#8a7a5c}.sp a.go{display:block;margin-top:8px;text-align:center;background:#244138;color:#fff;text-decoration:none;border-radius:10px;padding:9px;font-weight:700}
 .wbt{display:flex;justify-content:space-between;font-size:13px;opacity:.92}
 .lg{font-size:12px;color:var(--sub);margin:10px 2px 0;line-height:1.7}.lg b.rd{color:#1f8a56}
-.cg.wk .dy{min-height:74px}
+.cg.wk .dy{min-height:104px;padding:5px 2px;min-width:0;overflow:hidden}
+.cg .dy .cks{display:inline-block;text-align:left;margin-top:5px}
+.cg .dy .ck{display:flex;align-items:center;gap:2px;font-size:9.5px;line-height:1;margin:0 0 6px;letter-spacing:-.3px;color:var(--sub);white-space:nowrap}
+.cg .dy .ck i{flex:0 0 10px;width:10px;height:10px;border:1.5px solid #b3bdb7;border-radius:3px;background:var(--bg,#fff);position:relative;box-sizing:border-box}
+.cg .dy .ck.on{color:var(--ok);font-weight:700}
+.cg .dy .ck.on i{background:var(--ok);border-color:var(--ok)}
+.cg .dy .ck.on i:after{content:'';position:absolute;left:2.2px;top:0;width:3px;height:6px;border:solid #fff;border-width:0 1.8px 1.8px 0;transform:rotate(45deg)}
+.cg .dy .ck.lt{color:#a8650b;font-weight:700}.cg .dy .ck.lt i{border-color:#d9962b}
+.cg .dy .ck.pop i{animation:ckp .55s ease-out}
+@keyframes ckp{0%{transform:scale(.2)}55%{transform:scale(1.6)}100%{transform:scale(1)}}
+.brk{display:flex;align-items:center;gap:10px;margin:0 4px 10px}.brk b{font-size:13px;min-width:30px}.brk span{display:flex;gap:4px;flex:1}.brk i{flex:1;height:11px;border-radius:3px;background:var(--line)}.brk i.on{background:var(--ok);animation:ckp .5s ease-out}.brk.all b{color:var(--ok)}
 .mg{font-size:12px}.mh{font-weight:800;font-size:13px;margin:10px 0 4px;color:#244138}.mh:first-child{margin-top:0}
 .mr{display:grid;grid-template-columns:30px repeat(7,1fr);gap:3px;align-items:center;padding:3px 2px;border-radius:10px;cursor:pointer}.mr.on{background:#f1ede0}
 .mr .wl{font-size:11px;color:var(--sub);font-weight:700}
@@ -375,6 +385,7 @@ function drawDP(I,ti,EP){
   var el=document.getElementById('dp');if(!el)return;
   if(!SEL){el.innerHTML='';return}
   var K=SEL||ti,r=DATA,n=name(),hc=ctlOf(CTLM,n),P=I.P,h='<div class="dpl"><div class="dh">'+dshow(K)+(K===ti?' · 오늘':'')+'</div>';
+  var BL=dayItems(K,I,ti,EP);if(BL.length){var bd=BL.filter(function(x){return x.done}).length;h+='<div class="brk'+(bd===BL.length?' all':'')+'"><b>'+bd+'/'+BL.length+'</b><span>'+BL.map(function(x){return'<i'+(x.done?' class="on"':'')+'></i>'}).join('')+'</span></div>'}
   var isT=K===ti,isPast=K<ti,w=new Date(K+'T00:00:00').getDay(),dn=I.map[K];
   if(hc.hold&&ti<=hc.hold)h+='<div style="margin:0 2px 8px;padding:8px 12px;border-radius:10px;background:#fbefd9;color:#6b3f06;font-size:13px;line-height:1.5">진도 안내를 잠시 멈췄어요. '+(hc.hold<'9999'?dshow(hc.hold)+'에 다시 시작해요.':'선생님이 다시 알려 줄 거예요.')+'</div>';
   if(dn&&K>=P.s){
@@ -384,8 +395,8 @@ function drawDP(I,ti,EP){
     else chip='<span class="chip n">'+(isT?'진행 전':'예정')+'</span>';
     h+=('<a class="tk" href="'+VB+I.Q.u+(I.S[dn]?'':'?day='+dn)+'">')+'<i class="bd"></i><div class="tt"><b>데일리보카 '+P.d+'</b><small>'+sub+'</small></div>'+chip+'</a>';
   }
-  if(isT&&NCX){var X=NCX;h+='<button class="tk" id="st"'+(X.today?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적테스트</b><small>'+(X.due.length>X.cap?'밀린 '+(X.due.length-X.cap)+'개는 다음 날로 이어짐':'데일리보카 포함 · 1 · 3 · 7 · 15일 주기')+'</small></div><span class="chip'+(X.today?' w':' n')+'">'+X.today+'개</span></button><button class="tk" id="ls2"'+(X.LN?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>말하기 시험 단어 · 데일리보카 제외</small></div><span class="chip n">'+X.LN+'개</span></button>'}
-  if(K>ti&&DATA){var fd=DATA.items.filter(function(i){return i.nx&&i.nx<=K}),fc=Math.min(fd.length,NCX?NCX.cap:60);h+='<button class="tk" id="stf"'+(fc?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>이날까지 모인 단어 · 미리 풀기</small></div><span class="chip n">'+fc+'개</span></button>'}
+  if(isT&&NCX){var X=NCX;h+='<button class="tk" id="st"'+(X.today?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적테스트</b><small>'+(X.due.length>X.cap?'밀린 '+(X.due.length-X.cap)+'개는 다음 날로 이어짐':'데일리보카 포함 · 1 · 3 · 7 · 15일 주기')+'</small></div>'+(rvMap()[K]?'<span class="chip">완료</span>':'<span class="chip'+(X.today?' w':' n')+'">'+X.today+'개</span>')+'</button><button class="tk" id="ls2"'+(X.LN?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>말하기 시험 단어 · 데일리보카 제외</small></div><span class="chip n">'+X.LN+'개</span></button>'}
+  if(K>ti&&DATA){var fd=DATA.items.filter(function(i){return i.nx&&i.nx<=K}),fc=Math.min(fd.length,NCX?NCX.cap:60);h+='<button class="tk" id="stf"'+(fc?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>이날까지 모인 단어 · 미리 풀기</small></div>'+(rvMap()[K]?'<span class="chip">완료</span>':'<span class="chip n">'+fc+'개</span>')+'</button>'}
   if(w===5&&!isT&&K>=P.s&&DATA){var fl=DATA.items.filter(function(i){return isL(i)&&(!i.first||i.first<=K)}).length;h+='<button class="tk" id="ls3"'+(fl?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>이날까지 모인 말하기 단어</small></div><span class="chip n">'+fl+'개</span></button>'}
   if(w===5&&K>=P.s&&CLOSED.indexOf(K)<0){var sp1=(hc.sp||{})[K],c1=sp1===1?'<span class="chip">완료</span>':sp1===2?'<span class="chip n">결석</span>':(isPast&&!inHold(hc,K)?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'오늘':'예정')+'</span>');h+='<div class="tk"><i class="bd" style="background:#1f8a56"></i><div class="tt"><b>금요일 말하기 시험</b><small>누적보카 · 학원</small></div>'+c1+'</div>'}
   if(EP&&EP[K]){var xdv=P.dv==='Pro'?'dvpro/':'dvcore/';h+=('<a class="tk" href="'+VB+xdv+'">')+'<i class="bd" style="background:#2d6a9f"></i><div class="tt"><b>더블보카 '+P.dv+' 시험</b><small>Day '+EP[K]+' · 학원 테스트</small></div><span class="chip n">'+(isT?'오늘':'예정')+'</span></a>'}
@@ -395,13 +406,23 @@ function drawDP(I,ti,EP){
   var l3=document.getElementById('ls3');if(l3)l3.onclick=function(){list(K)};
   var sf=document.getElementById('stf');if(sf)sf.onclick=function(){rvStart(K,ti)};
 }
+function dayItems(key,I,ti,EP){
+  var n=name(),hc=ctlOf(CTLM,n),dn=I.map[key],L=[];
+  if(CLOSED.indexOf(key)>=0)return L;
+  var late=key<ti&&!inHold(hc,key),w=new Date(key+'T00:00:00').getDay();
+  if(dn)L.push({t:'d',n:'데일리',done:!!I.S[dn],late:late&&!I.S[dn]});
+  if(key>=I.P.s){var rvd=rvMap()[key];if(rvd||key>=ti)L.push({t:'r',n:'복습',done:!!rvd,late:false})}
+  if(w===5&&key>=I.P.s){var sv=(hc.sp||{})[key],sd=sv===1||sv===2;L.push({t:'s',n:sv===2?'결석':'말하기',done:sd,late:!sd&&late})}
+  if(EP&&EP[key]){L.push({t:'x',n:'시험',done:!!exTaken(n)[EP[key]],late:false})}
+  return L;
+}
 function cellH(dt,I,ti,EP){
-  var key=iso(dt),dayN=I.map[key],cls='dy',sm='',closed=CLOSED.indexOf(key)>=0;
-  if(dayN){cls+=' hw';if(I.S[dayN]){cls+=' dn';sm='<span class="dl">데일리 '+dayN+' ✓</span>'}else if(key<ti&&!inHold(ctlOf(CTLM,name()),key)){cls+=' lt';sm='<span class="dl">데일리 '+dayN+' 밀림</span>'}else sm='<span class="dl">데일리 '+dayN+'</span>'}
-  else if(dt.getDay()===5&&key>=I.P.s&&!closed){var hc0=ctlOf(CTLM,name()),sv=(hc0.sp||{})[key];if(sv===1){cls+=' dn';sm='<b class="rd">말하기 ✓</b>'}else if(sv===2){sm='말하기 결석'}else if(key<ti&&!inHold(hc0,key)){cls+=' lt';sm='<b class="rd wl">말하기 밀림</b>'}else sm='<b class="rd">말하기</b>'}
-  if(!closed&&key>=I.P.s){var rvd=rvMap()[key];if(rvd||key>=ti)sm+=(sm?'<br>':'')+'<span class="dl rv">복습'+(rvd?' ✓':'')+'</span>'}
-  if(EP[key]){var exd=exTaken(name())[EP[key]];sm+=(sm?'<br>':'')+'<b class="ex">시험'+(exd?' ✓':'')+'</b>'}
-  if(closed){cls+=' cl';sm=(sm?sm+'<br>':'')+'휴원'}
+  var key=iso(dt),cls='dy',closed=CLOSED.indexOf(key)>=0,L=dayItems(key,I,ti,EP),sm='';
+  var all=L.length&&L.every(function(x){return x.done}),anyL=L.some(function(x){return x.late}),seen=lj('wn_ck',{}),sc=0;
+  if(L.length){if(all)cls+=' dn';else if(anyL)cls+=' lt';else if(I.map[key]||dt.getDay()===5)cls+=' hw'}
+  sm='<span class="cks">'+L.map(function(x){var id=key+x.t,pop=x.done&&!seen[id];if(pop){seen[id]=1;sc=1}return'<span class="ck'+(x.done?' on':'')+(x.late?' lt':'')+(pop?' pop':'')+'" data-t="'+x.t+'"><i></i>'+x.n+'</span>'}).join('')+'</span>';
+  if(sc)ss('wn_ck',JSON.stringify(seen));
+  if(closed){cls+=' cl';sm='휴원'}
   if(key===ti)cls+=' td';
   if(key===SEL)cls+=' sl';
   return'<div class="'+cls+'" data-k="'+key+'"><span class="n">'+dt.getDate()+'</span><small>'+sm+'</small></div>';
@@ -414,9 +435,9 @@ function drawWeek(I,ti,EP){
   var h='<div class="ch2"><button id="pw"'+(mon<=CS?' disabled':'')+'>&lsaquo;</button><b>'+(wn>=1&&wn<=17?wn+'주차 · ':'')+dshow(iso(mon))+' ~ '+dshow(iso(sun))+'</b><button id="nw"'+(sun>=CE?' disabled':'')+'>&rsaquo;</button></div><div class="cg wk">';
   ['월','화','수','목','금','토','일'].forEach(function(w){h+='<div class="wd">'+w+'</div>'});
   for(var k=0;k<7;k++){var dt=new Date(mon);dt.setDate(mon.getDate()+k);h+=cellH(dt,I,ti,EP)}
-  h+='</div><div class="fx"><b>매주 금요일</b> 누적보카 말하기 시험 (학원)</div><div class="lg"><div><b>데일리</b> = 데일리보카</div><div><b>복습</b> = 오답 누적복습</div><div><b class="ex">시험</b> = 학원 더블보카 테스트</div><div><b class="rd">말하기</b> = 금요일 누적보카 테스트</div></div>';
+  h+='</div><div class="fx"><b>매주 금요일</b> 누적보카 말하기 시험 (학원)</div><div class="lg"><div><b>데일리</b> = 데일리보카</div><div><b>복습</b> = 오답 누적복습</div><div><b>시험</b> = 학원 더블보카 테스트</div><div><b class="rd">말하기</b> = 금요일 누적보카 테스트</div></div>';
   el.innerHTML=h;
-  el.querySelectorAll('.dy[data-k]').forEach(function(c){c.onclick=function(e){var k=c.dataset.k,g=e.target.closest&&e.target.closest('.dl,.ex');if(g&&g.classList.contains('rv')&&CLOSED.indexOf(k)<0){rvStart(k,ti);return}if(g&&CLOSED.indexOf(k)<0){var dn=I.map[k],u=g.classList.contains('ex')?VB+(I.P.dv==='Pro'?'dvpro/':'dvcore/'):(dn?VB+I.Q.u+(I.S[dn]?'':'?day='+dn):'');if(u){location.href=u+(PV?(u.indexOf('?')<0?'?t=1':'&t=1'):'');return}}SEL=k;CALM=new Date(+SEL.slice(0,4),+SEL.slice(5,7)-1,1);drawCal(I,ti);var d=document.getElementById('dp'),tk=d?d.querySelectorAll('.tk'):[];if(tk.length===1&&tk[0].tagName==='A'&&tk[0].getAttribute('href')){var hu=tk[0].getAttribute('href');if(PV&&/\/(daily\/[bh]|dvcore|dvpro)\/(\?day=\d+)?$/.test(hu))hu+=(hu.indexOf('?')<0?'?t=1':'&t=1');location.href=hu}}});
+  el.querySelectorAll('.dy[data-k]').forEach(function(c){c.onclick=function(e){var k=c.dataset.k,g=e.target.closest&&e.target.closest('.ck');if(g&&g.dataset.t==='r'&&CLOSED.indexOf(k)<0){rvStart(k,ti);return}if(g&&g.dataset.t==='s'&&CLOSED.indexOf(k)<0){list(k);return}if(g&&CLOSED.indexOf(k)<0){var dn=I.map[k],u=g.dataset.t==='x'?VB+(I.P.dv==='Pro'?'dvpro/':'dvcore/'):(dn?VB+I.Q.u+(I.S[dn]?'':'?day='+dn):'');if(u){location.href=u+(PV?(u.indexOf('?')<0?'?t=1':'&t=1'):'');return}}SEL=k;CALM=new Date(+SEL.slice(0,4),+SEL.slice(5,7)-1,1);drawCal(I,ti);var d=document.getElementById('dp'),tk=d?d.querySelectorAll('.tk'):[];if(tk.length===1&&tk[0].tagName==='A'&&tk[0].getAttribute('href')){var hu=tk[0].getAttribute('href');if(PV&&/\/(daily\/[bh]|dvcore|dvpro)\/(\?day=\d+)?$/.test(hu))hu+=(hu.indexOf('?')<0?'?t=1':'&t=1');location.href=hu}}});
   var mv=function(dd){var t=new Date((SEL||ti)+'T00:00:00');t.setDate(t.getDate()+dd);SEL=iso(t);CALM=new Date(t.getFullYear(),t.getMonth(),1);drawCal(I,ti)};
   var pw=document.getElementById('pw'),nw=document.getElementById('nw');
   if(pw)pw.onclick=function(){mv(-7)};if(nw)nw.onclick=function(){mv(7)};
