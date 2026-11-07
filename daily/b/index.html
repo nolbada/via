@@ -164,9 +164,9 @@ function home(){
 }
 function startDay(d){
   const set=D.sets[d-1];
-  let i=0,res=[];
-  if(S.cur&&S.cur.day===d){i=S.cur.i;res=S.cur.res}
-  R={mode:'day',day:d,list:set.q.slice(),i:i,res:res,round:1};
+  const pr=!!S.done[d];let i=0,res=[];
+  if(!pr&&S.cur&&S.cur.day===d){i=S.cur.i;res=S.cur.res}
+  R={mode:'day',day:d,list:set.q.slice(),i:i,res:res,round:1,prac:pr};
   if(i>=set.q.length){result();return}
   quiz();
 }
@@ -178,7 +178,7 @@ function startList(m){
   quiz();
 }
 function title(){
-  if(R.mode==='day')return R.day+'일'+(R.round===2?' · 다시 풀기':'');
+  if(R.mode==='day')return R.day+'일'+(R.prac?' · 연습':'')+(R.round===2?' · 다시 풀기':'');
   return R.mode==='wrong'?'오답노트':'별표 모음';
 }
 function quiz(){
@@ -216,8 +216,8 @@ function quiz(){
 function judged(q,r,showAns){
   if(R.round===1){
     R.res[R.i]=r?1:0;
-    if(R.mode==='day'){S.cur={day:R.day,i:R.i+1,res:R.res.slice()}}if(R.mode==='day'){S.pg=S.pg||{};if(!S.pg[R.day]&&!S.done[R.day]){S.pg[R.day]=1;WN.hw(D.level,R.day,'진행중')}}
-    if(r){const w=S.wrong[q.id];if(w){w.s=(w.s||0)+1;if(w.s>=2)delete S.wrong[q.id]}}
+    if(R.mode==='day'&&!R.prac){S.cur={day:R.day,i:R.i+1,res:R.res.slice()}}if(R.mode==='day'){S.pg=S.pg||{};if(!S.pg[R.day]&&!S.done[R.day]){S.pg[R.day]=1;WN.hw(D.level,R.day,'진행중')}}
+    if(R.prac){}else if(r){const w=S.wrong[q.id];if(w){w.s=(w.s||0)+1;if(w.s>=2)delete S.wrong[q.id]}}
     else{S.wrong[q.id]={s:0};if(q.mn)WN.add([{w:q.wb||q.wd,m:q.mn,src:'데일리보카',how:'문제 오답',ask:false}])}
     save();
   } else R.res[R.i]=r?1:0;
@@ -242,8 +242,8 @@ function result(){
       document.getElementById('rt').onclick=()=>{R.list=wrongQ;R.i=0;R.res=[];R.round=2;quiz()};
       document.getElementById('hm').onclick=home;return;
     }
-    S.done[R.day]={s:R.first+'/15',t:Date.now()};S.cur=null;
-    save();WN.hw(D.level,R.day,R.first+'/15');
+    if(!R.prac){S.done[R.day]={s:R.first+'/15',t:Date.now()};S.cur=null;
+    save();WN.hw(D.level,R.day,R.first+'/15')}
     if(wrongQ.length)h+=wlist(wrongQ);
     h+='<button class="btn pri nb" id="hm">홈으로</button>';
   } else {
