@@ -40,6 +40,7 @@ input.tx{width:100%;font-size:18px;padding:12px;border:1px solid var(--line);bor
 .kp div{background:rgba(255,255,255,.12);border-radius:12px;padding:10px 6px;text-align:center}
 .kp b{display:block;font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
 .kp span{font-size:12px;opacity:.8}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:10px}.rm{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-top:4px solid;border-radius:14px;padding:12px}.rh{display:flex;justify-content:space-between;align-items:baseline;gap:6px}.rt{font-size:13px;font-weight:800}.rn{font-size:22px;font-weight:800}.rn small{font-size:12px;font-weight:600;color:var(--sub)}.rs{font-size:12px;color:var(--sub);margin:2px 0 8px}.rb{height:6px;border-radius:3px;background:var(--line);overflow:hidden}.rb i{display:block;height:100%;border-radius:3px}.sdw{display:flex;flex-wrap:wrap;gap:3px;margin-top:10px}.sd{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--line);box-sizing:border-box}.sd.ab{background:transparent}
 h2.sec{font-size:13px;letter-spacing:.08em;color:var(--sub);margin:20px 4px 8px;font-weight:700}
 a.tk,button.tk,div.tk{display:flex;align-items:center;gap:12px;width:100%;text-align:left;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:7px 0}
 .tk .bd{width:5px;align-self:stretch;border-radius:3px;background:var(--pri)}
@@ -273,7 +274,7 @@ function home(r){
   if(!(I&&!isAdm(n)))h+=noteCard(r,cap,due,today,LI.length,0);
   /* today */
   var IU=!!I&&!isAdm(n);
-  if(IU)h+='<div class="cal" id="wk" style="margin-top:12px"></div><div id="dp"></div><details class="mo"><summary>전체 주차 한눈에 보기 ▾</summary><div class="cal" id="cal"></div></details>'+noteCard(r,cap,due,today,LI.length,1);
+  if(IU)h+='<div class="cal" id="wk" style="margin-top:12px"></div><div id="dp"></div><details class="mo"><summary>전체 주차 한눈에 보기 ▾</summary><div class="cal" id="cal"></div></details>'+noteCard(r,cap,due,today,LI.length,1)+roomH(I,n,ti);
   h+='<h2 class="sec">'+(IU?'내 속도로 하는 활동':'오늘')+'</h2>';
   if(isAdm(n)){
     [['데일리보카 B',VB+'daily/b/?t=1','#2a8a5c'],['데일리보카 H',VB+'daily/h/?t=1','#2a8a5c'],['더블보카 Core',VB+'dvcore/?t=1','#2d6a9f'],['더블보카 Pro',VB+'dvpro/?t=1','#2d6a9f'],['미니모의고사 고1',MM['고1'],'#8a5a9e'],['미니모의고사 고2',MM['고2'],'#8a5a9e'],['천일문S 문장줄이기',VB+'sj/','#c2557a'],['그래머콕 개념노트',GC,'#17939e']].forEach(function(t){
@@ -309,6 +310,21 @@ function home(r){
   if(IU){if(!CALM)CALM=new Date(now.getFullYear(),now.getMonth(),1);if(!SEL)SEL=ti;drawCal(I,ti)}
 }
 var FRI1='2026-11-06';
+function roomH(I,n,ti){
+  var P=I.P,XS=exStat(n,ti),mm=lj('wn_mm_'+n,[]).length,hc=ctlOf(CTLM,n),sp=hc.sp||{},i,k,fr=[];
+  function dots(tot,fn,c){var o='<div class="sdw">';for(var q=1;q<=tot;q++){var v=fn(q);o+='<i class="sd'+(v?' on':'')+(v===2?' ab':'')+'" style="'+(v===1?'background:'+c+';border-color:'+c:v===2?'border-color:'+c:'')+'"></i>'}return o+'</div>'}
+  function card(c,t,sub,num,tot,dh,href){var h0='<b class="rt" style="color:'+c+'">'+t+'</b><span class="rn" style="color:'+c+'">'+num+'<small> / '+tot+'</small></span>';var bd='<div class="rh">'+h0+'</div><div class="rs">'+sub+'</div><div class="rb"><i style="width:'+(tot?Math.min(100,num/tot*100):0)+'%;background:'+c+'"></i></div>'+dh;return href?'<a class="rm" href="'+href+'" style="border-top-color:'+c+'">'+bd+'</a>':'<div class="rm" style="border-top-color:'+c+'">'+bd+'</div>'}
+  var dk=Object.keys(I.S),lk=0,ld='';dk.forEach(function(x){var t=I.S[x].t||0;if(t>=lk){lk=t;ld=x}});
+  var xn=Object.keys(XS.tk).length;
+  var d=new Date(P.s+'T00:00:00');while(iso(d)<=ti&&fr.length<40){if(d.getDay()===5&&CLOSED.indexOf(iso(d))<0)fr.push(iso(d));d.setDate(d.getDate()+1)}
+  var okN=0;fr.forEach(function(x){if(sp[x]===1)okN++});
+  var h='<h2 class="sec">기록 열람실</h2><div class="rg">';
+  h+=card('#ff7a66','데일리보카 '+P.d,ld?'최근 '+ld+'일차 '+I.S[ld].s:'첫 도장을 기다려요',dk.length,I.Q.n,dots(I.Q.n,function(q){return I.S[q]?1:0},'#ff7a66'),VB+I.Q.u);
+  h+=card('#4a90e2','더블보카 '+P.dv,'시험 '+xn+'번 · 연습 '+I.dv.length+'번',xn,32,dots(32,function(q){return XS.tk[q]?1:0},'#4a90e2'),VB+(P.dv==='Pro'?'dvpro/':'dvcore/'));
+  h+=card('#e0a21a','미니모의고사',mm?'다음은 '+(mm+1)+'회':'첫 회를 기다려요',mm,24,dots(24,function(q){return q<=mm?1:0},'#e0a21a'),MM[P.m]||MM['고1']);
+  if(fr.length)h+=card('#2fa66b','금요일 말하기','통과한 금요일',okN,fr.length,dots(fr.length,function(q){var v=sp[fr[q-1]];return v===1?1:v===2?2:0},'#2fa66b'),'');
+  return h+'</div>';
+}
 function exStat(n,ti){
   var tk=exTaken(n),P=PLAN[n],nx=0,z;
   for(z=1;z<=32;z++){if(!tk[z]){nx=z;break}}
