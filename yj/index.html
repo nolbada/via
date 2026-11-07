@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#16243f">
+<meta name="application-name" content="YJ">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="YJ">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<title>YJ</title>
+<style>
+:root{--ink:#1c2430;--sub:#6b7480;--line:#e3e6ea;--bg:#f4f5f8;--card:#fff;--navy:#16243f;--gold:#c9a66b;--good:#1f7a4d;--bad:#c2392b}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Malgun Gothic','맑은 고딕',-apple-system,sans-serif}
+.top{background:var(--navy);color:#fff;padding:18px 16px 16px}
+.top .in{max-width:680px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between}
+.top h1{margin:0;font-size:30px;letter-spacing:.04em;color:#ecd296;font-weight:800}
+.top small{font-size:13px;opacity:.8}
+.wrap{max-width:680px;margin:0 auto;padding:12px 14px 40px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:0 0 12px}
+.card h2{margin:0 0 10px;font-size:14px;color:var(--sub);font-weight:700}
+.big{font-size:34px;font-weight:800}
+.stg{display:flex;margin-top:10px}
+.stg div{flex:1;text-align:center}
+.stg div+div{border-left:1px solid var(--line)}
+.stg b{display:block;font-size:22px}
+.stg span{font-size:12px;color:var(--sub)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font-size:14px;font-weight:700;color:var(--ink);font-family:inherit}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip i{font-style:normal;font-weight:400;opacity:.75;margin-left:4px}
+.tabs{display:flex;gap:8px;margin:0 0 12px}
+.tabs .chip{flex:1;text-align:center}
+.row{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row b{font-size:16px}
+.row small{display:block;color:var(--sub);font-size:13px;margin-top:2px}
+.row .r{text-align:right;font-size:13px;color:var(--sub);white-space:nowrap}
+.tag{display:inline-block;font-size:11px;font-weight:700;border-radius:4px;padding:1px 6px;margin-left:6px;background:#eef1f6;color:#44506a}
+.due{color:var(--bad);font-weight:700}
+.empty{padding:26px 0;text-align:center;color:var(--sub);font-size:14px}
+.rf{display:block;width:100%;min-height:46px;border-radius:10px;border:1.5px solid var(--navy);background:#fff;color:var(--navy);font-size:15px;font-weight:700;font-family:inherit;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="top"><div class="in"><h1>YJ</h1><small id="dt"></small></div></div>
+<div class="wrap" id="app"><div class="empty">불러오는 중...</div></div>
+<script>
+var URL_='https://script.google.com/macros/s/AKfycbz0OolJAHbhYzjWxOkRY851Sn1-ZKL3JOYf4eWancUEotJsm4-z6aWzcm-71I9CIWyR/exec',NAME='신유정',PIN='6900',WD=['일','월','화','수','목','금','토'];
+var D={items:[],hw:[],today:''},TAB='w',SRC='';
+function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function post(b){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
+function dshow(d){if(!d)return'';var p=d.split('-');return(+p[1])+'/'+(+p[2])+'('+WD[new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay()]+')'}
+function srcs(i){return String(i.src||'').split(',').map(function(x){return x.trim()}).filter(Boolean)}
+function load(){
+  document.getElementById('app').innerHTML='<div class="empty">불러오는 중...</div>';
+  Promise.all([post({act:'list',name:NAME,pin:PIN}),post({act:'hwget',name:NAME,pin:PIN})]).then(function(a){
+    var l=a[0]||{},h=a[1]||{};
+    if(!l.ok)throw new Error('list');
+    D.items=l.items||[];D.today=l.today||'';D.hw=(h&&h.hw)||[];
+    document.getElementById('dt').textContent=dshow(D.today);
+    draw();
+  }).catch(function(){document.getElementById('app').innerHTML='<div class="empty">연결이 안 됐어요.</div><button class="rf" id="rf">다시 불러오기</button>';document.getElementById('rf').onclick=load});
+}
+function draw(){
+  var it=D.items,cnt={},st=[0,0,0,0],due=0,i;
+  it.forEach(function(x){srcs(x).forEach(function(s){cnt[s]=(cnt[s]||0)+1});if(x.st>=0&&x.st<4)st[x.st]++;if(x.nx&&x.nx<=D.today)due++});
+  var h='<div class="card"><h2>누적 단어</h2><div class="big">'+it.length+'<span style="font-size:15px;font-weight:600;color:var(--sub)"> 개</span></div>';
+  h+='<div class="stg"><div><b>'+st[0]+'</b><span>1일 단계</span></div><div><b>'+st[1]+'</b><span>3일 단계</span></div><div><b>'+st[2]+'</b><span>7일 단계</span></div><div><b>'+st[3]+'</b><span>15일 단계</span></div></div>';
+  h+='<div style="margin-top:10px;font-size:13px;color:var(--sub)">오늘까지 복습할 단어 <b class="'+(due?'due':'')+'">'+due+'개</b></div></div>';
+  h+='<div class="tabs"><button class="chip '+(TAB==='w'?'on':'')+'" data-t="w">단어</button><button class="chip '+(TAB==='h'?'on':'')+'" data-t="h">숙제 기록</button></div>';
+  if(TAB==='w'){
+    var keys=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a]});
+    h+='<div class="card"><h2>출처</h2><div class="chips"><button class="chip '+(!SRC?'on':'')+'" data-s="">전체<i>'+it.length+'</i></button>'+keys.map(function(k){return'<button class="chip '+(SRC===k?'on':'')+'" data-s="'+esc(k)+'">'+esc(k)+'<i>'+cnt[k]+'</i></button>'}).join('')+'</div></div>';
+    var L=it.filter(function(x){return!SRC||srcs(x).indexOf(SRC)>=0}).slice().sort(function(a,b){return(a.first<b.first?1:a.first>b.first?-1:0)||(b.c-a.c)});
+    h+='<div class="card">';
+    if(!L.length)h+='<div class="empty">기록이 아직 없어요</div>';
+    L.forEach(function(x){
+      h+='<div class="row"><div><b>'+esc(x.w)+'</b>'+srcs(x).map(function(s){return'<span class="tag">'+esc(s)+'</span>'}).join('')+'<small>'+esc(x.m)+'</small></div><div class="r">'+(x.c>1?'틀린 '+x.c+'회<br>':'')+'단계 '+x.st+'<br><span class="'+(x.nx&&x.nx<=D.today?'due':'')+'">복습 '+esc(dshow(x.nx))+'</span></div></div>';
+    });
+    h+='</div>';
+  }else{
+    h+='<div class="card">';
+    if(!D.hw.length)h+='<div class="empty">숙제 기록이 아직 없어요</div>';
+    D.hw.slice().sort(function(a,b){return String(a.level).localeCompare(String(b.level))||(a.day-b.day)}).forEach(function(x){
+      h+='<div class="row"><div><b>'+esc(x.level)+' · Day '+esc(x.day)+'</b></div><div class="r"><b style="font-size:16px;color:var(--ink)">'+esc(x.score)+'</b></div></div>';
+    });
+    h+='</div>';
+  }
+  h+='<button class="rf" id="rf">새로고침</button>';
+  var A=document.getElementById('app');A.innerHTML=h;
+  A.querySelectorAll('[data-t]').forEach(function(b){b.onclick=function(){TAB=b.dataset.t;draw()}});
+  A.querySelectorAll('[data-s]').forEach(function(b){b.onclick=function(){SRC=b.dataset.s;draw()}});
+  document.getElementById('rf').onclick=load;
+}
+load();
+document.addEventListener('visibilitychange',function(){if(!document.hidden)load()});
+</script>
+</body>
+</html>
