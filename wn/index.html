@@ -232,7 +232,9 @@ function exNote(n,now,ti,nd){
     return bx+'오늘은 오답노트 단어 구두테스트예요. 오늘 복습 단어를 다시 확인해요.'+(miss?'<br>이번 주 못 본 더블보카 시험 '+miss+'개는 말하기 시험으로 봐요 (Day '+nx+(miss>1?'부터':'')+').':'')+'</div>';
   }
   if(ds.indexOf(w)>=0&&!todayT&&ti>=FIRSTEX[grp])return bx+'오늘 더블보카 Day '+nx+' 시험이 있어요. 마지막으로 확인해요.</div>';
-  for(var k=1;k<=7;k++){var d=new Date(now);d.setDate(d.getDate()+k);if(ds.indexOf(d.getDay())>=0&&iso(d)>=FIRSTEX[grp])return bx+'다음 시험 '+dshow(iso(d))+' · Day '+nx+' 단어를 미리 공부하세요</div>'}
+  var LK='color:inherit;font-weight:700;text-decoration:underline';
+  if(w===4&&PLAN[n]){var fr=adD(ti,1);if(CLOSED.indexOf(fr)<0&&fr>=PLAN[n].s)return bx+'내일 '+dshow(fr)+' 말하기 시험 · <a href="#" style="'+LK+'" onclick="list(\''+fr+'\');return false">말하기 대비 단어 보기</a></div>'}
+  for(var k=1;k<=7;k++){var d=new Date(now);d.setDate(d.getDate()+k);if(ds.indexOf(d.getDay())>=0&&iso(d)>=FIRSTEX[grp]){if(k===1&&PLAN[n])return bx+'내일 '+dshow(iso(d))+' 더블보카 시험 · Day '+nx+' 단어를 <a href="'+VB+(PLAN[n].dv==='Pro'?'dvpro/':'dvcore/')+'" style="'+LK+'">미리 공부하기</a></div>';return bx+'다음 시험 '+dshow(iso(d))+' · Day '+nx+' 단어를 미리 공부하세요</div>'}}
   return'';
 }
 function noteCard(r,cap,due,today,LN,nb){
