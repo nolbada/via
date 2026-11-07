@@ -180,7 +180,7 @@ function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+
 function lj(k,def){try{return JSON.parse(ls(k)||'')||def}catch(e){return def}}
 function planInfo(n){
   var P=PLAN[n];if(!P)return null;
-  var Q=DQ[P.d],S={};(PV==='B'||PV==='H'?[PV]:['H','B','M']).forEach(function(L){[n].concat(isAdm(n)?['선생님']:[]).forEach(function(nm){var d=lj('dv_'+L+'_'+nm,{}).done||{};for(var k2 in d)if(!S[k2])S[k2]=d[k2]})});
+  var Q=DQ[P.d],S={};(PV==='B'||PV==='H'?[PV]:(TCM?[P.d]:['H','B','M'])).forEach(function(L){[n].concat(isAdm(n)?['선생님']:[]).forEach(function(nm){var d=lj('dv_'+L+'_'+nm,{}).done||{};for(var k2 in d)if(!S[k2])S[k2]=d[k2]})});
   var dv=lj((P.dv==='Pro'?'dvp':'dvc')+'_done_'+n,[]);
   var st=new Date(P.s+'T00:00:00'),map={},c=0,cur=new Date(st),end=new Date('2027-04-30T00:00:00');
   for(;cur<=end&&c<Q.n;cur.setDate(cur.getDate()+1)){if(HWD.indexOf(cur.getDay())>=0){c++;map[iso(cur)]=c}}
@@ -505,18 +505,18 @@ function list(K){
   h+='</div>';$.innerHTML=h;document.getElementById('hm').onclick=function(){home(DATA)};
 }
 var R=null;
-function rvMap(){return lj('wn_rv_'+name(),{})}
+var TMF=/[?&]t=1(&|$)/.test(location.search);function rvMap(){return lj('wn_rv_'+name()+TCM,{})}
 function rvId(){return'WNRV_'+String(name()).toLowerCase()}
 function rvMark(day){
-  if(!day)return;var m=rvMap();m[day]=Date.now();ss('wn_rv_'+name(),JSON.stringify(m));
-  if(PV)return;var d={};d[day]={v:{s:'1'},t:Date.now()};
+  if(!day)return;var m=rvMap();m[day]=Date.now();ss('wn_rv_'+name()+TCM,JSON.stringify(m));
+  if(PV||TMF)return;var d={};d[day]={v:{s:'1'},t:Date.now()};
   try{fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:rvId(),data:d})}).catch(function(){})}catch(e){}
 }
 function rvPull(){
-  if(PV||!name())return;
+  if(PV||TMF||!name())return;
   try{fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:rvId(),data:{}})}).then(function(r){return r.json()}).then(function(r){
     var d=(r&&r.data)||{},m=rvMap(),ch=0;for(var k in d){if(/^\d{4}-\d\d-\d\d$/.test(k)&&!m[k]){m[k]=(d[k]&&d[k].t)||1;ch=1}}
-    if(ch){ss('wn_rv_'+name(),JSON.stringify(m));if(document.getElementById('wk'))home(DATA||undefined)}
+    if(ch){ss('wn_rv_'+name()+TCM,JSON.stringify(m));if(document.getElementById('wk'))home(DATA||undefined)}
   }).catch(function(){})}catch(e){}
 }
 function rvStart(K,ti){
