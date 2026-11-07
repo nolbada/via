@@ -151,7 +151,7 @@ function login(){
     },function(){if(isAdm(v)){ss('wn_name',v);home(admData());return}b.disabled=false;document.getElementById('m').textContent='연결이 안 됐어요. 인터넷을 확인해 주세요.'});
   };
 }
-var DATA=null,resetArm=false,resetT=null,CALM=null,SEL=null;
+var NCX=null,DATA=null,resetArm=false,resetT=null,CALM=null,SEL=null;
 var PLAN={"김서진": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "서승언": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "장은율": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김지효": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김린": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "이동우": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고2"}, "김도현": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김소희": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "윤유란": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "정다원": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "김민서": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "이지민": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "조혜린": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "최의준": {"dv": "Core", "d": "B", "s": "2026-11-05", "m": "고1"}};
 var ADMIN=['신유정'];
 function isAdm(n){return ADMIN.indexOf(n)>=0}
@@ -214,7 +214,7 @@ function exNote(n,now,ti,nd){
   for(var k=1;k<=7;k++){var d=new Date(now);d.setDate(d.getDate()+k);if(ds.indexOf(d.getDay())>=0&&iso(d)>=FIRSTEX[grp])return bx+'다음 시험 '+dshow(iso(d))+' · Day '+nx+' 단어를 미리 공부하세요</div>'}
   return'';
 }
-function noteCard(r,cap,due,today,LN){
+function noteCard(r,cap,due,today,LN,nb){
   var it=r.items,tot=it.length,gr=it.filter(function(i){return i.st>=4}).length,live=it.filter(function(i){return!(i.st>=4)});
   var sc={},so=['데일리보카','더블보카','천일문S','미니모고'],SC={'데일리보카':'#ffb3a7','더블보카':'#9ec5ff','천일문S':'#8fd3b6','미니모고':'#d9bd86'};so.forEach(function(k){sc[k]=0});
   it.forEach(function(i){var k=String(i.src||'기타').split(',')[0].trim().split(/\s*·\s*|\s+/)[0]||'기타';if(/^미니모|^모의고사/.test(k))k='미니모고';else if(/^천일문/.test(k))k='천일문S';if(!(k in sc)){sc[k]=0;so.push(k);SC[k]='#b8c4cc'}sc[k]++});
@@ -224,8 +224,9 @@ function noteCard(r,cap,due,today,LN){
   var h='<div class="nt"><div class="nl">누적 모인 단어</div><div class="nb">'+tot+'<small>개</small></div>';
   if(tot)h+='<p class="ns">모인 곳</p><div class="nbar">'+bar+'</div><div class="nlg">'+lg+'</div>';
   h+='<div class="ns2"><h3>복습 단계별 단어 수</h3><div class="nstg">'+sg.map(function(v,x){return'<div><b>'+v+'</b><span>'+IV[x]+' 단계</span></div>'}).join('')+(gr?'<div class="g"><b>'+gr+'</b><span>졸업</span></div>':'')+'</div><p class="nx">맞히면 다음 단계로 · 15일 단계까지 통과하면 졸업</p></div></div>';
-  h+='<button class="tk" id="st"'+(today?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적테스트</b><small>'+(due.length>cap?'밀린 '+(due.length-cap)+'개는 다음 날로 이어짐':'데일리보카 포함 · 1 · 3 · 7 · 15일 주기')+'</small></div><span class="chip'+(today?' w':' n')+'">'+today+'개</span></button>';
+  if(!nb){  h+='<button class="tk" id="st"'+(today?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적테스트</b><small>'+(due.length>cap?'밀린 '+(due.length-cap)+'개는 다음 날로 이어짐':'데일리보카 포함 · 1 · 3 · 7 · 15일 주기')+'</small></div><span class="chip'+(today?' w':' n')+'">'+today+'개</span></button>';
   h+='<button class="tk" id="ls2"'+(LN?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>말하기 시험 단어 · 데일리보카 제외</small></div><span class="chip n">'+LN+'개</span></button>';
+}
   return h;
 }
 function home(r){
@@ -268,15 +269,11 @@ function home(r){
   }else{
     h+='<div class="hero pm"><div class="lb"><span class="lg"><img src="logo.png" alt="비타민 영어클리닉"></span><span class="dt">'+dshow(ti)+'</span></div><div class="hn mt"><em>성공</em>은 매일 부단하게 반복된<br>작은 노력의 <em>합산</em>이다.</div></div>';
   }
-  h+=noteCard(r,cap,due,today,LI.length);
+  NCX={due:due,cap:cap,today:today,LN:LI.length};
+  if(!(I&&!isAdm(n)))h+=noteCard(r,cap,due,today,LI.length,0);
   /* today */
   var IU=!!I&&!isAdm(n);
-  if(IU)h+='<div class="cal" id="wk" style="margin-top:12px"></div><div id="dp"></div><details class="mo"><summary>전체 주차 한눈에 보기 ▾</summary><div class="cal" id="cal"></div></details>';
-  if(IU){
-    var XP=I.P,XEP=examPlan(n,I,ti),XS=exStat(n,ti),xk=Object.keys(XEP).sort().filter(function(k){return k>=ti})[0],xn=Object.keys(XS.tk).length;
-    var xline=xk?((xk===ti?'오늘':dshow(xk))+' · Day '+XEP[xk]):(XS.nx?'다음 시험 일정을 안내해 드려요':'32 Day 시험 완료');
-    h+='<h2 class="sec">학원 테스트</h2><a class="xm" href="'+VB+(XP.dv==='Pro'?'dvpro/':'dvcore/')+'"><div class="xt"><span class="xb">ACADEMY TEST</span><span class="xc">시험</span></div><div class="xn">더블보카 '+XP.dv+'</div><div class="xd">'+(xk?'다음 시험  ':'')+'<b>'+xline+'</b></div><div class="xp"><i style="width:'+(xn/32*100)+'%"></i></div><div class="xf"><span>시험 응시 '+xn+' / 32 Day</span><span>연습 '+I.dv.length+' / 32 Day</span></div></a>';
-  }
+  if(IU)h+='<div class="cal" id="wk" style="margin-top:12px"></div><div id="dp"></div><details class="mo"><summary>전체 주차 한눈에 보기 ▾</summary><div class="cal" id="cal"></div></details>'+noteCard(r,cap,due,today,LI.length,1);
   h+='<h2 class="sec">'+(IU?'내 속도로 하는 활동':'오늘')+'</h2>';
   if(isAdm(n)){
     [['데일리보카 B',VB+'daily/b/?t=1','#2a8a5c'],['데일리보카 H',VB+'daily/h/?t=1','#2a8a5c'],['더블보카 Core',VB+'dvcore/?t=1','#2d6a9f'],['더블보카 Pro',VB+'dvpro/?t=1','#2d6a9f'],['미니모의고사 고1',MM['고1'],'#8a5a9e'],['미니모의고사 고2',MM['고2'],'#8a5a9e'],['천일문S 문장줄이기',VB+'sj/','#c2557a'],['그래머콕 개념노트',GC,'#17939e']].forEach(function(t){
@@ -349,8 +346,12 @@ function drawDP(I,ti,EP){
     else chip='<span class="chip n">'+(isT?'진행 전':'예정')+'</span>';
     h+=(K<=ti?'<a class="tk" href="'+VB+I.Q.u+(I.S[dn]?'':'?day='+dn)+'">':'<div class="tk off">')+'<i class="bd"></i><div class="tt"><b>데일리보카 '+P.d+'</b><small>'+sub+'</small></div>'+chip+(K<=ti?'</a>':'</div>');
   }
+  if(isT&&NCX){var X=NCX;h+='<button class="tk" id="st"'+(X.today?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적테스트</b><small>'+(X.due.length>X.cap?'밀린 '+(X.due.length-X.cap)+'개는 다음 날로 이어짐':'데일리보카 포함 · 1 · 3 · 7 · 15일 주기')+'</small></div><span class="chip'+(X.today?' w':' n')+'">'+X.today+'개</span></button><button class="tk" id="ls2"'+(X.LN?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>말하기 시험 단어 · 데일리보카 제외</small></div><span class="chip n">'+X.LN+'개</span></button>'}
   if(w===5&&K>=P.s&&CLOSED.indexOf(K)<0){var sp1=(hc.sp||{})[K],c1=sp1===1?'<span class="chip">완료</span>':sp1===2?'<span class="chip n">결석</span>':(isPast&&!inHold(hc,K)?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'오늘':'예정')+'</span>');h+='<div class="tk"><i class="bd" style="background:#1f8a56"></i><div class="tt"><b>금요일 말하기 시험</b><small>누적보카 · 학원</small></div>'+c1+'</div>'}
+  if(EP&&EP[K]){var xdv=P.dv==='Pro'?'dvpro/':'dvcore/';h+=(K<=ti?'<a class="tk" href="'+VB+xdv+'">':'<div class="tk off">')+'<i class="bd" style="background:#2d6a9f"></i><div class="tt"><b>더블보카 '+P.dv+' 시험</b><small>Day '+EP[K]+' · 학원 테스트</small></div><span class="chip n">'+(isT?'오늘':'예정')+'</span>'+(K<=ti?'</a>':'</div>')}
   el.innerHTML=h+'</div>';
+  var stb=document.getElementById('st');if(stb&&NCX)stb.onclick=function(){review(NCX.due.slice().sort(byPri).slice(0,NCX.today))};
+  var l2=document.getElementById('ls2');if(l2)l2.onclick=function(){list()};
 }
 function cellH(dt,I,ti,EP){
   var key=iso(dt),dayN=I.map[key],cls='dy',sm='',closed=CLOSED.indexOf(key)>=0;
