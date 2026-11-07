@@ -255,9 +255,9 @@ function noteCard(r,cap,due,today,LN,nb){
 }
 function home(r){
   var n=name();if(!n){login();return}
-  if(!r){$.innerHTML='<h1>로드맵</h1><div class="sub">불러오는 중...</div>';
+  if(!r){var cz=lj('wn_ls_'+n+TCM,null);if(cz&&cz.ok&&cz.items&&cz.today===iso(new Date())){home(cz)}else{$.innerHTML='<h1>로드맵</h1><div class="sub">불러오는 중...</div>'}
     flushR().then(function(){return post({act:'list',name:n,pin:PIN})}).then(function(x){
-      if(x&&x.ok)home(x);else if(isAdm(n))home(admData());else{ds('wn_name');login()}
+      if(x&&x.ok){try{ss('wn_ls_'+n+TCM,JSON.stringify(x))}catch(e){}home(x)}else if(isAdm(n))home(admData());else{ds('wn_name');login()}
     },function(){$.innerHTML='<h1>로드맵</h1><div class="card">연결이 안 됐어요. 인터넷을 확인해 주세요.<button class="btn pri" id="rt">다시 불러오기</button></div>';document.getElementById('rt').onclick=function(){home()}});return
   }
   var hc=ctlOf(CTLM,n);if(hc.hide&&hc.hide.length){r=Object.assign({},r,{items:r.items.filter(function(i){return hc.hide.indexOf(i.src)<0})})}
