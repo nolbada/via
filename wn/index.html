@@ -78,7 +78,7 @@ a.tk,button.tk,div.tk{display:flex;align-items:center;gap:12px;width:100%;text-a
 .cg .dy.cl{background:repeating-linear-gradient(135deg,transparent 0 5px,var(--line) 5px 6px)}
 .cg .dy.td{outline:2px solid var(--pri);outline-offset:-1px}
 .cg .dy{cursor:pointer}.cg .dy.sl{background:var(--priBg,#e8f0fb);border-color:var(--pri)}.cg .dy small b{color:var(--pri)}
-.cg .dy small b.rd{color:#1f8a56}
+.cg .dy small b.rd{color:#1f8a56}.cg .dy small b.rd.wl{color:#a8650b}@media (prefers-color-scheme:dark){.cg .dy small b.rd.wl{color:#f0b765}}
 @media (prefers-color-scheme:dark){.cg .dy small b.rd{color:#5fd19a}}
 .dpl{margin:10px 0 0}.dpl .dh{font-size:14px;font-weight:700;margin:2px 4px 8px}.dpl .sm{font-size:12px;color:var(--sub);margin:12px 4px 6px}
 .cg .dy.ot{opacity:.35}
@@ -351,12 +351,13 @@ function drawDP(I,ti,EP){
     else chip='<span class="chip n">'+(isT?'진행 전':'예정')+'</span>';
     h+=(K<=ti?'<a class="tk" href="'+VB+I.Q.u+'">':'<div class="tk off">')+'<i class="bd"></i><div class="tt"><b>데일리보카 '+P.d+'</b><small>'+sub+'</small></div>'+chip+(K<=ti?'</a>':'</div>');
   }
+  if(w===5&&K>=P.s&&CLOSED.indexOf(K)<0){var sp1=(hc.sp||{})[K],c1=sp1===1?'<span class="chip">완료</span>':sp1===2?'<span class="chip n">결석</span>':(isPast&&!inHold(hc,K)?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'오늘':'예정')+'</span>');h+='<div class="tk"><i class="bd" style="background:#1f8a56"></i><div class="tt"><b>금요일 말하기 시험</b><small>누적보카 · 학원</small></div>'+c1+'</div>'}
   el.innerHTML=h+'</div>';
 }
 function cellH(dt,I,ti,EP){
   var key=iso(dt),dayN=I.map[key],cls='dy',sm='',closed=CLOSED.indexOf(key)>=0;
   if(dayN){cls+=' hw';if(I.S[dayN]){cls+=' dn';sm='<span class="dl">데일리 '+dayN+' ✓</span>'}else if(key<ti&&!inHold(ctlOf(CTLM,name()),key)){cls+=' lt';sm='<span class="dl">데일리 '+dayN+' 밀림</span>'}else sm='<span class="dl">데일리 '+dayN+'</span>'}
-  else if(dt.getDay()===5&&key>=I.P.s&&!closed)sm='<b class="rd">말하기</b>';
+  else if(dt.getDay()===5&&key>=I.P.s&&!closed){var hc0=ctlOf(CTLM,name()),sv=(hc0.sp||{})[key];if(sv===1){cls+=' dn';sm='<b class="rd">말하기 ✓</b>'}else if(sv===2){sm='말하기 결석'}else if(key<ti&&!inHold(hc0,key)){cls+=' lt';sm='<b class="rd wl">말하기 밀림</b>'}else sm='<b class="rd">말하기</b>'}
   if(EP[key])sm+=(sm?'<br>':'')+'<b class="ex">시험</b>';
   if(closed){cls+=' cl';sm=(sm?sm+'<br>':'')+'휴원'}
   if(key===ti)cls+=' td';
