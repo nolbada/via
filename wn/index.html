@@ -393,6 +393,7 @@ function examPlan(n,I,ti){
 }
 function drawDP(I,ti,EP){
   var el=document.getElementById('dp');if(!el)return;
+  if(!SEL){el.innerHTML='';return}
   var K=SEL||ti,r=DATA,n=name(),hc=ctlOf(CTLM,n),P=I.P,h='<div class="dpl"><div class="dh">'+dshow(K)+(K===ti?' · 오늘':'')+'</div>';
   var BL=dayItems(K,I,ti,EP);if(K===ti&&(!BL.length||BL.every(function(x){return x.done}))){el.innerHTML='';return}if(BL.length){var bd=BL.filter(function(x){return x.done}).length;h+='<div class="brk'+(bd===BL.length?' all':'')+'"><b>'+bd+'/'+BL.length+'</b><span>'+BL.map(function(x){return'<i'+(x.done?' class="on"':'')+'></i>'}).join('')+'</span></div>'}
   var isT=K===ti,isPast=K<ti,w=new Date(K+'T00:00:00').getDay(),dn=I.map[K];
