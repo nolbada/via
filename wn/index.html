@@ -368,8 +368,9 @@ function recView(key){
   else if(key==='m'){c='#e0a21a';t='미니모의고사';num=D.mm;tot=24;for(q=1;q<=tot;q++)dots+=dot(q,q<=D.mm?1:0,c,q)}
   else{c='#2fa66b';t='금요일 말하기';num=D.okN;tot=D.fr.length;D.fr.forEach(function(k,i){var v=D.sp[k];dots+=dot(i,v===1?1:v===2?2:0,c,i+1);});D.fr.slice().reverse().forEach(function(k){var v=D.sp[k];lst+='<div class="row"><div><b>'+dshow(k)+'</b></div><span class="badge">'+(v===1?'통과':v===2?'결석':'아직')+'</span></div>'})}
   var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+t+'</div></div><div class="card"><div class="rvh"><b style="color:'+c+'">'+t+'</b><span style="color:'+c+'">'+num+'<small> / '+tot+'</small></span></div><div class="rvb"><i style="width:'+(tot?Math.min(100,num/tot*100):0)+'%;background:'+c+'"></i></div><div class="dg">'+dots+'</div></div>';
+  if(key==='f'){var fn=DATA.items.filter(isL).length;h+='<button class="tk" id="fl"'+(fn?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>말하기 대비 단어</b><small>말하기 시험 단어 · 데일리보카 제외</small></div><span class="chip n">'+fn+'개</span></button>'}
   if(lst)h+='<div class="card">'+lst+'</div>';
-  $.innerHTML=h;document.getElementById('hm').onclick=function(){home(DATA)};window.scrollTo(0,0);
+  $.innerHTML=h;document.getElementById('hm').onclick=function(){home(DATA)};var fl=document.getElementById('fl');if(fl)fl.onclick=function(){list()};window.scrollTo(0,0);
 }
 function exStat(n,ti){
   var tk=exTaken(n),P=PLAN[n],nx=0,z;
