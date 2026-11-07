@@ -288,7 +288,7 @@ function home(r){
     h+='<div class="hero pm"><div class="lb"><span class="lg"><img src="logo.png" alt="비타민 영어클리닉"></span><span class="dt">'+dshow(ti)+'</span></div><div class="hn mt"><em>성공</em>은 매일 부단하게 반복된<br>작은 노력의 <em>합산</em>이다.</div></div>';
   }
   NCX={due:due,cap:cap,today:today,LN:LI.length};
-  try{if(I&&!isAdm(n)){var EPx=examPlan(n,I,ti),tmx=adD(ti,1);if(EPx[tmx])h+='<a class="prb" href="'+VB+(I.P.dv==='Pro'?'dvpro/':'dvcore/')+'"><b>'+dshow(tmx)+' 더블보카 시험</b><span>더블'+EPx[tmx]+' 준비</span></a>'}}catch(e){}
+  try{if(I&&!isAdm(n)){var EPx=examPlan(n,I,ti),tmx=adD(ti,1);if(EPx[tmx])h+='<a class="prb" href="'+VB+(I.P.dv==='Pro'?'dvpro/':'dvcore/')+'"><b>'+dshow(tmx)+' 더블보카 시험</b><span>더블'+EPx[tmx]+' 준비</span></a>';else{var fk=(new Date(ti+'T00:00:00').getDay()===5)?ti:(new Date(tmx+'T00:00:00').getDay()===5?tmx:'');if(fk&&CLOSED.indexOf(fk)<0&&fk>=I.P.s)h+='<a class="prb" href="#" onclick="list(\''+fk+'\');return false"><b>'+dshow(fk)+' 누적보카 말하기 시험</b><span>말하기 대비</span></a>'}}}catch(e){}
   h+=noteCard(r,cap,due,today,LI.length,(I&&!isAdm(n))?1:0);
   /* today */
   var IU=!!I&&!isAdm(n);RC={I:I,n:n,ti:ti};
@@ -430,8 +430,7 @@ function cellH(dt,I,ti,EP){
   if(L.length){if(all)cls+=' dn';else if(anyL)cls+=' lt';else if(I.map[key]||dt.getDay()===5)cls+=' hw'}
   sm='<span class="cks">'+L.map(function(x){var id=key+x.t,pop=x.done&&!seen[id];if(pop){seen[id]=1;sc=1}return'<span class="ck'+(x.done?' on':'')+(x.late?' lt':'')+(pop?' pop':'')+'" data-t="'+x.t+'"><i></i>'+x.n+'</span>'}).join('')+'</span>';
   if(sc)ss('wn_ck',JSON.stringify(seen));
-  var pxd=EP&&!closed?EP[adD(key,1)]:0;if(pxd){cls+=' pr';sm+='<span class="pc">더블'+pxd+' 준비</span>'}
-  if(closed){cls+=' cl';sm='휴원'}
+    if(closed){cls+=' cl';sm='휴원'}
   if(key===ti)cls+=' td';
   if(key===SEL)cls+=' sl';
   return'<div class="'+cls+'" data-k="'+key+'"><span class="n">'+dt.getDate()+'</span><small>'+sm+'</small></div>';
