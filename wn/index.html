@@ -438,6 +438,15 @@ function cellH(dt,I,ti,EP){
   if(key===SEL)cls+=' sl';
   return'<div class="'+cls+'" data-k="'+key+'"><span class="n">'+dt.getDate()+'</span><small>'+sm+'</small></div>';
 }
+function nextEx(I,ti,EP){
+  try{var P=I.P,best='',kind='',LK='color:inherit;font-weight:700;text-decoration:underline';
+    Object.keys(EP||{}).sort().forEach(function(k){if(!best&&k>=ti&&CLOSED.indexOf(k)<0){best=k;kind='x'}});
+    for(var q=0;q<21;q++){var f=adD(ti,q);if(new Date(f+'T00:00:00').getDay()===5&&f>=P.s&&CLOSED.indexOf(f)<0){if(!best||f<best){best=f;kind='s'}break}}
+    if(!best)return'';
+    if(kind==='x')return'<div class="fx"><b>다음 시험</b> '+dshow(best)+' 더블 · <a href="'+VB+(P.dv==='Pro'?'dvpro/':'dvcore/')+'" style="'+LK+'">Day '+EP[best]+' 미리 공부하기</a></div>';
+    return'<div class="fx"><b>다음 시험</b> '+dshow(best)+' 말하기 · <a href="#" style="'+LK+'" onclick="list(\''+best+'\');return false">말하기 대비 단어 보기</a></div>'
+  }catch(e){return''}
+}
 function drawWeek(I,ti,EP){
   var el=document.getElementById('wk');if(!el)return;
   var CS=new Date('2026-11-02T00:00:00'),CE=new Date('2027-02-28T00:00:00');
@@ -446,7 +455,7 @@ function drawWeek(I,ti,EP){
   var h='<div class="ch2"><button id="pw"'+(mon<=CS?' disabled':'')+'>&lsaquo;</button><b>'+(wn>=1&&wn<=17?wn+'주차 · ':'')+dshow(iso(mon))+' ~ '+dshow(iso(sun))+'</b><button id="nw"'+(sun>=CE?' disabled':'')+'>&rsaquo;</button></div><div class="cg wk">';
   ['월','화','수','목','금','토','일'].forEach(function(w){h+='<div class="wd">'+w+'</div>'});
   for(var k=0;k<7;k++){var dt=new Date(mon);dt.setDate(mon.getDate()+k);h+=cellH(dt,I,ti,EP)}
-  h+='</div><div class="fx"><b>매주 금요일</b> 누적보카 말하기 시험 (학원)</div><div class="lg"><div><b>데일리</b> = 데일리보카</div><div><b>누적</b> = 오답 누적복습</div><div><b>더블</b> = 학원 더블보카 테스트</div><div><b class="rd">말하기</b> = 금요일 누적보카 테스트</div></div>';
+  h+='</div>'+nextEx(I,ti,EP)+'<div class="lg"><div><b>데일리</b> = 데일리보카</div><div><b>누적</b> = 오답 누적복습</div><div><b>더블</b> = 학원 더블보카 테스트</div><div><b class="rd">말하기</b> = 금요일 누적보카 테스트</div></div>';
   el.innerHTML=h;
   el.querySelectorAll('.dy[data-k]').forEach(function(c){c.onclick=function(e){var k=c.dataset.k,g=null;if(g&&g.dataset.t==='r'&&CLOSED.indexOf(k)<0){rvStart(k,ti);return}if(g&&g.dataset.t==='s'&&CLOSED.indexOf(k)<0){list(k);return}if(g&&CLOSED.indexOf(k)<0){var dn=I.map[k],u=g.dataset.t==='x'?VB+(I.P.dv==='Pro'?'dvpro/':'dvcore/'):(dn?VB+I.Q.u+(I.S[dn]?'':'?day='+dn):'');if(u){location.href=u+((PV||TCM)?(u.indexOf('?')<0?'?t=1':'&t=1'):'')+(TCM?'&c='+TCM:'');return}}SEL=k;CALM=new Date(+SEL.slice(0,4),+SEL.slice(5,7)-1,1);drawCal(I,ti);var d=document.getElementById('dp'),tk=d?d.querySelectorAll('.tk'):[];if(tk.length===1&&tk[0].tagName==='A'&&tk[0].getAttribute('href')){var hu=tk[0].getAttribute('href');if(PV&&/\/(daily\/[bh]|dvcore|dvpro)\/(\?day=\d+)?$/.test(hu))hu+=(hu.indexOf('?')<0?'?t=1':'&t=1');location.href=hu}}});
   var mv=function(dd){var t=new Date((SEL||ti)+'T00:00:00');t.setDate(t.getDate()+dd);SEL=iso(t);CALM=new Date(t.getFullYear(),t.getMonth(),1);drawCal(I,ti)};
