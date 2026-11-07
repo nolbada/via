@@ -167,7 +167,7 @@ var RC=null,NCX=null,DATA=null,resetArm=false,resetT=null,CALM=null,SEL=null;
 var PLAN={"김서진": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "서승언": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "장은율": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김지효": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김린": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "이동우": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고2"}, "김도현": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김소희": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "윤유란": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "정다원": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "김민서": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "이지민": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "조혜린": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "최의준": {"dv": "Core", "d": "B", "s": "2026-11-05", "m": "고1"}};
 var ADMIN=['신유정'];
 var TCM=(function(){var m=/[?&]c=([AB])(&|$)/.exec(location.search);return(/[?&]t=1(&|$)/.test(location.search)&&m)?m[1]:''})();
-if(TCM)PLAN['신유정'+TCM]=TCM==='A'?{"dv":"Core","d":"B","s":"2026-11-03","m":"고1"}:{"dv":"Pro","d":"H","s":"2026-11-02","m":"고2"};
+if(TCM)PLAN['신유정'+TCM]=TCM==='A'?{"dv":"Core","d":"B","s":"2026-11-02","m":"고1"}:{"dv":"Pro","d":"H","s":"2026-11-02","m":"고2"};
 function isAdm(n){return!TCM&&ADMIN.indexOf(n)>=0}
 function admData(){return{ok:true,items:[],cap:40,max:60,today:iso(new Date())}}
 var CLOSED=['2026-12-25','2026-12-30','2026-12-31','2027-01-01'];
@@ -414,7 +414,7 @@ function dayItems(key,I,ti,EP){
   if(CLOSED.indexOf(key)>=0)return L;
   var late=key<ti&&!inHold(hc,key),w=new Date(key+'T00:00:00').getDay();
   if(dn)L.push({t:'d',n:'데일리',done:!!I.S[dn],late:late&&!I.S[dn]});
-  if(key>=I.P.s){var rvd=rvMap()[key];if(rvd||key>=ti)L.push({t:'r',n:'복습',done:!!rvd,late:false})}
+  if(key>=I.P.s){var rvd=rvMap()[key];L.push({t:'r',n:'복습',done:!!rvd,late:false})}
   if(w===5&&key>=I.P.s){var sv=(hc.sp||{})[key],sd=sv===1||sv===2;L.push({t:'s',n:sv===2?'결석':'말하기',done:sd,late:!sd&&late})}
   if(EP&&EP[key]){L.push({t:'x',n:'시험',done:!!exTaken(n)[EP[key]],late:false})}
   return L;
