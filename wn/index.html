@@ -340,19 +340,19 @@ function recData(I,n,ti){
   var P=I.P,XS=exStat(n,ti),EP=examPlan(n,I,ti),sp=ctlOf(CTLM,n).sp||{},mm=lj('wn_mm_'+n,[]).length,x,k;
   var dk=Object.keys(I.S),ld='',lt=0;dk.forEach(function(q){var t=I.S[q].t||0;if(t>=lt){lt=t;ld=q}});
   var nd='';for(k=ti;k<'2027-03-01';k=adD(k,1)){var dn=I.map[k];if(dn&&!I.S[dn]){nd=dshow(k)+' '+dn+'일차';break}}
-  var xk=Object.keys(XS.tk),xl=0,xlt=0;xk.forEach(function(q){if(XS.tk[q]>=xlt){xlt=XS.tk[q];xl=q}});
+  var xk=Object.keys(XS.tk),xl=0,xlt=0,XD={},xdl=[];try{xdl=JSON.parse(localStorage.getItem('dv'+(P.dv==='Pro'?'p':'c')+'_done_'+n)||'[]')}catch(e){}xdl.forEach(function(q){XD[+q+1]=1});xk.forEach(function(q){XD[q]=1});xk.forEach(function(q){if(XS.tk[q]>=xlt){xlt=XS.tk[q];xl=q}});
   var nx='',ek=Object.keys(EP).sort().filter(function(q){return q>=ti})[0];if(ek)nx=dshow(ek)+' Day '+EP[ek];
   var fr=[],d=new Date(P.s+'T00:00:00');while(iso(d)<=ti&&fr.length<40){if(d.getDay()===5&&CLOSED.indexOf(iso(d))<0)fr.push(iso(d));d.setDate(d.getDate()+1)}
   var nf='';for(k=ti;k<'2027-03-01';k=adD(k,1)){if(new Date(k+'T00:00:00').getDay()===5&&CLOSED.indexOf(k)<0&&k>=P.s&&!sp[k]){nf=dshow(k);break}}
   var okN=0,lf='';fr.forEach(function(q){if(sp[q]===1){okN++;lf=q}});
-  return{P:P,XS:XS,sp:sp,mm:mm,dk:dk,ld:ld,nd:nd,xn:xk.length,xl:xl,nx:nx,fr:fr,nf:nf,okN:okN,lf:lf};
+  return{P:P,XS:XS,sp:sp,mm:mm,dk:dk,ld:ld,nd:nd,xn:Object.keys(XD).length,XD:XD,xl:xl,nx:nx,fr:fr,nf:nf,okN:okN,lf:lf};
 }
 function roomH(I,n,ti){
   var D=recData(I,n,ti),P=D.P;
   function row(key,c,t,l1,l2,chip){return'<button class="tk" data-rv="'+key+'"><i class="bd" style="background:'+c+'"></i><div class="tt"><b>'+t+'</b><small>'+l1+(l2?'<br>'+l2:'')+'</small></div><span class="chip n">'+chip+'</span></button>'}
   return'<div class="rmz"><h2 class="sec">기록 열람실</h2>'
    +row('d','#ff7a66','데일리보카 '+P.d,D.ld?'최근 '+D.ld+'일차 '+I.S[D.ld].s:'첫 도장을 기다려요',D.nd?'다음 '+D.nd:'',D.dk.length+' / '+I.Q.n)
-   +row('x','#4a90e2','더블보카 '+P.dv,D.xl?'최근 시험 Day '+D.xl:'아직 본 시험 없음',D.nx?'다음 시험 '+D.nx:'',D.xn+' / 32')
+   +row('x','#4a90e2','더블보카 '+P.dv,D.xl?'최근 시험 Day '+D.xl:(D.xn?'Day '+Math.max.apply(null,Object.keys(D.XD).map(Number))+'까지 학습':'첫 도장을 기다려요'),D.nx?'다음 시험 '+D.nx:'',D.xn+' / 32')
    +row('m','#e0a21a','미니모의고사',D.mm?D.mm+'회까지 완료':'첫 회를 기다려요','다음 '+(D.mm+1)+'회',D.mm+' / 24')
    +row('f','#2fa66b','금요일 말하기',D.lf?'최근 통과 '+dshow(D.lf):'아직 통과한 금요일 없음',D.nf?'다음 '+D.nf:'',D.okN+' / '+D.fr.length)+'</div>';
 }
@@ -361,7 +361,7 @@ function recView(key){
   function dot(i,st,c2,lab){return'<span class="dc'+(st===1?' on':st===2?' ab':'')+'" style="'+(st===1?'background:'+c2:st===2?'border-color:'+c2:'')+'">'+lab+'</span>'}
   function ds(t0){return t0?dshow(iso(new Date(t0))):''}
   if(key==='d'){c='#ff7a66';t='데일리보카 '+P.d;num=D.dk.length;tot=I.Q.n;for(q=1;q<=tot;q++)dots+='<a href="'+VB+I.Q.u+'?day='+q+(TCM?'&t=1&c='+TCM:PV?'&t=1':'')+'" style="display:contents">'+dot(q,I.S[q]?1:0,c,q)+'</a>';D.dk.map(Number).sort(function(a,b){return b-a}).forEach(function(k){lst+='<div class="row"><div><b>'+k+'일차</b><small>'+ds(I.S[k].t)+'</small></div><span class="badge">'+I.S[k].s+'</span></div>'})}
-  else if(key==='x'){c='#4a90e2';t='더블보카 '+P.dv;num=D.xn;tot=32;for(q=1;q<=tot;q++)dots+='<a href="'+VB+(P.dv==='Pro'?'dvpro/':'dvcore/')+(TCM?'?t=1&c='+TCM:PV?'?t=1':'')+'" style="display:contents">'+dot(q,D.XS.tk[q]?1:0,c,q)+'</a>';Object.keys(D.XS.tk).map(Number).sort(function(a,b){return b-a}).forEach(function(k){lst+='<div class="row"><div><b>Day '+k+' 시험</b><small>'+ds(D.XS.tk[k])+'</small></div><span class="badge">응시</span></div>'})}
+  else if(key==='x'){c='#4a90e2';t='더블보카 '+P.dv;num=D.xn;tot=32;for(q=1;q<=tot;q++)dots+='<a href="'+VB+(P.dv==='Pro'?'dvpro/':'dvcore/')+(TCM?'?t=1&c='+TCM:PV?'?t=1':'')+'" style="display:contents">'+dot(q,D.XD[q]?1:0,c,q)+'</a>';Object.keys(D.XD).map(Number).sort(function(a,b){return b-a}).forEach(function(k){lst+='<div class="row"><div><b>Day '+k+(D.XS.tk[k]?' 시험':' 학습')+'</b><small>'+ds(D.XS.tk[k])+'</small></div><span class="badge">'+(D.XS.tk[k]?'응시':'완료')+'</span></div>'})}
   else if(key==='m'){c='#e0a21a';t='미니모의고사';num=D.mm;tot=24;for(q=1;q<=tot;q++)dots+=dot(q,q<=D.mm?1:0,c,q)}
   else{c='#2fa66b';t='금요일 말하기';num=D.okN;tot=D.fr.length;D.fr.forEach(function(k,i){var v=D.sp[k];dots+=dot(i,v===1?1:v===2?2:0,c,i+1);});D.fr.slice().reverse().forEach(function(k){var v=D.sp[k];lst+='<div class="row"><div><b>'+dshow(k)+'</b></div><span class="badge">'+(v===1?'통과':v===2?'결석':'아직')+'</span></div>'})}
   var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+t+'</div></div><div class="card"><div class="rvh"><b style="color:'+c+'">'+t+'</b><span style="color:'+c+'">'+num+'<small> / '+tot+'</small></span></div><div class="rvb"><i style="width:'+(tot?Math.min(100,num/tot*100):0)+'%;background:'+c+'"></i></div><div class="dg">'+dots+'</div></div>';
