@@ -260,7 +260,7 @@ quiz=function(){enter();oq.apply(this,arguments)};
 result=function(){enter();orr.apply(this,arguments)};
 window.addEventListener('popstate',function(){if(sub){sub=false;oh()}});
 })();
-WN.gate(function(){KEY='dv_'+D.level+'_'+WN.name();try{S=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){S={}}S.done=S.done||{};S.wrong=S.wrong||{};S.star=S.star||{};home();WN.hwget().then(function(L){var ch=0;L.forEach(function(x){if(x.level===D.level&&x.score&&x.score!=='진행중'&&!S.done[x.day]){S.done[x.day]={s:x.score,t:Date.now()};ch=1}});if(ch){save();if(!R)home()}})});
+WN.gate(function(){KEY='dv_'+D.level+'_'+WN.name();try{S=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){S={}}S.done=S.done||{};S.wrong=S.wrong||{};S.star=S.star||{};home();var _q=/[?&]day=(\d+)/.exec(location.search);if(_q){var _d=+_q[1];if(_d>=1&&_d<=N&&!S.done[_d]){startDay(_d)}}WN.hwget().then(function(L){var ch=0;L.forEach(function(x){if(x.level===D.level&&x.score&&x.score!=='진행중'&&!S.done[x.day]){S.done[x.day]={s:x.score,t:Date.now()};ch=1}});if(ch){save();if(!R)home()}})});
 </script>
 </body>
 </html>
