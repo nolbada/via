@@ -1,0 +1,144 @@
+{
+ "key": "ch01-p18",
+ "label": "p.18",
+ "prev": [
+  "ch01-p17",
+  "p.17"
+ ],
+ "next": [
+  "ch01-p20-21a",
+  "p.20~21 ①"
+ ],
+ "groups": [
+  {
+   "bar": "p.18 · 1번 지문 정답 및 해설",
+   "items": [
+    {
+     "sentence": "Most of the paintings in this museum were created by talented local artists, <w>which</w> inspired by the nature around their town.",
+     "from": "which",
+     "to": "who",
+     "correct": "Most of the paintings in this museum were created by talented local artists, who were inspired by the nature around their town.",
+     "interp": "이 박물관에 있는 그림 대부분은 마을 주변의 자연에서 영감을 받은 재능 있는 지역 화가들이 그렸다.",
+     "ch": "10",
+     "badge": "관계대명사 선택 (Chapter 10 POINT 1)",
+     "explain": "<b>선행사가 사람(artists, 화가들)</b>이면 주격 관계대명사는 <b>who</b>를 써요. <b>which</b>는 사물·동물일 때 써요. 그래서 which → who. 바른 문장에서는 who 뒤에 were inspired가 이어져요."
+    },
+    {
+     "sentence": "Most of the paintings in this museum were created by talented local artists, which <w>inspired</w> by the nature around their town.",
+     "from": "inspired",
+     "to": "were inspired",
+     "correct": "Most of the paintings in this museum were created by talented local artists, who were inspired by the nature around their town.",
+     "interp": "이 박물관에 있는 그림 대부분은 마을 주변의 자연에서 영감을 받은 재능 있는 지역 화가들이 그렸다.",
+     "ch": "03",
+     "badge": "주격 관계대명사절 동사의 능동태 vs. 수동태 (Chapter 03 POINT 3)",
+     "explain": "관계대명사절의 주어(who)는 화가들이고, 화가들은 자연에게서 영감을 <b>받는</b> 쪽이에요. 그래서 수동태 <b>were inspired</b>(inspire 영감을 주다 → 영감을 받다)가 맞아요. 뒤에 <b>by the nature</b>(자연에 의해)가 있는 것도 힌트예요. 추가 포인트: 문장 앞쪽 <b>Most of the paintings ... were created</b>(create 만들다 → 그려졌다)는 그림이 '그려진' 쪽이라 수동태가 맞아요."
+    }
+   ]
+  },
+  {
+   "bar": "p.18 · 2번 지문 정답 및 해설",
+   "items": [
+    {
+     "sentence": "Colleges in most places around the country have fewer students today than they did 10 years ago, so they are trying <w>attracting</w> more applicants and providing better programs.",
+     "from": "attracting",
+     "to": "to attract",
+     "correct": "Colleges in most places around the country have fewer students today than they did 10 years ago, so they are trying to attract more applicants and provide better programs.",
+     "interp": "[지문 해석] 대학생 수는 해마다 계속 줄고 있다. 전국 대부분 지역의 대학들은 10년 전보다 오늘날 학생 수가 더 적어서, 더 많은 지원자를 끌어들이고 더 나은 프로그램을 제공하려고 노력하고 있다.",
+     "ch": "06",
+     "badge": "동명사와 to부정사 둘 다 목적어로 취하는 동사 (Chapter 06 POINT 3)",
+     "explain": "<b>try to + 동사원형</b>은 '~하려고 노력하다', <b>try + -ing</b>는 '시험 삼아 ~해 보다'예요. 여기서는 지원자를 끌어들이려고 '노력하는' 것이니 <b>to attract</b>(attract 끌어들이다)가 맞아요."
+    },
+    {
+     "sentence": "Colleges in most places around the country have fewer students today than they did 10 years ago, so they are trying attracting more applicants and <w>providing</w> better programs.",
+     "from": "providing",
+     "to": "provide",
+     "correct": "Colleges in most places around the country have fewer students today than they did 10 years ago, so they are trying to attract more applicants and provide better programs.",
+     "interp": "(위 지문 해석 참고) 더 나은 프로그램을 제공하려고 노력하고 있다.",
+     "ch": "08",
+     "badge": "동명사와 to부정사 병렬 (Chapter 08 POINT 2)",
+     "explain": "<b>and</b>는 같은 모양끼리 이어 줘요. 앞이 <b>to attract</b>이므로 뒤도 <b>(to) provide</b>(provide 제공하다)로 맞춰요. to는 반복되어 생략할 수 있어서 <b>to attract ... and provide</b>가 돼요. 추가 포인트: <b>fewer students ... than they did</b>에서 did는 앞의 have를 대신하는 말이에요."
+    }
+   ]
+  },
+  {
+   "bar": "p.18 · 3번 지문 정답 및 해설",
+   "items": [
+    {
+     "sentence": "This way of recycling plastic products helps to protect the environment by reducing waste and <w>save</w> resources.",
+     "from": "save",
+     "to": "saving",
+     "correct": "This way of recycling plastic products helps to protect the environment by reducing waste and saving resources.",
+     "interp": "이렇게 플라스틱 제품을 재활용하는 방식은 쓰레기를 줄이고 자원을 아끼는 방법으로 환경을 보호하는 데 도움이 된다.",
+     "ch": "08",
+     "badge": "동명사와 to부정사 병렬 (Chapter 08 POINT 2)",
+     "explain": "전치사 <b>by</b> 뒤에는 동명사가 오고, <b>and</b>로 이어진 것도 같은 모양이어야 해요. <b>by reducing ... and saving</b>(reduce 줄이다 / save 아끼다)이 맞아요. 추가 포인트: <b>This way ... helps</b>에서 주어는 단수 way이므로 helps가 맞아요(recycling plastic products는 way를 꾸미는 말)."
+    }
+   ]
+  },
+  {
+   "bar": "p.18 · 4번 지문 정답 및 해설",
+   "items": [
+    {
+     "sentence": "Solid rubber balls are great for such games, while balls made of clay do not <w>bouncing</w> at all, so they are not suitably.",
+     "from": "bouncing",
+     "to": "bounce",
+     "correct": "Solid rubber balls are great for such games, while balls made of clay do not bounce at all, so they are not suitable.",
+     "interp": "단단한 고무공은 이런 경기에 아주 좋지만, 점토로 만든 공은 전혀 튀지 않아서 적합하지 않다.",
+     "ch": "07",
+     "badge": "동사 vs. 분사 (Chapter 07 POINT 1)",
+     "explain": "<b>do not</b> 뒤에는 동사원형이 와요. -ing(bouncing)은 동사 자리에 올 수 없어요. 그래서 <b>do not bounce</b>(bounce 튀다)가 맞아요. 추가 포인트: <b>balls made of clay</b>의 made(만들어진)는 balls를 꾸미는 과거분사이고, 주어 balls가 복수라 do가 맞아요."
+    },
+    {
+     "sentence": "Solid rubber balls are great for such games, while balls made of clay do not bouncing at all, so they are not <w>suitably</w>.",
+     "from": "suitably",
+     "to": "suitable",
+     "correct": "Solid rubber balls are great for such games, while balls made of clay do not bounce at all, so they are not suitable.",
+     "interp": "단단한 고무공은 이런 경기에 아주 좋지만, 점토로 만든 공은 전혀 튀지 않아서 적합하지 않다.",
+     "ch": "12",
+     "badge": "형용사 vs. 부사(2) 보어 자리 (Chapter 12 POINT 2)",
+     "explain": "<b>be동사 뒤 보어</b> 자리에는 형용사가 와요. 부사(suitably)는 쓸 수 없어요. <b>they are not suitable</b>(suitable 적합한)이 맞아요. 추가 포인트: <b>What type of ball you choose</b>는 명사절 주어라서 단수 동사 <b>depends</b>를 써요."
+    }
+   ]
+  },
+  {
+   "bar": "p.18 · 5번 지문 정답 및 해설",
+   "items": [
+    {
+     "sentence": "As a result, a train service running on schedule looks more <w>practically</w> to them and allows them avoiding heavy traffic.",
+     "from": "practically",
+     "to": "practical",
+     "correct": "As a result, a train service running on schedule looks more practical to them and allows them to avoid heavy traffic.",
+     "interp": "그 결과, 일정대로 운행하는 열차 서비스가 그들에게 더 실용적으로 보이고, 그들이 극심한 교통체증을 피할 수 있게 해 준다.",
+     "ch": "12",
+     "badge": "형용사 vs. 부사(2) 보어 자리 (Chapter 12 POINT 2)",
+     "explain": "<b>look</b>은 '~하게 보이다'라는 뜻일 때 뒤에 형용사가 와요(보어 자리). 그래서 <b>looks more practical</b>(practical 실용적인)이 맞아요. 부사 practically는 안 돼요."
+    },
+    {
+     "sentence": "As a result, a train service running on schedule looks more practically to them and allows them <w>avoiding</w> heavy traffic.",
+     "from": "avoiding",
+     "to": "to avoid",
+     "correct": "As a result, a train service running on schedule looks more practical to them and allows them to avoid heavy traffic.",
+     "interp": "그 결과, 일정대로 운행하는 열차 서비스가 그들에게 더 실용적으로 보이고, 그들이 극심한 교통체증을 피할 수 있게 해 준다.",
+     "ch": "07",
+     "badge": "목적격보어 자리: to부정사 vs. 동사원형 vs. 분사 (Chapter 07 POINT 2)",
+     "explain": "<b>allow + 목적어 + to + 동사원형</b>은 '~가 …하도록 허락하다/가능하게 하다'예요. 그래서 <b>allows them to avoid</b>(avoid 피하다)가 맞아요. 추가 포인트: <b>About one-third of workers travel</b>은 of 뒤 workers가 복수라서 복수동사 travel을 써요."
+    }
+   ]
+  },
+  {
+   "bar": "p.18 · 6번 지문 정답 및 해설",
+   "items": [
+    {
+     "sentence": "Using this technique with their characters allows them to appeal to people’s emotions more <w>easy</w>.",
+     "from": "easy",
+     "to": "easily",
+     "correct": "Using this technique with their characters allows them to appeal to people’s emotions more easily.",
+     "interp": "[지문 해석] 귀여운 동물 캐릭터를 만들 때 흔히 쓰이는 일반적인 전략은 캐릭터가 아기처럼 보이게 하는 것이다. 실제로 이런 캐릭터를 꾸준히 작업하는 많은 애니메이터가 캐릭터를 이렇게 디자인하는 것을 선호한다. 캐릭터에 이 기법을 쓰면 사람들의 감정에 더 쉽게 호소할 수 있다.",
+     "ch": "12",
+     "badge": "형용사 vs. 부사(1) 다른 단어 수식 (Chapter 12 POINT 1)",
+     "explain": "<b>appeal</b>(호소하다)이라는 동사를 꾸미는 말이므로 형용사 easy가 아니라 부사 <b>easily</b>(쉽게)가 맞아요. 추가 포인트: <b>A general strategy that is used ... is to make</b>에서 주어는 단수 strategy라 is가 맞고, <b>make them look</b>(그것들이 ~하게 만들다)은 make + 목적어 + 동사원형이에요."
+    }
+   ]
+  }
+ ]
+}
