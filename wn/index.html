@@ -347,7 +347,7 @@ function drawDP(I,ti,EP){
     if(I.S[dn])chip='<span class="chip">완료 '+I.S[dn].s+'</span>';
     else if(isPast&&!inHold(hc,K))chip='<span class="chip w">밀림</span>';
     else chip='<span class="chip n">'+(isT?'진행 전':'예정')+'</span>';
-    h+=(K<=ti?'<a class="tk" href="'+VB+I.Q.u+'">':'<div class="tk off">')+'<i class="bd"></i><div class="tt"><b>데일리보카 '+P.d+'</b><small>'+sub+'</small></div>'+chip+(K<=ti?'</a>':'</div>');
+    h+=(K<=ti?'<a class="tk" href="'+VB+I.Q.u+(I.S[dn]?'':'?day='+dn)+'">':'<div class="tk off">')+'<i class="bd"></i><div class="tt"><b>데일리보카 '+P.d+'</b><small>'+sub+'</small></div>'+chip+(K<=ti?'</a>':'</div>');
   }
   if(w===5&&K>=P.s&&CLOSED.indexOf(K)<0){var sp1=(hc.sp||{})[K],c1=sp1===1?'<span class="chip">완료</span>':sp1===2?'<span class="chip n">결석</span>':(isPast&&!inHold(hc,K)?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'오늘':'예정')+'</span>');h+='<div class="tk"><i class="bd" style="background:#1f8a56"></i><div class="tt"><b>금요일 말하기 시험</b><small>누적보카 · 학원</small></div>'+c1+'</div>'}
   el.innerHTML=h+'</div>';
