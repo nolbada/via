@@ -130,7 +130,7 @@ a.tk,button.tk,div.tk{display:flex;align-items:center;gap:12px;width:100%;text-a
 .xm .xf{display:flex;justify-content:space-between;font-size:12px;opacity:.8}
 details.mo{margin-top:10px}details.mo>summary{cursor:pointer;font-size:14px;font-weight:700;padding:10px 4px;list-style:none}details.mo>summary::-webkit-details-marker{display:none}
 .nt{border-radius:20px;padding:20px 18px 16px;margin:12px 0 0;color:#fff;background:radial-gradient(120% 100% at 100% 0%,rgba(201,166,107,.35) 0%,rgba(201,166,107,0) 55%),linear-gradient(155deg,#16372d 0%,#244138 100%);border:1px solid #c9a66b;box-shadow:0 8px 22px rgba(36,66,56,.28)}
-.nt .nl{font-size:13px;font-weight:700;letter-spacing:.04em;color:#d9bd86}
+.nt.tp{cursor:pointer;position:relative}.nt.tp:after{content:"\203A";position:absolute;right:18px;top:14px;font-size:24px;color:#d9bd86}.nt .nl{font-size:13px;font-weight:700;letter-spacing:.04em;color:#d9bd86}
 .nt .nb{font-size:56px;font-weight:800;line-height:1.05;margin:4px 0 2px;letter-spacing:-.02em}.nt .nb small{font-size:19px;font-weight:600;margin-left:4px;opacity:.9}
 .nt .ns{font-size:12px;opacity:.85;margin:0 0 7px}
 .nt .nbar{display:flex;height:12px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.15)}.nt .nbar i{display:block;height:100%}.nt .nbar i+i{margin-left:2px}
@@ -245,7 +245,7 @@ function noteCard(r,cap,due,today,LN,nb){
   var bar='',lg='';so.forEach(function(k){var c=SC[k];if(sc[k])bar+='<i style="flex:'+sc[k]+';background:'+c+'"></i>';lg+='<span><em style="background:'+c+'"></em>'+esc(k)+' <b>'+sc[k]+'</b></span>'});
   var sg=[0,0,0,0];live.forEach(function(i){sg[Math.max(0,Math.min(3,i.st|0))]++});
   var IV=['1일','3일','7일','15일'];
-  var h='<div class="nt"><div class="nl">누적 모인 단어</div><div class="nb">'+tot+'<small>개</small></div>';
+  var h='<div class="nt'+(nb?' tp':'')+'" id="ntc"><div class="nl">누적 모인 단어</div><div class="nb">'+tot+'<small>개</small></div>';
   if(tot)h+='<p class="ns">모인 곳</p><div class="nbar">'+bar+'</div><div class="nlg">'+lg+'</div>';
   h+='<div class="ns2"><h3>복습 단계별 단어 수</h3><div class="nstg">'+sg.map(function(v,x){return'<div><b>'+v+'</b><span>'+IV[x]+' 단계</span></div>'}).join('')+(gr?'<div class="g"><b>'+gr+'</b><span>졸업</span></div>':'')+'</div><p class="nx">맞히면 다음 단계로 · 15일 단계까지 통과하면 졸업</p></div></div>';
   if(!nb){  h+='<button class="tk" id="st"'+(today?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적테스트</b><small>'+(due.length>cap?'밀린 '+(due.length-cap)+'개는 다음 날로 이어짐':'데일리보카 포함 · 1 · 3 · 7 · 15일 주기')+'</small></div><span class="chip'+(today?' w':' n')+'">'+today+'개</span></button>';
@@ -324,6 +324,7 @@ function home(r){
   h+='<button class="btn" id="rs">'+(resetArm?'한 번 더 누르면 나갑니다':'나가기 (다음 학생)')+'</button>';
   $.innerHTML=h;
   var stb=document.getElementById('st');if(stb)stb.onclick=function(){review(due.sort(byPri).slice(0,today),ti)};
+  var ntc=document.getElementById('ntc');if(ntc&&ntc.classList.contains('tp'))ntc.onclick=function(){if(today){rvStart(ti,ti);return}var pi=DATA.items.filter(function(i){return i.m&&!(i.st>=4)}).sort(function(a,b){return(a.nx||'')<(b.nx||'')?-1:1}).slice(0,20);if(!pi.length)return;review(pi);R.prac=true};
   var l2=document.getElementById('ls2');if(l2)l2.onclick=function(){list()};
   document.getElementById('rs').onclick=function(){
     if(!resetArm){resetArm=true;clearTimeout(resetT);resetT=setTimeout(function(){resetArm=false;home(DATA)},4000);home(DATA);return}
@@ -359,8 +360,8 @@ function recView(key){
   if(!RC)return;var I=RC.I,n=RC.n,ti=RC.ti,D=recData(I,n,ti),P=D.P,c,t,num,tot,dots='',lst='',q;
   function dot(i,st,c2,lab){return'<span class="dc'+(st===1?' on':st===2?' ab':'')+'" style="'+(st===1?'background:'+c2:st===2?'border-color:'+c2:'')+'">'+lab+'</span>'}
   function ds(t0){return t0?dshow(iso(new Date(t0))):''}
-  if(key==='d'){c='#ff7a66';t='데일리보카 '+P.d;num=D.dk.length;tot=I.Q.n;for(q=1;q<=tot;q++)dots+=I.S[q]?'<a href="'+VB+I.Q.u+'?day='+q+(TCM?'&t=1&c='+TCM:PV?'&t=1':'')+'" style="display:contents">'+dot(q,1,c,q)+'</a>':dot(q,0,c,q);D.dk.map(Number).sort(function(a,b){return b-a}).forEach(function(k){lst+='<div class="row"><div><b>'+k+'일차</b><small>'+ds(I.S[k].t)+'</small></div><span class="badge">'+I.S[k].s+'</span></div>'})}
-  else if(key==='x'){c='#4a90e2';t='더블보카 '+P.dv;num=D.xn;tot=32;for(q=1;q<=tot;q++)dots+=dot(q,D.XS.tk[q]?1:0,c,q);Object.keys(D.XS.tk).map(Number).sort(function(a,b){return b-a}).forEach(function(k){lst+='<div class="row"><div><b>Day '+k+' 시험</b><small>'+ds(D.XS.tk[k])+'</small></div><span class="badge">응시</span></div>'})}
+  if(key==='d'){c='#ff7a66';t='데일리보카 '+P.d;num=D.dk.length;tot=I.Q.n;for(q=1;q<=tot;q++)dots+='<a href="'+VB+I.Q.u+'?day='+q+(TCM?'&t=1&c='+TCM:PV?'&t=1':'')+'" style="display:contents">'+dot(q,I.S[q]?1:0,c,q)+'</a>';D.dk.map(Number).sort(function(a,b){return b-a}).forEach(function(k){lst+='<div class="row"><div><b>'+k+'일차</b><small>'+ds(I.S[k].t)+'</small></div><span class="badge">'+I.S[k].s+'</span></div>'})}
+  else if(key==='x'){c='#4a90e2';t='더블보카 '+P.dv;num=D.xn;tot=32;for(q=1;q<=tot;q++)dots+='<a href="'+VB+(P.dv==='Pro'?'dvpro/':'dvcore/')+(TCM?'?t=1&c='+TCM:PV?'?t=1':'')+'" style="display:contents">'+dot(q,D.XS.tk[q]?1:0,c,q)+'</a>';Object.keys(D.XS.tk).map(Number).sort(function(a,b){return b-a}).forEach(function(k){lst+='<div class="row"><div><b>Day '+k+' 시험</b><small>'+ds(D.XS.tk[k])+'</small></div><span class="badge">응시</span></div>'})}
   else if(key==='m'){c='#e0a21a';t='미니모의고사';num=D.mm;tot=24;for(q=1;q<=tot;q++)dots+=dot(q,q<=D.mm?1:0,c,q)}
   else{c='#2fa66b';t='금요일 말하기';num=D.okN;tot=D.fr.length;D.fr.forEach(function(k,i){var v=D.sp[k];dots+=dot(i,v===1?1:v===2?2:0,c,i+1);});D.fr.slice().reverse().forEach(function(k){var v=D.sp[k];lst+='<div class="row"><div><b>'+dshow(k)+'</b></div><span class="badge">'+(v===1?'통과':v===2?'결석':'아직')+'</span></div>'})}
   var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+t+'</div></div><div class="card"><div class="rvh"><b style="color:'+c+'">'+t+'</b><span style="color:'+c+'">'+num+'<small> / '+tot+'</small></span></div><div class="rvb"><i style="width:'+(tot?Math.min(100,num/tot*100):0)+'%;background:'+c+'"></i></div><div class="dg">'+dots+'</div></div>';
@@ -607,7 +608,7 @@ function step(){
 }
 function mark(ok,wait){
   var it=R.items[R.i];R.res.push(ok?1:0);
-  var n=name(),Q=rq();Q.push({w:it.w,okk:ok});ss('wn_rq',JSON.stringify(Q));flushR();
+  var n=name(),Q=rq();if(!R.prac){Q.push({w:it.w,okk:ok});ss('wn_rq',JSON.stringify(Q));flushR()}
   var ar=document.getElementById('ar');
   if(wait){var b=document.createElement('button');b.className='btn pri';b.textContent=R.i+1>=R.items.length?'결과 보기':'다음';b.onclick=function(){R.i++;step()};ar.appendChild(b)}
   else{R.i++;step()}
