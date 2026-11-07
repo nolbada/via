@@ -35,7 +35,12 @@ table{border-collapse:collapse;width:100%;font-size:14px}th,td{border-bottom:1px
 .msg{color:var(--sub);font-size:14px;margin-top:8px;min-height:20px}
 
 h2.sec{font-size:15px;margin:20px 2px 8px;color:var(--sub);font-weight:700;letter-spacing:.2px}
-.kp{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 4px}
+.kp{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:6px 0 4px}
+.rw{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:13px;color:var(--sub)}.rw em{font-style:normal;width:64px;flex:none;white-space:nowrap}.rw .ds{display:flex;gap:4px;flex:1}
+.rk{flex:1;height:24px;border-radius:6px;border:1px solid var(--line);font-size:11px;font-style:normal;display:flex;align-items:center;justify-content:center;color:var(--sub);position:relative}
+.rk.ok{background:var(--ok);border-color:var(--ok);color:#fff}.rk.lt2{background:var(--okBg);border-color:var(--ok);color:var(--ok)}.rk.lt2::after{content:"";position:absolute;top:2px;right:2px;width:5px;height:5px;border-radius:50%;background:var(--ok)}
+.rk.ms{background:#fbefd9;border-color:#c47a1a;color:#9a5a0c}.rk.pz,.rk.cz{opacity:.35}.rk.tdy{outline:2px solid var(--pri);outline-offset:-1px}
+.lg2{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--sub);margin:6px 2px 0}.lg2 i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
 .kp div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center}
 .kp b{display:block;font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.15}.kp span{font-size:12px;color:var(--sub)}
 .kp .w b{color:#b4620f}.kp .k b{color:var(--pri)}
@@ -321,8 +326,34 @@ function cardH(o){
     h+='<div class="ln"><em>데일리보카 '+P.d+'</em><div class="bar"><i style="width:'+(o.ddone/o.N*100)+'%"></i></div><span class="v">'+o.ddone+' / '+o.N+'일</span></div>';
     h+='<div class="ln"><em>더블보카 '+P.dv+'</em><div class="bar"><i style="width:'+(o.dvdone/32*100)+'%"></i></div><span class="v">'+o.dvdone+' / 32 Day</span></div>';
   }
+  h+=rvRow(o);
   h+='<div class="ln"><em>오답노트</em><span class="v" style="width:auto;text-align:left">쌓인 '+s.total+' · 오늘 복습 '+s.due+' · 질문 대기 '+s.askDue+'</span></div></button>';
   return h;
+}
+var RVM={};
+function rvNorm(d){var m={};Object.keys(d).forEach(function(k){var v=d[k],t=(v&&v.t)||0;if(!t)return;var key=/^\d{4}-\d\d-\d\d$/.test(k)?k:null;if(!key){var q=new Date(k);if(isNaN(q))return;key=new Date(q.getTime()+32400000).toISOString().slice(0,10)}if(!m[key]||m[key]>t)m[key]=t});return m}
+function rvLoad(){
+  return Promise.all(STAT.map(function(o){
+    return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'get',id:'WNRV_'+String(o.s.name).toLowerCase()})}).then(function(x){return x.json()}).then(function(x){if(x&&x.ok)RVM[o.s.name]=rvNorm(x.data||{})},function(){})
+  })).then(function(){},function(){});
+}
+function rvT(t){return new Date(t+32400000).toISOString().slice(0,10)}
+function rvMon(){var t=kst();return addd(t,-((pd(t).getUTCDay()+6)%7))}
+function rvRow(o){
+  var P=o.P,m=RVM[o.s.name];if(!P||!m)return'';
+  var t=kst(),mon=rvMon(),L='월화수목금토일',h='<div class="rw"><em>누적</em><div class="ds">',i,d,cl,dt;
+  for(i=0;i<7;i++){d=addd(mon,i);cl='rk';
+    if(d<P.s)cl+=' pz';else if(CLOSED.indexOf(d)>=0)cl+=' cz';
+    else{dt=m[d];if(dt)cl+=(rvT(dt)<=d?' ok':' lt2');else if(d<t)cl+=' ms'}
+    if(d===t)cl+=' tdy';
+    h+='<i class="'+cl+'">'+L.charAt(i)+'</i>'}
+  return h+'</div></div>';
+}
+function rvMiss(o){
+  var P=o.P,m=RVM[o.s.name];if(!P||!m)return 0;
+  var t=kst(),mon=rvMon(),i,d,n=0;
+  for(i=0;i<7;i++){d=addd(mon,i);if(d>=t)break;if(d<P.s||CLOSED.indexOf(d)>=0)continue;if(!m[d])n++}
+  return n;
 }
 var FIL=ls('wn_fil')||'전체';
 function status(r){
@@ -330,7 +361,7 @@ function status(r){
   b.innerHTML='<div class="msg">불러오는 중...</div>';
   ctlRead().then(function(m){CTM=m},function(){}).then(function(){return post({act:'t_hw',from:FROM0})}).then(function(h){
     if(!h||!h.ok){b.innerHTML='<div class="msg">불러오지 못했어요.</div>';return}
-    STAT=build(r,h.items);draw(r);
+    STAT=build(r,h.items);rvLoad().then(function(){draw(r)});
   },function(){b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
 }
 function draw(r){
@@ -341,8 +372,8 @@ function draw(r){
   var ord={late:0,wait:1,ok:2,off:3,hold:3,pre:4,none:5};
   L=L.slice().sort(function(a,c){return ord[a.state]-ord[c.state]||(c.behind-a.behind)||(a.s.name<c.s.name?-1:1)});
   var late=L.filter(function(o){return o.state==='late'}).length,done=L.filter(function(o){return o.state==='ok'}).length,wait=L.filter(function(o){return o.state==='wait'}).length,ask=0;
-  L.forEach(function(o){ask+=o.s.askDue});
-  var h='<div class="msg" style="margin:0 0 6px">'+dshow(kst())+' 기준</div><div class="kp"><div><b>'+L.length+'</b><span>재원</span></div><div class="k"><b>'+done+'</b><span>오늘 완료</span></div><div class="w"><b>'+late+'</b><span>밀림</span></div><div><b>'+ask+'</b><span>질문 대기</span></div></div>';
+  L.forEach(function(o){ask+=o.s.askDue});var rl=L.filter(function(o){return rvMiss(o)>0}).length;
+  var h='<div class="msg" style="margin:0 0 6px">'+dshow(kst())+' 기준</div><div class="kp"><div><b>'+L.length+'</b><span>재원</span></div><div class="k"><b>'+done+'</b><span>오늘 완료</span></div><div class="w"><b>'+late+'</b><span>데일리 밀림</span></div><div class="w"><b>'+rl+'</b><span>누적 밀림</span></div><div><b>'+ask+'</b><span>질문 대기</span></div></div>';
   h+='<div class="fl">'+gs.map(function(g){return'<button data-g="'+esc(g)+'"'+(g===FIL?' class="on"':'')+'>'+esc(g)+'</button>'}).join('')+'</div>';
   if(late)h+='<h2 class="sec">확인이 필요한 학생</h2>';
   var shown=false;
