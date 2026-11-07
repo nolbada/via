@@ -198,7 +198,7 @@ function ctlWrite(n,o){var d={};d[n]={v:{s:JSON.stringify(o)},t:Date.now()};retu
 var CTLM=null,CTLL=0;
 setTimeout(function(){try{rvPull()}catch(e){}},1800);
 function inHold(c,dk){return !!(c&&c.hold&&c.hs&&dk>=c.hs&&dk<=c.hold)}
-var TT=['김소희','윤유란','정다원','김민서','이지민','조혜린'];
+var TT=['김소희','윤유란','정다원','김민서','이지민','조혜린','신유정A'];
 function exTaken(n,pre){
   var r={},low=String(n).toLowerCase(),a='dvc_exam_',b='dvp_exam_',k,m,v;
   try{for(var q=0;q<localStorage.length;q++){k=localStorage.key(q)||'';
@@ -288,7 +288,7 @@ function home(r){
     h+='<div class="hero pm"><div class="lb"><span class="lg"><img src="logo.png" alt="비타민 영어클리닉"></span><span class="dt">'+dshow(ti)+'</span></div><div class="hn mt"><em>성공</em>은 매일 부단하게 반복된<br>작은 노력의 <em>합산</em>이다.</div></div>';
   }
   NCX={due:due,cap:cap,today:today,LN:LI.length};
-  try{if(I&&!isAdm(n)){var EPx=examPlan(n,I,ti),tmx=adD(ti,1);if(EPx[tmx])h+='<a class="prb" href="'+VB+(I.P.dv==='Pro'?'dvpro/':'dvcore/')+'"><b>내일 더블보카 시험</b><span>더블'+EPx[tmx]+' 준비</span></a>'}}catch(e){}
+  try{if(I&&!isAdm(n)){var EPx=examPlan(n,I,ti),tmx=adD(ti,1);if(EPx[tmx])h+='<a class="prb" href="'+VB+(I.P.dv==='Pro'?'dvpro/':'dvcore/')+'"><b>'+dshow(tmx)+' 더블보카 시험</b><span>더블'+EPx[tmx]+' 준비</span></a>'}}catch(e){}
   h+=noteCard(r,cap,due,today,LI.length,(I&&!isAdm(n))?1:0);
   /* today */
   var IU=!!I&&!isAdm(n);RC={I:I,n:n,ti:ti};
