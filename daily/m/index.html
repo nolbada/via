@@ -64,7 +64,7 @@ input.tx.ok{border-color:var(--ok);background:var(--okBg)}input.tx.ng{border-col
 /* 통합 오답노트 연결 스크립트: WN.add([{w,m,src,how,ask}]) 단어 전송, WN.hw(level,day,score) 숙제 기록, WN.gate(cb) 이름 확인 */
 (function(W){
   if(W.WN)return;
-  if(/[?&]t=1(&|$)/.test(W.location.search)){W.TEACHER_MODE=true;W.WN={add:function(){return Promise.resolve(false)},hw:function(){return Promise.resolve(false)},gate:function(cb){cb()},flush:function(){return Promise.resolve(false)},name:function(){return'선생님'}};return}
+  if(/[?&]t=1(&|$)/.test(W.location.search)){W.TEACHER_MODE=true;W.WN={add:function(){return Promise.resolve(false)},hw:function(){return Promise.resolve(false)},hwget:function(){return Promise.resolve([])},gate:function(cb){cb()},flush:function(){return Promise.resolve(false)},name:function(){return'선생님'}};return}
   var URL_=W.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',PIN='6900',QK='wn_q',HK='wn_hq';
   function ls(){try{return W.localStorage}catch(e){return null}}
   function g(k){var l=ls();try{return l&&l.getItem(k)}catch(e){return null}}
@@ -102,7 +102,7 @@ input.tx.ok{border-color:var(--ok);background:var(--okBg)}input.tx.ng{border-col
     var Q=jq(QK);Q.push(items);s(QK,JSON.stringify(Q));return flush();
   },hw:function(level,day,score){
     var H=jq(HK);H.push({level:level,day:day,score:score});s(HK,JSON.stringify(H));return flush();
-  },gate:gate,flush:flush,name:name};
+  },hwget:function(){var n=name();if(!n)return Promise.resolve([]);return post({act:'hwget',name:n,pin:PIN}).then(function(r){return(r&&r.ok&&r.hw)||[]},function(){return[]})},gate:gate,flush:flush,name:name};
   flush();
 })(window);
 
@@ -242,7 +242,7 @@ quiz=function(){enter();oq.apply(this,arguments)};
 result=function(){enter();orr.apply(this,arguments)};
 window.addEventListener('popstate',function(){if(sub){sub=false;oh()}});
 })();
-WN.gate(function(){KEY='dv_'+D.level+'_'+WN.name();try{S=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){S={}}S.done=S.done||{};S.wrong=S.wrong||{};S.star=S.star||{};home()});
+WN.gate(function(){KEY='dv_'+D.level+'_'+WN.name();try{S=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){S={}}S.done=S.done||{};S.wrong=S.wrong||{};S.star=S.star||{};home();WN.hwget().then(function(L){var ch=0;L.forEach(function(x){if(x.level===D.level&&x.score&&x.score!=='진행중'&&!S.done[x.day]){S.done[x.day]={s:x.score,t:Date.now()};ch=1}});if(ch){save();if(!R)home()}})});
 </script>
 </body>
 </html>
