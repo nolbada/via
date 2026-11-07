@@ -220,7 +220,7 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
 /* 통합 오답노트 연결 스크립트: WN.add([{w,m,src,how,ask}]) 단어 전송, WN.hw(level,day,score) 숙제 기록, WN.gate(cb) 이름 확인 */
 (function(W){
   if(W.WN)return;
-  if(/[?&]t=1(&|$)/.test(W.location.search)){W.TEACHER_MODE=true;W.WN={add:function(){return Promise.resolve(false)},hw:function(){return Promise.resolve(false)},gate:function(cb){cb()},flush:function(){return Promise.resolve(false)},name:function(){return'선생님'}};return}
+  if(/[?&]t=1(&|$)/.test(W.location.search)){W.TEACHER_MODE=true;W.WN={add:function(){return Promise.resolve(false)},hw:function(){return Promise.resolve(false)},hwget:function(){return Promise.resolve([])},gate:function(cb){cb()},flush:function(){return Promise.resolve(false)},name:function(){return'선생님'}};return}
   var URL_=W.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',PIN='6900',QK='wn_q',HK='wn_hq';
   function ls(){try{return W.localStorage}catch(e){return null}}
   function g(k){var l=ls();try{return l&&l.getItem(k)}catch(e){return null}}
@@ -258,7 +258,7 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
     var Q=jq(QK);Q.push(items);s(QK,JSON.stringify(Q));return flush();
   },hw:function(level,day,score){
     var H=jq(HK);H.push({level:level,day:day,score:score});s(HK,JSON.stringify(H));return flush();
-  },gate:gate,flush:flush,name:name};
+  },hwget:function(){var n=name();if(!n)return Promise.resolve([]);return post({act:'hwget',name:n,pin:PIN}).then(function(r){return(r&&r.ok&&r.hw)||[]},function(){return[]})},gate:gate,flush:flush,name:name};
   flush();
 })(window);
 
@@ -565,7 +565,7 @@ function examLocked(n,key,rec){
   tv.appendChild(el('div','top','<b>시험</b><span></span><button class="home-btn" id="hbx" type="button">처음으로</button>'));
   var wrap=el('div','');wrap.style.cssText='flex:1;min-height:0';
   var c=el('div','card');
-  c.innerHTML='<div class="no">DAY '+pad2(DN)+' · '+esc(n)+'</div><div class="ask">'+(rec.done?'응시 완료':'응시 기록 있음')+'</div><div>'+(rec.done?('점수 '+rec.score+' / '+rec.total+' · 걸린 시간 '+fmt(rec.used)):'제출 전에 종료됨')+'</div>';
+  c.innerHTML='<div class="no">DAY '+pad2(DN)+' · '+esc(n)+'</div><div class="ask">'+(rec.done?'응시 완료':'응시 기록 있음')+'</div><div>'+(rec.done?('점수 '+rec.score+' / '+rec.total+(rec.used?' · 걸린 시간 '+fmt(rec.used):'')):'제출 전에 종료됨')+'</div>';
   var b=el('button','sub2','기록 해제');b.type='button';
   var armed=false;b.onclick=function(){if(!armed){armed=true;b.textContent='한 번 더 누르면 기록이 지워집니다';return}sdel(key);examGate('해제되었습니다')};
   c.appendChild(b);wrap.appendChild(c);tv.appendChild(wrap);
@@ -772,6 +772,6 @@ document.getElementById('mReset').onclick=function(){var b=this;if(!b._a){b._a=1
 document.getElementById('hbd').onclick=goDays;
 function twoTap(id,txt,fn){document.getElementById(id).onclick=fn}
 twoTap('mClrStar','',function(){clearStars(DI);homeRefresh()});
-WN.gate(function(){daysRefresh();showView('days')});
+WN.gate(function(){daysRefresh();showView('days');WN.hwget().then(function(L){var n=WN.name().toLowerCase(),ch=0;L.forEach(function(x){if(x.level==='더블보카 Core'&&x.score&&x.score!=='진행중'){var m=/^(\d+)\/(\d+)$/.exec(x.score),k='dvc_exam_'+x.day+'_'+n;if(m){if(!sget(k))sset(k,JSON.stringify({done:true,score:+m[1],total:+m[2],used:0,t:Date.now()}));markDone(x.day-1);ch=1}}});if(ch)daysRefresh()})});
 
 </script>
