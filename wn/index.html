@@ -586,4 +586,5 @@ if(PV==='B'||PV==='H'){
 }
 try{var qn=new URLSearchParams(location.search).get('n');if(qn){ss('wn_name',qn.replace(/\s+/g,''));history.replaceState(null,'',location.pathname)}}catch(e){}
 home();
+try{var _hid=0;window.addEventListener('pageshow',function(e){if(e.persisted&&document.getElementById('wk'))location.reload()});document.addEventListener('visibilitychange',function(){if(document.hidden)_hid=Date.now();else if(_hid&&Date.now()-_hid>3000&&document.getElementById('wk')){_hid=0;location.reload()}})}catch(e){}
 </script></body></html>
