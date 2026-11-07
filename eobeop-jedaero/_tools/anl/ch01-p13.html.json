@@ -1,1 +1,662 @@
-[{"en": "[[A number of people]] [[are worried]] about the recent increase in crime because crime has become more violent.", "key": "많은 사람들이 걱정하고 있다.", "form": "1형식", "ref": [["I", "s"], ["sleep", "v"]], "refrel": "", "me": [["A number of people", "s"], ["are worried", "v"], ["about the recent increase in crime because crime has become more violent.", "x"]], "merel": "", "easy": [["먼저 뼈대부터:", "People are worried", "사람들이 걱정하고 있다."], ["무엇에 대해?", "about the recent increase in crime", "최근 범죄 증가에 대해."], ["왜?", "because crime has become more violent", "범죄가 더 폭력적으로 변했기 때문에."], ["요약: 범죄가 거칠어져서 사람들이 불안해한다."]], "notes": ["<b>because + 주어 + 동사</b>(절) / <b>because of + 명사</b>(구): crime has become(주어+동사) 앞이니 because", "<b>a number of + 복수명사</b> = 많은 ~ → 복수 동사 (are)", "<b>be worried about</b> = ~을 걱정하다"]}, {"en": "In many parts of the world, [[much of the forest]] [[has been destroyed]] by wildfires.", "key": "숲의 많은 부분이 파괴되었다.", "form": "3형식", "ref": [["I", "s"], ["like", "v"], ["apples", "o"]], "refrel": "I ≠ apples", "me": [["In many parts of the world,", "x"], ["much of the forest", "s"], ["has been destroyed", "v"], ["by wildfires.", "x"]], "merel": "수동태", "easy": [["먼저 뼈대부터:", "Much of the forest has been destroyed", "숲의 많은 부분이 파괴되었다."], ["어디에서?", "In many parts of the world", "세계의 많은 지역에서."], ["누구에 의해?", "by wildfires", "산불에 의해."], ["요약: 산불 때문에 세계 곳곳의 숲이 많이 사라졌다."]], "notes": ["<b>수동태 = be + p.p.</b>: 주어가 \"~되는\" 대상이면 destroying ✗ → destroyed(destroy 파괴하다). 예: The window was broken.", "<b>현재완료 수동태</b> = has/have been + p.p.", "<b>by + 행위자</b>가 보이면 수동태 힌트 (by wildfires 산불에 의해)"]}, {"en": "[[Many of the buildings in this city]] [[are]] [[over 100 years old]], which makes them historically important.", "key": "많은 건물이 100년이 넘었다.", "form": "2형식", "ref": [["I", "s"], ["am", "v"], ["happy", "c"]], "refrel": "I = happy", "me": [["Many of the buildings in this city", "s"], ["are", "v"], ["over 100 years old", "c"], [", which makes them historically important.", "x"]], "merel": "buildings = old", "easy": [["먼저 뼈대부터:", "Many of the buildings are old", "많은 건물이 오래되었다."], ["얼마나?", "over 100 years old", "100년이 넘게."], ["그래서?", "which makes them historically important", "그것은 그 건물들을 역사적으로 중요하게 만든다 (make 만들다)."], ["요약: 100년 넘은 건물이 많아서 역사적으로 가치가 있다."]], "notes": ["<b>make + 목적어 + 형용사</b> = ~을 …하게 만들다: 보어 자리에는 명사 importance ✗ → 형용사 important", "<b>부사는 형용사를 꾸민다</b>: historically(역사적으로) + important(중요한)", "<b>, which</b>는 앞 내용 전체를 받는다 (건물이 100년 넘었다는 사실)"]}, {"en": "At our school, [[one of the teachers]] [[trains]] [[the soccer team]] to improve the students’ teamwork.", "key": "선생님 한 분이 축구팀을 훈련시킨다.", "form": "3형식", "ref": [["I", "s"], ["like", "v"], ["apples", "o"]], "refrel": "I ≠ apples", "me": [["At our school,", "x"], ["one of the teachers", "s"], ["trains", "v"], ["the soccer team", "o"], ["to improve the students’ teamwork.", "x"]], "merel": "teacher ≠ team", "easy": [["먼저 뼈대부터:", "One of the teachers trains the team", "선생님 한 분이 팀을 훈련시킨다."], ["어디서?", "At our school", "우리 학교에서."], ["어느 팀?", "the soccer team", "축구팀을."], ["왜?", "to improve the students’ teamwork", "학생들의 팀워크를 향상시키려고 (improve 향상시키다)."], ["요약: 우리 학교 선생님이 축구부의 팀워크를 키우려고 훈련시킨다."]], "notes": ["<b>대명사는 누구를 가리키는지 분명해야 한다</b>: their가 애매하면 the students’처럼 명사로 분명히 쓴다", "<b>one of + 복수명사</b>는 \"~ 중 한 명\"이라 단수 취급 → trains", "<b>to improve</b> = ~하기 위해 (목적을 나타내는 to부정사)"]}, {"en": "[[The number of native English speakers]] [[is]] [[smaller]] than that of native Spanish speakers.", "key": "영어 원어민의 수는 더 적다.", "form": "2형식", "ref": [["I", "s"], ["am", "v"], ["happy", "c"]], "refrel": "I = happy", "me": [["The number of native English speakers", "s"], ["is", "v"], ["smaller", "c"], [" than that of native Spanish speakers.", "x"]], "merel": "number = smaller", "easy": [["먼저 뼈대부터:", "The number is smaller", "수가 더 적다."], ["무슨 수?", "of native English speakers", "영어 원어민의."], ["무엇보다?", "than that of native Spanish speakers", "스페인어 원어민의 수보다."], ["요약: 영어 원어민이 스페인어 원어민보다 적다."]], "notes": ["<b>비교 대상 앞 명사를 대신할 때는 that(복수는 those)</b>: than that of ~ (that = the number). it ✗", "<b>the number of ~</b> = ~의 수 → 단수 동사 is (a number of는 \"많은\" → 복수)", "<b>비교는 같은 종류끼리</b>: 수 vs 수 (영어 원어민의 수 vs 스페인어 원어민의 수)"]}, {"en": "[[Some of the food served in this restaurant]] [[smells]] [[delicious]], but most of it is too spicy for me.", "key": "음식 중 일부는 맛있는 냄새가 난다.", "form": "2형식", "ref": [["I", "s"], ["am", "v"], ["happy", "c"]], "refrel": "I = happy", "me": [["Some of the food served in this restaurant", "s"], ["smells", "v"], ["delicious", "c"], [", but most of it is too spicy for me.", "x"]], "merel": "food = delicious", "easy": [["먼저 뼈대부터:", "Some of the food smells delicious", "음식 중 일부는 맛있는 냄새가 난다."], ["어떤 음식?", "served in this restaurant", "이 식당에서 나오는."], ["그런데?", "but most of it is too spicy", "하지만 대부분은 너무 맵다."], ["누구에게?", "for me", "나에게."], ["요약: 이 식당 음식은 냄새는 좋지만 대부분 나한테는 너무 맵다."]], "notes": ["<b>전치사 뒤에는 목적격</b>: for I ✗ → for me. 예: with him, to us", "<b>some of + 셀 수 없는 명사</b>는 단수 취급: Some of the food smells", "<b>냄새나다 smell + 형용사</b>: smells delicious (부사 ✗)"]}, {"en": "[[A lot of information on social media]] [[is]] [[false]], so people should check it carefully.", "key": "소셜 미디어의 많은 정보는 거짓이다.", "form": "2형식", "ref": [["I", "s"], ["am", "v"], ["happy", "c"]], "refrel": "I = happy", "me": [["A lot of information on social media", "s"], ["is", "v"], ["false", "c"], [", so people should check it carefully.", "x"]], "merel": "information = false", "easy": [["먼저 뼈대부터:", "Information is false", "정보는 거짓이다."], ["어떤 정보?", "A lot of information on social media", "소셜 미디어의 많은 정보."], ["그래서?", "so people should check it carefully", "그래서 사람들은 그것을 주의 깊게 확인해야 한다."], ["요약: 인터넷 정보는 틀릴 수 있으니 꼼꼼히 확인하자."]], "notes": ["<b>information은 셀 수 없는 명사</b>라 단수 취급 → 다시 받을 때도 it (them ✗)", "<b>a lot of + 셀 수 없는 명사</b>면 동사도 단수 (is)", "<b>should + 동사원형</b> = ~해야 한다 (check 확인하다)"]}, {"en": "In a survey, [[30 percent of the employees]] [[prefer]] [[to work from home]] because they can spend less time commuting.", "key": "직원의 30퍼센트는 재택근무를 선호한다.", "form": "3형식", "ref": [["I", "s"], ["like", "v"], ["apples", "o"]], "refrel": "I ≠ apples", "me": [["In a survey,", "x"], ["30 percent of the employees", "s"], ["prefer", "v"], ["to work from home", "o"], [" because they can spend less time commuting.", "x"]], "merel": "employees ≠ work", "easy": [["먼저 뼈대부터:", "30 percent prefer to work", "30퍼센트는 일하기를 선호한다."], ["어디서?", "from home", "집에서."], ["어디에서 나온 결과?", "In a survey", "한 설문조사에서."], ["왜?", "because they can spend less time commuting", "통근하는 데 시간을 덜 쓸 수 있기 때문에."], ["요약: 직원 열 명 중 세 명쯤은 출근 시간이 줄어서 재택근무를 좋아한다."]], "notes": ["<b>spend + 시간 + -ing</b> = ~하는 데 시간을 쓰다: commute ✗ → commuting (commute 통근하다)", "<b>퍼센트 of + 명사</b>는 of 뒤 명사에 수를 맞춘다: employees가 복수 → prefer", "<b>prefer to + 동사원형</b> = ~하기를 더 좋아하다"]}, {"en": "[[More than half of the students in my class]] [[use]] [[desktops]] to access the Internet efficiently.", "key": "학생의 절반 이상이 데스크톱을 사용한다.", "form": "3형식", "ref": [["I", "s"], ["like", "v"], ["apples", "o"]], "refrel": "I ≠ apples", "me": [["More than half of the students in my class", "s"], ["use", "v"], ["desktops", "o"], [" to access the Internet efficiently.", "x"]], "merel": "students ≠ desktops", "easy": [["먼저 뼈대부터:", "Students use desktops", "학생들이 데스크톱을 사용한다."], ["몇 명이?", "More than half of the students in my class", "우리 반 학생의 절반 이상이."], ["왜?", "to access the Internet", "인터넷에 접속하려고."], ["어떻게?", "efficiently", "효율적으로."], ["요약: 우리 반 절반이 넘는 학생이 인터넷을 빠르게 쓰려고 데스크톱을 쓴다."]], "notes": ["<b>동작을 꾸미는 말은 부사</b>: efficient(효율적인) ✗ → efficiently(효율적으로). 예: Work hard.", "<b>more than half of + 복수명사</b>는 복수 취급 → use", "<b>to access</b> = 접속하기 위해 (목적의 to부정사)"]}, {"en": "[[All of the money collected from the event]] [[goes]] to a children’s hospital to help sick children.", "key": "모인 돈은 어린이 병원으로 간다.", "form": "1형식", "ref": [["I", "s"], ["sleep", "v"]], "refrel": "", "me": [["All of the money collected from the event", "s"], ["goes", "v"], ["to a children’s hospital to help sick children.", "x"]], "merel": "", "easy": [["먼저 뼈대부터:", "All of the money goes", "모든 돈이 간다."], ["어떤 돈?", "collected from the event", "그 행사에서 모인."], ["어디로?", "to a children’s hospital", "어린이 병원으로."], ["왜?", "to help sick children", "아픈 아이들을 돕기 위해 (help 돕다)."], ["요약: 행사에서 모은 돈은 전부 아픈 아이들을 위해 쓰인다."]], "notes": ["<b>to + 동사원형</b>이 목적(~하기 위해)이면 helping ✗ → help. 전치사 to(~로)일 때만 -ing", "<b>all of + 셀 수 없는 명사</b>(money)는 단수 취급 → goes", "<b>명사 + p.p.</b>는 뒤에서 꾸민다: money (collected from the event)"]}]
+[
+ {
+  "en": "[[A number of people]] [[are]] [[worried]] about the recent increase in crime because crime has become more violent.",
+  "key": "많은 사람들이 걱정하고 있다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "A number of people",
+    "s"
+   ],
+   [
+    "are",
+    "v"
+   ],
+   [
+    "worried about the recent increase in crime",
+    "c"
+   ],
+   [
+    "because crime has become more violent.",
+    "x"
+   ]
+  ],
+  "merel": "people = worried",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "People are worried",
+    "사람들이 걱정하고 있다."
+   ],
+   [
+    "무엇에 대해?",
+    "about the recent increase in crime",
+    "최근 범죄 증가에 대해."
+   ],
+   [
+    "왜?",
+    "because crime has become more violent",
+    "범죄가 더 폭력적으로 변했기 때문에."
+   ],
+   [
+    "요약: 범죄가 거칠어져서 사람들이 불안해한다."
+   ]
+  ],
+  "notes": [
+   "<b>because + 주어 + 동사</b>(절) / <b>because of + 명사</b>(구): crime has become(주어+동사) 앞이니 because",
+   "<b>a number of + 복수명사</b> = 많은 ~ → 복수 동사 (are)",
+   "<b>be worried about</b> = ~을 걱정하다"
+  ]
+ },
+ {
+  "en": "In many parts of the world, [[much of the forest]] [[has been destroyed]] by wildfires.",
+  "key": "숲의 많은 부분이 파괴되었다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "In many parts of the world,",
+    "x"
+   ],
+   [
+    "much of the forest",
+    "s"
+   ],
+   [
+    "has been destroyed",
+    "v"
+   ],
+   [
+    "by wildfires.",
+    "x"
+   ]
+  ],
+  "merel": "수동태",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Much of the forest has been destroyed",
+    "숲의 많은 부분이 파괴되었다."
+   ],
+   [
+    "어디에서?",
+    "In many parts of the world",
+    "세계의 많은 지역에서."
+   ],
+   [
+    "누구에 의해?",
+    "by wildfires",
+    "산불에 의해."
+   ],
+   [
+    "요약: 산불 때문에 세계 곳곳의 숲이 많이 사라졌다."
+   ]
+  ],
+  "notes": [
+   "<b>수동태 = be + p.p.</b>: 주어가 \"~되는\" 대상이면 destroying ✗ → destroyed(destroy 파괴하다). 예: The window was broken.(창문이 깨졌다.)",
+   "<b>현재완료 수동태</b> = has/have been + p.p.",
+   "<b>by + 행위자</b>가 보이면 수동태 힌트 (by wildfires 산불에 의해)"
+  ]
+ },
+ {
+  "en": "[[Many of the buildings in this city]] [[are]] [[over 100 years old]], which makes them historically important.",
+  "key": "많은 건물이 100년이 넘었다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "Many of the buildings in this city",
+    "s"
+   ],
+   [
+    "are",
+    "v"
+   ],
+   [
+    "over 100 years old",
+    "c"
+   ],
+   [
+    ", which makes them historically important.",
+    "x"
+   ]
+  ],
+  "merel": "buildings = old",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Many of the buildings are old",
+    "많은 건물이 오래되었다."
+   ],
+   [
+    "얼마나?",
+    "over 100 years old",
+    "100년이 넘게."
+   ],
+   [
+    "그래서?",
+    "which makes them historically important",
+    "그것은 그 건물들을 역사적으로 중요하게 만든다 (make 만들다)."
+   ],
+   [
+    "요약: 100년 넘은 건물이 많아서 역사적으로 가치가 있다."
+   ]
+  ],
+  "notes": [
+   "<b>make + 목적어 + 형용사</b> = ~을 …하게 만들다: 보어 자리에는 명사 importance ✗ → 형용사 important",
+   "<b>부사는 형용사를 꾸민다</b>: historically(역사적으로) + important(중요한)",
+   "<b>, which</b>는 앞 내용 전체를 받는다 (건물이 100년 넘었다는 사실)"
+  ]
+ },
+ {
+  "en": "At our school, [[one of the teachers]] [[trains]] [[the soccer team]] to improve the students’ teamwork.",
+  "key": "선생님 한 분이 축구팀을 훈련시킨다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "At our school,",
+    "x"
+   ],
+   [
+    "one of the teachers",
+    "s"
+   ],
+   [
+    "trains",
+    "v"
+   ],
+   [
+    "the soccer team",
+    "o"
+   ],
+   [
+    "to improve the students’ teamwork.",
+    "x"
+   ]
+  ],
+  "merel": "teacher ≠ team",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "One of the teachers trains the team",
+    "선생님 한 분이 팀을 훈련시킨다."
+   ],
+   [
+    "어디서?",
+    "At our school",
+    "우리 학교에서."
+   ],
+   [
+    "어느 팀?",
+    "the soccer team",
+    "축구팀을."
+   ],
+   [
+    "왜?",
+    "to improve the students’ teamwork",
+    "학생들의 팀워크를 향상시키려고 (improve 향상시키다)."
+   ],
+   [
+    "요약: 우리 학교 선생님이 축구부의 팀워크를 키우려고 훈련시킨다."
+   ]
+  ],
+  "notes": [
+   "<b>대명사는 누구를 가리키는지 분명해야 한다</b>: their가 애매하면 the students’처럼 명사로 분명히 쓴다",
+   "<b>one of + 복수명사</b>는 \"~ 중 한 명\"이라 단수 취급 → trains",
+   "<b>to improve</b> = ~하기 위해 (목적을 나타내는 to부정사)"
+  ]
+ },
+ {
+  "en": "[[The number of native English speakers]] [[is]] [[smaller]] than that of native Spanish speakers.",
+  "key": "영어 원어민의 수는 더 적다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "The number of native English speakers",
+    "s"
+   ],
+   [
+    "is",
+    "v"
+   ],
+   [
+    "smaller",
+    "c"
+   ],
+   [
+    " than that of native Spanish speakers.",
+    "x"
+   ]
+  ],
+  "merel": "number = smaller",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "The number is smaller",
+    "수가 더 적다."
+   ],
+   [
+    "무슨 수?",
+    "of native English speakers",
+    "영어 원어민의."
+   ],
+   [
+    "무엇보다?",
+    "than that of native Spanish speakers",
+    "스페인어 원어민의 수보다."
+   ],
+   [
+    "요약: 영어 원어민이 스페인어 원어민보다 적다."
+   ]
+  ],
+  "notes": [
+   "<b>비교 대상 앞 명사를 대신할 때는 that(복수는 those)</b>: than that of ~ (that = the number). it ✗",
+   "<b>the number of ~</b> = ~의 수 → 단수 동사 is (a number of는 \"많은\" → 복수)",
+   "<b>비교는 같은 종류끼리</b>: 수 vs 수 (영어 원어민의 수 vs 스페인어 원어민의 수)"
+  ]
+ },
+ {
+  "en": "[[Some of the food served in this restaurant]] [[smells]] [[delicious]], but most of it is too spicy for me.",
+  "key": "음식 중 일부는 맛있는 냄새가 난다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "Some of the food served in this restaurant",
+    "s"
+   ],
+   [
+    "smells",
+    "v"
+   ],
+   [
+    "delicious",
+    "c"
+   ],
+   [
+    ", but most of it is too spicy for me.",
+    "x"
+   ]
+  ],
+  "merel": "food = delicious",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Some of the food smells delicious",
+    "음식 중 일부는 맛있는 냄새가 난다."
+   ],
+   [
+    "어떤 음식?",
+    "served in this restaurant",
+    "이 식당에서 나오는."
+   ],
+   [
+    "그런데?",
+    "but most of it is too spicy",
+    "하지만 대부분은 너무 맵다."
+   ],
+   [
+    "누구에게?",
+    "for me",
+    "나에게."
+   ],
+   [
+    "요약: 이 식당 음식은 냄새는 좋지만 대부분 나한테는 너무 맵다."
+   ]
+  ],
+  "notes": [
+   "<b>전치사 뒤에는 목적격</b>: for I ✗ → for me. 예: with him(그와 함께), to us(우리에게)",
+   "<b>some of + 셀 수 없는 명사</b>는 단수 취급: Some of the food smells",
+   "<b>냄새나다 smell + 형용사</b>: smells delicious (부사 ✗)"
+  ]
+ },
+ {
+  "en": "[[A lot of information on social media]] [[is]] [[false]], so people should check it carefully.",
+  "key": "소셜 미디어의 많은 정보는 거짓이다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "A lot of information on social media",
+    "s"
+   ],
+   [
+    "is",
+    "v"
+   ],
+   [
+    "false",
+    "c"
+   ],
+   [
+    ", so people should check it carefully.",
+    "x"
+   ]
+  ],
+  "merel": "information = false",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Information is false",
+    "정보는 거짓이다."
+   ],
+   [
+    "어떤 정보?",
+    "A lot of information on social media",
+    "소셜 미디어의 많은 정보."
+   ],
+   [
+    "그래서?",
+    "so people should check it carefully",
+    "그래서 사람들은 그것을 주의 깊게 확인해야 한다."
+   ],
+   [
+    "요약: 인터넷 정보는 틀릴 수 있으니 꼼꼼히 확인하자."
+   ]
+  ],
+  "notes": [
+   "<b>information은 셀 수 없는 명사</b>라 단수 취급 → 다시 받을 때도 it (them ✗)",
+   "<b>a lot of + 셀 수 없는 명사</b>면 동사도 단수 (is)",
+   "<b>should + 동사원형</b> = ~해야 한다 (check 확인하다)"
+  ]
+ },
+ {
+  "en": "In a survey, [[30 percent of the employees]] [[prefer]] [[to work from home]] because they can spend less time commuting.",
+  "key": "직원의 30퍼센트는 재택근무를 선호한다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "In a survey,",
+    "x"
+   ],
+   [
+    "30 percent of the employees",
+    "s"
+   ],
+   [
+    "prefer",
+    "v"
+   ],
+   [
+    "to work from home",
+    "o"
+   ],
+   [
+    " because they can spend less time commuting.",
+    "x"
+   ]
+  ],
+  "merel": "employees ≠ work",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "30 percent prefer to work from home",
+    "30퍼센트는 재택근무하기를 선호한다."
+   ],
+   [
+    "어디서 나온 결과?",
+    "In a survey",
+    "한 설문조사에서."
+   ],
+   [
+    "왜?",
+    "because they can spend less time commuting",
+    "통근하는 데 시간을 덜 쓸 수 있기 때문에."
+   ],
+   [
+    "요약: 직원 열 명 중 세 명쯤은 출근 시간이 줄어서 재택근무를 좋아한다."
+   ]
+  ],
+  "notes": [
+   "<b>spend + 시간 + -ing</b> = ~하는 데 시간을 쓰다: commute ✗ → commuting (commute 통근하다)",
+   "<b>퍼센트 of + 명사</b>는 of 뒤 명사에 수를 맞춘다: employees가 복수 → prefer",
+   "<b>prefer to + 동사원형</b> = ~하기를 더 좋아하다"
+  ]
+ },
+ {
+  "en": "[[More than half of the students in my class]] [[use]] [[desktops]] to access the Internet efficiently.",
+  "key": "학생의 절반 이상이 데스크톱을 사용한다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "More than half of the students in my class",
+    "s"
+   ],
+   [
+    "use",
+    "v"
+   ],
+   [
+    "desktops",
+    "o"
+   ],
+   [
+    " to access the Internet efficiently.",
+    "x"
+   ]
+  ],
+  "merel": "students ≠ desktops",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Students use desktops",
+    "학생들이 데스크톱을 사용한다."
+   ],
+   [
+    "몇 명이?",
+    "More than half of the students in my class",
+    "우리 반 학생의 절반 이상이."
+   ],
+   [
+    "왜?",
+    "to access the Internet",
+    "인터넷에 접속하려고."
+   ],
+   [
+    "어떻게?",
+    "efficiently",
+    "효율적으로."
+   ],
+   [
+    "요약: 우리 반 절반이 넘는 학생이 인터넷을 빠르게 쓰려고 데스크톱을 쓴다."
+   ]
+  ],
+  "notes": [
+   "<b>동작을 꾸미는 말은 부사</b>: efficient(효율적인) ✗ → efficiently(효율적으로). 예: Work hard.(열심히 일해라.)",
+   "<b>more than half of + 복수명사</b>는 복수 취급 → use",
+   "<b>to access</b> = 접속하기 위해 (목적의 to부정사)"
+  ]
+ },
+ {
+  "en": "[[All of the money collected from the event]] [[goes]] to a children’s hospital to help sick children.",
+  "key": "모인 돈은 어린이 병원으로 간다.",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "All of the money collected from the event",
+    "s"
+   ],
+   [
+    "goes",
+    "v"
+   ],
+   [
+    "to a children’s hospital to help sick children.",
+    "x"
+   ]
+  ],
+  "merel": "",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "All of the money goes",
+    "모든 돈이 간다."
+   ],
+   [
+    "어떤 돈?",
+    "collected from the event",
+    "그 행사에서 모인."
+   ],
+   [
+    "어디로?",
+    "to a children’s hospital",
+    "어린이 병원으로."
+   ],
+   [
+    "왜?",
+    "to help sick children",
+    "아픈 아이들을 돕기 위해 (help 돕다)."
+   ],
+   [
+    "요약: 행사에서 모은 돈은 전부 아픈 아이들을 위해 쓰인다."
+   ]
+  ],
+  "notes": [
+   "<b>to + 동사원형</b>이 목적(~하기 위해)이면 helping ✗ → help. 전치사 to(~로)일 때만 -ing",
+   "<b>all of + 셀 수 없는 명사</b>(money)는 단수 취급 → goes",
+   "<b>명사 + p.p.</b>는 뒤에서 꾸민다: money (collected from the event)"
+  ]
+ }
+]

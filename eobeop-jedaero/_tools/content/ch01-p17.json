@@ -44,9 +44,9 @@
      "explain": "who는 관계대명사이고, who 뒤에는 진짜 동사가 있어야 한다. becoming은 분사라서 혼자서는 동사 역할을 못 하므로, 과거의 일을 말하는 <b>became</b>(become 되다의 과거형)으로 고친다. 주절의 동사는 one(단수)에 맞춘 was이고, to earn art degrees(미술 학위를 받은)는 students를 뒤에서 꾸민다."
     },
     {
-     "sentence": "<w>Who will lead the company from now on are</w> the top concern at this meeting.",
-     "from": "Who will lead the company from now on are",
-     "to": "Who will lead the company from now on is",
+     "sentence": "Who will lead the company from now on <w>are</w> the top concern at this meeting.",
+     "from": "are",
+     "to": "is",
      "correct": "Who will lead the company from now on is the top concern at this meeting.",
      "interp": "지금부터 누가 회사를 이끌 것인가가 이번 회의에서 가장 큰 관심사이다.",
      "ch": "01",
@@ -124,7 +124,7 @@
      "explain": "hardly(거의 ~않다)처럼 부정의 뜻을 가진 부사가 문장 맨 앞에 나오면 주어와 동사의 순서가 바뀐다. 일반동사 refuse(거절하다)가 쓰인 문장이니 do를 주어 앞에 꺼내 <b>Hardly do children refuse</b>로 쓴다. 뒤의 when절에서 offer some(조금 주다)의 some은 some candies를 뜻한다."
     },
     {
-     "sentence": "Today, the problem discussed most frequently by world leaders is how <w>preventing</w> climate change.",
+     "sentence": "Today, the problem discussed most frequently by world leaders is <w>how preventing</w> climate change.",
      "from": "how preventing",
      "to": "how to prevent",
      "correct": "Today, the problem discussed most frequently by world leaders is how to prevent climate change.",
