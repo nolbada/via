@@ -1,0 +1,723 @@
+[
+ {
+  "en": "Most of the [[paintings]] in this museum [[were created]] by talented local artists, who were inspired by the nature around their town.",
+  "key": "그림 대부분이 그려졌다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Most of the paintings in this museum",
+    "s"
+   ],
+   [
+    "were created",
+    "v"
+   ],
+   [
+    "by talented local artists",
+    "x"
+   ],
+   [
+    "who were inspired by the nature around their town",
+    "x"
+   ]
+  ],
+  "merel": "수동태",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Paintings were created",
+    "그림들이 그려졌다."
+   ],
+   [
+    "어떤 그림들?",
+    "Most of the paintings in this museum",
+    "이 박물관의 그림 대부분."
+   ],
+   [
+    "누가 그렸어?",
+    "by talented local artists",
+    "재능 있는 지역 화가들에 의해."
+   ],
+   [
+    "어떤 화가들?",
+    "who were inspired by the nature around their town",
+    "마을 주변의 자연에서 영감을 받은."
+   ],
+   [
+    "요약: 이 박물관의 그림 대부분은 자연에서 영감을 받은 지역 화가들이 그렸다."
+   ]
+  ],
+  "notes": [
+   "<b>선행사가 사람이면 who</b>, 사물·동물이면 which. 예) artists, who ~ (화가들, 그들은 ~)",
+   "<b>관계대명사절 안의 동사</b>: 선행사가 ‘~당하는’ 쪽이면 수동태. 예) who were inspired (영감을 받은)",
+   "<b>수동태</b> = be + 과거분사. 행동한 사람은 by ~로 나타내요. 예) were created by artists"
+  ]
+ },
+ {
+  "en": "Most of the [[paintings]] in this museum [[were created]] by talented local artists, who were inspired by the nature around their town.",
+  "key": "그림 대부분이 그려졌다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Most of the paintings in this museum",
+    "s"
+   ],
+   [
+    "were created",
+    "v"
+   ],
+   [
+    "by talented local artists",
+    "x"
+   ],
+   [
+    "who were inspired by the nature around their town",
+    "x"
+   ]
+  ],
+  "merel": "수동태",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Paintings were created",
+    "그림들이 그려졌다."
+   ],
+   [
+    "어떤 그림들?",
+    "Most of the paintings in this museum",
+    "이 박물관의 그림 대부분."
+   ],
+   [
+    "누가 그렸어?",
+    "by talented local artists",
+    "재능 있는 지역 화가들에 의해."
+   ],
+   [
+    "어떤 화가들?",
+    "who were inspired by the nature around their town",
+    "마을 주변의 자연에서 영감을 받은."
+   ],
+   [
+    "요약: 이 박물관의 그림 대부분은 자연에서 영감을 받은 지역 화가들이 그렸다."
+   ]
+  ],
+  "notes": [
+   "<b>관계대명사절의 동사</b>는 선행사(artists)와 능동/수동 관계로 정해요. 화가는 영감을 ‘받는’ 쪽이라 <b>were inspired</b>",
+   "<b>be + 과거분사 + by ~</b> = ~에 의해 …되다. 예) were inspired by the nature (자연에게서 영감을 받았다)",
+   "문장 뼈대: <b>주어(Most of the paintings) + were created</b>. 뒤의 who절은 화가들을 꾸며 줘요."
+  ]
+ },
+ {
+  "en": "[[Colleges]] in most places around the country [[have]] [[fewer students]] today than they did 10 years ago, so they are trying to attract more applicants and provide better programs.",
+  "key": "대학들은 더 적은 학생을 가지고 있다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Colleges in most places around the country",
+    "s"
+   ],
+   [
+    "have",
+    "v"
+   ],
+   [
+    "fewer students today",
+    "o"
+   ],
+   [
+    "than they did 10 years ago",
+    "x"
+   ],
+   [
+    "so they are trying to attract more applicants and provide better programs",
+    "x"
+   ]
+  ],
+  "merel": "Colleges ≠ students",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Colleges have students",
+    "대학들은 학생이 있다."
+   ],
+   [
+    "어떤 대학들?",
+    "Colleges in most places around the country",
+    "전국 대부분 지역의 대학들."
+   ],
+   [
+    "얼마나 있어?",
+    "fewer students today than they did 10 years ago",
+    "10년 전보다 오늘날 더 적은 학생."
+   ],
+   [
+    "그래서 뭘 해?",
+    "so they are trying to attract more applicants and provide better programs",
+    "그래서 더 많은 지원자를 끌어들이고 더 나은 프로그램을 제공하려고 노력한다."
+   ],
+   [
+    "요약: 학생이 줄어든 대학들이 지원자를 늘리고 프로그램을 개선하려 한다."
+   ]
+  ],
+  "notes": [
+   "<b>try to + 동사원형</b> = ~하려고 노력하다 / <b>try -ing</b> = 시험 삼아 ~해 보다. 예) try to attract (끌어들이려고 노력하다)",
+   "<b>did</b>는 앞에 나온 동사(have)를 대신하는 말. 예) than they did = than they had (그들이 가졌던 것보다)",
+   "문장 뼈대: <b>Colleges have students</b>, 뒤의 so절은 ‘그래서 ~한다’는 결과."
+  ]
+ },
+ {
+  "en": "[[Colleges]] in most places around the country [[have]] [[fewer students]] today than they did 10 years ago, so they are trying to attract more applicants and provide better programs.",
+  "key": "대학들은 더 적은 학생을 가지고 있다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Colleges in most places around the country",
+    "s"
+   ],
+   [
+    "have",
+    "v"
+   ],
+   [
+    "fewer students today",
+    "o"
+   ],
+   [
+    "than they did 10 years ago",
+    "x"
+   ],
+   [
+    "so they are trying to attract more applicants and provide better programs",
+    "x"
+   ]
+  ],
+  "merel": "Colleges ≠ students",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Colleges have students",
+    "대학들은 학생이 있다."
+   ],
+   [
+    "어떤 대학들?",
+    "Colleges in most places around the country",
+    "전국 대부분 지역의 대학들."
+   ],
+   [
+    "얼마나 있어?",
+    "fewer students today than they did 10 years ago",
+    "10년 전보다 오늘날 더 적은 학생."
+   ],
+   [
+    "그래서 뭘 해?",
+    "so they are trying to attract more applicants and provide better programs",
+    "그래서 더 많은 지원자를 끌어들이고 더 나은 프로그램을 제공하려고 노력한다."
+   ],
+   [
+    "요약: 학생이 줄어든 대학들이 지원자를 늘리고 프로그램을 개선하려 한다."
+   ]
+  ],
+  "notes": [
+   "<b>and</b>는 같은 모양끼리 이어요. to attract and (to) provide (끌어들이고 제공하다). 두 번째 to는 생략 가능",
+   "to부정사가 이어질 때 <b>to attract ... and provide</b>처럼 뒤의 to는 보통 생략",
+   "<b>fewer</b> = 더 적은(셀 수 있는 명사 앞). 예) fewer students (더 적은 학생들)"
+  ]
+ },
+ {
+  "en": "This [[way]] of recycling plastic products [[helps]] [[to protect the environment]] by reducing waste and saving resources.",
+  "key": "이 방식은 환경을 보호하는 것을 돕는다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "This way of recycling plastic products",
+    "s"
+   ],
+   [
+    "helps",
+    "v"
+   ],
+   [
+    "to protect the environment",
+    "o"
+   ],
+   [
+    "by reducing waste and saving resources",
+    "x"
+   ]
+  ],
+  "merel": "way ≠ to protect",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "This way helps to protect the environment",
+    "이 방식은 환경을 보호하는 것을 돕는다."
+   ],
+   [
+    "어떤 방식?",
+    "of recycling plastic products",
+    "플라스틱 제품을 재활용하는."
+   ],
+   [
+    "어떻게 보호해?",
+    "by reducing waste and saving resources",
+    "쓰레기를 줄이고 자원을 아껴서."
+   ],
+   [
+    "요약: 플라스틱 재활용은 쓰레기를 줄이고 자원을 아껴 환경을 지킨다."
+   ]
+  ],
+  "notes": [
+   "<b>전치사 뒤 동사는 -ing</b>, and로 이어지면 같은 모양. 예) by reducing and saving (줄이고 아껴서)",
+   "<b>help (to) + 동사원형</b> = ~하는 것을 돕다. 예) helps to protect (보호하도록 돕는다)",
+   "문장 뼈대: 주어는 <b>This way</b> (단수) → helps. recycling ~ products는 way를 꾸며 줘요."
+  ]
+ },
+ {
+  "en": "Solid rubber [[balls]] [[are]] [[great]] for such games, while balls made of clay do not bounce at all, so they are not suitable.",
+  "key": "고무공은 아주 좋다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "Solid rubber balls",
+    "s"
+   ],
+   [
+    "are",
+    "v"
+   ],
+   [
+    "great",
+    "c"
+   ],
+   [
+    "for such games",
+    "x"
+   ],
+   [
+    "while balls made of clay do not bounce at all",
+    "x"
+   ],
+   [
+    "so they are not suitable",
+    "x"
+   ]
+  ],
+  "merel": "balls = great",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Balls are great",
+    "공들은 아주 좋다."
+   ],
+   [
+    "어떤 공?",
+    "Solid rubber balls",
+    "단단한 고무공."
+   ],
+   [
+    "어디에 좋아?",
+    "for such games",
+    "이런 경기에."
+   ],
+   [
+    "반대로 점토 공은?",
+    "while balls made of clay do not bounce at all",
+    "반면 점토로 만든 공은 전혀 튀지 않는다."
+   ],
+   [
+    "요약: 고무공은 경기에 좋고, 점토 공은 튀지 않아 적합하지 않다."
+   ]
+  ],
+  "notes": [
+   "<b>do not + 동사원형</b>. 예) do not bounce (튀지 않는다), -ing는 안 돼요",
+   "<b>balls made of clay</b>의 made(만들어진)는 balls를 꾸미는 과거분사",
+   "<b>while</b> = 반면에. 앞뒤 내용을 대비해요."
+  ]
+ },
+ {
+  "en": "Solid rubber [[balls]] [[are]] [[great]] for such games, while balls made of clay do not bounce at all, so they are not suitable.",
+  "key": "고무공은 아주 좋다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "Solid rubber balls",
+    "s"
+   ],
+   [
+    "are",
+    "v"
+   ],
+   [
+    "great",
+    "c"
+   ],
+   [
+    "for such games",
+    "x"
+   ],
+   [
+    "while balls made of clay do not bounce at all",
+    "x"
+   ],
+   [
+    "so they are not suitable",
+    "x"
+   ]
+  ],
+  "merel": "balls = great",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Balls are great",
+    "공들은 아주 좋다."
+   ],
+   [
+    "어떤 공?",
+    "Solid rubber balls",
+    "단단한 고무공."
+   ],
+   [
+    "어디에 좋아?",
+    "for such games",
+    "이런 경기에."
+   ],
+   [
+    "반대로 점토 공은?",
+    "while balls made of clay do not bounce at all",
+    "반면 점토로 만든 공은 전혀 튀지 않는다."
+   ],
+   [
+    "요약: 고무공은 경기에 좋고, 점토 공은 튀지 않아 적합하지 않다."
+   ]
+  ],
+  "notes": [
+   "<b>be동사 뒤 보어는 형용사</b>. 예) they are not suitable (적합하지 않다), 부사 suitably는 안 돼요",
+   "<b>보어</b>는 주어가 어떤 상태인지 말해 줘요. they = suitable",
+   "문장 뼈대: <b>Balls are great</b> (2형식: 주어 = 보어)."
+  ]
+ },
+ {
+  "en": "As a result, a [[train service]] running on schedule [[looks]] [[more practical]] to them and allows them to avoid heavy traffic.",
+  "key": "열차 서비스가 실용적으로 보인다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "As a result",
+    "x"
+   ],
+   [
+    "a train service running on schedule",
+    "s"
+   ],
+   [
+    "looks",
+    "v"
+   ],
+   [
+    "more practical",
+    "c"
+   ],
+   [
+    "to them and allows them to avoid heavy traffic",
+    "x"
+   ]
+  ],
+  "merel": "service = practical",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "A train service looks practical",
+    "열차 서비스가 실용적으로 보인다."
+   ],
+   [
+    "어떤 열차 서비스?",
+    "running on schedule",
+    "일정대로 운행하는."
+   ],
+   [
+    "누구에게?",
+    "to them",
+    "그들에게."
+   ],
+   [
+    "또 뭘 해 줘?",
+    "allows them to avoid heavy traffic",
+    "그들이 극심한 교통체증을 피하게 해 준다."
+   ],
+   [
+    "요약: 정시 운행 열차는 편리하고 교통체증을 피하게 해 준다."
+   ]
+  ],
+  "notes": [
+   "<b>look + 형용사</b> = ~하게 보이다. 예) looks more practical (더 실용적으로 보인다)",
+   "<b>a train service running ~</b>: 명사 뒤 현재분사(-ing)가 ‘~하는’ 뜻으로 꾸며요.",
+   "문장 뼈대: <b>service looks practical</b> (주어 = 보어)."
+  ]
+ },
+ {
+  "en": "As a result, a [[train service]] running on schedule [[looks]] [[more practical]] to them and allows them to avoid heavy traffic.",
+  "key": "열차 서비스가 실용적으로 보인다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "As a result",
+    "x"
+   ],
+   [
+    "a train service running on schedule",
+    "s"
+   ],
+   [
+    "looks",
+    "v"
+   ],
+   [
+    "more practical",
+    "c"
+   ],
+   [
+    "to them and allows them to avoid heavy traffic",
+    "x"
+   ]
+  ],
+  "merel": "service = practical",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "A train service looks practical",
+    "열차 서비스가 실용적으로 보인다."
+   ],
+   [
+    "어떤 열차 서비스?",
+    "running on schedule",
+    "일정대로 운행하는."
+   ],
+   [
+    "누구에게?",
+    "to them",
+    "그들에게."
+   ],
+   [
+    "또 뭘 해 줘?",
+    "allows them to avoid heavy traffic",
+    "그들이 극심한 교통체증을 피하게 해 준다."
+   ],
+   [
+    "요약: 정시 운행 열차는 편리하고 교통체증을 피하게 해 준다."
+   ]
+  ],
+  "notes": [
+   "<b>allow + 목적어 + to + 동사원형</b> = ~가 …하게 해 주다. 예) allows them to avoid (그들이 피하게 해 준다)",
+   "allow 뒤에는 -ing(avoiding)를 바로 쓰지 않고 <b>목적어 다음에 to부정사</b>",
+   "and로 이어진 <b>looks ... and allows</b>는 같은 주어(service)의 동사 둘."
+  ]
+ },
+ {
+  "en": "[[Using this technique with their characters]] [[allows]] [[them]] [[to appeal to people’s emotions more easily]].",
+  "key": "이 기법을 쓰는 것은 그들이 호소하게 해 준다.",
+  "form": "5형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "make",
+    "v"
+   ],
+   [
+    "him",
+    "o"
+   ],
+   [
+    "happy",
+    "oc"
+   ]
+  ],
+  "refrel": "him = happy",
+  "me": [
+   [
+    "Using this technique with their characters",
+    "s"
+   ],
+   [
+    "allows",
+    "v"
+   ],
+   [
+    "them",
+    "o"
+   ],
+   [
+    "to appeal to people’s emotions more easily",
+    "oc"
+   ]
+  ],
+  "merel": "them = appeal",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Using this technique allows them to appeal",
+    "이 기법을 쓰는 것은 그들이 호소하도록 해 준다."
+   ],
+   [
+    "무엇을 쓰는 것?",
+    "this technique with their characters",
+    "캐릭터에 이 기법을."
+   ],
+   [
+    "누가 호소해?",
+    "them",
+    "그들(애니메이터들)이."
+   ],
+   [
+    "무엇에 어떻게?",
+    "to appeal to people’s emotions more easily",
+    "사람들의 감정에 더 쉽게 호소하도록."
+   ],
+   [
+    "요약: 이 기법을 쓰면 애니메이터가 감정에 더 쉽게 호소할 수 있다."
+   ]
+  ],
+  "notes": [
+   "<b>동사를 꾸미는 말은 부사</b>. 예) appeal more easily (더 쉽게 호소하다), 형용사 easy는 안 돼요",
+   "<b>allow + 목적어 + to + 동사원형</b> = ~가 …하게 해 주다. 예) allows them to appeal",
+   "<b>동명사구가 주어</b> (Using ~) → 단수 취급, 그래서 allows."
+  ]
+ }
+]

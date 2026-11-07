@@ -1,0 +1,760 @@
+[
+ {
+  "en": "The [[engineers]] that invented the machine were [[praised]] for the safety of their design.",
+  "key": "기술자들이 칭찬받았다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "The engineers that invented the machine",
+    "s"
+   ],
+   [
+    "were praised",
+    "v"
+   ],
+   [
+    "for the safety of their design.",
+    "x"
+   ]
+  ],
+  "merel": "수동태",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "The engineers were praised",
+    "기술자들이 칭찬받았다."
+   ],
+   [
+    "어떤 기술자?",
+    "that invented the machine",
+    "그 기계를 발명한(invent 발명하다)."
+   ],
+   [
+    "무엇 때문에?",
+    "for the safety of their design",
+    "그들의 설계의 안전성 때문에."
+   ],
+   [
+    "요약: 기계를 만든 기술자들이 설계가 안전하다고 칭찬받았다."
+   ]
+  ],
+  "notes": [
+   "<b>소유 의미는 소유격</b>: 명사 앞에는 '그들의' their(그들의)를 쓴다. them(그들을)은 명사 앞에 못 온다 → their design",
+   "<b>be praised for ~</b> = ~로 칭찬받다. praise(칭찬하다)의 수동태"
+  ]
+ },
+ {
+  "en": "Even in a society that rejects the idea of eating insects, some [[people]] may [[be]] [[open to the idea]].",
+  "key": "어떤 사람들은 열려 있을 수도 있다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "Even in a society that rejects the idea of eating insects,",
+    "x"
+   ],
+   [
+    "some people",
+    "s"
+   ],
+   [
+    "may be",
+    "v"
+   ],
+   [
+    "open to the idea.",
+    "c"
+   ]
+  ],
+  "merel": "people = open",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "some people may be open",
+    "어떤 사람들은 열려 있을 수도 있다."
+   ],
+   [
+    "어떤 사회에서도?",
+    "Even in a society that rejects the idea of eating insects",
+    "곤충을 먹는다는 생각을 거부하는(reject 거부하다) 사회에서조차."
+   ],
+   [
+    "무엇에 열려 있나?",
+    "open to the idea",
+    "그 생각에 열려 있는."
+   ],
+   [
+    "요약: 곤충 먹기를 싫어하는 사회에서도 받아들일 사람이 있을 수 있다."
+   ]
+  ],
+  "notes": [
+   "<b>be open to + 명사</b> = ~에 열려 있다. 이때 to는 전치사 → open for ✗, open to ✓",
+   "<b>2형식</b>: be동사 뒤 open은 주어를 설명하는 말(보어)"
+  ]
+ },
+ {
+  "en": "At the University of Iowa, [[one]] of the first three students to earn art degrees [[was]] [[Elizabeth Catlett]], who later became an important artist.",
+  "key": "한 명은 엘리자베스 캐틀렛이었다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "At the University of Iowa,",
+    "x"
+   ],
+   [
+    "one of the first three students to earn art degrees",
+    "s"
+   ],
+   [
+    "was",
+    "v"
+   ],
+   [
+    "Elizabeth Catlett, who later became an important artist.",
+    "c"
+   ]
+  ],
+  "merel": "one = Elizabeth Catlett",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "one was Elizabeth Catlett",
+    "한 명은 엘리자베스 캐틀렛이었다."
+   ],
+   [
+    "어떤 학생 중 한 명?",
+    "one of the first three students to earn art degrees",
+    "미술 학위를 받은(earn 얻다) 최초의 세 학생 중 한 명."
+   ],
+   [
+    "어디에서?",
+    "At the University of Iowa",
+    "아이오와 대학에서."
+   ],
+   [
+    "그녀는 누구?",
+    "who later became an important artist",
+    "나중에 중요한 예술가가 된(become 되다)."
+   ],
+   [
+    "요약: 아이오와 대학의 첫 미술 학위 학생 중 한 명이 훗날 중요한 예술가가 된 캐틀렛이다."
+   ]
+  ],
+  "notes": [
+   "<b>관계대명사 who 뒤에는 진짜 동사</b>가 필요: becoming(분사) ✗ → <b>became</b>(become 되다의 과거)",
+   "주어는 one(단수) → 동사 was. of 뒤 students에 끌리지 않기"
+  ]
+ },
+ {
+  "en": "[[Who will lead the company from now on]] [[is]] [[the top concern]] at this meeting.",
+  "key": "누가 이끌지가 큰 관심사이다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "Who will lead the company from now on",
+    "s"
+   ],
+   [
+    "is",
+    "v"
+   ],
+   [
+    "the top concern",
+    "c"
+   ],
+   [
+    "at this meeting.",
+    "x"
+   ]
+  ],
+  "merel": "Who절 = concern",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Who will lead is the top concern",
+    "누가 이끌지가 가장 큰 관심사이다."
+   ],
+   [
+    "무엇이?",
+    "Who will lead the company from now on",
+    "누가 지금부터 회사를 이끌 것인가(lead 이끌다)."
+   ],
+   [
+    "어디서?",
+    "at this meeting",
+    "이번 회의에서."
+   ],
+   [
+    "요약: 이번 회의의 최대 관심사는 앞으로 누가 회사를 이끄느냐이다."
+   ]
+  ],
+  "notes": [
+   "<b>명사절 주어 → 단수 동사</b>: Who will lead ~ is (are ✗)",
+   "주어는 긴 who절 전체. 뒤 명사 concern에 동사를 맞추는 게 아니다"
+  ]
+ },
+ {
+  "en": "[[Everyone]] [[wants]] [[to have friends who always understand them and share their joys and sorrows]].",
+  "key": "모든 사람은 친구를 갖고 싶어 한다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Everyone",
+    "s"
+   ],
+   [
+    "wants",
+    "v"
+   ],
+   [
+    "to have friends who always understand them and share their joys and sorrows.",
+    "o"
+   ]
+  ],
+  "merel": "Everyone ≠ to have",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Everyone wants to have friends",
+    "모든 사람은 친구를 갖고 싶어 한다."
+   ],
+   [
+    "어떤 친구?",
+    "friends who always understand them",
+    "늘 자신을 이해해 주는(understand 이해하다)."
+   ],
+   [
+    "또 어떤 친구?",
+    "and share their joys and sorrows",
+    "그리고 기쁨과 슬픔을 나누는(share 나누다)."
+   ],
+   [
+    "요약: 내 마음을 알아주고 기쁨과 슬픔을 나눌 친구를 원한다."
+   ]
+  ],
+  "notes": [
+   "<b>and로 이은 동사는 모양을 맞춘다</b>: understand and share (sharing ✗)",
+   "관계대명사 who의 동사는 선행사 friends(복수)에 맞춰 -s 없는 원형"
+  ]
+ },
+ {
+  "en": "There [[exist]] [[many solutions to our problems]], if we see them with an open mind.",
+  "key": "많은 해결책이 존재한다.",
+  "form": "1형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "sleep",
+    "v"
+   ]
+  ],
+  "refrel": "",
+  "me": [
+   [
+    "There",
+    "x"
+   ],
+   [
+    "exist",
+    "v"
+   ],
+   [
+    "many solutions to our problems,",
+    "s"
+   ],
+   [
+    "if we see them with an open mind.",
+    "x"
+   ]
+  ],
+  "merel": "",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "many solutions exist",
+    "많은 해결책이 존재한다."
+   ],
+   [
+    "무엇에 대한?",
+    "to our problems",
+    "우리 문제에 대한."
+   ],
+   [
+    "언제?",
+    "if we see them with an open mind",
+    "그것들을 열린 마음으로 본다면(see 보다)."
+   ],
+   [
+    "요약: 열린 마음으로 보면 문제의 해결책은 많다."
+   ]
+  ],
+  "notes": [
+   "<b>There + 동사 + 주어</b>: 진짜 주어는 동사 뒤에 있다. 주어가 복수(solutions)면 exist",
+   "<b>exist</b>(존재하다)는 뒤에 목적어가 없는 1형식 동사"
+  ]
+ },
+ {
+  "en": "[[Much of the information you receive from newspapers]] [[provides]] [[valuable knowledge about the world]].",
+  "key": "정보가 지식을 제공한다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Much of the information you receive from newspapers",
+    "s"
+   ],
+   [
+    "provides",
+    "v"
+   ],
+   [
+    "valuable knowledge about the world.",
+    "o"
+   ]
+  ],
+  "merel": "information ≠ knowledge",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Much of the information provides knowledge",
+    "정보의 상당 부분은 지식을 제공한다."
+   ],
+   [
+    "어떤 정보?",
+    "you receive from newspapers",
+    "당신이 신문에서 받는(receive 받다)."
+   ],
+   [
+    "어떤 지식?",
+    "valuable knowledge about the world",
+    "세상에 대한 귀중한 지식."
+   ],
+   [
+    "요약: 신문에서 얻는 정보 대부분이 세상 지식을 준다."
+   ]
+  ],
+  "notes": [
+   "<b>Much of + 셀 수 없는 명사</b> → 단수 동사: information은 셀 수 없다 → provides",
+   "you receive ~는 information을 뒤에서 꾸미는 말. 동사 수에 영향 없음"
+  ]
+ },
+ {
+  "en": "[[Running marathons]] [[remains]] [[a popular form of exercise and personal achievement]], but it requires training regularly.",
+  "key": "마라톤 달리기는 인기 있는 형태로 남아 있다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "Running marathons",
+    "s"
+   ],
+   [
+    "remains",
+    "v"
+   ],
+   [
+    "a popular form of exercise and personal achievement,",
+    "c"
+   ],
+   [
+    "but it requires training regularly.",
+    "x"
+   ]
+  ],
+  "merel": "Running marathons = form",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "Running marathons remains a popular form",
+    "마라톤 달리기는 인기 있는 형태로 남아 있다."
+   ],
+   [
+    "무엇의 형태?",
+    "of exercise and personal achievement",
+    "운동과 개인적 성취의."
+   ],
+   [
+    "하지만 어떤 점은?",
+    "but it requires training regularly",
+    "하지만 규칙적으로 훈련하는 것을 필요로 한다(require 필요로 하다)."
+   ],
+   [
+    "요약: 마라톤은 인기 있지만 꾸준한 훈련이 필요하다."
+   ]
+  ],
+  "notes": [
+   "<b>require + ~ing(동명사)</b>: requires 뒤는 '~하는 것' → requires train ✗, requires training ✓",
+   "동명사구 주어(Running marathons)는 단수 → remains"
+  ]
+ },
+ {
+  "en": "In recent surveys, [[half of the students in the class]] [[prefer]] [[studying in groups rather than alone]].",
+  "key": "학생의 절반은 그룹으로 공부하는 걸 선호한다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "In recent surveys,",
+    "x"
+   ],
+   [
+    "half of the students in the class",
+    "s"
+   ],
+   [
+    "prefer",
+    "v"
+   ],
+   [
+    "studying in groups rather than alone.",
+    "o"
+   ]
+  ],
+  "merel": "half ≠ studying",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "half of the students prefer studying",
+    "학생의 절반은 공부하는 것을 선호한다."
+   ],
+   [
+    "어디 학생?",
+    "in the class",
+    "학급의."
+   ],
+   [
+    "어떻게 공부?",
+    "in groups rather than alone",
+    "혼자보다 그룹으로."
+   ],
+   [
+    "언제 알게 됐나?",
+    "In recent surveys",
+    "최근 조사에서."
+   ],
+   [
+    "요약: 최근 조사에서 반 학생 절반이 그룹 공부를 더 좋아한다."
+   ]
+  ],
+  "notes": [
+   "<b>prefer + ~ing 또는 to부정사</b>: prefer(선호하다) 뒤에 동사 원형 study ✗ → studying / to study",
+   "<b>half of + 복수명사</b> → 복수 동사 prefer (of 뒤 명사에 맞춤)"
+  ]
+ },
+ {
+  "en": "Sometimes, [[what people eat for breakfast]] [[influences]] [[their mood]] for the rest of the day.",
+  "key": "먹는 것이 기분에 영향을 준다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Sometimes,",
+    "x"
+   ],
+   [
+    "what people eat for breakfast",
+    "s"
+   ],
+   [
+    "influences",
+    "v"
+   ],
+   [
+    "their mood",
+    "o"
+   ],
+   [
+    "for the rest of the day.",
+    "x"
+   ]
+  ],
+  "merel": "what절 ≠ mood",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "what people eat influences their mood",
+    "사람들이 먹는 것이 기분에 영향을 준다(influence 영향을 주다)."
+   ],
+   [
+    "무엇이?",
+    "what people eat for breakfast",
+    "사람들이 아침으로 먹는 것."
+   ],
+   [
+    "언제까지?",
+    "for the rest of the day",
+    "그날 나머지 시간 동안."
+   ],
+   [
+    "요약: 아침에 뭘 먹느냐가 하루 기분을 좌우한다."
+   ]
+  ],
+  "notes": [
+   "<b>what절 주어 → 단수 동사</b>: what people eat ~ influences (influence ✗)",
+   "what = '~하는 것'. 안의 people(복수)에 끌리지 않기"
+  ]
+ },
+ {
+  "en": "Hardly do [[children]] [[refuse]] [[to eat candies]] when their grandparents offer some.",
+  "key": "아이들은 사탕 먹기를 거의 거절하지 않는다.",
+  "form": "3형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "like",
+    "v"
+   ],
+   [
+    "apples",
+    "o"
+   ]
+  ],
+  "refrel": "I ≠ apples",
+  "me": [
+   [
+    "Hardly do",
+    "x"
+   ],
+   [
+    "children",
+    "s"
+   ],
+   [
+    "refuse",
+    "v"
+   ],
+   [
+    "to eat candies",
+    "o"
+   ],
+   [
+    "when their grandparents offer some.",
+    "x"
+   ]
+  ],
+  "merel": "children ≠ to eat",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "children refuse to eat candies",
+    "아이들은 사탕 먹기를 거절한다."
+   ],
+   [
+    "얼마나?",
+    "Hardly do",
+    "거의 ~하지 않는다."
+   ],
+   [
+    "언제?",
+    "when their grandparents offer some",
+    "할머니, 할아버지가 조금 주실 때(offer 주다)."
+   ],
+   [
+    "요약: 어른이 사탕을 주면 아이들은 대부분 거절하지 않는다."
+   ]
+  ],
+  "notes": [
+   "<b>부정어(hardly) 문장 맨 앞 → 도치</b>: Hardly <b>do</b> children refuse (Hardly children refuse ✗)",
+   "do는 일반동사 refuse(거절하다)가 있을 때 앞으로 나온 조동사"
+  ]
+ },
+ {
+  "en": "Today, the [[problem]] discussed most frequently by world leaders [[is]] [[how to prevent climate change]].",
+  "key": "그 문제는 어떻게 막을지이다.",
+  "form": "2형식",
+  "ref": [
+   [
+    "I",
+    "s"
+   ],
+   [
+    "am",
+    "v"
+   ],
+   [
+    "happy",
+    "c"
+   ]
+  ],
+  "refrel": "I = happy",
+  "me": [
+   [
+    "Today,",
+    "x"
+   ],
+   [
+    "the problem discussed most frequently by world leaders",
+    "s"
+   ],
+   [
+    "is",
+    "v"
+   ],
+   [
+    "how to prevent climate change.",
+    "c"
+   ]
+  ],
+  "merel": "problem = how절",
+  "easy": [
+   [
+    "먼저 뼈대부터:",
+    "the problem is how to prevent",
+    "그 문제는 어떻게 막을지이다."
+   ],
+   [
+    "어떤 문제?",
+    "discussed most frequently by world leaders",
+    "세계 지도자들이 가장 자주 논의하는(discuss 논의하다)."
+   ],
+   [
+    "무엇을 막나?",
+    "how to prevent climate change",
+    "기후 변화를 어떻게 막을지(prevent 막다)."
+   ],
+   [
+    "요약: 지도자들의 최대 논의 주제는 기후 변화를 막는 방법이다."
+   ]
+  ],
+  "notes": [
+   "<b>의문사 + to부정사</b> = 어떻게 ~할지: how to prevent (how preventing ✗)",
+   "discussed ~ leaders는 problem을 뒤에서 꾸미는 과거분사구(논의되는)"
+  ]
+ }
+]
