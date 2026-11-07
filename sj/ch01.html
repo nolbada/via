@@ -250,7 +250,7 @@ h1{font-size:26px}
   function ls(){try{return W.localStorage}catch(e){return null}}
   function g(k){var l=ls();try{return l&&l.getItem(k)}catch(e){return null}}
   function s(k,v){var l=ls();try{l&&l.setItem(k,v)}catch(e){}}
-  function name(){if(TM)return'신유정';return(g('wn_name')||g('recm_name')||g('rec_name')||'').replace(/\s+/g,'')}
+  function name(){if(TM)return'신유정'+((/[?&]c=([AB])(&|$)/.exec(W.location.search)||[])[1]||'');return(g('wn_name')||g('recm_name')||g('rec_name')||'').replace(/\s+/g,'')}
   function jq(k){try{return JSON.parse(g(k)||'[]')}catch(e){return[]}}
   function post(b){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b),keepalive:true}).then(function(r){return r.json()})}
   var busy=false,again=false;
