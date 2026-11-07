@@ -55,7 +55,9 @@ function ls(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function tget(){try{var o=JSON.parse(ls('wn_tested')||'{}');return o.d===kst()?(o.m||{}):{}}catch(e){return{}}}
 function lastFri(){var d=kst(),w=pd(d).getUTCDay();return addd(d,-((w+2)%7))}
-var SPD=null;
+var SPD=null,PEND=(function(){try{return JSON.parse(ls('wn_sp_pend')||'{}')}catch(e){return{}}})(),SAV=0;
+function pendSave(){ss('wn_sp_pend',JSON.stringify(PEND))}
+function spFlush(){var keys=Object.keys(PEND);if(!keys.length)return Promise.resolve(true);return ctlRead().then(function(m){var by={},d={},sent=keys.slice();keys.forEach(function(k){var i=k.indexOf('|'),dd=k.slice(0,i),n=k.slice(i+1);(by[n]=by[n]||[]).push([dd,PEND[k]])});Object.keys(by).forEach(function(n){var c=JSON.parse(JSON.stringify(ctlOf(m,n)));c.sp=c.sp||{};by[n].forEach(function(p){if(p[1])c.sp[p[0]]=p[1];else delete c.sp[p[0]]});d[n]={v:{s:JSON.stringify(c)},t:Date.now()};by[n].c=c});return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:d})}).then(function(r){return r.json()}).then(function(res){if(!res||res.ok===false)throw 0;CTM=CTM||{};Object.keys(by).forEach(function(n){CTM[n]=by[n].c});sent.forEach(function(k){delete PEND[k]})})}).then(function(){pendSave();return true},function(){pendSave();return false})}
 function spWrite(n,fn){return ctlRead().then(function(m){var c=JSON.parse(JSON.stringify(ctlOf(m,n)));c.sp=c.sp||{};fn(c.sp);return ctlWrite(n,c).then(function(res){if(res&&res.ok===false)throw 0;CTM=CTM||{};CTM[n]=c;return c})})}
 function tset(n,ok,ng){spWrite(n,function(sp){if(sp[lastFri()]!==1)sp[lastFri()]=1}).catch(function(){});var m=tget(),c=m[n]||{ok:0,ng:0};c.ok+=ok;c.ng+=ng;m[n]=c;ss('wn_tested',JSON.stringify({d:kst(),m:m}))}
 var $=document.getElementById('app');
@@ -85,14 +87,16 @@ function asklist(r,sk){
   var ss_=r.students.slice().sort(function(a,c){return c.total-a.total||(a.name<c.name?-1:1)});
   var h='<div style="display:flex;align-items:center;gap:8px;margin:0 0 10px"><button class="sbtn" id="spp"'+(SPD<='2026-11-06'?' disabled':'')+'>&lsaquo;</button><b style="flex:1;text-align:center">말하기 시험 '+dshow(SPD)+'</b><button class="sbtn" id="spn"'+(SPD>=lastFri()?' disabled':'')+'>&rsaquo;</button></div><div class="seg" id="lim">'+[5,10,15].map(function(x){return'<button data-l="'+x+'"'+(x===LIM?' class="on"':'')+'>'+x+'개</button>'}).join('')+'</div>';
   var T=tget();
-  ss_.forEach(function(s){var t=T[s.name],sp=(ctlOf(CTM,s.name).sp||{})[SPD];h+='<button class="st'+(sp===1?' done':sp===2?' abs':'')+'" data-n="'+esc(s.name)+'"><span class="nm">'+esc(s.name)+'<small>'+esc(s.grade)+(s.school?' · '+esc(s.school):'')+' · 질문 대기 '+s.askDue+(sp===1?' · 완료'+((t&&(t.ok+t.ng))?' '+t.ok+'/'+(t.ok+t.ng):''):sp===2?' · 결석':'')+'</small></span><span class="mk" data-m="'+esc(s.name)+'">'+(sp===1?'해제':'시험 봄')+'</span><span class="mk" data-a="'+esc(s.name)+'">'+(sp===2?'결석 해제':'결석')+'</span><span class="pill'+(s.total?'':' z')+'">'+s.total+'개</span></button>'});
+  ss_.forEach(function(s){var t=T[s.name],pk=SPD+'|'+s.name,pv=PEND[pk],pn=pv!==undefined,sp=pn?pv:(ctlOf(CTM,s.name).sp||{})[SPD];h+='<button class="st'+(sp===1?' done':sp===2?' abs':'')+'" data-n="'+esc(s.name)+'"><span class="nm">'+esc(s.name)+'<small>'+esc(s.grade)+(s.school?' · '+esc(s.school):'')+' · 질문 대기 '+s.askDue+(sp===1?' · 완료'+((t&&(t.ok+t.ng))?' '+t.ok+'/'+(t.ok+t.ng):''):sp===2?' · 결석':'')+(pn?' · 저장 전':'')+'</small></span><span class="mk" data-m="'+esc(s.name)+'">'+(sp===1?'해제':'시험 봄')+'</span><span class="mk" data-a="'+esc(s.name)+'">'+(sp===2?'결석 해제':'결석')+'</span><span class="pill'+(s.total?'':' z')+'">'+s.total+'개</span></button>'});
+  var PN=Object.keys(PEND).length;if(PN)h+='<div style="position:sticky;bottom:10px;margin-top:12px"><button class="btn pri" id="spsave"'+(SAV?' disabled':'')+'>'+(SAV?'저장 중... 기다려 주세요':'저장하기 ('+PN+'명)')+'</button></div>';
   b.innerHTML=h;
   b.querySelectorAll('#lim button').forEach(function(x){x.onclick=function(){LIM=+x.dataset.l;ss('wn_lim',LIM);asklist(r,1)}});
   var spp=document.getElementById('spp'),spn=document.getElementById('spn');
   if(spp)spp.onclick=function(){SPD=addd(SPD,-7);asklist(r,1)};
   if(spn)spn.onclick=function(){SPD=addd(SPD,7);asklist(r,1)};
   b.querySelectorAll('.st').forEach(function(x){x.onclick=function(){wlist(x.dataset.n)}});
-  b.querySelectorAll('.mk').forEach(function(x){x.onclick=function(e){e.stopPropagation();var n=x.dataset.m||x.dataset.a,v=x.dataset.m?1:2,d=SPD;x.textContent='...';spWrite(n,function(sp){if(sp[d]===v)delete sp[d];else sp[d]=v}).then(function(){asklist(r,1)},function(){x.textContent='저장 안 됨'})}});
+  b.querySelectorAll('.mk').forEach(function(x){x.onclick=function(e){e.stopPropagation();if(SAV)return;var n=x.dataset.m||x.dataset.a,v=x.dataset.m?1:2,k=SPD+'|'+n,sv=(ctlOf(CTM,n).sp||{})[SPD]||0,cur=PEND[k]!==undefined?PEND[k]:sv,nv=(cur===v)?0:v;if(nv===sv)delete PEND[k];else PEND[k]=nv;pendSave();asklist(r,1)}});
+  var sb=document.getElementById('spsave');if(sb)sb.onclick=function(){if(SAV)return;SAV=1;asklist(r,1);spFlush().then(function(ok){SAV=0;asklist(r,1);if(!ok){var bb=document.getElementById('body');if(bb)bb.insertAdjacentHTML('afterbegin','<div class="msg">저장이 안 됐어요. 한 번만 다시 눌러 주세요.</div>')}})};
 }
 var Q=null,WL=null;
 function wlist(n){
