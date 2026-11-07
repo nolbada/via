@@ -288,7 +288,6 @@ function home(r){
     h+='<div class="hero pm"><div class="lb"><span class="lg"><img src="logo.png" alt="비타민 영어클리닉"></span><span class="dt">'+dshow(ti)+'</span></div><div class="hn mt"><em>성공</em>은 매일 부단하게 반복된<br>작은 노력의 <em>합산</em>이다.</div></div>';
   }
   NCX={due:due,cap:cap,today:today,LN:LI.length};
-  try{if(I&&!isAdm(n)){var EPx=examPlan(n,I,ti),tmx=adD(ti,1);if(EPx[tmx])h+='<a class="prb" href="'+VB+(I.P.dv==='Pro'?'dvpro/':'dvcore/')+'"><b>'+dshow(tmx)+' 더블보카 시험</b><span>더블'+EPx[tmx]+' 준비</span></a>';else{var fk=(new Date(ti+'T00:00:00').getDay()===5)?ti:(new Date(tmx+'T00:00:00').getDay()===5?tmx:'');if(fk&&CLOSED.indexOf(fk)<0&&fk>=I.P.s)h+='<a class="prb" href="#" onclick="list(\''+fk+'\');return false"><b>'+dshow(fk)+' 누적보카 말하기 시험</b><span>말하기 대비</span></a>'}}}catch(e){}
   h+=noteCard(r,cap,due,today,LI.length,(I&&!isAdm(n))?1:0);
   /* today */
   var IU=!!I&&!isAdm(n);RC={I:I,n:n,ti:ti};
@@ -407,7 +406,6 @@ function drawDP(I,ti,EP){
   if(w===5&&!isT&&K>=P.s&&DATA){var fl=DATA.items.filter(function(i){return isL(i)&&(!i.first||i.first<=K)}).length;h+='<button class="tk" id="ls3"'+(fl?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>이날까지 모인 말하기 단어</small></div><span class="chip n">'+fl+'개</span></button>'}
   if(w===5&&K>=P.s&&CLOSED.indexOf(K)<0){var sp1=(hc.sp||{})[K],c1=sp1===1?'<span class="chip">완료</span>':sp1===2?'<span class="chip n">결석</span>':(isPast&&!inHold(hc,K)?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'오늘':'예정')+'</span>');h+='<div class="tk"><i class="bd" style="background:#1f8a56"></i><div class="tt"><b>금요일 말하기 시험</b><small>누적보카 · 학원</small></div>'+c1+'</div>'}
   if(EP&&EP[K]){var xdv=P.dv==='Pro'?'dvpro/':'dvcore/';h+=('<a class="tk" href="'+VB+xdv+'">')+'<i class="bd" style="background:#2d6a9f"></i><div class="tt"><b>더블보카 '+P.dv+' 시험</b><small>Day '+EP[K]+' · 학원 테스트</small></div><span class="chip n">'+(isT?'오늘':'예정')+'</span></a>'}
-  if(EP&&EP[adD(K,1)]){var pdv=P.dv==='Pro'?'dvpro/':'dvcore/';h+=('<a class="tk" href="'+VB+pdv+'">')+'<i class="bd" style="background:#2d6a9f"></i><div class="tt"><b>더블보카 '+P.dv+' 시험 준비</b><small>더블'+EP[adD(K,1)]+' · 내일 시험</small></div><span class="chip n">준비</span></a>'}
   el.innerHTML=h+'</div>';
   var stb=document.getElementById('st');if(stb&&NCX)stb.onclick=function(){review(NCX.due.slice().sort(byPri).slice(0,NCX.today),K)};
   var l2=document.getElementById('ls2');if(l2)l2.onclick=function(){list()};
