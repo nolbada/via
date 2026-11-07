@@ -189,6 +189,7 @@ function lj(k,def){try{return JSON.parse(ls(k)||'')||def}catch(e){return def}}
 function planInfo(n){
   var P=PLAN[n];if(!P)return null;
   var Q=DQ[P.d],S={};(PV==='B'||PV==='H'?[PV]:(TCM?[P.d]:['H','B','M'])).forEach(function(L){[n].concat(isAdm(n)?['선생님']:[]).forEach(function(nm){var d=lj('dv_'+L+'_'+nm,{}).done||{};for(var k2 in d)if(!S[k2])S[k2]=d[k2]})});
+  for(var k3 in S){var sv=S[k3]&&S[k3].s;if(typeof sv==='string'&&!/^\d+\/\d+$/.test(sv)&&/GMT|T\d\d:/.test(sv)){var dd=new Date(sv);if(!isNaN(dd))S[k3]={s:(dd.getMonth()+1)+'/'+dd.getDate(),t:S[k3].t}}}
   var dv=lj((P.dv==='Pro'?'dvp':'dvc')+'_done_'+n,[]);
   var st=new Date(P.s+'T00:00:00'),map={},c=0,cur=new Date(st),end=new Date('2027-04-30T00:00:00');
   for(;cur<=end&&c<Q.n;cur.setDate(cur.getDate()+1)){if(HWD.indexOf(cur.getDay())>=0){c++;map[iso(cur)]=c}}
