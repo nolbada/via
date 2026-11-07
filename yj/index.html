@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#16243f">
 <meta name="application-name" content="YJ">
@@ -13,87 +13,92 @@
 <link rel="icon" type="image/png" href="icon-192.png">
 <title>YJ</title>
 <style>
-:root{--ink:#1c2430;--sub:#6b7480;--line:#e3e6ea;--bg:#f4f5f8;--card:#fff;--navy:#16243f;--gold:#c9a66b;--good:#1f7a4d;--bad:#c2392b}
+:root{--bg:#f4f6fa;--card:#fff;--ink:#1c2430;--sub:#667085;--line:#dde3ec;--pri:#2b62c4;--priInk:#fff;--ok:#2f7d5b;--okBg:#e4f3ea;--ng:#c0392b;--ngBg:#fbe9e6;--soft:#e8effb}
+@media (prefers-color-scheme:dark){:root{--bg:#12161d;--card:#1b212b;--ink:#e6ebf3;--sub:#98a3b5;--line:#2c3441;--pri:#6b9bf0;--priInk:#0c1220;--ok:#58c28f;--okBg:#183024;--ng:#ec7a6c;--ngBg:#3a1f1b;--soft:#1f2b44}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Malgun Gothic','맑은 고딕',-apple-system,sans-serif}
-.top{background:var(--navy);color:#fff;padding:18px 16px 16px}
-.top .in{max-width:680px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between}
-.top h1{margin:0;font-size:30px;letter-spacing:.04em;color:#ecd296;font-weight:800}
-.top small{font-size:13px;opacity:.8}
-.wrap{max-width:680px;margin:0 auto;padding:12px 14px 40px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:0 0 12px}
-.card h2{margin:0 0 10px;font-size:14px;color:var(--sub);font-weight:700}
-.big{font-size:34px;font-weight:800}
-.stg{display:flex;margin-top:10px}
-.stg div{flex:1;text-align:center}
-.stg div+div{border-left:1px solid var(--line)}
-.stg b{display:block;font-size:22px}
-.stg span{font-size:12px;color:var(--sub)}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font-size:14px;font-weight:700;color:var(--ink);font-family:inherit}
-.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
-.chip i{font-style:normal;font-weight:400;opacity:.75;margin-left:4px}
-.tabs{display:flex;gap:8px;margin:0 0 12px}
-.tabs .chip{flex:1;text-align:center}
-.row{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px solid var(--line)}
-.row:first-child{border-top:0}
-.row b{font-size:16px}
-.row small{display:block;color:var(--sub);font-size:13px;margin-top:2px}
-.row .r{text-align:right;font-size:13px;color:var(--sub);white-space:nowrap}
-.tag{display:inline-block;font-size:11px;font-weight:700;border-radius:4px;padding:1px 6px;margin-left:6px;background:#eef1f6;color:#44506a}
-.due{color:var(--bad);font-weight:700}
-.empty{padding:26px 0;text-align:center;color:var(--sub);font-size:14px}
-.rf{display:block;width:100%;min-height:46px;border-radius:10px;border:1.5px solid var(--navy);background:#fff;color:var(--navy);font-size:15px;font-weight:700;font-family:inherit;margin-top:6px}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;line-height:1.55}
+#app{max-width:760px;margin:0 auto;padding:16px 16px 56px}
+h1{font-size:22px;margin:8px 0 12px}
+button{font:inherit;color:inherit;cursor:pointer}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 14px;font-weight:600;width:100%;margin-top:8px}
+.tabs{display:flex;gap:6px;margin-bottom:10px}.tabs button{flex:1;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 0;font-weight:600;font-size:13.5px}.tabs button.on{background:var(--soft);border-color:var(--pri);color:var(--pri)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:8px 0}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}.row b{display:block;font-size:16px}.row small{display:block;font-size:13px;color:var(--sub)}.badge{font-size:12px;color:var(--sub);white-space:nowrap;text-align:right}
+.msg{color:var(--sub);font-size:14px;margin-top:8px;min-height:20px}
+h2.sec{font-size:15px;margin:20px 2px 8px;color:var(--sub);font-weight:700;letter-spacing:.2px}
+.kp{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 4px}
+.kp div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center}
+.kp b{display:block;font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.15}.kp span{font-size:12px;color:var(--sub)}
+.kp .w b{color:#b4620f}.kp .k b{color:var(--pri)}
+.fl{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 2px}.fl button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}.fl button.on{border-color:var(--pri);background:var(--okBg);color:var(--pri)}
+.sc{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;margin:8px 0}
+.sc.late{border-left:4px solid #c47a1a}
+.sc .h{display:flex;align-items:center;gap:8px}.sc .h b{font-size:17px;flex:1}.sc .h small{color:var(--sub);font-weight:400;margin-left:6px;font-size:13px}
+.chip{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;white-space:nowrap}.chip.ok{background:var(--okBg);color:var(--ok)}.chip.w{background:#fbefd9;color:#9a5a0c}.chip.n{background:transparent;border:1px solid var(--line);color:var(--sub)}
+.ln{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:13px;color:var(--sub)}.ln em{font-style:normal;width:64px;flex:none;white-space:nowrap}.ln .bar{flex:1;height:7px;border-radius:99px;background:var(--line);overflow:hidden}.ln .bar i{display:block;height:100%;background:var(--pri)}.ln .v{width:48px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.late{color:#b4620f;font-weight:700}
 </style>
 </head>
 <body>
-<div class="top"><div class="in"><h1>YJ</h1><small id="dt"></small></div></div>
-<div class="wrap" id="app"><div class="empty">불러오는 중...</div></div>
+<div id="app"><div class="msg">불러오는 중...</div></div>
 <script>
 var URL_='https://script.google.com/macros/s/AKfycbz0OolJAHbhYzjWxOkRY851Sn1-ZKL3JOYf4eWancUEotJsm4-z6aWzcm-71I9CIWyR/exec',NAME='신유정',PIN='6900',WD=['일','월','화','수','목','금','토'];
-var D={items:[],hw:[],today:''},TAB='w',SRC='';
+var D={items:[],hw:[],today:''},TAB='st',SRC='';
+try{TAB=localStorage.getItem('yj_tab')||'st'}catch(e){}
 function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function post(b){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
+function post(b){b.name=NAME;b.pin=PIN;return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
 function dshow(d){if(!d)return'';var p=d.split('-');return(+p[1])+'/'+(+p[2])+'('+WD[new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay()]+')'}
-function srcs(i){return String(i.src||'').split(',').map(function(x){return x.trim()}).filter(Boolean)}
+function srcs(i){var a=String(i.src||'').split(',').map(function(x){return x.trim()}).filter(Boolean);return a.length?a:['기타']}
+function isDue(x){return !!(x.nx&&x.nx<=D.today)}
 function load(){
-  document.getElementById('app').innerHTML='<div class="empty">불러오는 중...</div>';
-  Promise.all([post({act:'list',name:NAME,pin:PIN}),post({act:'hwget',name:NAME,pin:PIN})]).then(function(a){
+  document.getElementById('app').innerHTML='<div class="msg">불러오는 중...</div>';
+  Promise.all([post({act:'list'}),post({act:'hwget'})]).then(function(a){
     var l=a[0]||{},h=a[1]||{};
     if(!l.ok)throw new Error('list');
     D.items=l.items||[];D.today=l.today||'';D.hw=(h&&h.hw)||[];
-    document.getElementById('dt').textContent=dshow(D.today);
     draw();
-  }).catch(function(){document.getElementById('app').innerHTML='<div class="empty">연결이 안 됐어요.</div><button class="rf" id="rf">다시 불러오기</button>';document.getElementById('rf').onclick=load});
+  }).catch(function(){document.getElementById('app').innerHTML='<h1>YJ</h1><div class="msg">연결이 안 됐어요.</div><button class="btn" id="rf">다시 불러오기</button>';document.getElementById('rf').onclick=load});
+}
+function groups(){
+  var g={};
+  D.items.forEach(function(x){srcs(x).forEach(function(s){var o=g[s]=g[s]||{n:s,tot:0,due:0,st:[0,0,0,0]};o.tot++;if(isDue(x))o.due++;if(x.st>=0&&x.st<4)o.st[x.st]++})});
+  return Object.keys(g).map(function(k){return g[k]}).sort(function(a,b){return b.due-a.due||b.tot-a.tot||(a.n<b.n?-1:1)});
+}
+function drawSt(){
+  var it=D.items,due=it.filter(isDue).length,st=[0,0,0,0];
+  it.forEach(function(x){if(x.st>=0&&x.st<4)st[x.st]++});
+  var h='<div class="msg" style="margin:0 0 6px">'+dshow(D.today)+' 기준</div><div class="kp"><div><b>'+it.length+'</b><span>누적 단어</span></div><div class="w"><b>'+due+'</b><span>오늘 복습</span></div><div class="k"><b>'+st[3]+'</b><span>15일 단계</span></div><div><b>'+D.hw.length+'</b><span>숙제 기록</span></div></div>';
+  var G=groups();
+  h+='<h2 class="sec">출처별 현황</h2>';
+  if(!G.length)h+='<div class="card"><div class="msg" style="margin:0">기록이 아직 없어요.</div></div>';
+  G.forEach(function(o){
+    var mx=Math.max(1,o.tot);
+    h+='<div class="sc'+(o.due?' late':'')+'"><div class="h"><b>'+esc(o.n)+'<small>누적 '+o.tot+'개</small></b><span class="chip '+(o.due?'w':'ok')+'">'+(o.due?'복습 '+o.due+'개':'복습 없음')+'</span></div>';
+    ['1일 단계','3일 단계','7일 단계','15일 단계'].forEach(function(l,i){h+='<div class="ln"><em>'+l+'</em><div class="bar"><i style="width:'+Math.round(o.st[i]/mx*100)+'%"></i></div><span class="v">'+o.st[i]+'개</span></div>'});
+    h+='</div>';
+  });
+  return h;
+}
+function drawWL(){
+  var G=groups(),h='<div class="fl"><button data-s=""'+(!SRC?' class="on"':'')+'>전체</button>'+G.map(function(o){return'<button data-s="'+esc(o.n)+'"'+(SRC===o.n?' class="on"':'')+'>'+esc(o.n)+'</button>'}).join('')+'</div>';
+  var L=D.items.filter(function(x){return!SRC||srcs(x).indexOf(SRC)>=0}).slice().sort(function(a,b){return(b.c-a.c)||(a.st-b.st)||(a.w<b.w?-1:1)});
+  h+='<div class="msg" style="margin:10px 0 0">오답 단어 리스트 '+L.length+'개 (많이 틀린 순)</div><div class="card">';
+  if(!L.length)h+='<div class="msg" style="margin:0">쌓인 단어가 없어요.</div>';
+  L.forEach(function(x){h+='<div class="row"><div><b>'+esc(x.w)+'</b><small>'+esc(x.m||'뜻 없음')+' · '+esc(srcs(x).join(', '))+'</small></div><span class="badge">'+x.c+'회 · '+x.st+'/4<br><span class="'+(isDue(x)?'late':'')+'">복습 '+esc(dshow(x.nx))+'</span></span></div>'});
+  return h+'</div>';
+}
+function drawHW(){
+  var h='<div class="card">';
+  if(!D.hw.length)h+='<div class="msg" style="margin:0">숙제 기록이 아직 없어요.</div>';
+  D.hw.slice().sort(function(a,b){return String(a.level).localeCompare(String(b.level))||(a.day-b.day)}).forEach(function(x){h+='<div class="row"><div><b>'+esc(x.level)+' · Day '+esc(x.day)+'</b></div><span class="badge"><b style="font-size:16px;color:var(--ink)">'+esc(x.score)+'</b></span></div>'});
+  return h+'</div>';
 }
 function draw(){
-  var it=D.items,cnt={},st=[0,0,0,0],due=0,i;
-  it.forEach(function(x){srcs(x).forEach(function(s){cnt[s]=(cnt[s]||0)+1});if(x.st>=0&&x.st<4)st[x.st]++;if(x.nx&&x.nx<=D.today)due++});
-  var h='<div class="card"><h2>누적 단어</h2><div class="big">'+it.length+'<span style="font-size:15px;font-weight:600;color:var(--sub)"> 개</span></div>';
-  h+='<div class="stg"><div><b>'+st[0]+'</b><span>1일 단계</span></div><div><b>'+st[1]+'</b><span>3일 단계</span></div><div><b>'+st[2]+'</b><span>7일 단계</span></div><div><b>'+st[3]+'</b><span>15일 단계</span></div></div>';
-  h+='<div style="margin-top:10px;font-size:13px;color:var(--sub)">오늘까지 복습할 단어 <b class="'+(due?'due':'')+'">'+due+'개</b></div></div>';
-  h+='<div class="tabs"><button class="chip '+(TAB==='w'?'on':'')+'" data-t="w">단어</button><button class="chip '+(TAB==='h'?'on':'')+'" data-t="h">숙제 기록</button></div>';
-  if(TAB==='w'){
-    var keys=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a]});
-    h+='<div class="card"><h2>출처</h2><div class="chips"><button class="chip '+(!SRC?'on':'')+'" data-s="">전체<i>'+it.length+'</i></button>'+keys.map(function(k){return'<button class="chip '+(SRC===k?'on':'')+'" data-s="'+esc(k)+'">'+esc(k)+'<i>'+cnt[k]+'</i></button>'}).join('')+'</div></div>';
-    var L=it.filter(function(x){return!SRC||srcs(x).indexOf(SRC)>=0}).slice().sort(function(a,b){return(a.first<b.first?1:a.first>b.first?-1:0)||(b.c-a.c)});
-    h+='<div class="card">';
-    if(!L.length)h+='<div class="empty">기록이 아직 없어요</div>';
-    L.forEach(function(x){
-      h+='<div class="row"><div><b>'+esc(x.w)+'</b>'+srcs(x).map(function(s){return'<span class="tag">'+esc(s)+'</span>'}).join('')+'<small>'+esc(x.m)+'</small></div><div class="r">'+(x.c>1?'틀린 '+x.c+'회<br>':'')+'단계 '+x.st+'<br><span class="'+(x.nx&&x.nx<=D.today?'due':'')+'">복습 '+esc(dshow(x.nx))+'</span></div></div>';
-    });
-    h+='</div>';
-  }else{
-    h+='<div class="card">';
-    if(!D.hw.length)h+='<div class="empty">숙제 기록이 아직 없어요</div>';
-    D.hw.slice().sort(function(a,b){return String(a.level).localeCompare(String(b.level))||(a.day-b.day)}).forEach(function(x){
-      h+='<div class="row"><div><b>'+esc(x.level)+' · Day '+esc(x.day)+'</b></div><div class="r"><b style="font-size:16px;color:var(--ink)">'+esc(x.score)+'</b></div></div>';
-    });
-    h+='</div>';
-  }
-  h+='<button class="rf" id="rf">새로고침</button>';
+  var h='<h1>YJ</h1><div class="tabs"><button data-t="st"'+(TAB==='st'?' class="on"':'')+'>현황</button><button data-t="wl"'+(TAB==='wl'?' class="on"':'')+'>오답 리스트</button><button data-t="hw"'+(TAB==='hw'?' class="on"':'')+'>숙제 기록</button></div>';
+  h+=TAB==='wl'?drawWL():TAB==='hw'?drawHW():drawSt();
+  h+='<button class="btn" id="rf">새로고침</button>';
   var A=document.getElementById('app');A.innerHTML=h;
-  A.querySelectorAll('[data-t]').forEach(function(b){b.onclick=function(){TAB=b.dataset.t;draw()}});
+  A.querySelectorAll('[data-t]').forEach(function(b){b.onclick=function(){TAB=b.dataset.t;try{localStorage.setItem('yj_tab',TAB)}catch(e){}draw()}});
   A.querySelectorAll('[data-s]').forEach(function(b){b.onclick=function(){SRC=b.dataset.s;draw()}});
   document.getElementById('rf').onclick=load;
 }
