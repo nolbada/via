@@ -166,7 +166,9 @@ function login(){
 var RC=null,NCX=null,DATA=null,resetArm=false,resetT=null,CALM=null,SEL=null;
 var PLAN={"김서진": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "서승언": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "장은율": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김지효": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김린": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "이동우": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고2"}, "김도현": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김소희": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "윤유란": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "정다원": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "김민서": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "이지민": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "조혜린": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "최의준": {"dv": "Core", "d": "B", "s": "2026-11-05", "m": "고1"}};
 var ADMIN=['신유정'];
-function isAdm(n){return ADMIN.indexOf(n)>=0}
+var TCM=(function(){var m=/[?&]c=([AB])(&|$)/.exec(location.search);return(/[?&]t=1(&|$)/.test(location.search)&&m)?m[1]:''})();
+if(TCM)PLAN['신유정']=TCM==='A'?{"dv":"Core","d":"B","s":"2026-11-03","m":"고1"}:{"dv":"Pro","d":"H","s":"2026-11-02","m":"고2"};
+function isAdm(n){return!TCM&&ADMIN.indexOf(n)>=0}
 function admData(){return{ok:true,items:[],cap:40,max:60,today:iso(new Date())}}
 var CLOSED=['2026-12-25','2026-12-30','2026-12-31','2027-01-01'];
 var HWD=[1,2,3,4,6,0];
@@ -637,6 +639,7 @@ home();
 try{(function(){var n=name(),P=PLAN[n];if(!n||!P)return;post({act:'hwget',name:n,pin:PIN}).then(function(r){var L=(r&&r.ok&&r.hw)||[],ch=0;L.forEach(function(x){var lv=x.level;if(!/^[HBM]$/.test(lv)||!x.score||x.score==='진행중')return;var kk='dv_'+lv+'_'+n,cc=lj(kk,{});cc.done=cc.done||{};if(!cc.done[x.day]){cc.done[x.day]={s:x.score,t:Date.now()};ss(kk,JSON.stringify(cc));ch=1}});if(ch&&document.getElementById('wk'))home(DATA||undefined)},function(){})})()}catch(e){}
 try{var _sg=function(){var n=name(),P=PLAN[n];if(!P)return'';return['H','B','M'].map(function(L){return(ls('dv_'+L+'_'+n)||'')+(isAdm(n)?(ls('dv_'+L+'_선생님')||''):'')}).join('~')+'|'+(ls((P.dv==='Pro'?'dvp':'dvc')+'_done_'+n)||'')},_s0=_sg();setInterval(function(){if(document.hidden||!document.getElementById('wk'))return;var s=_sg();if(s!==_s0){_s0=s;home(DATA||undefined)}},1500)}catch(e){}
 try{if(PV)document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a.tk');if(!a)return;var u=a.getAttribute('href')||'';if(/\/(daily\/[bh]|dvcore|dvpro)\/(\?day=\d+)?$/.test(u))a.setAttribute('href',u+(u.indexOf('?')<0?'?t=1':'&t=1'))},true)}catch(e){}
+try{if(TCM)document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a.tk');if(!a)return;var u=a.getAttribute('href')||'';if(/\/(daily\/[bh]|dvcore|dvpro|sj)\/(\?day=\d+)?$/.test(u))a.setAttribute('href',u+(u.indexOf('?')<0?'?t=1':'&t=1'))},true)}catch(e){}
 try{var _hid=0;window.addEventListener('pageshow',function(e){if(e.persisted&&document.getElementById('wk'))location.reload()});document.addEventListener('visibilitychange',function(){if(document.hidden)_hid=Date.now();else if(_hid&&Date.now()-_hid>3000&&document.getElementById('wk')){_hid=0;location.reload()}})}catch(e){}
 </script></body></html>
 
