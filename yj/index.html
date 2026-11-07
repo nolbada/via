@@ -42,21 +42,19 @@ h2.sec{font-size:15px;margin:20px 2px 8px;color:var(--sub);font-weight:700;lette
 <body>
 <div id="app"><div class="msg">불러오는 중...</div></div>
 <script>
-var URL_='https://script.google.com/macros/s/AKfycbz0OolJAHbhYzjWxOkRY851Sn1-ZKL3JOYf4eWancUEotJsm4-z6aWzcm-71I9CIWyR/exec',NAME='신유정',PIN='6900',WD=['일','월','화','수','목','금','토'];
-var D={items:[],hw:[],today:''},TAB='st',SRC='';
+var URL_='https://script.google.com/macros/s/AKfycbz0OolJAHbhYzjWxOkRY851Sn1-ZKL3JOYf4eWancUEotJsm4-z6aWzcm-71I9CIWyR/exec',NAME='신유정A',PIN='6900',WD=['일','월','화','수','목','금','토'];
+var D={items:[],hw:[],today:''},ST={},CL='A',TAB='st',SRC='';
+try{CL=localStorage.getItem('yj_cl')==='B'?'B':'A'}catch(e){}
 try{TAB=localStorage.getItem('yj_tab')||'st'}catch(e){}
 function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function post(b){b.name=NAME;b.pin=PIN;return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
+function post(b,n){b.name=n||NAME;b.pin=PIN;return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
 function dshow(d){if(!d)return'';var p=d.split('-');return(+p[1])+'/'+(+p[2])+'('+WD[new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay()]+')'}
 function srcs(i){var a=String(i.src||'').split(',').map(function(x){return x.trim()}).filter(Boolean);return a.length?a:['기타']}
 function isDue(x){return !!(x.nx&&x.nx<=D.today)}
 function load(){
   document.getElementById('app').innerHTML='<div class="msg">불러오는 중...</div>';
-  Promise.all([post({act:'list'}),post({act:'hwget'})]).then(function(a){
-    var l=a[0]||{},h=a[1]||{};
-    if(!l.ok)throw new Error('list');
-    D.items=l.items||[];D.today=l.today||'';D.hw=(h&&h.hw)||[];
-    draw();
+  Promise.all(['A','B'].map(function(c){var n='신유정'+c;return Promise.all([post({act:'list'},n),post({act:'hwget'},n)]).then(function(a){var l=a[0]||{},h=a[1]||{};if(!l.ok)throw new Error('list');ST[c]={items:l.items||[],today:l.today||'',hw:(h&&h.hw)||[]}})})).then(function(){
+    D=ST[CL];draw();
   }).catch(function(){document.getElementById('app').innerHTML='<h1>YJ</h1><div class="msg">연결이 안 됐어요.</div><button class="btn" id="rf">다시 불러오기</button>';document.getElementById('rf').onclick=load});
 }
 function groups(){
@@ -94,11 +92,12 @@ function drawHW(){
   return h+'</div>';
 }
 function draw(){
-  var h='<h1>YJ</h1><div class="tabs"><button data-t="st"'+(TAB==='st'?' class="on"':'')+'>현황</button><button data-t="wl"'+(TAB==='wl'?' class="on"':'')+'>오답 리스트</button><button data-t="hw"'+(TAB==='hw'?' class="on"':'')+'>숙제 기록</button></div>';
+  var h='<h1>YJ</h1><div class="tabs"><button data-c="A"'+(CL==='A'?' class="on"':'')+'>반 A</button><button data-c="B"'+(CL==='B'?' class="on"':'')+'>반 B</button></div><div class="tabs"><button data-t="st"'+(TAB==='st'?' class="on"':'')+'>현황</button><button data-t="wl"'+(TAB==='wl'?' class="on"':'')+'>오답 리스트</button><button data-t="hw"'+(TAB==='hw'?' class="on"':'')+'>숙제 기록</button></div>';
   h+=TAB==='wl'?drawWL():TAB==='hw'?drawHW():drawSt();
   h+='<button class="btn" id="rf">새로고침</button>';
   var A=document.getElementById('app');A.innerHTML=h;
   A.querySelectorAll('[data-t]').forEach(function(b){b.onclick=function(){TAB=b.dataset.t;try{localStorage.setItem('yj_tab',TAB)}catch(e){}draw()}});
+  A.querySelectorAll('[data-c]').forEach(function(b){b.onclick=function(){CL=b.dataset.c;D=ST[CL]||D;SRC='';try{localStorage.setItem('yj_cl',CL)}catch(e){}draw()}});
   A.querySelectorAll('[data-s]').forEach(function(b){b.onclick=function(){SRC=b.dataset.s;draw()}});
   document.getElementById('rf').onclick=load;
 }
