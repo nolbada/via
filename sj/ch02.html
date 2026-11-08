@@ -360,7 +360,8 @@ document.addEventListener("click",e=>{
   if(w){
     const k=w.dataset.k;
     if(activeKey===k){
-      if(lastTap&&lastTap.k===k&&window.WN&&WN.untap&&WN.untap(lastTap.b)){ const v=looked[lastTap.b]; if(v){ v.c--; if(v.c<=0) delete looked[lastTap.b]; } save(); lastTap=null; }
+      const nm=$("#nm");
+      if(lastTap&&lastTap.k===k&&window.WN&&WN.untap&&WN.untap(lastTap.b)){ const v=looked[lastTap.b]; if(v){ v.c--; if(v.c<=0) delete looked[lastTap.b]; } save(); lastTap=null; $("#nf").textContent=""; $("#nb").textContent=""; nm.textContent="오답노트에서 뺐어요"; nm.classList.remove("miss"); $("#nw").textContent=w.dataset.w; activeKey=null; render(); setTimeout(()=>{ if(activeKey===null&&$("#nm").textContent==="오답노트에서 뺐어요") hideNote(); },1400); return; }
       hideNote(); render(); return; }
     showNote(w.dataset.w,k); render();
   }
