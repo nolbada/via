@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>데일리어법 샘플</title>
+<style>
+:root{--bg:#f6f4ee;--card:#fff;--ink:#1c1f26;--mute:#6a6e78;--line:#e3dfd3;--accent:#2b5aa8;--soft:#e6edf8;--ok:#2d6a4f;--oks:#e3f1ea;--no:#b3261e;--nos:#fbe9e7;--post:#fff3a8;--postl:#e8d86a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Noto Sans KR",system-ui,sans-serif;padding:14px 14px 120px}
+.wrap{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mute)}
+.dots{display:flex;gap:6px}.dots i{width:22px;height:6px;border-radius:3px;background:var(--line)}.dots i.on{background:var(--accent)}.dots i.done{background:var(--ok)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 6px 20px rgba(30,30,40,.06)}
+.q{font-size:19px;line-height:1.9;word-break:keep-all}
+.w{border-bottom:1px dotted #b9b4a3;cursor:pointer}.w.lk{background:#e9f3ff;border-bottom-color:var(--accent)}
+.br{display:inline-block;font-weight:700;color:var(--accent);background:var(--soft);padding:0 8px;border-radius:8px;margin:0 2px}
+.lbl{font-size:14px;color:var(--mute);margin:0 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip,.ab{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px 14px;font:inherit;font-size:16px;cursor:pointer;min-height:48px}
+.chip{flex:1 1 30%}.ab{flex:1;font-size:18px;font-weight:700}
+.ab.ok,.chip.ok{background:var(--oks);border-color:var(--ok);color:var(--ok)}
+.ab.no,.chip.no{background:var(--nos);border-color:var(--no);color:var(--no)}
+.chip.pk{background:var(--soft);border-color:var(--accent)}
+.row{display:flex;gap:10px}
+.hide{display:none}
+.post{background:#fff;border:1px solid var(--ink);border-left:6px solid var(--ink);border-radius:6px;padding:14px 14px 12px}
+.post .lb{font-size:12px;letter-spacing:.1em;color:var(--mute);font-weight:600;margin-bottom:6px}
+.post .fm{font-family:"Noto Serif KR",Georgia,serif;font-size:22px;font-weight:700;line-height:1.35;color:var(--ink)}
+.post .fm i{font-style:normal;color:var(--accent);padding:0 .2em;font-weight:400}
+.mp{margin-top:12px}
+.mp .ph{display:grid;grid-template-columns:1fr 1fr;gap:3px 4px;margin-bottom:6px}
+.mp .pl{grid-column:1/-1;font-size:12px;font-weight:700;color:var(--ink);padding:0 2px;border-left:3px solid var(--ink);padding-left:6px;line-height:1.2}
+.mp .cl{font-size:12px;color:var(--mute);font-weight:600;display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:2px 0 4px}
+.mp .ce{background:#f1efe7;border-radius:6px;padding:6px 8px;font-size:15px;line-height:1.3}
+.mp .ct{background:var(--soft);border-radius:6px;padding:6px 8px;font-size:15px;line-height:1.3;font-weight:700}
+.mp .k{font-size:13px;color:#8a8f99;line-height:1.4;margin:2px 0 8px}
+.mp .b{color:var(--no);font-weight:700;font-size:15px;margin-top:6px}
+.sl{border-top:1px solid var(--line)}
+.sl .r{padding:8px 0 8px 10px;border-bottom:1px solid var(--line);border-left:3px solid var(--line)}.sl .r b,.sl .r span{display:block}
+.sl .r b{font-size:15.5px;line-height:1.4;font-weight:600}.sl .r span{font-size:14.5px;color:var(--accent);line-height:1.4}
+.tx{font-size:15px;color:var(--mute);line-height:1.6}
+.sec{margin-top:14px}.sec h4{margin:0 0 4px;font-size:14px;color:var(--mute);font-weight:500}
+.trend{background:var(--soft);border-radius:12px;padding:10px 14px;font-size:15px}
+.next{position:fixed;left:0;right:0;bottom:0;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--bg) 30%)}
+.next button{display:block;width:100%;max-width:560px;margin:0 auto;border:0;border-radius:14px;background:var(--accent);color:#fff;font:inherit;font-size:17px;font-weight:700;padding:15px}
+.sheet{position:fixed;left:0;right:0;bottom:70px;margin:0 auto;max-width:520px;background:#1c1f26;color:#fff;border-radius:14px;padding:12px 16px;font-size:16px;display:none;z-index:5}
+.sheet small{color:#9fd3b8;display:block;font-size:13px}
+.note{margin-top:14px;border:2px dashed #e0b400;background:#fffbe0;border-radius:14px;padding:12px 16px}.note b.t{display:block;font-size:14px;color:#8a6d00;margin-bottom:4px}.note .l{font-size:18px;font-weight:700;line-height:1.7}.note .k{font-size:13px;color:#8a8f99;font-weight:400;line-height:1.4;margin:0 0 2px 22px}.note .x{color:var(--no)}.note .o{color:var(--ok)}.note .ar{color:#b59a2a;margin:0 0 0 4px;font-weight:400}.ez{background:#f2f7ee;border-radius:12px;padding:10px 14px}.cnt{font-size:13px;color:var(--mute);text-align:right}
+.mini{font-size:14px;color:var(--mute)}
+body{word-break:keep-all;overflow-wrap:break-word}</style></head><body>
+<div class="wrap">
+  <div class="top"><span id="no"></span><div class="dots" id="dots"></div></div>
+  <div class="card">
+    <div class="q" id="q"></div>
+    <div class="mini" style="margin-top:6px">모르는 단어는 문장에서 눌러 뜻 확인 · 정답은 아래 버튼으로</div>
+  </div>
+  <div class="card" id="s2">
+    <p class="lbl">정답 고르기</p>
+    <div class="row" id="ab"></div>
+  </div>
+  <div class="card hide" id="exp"></div>
+  <div class="cnt" id="cnt"></div>
+</div>
+<div class="sheet" id="sheet"></div>
+<div class="next hide" id="nx"><button id="nb">다음 문제</button></div>
+<script>
+// 문장·해석: 쎄듀 수능영어 쇼츠 Unit01 Pattern Practice / 출제경향: 어법끝 ESSENTIAL 권두부록
+var Q=[
+{pre:"The current government appears to be very ",a:"unstable",b:"unstably",post:".",ans:"a",
+ kind:"형용사 / 부사",opts:["형용사 / 부사","수일치","능동 / 수동"],
+ ko:"현재의 정부는 매우 불안정해 보인다.",
+ dict:{current:"현재의",government:"정부",appears:"appear(~처럼 보이다)의 3인칭 단수형",unstable:"불안정한",unstably:"불안정하게"},
+ sl:[["The current government", "현재의 정부는"], ["appears to be", "~처럼 보인다"], ["very unstable.", "매우 불안정한 상태로."]], mp:{"h": ["appear · look · seem", "형용사"], "e": ["She looks", "happy"], "t": ["The government appears to be very", "unstable"]},fm:"appear · look · seem + 형용사",post_it:"'정부가 어떤 상태인지' 말하는 자리라서 형용사예요. very는 형용사 unstable을 꾸며 주고, -ly(부사)로 바꾸면 틀려요.",
+ why:"appears to be + very ___ → 정부의 상태를 설명 → 형용사 unstable",
+ bad:"She looks happily.",badko:"그녀는 행복하게 쳐다봐요. (뜻이 달라져서 틀려요)",ex:"She looks happy.",exko:"그녀는 행복해 보여요.",rule:"appear · look · seem + 형용사",nx:"(부사 ✗)",
+ trend:"<b>출제 8위 · 형용사 자리 vs. 부사 자리</b><br>31년간 50회 나왔어요. 최근 9년은 정답 8번인데, 오답 보기로는 65번이나 나왔어요. 밑줄에 -ly가 보이면 '진짜 부사 자리 맞나?' 의심해 보세요."},
+{pre:"The student loan enabled Jane ",a:"earn",b:"to earn",post:" a college degree.",ans:"b",
+ kind:"목적격보어(준동사)",opts:["목적격보어(준동사)","수일치","대명사"],
+ ko:"학자금 대출 덕분에 Jane은 대학 학위를 받을 수 있었다.",
+ dict:{student:"학생",loan:"대출",enabled:"enable(가능하게 하다)의 과거형",degree:"학위",earn:"얻다, 벌다"},
+ sl:[["The student loan", "학자금 대출이"], ["enabled Jane to earn", "Jane이 얻을 수 있게 해 줬다"], ["a college degree.", "대학 학위를."]], mp:{"h": ["enable · allow · want", "사람", "to 동사원형"], "e": ["My mom wants", "me", "to study"], "t": ["The loan enabled", "Jane", "to earn"]},fm:"enable + 사람 + to 동사원형",post_it:"'누가 ~할 수 있게 해 주다'. 같은 식구: allow, expect, force, cause, persuade, want, ask, tell.",
+ why:"enable + Jane + to earn (enable 류는 뒤에 to부정사를 데려와요)",
+ bad:"My mom wants me study.",badko:"(to가 빠져서 틀려요)",ex:"My mom wants me to study.",exko:"엄마는 내가 공부하길 원해요.",rule:"enable · allow · want + 사람 + to-v",nx:"(동사원형 ✗)",
+ trend:"<b>출제 10위 · 목적격보어(준동사)</b><br>31년간 30회 나왔어요. 최근 9년은 정답 1번, 오답 보기 21번이에요. 동사 뒤 사람이 나오면 '이 동사는 to-v? 동사원형? v-ing?'를 먼저 떠올리세요."},
+{pre:"Color can impact how you perceive weight. Dark colors look ",a:"heavy",b:"heavily",post:", and bright colors look less so.",ans:"a",
+ kind:"형용사 / 부사",opts:["시제","형용사 / 부사","관계사"],
+ ko:"색깔은 당신이 무게를 인식하는 방식에 영향을 줄 수 있다. 어두운 색은 무거워 보이고, 밝은 색은 덜 무거워 보인다.",
+ dict:{impact:"영향을 주다",perceive:"인식하다, 느끼다",weight:"무게",dark:"어두운",bright:"밝은",heavy:"무거운",heavily:"무겁게, 심하게"},
+ sl:[["Color can impact", "색깔은 영향을 줄 수 있다"], ["how you perceive weight.", "당신이 무게를 인식하는 방식에."], ["Dark colors look heavy,", "어두운 색은 무거워 보이고,"], ["and bright colors look less so.", "밝은 색은 덜 그래 보인다."]], mp:{"h": ["look · seem · sound", "형용사"], "e": ["The cake looks", "sweet"], "t": ["Dark colors look", "heavy"]},fm:"look + 형용사",post_it:"look이 '~해 보이다'일 때는 형용사가 와요. '어떻게' 보느냐(부사)가 아니라 '어떤 모습으로 보이느냐'예요. 같은 식구: seem, appear, sound, remain, keep, stay.",
+ why:"Dark colors look ___ → 어두운 색이 어떤 모습으로 보이는지 → 형용사 heavy",
+ bad:"The cake looks sweetly.",badko:"케이크가 달콤하게 쳐다봐요? (이상한 뜻이라 틀려요)",ex:"The cake looks sweet.",exko:"그 케이크는 달콤해 보여요.",rule:"look · seem · sound + 형용사",nx:"(부사 ✗)",
+ trend:"<b>출제 8위 · 형용사 자리 vs. 부사 자리</b><br>앞 문제와 같은 단골 포인트인데, 이번에는 look 같은 '보이는 동사' 버전이에요. 수능 기출 문장에서 나왔어요."},
+{pre:"Epicurus takes the view that the entire universe ",a:"consists of",b:"is consisted of",post:" either atoms or empty space.",ans:"a",
+ kind:"능동 / 수동",opts:["수일치","능동 / 수동","대명사"],
+ ko:"Epicurus는 우주 전체가 원자 혹은 텅 빈 공간으로 구성된다는 견해를 취한다.",
+ dict:{view:"견해",entire:"전체의",universe:"우주",atoms:"원자들",empty:"텅 빈",space:"공간",consists:"consist(구성되다)의 3인칭 단수형",consisted:"consist의 p.p."},
+ sl:[["Epicurus takes the view", "Epicurus는 견해를 취한다"], ["that the entire universe", "우주 전체가"], ["consists of", "구성된다는"], ["either atoms or empty space.", "원자 혹은 텅 빈 공간으로."]], mp:{"h": ["consist of", "명사"], "e": ["Water consists of", "hydrogen and oxygen"], "t": ["the universe consists of", "atoms or empty space"]},fm:"consist of + 명사 (능동만)",post_it:"우리말 뜻은 '구성되다'라서 수동 같지만, 영어에서는 능동으로만 써요. 같은 뜻: be made up of, be composed of.",
+ why:"consist of(~로 구성되다)는 자동사라서 수동형(is consisted of)이 없음",
+ bad:"Water is consisted of hydrogen and oxygen.",badko:"(수동형은 틀려요)",ex:"Water consists of hydrogen and oxygen.",exko:"물은 수소와 산소로 이루어져 있어요.",rule:"consist of = ~로 이루어지다",nx:"(is consisted of ✗)",
+ trend:"<b>출제 7위 · 능동태 vs. 수동태</b><br>31년간 52회 나왔어요. 우리말로 '~되다'인데 영어는 능동인 동사(consist, happen, appear 등)가 함정이 돼요."},
+{pre:"Boundaries between work and home are blurring as portable digital technology makes ",a:"it",b:"that",post:" increasingly possible to work anywhere, anytime.",ans:"a",
+ kind:"문장 구조",opts:["문장 구조","시제","수일치"],
+ ko:"휴대용 디지털 기술 덕분에 점점 더 어디서나 언제든 일할 수 있게 되면서, 일과 가정의 경계가 흐려지고 있다.",
+ dict:{boundaries:"경계",blurring:"blur(흐릿해지다)의 -ing형",portable:"휴대할 수 있는",digital:"디지털의",technology:"기술",increasingly:"점점 더",possible:"가능한",anywhere:"어디서나",anytime:"언제든지"},
+ sl:[["Boundaries between work and home", "일과 가정 사이의 경계가"], ["are blurring", "흐려지고 있다"], ["as portable digital technology", "휴대용 디지털 기술이"], ["makes it increasingly possible", "점점 더 가능하게 만들기 때문에"], ["to work anywhere, anytime.", "어디서나 언제든 일하는 것이."]], mp:{"h": ["make · find", "it", "형용사", "to-v"], "e": ["I find", "it", "easy", "to swim"], "t": ["technology makes", "it", "possible", "to work anywhere"]},fm:"make + it + 형용사 + to-v",post_it:"뒤의 to work anywhere, anytime이 진짜 목적어인데 너무 길어서 뒤로 보냈어요. 그 자리를 지키는 임시 목적어가 it이에요. that은 뒤에 문장이 와야 해서 안 돼요.",
+ why:"makes it(가짜 목적어) + possible + to work(진짜 목적어)",
+ bad:"I find that easy to swim.",badko:"(that은 틀려요)",ex:"I find it easy to swim.",exko:"나는 수영이 쉽다고 생각해요.",rule:"make · find + it + 형용사 + to-v",nx:"(it 자리에 that ✗)",
+ trend:"<b>도전 · 문장 구조 판단</b><br>요즘 어법 문제는 이렇게 해석과 문장 구조를 같이 봐야 풀리는 함정형이 점점 늘고 있어요. (that vs. what 구분은 출제 3위 단골이에요.)"}
+];
+function bx(d){var m=d.mp,h='';
+ for(var k=0;k<m.h.length;k++)h+='<div class="ph"><div class="pl">'+m.h[k]+'</div><div class="ce">'+m.e[k]+'</div><div class="ct">'+m.t[k]+'</div></div>';
+ return '<div class="sec post"><div class="lb">오답노트에는 이것만</div><div class="fm">'+d.fm.replace(/ \+ /g,'<i>+</i>')+'</div>'
+  +'<div class="mp"><div class="cl"><span>쉬운 예</span><span>이번 문장</span></div>'+h
+  +'<div class="k">쉬운 예 해석: '+d.exko+'</div>'
+  +'<div class="b">✗ '+d.bad+'</div><div class="k">'+d.badko+'</div></div></div>'}
+var i=0,looked={},step=0;
+function $(s){return document.querySelector(s)}
+function render(){
+  var d=Q[i];step=1;
+  $("#no").textContent="오늘의 어법 "+(i+1)+" / 5";
+  $("#dots").innerHTML=Q.map(function(_,k){return '<i class="'+(k<i?'done':k==i?'on':'')+'"></i>'}).join("");
+  function tk(t){return t.replace(/(\b[A-Za-z]+\b)/g,function(m){return '<span class="w" data-w="'+m.toLowerCase()+'">'+m+'</span>'})}
+  $("#q").innerHTML=tk(d.pre)+'<span class="br">[ '+tk(d.a)+' / '+tk(d.b)+' ]</span>'+tk(d.post);
+  $("#ab").innerHTML='<button class="ab" data-k="a">'+d.a+'</button><button class="ab" data-k="b">'+d.b+'</button>';
+  $("#s2").classList.remove("hide");$("#exp").classList.add("hide");$("#nx").classList.add("hide");
+  $("#sheet").style.display="none";cnt();
+}
+function cnt(){var n=Object.keys(looked).length;$("#cnt").textContent=n?("찾아본 단어 "+n+"개 → 오답노트에 쌓였어요"):""}
+document.addEventListener("click",function(e){
+  var w=e.target.closest(".w");
+  if(w){var k=w.dataset.w,d=Q[i].dict[k];if(!d){return}
+    var m=/^([A-Za-z]+)\((.+?)\)(?:의 (.*))?$/.exec(d),base=m?m[1]:k,mean=m?m[2]:d,form=m&&m[3]?m[3]:"";
+    w.classList.add("lk");looked[base]={m:mean,src:"어법"};
+    var sh=$("#sheet");sh.innerHTML=(base!=k?k+' → ':'')+'<b>'+base+'</b>('+mean+')'+(form?'<small style="color:#fff">'+k+' = '+base+'의 '+form+'</small>':'')+'<small>출처 · 어법 (원형으로 오답노트에 쌓여요)</small>';sh.style.display="block";cnt();return}
+  var a=e.target.closest(".ab");
+  if(a&&step==1){step=2;var d=Q[i],ok=a.dataset.k==d.ans;
+    [].forEach.call(document.querySelectorAll(".ab"),function(x){if(x.dataset.k==d.ans)x.classList.add("ok");else if(x==a)x.classList.add("no")});
+    var good=d[d.ans];
+    var e2=$("#exp");e2.classList.remove("hide");
+    e2.innerHTML='<div class="sec" style="margin-top:0"><h4>정답</h4><b style="font-size:19px">'+good+'</b></div>'
+     +'<div class="sec"><h4>직독직해 (영어 순서 그대로)</h4><div class="sl">'+d.sl.map(function(c){return '<div class="r"><b>'+c[0]+'</b><span>'+c[1]+'</span></div>'}).join('')+'</div></div><div class="sec"><h4>자연스러운 해석</h4>'+d.ko+'</div>'
+     +bx(d)
+     +'<div class="sec"><h4>왜 그럴까요</h4><div class="tx">'+d.post_it+'</div></div>'
+     +'<div class="sec trend">'+d.trend+'</div>';
+    $("#nx").classList.remove("hide");$("#nb").textContent=i<4?"다음 문제":"오늘 5문제 끝";
+    e2.scrollIntoView({behavior:"smooth",block:"nearest"});return}
+});
+$("#nb").onclick=function(){if(i<4){i++;render();window.scrollTo(0,0)}else{
+  var n=Object.keys(looked).length;
+  document.querySelector(".wrap").innerHTML='<div class="card"><b style="font-size:19px">오늘의 어법 5문제 완료</b><p>찾아본 단어 '+n+'개가 오답노트에 쌓였어요.</p></div>';$("#nx").classList.add("hide");$("#sheet").style.display="none"}};
+render();
+</script></body></html>
