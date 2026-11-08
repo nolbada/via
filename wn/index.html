@@ -257,7 +257,7 @@ function noteCard(r,cap,due,today,LN,nb){
   var it=r.items,tot=it.length,gr=it.filter(function(i){return i.st>=4}).length,live=it.filter(function(i){return!(i.st>=4)});
   var sc={},so=['데일리보카','더블보카','천일문S','미니모고','데일리어법'],SC={'데일리어법':'#9cc9b4','데일리보카':'#ffb3a7','더블보카':'#9ec5ff','천일문S':'#8fd3b6','미니모고':'#d9bd86'};so.forEach(function(k){sc[k]=0});
   it.forEach(function(i){var k=String(i.src||'기타').split(',')[0].trim().split(/\s*·\s*|\s+/)[0]||'기타';if(/^미니모|^모의고사/.test(k))k='미니모고';else if(/^천일문/.test(k))k='천일문S';if(!(k in sc)){sc[k]=0;so.push(k);SC[k]='#b8c4cc'}sc[k]++});
-  var bar='',lg='';so.forEach(function(k){var c=SC[k];if(sc[k])bar+='<i style="flex:'+sc[k]+';background:'+c+'"></i>';lg+='<span><em style="background:'+c+'"></em>'+esc(k)+' <b>'+sc[k]+'</b></span>'});
+  var bar='',lg='';so.forEach(function(k){var c=SC[k];if(sc[k])bar+='<i style="flex:'+sc[k]+';background:'+c+'"></i>';lg+='<span><em style="background:'+c+'"></em>'+esc(k==='데일리보카'?'D보카':k==='데일리어법'?'D어법':k)+' <b>'+sc[k]+'</b></span>'});
   var sg=[0,0,0,0];live.forEach(function(i){sg[Math.max(0,Math.min(3,i.st|0))]++});
   var IV=['1일','3일','7일','15일'];
   var tdk=iso(new Date()),tdn=nb&&(rvMap()[tdk]||!today),ml=nb?missedDays():[],tg=nb?(!tdn?tdk:(ml.length?ml[0]:'')):'',dn2=nb&&!tg;NTG=tg;var h='<div class="nt'+(nb?' tp':'')+(dn2?' dn':'')+'" id="ntc"><div class="nl">누적 모인 단어</div>'+(nb?'<span class="ngo">'+(!tg?dshow(tdk)+' 학습 완료':(tg===tdk?dshow(tdk)+' 학습 들어가기 ›':'복습 밀린 날 '+ml.length+'일 채우기 ›'))+'</span>':'')+'<div class="nb">'+tot+'<small>개</small></div>';
@@ -267,8 +267,8 @@ function noteCard(r,cap,due,today,LN,nb){
   if(nb){var SM0=svS(),sn=r.items.filter(function(i){return SM0[i.w]}).length;if(sn)h+='<div class="nsr" id="nsr">틀린 것만 모아 풀기 '+sn+'개 ›</div>'}
   if(tot)h+='<p class="ns">모인 곳</p><div class="nbar">'+bar+'</div><div class="nlg">'+lg+'</div>';
   h+='<div class="ns2"><h3>복습 단계별 단어 수</h3><div class="nstg">'+sg.map(function(v,x){return'<div><b>'+v+'</b><span>'+IV[x]+' 단계</span></div>'}).join('')+(gr?'<div class="g"><b>'+gr+'</b><span>졸업</span></div>':'')+'</div><p class="nx">맞히면 다음 단계로 · 15일 단계까지 통과하면 졸업</p>'+(nb?'<p class="nx">복습 1번 = 밀린 날 1일 채움</p>':'')+'</div></div>';
-  if(!nb){  h+='<button class="tk" id="st"'+(today?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적테스트</b><small>'+(due.length>cap?'밀린 '+(due.length-cap)+'개는 다음 날로 이어짐':'데일리보카 포함 · 1 · 3 · 7 · 15일 주기')+'</small></div><span class="chip'+(today?' w':' n')+'">'+today+'개</span></button>';
-  h+='<button class="tk" id="ls2"'+(LN?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>말하기 시험 단어 · 데일리보카 제외</small></div><span class="chip n">'+LN+'개</span></button>';
+  if(!nb){  h+='<button class="tk" id="st"'+(today?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적테스트</b><small>'+(due.length>cap?'밀린 '+(due.length-cap)+'개는 다음 날로 이어짐':'D보카 포함 · 1 · 3 · 7 · 15일 주기')+'</small></div><span class="chip'+(today?' w':' n')+'">'+today+'개</span></button>';
+  h+='<button class="tk" id="ls2"'+(LN?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>말하기 시험 단어 · D보카 제외</small></div><span class="chip n">'+LN+'개</span></button>';
 }
   return h;
 }
@@ -319,14 +319,14 @@ function home(r){
   if(IU)h+='<div class="cal" id="wk"></div><h2 class="sec">학습 바로가기</h2><div class="dpl"><div class="dh">오늘의 공부 · '+dshow(ti)+'</div></div>'+NC+'<div id="dp"></div>'+roomH(I,n,ti);
   h+='<h2 class="sec">'+(IU?'내 속도로 하는 활동':'오늘')+'</h2>';
   if(isAdm(n)){
-    [['데일리보카 B',VB+'daily/b/?t=1','#2a8a5c'],['데일리보카 H',VB+'daily/h/?t=1','#2a8a5c'],['더블보카 Core',VB+'dvcore/?t=1','#2d6a9f'],['더블보카 Pro',VB+'dvpro/?t=1','#2d6a9f'],['미니모의고사 고1',MM['고1'],'#8a5a9e'],['미니모의고사 고2',MM['고2'],'#8a5a9e'],['데일리어법',VB+'eobeop-daily/?t=1','#2f7d5b'],['천일문S 문장줄이기',VB+'sj/','#c2557a'],['그래머콕 개념노트',GC,'#17939e']].forEach(function(t){
+    [['D보카 B',VB+'daily/b/?t=1','#2a8a5c'],['D보카 H',VB+'daily/h/?t=1','#2a8a5c'],['더블보카 Core',VB+'dvcore/?t=1','#2d6a9f'],['더블보카 Pro',VB+'dvpro/?t=1','#2d6a9f'],['미니모의고사 고1',MM['고1'],'#8a5a9e'],['미니모의고사 고2',MM['고2'],'#8a5a9e'],['D어법',VB+'eobeop-daily/?t=1','#2f7d5b'],['천일문S 문장줄이기',VB+'sj/','#c2557a'],['그래머콕 개념노트',GC,'#17939e']].forEach(function(t){
       h+='<a class="tk" href="'+t[1]+'"><i class="bd" style="background:'+t[2]+'"></i><div class="tt"><b>'+t[0]+'</b></div><span class="chip n">자유</span></a>';
     });
   }else if(I){
     var P=I.P;
     var dvn=I.dv.length,nd=0;for(var z=0;z<32;z++){if(I.dv.indexOf(z)<0){nd=z+1;break}}
     h+='<a class="tk" href="'+(MM[P.m]||MM['고1'])+'"><i class="bd" style="background:#8a5a9e"></i><div class="tt"><b>미니모의고사</b><small>'+(mmL?mmL.length:0)+' / 24회 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
-    h+='<a class="tk" href="'+VB+'eobeop-daily/"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>데일리어법</b><small>하루 5문제 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
+    h+='<a class="tk" href="'+VB+'eobeop-daily/"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>D어법</b><small>하루 5문제 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
     h+='<a class="tk" href="'+VB+'sj/"><i class="bd" style="background:#c2557a"></i><div class="tt"><b>천일문S 문장줄이기</b><small>12챕터 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
     h+='<a class="tk" href="'+GC+'"><i class="bd" style="background:#17939e"></i><div class="tt"><b>그래머콕 개념노트</b><small>문법 개념 · 필요할 때 찾아보기</small></div><span class="chip n">자유</span></a>';
   }
@@ -335,7 +335,7 @@ function home(r){
     var P2=I.P,dn2=Object.keys(I.S).length;
     h+='<h2 class="sec">플랜 규모</h2><div class="pl">';
     h+='<div class="c"><div class="nm">288<small>지문</small></div><div class="lb">독해<br>미니모의고사</div><div class="ds">24회 × 12지문<br>모의고사 3개년 분량</div></div>';
-    h+='<div class="c"><div class="nm">'+I.Q.q.toLocaleString()+'<small>문항</small></div><div class="lb">어휘 유형<br>데일리보카 '+P2.d+'</div><div class="ds">'+I.Q.n+'일 × 15문항</div><div class="pbar"><i style="width:'+(dn2/I.Q.n*100)+'%"></i></div><div class="pg">내 진행 '+dn2+' / '+I.Q.n+'일</div></div>';
+    h+='<div class="c"><div class="nm">'+I.Q.q.toLocaleString()+'<small>문항</small></div><div class="lb">어휘 유형<br>D보카 '+P2.d+'</div><div class="ds">'+I.Q.n+'일 × 15문항</div><div class="pbar"><i style="width:'+(dn2/I.Q.n*100)+'%"></i></div><div class="pg">내 진행 '+dn2+' / '+I.Q.n+'일</div></div>';
     var DVN={Core:[2504,2989,5],Pro:[2824,3836,6]}[P2.dv];
     h+='<div class="c"><div class="nm">'+DVN[0].toLocaleString()+'<small>단어</small></div><div class="lb">유의어·반의어<br>더블보카 '+P2.dv+'</div><div class="ds">표제어 640개<br>+ 유의어·반의어<br>+ 사지선다 보기까지<br>(중복 제외)</div><div class="pbar"><i style="width:'+(I.dv.length/32*100)+'%"></i></div><div class="pg">내 진행 '+I.dv.length+' / 32 Day</div></div>';
     h+='<div class="c"><div class="nm">12<small>챕터</small></div><div class="lb">구문<br>천일문S 문장줄이기</div><div class="ds">총 190문장</div></div>';
@@ -387,7 +387,7 @@ function recView(key){
   else if(key==='r'){c='#c47a1a';t='누적 복습';var M3=rvMap(),S3=lj('wn_rvs_'+n+TCM,{}),dy=[],k4,MD=missedDays();for(k4=adD(P.s,1);k4<=ti;k4=adD(k4,1)){if(CLOSED.indexOf(k4)<0)dy.push(k4)}tot=dy.length;num=0;dy.forEach(function(k5,i5){var s5=S3[k5],on=(M3[k5]||(k5===ti&&NCX&&NCX.today===0))?1:0,ms=MD.indexOf(k5)>=0,td=k5===ti&&!on;if(on)num++;var sc=on?(s5?s5.o+'/'+s5.n:'완료'):(ms?'밀림':(td?'오늘':'쉼'));var dd=k5.slice(5).replace(/^0/,'').replace('-0','-').replace('-','/');if(i5>=dy.length-7)dots+='<span class="dc rs'+(on?' on':ms||td?' ab':'')+'" style="'+(on?'background:'+c:ms||td?'border-color:'+(ms?'#d4553f':c)+';color:'+(ms?'#d4553f':c):'')+'"'+((ms||td)?' data-f="'+k5+'"':'')+'>'+dd+'<small>'+sc+'</small></span>'});if(dy.length>7){var hm=MD.filter(function(x){return x<dy[dy.length-7]}).length;dots='<span class="hdn">이전 '+(dy.length-7)+'일'+(hm?' · 밀림 '+hm+'일':'')+'</span>'+dots}}
   else{c='#2fa66b';t='금요일 말하기';num=D.okN;tot=D.fr.length;D.fr.forEach(function(k,i){var v=D.sp[k];dots+=dot(i,v===1?1:v===2?2:0,c,i+1);});D.fr.slice().reverse().forEach(function(k){var v=D.sp[k];lst+='<div class="row"><div><b>'+dshow(k)+'</b></div><span class="badge">'+(v===1?'통과':v===2?'결석':'아직')+'</span></div>'})}
   var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+t+'</div></div><div class="card"><div class="rvh"><b style="color:'+c+'">'+t+'</b><span style="color:'+c+'">'+num+'<small> / '+tot+'</small></span></div><div class="rvb"><i style="width:'+(tot?Math.min(100,num/tot*100):0)+'%;background:'+c+'"></i></div><div class="dg">'+dots+'</div></div>';
-  if(key==='f'){var fn=DATA.items.filter(isL).length;h+='<button class="tk" id="fl"'+(fn?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>말하기 대비 단어</b><small>말하기 시험 단어 · 데일리보카 제외</small></div><span class="chip n">'+fn+'개</span></button>'}
+  if(key==='f'){var fn=DATA.items.filter(isL).length;h+='<button class="tk" id="fl"'+(fn?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>말하기 대비 단어</b><small>말하기 시험 단어 · D보카 제외</small></div><span class="chip n">'+fn+'개</span></button>'}
   if(key==='r'&&typeof MD!=='undefined'&&MD.length)h+='<button class="tk" id="fa"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>가장 오래된 밀린 날부터 채우기</b><small>'+dshow(MD[0])+(MD.length>1?' 외 '+(MD.length-1)+'일 더':'')+'</small></div><span class="chip n">'+MD.length+'일</span></button>';
   if(lst)h+='<div class="card">'+lst+'</div>';
   $.innerHTML=h;document.querySelectorAll('[data-f]').forEach(function(b){b.onclick=function(){var k=b.dataset.f;if(k===ti)rvStart(ti,ti);else fillStart(k)}});var fa=document.getElementById('fa');if(fa)fa.onclick=function(){fillStart(MD[0])};document.getElementById('hm').onclick=function(){home(DATA)};var fl=document.getElementById('fl');if(fl)fl.onclick=function(){list()};window.scrollTo(0,0);
@@ -428,20 +428,20 @@ function drawDP(I,ti,EP){
     if(I.S[dn])chip='<span class="chip">완료 '+I.S[dn].s+'</span>';
     else if(isPast&&!inHold(hc,K))chip='<span class="chip w">밀림</span>';
     else chip='<span class="chip n">'+(isT?'진행 전':'예정')+'</span>';
-    h+=('<a class="tk" href="'+VB+I.Q.u+(I.S[dn]?'':'?day='+dn)+'">')+'<i class="bd"></i><div class="tt"><b>데일리보카 '+dn+'</b><small>'+P.d+' · 15문항</small></div>'+chip+'</a>';
+    h+=('<a class="tk" href="'+VB+I.Q.u+(I.S[dn]?'':'?day='+dn)+'">')+'<i class="bd"></i><div class="tt"><b>D보카 '+dn+'</b><small>'+P.d+' · 15문항</small></div>'+chip+'</a>';
   }
-  if(isT){var ml=Object.keys(I.map).sort().filter(function(d){return d<K&&d>=P.s&&!I.S[I.map[d]]&&!inHold(hc,d)&&CLOSED.indexOf(d)<0});if(ml.length){var mq=I.map[ml[0]];h+='<a class="tk" href="'+VB+I.Q.u+'?day='+mq+'"><i class="bd"></i><div class="tt"><b>데일리보카 '+mq+'</b><small>'+P.d+' · '+dshow(ml[0])+(ml.length>1?' 외 '+(ml.length-1)+'일':'')+' 밀림</small></div><span class="chip w">밀림</span></a>'}}
-  (function(){var EM=eoMap(n),en=EM[K];if(!en)return;var dn2=eoDone(n),dn1=dn2>=en;
-    if(dn1){if(!(isT)){h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>데일리어법 '+en+'</b><small>하루 5문제</small></div><span class="chip">완료</span></a>'}else{h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>데일리어법 '+en+'</b><small>하루 5문제 · 다시 보기</small></div><span class="chip">완료</span></a>'}}
-    else{var chip2=(K<ti&&!inHold(hc,K))?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'진행 전':'예정')+'</span>';
-      h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>데일리어법 '+en+'</b><small>하루 5문제'+(en>dn2+1?' · '+(dn2+1)+'일차부터 이어서':'')+'</small></div>'+chip2+'</a>'}
-  })();
+  if(isT){var ml=Object.keys(I.map).sort().filter(function(d){return d<K&&d>=P.s&&!I.S[I.map[d]]&&!inHold(hc,d)&&CLOSED.indexOf(d)<0});if(ml.length){var mq=I.map[ml[0]];h+='<a class="tk" href="'+VB+I.Q.u+'?day='+mq+'"><i class="bd"></i><div class="tt"><b>D보카 '+mq+'</b><small>'+P.d+' · '+dshow(ml[0])+(ml.length>1?' 외 '+(ml.length-1)+'일':'')+' 밀림</small></div><span class="chip w">밀림</span></a>'}}
   if(K<ti&&!rvMap()[K]&&NCX&&NCX.today>0&&K>=P.s&&CLOSED.indexOf(K)<0)h+='<button class="tk" id="stp"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>밀린 복습 · 지금 모인 단어로</small></div><span class="chip w">'+NCX.today+'개</span></button>';
   if(K<ti&&rvMap()[K])h+='<div class="tk"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>이날 복습 끝냄</small></div><span class="chip">완료</span></div>';
   if(K>ti&&DATA){var fd=DATA.items.filter(function(i){return i.nx&&i.nx<=K}),fc=Math.min(fd.length,NCX?NCX.cap:60);h+='<button class="tk" id="stf"'+(fc?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>이날까지 모인 단어 · 미리 풀기</small></div>'+(rvMap()[K]?'<span class="chip">완료</span>':'<span class="chip n">'+fc+'개</span>')+'</button>'}
   if(w===5&&!isT&&K>=P.s&&DATA){var fl=DATA.items.filter(function(i){return isL(i)&&(!i.first||i.first<=K)}).length;h+='<button class="tk" id="ls3"'+(fl?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>이날까지 모인 말하기 단어</small></div><span class="chip n">'+fl+'개</span></button>'}
   if(w===5&&K>=P.s&&CLOSED.indexOf(K)<0){var sp1=(hc.sp||{})[K],c1=sp1===1?'<span class="chip">완료</span>':sp1===2?'<span class="chip n">결석</span>':(isPast&&!inHold(hc,K)?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'오늘':'예정')+'</span>');h+='<div class="tk"><i class="bd" style="background:#1f8a56"></i><div class="tt"><b>금요일 말하기 시험</b><small>누적보카 · 학원</small></div>'+c1+'</div>'}
   if(EP&&EP[K]){var xdv=P.dv==='Pro'?'dvpro/':'dvcore/';h+=('<a class="tk" href="'+VB+xdv+'">')+'<i class="bd" style="background:#2d6a9f"></i><div class="tt"><b>더블보카 '+P.dv+' 시험</b><small>Day '+EP[K]+' · 학원 테스트</small></div><span class="chip n">'+(isT?'오늘':'예정')+'</span></a>'}
+  (function(){var EM=eoMap(n),en=EM[K];if(!en)return;var dn2=eoDone(n),dn1=dn2>=en;
+    if(dn1){if(!(isT)){h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>D어법 '+en+'</b><small>하루 5문제</small></div><span class="chip">완료</span></a>'}else{h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>D어법 '+en+'</b><small>하루 5문제 · 다시 보기</small></div><span class="chip">완료</span></a>'}}
+    else{var chip2=(K<ti&&!inHold(hc,K))?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'진행 전':'예정')+'</span>';
+      h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>D어법 '+en+'</b><small>하루 5문제'+(en>dn2+1?' · '+(dn2+1)+'일차부터 이어서':'')+'</small></div>'+chip2+'</a>'}
+  })();
   el.innerHTML=(h==='<div class="dpl">'?'':h+'</div>');
   var stb=document.getElementById('st');if(stb&&NCX)stb.onclick=function(){review(NCX.due.slice().sort(byPri).slice(0,NCX.today),K)};
   var l2=document.getElementById('ls2');if(l2)l2.onclick=function(){list()};var sp2=document.getElementById('stp');if(sp2)sp2.onclick=function(){rvStart(K,ti)};
@@ -452,11 +452,11 @@ function dayItems(key,I,ti,EP){
   var n=name(),hc=ctlOf(CTLM,n),dn=I.map[key],L=[];
   if(CLOSED.indexOf(key)>=0)return L;
   var late=key<ti&&!inHold(hc,key),w=new Date(key+'T00:00:00').getDay();
-  if(dn)L.push({t:'d',n:'데일리',done:!!I.S[dn],late:late&&!I.S[dn]});
+  if(dn)L.push({t:'d',n:'D보카',done:!!I.S[dn],late:late&&!I.S[dn]});
   if(w===5&&key>=I.P.s){var sv=(hc.sp||{})[key],sd=sv===1||sv===2;L.push({t:'s',n:sv===2?'결석':'말하기',done:sd,late:!sd&&late})}
   if(key>=I.P.s){var rvd=rvMap()[key];var rz=!!rvd||(key===ti&&NCX&&NCX.today===0);if(key>I.P.s)L.push({t:'r',n:'누적',done:rz,late:!rz&&key<=ti&&!inHold(hc,key)})}
-  var EM=eoMap(n);if(EM[key]){var ed=EM[key]<=eoDone(n);L.push({t:'e',n:'어법',done:ed,late:!ed&&late})}
   if(EP&&EP[key]){L.push({t:'x',n:'더블',done:!!exTaken(n)[EP[key]],late:false})}
+  var EM=eoMap(n);if(EM[key]){var ed=EM[key]<=eoDone(n);L.push({t:'e',n:'D어법',done:ed,late:!ed&&late})}
   return L;
 }
 function cellH(dt,I,ti,EP){
@@ -487,7 +487,7 @@ function drawWeek(I,ti,EP){
   var h='<div class="ch2"><button id="pw"'+(mon<=CS?' disabled':'')+'>&lsaquo;</button><b>'+dshow(iso(mon))+' ~ '+dshow(iso(sun))+'</b><button id="nw"'+(sun>=CE?' disabled':'')+'>&rsaquo;</button></div><div class="cg wk">';
   ['월','화','수','목','금','토','일'].forEach(function(w){h+='<div class="wd">'+w+'</div>'});
   for(var k=0;k<7;k++){var dt=new Date(mon);dt.setDate(mon.getDate()+k);h+=cellH(dt,I,ti,EP)}
-  h+='</div>'+nextEx(I,ti,EP)+'<div class="lg"><div><b>데일리</b> = 데일리보카</div><div><b>누적</b> = 오답 누적복습</div><div><b>더블</b> = 학원 더블보카 테스트</div><div><b class="rd">말하기</b> = 금요일 누적보카 테스트</div></div>';
+  h+='</div>'+nextEx(I,ti,EP)+'<div class="lg"><div><b>D보카</b> = 데일리보카</div><div><b>D어법</b> = 데일리어법</div><div><b>누적</b> = 오답 누적복습</div><div><b>더블</b> = 학원 더블보카 테스트</div><div><b class="rd">말하기</b> = 금요일 누적보카 테스트</div></div>';
   el.innerHTML=h;
   var mv=function(dd){var t=new Date((SEL||ti)+'T00:00:00');t.setDate(t.getDate()+dd);SEL=iso(t);CALM=new Date(t.getFullYear(),t.getMonth(),1);drawCal(I,ti)};
   var pw=document.getElementById('pw'),nw=document.getElementById('nw');
