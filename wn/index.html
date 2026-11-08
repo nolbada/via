@@ -400,7 +400,7 @@ function examPlan(n,I,ti){
 function drawDP(I,ti,EP){
   var el=document.getElementById('dp');if(!el)return;
   var K=ti,r=DATA,n=name(),hc=ctlOf(CTLM,n),P=I.P,h='<div class="dpl">';
-  var BL=dayItems(K,I,ti,EP);if(!BL.length){el.innerHTML='';return}if(BL.length){var bd=BL.filter(function(x){return x.done}).length;h+='<div class="brk'+(bd===BL.length?' all':'')+'"><b>'+bd+'/'+BL.length+'</b><span>'+BL.map(function(x){return'<i'+(x.done?' class="on"':'')+'></i>'}).join('')+'</span></div>'}
+  var BL=dayItems(K,I,ti,EP);if(!BL.length){el.innerHTML='';return}
   var isT=K===ti,isPast=K<ti,w=new Date(K+'T00:00:00').getDay(),dn=I.map[K];
   if(hc.hold&&ti<=hc.hold)h+='<div style="margin:0 2px 8px;padding:8px 12px;border-radius:10px;background:#fbefd9;color:#6b3f06;font-size:13px;line-height:1.5">진도 안내를 잠시 멈췄어요. '+(hc.hold<'9999'?dshow(hc.hold)+'에 다시 시작해요.':'선생님이 다시 알려 줄 거예요.')+'</div>';
   if(dn&&K>=P.s){
