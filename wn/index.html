@@ -244,7 +244,7 @@ function exNote(n,now,ti,nd){
 }
 function noteCard(r,cap,due,today,LN,nb){
   var it=r.items,tot=it.length,gr=it.filter(function(i){return i.st>=4}).length,live=it.filter(function(i){return!(i.st>=4)});
-  var sc={},so=['데일리보카','더블보카','천일문S','미니모고'],SC={'데일리보카':'#ffb3a7','더블보카':'#9ec5ff','천일문S':'#8fd3b6','미니모고':'#d9bd86'};so.forEach(function(k){sc[k]=0});
+  var sc={},so=['데일리보카','더블보카','천일문S','미니모고','데일리어법'],SC={'데일리어법':'#9cc9b4','데일리보카':'#ffb3a7','더블보카':'#9ec5ff','천일문S':'#8fd3b6','미니모고':'#d9bd86'};so.forEach(function(k){sc[k]=0});
   it.forEach(function(i){var k=String(i.src||'기타').split(',')[0].trim().split(/\s*·\s*|\s+/)[0]||'기타';if(/^미니모|^모의고사/.test(k))k='미니모고';else if(/^천일문/.test(k))k='천일문S';if(!(k in sc)){sc[k]=0;so.push(k);SC[k]='#b8c4cc'}sc[k]++});
   var bar='',lg='';so.forEach(function(k){var c=SC[k];if(sc[k])bar+='<i style="flex:'+sc[k]+';background:'+c+'"></i>';lg+='<span><em style="background:'+c+'"></em>'+esc(k)+' <b>'+sc[k]+'</b></span>'});
   var sg=[0,0,0,0];live.forEach(function(i){sg[Math.max(0,Math.min(3,i.st|0))]++});
@@ -308,13 +308,14 @@ function home(r){
   if(IU)h+='<div class="cal" id="wk"></div><h2 class="sec">학습 바로가기</h2><div class="dpl"><div class="dh">오늘의 공부 · '+dshow(ti)+'</div></div>'+NC+'<div id="dp"></div>'+roomH(I,n,ti);
   h+='<h2 class="sec">'+(IU?'내 속도로 하는 활동':'오늘')+'</h2>';
   if(isAdm(n)){
-    [['데일리보카 B',VB+'daily/b/?t=1','#2a8a5c'],['데일리보카 H',VB+'daily/h/?t=1','#2a8a5c'],['더블보카 Core',VB+'dvcore/?t=1','#2d6a9f'],['더블보카 Pro',VB+'dvpro/?t=1','#2d6a9f'],['미니모의고사 고1',MM['고1'],'#8a5a9e'],['미니모의고사 고2',MM['고2'],'#8a5a9e'],['천일문S 문장줄이기',VB+'sj/','#c2557a'],['그래머콕 개념노트',GC,'#17939e']].forEach(function(t){
+    [['데일리보카 B',VB+'daily/b/?t=1','#2a8a5c'],['데일리보카 H',VB+'daily/h/?t=1','#2a8a5c'],['더블보카 Core',VB+'dvcore/?t=1','#2d6a9f'],['더블보카 Pro',VB+'dvpro/?t=1','#2d6a9f'],['미니모의고사 고1',MM['고1'],'#8a5a9e'],['미니모의고사 고2',MM['고2'],'#8a5a9e'],['데일리어법',VB+'eobeop-daily/?t=1','#2f7d5b'],['천일문S 문장줄이기',VB+'sj/','#c2557a'],['그래머콕 개념노트',GC,'#17939e']].forEach(function(t){
       h+='<a class="tk" href="'+t[1]+'"><i class="bd" style="background:'+t[2]+'"></i><div class="tt"><b>'+t[0]+'</b></div><span class="chip n">자유</span></a>';
     });
   }else if(I){
     var P=I.P;
     var dvn=I.dv.length,nd=0;for(var z=0;z<32;z++){if(I.dv.indexOf(z)<0){nd=z+1;break}}
     h+='<a class="tk" href="'+(MM[P.m]||MM['고1'])+'"><i class="bd" style="background:#8a5a9e"></i><div class="tt"><b>미니모의고사</b><small>'+(mmL?mmL.length:0)+' / 24회 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
+    h+='<a class="tk" href="'+VB+'eobeop-daily/"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>데일리어법</b><small>하루 5문제 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
     h+='<a class="tk" href="'+VB+'sj/"><i class="bd" style="background:#c2557a"></i><div class="tt"><b>천일문S 문장줄이기</b><small>12챕터 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
     h+='<a class="tk" href="'+GC+'"><i class="bd" style="background:#17939e"></i><div class="tt"><b>그래머콕 개념노트</b><small>문법 개념 · 필요할 때 찾아보기</small></div><span class="chip n">자유</span></a>';
   }
@@ -525,7 +526,7 @@ function openSp(I,n,ti,key,btn){
   }
   sp.innerHTML=html;
 }
-function isL(i){return i.src!=='데일리보카'}
+function isL(i){return i.src!=='데일리보카'&&i.src!=='데일리어법'}
 var SPKS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg>';
 function say(t){try{var ss=window.speechSynthesis;if(!ss||typeof SpeechSynthesisUtterance==='undefined')return;if(ss.paused)ss.resume();ss.cancel();var u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.85;var vs=ss.getVoices()||[],vo=null,q;for(q=0;q<vs.length;q++){if(/^en[-_]US/i.test(vs[q].lang)){vo=vs[q];break}}if(!vo)for(q=0;q<vs.length;q++){if(/^en/i.test(vs[q].lang)){vo=vs[q];break}}if(vo)u.voice=vo;window.__su=u;ss.speak(u)}catch(e){}}
 function spk(w){return'<button class="spk" type="button" data-say="'+esc(w).replace(/"/g,'&quot;')+'" aria-label="발음 듣기">'+SPKS+'</button>'}
