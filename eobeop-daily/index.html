@@ -129,8 +129,8 @@ document.addEventListener("click",function(e){
   var w=e.target.closest(".w");
   if(w){var k=w.dataset.w,d=Q[i].dict[k];if(!d){return}
     var m=/^([A-Za-z]+)\((.+?)\)(?:의 (.*))?$/.exec(d),base=m?m[1]:k,mean=m?m[2]:d,form=m&&m[3]?m[3]:"";
-    w.classList.add("lk");looked[base]={m:mean,src:"어법"};
-    var sh=$("#sheet");sh.innerHTML=(base!=k?k+' → ':'')+'<b>'+base+'</b>('+mean+')'+(form?'<small style="color:#fff">'+k+' = '+base+'의 '+form+'</small>':'')+'<small>출처 · 어법 (원형으로 오답노트에 쌓여요)</small>';sh.style.display="block";cnt();return}
+    w.classList.add("lk");looked[base]={m:mean,src:"데일리어법"};
+    var sh=$("#sheet");sh.innerHTML=(base!=k?k+' → ':'')+'<b>'+base+'</b>('+mean+')'+(form?'<small style="color:#fff">'+k+' = '+base+'의 '+form+'</small>':'')+'<small>출처 · 데일리어법 (원형으로 오답노트에 쌓여요)</small>';sh.style.display="block";cnt();return}
   var a=e.target.closest(".ab");
   if(a&&step==1){step=2;var d=Q[i],ok=a.dataset.k==d.ans;
     [].forEach.call(document.querySelectorAll(".ab"),function(x){if(x.dataset.k==d.ans)x.classList.add("ok");else if(x==a)x.classList.add("no")});
