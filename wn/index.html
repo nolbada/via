@@ -530,8 +530,20 @@ function spk(w){return'<button class="spk" type="button" data-say="'+esc(w).repl
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-say]');if(b){e.preventDefault();e.stopPropagation();say(b.getAttribute('data-say'))}},true);
 function srcTag(i){return i.src?'<span class="src">'+esc(String(i.src).replace(/,/g,' · '))+'</span>':''}
 function byPri(a,b){return(b.c-a.c)||(a.nx<b.nx?-1:a.nx>b.nx?1:0)}
+var SP=null;
+function spStart(K,items){SP={K:K,a:shuffle(items.slice()),i:0};spShow()}
+function spShow(){var S=SP,n=S.a.length,K=S.K;
+  var td=iso(new Date()),dd=Math.round((new Date(K+'T00:00:00')-new Date(td+'T00:00:00'))/864e5),dl=dd>0?'D-'+dd:dd===0?'오늘':'';
+  var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+(S.i<n?(S.i+1)+' / '+n:'끝')+'</div></div><div class="card"><div class="sub">'+dshow(K)+' 금요일 말하기 시험'+(dl?' · '+dl:'')+'</div><div class="sub">범위 '+n+'개 단어 · 선생님이 직접 질문</div></div>';
+  if(S.i>=n){h+='<div class="card"><div class="word">한 바퀴 끝</div></div><button class="btn pri" id="ag">다시 섞어서 보기</button>';$.innerHTML=h;document.getElementById('hm').onclick=function(){home(DATA)};document.getElementById('ag').onclick=function(){S.a=shuffle(S.a.slice());S.i=0;spShow()};return}
+  var it=S.a[S.i];h+='<div class="card"><div class="word">'+esc(it.w)+spk(it.w)+'</div><div id="ar"></div></div>';$.innerHTML=h;
+  document.getElementById('hm').onclick=function(){home(DATA)};
+  var ar=document.getElementById('ar');ar.innerHTML='<button class="btn pri" id="sh">뜻 보기</button>';
+  document.getElementById('sh').onclick=function(){ar.innerHTML='<div class="word" style="font-size:22px">'+esc(it.m||'')+'</div>'+(srcTag(it)?'<div>'+srcTag(it)+'</div>':'')+'<button class="btn pri" id="nx">다음</button>';document.getElementById('nx').onclick=function(){S.i++;spShow()}};
+}
 function list(K){
   var items=DATA.items.filter(function(i){return isL(i)&&(!K||!i.first||i.first<=K)}).sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});
+  if(K){spStart(K,items);return}
   var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+(K?dshow(K)+' 말하기 대비 ':'오답 단어 리스트 ')+items.length+'개</div></div><div class="card">';
   items.forEach(function(i){h+='<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+srcTag(i)+'</small></div>'+spk(i.w)+'<span class="badge">'+i.st+'/4 · '+dshow(i.nx)+'</span></div>'});
   h+='</div>';$.innerHTML=h;document.getElementById('hm').onclick=function(){home(DATA)};
