@@ -115,6 +115,7 @@ a.tk,button.tk,div.tk{display:flex;align-items:center;gap:12px;width:100%;text-a
 .cg .dy .ck.on i:after{content:'';position:absolute;left:2.2px;top:0;width:3px;height:6px;border:solid #fff;border-width:0 1.8px 1.8px 0;transform:rotate(45deg)}
 .cg .dy .ck.lt{color:#a8650b;font-weight:700}.cg .dy .ck.lt i{border-color:#d9962b}
 .cg .dy .ck[data-t=x]:not(.on):not(.lt){color:#1f5f99;font-weight:800}.cg .dy .ck[data-t=x]:not(.on):not(.lt) i{border-color:#1f5f99}
+.cg .dy .ck[data-t=e]:not(.on):not(.lt){color:#1f6b4c;font-weight:800}.cg .dy .ck[data-t=e]:not(.on):not(.lt) i{border-color:#1f6b4c}
 .cg .dy .ck[data-t=s]:not(.on):not(.lt){color:#b3261e;font-weight:800}.cg .dy .ck[data-t=s]:not(.on):not(.lt) i{border-color:#b3261e}
 @media (prefers-color-scheme:dark){.cg .dy .ck[data-t=x]:not(.on):not(.lt){color:#7db4ea}.cg .dy .ck[data-t=s]:not(.on):not(.lt){color:#f08a84}}
 .cg .dy .ck.pop i{animation:ckp .55s ease-out}
@@ -188,6 +189,16 @@ var MM={'고1':'https://nolbada.github.io/via-high/h/minimock/h1/','고2':'https
 var GC='https://nolbada.github.io/via-mid/m/grammarcock/';
 function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
 function lj(k,def){try{return JSON.parse(ls(k)||'')||def}catch(e){return def}}
+var EOT=['김소희','윤유란','정다원','김민서','이지민','조혜린'];
+function eoMap(n){
+  var P=PLAN[n];if(!P)return{};
+  var tt=EOT.indexOf(n)>=0,st=tt?'2026-11-10':'2026-11-09',m={},c=0,cur=new Date(st+'T00:00:00'),end=new Date('2027-04-30T00:00:00');
+  for(;cur<=end&&c<96;cur.setDate(cur.getDate()+1)){var k=iso(cur),w=cur.getDay(),ok=(tt&&k<'2026-11-16')?[2,3,4,5,6,0]:HWD;
+    if(ok.indexOf(w)>=0&&CLOSED.indexOf(k)<0){c++;m[k]=c}}
+  return m;
+}
+function eoDone(n){var s=lj('eobeop_daily_v1_'+n,{});return Math.floor((s.pos||0)/(s.n||5))}
+function eoFirstOpen(n){return eoDone(n)+1}
 function planInfo(n){
   var P=PLAN[n];if(!P)return null;
   var Q=DQ[P.d],S={};(PV==='B'||PV==='H'?[PV]:(TCM?[P.d]:['H','B','M'])).forEach(function(L){[n].concat(isAdm(n)?['선생님']:[]).forEach(function(nm){var d=lj('dv_'+L+'_'+nm,{}).done||{};for(var k2 in d)if(!S[k2])S[k2]=d[k2]})});
@@ -420,6 +431,11 @@ function drawDP(I,ti,EP){
     h+=('<a class="tk" href="'+VB+I.Q.u+(I.S[dn]?'':'?day='+dn)+'">')+'<i class="bd"></i><div class="tt"><b>데일리보카 '+dn+'</b><small>'+P.d+' · 15문항</small></div>'+chip+'</a>';
   }
   if(isT){var ml=Object.keys(I.map).sort().filter(function(d){return d<K&&d>=P.s&&!I.S[I.map[d]]&&!inHold(hc,d)&&CLOSED.indexOf(d)<0});if(ml.length){var mq=I.map[ml[0]];h+='<a class="tk" href="'+VB+I.Q.u+'?day='+mq+'"><i class="bd"></i><div class="tt"><b>데일리보카 '+mq+'</b><small>'+P.d+' · '+dshow(ml[0])+(ml.length>1?' 외 '+(ml.length-1)+'일':'')+' 밀림</small></div><span class="chip w">밀림</span></a>'}}
+  (function(){var EM=eoMap(n),en=EM[K];if(!en)return;var dn2=eoDone(n),dn1=dn2>=en;
+    if(dn1){if(!(isT)){h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>데일리어법 '+en+'</b><small>하루 5문제</small></div><span class="chip">완료</span></a>'}else{h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>데일리어법 '+en+'</b><small>하루 5문제 · 다시 보기</small></div><span class="chip">완료</span></a>'}}
+    else{var chip2=(K<ti&&!inHold(hc,K))?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'진행 전':'예정')+'</span>';
+      h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>데일리어법 '+en+'</b><small>하루 5문제'+(en>dn2+1?' · '+(dn2+1)+'일차부터 이어서':'')+'</small></div>'+chip2+'</a>'}
+  })();
   if(K<ti&&!rvMap()[K]&&NCX&&NCX.today>0&&K>=P.s&&CLOSED.indexOf(K)<0)h+='<button class="tk" id="stp"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>밀린 복습 · 지금 모인 단어로</small></div><span class="chip w">'+NCX.today+'개</span></button>';
   if(K<ti&&rvMap()[K])h+='<div class="tk"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>이날 복습 끝냄</small></div><span class="chip">완료</span></div>';
   if(K>ti&&DATA){var fd=DATA.items.filter(function(i){return i.nx&&i.nx<=K}),fc=Math.min(fd.length,NCX?NCX.cap:60);h+='<button class="tk" id="stf"'+(fc?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>이날까지 모인 단어 · 미리 풀기</small></div>'+(rvMap()[K]?'<span class="chip">완료</span>':'<span class="chip n">'+fc+'개</span>')+'</button>'}
@@ -439,13 +455,14 @@ function dayItems(key,I,ti,EP){
   if(dn)L.push({t:'d',n:'데일리',done:!!I.S[dn],late:late&&!I.S[dn]});
   if(w===5&&key>=I.P.s){var sv=(hc.sp||{})[key],sd=sv===1||sv===2;L.push({t:'s',n:sv===2?'결석':'말하기',done:sd,late:!sd&&late})}
   if(key>=I.P.s){var rvd=rvMap()[key];var rz=!!rvd||(key===ti&&NCX&&NCX.today===0);if(key>I.P.s)L.push({t:'r',n:'누적',done:rz,late:!rz&&key<=ti&&!inHold(hc,key)})}
+  var EM=eoMap(n);if(EM[key]){var ed=EM[key]<=eoDone(n);L.push({t:'e',n:'어법',done:ed,late:!ed&&late})}
   if(EP&&EP[key]){L.push({t:'x',n:'더블',done:!!exTaken(n)[EP[key]],late:false})}
   return L;
 }
 function cellH(dt,I,ti,EP){
   var key=iso(dt),cls='dy',closed=CLOSED.indexOf(key)>=0,L=dayItems(key,I,ti,EP),sm='';
   var all=L.length&&L.every(function(x){return x.done}),anyL=L.some(function(x){return x.late}),seen=lj('wn_ck',{}),sc=0;
-  if(L.length){if(all)cls+=' dn';else if(anyL)cls+=' lt';else if(I.map[key]||dt.getDay()===5)cls+=' hw'}
+  if(L.length){if(all)cls+=' dn';else if(anyL)cls+=' lt';else if(I.map[key]||eoMap(name())[key]||dt.getDay()===5)cls+=' hw'}
   sm='<span class="cks">'+L.map(function(x){var id=key+x.t,pop=x.done&&!seen[id];if(pop){seen[id]=1;sc=1}return'<span class="ck'+(x.done?' on':'')+(x.late?' lt':'')+(pop?' pop':'')+'" data-t="'+x.t+'"><i></i>'+x.n+'</span>'}).join('')+'</span>';
   if(sc)ss('wn_ck',JSON.stringify(seen));
     if(closed){cls+=' cl';sm='휴원'}
