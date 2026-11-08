@@ -258,12 +258,12 @@ h1{font-size:26px}
   function post(b){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b),keepalive:true}).then(function(r){return r.json()})}
   var busy=false,again=false;
   function flush(){
-    var n=name(),Q=jq(QK),H=jq(HK);
+    var n=name(),Q=jq(QK),H=jq(HK),now=Date.now(),RI=[];Q.forEach(function(b){b.forEach(function(it){if(!it.hu||it.hu<=now)RI.push(it)})});
     if(busy){again=true;return Promise.resolve(false)}
-    if(!n||(!Q.length&&!H.length))return Promise.resolve(false);
+    if(!n||(!RI.length&&!H.length))return Promise.resolve(false);
     busy=true;var p=Promise.resolve();
-    if(Q.length){var items=[];Q.forEach(function(b){items=items.concat(b)});
-      p=p.then(function(){return post({act:'add',name:n,pin:PIN,items:items}).then(function(r){if(r&&r.ok)s(QK,JSON.stringify(jq(QK).slice(Q.length)))})})}
+    if(RI.length){var items=RI.map(function(it){var c={};for(var k in it)if(k!=='hu'&&k!=='id')c[k]=it[k];return c});var ids={};RI.forEach(function(it){if(it.id)ids[it.id]=1});
+      p=p.then(function(){return post({act:'add',name:n,pin:PIN,items:items}).then(function(r){if(r&&r.ok)s(QK,JSON.stringify(jq(QK).map(function(b){return b.filter(function(it){return it.id?!ids[it.id]:false})}).filter(function(b){return b.length})))})})}
     H.forEach(function(h){p=p.then(function(){return post({act:'hw',name:n,pin:PIN,level:h.level,day:h.day,score:h.score}).then(function(r){if(r&&r.ok)s(HK,JSON.stringify(jq(HK).filter(function(x){return!(x.level===h.level&&x.day===h.day&&x.score===h.score)})))})})});
     return p.then(function(){busy=false;if(again){again=false;flush()}return true},function(){busy=false;again=false;return false});
   }
@@ -281,7 +281,7 @@ h1{font-size:26px}
       },function(){b.disabled=false;m.textContent='연결이 안 됐어요. 인터넷을 확인해 주세요.'})}
     b.onclick=go;i.onkeydown=function(e){if(e.key==='Enter')go()};i.focus();
   }
-  W.WN={add:function(items){
+  W.WN={tap:function(items){var now=Date.now(),Q=jq(QK),HOLD=6000,w0=items.map(function(x){return x.w});Q=Q.map(function(b){return b.filter(function(it){return!(it.hu&&it.hu>now&&w0.indexOf(it.w)>=0)})}).filter(function(b){return b.length});var id0=now+'_'+Math.random().toString(36).slice(2,7);Q.push(items.map(function(it,i){var c={};for(var k in it)c[k]=it[k];c.hu=now+HOLD;c.id=id0+i;return c}));s(QK,JSON.stringify(Q));setTimeout(flush,HOLD+300);return true},untap:function(w){var now=Date.now(),Q=jq(QK),hit=false;Q=Q.map(function(b){return b.filter(function(it){if(it.hu&&it.hu>now&&it.w===w){hit=true;return false}return true})}).filter(function(b){return b.length});if(hit)s(QK,JSON.stringify(Q));return hit},add:function(items){
     if(!items||!items.length)return Promise.resolve(false);
     var Q=jq(QK);Q.push(items);s(QK,JSON.stringify(Q));return flush();
   },hw:function(level,day,score){
@@ -302,7 +302,7 @@ const OVR={"021":{"from":{"c":"~에서 (free A from B A를 B에서 벗어나게 
 
 const $=s=>document.querySelector(s);
 const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
-let tab="s", activeKey=null, looked={}, missed={};
+let tab="s", activeKey=null, looked={}, missed={}; let lastTap=null;
 try{ looked=JSON.parse(localStorage.getItem("sj_looked2")||"{}"); missed=JSON.parse(localStorage.getItem("sj_missed")||"{}"); }catch(e){}
 function save(){ try{ localStorage.setItem("sj_looked2",JSON.stringify(looked)); localStorage.setItem("sj_missed",JSON.stringify(missed)); }catch(e){} }
 function words(s,sid){
@@ -343,7 +343,7 @@ function showNote(word,key){
     $("#nb").textContent="("+e.b+" · "+e.m+")";
     if(!looked[e.b]) looked[e.b]={c:0,x:e.c,m:e.m};
     looked[e.b].c++; looked[e.b].x=e.c;
-    if(window.WN)WN.add([{w:e.b,m:(e.f&&e.m)?e.m:e.c,src:"천일문S",how:"터치",ask:true}]);
+    lastTap={k:key,b:e.b};if(window.WN&&WN.tap)WN.tap([{w:e.b,m:(e.f&&e.m)?e.m:e.c,src:"천일문S",how:"터치",ask:true}]);
   } else {
     $("#nf").textContent="";
     nm.textContent="단어 자료에 없음";
@@ -359,7 +359,9 @@ document.addEventListener("click",e=>{
   const w=e.target.closest(".w");
   if(w){
     const k=w.dataset.k;
-    if(activeKey===k){ hideNote(); render(); return; }
+    if(activeKey===k){
+      if(lastTap&&lastTap.k===k&&window.WN&&WN.untap&&WN.untap(lastTap.b)){ const v=looked[lastTap.b]; if(v){ v.c--; if(v.c<=0) delete looked[lastTap.b]; } save(); lastTap=null; }
+      hideNote(); render(); return; }
     showNote(w.dataset.w,k); render();
   }
 });
