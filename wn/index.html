@@ -429,7 +429,7 @@ function dayItems(key,I,ti,EP){
   var late=key<ti&&!inHold(hc,key),w=new Date(key+'T00:00:00').getDay();
   if(dn)L.push({t:'d',n:'데일리',done:!!I.S[dn],late:late&&!I.S[dn]});
   if(w===5&&key>=I.P.s){var sv=(hc.sp||{})[key],sd=sv===1||sv===2;L.push({t:'s',n:sv===2?'결석':'말하기',done:sd,late:!sd&&late})}
-  if(key>=I.P.s){var rvd=rvMap()[key];var rz=!!rvd||(key===ti&&NCX&&NCX.today===0);var hadW=key>=ti||((DATA&&DATA.items)||[]).some(function(x){return x.first&&x.first<key});L.push({t:'r',n:'누적',done:rz||!hadW,late:!rz&&hadW&&key<=ti&&!inHold(hc,key)})}
+  if(key>=I.P.s){var rvd=rvMap()[key];var rz=!!rvd||(key===ti&&NCX&&NCX.today===0);if(key>I.P.s)L.push({t:'r',n:'누적',done:rz,late:!rz&&key<=ti&&!inHold(hc,key)})}
   if(EP&&EP[key]){L.push({t:'x',n:'더블',done:!!exTaken(n)[EP[key]],late:false})}
   return L;
 }
