@@ -192,7 +192,7 @@ function lj(k,def){try{return JSON.parse(ls(k)||'')||def}catch(e){return def}}
 var EOT=['김소희','윤유란','정다원','김민서','이지민','조혜린'];
 function eoMap(n){
   var P=PLAN[n];if(!P)return{};
-  var smp=n==='선생님'||n.indexOf('신유정')===0,tt=EOT.indexOf(n)>=0||n==='신유정A',st=smp?iso(new Date()):(tt?'2026-11-10':'2026-11-09'),m={},c=0,cur=new Date(st+'T00:00:00'),end=new Date('2027-04-30T00:00:00');
+  var tt=EOT.indexOf(n)>=0||n==='신유정A'||(n==='선생님'&&P.dv==='Core'),st=tt?'2026-11-10':'2026-11-09',m={},c=0,cur=new Date(st+'T00:00:00'),end=new Date('2027-04-30T00:00:00');
   for(;cur<=end&&c<96;cur.setDate(cur.getDate()+1)){var k=iso(cur),w=cur.getDay(),ok=(tt&&k<'2026-11-16')?[2,3,4,5,6,0]:HWD;
     if(ok.indexOf(w)>=0&&CLOSED.indexOf(k)<0){c++;m[k]=c}}
   return m;
