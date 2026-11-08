@@ -217,15 +217,15 @@ function result(){
   const wrongQ=R.list.filter((q,i)=>!R.res[i]);
   let h='<h1>'+title()+'</h1><div class="score">'+ok+' / '+tot+'</div>';
   if(R.mode==='day'){
-    if(R.round===1){R.first=ok;}
+    if(R.round===1){R.first=ok;if(!S.done[R.day]){S.done[R.day]={s:ok+'/15',t:Date.now()};S.cur=null;save();WN.hw(D.level,R.day,ok+'/15');h+='<div style="text-align:center;font-size:13px;color:#6b7480;margin:-4px 0 10px">기록됨 · 1차 점수</div>'}}
     if(R.round===1&&wrongQ.length){
       h+=wlist(wrongQ)+'<button class="btn pri nb" id="rt">틀린 문제 다시 풀기</button><button class="btn nb" id="hm">홈으로</button>';
       save();$.innerHTML=h;
       document.getElementById('rt').onclick=()=>{R.list=wrongQ;R.i=0;R.res=[];R.round=2;quiz()};
       document.getElementById('hm').onclick=home;return;
     }
-    S.done[R.day]={s:R.first+'/15',t:Date.now()};S.cur=null;
-    save();WN.hw(D.level,R.day,R.first+'/15');
+    if(!S.done[R.day]){S.done[R.day]={s:R.first+'/15',t:Date.now()};S.cur=null;
+    save();WN.hw(D.level,R.day,R.first+'/15')}
     if(wrongQ.length)h+=wlist(wrongQ);
     h+='<button class="btn pri nb" id="hm">홈으로</button>';
   } else {
