@@ -363,7 +363,7 @@ function status(r){
   b.innerHTML='<div class="msg">불러오는 중...</div>';
   ctlRead().then(function(m){CTM=m},function(){}).then(function(){return post({act:'t_hw',from:FROM0})}).then(function(h){
     if(!h||!h.ok){b.innerHTML='<div class="msg">불러오지 못했어요.</div>';return}
-    STAT=build(r,h.items);rvLoad().then(function(){draw(r)});
+    STAT=build(r,h.items);draw(r);rvLoad().then(function(){draw(r)});
   },function(){b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
 }
 function draw(r){
