@@ -357,7 +357,6 @@ function roomH(I,n,ti){
   return'<div class="rmz"><h2 class="sec">기록 열람 및 평소 학습</h2>'
    +row('d','#ff7a66','데일리보카 '+P.d,D.ld?'최근 '+D.ld+'일차 '+I.S[D.ld].s:'첫 도장을 기다려요',D.nd?'다음 '+D.nd:'',D.dk.length+' / '+I.Q.n)
    +row('x','#4a90e2','더블보카 '+P.dv,D.xl?'최근 시험 Day '+D.xl:'아직 본 시험 없음',D.nx?'다음 시험 '+D.nx:'',D.xn+' / 32')
-   +row('m','#e0a21a','미니모의고사',D.mm?D.mm+'회까지 완료':'첫 회를 기다려요','다음 '+(D.mm+1)+'회',D.mm+' / 24')
    +row('f','#2fa66b','금요일 말하기',D.lf?'최근 통과 '+dshow(D.lf):'아직 통과한 금요일 없음',D.nf?'다음 '+D.nf:'',D.okN+' / '+D.fr.length)+'</div>';
 }
 function svS(){return lj('wn_star_'+name()+TCM,{})}
