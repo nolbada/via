@@ -100,7 +100,7 @@ function asklist(r,sk){
   if(spp)spp.onclick=function(){SPD=addd(SPD,-7);asklist(r,1)};
   if(spn)spn.onclick=function(){SPD=addd(SPD,7);asklist(r,1)};
   b.querySelectorAll('.st').forEach(function(x){x.onclick=function(){wlist(x.dataset.n)}});
-  b.querySelectorAll('.mk').forEach(function(x){x.onclick=function(e){e.stopPropagation();if(SAV)return;var n=x.dataset.m||x.dataset.a,v=x.dataset.m?1:2,k=SPD+'|'+n,sv=(ctlOf(CTM,n).sp||{})[SPD]||0,cur=PEND[k]!==undefined?PEND[k]:sv,nv=(cur===v)?0:v;if(nv===sv)delete PEND[k];else PEND[k]=nv;pendSave();asklist(r,1)}});
+  b.querySelectorAll('.mk').forEach(function(x){x.onclick=function(e){e.stopPropagation();if(SAV)return;var n=x.dataset.m||x.dataset.a,v=x.dataset.m?1:2,k=SPD+'|'+n,sv=(ctlOf(CTM,n).sp||{})[SPD]||0,cur=PEND[k]!==undefined?PEND[k]:sv,nv=(cur===v)?0:v;if(nv===sv)delete PEND[k];else PEND[k]=nv;pendSave();SAV=1;asklist(r,1);spFlush().then(function(ok){SAV=0;asklist(r,1);if(!ok){var bb=document.getElementById('body');if(bb)bb.insertAdjacentHTML('afterbegin','<div class="msg">저장이 안 됐어요. 아래 저장하기를 눌러 주세요.</div>')}})}});
   var sb=document.getElementById('spsave');if(sb)sb.onclick=function(){if(SAV)return;SAV=1;asklist(r,1);spFlush().then(function(ok){SAV=0;asklist(r,1);if(!ok){var bb=document.getElementById('body');if(bb)bb.insertAdjacentHTML('afterbegin','<div class="msg">저장이 안 됐어요. 한 번만 다시 눌러 주세요.</div>')}})};
 }
 var Q=null,WL=null;
