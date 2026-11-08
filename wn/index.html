@@ -249,10 +249,10 @@ function noteCard(r,cap,due,today,LN,nb){
   var bar='',lg='';so.forEach(function(k){var c=SC[k];if(sc[k])bar+='<i style="flex:'+sc[k]+';background:'+c+'"></i>';lg+='<span><em style="background:'+c+'"></em>'+esc(k)+' <b>'+sc[k]+'</b></span>'});
   var sg=[0,0,0,0];live.forEach(function(i){sg[Math.max(0,Math.min(3,i.st|0))]++});
   var IV=['1일','3일','7일','15일'];
-  var tdk=iso(new Date()),tdn=nb&&(rvMap()[tdk]||!today),ml=nb?missedDays():[],tg=nb?(!tdn?tdk:(ml.length?ml[0]:'')):'',dn2=nb&&!tg;NTG=tg;var h='<div class="nt'+(nb?' tp':'')+(dn2?' dn':'')+'" id="ntc"><div class="nl">누적 모인 단어</div>'+(nb?'<span class="ngo">'+(!tg?dshow(tdk)+' 학습 완료':(tg===tdk?dshow(tdk)+' 학습 들어가기 ›':'밀린 날 '+ml.length+'일 보기 ›'))+'</span>':'')+'<div class="nb">'+tot+'<small>개</small></div>';
+  var tdk=iso(new Date()),tdn=nb&&(rvMap()[tdk]||!today),ml=nb?missedDays():[],tg=nb?(!tdn?tdk:(ml.length?ml[0]:'')):'',dn2=nb&&!tg;NTG=tg;var h='<div class="nt'+(nb?' tp':'')+(dn2?' dn':'')+'" id="ntc"><div class="nl">누적 모인 단어</div>'+(nb?'<span class="ngo">'+(!tg?dshow(tdk)+' 학습 완료':(tg===tdk?dshow(tdk)+' 학습 들어가기 ›':'복습 밀린 날 '+ml.length+'일 채우기 ›'))+'</span>':'')+'<div class="nb">'+tot+'<small>개</small></div>';
   if(nb){
     if(ml.length&&tdn){var ts=lj('wn_rvs_'+name()+TCM,{})[tdk];h+='<div class="td2">오늘 '+dshow(tdk)+' 학습 완료'+(ts?' · '+ts.o+'/'+ts.n:'')+'</div>'}
-    if(ml.length)h+='<div class="ms"><b>밀린 날</b> '+dshow(ml[0])+(ml.length>1?' 외 '+(ml.length-1)+'일':'')+'</div>'}
+    if(ml.length)h+='<div class="ms"><b>복습 밀린 날</b> '+dshow(ml[0])+(ml.length>1?' 외 '+(ml.length-1)+'일':'')+'</div>'}
   if(nb){var SM0=svS(),sn=r.items.filter(function(i){return SM0[i.w]}).length;if(sn)h+='<div class="nsr" id="nsr">틀린 것만 모아 풀기 '+sn+'개 ›</div>'}
   if(tot)h+='<p class="ns">모인 곳</p><div class="nbar">'+bar+'</div><div class="nlg">'+lg+'</div>';
   h+='<div class="ns2"><h3>복습 단계별 단어 수</h3><div class="nstg">'+sg.map(function(v,x){return'<div><b>'+v+'</b><span>'+IV[x]+' 단계</span></div>'}).join('')+(gr?'<div class="g"><b>'+gr+'</b><span>졸업</span></div>':'')+'</div><p class="nx">맞히면 다음 단계로 · 15일 단계까지 통과하면 졸업</p>'+(nb?'<p class="nx">복습 1번 = 밀린 날 1일 채움</p>':'')+'</div></div>';
