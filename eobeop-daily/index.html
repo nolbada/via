@@ -190,6 +190,12 @@ function rd(d){
   var h='';
   var a=lay(d.core,1),b=lay(d.ckw,0),r='';
   if(a.length!=b.length){a=[lay(d.core.replace(/\//g,' '),1).join(' ')];b=[lay(d.ckw.replace(/\//g,' '),0).join(' ')]}
+  (function(){var wc=function(s){return s.replace(/<[^>]*>/g,' ').trim().split(/\s+/).length},ch=true;
+    while(ch&&a.length>1){ch=false;
+      for(var j=0;j<a.length;j++){if(wc(a[j])>2)continue;
+        if(j==0){a[1]=a[0]+' '+a[1];b[1]=b[0]+' '+b[1];a.shift();b.shift()}
+        else{a[j-1]+=' '+a[j];b[j-1]+=' '+b[j];a.splice(j,1);b.splice(j,1)}
+        ch=true;break}}})();
   for(var i=0;i<a.length;i++)r+='<div class="r"><b>'+a[i]+'</b><span>'+b[i]+'</span></div>';
   h+='<div class="sec"><h4>직독직해</h4><div class="sl">'+r+'</div></div>';
   return h}
