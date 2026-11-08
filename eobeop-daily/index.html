@@ -165,6 +165,7 @@ function bx(d){var m=d.mp,h='';
   return '<div class="post"><div class="lb">오답노트에는 이것만</div><div class="fm">'+esc(d.fm).replace(/ \+ /g,'<i>+</i>')+'</div>'
   +'<div class="mp"><div class="cl"><span>쉬운 예</span><span>이번 문장</span></div>'+h
   +'<div class="k">쉬운 예 해석 · '+esc(d.exko)+'</div>'
+  +'<div class="k">이번 문장 해석 · '+esc(d.ko)+'</div>'
   +'<div class="bd"><small>틀린 예</small>'+esc(d.bad)+'</div><div class="k">'+esc(d.badko)+'</div></div></div>'}
 function show(){
   var qi=PL[cur.k],d=Q[qi],pos=cur.k-cur.from;
