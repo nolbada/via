@@ -333,10 +333,17 @@ function cardH(o){
 }
 var RVM={};
 function rvNorm(d){var m={};Object.keys(d).forEach(function(k){var v=d[k],t=(v&&v.t)||0;if(!t)return;var key=/^\d{4}-\d\d-\d\d$/.test(k)?k:null;if(!key){var q=new Date(k);if(isNaN(q))return;key=new Date(q.getTime()+32400000).toISOString().slice(0,10)}if(!m[key]||m[key]>t)m[key]=t});return m}
-function rvLoad(){
+function rvLoadEach(){
   return Promise.all(STAT.map(function(o){
     return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'get',id:'WNRV_'+String(o.s.name).toLowerCase()})}).then(function(x){return x.json()}).then(function(x){if(x&&x.ok)RVM[o.s.name]=rvNorm(x.data||{})},function(){})
   })).then(function(){},function(){});
+}
+function rvLoad(){
+  var ids=STAT.map(function(o){return 'WNRV_'+String(o.s.name).toLowerCase()});
+  return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'getmany',ids:ids})}).then(function(x){return x.json()}).then(function(x){
+    if(!x||!x.ok||!x.many)throw 0;
+    STAT.forEach(function(o,i){var d=x.many[ids[i]];if(d)RVM[o.s.name]=rvNorm(d)});
+  }).catch(function(){return rvLoadEach()});
 }
 function rvT(t){return new Date(t+32400000).toISOString().slice(0,10)}
 function rvMon(){var t=kst();return addd(t,-((pd(t).getUTCDay()+6)%7))}
