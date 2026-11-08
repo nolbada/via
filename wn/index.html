@@ -27,6 +27,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .top{display:flex;align-items:center;gap:8px;margin-bottom:8px}.top .t{flex:1;font-size:14px;color:var(--sub)}
 .sbtn{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:6px 12px;font-size:14px}
 .row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.spk{border:1px solid var(--line);background:transparent;color:inherit;border-radius:50%;width:32px;height:32px;padding:0;display:inline-flex;align-items:center;justify-content:center;flex:none;cursor:pointer;vertical-align:middle;margin-left:6px}.spk svg{width:16px;height:16px}.row>.spk{margin-left:0;align-self:center}
 .dc.dd{width:auto;min-width:46px;height:auto;padding:4px 6px;border-radius:10px;flex-direction:column;line-height:1.15;font-size:12px}.dc.dd.miss{border-color:#d4553f;color:#d4553f}.dc.dd small{font-size:10px;font-weight:700;opacity:.85}.hdn{flex-basis:100%;font-size:13px;font-weight:700;color:var(--sub)}.dc.rs{width:auto;min-width:56px;height:auto;padding:6px 8px;border-radius:12px;flex-direction:column;line-height:1.25;font-size:13px}.dc.rs small{font-size:11px;font-weight:700}.dc.rs[data-f]{cursor:pointer}.fb{border:0;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:800;background:#c47a1a;color:#fff;align-self:center}.row:first-child{border-top:0}.row b{font-size:16px}.row small{color:var(--sub);display:block}.row .src{display:inline-block;font-size:10px;font-weight:400;color:var(--sub);opacity:.6;border:1px solid var(--line);border-radius:6px;padding:0 5px;margin-left:5px;vertical-align:1px}
 .badge{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 9px;color:var(--sub);white-space:nowrap;align-self:flex-start}
 input.tx{width:100%;font-size:18px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
@@ -523,12 +524,16 @@ function openSp(I,n,ti,key,btn){
   sp.innerHTML=html;
 }
 function isL(i){return i.src!=='데일리보카'}
+var SPKS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg>';
+function say(t){try{var ss=window.speechSynthesis;if(!ss||typeof SpeechSynthesisUtterance==='undefined')return;if(ss.paused)ss.resume();ss.cancel();var u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.85;var vs=ss.getVoices()||[],vo=null,q;for(q=0;q<vs.length;q++){if(/^en[-_]US/i.test(vs[q].lang)){vo=vs[q];break}}if(!vo)for(q=0;q<vs.length;q++){if(/^en/i.test(vs[q].lang)){vo=vs[q];break}}if(vo)u.voice=vo;window.__su=u;ss.speak(u)}catch(e){}}
+function spk(w){return'<button class="spk" type="button" data-say="'+esc(w).replace(/"/g,'&quot;')+'" aria-label="발음 듣기">'+SPKS+'</button>'}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-say]');if(b){e.preventDefault();e.stopPropagation();say(b.getAttribute('data-say'))}},true);
 function srcTag(i){return i.src?'<span class="src">'+esc(String(i.src).replace(/,/g,' · '))+'</span>':''}
 function byPri(a,b){return(b.c-a.c)||(a.nx<b.nx?-1:a.nx>b.nx?1:0)}
 function list(K){
   var items=DATA.items.filter(function(i){return isL(i)&&(!K||!i.first||i.first<=K)}).sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});
   var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+(K?dshow(K)+' 말하기 대비 ':'오답 단어 리스트 ')+items.length+'개</div></div><div class="card">';
-  items.forEach(function(i){h+='<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+srcTag(i)+'</small></div><span class="badge">'+i.st+'/4 · '+dshow(i.nx)+'</span></div>'});
+  items.forEach(function(i){h+='<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+srcTag(i)+'</small></div>'+spk(i.w)+'<span class="badge">'+i.st+'/4 · '+dshow(i.nx)+'</span></div>'});
   h+='</div>';$.innerHTML=h;document.getElementById('hm').onclick=function(){home(DATA)};
 }
 var R=null;
@@ -599,7 +604,7 @@ function step(){
   if(R.i>=R.items.length){done();return}
   var it=R.items[R.i],pool=it.m?pickDist(it):[];
   var flip=pool.length<3||!it.m;
-  var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+(R.i+1)+' / '+R.items.length+'</div></div><div class="card"><div class="word">'+esc(it.w)+'</div><div id="ar"></div></div>';
+  var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+(R.i+1)+' / '+R.items.length+'</div></div><div class="card"><div class="word">'+esc(it.w)+spk(it.w)+'</div><div id="ar"></div></div>';
   $.innerHTML=h;document.getElementById('hm').onclick=function(){home()};
   var ar=document.getElementById('ar');
   if(flip){
@@ -629,7 +634,7 @@ function done(){
   var ok=R.res.reduce(function(a,b){return a+b},0);if(R&&R.day)rvMark(R.day,ok,R.items.length);
   var wr=R.items.filter(function(x,i){return!R.res[i]});
   var h='<h1>복습 끝</h1><div class="card"><div class="big">'+ok+' / '+R.items.length+'</div></div>';
-  if(wr.length)h+='<div class="card"><div class="sub">다시 볼 단어</div>'+wr.map(function(i){return'<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+srcTag(i)+'</small></div></div>'}).join('')+'</div>';
+  if(wr.length)h+='<div class="card"><div class="sub">다시 볼 단어</div>'+wr.map(function(i){return'<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+srcTag(i)+'</small></div>'+spk(i.w)+'</div>'}).join('')+'</div>';
   h+='<button class="btn pri" id="hm">홈으로</button>';$.innerHTML=h;
   document.getElementById('hm').onclick=function(){home()};
 }
