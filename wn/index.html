@@ -327,7 +327,6 @@ function home(r){
     var P=I.P;
     var dvn=I.dv.length,nd=0;for(var z=0;z<32;z++){if(I.dv.indexOf(z)<0){nd=z+1;break}}
     h+='<a class="tk" href="'+(MM[P.m]||MM['고1'])+'"><i class="bd" style="background:#8a5a9e"></i><div class="tt"><b>미니모의고사</b><small>'+(mmL?mmL.length:0)+' / 24회 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
-    h+='<a class="tk" href="'+VB+'eobeop-daily/"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>D어법</b><small>하루 5문제 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
     h+='<a class="tk" href="'+VB+'sj/"><i class="bd" style="background:#c2557a"></i><div class="tt"><b>천일문S 문장줄이기</b><small>12챕터 · 내 속도로 진행</small></div><span class="chip n">자유</span></a>';
     h+='<a class="tk" href="'+GC+'"><i class="bd" style="background:#17939e"></i><div class="tt"><b>그래머콕 개념노트</b><small>문법 개념 · 필요할 때 찾아보기</small></div><span class="chip n">자유</span></a>';
   }
@@ -434,17 +433,17 @@ function drawDP(I,ti,EP){
     h+=('<a class="tk" href="'+VB+I.Q.u+(I.S[dn]?'':'?day='+dn)+'">')+'<i class="bd"></i><div class="tt"><b>D보카 '+dn+'</b><small>'+P.d+' · 15문항</small></div>'+chip+'</a>';
   }
   if(isT){var ml=Object.keys(I.map).sort().filter(function(d){return d<K&&d>=P.s&&!I.S[I.map[d]]&&!inHold(hc,d)&&CLOSED.indexOf(d)<0});if(ml.length){var mq=I.map[ml[0]];h+='<a class="tk" href="'+VB+I.Q.u+'?day='+mq+'"><i class="bd"></i><div class="tt"><b>D보카 '+mq+'</b><small>'+P.d+' · '+dshow(ml[0])+(ml.length>1?' 외 '+(ml.length-1)+'일':'')+' 밀림</small></div><span class="chip w">밀림</span></a>'}}
+  (function(){var EM=eoMap(n),en=EM[K];if(!en)return;var dn2=eoDone(n),dn1=dn2>=en;
+    if(dn1){if(!(isT)){h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>D어법 '+en+'</b><small>하루 5문제</small></div><span class="chip">완료</span></a>'}else{h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>D어법 '+en+'</b><small>하루 5문제 · 다시 보기</small></div><span class="chip">완료</span></a>'}}
+    else{var chip2=(K<ti&&!inHold(hc,K))?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'진행 전':'예정')+'</span>';
+      h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>D어법 '+en+'</b><small>하루 5문제'+(en>dn2+1?' · '+(dn2+1)+'일차부터 이어서':'')+'</small></div>'+chip2+'</a>'}
+  })();
   if(K<ti&&!rvMap()[K]&&NCX&&NCX.today>0&&K>=P.s&&CLOSED.indexOf(K)<0)h+='<button class="tk" id="stp"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>밀린 복습 · 지금 모인 단어로</small></div><span class="chip w">'+NCX.today+'개</span></button>';
   if(K<ti&&rvMap()[K])h+='<div class="tk"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>이날 복습 끝냄</small></div><span class="chip">완료</span></div>';
   if(K>ti&&DATA){var fd=DATA.items.filter(function(i){return i.nx&&i.nx<=K}),fc=Math.min(fd.length,NCX?NCX.cap:60);h+='<button class="tk" id="stf"'+(fc?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>이날까지 모인 단어 · 미리 풀기</small></div>'+(rvMap()[K]?'<span class="chip">완료</span>':'<span class="chip n">'+fc+'개</span>')+'</button>'}
   if(w===5&&!isT&&K>=P.s&&DATA){var fl=DATA.items.filter(function(i){return isL(i)&&(!i.first||i.first<=K)}).length;h+='<button class="tk" id="ls3"'+(fl?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>이날까지 모인 말하기 단어</small></div><span class="chip n">'+fl+'개</span></button>'}
   if(w===5&&K>=P.s&&CLOSED.indexOf(K)<0){var sp1=(hc.sp||{})[K],c1=sp1===1?'<span class="chip">완료</span>':sp1===2?'<span class="chip n">결석</span>':(isPast&&!inHold(hc,K)?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'오늘':'예정')+'</span>');h+='<div class="tk"><i class="bd" style="background:#1f8a56"></i><div class="tt"><b>금요일 말하기 시험</b><small>누적보카 · 학원</small></div>'+c1+'</div>'}
   if(EP&&EP[K]){var xdv=P.dv==='Pro'?'dvpro/':'dvcore/';h+=('<a class="tk" href="'+VB+xdv+'">')+'<i class="bd" style="background:#2d6a9f"></i><div class="tt"><b>더블보카 '+P.dv+' 시험</b><small>Day '+EP[K]+' · 학원 테스트</small></div><span class="chip n">'+(isT?'오늘':'예정')+'</span></a>'}
-  (function(){var EM=eoMap(n),en=EM[K];if(!en)return;var dn2=eoDone(n),dn1=dn2>=en;
-    if(dn1){if(!(isT)){h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>D어법 '+en+'</b><small>하루 5문제</small></div><span class="chip">완료</span></a>'}else{h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>D어법 '+en+'</b><small>하루 5문제 · 다시 보기</small></div><span class="chip">완료</span></a>'}}
-    else{var chip2=(K<ti&&!inHold(hc,K))?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'진행 전':'예정')+'</span>';
-      h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>D어법 '+en+'</b><small>하루 5문제'+(en>dn2+1?' · '+(dn2+1)+'일차부터 이어서':'')+'</small></div>'+chip2+'</a>'}
-  })();
   el.innerHTML=(h==='<div class="dpl">'?'':h+'</div>');
   var stb=document.getElementById('st');if(stb&&NCX)stb.onclick=function(){review(NCX.due.slice().sort(byPri).slice(0,NCX.today),K)};
   var l2=document.getElementById('ls2');if(l2)l2.onclick=function(){list()};var sp2=document.getElementById('stp');if(sp2)sp2.onclick=function(){rvStart(K,ti)};
