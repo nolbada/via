@@ -346,7 +346,7 @@ function showNote(word,key){
     $("#nb").textContent="("+e.b+" · "+e.m+")";
     if(!looked[e.b]) looked[e.b]={c:0,x:e.c,m:e.m};
     looked[e.b].c++; looked[e.b].x=e.c;
-    if(window.WN)WN.add([{w:e.b,m:e.c,src:"천일문S",how:"터치",ask:true}]);
+    if(window.WN)WN.add([{w:e.b,m:(e.f&&e.m)?e.m:e.c,src:"천일문S",how:"터치",ask:true}]);
   } else {
     $("#nf").textContent="";
     nm.textContent="단어 자료에 없음";
