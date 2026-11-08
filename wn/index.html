@@ -27,7 +27,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .top{display:flex;align-items:center;gap:8px;margin-bottom:8px}.top .t{flex:1;font-size:14px;color:var(--sub)}
 .sbtn{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:6px 12px;font-size:14px}
 .row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
-.spk{border:1px solid var(--line);background:transparent;color:inherit;border-radius:50%;width:32px;height:32px;padding:0;display:inline-flex;align-items:center;justify-content:center;flex:none;cursor:pointer;vertical-align:middle;margin-left:6px}.spk svg{width:16px;height:16px}.row>.spk{margin-left:0;align-self:center}
+.spk{border:1px solid var(--line);background:transparent;color:inherit;border-radius:50%;width:32px;height:32px;padding:0;display:inline-flex;align-items:center;justify-content:center;flex:none;cursor:pointer;vertical-align:middle;margin-left:6px}.spk svg{width:16px;height:16px}
+.synr{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}.synr small{font-size:13px;opacity:.7}.syc{border:1px solid var(--line);background:transparent;color:inherit;border-radius:999px;padding:6px 12px;font-size:16px;display:inline-flex;align-items:center;gap:6px;cursor:pointer}.syc svg{width:15px;height:15px}.row>.spk{margin-left:0;align-self:center}
 .dc.dd{width:auto;min-width:46px;height:auto;padding:4px 6px;border-radius:10px;flex-direction:column;line-height:1.15;font-size:12px}.dc.dd.miss{border-color:#d4553f;color:#d4553f}.dc.dd small{font-size:10px;font-weight:700;opacity:.85}.hdn{flex-basis:100%;font-size:13px;font-weight:700;color:var(--sub)}.dc.rs{width:auto;min-width:56px;height:auto;padding:6px 8px;border-radius:12px;flex-direction:column;line-height:1.25;font-size:13px}.dc.rs small{font-size:11px;font-weight:700}.dc.rs[data-f]{cursor:pointer}.fb{border:0;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:800;background:#c47a1a;color:#fff;align-self:center}.row:first-child{border-top:0}.row b{font-size:16px}.row small{color:var(--sub);display:block}.row .src{display:inline-block;font-size:10px;font-weight:400;color:var(--sub);opacity:.6;border:1px solid var(--line);border-radius:6px;padding:0 5px;margin-left:5px;vertical-align:1px}
 .badge{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 9px;color:var(--sub);white-space:nowrap;align-self:flex-start}
 input.tx{width:100%;font-size:18px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
@@ -530,6 +531,8 @@ function spk(w){return'<button class="spk" type="button" data-say="'+esc(w).repl
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-say]');if(b){e.preventDefault();e.stopPropagation();say(b.getAttribute('data-say'))}},true);
 function srcTag(i){return i.src?'<span class="src">'+esc(String(i.src).replace(/,/g,' · '))+'</span>':''}
 function byPri(a,b){return(b.c-a.c)||(a.nx<b.nx?-1:a.nx>b.nx?1:0)}
+function mStrip(m){return String(m||'').replace(/\s*\((비슷|반대)[^:)]*:[^)]*\)/,'')}
+function synBtns(m){var x=/\((비슷|반대)[^:)]*:\s*([^)]+)\)/.exec(m||'');if(!x)return'';return'<div class="synr"><small>'+x[1]+'</small>'+x[2].split(/\s*,\s*/).filter(Boolean).map(function(w){return'<button class="syc" type="button" data-say="'+esc(w).replace(/"/g,'&quot;')+'">'+esc(w)+SPKS+'</button>'}).join('')+'</div>'}
 var SP=null;
 function spStart(K,items){SP={K:K,a:shuffle(items.slice()),i:0};spShow()}
 function spShow(){var S=SP,n=S.a.length,K=S.K;
@@ -539,7 +542,7 @@ function spShow(){var S=SP,n=S.a.length,K=S.K;
   var it=S.a[S.i];h+='<div class="card"><div class="word">'+esc(it.w)+spk(it.w)+'</div><div id="ar"></div></div>';$.innerHTML=h;
   document.getElementById('hm').onclick=function(){home(DATA)};
   var ar=document.getElementById('ar');ar.innerHTML='<button class="btn pri" id="sh">뜻 보기</button>';
-  document.getElementById('sh').onclick=function(){ar.innerHTML='<div class="word" style="font-size:22px">'+esc(it.m||'')+'</div>'+(srcTag(it)?'<div>'+srcTag(it)+'</div>':'')+'<button class="btn pri" id="nx">다음</button>';document.getElementById('nx').onclick=function(){S.i++;spShow()}};
+  document.getElementById('sh').onclick=function(){ar.innerHTML='<div class="word" style="font-size:22px">'+esc(mStrip(it.m))+'</div>'+synBtns(it.m)+(srcTag(it)?'<div>'+srcTag(it)+'</div>':'')+'<button class="btn pri" id="nx">다음</button>';document.getElementById('nx').onclick=function(){S.i++;spShow()}};
 }
 function list(K){
   var items=DATA.items.filter(function(i){return isL(i)&&(!K||!i.first||i.first<=K)}).sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});
@@ -622,7 +625,7 @@ function step(){
   if(flip){
     ar.innerHTML='<button class="btn pri" id="sh">뜻 보기</button>';
     document.getElementById('sh').onclick=function(){
-      ar.innerHTML='<div class="word" style="font-size:22px">'+esc(it.m||'')+'</div><button class="btn pri" id="y">알았어요</button><button class="btn" id="n">몰랐어요</button>';
+      ar.innerHTML='<div class="word" style="font-size:22px">'+esc(mStrip(it.m))+'</div>'+synBtns(it.m)+'<button class="btn pri" id="y">알았어요</button><button class="btn" id="n">몰랐어요</button>';
       document.getElementById('y').onclick=function(){mark(true)};document.getElementById('n').onclick=function(){mark(false)};
     };return;
   }
