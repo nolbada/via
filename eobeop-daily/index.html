@@ -2,7 +2,7 @@
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f6f4ee">
-<title>D어법</title>
+<title>데일리어법</title>
 <style>
 :root{--bg:#f6f4ee;--card:#fff;--ink:#1c1f26;--mute:#6a6e78;--line:#e3dfd3;--accent:#2b5aa8;--soft:#e6edf8;--ok:#2d6a4f;--oks:#e3f1ea;--no:#b3261e;--nos:#fbe9e7}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -134,7 +134,7 @@ function sessionCount(){return Math.ceil(total()/S.n)}
 function home(){
   cur=null;$("#nx").classList.add("hide");$("#sheet").classList.add("hide");
   var n=S.n,sc=sessionCount(),doneS=Math.floor(S.pos/n),h='';
-  h+='<div class="hd"><div><h1 id="ttl">D어법</h1><div class="sub">하루 '+n+'문제</div></div></div>';
+  h+='<div class="hd"><div><h1 id="ttl">데일리어법</h1><div class="sub">하루 '+n+'문제</div></div></div>';
   h+='<div class="card"><div class="sum"><b>'+doneS+'</b><span class="mute">/ '+sc+' 완료</span></div></div>';
   var cs=Math.floor(S.pos/n);
   if(cs<sc)h+='<button class="go" data-go="'+cs+'">'+(S.pos%n?'이어서 하기':'오늘의 어법 시작')+' · '+(cs+1)+'</button>';
