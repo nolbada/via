@@ -15,7 +15,7 @@
    ]
   ],
   "ko": "화이트보드의 메시지는 매일 하루가 끝날 때 지워지고, 다음 날 아침 그 자리에 메모 하나가 나타났다.",
-  "gist": "화이트보드 글은 매일 지워지고 다음 날 아침엔 새 메모가 나타난다는 얘기예요.",
+  "gist": "화이트보드 글은 매일 지워지는데, 다음 날 아침 그 자리에 메모 하나가 나타났다는 얘기예요.",
   "fm": "appear + be p.p. (X)",
   "mp": [
    [
@@ -262,7 +262,7 @@
   "altw": "능동",
   "alt": "The teacher will check the homework tomorrow.",
   "altko": "선생님이 내일 그 숙제를 검사할 거예요(teacher 선생님이 직접 검사하니까 능동 will check).",
-  "why": "the new regulations(새 규정)는 스스로 시행하는 게 아니라 사람들이 '시행하는' 대상이에요. 미래이니까 '시행될 것이다'를 뜻하는 will be enforced(enforce 시행하다의 수동)가 맞아요. 앞의 must be placed(놓여야 한다)도 같은 모양이에요.",
+  "why": "the new regulations(새 규정)는 스스로 시행하는 게 아니라 사람들이 '시행하는' 대상이에요. 미래이니까 '시행될 것이다'를 뜻하는 will be enforced(enforce 시행하다의 수동)가 맞아요. 앞의 must be placed(설치되어야 한다; place 놓다)도 표지판이 놓이는 쪽이라서 수동이에요.",
   "d": {
    "caution": "주의",
    "signs": "sign(표지판)의 복수형",
@@ -537,7 +537,7 @@
   "altw": "has",
   "alt": "I like a toy that has been made here.",
   "altko": "나는 여기서 만들어진 장난감 하나를 좋아해요(a toy가 하나라서 has).",
-  "why": "that 뒤 동사는 바로 앞 명사에 수를 맞춰요. props(소품들)는 여러 개라서 has been이 아니라 have been(~되어 있다)이에요. 같은 문장의 a trick(마술 하나)은 하나라서 which has가 맞아요.",
+  "why": "that 뒤 동사는 바로 앞 명사에 수를 맞춰요. props(소품들)는 여러 개라서 has been이 아니라 복수에 맞는 have been이에요. 같은 문장의 a trick(마술 하나)은 하나라서 which has가 맞아요.",
   "d": {
    "magician": "마술사",
    "show": "보여주다",
@@ -643,11 +643,11 @@
     "fast"
    ]
   ],
-  "ex": "The cat is amazingly fast.",
-  "exko": "그 고양이는 놀랍도록 빨라요(amazingly 놀랍도록, fast 빠른).",
+  "ex": "The cat runs amazingly fast.",
+  "exko": "그 고양이는 놀랍도록 빠르게 달려요(run 달리다, amazingly 놀랍도록, fast 빠르게).",
   "tko": "놀랍도록 빠르게",
-  "bad": "The cat is amazing fast.",
-  "badko": "(fast(빠른)를 꾸미는 말은 형용사 amazing(놀라운)이 아니라 부사 amazingly(놀랍도록)예요)",
+  "bad": "The cat runs amazing fast.",
+  "badko": "(fast(빠르게)를 꾸미는 말은 형용사 amazing(놀라운)이 아니라 부사 amazingly(놀랍도록)예요)",
   "altw": "surprising",
   "alt": "It was surprising news.",
   "altko": "그건 놀라운 소식이었어요(surprising(놀라운)이 명사 news(소식)를 꾸밀 때는 형용사).",

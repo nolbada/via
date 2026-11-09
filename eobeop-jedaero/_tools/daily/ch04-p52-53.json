@@ -303,8 +303,8 @@
   "ex": "Tom isn't tall, but his brother is.",
   "exko": "톰은 키가 크지 않지만 그의 형은 커요(tall 키가 큰).",
   "tko": "그렇다고",
-  "bad": "Tom isn't tall, but his brother does.",
-  "badko": "(앞에 isn't(be동사)가 있어서 does가 아니라 is로 받아요)",
+  "bad": "Tom isn't tall, but his brother has.",
+  "badko": "(앞에 isn't(be동사)가 있어서 has가 아니라 is로 받아요)",
   "altw": "does",
   "alt": "Tom runs fast, and his brother does too.",
   "altko": "톰은 빨리 달리고, 그의 형도 그래요(runs(달리다)는 일반동사라서 does).",
@@ -357,7 +357,7 @@
   "badko": "(do 뒤에는 liked가 아니라 동사원형 like(좋아하다)예요)",
   "altw": "liked",
   "alt": "Many kids liked pizza.",
-  "altko": "많은 아이들이 피자를 좋아했어요(do 없이 쓰면 과거형 liked).",
+  "altko": "많은 아이들이 피자를 좋아했어요(do 없이 지난 일을 말하면 liked처럼 과거형을 써요).",
   "why": "do를 동사 앞에 붙이면 '정말 ~한다'라고 힘줘서 말하는 거예요. 이때는 do가 시제를 맡고 있어서 동사는 원래 모양 그대로 써요. 그래서 believed가 아니라 believe(믿다)예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>강조의 do 뒤에는 동사원형만 와요",
   "d": {
@@ -368,7 +368,7 @@
    "use": "사용",
    "class": "수업",
    "students": "student(학생)의 복수형",
-   "students'": "student(학생)의 복수형"
+   "students'": "students(학생들)의 소유격: 학생들의"
   }
  },
  {

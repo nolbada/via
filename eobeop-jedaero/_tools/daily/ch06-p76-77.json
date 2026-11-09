@@ -407,23 +407,23 @@
   "mp": [
    [
     "동사",
-    "enjoy",
+    "imagine",
     "imagine"
    ],
    [
     "뒤",
-    "playing",
+    "living",
     "using"
    ]
   ],
-  "ex": "I enjoy playing games.",
-  "exko": "나는 게임하는 걸 즐겨요(enjoy 즐기다, play 하다, game 게임).",
+  "ex": "I can't imagine living without my dog.",
+  "exko": "나는 우리 개 없이 사는 걸 상상할 수 없어요(imagine 상상하다, live 살다, without ~없이).",
   "tko": "그것을 쓰는 것을",
-  "bad": "I enjoy to play games.",
-  "badko": "(enjoy(즐기다)는 to play가 아니라 -ing만 목적어로 가져요)",
+  "bad": "I can't imagine to live without my dog.",
+  "badko": "(imagine(상상하다)은 to live가 아니라 -ing만 목적어로 가져요)",
   "altw": "to V",
-  "alt": "I want to play games.",
-  "altko": "나는 게임을 하고 싶어요(want 원하다는 to + 동사원형을 써요).",
+  "alt": "I hope to live with a dog.",
+  "altko": "나는 개와 함께 살기를 바라요(hope 바라다는 to + 동사원형을 써요).",
   "why": "imagine(상상하다) 뒤에는 to use(쓰다)가 아니라 using(use의 -ing형)만 올 수 있어요. enjoy(즐기다), avoid(피하다), suggest(제안하다)처럼 -ing만 받는 동사 무리와 같이 외워 둬요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>목적어로 -ing만 받는 동사 무리를 외워 둬요",
   "d": {
@@ -570,7 +570,7 @@
   ],
   "ko": "그의 아버지는 교육을 잘 받지 못했지만 금융 문제에 깊은 관심이 있었고, 집에서 어린 게리와 종종 경제 동향을 이야기했다.",
   "gist": "아버지는 많이 못 배웠어도 돈 문제에 관심이 많아서 아들과 자주 얘기했다는 얘기예요.",
-  "fm": "A had ..., and B + 동사 (and 뒤도 동사)",
+  "fm": "주어 + had ..., and + 동사 (and 뒤도 진짜 동사)",
   "mp": [
    [
     "and 앞 동사",
@@ -970,7 +970,7 @@
   "d": {
    "however": "하지만",
    "doing": "do(하다)의 -ing형",
-   "better": "good(좋은)의 비교급, do better: 더 잘하다",
+   "better": "well(잘)의 비교급, do better: 더 잘하다",
    "each": "각각의, 매",
    "meaningful": "의미 있는",
    "long": "in the long run: 장기적으로",

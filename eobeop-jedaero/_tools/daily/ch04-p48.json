@@ -95,7 +95,7 @@
   "tko": "남겨진 여러 물건들",
   "bad": "I have two cats that is cute.",
   "badko": "(that이 가리키는 말이 two cats(고양이 두 마리)라서 is가 아니라 are예요)",
-  "altw": "한 마리",
+  "altw": "that is",
   "alt": "I have one cat that is cute.",
   "altko": "나는 귀여운 고양이 한 마리가 있어요(cat이 한 마리라서 that is예요).",
   "why": "that이 가리키는 말은 바로 앞의 several items(여러 물건)예요. 여러 개니까 that 뒤 동사도 여러 개에 맞는 were를 써서 were left(남겨졌다)가 되어야 해요. one of ...가 앞에 있어서 단수처럼 보여도, 가리키는 대상은 items예요.",
@@ -205,7 +205,7 @@
    ]
   ],
   "ex": "So hungry was he that he ate three pizzas.",
-  "exko": "그는 너무 배고파서 피자 세 판을 먹었어요(hungry 배고픈, ate eat 먹다).",
+  "exko": "그는 너무 배고파서 피자 세 판을 먹었어요(hungry 배고픈, ate는 eat(먹다)의 과거형).",
   "tko": "너무나 크다, 이 필요성은",
   "bad": "So hungry he was that he ate three pizzas.",
   "badko": "(So hungry(너무 배고픈)가 맨 앞에 오면 he was가 아니라 was he처럼 뒤집어요)",
@@ -497,7 +497,7 @@
    "issue": "문제",
    "immediately": "즉시",
    "ceo": "CEO: 최고 경영자",
-   "company's": "회사"
+   "company's": "company(회사)의 소유격: 회사의"
   },
   "ko": "그 보고서는 회사의 이익이 지난해 급격히 감소했다는 것을 시사한다, 그래서 이사회는 CEO가 그 문제를 즉시 해결해야 한다고 권고했다."
  },
@@ -658,7 +658,7 @@
    "extremely": "매우",
    "carefully": "신중하게",
    "storms": "storm(폭풍)의 복수형",
-   "ahead": "앞에 있는",
+   "ahead": "앞으로 다가올",
    "december": "12월"
   },
   "ko": "이번 12월의 적설량은 작년 12월보다 상당히 더 많을 것이다, 그래서 시 관계자들은 다가올 폭풍에 대비해 매우 신중하게 준비하고 있다."

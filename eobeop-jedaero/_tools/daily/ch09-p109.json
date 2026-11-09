@@ -41,7 +41,7 @@
   "altw": "have",
   "alt": "Two of my friends have visited Paris.",
   "altko": "내 친구들 중 두 명은 파리에 가 본 적이 있어요(Two(둘)는 여러 명이라서 have).",
-  "why": "one of(~ 중 하나)에서 중심 말은 one(하나)이에요. 뒤의 competitors(경쟁자들)가 여러 명이어도 '하나'를 말하니까 동사는 단수예요. 그래서 have(가지다)가 아니라 has예요.",
+  "why": "one of(~ 중 하나)에서 중심 말은 one(하나)이에요. 뒤의 competitors(경쟁자들)가 여러 명이어도 '하나'를 말하니까 동사는 단수예요. 그래서 have recently launched(최근에 출시했다)에서 have가 아니라 has를 써요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>one of 뒤에 복수명사가 있어도 동사는 one에 맞춰요",
   "d": {
    "company": "회사",
@@ -58,8 +58,8 @@
    "launched": "launch(출시하다)의 과거분사",
    "similar": "비슷한",
    "product": "제품",
-   "have": "have(가지다)의 현재형",
-   "has": "have(가지다)의 3인칭 단수형"
+   "have": "have + p.p.: ~했다(완료), 주어가 여럿일 때 모양",
+   "has": "have의 3인칭 단수형(has launched: 출시했다)"
   }
  },
  {
@@ -552,7 +552,7 @@
    ]
   ],
   "ex": "The cake has been eaten.",
-  "exko": "그 케이크는 먹혔어요(eat 먹다 → eaten 먹힌).",
+  "exko": "그 케이크는 벌써 누가 다 먹어 버렸어요(eat 먹다 → eaten, 케이크는 먹히는 쪽이라서 has been eaten이에요).",
   "tko": "무너져 왔다",
   "bad": "The cake has eaten.",
   "badko": "(케이크는 먹는 쪽이 아니라 먹히는 쪽이라서 has been eaten이에요)",

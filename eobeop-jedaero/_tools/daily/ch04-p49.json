@@ -40,7 +40,7 @@
   "altw": "has",
   "alt": "Mina has left, and her friend has too.",
   "altko": "미나는 떠났고 그녀의 친구도 그래요(앞이 has left처럼 have + p.p.라서 has로 대신해요).",
-  "why": "앞에서 said sorry(미안하다고 말했다)처럼 일반동사를 썼어요. 같은 말을 또 쓰지 않고 '내 친구도 그랬어'라고 할 때는 do 모양으로 대신해요. 지난 일이라서 has가 아니라 did(그랬다)예요. has는 앞이 has finished처럼 have + p.p.일 때 써요.",
+  "why": "앞 문장에서 said(say 말하다의 과거형), left(leave 떠나다의 과거형) 같은 일반동사를 썼어요. 같은 말을 또 쓰지 않고 '내 친구도 그랬어'라고 할 때는 do 모양으로 대신해요. 지난 일이라서 has가 아니라 did(그랬다)예요. has는 앞이 has finished처럼 have + p.p.일 때 써요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>앞 문장이 일반동사면 do/does/did로 대신해요. be동사나 have동사로 대신하지 않아요",
   "d": {
    "should": "should have p.p.: ~했어야 했다",
@@ -190,20 +190,20 @@
   "mp": [
    [
     "꾸미는 말(p.p.)",
-    "broken",
+    "stolen",
     "poorly-managed"
    ],
    [
     "꾸밈받는 명사",
-    "window",
+    "bike",
     "schedule"
    ]
   ],
-  "ex": "I see a broken window.",
-  "exko": "나는 깨진 창문을 봐요(break 깨다 → broken).",
+  "ex": "I found a stolen bike.",
+  "exko": "나는 도둑맞은 자전거를 찾았어요(steal 훔치다 → stolen, find 찾다 → found).",
   "tko": "제대로 관리되지 않은 일정",
-  "bad": "I see a breaking window.",
-  "badko": "(창문은 스스로 깨는 쪽이 아니라 '깨진' 쪽이라서 breaking이 아니라 broken이에요)",
+  "bad": "I found a stealing bike.",
+  "badko": "(자전거는 스스로 훔치는 쪽이 아니라 '도둑맞은' 쪽이라서 stealing이 아니라 stolen이에요)",
   "altw": "-ing",
   "alt": "I see a running dog.",
   "altko": "나는 달리는 개를 봐요(개가 스스로 달리니까 -ing를 써요).",
@@ -475,7 +475,7 @@
    ],
    [
     "and his assistant did too,",
-    "그의 조수도 그렇게 주장했고,"
+    "그의 조수도 그랬고(돈을 냈다고 했고),"
    ],
    [
     "even though neither of them can prove it.",
