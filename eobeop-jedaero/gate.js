@@ -20,7 +20,7 @@
     if(!box){
       box=document.createElement('div'); box.id='ej-lock';
       box.setAttribute('style','position:fixed;inset:0;z-index:99999;visibility:visible !important;background:#f6f4ee;color:#1c1f26;display:flex;align-items:center;justify-content:center;padding:24px;font-family:"Malgun Gothic",sans-serif;text-align:center');
-      box.innerHTML='<div style="max-width:320px"><div style="font-size:44px">🔒</div><div style="font-size:19px;font-weight:700;margin:8px 0 6px">아직 열리지 않았어요</div><div id="ej-msg" style="font-size:15px;line-height:1.7;color:#555"></div><button id="ej-re" style="margin-top:16px;border:1px solid #2b5aa8;color:#2b5aa8;background:#fff;font:inherit;font-size:15px;padding:8px 18px;border-radius:999px">다시 확인</button></div>';
+      box.innerHTML='<div style="max-width:320px"><div style="font-size:19px;font-weight:700;margin:8px 0 6px">아직 열리지 않았어요</div><div id="ej-msg" style="font-size:15px;line-height:1.7;color:#555"></div><button id="ej-re" style="margin-top:16px;border:1px solid #2b5aa8;color:#2b5aa8;background:#fff;font:inherit;font-size:15px;padding:8px 18px;border-radius:999px">다시 확인</button></div>';
       document.body.appendChild(box); msg=box.querySelector('#ej-msg');
       box.querySelector('#ej-re').onclick=check;
     }

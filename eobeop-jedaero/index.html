@@ -15,7 +15,7 @@ a.pg{display:flex;flex-direction:column;justify-content:center;min-height:56px;b
 a.pg span{font-size:12.5px;font-weight:400;color:#5b6b67;margin-top:2px}
 a.pg:active{background:#dbe3e0}
 a.pg.lk{opacity:.45;border-left-color:#9aa6a3}
-a.pg.lk span:after{content:" 🔒";font-size:12px}
+a.pg.lk span:after{content:" 잠김";font-size:12px}
 .go{display:flex;gap:8px;margin:14px 0 0}
 .go input{flex:1;min-width:0;font:inherit;font-size:18px;padding:11px 12px;border:1.5px solid #12314f;border-radius:10px;background:#fff;color:#16211f}
 .go button{font:inherit;font-size:16px;font-weight:700;padding:0 18px;border:0;border-radius:10px;background:#12314f;color:#fff}
@@ -24,7 +24,7 @@ a.pg.lk span:after{content:" 🔒";font-size:12px}
 <h1>해커스 어법 제대로 어법변형문제</h1>
 <p class="note">교재 쪽수를 넣거나, 아래에서 쪽을 눌러 정답·해설을 보세요.</p>
 <div class="go"><input id="pn" type="text" inputmode="numeric" placeholder="쪽수 (예: 60)" autocomplete="off"><button id="pb" type="button">열기</button></div><div id="gm"></div>
-<p class="note" style="margin-top:10px">🔒 표시는 선생님이 아직 열지 않은 쪽이에요.</p>
+<p class="note" style="margin-top:10px">잠김 표시는 선생님이 아직 열지 않은 쪽이에요.</p>
 <h2>CHAPTER 01</h2><div class="grid"><a class="pg" href="ch01-p12.html">p.12<span></span></a><a class="pg" href="ch01-p13.html">p.13<span></span></a><a class="pg" href="ch01-p14.html">p.14<span></span></a><a class="pg" href="ch01-p15.html">p.15<span></span></a><a class="pg" href="ch01-p16.html">p.16<span></span></a><a class="pg" href="ch01-p17.html">p.17<span></span></a><a class="pg" href="ch01-p18.html">p.18<span></span></a><a class="pg" href="ch01-p20-21a.html">p.20-21 ①<span>수능 대비</span></a><a class="pg" href="ch01-p20-21b.html">p.20-21 ②<span>수능 대비</span></a></div>
 <h2>CHAPTER 02</h2><div class="grid"><a class="pg" href="ch02-p24.html">p.24<span></span></a><a class="pg" href="ch02-p25.html">p.25<span></span></a><a class="pg" href="ch02-p26.html">p.26<span></span></a><a class="pg" href="ch02-p27.html">p.27<span></span></a><a class="pg" href="ch02-p28.html">p.28<span></span></a><a class="pg" href="ch02-p29.html">p.29<span></span></a><a class="pg" href="ch02-p30-31.html">p.30-31<span>수능 대비</span></a><a class="pg" href="ch02-p32-33.html">p.32-33<span>MINI TEST CH01-02</span></a></div>
 <h2>CHAPTER 03</h2><div class="grid"><a class="pg" href="ch03-p36.html">p.36<span></span></a><a class="pg" href="ch03-p37.html">p.37<span></span></a><a class="pg" href="ch03-p38.html">p.38<span></span></a><a class="pg" href="ch03-p39.html">p.39<span></span></a><a class="pg" href="ch03-p40.html">p.40<span></span></a><a class="pg" href="ch03-p41.html">p.41<span>내신 서술형</span></a><a class="pg" href="ch03-p42-43.html">p.42-43<span>수능 대비</span></a></div>
@@ -49,7 +49,7 @@ function go(){var n=parseInt(document.getElementById('pn').value,10),m=document.
  if(!n){m.textContent='쪽수를 숫자로 넣어 주세요.';return}
  for(var i=0;i<A.length;i++){var r=range(A[i]);if(n>=r[0]&&n<=r[1]){
   if(teacher()||OPEN===null||OPEN[key(A[i])]){location.href=A[i].getAttribute('href');return}
-  m.textContent='🔒 '+n+'쪽은 아직 열리지 않았어요. 선생님이 열어 주면 볼 수 있어요.';return}}
+  m.textContent=''+n+'쪽은 아직 열리지 않았어요. 선생님이 열어 주면 볼 수 있어요.';return}}
  m.textContent=n+'쪽 해설은 없어요. 아래 목록에서 골라 보세요.'}
 document.getElementById('pb').onclick=go;
 document.getElementById('pn').onkeydown=function(e){if(e.key==='Enter')go()};

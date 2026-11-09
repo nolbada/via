@@ -77,10 +77,10 @@ def run(page):
         if nums:
             back=urllib.parse.quote(BASE+key+'.html#gc%d'%k,safe='')
             links=''.join('<a href="%s?c=%s&amp;back=%s">%s</a>'%(GC,urllib.parse.quote(n),back,html.escape(NAME[n])) for n in nums)
-            out.append('<div class="gc" id="gc%d"><span class="gl">📘 그래머콕 개념</span>%s</div>'%(k,links)); added+=1
+            out.append('<div class="gc" id="gc%d"><span class="gl">그래머콕 개념</span>%s</div>'%(k,links)); added+=1
         pos=m.start(); k+=1
     out.append(s[pos:]); s=''.join(out)
-    s=s.replace('</head>',CSS+'\n</head>',1)
+    if '.navb{' not in s: s=s.replace('</head>',CSS+'\n</head>',1)
     open(page,'w',encoding='utf-8').write(s)
     return k,added
 if __name__=='__main__':

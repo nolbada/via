@@ -1,0 +1,177 @@
+{
+ "key": "ch09-p109",
+ "h1": "해커스 어법 제대로 CHAPTER 09 · p.109 어법변형문제 정답 및 해설",
+ "prev": [
+  "ch09-p108",
+  "p.108"
+ ],
+ "next": [
+  "ch09-p110",
+  "p.110"
+ ],
+ "groups": [
+  {
+   "bar": "p.109 정답 및 해설",
+   "sub": "",
+   "quick": "<b>빠른정답</b><br>1) have recently launched → <b>has recently launched</b> / 2) wasn't sure that mattered → <b>wasn't sure what mattered</b> / 3) forgets take → <b>forgets to take</b> / 4) during you are under → <b>while you are under</b> / 5) has explored → <b>had explored</b> / 6) confusing → <b>confused</b> / 7) like we had visited → <b>as we had visited</b> / 8) too much opinions → <b>too many opinions</b> / 9) despite everyone tried → <b>although everyone tried</b> / 10) has disrupted → <b>has been disrupted</b> / 11) more hard → <b>harder</b> / 12) increasing controversial → <b>increasingly controversial</b>",
+   "items": [
+    {
+     "pre": "The company is having difficulties because of the highly competitive situation in the market, especially since one of its biggest competitors ",
+     "wr": "have recently launched",
+     "post": " a similar product.",
+     "fr": "have recently launched",
+     "to": "has recently launched",
+     "correct": "The company is having difficulties because of the highly competitive situation in the market, especially since one of its biggest competitors has recently launched a similar product.",
+     "interp": "그 회사는 시장의 치열한 경쟁 상황 때문에 어려움을 겪고 있다, 특히 가장 큰 경쟁사 중 하나가 최근 비슷한 제품을 출시했기 때문에.",
+     "color": "#2563eb",
+     "badge": "부분·수량 표현 포함 주어 동사 수일치(1): of 앞 표현에 수 일치 (Chapter 01 POINT 2)",
+     "explain": "one of는 of 앞의 표현(one)에 수를 일치시켜 단수 취급하므로 동사도 단수형이 되어야 한다. 따라서 have가 아니라 <b>has</b>가 되어야 한다.",
+     "qn": "문항 1"
+    },
+    {
+     "pre": "Pamela asked her dad whether she should choose to major in medicine or art, though she still ",
+     "wr": "wasn't sure that mattered",
+     "post": " most to her future.",
+     "fr": "wasn't sure that mattered",
+     "to": "wasn't sure what mattered",
+     "correct": "Pamela asked her dad whether she should choose to major in medicine or art, though she still wasn't sure what mattered most to her future.",
+     "interp": "Pamela는 아버지에게 의학과 미술 중 무엇을 전공해야 할지 물었다, 비록 그녀는 무엇이 자신의 미래에 가장 중요한지 여전히 확신하지 못했지만.",
+     "color": "#db2777",
+     "badge": "명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞 (Chapter 09 POINT 3)",
+     "explain": "mattered의 주어가 없는 불완전한 절이 이어지므로, 완전한 절을 이끄는 that이 아니라 불완전한 절을 이끄는 what이 와야 한다. 따라서 that이 아니라 <b>what</b>이 되어야 한다.",
+     "qn": "문항 2"
+    },
+    {
+     "pre": "The patient, as the doctor emphasized, must have meals and take medicine at fixed times, though he sometimes ",
+     "wr": "forgets take",
+     "post": " his medicine on time.",
+     "fr": "forgets take",
+     "to": "forgets to take",
+     "correct": "The patient, as the doctor emphasized, must have meals and take medicine at fixed times, though he sometimes forgets to take his medicine on time.",
+     "interp": "그 환자는, 의사가 강조했듯이, 정해진 시간에 식사를 하고 약을 먹어야 한다, 비록 그가 때때로 제시간에 약을 먹는 것을 잊어버리지만.",
+     "color": "#ea580c",
+     "badge": "동사 vs. 동명사/to부정사 (Chapter 06 POINT 1)",
+     "explain": "forget 뒤에 to부정사가 오면 '(앞으로) ~할 것을 잊다'라는 의미이고 동명사가 오면 '(과거에) ~한 것을 잊다'라는 의미인데, 문맥상 앞으로 해야 할 일을 잊는다는 의미이므로 동명사가 아니라 to부정사가 되어야 한다. 따라서 forgets take가 아니라 <b>forgets to take</b>가 되어야 한다.",
+     "qn": "문항 3"
+    },
+    {
+     "pre": "Some days, you might not understand why the people around you act so strangely, especially ",
+     "wr": "during you are under",
+     "post": " a lot of stress yourself.",
+     "fr": "during you are under",
+     "to": "while you are under",
+     "correct": "Some days, you might not understand why the people around you act so strangely, especially while you are under a lot of stress yourself.",
+     "interp": "어떤 날에는, 주변 사람들이 왜 그렇게 이상하게 행동하는지 이해하지 못할 수도 있다, 특히 당신 자신이 많은 스트레스를 받고 있는 동안에는.",
+     "color": "#db2777",
+     "badge": "부사절 접속사 vs. 전치사 (Chapter 09 POINT 1)",
+     "explain": "during은 전치사이므로 뒤에 명사(구)가 와야 하는데, 여기서는 you are under a lot of stress yourself라는 완전한 절이 이어지고 있다. 따라서 전치사 during이 아니라 부사절 접속사 <b>while</b>로 고쳐야 한다.",
+     "qn": "문항 4"
+    },
+    {
+     "pre": "It is perhaps surprising how music can trigger strong emotions and memories, a topic one team of researchers ",
+     "wr": "has explored",
+     "post": " long before modern brain-scanning tools existed.",
+     "fr": "has explored",
+     "to": "had explored",
+     "correct": "It is perhaps surprising how music can trigger strong emotions and memories, a topic one team of researchers had explored long before modern brain-scanning tools existed.",
+     "interp": "음악이 강한 감정과 기억을 유발할 수 있다는 것은 어쩌면 놀라운 일이다, 현대의 뇌 스캔 도구가 존재하기 훨씬 전부터 한 연구팀이 탐구해 온 주제이다.",
+     "color": "#059669",
+     "badge": "과거완료 vs. 현재완료 (Chapter 02 POINT 2)",
+     "explain": "연구팀이 탐구한 것은 도구가 존재하게 된(existed, 과거) 시점보다 더 이전에 일어난 일이므로 현재완료가 아니라 과거완료로 나타내야 한다. 따라서 has explored가 아니라 <b>had explored</b>가 되어야 한다.",
+     "qn": "문항 5"
+    },
+    {
+     "pre": "Molly received a phone call from a mysterious person during her lunch break at work, leaving her feeling ",
+     "wr": "confusing",
+     "post": " about who it might have been.",
+     "fr": "confusing",
+     "to": "confused",
+     "correct": "Molly received a phone call from a mysterious person during her lunch break at work, leaving her feeling confused about who it might have been.",
+     "interp": "Molly는 점심시간에 의문의 사람으로부터 전화를 받았다, 그것이 누구였을지 몰라 혼란스러움을 느끼게 하면서.",
+     "color": "#0891b2",
+     "badge": "감정동사의 현재분사 vs. 과거분사 (Chapter 07 POINT 4)",
+     "explain": "feeling의 보어 자리에서 감정을 느끼는 대상인 her(Molly)를 서술하므로 감정을 유발하는 현재분사가 아니라 감정을 느끼는 과거분사가 쓰여야 한다. 따라서 confusing이 아니라 <b>confused</b>가 되어야 한다.",
+     "qn": "문항 6"
+    },
+    {
+     "pre": "Looking at the view from the top of the mountain, we couldn't believe where we stood, a view that stayed in our memory ",
+     "wr": "like we had visited",
+     "post": " it a hundred times before.",
+     "fr": "like we had visited",
+     "to": "as we had visited",
+     "correct": "Looking at the view from the top of the mountain, we couldn't believe where we stood, a view that stayed in our memory as we had visited it a hundred times before.",
+     "interp": "산꼭대기에서 경치를 바라보며, 우리는 우리가 서 있는 곳을 믿을 수 없었다, 마치 백 번은 와본 것처럼 우리 기억 속에 남은 풍경이었다.",
+     "color": "#db2777",
+     "badge": "부사절 접속사와 전치사 둘 다로 쓰이는 단어 (Chapter 09 POINT 2)",
+     "explain": "like는 전치사로만 쓰이므로 뒤에 주어와 동사를 갖춘 완전한 절이 올 수 없다. as는 전치사뿐만 아니라 부사절 접속사로도 쓰이므로 절 앞에 올 수 있다. 따라서 like가 아니라 <b>as</b>로 고쳐야 한다.",
+     "qn": "문항 7"
+    },
+    {
+     "pre": "My parents and I don't agree whether I should go to college in another city, since each of us has ",
+     "wr": "too much opinions",
+     "post": " about what is best for my future.",
+     "fr": "too much opinions",
+     "to": "too many opinions",
+     "correct": "My parents and I don't agree whether I should go to college in another city, since each of us has too many opinions about what is best for my future.",
+     "interp": "부모님과 나는 내가 다른 도시로 대학을 가야 할지에 대해 동의하지 않는다, 우리 각자가 내 미래에 무엇이 최선인지에 대해 너무 많은 의견을 가지고 있기 때문이다.",
+     "color": "#16a34a",
+     "badge": "수량 표현-명사 수일치 (Chapter 11 POINT 5)",
+     "explain": "much는 셀 수 없는 명사를 수식하는 수량 표현인데, opinions는 셀 수 있는 복수명사이므로 much가 아니라 <b>many</b>로 고쳐야 한다.",
+     "qn": "문항 8"
+    },
+    {
+     "pre": "At dinner, Justin said that he would join the army, and what he said surprised his family, ",
+     "wr": "despite everyone tried",
+     "post": " to talk him out of it for hours.",
+     "fr": "despite everyone tried",
+     "to": "although everyone tried",
+     "correct": "At dinner, Justin said that he would join the army, and what he said surprised his family, although everyone tried to talk him out of it for hours.",
+     "interp": "저녁 식사 자리에서, Justin은 군대에 입대할 것이라고 말했다, 그리고 그가 한 말은 가족을 놀라게 했다, 비록 모두가 몇 시간 동안 그를 설득하려고 했지만.",
+     "color": "#db2777",
+     "badge": "부사절 접속사 vs. 전치사 (Chapter 09 POINT 1)",
+     "explain": "despite는 전치사이므로 뒤에 명사(구)가 와야 하는데, 여기서는 everyone tried to talk him out of it for hours라는 완전한 절이 이어지고 있다. 따라서 전치사 despite가 아니라 부사절 접속사 <b>although</b>로 고쳐야 한다.",
+     "qn": "문항 9"
+    },
+    {
+     "pre": "Bees do well in the suburbs since flowers in people's gardens provide a constant supply of honey, a balance that ",
+     "wr": "has disrupted",
+     "post": " whenever pesticides are used nearby.",
+     "fr": "has disrupted",
+     "to": "has been disrupted",
+     "correct": "Bees do well in the suburbs since flowers in people's gardens provide a constant supply of honey, a balance that has been disrupted whenever pesticides are used nearby.",
+     "interp": "벌들은 사람들의 정원에 있는 꽃들이 꾸준한 꿀 공급원을 제공하기 때문에 교외에서 잘 지낸다, 살충제가 근처에서 사용될 때마다 무너지는 균형이다.",
+     "color": "#dc2626",
+     "badge": "능동태 vs. 수동태 (Chapter 03 POINT 1)",
+     "explain": "주어 a balance(균형)는 스스로 무너뜨리는 것이 아니라 살충제에 의해 무너지는 대상이므로 능동태가 아니라 수동태로 나타내야 한다. 따라서 has disrupted가 아니라 <b>has been disrupted</b>가 되어야 한다.",
+     "qn": "문항 10"
+    },
+    {
+     "pre": "Although the weather was windy and rainy, the athletes continued training for the upcoming game, pushing themselves ",
+     "wr": "more hard",
+     "post": " than they ever had before.",
+     "fr": "more hard",
+     "to": "harder",
+     "correct": "Although the weather was windy and rainy, the athletes continued training for the upcoming game, pushing themselves harder than they ever had before.",
+     "interp": "날씨가 바람 불고 비가 왔지만, 선수들은 다가오는 경기를 위해 훈련을 계속했다, 그 어느 때보다 더 열심히 스스로를 몰아붙이면서.",
+     "color": "#0d9488",
+     "badge": "비교구문의 형태: 원급 vs. 비교급 (Chapter 13 POINT 1)",
+     "explain": "뒤에 비교 대상(than they ever had before)이 이어지는 문맥이므로 비교급이 와야 하는데, hard처럼 1음절 부사는 more를 붙이지 않고 뒤에 -er을 붙여 비교급을 만든다. 따라서 more hard가 아니라 <b>harder</b>가 되어야 한다.",
+     "qn": "문항 11"
+    },
+    {
+     "pre": "Environmental groups argue whether European customers are making water shortages worse in Africa, a claim critics have called ",
+     "wr": "increasing controversial",
+     "post": " in recent years.",
+     "fr": "increasing controversial",
+     "to": "increasingly controversial",
+     "correct": "Environmental groups argue whether European customers are making water shortages worse in Africa, a claim critics have called increasingly controversial in recent years.",
+     "interp": "환경 단체들은 유럽 소비자들이 아프리카의 물 부족을 더 악화시키고 있는지에 대해 논쟁한다, 비평가들이 최근 몇 년간 점점 더 논란이 많다고 부르는 주장이다.",
+     "color": "#9333ea",
+     "badge": "형용사 vs. 부사(1): 다른 단어 수식 (Chapter 12 POINT 1)",
+     "explain": "형용사 controversial을 수식하는 자리이므로 형용사가 아니라 부사가 와야 한다. 따라서 increasing이 아니라 <b>increasingly</b>가 되어야 한다.",
+     "qn": "문항 12"
+    }
+   ]
+  }
+ ]
+}
