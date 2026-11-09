@@ -19,7 +19,7 @@
   "mp": [
    [
     "먼저 일어난 일",
-    "had gone",
+    "had left",
     "had sold out"
    ],
    [
@@ -28,11 +28,11 @@
     "surprised"
    ]
   ],
-  "ex": "The pizza had gone when I came home.",
-  "exko": "내가 집에 왔을 때 피자는 이미 없어졌어요(go 가다 → 없어지다, come 오다).",
+  "ex": "The bus had left when I came.",
+  "exko": "내가 왔을 때 버스는 이미 떠났어요(leave 떠나다, come 오다).",
   "tko": "이미 매진되었다",
-  "bad": "The pizza has gone when I came home.",
-  "badko": "(came(come 오다의 과거)은 과거인데 그보다 먼저 일어난 일이라 has gone이 아니라 had gone(go 가다)이에요)",
+  "bad": "The bus has left when I came.",
+  "badko": "(came(come 오다의 과거형)은 과거인데 버스가 떠난 건 그보다 먼저 일어난 일이라 has left가 아니라 had left(leave 떠나다)예요)",
   "altw": "have lost",
   "alt": "I have lost my pen.",
   "altko": "나는 펜을 잃어버렸어요(lose 잃어버리다, 지금도 없어서 have lost).",
@@ -117,7 +117,7 @@
    ]
   ],
   "gist": "기차를 놓친 실수 덕에 앞으로 시간표를 꼭 확인하게 됐다는 얘기예요.",
-  "fm": "끝난 과거 일 → 과거형(-ed)",
+  "fm": "끝난 과거 일 → 과거형 (taught)",
   "mp": [
    [
     "실수 설명(관계절)",
@@ -132,13 +132,13 @@
   ],
   "ex": "It was a mistake that taught me a lesson.",
   "exko": "그건 나에게 교훈을 준 실수였어요(mistake 실수, lesson 교훈, teach 가르치다).",
-  "tko": "우리를 가르쳐 준",
+  "tko": "우리에게 가르쳐 준",
   "bad": "It was a mistake that teach me a lesson.",
   "badko": "(지난 일이라서 teach 그대로가 아니라 taught(teach 가르치다의 과거형)예요)",
   "altw": "has taught",
   "alt": "He has taught English for ten years.",
   "altko": "그는 10년 동안 영어를 가르쳐 왔어요(지금까지 계속 이어져서 has taught).",
-  "why": "기차를 놓친 건 과거에 딱 끝난 일이에요. 그 실수가 가르쳐 준 것도 그때 일이라서 과거형 taught(teach 가르치다의 과거형)로 써요. teach 그대로는 현재형이라 시간이 안 맞고, a mistake가 하나(단수)라서 s를 붙이는 현재형 teaches도 이 문장에는 안 맞아요.",
+  "why": "기차를 놓친 건 과거에 딱 끝난 일이에요. 그 실수가 가르쳐 준 것도 그때 일이라서 과거형 taught(teach 가르치다의 과거형)로 써요. teach 그대로는 현재형이라 지난 일과 시간이 안 맞아요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>과거의 한 시점에 끝난 일은 과거형으로 써요",
   "d": {
    "embarrassed": "당황한, 부끄러운",
@@ -330,7 +330,7 @@
   "mp": [
    [
     "동사",
-    "hope",
+    "hoping",
     "hoping"
    ],
    [
@@ -339,10 +339,10 @@
     "to play"
    ]
   ],
-  "ex": "I hope to win.",
-  "exko": "나는 이기기를 바라요(hope 바라다, win 이기다).",
-  "tko": "놀기를",
-  "bad": "I hope winning.",
+  "ex": "She smiled, hoping to win.",
+  "exko": "그녀는 이기기를 바라며 웃었어요(smile 웃다, hope 바라다, win 이기다).",
+  "tko": "놀기를 바라면서",
+  "bad": "She smiled, hoping winning.",
   "badko": "(hope(바라다) 뒤에는 -ing가 아니라 to win(이기다)처럼 to + 동사원형이 와요)",
   "altw": "-ing",
   "alt": "I enjoy winning.",

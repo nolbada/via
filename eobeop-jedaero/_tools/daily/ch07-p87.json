@@ -31,8 +31,8 @@
   "bad": "Many kids disagreeing with me.",
   "badko": "(disagreeing(동의하지 않는)은 동사가 아니라서 진짜 동사 disagree가 필요해요)",
   "altw": "-ing",
-  "alt": "I saw kids playing in the park.",
-  "altko": "나는 공원에서 놀고 있는 아이들을 봤어요(playing이 kids(아이들)를 꾸미는 모양이에요).",
+  "alt": "The kids playing in the park are my friends.",
+  "altko": "공원에서 놀고 있는 아이들은 내 친구들이에요(playing(play 놀다)이 kids(아이들)를 꾸미는 말로는 쓸 수 있어요).",
   "why": "though(비록 ~지만) 뒤에도 문장 하나가 와요. many trainers(많은 트레이너들)가 주어라서 진짜 동사가 필요해요. disagreeing(동의하지 않는)은 '~하는'이라는 꾸밈말이라 동사 자리에 못 써요. 주어가 여러 명이라서 disagree(동의하지 않다) 원형이에요.",
   "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>문장에 진짜 동사가 있는지 먼저 찾아요",
   "d": {
@@ -46,7 +46,7 @@
    "though": "비록 ~지만",
    "trainers": "trainer(트레이너)의 복수형",
    "disagree": "동의하지 않다 (disagree with: ~에 동의하지 않다)",
-   "disagreeing": "disagree의 -ing형",
+   "disagreeing": "disagree(동의하지 않다)의 -ing형",
    "common": "흔한",
    "belief": "믿음"
   }
@@ -144,7 +144,7 @@
   "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>꾸밈받는 명사가 스스로 하면 -ing, 당하면 p.p.예요",
   "d": {
    "decorated": "decorate(장식하다)의 과거분사형",
-   "decorating": "decorate의 -ing형",
+   "decorating": "decorate(장식하다)의 -ing형",
    "colorful": "화려한",
    "lights": "light(불빛)의 복수형",
    "streets": "street(거리)의 복수형",
@@ -152,8 +152,8 @@
    "magical": "마법 같은",
    "atmosphere": "분위기",
    "during": "~동안",
-   "holiday": "휴일",
-   "season": "철",
+   "holiday": "holiday season: 연휴 기간",
+   "season": "철, 시기",
    "especially": "특히",
    "ornaments": "ornament(장식품)의 복수형",
    "carefully": "정성스럽게",
@@ -237,24 +237,24 @@
   "mp": [
    [
     "제한 부사",
-    "Only now",
+    "Only recently",
     "only recently"
    ],
    [
     "뒤 어순",
-    "have I seen",
+    "have I learned",
     "have companies found"
    ]
   ],
-  "ex": "Only now have I seen it.",
-  "exko": "나는 이제서야 그것을 봤어요(see 보다 → seen).",
+  "ex": "Only recently have I learned to swim.",
+  "exko": "나는 최근에서야 비로소 수영하는 법을 배웠어요(learn 배우다, swim 수영하다).",
   "tko": "회사들이 비로소 찾았다",
-  "bad": "Only now I have seen it.",
-  "badko": "(only now(이제서야)가 맨 앞에 오면 I have가 아니라 have I 순서로 바뀌어요)",
+  "bad": "Only recently I have learned to swim.",
+  "badko": "(only recently(최근에서야)가 맨 앞에 오면 I have가 아니라 have I 순서로 바뀌어요)",
   "altw": "원래 어순",
-  "alt": "I have seen it only now.",
-  "altko": "나는 이제서야 그것을 봤어요(only now를 뒤에 두면 평범한 순서).",
-  "why": "only recently(최근에서야 비로소)처럼 '오직, 겨우'의 뜻이 있는 말을 문장 맨 앞으로 빼면 뒤 순서가 질문처럼 바뀌어요. 그래서 companies have found가 아니라 have companies found(찾았다)예요. have를 주어 앞으로 보내는 거예요. 다시 말하면 have + 주어 + p.p. 순서예요.",
+  "alt": "I have learned to swim only recently.",
+  "altko": "나는 최근에서야 수영하는 법을 배웠어요(only recently를 뒤에 두면 평범한 순서).",
+  "why": "only recently(최근에서야 비로소)처럼 '오직, 겨우'의 뜻이 있는 말을 문장 맨 앞으로 빼면 뒤 순서가 질문처럼 바뀌어요. 그래서 companies have found가 아니라 have companies found(find 찾다의 p.p.)예요. have를 주어 앞으로 보내서 have + 주어 + p.p. 순서가 돼요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>only + 부사가 맨 앞에 오면 조동사 + 주어 순서로 바뀌어요",
   "d": {
    "questions": "question(질문)의 복수형",
@@ -432,7 +432,7 @@
    "water": "물",
    "spas": "spa(스파)의 복수형",
    "offer": "제공하다",
-   "offering": "offer의 -ing형",
+   "offering": "offer(제공하다)의 -ing형",
    "relaxing": "편안한",
    "treatment": "치료",
    "nowadays": "요즘"
@@ -446,7 +446,7 @@
    ],
    [
     "and left the movie in tears,",
-    "눈물을 흘리며 영화를 떠났지만"
+    "눈물을 흘리며 영화관을 나섰지만"
    ],
    [
     "though few of them regretted watching such a touching story.",
@@ -620,23 +620,23 @@
   "mp": [
    [
     "꾸밈받는 명사",
-    "a man",
+    "a boy",
     "a suspect"
    ],
    [
     "뒤에서 꾸미는 말",
-    "seen at the park",
+    "seen on TV",
     "seen near the store"
    ]
   ],
-  "ex": "I know a man seen at the park.",
-  "exko": "나는 공원에서 목격된 남자를 알아요(see 보다 → seen 목격된).",
+  "ex": "I met a boy seen on TV.",
+  "exko": "나는 TV에 나온 소년을 만났어요(meet 만나다, see 보다 → seen 보인).",
   "tko": "가게 근처에서 목격된 용의자",
-  "bad": "I know a man seeing at the park.",
-  "badko": "(남자는 스스로 보는 게 아니라 목격된 쪽이라서 seeing이 아니라 seen이에요)",
+  "bad": "I met a boy seeing on TV.",
+  "badko": "(소년은 스스로 보는 게 아니라 TV에서 보여진 쪽이라서 seeing이 아니라 seen이에요)",
   "altw": "-ing",
-  "alt": "I know a man running in the park.",
-  "altko": "나는 공원에서 달리고 있는 남자를 알아요(남자가 스스로 달리니까 running).",
+  "alt": "I met a boy running in the park.",
+  "altko": "나는 공원에서 달리고 있는 소년을 만났어요(소년이 스스로 달리니까 running).",
   "why": "a suspect(용의자)는 스스로 보는 게 아니라 사람들에게 '목격된' 대상이에요. 그래서 '목격된'이라는 p.p. seen이에요. see(보다)의 p.p.는 seen이에요. seeing은 '보고 있는'이라서 뜻이 반대가 돼요.",
   "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>꾸밈받는 명사가 스스로 하면 -ing, 당하면 p.p.예요",
   "d": {
@@ -653,7 +653,7 @@
    "questioning": "question(심문하다)의 -ing형",
    "suspect": "용의자",
    "seen": "see(보다)의 과거분사형",
-   "seeing": "see의 -ing형",
+   "seeing": "see(보다)의 -ing형",
    "near": "~근처에"
   }
  }

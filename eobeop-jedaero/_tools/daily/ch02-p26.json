@@ -20,15 +20,15 @@
    ],
    [
     "동사",
-    "are",
+    "were",
     "were"
    ]
   ],
-  "ex": "I have coins which are old.",
-  "exko": "나는 오래된 동전들이 있어요(coin 동전, old 오래된).",
+  "ex": "I found coins which were old.",
+  "exko": "나는 오래된 동전들을 찾았어요(find 찾다 → found, coin 동전, old 오래된).",
   "tko": "모양이었다",
-  "bad": "I have coins which is old.",
-  "badko": "(coins는 여러 개(복수)라서 is가 아니라 are(be ~이다)여야 해요)",
+  "bad": "I found coins which was old.",
+  "badko": "(coins(동전들)는 여러 개(복수)라서 was가 아니라 were(be ~이다의 과거형)여야 해요)",
   "altw": "was",
   "alt": "I found a coin which was very old.",
   "altko": "나는 아주 오래된 동전 하나를 찾았어요(find 찾다 → found, coin이 하나라서 was).",
@@ -280,12 +280,12 @@
    ],
    [
     "but 뒤 말",
-    "happy",
+    "excited",
     "excited"
    ]
   ],
-  "ex": "They were tired but happy.",
-  "exko": "그들은 피곤했지만 행복했어요(tired 피곤한, happy 행복한).",
+  "ex": "They were tired but excited.",
+  "exko": "그들은 피곤했지만 신이 났어요(tired 피곤한, excited 신이 난).",
   "tko": "신이 난",
   "bad": "They were tired but exciting.",
   "badko": "(느끼는 사람의 기분이니까 exciting(신나게 하는)이 아니라 excited(신이 난)예요)",
@@ -540,15 +540,15 @@
    ],
    [
     "그 결과",
-    "will make me happy",
+    "will excite",
     "will excite"
    ]
   ],
-  "ex": "The shop will open, which will make me happy.",
-  "exko": "그 가게가 열 거고, 그건 나를 기쁘게 할 거예요(open 열다, make 만들다).",
+  "ex": "The shop will open, which will excite the kids.",
+  "exko": "그 가게가 문을 열 거고, 그건 아이들을 신나게 할 거예요(open 열다, excite 신나게 하다, kid 아이).",
   "tko": "신나게 할 것이다",
-  "bad": "The shop will open, which made me happy.",
-  "badko": "(아직 안 일어난 일이라서 made(make 만들다의 과거형)가 아니라 will make예요)",
+  "bad": "The shop will open, which excited the kids.",
+  "badko": "(가게는 아직 안 열었으니 excited(신나게 했다)가 아니라 will excite(신나게 할 것이다)예요)",
   "altw": "excited",
   "alt": "The game excited us yesterday.",
   "altko": "그 경기는 어제 우리를 신나게 했어요(yesterday 어제처럼 이미 지난 일이라서 과거형 excited, excite 신나게 하다).",
@@ -601,9 +601,9 @@
   "tko": "다른 어떤 선수의 활약",
   "bad": "The size of a dog is bigger than a cat.",
   "badko": "(크기와 고양이를 비교하면 안 돼요. 크기끼리 비교하려면 that of a cat이어야 해요)",
-  "altw": "that",
-  "alt": "I like this pen better than that one.",
-  "altko": "나는 이 펜이 저 펜보다 더 좋아요(that one 저것).",
+  "altw": "any other + 단수 명사",
+  "alt": "She runs faster than any other girl in my class.",
+  "altko": "그녀는 우리 반 다른 어떤 여자아이보다 더 빨리 달려요(run 달리다, 사람끼리 비교할 때는 any other girl(다른 어떤 여자아이) 그대로 써요).",
   "why": "performance(활약)와 비교할 건 선수 '자신'이 아니라 선수의 '활약'이에요. 같은 종류끼리 비교해야 하니까 performance를 대신하는 that을 써서 that of any other player(다른 어떤 선수의 것)로 해요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>같은 종류끼리 비교해요. 반복되는 명사는 that of로 바꿔요",
   "d": {
