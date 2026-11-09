@@ -463,20 +463,20 @@
   "mp": [
    [
     "꾸밈받는 동사",
-    "sings",
+    "drives",
     "sets"
    ],
    [
     "꾸미는 부사",
-    "loudly",
+    "carefully",
     "properly"
    ]
   ],
-  "ex": "She sings loudly.",
-  "exko": "그녀는 큰 소리로 노래해요(sing 노래하다, loudly 시끄럽게).",
+  "ex": "He drives carefully.",
+  "exko": "그는 조심스럽게 운전해요(drive 운전하다, carefully 조심스럽게).",
   "tko": "적절히",
-  "bad": "She sings loud.",
-  "badko": "(sing(노래하다)을 꾸미는 자리라서 loud(시끄러운)가 아니라 부사 loudly예요)",
+  "bad": "He drives careful.",
+  "badko": "(drive(운전하다)를 꾸미는 자리라서 careful(조심스러운)이 아니라 부사 carefully(조심스럽게)예요)",
   "altw": "proper",
   "alt": "Please use the proper tool.",
   "altko": "알맞은 도구를 쓰세요(proper 알맞은은 tool 도구라는 명사를 꾸며요).",
@@ -826,7 +826,7 @@
   "altw": "are",
   "alt": "Books are fun.",
   "altko": "책들은 재미있어요(Books는 여러 권이라서 are).",
-  "why": "watching TV on the sofa with some snacks(간식과 소파에서 TV 보기)는 '보는 일' 하나를 말하는 덩어리 주어예요. -ing로 시작하는 덩어리 주어는 하나로 봐서 help(돕다)에 -s를 붙인 helps예요. snacks(간식들)가 여럿이어도 상관없어요.",
+  "why": "watching TV on the sofa with some snacks(간식을 먹으며 소파에서 TV를 보는 것)는 '보는 일' 하나를 말하는 덩어리 주어예요. -ing로 시작하는 덩어리 주어는 하나로 봐서 help(돕다)에 -s를 붙인 helps예요. snacks(간식들)가 여럿이어도 상관없어요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>-ing구 주어는 길어도 단수로 받아요",
   "d": {
    "believe": "믿다",
@@ -867,11 +867,16 @@
     "꾸미는 말",
     "that I know",
     "that people enjoy"
+   ],
+   [
+    "동사",
+    "are",
+    "provide"
    ]
   ],
   "ex": "The boys that I know are kind.",
   "exko": "내가 아는 소년들은 친절해요(know 알다, kind 친절한).",
-  "tko": "약간의 흥분을 더해준다",
+  "tko": "사람들이 즐기는 프로그램들은 더해준다",
   "bad": "The boys that I know is kind.",
   "badko": "(핵심 주어는 boys(소년들)라서 여럿이므로 is가 아니라 are예요)",
   "altw": "단수 주어",

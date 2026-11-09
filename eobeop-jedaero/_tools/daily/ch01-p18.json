@@ -84,8 +84,8 @@
   "ex": "The kids were taught by Ms. Kim.",
   "exko": "그 아이들은 김 선생님께 배웠어요(teach 가르치다 → taught).",
   "tko": "영감을 받았다",
-  "bad": "The kids taught Ms. Kim.",
-  "badko": "(아이들이 선생님을 '가르쳤다'는 뜻이 돼요. 아이들은 가르침을 받는 쪽이라서 were taught ... by가 필요해요)",
+  "bad": "The kids taught by Ms. Kim.",
+  "badko": "(아이들은 가르침을 받는 쪽이라서 were taught처럼 be동사가 있어야 해요. taught만 있으면 문장의 동사가 없어요)",
   "altw": "inspired",
   "alt": "The artists inspired many people.",
   "altko": "그 화가들은 많은 사람에게 영감을 줬어요(화가들이 영감을 주는 쪽이라서 능동 inspired).",
@@ -523,20 +523,20 @@
   "mp": [
    [
     "꾸밈받는 동사",
-    "speak",
+    "drives",
     "appeal"
    ],
    [
     "꾸미는 부사",
-    "clearly",
+    "more carefully",
     "more easily"
    ]
   ],
-  "ex": "He speaks clearly.",
-  "exko": "그는 또렷하게 말해요(speak 말하다, clearly 또렷하게).",
+  "ex": "He drives more carefully.",
+  "exko": "그는 더 조심스럽게 운전해요(drive 운전하다, carefully 조심스럽게).",
   "tko": "더 쉽게",
-  "bad": "He speaks clear.",
-  "badko": "(speak(말하다)를 꾸미는 자리라서 clear(또렷한)가 아니라 부사 clearly(또렷하게)예요)",
+  "bad": "He drives more careful.",
+  "badko": "(drive(운전하다)를 꾸미는 자리라서 careful(조심스러운)이 아니라 부사 carefully(조심스럽게)예요)",
   "altw": "easy",
   "alt": "The test is easy.",
   "altko": "그 시험은 쉬워요(is 뒤에서 상태를 말할 때는 형용사 easy(쉬운)).",

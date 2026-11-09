@@ -25,18 +25,18 @@
    ],
    [
     "꾸미는 말",
-    "slowly",
+    "carefully",
     "regularly"
    ]
   ],
-  "ex": "He walks slowly.",
-  "exko": "그는 천천히 걸어요(walk 걷다).",
+  "ex": "He walks carefully.",
+  "exko": "그는 조심스럽게 걸어요(walk 걷다, carefully 조심스럽게).",
   "tko": "규칙적으로",
-  "bad": "He walks slow.",
-  "badko": "(walk(걷다)를 꾸미니까 형용사 slow(느린)가 아니라 부사 slowly(느리게)여야 해요)",
-  "altw": "slow",
-  "alt": "A turtle is slow.",
-  "altko": "거북이는 느려요(turtle 거북이).",
+  "bad": "He walks careful.",
+  "badko": "(walk(걷다)를 꾸미니까 형용사 careful(조심스러운)이 아니라 부사 carefully(조심스럽게)여야 해요)",
+  "altw": "careful",
+  "alt": "He is careful.",
+  "altko": "그는 조심성이 많아요(is 뒤에서 상태를 말하니까 형용사 careful(조심스러운)).",
   "why": "regular(규칙적인)는 명사를 꾸미는 형용사예요. 하지만 do(하다)라는 동사를 꾸밀 때는 '규칙적으로'라는 부사가 필요해요. 형용사 끝에 -ly를 붙인 regularly가 돼요.",
   "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>동사를 꾸미면 부사(-ly)예요",
   "d": {
@@ -169,20 +169,20 @@
   "mp": [
    [
     "꾸밈받는 동작",
-    "eating",
+    "speaking",
     "dressing"
    ],
    [
     "꾸미는 말",
-    "slowly",
+    "politely",
     "neatly"
    ]
   ],
-  "ex": "Eating slowly is good for you.",
-  "exko": "천천히 먹는 것은 몸에 좋아요(eat 먹다, slowly 천천히).",
+  "ex": "Speaking politely is important.",
+  "exko": "공손하게 말하는 것은 중요해요(speak 말하다, politely 공손하게).",
   "tko": "단정하게 입는 것",
-  "bad": "Eating slow is good for you.",
-  "badko": "(eating(먹는 것)은 동작이라서 형용사 slow(느린)가 아니라 부사 slowly(느리게)로 꾸며야 해요)",
+  "bad": "Speaking polite is important.",
+  "badko": "(speaking(말하는 것)은 동작이라서 형용사 polite(공손한)가 아니라 부사 politely(공손하게)로 꾸며야 해요)",
   "altw": "neat",
   "alt": "Your desk is neat.",
   "altko": "네 책상은 단정해요(desk 책상, neat 단정한).",
@@ -390,7 +390,7 @@
    "items": "item(물건)의 복수형",
    "away": "thrown away: 버려진",
    "lot": "a lot of: 많은",
-   "throwing": "throw away: 버리다"
+   "throwing": "throw(던지다)의 -ing형(throw away: 버리다)"
   }
  },
  {

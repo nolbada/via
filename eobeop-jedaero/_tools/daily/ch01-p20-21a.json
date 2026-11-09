@@ -187,7 +187,7 @@
   "exko": "공원에서 노는 소녀는 내 여동생이에요(play 놀다, park 공원).",
   "tko": "잠자리에 드는 (사람들)",
   "bad": "The girl played in the park is my sister.",
-  "badko": "(소녀가 직접 노는 쪽이라서 played(놀아진)가 아니라 playing(노는)이에요)",
+  "badko": "(소녀가 직접 노는 쪽이라서 p.p. played가 아니라 -ing인 playing(노는)이에요)",
   "altw": "gone",
   "alt": "He has gone home.",
   "altko": "그는 집에 가 버렸어요(have gone은 '가 버렸다'는 완료 표현이에요).",
@@ -273,20 +273,20 @@
   "mp": [
    [
     "꾸밈받는 동사",
-    "sings",
+    "speaks",
     "sets"
    ],
    [
     "꾸미는 부사",
-    "loudly",
+    "politely",
     "properly"
    ]
   ],
-  "ex": "She sings loudly.",
-  "exko": "그녀는 큰 소리로 노래해요(sing 노래하다, loudly 시끄럽게).",
+  "ex": "He speaks politely.",
+  "exko": "그는 공손하게 말해요(speak 말하다, politely 공손하게).",
   "tko": "적절히",
-  "bad": "She sings loud.",
-  "badko": "(sing(노래하다)을 꾸미는 자리라서 loud(시끄러운)가 아니라 부사 loudly예요)",
+  "bad": "He speaks polite.",
+  "badko": "(speak(말하다)를 꾸미는 자리라서 polite(공손한)가 아니라 부사 politely(공손하게)예요)",
   "altw": "proper",
   "alt": "Please use the proper tool.",
   "altko": "알맞은 도구를 쓰세요(proper 알맞은은 tool 도구라는 명사를 꾸며요).",
