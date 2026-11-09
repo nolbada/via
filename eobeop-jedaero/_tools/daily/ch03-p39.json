@@ -1,0 +1,665 @@
+[
+ {
+  "dk": [
+   [
+    "The team scored a goal in the final minutes of the game and won the championship,",
+    "그 팀은 경기 막판에 골을 넣어 우승을 차지했고,"
+   ],
+   [
+    "and a celebration occurred",
+    "축하 행사가 일어났다"
+   ],
+   [
+    "throughout the city that night.",
+    "그날 밤 도시 전역에서."
+   ]
+  ],
+  "ko": "그 팀은 경기 막판에 골을 넣어 우승을 차지했고, 그날 밤 도시 전역에서 축하 행사가 일어났다.",
+  "gist": "그 팀이 우승한 날 밤에 도시 전체가 축하로 들썩였다는 얘기예요.",
+  "fm": "자동사 occur + (be p.p. 쓰지 않기)",
+  "mp": [
+   [
+    "주어",
+    "An accident",
+    "a celebration"
+   ],
+   [
+    "동사",
+    "occurred",
+    "occurred"
+   ]
+  ],
+  "ex": "An accident occurred.",
+  "exko": "사고가 일어났어요(accident 사고, occur 일어나다).",
+  "tko": "축하 행사가 일어났다",
+  "bad": "An accident was occurred.",
+  "badko": "(occur(일어나다)는 저절로 일어나는 말이라서 was occurred처럼 be + p.p.로 쓰지 않아요)",
+  "altw": "be p.p.",
+  "alt": "The window was broken by a ball.",
+  "altko": "창문이 공에 의해 깨졌어요(break(깨뜨리다)는 '무엇을 깨는' 말이라서 be p.p.가 가능해요).",
+  "why": "occur(일어나다)는 누가 일으키는 게 아니라 저절로 일어나는 말이에요. 그래서 '일어나졌다'처럼 수동으로 쓰지 않고 occurred(occur의 과거형)로 써요. a celebration occurred(축하 행사가 일어났다)로 끝내요.",
+  "d": {
+   "team": "팀",
+   "scored": "score(득점하다)의 과거형",
+   "goal": "골",
+   "final": "마지막의",
+   "minutes": "minute(분)의 복수형",
+   "won": "win(이기다)의 과거형",
+   "championship": "우승",
+   "celebration": "축하 행사",
+   "occurred": "occur(일어나다)의 과거형",
+   "throughout": "~ 곳곳에서",
+   "city": "도시"
+  },
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>일어나다·나타나다처럼 스스로 하는 동사는 수동태를 못 써요"
+ },
+ {
+  "dk": [
+   [
+    "We recommend this new television model,",
+    "우리는 이 새 텔레비전 모델을 추천하는데,"
+   ],
+   [
+    "which can be controlled through a smartphone app,",
+    "스마트폰 앱으로 조작할 수 있는"
+   ],
+   [
+    "and it works much faster than earlier models.",
+    "그것은 이전 모델들보다 훨씬 더 빠르게 작동한다."
+   ]
+  ],
+  "ko": "우리는 스마트폰 앱으로 조작할 수 있는 이 새 텔레비전 모델을 추천하는데, 그것은 이전 모델들보다 훨씬 더 빠르게 작동한다.",
+  "gist": "이 새 TV는 폰 앱으로 조작할 수 있고 예전 모델보다 훨씬 빠르다는 얘기예요.",
+  "fm": "much + 비교급 (very + 비교급 X)",
+  "mp": [
+   [
+    "강조하는 말",
+    "a lot",
+    "much"
+   ],
+   [
+    "비교급",
+    "bigger",
+    "faster"
+   ]
+  ],
+  "ex": "This box is a lot bigger.",
+  "exko": "이 상자가 훨씬 더 커요(box 상자, big 큰).",
+  "tko": "훨씬 더 빠르게",
+  "bad": "This box is very bigger.",
+  "badko": "(very(매우)는 bigger(더 큰) 같은 비교급을 꾸미지 못하고, much나 a lot을 써요)",
+  "altw": "very",
+  "alt": "This box is very big.",
+  "altko": "이 상자는 매우 커요(big(큰)은 원래 모양이라서 very를 쓸 수 있어요).",
+  "why": "very(매우)는 fast(빠른)처럼 원래 모양 앞에만 와요. faster(더 빠른)처럼 '더 ~한' 모양을 세게 말할 때는 much(훨씬), far(훨씬), even(더욱), a lot(훨씬)을 써요. 그래서 very faster가 아니라 much faster예요.",
+  "d": {
+   "recommend": "추천하다",
+   "television": "텔레비전",
+   "model": "모델",
+   "controlled": "control(조작하다)의 과거분사",
+   "smartphone": "스마트폰",
+   "app": "앱",
+   "works": "work(작동하다)의 3인칭 단수형",
+   "much": "훨씬",
+   "faster": "fast(빠르게)의 비교급",
+   "earlier": "early(이른)의 비교급, 이전의"
+  },
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>비교급 강조는 much·even·far·a lot, very는 안 돼요"
+ },
+ {
+  "dk": [
+   [
+    "The biologist Peter Medawar said",
+    "생물학자 Peter Medawar는 말했다"
+   ],
+   [
+    "that most of his time was wasted",
+    "자신의 시간 대부분이 낭비되었다고"
+   ],
+   [
+    "because his research didn't get many results,",
+    "자신의 연구가 많은 결과를 얻지 못했기 때문에,"
+   ],
+   [
+    "a struggle that is shared by many scientists of his generation.",
+    "이는 그와 같은 세대의 많은 과학자들이 공유하는 어려움이다."
+   ]
+  ],
+  "ko": "생물학자 Peter Medawar는 자신의 연구가 많은 결과를 얻지 못했기 때문에 시간의 대부분이 낭비되었다고 말했는데, 이는 그와 같은 세대의 많은 과학자들이 공유하는 어려움이다.",
+  "gist": "연구 결과가 잘 안 나와 시간이 허비된다는 고민은 많은 과학자가 함께 겪는다는 얘기예요.",
+  "fm": "a struggle + that + be p.p.",
+  "mp": [
+   [
+    "앞 명사",
+    "a problem",
+    "a struggle"
+   ],
+   [
+    "that 뒤 동사",
+    "that is shared",
+    "that is shared"
+   ],
+   [
+    "하는 쪽",
+    "by friends",
+    "by many scientists"
+   ]
+  ],
+  "ex": "It is a problem that is shared by friends.",
+  "exko": "그것은 친구들이 함께 겪는 문제예요(problem 문제, share 함께 나누다).",
+  "tko": "많은 과학자들이 공유하는 어려움",
+  "bad": "It is a problem that shares by friends.",
+  "badko": "(problem(문제)은 나누는 쪽이 아니라 친구들이 함께 '나누는' 대상이라서 shares가 아니라 is shared예요)",
+  "altw": "who",
+  "alt": "He is a friend who shares his lunch.",
+  "altko": "그는 점심을 나눠 주는 친구예요(friend 친구가 직접 나누니까 능동 shares).",
+  "why": "a struggle(어려움)은 스스로 나누는 게 아니라 과학자들이 함께 '나누어 겪는' 대상이에요. 그래서 '공유된다'는 뜻의 is shared(share 나누다의 수동)가 맞아요. 앞의 was wasted(낭비되었다)도 같은 모양의 수동이에요.",
+  "d": {
+   "biologist": "생물학자",
+   "wasted": "waste(낭비하다)의 과거분사",
+   "research": "연구",
+   "results": "result(결과)의 복수형",
+   "struggle": "어려움, 고투",
+   "shared": "share(나누다)의 과거분사",
+   "scientists": "scientist(과학자)의 복수형",
+   "generation": "세대",
+   "most": "대부분"
+  },
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>that 앞 명사가 하는 쪽이면 능동, 받는 쪽이면 수동이에요"
+ },
+ {
+  "dk": [
+   [
+    "Misunderstandings can occur",
+    "오해는 생길 수 있다"
+   ],
+   [
+    "when there is a lack of clear communication,",
+    "명확한 의사소통이 부족할 때,"
+   ],
+   [
+    "especially during a confusing meeting attended by tired employees.",
+    "특히 지친 직원들이 참석한 혼란스러운 회의 중에."
+   ]
+  ],
+  "ko": "명확한 의사소통이 부족할 때 오해가 생길 수 있는데, 특히 지친 직원들이 참석한 혼란스러운 회의 중에 그러하다.",
+  "gist": "말이 잘 안 통하면 오해가 생기고, 정신없는 회의에서는 특히 심하다는 얘기예요.",
+  "fm": "명사 + p.p. (받는 쪽 명사)",
+  "mp": [
+   [
+    "꾸밈받는 명사",
+    "The book",
+    "a meeting"
+   ],
+   [
+    "뒤에서 꾸미는 말",
+    "written by him",
+    "attended by tired employees"
+   ]
+  ],
+  "ex": "The book written by him is fun.",
+  "exko": "그가 쓴 책은 재미있어요(book 책, write 쓰다, fun 재미있는).",
+  "tko": "지친 직원들이 참석한 회의",
+  "bad": "The book writing by him is fun.",
+  "badko": "(book(책)은 쓰는 쪽이 아니라 쓰여지는 쪽이라서 writing이 아니라 written(쓰여진)이에요)",
+  "altw": "-ing",
+  "alt": "The boy writing a letter is my brother.",
+  "altko": "편지를 쓰고 있는 소년은 내 형이에요(boy 소년이 직접 쓰고 있으니까 -ing).",
+  "why": "a meeting(회의)은 스스로 참석하는 게 아니라 직원들이 '참석하는' 자리예요. 뒤에서 명사를 꾸밀 때 '~되는, ~된' 뜻이면 p.p.를 써요. 그래서 attending이 아니라 attended(attend 참석하다의 p.p.)예요. by tired employees(지친 직원들에 의해)도 힌트예요.",
+  "d": {
+   "misunderstandings": "misunderstanding(오해)의 복수형",
+   "occur": "일어나다",
+   "lack": "부족",
+   "clear": "분명한",
+   "communication": "의사소통",
+   "especially": "특히",
+   "confusing": "혼란스러운",
+   "meeting": "회의",
+   "attended": "attend(참석하다)의 과거분사",
+   "tired": "지친",
+   "employees": "employee(직원)의 복수형"
+  },
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>꾸밈받는 명사가 하는 쪽이면 -ing, 받는 쪽이면 p.p.예요"
+ },
+ {
+  "dk": [
+   [
+    "The newly opened park has been decorated with colorful flowers",
+    "새로 개장한 공원은 화려한 꽃들로 장식되었고"
+   ],
+   [
+    "for the spring festival this week,",
+    "이번 주 봄 축제를 위해,"
+   ],
+   [
+    "and visitors are welcomed with free refreshments at the entrance.",
+    "방문객들은 입구에서 무료 다과로 환영받는다."
+   ]
+  ],
+  "ko": "새로 개장한 공원은 이번 주 봄 축제를 위해 화려한 꽃들로 장식되었고, 방문객들은 입구에서 무료 다과로 환영받는다.",
+  "gist": "공원이 꽃으로 꾸며져 있고, 방문객은 입구에서 무료 간식으로 환영받는다는 얘기예요.",
+  "fm": "받는 쪽 주어 + be p.p.",
+  "mp": [
+   [
+    "주어",
+    "Guests",
+    "visitors"
+   ],
+   [
+    "be p.p.",
+    "are invited",
+    "are welcomed"
+   ]
+  ],
+  "ex": "Guests are invited to the party.",
+  "exko": "손님들은 파티에 초대받아요(guest 손님, invite 초대하다).",
+  "tko": "방문객들은 환영받는다",
+  "bad": "Guests invite to the party.",
+  "badko": "(guests(손님들)는 초대하는 쪽이 아니라 초대받는 쪽이라서 invite가 아니라 are invited예요)",
+  "altw": "invite",
+  "alt": "We invite guests to the party.",
+  "altko": "우리는 손님들을 파티에 초대해요(we가 직접 초대하니까 능동 invite).",
+  "why": "visitors(방문객들)는 사람들을 환영하는 쪽이 아니라 직원들에게 '환영받는' 쪽이에요. 그래서 '환영받는다'는 뜻의 are welcomed(welcome 환영하다의 수동)가 맞아요. 뒤에 with free refreshments(무료 다과로)만 있고 환영받는 대상이 따로 없는 것도 힌트예요.",
+  "d": {
+   "newly": "새로",
+   "opened": "open(열다)의 과거분사, 개장한",
+   "decorated": "decorate(장식하다)의 과거분사",
+   "colorful": "화려한",
+   "flowers": "flower(꽃)의 복수형",
+   "festival": "축제",
+   "visitors": "visitor(방문객)의 복수형",
+   "welcomed": "welcome(환영하다)의 과거분사",
+   "free": "무료의",
+   "refreshments": "다과",
+   "entrance": "입구"
+  },
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>받는 쪽이 주어면 be p.p.로 써요"
+ },
+ {
+  "dk": [
+   [
+    "The woman who was cutting the grass in her backyard",
+    "뒤뜰에서 잔디를 깎고 있던 여성이"
+   ],
+   [
+    "waved at me",
+    "나에게 손을 흔들었다"
+   ],
+   [
+    "as I walked by,",
+    "내가 지나갈 때,"
+   ],
+   [
+    "and she said many neighbors had complained about the noise from mowers.",
+    "그리고 그녀는 많은 이웃들이 잔디 깎는 기계 소음에 대해 불평했다고 말했다."
+   ]
+  ],
+  "ko": "뒷마당에서 잔디를 깎고 있던 여성이 내가 지나갈 때 손을 흔들었는데, 그녀는 많은 이웃들이 잔디 깎는 기계 소음에 대해 불평했다고 말했다.",
+  "gist": "잔디 깎던 아주머니가 손을 흔들며, 이웃들이 기계 소음에 불평했다고 말했다는 얘기예요.",
+  "fm": "many + 셀 수 있는 복수명사 (much X)",
+  "mp": [
+   [
+    "수량 말",
+    "many",
+    "many"
+   ],
+   [
+    "복수 명사",
+    "friends",
+    "neighbors"
+   ]
+  ],
+  "ex": "I have many friends.",
+  "exko": "나는 친구가 많아요(friend 친구).",
+  "tko": "많은 이웃들",
+  "bad": "I have much friends.",
+  "badko": "(friends(친구들)는 하나, 둘 셀 수 있어서 much가 아니라 many예요)",
+  "altw": "much",
+  "alt": "I don't drink much water.",
+  "altko": "나는 물을 많이 마시지 않아요(water(물)는 셀 수 없어서 much).",
+  "why": "much는 water(물)처럼 하나, 둘 셀 수 없는 것 앞에 써요. neighbors(이웃들)는 한 명, 두 명 셀 수 있으니 many(많은)예요.",
+  "d": {
+   "woman": "여성",
+   "cutting": "cut(깎다, 자르다)의 -ing형",
+   "grass": "잔디",
+   "backyard": "뒤뜰",
+   "waved": "wave(손을 흔들다)의 과거형",
+   "walked": "walk(걷다)의 과거형",
+   "neighbors": "neighbor(이웃)의 복수형",
+   "complained": "complain(불평하다)의 과거분사",
+   "noise": "소음",
+   "mowers": "mower(잔디 깎는 기계)의 복수형"
+  },
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>셀 수 있으면 many, 셀 수 없으면 much예요"
+ },
+ {
+  "dk": [
+   [
+    "Mr. Turner has always encouraged his students to follow their dreams,",
+    "Turner 선생님은 항상 학생들에게 꿈을 좇으라고 격려해 왔는데,"
+   ],
+   [
+    "and this passion for teaching existed",
+    "가르침에 대한 이 열정은 존재했다"
+   ],
+   [
+    "long before he became a teacher.",
+    "그가 교사가 되기 훨씬 전부터."
+   ]
+  ],
+  "ko": "Turner 선생님은 항상 학생들에게 꿈을 좇으라고 격려해 왔는데, 가르침에 대한 이 열정은 그가 교사가 되기 훨씬 전부터 존재했다.",
+  "gist": "Turner 선생님의 가르치는 열정은 교사가 되기 훨씬 전부터 있었다는 얘기예요.",
+  "fm": "자동사 exist + (be p.p. 쓰지 않기)",
+  "mp": [
+   [
+    "주어",
+    "Dinosaurs",
+    "this passion"
+   ],
+   [
+    "동사",
+    "existed",
+    "existed"
+   ]
+  ],
+  "ex": "Dinosaurs existed long ago.",
+  "exko": "공룡은 오래전에 존재했어요(dinosaur 공룡, exist 존재하다).",
+  "tko": "이 열정은 존재했다",
+  "bad": "Dinosaurs were existed long ago.",
+  "badko": "(exist(존재하다)는 스스로 있는 말이라서 were existed처럼 be + p.p.로 쓰지 않아요)",
+  "altw": "be p.p.",
+  "alt": "The door was opened by Tom.",
+  "altko": "문은 Tom이 열었어요(open(열다)은 '무엇을 여는' 말이라서 be p.p.가 가능해요).",
+  "why": "exist(존재하다)는 누가 하는 게 아니라 그냥 '있다'는 뜻이에요. 그래서 '존재되었다'처럼 수동으로 쓰지 않고 existed(exist의 과거형)로 써요. 앞의 encouraged(격려했다)처럼 목적어(his students)가 있는 동사와 달라요.",
+  "d": {
+   "always": "항상",
+   "encouraged": "encourage(격려하다)의 과거분사",
+   "students": "student(학생)의 복수형",
+   "follow": "좇다, 따르다",
+   "dreams": "dream(꿈)의 복수형",
+   "passion": "열정",
+   "teaching": "가르치는 일",
+   "existed": "exist(존재하다)의 과거형",
+   "became": "become(되다)의 과거형",
+   "teacher": "교사"
+  },
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>존재하다·일어나다처럼 스스로 하는 동사는 수동태를 못 써요"
+ },
+ {
+  "dk": [
+   [
+    "The missing keys might hide under the sofa in the living room,",
+    "잃어버린 열쇠는 거실 소파 아래에 숨어 있을지도 모르는데,"
+   ],
+   [
+    "and by the time I looked there,",
+    "내가 그곳을 살펴봤을 때쯤에는"
+   ],
+   [
+    "someone had already moved them to the drawer.",
+    "누군가가 이미 그것들을 서랍으로 옮긴 뒤였다."
+   ]
+  ],
+  "ko": "잃어버린 열쇠는 거실 소파 아래에 숨어 있을지도 모르는데, 내가 그곳을 살펴봤을 때쯤에는 누군가가 이미 그것들을 서랍으로 옮긴 뒤였다.",
+  "gist": "열쇠가 소파 밑에 있을 줄 알았는데, 가 보니 이미 누가 서랍으로 옮겨 놓았다는 얘기예요.",
+  "fm": "by the time + 과거형 , had p.p.",
+  "mp": [
+   [
+    "기준 시점",
+    "by the time I came",
+    "by the time I looked"
+   ],
+   [
+    "그 전에 한 일",
+    "he had left",
+    "someone had moved"
+   ]
+  ],
+  "ex": "By the time I came, he had left.",
+  "exko": "내가 왔을 때쯤 그는 이미 떠났어요(come 오다, leave 떠나다).",
+  "tko": "내가 살펴봤을 때쯤 누군가 이미 옮겼었다",
+  "bad": "By the time I came, he has left.",
+  "badko": "(내가 온 때보다 더 먼저 일어난 일이라서 has left가 아니라 had left예요)",
+  "altw": "has",
+  "alt": "He has left, so he is not here now.",
+  "altko": "그는 떠나서 지금 여기 없어요(지금과 이어지는 일이라서 has left).",
+  "why": "by the time I looked there(내가 거기를 살펴봤을 때쯤)는 이미 지난 때예요. 누군가 열쇠를 옮긴 일은 그 때보다 더 먼저 끝난 일이라서 had p.p.로 말해요. 그래서 has moved가 아니라 had moved(move 옮기다의 과거완료)예요.",
+  "d": {
+   "missing": "잃어버린",
+   "keys": "key(열쇠)의 복수형",
+   "might": "~일지도 모른다",
+   "hide": "숨다",
+   "sofa": "소파",
+   "living": "living room: 거실",
+   "looked": "look(보다, 살펴보다)의 과거형",
+   "moved": "move(옮기다)의 과거분사",
+   "already": "이미",
+   "drawer": "서랍"
+  },
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>지난 때보다 더 먼저 한 일은 had p.p.로 써요"
+ },
+ {
+  "dk": [
+   [
+    "Cleaning the whole house",
+    "집 전체를 청소하는 것은"
+   ],
+   [
+    "seems hard and time-consuming to the children,",
+    "아이들에게 힘들고 시간이 많이 드는 것처럼 보이는데,"
+   ],
+   [
+    "a task that is divided by age group in most households.",
+    "대부분의 가정에서 연령대별로 나뉘는 일이다."
+   ]
+  ],
+  "ko": "집 전체를 청소하는 것은 아이들에게 힘들고 시간이 많이 드는 일처럼 보이는데, 이는 대부분의 가정에서 연령대별로 나뉘는 일이다.",
+  "gist": "집 청소는 아이들에게 힘든 일이라서 보통 집에서는 나이별로 나눠 맡는다는 얘기예요.",
+  "fm": "a task + that + be p.p.",
+  "mp": [
+   [
+    "앞 명사",
+    "a job",
+    "a task"
+   ],
+   [
+    "that 뒤 동사",
+    "that is done",
+    "that is divided"
+   ],
+   [
+    "하는 쪽",
+    "by kids",
+    "by age group"
+   ]
+  ],
+  "ex": "It is a job that is done by kids.",
+  "exko": "그것은 아이들이 하는 일이에요(job 일, do 하다, kid 아이).",
+  "tko": "연령대별로 나뉘는 일",
+  "bad": "It is a job that does by kids.",
+  "badko": "(job(일)은 하는 쪽이 아니라 아이들이 '하는' 대상이라서 does가 아니라 is done이에요)",
+  "altw": "who",
+  "alt": "He is a boy who does the job.",
+  "altko": "그는 그 일을 하는 소년이에요(boy 소년이 직접 하니까 능동 does).",
+  "why": "a task(일)는 스스로 나누는 게 아니라 연령대별로 '나뉘는' 대상이에요. 그래서 '나뉜다'는 뜻의 is divided(divide 나누다의 수동)가 맞아요. by age group(연령대별로)도 힌트예요.",
+  "d": {
+   "cleaning": "clean(청소하다)의 -ing형, 청소",
+   "whole": "전체의",
+   "seems": "seem(~처럼 보이다)의 3인칭 단수형",
+   "hard": "힘든",
+   "time-consuming": "시간이 많이 드는",
+   "children": "child(아이)의 복수형",
+   "task": "일, 과업",
+   "divided": "divide(나누다)의 과거분사",
+   "age": "나이",
+   "group": "집단",
+   "households": "household(가정)의 복수형"
+  },
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>that 앞 명사가 하는 쪽이면 능동, 받는 쪽이면 수동이에요"
+ },
+ {
+  "dk": [
+   [
+    "The books that were borrowed from the library were all popular bestsellers,",
+    "도서관에서 대출된 책들은 모두 인기 있는 베스트셀러였고,"
+   ],
+   [
+    "and rarely can visitors find",
+    "좀처럼 방문객들은 찾을 수 없다"
+   ],
+   [
+    "such rare editions elsewhere.",
+    "그런 희귀한 판본을 다른 곳에서."
+   ]
+  ],
+  "ko": "도서관에서 대출된 책들은 모두 인기 있는 베스트셀러였고, 방문객들은 그런 희귀한 판본을 다른 곳에서 좀처럼 찾을 수 없다.",
+  "gist": "빌려 간 책은 인기 책이었고, 이런 희귀한 책은 다른 곳에서 거의 못 찾는다는 얘기예요.",
+  "fm": "rarely + can + 주어 + 동사원형",
+  "mp": [
+   [
+    "부정 말 + 조동사",
+    "Never can",
+    "rarely can"
+   ],
+   [
+    "주어 + 동사",
+    "I find",
+    "visitors find"
+   ]
+  ],
+  "ex": "Never can I find it.",
+  "exko": "나는 그것을 결코 찾을 수 없어요(never 결코 ~않다, find 찾다).",
+  "tko": "좀처럼 방문객들은 찾을 수 없다",
+  "bad": "Never I can find it.",
+  "badko": "(never(결코)가 맨 앞에 나오면 I can이 아니라 can I 순서로 바꿔요)",
+  "altw": "I can",
+  "alt": "I can never find it.",
+  "altko": "나는 그것을 결코 찾을 수 없어요(never가 가운데 있으면 순서는 그대로 I can).",
+  "why": "rarely(좀처럼 ~않는다)나 never(결코 ~않는다)처럼 '아니다'를 뜻하는 말이 문장 맨 앞으로 나오면 뒤의 순서가 질문처럼 바뀌어요. can + 주어 + 동사원형이 되니까 rarely visitors can find가 아니라 rarely can visitors find(방문객들은 좀처럼 찾을 수 없다)예요.",
+  "d": {
+   "borrowed": "borrow(빌리다)의 과거분사",
+   "library": "도서관",
+   "popular": "인기 있는",
+   "bestsellers": "bestseller(베스트셀러)의 복수형",
+   "rarely": "좀처럼 ~않는",
+   "visitors": "visitor(방문객)의 복수형",
+   "find": "찾다",
+   "such": "그런",
+   "rare": "희귀한",
+   "editions": "edition(판)의 복수형",
+   "elsewhere": "다른 곳에서"
+  },
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>rarely·never가 문장 맨 앞이면 조동사가 주어 앞으로 와요"
+ },
+ {
+  "dk": [
+   [
+    "My sister and I have shared a single large bedroom",
+    "언니(누나)와 나는 하나의 큰 침실을 함께 써 왔는데"
+   ],
+   [
+    "since we were young,",
+    "우리가 어릴 때부터,"
+   ],
+   [
+    "and a new bunk bed will be delivered to our room next week.",
+    "다음 주에 새 이층 침대가 우리 방으로 배달될 것이다."
+   ]
+  ],
+  "ko": "언니(누나)와 나는 어릴 때부터 하나의 큰 침실을 함께 써왔는데, 다음 주에 새 이층 침대가 우리 방으로 배달될 것이다.",
+  "gist": "자매가 오래 함께 쓴 방에 다음 주에 새 이층 침대가 들어온다는 얘기예요.",
+  "fm": "받는 쪽 주어 + will be p.p.",
+  "mp": [
+   [
+    "주어",
+    "A new desk",
+    "a new bunk bed"
+   ],
+   [
+    "will be p.p.",
+    "will be sent",
+    "will be delivered"
+   ]
+  ],
+  "ex": "A new desk will be sent to my room.",
+  "exko": "새 책상이 내 방으로 보내질 거예요(desk 책상, send 보내다).",
+  "tko": "새 이층 침대가 배달될 것이다",
+  "bad": "A new desk will send to my room.",
+  "badko": "(desk(책상)는 보내는 쪽이 아니라 보내지는 쪽이라서 will send가 아니라 will be sent예요)",
+  "altw": "will 동사원형",
+  "alt": "Dad will send a new desk.",
+  "altko": "아빠가 새 책상을 보내 줄 거예요(아빠가 직접 보내니까 능동 will send).",
+  "why": "a new bunk bed(새 이층 침대)는 스스로 가는 게 아니라 누군가 '배달해 주는' 물건이에요. 다음 주 일이니까 will be delivered(deliver 배달하다의 수동)가 맞아요. 앞의 have shared(함께 써 왔다)의 주어는 my sister and I라서 능동이에요.",
+  "d": {
+   "sister": "언니, 누나, 여동생",
+   "shared": "share(함께 쓰다)의 과거분사",
+   "single": "하나의",
+   "large": "큰",
+   "bedroom": "침실",
+   "young": "어린",
+   "new": "새로운",
+   "bunk": "bunk bed: 이층 침대",
+   "delivered": "deliver(배달하다)의 과거분사",
+   "room": "방"
+  },
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>받는 쪽이 주어면 be p.p., 미래면 will be p.p.예요"
+ },
+ {
+  "dk": [
+   [
+    "Gustave Eiffel designed the famous Eiffel Tower,",
+    "Gustave Eiffel은 유명한 에펠탑을 설계했는데,"
+   ],
+   [
+    "which became a landmark in Paris, France,",
+    "그것은 프랑스 파리의 랜드마크가 되었다,"
+   ],
+   [
+    "and few people realize",
+    "그리고 아는 사람은 거의 없다"
+   ],
+   [
+    "that he originally intended it as a temporary structure.",
+    "그가 원래는 그것을 임시 구조물로 의도했다는 것을."
+   ]
+  ],
+  "ko": "Gustave Eiffel은 프랑스 파리의 랜드마크가 된 유명한 에펠탑을 설계했는데, 그가 원래는 그것을 임시 구조물로 의도했다는 것을 아는 사람은 거의 없다.",
+  "gist": "에펠탑은 원래 잠깐만 세우려던 건물이었는데, 그걸 아는 사람은 드물다는 얘기예요.",
+  "fm": "that + 완전한 문장 (what X)",
+  "mp": [
+   [
+    "동사",
+    "know",
+    "realize"
+   ],
+   [
+    "that 뒤 (빠진 말 없음)",
+    "that he is kind",
+    "that he intended it"
+   ]
+  ],
+  "ex": "I know that he is kind.",
+  "exko": "나는 그가 친절하다는 걸 알아요(know 알다, kind 친절한).",
+  "tko": "그가 그것을 의도했다는 것",
+  "bad": "I know what he is kind.",
+  "badko": "(he is kind(그는 친절하다)에는 빠진 말이 없어서 what이 아니라 that이에요)",
+  "altw": "what",
+  "alt": "I know what he said.",
+  "altko": "나는 그가 말한 것을 알아요(said(말했다) 뒤에 목적어가 빠져 있어서 what이 필요해요).",
+  "why": "realize(깨닫다) 뒤에 이어진 he originally intended it as a temporary structure(그는 원래 그것을 임시 구조물로 의도했다)는 주어, 동사, 목적어가 다 있어서 빠진 말이 없어요. 이럴 때는 '~라는 것'을 뜻하는 that을 써요. what(~것)은 뒤에 빠진 말이 있을 때 써요.",
+  "d": {
+   "designed": "design(설계하다)의 과거형",
+   "famous": "유명한",
+   "tower": "탑",
+   "became": "become(되다)의 과거형",
+   "landmark": "랜드마크, 명소",
+   "few": "거의 없는",
+   "realize": "깨닫다, 알다",
+   "originally": "원래",
+   "intended": "intend(의도하다)의 과거형",
+   "temporary": "임시의",
+   "structure": "구조물"
+  },
+  "trend": "<b>출제 3위 · that[which] vs what</b><br>31년간 71회 나왔어요.<br>that 뒤는 빠진 게 없는 문장, what 뒤는 빠진 게 있는 문장이에요"
+ }
+]
