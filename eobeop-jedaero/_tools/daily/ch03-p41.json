@@ -1,0 +1,92 @@
+[
+ {
+  "dk": [
+   [
+    "I was trying to reach one of my clients earlier today",
+    "오늘 일찍 내 고객 중 한 명에게 연락하려고 하고 있었다"
+   ],
+   [
+    "because his order has been revised.",
+    "그의 주문이 변경되었기 때문에."
+   ]
+  ],
+  "ko": "나는 오늘 일찍 내 고객 중 한 명에게 연락하려고 했는데, 그의 주문이 변경되었기 때문이다.",
+  "gist": "주문이 바뀐 걸 알리려고 오늘 아침 고객에게 연락하려 했다는 얘기예요.",
+  "fm": "받는 쪽 주어 + has been p.p.",
+  "mp": [
+   [
+    "주어",
+    "The window",
+    "his order"
+   ],
+   [
+    "has been p.p.",
+    "has been broken",
+    "has been revised"
+   ]
+  ],
+  "ex": "The window has been broken.",
+  "exko": "창문이 깨졌어요(window 창문, break 깨뜨리다).",
+  "tko": "그의 주문이 변경되었다",
+  "bad": "The window has broken by Tom.",
+  "badko": "(window(창문)는 Tom이 깬 대상이라서 has broken이 아니라 has been broken이에요)",
+  "altw": "has p.p.",
+  "alt": "Tom has broken the window.",
+  "altko": "Tom이 창문을 깼어요(Tom이 직접 했으니까 능동 has broken).",
+  "why": "his order(그의 주문)는 스스로 바꾸는 게 아니라 누군가 '바꾸는' 대상이에요. 그래서 '바뀌었다'를 뜻하는 has been revised(revise 바꾸다의 수동)가 맞아요. 같은 문항의 that included → that were included도 items(물품들)가 '포함되었던' 쪽이라서 같은 원리예요.",
+  "d": {
+   "trying": "try(애쓰다)의 -ing형",
+   "reach": "연락하다",
+   "clients": "client(고객)의 복수형",
+   "earlier": "early(일찍)의 비교급, 아까",
+   "today": "오늘",
+   "order": "주문",
+   "revised": "revise(바꾸다, 수정하다)의 과거분사"
+  },
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>받는 쪽이 주어면 be p.p.로 써요"
+ },
+ {
+  "dk": [
+   [
+    "Individuals who belong to a group",
+    "한 집단에 속한 개체들은"
+   ],
+   [
+    "have many advantages in nature.",
+    "자연에서 많은 이점을 갖는다."
+   ]
+  ],
+  "ko": "한 집단에 속한 개체들은 자연에서 많은 이점을 갖는다.",
+  "gist": "무리에 속해 있으면 자연에서 유리한 점이 많다는 얘기예요.",
+  "fm": "자동사구 belong to + (be p.p. 쓰지 않기)",
+  "mp": [
+   [
+    "앞 명사",
+    "Kids who",
+    "Individuals who"
+   ],
+   [
+    "동사구",
+    "belong to a club",
+    "belong to a group"
+   ]
+  ],
+  "ex": "Kids who belong to a club are happy.",
+  "exko": "클럽에 속한 아이들은 행복해요(kid 아이, belong to ~에 속하다, club 클럽).",
+  "tko": "한 집단에 속한 개체들",
+  "bad": "Kids who are belonged to a club are happy.",
+  "badko": "(belong to(~에 속하다)는 스스로 속하는 말이라서 are belonged to처럼 be + p.p.로 쓰지 않아요)",
+  "altw": "be p.p.",
+  "alt": "Kids who are invited to a club are happy.",
+  "altko": "클럽에 초대받은 아이들은 행복해요(invite(초대하다)는 '누구를 초대하는' 말이라서 be p.p.가 가능해요).",
+  "why": "belong to(~에 속하다)는 누가 속하게 만드는 게 아니라 그냥 '속해 있다'는 뜻이에요. 그래서 '속해지다'처럼 수동으로 쓰지 않고 belong to를 그대로 써요. 같은 문항의 can help individuals(개체들을 도울 수 있다)도 뒤에 목적어가 있으니 수동이 아니라 능동이에요.",
+  "d": {
+   "individuals": "individual(개체, 개인)의 복수형",
+   "belong": "belong to: ~에 속하다",
+   "group": "집단",
+   "advantages": "advantage(이점)의 복수형",
+   "nature": "자연"
+  },
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>속하다·존재하다처럼 스스로 하는 동사는 수동태를 못 써요"
+ }
+]

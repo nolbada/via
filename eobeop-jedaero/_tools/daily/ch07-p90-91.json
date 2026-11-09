@@ -1,0 +1,966 @@
+[
+ {
+  "dk": [
+   [
+    "He was drawing on a used napkin",
+    "그는 쓰던 냅킨에 그림을 그리고 있었다"
+   ],
+   [
+    "while having coffee.",
+    "커피를 마시면서."
+   ]
+  ],
+  "ko": "그는 커피를 마시면서 쓰던 냅킨에 그림을 그리고 있었다.",
+  "gist": "한 남자가 커피를 마시며 쓰고 난 냅킨에 그림을 그리고 있었다는 얘기예요.",
+  "fm": "p.p. + 명사 (당하는 명사는 p.p.)",
+  "mp": [
+   [
+    "p.p. + 명사",
+    "a broken toy",
+    "a used napkin"
+   ]
+  ],
+  "ex": "I found a broken toy.",
+  "exko": "나는 부서진(break 부수다) 장난감을 찾았어요(find 찾다).",
+  "tko": "쓰고 난 냅킨",
+  "bad": "I found a breaking toy.",
+  "badko": "(장난감은 스스로 부수는 게 아니라 부서진 쪽이라서 breaking이 아니라 broken이에요)",
+  "altw": "-ing",
+  "alt": "I saw a crying baby.",
+  "altko": "나는 울고 있는(cry 울다) 아기를 봤어요(아기가 직접 우는 쪽이라 -ing).",
+  "why": "napkin(냅킨)은 use(쓰다)를 직접 하는 쪽이 아니에요. 사람이 이미 쓴 것이니까 '사용된' 냅킨, 그래서 using이 아니라 used예요.",
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>꾸밈을 받는 명사가 직접 하면 -ing, 당하면 p.p.예요",
+  "d": {
+   "drawing": "draw(그리다)의 -ing형",
+   "used": "use(쓰다)의 p.p. 쓰고 난",
+   "napkin": "냅킨",
+   "while": "~하는 동안",
+   "having": "have(마시다, 먹다)의 -ing형",
+   "coffee": "커피"
+  }
+ },
+ {
+  "dk": [
+   [
+    "She was looking on in awe,",
+    "그녀는 감탄하며 지켜보고 있었다,"
+   ],
+   [
+    "since the number of details in his simple lines",
+    "그의 단순한 선 속 세부 요소의 수가"
+   ],
+   [
+    "amazes her deeply.",
+    "그녀를 깊이 놀라게 하기 때문에."
+   ]
+  ],
+  "ko": "그녀는 감탄하며 지켜보고 있었는데, 그의 단순한 선 속에 담긴 세부 요소의 수가 그녀를 깊이 놀라게 하기 때문이다.",
+  "gist": "그의 단순한 선 속에 세세한 표현이 많아서 그녀가 깊이 감탄했다는 얘기예요.",
+  "fm": "the number of + 복수명사 + 단수 동사",
+  "mp": [
+   [
+    "주어",
+    "The number of dogs",
+    "the number of details"
+   ],
+   [
+    "동사",
+    "is",
+    "amazes"
+   ]
+  ],
+  "ex": "The number of dogs is small.",
+  "exko": "개의 수는 적어요(number 수, small 적은).",
+  "tko": "세부 요소의 수가 놀라게 한다",
+  "bad": "The number of dogs are small.",
+  "badko": "(number(수) 하나가 주어라서 are가 아니라 is예요. dogs가 여러 마리여도 '수'는 하나예요)",
+  "altw": "a number of",
+  "alt": "A number of dogs are in the yard.",
+  "altko": "많은 개들이 마당에 있어요(a number of는 '많은'이라는 뜻이라 dogs에 맞춰 are).",
+  "why": "the number of는 '~의 수'라는 한 가지를 말해서 하나로 봐요. 그래서 details(세부 요소들)가 여러 개여도 동사는 amaze(놀라게 하다)가 아니라 amazes예요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>the number of는 단수, a number of는 복수로 받아요",
+  "d": {
+   "awe": "경외감, 감탄",
+   "since": "~때문에",
+   "number": "수",
+   "details": "세부 사항",
+   "simple": "단순한",
+   "lines": "선",
+   "amazes": "amaze(놀라게 하다)의 3인칭 단수형",
+   "deeply": "깊이",
+   "looking": "look on: 지켜보다"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Cindy stopped him,",
+    "Cindy는 그를 멈춰 세웠다,"
+   ],
+   [
+    "feeling curious and determined",
+    "궁금하고 마음먹은 채"
+   ],
+   [
+    "to keep the napkin.",
+    "그 냅킨을 가지겠다고."
+   ]
+  ],
+  "ko": "Cindy는 궁금하고 그 냅킨을 꼭 가지겠다고 마음먹은 채 그를 멈춰 세웠다.",
+  "gist": "Cindy가 궁금하기도 하고 그 냅킨이 갖고 싶어서 그를 불러 세웠다는 얘기예요.",
+  "fm": "A and B (같은 모양)",
+  "mp": [
+   [
+    "and 앞",
+    "happy",
+    "curious"
+   ],
+   [
+    "and 뒤",
+    "excited",
+    "determined"
+   ]
+  ],
+  "ex": "I felt happy and excited.",
+  "exko": "나는 행복하고(happy) 신났어요(excited는 excite 신나게 하다의 p.p.).",
+  "tko": "마음먹은",
+  "bad": "I felt happy and exciting.",
+  "badko": "(내가 신나는 기분을 느끼는 쪽이라서 exciting(신나게 하는)이 아니라 excited(신난)예요)",
+  "altw": "-ing",
+  "alt": "The game was fun and exciting.",
+  "altko": "그 게임은 재미있고 흥미진진했어요(게임이 흥미를 주는 쪽이라 exciting).",
+  "why": "and가 curious(궁금한)와 이어 주는 말이라서 뒤도 Cindy의 마음 상태를 말해요. Cindy가 '마음먹은' 쪽이니까 determine(결심하다)의 p.p. determined예요. determining이면 '결심하게 하는'이 돼서 뜻이 안 맞아요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and·or 앞뒤를 보고 같은 모양인지 확인해요",
+  "d": {
+   "stopped": "stop(멈추게 하다)의 과거형",
+   "feeling": "feel(느끼다)의 -ing형",
+   "curious": "궁금한",
+   "determined": "결심한, 마음먹은",
+   "keep": "가지고 있다",
+   "napkin": "냅킨"
+  }
+ },
+ {
+  "dk": [
+   [
+    "\"Please let me have the napkin",
+    "\"제가 그 냅킨을 갖게 해 주세요"
+   ],
+   [
+    "if you're going to throw it away,\"",
+    "당신이 그것을 버릴 거라면,\""
+   ],
+   [
+    "she said.",
+    "라고 그녀는 말했다."
+   ]
+  ],
+  "ko": "\"그 냅킨을 버리실 거라면 제가 가지게 해 주세요,\"라고 그녀는 말했다.",
+  "gist": "버릴 거라면 그 냅킨을 자기가 가져도 되냐고 부탁했다는 얘기예요.",
+  "fm": "let + 목적어 + 동사원형",
+  "mp": [
+   [
+    "let + 목적어",
+    "let him",
+    "let me"
+   ],
+   [
+    "동사원형",
+    "go",
+    "have"
+   ]
+  ],
+  "ex": "Please let him go.",
+  "exko": "그를 가게 해 주세요(go 가다).",
+  "tko": "제가 갖게 해 주세요",
+  "bad": "Please let him to go.",
+  "badko": "(let(~하게 해 주다) 뒤에는 to를 쓰지 않고 go(가다) 원형을 써요)",
+  "altw": "to V",
+  "alt": "I want him to go.",
+  "altko": "나는 그가 가기를 원해요(want 원하다 뒤에는 to go).",
+  "why": "let은 '~하게 해 주다'라는 뜻이에요. let 뒤 '누구'를 말한 다음에는 to 없이 동사 원형을 써요. 그래서 to have가 아니라 have(가지다)예요.",
+  "trend": "<b>출제 10위 · 목적격보어/준동사</b><br>31년간 30회 나왔어요.<br>let·make·have 뒤에는 to 없이 동사원형이에요",
+  "d": {
+   "please": "제발, 부디",
+   "let": "~하게 해 주다",
+   "napkin": "냅킨",
+   "throw": "throw away: 버리다",
+   "said": "say(말하다)의 과거형",
+   "going": "be going to: ~할 예정이다"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Embarrassed by his words,",
+    "그의 말에 당황해서,"
+   ],
+   [
+    "the woman stood still",
+    "그 여자는 가만히 서 있었다"
+   ],
+   [
+    "without saying a word.",
+    "한마디도 하지 않고."
+   ]
+  ],
+  "ko": "그의 말에 당황해서, 그 여자는 한마디도 하지 않고 가만히 서 있었다.",
+  "gist": "그 여자가 그의 말에 당황해서 아무 말 못 하고 가만히 서 있었다는 얘기예요.",
+  "fm": "주어 + 동사 (-ing는 동사가 아니에요)",
+  "mp": [
+   [
+    "주어",
+    "The girl",
+    "the woman"
+   ],
+   [
+    "진짜 동사",
+    "sat",
+    "stood"
+   ]
+  ],
+  "ex": "The girl sat still.",
+  "exko": "그 소녀는 가만히 앉아 있었어요(sit 앉다, still 가만히).",
+  "tko": "가만히 서 있었다",
+  "bad": "The girl sitting still.",
+  "badko": "(sitting은 혼자 동사가 될 수 없어서 문장이 끝나지 않아요. 과거 동사 sat(sit 앉다)이 필요해요)",
+  "altw": "-ing",
+  "alt": "The man standing there is my uncle.",
+  "altko": "저기 서 있는 남자는 우리 삼촌이에요(standing이 man을 꾸미는 말이고 동사는 is).",
+  "why": "Embarrassed by his words는 the woman을 설명하는 앞부분일 뿐이에요. 그러면 문장의 진짜 동사가 필요해요. standing(서 있는)은 동사가 못 되고, stand(서다)의 과거형 stood가 와야 해요.",
+  "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>문장에 진짜 동사가 있는지 먼저 찾아요. -ing·p.p.·to V는 혼자 동사가 될 수 없어요",
+  "d": {
+   "embarrassed": "당황한",
+   "words": "말",
+   "woman": "여자",
+   "stood": "stand(서다)의 과거형",
+   "still": "가만히",
+   "without": "~없이",
+   "saying": "say(말하다)의 -ing형",
+   "word": "말, 한마디"
+  }
+ },
+ {
+  "dk": [
+   [
+    "For example,",
+    "예를 들어,"
+   ],
+   [
+    "water seems to have no enemy,",
+    "물은 적이 없는 것 같다,"
+   ],
+   [
+    "needed for all life to survive.",
+    "모든 생명이 살아남는 데 필요한."
+   ]
+  ],
+  "ko": "예를 들어, 물은 모든 생명이 살아남는 데 꼭 필요해서 적이 없는 것처럼 보인다.",
+  "gist": "물은 모든 생명에게 꼭 필요해서 적이 없는 것 같다는 얘기예요.",
+  "fm": ", p.p. (주어가 당하는 쪽)",
+  "mp": [
+   [
+    "분사 덩어리",
+    "loved by all",
+    "needed for all life"
+   ]
+  ],
+  "ex": "Mom, loved by all, smiled.",
+  "exko": "모두에게 사랑받는(love 사랑하다) 엄마는 웃었어요(smile).",
+  "tko": "모든 생명에게 필요한",
+  "bad": "Mom, loving by all, smiled.",
+  "badko": "(엄마는 사랑하는 쪽이 아니라 사랑받는 쪽이라서 loving이 아니라 loved예요)",
+  "altw": "-ing",
+  "alt": "Mom, loving her kids, smiled.",
+  "altko": "아이들을 사랑하는 엄마는 웃었어요(엄마가 직접 사랑하는 쪽이라 -ing).",
+  "why": "water(물)는 need(필요로 하다)를 하는 쪽이 아니라 모든 생명에게 '필요로 되는' 쪽이에요. 그래서 needing이 아니라 needed예요.",
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>분사구문은 주어가 직접 하면 -ing, 당하면 p.p.예요",
+  "d": {
+   "example": "예",
+   "seems": "seem(~인 것 같다)의 3인칭 단수형",
+   "enemy": "적",
+   "needed": "need(필요로 하다)의 p.p. 필요로 되는",
+   "life": "생명",
+   "survive": "살아남다",
+   "all": "모든"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Education is the exception to this rule,",
+    "교육은 이 규칙의 예외이다,"
+   ],
+   [
+    "and its value becomes much clearer",
+    "그리고 그 가치는 훨씬 더 분명해진다"
+   ],
+   [
+    "with age.",
+    "나이가 들면서."
+   ]
+  ],
+  "ko": "교육은 이 규칙의 예외이며, 그 가치는 나이가 들수록 훨씬 더 분명해진다.",
+  "gist": "교육의 가치는 나이가 들수록 더 뚜렷해진다는 얘기예요.",
+  "fm": "much + 비교급 (very X)",
+  "mp": [
+   [
+    "강조 + 비교급",
+    "much taller",
+    "much clearer"
+   ]
+  ],
+  "ex": "He is much taller.",
+  "exko": "그는 훨씬 더 키가 커요(tall 키가 큰).",
+  "tko": "훨씬 더 분명해진다",
+  "bad": "He is very taller.",
+  "badko": "(비교급 taller(더 큰) 앞에는 very(매우)를 못 쓰고 much(훨씬)를 써요)",
+  "altw": "very",
+  "alt": "He is very tall.",
+  "altko": "그는 키가 아주 커요(원래 모양 tall 앞에는 very가 맞아요).",
+  "why": "clearer(clear 분명한의 비교급)는 '더 분명한'이에요. 이걸 세게 말할 때는 much, even, still, far, a lot(훨씬)을 써요. very(매우)는 비교급 앞에 못 와요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>비교급 강조는 much·even·still·far·a lot, very는 안 돼요",
+  "d": {
+   "education": "교육",
+   "exception": "예외",
+   "rule": "규칙",
+   "value": "가치",
+   "becomes": "become(되다)의 3인칭 단수형",
+   "clearer": "clear(분명한)의 비교급",
+   "age": "나이",
+   "much": "훨씬"
+  }
+ },
+ {
+  "dk": [
+   [
+    "I have never found one person harmed in life",
+    "나는 살면서 해를 입은 사람을 한 명도 찾은 적이 없다"
+   ],
+   [
+    "by too much education.",
+    "너무 많은 교육 때문에."
+   ]
+  ],
+  "ko": "나는 너무 많은 교육 때문에 살면서 해를 입은 사람을 단 한 명도 본 적이 없다.",
+  "gist": "교육을 너무 많이 받아서 해를 입은 사람은 본 적이 없다는 얘기예요.",
+  "fm": "find + 목적어 + p.p. (목적어가 당해요)",
+  "mp": [
+   [
+    "find + 목적어",
+    "find my bag",
+    "find one person"
+   ],
+   [
+    "p.p.",
+    "stolen",
+    "harmed"
+   ]
+  ],
+  "ex": "I found my bag stolen.",
+  "exko": "나는 내 가방이 도둑맞은(steal 훔치다) 걸 발견했어요(find 발견하다).",
+  "tko": "해를 입은 한 사람",
+  "bad": "I found my bag stealing.",
+  "badko": "(가방은 스스로 훔치는 게 아니라 훔쳐진 쪽이라서 stealing이 아니라 stolen이에요)",
+  "altw": "-ing",
+  "alt": "I found him sleeping.",
+  "altko": "나는 그가 자고 있는 걸 발견했어요(그가 직접 자는 쪽이라 -ing).",
+  "why": "one person(한 사람)은 해를 끼치는 쪽이 아니라 해를 입는 쪽이에요. harm(해를 끼치다)을 당한 사람이니까 harming이 아니라 harmed예요.",
+  "trend": "<b>출제 10위 · 목적격보어/준동사</b><br>31년간 30회 나왔어요.<br>목적어가 직접 하면 -ing, 당하면 p.p.인지 봐요",
+  "d": {
+   "found": "find(찾다, 발견하다)의 p.p.",
+   "never": "결코 ~않다",
+   "person": "사람",
+   "harmed": "harm(해를 끼치다)의 p.p. 해를 입은",
+   "life": "삶",
+   "too much": "너무 많은",
+   "much": "too much: 너무 많은",
+   "education": "교육"
+  }
+ },
+ {
+  "dk": [
+   [
+    "You can never have too much knowledge",
+    "당신은 아무리 많은 지식을 가져도 지나치지 않다"
+   ],
+   [
+    "and most people will never have enough in their lifetime,",
+    "그리고 대부분의 사람은 평생 충분히 갖지 못할 것이다,"
+   ],
+   [
+    "even though experts proved this point decades ago.",
+    "전문가들이 이 점을 수십 년 전에 증명했는데도."
+   ]
+  ],
+  "ko": "지식은 아무리 많아도 지나치지 않고, 대부분의 사람은 평생 충분한 지식을 갖지 못할 것이다, 전문가들이 이 점을 수십 년 전에 증명했는데도 말이다.",
+  "gist": "지식은 많을수록 좋다는 건 전문가들이 오래전에 증명했다는 얘기예요.",
+  "fm": "ago → 단순과거 (현재완료 X)",
+  "mp": [
+   [
+    "명백한 과거 표현",
+    "two days ago",
+    "decades ago"
+   ],
+   [
+    "동사",
+    "lost",
+    "proved"
+   ]
+  ],
+  "ex": "I lost my pen two days ago.",
+  "exko": "나는 이틀 전에 펜을 잃어버렸어요(lose 잃어버리다).",
+  "tko": "수십 년 전에 증명했다",
+  "bad": "I have lost my pen two days ago.",
+  "badko": "(two days ago(이틀 전)처럼 딱 정해진 과거에는 have lost가 아니라 lost예요)",
+  "altw": "have p.p.",
+  "alt": "I have lost my pen.",
+  "altko": "나는 펜을 잃어버렸어요(언제인지 안 말하고 지금 없는 상태를 말해서 have lost가 맞아요).",
+  "why": "decades ago(수십 년 전)는 '그때'라고 딱 정해진 과거 시간이에요. 이런 때는 have proven이 아니라 지난 일을 말하는 proved(prove 증명하다의 과거형)를 써요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>ago·yesterday·last year처럼 정해진 과거는 단순과거예요",
+  "d": {
+   "knowledge": "지식",
+   "enough": "충분한",
+   "lifetime": "평생",
+   "even though": "~이긴 하지만",
+   "experts": "전문가들",
+   "proved": "prove(증명하다)의 과거형",
+   "point": "요점",
+   "decades": "수십 년",
+   "ago": "~전에"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Rather, casualties resulting from the lack of education",
+    "오히려 교육의 부족에서 생기는 피해는"
+   ],
+   [
+    "are common.",
+    "흔하다."
+   ]
+  ],
+  "ko": "오히려, 교육의 부족으로 인해 생기는 피해는 흔하다.",
+  "gist": "교육이 모자라서 생기는 피해는 오히려 흔하다는 얘기예요.",
+  "fm": "명사 + v-ing (스스로 하는 명사)",
+  "mp": [
+   [
+    "명사 + 분사",
+    "The girl dancing",
+    "casualties resulting"
+   ]
+  ],
+  "ex": "The girl dancing on the stage is my sister.",
+  "exko": "무대에서 춤추는(dance 춤추다) 소녀는 내 여동생이에요(stage 무대).",
+  "tko": "교육의 부족에서 생기는 피해",
+  "bad": "The girl danced on the stage is my sister.",
+  "badko": "(소녀가 직접 춤추는 쪽이라서 danced가 아니라 dancing이에요)",
+  "altw": "p.p.",
+  "alt": "The cup broken by the cat is on the floor.",
+  "altko": "고양이가 깨뜨린(break 깨뜨리다) 컵이 바닥에 있어요(컵은 깨짐을 당하는 쪽이라 broken).",
+  "why": "casualties(피해)는 누가 시켜서 생기는 게 아니라 부족에서 스스로 생겨나는(result 생기다) 쪽이에요. 직접 하는 명사를 꾸밀 때는 resulted가 아니라 resulting이에요.",
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>꾸밈을 받는 명사가 직접 하면 -ing, 당하면 p.p.예요",
+  "d": {
+   "rather": "오히려",
+   "casualties": "피해, 사상자",
+   "resulting": "result(생기다)의 -ing형",
+   "result": "result from: ~에서 생기다",
+   "lack": "부족",
+   "education": "교육",
+   "common": "흔한"
+  }
+ },
+ {
+  "dk": [
+   [
+    "He forgot to give humans knees",
+    "그는 인간에게 무릎을 주는 것을 잊었다"
+   ],
+   [
+    "and gave them big, kangaroo-like tails instead,",
+    "그리고 대신 그들에게 크고 캥거루 같은 꼬리를 주었다,"
+   ],
+   [
+    "disappointed by his own mistake soon after.",
+    "곧이어 자신의 실수에 실망해서."
+   ]
+  ],
+  "ko": "그는 인간에게 무릎을 주는 것을 잊어버렸고 대신 캥거루 같은 큰 꼬리를 주었으며, 곧이어 자신의 실수에 실망했다.",
+  "gist": "신이 인간에게 무릎 대신 꼬리를 줬다가 곧 자기 실수에 실망했다는 얘기예요.",
+  "fm": "느끼는 사람 + p.p. (감정을 느끼면 -ed)",
+  "mp": [
+   [
+    "감정을 느끼는 사람",
+    "I",
+    "He"
+   ],
+   [
+    "감정 분사",
+    "bored",
+    "disappointed"
+   ]
+  ],
+  "ex": "I was bored by the movie.",
+  "exko": "나는 그 영화가 지루했어요(bore 지루하게 하다 → bored 지루함을 느끼는).",
+  "tko": "자신의 실수에 실망한",
+  "bad": "I was boring by the movie.",
+  "badko": "(지루함을 느끼는 사람은 나라서 boring이 아니라 bored예요)",
+  "altw": "-ing",
+  "alt": "The movie was boring.",
+  "altko": "그 영화는 지루했어요(영화가 지루함을 주는 쪽이라 boring).",
+  "why": "he는 실수 때문에 실망을 '느끼는' 쪽이에요. 감정을 느끼는 쪽은 disappoint(실망시키다)의 p.p. disappointed, 감정을 일으키는 쪽은 disappointing이에요.",
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>감정을 느끼는 쪽은 p.p., 일으키는 쪽은 -ing예요",
+  "d": {
+   "forgot": "forget(잊다)의 과거형",
+   "give": "주다",
+   "humans": "인간",
+   "knees": "무릎",
+   "gave": "give(주다)의 과거형",
+   "tails": "꼬리",
+   "kangaroo-like": "캥거루 같은",
+   "instead": "대신에",
+   "disappointed": "실망한",
+   "mistake": "실수",
+   "soon": "soon after: 곧이어"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The tails prevented people from sitting down,",
+    "그 꼬리는 사람들이 앉지 못하게 했다,"
+   ],
+   [
+    "and humans hated having them.",
+    "그리고 인간들은 그것들을 갖는 것을 몹시 싫어했다."
+   ]
+  ],
+  "ko": "그 꼬리는 사람들이 앉지 못하게 했고, 인간들은 그것을 갖는 것을 싫어했다.",
+  "gist": "꼬리 때문에 앉을 수가 없어서 인간들이 꼬리를 싫어했다는 얘기예요.",
+  "fm": "주어 + 동사 (-ing는 동사가 아니에요)",
+  "mp": [
+   [
+    "주어 + 동사",
+    "The rain stopped",
+    "The tails prevented"
+   ]
+  ],
+  "ex": "The rain stopped us.",
+  "exko": "비가 우리를 멈추게 했어요(stop 멈추게 하다).",
+  "tko": "그 꼬리는 막았다",
+  "bad": "The rain stopping us.",
+  "badko": "(stopping은 혼자 동사가 될 수 없어서 문장이 완성되지 않아요. 과거 동사 stopped가 필요해요)",
+  "altw": "-ing",
+  "alt": "The man stopping the bus is my uncle.",
+  "altko": "버스를 세우고 있는 남자는 우리 삼촌이에요(stopping이 man을 꾸미는 말이고 동사는 is).",
+  "why": "and 앞뒤로 두 문장이 이어진 거라서, 앞 문장에도 진짜 동사가 있어야 해요. preventing은 동사가 못 되고, prevent(막다)의 과거형 prevented가 와야 해요.",
+  "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>문장에 진짜 동사가 있는지 먼저 찾아요. -ing·p.p.·to V는 혼자 동사가 될 수 없어요",
+  "d": {
+   "tails": "꼬리",
+   "prevented": "prevent(막다)의 과거형",
+   "people": "사람들",
+   "sitting": "sit(앉다)의 -ing형",
+   "down": "sit down: 앉다",
+   "hated": "hate(몹시 싫어하다)의 과거형",
+   "having": "have(가지다)의 -ing형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "They were so frustrated and cried out to the heavens for help,",
+    "그들은 너무 좌절해서 도움을 청하며 하늘에 울부짖었다,"
+   ],
+   [
+    "and they did truly believe",
+    "그리고 그들은 정말로 믿었다"
+   ],
+   [
+    "that someone would answer.",
+    "누군가 응답할 것이라고."
+   ]
+  ],
+  "ko": "그들은 너무 좌절해서 도움을 청하며 하늘을 향해 울부짖었고, 누군가 응답할 것이라고 진심으로 믿었다.",
+  "gist": "인간들이 하늘에 도움을 청하며 누군가 들어줄 거라고 진심으로 믿었다는 얘기예요.",
+  "fm": "did + 동사원형 (강조)",
+  "mp": [
+   [
+    "강조 did + 동사원형",
+    "did like",
+    "did believe"
+   ]
+  ],
+  "ex": "I did like the movie.",
+  "exko": "나는 그 영화가 정말 좋았어요(like 좋아하다).",
+  "tko": "정말로 믿었다",
+  "bad": "I did liked the movie.",
+  "badko": "(did가 이미 과거를 나타내서 liked가 아니라 like(좋아하다) 원형이에요)",
+  "altw": "believed",
+  "alt": "I believed her story.",
+  "altko": "나는 그녀의 이야기를 믿었어요(강조 did 없이 쓸 때는 believed).",
+  "why": "did는 '정말로 ~했다'라고 힘줘서 말하는 도우미예요. did가 이미 과거를 맡고 있으니 뒤 동사는 believed가 아니라 believe(믿다) 원형이에요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>강조 do·does·did 뒤에는 동사원형이에요",
+  "d": {
+   "frustrated": "좌절한",
+   "cried": "cry(외치다)의 과거형",
+   "heavens": "하늘",
+   "help": "도움",
+   "truly": "정말로",
+   "believe": "믿다",
+   "someone": "누군가",
+   "answer": "응답하다",
+   "did": "do(하다)의 과거형, 강조로 쓰임"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Dromerdeener heard their cry",
+    "Dromerdeener는 그들의 외침을 듣고"
+   ],
+   [
+    "and came down to Tasmania,",
+    "태즈메이니아로 내려왔다,"
+   ],
+   [
+    "the island where the humans lived.",
+    "인간들이 살던 섬인."
+   ]
+  ],
+  "ko": "Dromerdeener는 그들의 울부짖음을 듣고 태즈메이니아로 내려왔는데, 그곳은 인간들이 살던 섬이었다.",
+  "gist": "Dromerdeener가 인간들의 외침을 듣고 그들이 사는 섬으로 왔다는 얘기예요.",
+  "fm": "장소 + where + 주어 + 동사 (완전한 문장)",
+  "mp": [
+   [
+    "장소 + where",
+    "the house where",
+    "the island where"
+   ],
+   [
+    "뒤에 오는 말",
+    "I live",
+    "the humans lived"
+   ]
+  ],
+  "ex": "This is the house where I live.",
+  "exko": "여기가 내가 사는 집이에요(live 살다).",
+  "tko": "인간들이 살던 섬",
+  "bad": "This is the house which I live.",
+  "badko": "(I live만으로 문장이 완전해서 which가 아니라 장소를 받는 where예요)",
+  "altw": "which",
+  "alt": "This is the house which I built.",
+  "altko": "이곳은 내가 지은 집이에요(built 뒤에 house가 빠져 있어서 which가 맞아요).",
+  "why": "the humans lived(인간들이 살았다)는 주어와 동사가 다 있어서 빠진 말이 없어요. 이럴 때는 장소를 이어 주는 where가 와야 해요. which는 뒤에 빠진 명사가 있을 때만 써요.",
+  "trend": "<b>출제 2위 · 관계대명사와 관계부사</b><br>31년간 99회 나왔어요.<br>관계사 뒤 문장이 완전하면 관계부사, 빠진 말이 있으면 관계대명사예요",
+  "d": {
+   "heard": "hear(듣다)의 과거형",
+   "cry": "외침",
+   "came": "come(오다)의 과거형",
+   "island": "섬",
+   "lived": "live(살다)의 과거형",
+   "tasmania": "태즈메이니아(호주의 섬)",
+   "humans": "인간들",
+   "down": "come down: 내려오다"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Finally, humans were able to sit down",
+    "마침내 인간들은 앉을 수 있게 되었다"
+   ],
+   [
+    "and lived happily ever after,",
+    "그리고 그 후로 행복하게 살았다,"
+   ],
+   [
+    "feeling relieved after so many years of suffering.",
+    "그토록 오랜 고통의 세월 뒤에 안도하면서."
+   ]
+  ],
+  "ko": "마침내 인간들은 앉을 수 있게 되었고 그 후 행복하게 살았으며, 그토록 오랜 세월의 고통 뒤에 안도감을 느꼈다.",
+  "gist": "인간들이 드디어 앉게 되어 안도하며 행복하게 살았다는 얘기예요.",
+  "fm": "감정을 느끼는 주어 + p.p. (-ed)",
+  "mp": [
+   [
+    "감정 분사",
+    "feeling tired",
+    "feeling relieved"
+   ]
+  ],
+  "ex": "He went to bed, feeling tired.",
+  "exko": "그는 피곤함을 느끼며(feel 느끼다) 잠자리에 들었어요(tire 피곤하게 하다).",
+  "tko": "안도하면서",
+  "bad": "He went to bed, feeling tiring.",
+  "badko": "(피곤함을 느끼는 사람은 그라서 tiring이 아니라 tired예요)",
+  "altw": "-ing",
+  "alt": "The long walk was tiring.",
+  "altko": "긴 산책은 피곤하게 만들었어요(산책이 피곤함을 주는 쪽이라 tiring).",
+  "why": "humans(인간들)는 안도감을 '느끼는' 쪽이에요. 느끼는 쪽은 relieve(안도하게 하다)의 p.p. relieved예요. 안도감을 주는 쪽일 때만 relieving이에요.",
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>감정을 느끼는 쪽은 p.p., 일으키는 쪽은 -ing예요",
+  "d": {
+   "finally": "마침내",
+   "able": "be able to: ~할 수 있다",
+   "lived": "live(살다)의 과거형",
+   "happily": "행복하게",
+   "ever": "ever after: 그 후로 쭉",
+   "feeling": "feel(느끼다)의 -ing형",
+   "relieved": "안도한",
+   "suffering": "고통",
+   "sit": "sit down: 앉다",
+   "years": "해, 년"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Your reaction would be different,",
+    "당신의 반응은 달라질 것이다,"
+   ],
+   [
+    "and this simple example shows",
+    "그리고 이 간단한 예는 보여 준다"
+   ],
+   [
+    "how context truly matters.",
+    "맥락이 얼마나 정말 중요한지를."
+   ]
+  ],
+  "ko": "당신의 반응은 달라질 것이고, 이 간단한 예는 맥락이 얼마나 정말 중요한지를 보여 준다.",
+  "gist": "맥락에 따라 반응이 달라지니 맥락이 정말 중요하다는 얘기예요.",
+  "fm": "주어 + 동사 (-ing는 동사가 아니에요)",
+  "mp": [
+   [
+    "주어",
+    "This picture",
+    "this simple example"
+   ],
+   [
+    "진짜 동사",
+    "shows",
+    "shows"
+   ]
+  ],
+  "ex": "This picture shows a cat.",
+  "exko": "이 그림은 고양이를 보여 줘요(show 보여 주다).",
+  "tko": "이 간단한 예는 보여 준다",
+  "bad": "This picture showing a cat.",
+  "badko": "(showing은 혼자 동사가 될 수 없어요. 현재 동사 shows가 필요해요)",
+  "altw": "-ing",
+  "alt": "The man showing the picture is my uncle.",
+  "altko": "그림을 보여 주고 있는 남자는 우리 삼촌이에요(showing이 man을 꾸미는 말이고 동사는 is).",
+  "why": "and가 앞 문장과 뒤 문장을 이어 주고 있어요. 뒤 문장도 완전한 문장이 되려면 진짜 동사가 있어야 해요. showing(보여 주는)은 동사가 못 되니 shows(show 보여 주다)예요.",
+  "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>문장에 진짜 동사가 있는지 먼저 찾아요. -ing·p.p.·to V는 혼자 동사가 될 수 없어요",
+  "d": {
+   "reaction": "반응",
+   "different": "다른",
+   "simple": "간단한",
+   "example": "예",
+   "shows": "show(보여 주다)의 3인칭 단수형",
+   "context": "맥락",
+   "truly": "정말로",
+   "matters": "matter(중요하다)의 3인칭 단수형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "It's important to get additional facts",
+    "추가적인 사실을 얻는 것은 중요하다"
+   ],
+   [
+    "related to any new information,",
+    "새로운 정보와 관련된,"
+   ],
+   [
+    "since incomplete facts often make people jump to conclusions.",
+    "불완전한 사실은 종종 사람들이 성급히 결론을 내리게 만들기 때문이다."
+   ]
+  ],
+  "ko": "새로운 정보와 관련된 추가적인 사실을 얻는 것이 중요하다, 불완전한 사실은 종종 사람들이 성급하게 결론을 내리게 만들기 때문이다.",
+  "gist": "불완전한 사실만 믿으면 성급히 결론 내리기 쉬우니 사실을 더 모으라는 얘기예요.",
+  "fm": "make + 목적어 + 동사원형",
+  "mp": [
+   [
+    "make + 목적어",
+    "make him",
+    "make people"
+   ],
+   [
+    "동사원형",
+    "laugh",
+    "jump"
+   ]
+  ],
+  "ex": "The joke made him laugh.",
+  "exko": "그 농담이 그를 웃게 만들었어요(joke 농담, laugh 웃다).",
+  "tko": "사람들이 결론으로 뛰어들게 만든다",
+  "bad": "The joke made him to laugh.",
+  "badko": "(make(~하게 만들다) 뒤에는 to를 쓰지 않고 laugh(웃다) 원형을 써요)",
+  "altw": "to V",
+  "alt": "I asked him to laugh.",
+  "altko": "나는 그에게 웃어 달라고 부탁했어요(ask 부탁하다 뒤에는 to laugh).",
+  "why": "make는 '~하게 만들다'예요. make 뒤 '누구'를 말한 다음에는 to 없이 동사 원형을 써요. 그래서 to jump가 아니라 jump(뛰다)예요. jump to conclusions는 '성급히 결론 내리다'라는 말이에요.",
+  "trend": "<b>출제 10위 · 목적격보어/준동사</b><br>31년간 30회 나왔어요.<br>let·make·have 뒤에는 to 없이 동사원형이에요",
+  "d": {
+   "important": "중요한",
+   "get": "얻다",
+   "additional": "추가의",
+   "facts": "사실",
+   "related": "relate(관련시키다)의 p.p. 관련된",
+   "information": "정보",
+   "since": "~때문에",
+   "incomplete": "불완전한",
+   "often": "자주",
+   "make": "~하게 만들다",
+   "jump": "jump to conclusions: 성급히 결론 내리다",
+   "conclusions": "결론"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Doing so lets you judge better and react faster,",
+    "그렇게 하면 당신은 더 잘 판단하고 더 빨리 반응할 수 있다,"
+   ],
+   [
+    "instead of forming a wrong one",
+    "틀린 하나(결론)를 만드는 대신"
+   ],
+   [
+    "without checking twice.",
+    "두 번 확인하지 않고."
+   ]
+  ],
+  "ko": "그렇게 하면 두 번 확인하지 않고 틀린 결론을 만드는 대신, 더 잘 판단하고 더 빠르게 반응할 수 있다.",
+  "gist": "사실을 더 확인하면 잘못된 결론 대신 더 잘 판단하고 빨리 반응할 수 있다는 얘기예요.",
+  "fm": "앞 명사와 같은 종류 하나 → one (it X)",
+  "mp": [
+   [
+    "같은 종류 중 하나",
+    "a new one",
+    "a wrong one"
+   ]
+  ],
+  "ex": "I lost my pen, so I bought a new one.",
+  "exko": "나는 펜을 잃어버려서(lose 잃다) 새 펜 하나를 샀어요(buy 사다).",
+  "tko": "틀린 하나",
+  "bad": "I lost my pen, so I bought a new it.",
+  "badko": "(it은 '그 펜 그 자체'라서 a new와 함께 못 써요. 같은 종류의 다른 하나는 one이에요)",
+  "altw": "it",
+  "alt": "I lost my pen, but I found it.",
+  "altko": "나는 펜을 잃어버렸지만 그것을 찾았어요(잃어버린 바로 그 펜이라서 it).",
+  "why": "앞에 나온 conclusions(결론)와 같은 종류의 '틀린 결론 하나'를 말하고 있어요. 앞의 바로 그 결론이 아니라 같은 종류의 다른 하나이므로 it이 아니라 one이에요.",
+  "trend": "<b>출제 9위 · 대명사의 성·수·격 일치</b><br>31년간 44회 나왔어요.<br>앞의 바로 그것은 it, 같은 종류의 다른 하나는 one이에요",
+  "d": {
+   "doing": "do(하다)의 -ing형",
+   "lets": "let(~하게 해 주다)의 3인칭 단수형",
+   "judge": "판단하다",
+   "react": "반응하다",
+   "faster": "더 빠르게",
+   "instead": "instead of: ~ 대신에",
+   "forming": "form(만들다)의 -ing형",
+   "wrong": "틀린",
+   "without": "~없이",
+   "checking": "check(확인하다)의 -ing형",
+   "twice": "두 번"
+  }
+ },
+ {
+  "dk": [
+   [
+    "When given without any context,",
+    "아무런 맥락 없이 주어지면,"
+   ],
+   [
+    "information can lead to misunderstandings.",
+    "정보는 오해로 이어질 수 있다."
+   ]
+  ],
+  "ko": "아무런 맥락 없이 주어지면, 정보는 오해를 불러올 수 있다.",
+  "gist": "맥락 없이 전해진 정보는 오해를 낳을 수 있다는 얘기예요.",
+  "fm": "접속사 + p.p. (주어가 당하는 쪽)",
+  "mp": [
+   [
+    "접속사 + 분사",
+    "When called",
+    "When given"
+   ]
+  ],
+  "ex": "When called, he came.",
+  "exko": "불리자(call 부르다), 그는 왔어요(come 오다).",
+  "tko": "주어지면",
+  "bad": "When calling, he came.",
+  "badko": "(그는 부름을 받는 쪽이라서 calling이 아니라 called예요)",
+  "altw": "-ing",
+  "alt": "When calling his mom, he smiled.",
+  "altko": "엄마에게 전화할 때, 그는 웃었어요(그가 직접 전화하는 쪽이라 -ing).",
+  "why": "information(정보)은 give(주다)를 하는 쪽이 아니라 누군가에게 '주어지는' 쪽이에요. 그래서 giving이 아니라 given(give의 p.p.)이에요.",
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>주어가 직접 하면 -ing, 당하면 p.p.예요",
+  "d": {
+   "given": "give(주다)의 p.p. 주어진",
+   "without": "~없이",
+   "context": "맥락",
+   "information": "정보",
+   "lead": "lead to: ~로 이어지다",
+   "misunderstandings": "오해"
+  }
+ },
+ {
+  "dk": [
+   [
+    "So, even if the situation in front of you",
+    "그러니 눈앞의 상황이"
+   ],
+   [
+    "tempts you to make a quick decision,",
+    "당신을 빠른 결정을 내리도록 부추기더라도,"
+   ],
+   [
+    "don't forget to wait until you have enough information,",
+    "충분한 정보가 생길 때까지 기다리는 것을 잊지 마라,"
+   ],
+   [
+    "since it is unwise for you to rush into action.",
+    "당신이 성급히 행동에 뛰어드는 것은 현명하지 못하기 때문이다."
+   ]
+  ],
+  "ko": "그러니 눈앞의 상황이 당신을 빠른 결정을 내리도록 유혹하더라도, 충분한 정보가 생길 때까지 기다리는 것을 잊지 마라, 당신이 성급히 행동에 뛰어드는 것은 현명하지 못하기 때문이다.",
+  "gist": "빨리 결정하고 싶어도 정보가 충분해질 때까지 기다리라는 얘기예요.",
+  "fm": "It is 형용사 + for 사람 + to V",
+  "mp": [
+   [
+    "의미상 주어 + to V",
+    "for me to wake",
+    "for you to rush"
+   ]
+  ],
+  "ex": "It is hard for me to wake up.",
+  "exko": "내가 일어나기는 어려워요(hard 어려운, wake up 일어나다).",
+  "tko": "당신이 성급히 행동하는 것",
+  "bad": "It is hard for me waking up.",
+  "badko": "(for me 뒤에는 -ing가 아니라 to wake up(일어나다)이 이어져요)",
+  "altw": "-ing",
+  "alt": "I am good at waking up early.",
+  "altko": "나는 일찍 일어나는 걸 잘해요(전치사 at 뒤에는 -ing).",
+  "why": "unwise(현명하지 못한) 뒤에서 '누가' 하는 일인지는 for you로 말해요. 그다음에는 to + 동사원형이 이어져서 for you to rush(서두르다)가 돼요. rushing은 안 돼요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>It is 형용사 + for 사람 + to V 모양을 기억해요",
+  "d": {
+   "even if": "설령 ~일지라도",
+   "situation": "상황",
+   "front": "in front of: ~ 앞에",
+   "tempts": "tempt(부추기다)의 3인칭 단수형",
+   "quick": "빠른",
+   "decision": "결정",
+   "forget": "잊다",
+   "wait": "기다리다",
+   "until": "~할 때까지",
+   "enough": "충분한",
+   "information": "정보",
+   "unwise": "현명하지 못한",
+   "rush": "rush into: ~에 성급히 뛰어들다",
+   "action": "행동"
+  }
+ }
+]

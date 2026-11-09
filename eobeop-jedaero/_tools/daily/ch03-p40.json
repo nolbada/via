@@ -1,0 +1,412 @@
+[
+ {
+  "dk": [
+   [
+    "People who are unable to sleep well",
+    "잠을 잘 자지 못하는 사람들은"
+   ],
+   [
+    "may be suffering from \"insomnia.\"",
+    "'불면증'을 겪고 있는 것일 수 있다."
+   ],
+   [
+    "This problem can often be observed in older people or in those under a lot of stress.",
+    "이 문제는 노인이나 스트레스를 많이 받는 사람들에게서 자주 관찰될 수 있다."
+   ],
+   [
+    "Doctors say this condition is treated effectively",
+    "의사들은 이 질환이 효과적으로 치료된다고 말한다"
+   ],
+   [
+    "with proper rest and a consistent sleep schedule.",
+    "적절한 휴식과 일관된 수면 습관으로."
+   ]
+  ],
+  "ko": "잠을 잘 자지 못하는 사람들은 '불면증'을 겪고 있는 것일 수 있다. 이 문제는 노인이나 스트레스를 많이 받는 사람들에게서 자주 관찰될 수 있다. 의사들은 이 질환이 적절한 휴식과 일관된 수면 습관으로 효과적으로 치료된다고 말한다.",
+  "gist": "불면증은 푹 쉬고 규칙적으로 자면 잘 낫는다는 얘기예요.",
+  "fm": "받는 쪽 주어 + be p.p.",
+  "mp": [
+   [
+    "주어",
+    "The cold",
+    "this condition"
+   ],
+   [
+    "동사",
+    "is cured",
+    "is treated"
+   ]
+  ],
+  "ex": "The cold is cured with medicine.",
+  "exko": "감기는 약으로 나아요(cold 감기, cure 낫게 하다, medicine 약).",
+  "tko": "이 질환은 치료된다",
+  "bad": "The cold cures with medicine.",
+  "badko": "(cold(감기)는 낫게 하는 쪽이 아니라 약으로 '낫게 되는' 쪽이라서 cures가 아니라 is cured예요)",
+  "altw": "cures",
+  "alt": "Medicine cures a cold.",
+  "altko": "약이 감기를 낫게 해요(medicine 약이 직접 하니까 능동 cures).",
+  "why": "this condition(이 질환)은 스스로 치료하는 게 아니라 휴식과 수면 습관으로 '치료되는' 쪽이에요. 그래서 '치료된다'를 뜻하는 is treated(treat 치료하다의 수동)가 맞아요. 앞 문장의 can be observed(관찰될 수 있다)도 같은 수동 모양이에요.",
+  "d": {
+   "unable": "be unable to: ~할 수 없는",
+   "sleep": "자다, 잠",
+   "suffering": "suffer(겪다)의 -ing형",
+   "insomnia": "불면증",
+   "problem": "문제",
+   "observed": "observe(관찰하다)의 과거분사",
+   "stress": "스트레스",
+   "doctors": "doctor(의사)의 복수형",
+   "condition": "질환, 상태",
+   "treated": "treat(치료하다)의 과거분사",
+   "effectively": "효과적으로",
+   "proper": "적절한",
+   "rest": "휴식",
+   "consistent": "일관된",
+   "schedule": "일정, 습관"
+  },
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>받는 쪽이 주어면 be p.p.로 써요"
+ },
+ {
+  "dk": [
+   [
+    "Paul and Mario have been raised in the same neighborhood for years.",
+    "Paul과 Mario는 몇 년 동안 같은 동네에서 자라 왔다."
+   ],
+   [
+    "Even their families are very close to each other.",
+    "심지어 그들의 가족들도 서로 매우 가깝다."
+   ],
+   [
+    "This is why their friendship remains strong and unbreakable.",
+    "이것이 그들의 우정이 강하고 깨지지 않는 이유이다."
+   ],
+   [
+    "Both boys enjoy being taught important lessons",
+    "두 소년은 중요한 가르침을 받는 것을 즐긴다"
+   ],
+   [
+    "by their grandparents whenever they visit.",
+    "조부모님으로부터 방문할 때마다."
+   ]
+  ],
+  "ko": "Paul과 Mario는 몇 년 동안 같은 동네에서 자라왔다. 심지어 그들의 가족들도 서로 매우 가깝다. 이것이 그들의 우정이 강하고 깨지지 않는 이유이다. 두 소년은 방문할 때마다 조부모님으로부터 중요한 가르침을 받는 것을 즐긴다.",
+  "gist": "두 소년은 같은 동네에서 자라 아주 친하고, 조부모님께 배우는 걸 좋아한다는 얘기예요.",
+  "fm": "enjoy + being p.p. (받는 쪽)",
+  "mp": [
+   [
+    "enjoy 뒤",
+    "enjoy being helped",
+    "enjoy being taught"
+   ],
+   [
+    "하는 사람",
+    "by my dad",
+    "by their grandparents"
+   ]
+  ],
+  "ex": "I enjoy being helped by my dad.",
+  "exko": "나는 아빠에게 도움받는 걸 좋아해요(enjoy 즐기다, help 돕다).",
+  "tko": "조부모님에게 가르침을 받는 것을 즐긴다",
+  "bad": "I enjoy helping by my dad.",
+  "badko": "(내가 도움을 받는 쪽이라서 helping(돕는 것)이 아니라 being helped(도움받는 것)예요)",
+  "altw": "-ing",
+  "alt": "I enjoy helping my dad.",
+  "altko": "나는 아빠를 돕는 걸 좋아해요(내가 돕는 쪽이라서 helping).",
+  "why": "두 소년은 조부모님께 가르침을 '받는' 쪽이에요. enjoy(즐기다) 뒤에는 -ing 모양이 오는데, 받는 쪽이면 being + p.p.가 돼요. 그래서 teaching(가르치는 것)이 아니라 being taught(teach 가르치다의 수동)예요. by their grandparents(조부모님에게)도 힌트예요.",
+  "d": {
+   "raised": "raise(키우다)의 과거분사",
+   "neighborhood": "동네",
+   "years": "year(해)의 복수형",
+   "families": "family(가족)의 복수형",
+   "close": "가까운",
+   "friendship": "우정",
+   "remains": "remain(~한 채로 있다)의 3인칭 단수형",
+   "unbreakable": "깨지지 않는",
+   "enjoy": "즐기다",
+   "taught": "teach(가르치다)의 과거분사",
+   "important": "중요한",
+   "lessons": "lesson(가르침)의 복수형",
+   "grandparents": "조부모님",
+   "whenever": "~할 때마다",
+   "visit": "방문하다"
+  },
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>enjoy 뒤 -ing는 받는 쪽이면 being p.p.로 바꿔요"
+ },
+ {
+  "dk": [
+   [
+    "Most of the students in class are experiencing difficulty",
+    "반의 대부분의 학생들은 어려움을 겪고 있습니다"
+   ],
+   [
+    "because they can't find old newspapers for their reports online.",
+    "보고서를 위한 오래된 신문을 온라인에서 찾을 수 없기 때문에."
+   ],
+   [
+    "It is therefore my humble request",
+    "그러므로 저의 정중한 요청은 이것입니다"
+   ],
+   [
+    "that you allow us to use old newspapers that have been stored in the school library.",
+    "학교 도서관에 보관되어 있는 오래된 신문을 저희가 사용하도록 허락해 주시는 것입니다."
+   ],
+   [
+    "This shortage happened right before our final project deadline.",
+    "이 부족 현상은 저희의 최종 프로젝트 마감 직전에 발생했습니다."
+   ]
+  ],
+  "ko": "반의 대부분의 학생들은 보고서를 위한 오래된 신문을 온라인에서 찾을 수 없기 때문에 어려움을 겪고 있습니다. 그러므로 학교 도서관에 보관되어 있는 오래된 신문을 사용할 수 있도록 허락해 주시기를 정중히 요청드립니다. 이 부족 현상은 저희의 최종 프로젝트 마감 직전에 발생했습니다.",
+  "gist": "자료가 없어서 어려우니 도서관의 옛 신문을 쓰게 해 달라고 정중히 부탁하는 얘기예요.",
+  "fm": "자동사 happen + (be p.p. 쓰지 않기)",
+  "mp": [
+   [
+    "주어",
+    "A strange thing",
+    "This shortage"
+   ],
+   [
+    "동사",
+    "happened",
+    "happened"
+   ]
+  ],
+  "ex": "A strange thing happened.",
+  "exko": "이상한 일이 일어났어요(strange 이상한, thing 일, happen 일어나다).",
+  "tko": "이 부족 현상은 일어났다",
+  "bad": "A strange thing was happened.",
+  "badko": "(happen(일어나다)은 저절로 일어나는 말이라서 was happened처럼 be + p.p.로 쓰지 않아요)",
+  "altw": "be p.p.",
+  "alt": "The cake was eaten by my brother.",
+  "altko": "그 케이크는 내 동생이 먹었어요(eat(먹다)은 '무엇을 먹는' 말이라서 be p.p.가 가능해요).",
+  "why": "happen(일어나다)은 누가 일으키는 게 아니라 저절로 일어나는 말이에요. 그래서 '일어나졌다'처럼 수동으로 쓰지 않고 happened(happen의 과거형)로 써요. 앞 문장의 have been stored(보관되어 있다)는 store(보관하다)를 누군가 하는 거라서 수동이 맞아요.",
+  "d": {
+   "experiencing": "experience(겪다)의 -ing형",
+   "difficulty": "어려움",
+   "newspapers": "newspaper(신문)의 복수형",
+   "reports": "report(보고서)의 복수형",
+   "online": "온라인에서",
+   "therefore": "그러므로",
+   "humble": "정중한, 겸손한",
+   "request": "요청",
+   "allow": "허락하다",
+   "stored": "store(보관하다)의 과거분사",
+   "library": "도서관",
+   "shortage": "부족",
+   "happened": "happen(일어나다)의 과거형",
+   "deadline": "마감 기한"
+  },
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>일어나다·나타나다처럼 스스로 하는 동사는 수동태를 못 써요"
+ },
+ {
+  "dk": [
+   [
+    "Jeremy's car had a minor accident this morning,",
+    "Jeremy의 차는 오늘 아침 가벼운 사고를 당했다"
+   ],
+   [
+    "so it should be repaired.",
+    "그래서 수리되어야 한다."
+   ],
+   [
+    "Fortunately, a mechanic, who has specialized in repairing electric cars for more than a decade,",
+    "다행히도 10년 넘게 전기차 수리를 전문으로 해온 정비공이"
+   ],
+   [
+    "will handle it.",
+    "그것을 처리할 것이다."
+   ],
+   [
+    "Jeremy is relieved, however,",
+    "그러나 Jeremy는 안도했는데,"
+   ],
+   [
+    "because the damage, which looked serious at first, turned out to be minor.",
+    "처음에는 심각해 보였던 손상이 결국 경미한 것으로 밝혀졌기 때문이다."
+   ]
+  ],
+  "ko": "Jeremy의 차는 오늘 아침 가벼운 사고를 당해서 수리되어야 한다. 다행히도 10년 넘게 전기차 수리를 전문으로 해온 정비공이 그것을 처리할 것이다. 그러나 Jeremy는 안도했는데, 처음에는 심각해 보였던 손상이 결국 경미한 것으로 밝혀졌기 때문이다.",
+  "gist": "차 사고가 났지만 전문 정비공이 고쳐 주기로 했고, 손상도 가벼워서 한시름 놓았다는 얘기예요.",
+  "fm": "명사 , which + 동사 (콤마 뒤 what X)",
+  "mp": [
+   [
+    "앞 명사",
+    "a dog",
+    "the damage"
+   ],
+   [
+    "콤마 뒤",
+    "which is small",
+    "which looked serious"
+   ]
+  ],
+  "ex": "I have a dog, which is small.",
+  "exko": "나는 강아지가 있는데, 그 강아지는 작아요(dog 강아지, small 작은).",
+  "tko": "심각해 보였던 손상",
+  "bad": "I have a dog, what is small.",
+  "badko": "(a dog(강아지)를 콤마 뒤에서 설명할 때는 what이 아니라 which예요)",
+  "altw": "what",
+  "alt": "I know what you want.",
+  "altko": "나는 네가 원하는 것을 알아요(앞에 설명할 명사가 없이 '~것'을 말할 때는 what).",
+  "why": "the damage(손상) 뒤에 콤마를 찍고 '그 손상은 처음엔 심각해 보였다'처럼 덧붙여 설명하고 있어요. 앞에 설명할 명사가 있으니 which(그것은)를 써야 해요. what은 '~것'이라는 뜻이라서 앞에 명사가 있으면 쓰지 않아요.",
+  "d": {
+   "minor": "가벼운",
+   "accident": "사고",
+   "repaired": "repair(수리하다)의 과거분사",
+   "fortunately": "다행히도",
+   "mechanic": "정비공",
+   "specialized": "specialize(전문으로 하다)의 과거분사",
+   "electric": "전기의",
+   "decade": "10년",
+   "handle": "처리하다",
+   "relieved": "안도한",
+   "however": "그러나",
+   "damage": "손상",
+   "serious": "심각한",
+   "turned": "turn out: 결국 ~로 밝혀지다"
+  },
+  "trend": "<b>출제 3위 · that[which] vs what</b><br>31년간 71회 나왔어요.<br>앞 명사를 콤마 뒤에서 설명하면 which, 앞 명사 없이 '~것'이면 what이에요"
+ },
+ {
+  "dk": [
+   [
+    "Even though there are errors of fact, rude comments, obvious lies in it,",
+    "사실관계의 오류, 무례한 표현, 명백한 거짓말이 그 안에 있더라도,"
+   ],
+   [
+    "if an email has not been sent, it doesn't matter.",
+    "이메일이 아직 전송되지 않았다면 그것은 중요하지 않다."
+   ],
+   [
+    "Nothing bad can happen if you haven't hit the Send key,",
+    "보내기 버튼을 누르지 않았다면 나쁜 일은 일어날 수 없으며,"
+   ],
+   [
+    "and you still have time to fix it.",
+    "여전히 그것을 고칠 시간이 있다."
+   ],
+   [
+    "This is a rule that is followed by experienced writers throughout their careers.",
+    "이는 경력 있는 작가들이 평생 지키는 규칙이다."
+   ]
+  ],
+  "ko": "사실관계의 오류, 무례한 표현, 명백한 거짓말이 그 안에 있더라도, 이메일이 아직 전송되지 않았다면 그것은 중요하지 않다. 보내기 버튼을 누르지 않았다면 나쁜 일은 일어날 수 없으며, 여전히 그것을 고칠 시간이 있다. 이는 경력 있는 작가들이 평생 지키는 규칙이다.",
+  "gist": "보내기 전의 이메일은 얼마든지 고칠 수 있으니 걱정 말라는, 노련한 작가들의 규칙이라는 얘기예요.",
+  "fm": "a rule + that + be p.p.",
+  "mp": [
+   [
+    "앞 명사",
+    "a song",
+    "a rule"
+   ],
+   [
+    "that 뒤 동사",
+    "that is sung",
+    "that is followed"
+   ],
+   [
+    "하는 쪽",
+    "by kids",
+    "by experienced writers"
+   ]
+  ],
+  "ex": "This is a song that is sung by kids.",
+  "exko": "이것은 아이들이 부르는 노래예요(song 노래, sing 부르다).",
+  "tko": "경력 있는 작가들이 지키는 규칙",
+  "bad": "This is a song that sings by kids.",
+  "badko": "(song(노래)은 부르는 쪽이 아니라 아이들에게 '불리는' 쪽이라서 sings가 아니라 is sung이에요)",
+  "altw": "who",
+  "alt": "He is a boy who sings well.",
+  "altko": "그는 노래를 잘하는 소년이에요(boy 소년이 직접 노래하니까 능동 sings).",
+  "why": "a rule(규칙)은 스스로 따르는 게 아니라 작가들이 '따르는' 대상이에요. 그래서 '지켜진다'는 뜻의 is followed(follow 따르다의 수동)가 맞아요. by experienced writers(경력 있는 작가들에 의해)도 힌트예요.",
+  "d": {
+   "errors": "error(오류)의 복수형",
+   "fact": "사실",
+   "rude": "무례한",
+   "comments": "comment(의견)의 복수형",
+   "obvious": "명백한",
+   "lies": "lie(거짓말)의 복수형",
+   "email": "이메일",
+   "sent": "send(보내다)의 과거분사",
+   "matter": "중요하다",
+   "happen": "일어나다",
+   "hit": "누르다",
+   "fix": "고치다",
+   "followed": "follow(따르다)의 과거분사",
+   "experienced": "경력 있는",
+   "writers": "writer(작가)의 복수형",
+   "throughout": "~ 내내",
+   "careers": "career(직업 경력)의 복수형"
+  },
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>that 앞 명사가 하는 쪽이면 능동, 받는 쪽이면 수동이에요"
+ },
+ {
+  "dk": [
+   [
+    "A high school in Boulder, Colorado,",
+    "콜로라도 볼더에 있는 한 고등학교는"
+   ],
+   [
+    "is currently experimenting with different ways of presenting historical material in class.",
+    "현재 수업에서 역사 자료를 제시하는 여러 방식을 실험하고 있다."
+   ],
+   [
+    "In the storytelling method, students first hear a dramatic story, which is followed by a group discussion.",
+    "스토리텔링 방식에서는 학생들이 먼저 극적인 이야기를 듣고, 이어서 조별 토론이 진행된다."
+   ],
+   [
+    "Then, academic materials are given to the students as reading assignments.",
+    "그런 다음, 학술 자료가 읽기 과제로 학생들에게 주어진다."
+   ],
+   [
+    "Historians think students must have shown great interest in the program's first year,",
+    "역사학자들은 학생들이 그 프로그램 첫해에 틀림없이 큰 관심을 보였을 것이라고 생각한다,"
+   ],
+   [
+    "since enrollment doubled immediately.",
+    "등록자 수가 즉시 두 배가 되었기 때문에."
+   ]
+  ],
+  "ko": "콜로라도 볼더에 있는 한 고등학교는 현재 수업에서 역사 자료를 제시하는 여러 방식을 실험하고 있다. 스토리텔링 방식에서는 학생들이 먼저 극적인 이야기를 듣고, 이어서 조별 토론이 진행된다. 그런 다음, 학술 자료가 읽기 과제로 학생들에게 주어진다. 등록자 수가 즉시 두 배가 되었기 때문에, 역사학자들은 학생들이 그 프로그램 첫해에 틀림없이 큰 관심을 보였을 것이라고 생각한다.",
+  "gist": "한 고등학교가 이야기로 역사를 가르치는 방법을 실험 중인데, 학생들이 큰 관심을 보였을 거라는 얘기예요.",
+  "fm": "must + have p.p. (지난 일 추측)",
+  "mp": [
+   [
+    "추측 말",
+    "He must",
+    "students must"
+   ],
+   [
+    "이미 한 일",
+    "have left",
+    "have shown"
+   ]
+  ],
+  "ex": "He must have left.",
+  "exko": "그는 틀림없이 떠났을 거예요(must have p.p. 틀림없이 ~했을 것이다, leave 떠나다).",
+  "tko": "학생들이 틀림없이 보였을 것이다",
+  "bad": "He must leave yesterday.",
+  "badko": "(yesterday(어제)에 있었던 일을 추측할 때는 must leave가 아니라 must have left예요)",
+  "altw": "must 동사원형",
+  "alt": "You must leave now.",
+  "altko": "너는 지금 떠나야 해요(지금이나 앞으로 해야 하는 일은 must + 동사원형).",
+  "why": "enrollment doubled immediately(등록자 수가 곧바로 두 배가 되었다)는 이미 지나간 일이에요. 지난 일을 '틀림없이 ~했을 것이다'라고 추측할 때는 must have p.p.를 써요. 그래서 must show가 아니라 must have shown(show 보이다의 p.p.)이에요.",
+  "d": {
+   "currently": "현재",
+   "experimenting": "experiment(실험하다)의 -ing형",
+   "presenting": "present(제시하다)의 -ing형",
+   "historical": "역사의",
+   "material": "자료",
+   "method": "방식",
+   "dramatic": "극적인",
+   "discussion": "토론",
+   "academic": "학술의",
+   "assignments": "assignment(과제)의 복수형",
+   "historians": "historian(역사학자)의 복수형",
+   "shown": "show(보여 주다)의 과거분사",
+   "interest": "관심",
+   "enrollment": "등록자 수",
+   "doubled": "double(두 배가 되다)의 과거형",
+   "immediately": "즉시"
+  },
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>지난 일에 대한 강한 추측은 must have p.p.예요"
+ }
+]

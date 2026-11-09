@@ -1,0 +1,403 @@
+[
+ {
+  "dk": [
+   [
+    "Jessica decided to go to a music school in New York,",
+    "Jessica는 뉴욕에 있는 음악 학교에 가기로 결심했다"
+   ],
+   [
+    "and her parents supported her decision fully.",
+    "그리고 그녀의 부모님은 그녀의 결정을 전적으로 지지했다."
+   ]
+  ],
+  "ko": "Jessica는 뉴욕에 있는 음악 학교에 가기로 결심했다, 그리고 그녀의 부모님은 그녀의 결정을 전적으로 지지했다.",
+  "gist": "음악 학교에 가겠다는 딸을 부모님이 전폭 지지했다는 얘기예요.",
+  "fm": "접속사 + 주어 + 동사 (-ing는 동사가 아니에요)",
+  "mp": [
+   [
+    "and 뒤 주어",
+    "her dad",
+    "her parents"
+   ],
+   [
+    "진짜 동사",
+    "washed",
+    "supported"
+   ]
+  ],
+  "ex": "Mina cooked dinner, and her dad washed the dishes.",
+  "exko": "미나는 저녁을 요리했고, 아빠는 설거지를 했어요(cook 요리하다, dish 접시, wash 씻다).",
+  "tko": "그녀의 부모님은 지지했다",
+  "bad": "Mina cooked dinner, and her dad washing the dishes.",
+  "badko": "(washing(씻는 중인)은 동사 모양이 아니라서 washed(씻었다)로 써야 해요)",
+  "altw": "-ing",
+  "alt": "I saw her dad washing the dishes.",
+  "altko": "나는 아빠가 설거지하는 것을 봤어요(washing은 설명해 주는 말이고 진짜 동사는 saw(see, 보다의 과거형)).",
+  "why": "and 뒤 절에는 시제가 있는 진짜 동사가 하나 있어야 해요. 앞이 decided(decide, 결정하다의 과거형)라서 같은 때를 말하는 supported(support, 지지하다의 과거형)가 맞아요. supporting은 혼자서 동사 노릇을 못 해요.",
+  "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>문장마다 진짜 동사가 있는지 먼저 찾아요",
+  "d": {
+   "decided": "decide(결심하다)의 과거형",
+   "music": "음악",
+   "school": "학교",
+   "parents": "부모님",
+   "supported": "support(지지하다)의 과거형",
+   "supporting": "support(지지하다)의 -ing형",
+   "decision": "결정",
+   "fully": "전적으로"
+  }
+ },
+ {
+  "dk": [
+   [
+    "I will finish cleaning the house before the guests arrive for the party,",
+    "나는 손님들이 파티에 도착하기 전에 집 청소를 끝낼 것이다"
+   ],
+   [
+    "though I started the preparations three days ago.",
+    "비록 3일 전에 준비를 시작했지만"
+   ]
+  ],
+  "ko": "나는 손님들이 파티에 도착하기 전에 집 청소를 끝낼 것이다, 비록 나는 3일 전에 준비를 시작했지만.",
+  "gist": "손님 오기 전에 청소를 끝낼 거고 준비는 3일 전에 시작했다는 얘기예요.",
+  "fm": "~ ago 같은 옛날 때 표현 + 과거형",
+  "mp": [
+   [
+    "때 표현",
+    "two days ago",
+    "three days ago"
+   ],
+   [
+    "동사",
+    "I lost",
+    "I started"
+   ]
+  ],
+  "ex": "I lost my pen two days ago.",
+  "exko": "나는 이틀 전에 펜을 잃어버렸어요(lose 잃어버리다, pen 펜).",
+  "tko": "3일 전에 시작했다",
+  "bad": "I have lost my pen two days ago.",
+  "badko": "(two days ago(이틀 전에)는 딱 정해진 옛날이라서 have lost가 아니라 lost예요)",
+  "altw": "have p.p.",
+  "alt": "I have lost my pen, so I can't write.",
+  "altko": "나는 펜을 잃어버려서 쓸 수가 없어요(지금까지 이어지는 결과라서 have lost).",
+  "why": "three days ago(3일 전에)는 '그때'가 딱 정해진 과거예요. 때가 딱 정해져 있으면 have p.p.를 못 쓰고 started(start, 시작하다의 과거형)처럼 과거형으로 써요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>ago, yesterday, last year가 있으면 과거형이에요",
+  "d": {
+   "finish": "끝내다",
+   "cleaning": "clean(청소하다)의 -ing형",
+   "guest": "손님",
+   "guests": "guest(손님)의 복수형",
+   "arrive": "도착하다",
+   "party": "파티",
+   "though": "비록 ~지만",
+   "started": "start(시작하다)의 과거형",
+   "preparation": "준비",
+   "preparations": "preparation(준비)의 복수형",
+   "ago": "~ 전에"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The boy always refuses to eat onions because he doesn't like the taste,",
+    "그 소년은 맛을 좋아하지 않기 때문에 항상 양파 먹기를 거부한다"
+   ],
+   [
+    "so it is pointless",
+    "그래서 소용없는 일이다"
+   ],
+   [
+    "for him to sit at the table refusing every dish.",
+    "그가 식탁에 앉아 모든 음식을 거부하는 것은"
+   ]
+  ],
+  "ko": "그 소년은 맛을 좋아하지 않기 때문에 항상 양파 먹기를 거부한다, 그래서 그가 식탁에 앉아 모든 음식을 거부하는 것은 소용없는 일이다.",
+  "gist": "양파가 싫어 안 먹는 아이가 식탁에서 계속 버티는 건 소용없다는 얘기예요.",
+  "fm": "for + 목적격 + to V (누가 하는지)",
+  "mp": [
+   [
+    "누가",
+    "for her",
+    "for him"
+   ],
+   [
+    "to V",
+    "to wake up",
+    "to sit"
+   ]
+  ],
+  "ex": "It is hard for her to wake up early.",
+  "exko": "그녀가 일찍 일어나는 것은 어려워요(hard 어려운, wake up 일어나다, early 일찍).",
+  "tko": "그가 앉는 것은",
+  "bad": "It is hard for she to wake up early.",
+  "badko": "(for 뒤에는 she가 아니라 her처럼 '~을/를' 모양이 와요)",
+  "altw": "of + 목적격",
+  "alt": "It is kind of her to help me.",
+  "altko": "나를 도와주다니 그녀는 친절해요(사람의 성격을 말할 땐 for 대신 of her).",
+  "why": "to sit(앉다)을 하는 사람을 알려 주려면 to 앞에 'for + 사람'을 붙여요. for 뒤에는 '~을/를' 모양(목적격)이 와요. he는 '~는' 모양이라서 him이 맞아요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>to V 앞에 for + 사람을 쓰면 사람은 him, her, them 같은 모양이에요",
+  "d": {
+   "always": "항상",
+   "refuses": "refuse(거부하다)의 -s형",
+   "onion": "양파",
+   "onions": "onion(양파)의 복수형",
+   "taste": "맛",
+   "pointless": "소용없는",
+   "sit": "앉다",
+   "table": "식탁",
+   "refusing": "refuse(거부하다)의 -ing형",
+   "dish": "음식, 접시"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Based on a 2019 survey,",
+    "2019년 설문조사에 따르면"
+   ],
+   [
+    "children quit playing on basketball teams on average before they turned 12,",
+    "아이들은 평균적으로 12살이 되기 전에 농구팀에서 뛰는 것을 그만두었다"
+   ],
+   [
+    "a rate that is higher",
+    "더 높은 비율인"
+   ],
+   [
+    "than quitting rates for soccer teams.",
+    "축구팀의 탈퇴율보다"
+   ]
+  ],
+  "ko": "2019년 설문조사에 따르면, 아이들은 평균적으로 12살이 되기 전에 농구팀에서 뛰는 것을 그만두었다, 이는 축구팀의 탈퇴율보다 더 높은 비율이다.",
+  "gist": "아이들은 평균 12살 전에 농구를 그만두고 이 비율이 축구보다 높다는 얘기예요.",
+  "fm": "짧은 말 + -er than (more을 안 붙여요)",
+  "mp": [
+   [
+    "비교 모양",
+    "taller than",
+    "higher than"
+   ]
+  ],
+  "ex": "My brother is taller than me.",
+  "exko": "내 형은 나보다 키가 커요(brother 형, tall 키가 큰).",
+  "tko": "축구팀보다 더 높은",
+  "bad": "My brother is more tall than me.",
+  "badko": "(tall은 짧은 단어라서 more를 안 붙이고 taller로 -er을 붙여요)",
+  "altw": "more + 긴 단어",
+  "alt": "This book is more interesting than that one.",
+  "altko": "이 책이 저 책보다 더 재미있어요(interesting은 긴 단어라서 more를 붙여요).",
+  "why": "than(~보다)이 있으니 비교하는 모양이 필요해요. high(높은)처럼 한 마디로 읽히는 짧은 단어는 앞에 more를 붙이지 않고 뒤에 -er을 붙여서 higher로 써요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>짧은 단어는 -er, 긴 단어는 more를 붙여요",
+  "d": {
+   "based on": "~에 따르면, ~에 근거하여",
+   "survey": "설문조사",
+   "quit": "그만두다",
+   "playing": "play(뛰다, 놀다)의 -ing형",
+   "on average": "평균적으로",
+   "turned": "turn(~이 되다)의 과거형",
+   "rate": "비율",
+   "higher": "high(높은)의 비교급",
+   "quitting": "quit(그만두다)의 -ing형",
+   "soccer": "축구",
+   "team": "팀",
+   "teams": "team(팀)의 복수형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "You should stop to get some gasoline before you enter the highway,",
+    "당신은 고속도로에 진입하기 전에 주유를 하기 위해 멈춰야 한다"
+   ],
+   [
+    "since the next station is over fifty miles away.",
+    "다음 주유소가 50마일 넘게 떨어져 있기 때문에"
+   ]
+  ],
+  "ko": "당신은 고속도로에 진입하기 전에 주유를 하기 위해 멈춰야 한다, 다음 주유소가 50마일 넘게 떨어져 있기 때문에.",
+  "gist": "고속도로 타기 전에, 다음 주유소가 멀어서 기름을 넣으라는 얘기예요.",
+  "fm": "since + 주어 + 동사 (being은 동사가 아니에요)",
+  "mp": [
+   [
+    "since 뒤 주어",
+    "since the bus",
+    "since the next station"
+   ],
+   [
+    "진짜 동사",
+    "is",
+    "is"
+   ]
+  ],
+  "ex": "We walk home since the bus is late.",
+  "exko": "버스가 늦어서 우리는 집에 걸어가요(walk 걷다, late 늦은).",
+  "tko": "다음 주유소가 멀리 있기 때문에",
+  "bad": "We walk home since the bus being late.",
+  "badko": "(since 뒤에는 시제가 있는 동사가 필요해요. being(be의 -ing형)은 동사가 아니라서 is예요)",
+  "altw": "being",
+  "alt": "I like being home.",
+  "altko": "나는 집에 있는 게 좋아요(being home은 '집에 있는 것'이라는 이름 역할).",
+  "why": "since(~ 때문에)는 문장을 이끄는 말이라서 뒤에 주어 + 진짜 동사가 있어야 해요. the next station(다음 주유소)에 맞는 진짜 동사는 is(be, 이다)예요. being은 -ing 모양이라 혼자 동사가 못 돼요.",
+  "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>문장마다 진짜 동사가 있는지 먼저 찾아요",
+  "d": {
+   "should": "~해야 한다",
+   "stop": "멈추다",
+   "gasoline": "휘발유, 기름",
+   "enter": "들어가다, 진입하다",
+   "highway": "고속도로",
+   "since": "~ 때문에",
+   "station": "주유소, 역",
+   "over": "~ 넘게",
+   "mile": "마일(거리 단위)",
+   "miles": "mile(마일)의 복수형",
+   "away": "떨어져"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Ms. Morgan chose to start her own business rather than to work for someone else,",
+    "Morgan 씨는 다른 사람 밑에서 일하기보다는 자신의 사업을 시작하기로 선택했다"
+   ],
+   [
+    "although she had very little money saved at the time.",
+    "비록 그 당시 저축한 돈이 거의 없었지만"
+   ]
+  ],
+  "ko": "Morgan 씨는 다른 사람 밑에서 일하기보다는 자신의 사업을 시작하기로 선택했다, 비록 그 당시 그녀는 저축한 돈이 거의 없었지만.",
+  "gist": "돈이 거의 없었어도 직접 사업하는 쪽을 택했다는 얘기예요.",
+  "fm": "although + 주어 + 동사 / despite + 명사",
+  "mp": [
+   [
+    "although 뒤",
+    "although it was cold",
+    "although she had little money"
+   ]
+  ],
+  "ex": "Although it was cold, we went out.",
+  "exko": "추웠지만 우리는 밖에 나갔어요(cold 추운, go out 나가다).",
+  "tko": "비록 그녀는 돈이 거의 없었지만",
+  "bad": "Despite it was cold, we went out.",
+  "badko": "(Despite(~에도 불구하고) 뒤에는 it was cold 같은 문장이 못 오고 the cold 같은 명사가 와요)",
+  "altw": "Despite",
+  "alt": "Despite the cold, we went out.",
+  "altko": "추위에도 불구하고 우리는 나갔어요(Despite 뒤에 명사 the cold).",
+  "why": "although(비록 ~지만) 뒤에는 she had...(그녀는 가졌다)처럼 주어와 동사가 있는 문장이 와요. despite(~에도 불구하고)는 뒤에 명사만 올 수 있어서 문장을 못 이어요. 여기는 문장이 이어지니까 although예요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>뒤에 문장이면 although, 명사면 despite예요",
+  "d": {
+   "chose": "choose(선택하다)의 과거형",
+   "start": "시작하다",
+   "own": "자신의",
+   "business": "사업",
+   "rather than": "~보다는",
+   "work for": "~ 밑에서 일하다",
+   "someone else": "다른 사람",
+   "although": "비록 ~지만",
+   "very little": "거의 없는",
+   "saved": "save(저축하다)의 p.p.형",
+   "at the time": "그 당시에"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The couple is considering renovating their house to create more living space,",
+    "그 부부는 더 넓은 생활 공간을 만들기 위해 집을 개조하는 것을 고려하고 있다"
+   ],
+   [
+    "especially since the old kitchen needs to be updated",
+    "특히 낡은 부엌이 개조되어야 하기 때문에"
+   ],
+   [
+    "before they can sell the property.",
+    "그들이 그 부동산을 팔 수 있기 전에"
+   ]
+  ],
+  "ko": "그 부부는 더 넓은 생활 공간을 만들기 위해 집을 개조하는 것을 고려하고 있다, 특히 그들이 그 부동산을 팔 수 있으려면 낡은 부엌이 개조되어야 하기 때문에.",
+  "gist": "집을 팔기 전에 낡은 부엌을 고치려고 집 개조를 고민한다는 얘기예요.",
+  "fm": "need + to be p.p. (고쳐지는 쪽)",
+  "mp": [
+   [
+    "주어",
+    "The room",
+    "the old kitchen"
+   ],
+   [
+    "to 뒤",
+    "to be cleaned",
+    "to be updated"
+   ]
+  ],
+  "ex": "The room needs to be cleaned.",
+  "exko": "그 방은 청소되어야 해요(room 방, clean 청소하다).",
+  "tko": "개조되어야 한다",
+  "bad": "The room needs to clean.",
+  "badko": "(방은 스스로 청소하지 못하고 청소를 받는 쪽이라서 to clean이 아니라 to be cleaned예요)",
+  "altw": "to V",
+  "alt": "I need to clean the room.",
+  "altko": "나는 방을 청소해야 해요(내가 직접 하는 쪽이라서 to clean).",
+  "why": "the old kitchen(낡은 부엌)은 스스로 update(새롭게 고치다)하지 못하고 사람이 고쳐 주는 걸 받는 쪽이에요. 받는 쪽은 'be + p.p.' 모양이라 to be updated예요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>하는 쪽이면 to V, 받는 쪽이면 to be p.p.예요",
+  "d": {
+   "couple": "부부",
+   "considering": "consider(고려하다)의 -ing형",
+   "renovating": "renovate(개조하다)의 -ing형",
+   "create": "만들다",
+   "living space": "생활 공간",
+   "especially": "특히",
+   "kitchen": "부엌",
+   "update": "새롭게 고치다",
+   "sell": "팔다",
+   "property": "부동산"
+  }
+ },
+ {
+  "dk": [
+   [
+    "We don't mind waiting a few more minutes for Steve to arrive,",
+    "우리는 Steve가 도착하기를 몇 분 더 기다리는 것을 개의치 않는다"
+   ],
+   [
+    "and Steve texted to say",
+    "그리고 Steve는 문자를 보내 말했다"
+   ],
+   [
+    "he was blaming himself for being late again.",
+    "그가 다시 늦은 것에 대해 스스로를 탓하고 있다고"
+   ]
+  ],
+  "ko": "우리는 Steve가 도착하기를 몇 분 더 기다리는 것을 개의치 않는다, 그리고 Steve는 다시 늦은 것에 대해 스스로를 탓하고 있다고 문자를 보냈다.",
+  "gist": "몇 분 더 기다려도 괜찮고 Steve는 늦어서 미안해한다는 얘기예요.",
+  "fm": "주어 = 목적어 → 재귀대명사 (-self)",
+  "mp": [
+   [
+    "재귀대명사",
+    "looked at himself",
+    "blaming himself"
+   ]
+  ],
+  "ex": "He looked at himself in the mirror.",
+  "exko": "그는 거울 속 자기 자신을 봤어요(mirror 거울, look at ~을 보다).",
+  "tko": "스스로를 탓하고 있다",
+  "bad": "He looked at hisself in the mirror.",
+  "badko": "(himself는 him + self라서 hisself라는 말은 없어요)",
+  "altw": "him",
+  "alt": "I saw him in the mirror.",
+  "altko": "나는 거울에서 그를 봤어요(내가 본 사람이 나 말고 다른 사람이라서 him).",
+  "why": "Steve가 탓하는 대상은 Steve 자신이에요. 주어와 같은 사람일 땐 himself(그 자신)를 써요. 올바른 모양은 him + self라서 hisself는 없는 말이에요. blame(탓하다)을 하는 사람과 받는 사람이 같다고 생각하면 돼요.",
+  "trend": "<b>출제 9위 · 대명사의 성·수·격 일치</b><br>31년간 44회 나왔어요.<br>주어와 같은 사람이면 -self, 다른 사람이면 him, her",
+  "d": {
+   "mind": "꺼리다, 개의하다",
+   "waiting": "wait(기다리다)의 -ing형",
+   "a few": "몇몇의",
+   "minutes": "minute(분)의 복수형",
+   "arrive": "도착하다",
+   "texted": "text(문자를 보내다)의 과거형",
+   "say": "말하다",
+   "blaming": "blame(탓하다)의 -ing형",
+   "himself": "그 자신",
+   "late": "늦은",
+   "again": "다시"
+  }
+ }
+]

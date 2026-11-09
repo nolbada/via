@@ -1,0 +1,550 @@
+[
+ {
+  "dk": [
+   [
+    "The meeting will occur",
+    "회의는 열릴 것이다"
+   ],
+   [
+    "in the conference room on the second floor,",
+    "2층 회의실에서"
+   ],
+   [
+    "and the agenda will be distributed",
+    "그리고 안건은 배포될 것이다"
+   ],
+   [
+    "among attendees an hour earlier.",
+    "참석자들에게 한 시간 일찍."
+   ]
+  ],
+  "ko": "회의는 2층 회의실에서 열릴 것이고, 안건은 참석자들에게 한 시간 일찍 배포될 것이다.",
+  "gist": "회의가 열리기 한 시간 전에 안건을 나눠 준다는 얘기예요.",
+  "fm": "받는 쪽 주어 + will be p.p.",
+  "mp": [
+   [
+    "받는 대상",
+    "The letter",
+    "the agenda"
+   ],
+   [
+    "will be p.p.",
+    "will be sent",
+    "will be distributed"
+   ]
+  ],
+  "ex": "The letter will be sent today.",
+  "exko": "그 편지는 오늘 보내질 거예요(letter 편지, send 보내다 → sent).",
+  "tko": "안건은 배포될 것이다",
+  "bad": "The letter will send today.",
+  "badko": "(편지는 보내지는 쪽이라서 will send가 아니라 will be sent예요)",
+  "altw": "능동",
+  "alt": "I will send the letter today.",
+  "altko": "나는 오늘 그 편지를 보낼 거예요(내가 하는 쪽이라서 능동 will send).",
+  "why": "the agenda(안건)는 사람들이 '나눠 주는' 쪽이 아니라 '나눠지는' 쪽이에요. 받는 쪽 주어에는 be + p.p.를 써서 will be distributed(배포될 것이다; distribute 배포하다)로 해요. 앞의 will occur(열리다)는 회의가 저절로 열리는 거라 능동이 맞아요.",
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>하는 쪽이면 능동, 받는 쪽이면 be + p.p.예요",
+  "d": {
+   "meeting": "회의",
+   "occur": "일어나다, 열리다",
+   "conference": "conference room: 회의실",
+   "floor": "층",
+   "agenda": "안건, 회의 순서",
+   "distributed": "distribute(나눠 주다)의 과거분사형",
+   "distribute": "나눠 주다, 배포하다",
+   "among": "~ 사이에서, ~에게",
+   "attendees": "attendee(참석자)의 복수형",
+   "earlier": "더 일찍"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The flowers in the garden are watered",
+    "정원의 꽃들은 물을 받는다"
+   ],
+   [
+    "every morning at around 7 a.m.,",
+    "매일 아침 7시경에"
+   ],
+   [
+    "although the weather is often unpredictable",
+    "비록 날씨는 종종 예측하기 어렵지만"
+   ],
+   [
+    "in early spring.",
+    "이른 봄에는."
+   ]
+  ],
+  "ko": "정원의 꽃들은 매일 아침 7시경에 물을 받는데, 비록 이른 봄 날씨는 종종 예측하기 어렵지만 그러하다.",
+  "gist": "꽃에는 아침마다 물을 주는데 봄 날씨는 변덕스럽다는 얘기예요.",
+  "fm": "although + 문장 / despite + 명사",
+  "mp": [
+   [
+    "접속사",
+    "although",
+    "although"
+   ],
+   [
+    "뒤에 오는 말",
+    "it rained",
+    "the weather is often unpredictable"
+   ]
+  ],
+  "ex": "We played although it rained.",
+  "exko": "비가 왔지만 우리는 놀았어요(play 놀다, rain 비가 오다).",
+  "tko": "날씨는 종종 예측하기 어렵지만",
+  "bad": "We played despite it rained.",
+  "badko": "(despite(~에도 불구하고) 뒤에는 it rained 같은 문장이 올 수 없어서 although가 필요해요)",
+  "altw": "despite",
+  "alt": "We played despite the rain.",
+  "altko": "비에도 불구하고 우리는 놀았어요(despite 뒤에는 the rain처럼 명사만 와요).",
+  "why": "despite(~에도 불구하고)는 뒤에 명사만 오는 말이에요. 그런데 뒤에 the weather is ... unpredictable(날씨는 ~예측하기 어렵다)처럼 주어와 동사가 있는 문장이 와요. 문장을 이끄는 연결어 although(비록 ~지만)가 필요해요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>뒤에 문장(주어 + 동사)이 오면 although, 명사만 오면 despite예요",
+  "d": {
+   "flowers": "flower(꽃)의 복수형",
+   "garden": "정원",
+   "watered": "water(물을 주다)의 과거분사형",
+   "around": "~경에, 대략",
+   "weather": "날씨",
+   "often": "자주, 종종",
+   "unpredictable": "예측하기 어려운",
+   "early": "이른",
+   "spring": "봄"
+  }
+ },
+ {
+  "dk": [
+   [
+    "When learning how to speak,",
+    "말하는 법을 배울 때"
+   ],
+   [
+    "babies appear to pay attention to language patterns,",
+    "아기들은 언어 패턴에 주의를 기울이는 것처럼 보이고"
+   ],
+   [
+    "and this skill occurred well before their first birthday.",
+    "이 능력은 첫 생일보다 훨씬 전에 생겨났다."
+   ]
+  ],
+  "ko": "말하는 법을 배울 때, 아기들은 언어 패턴에 주의를 기울이는 것처럼 보이는데, 이 능력은 첫 생일보다 훨씬 전에 생겨났다.",
+  "gist": "아기들은 돌이 되기 훨씬 전에 말의 규칙을 알아채기 시작한다는 얘기예요.",
+  "fm": "occur · happen + be p.p. (X)",
+  "mp": [
+   [
+    "주어",
+    "The accident",
+    "this skill"
+   ],
+   [
+    "동사",
+    "occurred",
+    "occurred"
+   ]
+  ],
+  "ex": "The accident occurred last night.",
+  "exko": "그 사고는 어젯밤에 일어났어요(accident 사고, occur 일어나다).",
+  "tko": "이 능력은 생겨났다",
+  "bad": "The accident was occurred last night.",
+  "badko": "(occur(일어나다)는 '~을'에 해당하는 말이 없는 동사라서 was occurred처럼 쓰지 않아요)",
+  "altw": "was + p.p.",
+  "alt": "The window was broken last night.",
+  "altko": "그 창문은 어젯밤에 깨졌어요(break 깨다 → broken, 누가 깬 거라서 수동태).",
+  "why": "occur(생기다)는 저절로 생기는 일이라서 '~을/를'에 해당하는 말이 없어요. 이런 동사는 수동태가 안 돼요. 지난 일이니 과거형 occurred만 써요. well before(훨씬 전에)도 과거라는 힌트예요.",
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>수동태로 쓸 수 없는 동사(occur, happen 등)는 그냥 능동으로 써요",
+  "d": {
+   "learning": "learn(배우다)의 -ing형",
+   "speak": "말하다",
+   "babies": "baby(아기)의 복수형",
+   "appear": "~처럼 보이다",
+   "attention": "pay attention to: ~에 주의를 기울이다",
+   "language": "언어",
+   "patterns": "pattern(패턴, 규칙)의 복수형",
+   "skill": "능력, 기술",
+   "occurred": "occur(생기다, 일어나다)의 과거형",
+   "birthday": "생일"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The secret of this cookie flavor passed to Jenny",
+    "이 쿠키 맛의 비밀은 Jenny에게 전해졌다"
+   ],
+   [
+    "from her grandmother,",
+    "그녀의 할머니로부터"
+   ],
+   [
+    "who always seemed proud",
+    "그분은 항상 자랑스러워하는 것처럼 보였다"
+   ],
+   [
+    "about her family recipes.",
+    "자신의 가족 레시피에 대해."
+   ]
+  ],
+  "ko": "이 쿠키 맛의 비밀은 할머니로부터 Jenny에게 전해졌는데, 할머니는 항상 자신의 가족 레시피에 대해 자랑스러워하는 것처럼 보였다.",
+  "gist": "쿠키 맛의 비법이 할머니에게서 Jenny에게 이어졌다는 얘기예요.",
+  "fm": "seem + 형용사 (부사 X)",
+  "mp": [
+   [
+    "동사",
+    "looked",
+    "seemed"
+   ],
+   [
+    "뒤에 오는 말",
+    "happy",
+    "proud"
+   ]
+  ],
+  "ex": "She looked happy.",
+  "exko": "그녀는 행복해 보였어요(look ~해 보이다, happy 행복한).",
+  "tko": "자랑스러워하는 것처럼 보였다",
+  "bad": "She looked happily.",
+  "badko": "(she의 모습을 말하는 자리라서 부사 happily가 아니라 형용사 happy예요)",
+  "altw": "happily",
+  "alt": "She sang happily.",
+  "altko": "그녀는 행복하게 노래했어요(sing 노래하다는 '어떻게'를 말해야 해서 부사 happily).",
+  "why": "seemed(~처럼 보였다; seem)는 '~하게 보이다'라는 뜻이라서 뒤에 그 사람의 모습을 말하는 형용사가 와요. 주어 who(= 할머니)의 모습을 말하니 부사 proudly가 아니라 형용사 proud(자랑스러운)예요.",
+  "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>seem·look 뒤에는 부사가 아니라 형용사가 와요",
+  "d": {
+   "secret": "비밀",
+   "cookie": "쿠키",
+   "flavor": "맛",
+   "passed": "pass(전해지다)의 과거형",
+   "grandmother": "할머니",
+   "always": "항상",
+   "seemed": "seem(~처럼 보이다)의 과거형",
+   "proud": "자랑스러운",
+   "proudly": "자랑스럽게",
+   "family": "가족",
+   "recipes": "recipe(조리법, 레시피)의 복수형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The right to freedom belongs to every man, woman, and child in the world,",
+    "자유에 대한 권리는 세상의 모든 남성, 여성, 아이에게 속한다"
+   ],
+   [
+    "a principle that is violated",
+    "위반되는 원칙으로"
+   ],
+   [
+    "by very few modern governments today.",
+    "오늘날 극소수의 현대 정부에 의해."
+   ]
+  ],
+  "ko": "자유에 대한 권리는 세상의 모든 남성, 여성, 아이에게 속하는데, 이는 오늘날 극소수의 현대 정부만이 위반하는 원칙이다.",
+  "gist": "자유는 모든 사람의 권리이고 이를 어기는 정부는 드물다는 얘기예요.",
+  "fm": "받는 쪽 + be p.p. (by ~)",
+  "mp": [
+   [
+    "앞 명사",
+    "a rule",
+    "a principle"
+   ],
+   [
+    "that 뒤 수동",
+    "that is kept",
+    "that is violated"
+   ]
+  ],
+  "ex": "This is a rule that is kept by everyone.",
+  "exko": "이건 모두가 지키는 규칙이에요(rule 규칙, keep 지키다 → kept).",
+  "tko": "위반되는 원칙",
+  "bad": "This is a rule that keeps by everyone.",
+  "badko": "(규칙은 지켜지는 쪽이라서 keeps가 아니라 is kept예요)",
+  "altw": "능동",
+  "alt": "This is a rule that helps everyone.",
+  "altko": "이건 모두를 돕는 규칙이에요(규칙이 돕는 쪽이라서 능동 helps).",
+  "why": "a principle(원칙)은 정부가 '위반하는' 쪽이 아니라 '위반되는' 쪽이에요. by very few modern governments(극소수의 현대 정부에 의해)도 수동태라는 힌트예요. 그래서 violates(위반하다)가 아니라 is violated예요.",
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>하는 쪽이면 능동, 받는 쪽이면 be + p.p.예요",
+  "d": {
+   "right": "권리",
+   "freedom": "자유",
+   "belongs": "belong to: ~에 속하다",
+   "principle": "원칙",
+   "violates": "violate(위반하다)의 3인칭 단수형",
+   "violated": "violate(위반하다)의 과거분사형",
+   "modern": "현대의",
+   "governments": "government(정부)의 복수형",
+   "today": "오늘날"
+  }
+ },
+ {
+  "dk": [
+   [
+    "I visited the museum,",
+    "나는 박물관을 방문했다"
+   ],
+   [
+    "which was filled with interesting objects from ancient Egypt,",
+    "그곳은 고대 이집트의 흥미로운 유물들로 가득했다"
+   ],
+   [
+    "and so impressive was the collection",
+    "그리고 그 소장품이 너무 인상적이어서"
+   ],
+   [
+    "that I stayed for hours.",
+    "나는 몇 시간 동안 머물렀다."
+   ]
+  ],
+  "ko": "나는 고대 이집트의 흥미로운 유물들로 가득했던 박물관을 방문했는데, 그 소장품이 너무 인상적이어서 나는 몇 시간 동안 머물렀다.",
+  "gist": "박물관 유물이 너무 멋져서 몇 시간이나 구경했다는 얘기예요.",
+  "fm": "so + 형용사 + be동사 + 주어 (도치)",
+  "mp": [
+   [
+    "앞으로 나온 말",
+    "So happy",
+    "so impressive"
+   ],
+   [
+    "be동사 + 주어",
+    "was she",
+    "was the collection"
+   ]
+  ],
+  "ex": "So happy was she that she sang.",
+  "exko": "그녀는 너무 행복해서 노래했어요(happy 행복한, sing 노래하다 → sang).",
+  "tko": "소장품이 너무 인상적이어서",
+  "bad": "So happy she was that she sang.",
+  "badko": "(So happy가 맨 앞에 나오면 she was가 아니라 was she로 순서를 뒤집어요)",
+  "altw": "평소 순서",
+  "alt": "She was so happy that she sang.",
+  "altko": "그녀는 너무 행복해서 노래했어요(so happy가 뒤에 있으면 she was 그대로).",
+  "why": "so impressive(너무 인상적인)를 강조하려고 문장 앞에 보내면, 뒤는 was the collection(be동사 + 주어)으로 순서가 뒤집혀요. 평소 순서는 the collection was so impressive that ~(소장품이 너무 인상적이어서 ~)예요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>so + 형용사가 문장 맨 앞에 오면 be동사 + 주어 순서로 바뀌어요",
+  "d": {
+   "museum": "박물관",
+   "filled": "fill(가득 채우다)의 과거분사형",
+   "interesting": "흥미로운",
+   "objects": "object(물건, 유물)의 복수형",
+   "ancient": "고대의",
+   "egypt": "이집트",
+   "impressive": "인상적인",
+   "collection": "소장품",
+   "stayed": "stay(머무르다)의 과거형",
+   "hours": "hour(시간)의 복수형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "A smartphone is a device",
+    "스마트폰은 기기이다"
+   ],
+   [
+    "that allows you to make calls and access the Internet,",
+    "전화를 걸고 인터넷에 접속할 수 있게 해 주는"
+   ],
+   [
+    "and every new model is tested rigorously before release.",
+    "그리고 모든 새 모델은 출시 전에 엄격하게 테스트된다."
+   ]
+  ],
+  "ko": "스마트폰은 전화를 걸고 인터넷에 접속할 수 있게 해주는 기기이며, 새로운 모델은 출시 전에 엄격하게 테스트된다.",
+  "gist": "새 스마트폰은 나오기 전에 꼼꼼하게 검사한다는 얘기예요.",
+  "fm": "받는 쪽 주어 + be p.p.",
+  "mp": [
+   [
+    "받는 대상",
+    "Every car",
+    "every new model"
+   ],
+   [
+    "be + p.p.",
+    "is washed",
+    "is tested"
+   ]
+  ],
+  "ex": "Every car is washed on Sunday.",
+  "exko": "모든 차는 일요일에 세차돼요(every 모든, car 차, wash 씻다).",
+  "tko": "모든 새 모델은 테스트된다",
+  "bad": "Every car washes on Sunday.",
+  "badko": "(차는 씻기는 쪽이라서 washes가 아니라 is washed예요)",
+  "altw": "능동",
+  "alt": "Dad washes every car.",
+  "altko": "아빠가 모든 차를 씻어요(아빠가 하는 쪽이라서 능동 washes).",
+  "why": "every new model(모든 새 모델)은 사람들이 '테스트하는' 쪽이 아니라 '테스트되는' 쪽이에요. 받는 쪽 주어에는 be + p.p.를 써서 is tested(테스트된다; test 시험하다)로 해요.",
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>하는 쪽이면 능동, 받는 쪽이면 be + p.p.예요",
+  "d": {
+   "smartphone": "스마트폰",
+   "device": "기기",
+   "allows": "allow(허락하다, 가능하게 하다)의 3인칭 단수형",
+   "calls": "call(전화)의 복수형",
+   "access": "접속하다",
+   "internet": "인터넷",
+   "every": "모든",
+   "model": "모델, 제품",
+   "tested": "test(시험하다)의 과거분사형",
+   "rigorously": "엄격하게",
+   "release": "출시"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The umbrella has a button,",
+    "그 우산에는 버튼이 있다"
+   ],
+   [
+    "which can be pressed to automatically open or close it,",
+    "그 버튼은 눌러서 우산을 자동으로 열거나 닫을 수 있고"
+   ],
+   [
+    "and most users find this feature extremely convenient.",
+    "대부분의 사용자들은 이 기능이 매우 편리하다고 생각한다."
+   ]
+  ],
+  "ko": "그 우산에는 버튼이 있어서 누르면 자동으로 열리거나 닫히는데, 대부분의 사용자들은 이 기능이 매우 편리하다고 생각한다.",
+  "gist": "버튼만 누르면 우산이 저절로 열리고 닫혀서 대부분 편하게 여긴다는 얘기예요.",
+  "fm": "주어 + 동사 (-ing는 동사가 아니에요)",
+  "mp": [
+   [
+    "주어",
+    "Most kids",
+    "most users"
+   ],
+   [
+    "동사",
+    "like",
+    "find"
+   ]
+  ],
+  "ex": "Most kids like this toy.",
+  "exko": "대부분의 아이들은 이 장난감을 좋아해요(most 대부분의, kid 아이, like 좋아하다, toy 장난감).",
+  "tko": "대부분의 사용자들은 생각한다",
+  "bad": "Most kids liking this toy.",
+  "badko": "(liking(좋아하는)만 있으면 문장의 진짜 동사가 없어요)",
+  "altw": "-ing",
+  "alt": "The kids liking this toy are happy.",
+  "altko": "이 장난감을 좋아하는 아이들은 행복해요(liking이 kids를 꾸미고, 진짜 동사는 are).",
+  "why": "and 뒤에도 most users(대부분의 사용자들)의 진짜 동사가 꼭 있어야 해요. finding(찾는)은 동사가 못 돼요. 여러 명이 지금 하는 생각이라서 현재형 find(여기서는 '~라고 생각하다')가 맞아요.",
+  "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>-ing만 있으면 진짜 동사가 빠졌는지 확인해요",
+  "d": {
+   "umbrella": "우산",
+   "button": "버튼",
+   "pressed": "press(누르다)의 과거분사형",
+   "automatically": "자동으로",
+   "users": "user(사용자)의 복수형",
+   "find": "여기서는 ~라고 생각하다",
+   "finding": "find(생각하다)의 -ing형",
+   "feature": "기능, 특징",
+   "extremely": "매우",
+   "convenient": "편리한"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The children who were playing baseball in the park",
+    "공원에서 야구를 하고 있던 아이들은"
+   ],
+   [
+    "invited Tim to join their game,",
+    "Tim에게 자신들의 경기에 함께하자고 초대했다"
+   ],
+   [
+    "and the tournament arose from a friendly neighborhood rivalry.",
+    "그리고 그 대회는 동네의 친선 경쟁에서 비롯되었다."
+   ]
+  ],
+  "ko": "공원에서 야구를 하고 있던 아이들은 Tim에게 자신들의 경기에 함께하자고 초대했는데, 그 대회는 동네의 친선 경쟁에서 비롯되었다.",
+  "gist": "공원에서 놀던 아이들이 Tim을 불렀고, 대회는 동네의 친선 경쟁에서 시작됐다는 얘기예요.",
+  "fm": "arise · occur + be p.p. (X)",
+  "mp": [
+   [
+    "주어",
+    "A problem",
+    "the tournament"
+   ],
+   [
+    "동사",
+    "arose",
+    "arose"
+   ]
+  ],
+  "ex": "A problem arose yesterday.",
+  "exko": "어제 문제가 생겼어요(problem 문제, arise 생기다 → arose, yesterday 어제).",
+  "tko": "대회는 비롯되었다",
+  "bad": "A problem was arisen yesterday.",
+  "badko": "(arise(생기다)는 '~을'에 해당하는 말이 없는 동사라서 was arisen처럼 쓰지 않아요)",
+  "altw": "was + p.p.",
+  "alt": "A problem was solved yesterday.",
+  "altko": "문제가 어제 해결됐어요(solve 해결하다, 누가 해결한 거라서 수동태).",
+  "why": "arise(생겨나다, 비롯되다)는 저절로 생기는 일이라서 '~을/를'에 해당하는 말이 없어요. 이런 동사는 수동태가 안 돼요. 지난 일이니 arise의 과거형 arose(생겼다)를 써요.",
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>수동태로 쓸 수 없는 동사(arise, occur 등)는 그냥 능동으로 써요",
+  "d": {
+   "children": "child(아이)의 복수형",
+   "playing": "play(하다, 놀다)의 -ing형",
+   "baseball": "야구",
+   "invited": "invite(초대하다)의 과거형",
+   "join": "함께하다, 참가하다",
+   "game": "경기, 게임",
+   "tournament": "대회",
+   "arose": "arise(생기다, 비롯되다)의 과거형",
+   "friendly": "친선의, 친근한",
+   "neighborhood": "동네",
+   "rivalry": "경쟁"
+  }
+ },
+ {
+  "dk": [
+   [
+    "An Italian scientist found a star",
+    "한 이탈리아 과학자가 별을 발견했다"
+   ],
+   [
+    "that has never been seen by anyone before,",
+    "지금까지 아무도 본 적 없는"
+   ],
+   [
+    "in a galaxy which had barely been explored until recently.",
+    "최근까지 거의 탐사되지 않았던 은하에서."
+   ]
+  ],
+  "ko": "한 이탈리아 과학자는 지금까지 아무도 본 적 없는 별을 발견했는데, 그것은 최근까지 거의 탐사되지 않았던 은하에 있었다.",
+  "gist": "이탈리아 과학자가 아직 아무도 탐사하지 않은 은하에서 새 별을 찾았다는 얘기예요.",
+  "fm": "명사 + which + 동사 (it X)",
+  "mp": [
+   [
+    "앞 명사",
+    "a house",
+    "a galaxy"
+   ],
+   [
+    "이어 주는 말",
+    "which",
+    "which"
+   ]
+  ],
+  "ex": "I live in a house which is old.",
+  "exko": "나는 낡은 집에 살아요(live 살다, house 집, old 낡은).",
+  "tko": "탐사되지 않았던 은하",
+  "bad": "I live in a house it is old.",
+  "badko": "(it은 두 문장을 이어 주지 못해요. 명사 house(집)를 꾸미며 이어 줄 which가 필요해요)",
+  "altw": "it",
+  "alt": "I live in a house. It is old.",
+  "altko": "나는 집에 살아요. 그 집은 낡았어요(문장을 따로 쓰면 it을 쓸 수 있어요).",
+  "why": "in a galaxy ~ recently는 galaxy(은하)를 꾸미는 말인데, it은 문장을 서로 이어 주는 힘이 없어요. 앞 명사를 꾸미면서 문장을 이어 주는 which(~한)가 있어야 해요. 뒤의 had been explored(탐사되었다)는 은하가 탐사를 '받는' 쪽이라서 수동이에요.",
+  "trend": "<b>출제 2위 · 관계대명사와 관계부사</b><br>31년간 99회 나왔어요.<br>명사를 꾸미며 문장을 이을 때는 who·which·that이 필요해요",
+  "d": {
+   "italian": "이탈리아의",
+   "scientist": "과학자",
+   "found": "find(발견하다)의 과거형",
+   "star": "별",
+   "seen": "see(보다)의 과거분사형",
+   "anyone": "누구든",
+   "galaxy": "은하",
+   "barely": "거의 ~ 않게",
+   "explored": "explore(탐사하다)의 과거분사형",
+   "until": "~까지",
+   "recently": "최근에"
+  }
+ }
+]
