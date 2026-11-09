@@ -127,13 +127,14 @@
   "d": {
    "university": "대학",
    "earn": "얻다, 받다",
-   "degree": "학위",
    "art": "미술",
    "later": "나중에",
    "became": "become(되다)의 과거형",
    "becoming": "become(되다)의 -ing형",
    "important": "중요한",
-   "artist": "예술가"
+   "artist": "예술가",
+   "degrees": "degree(학위)의 복수형",
+   "first": "최초의, 첫 번째의"
   }
  },
  {
@@ -165,7 +166,7 @@
   "exko": "그가 말한 것은 사실이에요(true 사실인).",
   "tko": "누가 회사를 이끌 것인가가",
   "bad": "What he said are true.",
-  "badko": "(What he said는 한 덩어리 주어라서 단수 is를 써요, 안쪽 말에 끌려 are로 쓰면 안 돼요)",
+  "badko": "(What he said는 한 덩어리 주어라서 are가 아니라 단수 is를 써요)",
   "altw": "복수 주어",
   "alt": "His words are true.",
   "altko": "그의 말들은 사실이에요(word 말).",
@@ -202,17 +203,17 @@
    [
     "and 앞",
     "listen",
-    "understand them"
+    "understand"
    ],
    [
     "and 뒤",
     "help",
-    "share their joys"
+    "share"
    ]
   ],
   "ex": "I have friends who listen and help.",
   "exko": "나에게는 잘 들어주고 도와주는 친구들이 있어요(listen 듣다, help 돕다).",
-  "tko": "자신의 기쁨과 슬픔을 함께 나누는",
+  "tko": "이해해 주고 나누는",
   "bad": "I have friends who listen and helping.",
   "badko": "(who 뒤에서 listen과 and로 이어졌으니 같은 모양 help여야 해요, helping은 안 맞아요)",
   "altw": "-ing",
@@ -268,12 +269,12 @@
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>There 뒤 동사는 뒤에 나오는 진짜 주어에 맞춰요",
   "d": {
    "exist": "존재하다",
-   "solution": "해결책",
-   "problem": "문제",
    "open": "열린",
    "mind": "마음",
-   "them": "그것들",
-   "see": "보다"
+   "them": "그것들(해결책들)",
+   "see": "보다",
+   "solutions": "solution(해결책)의 복수형",
+   "problems": "problem(문제)의 복수형"
   }
  },
  {
@@ -364,7 +365,6 @@
   "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>동사 뒤에 또 동사가 올 때는 -ing나 to V로 바꿔요",
   "d": {
    "running": "run(달리다)의 -ing형, 달리기",
-   "marathon": "마라톤",
    "remains": "remain(계속 ~이다)의 -s형",
    "popular": "인기 있는",
    "form": "형태",
@@ -373,7 +373,8 @@
    "achievement": "성취",
    "requires": "require(필요로 하다)의 -s형",
    "training": "train(훈련하다)의 -ing형, 훈련",
-   "regularly": "규칙적으로"
+   "regularly": "규칙적으로",
+   "marathons": "marathon(마라톤)의 복수형"
   }
  },
  {
@@ -413,13 +414,13 @@
   "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>동사 뒤에 또 동사가 올 때는 -ing나 to V로 바꿔요",
   "d": {
    "recent": "최근의",
-   "survey": "조사",
    "half": "절반",
    "prefer": "더 좋아하다",
    "studying": "study(공부하다)의 -ing형, 공부하는 것",
    "groups": "group(그룹)의 복수형",
    "rather": "rather than: ~보다는",
-   "alone": "혼자"
+   "alone": "혼자",
+   "surveys": "survey(조사)의 복수형"
   }
  },
  {
@@ -456,7 +457,7 @@
   "exko": "그녀가 부르는 노래는 나를 행복하게 해요(sing 노래하다, make 만들다).",
   "tko": "그들의 기분에 영향을 준다",
   "bad": "What she sings make me happy.",
-  "badko": "(What she sings는 한 덩어리 주어라서 단수 makes예요, 안의 she에 끌리지 마세요)",
+  "badko": "(What she sings는 한 덩어리 주어라서 make가 아니라 단수 makes예요)",
   "altw": "복수 주어",
   "alt": "Her songs make me happy.",
   "altko": "그녀의 노래들은 나를 행복하게 해요.",

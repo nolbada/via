@@ -33,7 +33,7 @@
   "tko": "저비용으로 만들어지는",
   "bad": "I read a book writing in Japanese.",
   "badko": "(책은 '쓰이는' 쪽이라서 writing(쓰고 있는)이 아니라 written(쓰인)이에요)",
-  "altw": "creating",
+  "altw": "-ing",
   "alt": "The boy writing a letter is my brother.",
   "altko": "편지를 쓰고 있는 소년은 내 남동생이에요(소년이 직접 쓰는 쪽이라서 -ing, letter 편지).",
   "why": "scenes(장면들)는 스스로 무언가를 만드는 쪽이 아니라 '만들어지는' 쪽이에요. 그래서 '만들어진'이라는 뜻의 created(create 만들다의 p.p.)가 맞아요. creating을 쓰면 '장면이 뭔가를 만든다'는 뜻이 돼요.",
@@ -210,12 +210,16 @@
  {
   "dk": [
    [
-    "He says late bedtimes",
-    "그는 늦은 취침 시간이"
+    "He says",
+    "그는 말한다"
    ],
    [
-    "may be more likely to damage the body clock.",
-    "체내 시계를 손상시킬 가능성이 더 크다고 말한다."
+    "late bedtimes may be more likely",
+    "늦은 취침 시간이 ~할 가능성이 더 크다고"
+   ],
+   [
+    "to damage the body clock.",
+    "체내 시계를 손상시킬."
    ]
   ],
   "gist": "늦게 자면 몸속 시계가 망가질 가능성이 더 크다는 얘기예요.",
@@ -270,7 +274,7 @@
    [
     "꾸밈받는 동사",
     "sings",
-    "sets the body clock"
+    "sets"
    ],
    [
     "꾸미는 부사",
@@ -392,7 +396,7 @@
   "alt": "I know what you want.",
   "altko": "나는 네가 원하는 것을 알아요(앞에 꾸밀 명사가 없을 때 '~하는 것'이라는 뜻의 what).",
   "why": "what은 '~하는 것'이라는 뜻이라 앞에 꾸밀 명사가 없을 때 써요. 여기는 앞에 a show(프로그램)가 있어서 그 말을 꾸며 주는 that이 맞아요.",
-  "trend": "<b>출제 2위 · 관계대명사와 관계부사</b><br>31년간 99회 나왔어요.<br>앞에 명사가 있으면 that·which, 없으면 what이에요",
+  "trend": "<b>출제 3위 · that[which] vs what</b><br>31년간 71회 나왔어요.<br>앞에 명사가 있으면 that·which, 없으면 what이에요",
   "d": {
    "example": "예",
    "planet": "행성",

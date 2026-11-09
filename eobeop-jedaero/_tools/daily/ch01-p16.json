@@ -77,7 +77,7 @@
   ],
   "ex": "Reading books is fun.",
   "exko": "책을 읽는 것은 재미있어요(read 읽다, fun 재미있는).",
-  "tko": "소설을 쓰는 것은, ~ 이었다",
+  "tko": "소설을 쓰는 것은 ~이었다",
   "bad": "Reading books are fun.",
   "badko": "(Reading books는 '읽는 일' 하나라서 books에 끌려 are를 쓰면 안 되고 is여야 해요)",
   "altw": "복수 주어",
@@ -91,7 +91,7 @@
    "based": "base(바탕을 두다)의 과거분사형",
    "lives": "life(삶)의 복수형",
    "parents": "부모님",
-   "old": "오래된",
+   "old": "오랜",
    "dream": "꿈"
   }
  },
@@ -143,7 +143,7 @@
    "classmates": "반 친구들",
    "outside": "밖으로",
    "during": "~ 동안",
-   "break": "쉬는 시간"
+   "break": "break time: 쉬는 시간"
   }
  },
  {
@@ -193,7 +193,7 @@
    "include": "포함하다",
    "creativity": "창의성",
    "effort": "노력",
-   "improve": "향상시키다",
+   "improve": "나아지다, 향상하다",
    "constantly": "끊임없이",
    "constant": "끊임없는"
   }
@@ -280,7 +280,7 @@
    ]
   ],
   "ex": "I have two cats, and I love them.",
-  "exko": "나는 고양이가 두 마리 있고 그들을 사랑해요(love 사랑하다).",
+  "exko": "나는 고양이가 두 마리 있고 그 고양이들을 사랑해요(love 사랑하다).",
   "tko": "그것들을",
   "bad": "I have two cats, and I love it.",
   "badko": "(cats가 여러 마리라서 단수 it이 아니라 복수 them이어야 해요)",
@@ -494,7 +494,7 @@
    "enjoy": "누리다, 즐기다",
    "today": "오늘날",
    "possible": "가능한",
-   "reason": "이유"
+   "reasons": "reason(이유)의 복수형"
   }
  },
  {
@@ -504,12 +504,12 @@
     "다양한 주제의 책을 읽는 것은"
    ],
    [
-    "helps to expand your knowledge",
-    "지식을 넓히는 데 도움이 되고"
+    "helps",
+    "도움이 된다"
    ],
    [
-    "and improve your imagination.",
-    "상상력을 향상시킨다."
+    "to expand your knowledge and improve your imagination.",
+    "지식을 넓히고 상상력을 향상시키는 데."
    ]
   ],
   "ko": "다양한 주제의 책을 읽는 것은 지식을 넓히고 상상력을 향상시키는 데 도움이 된다.",
@@ -529,7 +529,7 @@
   ],
   "ex": "Tom wants to sing and dance.",
   "exko": "톰은 노래하고 춤추고 싶어해요(want 원하다, sing 노래하다, dance 춤추다).",
-  "tko": "상상력을 향상시킨다",
+  "tko": "넓히고 향상시키는 데",
   "bad": "Tom wants to sing and dancing.",
   "badko": "(and 앞이 to sing이니 뒤도 같은 모양 dance여야 해요, dancing은 안 맞아요)",
   "altw": "-ing",
@@ -540,12 +540,13 @@
   "d": {
    "reading": "read(읽다)의 -ing형, 읽는 것",
    "variety": "a variety of: 다양한",
-   "topic": "주제",
    "helps": "help(돕다)의 -s형",
    "expand": "넓히다",
    "knowledge": "지식",
    "improve": "향상시키다",
-   "imagination": "상상력"
+   "imagination": "상상력",
+   "topics": "topic(주제)의 복수형",
+   "books": "book(책)의 복수형"
   }
  },
  {

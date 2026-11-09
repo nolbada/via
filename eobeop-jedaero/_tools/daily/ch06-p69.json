@@ -189,18 +189,18 @@
   "why": "than(~보다)이 있으니 비교하는 모양이 필요해요. high(높은)처럼 한 마디로 읽히는 짧은 단어는 앞에 more를 붙이지 않고 뒤에 -er을 붙여서 higher로 써요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>짧은 단어는 -er, 긴 단어는 more를 붙여요",
   "d": {
-   "based on": "~에 따르면, ~에 근거하여",
    "survey": "설문조사",
    "quit": "그만두다",
    "playing": "play(뛰다, 놀다)의 -ing형",
-   "on average": "평균적으로",
    "turned": "turn(~이 되다)의 과거형",
    "rate": "비율",
    "higher": "high(높은)의 비교급",
    "quitting": "quit(그만두다)의 -ing형",
    "soccer": "축구",
    "team": "팀",
-   "teams": "team(팀)의 복수형"
+   "teams": "team(팀)의 복수형",
+   "based": "based on: ~에 따르면, ~에 근거하여",
+   "average": "on average: 평균적으로"
   }
  },
  {
@@ -289,13 +289,13 @@
    "start": "시작하다",
    "own": "자신의",
    "business": "사업",
-   "rather than": "~보다는",
-   "work for": "~ 밑에서 일하다",
-   "someone else": "다른 사람",
    "although": "비록 ~지만",
-   "very little": "거의 없는",
    "saved": "save(저축하다)의 p.p.형",
-   "at the time": "그 당시에"
+   "rather": "rather than: ~보다는",
+   "work": "work for: ~ 밑에서 일하다",
+   "someone": "someone else: 다른 사람",
+   "little": "very little: 거의 없는",
+   "time": "at the time: 그 당시에"
   }
  },
  {
@@ -343,12 +343,12 @@
    "considering": "consider(고려하다)의 -ing형",
    "renovating": "renovate(개조하다)의 -ing형",
    "create": "만들다",
-   "living space": "생활 공간",
    "especially": "특히",
    "kitchen": "부엌",
    "update": "새롭게 고치다",
    "sell": "팔다",
-   "property": "부동산"
+   "property": "부동산",
+   "living": "living space: 생활 공간"
   }
  },
  {
@@ -389,7 +389,6 @@
   "d": {
    "mind": "꺼리다, 개의하다",
    "waiting": "wait(기다리다)의 -ing형",
-   "a few": "몇몇의",
    "minutes": "minute(분)의 복수형",
    "arrive": "도착하다",
    "texted": "text(문자를 보내다)의 과거형",
@@ -397,7 +396,8 @@
    "blaming": "blame(탓하다)의 -ing형",
    "himself": "그 자신",
    "late": "늦은",
-   "again": "다시"
+   "again": "다시",
+   "few": "a few: 몇몇의"
   }
  }
 ]

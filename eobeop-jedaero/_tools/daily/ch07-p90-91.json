@@ -373,7 +373,6 @@
    "person": "사람",
    "harmed": "harm(해를 끼치다)의 p.p. 해를 입은",
    "life": "삶",
-   "too much": "너무 많은",
    "much": "too much: 너무 많은",
    "education": "교육"
   }
@@ -422,12 +421,12 @@
    "knowledge": "지식",
    "enough": "충분한",
    "lifetime": "평생",
-   "even though": "~이긴 하지만",
    "experts": "전문가들",
    "proved": "prove(증명하다)의 과거형",
    "point": "요점",
    "decades": "수십 년",
-   "ago": "~전에"
+   "ago": "~전에",
+   "though": "even though: ~이긴 하지만"
   }
  },
  {
@@ -465,10 +464,10 @@
    "rather": "오히려",
    "casualties": "피해, 사상자",
    "resulting": "result(생기다)의 -ing형",
-   "result": "result from: ~에서 생기다",
    "lack": "부족",
    "education": "교육",
-   "common": "흔한"
+   "common": "흔한",
+   "resulted": "result from: ~에서 생기다"
   }
  },
  {
@@ -947,7 +946,6 @@
   "why": "unwise(현명하지 못한) 뒤에서 '누가' 하는 일인지는 for you로 말해요. 그다음에는 to + 동사원형이 이어져서 for you to rush(서두르다)가 돼요. rushing은 안 돼요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>It is 형용사 + for 사람 + to V 모양을 기억해요",
   "d": {
-   "even if": "설령 ~일지라도",
    "situation": "상황",
    "front": "in front of: ~ 앞에",
    "tempts": "tempt(부추기다)의 3인칭 단수형",
@@ -960,7 +958,8 @@
    "information": "정보",
    "unwise": "현명하지 못한",
    "rush": "rush into: ~에 성급히 뛰어들다",
-   "action": "행동"
+   "action": "행동",
+   "even": "even if: 설령 ~일지라도"
   }
  }
 ]

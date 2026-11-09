@@ -92,8 +92,9 @@
    "way": "방법",
    "learn": "배우다",
    "different": "다른",
-   "culture": "문화",
-   "fun": "재미있는"
+   "fun": "재미있는",
+   "cultures": "culture(문화)의 복수형",
+   "places": "place(곳)의 복수형"
   }
  },
  {
@@ -133,18 +134,18 @@
   "badko": "(yesterday(어제)처럼 분명한 과거 때는 have been이 아니라 were를 써요)",
   "altw": "have been",
   "alt": "The boys have been friends for five years.",
-  "altko": "그 소년들은 5년 동안 친구예요(friend 친구, for five years 5년 동안).",
+  "altko": "그 소년들은 5년째 친구로 지내 왔어요(friend 친구, for five years 5년 동안).",
   "why": "last year(작년)처럼 '그때'가 딱 정해진 과거 말이 있으면 현재와 이어지는 have been은 못 써요. 지난 일이니 were(be 이다의 과거)를 써요. laptops가 여러 개라서 was가 아니라 were예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>last year, yesterday 같은 분명한 과거 말이 있으면 과거형이에요",
   "d": {
    "according": "according to: ~에 따르면",
    "data": "자료",
-   "laptop": "노트북 컴퓨터",
    "touch": "터치, 만지기",
    "screen": "화면",
    "popular": "인기 있는",
    "last": "지난",
-   "year": "해"
+   "year": "해",
+   "laptops": "laptop(노트북 컴퓨터)의 복수형"
   }
  },
  {
@@ -226,10 +227,10 @@
     "a new one"
    ]
   ],
-  "ex": "I lost my pen, so I bought a new one.",
-  "exko": "나는 펜을 잃어버려서 새것을 샀어요(lose 잃어버리다, buy 사다).",
+  "ex": "I lost my pen, so I bought a red one.",
+  "exko": "나는 펜을 잃어버려서 빨간 것을 하나 샀어요(lose 잃어버리다, buy 사다, red 빨간).",
   "tko": "새것으로",
-  "bad": "I lost my pen, so I bought a new ones.",
+  "bad": "I lost my pen, so I bought a red ones.",
   "badko": "(a는 하나를 뜻해서 뒤에 단수 one이 와야 해요. ones는 여러 개예요)",
   "altw": "ones",
   "alt": "I lost my pens, so I bought new ones.",
@@ -237,14 +238,14 @@
   "why": "a new ... 에서 a는 '하나'라서 뒤에도 하나를 뜻하는 one이 와야 해요. ones는 여러 개일 때 써요. one은 앞에 나온 product(제품)와 같은 종류의 다른 하나를 말해요. it(그것)은 바로 그 고장 난 제품이라서 replace(바꾸다)의 목적어로 맞아요.",
   "trend": "<b>출제 9위 · 대명사의 성·수·격 일치</b><br>31년간 44회 나왔어요.<br>a 뒤에는 one, 여러 개면 ones예요. 똑같은 바로 그것은 it이에요",
   "d": {
-   "customer": "고객",
    "return": "돌려주다, 반품하다",
    "broken": "break(깨다, 고장 내다)의 과거분사형, 고장 난",
    "product": "제품",
    "electronics": "전자제품",
-   "company": "회사",
    "replace": "바꾸다, 교체하다",
-   "new": "새로운"
+   "new": "새로운",
+   "customers": "customer(고객)의 복수형",
+   "companies": "company(회사)의 복수형"
   }
  },
  {
@@ -290,7 +291,7 @@
    "always": "항상",
    "friendly": "친절한",
    "helpful": "도움이 되는",
-   "customer": "손님"
+   "customers": "customer(손님)의 복수형"
   }
  },
  {
@@ -374,7 +375,7 @@
   "exko": "장난감들은 씻어서 치워져요(wash 씻다, put away 치우다).",
   "tko": "사용되지 않다가 결국 버려지는",
   "bad": "The toys are washed and putting away.",
-  "badko": "(and 앞이 washed(씻겨진)이니 뒤도 같은 모양 put away여야 해요, putting은 안 맞아요)",
+  "badko": "(and 앞이 washed(씻겨진)처럼 p.p. 모양이니 뒤도 p.p. 모양 put away(치워진)여야 해요, putting은 안 맞아요)",
   "altw": "-ing",
   "alt": "The kids are washing and drying dishes.",
   "altko": "아이들은 설거지를 하고 말리고 있어요(dry 말리다, dish 접시).",
@@ -383,12 +384,13 @@
   "d": {
    "money": "돈",
    "spent": "spend(쓰다)의 과거분사형",
-   "item": "물건",
    "used": "use(쓰다)의 과거분사형",
    "eventually": "결국",
    "thrown": "throw(던지다)의 과거분사형",
-   "away": "멀리",
-   "throw": "throw away: 버리다"
+   "items": "item(물건)의 복수형",
+   "away": "thrown away: 버려진",
+   "lot": "a lot of: 많은",
+   "throwing": "throw away: 버리다"
   }
  },
  {
@@ -434,7 +436,8 @@
    "café": "카페",
    "despite": "~에도 불구하고",
    "noise": "소음",
-   "some": "몇몇의"
+   "some": "몇몇의",
+   "caf": "café(카페)"
   }
  },
  {

@@ -108,11 +108,11 @@
    "slide": "미끄럼틀",
    "slides": "slide(미끄럼틀)의 복수형",
    "while": "반면에",
-   "next to": "~ 옆에",
-   "chase after": "~를 쫓아가다",
    "chases": "chase(쫓다)의 -s형",
    "little": "어린, 작은",
-   "sister": "여동생, 누나"
+   "sister": "여동생, 누나",
+   "next": "next to: ~ 옆에",
+   "chase": "chase after: ~를 쫓아가다"
   }
  },
  {
@@ -167,12 +167,12 @@
    "cloud": "구름",
    "clouds": "cloud(구름)의 복수형",
    "soaked": "soak(흠뻑 적시다)의 과거형",
-   "bus stop": "버스 정류장",
    "though": "비록 ~지만",
    "shelter": "대피소, 쉼터",
    "repaired": "repair(수리하다)의 p.p.형",
    "finally": "마침내",
-   "fixed": "fix(고치다)의 과거형"
+   "fixed": "fix(고치다)의 과거형",
+   "stop": "bus stop: 버스 정류장"
   }
  },
  {
@@ -270,7 +270,6 @@
   "why": "수업이 끝난 '후에' 복습할 일이라서 아직 안 한 앞으로의 일이에요. remember(기억하다) 뒤 to V는 '~할 것을 기억하다'예요. reviewing(review, 복습하다)은 이미 복습한 걸 떠올리는 뜻이 돼요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>remember to V는 앞으로, remember -ing는 지난 일이에요",
   "d": {
-   "taking notes": "필기하기",
    "helpful": "도움이 되는",
    "way": "방법",
    "remember": "기억하다",
@@ -281,7 +280,8 @@
    "reviewing": "review(복습하다)의 -ing형",
    "notes": "노트, 필기",
    "class": "수업",
-   "ends": "end(끝나다)의 -s형"
+   "ends": "end(끝나다)의 -s형",
+   "taking": "taking notes: 필기하기"
   }
  },
  {
@@ -331,15 +331,15 @@
    "local": "지역의",
    "organization": "단체",
    "organizations": "organization(단체)의 복수형",
-   "give back": "환원하다",
    "community": "지역사회",
    "volunteer": "봉사하다",
    "regularly": "정기적으로",
    "help": "돕다",
    "organize": "조직하다",
    "charity": "자선",
-   "event": "행사",
-   "events": "event(행사)의 복수형"
+   "events": "event(행사)의 복수형",
+   "every": "행사",
+   "give": "give back: 환원하다"
   }
  },
  {
@@ -390,8 +390,6 @@
    "disease": "질병",
    "diseases": "disease(질병)의 복수형",
    "occurring": "occur(발생하다)의 -ing형",
-   "fish farm": "양어장",
-   "in some cases": "어떤 경우에는",
    "kill": "죽이다",
    "wild": "야생의",
    "expert": "전문가",
@@ -405,7 +403,9 @@
    "regulations": "regulation(규제)의 복수형",
    "owner": "소유주",
    "owners": "owner(소유주)의 복수형",
-   "not just": "not just A but B: A뿐만 아니라 B도"
+   "fish": "fish farm: 양어장",
+   "cases": "in some cases: 어떤 경우에는",
+   "just": "not just A but B: A뿐만 아니라 B도"
   }
  },
  {
@@ -453,11 +453,11 @@
    "understanding": "이해",
    "learner": "학습자",
    "learners": "learner(학습자)의 복수형",
-   "look forward to": "~을 기대하다",
    "communication": "의사소통",
    "skill": "능력",
    "skills": "skill(능력)의 복수형",
-   "abroad": "해외에서"
+   "abroad": "해외에서",
+   "forward": "look forward to: ~을 기대하다"
   }
  }
 ]

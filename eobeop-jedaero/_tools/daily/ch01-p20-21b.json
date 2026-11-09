@@ -322,7 +322,7 @@
   ],
   "ex": "I know a girl who sings well.",
   "exko": "나는 노래를 잘하는 소녀를 알아요(girl 소녀, sing 노래하다).",
-  "tko": "잠자리에 든",
+  "tko": "지원자들이 (잠자리에) 든(went)",
   "bad": "I know a girl whom sings well.",
   "badko": "(바로 뒤에 sings(노래한다)가 이어져서 주어 역할이 필요하니 whom이 아니라 who예요)",
   "altw": "whom",
@@ -334,7 +334,7 @@
    "around": "약",
    "volunteers": "volunteer(지원자)의 복수형",
    "went": "go(가다)의 과거형",
-   "bed": "침대",
+   "bed": "go to bed: 잠자리에 들다",
    "earlier": "early(일찍)의 비교급, 더 일찍",
    "later": "late(늦게)의 비교급, 더 늦게",
    "ideal": "이상적인",
@@ -464,7 +464,7 @@
    [
     "꾸밈받는 동사",
     "sings",
-    "sets the body clock"
+    "sets"
    ],
    [
     "꾸미는 부사",
@@ -585,7 +585,8 @@
    "countries": "country(나라)의 복수형",
    "export": "수출하다",
    "import": "수입하다",
-   "food": "식량"
+   "food": "식량",
+   "world's": "world(세계)의 소유격, 세계의"
   },
   "ko": "전 세계 굶주린 인구의 약 79%는 수입하는 것보다 더 많은 식량을 수출하는 나라에 산다."
  },
@@ -620,7 +621,7 @@
   ],
   "ex": "I met a doctor who speaks Korean.",
   "exko": "나는 한국어를 하는 의사를 만났어요(doctor 의사, meet 만나다 → met, speak 말하다).",
-  "tko": "대개 소득이 낮은",
+  "tko": "주민들, 그들은(who)",
   "bad": "I met a doctor which speaks Korean.",
   "badko": "(doctor(의사)는 사람이라서 which가 아니라 who예요)",
   "altw": "which",
@@ -629,14 +630,15 @@
   "why": "who와 which는 앞 명사를 보고 골라요. residents(주민들)는 사람이니까 who예요. which는 사물이나 동물 뒤에 써요.",
   "trend": "<b>출제 2위 · 관계대명사와 관계부사</b><br>31년간 99회 나왔어요.<br>앞 명사가 사람이면 who, 사물이면 which예요",
   "d": {
-   "countries": "country(나라)의 복수형",
    "residents": "resident(주민)의 복수형",
    "usually": "대개",
    "low": "낮은",
    "incomes": "income(소득)의 복수형",
    "unable": "be unable to: ~할 수 없다",
    "pay": "pay for: ~의 값을 내다",
-   "stores": "store(상점)의 복수형"
+   "stores": "store(상점)의 복수형",
+   "countries'": "country(나라)의 복수형 소유격, 나라들의",
+   "food": "식품, 식량"
   },
   "ko": "이 나라들의 주민들은, 대개 소득이 낮아서, 상점에서 식품값을 지불할 수 없다."
  },
@@ -682,9 +684,10 @@
    "make": "make money: 돈을 벌다",
    "enough": "충분한",
    "support": "충족시키다, 부양하다",
-   "family": "가족",
    "daily": "매일의",
-   "needs": "need(필요)의 복수형"
+   "needs": "need(필요)의 복수형",
+   "family's": "family(가족)의 소유격, 가족의",
+   "food": "식량"
   },
   "ko": "이 나라들에서 자기 가족의 매일의 식량 필요를 충족시킬 만큼 돈을 버는 사람은 드물다."
  },
@@ -722,7 +725,7 @@
   "tko": "너무 비싸다",
   "bad": "The apple is cheaply.",
   "badko": "(is 뒤에서 상태를 말하는 자리라서 cheaply(싸게)가 아니라 cheap(싼)이에요)",
-  "altw": "expensively",
+  "altw": "부사(-ly)",
   "alt": "He buys things cheaply.",
   "altko": "그는 물건을 싸게 사요(buy 사다를 꾸미니까 부사 cheaply).",
   "why": "are 뒤에는 '어떤 상태인지'를 말하는 형용사가 와요. expensive(비싼)는 형용사라서 그대로 써요. expensively(비싸게)는 동사를 꾸미는 말이라 여기서는 안 맞아요.",
@@ -767,7 +770,7 @@
   ],
   "ex": "What I need is water.",
   "exko": "내게 필요한 것은 물이에요(need 필요하다, water 물).",
-  "tko": "것은 ~이라는 것이다",
+  "tko": "모두가 동의할 수 있는 것은 ~이다",
   "bad": "What I need are water.",
   "badko": "(What I need(내게 필요한 것) 전체가 하나의 주어라서 are가 아니라 is예요)",
   "altw": "are",
@@ -871,7 +874,7 @@
   "tko": "약간의 흥분을 더해준다",
   "bad": "The boys that I know is kind.",
   "badko": "(핵심 주어는 boys(소년들)라서 여럿이므로 is가 아니라 are예요)",
-  "altw": "provides",
+  "altw": "단수 주어",
   "alt": "The boy that I know is kind.",
   "altko": "내가 아는 소년은 친절해요(핵심 주어 boy가 하나라서 is).",
   "why": "that people enjoy(사람들이 즐기는)는 programs를 꾸며 주는 말이라서 빼고 봐요. 그러면 'the programs also ___'가 돼요. programs(프로그램들)는 여럿이라서 provide(제공하다) 그대로예요. enjoy 바로 옆에 있다고 provides로 쓰면 안 돼요.",
@@ -918,7 +921,7 @@
   "tko": "유용한 정보",
   "bad": "This is usefully information.",
   "badko": "(information(정보)은 명사라서 usefully(유용하게)가 아니라 useful(유용한)이에요)",
-  "altw": "valuably",
+  "altw": "부사(-ly)",
   "alt": "He uses time wisely.",
   "altko": "그는 시간을 현명하게 써요(use 쓰다를 꾸미니까 부사 wisely).",
   "why": "information(정보)은 명사예요. 명사를 꾸미는 말은 형용사라서 valuable(가치 있는, 유용한)이 맞아요. valuably는 동사를 꾸미는 부사라서 명사 앞에 쓸 수 없어요.",

@@ -80,10 +80,10 @@
    "forest": "숲",
    "destroying": "destroy(파괴하다)의 -ing형",
    "destroyed": "destroy(파괴하다)의 과거분사형",
-   "wildfire": "산불",
-   "part": "부분",
    "world": "세계",
-   "much": "much of: ~의 많은 부분"
+   "much": "much of: ~의 많은 부분",
+   "wildfires": "wildfire(산불)의 복수형",
+   "parts": "part(부분, 지역)의 복수형"
   }
  },
  {
@@ -123,14 +123,16 @@
   "why": "make them ~는 '그 건물들을 ~하게 만든다'예요. them 다음에는 '어떤 상태로?'를 말하는 말이 필요한데, 상태를 말할 때는 형용사를 써요. importance(중요함)는 명사라서 안 돼요. historically(역사적으로)는 important(중요한)를 꾸며 주는 부사예요.",
   "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>보어(상태를 말하는 자리)에는 형용사, 동작을 꾸미는 자리에는 부사예요",
   "d": {
-   "building": "건물",
    "city": "도시",
    "historically": "역사적으로",
    "important": "중요한",
    "importance": "중요함(명사)",
    "makes": "make(만들다)의 -s형",
    "over": "~이 넘는",
-   "which": "앞 내용을 가리키는 말(그것은)"
+   "which": "앞 내용을 가리키는 말(그것은)",
+   "buildings": "building(건물)의 복수형",
+   "years": "year(해, 년)의 복수형",
+   "old": "~살[년] 된"
   }
  },
  {
@@ -162,21 +164,22 @@
   "exko": "선생님이 선수들의 실력을 높이려고 팀을 훈련시켜요(player 선수, skill 실력, improve 높이다).",
   "tko": "학생들의",
   "bad": "A teacher trains the team to improve their skills.",
-  "badko": "(their(그들의)가 teacher(선생님)인지 team(팀)인지 players인지 헷갈려요)",
+  "badko": "(their(그들의)가 team(팀)을 가리키는지 players(선수들)를 가리키는지 헷갈려요)",
   "altw": "their",
   "alt": "The boys love soccer, so they practice their skills.",
   "altko": "그 소년들은 축구를 좋아해서 자신들의 기술을 연습해요(practice 연습하다).",
   "why": "their(그들의)가 누구를 가리키는지 헷갈려요. one of the teachers(선생님 한 분)일까요, the soccer team(축구팀)일까요? 팀워크를 키우는 사람들은 축구팀의 학생들이니까 the students’(학생들의)로 분명히 써 줘요. 대명사가 누구인지 흐려지면 명사를 그대로 써요.",
   "trend": "<b>출제 9위 · 대명사의 성·수·격 일치</b><br>31년간 44회 나왔어요.<br>대명사가 가리키는 말이 하나로 분명한지 확인해요",
   "d": {
-   "teacher": "선생님",
-   "train": "훈련시키다",
    "improve": "향상시키다",
    "teamwork": "팀워크",
    "soccer": "축구",
    "team": "팀",
    "students": "student(학생)의 복수형",
-   "one": "one of: ~중 하나"
+   "one": "one of: ~중 하나",
+   "trains": "train(훈련시키다)의 -s형",
+   "teachers": "teacher(선생님)의 복수형",
+   "students'": "student(학생)의 복수형 소유격, 학생들의"
   }
  },
  {
@@ -216,11 +219,12 @@
   "trend": "<b>출제 9위 · 대명사의 성·수·격 일치</b><br>31년간 44회 나왔어요.<br>비교할 때 앞의 the + 명사는 that[those] of ~로 받아요",
   "d": {
    "native": "태어날 때부터 쓰는, 원어민의",
-   "speaker": "말하는 사람",
    "number": "수",
    "smaller": "small(작은)의 비교형, 더 적은",
    "than": "~보다",
-   "Spanish": "스페인어의"
+   "spanish": "스페인어의",
+   "english": "영어의",
+   "speakers": "speaker(말하는 사람)의 복수형"
   }
  },
  {
@@ -255,18 +259,18 @@
   "badko": "(for는 전치사라서 뒤에 he(그는)가 아니라 him(그에게)이 와야 해요)",
   "altw": "I",
   "alt": "I like spicy food, and I eat it every day.",
-  "altko": "나는 매운 음식을 좋아해서 매일 먹어요(spicy 매운).",
+  "altko": "나는 매운 음식을 좋아하고 매일 먹어요(spicy 매운).",
   "why": "for(~에게, ~을 위해)는 전치사예요. 전치사 뒤에는 '나는'을 뜻하는 I가 아니라 '나에게, 나를'을 뜻하는 me가 와요. too spicy for me는 '나한테는 너무 매워요'라는 뜻이에요.",
   "trend": "<b>출제 9위 · 대명사의 성·수·격 일치</b><br>31년간 44회 나왔어요.<br>전치사 뒤에는 me, him, them 같은 목적격을 써요",
   "d": {
    "served": "serve(내놓다)의 과거분사형, 나오는",
    "restaurant": "식당",
-   "smell": "~한 냄새가 나다",
    "delicious": "맛있는",
    "spicy": "매운",
    "most": "대부분",
    "too": "너무",
-   "food": "음식"
+   "food": "음식",
+   "smells": "smell(~한 냄새가 나다)의 -s형"
   }
  },
  {
@@ -302,7 +306,7 @@
   "badko": "(water(물)는 셀 수 없는 명사라서 them(그것들)이 아니라 it이어야 해요)",
   "altw": "them",
   "alt": "I have two dogs, and I love them.",
-  "altko": "나는 개가 두 마리 있고 그들을 사랑해요(love 사랑하다).",
+  "altko": "나는 개가 두 마리 있고 그 개들을 사랑해요(love 사랑하다).",
   "why": "information(정보)은 하나, 둘 셀 수 없는 말이라서 한 덩어리로 봐요. 그래서 is false(거짓이다)처럼 단수로 받았고, 다시 가리킬 때도 한 덩어리 it이에요. them은 여러 개일 때만 써요.",
   "trend": "<b>출제 9위 · 대명사의 성·수·격 일치</b><br>31년간 44회 나왔어요.<br>가리키는 명사가 셀 수 없거나 하나면 it, 여러 개면 them이에요",
   "d": {
@@ -353,13 +357,14 @@
   "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>동사를 그대로 두지 말고 자리에 맞게 -ing나 to V로 바꿔요",
   "d": {
    "survey": "설문조사",
-   "employee": "직원",
    "prefer": "더 좋아하다, 선호하다",
    "commute": "통근하다",
    "commuting": "commute(통근하다)의 -ing형",
    "spend": "쓰다, 보내다",
    "less": "더 적은",
-   "percent": "퍼센트"
+   "percent": "퍼센트",
+   "employees": "employee(직원)의 복수형",
+   "home": "work from home: 재택근무하다"
   }
  },
  {
@@ -378,7 +383,7 @@
    ]
   ],
   "ko": "우리 반 학생의 절반 이상이 인터넷에 효율적으로 접속하기 위해 데스크톱을 사용한다.",
-  "gist": "반 아이들 절반이 넘게 인터넷에 편하게 접속하려고 데스크톱을 쓴다는 얘기예요.",
+  "gist": "반 아이들 절반이 넘게 인터넷을 효율적으로(빠르고 알차게) 쓰려고 데스크톱을 쓴다는 얘기예요.",
   "fm": "동작 꾸밈 → 부사 (-ly)",
   "mp": [
    [
@@ -405,12 +410,12 @@
   "d": {
    "half": "절반",
    "class": "반, 수업",
-   "desktop": "데스크톱 컴퓨터",
    "access": "접속하다",
-   "Internet": "인터넷",
    "efficiently": "효율적으로",
    "efficient": "효율적인",
-   "use": "사용하다"
+   "use": "사용하다",
+   "internet": "인터넷",
+   "desktops": "desktop(데스크톱 컴퓨터)의 복수형"
   }
  },
  {
@@ -456,7 +461,8 @@
    "children": "child(아이)의 복수형",
    "help": "돕다",
    "goes": "go(가다)의 -s형",
-   "money": "돈"
+   "money": "돈",
+   "children's": "children(아이들)의 소유격, 어린이(의)"
   }
  }
 ]
