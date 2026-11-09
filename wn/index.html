@@ -344,7 +344,7 @@ function home(r){
   h+='<button class="btn" id="rs">'+(resetArm?'한 번 더 누르면 나갑니다':'나가기 (다음 학생)')+'</button>';
   $.innerHTML=h;
   var stb=document.getElementById('st');if(stb)stb.onclick=function(){review(due.sort(byPri).slice(0,today),ti)};
-  var ntc=document.getElementById('ntc');if(ntc&&ntc.classList.contains('tp'))ntc.onclick=function(){if(NTG===ti){rvStart(ti,ti);return}if(NTG){recView('r');return}var SM=svS(),si=DATA.items.filter(function(i){return SM[i.w]});if(!si.length)return;review(si);R.prac=true;R.star=true};var nsr=document.getElementById('nsr');if(nsr)nsr.onclick=function(e){e.stopPropagation();var SM=svS(),si=DATA.items.filter(function(i){return SM[i.w]});if(!si.length)return;review(si);R.prac=true;R.star=true};
+  var ntc=document.getElementById('ntc');if(ntc&&ntc.classList.contains('tp'))ntc.onclick=function(){if(NTG===ti){rvStart(ti,ti);return}recView('r')};var nsr=document.getElementById('nsr');if(nsr)nsr.onclick=function(e){e.stopPropagation();var SM=svS(),si=DATA.items.filter(function(i){return SM[i.w]});if(!si.length)return;review(si);R.prac=true;R.star=true};
   var l2=document.getElementById('ls2');if(l2)l2.onclick=function(){list()};
   document.getElementById('rs').onclick=function(){
     if(!resetArm){resetArm=true;clearTimeout(resetT);resetT=setTimeout(function(){resetArm=false;home(DATA)},4000);home(DATA);return}
@@ -367,11 +367,13 @@ function recData(I,n,ti){
   var okN=0,lf='';fr.forEach(function(q){if(sp[q]===1){okN++;lf=q}});
   return{P:P,XS:XS,sp:sp,mm:mm,dk:dk,ld:ld,nd:nd,xn:xk.length,xl:xl,nx:nx,fr:fr,nf:nf,okN:okN,lf:lf};
 }
+function rvStat(P,ti){var M=rvMap(),MD=missedDays(),k,num=0,tot=0,lt=0,ld='';for(k=adD(P.s,1);k<=ti;k=adD(k,1)){if(CLOSED.indexOf(k)>=0)continue;tot++;if(M[k]||(k===ti&&NCX&&NCX.today===0)){num++;if(M[k]&&rvLate(k))lt++;if(k>ld)ld=k}}return{num:num,tot:tot,ms:MD.length,lt:lt,ld:ld}}
 function roomH(I,n,ti){
   var D=recData(I,n,ti),P=D.P;
   function row(key,c,t,l1,l2,chip){return'<button class="tk" data-rv="'+key+'"><i class="bd" style="background:'+c+'"></i><div class="tt"><b>'+t+'</b><small>'+l1+(l2?'<br>'+l2:'')+'</small></div><span class="chip n">'+chip+'</span></button>'}
   return'<div class="rmz"><h2 class="sec">기록 열람 및 평소 학습</h2>'
    +row('d','#ff7a66','데일리보카 '+P.d,D.ld?'최근 '+D.ld+'일차 '+I.S[D.ld].s:'아직 시작 전',D.nd?'다음 '+D.nd:'',D.dk.length+' / '+I.Q.n)
+   +(function(){var z=rvStat(P,ti);return row('r','#c47a1a','누적 복습',z.ld?'최근 완료 '+dshow(z.ld):'아직 완료한 날 없음',z.ms?'밀림 '+z.ms+'일':(z.lt?'보충 '+z.lt+'일 포함':''),z.num+' / '+z.tot)})()
    +row('x','#4a90e2','더블보카 '+P.dv,D.xl?'최근 시험 Day '+D.xl:'아직 본 시험 없음',D.nx?'다음 시험 '+D.nx:'',D.xn+' / 32')
    +(function(){var ES=eoStat(n),EM=eoMap(n),nx='',k;for(k=ti;k<'2027-04-30';k=adD(k,1)){if(EM[k]&&EM[k]>ES.d){nx=dshow(k)+' '+EM[k]+'일차';break}}return row('e','#2f7d5b','데일리어법',ES.d?'최근 '+ES.d+'일차 '+ES.sc[ES.d]:'아직 시작 전',nx?'다음 '+nx:'',ES.d+' / 84')})()
    
@@ -386,13 +388,14 @@ function recView(key){
   else if(key==='x'){c='#4a90e2';t='더블보카 '+P.dv;num=D.xn;tot=32;for(q=1;q<=tot;q++)dots+='<a href="'+VB+(P.dv==='Pro'?'dvpro/':'dvcore/')+(TCM?'?t=1&c='+TCM:PV?'?t=1':'')+'" style="display:contents">'+dot(q,D.XS.tk[q]?1:0,c,q)+'</a>';Object.keys(D.XS.tk).map(Number).sort(function(a,b){return b-a}).forEach(function(k){var sc='응시';try{var ev=JSON.parse(localStorage.getItem('dv'+(P.dv==='Pro'?'p':'c')+'_exam_'+k+'_'+String(n).toLowerCase())||'null');if(ev&&ev.total)sc=ev.score+'/'+ev.total}catch(e){}lst+='<div class="row"><div><b>Day '+k+' 시험</b><small>'+ds(D.XS.tk[k])+'</small></div><span class="badge">'+sc+'</span></div>'})}
   else if(key==='e'){c='#2f7d5b';t='데일리어법';var ES=eoStat(n),EM=eoMap(n),inv={};Object.keys(EM).forEach(function(k){inv[EM[k]]=k});num=ES.d;tot=84;for(q=1;q<=tot;q++){var ms=q>ES.d&&inv[q]&&inv[q]<ti&&CLOSED.indexOf(inv[q])<0,dk2=inv[q]?(+inv[q].slice(5,7)+'/'+ +inv[q].slice(8)):'';dots+='<a href="'+VB+'eobeop-daily/?day='+q+(TCM?'&t=1&c='+TCM:PV?'&t=1':'')+'" style="display:contents">'+dot(q,q<=ES.d?1:0,c,dk2+'<small>'+q+(ms?' 밀림':'')+'</small>','dd'+(ms?' miss':''))+'</a>'}for(q=ES.d;q>=1;q--)lst+='<div class="row"><div><b>데일리어법 '+q+'일차</b>'+(inv[q]?'<small>'+dshow(inv[q])+'</small>':'')+'</div><span class="badge">'+ES.sc[q]+'</span></div>'}
   else if(key==='m'){c='#e0a21a';t='미니모의고사';num=D.mm;tot=24;for(q=1;q<=tot;q++)dots+=dot(q,q<=D.mm?1:0,c,q)}
-  else if(key==='r'){c='#c47a1a';t='누적 복습';var M3=rvMap(),S3=lj('wn_rvs_'+n+TCM,{}),dy=[],k4,MD=missedDays();for(k4=adD(P.s,1);k4<=ti;k4=adD(k4,1)){if(CLOSED.indexOf(k4)<0)dy.push(k4)}tot=dy.length;num=0;dy.forEach(function(k5,i5){var s5=S3[k5],on=(M3[k5]||(k5===ti&&NCX&&NCX.today===0))?1:0,ms=MD.indexOf(k5)>=0,td=k5===ti&&!on;if(on)num++;var lt5=on&&M3[k5]&&rvLate(k5),sc=on?((lt5?'보충 ':'')+(s5?s5.o+'/'+s5.n:'완료')):(ms?'밀림':(td?'오늘':'쉼'));var dd=k5.slice(5).replace(/^0/,'').replace('-0','-').replace('-','/');if(i5>=dy.length-7)dots+='<span class="dc rs'+(on?' on':ms||td?' ab':'')+'" style="'+(on?'background:'+c:ms||td?'border-color:'+(ms?'#d4553f':c)+';color:'+(ms?'#d4553f':c):'')+'"'+((ms||td)?' data-f="'+k5+'"':'')+'>'+dd+'<small>'+sc+'</small></span>'});if(dy.length>7){var hm=MD.filter(function(x){return x<dy[dy.length-7]}).length;dots='<span class="hdn">이전 '+(dy.length-7)+'일'+(hm?' · 밀림 '+hm+'일':'')+'</span>'+dots}}
+  else if(key==='r'){c='#c47a1a';t='누적 복습';var M3=rvMap(),S3=lj('wn_rvs_'+n+TCM,{}),dy=[],k4,MD=missedDays();for(k4=adD(P.s,1);k4<=ti;k4=adD(k4,1)){if(CLOSED.indexOf(k4)<0)dy.push(k4)}tot=dy.length;num=0;dy.forEach(function(k5){var s5=S3[k5],on=(M3[k5]||(k5===ti&&NCX&&NCX.today===0))?1:0,ms=MD.indexOf(k5)>=0,td=k5===ti&&!on,lt5=on&&M3[k5]&&rvLate(k5);if(on)num++;var md5=+k5.slice(5,7)+'/'+ +k5.slice(8),sc=on?((lt5?'보충 ':'')+(s5?s5.o+'/'+s5.n:'완료')):(ms?'밀림':'오늘');dots+='<span class="dc dd'+(on?' on':ms||td?' ab':'')+(ms?' miss':lt5?' late':'')+'" style="'+(on?'background:'+c:ms||td?'border-color:'+(ms?'#d4553f':c)+';color:'+(ms?'#d4553f':c):'')+'"'+((ms||td)?' data-f="'+k5+'"':'')+'>'+md5+'<small>'+sc+'</small></span>';if(on)lst='<div class="row"><div><b>'+dshow(k5)+(lt5?' · 보충':'')+'</b></div><span class="badge">'+(s5?s5.o+'/'+s5.n:'완료')+'</span></div>'+lst})}
   else{c='#2fa66b';t='금요일 말하기';num=D.okN;tot=D.fr.length;D.fr.forEach(function(k,i){var v=D.sp[k];dots+=dot(i,v===1?1:v===2?2:0,c,i+1);});D.fr.slice().reverse().forEach(function(k){var v=D.sp[k];lst+='<div class="row"><div><b>'+dshow(k)+'</b></div><span class="badge">'+(v===1?'통과':v===2?'결석':'아직')+'</span></div>'})}
   var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+t+'</div></div><div class="card"><div class="rvh"><b style="color:'+c+'">'+t+'</b><span style="color:'+c+'">'+num+'<small> / '+tot+'</small></span></div><div class="rvb"><i style="width:'+(tot?Math.min(100,num/tot*100):0)+'%;background:'+c+'"></i></div><div class="dg">'+dots+'</div></div>';
   if(key==='f'){var fn=DATA.items.filter(isL).length;h+='<button class="tk" id="fl"'+(fn?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>말하기 대비 단어</b><small>말하기 시험 단어 · 데일리보카 제외</small></div><span class="chip n">'+fn+'개</span></button>'}
+  if(key==='r'&&DATA)h+='<button class="tk" id="wl"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>누적 단어 전체 보기</b><small>복습 단계별로 모인 단어</small></div><span class="chip n">'+DATA.items.length+'개</span></button>';
   if(key==='r'&&typeof MD!=='undefined'&&MD.length)h+='<button class="tk" id="fa"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>가장 오래된 밀린 날부터 채우기</b><small>'+dshow(MD[0])+(MD.length>1?' 외 '+(MD.length-1)+'일 더':'')+'</small></div><span class="chip n">'+MD.length+'일</span></button>';
   if(lst)h+='<div class="card">'+lst+'</div>';
-  $.innerHTML=h;document.querySelectorAll('[data-f]').forEach(function(b){b.onclick=function(){var k=b.dataset.f;if(k===ti)rvStart(ti,ti);else fillStart(k)}});var fa=document.getElementById('fa');if(fa)fa.onclick=function(){fillStart(MD[0])};document.getElementById('hm').onclick=function(){home(DATA)};var fl=document.getElementById('fl');if(fl)fl.onclick=function(){list()};window.scrollTo(0,0);
+  $.innerHTML=h;document.querySelectorAll('[data-f]').forEach(function(b){b.onclick=function(){var k=b.dataset.f;if(k===ti)rvStart(ti,ti);else fillStart(k)}});var fa=document.getElementById('fa');if(fa)fa.onclick=function(){fillStart(MD[0])};document.getElementById('hm').onclick=function(){home(DATA)};var fl=document.getElementById('fl');if(fl)fl.onclick=function(){list()};var wl=document.getElementById('wl');if(wl)wl.onclick=function(){wlist()};window.scrollTo(0,0);
 }
 function exStat(n,ti){
   var tk=exTaken(n),P=PLAN[n],nx=0,z;
@@ -566,6 +569,13 @@ function spShow(){var S=SP,n=S.a.length,K=S.K;
   var ar=document.getElementById('ar');ar.innerHTML='<button class="btn pri" id="sh">뜻 보기</button>';
   document.getElementById('sh').onclick=function(){ar.innerHTML='<div class="word" style="font-size:22px">'+esc(mStrip(it.m))+'</div>'+synBtns(it.m)+(srcTag(it)?'<div>'+srcTag(it)+'</div>':'')+'<button class="btn pri" id="nx">다음</button>';document.getElementById('nx').onclick=function(){S.i++;spShow()}};
 }
+function wlist(){
+  var IVN=['1일','3일','7일','15일'],g=[[],[],[],[]],h,tot=0;DATA.items.forEach(function(i){var x=Math.max(0,Math.min(3,i.st||0));g[x].push(i);tot++});
+  h='<div class="top"><button class="sbtn" id="hm">뒤로</button><div class="t">누적 단어 '+tot+'개</div></div>';
+  g.forEach(function(a,x){if(!a.length)return;a.sort(function(p,q){return p.w.toLowerCase()<q.w.toLowerCase()?-1:1});h+='<h2 class="sec">'+IVN[x]+' 단계 · '+a.length+'개</h2><div class="card">';a.forEach(function(i){h+='<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+srcTag(i)+'</small></div>'+spk(i.w)+'<span class="badge">다음 '+dshow(i.nx)+'</span></div>'});h+='</div>'});
+  if(!tot)h+='<div class="card">아직 모인 단어가 없어요.</div>';
+  $.innerHTML=h;window.scrollTo(0,0);document.getElementById('hm').onclick=function(){recView('r')};
+}
 function list(K){
   var items=DATA.items.filter(function(i){return isL(i)&&(!K||!i.first||i.first<=K)}).sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});
   if(K){spStart(K,items);return}
@@ -729,6 +739,7 @@ home=function(r){if(sub){sub=false;skip=1;try{history.back()}catch(e){skip=0}}re
 review=function(){enter();return orv.apply(this,arguments)};
 list=function(){enter();return ol.apply(this,arguments)};
 recView=function(){enter();return orc.apply(this,arguments)};
+var owl=wlist;wlist=function(){enter();return owl.apply(this,arguments)};
 window.addEventListener('popstate',function(){if(skip){skip=0;return}if(sub){sub=false;oh(DATA||undefined)}});
 try{if(history.state&&history.state.sub)history.replaceState(null,'')}catch(e){}
 })()}catch(e){}
