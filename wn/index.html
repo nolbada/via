@@ -216,6 +216,7 @@ function ctlRead(){return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'t
 function ctlWrite(n,o){var d={};d[n]={v:{s:JSON.stringify(o)},t:Date.now()};return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:d})}).then(function(r){return r.json()})}
 var CTLM=null,CTLL=0;
 setTimeout(function(){try{rvPull()}catch(e){}},1800);
+try{window.addEventListener('online',function(){try{rvFlush()}catch(e){}});document.addEventListener('visibilitychange',function(){if(!document.hidden){try{rvPull()}catch(e){}}})}catch(e){}
 function inHold(c,dk){return !!(c&&c.hold&&c.hs&&dk>=c.hs&&dk<=c.hold)}
 var TT=['김소희','윤유란','정다원','김민서','이지민','조혜린','신유정A'];
 function exTaken(n,pre){
@@ -385,7 +386,7 @@ function recView(key){
   else if(key==='x'){c='#4a90e2';t='더블보카 '+P.dv;num=D.xn;tot=32;for(q=1;q<=tot;q++)dots+='<a href="'+VB+(P.dv==='Pro'?'dvpro/':'dvcore/')+(TCM?'?t=1&c='+TCM:PV?'?t=1':'')+'" style="display:contents">'+dot(q,D.XS.tk[q]?1:0,c,q)+'</a>';Object.keys(D.XS.tk).map(Number).sort(function(a,b){return b-a}).forEach(function(k){var sc='응시';try{var ev=JSON.parse(localStorage.getItem('dv'+(P.dv==='Pro'?'p':'c')+'_exam_'+k+'_'+String(n).toLowerCase())||'null');if(ev&&ev.total)sc=ev.score+'/'+ev.total}catch(e){}lst+='<div class="row"><div><b>Day '+k+' 시험</b><small>'+ds(D.XS.tk[k])+'</small></div><span class="badge">'+sc+'</span></div>'})}
   else if(key==='e'){c='#2f7d5b';t='데일리어법';var ES=eoStat(n),EM=eoMap(n),inv={};Object.keys(EM).forEach(function(k){inv[EM[k]]=k});num=ES.d;tot=84;for(q=1;q<=tot;q++){var ms=q>ES.d&&inv[q]&&inv[q]<ti&&CLOSED.indexOf(inv[q])<0,dk2=inv[q]?(+inv[q].slice(5,7)+'/'+ +inv[q].slice(8)):'';dots+='<a href="'+VB+'eobeop-daily/?day='+q+(TCM?'&t=1&c='+TCM:PV?'&t=1':'')+'" style="display:contents">'+dot(q,q<=ES.d?1:0,c,dk2+'<small>'+q+(ms?' 밀림':'')+'</small>','dd'+(ms?' miss':''))+'</a>'}for(q=ES.d;q>=1;q--)lst+='<div class="row"><div><b>데일리어법 '+q+'일차</b>'+(inv[q]?'<small>'+dshow(inv[q])+'</small>':'')+'</div><span class="badge">'+ES.sc[q]+'</span></div>'}
   else if(key==='m'){c='#e0a21a';t='미니모의고사';num=D.mm;tot=24;for(q=1;q<=tot;q++)dots+=dot(q,q<=D.mm?1:0,c,q)}
-  else if(key==='r'){c='#c47a1a';t='누적 복습';var M3=rvMap(),S3=lj('wn_rvs_'+n+TCM,{}),dy=[],k4,MD=missedDays();for(k4=adD(P.s,1);k4<=ti;k4=adD(k4,1)){if(CLOSED.indexOf(k4)<0)dy.push(k4)}tot=dy.length;num=0;dy.forEach(function(k5,i5){var s5=S3[k5],on=(M3[k5]||(k5===ti&&NCX&&NCX.today===0))?1:0,ms=MD.indexOf(k5)>=0,td=k5===ti&&!on;if(on)num++;var sc=on?(s5?s5.o+'/'+s5.n:'완료'):(ms?'밀림':(td?'오늘':'쉼'));var dd=k5.slice(5).replace(/^0/,'').replace('-0','-').replace('-','/');if(i5>=dy.length-7)dots+='<span class="dc rs'+(on?' on':ms||td?' ab':'')+'" style="'+(on?'background:'+c:ms||td?'border-color:'+(ms?'#d4553f':c)+';color:'+(ms?'#d4553f':c):'')+'"'+((ms||td)?' data-f="'+k5+'"':'')+'>'+dd+'<small>'+sc+'</small></span>'});if(dy.length>7){var hm=MD.filter(function(x){return x<dy[dy.length-7]}).length;dots='<span class="hdn">이전 '+(dy.length-7)+'일'+(hm?' · 밀림 '+hm+'일':'')+'</span>'+dots}}
+  else if(key==='r'){c='#c47a1a';t='누적 복습';var M3=rvMap(),S3=lj('wn_rvs_'+n+TCM,{}),dy=[],k4,MD=missedDays();for(k4=adD(P.s,1);k4<=ti;k4=adD(k4,1)){if(CLOSED.indexOf(k4)<0)dy.push(k4)}tot=dy.length;num=0;dy.forEach(function(k5,i5){var s5=S3[k5],on=(M3[k5]||(k5===ti&&NCX&&NCX.today===0))?1:0,ms=MD.indexOf(k5)>=0,td=k5===ti&&!on;if(on)num++;var lt5=on&&M3[k5]&&rvLate(k5),sc=on?((lt5?'보충 ':'')+(s5?s5.o+'/'+s5.n:'완료')):(ms?'밀림':(td?'오늘':'쉼'));var dd=k5.slice(5).replace(/^0/,'').replace('-0','-').replace('-','/');if(i5>=dy.length-7)dots+='<span class="dc rs'+(on?' on':ms||td?' ab':'')+'" style="'+(on?'background:'+c:ms||td?'border-color:'+(ms?'#d4553f':c)+';color:'+(ms?'#d4553f':c):'')+'"'+((ms||td)?' data-f="'+k5+'"':'')+'>'+dd+'<small>'+sc+'</small></span>'});if(dy.length>7){var hm=MD.filter(function(x){return x<dy[dy.length-7]}).length;dots='<span class="hdn">이전 '+(dy.length-7)+'일'+(hm?' · 밀림 '+hm+'일':'')+'</span>'+dots}}
   else{c='#2fa66b';t='금요일 말하기';num=D.okN;tot=D.fr.length;D.fr.forEach(function(k,i){var v=D.sp[k];dots+=dot(i,v===1?1:v===2?2:0,c,i+1);});D.fr.slice().reverse().forEach(function(k){var v=D.sp[k];lst+='<div class="row"><div><b>'+dshow(k)+'</b></div><span class="badge">'+(v===1?'통과':v===2?'결석':'아직')+'</span></div>'})}
   var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+t+'</div></div><div class="card"><div class="rvh"><b style="color:'+c+'">'+t+'</b><span style="color:'+c+'">'+num+'<small> / '+tot+'</small></span></div><div class="rvb"><i style="width:'+(tot?Math.min(100,num/tot*100):0)+'%;background:'+c+'"></i></div><div class="dg">'+dots+'</div></div>';
   if(key==='f'){var fn=DATA.items.filter(isL).length;h+='<button class="tk" id="fl"'+(fn?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>말하기 대비 단어</b><small>말하기 시험 단어 · 데일리보카 제외</small></div><span class="chip n">'+fn+'개</span></button>'}
@@ -438,7 +439,7 @@ function drawDP(I,ti,EP){
       h+='<a class="tk" href="'+VB+'eobeop-daily/?day='+en+'"><i class="bd" style="background:#2f7d5b"></i><div class="tt"><b>데일리어법 '+en+'</b><small>하루 5문제'+(en>dn2+1?' · '+(dn2+1)+'일차부터 이어서':'')+'</small></div>'+chip2+'</a>'}
   })();
   if(K<ti&&!rvMap()[K]&&NCX&&NCX.today>0&&K>=P.s&&CLOSED.indexOf(K)<0)h+='<button class="tk" id="stp"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>밀린 복습 · 지금 모인 단어로</small></div><span class="chip w">'+NCX.today+'개</span></button>';
-  if(K<ti&&rvMap()[K])h+='<div class="tk"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>이날 복습 끝냄</small></div><span class="chip">완료</span></div>';
+  if(K<ti&&rvMap()[K])h+='<div class="tk"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>'+(rvLate(K)?'나중에 채움':'이날 복습 끝냄')+'</small></div><span class="chip'+(rvLate(K)?' n':'')+'">'+(rvLate(K)?'보충':'완료')+'</span></div>';
   if(K>ti&&DATA){var fd=DATA.items.filter(function(i){return i.nx&&i.nx<=K}),fc=Math.min(fd.length,NCX?NCX.cap:60);h+='<button class="tk" id="stf"'+(fc?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>이날까지 모인 단어 · 미리 풀기</small></div>'+(rvMap()[K]?'<span class="chip">완료</span>':'<span class="chip n">'+fc+'개</span>')+'</button>'}
   if(w===5&&!isT&&K>=P.s&&DATA){var fl=DATA.items.filter(function(i){return isL(i)&&(!i.first||i.first<=K)}).length;h+='<button class="tk" id="ls3"'+(fl?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>이날까지 모인 말하기 단어</small></div><span class="chip n">'+fl+'개</span></button>'}
   if(w===5&&K>=P.s&&CLOSED.indexOf(K)<0){var sp1=(hc.sp||{})[K],c1=sp1===1?'<span class="chip">완료</span>':sp1===2?'<span class="chip n">결석</span>':(isPast&&!inHold(hc,K)?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'오늘':'예정')+'</span>');h+='<div class="tk"><i class="bd" style="background:#1f8a56"></i><div class="tt"><b>금요일 말하기 시험</b><small>누적보카 · 학원</small></div>'+c1+'</div>'}
@@ -577,23 +578,36 @@ var TMF=/[?&]t=1(&|$)/.test(location.search);function rvMap(){return lj('wn_rv_'
 function rvId(){return'WNRV_'+String(name()).toLowerCase()}
 function missedDays(){var out=[];try{var I2=planInfo(name()),t2=iso(new Date());if(I2){var hc2=ctlOf(CTLM,name()),M2=rvMap();for(var k=adD(I2.P.s,1);k<t2;k=adD(k,1)){if(CLOSED.indexOf(k)<0&&!M2[k]&&!inHold(hc2,k))out.push(k)}}}catch(e){}return out}
 var NTG='';
-function fillStart(K){if(!DATA)return;var cp=NCX?NCX.cap:60,lv=DATA.items.filter(function(i){return!(i.st>=4)}).sort(byPri).slice(0,cp);if(!lv.length){rvMark(K);home(DATA);return}review(lv,K);R.prac=true}
+function fillStart(K){if(!DATA)return;var cp=NCX?NCX.cap:60,lv=DATA.items.filter(function(i){return!(i.st>=4)&&(!i.first||i.first<=K)}).sort(byPri).slice(0,cp);if(!lv.length){rvMark(K);home(DATA);return}review(lv,K);R.prac=true}
 function rvRowH(I,n,ti,row){var M=rvMap(),S=lj('wn_rvs_'+n+TCM,{}),ks=Object.keys(M).filter(function(k){return k>I.P.s&&k<=ti}).sort(),tot=0,k;for(k=adD(I.P.s,1);k<=ti;k=adD(k,1)){if(CLOSED.indexOf(k)<0)tot++}var lk=ks.length?ks[ks.length-1]:'',sc=lk&&S[lk]?' '+S[lk].o+'/'+S[lk].n:'',ml=missedDays().length;var tz=(NCX&&NCX.today===0&&!M[ti])?1:0;return row('r','#c47a1a','누적 복습',lk?'최근 '+dshow(lk)+sc:(tz?'오늘 완료':'아직 시작 전'),ml?'밀린 날 '+ml+'일':'',(ks.length+tz)+' / '+tot)}
+function rvLate(day){var t=+rvMap()[day];return t>1e12?iso(new Date(t))!==day:false}
+function rvQ(){return lj('wn_rvq_'+name()+TCM,{})}
+function rvQset(q){try{ss('wn_rvq_'+name()+TCM,JSON.stringify(q))}catch(e){}}
+function rvSend(day,o,t,ok,tot){
+  var d={};d[day]={v:tot?{s:'1',o:o,n:tot}:{s:'1'},t:t};
+  return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:rvId(),data:d})}).then(function(r){return r.json()}).then(function(r){if(!r||!r.ok)throw new Error('rv');var q=rvQ();delete q[day];rvQset(q)});
+}
+function rvFlush(){
+  if(PV||TMF||!name())return;var q=rvQ(),ks=Object.keys(q);
+  ks.forEach(function(k){var x=q[k];rvSend(k,x.o,x.t,0,x.n).catch(function(){})});
+}
 function rvMark(day,ok,tot){
-  if(!day)return;var m=rvMap();m[day]=Date.now();ss('wn_rv_'+name()+TCM,JSON.stringify(m));
+  if(!day)return;var m=rvMap(),now=Date.now();m[day]=now;ss('wn_rv_'+name()+TCM,JSON.stringify(m));
   if(tot){var q=lj('wn_rvs_'+name()+TCM,{});q[day]={o:ok,n:tot};ss('wn_rvs_'+name()+TCM,JSON.stringify(q))}
-  if(PV||TMF)return;var d={};d[day]={v:tot?{s:'1',o:ok,n:tot}:{s:'1'},t:Date.now()};
-  try{fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:rvId(),data:d})}).catch(function(){})}catch(e){}
+  if(PV||TMF)return;
+  var qq=rvQ();qq[day]={o:ok,n:tot||0,t:now};rvQset(qq);
+  try{rvSend(day,ok,now,0,tot).catch(function(){})}catch(e){}
 }
 function rvPull(){
   if(PV||TMF||!name())return;
+  rvFlush();
   try{fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:rvId(),data:{}})}).then(function(r){return r.json()}).then(function(r){
     var d=(r&&r.data)||{},m=rvMap(),ch=0;for(var k in d){if(/^\d{4}-\d\d-\d\d$/.test(k)&&!m[k]){m[k]=(d[k]&&d[k].t)||1;ch=1}}var q=lj('wn_rvs_'+name()+TCM,{}),qc=0;for(var k3 in d){var v3=d[k3]&&d[k3].v;if(v3&&v3.n&&!q[k3]){q[k3]={o:v3.o,n:v3.n};qc=1}}if(qc)ss('wn_rvs_'+name()+TCM,JSON.stringify(q));
     if(ch){ss('wn_rv_'+name()+TCM,JSON.stringify(m));if(document.getElementById('wk'))home(DATA||undefined)}
   }).catch(function(){})}catch(e){}
 }
 function rvStart(K,ti){
-  if(!DATA)return;var cp=NCX?NCX.cap:60,it=(K<=ti?DATA.items.filter(function(i){return i.nx&&i.nx<=DATA.today}):DATA.items.filter(function(i){return i.nx&&i.nx<=K})).sort(byPri).slice(0,cp);
+  if(!DATA)return;var cp=NCX?NCX.cap:60,it=(K<=ti?DATA.items.filter(function(i){return i.nx&&i.nx<=DATA.today&&(!i.first||i.first<=K)}):DATA.items.filter(function(i){return i.nx&&i.nx<=K})).sort(byPri).slice(0,cp);
   if(!it.length){rvMark(K);home(DATA);return}
   review(it,K);
 }
