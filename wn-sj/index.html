@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>H로드맵</title>
+<meta property="og:title" content="H로드맵"><meta property="og:type" content="website">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="icon" type="image/png" href="../wn/logo.png"><link rel="apple-touch-icon" href="../wn/logo.png"><link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2f7d5b"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="H로드맵">
+<style>
+:root{--bg:#f6f7f4;--card:#fff;--ink:#1f2a24;--sub:#6b766f;--line:#dfe4de;--pri:#2f7d5b;--priInk:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#141815;--card:#1d231f;--ink:#e8eee9;--sub:#97a39b;--line:#2f3832;--pri:#4fb98a;--priInk:#0e1612}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Pretendard,-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;line-height:1.5}
+.w{max-width:560px;margin:0 auto;padding:max(18px,env(safe-area-inset-top)) 16px 40px}
+h1{font-size:22px;margin:6px 0 14px}
+h2{font-size:15px;color:var(--sub);margin:24px 0 8px;font-weight:700}
+.tk{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-decoration:none;color:inherit;margin-bottom:10px}
+.bd{width:6px;align-self:stretch;border-radius:3px;background:#c2557a}
+.tt{flex:1}.tt b{display:block;font-size:16px}.tt small{color:var(--sub);font-size:13px}
+.chip{font-size:12px;color:var(--sub);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+.nb{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 14px}
+.row{display:flex;gap:10px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row b{font-size:16px;min-width:110px}.row span{flex:1;font-size:15px}.row i{font-style:normal;font-size:12px;color:var(--sub)}
+.em{color:var(--sub);font-size:14px;padding:14px 0}
+.ct{font-size:13px;color:var(--sub);font-weight:400;margin-left:6px}
+.btn{width:100%;margin-top:20px;padding:13px;border:0;border-radius:12px;font-size:16px;font-weight:700;background:var(--pri);color:var(--priInk);font-family:inherit}
+.btn.g{background:transparent;color:var(--sub);border:1px solid var(--line);font-weight:600}
+input{width:100%;font-size:18px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font-family:inherit}
+.msg{margin-top:8px;font-size:14px;color:var(--sub);min-height:20px}
+</style></head><body><div class="w" id="app"></div>
+<script>
+(function(){
+var URL_='https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',PIN='6900',NK='wn_name';
+var $=document.getElementById('app'),arm=false;
+function ls(k){try{return localStorage.getItem(k)||''}catch(e){return''}}
+function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function rm(k){try{localStorage.removeItem(k)}catch(e){}}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function post(b){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
+function gate(pre){
+  $.innerHTML='<h1>이름</h1><input id="nm" type="text" autocomplete="off" value="'+esc(pre||'')+'"><button class="btn" id="go">시작</button><div class="msg" id="ms"></div>';
+  var i=document.getElementById('nm'),b=document.getElementById('go'),m=document.getElementById('ms');
+  function go(){var v=(i.value||'').replace(/\s+/g,'');if(!v)return;b.disabled=true;m.textContent='확인 중...';
+    post({act:'list',name:v,pin:PIN}).then(function(r){
+      if(r&&r.ok){ss(NK,v);home(r)}else{b.disabled=false;m.textContent='등록된 이름이 아니에요.'}
+    },function(){b.disabled=false;m.textContent='연결이 안 됐어요. 인터넷을 확인해 주세요.'})}
+  b.onclick=go;i.onkeydown=function(e){if(e.key==='Enter')go()};
+  if(pre)go();else i.focus();
+}
+function home(r){
+  var it=(r&&r.items||[]).slice().sort(function(a,b){return String(b.first||'')<String(a.first||'')?-1:String(b.first||'')>String(a.first||'')?1:0});
+  var h='<h1>H로드맵</h1><a class="tk" href="../sj/"><i class="bd"></i><div class="tt"><b>천일문S 문장줄이기</b><small>12챕터 · 내 속도로 진행</small></div><span class="chip">자유</span></a>';
+  h+='<h2>내 단어장<span class="ct">'+it.length+'개</span></h2><div class="nb">';
+  if(!it.length)h+='<div class="em">아직 모은 단어가 없어요.</div>';
+  it.forEach(function(x){h+='<div class="row"><b>'+esc(x.w)+'</b><span>'+esc(x.m)+'</span><i>'+esc(String(x.src||'').split(',')[0])+'</i></div>'});
+  h+='</div><button class="btn g" id="out">나가기 (다음 학생)</button>';
+  $.innerHTML=h;
+  var o=document.getElementById('out');
+  o.onclick=function(){if(!arm){arm=true;o.textContent='한 번 더 누르면 나갑니다';setTimeout(function(){arm=false;if(document.getElementById('out'))o.textContent='나가기 (다음 학생)'},3000);return}rm(NK);arm=false;gate('')};
+}
+function start(){
+  var q=(/[?&]n=([^&]*)/.exec(location.search)||[])[1],pre=q?decodeURIComponent(q).replace(/\s+/g,''):'',n=ls(NK);
+  if(n){$.innerHTML='<div class="em">불러오는 중...</div>';
+    post({act:'list',name:n,pin:PIN}).then(function(r){if(r&&r.ok)home(r);else gate(pre)},function(){$.innerHTML='<div class="em">연결이 안 됐어요. 인터넷을 확인해 주세요.</div>'})}
+  else gate(pre);
+}
+start();
+})();
+</script></body></html>
