@@ -218,7 +218,7 @@ function judged(q,r,showAns){
     R.res[R.i]=r?1:0;
     if(R.mode==='day'&&!R.prac){S.cur={day:R.day,i:R.i+1,res:R.res.slice()}}if(R.mode==='day'){S.pg=S.pg||{};if(!S.pg[R.day]&&!S.done[R.day]){S.pg[R.day]=1;WN.hw(D.level,R.day,'진행중')}}
     if(R.prac){}else if(r){const w=S.wrong[q.id];if(w){w.s=(w.s||0)+1;if(w.s>=2)delete S.wrong[q.id]}}
-    else{S.wrong[q.id]={s:0};if(q.mn)WN.add([{w:q.wb||q.wd,m:q.mn,src:'데일리보카',how:'문제 오답',ask:false}])}
+    else{S.wrong[q.id]={s:0};if(q.mn)WN.add([{w:q.wb||q.wd,m:q.mn,src:'데일리보카',how:'문제 오답',ask:false,q:'h:'+q.id}])}
     save();
   } else R.res[R.i]=r?1:0;
   let h='<div class="fb '+(r?'ok':'ng')+'"><h3>'+(r?'정답':'오답')+(!r&&showAns?' · 정답: '+esc(showAns):'')+'</h3>';
