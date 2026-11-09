@@ -93,7 +93,7 @@
   "altw": "will",
   "alt": "I wonder if it will rain tomorrow.",
   "altko": "나는 내일 비가 올지 궁금해요(wonder 뒤 if는 '~인지'라는 뜻이라서 will rain).",
-  "why": "'만약 ~라면'을 뜻하는 If 안에서는 앞으로 일어날 일도 현재시제로 말해요. will은 결과 쪽(could shrink)에서만 써요. 그래서 will continue가 아니라 continues(계속되다)예요.",
+  "why": "'만약 ~라면'을 뜻하는 If 안에서는 앞으로 일어날 일도 현재시제로 말해요. 미래를 말하는 will 같은 말은 결과 쪽(이 문장은 could shrink(줄어들 수 있다))에 와요. 그래서 will continue가 아니라 continues(계속되다)예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>조건(If)·시간(when) 절 안에서는 will을 쓰지 않아요",
   "d": {
    "trend": "추세",
@@ -439,7 +439,7 @@
   "exko": "그녀가 이렇게 할 때마다 나는 웃어요(laugh 웃다).",
   "tko": "그가 이렇게 할 때마다",
   "bad": "Every time she is this, I laugh.",
-  "badko": "(이것을 '하다'라는 동작이라서 is(이다)가 아니라 does(하다)예요)",
+  "badko": "('이렇게 하다'라는 동작이라서 is(이다)가 아니라 does(하다)예요)",
   "altw": "is",
   "alt": "Every time she is sad, I help her.",
   "altko": "그녀가 슬플 때마다 나는 그녀를 도와요(sad(슬픈)처럼 상태를 말하니까 is).",
@@ -827,15 +827,15 @@
    ],
    [
     "뒤 말",
-    "four parts",
+    "two parts",
     "13 large pieces"
    ]
   ],
-  "ex": "The book consists of four parts.",
-  "exko": "그 책은 네 부분으로 이루어져 있어요(part 부분).",
+  "ex": "These boxes consist of two parts.",
+  "exko": "이 상자들은 두 부분으로 이루어져 있어요(box 상자, part 부분).",
   "tko": "13개의 큰 조각으로 이루어져 있다",
-  "bad": "The book is consisted of four parts.",
-  "badko": "(consist of(이루어져 있다)는 be + p.p.로 바꾸지 않아서 is consisted of가 아니라 consists of예요)",
+  "bad": "These boxes are consisted of two parts.",
+  "badko": "(consist of(이루어져 있다)는 be + p.p.로 바꾸지 않아서 are consisted of가 아니라 consist of예요)",
   "altw": "is made of",
   "alt": "The desk is made of wood.",
   "altko": "그 책상은 나무로 만들어졌어요(make(만들다)는 '만들어지다'일 때 be made of를 써요).",
@@ -884,7 +884,7 @@
   "badko": "(recommend(권하다) 뒤 that절은 Tom이 한 명이어도 drinks가 아니라 drink예요)",
   "altw": "drinks",
   "alt": "Tom says that he drinks a lot of water.",
-  "altko": "톰은 물을 많이 마신다고 말해요(say 말하다는 권고가 아니라 사실을 전해서 drinks).",
+  "altko": "톰은 물을 많이 마신다고 말해요(say(말하다)는 권고가 아니라 사실을 전해서 drinks).",
   "why": "recommended(권했다) 뒤 that절에는 '~하는 게 좋겠다'는 should가 숨어 있어요. the museum은 하나(단수)라서 extends라고 쓰고 싶지만, should 뒤처럼 동사원형 extend(늘리다)를 써요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>권하는 말 뒤 that절은 주어가 단수여도 동사원형이에요",
   "d": {
@@ -998,7 +998,7 @@
    "excellent": "훌륭한",
    "since": "~이므로",
    "effort": "노력",
-   "put": "put into: ~에 쏟다, put의 과거분사형",
+   "put": "put into: ~에 쏟다 (put의 과거분사형)",
    "must": "~임에 틀림없다"
   }
  }

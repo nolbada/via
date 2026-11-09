@@ -20,7 +20,7 @@
   "mp": [
    [
     "if 절",
-    "if I cared",
+    "if I cared now",
     "if you cared"
    ],
    [
@@ -29,11 +29,11 @@
     "you wouldn't write"
    ]
   ],
-  "ex": "If I cared, I would help you.",
-  "exko": "내가 신경 쓴다면 너를 도울 텐데요(care 신경 쓰다, help 돕다, 지금은 신경 쓰지 않아요).",
+  "ex": "If I cared now, I would help you.",
+  "exko": "내가 지금 신경 쓴다면 너를 도울 텐데요(care 신경 쓰다, help 돕다, 실제로는 지금 신경 쓰지 않아요).",
   "tko": "신경 쓴다면 쓰지 않을 것이다",
-  "bad": "If I had cared, I would help you.",
-  "badko": "(지금 사실과 반대인 상상이라서 had cared가 아니라 과거형 cared예요)",
+  "bad": "If I had cared now, I would help you.",
+  "badko": "(now(지금) 일을 반대로 상상하는 거라서 had cared가 아니라 과거형 cared예요)",
   "altw": "had p.p.",
   "alt": "If I had studied, I would have passed the test.",
   "altko": "내가 공부했더라면 시험에 붙었을 텐데요(이미 지난 일을 상상할 때는 had studied).",
@@ -771,7 +771,7 @@
   "altw": "능동",
   "alt": "She is a teacher who praises her students.",
   "altko": "그녀는 학생들을 칭찬하는 선생님이에요(선생님이 직접 칭찬하니까 능동 praises).",
-  "why": "a routine(습관)은 스스로 소중히 여기는 게 아니라 장군들이 '소중히 여기는' 대상이에요. 그래서 '소중히 여겨진다'는 뜻의 is valued(value 소중히 여기다의 수동)가 맞아요. by even the most senior generals(가장 높은 장군들조차에 의해)도 힌트예요.",
+  "why": "a routine(습관)은 스스로 소중히 여기는 게 아니라 장군들이 '소중히 여기는' 대상이에요. 그래서 '소중히 여겨진다'는 뜻의 is valued(value 소중히 여기다의 수동)가 맞아요. by even the most senior generals(가장 높은 장군들에 의해서조차)도 힌트예요.",
   "d": {
    "task": "일, 과업",
    "completed": "complete(완료하다)의 과거분사",

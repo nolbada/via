@@ -23,7 +23,7 @@
   "mp": [
    [
     "요청하는 말",
-    "requests that",
+    "requested that",
     "requested that"
    ],
    [
@@ -32,14 +32,14 @@
     "guests wait"
    ]
   ],
-  "ex": "The nurse requests that Amy wait here.",
-  "exko": "간호사는 에이미가 여기서 기다려야 한다고 요청해요(request 요청하다, wait 기다리다).",
+  "ex": "The nurse requested that Amy wait here.",
+  "exko": "간호사는 에이미가 여기서 기다려 달라고 요청했어요(request 요청하다 → requested, wait 기다리다).",
   "tko": "손님들이 기다려야 한다고 요청했다",
-  "bad": "The nurse requests that Amy waits here.",
-  "badko": "(request(요청하다) 뒤 that절은 '~해 달라'는 뜻이라서 waits가 아니라 wait예요)",
+  "bad": "The nurse requested that Amy waits here.",
+  "badko": "(request(요청하다) 뒤 that절은 '~해 달라'는 뜻이라서 waits가 아니라 원형 wait예요)",
   "altw": "say",
-  "alt": "The nurse says that Amy waits here.",
-  "altko": "간호사는 에이미가 여기서 기다린다고 말해요(say 말하다는 사실을 전할 뿐이라 waits로 써요).",
+  "alt": "The nurse said that Amy was waiting here.",
+  "altko": "간호사는 에이미가 여기서 기다리고 있다고 말했어요(say 말하다 → said는 사실을 전할 뿐이라 was waiting처럼 시제에 맞춰 써요).",
   "why": "request(요청하다)는 '~해 달라'고 부탁하는 말이에요. 이런 말 뒤 that절은 사실이 아니라 해야 할 일을 말해서, 동사에 -s나 -ed를 붙이지 않고 그대로(원형) 써요. 그래서 waits가 아니라 wait(기다리다)예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>제안·요구 동사 뒤 that절은 동사에 -s나 -ed를 붙이지 않고 원형으로 써요",
   "d": {
@@ -464,7 +464,7 @@
   "mp": [
    [
     "권하는 말",
-    "recommends that",
+    "recommended that",
     "recommended that"
    ],
    [
@@ -473,11 +473,11 @@
     "the CEO address"
    ]
   ],
-  "ex": "The doctor recommends that Jim sleep more.",
-  "exko": "의사는 짐이 더 자야 한다고 권해요(recommend 권하다, sleep 자다).",
+  "ex": "The doctor recommended that Jim sleep more.",
+  "exko": "의사는 짐이 더 자야 한다고 권했어요(recommend 권하다 → recommended, sleep 자다).",
   "tko": "CEO가 해결해야 한다고 권고했다",
-  "bad": "The doctor recommends that Jim sleeps more.",
-  "badko": "(recommend(권하다) 뒤 that절은 '~해야 한다'는 뜻이라서 sleeps가 아니라 sleep이에요)",
+  "bad": "The doctor recommended that Jim sleeps more.",
+  "badko": "(recommend(권하다) 뒤 that절은 '~해야 한다'는 뜻이라서 sleeps가 아니라 원형 sleep이에요)",
   "altw": "suggest(보여 주다)",
   "alt": "The test suggests that Jim sleeps well.",
   "altko": "그 검사는 짐이 잘 잔다는 걸 보여 줘요(suggest가 '보여 주다'라는 뜻일 때는 사실을 말해서 sleeps로 써요).",

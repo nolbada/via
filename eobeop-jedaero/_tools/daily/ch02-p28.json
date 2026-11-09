@@ -73,20 +73,20 @@
   "mp": [
    [
     "동사",
-    "arrives",
+    "will carry",
     "will deliver"
    ],
    [
     "동사를 꾸미는 말",
-    "quickly",
+    "very easily",
     "almost instantly"
    ]
   ],
-  "ex": "The bus arrives quickly.",
-  "exko": "그 버스는 빨리 도착해요(arrive 도착하다, quick 빠른).",
+  "ex": "The robot will carry the box very easily.",
+  "exko": "그 로봇은 상자를 아주 쉽게 나를 거예요(carry 나르다, easy 쉬운).",
   "tko": "거의 즉시",
-  "bad": "The bus arrives quick.",
-  "badko": "(어떻게 도착하는지 말하는 자리라서 quick(빠른)이 아니라 부사 quickly(빠르게)예요)",
+  "bad": "The robot will carry the box very easy.",
+  "badko": "(어떻게 나르는지 말하는 자리라서 easy(쉬운)가 아니라 부사 easily(쉽게)예요)",
   "altw": "instant",
   "alt": "I want instant noodles.",
   "altko": "나는 즉석 라면을 먹고 싶어요(명사 noodles(면)를 꾸미니까 형용사 instant(즉석의)).",
@@ -143,7 +143,7 @@
   ],
   "ex": "My parents, who were busy, left.",
   "exko": "바쁘셨던 우리 부모님은 떠나셨어요(parents 부모님, busy 바쁜, leave 떠나다).",
-  "tko": "매우 걱정한",
+  "tko": "매우 걱정했던 Dorothy의 부모님",
   "bad": "My parents, who was busy, left.",
   "badko": "(parents는 두 분(복수)이라서 was가 아니라 were(be의 과거형)예요)",
   "altw": "was",
@@ -242,7 +242,7 @@
   "mp": [
    [
     "동사",
-    "wanted",
+    "had wanted",
     "had wanted"
    ],
    [
@@ -251,10 +251,10 @@
     "to meet"
    ]
   ],
-  "ex": "I wanted to eat pizza.",
-  "exko": "나는 피자를 먹고 싶었어요(want 원하다, eat 먹다).",
+  "ex": "He was sad because he had wanted to eat pizza.",
+  "exko": "그는 피자를 먹고 싶어 했었기 때문에 슬펐어요(sad 슬픈, want 원하다, eat 먹다).",
   "tko": "만나고 싶어 했었다",
-  "bad": "I wanted eating pizza.",
+  "bad": "He was sad because he had wanted eating pizza.",
   "badko": "(want(원하다) 뒤에는 -ing가 아니라 to eat(먹다)처럼 to + 동사원형이 와요)",
   "altw": "-ing",
   "alt": "I like eating pizza.",
@@ -295,19 +295,19 @@
   "mp": [
    [
     "동사 + 목적어",
-    "do homework",
+    "do her homework",
     "achieve great things"
    ],
    [
     "동사를 꾸미는 말",
-    "carefully",
+    "more carefully",
     "more importantly"
    ]
   ],
-  "ex": "She does homework carefully.",
-  "exko": "그녀는 숙제를 조심스럽게 해요(do 하다, careful 조심스러운).",
+  "ex": "She will do her homework more carefully.",
+  "exko": "그녀는 숙제를 더 조심스럽게 할 거예요(do 하다, careful 조심스러운).",
   "tko": "더 중요하게",
-  "bad": "She does homework careful.",
+  "bad": "She will do her homework more careful.",
   "badko": "(어떻게 하는지 말하는 자리라서 careful(조심스러운)이 아니라 부사 carefully(조심스럽게)예요)",
   "altw": "important",
   "alt": "This is an important day.",

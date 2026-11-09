@@ -242,7 +242,7 @@
   "mp": [
    [
     "제안하는 말",
-    "suggests that",
+    "proposed that",
     "proposed that"
    ],
    [
@@ -251,14 +251,14 @@
     "the firm expand"
    ]
   ],
-  "ex": "The coach suggests that Tom rest.",
-  "exko": "코치는 톰이 쉬어야 한다고 제안해요(suggest 제안하다, rest 쉬다).",
+  "ex": "The coach proposed that Tom rest.",
+  "exko": "코치는 톰이 쉬어야 한다고 제안했어요(propose 제안하다 → proposed, rest 쉬다).",
   "tko": "그 회사가 확장해야 한다고 제안했다",
-  "bad": "The coach suggests that Tom rests.",
-  "badko": "(suggest(제안하다) 뒤 that절은 '~해야 한다'는 뜻이라서 rests가 아니라 rest예요)",
+  "bad": "The coach proposed that Tom rests.",
+  "badko": "(propose(제안하다) 뒤 that절은 '~해야 한다'는 뜻이라서 rests가 아니라 원형 rest예요)",
   "altw": "say",
-  "alt": "The coach says that Tom rests.",
-  "altko": "코치는 톰이 쉰다고 말해요(say 말하다는 사실을 전할 뿐이라 rests로 써요).",
+  "alt": "The coach said that Tom was tired.",
+  "altko": "코치는 톰이 피곤하다고 말했어요(say 말하다 → said는 사실을 전할 뿐이라 시제에 맞춰 was로 써요).",
   "why": "propose(제안하다)는 '~하면 좋겠다'고 권하는 말이에요. 뒤 that절에는 해야 할 일이 오니까 동사에 -s를 붙이지 않고 원형을 써요. the firm이 하나여도 expands가 아니라 expand(확장하다)예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>제안·요구 동사 뒤 that절은 동사에 -s나 -ed를 붙이지 않고 원형으로 써요",
   "d": {
@@ -403,7 +403,7 @@
   "mp": [
    [
     "권하는 말",
-    "recommends that",
+    "recommended that",
     "recommended that"
    ],
    [
@@ -412,11 +412,11 @@
     "we walk"
    ]
   ],
-  "ex": "The teacher recommends that Ben read more.",
-  "exko": "선생님은 벤이 더 읽어야 한다고 권해요(recommend 권하다, read 읽다).",
+  "ex": "The teacher recommended that Ben read more.",
+  "exko": "선생님은 벤이 더 읽어야 한다고 권했어요(recommend 권하다 → recommended, read 읽다).",
   "tko": "우리가 그를 산책시켜야 한다고 권했다",
-  "bad": "The teacher recommends that Ben reads more.",
-  "badko": "(recommend(권하다) 뒤 that절은 '~해야 한다'는 뜻이라서 reads가 아니라 read예요)",
+  "bad": "The teacher recommended that Ben reads more.",
+  "badko": "(recommend(권하다) 뒤 that절은 '~해야 한다'는 뜻이라서 reads가 아니라 원형 read예요)",
   "altw": "think",
   "alt": "The teacher thinks that Ben reads a lot.",
   "altko": "선생님은 벤이 책을 많이 읽는다고 생각해요(think 생각하다는 사실을 말해서 reads로 써요).",

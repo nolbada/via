@@ -46,14 +46,14 @@
   "d": {
    "worker": "일꾼",
    "makes": "make(만들다)의 3인칭 단수형",
-   "chairs": "의자",
+   "chairs": "chair(의자)의 복수형",
    "builds": "build(짓다)의 3인칭 단수형",
    "skillset": "기술 묶음, 기술 모음",
    "takes": "take(걸리다)의 3인칭 단수형",
    "fully": "완전히",
    "develop": "발달시키다, 익히다",
    "often": "자주",
-   "tables": "탁자"
+   "tables": "table(탁자)의 복수형"
   }
  },
  {
@@ -103,7 +103,7 @@
    "equally": "똑같이",
    "good": "능숙한",
    "experienced": "경험이 풍부한",
-   "tasks": "일, 과제",
+   "tasks": "task(일, 과제)의 복수형",
    "at": "good at: ~을 잘하는"
   }
  },
@@ -148,15 +148,15 @@
   "why": "either A or B는 A와 B가 같은 모양이에요. A가 prepares(prepare 준비하다의 3인칭 현재)니까 B도 stitches(stitch 꿰매다의 3인칭 현재)예요. by cutting(자르는 방법으로)은 prepares에 딸린 꾸밈말이에요.",
   "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>either A or B, not only A but also B도 A와 B가 같은 모양이에요",
   "d": {
-   "factories": "공장",
+   "factories": "factory(공장)의 복수형",
    "each": "각각의",
    "either": "either A or B: A 또는 B",
    "prepares": "prepare(준비하다)의 3인칭 단수형",
    "leather": "가죽",
-   "pieces": "조각",
+   "pieces": "piece(조각)의 복수형",
    "cutting": "cut(자르다)의 -ing형",
    "stitches": "stitch(꿰매다)의 3인칭 단수형",
-   "shoes": "신발",
+   "shoes": "shoe(신발)의 복수형",
    "into": "~로"
   }
  },
@@ -205,7 +205,7 @@
    "industrial": "산업의",
    "era": "시대",
    "began": "begin(시작하다)의 과거형",
-   "centuries": "세기",
+   "centuries": "century(세기)의 복수형",
    "ago": "~전에"
   }
  },
@@ -226,30 +226,30 @@
   "mp": [
    [
     "not only 뒤",
-    "not only sing",
+    "not only cook",
     "not only develop"
    ],
    [
     "but also 뒤",
-    "but also dance",
+    "but also clean",
     "but also become"
    ]
   ],
-  "ex": "They not only sing but also dance.",
-  "exko": "그들은 노래할(sing) 뿐만 아니라 춤도 춰요(dance).",
+  "ex": "They not only cook but also clean.",
+  "exko": "그들은 요리할 뿐만 아니라 청소도 해요(cook 요리하다, clean 청소하다).",
   "tko": "더 효율적이 되기도 한다",
-  "bad": "They not only sing but also danced.",
-  "badko": "(sing(노래한다)이 현재 모양이라 danced가 아니라 dance예요)",
-  "altw": "danced",
-  "alt": "They not only sang but also danced.",
-  "altko": "그들은 노래했을 뿐만 아니라 춤도 췄어요(앞이 sang(과거)이라 뒤도 danced(과거)예요).",
+  "bad": "They not only cook but also cleaned.",
+  "badko": "(cook(요리한다)이 현재 모양이라 cleaned가 아니라 clean이에요)",
+  "altw": "과거끼리",
+  "alt": "They not only cooked but also cleaned.",
+  "altko": "그들은 요리했을 뿐만 아니라 청소도 했어요(앞이 cooked(과거)라서 뒤도 cleaned(과거)예요).",
   "why": "not only A but also B는 A와 B가 같은 모양이에요. 앞의 develop(키우다)이 현재 동사니까 뒤도 현재 모양 become(되다)이고, 과거형 became은 안 맞아요.",
   "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>not only A but also B는 A와 B의 모양을 똑같이 맞춰요",
   "d": {
    "such": "그런",
-   "workers": "노동자",
+   "workers": "worker(노동자)의 복수형",
    "develop": "키우다, 발전시키다",
-   "skills": "기술",
+   "skills": "skill(기술)의 복수형",
    "job": "일",
    "become": "되다",
    "efficient": "효율적인",
@@ -290,7 +290,7 @@
   "altw": "-ing",
   "alt": "I like staying home or going out.",
   "altko": "나는 집에 있거나 나가는 걸 좋아해요(like 뒤에 -ing 둘이 이어져요).",
-  "why": "choose 뒤 to show(보여 주다)와 or로 이어지는 말이에요. or 뒤의 to는 없어도 돼서 stop(그만두다) 원형이 와요. stopping은 앞과 모양이 달라서 안 돼요.",
+  "why": "choose(선택하다) 뒤 to show(보여 주다)와 or로 이어지는 말이에요. or 뒤의 to는 없어도 돼서 stop(그만두다) 원형이 와요. stopping은 앞과 모양이 달라서 안 돼요.",
   "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>or 앞이 to V면 뒤는 (to) V로 맞춰요",
   "d": {
    "choose": "선택하다",
@@ -299,7 +299,7 @@
    "yourself": "너 자신",
    "hanging": "hang out: 어울려 놀다",
    "stop": "그만두다",
-   "friends": "친구들"
+   "friends": "friend(친구)의 복수형"
   }
  },
  {
@@ -392,7 +392,7 @@
    "although": "비록 ~지만",
    "free": "자유로운",
    "choose": "선택하다",
-   "consequences": "결과",
+   "consequences": "consequence(결과)의 복수형",
    "saying": "say(말하다)의 -ing형",
    "taking": "take(취하다)의 -ing형",
    "action": "행동",
@@ -438,7 +438,7 @@
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>문장 안에 들어간 의문문은 의문사 + 주어 + 동사 순서예요",
   "d": {
    "wonder": "궁금해하다",
-   "choices": "선택",
+   "choices": "choice(선택)의 복수형",
    "matter": "중요하다",
    "much": "so much: 그렇게 많이",
    "run": "in the long run: 장기적으로"
@@ -576,11 +576,11 @@
   "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>주어가 직접 하면 능동, 당하면 be + p.p.예요",
   "d": {
    "early": "초기의",
-   "photographs": "사진",
+   "photographs": "photograph(사진)의 복수형",
    "deeply": "깊이",
    "admired": "admire(감탄하다)의 p.p. 감탄받은",
    "several": "여러",
-   "exhibitions": "전시회",
+   "exhibitions": "exhibition(전시회)의 복수형",
    "held": "hold(열다)의 p.p. 열린",
    "honor": "in his honor: 그를 기리어",
    "during": "~동안"
@@ -711,17 +711,17 @@
   "badko": "(famous(유명한)는 긴 단어라서 -er을 붙이지 않고 more famous라고 써요)",
   "altw": "-er",
   "alt": "This song is shorter than that one.",
-  "altko": "이 노래가 저 노래보다 더 짧아요(short 짧은은 짧은 단어라서 -er).",
+  "altko": "이 노래가 저 노래보다 더 짧아요(short(짧은)는 짧은 단어라서 -er을 붙여요).",
   "why": "뒤에 than(~보다)이 있으니 '더 ~한'이라는 비교급이 와야 해요. valuable(가치 있는)은 긴 단어라서 -er을 붙이지 않고 앞에 more를 붙여 more valuable이 돼요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>짧은 단어는 -er, 긴 단어는 more를 앞에 붙여요",
   "d": {
    "today": "오늘날",
-   "portraits": "초상 사진",
+   "portraits": "portrait(초상 사진)의 복수형",
    "considered": "consider(여기다)의 p.p. 여겨지는",
    "valuable": "가치 있는",
    "than": "~보다",
    "most": "대부분의",
-   "collections": "소장품",
+   "collections": "collection(소장품)의 복수형",
    "era": "시대"
   }
  },
@@ -762,12 +762,12 @@
   "trend": "<b>출제 3위 · that[which] vs what</b><br>31년간 71회 나왔어요.<br>앞에 꾸밀 명사가 있으면 that, 없고 '~하는 것'이면 what이에요",
   "d": {
    "urban": "도시의",
-   "planners": "계획가",
+   "planners": "planner(계획가)의 복수형",
    "long": "오랫동안",
    "wondered": "wonder(궁금해하다)의 p.p.",
    "makes": "make(만들다)의 3인칭 단수형",
    "certain": "어떤",
-   "streets": "거리",
+   "streets": "street(거리)의 복수형",
    "alive": "활기찬",
    "others": "다른 것들"
   }
@@ -816,7 +816,7 @@
    "comfortable": "편안한",
    "busy": "붐비는, 바쁜",
    "lively": "활기찬",
-   "spaces": "공간"
+   "spaces": "space(공간)의 복수형"
   }
  },
  {
@@ -860,18 +860,18 @@
   "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>or로 이어진 나열은 앞의 -ing 모양을 그대로 따라가요",
   "d": {
    "crowded": "붐비는",
-   "streets": "거리",
+   "streets": "street(거리)의 복수형",
    "bring": "가져오다",
    "singing": "sing(노래하다)의 -ing형",
    "dancing": "dance(춤추다)의 -ing형",
    "performing": "perform(공연하다)의 -ing형",
-   "kinds": "종류",
+   "kinds": "kind(종류)의 복수형",
    "creating": "create(만들어 내다)의 -ing형",
-   "scenes": "장면",
+   "scenes": "scene(장면)의 복수형",
    "feel": "느껴지다",
    "lively": "활기찬",
    "welcoming": "환영하는",
-   "visitors": "방문객",
+   "visitors": "visitor(방문객)의 복수형",
    "world": "around the world: 전 세계"
   }
  },
@@ -921,18 +921,18 @@
   "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and로 이어진 형용사는 -ing/-ed 방향도 같이 맞춰요",
   "d": {
    "crowded": "붐비는",
-   "streets": "거리",
+   "streets": "street(거리)의 복수형",
    "bring": "가져오다",
    "singing": "sing(노래하다)의 -ing형",
    "dancing": "dance(춤추다)의 -ing형",
    "performing": "perform(공연하다)의 -ing형",
-   "kinds": "종류",
+   "kinds": "kind(종류)의 복수형",
    "creating": "create(만들어 내다)의 -ing형",
-   "scenes": "장면",
+   "scenes": "scene(장면)의 복수형",
    "feel": "느껴지다",
    "lively": "활기찬",
    "welcoming": "환영하는",
-   "visitors": "방문객",
+   "visitors": "visitor(방문객)의 복수형",
    "world": "around the world: 전 세계"
   }
  },
@@ -972,11 +972,11 @@
   "why": "must(~임이 틀림없다) 뒤에는 늘 동사원형이 와요. 이미 지난 일을 추측할 때는 have + p.p.를 써서 have lost(lose 잃다의 p.p.)가 돼요. must lost처럼 조동사 뒤에 과거형을 바로 쓰면 안 돼요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>조동사 뒤는 원형, 지난 일 추측은 조동사 + have p.p.예요",
   "d": {
-   "events": "행사",
+   "events": "event(행사)의 복수형",
    "cause": "일으키다",
    "gather": "모이다",
    "stay": "머물다",
-   "cities": "도시",
+   "cities": "city(도시)의 복수형",
    "without": "~없이",
    "such": "그런",
    "energy": "활기",

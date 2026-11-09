@@ -506,11 +506,11 @@
     "post a job ad"
    ]
   ],
-  "ex": "I try to wake up early.",
-  "exko": "나는 일찍 일어나려고 애써요(wake up 일어나다).",
+  "ex": "I try to wake up early, but it is not easy.",
+  "exko": "나는 일찍 일어나려고 애쓰지만 쉽지 않아요(wake up 일어나다, easy 쉬운).",
   "tko": "채용 공고를 올리려고 노력한다",
-  "bad": "I try waking up early.",
-  "badko": "(try waking up은 '시험 삼아 해 보다'라는 뜻이에요. '애쓰다'를 말하려면 try to wake up이어야 해요)",
+  "bad": "I try waking up early, but it is not easy.",
+  "badko": "(쉽지 않은 일을 애써서 하는 거라서 '시험 삼아 해 보다'인 try waking up이 아니라 try to wake up이에요)",
   "altw": "-ing",
   "alt": "I tried eating kimchi for the first time.",
   "altko": "나는 처음으로 김치를 먹어 봤어요(try -ing는 시험 삼아 해 보는 뜻이에요).",
@@ -591,7 +591,7 @@
    "dangerous": "위험한",
    "driver": "운전자",
    "shaken": "shake(흔들다)의 과거분사",
-   "confused": "혼란스러운",
+   "confused": "confuse(혼란스럽게 하다)의 과거분사, 혼란스러워진",
    "accident": "사고",
    "pulled": "pull over: (차를) 길가에 세우다 (pull의 과거형)",
    "immediately": "즉시"
@@ -627,14 +627,14 @@
    ],
    [
     "-ing",
-    "helping",
+    "helping her",
     "selling it"
    ]
   ],
-  "ex": "Mom insists on my helping.",
-  "exko": "엄마는 내가 도와야 한다고 주장해요(insist on ~을 주장하다, help 돕다).",
+  "ex": "Mom insists on my helping her.",
+  "exko": "엄마는 내가 엄마를 도와야 한다고 주장해요(insist on ~을 주장하다, help 돕다).",
   "tko": "우리가 그것을 파는 것",
-  "bad": "Mom insists on I helping.",
+  "bad": "Mom insists on I helping her.",
   "badko": "(on 뒤에서 helping(돕는 것)을 하는 사람은 I(나는)가 아니라 my(나의)로 써야 해요)",
   "altw": "we",
   "alt": "We help Mom every day.",
@@ -698,7 +698,7 @@
   "altw": "more than",
   "alt": "I drink more water than you.",
   "altko": "나는 너보다 더 많은 물을 마셔요(배수 없이 그냥 '더 많이'만 말할 때는 more ... than을 써요).",
-  "why": "'몇 배 더 많은'은 more ... than이 아니라 as much ... as에 배수(twice 두 배, three times 세 배)를 앞에 붙여 말해요. 그래서 three times as much money as예요. money(돈)는 셀 수 없어서 much를 써요. they did는 they earned(그들이 벌었다)를 대신한 말이에요.",
+  "why": "'몇 배 더 많은'은 more ... than이 아니라 as much ... as에 배수(twice 두 배, three times 세 배)를 앞에 붙여 말해요. 그래서 three times as much money as예요. money(돈)는 셀 수 없어서 much를 써요. they did는 they earned(earn, 벌다의 과거형: 그들이 벌었다)를 대신한 말이에요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>배수 표현은 배수 + as ... as 모양으로 써요",
   "d": {
    "today's": "오늘날의",

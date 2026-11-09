@@ -141,7 +141,7 @@
    ]
   ],
   "ex": "The boy stopped the car.",
-  "exko": "그 소년이 차를 멈추게 했어요(stop 멈추다, car 차).",
+  "exko": "그 소년이 차를 세웠어요(stop 멈추다, 세우다, car 차).",
   "tko": "클립이 막았다",
   "bad": "The boy to stop the car.",
   "badko": "(to stop은 문장의 동사가 될 수 없어요. 동사 stopped(stop 멈추다의 과거형)가 필요해요)",
@@ -628,7 +628,7 @@
   "mp": [
    [
     "동사",
-    "want",
+    "decided",
     "decided"
    ],
    [
@@ -637,11 +637,11 @@
     "to major"
    ]
   ],
-  "ex": "I want to eat pizza.",
-  "exko": "나는 피자를 먹고 싶어요(want 원하다, eat 먹다).",
+  "ex": "I decided to eat pizza.",
+  "exko": "나는 피자를 먹기로 결심했어요(decide 결심하다, eat 먹다).",
   "tko": "전공하기로",
-  "bad": "I want eating pizza.",
-  "badko": "(want(원하다)는 eating이 아니라 to eat만 목적어로 가져요)",
+  "bad": "I decided eating pizza.",
+  "badko": "(decide(결심하다)는 eating이 아니라 to eat만 목적어로 가져요)",
   "altw": "-ing",
   "alt": "I enjoy eating pizza.",
   "altko": "나는 피자 먹는 걸 즐겨요(enjoy 즐기다는 -ing만 써요).",

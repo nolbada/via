@@ -60,23 +60,23 @@
   "mp": [
    [
     "주어",
-    "The number of dogs",
+    "The number of stars",
     "the number of details"
    ],
    [
     "동사",
-    "is",
+    "amazes",
     "amazes"
    ]
   ],
-  "ex": "The number of dogs is small.",
-  "exko": "개의 수는 적어요(number 수, small 적은).",
+  "ex": "The number of stars amazes me.",
+  "exko": "별의 수가 나를 놀라게 해요(star 별, amaze 놀라게 하다).",
   "tko": "세부 요소의 수가 놀라게 한다",
-  "bad": "The number of dogs are small.",
-  "badko": "(number(수) 하나가 주어라서 are가 아니라 is예요. dogs가 여러 마리여도 '수'는 하나예요)",
+  "bad": "The number of stars amaze me.",
+  "badko": "(number(수) 하나가 주어라서 amaze가 아니라 amazes예요. stars가 여러 개여도 '수'는 하나예요)",
   "altw": "a number of",
-  "alt": "A number of dogs are in the yard.",
-  "altko": "많은 개들이 마당에 있어요(a number of는 '많은'이라는 뜻이라 dogs에 맞춰 are).",
+  "alt": "A number of stars are in the sky.",
+  "altko": "하늘에 많은 별이 있어요(a number of는 '많은'이라는 뜻이라 stars에 맞춰 are).",
   "why": "the number of는 '~의 수'라는 한 가지를 말해서 하나로 봐요. 그래서 details(세부 요소들)가 여러 개여도 동사는 amaze(놀라게 하다)가 아니라 amazes예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>the number of는 단수, a number of는 복수로 받아요",
   "d": {
@@ -883,15 +883,15 @@
   "mp": [
    [
     "접속사 + 분사",
-    "When called",
-    "When given"
+    "When called by Mom",
+    "When given without any context"
    ]
   ],
-  "ex": "When called, he came.",
-  "exko": "불리자(call 부르다), 그는 왔어요(come 오다).",
-  "tko": "주어지면",
-  "bad": "When calling, he came.",
-  "badko": "(그는 부름을 받는 쪽이라서 calling이 아니라 called예요)",
+  "ex": "When called by Mom, he came.",
+  "exko": "엄마가 부르자(call 부르다), 그는 왔어요(come 오다).",
+  "tko": "아무런 맥락 없이 주어지면",
+  "bad": "When calling by Mom, he came.",
+  "badko": "(그는 엄마에게 불림을 받는 쪽이라서 calling이 아니라 called예요)",
   "altw": "-ing",
   "alt": "When calling his mom, he smiled.",
   "altko": "엄마에게 전화할 때, 그는 웃었어요(그가 직접 전화하는 쪽이라 -ing).",

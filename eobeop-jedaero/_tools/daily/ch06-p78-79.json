@@ -61,21 +61,21 @@
   "fm": "try + to 동사원형 (애쓰다)",
   "mp": [
    [
-    "동사",
-    "try",
-    "trying"
+    "by + try",
+    "by trying",
+    "by trying"
    ],
    [
     "뒤",
-    "to open",
+    "to hide",
     "to breathe"
    ]
   ],
-  "ex": "I try to open the jar.",
-  "exko": "나는 병을 열려고 애써요(try 애쓰다, open 열다, jar 병).",
-  "tko": "숨 쉬려고 애쓰는 것",
-  "bad": "I try opening the jar.",
-  "badko": "(try opening은 '시험 삼아 열어 보다'라는 다른 뜻이에요. 열려고 애쓰는 건 try to open이에요)",
+  "ex": "The cat reacts by trying to hide.",
+  "exko": "그 고양이는 숨으려고 애쓰는 식으로 반응해요(react 반응하다, try 애쓰다, hide 숨다).",
+  "tko": "숨 쉬려고 애씀으로써",
+  "bad": "The cat reacts by trying hiding.",
+  "badko": "(trying hiding은 '시험 삼아 숨어 보다'라는 다른 뜻이에요. 숨으려고 애쓰는 건 trying to hide예요)",
   "altw": "-ing",
   "alt": "Try opening the window.",
   "altko": "시험 삼아 창문을 열어 보세요(try -ing는 '한번 해 보다').",
@@ -388,7 +388,7 @@
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>try 뒤에서 to V는 '애쓰다', -ing는 '시험 삼아 해 보다'예요",
   "d": {
    "without": "~없이",
-   "likely": "~할 것 같은",
+   "likely": "아마(도), would likely: 아마 ~할 것이다",
    "try": "애쓰다",
    "heal": "치유하다",
    "itself": "그것 스스로",
@@ -631,7 +631,7 @@
    ]
   ],
   "ex": "I visited Busan last year.",
-  "exko": "나는 작년에 부산에 갔어요(visit 방문하다, year 해).",
+  "exko": "나는 작년에 부산을 방문했어요(visit 방문하다, year 해).",
   "tko": "발표했다",
   "bad": "I have visited Busan last year.",
   "badko": "(last year처럼 딱 정해진 과거 때가 있으면 have visited가 아니라 visited예요)",
