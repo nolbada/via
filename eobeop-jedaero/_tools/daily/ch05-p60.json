@@ -39,8 +39,8 @@
   "bad": "If it snows, kids would play.",
   "badko": "(눈이 올 수도 있는 진짜 가능한 일이라서 would가 아니라 will이에요)",
   "altw": "would",
-  "alt": "If I were a bird, I would fly.",
-  "altko": "내가 새라면 날 수 있을 텐데요(bird 새, fly 날다. 사실이 아닌 상상일 땐 would).",
+  "alt": "If I were rich, I would buy a big house.",
+  "altko": "내가 부자라면 큰 집을 살 텐데요(rich 부자인, buy 사다. 사실이 아닌 상상일 땐 would).",
   "why": "if scientists invent one in the future(과학자들이 미래에 발명한다면)는 앞으로 실제로 일어날 수 있는 일이에요. 이런 가능성 있는 조건에는 주절에 will을 써요. 첫 번째 if절의 existed(exist 존재하다의 과거형)는 지금 없는 걸 상상해서 would가 맞지만, 두 번째는 달라요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>일어날 수 있는 일이면 if절은 현재, 주절은 will이에요",
   "d": {
@@ -87,7 +87,7 @@
   ],
   "ex": "I read a book that was funny.",
   "exko": "나는 재미있는 책을 읽었어요(read 읽다, funny 재미있는).",
-  "tko": "~였던 문제",
+  "tko": "(세트의) 일부였던 문제",
   "bad": "I read a book that were funny.",
   "badko": "(a book은 한 권이라서 were가 아니라 was예요)",
   "altw": "were",
@@ -366,15 +366,15 @@
    ],
    [
     "뒤 문장",
-    "it were a game",
+    "I were a baby",
     "it were a bad thing"
    ]
   ],
-  "ex": "He plays as if it were a game.",
-  "exko": "그는 마치 게임인 것처럼 해요(play 하다, game 게임).",
+  "ex": "She treats me as if I were a baby.",
+  "exko": "그녀는 마치 내가 아기인 것처럼 나를 대해요(treat 대하다, baby 아기).",
   "tko": "마치 그것이 나쁜 것인 것처럼",
-  "bad": "He plays as if it is a game.",
-  "badko": "(진짜 게임이 아닌 일을 게임인 것처럼 말하는 거라서 is가 아니라 were예요)",
+  "bad": "She treats me as if I am a baby.",
+  "badko": "(나는 아기가 아닌데 아기처럼 대하는 거라서 am이 아니라 were예요)",
   "altw": "as if + 현재",
   "alt": "It looks as if it is cold outside.",
   "altko": "밖이 추워 보여요(cold 추운, outside 밖. 진짜 그럴 수 있을 땐 is도 쓸 수 있어요).",
@@ -476,20 +476,20 @@
   "mp": [
    [
     "if절",
-    "if it snows",
+    "if you hurry",
     "if it rains again"
    ],
    [
     "주절",
-    "we will stay",
+    "you will catch the bus",
     "our plans will change"
    ]
   ],
-  "ex": "If it snows, we will stay home.",
-  "exko": "눈이 오면 우리는 집에 있을 거예요(snow 눈이 오다, stay 머물다).",
+  "ex": "If you hurry, you will catch the bus.",
+  "exko": "서두르면 너는 버스를 탈 거예요(hurry 서두르다, catch 잡다, 타다).",
   "tko": "우리의 계획은 바뀔 것이다",
-  "bad": "If it snows, we would stay home.",
-  "badko": "(눈이 올 수도 있는 진짜 가능한 일이라서 would가 아니라 will이에요)",
+  "bad": "If you hurry, you would catch the bus.",
+  "badko": "(서두르는 건 정말 할 수 있는 일이라서 would가 아니라 will이에요)",
   "altw": "would",
   "alt": "If I had wings, I would fly.",
   "altko": "내게 날개가 있다면 날 텐데요(wings 날개, fly 날다. 사실이 아닌 상상일 땐 would).",
@@ -553,18 +553,18 @@
   "altw": "very",
   "alt": "He is very tall.",
   "altko": "그는 매우 키가 커요(tall처럼 비교하지 않는 원래 모양에는 very).",
-  "why": "better(good 좋은의 비교급)는 '더 좋은'이라는 비교하는 모양이에요. 비교하는 말을 '훨씬'으로 세게 꾸밀 때는 much·even·far·a lot을 써요. very(매우)는 tall 같은 원래 모양에만 붙어요. 그래서 very better가 아니라 much better예요.",
+  "why": "better(well 잘의 비교급)는 '더 잘'이라는 비교하는 모양이에요. 비교하는 말을 '훨씬'으로 세게 꾸밀 때는 much·even·far·a lot을 써요. very(매우)는 tall 같은 원래 모양에만 붙어요. 그래서 very better가 아니라 much better예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>비교급 강조는 much·even·far·a lot, very는 안 돼요",
   "d": {
    "wouldn't": "would not(~하지 않았을 것이다)",
    "won": "win(이기다)의 과거분사형",
    "players": "player(선수)의 복수형",
    "quit": "quit(그만두다)의 과거분사형",
-   "earlier": "early(초에)의 비교급",
+   "earlier": "earlier this year: 올해 초에",
    "team": "팀",
    "performed": "perform(해내다)의 과거형",
    "much": "훨씬",
-   "better": "good(잘)의 비교급",
+   "better": "well(잘)의 비교급",
    "expected": "expect(예상하다)의 과거형",
    "season": "시즌"
   }
@@ -685,7 +685,7 @@
    "former": "예전의",
    "employee": "직원",
    "once": "한때",
-   "worked": "work on(~에 매달려 일하다)의 과거형",
+   "worked": "work on(~에서 일하다, 작업하다)의 과거형",
    "similar": "비슷한",
    "ago": "~전에"
   }
