@@ -1,0 +1,122 @@
+import html,json,re
+e=lambda s:html.escape(s,quote=False)
+I=[
+dict(pre="The children playing in the street are making a lot of ",wr="noise loudly",post=".",fr="noise loudly",to="noise",
+ dk=[("The children playing in the street","거리에서 놀고 있는 아이들이"),("are making a lot of noise.","많은 소음을 내고 있다.")],
+ ko="거리에서 놀고 있는 아이들이 많은 소음을 내고 있다.",gist="길에서 노는 아이들이 아주 시끄럽게 떠들고 있다는 얘기예요.",
+ fm="명사 + 뜻이 겹치는 부사 (X)",mp=[("동사 + 명사","make noise","are making a lot of noise"),("뒤에 붙이는 말","붙이지 않아요","loudly는 빼요")],
+ ex="The dogs make noise.",exko="그 개들은 소음을 내요(make 만들다 → 내다).",tko="많은 소음을 내고 있다",
+ bad="The dogs make noise loudly.",badko="(noise(소음)에 이미 '시끄럽다'가 들어 있어서 loudly(시끄럽게)를 또 붙이면 같은 말이 겹쳐요)",
+ altw="loudly",alt="The dogs bark loudly.",altko="그 개들은 시끄럽게 짖어요(bark 짖다는 소리 크기를 말하지 않아서 loudly가 필요해요).",
+ why="noise(소음)는 이미 '시끄러운 소리'라는 뜻이에요. 거기에 loudly(시끄럽게)를 또 붙이면 같은 말을 두 번 하는 셈이에요. make(만들다, 내다) a lot of noise(많은 소음)로 끝내요.",
+ trend="<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>부사는 동사·형용사·다른 부사를 꾸밀 때만 써요. 뜻이 겹치지 않는지도 함께 봐요",
+ d={"children":"child(아이)의 복수형","playing":"play(놀다)의 -ing형","street":"거리, 길","making":"make(만들다, 내다)의 -ing형","noise":"소음","loudly":"시끄럽게","lot":"a lot of: 많은"}),
+dict(pre="Usually, clothes that have a zipper are easy to wear and ",wr="taking",post=" off.",fr="taking",to="take",
+ dk=[("Usually, clothes that have a zipper","보통 지퍼가 있는 옷은"),("are easy","쉽다"),("to wear and take off.","입고 벗기에.")],
+ ko="보통 지퍼가 있는 옷은 입고 벗기 쉽다.",gist="지퍼 달린 옷은 입고 벗기 편하다는 얘기예요.",
+ fm="A and B (같은 모양)",mp=[("and 앞 말","open","wear"),("and 뒤 말","close","take off")],
+ ex="The door is easy to open and close.",exko="그 문은 열고 닫기 쉬워요(open 열다, close 닫다).",tko="입고 벗기",
+ bad="The door is easy to open and closing.",badko="(open(열다)이 원형이라 closing이 아니라 close(닫다)예요)",
+ altw="closing",alt="I like opening and closing the window.",altko="나는 창문을 열고 닫는 걸 좋아해요(opening이 -ing라서 closing도 -ing).",
+ why="and는 같은 모양끼리 이어 줘요. 앞이 wear(입다)로 원형이니까 뒤도 take off(벗다) 원형이에요. taking은 모양이 달라서 안 돼요.",
+ trend="<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and·or 앞뒤를 보고 같은 모양인지 확인해요",
+ d={"usually":"보통","clothes":"옷","zipper":"지퍼","easy":"쉬운","wear":"입다","take":"take off: 벗다","have":"have(가지다)의 현재형"}),
+dict(pre="The first step to take in the mastery of new skills is ",wr="practicing",post=" consistently.",fr="practicing",to="to practice",
+ dk=[("The first step to take in the mastery of new skills","새로운 기술을 숙달하는 데 밟아야 할 첫 단계는"),("is to practice consistently.","꾸준히 연습하는 것이다.")],
+ ko="새로운 기술을 숙달하기 위해 취해야 할 첫 번째 단계는 꾸준히 연습하는 것이다.",gist="새 기술을 익히려면 먼저 꾸준히 연습하는 게 첫걸음이라는 얘기예요.",
+ fm="step · goal + be + to 동사원형",mp=[("주어","The goal","The first step"),("be동사","is","is"),("보어","to win","to practice")],
+ ex="The goal is to win.",exko="목표는 이기는 거예요(win 이기다).",tko="연습하는 것",
+ bad="The goal is winning.",badko="(앞으로 해야 할 목표라서 winning보다 to win이 자연스러워요)",
+ altw="-ing",alt="My hobby is swimming.",altko="내 취미는 수영이에요(hobby 취미는 지금 하는 활동이라 -ing).",
+ why="step(단계)이나 goal(목표)처럼 '앞으로 해야 할 일'을 알려 주는 말 뒤에는 to + 동사원형이 어울려요. 그래서 practicing이 아니라 to practice(연습하다)예요.",
+ trend="<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>보어 자리에 to부정사가 올지 -ing가 올지는 앞 명사의 뜻을 보고 정해요",
+ d={"first":"첫 번째의","step":"단계","take":"취하다, 밟다","mastery":"숙달","skills":"skill(기술)의 복수형","practice":"연습하다","consistently":"꾸준히"}),
+dict(pre="Most days, the students at this school eat lunch in the school cafeteria ",wr="comfortable",post=".",fr="comfortable",to="comfortably",
+ dk=[("Most days, the students at this school","대부분의 날, 이 학교 학생들은"),("eat lunch in the school cafeteria","학교 식당에서 점심을 먹는다"),("comfortably.","편안하게.")],
+ ko="대부분의 날에, 이 학교 학생들은 학교 식당에서 편안하게 점심을 먹는다.",gist="이 학교 학생들은 대부분 식당에서 편하게 점심을 먹는다는 얘기예요.",
+ fm="동사 + 부사(-ly)",mp=[("동사 + 목적어","eat lunch","eat lunch"),("동사를 꾸미는 말","quietly","comfortably")],
+ ex="She eats lunch quietly.",exko="그녀는 조용히 점심을 먹어요(eat 먹다).",tko="편안하게",
+ bad="She eats lunch quiet.",badko="(어떻게 먹는지를 말하는 자리라서 quiet(조용한)이 아니라 부사 quietly(조용히)예요)",
+ altw="quiet",alt="She is quiet.",altko="그녀는 조용해요(is 뒤에서 she를 설명하니까 형용사).",
+ why="'어떻게 먹나?'를 말해 주는 말은 동사 eat(먹다)을 꾸미니까 부사예요. comfortable(편안한)은 형용사라서 명사를 꾸미거나 be 뒤에서 써요. -ly를 붙인 comfortably(편안하게)가 맞아요.",
+ trend="<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>동사를 꾸미면 부사, 명사를 꾸미면 형용사예요",
+ d={"most":"대부분의","days":"day(날)의 복수형","students":"student(학생)의 복수형","cafeteria":"식당","lunch":"점심","comfortable":"편안한","comfortably":"편안하게","eat":"먹다"}),
+dict(pre="During the summer, the city’s air, full of smog and harmful gases, causes various ",wr="health problems serious",post=".",fr="health problems serious",to="serious health problems",
+ dk=[("During the summer,","여름 동안"),("the city’s air, full of smog and harmful gases,","스모그와 해로운 가스로 가득한 그 도시의 공기는"),("causes various serious health problems.","다양하고 심각한 건강 문제를 일으킨다.")],
+ ko="여름 동안, 스모그와 해로운 가스로 가득한 그 도시의 공기는 다양한 심각한 건강 문제를 일으킨다.",gist="여름에는 도시 공기가 나빠져서 건강 문제가 많이 생긴다는 얘기예요.",
+ fm="형용사 + 명사 (앞에서 꾸밈)",mp=[("꾸미는 형용사","serious","serious"),("꾸밈받는 명사","problems","health problems")],
+ ex="It causes serious problems.",exko="그것은 심각한 문제를 일으켜요(cause 일으키다).",tko="심각한 건강 문제",
+ bad="It causes problems serious.",badko="(serious(심각한)는 problems(문제들) 앞에서 꾸며요)",
+ altw="-thing 뒤",alt="I need something cold.",altko="나는 차가운 게 필요해요(-thing 뒤에서는 형용사가 뒤에 와요).",
+ why="영어는 보통 꾸미는 말(serious 심각한)이 명사 앞에 와요. health problems(건강 문제)를 꾸미려면 맨 앞에 serious를 놓아요.",
+ trend="<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>형용사는 명사 앞이 기본 자리예요",
+ d={"smog":"스모그","harmful":"해로운","gases":"gas(기체)의 복수형","causes":"cause(일으키다)의 3인칭 단수형","various":"다양한","serious":"심각한","full":"full of: ~로 가득한","summer":"여름","air":"공기"}),
+dict(pre="The vegetables sold at the market ",wr="are came",post=" from nearby farms.",fr="are came",to="come",
+ dk=[("The vegetables sold at the market","시장에서 팔리는 채소들은"),("come from nearby farms.","인근 농장에서 온다.")],
+ ko="시장에서 팔리는 그 채소들은 인근 농장에서 온 것이다.",gist="시장에서 파는 채소는 근처 농장에서 온다는 얘기예요.",
+ fm="come · happen + be p.p. (X)",mp=[("주어","The apples","The vegetables"),("동사","come","come")],
+ ex="The apples come from Korea.",exko="그 사과들은 한국에서 와요(come 오다).",tko="채소들은 온다",
+ bad="The apples are come from Korea.",badko="(come(오다)은 '~을'에 해당하는 말이 없는 동사라서 are come처럼 쓰지 않아요)",
+ altw="are + p.p.",alt="The apples are sold here.",altko="사과가 여기서 팔려요(sell 팔다 → sold 팔린).",
+ why="come(오다)은 목적어가 없는 동사라서 수동태(are came)가 안 돼요. 주어 vegetables(채소들)는 여러 개라서 현재형 come이에요. sold at the market(시장에서 팔리는)은 vegetables를 꾸며 주는 말이에요.",
+ trend="<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>수동태로 쓸 수 없는 동사(come, happen, appear 등)도 자주 나와요",
+ d={"vegetables":"vegetable(채소)의 복수형","sold":"sell(팔다)의 과거분사형","market":"시장","nearby":"근처의","farms":"farm(농장)의 복수형","come":"오다"}),
+dict(pre="The purpose of traffic lights is ",wr="controlling",post=" the movement of cars.",fr="controlling",to="to control",
+ dk=[("The purpose of traffic lights","교통 신호등의 목적은"),("is to control","통제하는 것이다"),("the movement of cars.","자동차의 움직임을.")],
+ ko="교통 신호등의 목적은 자동차의 움직임을 통제하는 것이다.",gist="신호등은 차들이 움직이는 걸 정리하려고 있다는 얘기예요.",
+ fm="purpose · goal + be + to 동사원형",mp=[("주어","The purpose of a key","The purpose of traffic lights"),("be동사","is","is"),("보어","to open","to control")],
+ ex="The purpose of a key is to open the door.",exko="열쇠의 목적은 문을 여는 거예요(open 열다).",tko="통제하는 것",
+ bad="The purpose of a key is opening the door.",badko="(목적은 앞으로 하려는 일이라서 opening보다 to open이 자연스러워요)",
+ altw="-ing",alt="My job is teaching.",altko="내 직업은 가르치는 일이에요(job 직업은 하고 있는 일이라 -ing).",
+ why="purpose(목적)는 '무엇을 하려고 있나'를 알려 주는 말이라서 뒤에 to + 동사원형이 어울려요. control(통제하다)은 to control로 써요.",
+ trend="<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>purpose·goal·plan 뒤 보어는 to부정사를 먼저 떠올려요",
+ d={"purpose":"목적","traffic":"traffic lights: 신호등","control":"통제하다","controlling":"control(통제하다)의 -ing형","movement":"움직임","cars":"car(자동차)의 복수형"}),
+dict(pre="Conveniently for me, the bus that I take every morning to go to work ",wr="stopping",post=" one block away from here.",fr="stopping",to="stops",
+ dk=[("Conveniently for me,","나에게 편리하게도"),("the bus that I take every morning to go to work","내가 출근하려고 매일 아침 타는 버스는"),("stops","선다"),("one block away from here.","여기서 한 블록 떨어진 곳에.")],
+ ko="나에게 편리하게도, 내가 매일 아침 출근하기 위해 타는 버스는 여기서 한 블록 떨어진 곳에 선다.",gist="내가 타는 출근 버스가 가까운 곳에 서서 편하다는 얘기예요.",
+ fm="주어 + 동사 (-ing는 동사가 아니에요)",mp=[("핵심 주어","The bus","the bus"),("동사","stops","stops")],
+ ex="The bus stops here.",exko="그 버스는 여기 서요(stop 서다).",tko="버스는 선다",
+ bad="The bus stopping here.",badko="(stopping(서고 있는)만 있으면 문장의 동사가 없어요)",
+ altw="stopping",alt="The bus stopping here is red.",altko="여기 서는 그 버스는 빨개요(stopping이 bus를 꾸미는 말).",
+ why="문장의 진짜 동사를 찾아요. that I take ... work는 bus를 꾸미는 말이라 빼고 보면 'The bus ___ one block away'예요. -ing는 혼자 동사가 못 돼서, 3인칭 단수 주어에 맞는 stops(서다)가 필요해요.",
+ trend="<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>문장에 진짜 동사가 있는지부터 확인해요",
+ d={"conveniently":"편리하게도","take":"타다","morning":"아침","work":"일, 직장","block":"블록(길 한 구역)","away":"떨어진","stops":"stop(서다)의 3인칭 단수형","bus":"버스"}),
+]
+CSS=open('/home/claude/via/eobeop-daily/index.html',encoding='utf8').read()
+a=CSS.index('<style>')+7;b=CSS.index('.next{');CSS=CSS[a:b]
+CSS+="""
+.item{margin-top:18px}.num{font-size:13px;color:var(--mute);margin-bottom:6px}
+.wrong{background:#fde7e4;color:var(--no);border-radius:4px;padding:0 3px;text-decoration:line-through}
+.ans{font-size:20px;font-weight:700}.ans s{color:var(--no);font-weight:500}.ans i{font-style:normal;color:var(--mute);padding:0 .3em}.ans b{color:var(--ok)}
+.sheet{position:fixed;left:0;right:0;bottom:16px;margin:0 auto;max-width:520px;background:#1c1f26;color:#fff;border-radius:14px;padding:12px 16px;font-size:16px;z-index:5}
+.sheet small{display:block;font-size:13px;color:#a9b0bd;margin-top:2px}
+.note{font-size:13px;color:var(--mute);margin:4px 0 0}
+"""
+def tk(s):
+    return re.sub(r"([A-Za-z’']+)",lambda m:'<span class="w" data-w="%s">%s</span>'%(m.group(1).lower().replace('’',"'"),m.group(1)),e(s))
+out=[]
+for n,d in enumerate(I,1):
+    r='<div class="item"><div class="num">문항 %d</div>'%n
+    r+='<div class="card"><p class="lbl">문제</p><div class="q">%s<span class="wrong">%s</span>%s</div><div class="mute" style="margin-top:6px">모르는 단어는 눌러서 뜻 확인</div></div>'%(tk(d['pre']),e(d['wr']),tk(d['post']))
+    r+='<div class="card" style="margin-top:10px">'
+    r+='<div class="sec"><h4>정답</h4><div class="ans"><s>%s</s><i>→</i><b>%s</b></div></div>'%(e(d['fr']),e(d['to']))
+    r+='<div class="sec"><h4>직독직해</h4><div class="sl">%s</div></div>'%''.join('<div class="r"><b>%s</b><span>%s</span></div>'%(tk(a),e(b)) for a,b in d['dk'])
+    r+='<div class="sec"><h4>자연스러운 해석</h4><div class="nat">%s</div></div>'%e(d['ko'])
+    r+='<div class="sec"><h4>한 줄 정리</h4><div class="gist">%s</div></div>'%e(d['gist'])
+    ph=''.join('<div class="ph"><div class="pl">%s</div><div class="ce">%s</div><div class="ct">%s</div></div>'%(e(h),e(a),e(b)) for h,a,b in d['mp'])
+    r+='<div class="post"><div class="lb">오답노트에는 이것만</div><div class="fm">%s</div><div class="mp"><div class="cl"><span>쉬운 예</span><span>이번 문장</span></div>%s<div class="k">쉬운 예 해석 · %s</div><div class="k">이번 문장 해석 · %s</div><div class="bd"><small>틀린 예</small>%s</div><div class="k">%s</div><div class="bd alt"><small>%s 가 맞는 예</small>%s</div><div class="k">%s</div></div></div>'%(e(d['fm']).replace(' + ','<i>+</i>'),ph,e(d['exko']),e(d['tko']),e(d['bad']),e(d['badko']),e(d['altw']),e(d['alt']),e(d['altko']))
+    r+='<div class="sec"><h4>왜 그럴까요</h4><div class="tx">%s</div></div><div class="sec trend">%s</div>'%(e(d['why']),d['trend'])
+    r+='</div></div>'
+    out.append(r)
+D=json.dumps([d['d'] for d in I],ensure_ascii=False)
+page='''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>어법제대로 변형 해설 샘플 (p.12)</title><style>%s</style></head><body><div class="wrap"><div class="hd"><h1>어법 제대로 CHAPTER 01 · p.12</h1><span class="sub">해설 샘플</span></div>
+<p class="note">데일리어법 해설 방식으로 만든 샘플입니다. 문제 8개가 이어집니다.</p>%s</div><div class="sheet hide" id="sh"></div>
+<script>var D=%s;
+document.addEventListener("click",function(ev){var w=ev.target.closest&&ev.target.closest(".w");if(!w)return;var it=w.closest(".item"),i=[].indexOf.call(document.querySelectorAll(".item"),it),d=D[i],k=w.dataset.w,v=d[k];
+ if(v==null){for(var key in d){if(d[key].indexOf(":")>0&&d[key].split(":")[0].toLowerCase().split(" ").indexOf(k)>-1&&key!=k){v=d[key];break}}}
+ var sh=document.getElementById("sh");if(v==null){sh.classList.add("hide");return}
+ sh.innerHTML="<b>"+w.textContent+"</b><small>"+v+"</small>";sh.classList.remove("hide");
+ var q=w.closest(".card");});
+document.addEventListener("scroll",function(){document.getElementById("sh").classList.add("hide")},{passive:true});
+</script></body></html>'''%(CSS,''.join(out),D)
+open('/home/claude/via/eobeop-jedaero/sample-daily-p12.html','w',encoding='utf8').write(page); print(len(page))
