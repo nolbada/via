@@ -386,7 +386,7 @@
   "exko": "그는 마치 그것이 사실인 것처럼 말해요(talk 말하다, true 사실인).",
   "tko": "마치 그것이 이해된 것처럼",
   "bad": "He talks as if it was true.",
-  "badko": "(as if 뒤 be동사는 was가 아니라 were를 쓰는 게 약속이에요)",
+  "badko": "(사실이 아닌 걸 as if로 말할 때 be동사는 주어가 it이어도 were로 쓰는 게 시험의 약속이에요)",
   "altw": "was",
   "alt": "It was true.",
   "altko": "그것은 사실이었어요(true 사실인. 진짜 지나간 일을 말할 땐 was).",
@@ -618,23 +618,23 @@
   "mp": [
    [
     "if절",
-    "if he studies",
+    "if you practice",
     "if you take lessons"
    ],
    [
     "주절",
-    "he will pass",
+    "you will win",
     "you will improve"
    ]
   ],
-  "ex": "If he studies, he will pass.",
-  "exko": "그가 공부하면 합격할 거예요(study 공부하다, pass 합격하다).",
+  "ex": "If you practice, you will win.",
+  "exko": "연습하면 너는 이길 거예요(practice 연습하다, win 이기다).",
   "tko": "당신은 향상될 것이다",
-  "bad": "If he studies, he would pass.",
-  "badko": "(공부할 수도 있는 진짜 가능한 일이라서 would가 아니라 will이에요)",
+  "bad": "If you practice, you would win.",
+  "badko": "(연습은 정말 할 수 있는 일이라서 would가 아니라 will이에요)",
   "altw": "would",
-  "alt": "If I were rich, I would travel.",
-  "altko": "내가 부자라면 여행할 텐데요(rich 부자인, travel 여행하다. 사실이 아닌 상상일 땐 would).",
+  "alt": "If I had a dog, I would walk it every day.",
+  "altko": "내게 개가 있다면 매일 산책시킬 텐데요(walk 산책시키다. 사실이 아닌 상상일 땐 would).",
   "why": "if you take lessons from a professional instructor(전문 강사에게 수업을 받는다면)는 정말 할 수 있는 일이에요. 가능성이 있는 일은 주절에 will을 써요. would는 사실이 아닌 상상에 쓰는 말이라서 improve(향상되다)를 would improve로 쓰면 어색해요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>일어날 수 있는 일이면 if절은 현재, 주절은 will이에요",
   "d": {
