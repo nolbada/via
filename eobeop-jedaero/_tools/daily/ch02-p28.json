@@ -1,0 +1,334 @@
+[
+ {
+  "dk": [
+   [
+    "The Eiffel Tower was built in Paris, France in 1889.",
+    "에펠탑은 1889년 프랑스 파리에 지어졌다."
+   ],
+   [
+    "It has stood tall for over a century,",
+    "그것은 한 세기가 넘도록 우뚝 서 있었고"
+   ],
+   [
+    "and it is now a famous landmark that attracts many tourists every year.",
+    "이제는 해마다 많은 관광객을 끌어모으는 유명한 랜드마크이다."
+   ]
+  ],
+  "gist": "에펠탑은 백 년 넘게 서 있으면서 지금도 해마다 관광객을 모으는 유명한 곳이라는 얘기예요.",
+  "fm": "하나인 명사 + that + 동사-s",
+  "mp": [
+   [
+    "앞 명사(하나)",
+    "a tower",
+    "a famous landmark"
+   ],
+   [
+    "동사",
+    "attracts",
+    "attracts"
+   ]
+  ],
+  "ex": "It is a tower that attracts people.",
+  "exko": "그것은 사람들을 끌어모으는 탑이에요(tower 탑, attract 끌어모으다).",
+  "tko": "끌어모으는",
+  "bad": "It is a tower that attract people.",
+  "badko": "(tower는 하나라서 attract가 아니라 attracts예요)",
+  "altw": "attract",
+  "alt": "They are towers that attract people.",
+  "altko": "그것들은 사람들을 끌어모으는 탑들이에요(towers가 여럿이라 attract).",
+  "why": "that 뒤 동사는 바로 앞 명사에 맞춰요. a famous landmark(유명한 랜드마크)가 하나라서 동사에 s를 붙인 attracts(attract 끌어모으다)를 써요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>관계대명사 뒤 동사는 앞 명사의 수에 맞춰요",
+  "d": {
+   "eiffel": "에펠(탑 이름)",
+   "tower": "탑",
+   "built": "build(짓다)의 과거분사",
+   "stood": "stand(서 있다)의 과거분사",
+   "tall": "우뚝",
+   "century": "세기",
+   "famous": "유명한",
+   "landmark": "랜드마크, 명소",
+   "attracts": "attract(끌어모으다)의 3인칭 단수형",
+   "tourists": "tourist(관광객)의 복수형",
+   "every": "매 ~"
+  },
+  "ko": "에펠탑은 1889년 프랑스 파리에 지어졌다. 그것은 한 세기가 넘도록 우뚝 서 있었고, 이제는 매년 많은 관광객을 끌어모으는 유명한 랜드마크이다."
+ },
+ {
+  "dk": [
+   [
+    "Email communication has replaced paper mail since the rise of the Internet.",
+    "이메일 통신은 인터넷이 생긴 이래로 종이 우편을 대체해 왔다."
+   ],
+   [
+    "If you send an email,",
+    "만약 당신이 이메일을 보내면"
+   ],
+   [
+    "it will deliver information almost instantly.",
+    "그것은 정보를 거의 즉시 전달할 것이다."
+   ]
+  ],
+  "gist": "이메일은 정보를 거의 바로 보내 주기 때문에 종이 우편을 대신하게 됐다는 얘기예요.",
+  "fm": "동사 + 부사(-ly)",
+  "mp": [
+   [
+    "동사",
+    "run",
+    "will deliver"
+   ],
+   [
+    "동사를 꾸미는 말",
+    "fast",
+    "almost instantly"
+   ]
+  ],
+  "ex": "The bus arrives quickly.",
+  "exko": "그 버스는 빨리 도착해요(arrive 도착하다, quick 빠른).",
+  "tko": "거의 즉시",
+  "bad": "The bus arrives quick.",
+  "badko": "(어떻게 도착하는지 말하는 자리라서 quick(빠른)이 아니라 부사 quickly(빠르게)예요)",
+  "altw": "instant",
+  "alt": "I want instant noodles.",
+  "altko": "나는 즉석 라면을 먹고 싶어요(명사 noodles를 꾸미니까 형용사).",
+  "why": "'어떻게 전달하나?'를 말해 주는 낱말은 동사 will deliver(deliver 전달하다)를 꾸며요. 동사를 꾸미는 건 부사라서 instant(즉각적인)가 아니라 instantly(즉시)예요.",
+  "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>동사를 꾸미면 부사(-ly), 명사를 꾸미면 형용사예요",
+  "d": {
+   "email": "이메일",
+   "communication": "의사소통, 통신",
+   "replaced": "replace(대체하다)의 과거분사",
+   "paper": "종이",
+   "mail": "우편",
+   "since": "~이래로",
+   "rise": "생겨남, 등장",
+   "send": "보내다",
+   "deliver": "전달하다",
+   "information": "정보",
+   "almost": "거의",
+   "instantly": "즉시, 바로"
+  },
+  "ko": "이메일 통신은 인터넷의 부상 이래로 종이 우편을 대체해 왔다. 만약 이메일을 보내면, 그것은 거의 즉각적으로 정보를 전달할 것이다."
+ },
+ {
+  "dk": [
+   [
+    "Dorothy suddenly lost consciousness while talking on the phone with Samantha last Sunday.",
+    "Dorothy는 지난 일요일에 Samantha와 통화하던 중 갑자기 의식을 잃었다."
+   ],
+   [
+    "Dorothy’s parents, who were very worried,",
+    "매우 걱정한 Dorothy의 부모님은"
+   ],
+   [
+    "rushed to her room and quickly found her",
+    "그녀의 방으로 달려가 재빨리 그녀를 발견했다"
+   ],
+   [
+    "because Samantha had called them.",
+    "Samantha가 그들에게 전화했었기 때문에."
+   ]
+  ],
+  "gist": "통화 중 쓰러진 Dorothy를 친구의 전화를 받은 부모님이 빨리 찾아냈다는 얘기예요.",
+  "fm": "복수 명사 + who + 복수 동사",
+  "mp": [
+   [
+    "앞 명사(여럿)",
+    "My parents",
+    "Dorothy's parents"
+   ],
+   [
+    "동사",
+    "were",
+    "were"
+   ]
+  ],
+  "ex": "My parents, who were busy, left.",
+  "exko": "바쁘셨던 우리 부모님은 떠나셨어요(parents 부모님, busy 바쁜, leave 떠나다).",
+  "tko": "매우 걱정한",
+  "bad": "My parents, who was busy, left.",
+  "badko": "(parents는 두 분(복수)이라서 was가 아니라 were(be의 과거형)예요)",
+  "altw": "was",
+  "alt": "My mother, who was busy, left.",
+  "altko": "바쁘셨던 우리 어머니는 떠나셨어요(mother는 한 분이라 was).",
+  "why": "who 바로 앞 명사가 parents(부모님)라서 복수예요. 그래서 who 뒤 동사도 복수에 맞춰 were(be의 과거형)를 써요. 한 명이었다면 was예요. had called(call 전화하다)는 그전에 이미 한 일이라서 맞는 모양이에요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>관계대명사 뒤 동사는 앞 명사의 수에 맞춰요",
+  "d": {
+   "suddenly": "갑자기",
+   "lost": "lose(잃다)의 과거형",
+   "consciousness": "의식",
+   "talking": "talk(말하다)의 -ing형",
+   "phone": "전화",
+   "parents": "부모님",
+   "worried": "걱정하는",
+   "rushed": "rush(서둘러 가다)의 과거형",
+   "quickly": "재빨리",
+   "found": "find(찾다)의 과거형",
+   "called": "call(전화하다)의 과거분사"
+  },
+  "ko": "Dorothy는 지난 일요일 Samantha와 통화하던 중 갑자기 의식을 잃었다. 매우 걱정한 Dorothy의 부모님은 그녀의 방으로 달려가 재빨리 그녀를 발견했는데, 이는 Samantha가 그들에게 전화했었기 때문이다."
+ },
+ {
+  "dk": [
+   [
+    "Our farm has produced healthy foods for over 30 years in this neighborhood.",
+    "우리 농장은 이 동네에서 30년이 넘도록 건강한 식품을 생산해 왔다."
+   ],
+   [
+    "Once you taste our fresh fruits and vegetables,",
+    "일단 당신이 우리의 신선한 과일과 채소를 맛보면"
+   ],
+   [
+    "you will understand why our customers, who value quality highly, always come back for more.",
+    "품질을 높이 평가하는 우리 손님들이 왜 늘 더 사러 돌아오는지 이해하게 될 것이다."
+   ]
+  ],
+  "gist": "이 농장 과일과 채소를 먹어 보면 품질을 아는 손님들이 왜 계속 오는지 알게 된다는 얘기예요.",
+  "fm": "동사 + 부사 (모양이 달라요)",
+  "mp": [
+   [
+    "동사",
+    "value",
+    "value"
+   ],
+   [
+    "동사를 꾸미는 말",
+    "deeply",
+    "highly"
+   ]
+  ],
+  "ex": "We value him highly.",
+  "exko": "우리는 그를 높이 평가해요(value 가치를 두다).",
+  "tko": "높이",
+  "bad": "We value him high.",
+  "badko": "(value(가치를 두다)를 꾸미는 말이라서 high(높은)가 아니라 highly(매우, 높이)예요)",
+  "altw": "high",
+  "alt": "The tree is very high.",
+  "altko": "그 나무는 아주 높아요(is 뒤에서 tree를 설명하니까 형용사).",
+  "why": "'어떻게 가치를 두나?'를 말해 주는 낱말은 동사 value(가치를 두다)를 꾸며요. high는 '높은, 높이'라는 위치를 말할 때 쓰고, '매우, 대단히' 같은 정도를 말할 때는 highly를 써요. 그래서 value 뒤엔 highly(높이 평가하다)예요.",
+  "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>high와 highly처럼 모양이 비슷한 부사는 뜻을 보고 골라요",
+  "d": {
+   "farm": "농장",
+   "produced": "produce(생산하다)의 과거분사",
+   "healthy": "건강한",
+   "foods": "food(식품)의 복수형",
+   "neighborhood": "동네",
+   "once": "일단 ~하면",
+   "taste": "맛보다",
+   "fresh": "신선한",
+   "vegetables": "vegetable(채소)의 복수형",
+   "customers": "customer(손님)의 복수형",
+   "value": "소중히 여기다, 가치를 두다",
+   "quality": "품질",
+   "highly": "매우, 높이"
+  },
+  "ko": "우리 농장은 이 지역에서 30년 넘게 건강한 식품을 생산해 왔다. 일단 우리의 신선한 과일과 채소를 맛보면, 품질을 높이 평가하는 우리 고객들이 왜 항상 다시 사러 오는지 이해하게 될 것이다."
+ },
+ {
+  "dk": [
+   [
+    "Dennis has waited for the book signing event since he missed it last year.",
+    "Dennis는 작년에 그것을 놓친 이래로 그 책 사인회를 기다려 왔다."
+   ],
+   [
+    "On that day,",
+    "그날"
+   ],
+   [
+    "he was very disappointed because he had wanted to meet his favorite writer.",
+    "그는 가장 좋아하는 작가를 만나고 싶어 했었기 때문에 매우 실망했다."
+   ]
+  ],
+  "gist": "작년에 놓친 사인회를 기다렸고, 좋아하는 작가를 만나고 싶었던 마음이 컸다는 얘기예요.",
+  "fm": "want + to 동사원형",
+  "mp": [
+   [
+    "동사",
+    "want",
+    "had wanted"
+   ],
+   [
+    "뒤에 오는 말",
+    "to eat",
+    "to meet"
+   ]
+  ],
+  "ex": "I want to eat pizza.",
+  "exko": "나는 피자를 먹고 싶어요(want 원하다, eat 먹다).",
+  "tko": "만나기를",
+  "bad": "I want eating pizza.",
+  "badko": "(want(원하다) 뒤에는 -ing가 아니라 to eat(먹다)처럼 to + 동사원형이 와요)",
+  "altw": "-ing",
+  "alt": "I like eating pizza.",
+  "altko": "나는 피자 먹는 걸 좋아해요(like 좋아하다 뒤에는 -ing도 가능).",
+  "why": "want(원하다)는 하고 싶은 일을 말하는 낱말이라서 뒤에 to + 동사원형을 써요. 그래서 meeting이 아니라 to meet(만나다)이에요. had wanted는 실망하기 전부터 이미 원했다는 뜻이라 맞아요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>want, hope, decide 뒤에는 to + 동사원형이 와요",
+  "d": {
+   "waited": "wait(기다리다)의 과거분사",
+   "book": "책",
+   "signing": "사인하기",
+   "event": "행사",
+   "missed": "miss(놓치다)의 과거형",
+   "disappointed": "실망한",
+   "wanted": "want(원하다)의 과거분사",
+   "meet": "만나다",
+   "favorite": "가장 좋아하는",
+   "writer": "작가"
+  },
+  "ko": "Dennis는 작년에 그것을 놓친 이래로 그 도서 사인회 행사를 기다려 왔다. 그날 그는 매우 실망했는데, 가장 좋아하는 작가를 만나고 싶어 했었기 때문이다."
+ },
+ {
+  "dk": [
+   [
+    "You will never see great things until you step outside your home.",
+    "당신은 집 밖으로 나서기 전까지는 결코 위대한 것들을 보지 못할 것이다."
+   ],
+   [
+    "Also, if you set your own path in life,",
+    "또한 만약 당신이 인생에서 자신만의 길을 정한다면"
+   ],
+   [
+    "you will need to decide for yourself if you will achieve great things more importantly than money.",
+    "돈보다 더 중요하게 위대한 것들을 이룰지 스스로 결정해야 할 것이다."
+   ]
+  ],
+  "gist": "집 밖으로 나서야 큰 걸 보고, 돈보다 큰 일을 이룰지는 스스로 정하라는 얘기예요.",
+  "fm": "동사 + 부사(-ly)",
+  "mp": [
+   [
+    "동사 + 목적어",
+    "do homework",
+    "achieve great things"
+   ],
+   [
+    "동사를 꾸미는 말",
+    "carefully",
+    "more importantly"
+   ]
+  ],
+  "ex": "She does homework carefully.",
+  "exko": "그녀는 숙제를 조심스럽게 해요(do 하다, careful 조심스러운).",
+  "tko": "더 중요하게",
+  "bad": "She does homework careful.",
+  "badko": "(어떻게 하는지 말하는 자리라서 careful(조심스러운)이 아니라 부사 carefully(조심스럽게)예요)",
+  "altw": "important",
+  "alt": "This is an important day.",
+  "altko": "오늘은 중요한 날이에요(명사 day를 꾸미니까 형용사).",
+  "why": "'어떻게 이룰까?'를 말해 주는 낱말은 동사 achieve(이루다)를 꾸며요. 동사를 꾸미는 건 부사라서 important(중요한)가 아니라 importantly(중요하게)예요. if you will achieve는 '이룰지 아닐지'라는 뜻이라서 will이 그대로 맞아요.",
+  "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>동사를 꾸미면 부사(-ly)예요",
+  "d": {
+   "never": "결코 ~않다",
+   "great": "위대한",
+   "until": "~할 때까지",
+   "step": "걸음을 내딛다",
+   "outside": "~밖으로",
+   "set": "set a path: 길을 정하다",
+   "path": "길",
+   "life": "인생",
+   "decide": "결정하다",
+   "yourself": "너 스스로",
+   "achieve": "이루다",
+   "importantly": "중요하게",
+   "money": "돈"
+  },
+  "ko": "당신은 집 밖으로 나가기 전까지는 결코 위대한 것들을 보지 못할 것이다. 또한 인생에서 자신만의 길을 정한다면, 돈보다 더 중요하게 위대한 것들을 이룰 것인지 스스로 결정해야 할 것이다."
+ }
+]

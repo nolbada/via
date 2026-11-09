@@ -1,0 +1,633 @@
+[
+ {
+  "dk": [
+   [
+    "Gloria will take a break and relax",
+    "Gloria는 쉬면서 느긋하게 있을 것이다"
+   ],
+   [
+    "after she finishes her work for the day,",
+    "그녀가 하루의 일을 끝낸 후에"
+   ],
+   [
+    "which she considers quite exhausting.",
+    "그녀는 그것이 꽤 힘들다고 생각한다."
+   ]
+  ],
+  "gist": "하루 일이 꽤 힘들어서 끝나면 푹 쉬겠다는 얘기예요.",
+  "fm": "he/she/it + 동사-s",
+  "mp": [
+   [
+    "주어",
+    "He",
+    "she"
+   ],
+   [
+    "동사",
+    "likes",
+    "considers"
+   ]
+  ],
+  "ex": "She likes music.",
+  "exko": "그녀는 음악을 좋아해요(like 좋아하다, music 음악).",
+  "tko": "그녀가 생각한다",
+  "bad": "She like music.",
+  "badko": "(she는 한 명이라서 like가 아니라 likes(like 좋아하다)예요)",
+  "altw": "consider",
+  "alt": "I consider it easy.",
+  "altko": "나는 그것이 쉽다고 생각해요(I 뒤에는 s 없는 consider).",
+  "why": "which she considers에서 동사의 주어는 which가 아니라 she예요. she는 3인칭 한 명이라서 동사에 s를 붙인 considers(consider 생각하다)가 돼요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>3인칭 한 명이 주어면 동사에 s를 붙여요",
+  "d": {
+   "take": "take a break: 잠깐 쉬다",
+   "break": "휴식",
+   "relax": "느긋하게 쉬다",
+   "finishes": "finish(끝내다)의 3인칭 단수형",
+   "considers": "consider(~라고 생각하다)의 3인칭 단수형",
+   "quite": "꽤",
+   "exhausting": "힘들게 하는, 지치게 하는",
+   "work": "일"
+  },
+  "ko": "Gloria는 하루의 일을 마친 후 휴식을 취하고 쉴 것인데, 그녀는 그것이 상당히 힘들다고 생각한다."
+ },
+ {
+  "dk": [
+   [
+    "After locking the door,",
+    "문을 잠근 후에"
+   ],
+   [
+    "I realized that I had left the key inside,",
+    "나는 열쇠를 안에 두고 왔다는 것을 깨달았다,"
+   ],
+   [
+    "feeling embarrassed in front of my neighbors.",
+    "이웃들 앞에서 부끄러움을 느끼며."
+   ]
+  ],
+  "gist": "문을 잠그고 나서 열쇠를 안에 둔 걸 알고 이웃들 앞에서 창피했다는 얘기예요.",
+  "fm": "내가 느끼는 기분 → 기분 + -ed",
+  "mp": [
+   [
+    "느끼는 사람",
+    "I",
+    "I"
+   ],
+   [
+    "기분 낱말",
+    "tired",
+    "embarrassed"
+   ]
+  ],
+  "ex": "I felt tired.",
+  "exko": "나는 피곤함을 느꼈어요(feel 느끼다, tired 피곤한).",
+  "tko": "부끄러움을 느끼며",
+  "bad": "I felt tiring.",
+  "badko": "(내가 느끼는 기분이라서 tiring(피곤하게 하는)이 아니라 tired(피곤한)예요)",
+  "altw": "-ing",
+  "alt": "The work was tiring.",
+  "altko": "그 일은 힘들었어요(일이 사람을 지치게 하는 쪽이라 -ing).",
+  "why": "embarrass(당황하게 하다)는 기분을 만드는 말이에요. 그 기분을 느끼는 사람이 '나'(I)니까 -ed가 붙은 embarrassed(당황한)를 써요. 기분을 만들어 주는 쪽에는 -ing를 써요.",
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>기분을 느끼는 쪽은 -ed, 기분을 만드는 쪽은 -ing예요",
+  "d": {
+   "locking": "lock(잠그다)의 -ing형",
+   "door": "문",
+   "realized": "realize(깨닫다)의 과거형",
+   "left": "leave(두고 오다)의 과거분사",
+   "key": "열쇠",
+   "inside": "안에",
+   "feeling": "feel(느끼다)의 -ing형",
+   "embarrassed": "당황한, 부끄러운",
+   "neighbors": "neighbor(이웃)의 복수형",
+   "front": "in front of: ~앞에서"
+  },
+  "ko": "문을 잠근 후에, 나는 열쇠를 안에 두고 나왔다는 것을 깨달았고, 이웃들 앞에서 부끄러움을 느꼈다."
+ },
+ {
+  "dk": [
+   [
+    "The use of smartphones has become widespread",
+    "스마트폰의 사용은 널리 퍼졌다"
+   ],
+   [
+    "since their introduction in the early 2000s,",
+    "2000년대 초 그것들이 도입된 이래로"
+   ],
+   [
+    "a trend that reflects changing lifestyles.",
+    "그것은 변화하는 생활방식을 반영하는 흐름이다."
+   ]
+  ],
+  "gist": "스마트폰이 나온 뒤로 계속 퍼지는 건 사람들의 생활이 변하고 있다는 뜻이라는 얘기예요.",
+  "fm": "하나인 명사 + that + 동사-s",
+  "mp": [
+   [
+    "앞 명사(하나)",
+    "a dog",
+    "a trend"
+   ],
+   [
+    "동사",
+    "barks",
+    "reflects"
+   ]
+  ],
+  "ex": "I have a dog that barks.",
+  "exko": "나는 짖는 개가 있어요(bark 짖다).",
+  "tko": "반영하는",
+  "bad": "I have a dog that bark.",
+  "badko": "(dog는 한 마리라서 bark가 아니라 barks예요)",
+  "altw": "reflect",
+  "alt": "I have two dogs that bark.",
+  "altko": "나는 짖는 개가 두 마리 있어요(dogs가 여럿이라 bark).",
+  "why": "that 뒤의 동사는 바로 앞 명사에 맞춰요. a trend(흐름)가 하나이므로 동사에도 s를 붙인 reflects(reflect 반영하다)를 써요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>관계대명사 뒤 동사는 앞 명사의 수에 맞춰요",
+  "d": {
+   "use": "사용",
+   "smartphones": "smartphone(스마트폰)의 복수형",
+   "become": "become(~이 되다)의 과거분사",
+   "widespread": "널리 퍼진",
+   "introduction": "도입",
+   "early": "초기의",
+   "trend": "흐름, 추세",
+   "reflects": "reflect(반영하다)의 3인칭 단수형",
+   "changing": "change(변하다)의 -ing형",
+   "lifestyles": "lifestyle(생활방식)의 복수형"
+  },
+  "ko": "스마트폰의 사용은 2000년대 초 도입 이래로 널리 퍼졌는데, 이는 변화하는 생활방식을 반영하는 흐름이다."
+ },
+ {
+  "dk": [
+   [
+    "We will keep checking",
+    "우리는 계속 확인할 것이다"
+   ],
+   [
+    "when the concert tickets will go on sale,",
+    "콘서트 표가 언제 판매를 시작하는지"
+   ],
+   [
+    "hoping to get good seats.",
+    "좋은 자리를 얻기를 바라면서."
+   ]
+  ],
+  "gist": "표 판매가 언제 시작하는지 계속 확인하며 좋은 자리를 잡고 싶다는 얘기예요.",
+  "fm": "hope + to 동사원형",
+  "mp": [
+   [
+    "동사",
+    "hope",
+    "hoping"
+   ],
+   [
+    "뒤에 오는 말",
+    "to win",
+    "to get"
+   ]
+  ],
+  "ex": "I hope to win.",
+  "exko": "나는 이기기를 바라요(hope 바라다, win 이기다).",
+  "tko": "얻기를",
+  "bad": "I hope winning.",
+  "badko": "(hope(바라다) 뒤에는 -ing가 아니라 to win(이기다)처럼 to + 동사원형이 와요)",
+  "altw": "-ing",
+  "alt": "I like winning.",
+  "altko": "나는 이기는 걸 좋아해요(like 좋아하다 뒤에는 -ing도 가능).",
+  "why": "hope(바라다)는 앞으로 하고 싶은 일을 바라는 말이에요. 그래서 뒤에 to + 동사원형을 써서 to get(얻다)이 돼요. getting은 어울리지 않아요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>hope, want, decide 뒤에는 to + 동사원형이 와요",
+  "d": {
+   "keep": "keep -ing: 계속 ~하다",
+   "checking": "check(확인하다)의 -ing형",
+   "concert": "콘서트",
+   "tickets": "ticket(표)의 복수형",
+   "sale": "go on sale: 판매를 시작하다",
+   "hoping": "hope(바라다)의 -ing형",
+   "get": "얻다",
+   "seats": "seat(자리)의 복수형"
+  },
+  "ko": "우리는 콘서트 표가 언제 판매를 시작하는지 계속 확인할 것이며, 좋은 자리를 얻기를 바라고 있다."
+ },
+ {
+  "dk": [
+   [
+    "The first automobile was invented in 1886 by Karl Benz,",
+    "최초의 자동차는 1886년에 Karl Benz에 의해 발명되었다,"
+   ],
+   [
+    "a German engineer",
+    "독일인 엔지니어인"
+   ],
+   [
+    "whose design influenced the entire industry.",
+    "그의 설계는 업계 전체에 영향을 주었다."
+   ]
+  ],
+  "gist": "Karl Benz가 만든 자동차 설계가 자동차 업계 전체에 큰 영향을 줬다는 얘기예요.",
+  "fm": "사람 + whose + 명사",
+  "mp": [
+   [
+    "앞 사람",
+    "a boy",
+    "a German engineer"
+   ],
+   [
+    "whose + 명사",
+    "whose name",
+    "whose design"
+   ]
+  ],
+  "ex": "I know a boy whose name is Tom.",
+  "exko": "나는 이름이 Tom인 소년을 알아요(name 이름).",
+  "tko": "그의 설계는",
+  "bad": "I know a boy who's name is Tom.",
+  "badko": "(who's는 who is(누구는)의 줄임말이라서 '그의'라는 뜻의 whose여야 해요)",
+  "altw": "who",
+  "alt": "I know a boy who plays soccer.",
+  "altko": "나는 축구하는 소년을 알아요(who 뒤에 동사가 오면 who).",
+  "why": "'그의 설계'처럼 누구의 것인지 말할 때는 whose를 써요. who's는 who is 또는 who has의 줄임말이라서 뒤에 명사가 올 수 없어요. design(설계) 앞이니까 whose예요.",
+  "trend": "<b>출제 2위 · 관계대명사와 관계부사</b><br>31년간 99회 나왔어요.<br>뒤에 명사가 바로 이어지면 whose예요",
+  "d": {
+   "automobile": "자동차",
+   "invented": "invent(발명하다)의 과거분사",
+   "german": "독일의",
+   "engineer": "엔지니어",
+   "design": "설계, 디자인",
+   "influenced": "influence(영향을 주다)의 과거형",
+   "entire": "전체의",
+   "industry": "산업, 업계",
+   "whose": "누구의, 그의"
+  },
+  "ko": "최초의 자동차는 1886년에 독일 엔지니어 Karl Benz에 의해 발명되었는데, 그의 설계는 업계 전체에 영향을 미쳤다."
+ },
+ {
+  "dk": [
+   [
+    "The beach will turn into a big party spot",
+    "그 해변은 큰 파티 장소로 변할 것이다"
+   ],
+   [
+    "when the summer season arrives,",
+    "여름 시즌이 오면"
+   ],
+   [
+    "attracting tourists from every corner of the country.",
+    "전국 곳곳에서 관광객들을 끌어모으며."
+   ]
+  ],
+  "gist": "여름이 되면 해변이 전국의 관광객들이 몰리는 파티 장소가 된다는 얘기예요.",
+  "fm": "여러 명 → 명사 + -s",
+  "mp": [
+   [
+    "명사",
+    "students",
+    "tourists"
+   ],
+   [
+    "뜻",
+    "여러 학생",
+    "여러 관광객"
+   ]
+  ],
+  "ex": "The beach attracts students.",
+  "exko": "그 해변은 학생들을 끌어모아요(attract 끌어모으다, student 학생).",
+  "tko": "관광객들을",
+  "bad": "The beach attracts student.",
+  "badko": "(여러 명이라서 student가 아니라 students예요)",
+  "altw": "tourist",
+  "alt": "A tourist visits the beach.",
+  "altko": "관광객 한 명이 해변을 찾아와요(visit 방문하다, 한 명이라 a tourist).",
+  "why": "every corner(모든 구석)에서 오는 사람이니까 관광객은 한 명이 아니라 여러 명이에요. 셀 수 있는 명사가 여러 명이면 -s를 붙여서 tourists(관광객들)로 써요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>셀 수 있는 명사가 여럿이면 -s를 붙여요",
+  "d": {
+   "beach": "해변",
+   "turn": "turn into: ~로 변하다",
+   "spot": "장소",
+   "season": "계절",
+   "arrives": "arrive(도착하다)의 3인칭 단수형",
+   "attracting": "attract(끌어모으다)의 -ing형",
+   "tourists": "tourist(관광객)의 복수형",
+   "corner": "구석, 모퉁이",
+   "country": "나라"
+  },
+  "ko": "그 해변은 여름 시즌이 오면 큰 파티 장소로 변할 것이며, 전국 각지에서 관광객들을 끌어모을 것이다."
+ },
+ {
+  "dk": [
+   [
+    "When Martin reached the empty bus stop,",
+    "Martin이 텅 빈 버스 정류장에 도착했을 때"
+   ],
+   [
+    "he found that he had missed the bus,",
+    "그는 버스를 놓쳤다는 것을 알게 되었다,"
+   ],
+   [
+    "which left him standing there alone and frustrated.",
+    "그것은 그를 거기에 혼자 좌절한 채 서 있게 했다."
+   ]
+  ],
+  "gist": "버스를 놓쳐서 혼자 정류장에 서서 속상해했다는 얘기예요.",
+  "fm": "A and B (같은 모양)",
+  "mp": [
+   [
+    "and 앞 말",
+    "alone",
+    "alone"
+   ],
+   [
+    "and 뒤 말",
+    "tired",
+    "frustrated"
+   ]
+  ],
+  "ex": "He stood alone and tired.",
+  "exko": "그는 혼자 지친 채로 서 있었어요(stand 서다, tired 지친).",
+  "tko": "좌절한",
+  "bad": "He stood alone and tiring.",
+  "badko": "(느끼는 사람의 기분이라서 tiring(지치게 하는)이 아니라 tired(지친)예요)",
+  "altw": "-ing",
+  "alt": "The long wait was tiring.",
+  "altko": "그 긴 기다림은 지치게 했어요(기다림이 사람을 지치게 하는 쪽이라 -ing).",
+  "why": "alone(혼자)과 and로 이어진 말은 Martin(him)의 기분을 말해 줘요. 그가 좌절을 '느끼는' 사람이라서 frustrate(좌절시키다)는 -ed를 붙인 frustrated(좌절한)를 써요.",
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>기분을 느끼는 쪽은 -ed, 기분을 만드는 쪽은 -ing예요",
+  "d": {
+   "reached": "reach(도착하다)의 과거형",
+   "empty": "텅 빈",
+   "stop": "정류장",
+   "found": "find(알게 되다)의 과거형",
+   "missed": "miss(놓치다)의 과거분사",
+   "left": "leave(~한 상태로 두다)의 과거형",
+   "standing": "stand(서 있다)의 -ing형",
+   "alone": "혼자",
+   "frustrated": "좌절한, 속상한"
+  },
+  "ko": "Martin이 텅 빈 버스 정류장에 도착했을 때, 그는 버스를 놓쳤다는 것을 알게 되었고, 그것은 그를 그곳에 홀로 좌절한 채 서 있게 만들었다."
+ },
+ {
+  "dk": [
+   [
+    "The students visited the museum last month",
+    "학생들은 지난달에 박물관을 방문했다"
+   ],
+   [
+    "to see famous works of art,",
+    "유명한 미술 작품들을 보기 위해"
+   ],
+   [
+    "most of which were created centuries ago.",
+    "그것들 대부분은 수세기 전에 만들어졌다."
+   ]
+  ],
+  "gist": "학생들이 본 유명 작품 대부분이 아주 오래전에 만들어진 것들이라는 얘기예요.",
+  "fm": "most of + 복수 명사 + 복수 동사",
+  "mp": [
+   [
+    "수량 표현",
+    "Most of",
+    "most of"
+   ],
+   [
+    "of 뒤 명사",
+    "the books",
+    "which(works of art)"
+   ]
+  ],
+  "ex": "Most of the books were old.",
+  "exko": "그 책들 대부분은 낡았어요(old 낡은).",
+  "tko": "그것들 대부분이",
+  "bad": "Most of the books was old.",
+  "badko": "(of 뒤 books(책들)가 여럿이라서 was가 아니라 were(be의 과거형)예요)",
+  "altw": "was",
+  "alt": "Most of the cake was gone.",
+  "altko": "그 케이크 대부분이 없어졌어요(cake는 하나라 was).",
+  "why": "'~의 대부분' 같은 말이 주어일 때는 of 뒤 명사에 동사를 맞춰요. which는 works of art(미술 작품들)를 가리키니까 여러 개예요. 그래서 were(be의 과거형)를 써요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>most of + 명사는 of 뒤 명사에 동사를 맞춰요",
+  "d": {
+   "visited": "visit(방문하다)의 과거형",
+   "museum": "박물관",
+   "last": "지난",
+   "month": "달",
+   "famous": "유명한",
+   "works": "works of art: 미술 작품",
+   "created": "create(만들다)의 과거분사",
+   "centuries": "century(세기)의 복수형",
+   "ago": "~전에"
+  },
+  "ko": "학생들은 지난달 유명한 미술 작품들을 보기 위해 박물관을 방문했는데, 그것들 대부분은 수세기 전에 만들어진 것이다."
+ },
+ {
+  "dk": [
+   [
+    "This restaurant is popular",
+    "이 식당은 인기가 있다"
+   ],
+   [
+    "because it has served customers high-quality dishes for over 10 years,",
+    "10년 넘게 손님들에게 고급 요리를 제공해 왔기 때문에"
+   ],
+   [
+    "a reputation earned through hardly any complaints.",
+    "그것은 불만이 거의 없이 얻어진 평판이다."
+   ]
+  ],
+  "gist": "불만이 거의 없이 오래 좋은 요리를 내서 좋은 평판을 얻었다는 얘기예요.",
+  "fm": "명사 + p.p. (당하는 명사)",
+  "mp": [
+   [
+    "꾸밈받는 명사",
+    "The book",
+    "a reputation"
+   ],
+   [
+    "뒤에서 꾸미는 말",
+    "written in Japanese",
+    "earned through hardly any complaints"
+   ]
+  ],
+  "ex": "The book written in Japanese is old.",
+  "exko": "일본어로 쓰인 그 책은 낡았어요(write 쓰다, Japanese 일본어).",
+  "tko": "얻어진",
+  "bad": "The book writing in Japanese is old.",
+  "badko": "(책은 '쓰이는' 쪽이라서 writing이 아니라 written(write 쓰다)이에요)",
+  "altw": "-ing",
+  "alt": "The man writing a letter is my dad.",
+  "altko": "편지를 쓰고 있는 남자는 우리 아빠예요(남자가 직접 쓰는 쪽이라 -ing).",
+  "why": "a reputation(평판)은 스스로 얻는 게 아니라 '얻어지는' 쪽이에요. 당하는 뜻의 명사는 p.p.로 꾸며서 earned(earn 얻다의 과거분사)를 써요. 직접 하는 쪽이면 -ing를 써요.",
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>명사가 직접 하면 -ing, 당하면 p.p.예요",
+  "d": {
+   "restaurant": "식당",
+   "popular": "인기 있는",
+   "served": "serve(제공하다)의 과거분사",
+   "customers": "customer(손님)의 복수형",
+   "quality": "high-quality: 고급의",
+   "dishes": "dish(요리)의 복수형",
+   "reputation": "평판",
+   "earned": "earn(얻다)의 과거분사",
+   "hardly": "hardly any: 거의 없는",
+   "complaints": "complaint(불만)의 복수형"
+  },
+  "ko": "이 식당은 10년 넘게 고객들에게 고급 요리를 제공해왔기 때문에 인기가 있으며, 이는 불만이 거의 없이 얻어낸 평판이다."
+ },
+ {
+  "dk": [
+   [
+    "The car will run smoothly",
+    "그 차는 부드럽게 달릴 것이다"
+   ],
+   [
+    "as long as you change the engine oil regularly,",
+    "당신이 엔진 오일을 정기적으로 교체하기만 하면"
+   ],
+   [
+    "a habit as important as checking the tires.",
+    "그것은 타이어를 점검하는 것만큼 중요한 습관이다."
+   ]
+  ],
+  "gist": "엔진 오일을 규칙적으로 갈아야 차가 잘 달린다는 얘기예요.",
+  "fm": "동사 + 부사(-ly)",
+  "mp": [
+   [
+    "동사 + 목적어",
+    "change oil",
+    "change the engine oil"
+   ],
+   [
+    "동사를 꾸미는 말",
+    "slowly",
+    "regularly"
+   ]
+  ],
+  "ex": "He changes his shirt slowly.",
+  "exko": "그는 셔츠를 천천히 갈아입어요(change 갈아입다, slow 느린).",
+  "tko": "정기적으로",
+  "bad": "He changes his shirt slow.",
+  "badko": "(어떻게 바꾸는지 말하는 자리라서 slow(느린)가 아니라 부사 slowly(느리게)예요)",
+  "altw": "regular",
+  "alt": "This is a regular class.",
+  "altko": "이건 정규 수업이에요(명사 class를 꾸미니까 형용사).",
+  "why": "'어떻게 교체하나?'를 말해 주는 낱말은 동사 change(바꾸다)를 꾸며요. 동사를 꾸미는 건 부사라서 regular(규칙적인)가 아니라 regularly(규칙적으로, 정기적으로)예요.",
+  "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>동사를 꾸미면 부사(-ly)예요",
+  "d": {
+   "run": "달리다, 작동하다",
+   "smoothly": "부드럽게",
+   "long": "as long as: ~하는 한",
+   "change": "바꾸다, 교체하다",
+   "engine": "엔진",
+   "oil": "기름",
+   "regularly": "규칙적으로, 정기적으로",
+   "habit": "습관",
+   "important": "중요한",
+   "checking": "check(점검하다)의 -ing형",
+   "tires": "tire(타이어)의 복수형"
+  },
+  "ko": "당신이 엔진 오일을 정기적으로 교체하는 한 그 차는 원활하게 운행될 것이며, 이는 타이어를 점검하는 것만큼 중요한 습관이다."
+ },
+ {
+  "dk": [
+   [
+    "Since they first appeared,",
+    "그것들이 처음 나타난 이래로"
+   ],
+   [
+    "communities have used dance to remember major events like birth and death,",
+    "공동체들은 탄생과 죽음 같은 큰 사건을 기억하기 위해 춤을 사용해 왔다,"
+   ],
+   [
+    "ceremonies that continue to this day.",
+    "오늘날까지 계속되는 의식들이다."
+   ]
+  ],
+  "gist": "사람들은 옛날부터 큰 일을 기억하려고 춤을 췄고 그 의식이 지금도 이어진다는 얘기예요.",
+  "fm": "that + 동사 (-ing만 있으면 안 돼요)",
+  "mp": [
+   [
+    "연결말",
+    "that",
+    "that"
+   ],
+   [
+    "동사 자리",
+    "remain",
+    "continue"
+   ]
+  ],
+  "ex": "These are customs that remain today.",
+  "exko": "이것들은 오늘날까지 남아 있는 관습이에요(custom 관습, remain 남다).",
+  "tko": "계속되는",
+  "bad": "These are customs that remaining today.",
+  "badko": "(that 뒤에는 동사가 필요해요. remaining만 있으면 동사가 아니라서 remain(남다)이어야 해요)",
+  "altw": "-ing",
+  "alt": "The boy remaining here is Tom.",
+  "altko": "여기 남아 있는 소년은 Tom이에요(that is를 빼면 -ing만 남겨요).",
+  "why": "that 뒤에는 진짜 동사가 있어야 해요. continuing(continue 계속되다의 -ing형)은 동사가 못 돼요. ceremonies(의식들)가 여럿이라서 s 없는 continue가 맞아요.",
+  "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>-ing만 있으면 동사가 아니에요. 진짜 동사를 찾아요",
+  "d": {
+   "since": "~이래로",
+   "appeared": "appear(나타나다)의 과거형",
+   "communities": "community(공동체)의 복수형",
+   "dance": "춤",
+   "remember": "기억하다",
+   "major": "주요한, 큰",
+   "events": "event(사건)의 복수형",
+   "birth": "탄생",
+   "death": "죽음",
+   "ceremonies": "ceremony(의식)의 복수형",
+   "continue": "계속되다",
+   "day": "to this day: 오늘날까지"
+  },
+  "ko": "처음 등장한 이래로, 공동체들은 탄생과 죽음 같은 중대한 사건을 기리기 위해 춤을 사용해 왔는데, 이 의식은 오늘날까지 계속되고 있다."
+ },
+ {
+  "dk": [
+   [
+    "The road was closed",
+    "그 도로는 폐쇄되었다"
+   ],
+   [
+    "because an accident had occurred earlier on the same day,",
+    "같은 날 일찍 사고가 일어났었기 때문에"
+   ],
+   [
+    "leaving drivers to find another route.",
+    "운전자들이 다른 길을 찾게 만들면서."
+   ]
+  ],
+  "gist": "사고 때문에 길이 막혀서 운전자들이 다른 길을 찾아야 했다는 얘기예요.",
+  "fm": "leave + 사람 + to 동사원형",
+  "mp": [
+   [
+    "동사 + 사람",
+    "leave him",
+    "leaving drivers"
+   ],
+   [
+    "그 뒤",
+    "to wait",
+    "to find"
+   ]
+  ],
+  "ex": "The rain left us to wait inside.",
+  "exko": "비 때문에 우리는 안에서 기다려야 했어요(wait 기다리다, inside 안에서).",
+  "tko": "찾게",
+  "bad": "The rain left us wait inside.",
+  "badko": "(leave 뒤에서는 wait가 아니라 to wait(기다리다)처럼 to + 동사원형이 와요)",
+  "altw": "find",
+  "alt": "I can find my key.",
+  "altko": "나는 내 열쇠를 찾을 수 있어요(can 뒤에는 동사원형).",
+  "why": "leaving drivers(운전자들을 두는 것) 뒤에는 '운전자들이 무엇을 하게 되는지'가 필요해요. leave는 그 뒤에 to + 동사원형을 쓰는 말이라서 to find(find 찾다)가 돼요. found는 find의 과거형이라 자리에 안 맞아요.",
+  "trend": "<b>출제 10위 · 목적격보어/준동사</b><br>31년간 30회 나왔어요.<br>leave 뒤에는 to + 동사원형이 오는 걸 외워 둬요",
+  "d": {
+   "road": "도로",
+   "closed": "close(닫다)의 과거분사",
+   "accident": "사고",
+   "occurred": "occur(일어나다)의 과거분사",
+   "earlier": "더 일찍",
+   "same": "같은",
+   "leaving": "leave(~한 상태로 두다)의 -ing형",
+   "drivers": "driver(운전자)의 복수형",
+   "find": "찾다",
+   "route": "길, 경로"
+  },
+  "ko": "같은 날 이른 시간에 사고가 발생했기 때문에 그 도로는 폐쇄되었고, 이는 운전자들이 다른 경로를 찾도록 만들었다."
+ }
+]

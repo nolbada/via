@@ -1,0 +1,95 @@
+[
+ {
+  "dk": [
+   [
+    "Dining is a sign of human community",
+    "식사는 인간 공동체의 표시이고"
+   ],
+   [
+    "and distinguishes men from beasts.",
+    "인간을 짐승과 구별해 준다."
+   ]
+  ],
+  "gist": "함께 밥을 먹는 건 사람 사회의 표시이고 사람과 짐승을 가르는 일이라는 얘기예요.",
+  "fm": "동사 A and 동사 B (같은 모양)",
+  "mp": [
+   [
+    "and 앞 동사",
+    "falls",
+    "is"
+   ],
+   [
+    "and 뒤 동사",
+    "makes",
+    "distinguishes"
+   ]
+  ],
+  "ex": "Rain falls and makes the grass green.",
+  "exko": "비가 내려서 풀을 푸르게 만들어요(fall 내리다, grass 풀, green 푸른).",
+  "tko": "인간을 짐승과 구별해 준다",
+  "bad": "Rain falls and making the grass green.",
+  "badko": "(falls가 주어 Rain에 맞춘 동사라서 making이 아니라 makes여야 해요)",
+  "altw": "-ing",
+  "alt": "Rain falls, making the grass green.",
+  "altko": "비가 내리면서 풀을 푸르게 만들어요(making은 '~하면서'라고 덧붙이는 말로 쓰였어요).",
+  "why": "주어 Dining(식사) 하나에 is(~이다)라는 동사가 먼저 나오고, and 뒤에 또 다른 동사가 이어져요. 둘 다 Dining의 동사라서 is처럼 현재형이고 -s가 붙은 distinguishes(구별하다)여야 해요. distinguishing은 동사 노릇을 못 해요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and 앞뒤 동사는 같은 모양이에요",
+  "d": {
+   "dining": "dine(식사하다)의 -ing형: 식사",
+   "sign": "표시",
+   "human": "인간의",
+   "community": "공동체",
+   "distinguishes": "distinguish(구별하다)의 -s형",
+   "men": "man(사람, 인간)의 복수형",
+   "beasts": "beast(짐승)의 복수형"
+  },
+  "ko": "식사는 인간 공동체의 표시이며 인간을 짐승과 구별해 준다."
+ },
+ {
+  "dk": [
+   [
+    "Can your life either get worse or become better",
+    "당신의 삶이 더 나빠지거나 더 좋아질 수 있을까"
+   ],
+   [
+    "just because of the thoughts you have?",
+    "단지 당신이 가진 생각 때문에?"
+   ]
+  ],
+  "gist": "내가 하는 생각만으로 삶이 나빠지기도 하고 좋아지기도 하냐고 묻는 얘기예요.",
+  "fm": "either A or B (A, B 같은 모양)",
+  "mp": [
+   [
+    "either 뒤 A",
+    "get cold",
+    "get worse"
+   ],
+   [
+    "or 뒤 B",
+    "become warm",
+    "become better"
+   ]
+  ],
+  "ex": "The day can either get cold or become warm.",
+  "exko": "그날은 추워지거나 따뜻해질 수 있어요(get ~해지다, become ~이 되다).",
+  "tko": "더 나빠지거나 더 좋아질",
+  "bad": "The day can either get cold or becoming warm.",
+  "badko": "(can 뒤 get이 동사원형이라서 becoming이 아니라 become이어야 해요)",
+  "altw": "-ing",
+  "alt": "The day is either getting cold or becoming warm.",
+  "altko": "그날은 추워지고 있거나 따뜻해지고 있어요(is 뒤에서는 -ing끼리 나란히 와요).",
+  "why": "Can 뒤에 get(되다)이 동사원형으로 나와 있어요. or 뒤의 become(되다)도 Can 뒤에 오는 같은 자리라서 똑같이 동사원형이어야 해요. becoming(되는 중인)은 Can 뒤에 올 수 없어요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>either A or B에서 A와 B는 모양이 같아요",
+  "d": {
+   "life": "삶",
+   "either": "either A or B: A거나 B거나",
+   "get": "get worse: 더 나빠지다",
+   "worse": "더 나쁜",
+   "become": "~이 되다",
+   "better": "더 좋은",
+   "because": "because of: ~ 때문에",
+   "thoughts": "thought(생각)의 복수형"
+  },
+  "ko": "단지 당신이 가진 생각 때문에 당신의 삶이 더 나빠지거나 더 좋아질 수 있을까?"
+ }
+]
