@@ -36,6 +36,7 @@ button{font-family:inherit}
 .ab.ok{background:var(--oks);border-color:var(--ok);color:var(--ok)}
 .ab.no{background:var(--nos);border-color:var(--no);color:var(--no)}
 .hide{display:none!important}
+.rv{background:#fff7e0;border:1px solid #ecd9a0;color:#7a5b00;border-radius:12px;padding:10px 14px;font-size:14px;font-weight:600;line-height:1.5}
 .sec{margin-top:16px}.sec:first-child{margin-top:0}.sec h4{margin:0 0 6px;font-size:13px;color:var(--mute);font-weight:500;letter-spacing:.02em}
 .sl{border-top:1px solid var(--line)}
 .sl .r{padding:8px 0 8px 10px;border-bottom:1px solid var(--line);border-left:3px solid var(--line)}.sl .r>b,.sl .r>span{display:block}
@@ -173,8 +174,9 @@ function show(){
   var qi=PL[cur.k],d=Q[qi],pos=cur.k-cur.from;
   var dots='';for(var i=cur.from;i<cur.to;i++){var r=S.res[i];dots+='<i class="'+(i==cur.k?'on':(r===1?'ok':(r===0?'no':'')))+'"></i>'}
   var h='<div class="top"><button class="bk" id="bk">목록</button><span>'+(pos+1)+' / '+(cur.to-cur.from)+'</span><div class="dots">'+dots+'</div></div>';
+  if(cur.review){var rr=S.res[cur.k];h+='<div class="rv">복습 보기 · '+(cur.s+1)+'일차에 이미 푼 문제'+(rr===1?' · 처음 풀이 정답':(rr===0?' · 처음 풀이 오답':''))+'</div>'}
   h+='<div class="card"><div class="q">'+tk(d.pre)+'<span class="br">[ '+tk(d.a)+' / '+tk(d.b)+' ]</span>'+tk(d.post)+'</div><div class="mute" style="margin-top:6px">모르는 단어는 눌러서 뜻 확인</div></div>';
-  h+='<div class="card" id="s2"><p class="lbl">정답 고르기</p><div class="row"><button class="ab" data-k="a">'+esc(d.a)+'</button><button class="ab" data-k="b">'+esc(d.b)+'</button></div></div>';
+  h+='<div class="card" id="s2"><p class="lbl">'+(cur.review&&S.res[cur.k]!=null?'처음 푼 결과':'정답 고르기')+'</p><div class="row"><button class="ab" data-k="a">'+esc(d.a)+'</button><button class="ab" data-k="b">'+esc(d.b)+'</button></div></div>';
   h+='<div class="card hide" id="exp"></div>';
   $("#app").innerHTML=h;$("#nx").classList.add("hide");$("#sheet").classList.add("hide");cur.step=1;
   $("#bk").onclick=home;window.scrollTo(0,0);
@@ -215,7 +217,7 @@ function pick(k,quiet){
   +bx(d)
   +'<div class="sec"><h4>왜 그럴까요</h4><div class="tx">'+esc(d.why).replace(/\n/g,'<br>')+'</div></div>'
   +(tr?'<div class="sec trend">'+tr+'</div>':'');
-  var last=cur.k==cur.to-1;$("#nx").classList.remove("hide");$("#nb").textContent=last?"오늘 학습 마치기":"다음 문제";
+  var last=cur.k==cur.to-1;$("#nx").classList.remove("hide");$("#nb").textContent=cur.review?(last?"목록으로":"다음 문제"):(last?"오늘 학습 마치기":"다음 문제");
   e.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 function adv(){
@@ -228,7 +230,7 @@ function finish(){
   for(var i=cur.from;i<cur.to;i++){var r=S.res[i],d=Q[PL[i]];if(r===1)ok++;
     list+='<div class="it"><i class="'+(r===1?'':'no')+'"></i><div>'+esc(d.pre+d[d.ans]+d.post)+'</div></div>'}
   var nw=Object.keys(S.words).length;
-  $("#app").innerHTML='<div class="card"><div class="sum"><b>'+ok+'</b><span class="mute">/ '+tot+' 정답</span></div><p class="mute" style="margin:6px 0 0">누적 단어 '+nw+'개가 오답노트에 쌓였어요</p></div><div class="card res"><p class="lbl">오늘의 문장</p>'+list+'</div><button class="go" id="hm">목록으로</button>';
+  $("#app").innerHTML='<div class="card"><div class="sum"><b>'+ok+'</b><span class="mute">/ '+tot+' 정답</span></div><p class="mute" style="margin:6px 0 0">누적 단어 '+nw+'개가 오답노트에 쌓였어요</p></div><div class="card res"><p class="lbl">'+(cur.review?'지난 학습 문장':'오늘의 문장')+'</p>'+list+'</div><button class="go" id="hm">목록으로</button>';
   $("#hm").onclick=home;window.scrollTo(0,0);
 }
 document.addEventListener("click",function(e){
