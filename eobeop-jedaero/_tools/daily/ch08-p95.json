@@ -33,7 +33,7 @@
   "altw": "-ing",
   "alt": "You are singing well.",
   "altko": "너는 노래를 잘하고 있어(are 뒤에 -ing를 붙이면 진행 동사가 돼요).",
-  "why": "문장의 주어 You에 look(~해 보이다)과 impress(감동시키다) 두 동사가 and로 이어져요. 둘 다 you에 맞는 현재형 동사 원형이라야 해요. impressing은 동사가 아니라서 줄에 못 서요.",
+  "why": "문장의 주어 You에 look(~해 보이다)과 impress(감동시키다) 두 동사가 and로 이어져요. 둘 다 you에 맞는 현재형 동사라서 -s 없이 look, impress로 써요. impressing은 동사가 아니라서 그 자리에 올 수 없어요.",
   "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and로 이어진 동사들은 시제와 모양을 똑같이 맞춰요",
   "d": {
    "look": "~해 보이다",
@@ -65,7 +65,7 @@
   "mp": [
    [
     "꾸미는 부사",
-    "very",
+    "really",
     "really"
    ],
    [
@@ -74,11 +74,11 @@
     "alone"
    ]
   ],
-  "ex": "He is very tall.",
-  "exko": "그는 키가 아주 커요(tall 키가 큰).",
+  "ex": "He is really tall.",
+  "exko": "그는 키가 정말 커요(tall 키가 큰).",
   "tko": "정말로 외로운",
   "bad": "He is real tall.",
-  "badko": "(형용사 tall(키가 큰)을 꾸미는 자리라서 형용사 real(진짜의)이 아니라 부사가 와야 해요)",
+  "badko": "(형용사 tall(키가 큰)을 꾸미는 자리라서 형용사 real(진짜의)이 아니라 부사 really(정말로)가 와야 해요)",
   "altw": "형용사",
   "alt": "This is a real diamond.",
   "altko": "이것은 진짜 다이아몬드예요(명사 diamond(다이아몬드)를 꾸밀 때는 형용사 real(진짜의)이에요).",
@@ -121,21 +121,21 @@
   "mp": [
    [
     "and 앞 말",
-    "to try",
+    "to sing",
     "to keep"
    ],
    [
     "and 뒤 말",
-    "to learn",
+    "to dance",
     "to publish"
    ]
   ],
-  "ex": "I want to try and to learn.",
-  "exko": "나는 시도하고 배우고 싶어요(try 시도하다, learn 배우다).",
+  "ex": "I want to sing and to dance.",
+  "exko": "나는 노래하고 춤추고 싶어요(sing 노래하다, dance 춤추다).",
   "tko": "계속하도록, 발표하도록",
-  "bad": "I want to try and to learning.",
-  "badko": "(to 뒤에는 learning이 아니라 동사원형 learn이 와요)",
-  "altw": "to + 명사",
+  "bad": "I want to sing and to dancing.",
+  "badko": "(to 뒤에는 dancing이 아니라 동사원형 dance가 와요)",
+  "altw": "to + -ing",
   "alt": "I look forward to eating well.",
   "altko": "나는 잘 먹기를 기대해요(look forward to의 to는 '~로'라서 뒤에 -ing를 써요).",
   "why": "motivating(motivate(동기를 부여하다)의 -ing형) 뒤에 to keep exploring(계속 탐구하다)과 to publish(발표하다)가 and로 이어져요. 둘 다 to + 동사원형 모양이에요. 이때의 to는 부정사 to라서 뒤에는 -ing가 아닌 동사원형 publish가 와요.",
@@ -231,23 +231,23 @@
   "mp": [
    [
     "and 앞 말",
-    "kind",
+    "warm",
     "calm"
    ],
    [
     "and 뒤 말",
-    "gentle",
+    "relaxing",
     "reassuring"
    ]
   ],
-  "ex": "She spoke in a kind and gentle voice.",
-  "exko": "그녀는 친절하고 부드러운 목소리로 말했어요(kind 친절한, gentle 부드러운, voice 목소리).",
+  "ex": "I took a warm and relaxing bath.",
+  "exko": "나는 따뜻하고 편안하게 해 주는 목욕을 했어요(take a bath 목욕하다, relax 긴장을 풀다).",
   "tko": "차분하고 안심시키는 어조",
-  "bad": "She spoke in a kind and gently voice.",
-  "badko": "(kind(친절한)와 같은 형용사 모양이어야 해서 부사 gently(부드럽게)가 아니라 gentle(부드러운)이에요)",
-  "altw": "부사",
-  "alt": "She spoke gently.",
-  "altko": "그녀는 부드럽게 말했어요(동사 spoke를 꾸밀 때는 부사 gently(부드럽게)예요).",
+  "bad": "I took a warm and relax bath.",
+  "badko": "(warm(따뜻한)과 같은 형용사 모양이어야 해서 동사 relax(긴장을 풀다)가 아니라 relaxing(편안하게 해 주는)이에요)",
+  "altw": "-ed",
+  "alt": "I felt relaxed.",
+  "altko": "나는 편안해졌어요(내가 느끼는 상태라서 relaxed(편안해진)예요).",
   "why": "a calm and ___ tone에서 calm(차분한)과 and로 이어져 tone(어조)을 꾸며요. 그러니 calm처럼 형용사 모양이어야 해요. reassure(안심시키다)는 동사라서 안 되고, 어조가 사람을 안심시켜 주니까 reassuring(안심시키는)이 맞아요.",
   "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and 앞뒤에서 명사를 꾸미는 말은 모두 형용사 모양으로 맞춰요",
   "d": {

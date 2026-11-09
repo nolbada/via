@@ -73,7 +73,7 @@
   ],
   "ex": "The dog jumped and ran.",
   "exko": "그 개는 뛰어올랐다가 달렸어요(jump 뛰다, run 달리다 → ran).",
-  "tko": "자리를 잡고 떠받쳤다",
+  "tko": "(그리고) 떠받쳤다",
   "bad": "The dog jumped and running.",
   "badko": "(and 앞이 jumped(뛰었다)라서 running이 아니라 ran(달렸다)이에요)",
   "altw": "-ing",
@@ -272,7 +272,7 @@
   "tko": "보호하는 센터",
   "bad": "It is a school that help kids.",
   "badko": "(school은 하나라서 that 뒤 동사도 help가 아니라 helps예요)",
-  "altw": "복수 앞 명사",
+  "altw": "help",
   "alt": "They are schools that help kids.",
   "altko": "그곳들은 아이들을 돕는 학교들이에요(schools가 여러 개라서 help).",
   "why": "that 뒤 동사는 that 바로 앞 명사(a marine wildlife center)가 하나인지 여러 개인지에 맞춰요. center(센터)는 하나라서 protect(보호하다)가 아니라 protects예요. 뒤의 dolphins(돌고래들)는 여러 마리여도 동사와 상관없어요.",
@@ -508,18 +508,18 @@
    ],
    [
     "동사",
-    "helps",
+    "makes",
     "reminds"
    ]
   ],
-  "ex": "It helps me.",
-  "exko": "그것은 나를 도와줘요(help 돕다).",
+  "ex": "It makes me happy.",
+  "exko": "그것은 나를 행복하게 해 줘요(make 만들다, happy 행복한).",
   "tko": "그것은 내게 일깨워 준다",
-  "bad": "It help me.",
-  "badko": "(it은 하나라서 help가 아니라 helps예요)",
+  "bad": "It make me happy.",
+  "badko": "(it은 하나라서 make가 아니라 makes예요)",
   "altw": "remind",
-  "alt": "They remind me.",
-  "altko": "그것들은 나에게 일깨워 줘요(they는 여러 개라서 -s가 없어요).",
+  "alt": "They make me happy.",
+  "altko": "그것들은 나를 행복하게 해 줘요(they는 여러 개라서 -s가 없어요).",
   "why": "it은 앞의 a lesson(교훈) 하나를 가리켜요. 하나(3인칭 단수)가 지금 하는 일은 동사에 -s를 붙여요. 그래서 remind(일깨워 주다)가 아니라 reminds예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>주어가 하나(it, he, she)면 현재 동사에 -s를 붙여요",
   "d": {
@@ -657,7 +657,7 @@
    ]
   ],
   "ko": "우리는 같은 거리에서 약 8년 동안 이웃으로 지냈지만, 우리 가족이 피닉스로 이사했다.",
-  "gist": "같은 동네 이웃으로 8년을 지내다가 내가 이사했다는 얘기예요.",
+  "gist": "같은 거리에서 8년쯤 이웃으로 지내다가 우리 가족이 이사를 갔다는 얘기예요.",
   "fm": "had p.p. (과거보다 더 먼저)",
   "mp": [
    [
@@ -730,9 +730,9 @@
   "tko": "정기적으로",
   "bad": "She walks slow.",
   "badko": "(어떻게 걷는지를 말하는 자리라서 slow(느린)가 아니라 부사 slowly(천천히)예요)",
-  "altw": "slow",
-  "alt": "She is slow.",
-  "altko": "그녀는 느려요(is 뒤에서 she를 설명하니까 형용사).",
+  "altw": "regular",
+  "alt": "We have regular meetings.",
+  "altko": "우리는 정기적인 모임이 있어요(명사 meetings 모임을 꾸미니까 형용사 regular 정기적인).",
   "why": "regular(규칙적인)는 명사를 꾸미는 형용사예요. 여기서는 동사 have seen(see 보다/만나다의 현재완료)이 '어떻게' 이어졌는지 말해야 해서, -ly를 붙인 부사 regularly(정기적으로)가 필요해요.",
   "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>동사를 꾸미면 부사, 명사를 꾸미면 형용사예요",
   "d": {
@@ -777,7 +777,7 @@
   "mp": [
    [
     "앞 명사",
-    "a gift",
+    "a song",
     "a friendship"
    ],
    [
@@ -786,14 +786,14 @@
     "means"
    ]
   ],
-  "ex": "It is a gift that means a lot.",
-  "exko": "그건 큰 의미가 있는 선물이에요(gift 선물, mean 의미하다, a lot 많이).",
+  "ex": "It is a song that means a lot.",
+  "exko": "그건 큰 의미가 있는 노래예요(song 노래, mean 의미하다, a lot 많이).",
   "tko": "의미가 있는 우정",
-  "bad": "It is a gift that mean a lot.",
-  "badko": "(gift는 하나라서 mean이 아니라 means예요)",
-  "altw": "복수 앞 명사",
-  "alt": "They are gifts that mean a lot.",
-  "altko": "그것들은 큰 의미가 있는 선물들이에요(gifts가 여러 개라서 mean).",
+  "bad": "It is a song that mean a lot.",
+  "badko": "(song은 하나라서 mean이 아니라 means예요)",
+  "altw": "mean",
+  "alt": "They are songs that mean a lot.",
+  "altko": "그것들은 큰 의미가 있는 노래들이에요(songs가 여러 개라서 mean).",
   "why": "that 앞의 a friendship(우정)이 하나라서 that 뒤 동사도 하나에 맞는 means(의미하다; mean)예요. 뒤에 나오는 us(우리), distance(거리)에 끌려가지 않게 조심해요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>that 바로 앞 명사의 수를 보고 동사를 정해요",
   "d": {
@@ -1012,7 +1012,7 @@
   "tko": "효과적임이 입증된 전략",
   "bad": "It is a tool that work well.",
   "badko": "(tool은 하나라서 work가 아니라 works예요)",
-  "altw": "복수 앞 명사",
+  "altw": "work",
   "alt": "They are tools that work well.",
   "altko": "그것들은 잘 작동하는 도구들이에요(tools가 여러 개라서 work).",
   "why": "that 앞의 a strategy(전략)가 하나라서 that 뒤 동사도 하나에 맞는 proves(~로 입증되다; prove)예요. 뒤의 generations(세대들)가 여러 개여도 동사와 상관없어요.",
@@ -1064,18 +1064,18 @@
    ],
    [
     "동사",
-    "shows",
+    "tells",
     "shows"
    ]
   ],
-  "ex": "It shows the way.",
-  "exko": "그것은 길을 보여 줘요(show 보여 주다, way 길).",
+  "ex": "It tells a story.",
+  "exko": "그것은 이야기를 들려줘요(tell 말하다, story 이야기).",
   "tko": "그것은 보여 준다",
-  "bad": "It show the way.",
-  "badko": "(it은 하나라서 show가 아니라 shows예요)",
+  "bad": "It tell a story.",
+  "badko": "(it은 하나라서 tell이 아니라 tells예요)",
   "altw": "show",
   "alt": "They show the way.",
-  "altko": "그것들은 길을 보여 줘요(they는 여러 개라서 -s가 없어요).",
+  "altko": "그것들은 길을 보여 줘요(they는 여러 개라서 show에 -s가 없어요).",
   "why": "it은 앞의 a strategy(전략) 하나를 가리켜요. 하나(3인칭 단수)가 지금 하는 일은 동사에 -s를 붙여요. 그래서 show(보여 주다)가 아니라 shows예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>주어가 하나(it, he, she)면 현재 동사에 -s를 붙여요",
   "d": {

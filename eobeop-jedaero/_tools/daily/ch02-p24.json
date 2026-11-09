@@ -1,28 +1,89 @@
 [
  {
-  "dk": [["We have solved many interesting puzzles together", "우리는 많은 흥미로운 퍼즐을 함께 풀어왔다"], ["since joining the puzzle club,", "그 퍼즐 동아리에 가입한 이래로"], ["which meets every Saturday afternoon.", "매주 토요일 오후에 모이는."]],
+  "dk": [
+   [
+    "We have solved many interesting puzzles together",
+    "우리는 많은 흥미로운 퍼즐을 함께 풀어왔다"
+   ],
+   [
+    "since joining the puzzle club,",
+    "그 퍼즐 동아리에 가입한 이래로"
+   ],
+   [
+    "which meets every Saturday afternoon.",
+    "매주 토요일 오후에 모이는."
+   ]
+  ],
   "ko": "우리는 매주 토요일 오후에 모이는 그 퍼즐 동아리에 가입한 이래로 많은 흥미로운 퍼즐을 함께 풀어왔다.",
   "gist": "토요일마다 모이는 퍼즐 동아리에 들어간 뒤로 퍼즐을 많이 풀었다는 얘기예요.",
   "fm": "관계사절 동사 = 앞 명사 (수 일치)",
-  "mp": [["앞 명사 (하나)", "a club", "the puzzle club"], ["관계사절 동사", "meets", "meets"]],
+  "mp": [
+   [
+    "앞 명사 (하나)",
+    "a club",
+    "the puzzle club"
+   ],
+   [
+    "관계사절 동사",
+    "meets",
+    "meets"
+   ]
+  ],
   "ex": "I joined a club which meets on Fridays.",
   "exko": "나는 금요일마다 모이는 동아리에 들어갔어요(join 가입하다 → joined, club 동아리).",
   "tko": "모이는 (동아리)",
   "bad": "I joined a club which meet on Fridays.",
   "badko": "(club(동아리)이 하나라서 meet이 아니라 meets예요)",
-  "altw": "who",
-  "alt": "I know a girl who sings well.",
-  "altko": "나는 노래를 잘하는 소녀를 알아요(girl 소녀는 사람이라서 who, sing 노래하다).",
+  "altw": "meet",
+  "alt": "I have friends who meet every Friday.",
+  "altko": "나는 금요일마다 모이는 친구들이 있어요(friends 친구들이 여럿이라서 meet 모이다에 -s가 없어요).",
   "why": "which 뒤의 동사는 which 바로 앞 명사에 맞춰요. 앞 명사 club(동아리)이 하나라서 meet(모이다)에 -s를 붙인 meets가 돼요. 앞쪽 have solved(solve 풀다)는 '가입한 뒤로 지금까지 풀어왔다'는 뜻이라 맞아요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>관계대명사 뒤 동사는 앞 명사가 하나인지 여럿인지를 봐요",
-  "d": {"solved": "solve(풀다)의 과거분사형", "interesting": "흥미로운", "puzzles": "puzzle(퍼즐)의 복수형", "together": "함께", "since": "~한 이래로", "joining": "join(가입하다)의 -ing형", "puzzle": "퍼즐", "club": "동아리", "meets": "meet(모이다)의 3인칭 단수형", "every": "매~", "Saturday": "토요일", "afternoon": "오후"}
+  "d": {
+   "solved": "solve(풀다)의 과거분사형",
+   "interesting": "흥미로운",
+   "puzzles": "puzzle(퍼즐)의 복수형",
+   "together": "함께",
+   "since": "~한 이래로",
+   "joining": "join(가입하다)의 -ing형",
+   "puzzle": "퍼즐",
+   "club": "동아리",
+   "meets": "meet(모이다)의 3인칭 단수형",
+   "every": "매~",
+   "saturday": "토요일",
+   "afternoon": "오후"
+  }
  },
  {
-  "dk": [["Lisa visited her grandparents last summer", "Lisa는 지난여름 조부모님을 방문했다"], ["before they moved to a different city,", "그들이 다른 도시로 이사하기 전에"], ["which made her feel sad.", "그것은 그녀를 슬프게 느끼게 만들었다."]],
+  "dk": [
+   [
+    "Lisa visited her grandparents last summer",
+    "Lisa는 지난여름 조부모님을 방문했다"
+   ],
+   [
+    "before they moved to a different city,",
+    "그들이 다른 도시로 이사하기 전에"
+   ],
+   [
+    "which made her feel sad.",
+    "그것은 그녀를 슬프게 느끼게 만들었다."
+   ]
+  ],
   "ko": "Lisa는 조부모님이 다른 도시로 이사하기 전인 지난여름에 그들을 방문했는데, 그것은 그녀를 슬프게 느끼게 만들었다.",
   "gist": "할머니 할아버지가 이사 가기 전에 찾아갔는데 그 일이 Lisa를 슬프게 했다는 얘기예요.",
   "fm": "feel + 형용사 (부사 X)",
-  "mp": [["동사", "feel", "feel"], ["뒤에 오는 말", "happy", "sad"]],
+  "mp": [
+   [
+    "동사",
+    "feel",
+    "feel"
+   ],
+   [
+    "뒤에 오는 말",
+    "happy",
+    "sad"
+   ]
+  ],
   "ex": "She feels happy.",
   "exko": "그녀는 행복해요(feel 느끼다, happy 행복한).",
   "tko": "슬프게 느끼다",
@@ -31,16 +92,52 @@
   "altw": "sadly",
   "alt": "She sings sadly.",
   "altko": "그녀는 슬프게 노래해요(sing 노래하다를 꾸미니까 부사 sadly(슬프게)).",
-  "why": "feel(느끼다)은 '어떤 기분이다'를 말하는 동사라서 뒤에 상태를 알려 주는 형용사 sad(슬픈)가 와요. sadly(슬프게)는 동사를 꾸미는 말이라 기분을 나타낼 수 없어요. 맨 앞 which는 '이사한 일' 전체를 가리켜요. visited(visit 방문하다)는 last summer(지난여름)가 있어서 과거형이 맞아요.",
+  "why": "feel(느끼다)은 '어떤 기분이다'를 말하는 동사라서 뒤에 상태를 알려 주는 형용사 sad(슬픈)가 와요. sadly(슬프게)는 동사를 꾸미는 말이라 기분을 나타낼 수 없어요. 맨 앞 which는 앞 내용 전체(이사 가기 전에 조부모님을 찾아간 일)를 가리켜요. visited(visit 방문하다)는 last summer(지난여름)가 있어서 과거형이 맞아요.",
   "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>feel·look·become 뒤에는 형용사를 먼저 떠올려요",
-  "d": {"visited": "visit(방문하다)의 과거형", "grandparents": "조부모님", "last": "지난", "summer": "여름", "before": "~하기 전에", "moved": "move(이사하다)의 과거형", "different": "다른", "city": "도시", "made": "make(만들다)의 과거형", "feel": "느끼다", "sad": "슬픈"}
+  "d": {
+   "visited": "visit(방문하다)의 과거형",
+   "grandparents": "조부모님",
+   "last": "지난",
+   "summer": "여름",
+   "before": "~하기 전에",
+   "moved": "move(이사하다)의 과거형",
+   "different": "다른",
+   "city": "도시",
+   "made": "make(만들다)의 과거형",
+   "feel": "느끼다",
+   "sad": "슬픈"
+  }
  },
  {
-  "dk": [["The young man has worked on his novel", "그 청년은 자신의 소설을 써왔다"], ["for several months now,", "지금까지 몇 달 동안"], ["feeling excited about the progress he has made.", "자신이 이룬 진전에 대해 신이 난 채로."]],
+  "dk": [
+   [
+    "The young man has worked on his novel",
+    "그 청년은 자신의 소설을 써왔다"
+   ],
+   [
+    "for several months now,",
+    "지금까지 몇 달 동안"
+   ],
+   [
+    "feeling excited about the progress he has made.",
+    "자신이 이룬 진전에 대해 신이 난 채로."
+   ]
+  ],
   "ko": "그 청년은 지금까지 몇 달 동안 자신의 소설을 써왔으며, 자신이 이룬 진전에 대해 신이 나 있다.",
   "gist": "청년이 몇 달째 소설을 쓰고 있고 자기가 해낸 만큼의 진전에 신이 났다는 얘기예요.",
   "fm": "사람이 느끼면 p.p. (excited)",
-  "mp": [["느끼는 사람", "I", "the young man"], ["감정 말", "excited", "excited"]],
+  "mp": [
+   [
+    "느끼는 사람",
+    "I",
+    "the young man"
+   ],
+   [
+    "감정 말",
+    "excited",
+    "excited"
+   ]
+  ],
   "ex": "I am excited about the trip.",
   "exko": "나는 그 여행 때문에 신이 나요(trip 여행).",
   "tko": "신이 난",
@@ -51,14 +148,48 @@
   "altko": "그 여행은 신나요(exciting 신나게 하는 것은 여행이라서 -ing).",
   "why": "excite(신나게 하다)는 감정을 만들어 주는 말이에요. 그 감정을 느끼는 사람이 주어면 excited(신이 난), 감정을 만들어 주는 쪽이 주어면 exciting(신나게 하는)이에요. 여기서 신이 난 건 the young man(그 청년)이라 excited예요. 앞의 has worked(work 일하다)는 for several months now(지금까지 몇 달)와 어울려요.",
   "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>감정 말은 느끼는 쪽이면 p.p., 감정을 일으키는 쪽이면 -ing예요",
-  "d": {"young": "젊은", "worked": "work(일하다)의 과거분사형", "novel": "소설", "several": "몇몇의", "months": "month(달)의 복수형", "feeling": "feel(느끼다)의 -ing형", "excited": "신이 난", "progress": "진전", "made": "make(만들다, 이루다)의 과거분사형"}
+  "d": {
+   "young": "젊은",
+   "worked": "work on(~을 작업하다, 쓰다)의 과거분사형",
+   "novel": "소설",
+   "several": "몇몇의",
+   "months": "month(달)의 복수형",
+   "feeling": "feel(느끼다)의 -ing형",
+   "excited": "신이 난",
+   "progress": "진전",
+   "made": "make(만들다, 이루다)의 과거분사형"
+  }
  },
  {
-  "dk": [["Ms. Spadler purchased a toaster only three weeks ago,", "Spadler 씨는 겨우 3주 전에 토스터를 샀지만"], ["but it's already not working,", "그것은 벌써 작동하지 않고 있다"], ["which frustrated her a lot.", "그리고 그것이 그녀를 매우 짜증 나게 했다."]],
+  "dk": [
+   [
+    "Ms. Spadler purchased a toaster only three weeks ago,",
+    "Spadler 씨는 겨우 3주 전에 토스터를 샀지만"
+   ],
+   [
+    "but it's already not working,",
+    "그것은 벌써 작동하지 않고 있다"
+   ],
+   [
+    "which frustrated her a lot.",
+    "그리고 그것이 그녀를 매우 짜증 나게 했다."
+   ]
+  ],
   "ko": "Spadler 씨는 겨우 3주 전에 토스터를 구입했지만, 그것은 벌써 작동하지 않고 있으며, 그것은 그녀를 매우 짜증 나게 했다.",
   "gist": "산 지 3주밖에 안 된 토스터가 벌써 고장 나서 많이 짜증이 났다는 얘기예요.",
   "fm": "콤마(,) + which (that X)",
-  "mp": [["콤마 앞 내용", "My toy broke,", "it's already not working,"], ["콤마 뒤 연결어", "which", "which"]],
+  "mp": [
+   [
+    "콤마 앞 내용",
+    "My toy broke,",
+    "it's already not working,"
+   ],
+   [
+    "콤마 뒤 연결어",
+    "which",
+    "which"
+   ]
+  ],
   "ex": "My toy broke, which made me sad.",
   "exko": "내 장난감이 부러졌고, 그 일이 나를 슬프게 했어요(toy 장난감, break 부러지다 → broke).",
   "tko": "그리고 그것이 그녀를 짜증 나게 했다",
@@ -69,14 +200,47 @@
   "altko": "이건 내가 좋아하는 장난감이에요(콤마가 없이 바로 꾸밀 때는 that도 쓸 수 있어요).",
   "why": "콤마 뒤 which는 앞 내용 전체(토스터가 벌써 고장 난 일)를 가리키며 덧붙여 설명해요. 이렇게 콤마 뒤에서 덧붙일 때는 that을 쓸 수 없어서 which가 맞아요. purchased(purchase 사다)는 three weeks ago(3주 전)가 있어서 과거형이에요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>콤마 바로 뒤에는 that을 쓰지 않아요",
-  "d": {"purchased": "purchase(사다)의 과거형", "toaster": "토스터", "weeks": "week(주)의 복수형", "ago": "~ 전에", "already": "벌써", "working": "work(작동하다)의 -ing형", "frustrated": "frustrate(짜증 나게 하다)의 과거형", "lot": "a lot: 매우"}
+  "d": {
+   "purchased": "purchase(사다)의 과거형",
+   "toaster": "토스터",
+   "weeks": "week(주)의 복수형",
+   "ago": "~ 전에",
+   "already": "벌써",
+   "working": "work(작동하다)의 -ing형",
+   "frustrated": "frustrate(짜증 나게 하다)의 과거형",
+   "lot": "a lot: 매우"
+  }
  },
  {
-  "dk": [["In the Old Stone Age,", "구석기 시대에"], ["groups of 20 to 60 people wandered from place to place to find food,", "20명에서 60명의 무리가 식량을 찾아 이곳저곳 떠돌았고"], ["and they must search for days without success.", "그들은 성과 없이 며칠 동안 찾아다녀야 했다."]],
+  "dk": [
+   [
+    "In the Old Stone Age,",
+    "구석기 시대에"
+   ],
+   [
+    "groups of 20 to 60 people wandered from place to place to find food,",
+    "20명에서 60명의 무리가 식량을 찾아 이곳저곳 떠돌았고"
+   ],
+   [
+    "and they must search for days without success.",
+    "그들은 성과 없이 며칠 동안 찾아다녀야 했다."
+   ]
+  ],
   "ko": "구석기 시대에는 20명에서 60명으로 이루어진 무리가 식량을 찾아 이곳저곳을 떠돌아다녔고, 그들은 며칠 동안 성과 없이 찾아다녀야 했다.",
   "gist": "옛날 사람들이 먹을 걸 찾아 떠돌며 며칠씩 헛걸음하기도 했다는 얘기예요.",
   "fm": "조동사 + 동사원형 (p.p. X)",
-  "mp": [["조동사", "can", "must"], ["동사원형", "swim", "search"]],
+  "mp": [
+   [
+    "조동사",
+    "can",
+    "must"
+   ],
+   [
+    "동사원형",
+    "swim",
+    "search"
+   ]
+  ],
   "ex": "I can swim.",
   "exko": "나는 수영할 수 있어요(swim 수영하다).",
   "tko": "찾아다녀야 한다",
@@ -87,14 +251,53 @@
   "altko": "그녀는 여기에 살아왔어요(have 뒤에는 lived처럼 p.p.가 와요).",
   "why": "must(~해야 한다) 같은 조동사 바로 뒤에는 늘 동사원형이 와요. searched는 search(찾다)의 과거형이라 안 되고, search 그대로 써요. 앞의 wandered(wander 떠돌다)는 In the Old Stone Age(구석기 시대에)라는 옛날 얘기라 과거형이 맞아요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>can·must·will 뒤는 무조건 동사원형이에요",
-  "d": {"stone": "돌", "age": "시대", "groups": "group(무리)의 복수형", "people": "사람들", "wandered": "wander(떠돌다)의 과거형", "place": "장소", "find": "찾다", "food": "식량", "must": "~해야 한다", "search": "찾다", "days": "day(날)의 복수형", "without": "~ 없이", "success": "성공, 성과"}
+  "d": {
+   "stone": "돌",
+   "age": "시대",
+   "groups": "group(무리)의 복수형",
+   "people": "사람들",
+   "wandered": "wander(떠돌다)의 과거형",
+   "place": "장소",
+   "find": "찾다",
+   "food": "식량",
+   "must": "~해야 한다",
+   "search": "찾다",
+   "days": "day(날)의 복수형",
+   "without": "~ 없이",
+   "success": "성공, 성과",
+   "old": "Old Stone Age: 구석기 시대"
+  }
  },
  {
-  "dk": [["We're so excited", "우리는 매우 신이 나 있다"], ["although we have waited in line for the sale to start for hours,", "비록 세일이 시작되기를 몇 시간 동안 줄 서서 기다려 왔지만"], ["hoping to get good deals.", "좋은 물건을 사기를 바라며."]],
+  "dk": [
+   [
+    "We're so excited",
+    "우리는 매우 신이 나 있다"
+   ],
+   [
+    "although we have waited in line for the sale to start for hours,",
+    "비록 세일이 시작되기를 몇 시간 동안 줄 서서 기다려 왔지만"
+   ],
+   [
+    "hoping to get good deals.",
+    "좋은 물건을 사기를 바라며."
+   ]
+  ],
   "ko": "우리는 세일이 시작되기를 몇 시간 동안 줄을 서서 기다려 왔지만, 좋은 물건을 살 수 있기를 바라며 매우 신이 나 있다.",
   "gist": "몇 시간 줄을 서서 기다렸지만 싸게 살 기대에 신이 난다는 얘기예요.",
   "fm": "이미 동사가 있으면 + v-ing (덧붙이는 말)",
-  "mp": [["이미 있는 동사", "waited", "have waited"], ["덧붙이는 말", "hoping to win", "hoping to get"]],
+  "mp": [
+   [
+    "이미 있는 동사",
+    "waited",
+    "have waited"
+   ],
+   [
+    "덧붙이는 말",
+    "hoping to win",
+    "hoping to get"
+   ]
+  ],
   "ex": "We waited, hoping to win.",
   "exko": "우리는 이기기를 바라며 기다렸어요(wait 기다리다, hope 바라다, win 이기다).",
   "tko": "좋은 물건을 사기를 바라며",
@@ -105,14 +308,50 @@
   "altko": "우리는 기다렸고 이기기를 바랐어요(and로 이으면 동사 두 개가 같은 모양이어야 해요).",
   "why": "문장에는 이미 진짜 동사 have waited(wait 기다리다)가 있어요. 한 문장에 진짜 동사를 그냥 또 쓸 수는 없어서, 덧붙이는 말은 hoping(hope 바라다의 -ing)으로 써요. '바라면서'라는 뜻이 돼요.",
   "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>문장에 진짜 동사가 이미 있는지 먼저 세어 봐요",
-  "d": {"excited": "신이 난", "although": "비록 ~이지만", "waited": "wait(기다리다)의 과거분사형", "line": "줄", "sale": "세일, 할인 판매", "start": "시작하다", "hours": "hour(시간)의 복수형", "hoping": "hope(바라다)의 -ing형", "get": "얻다, 사다", "good": "좋은", "deals": "deal(싼 거래, 좋은 물건)의 복수형"}
+  "d": {
+   "excited": "신이 난",
+   "although": "비록 ~이지만",
+   "waited": "wait(기다리다)의 과거분사형",
+   "line": "줄",
+   "sale": "세일, 할인 판매",
+   "start": "시작하다",
+   "hours": "hour(시간)의 복수형",
+   "hoping": "hope(바라다)의 -ing형",
+   "get": "얻다, 사다",
+   "good": "좋은",
+   "deals": "deal(싼 거래, 좋은 물건)의 복수형"
+  }
  },
  {
-  "dk": [["He has been interested in stars", "그는 별에 관심을 가져왔다"], ["since he saw his first shooting star last year,", "작년에 처음으로 별똥별을 본 이래로"], ["although he was very young.", "비록 그는 매우 어렸지만."]],
+  "dk": [
+   [
+    "He has been interested in stars",
+    "그는 별에 관심을 가져왔다"
+   ],
+   [
+    "since he saw his first shooting star last year,",
+    "작년에 처음으로 별똥별을 본 이래로"
+   ],
+   [
+    "although he was very young.",
+    "비록 그는 매우 어렸지만."
+   ]
+  ],
   "ko": "그는 작년에 처음으로 별똥별을 본 이래로 별에 관심을 가져왔는데, 비록 그때 그는 매우 어렸지만 그러했다.",
   "gist": "어린 나이에 별똥별을 본 뒤로 계속 별에 관심이 있다는 얘기예요.",
   "fm": "although + 주어 + 동사 (despite + 명사)",
-  "mp": [["연결어", "although", "although"], ["뒤에 오는 말", "it rained", "he was very young"]],
+  "mp": [
+   [
+    "연결어",
+    "although",
+    "although"
+   ],
+   [
+    "뒤에 오는 말",
+    "it rained",
+    "he was very young"
+   ]
+  ],
   "ex": "We played although it rained.",
   "exko": "우리는 비가 왔지만 놀았어요(play 놀다, rain 비가 오다).",
   "tko": "비록 그는 매우 어렸지만",
@@ -123,14 +362,49 @@
   "altko": "우리는 비에도 불구하고 놀았어요(despite 뒤에는 명사 the rain(비)).",
   "why": "despite(~에도 불구하고)는 뒤에 명사만 와요. 그런데 뒤에 he was very young(그는 매우 어렸다)이라는 '주어 + 동사' 문장이 왔어요. 문장을 이끄는 말 although(비록 ~이지만)로 바꿔야 해요. saw(see 보다의 과거형)는 last year(작년)라서 맞아요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>뒤에 주어와 동사가 있으면 although, 명사만 있으면 despite예요",
-  "d": {"interested": "관심 있는", "stars": "star(별)의 복수형", "since": "~한 이래로", "saw": "see(보다)의 과거형", "first": "첫 번째의", "shooting": "shooting star: 별똥별", "last": "지난", "year": "해, 년", "although": "비록 ~이지만", "young": "어린"}
+  "d": {
+   "interested": "관심 있는",
+   "stars": "star(별)의 복수형",
+   "since": "~한 이래로",
+   "saw": "see(보다)의 과거형",
+   "first": "첫 번째의",
+   "shooting": "shooting star: 별똥별",
+   "last": "지난",
+   "year": "해, 년",
+   "although": "비록 ~이지만",
+   "young": "어린"
+  }
  },
  {
-  "dk": [["I closed the window", "나는 창문을 닫았다"], ["when I felt a cold breeze coming in,", "찬 바람이 들어오는 것을 느꼈을 때"], ["feeling colder than before.", "전보다 더 춥게 느끼며."]],
+  "dk": [
+   [
+    "I closed the window",
+    "나는 창문을 닫았다"
+   ],
+   [
+    "when I felt a cold breeze coming in,",
+    "찬 바람이 들어오는 것을 느꼈을 때"
+   ],
+   [
+    "feeling colder than before.",
+    "전보다 더 춥게 느끼며."
+   ]
+  ],
   "ko": "나는 찬 바람이 들어오는 것을 느꼈을 때 창문을 닫았는데, 전보다 더 춥게 느껴졌기 때문이다.",
   "gist": "찬 바람이 들어와서 전보다 더 추워져 창문을 닫았다는 얘기예요.",
   "fm": "짧은 말 + -er (more X)",
-  "mp": [["비교하는 말", "taller", "colder"], ["than 뒤", "than me", "than before"]],
+  "mp": [
+   [
+    "비교하는 말",
+    "taller",
+    "colder"
+   ],
+   [
+    "than 뒤",
+    "than me",
+    "than before"
+   ]
+  ],
   "ex": "He is taller than me.",
   "exko": "그는 나보다 키가 커요(tall 키가 큰).",
   "tko": "전보다 더 춥게",
@@ -141,6 +415,16 @@
   "altko": "이 책이 저 책보다 더 어려워요(difficult 어려운은 긴 말이라 more를 써요).",
   "why": "cold(추운)처럼 짧은 말은 뒤에 -er를 붙여 colder(더 추운)로 만들어요. more는 '더'라는 뜻인데 -er에도 이미 '더'가 들어 있어서 둘을 같이 쓰면 같은 말이 겹쳐요. felt(feel 느끼다의 과거형)는 when절이 과거라서 맞아요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>짧은 말은 -er, 긴 말은 more이고 둘을 함께 쓰지 않아요",
-  "d": {"closed": "close(닫다)의 과거형", "window": "창문", "felt": "feel(느끼다)의 과거형", "cold": "추운, 찬", "breeze": "산들바람", "coming": "come(오다)의 -ing형", "feeling": "feel(느끼다)의 -ing형", "colder": "cold(추운)의 비교급", "before": "이전에"}
+  "d": {
+   "closed": "close(닫다)의 과거형",
+   "window": "창문",
+   "felt": "feel(느끼다)의 과거형",
+   "cold": "추운, 찬",
+   "breeze": "산들바람",
+   "coming": "come(오다)의 -ing형",
+   "feeling": "feel(느끼다)의 -ing형",
+   "colder": "cold(추운)의 비교급",
+   "before": "이전에"
+  }
  }
 ]

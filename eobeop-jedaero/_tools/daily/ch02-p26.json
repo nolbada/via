@@ -30,8 +30,8 @@
   "bad": "I have coins which is old.",
   "badko": "(coins는 여러 개(복수)라서 is가 아니라 are(be ~이다)여야 해요)",
   "altw": "was",
-  "alt": "I have a coin which was old.",
-  "altko": "나는 오래된 동전 하나가 있어요(coin이 하나라 was).",
+  "alt": "I found a coin which was very old.",
+  "altko": "나는 아주 오래된 동전 하나를 찾았어요(find 찾다 → found, coin이 하나라서 was).",
   "why": "which 바로 앞의 명사가 coins(동전들)라서 복수예요. 그래서 동사도 복수에 맞는 were(be ~이다의 과거형)를 써요. 하나라면 was가 맞아요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>관계대명사 뒤 동사는 앞 명사의 수에 맞춰요",
   "d": {
@@ -68,7 +68,7 @@
   "mp": [
    [
     "동사",
-    "help",
+    "helps me",
     "support me"
    ],
    [
@@ -238,8 +238,8 @@
   "bad": "The baby cries loud.",
   "badko": "(어떻게 우는지 말하는 자리라서 loud(큰)가 아니라 부사 loudly(크게)예요)",
   "altw": "happy",
-  "alt": "She is happy.",
-  "altko": "그녀는 행복해요(is 뒤에서 she를 설명하니까 형용사).",
+  "alt": "The baby looks happy.",
+  "altko": "그 아기는 행복해 보여요(look 보이다 뒤에서 아기의 상태를 말하니까 형용사 happy 행복한).",
   "why": "'어떻게 울었나?'를 말해 주는 낱말은 동사 cry(울다)를 꾸며요. 동사를 꾸미는 건 부사라서 happy(행복한)가 아니라 happily(행복하게)예요. happy가 y로 끝나면 -ily로 바꿔요.",
   "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>동사를 꾸미면 부사(-ly)예요",
   "d": {
@@ -271,7 +271,7 @@
    ]
   ],
   "gist": "한 달 아시아에 있다 지치지만 신나는 기분으로 돌아왔다는 얘기예요.",
-  "fm": "A but B (같은 모양)",
+  "fm": "느끼는 사람의 기분 → -ed (exhausted but excited)",
   "mp": [
    [
     "but 앞 말",
@@ -338,19 +338,19 @@
   ],
   "ex": "Some of the boys were late.",
   "exko": "그 소년들 중 몇몇은 늦었어요(late 늦은).",
-  "tko": "그들 중 거의 없는 사람이",
+  "tko": "그들 중 (일정을 들은 사람은) 거의 없는",
   "bad": "Some of the boys was late.",
   "badko": "(of 뒤 boys(소년들)가 여럿이라서 was가 아니라 were(be ~이다의 과거형)예요)",
   "altw": "was",
   "alt": "Some of the water was cold.",
   "altko": "그 물 중 일부는 차가웠어요(water는 한 덩어리라 was).",
-  "why": "'~중 몇몇' 같은 말이 주어일 때는 of 뒤의 명사를 보고 동사를 정해요. them(그들)은 여러 명이라서 were(be의 과거형)를 써요. few 바로 뒤의 단어에 속지 마세요.",
+  "why": "'~ 중 몇몇' 같은 말이 주어일 때는 of 뒤의 명사를 보고 동사를 정해요. them(그들)은 여러 명이라서 were(be의 과거형)를 써요. few(거의 없는)만 보고 하나라고 생각하면 안 돼요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>~ of + 명사 주어는 of 뒤 명사에 동사를 맞춰요",
   "d": {
    "visitors": "visitor(방문객)의 복수형",
    "asked": "ask(묻다)의 과거분사",
    "library": "도서관",
-   "hold": "hold(열다, 개최하다)",
+   "hold": "열다, 개최하다",
    "special": "특별한",
    "events": "event(행사)의 복수형",
    "soon": "곧",
@@ -550,8 +550,8 @@
   "bad": "The shop will open, which made me happy.",
   "badko": "(아직 안 일어난 일이라서 made(make 만들다의 과거형)가 아니라 will make예요)",
   "altw": "excited",
-  "alt": "The vendors were excited.",
-  "altko": "상인들은 신이 났어요(이미 지난 일이라 과거형).",
+  "alt": "The game excited us yesterday.",
+  "altko": "그 경기는 어제 우리를 신나게 했어요(yesterday 어제처럼 이미 지난 일이라서 과거형 excited, excite 신나게 하다).",
   "why": "시장은 아직 문을 열지 않았어요. 그래서 will reopen(다시 열 것이다)이라고 했어요. 그 때문에 생길 일(상인들이 신나는 것)도 아직 안 일어난 앞날이라서 will excite(excite 신나게 하다)로 써요. 과거형 excited는 시간이 안 맞아요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>앞날의 일은 will + 동사원형으로 써요",
   "d": {

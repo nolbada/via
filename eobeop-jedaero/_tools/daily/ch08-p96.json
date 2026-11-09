@@ -35,9 +35,9 @@
   "bad": "You must open the door and calling me.",
   "badko": "(open과 같은 모양이어야 해서 calling이 아니라 call이에요)",
   "altw": "-ing",
-  "alt": "You are calling me.",
-  "altko": "너는 나한테 전화하고 있어요(are 뒤에 -ing를 붙이면 진행 동사가 돼요).",
-  "why": "must(~해야 한다) 뒤에는 동사원형이 와요. lock(잠그다), turn off(끄다), check(확인하다)가 and로 이어지는 같은 줄이라서 모두 원형이어야 해요. checking은 동사가 아니라서 줄에 못 서요.",
+  "alt": "Checking the windows is important.",
+  "altko": "창문을 확인하는 것은 중요해요(Checking(확인하는 것)이 문장의 주어일 때는 -ing가 맞아요).",
+  "why": "must(~해야 한다) 뒤에는 동사원형이 와요. lock(잠그다), turn off(끄다), check(확인하다)가 and로 이어지는 같은 줄이라서 모두 원형이어야 해요. checking은 원형이 아니라서 must에 이어질 수 없어요.",
   "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>조동사 뒤에 and로 이어진 동사들은 모두 원형이에요",
   "d": {
    "lock": "잠그다",
@@ -144,7 +144,7 @@
   "altw": "복수 주어",
   "alt": "Games make us happy.",
   "altko": "게임들은 우리를 행복하게 해요(games(게임들)는 여러 개라서 make예요).",
-  "why": "spending time together(함께 시간을 보내는 것)는 time이 있어서 복수처럼 보이지만 '보내는 것' 하나의 일이에요. -ing로 시작하는 주어는 단수로 보고 동사에 -s를 붙여 brings(bring(가져오다)의 단수형)로 써요.",
+  "why": "spending time together(함께 시간을 보내는 것)는 '보내는 것'이라는 일 한 가지예요. together(함께)가 있어서 여럿처럼 느껴져도 -ing로 시작하는 주어는 단수로 봐요. 그래서 bring이 아니라 brings로 써요(bring A closer: A를 더 가깝게 만들다).",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>-ing나 to V 덩어리 주어는 단수 취급해요",
   "d": {
    "weekends": "weekend(주말)의 복수형",
@@ -156,7 +156,7 @@
    "spending": "spend(보내다)의 -ing형",
    "together": "함께",
    "always": "항상",
-   "brings": "bring(가져오다)의 3인칭 단수형",
+   "brings": "bring(가져오다)의 3인칭 단수형, bring A closer: A를 더 가깝게 만들다",
    "closer": "close(가까운)의 비교급",
    "couple": "부부"
   }
@@ -557,8 +557,8 @@
   "badko": "(to rest와 이어지는 자리라서 playing이 아니라 (to) play예요)",
   "altw": "-ing",
   "alt": "I like resting and playing.",
-  "altko": "나는 쉬고 노는 걸 좋아해요(like 뒤에서는 -ing끼리 이어요).",
-  "why": "learning(learn(배우다)의 -ing형) 뒤에 to accept(받아들이다)가 먼저 나왔어요. and 뒤에 오는 말도 같은 모양이어야 해서, 앞에 to가 있으니 뒤는 to를 빼고 move(움직이다)예요. moving으로 쓰면 모양이 달라져요.",
+  "altko": "나는 쉬고 노는 걸 좋아해요(resting(쉬기)과 playing(놀기)이 같은 -ing 모양으로 이어져요).",
+  "why": "learning(learn(배우다)의 -ing형) 뒤에 to accept(받아들이다)가 먼저 나왔어요. and 뒤에 오는 말도 같은 모양이어야 해서, 앞에 to가 있으니 뒤는 to를 빼고 move forward(앞으로 나아가다)예요. moving으로 쓰면 모양이 달라져요.",
   "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>to V and (to) V처럼 앞뒤 모양을 맞춰요",
   "d": {
    "respond": "반응하다, 대응하다",

@@ -34,7 +34,7 @@
   "tko": "북대서양에 있는 위치는 차지한다",
   "bad": "The boy in the car sleep.",
   "badko": "(진짜 주어는 boy(한 명)이지 car가 아니라서 sleep이 아니라 sleeps예요)",
-  "altw": "복수 주어",
+  "altw": "sleep",
   "alt": "The boys in the car sleep.",
   "altko": "차 안의 소년들은 자요(boys가 여러 명이라서 -s가 없어요).",
   "why": "in the North Atlantic Ocean(북대서양에 있는)은 location(위치)을 꾸며 주는 말이라서 빼고 봐요. 진짜 주어는 location 하나라서 cover(차지하다)가 아니라 covers예요. 가까이 있는 Ocean(바다)에 끌려가지 않게 조심해요.",
@@ -192,7 +192,7 @@
    ]
   ],
   "ex": "I saw a bird, which was singing.",
-  "exko": "나는 노래하고 있던 새를 봤어요(see 보다 → saw, bird 새, sing 노래하다).",
+  "exko": "나는 새를 봤는데, 그 새는 노래하고 있었어요(see 보다 → saw, bird 새, sing 노래하다).",
   "tko": "근처를 날고 있던 비행기",
   "bad": "I saw a bird, which singing.",
   "badko": "(which 뒤에는 진짜 동사가 필요해서 singing(노래하는)만 쓰면 안 되고 was singing이어야 해요)",
@@ -355,7 +355,7 @@
   "tko": "기부품의 대부분은 들어온다",
   "bad": "Most of the cookies tastes sweet.",
   "badko": "(of 뒤 cookies가 여러 개라서 tastes가 아니라 taste예요)",
-  "altw": "단수 명사",
+  "altw": "tastes",
   "alt": "Most of the cake tastes sweet.",
   "altko": "그 케이크의 대부분은 달아요(cake는 하나라서 tastes).",
   "why": "Most of ~(~의 대부분)에서는 Most가 아니라 of 뒤 명사가 동사의 수를 정해요. donations(기부품들)는 여러 개라서 comes가 아니라 come(오다)이에요.",
@@ -447,7 +447,7 @@
   "mp": [
    [
     "than 뒤 주어",
-    "than kids",
+    "than you",
     "than people"
    ],
    [
@@ -456,14 +456,14 @@
     "often realize"
    ]
   ],
-  "ex": "It is harder than kids think.",
-  "exko": "그건 아이들이 생각하는 것보다 어려워요(hard 어려운, think 생각하다).",
+  "ex": "It is easier than you think.",
+  "exko": "그건 네가 생각하는 것보다 쉬워요(easy 쉬운, think 생각하다).",
   "tko": "사람들이 흔히 깨닫는 것보다",
-  "bad": "It is harder than kids thinking.",
-  "badko": "(than 뒤 kids에는 진짜 동사가 필요해서 thinking(생각하는)이 아니라 think예요)",
+  "bad": "It is easier than you thinking.",
+  "badko": "(than 뒤 you에는 진짜 동사가 필요해서 thinking(생각하는)이 아니라 think예요)",
   "altw": "-ing",
-  "alt": "The kids thinking hard are quiet.",
-  "altko": "열심히 생각하는 아이들은 조용해요(thinking이 kids를 꾸미고, 진짜 동사는 are).",
+  "alt": "The girl reading a book is quiet.",
+  "altko": "책을 읽고 있는 소녀는 조용해요(reading이 girl 소녀를 꾸미고, 진짜 동사는 is예요).",
   "why": "than people often realize는 '사람들이 깨닫는 것보다'라는 뜻의 작은 문장이에요. 주어 people(사람들) 뒤에 진짜 동사가 필요한데 realizing(깨닫는)은 동사가 아니에요. people은 여러 명이라서 그냥 realize(깨닫다)예요.",
   "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>than 뒤 작은 문장에도 진짜 동사가 있는지 확인해요",
   "d": {
@@ -499,7 +499,7 @@
   "mp": [
    [
     "주어",
-    "Every kid",
+    "Every student",
     "every volunteer"
    ],
    [
@@ -508,14 +508,14 @@
     "is"
    ]
   ],
-  "ex": "Every kid is happy.",
-  "exko": "모든 아이가 행복해요(every 모든, kid 아이).",
+  "ex": "Every student is here.",
+  "exko": "모든 학생이 여기 있어요(every 모든, student 학생).",
   "tko": "모든 자원봉사자는 감사받는다",
-  "bad": "Every kid are happy.",
+  "bad": "Every student are here.",
   "badko": "(every(모든)는 한 명씩 보는 말이라서 are가 아니라 is예요)",
   "altw": "all",
-  "alt": "All kids are happy.",
-  "altko": "모든 아이들이 행복해요(all은 여러 명이라서 are).",
+  "alt": "All students are here.",
+  "altko": "모든 학생들이 여기 있어요(all 뒤에 students처럼 여럿이 오면 are).",
   "why": "every(모든) 뒤에는 단수 명사가 오고, 한 명 한 명을 보는 말이라 단수로 취급해요. 그래서 every volunteer(모든 자원봉사자)에는 are가 아니라 is를 써요. appreciated(고맙게 여겨지는)는 be + p.p. 모양의 수동태예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>every·each 뒤에는 단수 명사와 단수 동사를 써요",
   "d": {
