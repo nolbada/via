@@ -1,0 +1,675 @@
+[
+ {
+  "dk": [
+   [
+    "The message on the whiteboard is erased at the end of every day,",
+    "화이트보드의 메시지는 매일 하루가 끝날 때 지워지고,"
+   ],
+   [
+    "and a note appeared in its place",
+    "메모 하나가 그 자리에 나타났다"
+   ],
+   [
+    "the next morning.",
+    "다음 날 아침."
+   ]
+  ],
+  "ko": "화이트보드의 메시지는 매일 하루가 끝날 때 지워지고, 다음 날 아침 그 자리에 메모 하나가 나타났다.",
+  "gist": "화이트보드 글은 매일 지워지고 다음 날 아침엔 새 메모가 나타난다는 얘기예요.",
+  "fm": "자동사 appear + (be p.p. 쓰지 않기)",
+  "mp": [
+   [
+    "주어",
+    "The sun",
+    "a note"
+   ],
+   [
+    "동사",
+    "appeared",
+    "appeared"
+   ]
+  ],
+  "ex": "The sun appeared.",
+  "exko": "해가 나타났어요(sun 해, appear 나타나다).",
+  "tko": "메모 하나가 나타났다",
+  "bad": "The sun was appeared.",
+  "badko": "(appear(나타나다)는 스스로 나타나는 말이라서 was appeared처럼 be + p.p.로 쓰지 않아요)",
+  "altw": "be p.p.",
+  "alt": "The window was opened by the wind.",
+  "altko": "창문이 바람에 의해 열렸어요(open(열다)은 '무엇을 여는' 말이라서 be p.p.가 가능해요).",
+  "why": "appear(나타나다)는 누가 시켜서 나타나는 게 아니라 스스로 나타나는 말이에요. 그래서 '나타나졌다'처럼 수동으로 쓰지 않고 a note appeared(메모가 나타났다)라고 해요. 앞의 is erased는 erase(지우다)를 누군가 하는 거라서 수동이 맞아요.",
+  "d": {
+   "message": "메시지",
+   "whiteboard": "화이트보드",
+   "erased": "erase(지우다)의 과거분사",
+   "end": "끝",
+   "every": "모든",
+   "note": "메모",
+   "appeared": "appear(나타나다)의 과거형",
+   "place": "자리",
+   "next": "다음의",
+   "morning": "아침"
+  },
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>나타나다·일어나다처럼 스스로 하는 동사는 수동태를 못 써요"
+ },
+ {
+  "dk": [
+   [
+    "The problems of the car appeared more complex than the engineers thought,",
+    "그 차의 문제들은 엔지니어들이 생각한 것보다 더 복잡해 보였고,"
+   ],
+   [
+    "and a specialist confirmed the diagnosis",
+    "한 전문가가 그 진단을 확인해 주었다"
+   ],
+   [
+    "last week.",
+    "지난주에."
+   ]
+  ],
+  "ko": "그 차의 문제들은 엔지니어들이 생각했던 것보다 더 복잡해 보였고, 지난주에 한 전문가가 그 진단을 확인해 주었다.",
+  "gist": "지난주에 전문가가 차 문제의 진단이 맞는지 확인해 줬다는 얘기예요.",
+  "fm": "last week + 과거형 (have p.p. X)",
+  "mp": [
+   [
+    "과거 시간 말",
+    "last night",
+    "last week"
+   ],
+   [
+    "동사",
+    "played",
+    "confirmed"
+   ]
+  ],
+  "ex": "I played soccer last night.",
+  "exko": "나는 어젯밤에 축구를 했어요(play 하다, last night 어젯밤).",
+  "tko": "지난주에 확인해 주었다",
+  "bad": "I have played soccer last night.",
+  "badko": "(last night(어젯밤)처럼 딱 정해진 과거 때와 have p.p.는 같이 쓰지 않아요)",
+  "altw": "have p.p.",
+  "alt": "I have played soccer many times.",
+  "altko": "나는 축구를 여러 번 해 봤어요(여러 번 해 본 경험은 have p.p.로 말해요).",
+  "why": "last week(지난주)는 '이미 끝난 정해진 때'예요. 이런 때와 함께 쓰는 동사는 have p.p.가 아니라 그냥 과거형이에요. 그래서 has confirmed가 아니라 confirmed(confirm 확인하다의 과거형)예요.",
+  "d": {
+   "problems": "problem(문제)의 복수형",
+   "appeared": "appear(~해 보이다)의 과거형",
+   "complex": "복잡한",
+   "engineers": "engineer(엔지니어)의 복수형",
+   "thought": "think(생각하다)의 과거형",
+   "specialist": "전문가",
+   "confirmed": "confirm(확인하다)의 과거형",
+   "diagnosis": "진단",
+   "last": "지난",
+   "week": "주"
+  },
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>yesterday·last week처럼 정해진 과거 때 말에는 과거형을 써요"
+ },
+ {
+  "dk": [
+   [
+    "For the winter months,",
+    "겨울철을 위해"
+   ],
+   [
+    "the farmers had harvested potatoes and stored them,",
+    "농부들은 감자를 수확해 저장해 두었는데,"
+   ],
+   [
+    "a routine that is followed by every farm in the region.",
+    "그 지역의 모든 농장이 따르는 관행이다."
+   ]
+  ],
+  "ko": "겨울철을 위해 농부들은 감자를 수확해 저장해 두었는데, 이는 그 지역의 모든 농장이 따르는 관행이다.",
+  "gist": "겨울용 감자를 저장해 두는 건 그 지역 모든 농장이 지키는 관행이라는 얘기예요.",
+  "fm": "a routine + that + be p.p.",
+  "mp": [
+   [
+    "앞 명사",
+    "a song",
+    "a routine"
+   ],
+   [
+    "that 뒤 동사",
+    "that is sung",
+    "that is followed"
+   ],
+   [
+    "하는 쪽",
+    "by kids",
+    "by every farm"
+   ]
+  ],
+  "ex": "It is a song that is sung by kids.",
+  "exko": "그것은 아이들이 부르는 노래예요(song 노래, sing 부르다, kid 아이).",
+  "tko": "모든 농장이 따르는 관행",
+  "bad": "It is a song that sings by kids.",
+  "badko": "(song(노래)은 부르는 쪽이 아니라 아이들에게 '불리는' 쪽이라서 sings가 아니라 is sung이에요)",
+  "altw": "who",
+  "alt": "He is a boy who sings well.",
+  "altko": "그는 노래를 잘하는 소년이에요(boy 소년이 직접 노래하니까 능동 sings).",
+  "why": "that 앞의 a routine(관행)은 스스로 따르는 게 아니라 농장들이 '따르는' 쪽이에요. 그래서 '따라진다'는 뜻의 is followed(follow 따르다의 수동)가 맞아요. by every farm(모든 농장에 의해)도 힌트예요.",
+  "d": {
+   "winter": "겨울",
+   "months": "month(달)의 복수형",
+   "farmers": "farmer(농부)의 복수형",
+   "harvested": "harvest(수확하다)의 과거분사",
+   "potatoes": "potato(감자)의 복수형",
+   "stored": "store(저장하다)의 과거분사",
+   "routine": "반복되는 관행",
+   "followed": "follow(따르다)의 과거분사",
+   "region": "지역",
+   "farm": "농장"
+  },
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>that 앞 명사가 하는 쪽이면 능동, 받는 쪽이면 수동이에요"
+ },
+ {
+  "dk": [
+   [
+    "The clothes in the store, which are made of soft fabric,",
+    "부드러운 원단으로 만들어진 그 가게의 옷들은"
+   ],
+   [
+    "are comfortable to wear,",
+    "입기에 편안한데,"
+   ],
+   [
+    "and if you wash them gently,",
+    "만약 그것들을 조심스럽게 세탁한다면"
+   ],
+   [
+    "they will last for years.",
+    "여러 해 동안 오래갈 것이다."
+   ]
+  ],
+  "ko": "그 가게의 옷들은 부드러운 원단으로 만들어져서 입기에 편안한데, 만약 그것들을 조심스럽게 세탁한다면 여러 해 동안 오래갈 것이다.",
+  "gist": "부드러운 옷은 조심해서 빨면 오래 입을 수 있다는 얘기예요.",
+  "fm": "if + 현재형 , will + 동사원형",
+  "mp": [
+   [
+    "if 절",
+    "if it rains",
+    "if you wash them"
+   ],
+   [
+    "뒤 절",
+    "we will stay",
+    "they will last"
+   ]
+  ],
+  "ex": "If it rains, we will stay home.",
+  "exko": "비가 오면 우리는 집에 있을 거예요(rain 비가 오다, stay 머무르다).",
+  "tko": "그것들을 세탁한다면 오래갈 것이다",
+  "bad": "If it would rain, we will stay home.",
+  "badko": "(진짜 일어날 수 있는 일을 말하는 if 뒤에는 would rain이 아니라 현재형 rains예요)",
+  "altw": "would",
+  "alt": "If I had wings, I would fly.",
+  "altko": "내게 날개가 있다면 나는 날 텐데요(지금 사실이 아닌 상상이라서 if 뒤 과거형 + would).",
+  "why": "이 문장의 if는 '만약 ~하면'이라는 진짜 조건이에요. 뒤에 they will last(오래갈 것이다)처럼 정말 일어날 수 있는 결과가 이어지니까요. 이런 if 뒤에는 will이나 would를 쓰지 않고 현재형을 써요. 그래서 would wash가 아니라 wash(세탁하다)예요.",
+  "d": {
+   "clothes": "옷",
+   "store": "가게",
+   "fabric": "원단",
+   "comfortable": "편안한",
+   "wear": "입다",
+   "wash": "세탁하다",
+   "gently": "조심스럽게",
+   "last": "오래가다",
+   "years": "year(해)의 복수형",
+   "soft": "부드러운"
+  },
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>진짜 조건 if 뒤에는 will·would 없이 현재형을 써요"
+ },
+ {
+  "dk": [
+   [
+    "Caution signs must be placed in dangerous areas",
+    "주의 표지판은 위험한 구역에 설치되어야 한다"
+   ],
+   [
+    "to prevent accidents,",
+    "사고를 예방하기 위해,"
+   ],
+   [
+    "and the new regulations will be enforced",
+    "그리고 새 규정은 시행될 것이다"
+   ],
+   [
+    "starting next month.",
+    "다음 달부터."
+   ]
+  ],
+  "ko": "사고를 예방하기 위해 위험 구역에는 주의 표지판이 설치되어야 하며, 새 규정은 다음 달부터 시행될 것이다.",
+  "gist": "위험한 곳에는 주의 표지판을 세우고, 새 규정은 다음 달부터 시작된다는 얘기예요.",
+  "fm": "받는 쪽 주어 + will be p.p.",
+  "mp": [
+   [
+    "주어",
+    "The rule",
+    "the new regulations"
+   ],
+   [
+    "will be p.p.",
+    "will be changed",
+    "will be enforced"
+   ]
+  ],
+  "ex": "The rule will be changed.",
+  "exko": "그 규칙은 바뀔 거예요(rule 규칙, change 바꾸다).",
+  "tko": "새 규정은 시행될 것이다",
+  "bad": "The rule will change it.",
+  "badko": "(rule(규칙)은 바꾸는 쪽이 아니라 바뀌는 쪽이라서 will change가 아니라 will be changed예요)",
+  "altw": "will 동사원형",
+  "alt": "The teacher will change the rule.",
+  "altko": "선생님이 그 규칙을 바꿀 거예요(teacher 선생님이 직접 바꾸니까 능동).",
+  "why": "the new regulations(새 규정)는 스스로 시행하는 게 아니라 사람들이 '시행하는' 대상이에요. 미래이니까 '시행될 것이다'를 뜻하는 will be enforced(enforce 시행하다의 수동)가 맞아요. 앞의 must be placed(놓여야 한다)도 같은 모양이에요.",
+  "d": {
+   "caution": "주의",
+   "signs": "sign(표지판)의 복수형",
+   "placed": "place(놓다)의 과거분사",
+   "dangerous": "위험한",
+   "areas": "area(구역)의 복수형",
+   "prevent": "예방하다",
+   "accidents": "accident(사고)의 복수형",
+   "regulations": "regulation(규정)의 복수형",
+   "enforced": "enforce(시행하다)의 과거분사",
+   "starting": "start(시작하다)의 -ing형",
+   "month": "달"
+  },
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>받는 쪽이 주어면 be p.p., 미래면 will be p.p.예요"
+ },
+ {
+  "dk": [
+   [
+    "Sarah enjoyed exploring the old books",
+    "Sarah는 오래된 책들을 살펴보는 것을 즐겼고"
+   ],
+   [
+    "that lay on dusty shelves in used bookstores,",
+    "헌책방의 먼지 쌓인 선반에 놓여 있던"
+   ],
+   [
+    "and always found hidden gems among the pages.",
+    "그리고 늘 숨겨진 보물을 찾아냈다 페이지 속에서."
+   ]
+  ],
+  "ko": "Sarah는 헌책방의 먼지 쌓인 선반에 놓인 오래된 책들을 살펴보는 것을 즐겼고, 페이지 속에서 항상 숨겨진 보물을 찾아냈다.",
+  "gist": "Sarah는 헌책방에서 낡은 책을 뒤지다가 늘 보물 같은 걸 찾았다는 얘기예요.",
+  "fm": "동사 A and 동사 B (같은 모양)",
+  "mp": [
+   [
+    "and 앞 동사",
+    "jumped",
+    "enjoyed"
+   ],
+   [
+    "and 뒤 동사",
+    "laughed",
+    "found"
+   ]
+  ],
+  "ex": "She jumped and laughed.",
+  "exko": "그녀는 뛰고 웃었어요(jump 뛰다, laugh 웃다).",
+  "tko": "즐겼고 찾아냈다",
+  "bad": "She jumped and laughing.",
+  "badko": "(앞의 jumped(뛰었다)가 과거형이라서 laughing이 아니라 laughed(웃었다)예요)",
+  "altw": "-ing",
+  "alt": "She likes jumping and laughing.",
+  "altko": "그녀는 뛰고 웃는 걸 좋아해요(앞이 jumping이니까 뒤도 laughing).",
+  "why": "and는 같은 모양끼리 이어 줘요. 앞에 enjoyed(enjoy 즐기다의 과거형)가 있으니 뒤도 과거형이어야 해요. 그래서 finding이 아니라 found(find 찾다의 과거형)예요. 중간의 exploring(explore 살펴보다)은 enjoyed 바로 뒤라서 -ing일 뿐 and와 이어지지 않아요.",
+  "d": {
+   "enjoyed": "enjoy(즐기다)의 과거형",
+   "exploring": "explore(살펴보다)의 -ing형",
+   "old": "오래된",
+   "lay": "lie(놓여 있다)의 과거형",
+   "dusty": "먼지 쌓인",
+   "shelves": "shelf(선반)의 복수형",
+   "used": "중고의",
+   "bookstores": "bookstore(서점)의 복수형",
+   "always": "항상",
+   "found": "find(찾다)의 과거형",
+   "hidden": "숨겨진",
+   "gems": "gem(보석)의 복수형",
+   "pages": "page(쪽)의 복수형"
+  },
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and로 이어지는 말은 앞뒤 모양을 똑같이 맞춰요"
+ },
+ {
+  "dk": [
+   [
+    "The printer in our office is producing strange noises again,",
+    "우리 사무실의 프린터가 또 이상한 소리를 내고 있고,"
+   ],
+   [
+    "and the problem persisted",
+    "그 문제는 계속되었다"
+   ],
+   [
+    "despite several repair attempts.",
+    "여러 번의 수리 시도에도 불구하고."
+   ]
+  ],
+  "ko": "우리 사무실의 프린터가 또 이상한 소리를 내고 있고, 여러 번의 수리 시도에도 그 문제는 계속되었다.",
+  "gist": "프린터가 또 이상한 소리를 내는데 여러 번 고쳐도 문제가 계속됐다는 얘기예요.",
+  "fm": "자동사 persist + (be p.p. 쓰지 않기)",
+  "mp": [
+   [
+    "주어",
+    "The noise",
+    "the problem"
+   ],
+   [
+    "동사",
+    "lasted",
+    "persisted"
+   ]
+  ],
+  "ex": "The noise lasted.",
+  "exko": "그 소리는 계속됐어요(noise 소리, last 계속되다).",
+  "tko": "그 문제는 계속되었다",
+  "bad": "The noise was lasted.",
+  "badko": "(last(계속되다)는 스스로 이어지는 말이라서 was lasted처럼 be + p.p.로 쓰지 않아요)",
+  "altw": "be p.p.",
+  "alt": "The door was closed.",
+  "altko": "문이 닫혀 있었어요(close(닫다)는 '무엇을 닫는' 말이라서 be p.p.가 가능해요).",
+  "why": "persist(계속되다)는 누가 하는 게 아니라 스스로 이어지는 말이에요. 그래서 '계속되어졌다'처럼 수동으로 쓰지 않고 persisted(persist의 과거형)로 써요. despite(~에도 불구하고) 뒤에는 several repair attempts(여러 번의 수리 시도) 같은 명사가 와요.",
+  "d": {
+   "printer": "프린터",
+   "office": "사무실",
+   "producing": "produce(내다)의 -ing형",
+   "strange": "이상한",
+   "noises": "noise(소음)의 복수형",
+   "again": "또, 다시",
+   "problem": "문제",
+   "persisted": "persist(계속되다)의 과거형",
+   "despite": "~에도 불구하고",
+   "several": "여러",
+   "repair": "수리",
+   "attempts": "attempt(시도)의 복수형"
+  },
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>계속되다·존재하다처럼 스스로 하는 동사는 수동태를 못 써요"
+ },
+ {
+  "dk": [
+   [
+    "The invitations for the art exhibit have been sent out to all the guests,",
+    "미술 전시회 초대장이 모든 손님들에게 발송되었고,"
+   ],
+   [
+    "and the organizer insists",
+    "주최자는 주장한다"
+   ],
+   [
+    "that everyone arrive on time.",
+    "모두가 제시간에 도착해야 한다고."
+   ]
+  ],
+  "ko": "미술 전시회 초대장이 모든 손님들에게 발송되었고, 주최자는 모두가 제시간에 도착해야 한다고 주장한다.",
+  "gist": "초대장은 다 보냈고 주최자는 모두 제시간에 오라고 강하게 말한다는 얘기예요.",
+  "fm": "insist that + 주어 + 동사원형",
+  "mp": [
+   [
+    "주장 동사",
+    "insists",
+    "insists"
+   ],
+   [
+    "that 뒤",
+    "that he go",
+    "that everyone arrive"
+   ]
+  ],
+  "ex": "Mom insists that he go to bed.",
+  "exko": "엄마는 그가 자러 가야 한다고 주장해요(insist 주장하다, go to bed 자러 가다).",
+  "tko": "모두가 제시간에 도착해야 한다고",
+  "bad": "Mom insists that he goes to bed.",
+  "badko": "(꼭 해야 한다는 뜻이라서 goes가 아니라 동사원형 go예요. he 뒤라도 s를 붙이지 않아요)",
+  "altw": "says",
+  "alt": "Mom says that he goes to bed early.",
+  "altko": "엄마는 그가 일찍 잔다고 말해요(그냥 사실을 전하는 say(말하다)라서 goes에 s가 붙어요).",
+  "why": "insist(주장하다)는 '꼭 ~해야 한다'고 강하게 말할 때 써요. 이럴 때 that 뒤 동사는 s를 붙이지 않고 동사원형을 써요. 그래서 arrives가 아니라 arrive(도착하다)예요. 앞에 should(~해야 한다)가 숨어 있다고 생각하면 쉬워요.",
+  "d": {
+   "invitations": "invitation(초대장)의 복수형",
+   "exhibit": "전시회",
+   "sent": "send(보내다)의 과거분사",
+   "guests": "guest(손님)의 복수형",
+   "organizer": "주최자",
+   "insists": "insist(주장하다)의 3인칭 단수형",
+   "everyone": "모든 사람",
+   "arrive": "도착하다",
+   "time": "시간"
+  },
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>주장·요구·제안 동사 뒤 that절은 동사원형을 써요"
+ },
+ {
+  "dk": [
+   [
+    "Some of the worst performances happen",
+    "최악의 공연들 중 일부는 일어난다"
+   ],
+   [
+    "when the performers lose focus,",
+    "공연자들이 집중력을 잃을 때"
+   ],
+   [
+    "a fact that is noticed by even casual fans.",
+    "그저 그런 팬들조차 알아차리는 사실이다."
+   ]
+  ],
+  "ko": "최악의 공연들 중 일부는 공연자들이 집중력을 잃을 때 일어나는데, 이는 그저 그런 팬들조차 알아차리는 사실이다.",
+  "gist": "공연이 가장 나빠질 때는 공연자가 집중을 잃을 때이고, 보통 팬들도 그걸 안다는 얘기예요.",
+  "fm": "a fact + that + be p.p.",
+  "mp": [
+   [
+    "앞 명사",
+    "a story",
+    "a fact"
+   ],
+   [
+    "that 뒤 동사",
+    "that is loved",
+    "that is noticed"
+   ],
+   [
+    "하는 쪽",
+    "by kids",
+    "by even casual fans"
+   ]
+  ],
+  "ex": "It is a story that is loved by kids.",
+  "exko": "그것은 아이들이 사랑하는 이야기예요(story 이야기, love 사랑하다).",
+  "tko": "평범한 팬들조차 알아차리는 사실",
+  "bad": "It is a story that loves by kids.",
+  "badko": "(story(이야기)는 사랑하는 쪽이 아니라 아이들에게 '사랑받는' 쪽이라서 loves가 아니라 is loved예요)",
+  "altw": "who",
+  "alt": "She is a girl who loves stories.",
+  "altko": "그녀는 이야기를 좋아하는 소녀예요(girl 소녀가 직접 좋아하니까 능동 loves).",
+  "why": "a fact(사실)는 스스로 알아차리는 게 아니라 팬들이 '알아차리는' 대상이에요. 그래서 '알아차려진다'는 뜻의 is noticed(notice 알아차리다의 수동)가 맞아요. by even casual fans(평범한 팬들조차에 의해)도 힌트예요.",
+  "d": {
+   "worst": "bad(나쁜)의 최상급, 가장 나쁜",
+   "performances": "performance(공연)의 복수형",
+   "happen": "일어나다",
+   "performers": "performer(공연자)의 복수형",
+   "lose": "잃다",
+   "focus": "집중",
+   "fact": "사실",
+   "noticed": "notice(알아차리다)의 과거분사",
+   "casual": "평범한, 가볍게 즐기는",
+   "fans": "fan(팬)의 복수형"
+  },
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>that 앞 명사가 하는 쪽이면 능동, 받는 쪽이면 수동이에요"
+ },
+ {
+  "dk": [
+   [
+    "The magician will show a trick",
+    "그 마술사는 마술을 보여줄 것이다"
+   ],
+   [
+    "which has never been tried in the history of magic,",
+    "마술의 역사상 한 번도 시도된 적 없는"
+   ],
+   [
+    "using props that have been custom-built for the act.",
+    "그 공연을 위해 특별히 제작된 소품을 사용하면서."
+   ]
+  ],
+  "ko": "그 마술사는 마술의 역사상 시도된 적 없는 마술을 보여줄 것인데, 그 공연을 위해 특별히 제작된 소품을 사용한다.",
+  "gist": "마술사가 이제껏 없던 마술을 이 공연만을 위해 만든 소품으로 보여 준다는 얘기예요.",
+  "fm": "복수 명사 + that + 복수 동사 (수 일치)",
+  "mp": [
+   [
+    "앞 명사 (복수)",
+    "toys",
+    "props"
+   ],
+   [
+    "that 뒤 동사",
+    "that have been made",
+    "that have been custom-built"
+   ]
+  ],
+  "ex": "I like toys that have been made here.",
+  "exko": "나는 여기서 만들어진 장난감을 좋아해요(toy 장난감, make 만들다).",
+  "tko": "특별히 제작된 소품들",
+  "bad": "I like toys that has been made here.",
+  "badko": "(toys(장난감들)가 여러 개라서 has가 아니라 have예요)",
+  "altw": "has",
+  "alt": "I like a toy that has been made here.",
+  "altko": "나는 여기서 만들어진 장난감 하나를 좋아해요(a toy가 하나라서 has).",
+  "why": "that 뒤 동사는 바로 앞 명사에 수를 맞춰요. props(소품들)는 여러 개라서 has been이 아니라 have been(~되어 있다)이에요. 같은 문장의 a trick(마술 하나)은 하나라서 which has가 맞아요.",
+  "d": {
+   "magician": "마술사",
+   "show": "보여주다",
+   "trick": "마술, 속임수",
+   "tried": "try(시도하다)의 과거분사",
+   "history": "역사",
+   "magic": "마술",
+   "using": "use(사용하다)의 -ing형",
+   "props": "prop(소품)의 복수형",
+   "custom-built": "맞춤 제작된",
+   "act": "공연"
+  },
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>that 앞 명사가 복수면 동사도 복수로 맞춰요"
+ },
+ {
+  "dk": [
+   [
+    "Yesterday, a lifeguard saved three swimmers",
+    "어제 한 안전요원이 수영객 세 명을 구했다"
+   ],
+   [
+    "by pulling them out of the deep water,",
+    "그들을 깊은 물에서 끌어냄으로써,"
+   ],
+   [
+    "and a medal will be awarded to him",
+    "그리고 메달이 그에게 수여될 것이다"
+   ],
+   [
+    "at the ceremony next week.",
+    "다음 주 시상식에서."
+   ]
+  ],
+  "ko": "어제 한 안전요원이 깊은 물속에서 세 명의 수영객을 끌어내어 구했고, 다음 주 시상식에서 그에게 메달이 수여될 것이다.",
+  "gist": "안전요원이 물에 빠진 사람들을 구했고 다음 주에 메달을 받게 된다는 얘기예요.",
+  "fm": "받는 쪽 주어 + will be p.p.",
+  "mp": [
+   [
+    "주어",
+    "The prize",
+    "a medal"
+   ],
+   [
+    "will be p.p.",
+    "will be given",
+    "will be awarded"
+   ]
+  ],
+  "ex": "The prize will be given to him.",
+  "exko": "그 상은 그에게 주어질 거예요(prize 상, give 주다).",
+  "tko": "메달이 그에게 수여될 것이다",
+  "bad": "The prize will give to him.",
+  "badko": "(prize(상)는 주는 쪽이 아니라 주어지는 쪽이라서 will give가 아니라 will be given이에요)",
+  "altw": "will 동사원형",
+  "alt": "I will give a prize to him.",
+  "altko": "내가 그에게 상을 줄 거예요(내가 직접 주니까 능동 will give).",
+  "why": "a medal(메달)은 스스로 주는 게 아니라 누군가에게 '수여되는' 물건이에요. 미래이니까 '수여될 것이다'를 뜻하는 will be awarded(award 수여하다의 수동)가 맞아요. 뒤의 to him(그에게)도 받는 사람이 따로 있다는 힌트예요.",
+  "d": {
+   "yesterday": "어제",
+   "lifeguard": "안전요원",
+   "saved": "save(구하다)의 과거형",
+   "swimmers": "swimmer(수영하는 사람)의 복수형",
+   "pulling": "pull(끌다)의 -ing형",
+   "deep": "깊은",
+   "medal": "메달",
+   "awarded": "award(수여하다)의 과거분사",
+   "ceremony": "시상식, 기념식",
+   "next": "다음의"
+  },
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>받는 쪽이 주어면 be p.p., 미래면 will be p.p.예요"
+ },
+ {
+  "dk": [
+   [
+    "Baby chickens can eat by themselves earlier than crows,",
+    "아기 병아리는 까마귀보다 더 일찍 스스로 먹을 수 있다,"
+   ],
+   [
+    "which receive food from a parent bird for a month,",
+    "어미 새로부터 한 달 동안 먹이를 받는"
+   ],
+   [
+    "so the young chicks grow surprisingly fast",
+    "그래서 어린 병아리들은 놀랍도록 빠르게 자란다"
+   ],
+   [
+    "within their first few weeks.",
+    "첫 몇 주 안에."
+   ]
+  ],
+  "ko": "아기 병아리는 한 달 동안 어미 새로부터 먹이를 받는 까마귀보다 더 일찍 스스로 먹을 수 있어서, 어린 병아리들은 첫 몇 주 안에 놀랍도록 빠르게 자란다.",
+  "gist": "병아리는 일찍 혼자 먹을 수 있어서 처음 몇 주 동안 엄청 빨리 큰다는 얘기예요.",
+  "fm": "부사(-ly) + 형용사",
+  "mp": [
+   [
+    "꾸미는 말",
+    "really",
+    "surprisingly"
+   ],
+   [
+    "꾸밈받는 말",
+    "fast",
+    "fast"
+   ]
+  ],
+  "ex": "The cat is really fast.",
+  "exko": "그 고양이는 정말 빨라요(really 정말, fast 빠른).",
+  "tko": "놀랍도록 빠르게",
+  "bad": "The cat is real fast.",
+  "badko": "(fast(빠른)를 꾸미는 말은 형용사 real(진짜의)이 아니라 부사 really(정말)예요)",
+  "altw": "surprising",
+  "alt": "She is a surprising girl.",
+  "altko": "그녀는 놀라운 소녀예요(surprising(놀라운)이 명사 girl(소녀)을 꾸밀 때는 형용사).",
+  "why": "fast(빠른, 빠르게)가 '얼마나' 빠른지 말하려면 fast를 꾸며 주는 말이 필요해요. 형용사나 다른 부사를 꾸미는 건 부사의 일이라서 surprising(놀라운)이 아니라 surprisingly(놀랍도록)예요.",
+  "d": {
+   "baby": "아기",
+   "chickens": "chicken(닭, 병아리)의 복수형",
+   "themselves": "그들 스스로",
+   "earlier": "early(일찍)의 비교급",
+   "crows": "crow(까마귀)의 복수형",
+   "receive": "받다",
+   "food": "먹이, 음식",
+   "parent": "부모",
+   "month": "달",
+   "young": "어린",
+   "chicks": "chick(병아리)의 복수형",
+   "grow": "자라다",
+   "surprisingly": "놀랍도록",
+   "fast": "빠르게",
+   "within": "~ 안에",
+   "weeks": "week(주)의 복수형"
+  },
+  "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>형용사·부사를 꾸밀 때는 부사(-ly)를 써요"
+ }
+]

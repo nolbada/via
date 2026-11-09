@@ -1,0 +1,1050 @@
+[
+ {
+  "dk": [
+   [
+    "There was a little boy",
+    "작은 소년이 있었다"
+   ],
+   [
+    "among my students once",
+    "예전에 내 학생들 중에"
+   ],
+   [
+    "who was good at playing",
+    "연주를 잘하는"
+   ],
+   [
+    "any musical instrument he picked up.",
+    "그가 집어 든 어떤 악기든."
+   ]
+  ],
+  "ko": "예전에 내 학생들 중에는 집어 든 어떤 악기든 잘 연주하는 작은 소년이 한 명 있었다.",
+  "gist": "예전에 내 학생 중에 어떤 악기든 잘 다루는 남자아이가 있었다는 얘기예요.",
+  "fm": "There + be동사 + 진짜 주어 (뒤 주어에 수 일치)",
+  "mp": [
+   [
+    "There 뒤 동사",
+    "was",
+    "was"
+   ],
+   [
+    "뒤에 오는 진짜 주어",
+    "a cat",
+    "a little boy"
+   ]
+  ],
+  "ex": "There was a cat in the yard.",
+  "exko": "마당에 고양이가 한 마리 있었어요(yard 마당).",
+  "tko": "작은 소년이 있었다",
+  "bad": "There were a cat in the yard.",
+  "badko": "(a cat(고양이 한 마리)은 하나라서 were가 아니라 was예요)",
+  "altw": "were",
+  "alt": "There were two cats in the yard.",
+  "altko": "마당에 고양이가 두 마리 있었어요(cats가 여러 마리라서 were).",
+  "why": "There is/was(~이 있다/있었다)는 동사가 앞에 오고, 진짜 주어는 동사 뒤에 나와요. 그래서 동사는 뒤에 나온 a little boy(작은 소년 한 명)에 맞춰요. 한 명이니까 was가 맞아요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>There 뒤에서는 동사 뒤의 진짜 주어가 하나인지 여럿인지 봐요",
+  "d": {
+   "little": "작은",
+   "among": "~ 중에",
+   "once": "예전에",
+   "good": "be good at: ~을 잘하는",
+   "musical": "음악의",
+   "instrument": "악기",
+   "picked": "pick up: 집어 들다, pick(집다)의 과거형",
+   "boy": "소년",
+   "students": "student(학생)의 복수형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "His parents suggested",
+    "그의 부모님은 제안했다"
+   ],
+   [
+    "that he take lessons,",
+    "그가 수업을 받아야 한다고,"
+   ],
+   [
+    "but he preferred",
+    "하지만 그는 더 좋아했다"
+   ],
+   [
+    "to teach himself.",
+    "스스로 가르치는 것을."
+   ]
+  ],
+  "ko": "그의 부모님은 그가 수업을 받아야 한다고 제안했지만, 그는 스스로 가르치는 것을 더 좋아했다.",
+  "gist": "부모님은 수업을 들으라고 했지만 그는 혼자 배우는 걸 더 좋아했다는 얘기예요.",
+  "fm": "제안 동사 + that + 주어 + (should) + 동사원형",
+  "mp": [
+   [
+    "제안 동사",
+    "suggested",
+    "suggested"
+   ],
+   [
+    "that 뒤 동사",
+    "go",
+    "take"
+   ]
+  ],
+  "ex": "Mom suggested that he go to bed early.",
+  "exko": "엄마는 그가 일찍 자러 가야 한다고 제안하셨어요(go to bed 자러 가다).",
+  "tko": "그가 수업을 받아야 한다고",
+  "bad": "Mom suggested that he goes to bed early.",
+  "badko": "(suggest(제안하다) 뒤 that절은 he여도 goes가 아니라 동사원형 go예요)",
+  "altw": "goes",
+  "alt": "I know that he goes to bed early.",
+  "altko": "나는 그가 일찍 자러 간다는 걸 알아요(know(알다)는 제안이 아니라 사실이라서 주어에 맞춰 goes).",
+  "why": "suggest(제안하다)처럼 '~하는 게 좋겠다'고 권하는 말 뒤의 that절에는 should가 숨어 있어요. should 뒤에는 늘 동사원형이 오니까 he여도 takes가 아니라 take(받다)예요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>제안·요구 동사 뒤 that절은 동사원형이에요",
+  "d": {
+   "parents": "부모님",
+   "suggested": "suggest(제안하다)의 과거형",
+   "lessons": "lesson(수업)의 복수형",
+   "preferred": "prefer(더 좋아하다)의 과거형",
+   "teach": "가르치다",
+   "himself": "그 스스로",
+   "take": "받다, 듣다"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The boy never learned the piano in class,",
+    "그 소년은 수업에서 피아노를 배운 적이 없지만,"
+   ],
+   [
+    "but he really did play well",
+    "그는 정말 잘 연주했다"
+   ],
+   [
+    "nevertheless.",
+    "그럼에도."
+   ]
+  ],
+  "ko": "그 소년은 수업에서 피아노를 배운 적이 없지만, 그럼에도 불구하고 그는 정말 잘 연주했다.",
+  "gist": "그 소년은 피아노를 배운 적이 없는데도 정말 잘 쳤다는 얘기예요.",
+  "fm": "do/does/did + 동사원형 (진짜 ~했다)",
+  "mp": [
+   [
+    "강조하는 말",
+    "did",
+    "did"
+   ],
+   [
+    "동사 모양",
+    "eat",
+    "play"
+   ]
+  ],
+  "ex": "I did eat the cake.",
+  "exko": "나는 그 케이크를 정말 먹었어요(eat 먹다).",
+  "tko": "정말 잘 연주했다",
+  "bad": "I did ate the cake.",
+  "badko": "(did 뒤에는 ate가 아니라 동사원형 eat(먹다)이에요)",
+  "altw": "ate",
+  "alt": "I ate the cake.",
+  "altko": "나는 그 케이크를 먹었어요(did 없이 쓰면 ate처럼 과거형을 써요).",
+  "why": "did(~했다) 안에 이미 '과거'라는 표시가 들어 있어서, 뒤의 동사는 원래 모양 그대로 둬요. 그래서 played가 아니라 play(연주하다)예요. did를 붙이면 '정말 ~했다'라는 힘주는 말이 돼요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>강조의 do 뒤에는 동사원형만 와요",
+  "d": {
+   "learned": "learn(배우다)의 과거형",
+   "piano": "피아노",
+   "class": "수업",
+   "really": "정말",
+   "play": "연주하다",
+   "well": "잘",
+   "nevertheless": "그럼에도 불구하고",
+   "never": "한 번도 ~않다"
+  }
+ },
+ {
+  "dk": [
+   [
+    "I don't know",
+    "나는 모르겠다"
+   ],
+   [
+    "if the little boy plays the piano on stage now,",
+    "그 작은 소년이 지금 무대에서 피아노를 치는지,"
+   ],
+   [
+    "but I hope he does.",
+    "하지만 그러기를 바란다."
+   ]
+  ],
+  "ko": "나는 그 작은 소년이 지금 무대에서 피아노를 연주하는지 모르겠지만, 그러기를 바란다.",
+  "gist": "그 아이가 지금도 무대에서 피아노를 치고 있으면 좋겠다는 얘기예요.",
+  "fm": "앞의 일반동사 → do/does/did",
+  "mp": [
+   [
+    "앞 동사 구",
+    "plays soccer",
+    "plays the piano"
+   ],
+   [
+    "대신하는 말",
+    "does",
+    "does"
+   ]
+  ],
+  "ex": "Tom plays soccer, and Amy does too.",
+  "exko": "톰은 축구를 하고, 에이미도 그래요(play 하다).",
+  "tko": "그러기를 바란다",
+  "bad": "Tom plays soccer, and Amy is too.",
+  "badko": "(plays(하다)는 일반동사라서 is가 아니라 does로 받아요)",
+  "altw": "is",
+  "alt": "Tom is happy, and Amy is too.",
+  "altko": "톰은 행복하고, 에이미도 그래요(앞에 be동사 is가 있어서 is로 받아요).",
+  "why": "같은 말을 또 쓰기 싫을 때 대신하는 말이 있어요. 앞에 plays(play 치다) 같은 일반동사가 있으면 does로 받아요. 여기서 does는 plays the piano on stage(무대에서 피아노를 치다)를 대신해요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>앞이 일반동사면 do/does/did, be동사면 be동사로 받아요",
+  "d": {
+   "know": "알다",
+   "little": "작은",
+   "plays": "play(연주하다, 치다)의 3인칭 단수형",
+   "stage": "무대",
+   "now": "지금",
+   "hope": "바라다",
+   "if": "~인지",
+   "does": "do(하다)의 3인칭 단수형, 여기서는 plays the piano를 대신해요"
+  }
+ },
+ {
+  "dk": [
+   [
+    "I didn't say anything to him then,",
+    "나는 그때 그에게 아무 말도 하지 않았다,"
+   ],
+   [
+    "but sometimes I think",
+    "하지만 가끔 나는 생각한다"
+   ],
+   [
+    "I should have told him",
+    "내가 그에게 말했어야 했다고"
+   ],
+   [
+    "to keep playing the piano.",
+    "계속 피아노를 치라고."
+   ]
+  ],
+  "ko": "나는 그때 그에게 아무 말도 하지 않았지만, 가끔 그에게 계속 피아노를 치라고 말했어야 했다고 생각한다.",
+  "gist": "그때 아무 말도 못 한 게 아쉬워서, 계속 치라고 말해 줄 걸 하고 가끔 후회한다는 얘기예요.",
+  "fm": "should + have p.p. (그때 안 한 일을 후회)",
+  "mp": [
+   [
+    "조동사 + have",
+    "should have",
+    "should have"
+   ],
+   [
+    "p.p.",
+    "eaten",
+    "told"
+   ]
+  ],
+  "ex": "I should have eaten breakfast.",
+  "exko": "나는 아침을 먹었어야 했어요(eat 먹다 → eaten).",
+  "tko": "내가 그에게 말했어야 했다고",
+  "bad": "I should eat breakfast yesterday.",
+  "badko": "(어제 일이라서 should eat이 아니라 should have eaten이어야 해요)",
+  "altw": "eat",
+  "alt": "You should eat breakfast every day.",
+  "altko": "너는 매일 아침을 먹어야 해요(앞으로 할 일에 대한 조언이라 should eat).",
+  "why": "I didn't say anything(아무 말도 안 했다)이라고 했으니 이미 지나간 일이에요. 지난 일을 '~했어야 했는데'라고 아쉬워할 때는 should have p.p.를 써요. tell(말하다)의 p.p.는 told예요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>지난 일의 후회·추측은 조동사 + have p.p., 지금·앞으로는 동사원형이에요",
+  "d": {
+   "anything": "아무것도",
+   "then": "그때",
+   "sometimes": "가끔",
+   "should": "should have p.p.: ~했어야 했다",
+   "told": "tell(말하다)의 과거분사형",
+   "keep": "keep -ing: 계속 ~하다",
+   "playing": "play(치다)의 -ing형",
+   "piano": "피아노"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Many students and parents think",
+    "많은 학생들과 부모들은 생각한다"
+   ],
+   [
+    "that phones in the classroom aren't a problem,",
+    "교실 안의 휴대전화는 문제가 아니라고,"
+   ],
+   [
+    "but a large number of schoolteachers think",
+    "하지만 많은 학교 교사들은 생각한다"
+   ],
+   [
+    "that they are.",
+    "그렇다고."
+   ]
+  ],
+  "ko": "많은 학생들과 부모들은 교실 안의 휴대전화가 문제가 아니라고 생각하지만, 많은 학교 교사들은 그렇다고 생각한다.",
+  "gist": "학생과 부모는 교실 휴대전화가 괜찮다고 보지만 많은 선생님은 문제라고 본다는 얘기예요.",
+  "fm": "앞이 be동사면 be동사로 받기 (aren't → are)",
+  "mp": [
+   [
+    "앞 be동사",
+    "isn't",
+    "aren't"
+   ],
+   [
+    "받는 말",
+    "is",
+    "are"
+   ]
+  ],
+  "ex": "Tom isn't tall, but his brother is.",
+  "exko": "톰은 키가 크지 않지만 그의 형은 커요(tall 키가 큰).",
+  "tko": "그렇다고",
+  "bad": "Tom isn't tall, but his brother does.",
+  "badko": "(앞에 isn't(be동사)가 있어서 does가 아니라 is로 받아요)",
+  "altw": "does",
+  "alt": "Tom runs fast, and his brother does too.",
+  "altko": "톰은 빨리 달리고, 그의 형도 그래요(runs(달리다)는 일반동사라서 does).",
+  "why": "뒤 절의 are는 'are a problem(문제이다)'을 줄인 말이에요. 앞에 be동사(aren't)가 있으니 대신하는 말도 be동사 are예요. 그래서 '선생님들은 문제가 맞다고 본다'는 뜻이 돼요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>앞이 be동사면 be동사로, 일반동사면 do로 받아요",
+  "d": {
+   "parents": "부모",
+   "classroom": "교실",
+   "problem": "문제",
+   "number": "a large number of: 많은",
+   "schoolteachers": "학교 교사들",
+   "think": "생각하다",
+   "phones": "phone(휴대전화)의 복수형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Many teachers do believe",
+    "많은 교사들은 정말 믿는다"
+   ],
+   [
+    "that phone use directly lowers",
+    "휴대전화 사용이 직접적으로 떨어뜨린다고"
+   ],
+   [
+    "students' focus in class.",
+    "수업 중 학생들의 집중력을."
+   ]
+  ],
+  "ko": "많은 교사들은 휴대전화 사용이 수업 중 학생들의 집중력을 직접적으로 떨어뜨린다고 정말 믿는다.",
+  "gist": "많은 선생님이 휴대전화 때문에 수업 집중력이 떨어진다고 굳게 믿는다는 얘기예요.",
+  "fm": "do + 동사원형 (진짜 ~한다)",
+  "mp": [
+   [
+    "강조하는 말",
+    "do",
+    "do"
+   ],
+   [
+    "동사 모양",
+    "like",
+    "believe"
+   ]
+  ],
+  "ex": "Many kids do like pizza.",
+  "exko": "많은 아이들이 피자를 정말 좋아해요(like 좋아하다).",
+  "tko": "정말 믿는다",
+  "bad": "Many kids do liked pizza.",
+  "badko": "(do 뒤에는 liked가 아니라 동사원형 like(좋아하다)예요)",
+  "altw": "liked",
+  "alt": "Many kids liked pizza.",
+  "altko": "많은 아이들이 피자를 좋아했어요(do 없이 쓰면 과거형 liked).",
+  "why": "do를 동사 앞에 붙이면 '정말 ~한다'라고 힘줘서 말하는 거예요. 이때는 do가 시제를 맡고 있어서 동사는 원래 모양 그대로 써요. 그래서 believed가 아니라 believe(믿다)예요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>강조의 do 뒤에는 동사원형만 와요",
+  "d": {
+   "believe": "믿다",
+   "directly": "직접적으로",
+   "lowers": "lower(떨어뜨리다)의 3인칭 단수형",
+   "focus": "집중(력)",
+   "use": "사용",
+   "class": "수업",
+   "students": "student(학생)의 복수형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "They said",
+    "그들은 말했다"
+   ],
+   [
+    "that the government must ban",
+    "정부가 금지해야 한다고"
+   ],
+   [
+    "the use of phones in the classroom",
+    "교실에서의 휴대전화 사용을"
+   ],
+   [
+    "and pointed at a recent report by experts.",
+    "그리고 전문가들의 최근 보고서를 가리켰다."
+   ]
+  ],
+  "ko": "그들은 정부가 교실에서의 휴대전화 사용을 반드시 금지해야 한다고 말했고, 전문가들의 최근 보고서를 지적했다.",
+  "gist": "교사들은 정부가 교실 휴대전화를 막아야 한다고 말하며 전문가 보고서를 근거로 들었다는 얘기예요.",
+  "fm": "must + 동사원형 (지금·앞으로 할 일)",
+  "mp": [
+   [
+    "조동사",
+    "must",
+    "must"
+   ],
+   [
+    "뒤 동사",
+    "clean",
+    "ban"
+   ]
+  ],
+  "ex": "We must clean the room now.",
+  "exko": "우리는 지금 방을 청소해야 해요(clean 청소하다).",
+  "tko": "금지해야 한다고",
+  "bad": "We must have cleaned the room now.",
+  "badko": "(지금 해야 하는 일이라서 must have cleaned가 아니라 must clean이에요)",
+  "altw": "have cleaned",
+  "alt": "He must have cleaned the room, because it is shiny.",
+  "altko": "그가 방을 청소했음에 틀림없어요, 방이 반짝이니까요(이미 한 일을 추측해서 must have cleaned; shiny 반짝이는).",
+  "why": "그들이 말한 건 앞으로 정부가 해야 할 일이에요. 지금이나 앞으로 해야 하는 일은 조동사 뒤에 동사원형 ban(금지하다)을 써요. 이미 끝난 일을 추측할 때만 must have p.p.를 써요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>조동사 뒤 have p.p.는 지난 일, 동사원형은 지금·앞으로예요",
+  "d": {
+   "government": "정부",
+   "ban": "금지하다",
+   "use": "사용",
+   "pointed": "point at: ~을 가리키다, point의 과거형",
+   "recent": "최근의",
+   "report": "보고서",
+   "experts": "expert(전문가)의 복수형",
+   "must": "~해야 한다",
+   "phones": "phone(휴대전화)의 복수형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The safety risks of phone use",
+    "휴대전화 사용의 안전 위험은"
+   ],
+   [
+    "are far greater",
+    "훨씬 더 크다"
+   ],
+   [
+    "than those of other classroom distractions.",
+    "다른 교실 방해 요소들의 것보다."
+   ]
+  ],
+  "ko": "휴대전화 사용의 안전 위험은 다른 교실 방해 요소들의 그것보다 훨씬 더 크다.",
+  "gist": "휴대전화의 안전 위험이 다른 방해 요소들의 위험보다 훨씬 크다는 얘기예요.",
+  "fm": "those + of ~ (앞 복수명사 대신)",
+  "mp": [
+   [
+    "대신하는 말",
+    "those",
+    "those"
+   ],
+   [
+    "of + 꾸미는 말",
+    "of cats",
+    "of other distractions"
+   ]
+  ],
+  "ex": "The ears of rabbits are longer than those of cats.",
+  "exko": "토끼의 귀는 고양이의 귀보다 길어요(ears 귀들, rabbit 토끼).",
+  "tko": "다른 방해 요소들의 것",
+  "bad": "The ears of rabbits are longer than them of cats.",
+  "badko": "(them은 of cats 같은 꾸미는 말을 달고 쓸 수 없어요. 앞의 ears(귀들)를 대신하는 those가 맞아요)",
+  "altw": "them",
+  "alt": "I like the cats, so I feed them.",
+  "altko": "나는 그 고양이들이 좋아서 그들에게 먹이를 줘요(feed 먹이를 주다; 꾸미는 말 없이 그냥 받을 땐 them).",
+  "why": "risks(위험들)를 두 번 쓰기 싫어서 대신하는 말을 써요. 뒤에 of other classroom distractions(다른 교실 방해 요소들의)처럼 꾸미는 말이 붙으면 them이 아니라 those를 써요. risks가 여러 개라서 those예요.",
+  "trend": "<b>출제 9위 · 대명사의 성·수·격 일치</b><br>31년간 44회 나왔어요.<br>of 같은 꾸미는 말이 뒤에 붙으면 them이 아니라 those예요",
+  "d": {
+   "safety": "안전",
+   "risks": "risk(위험)의 복수형",
+   "phone": "휴대전화",
+   "far": "훨씬",
+   "greater": "great(큰)의 비교급",
+   "other": "다른",
+   "classroom": "교실",
+   "distractions": "distraction(방해 요소)의 복수형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The schoolteachers suggested",
+    "학교 교사들은 제안했다"
+   ],
+   [
+    "that the government understand the importance of this issue",
+    "정부가 이 문제의 중요성을 이해해야 한다고"
+   ],
+   [
+    "and try to persuade students and parents.",
+    "그리고 학생들과 부모들을 설득하려고 노력해야 한다고."
+   ]
+  ],
+  "ko": "교사들은 정부가 이 문제의 중요성을 이해하고 학생들과 부모들을 설득하려고 노력해야 한다고 제안했다.",
+  "gist": "교사들은 정부가 문제의 중요성을 알고 학생과 부모를 설득하라고 제안했다는 얘기예요.",
+  "fm": "제안 동사 + that + 주어 + (should) + 동사원형",
+  "mp": [
+   [
+    "제안 동사",
+    "suggested",
+    "suggested"
+   ],
+   [
+    "that절 동사",
+    "run",
+    "understand"
+   ]
+  ],
+  "ex": "The coach suggested that Jim run every day.",
+  "exko": "코치는 짐이 매일 달려야 한다고 제안했어요(run 달리다).",
+  "tko": "정부가 이 문제의 중요성을 이해해야 한다고",
+  "bad": "The coach suggested that Jim ran every day.",
+  "badko": "(suggest(제안하다) 뒤 that절은 ran이 아니라 동사원형 run이에요)",
+  "altw": "ran",
+  "alt": "I know that Jim ran every day last year.",
+  "altko": "나는 짐이 작년에 매일 달렸다는 걸 알아요(know(알다)는 제안이 아니라 있었던 사실이라서 ran).",
+  "why": "suggested(제안했다)가 과거라서 understood처럼 과거로 쓰고 싶지만, 제안한 내용은 '~해야 한다'는 뜻이에요. should가 숨어 있어서 시제와 상관없이 understand(이해하다)처럼 동사원형을 써요. 뒤의 try(노력하다)도 같은 원형이에요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>제안·요구 동사 뒤 that절은 시제와 상관없이 동사원형이에요",
+  "d": {
+   "government": "정부",
+   "understand": "이해하다",
+   "importance": "중요성",
+   "issue": "문제",
+   "persuade": "설득하다",
+   "try": "try to: ~하려고 노력하다",
+   "suggested": "suggest(제안하다)의 과거형",
+   "schoolteachers": "학교 교사들"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Her supervisor recommended",
+    "그녀의 상사는 권고했다"
+   ],
+   [
+    "that she train new recruits",
+    "그녀가 신입 직원들을 교육해야 한다고"
+   ],
+   [
+    "in flight safety.",
+    "비행 안전에 대해."
+   ]
+  ],
+  "ko": "그녀의 상사는 그녀가 비행 안전에 대해 신입 직원들을 교육할 것을 권고했다.",
+  "gist": "상사가 그녀에게 신입 직원들에게 비행 안전을 가르치라고 권했다는 얘기예요.",
+  "fm": "제안 동사 + that + 주어 + (should) + 동사원형",
+  "mp": [
+   [
+    "권고 동사",
+    "recommended",
+    "recommended"
+   ],
+   [
+    "that절 동사",
+    "study",
+    "train"
+   ]
+  ],
+  "ex": "The teacher recommended that Ben study more.",
+  "exko": "선생님은 벤이 더 공부해야 한다고 권했어요(study 공부하다).",
+  "tko": "그녀가 신입 직원들을 교육해야 한다고",
+  "bad": "The teacher recommended that Ben studies more.",
+  "badko": "(recommend(권하다) 뒤 that절은 Ben이 한 명이어도 studies가 아니라 study예요)",
+  "altw": "studies",
+  "alt": "I know that Ben studies a lot.",
+  "altko": "나는 벤이 공부를 많이 한다는 걸 알아요(know(알다)는 권고가 아니라 사실이라서 studies).",
+  "why": "recommend(권하다)는 '~하는 게 좋겠다'고 권하는 말이에요. 그 뒤 that절에는 should가 숨어 있어서, she가 3인칭 단수여도 trains가 아니라 train(교육하다)을 써요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>권하는 말 뒤 that절은 주어가 단수여도 동사원형이에요",
+  "d": {
+   "supervisor": "상사",
+   "recommended": "recommend(권하다)의 과거형",
+   "train": "교육하다",
+   "recruits": "recruit(신입 직원)의 복수형",
+   "flight": "비행",
+   "safety": "안전"
+  }
+ },
+ {
+  "dk": [
+   [
+    "In 1930, she became",
+    "1930년에 그녀는 되었다"
+   ],
+   [
+    "the first female flight attendant in the U.S.",
+    "미국 최초의 여성 승무원이"
+   ],
+   [
+    "Unfortunately, a car accident forced her",
+    "불행히도 자동차 사고가 그녀로 하여금"
+   ],
+   [
+    "to end her career,",
+    "경력을 끝내게 했지만,"
+   ],
+   [
+    "but it cannot have frustrated her.",
+    "그것이 그녀를 좌절시켰을 리는 없다."
+   ]
+  ],
+  "ko": "1930년에 그녀는 미국 최초의 여성 승무원이 되었다. 불행히도 자동차 사고로 그녀는 경력을 끝내야 했지만, 그것이 그녀를 좌절시켰을 리는 없다.",
+  "gist": "사고로 일을 그만두게 됐지만 그것 때문에 좌절했을 리는 없다는 얘기예요.",
+  "fm": "cannot + have p.p. (~했을 리 없다)",
+  "mp": [
+   [
+    "조동사 + have",
+    "cannot have",
+    "cannot have"
+   ],
+   [
+    "p.p.",
+    "eaten",
+    "frustrated"
+   ]
+  ],
+  "ex": "He cannot have eaten the cake.",
+  "exko": "그가 그 케이크를 먹었을 리 없어요(eat 먹다 → eaten).",
+  "tko": "그것이 그녀를 좌절시켰을 리는 없다",
+  "bad": "He cannot eaten the cake.",
+  "badko": "(cannot 뒤에는 have eaten이 필요해요. eaten만 쓰면 동사 모양이 안 맞아요)",
+  "altw": "eat",
+  "alt": "He cannot eat spicy food.",
+  "altko": "그는 매운 음식을 먹을 수 없어요(지금 할 수 있는지를 말해서 cannot eat; spicy 매운).",
+  "why": "cannot have p.p.는 '~했을 리가 없다'라는 뜻으로, 이미 지나간 일을 추측해요. 사고는 과거에 있었던 일이라서 cannot 뒤에 have frustrated(좌절시켰다)를 써요. frustrate(좌절시키다)의 p.p.는 frustrated예요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>조동사 뒤 have p.p.는 지난 일, 동사원형은 지금·앞으로예요",
+  "d": {
+   "female": "여성의",
+   "attendant": "승무원 (flight attendant: 비행기 승무원)",
+   "unfortunately": "불행히도",
+   "accident": "사고",
+   "forced": "force(강요하다)의 과거형, force A to B: A가 B하게 하다",
+   "end": "끝내다",
+   "career": "경력",
+   "frustrated": "frustrate(좌절시키다)의 과거분사형",
+   "became": "become(되다)의 과거형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "In recognition of her achievements,",
+    "그녀의 업적을 인정하여"
+   ],
+   [
+    "several aviation organizations honored her with awards,",
+    "여러 항공 단체가 상으로 그녀를 기렸고"
+   ],
+   [
+    "and a memorial was dedicated",
+    "기념비가 헌정되었다"
+   ],
+   [
+    "in her hometown years later.",
+    "몇 년 뒤 그녀의 고향에."
+   ]
+  ],
+  "ko": "그녀의 업적을 인정하여 여러 항공 단체가 상을 주어 그녀를 기렸고, 몇 년 뒤 그녀의 고향에 기념비가 헌정되었다.",
+  "gist": "그녀의 업적을 기려 상을 주고 몇 년 뒤 고향에 기념비도 세웠다는 얘기예요.",
+  "fm": "주어 + be + p.p. (주어가 당하는 쪽)",
+  "mp": [
+   [
+    "주어",
+    "The window",
+    "a memorial"
+   ],
+   [
+    "동사",
+    "was broken",
+    "was dedicated"
+   ]
+  ],
+  "ex": "The window was broken by a ball.",
+  "exko": "그 창문은 공에 의해 깨졌어요(break 깨다 → broken).",
+  "tko": "기념비가 헌정되었다",
+  "bad": "The window broke by a ball.",
+  "badko": "(창문은 깨지는 쪽이라서 broke가 아니라 was broken이에요)",
+  "altw": "broke",
+  "alt": "A ball broke the window.",
+  "altko": "공이 창문을 깼어요(공이 직접 깨는 쪽이라서 broke).",
+  "why": "a memorial(기념비)은 스스로 헌정하는 게 아니라 사람들이 헌정해 주는 거예요. 이렇게 주어가 당하는 쪽이면 was dedicated(헌정되었다)처럼 be + p.p.를 써요. dedicated는 dedicate(바치다, 헌정하다)의 과거분사예요.",
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>주어가 하는 쪽이면 능동, 당하는 쪽이면 be + p.p.예요",
+  "d": {
+   "recognition": "인정",
+   "achievements": "achievement(업적)의 복수형",
+   "several": "여러",
+   "aviation": "항공",
+   "organizations": "organization(단체)의 복수형",
+   "honored": "honor(기리다)의 과거형",
+   "awards": "award(상)의 복수형",
+   "memorial": "기념비",
+   "dedicated": "dedicate(헌정하다)의 과거분사형",
+   "hometown": "고향",
+   "later": "~ 뒤에"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Her story continues to inspire",
+    "그녀의 이야기는 계속 영감을 준다"
+   ],
+   [
+    "nursing students today,",
+    "오늘날 간호학과 학생들에게,"
+   ],
+   [
+    "many of whom feel amazed",
+    "그들 중 많은 학생들은 놀라움을 느낀다"
+   ],
+   [
+    "when they learn about her achievements.",
+    "그녀의 업적을 알게 될 때."
+   ]
+  ],
+  "ko": "그녀의 이야기는 오늘날에도 간호학과 학생들에게 계속 영감을 주며, 그들 중 많은 학생들은 그녀의 업적을 알게 될 때 놀라움을 느낀다.",
+  "gist": "그녀의 이야기는 지금도 간호학과 학생들에게 영감을 주고, 많은 학생이 놀란다는 얘기예요.",
+  "fm": "감정을 느끼는 쪽 + p.p. (amazed)",
+  "mp": [
+   [
+    "감정을 느끼는 쪽",
+    "The kids",
+    "many of whom"
+   ],
+   [
+    "감정 말",
+    "amazed",
+    "amazed"
+   ]
+  ],
+  "ex": "The kids were amazed by the magic show.",
+  "exko": "아이들은 마술 쇼에 놀랐어요(magic show 마술 쇼).",
+  "tko": "놀라움을 느낀다",
+  "bad": "The kids were amazing by the magic show.",
+  "badko": "(놀라움을 느끼는 건 아이들이라서 amazing(놀라운)이 아니라 amazed(놀란)예요)",
+  "altw": "amazing",
+  "alt": "The magic show was amazing.",
+  "altko": "마술 쇼는 놀라웠어요(쇼가 놀라움을 주는 쪽이라서 amazing).",
+  "why": "놀라운 느낌을 받는 쪽은 학생들이에요. 사람이 느끼는 감정은 amazed(놀란)처럼 p.p.로 써요. 사람이나 물건이 놀라움을 주는 쪽일 때만 amazing(놀라운)을 써요.",
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>감정을 주면 -ing, 감정을 느끼면 p.p.예요",
+  "d": {
+   "continues": "continue(계속하다)의 3인칭 단수형",
+   "inspire": "영감을 주다",
+   "nursing": "간호(학)",
+   "amazed": "놀란",
+   "learn": "learn about: ~을 알게 되다",
+   "achievements": "achievement(업적)의 복수형",
+   "feel": "느끼다"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Today's young people hoping to become nurses",
+    "간호사가 되기를 희망하는 오늘날의 젊은이들은"
+   ],
+   [
+    "should consider",
+    "고려해야 한다"
+   ],
+   [
+    "the example set by Ms. Church.",
+    "Church 씨가 보여 준 본보기를."
+   ]
+  ],
+  "ko": "간호사가 되기를 희망하는 오늘날의 젊은이들은 Church 씨가 보여 준 본보기를 고려해야 한다.",
+  "gist": "간호사를 꿈꾸는 젊은이들은 Church 씨의 본보기를 눈여겨봐야 한다는 얘기예요.",
+  "fm": "should + 동사원형 (지금 하는 조언)",
+  "mp": [
+   [
+    "조동사",
+    "should",
+    "should"
+   ],
+   [
+    "뒤 동사",
+    "listen",
+    "consider"
+   ]
+  ],
+  "ex": "You should listen to your teacher.",
+  "exko": "너는 선생님 말씀을 들어야 해요(listen to ~을 듣다).",
+  "tko": "고려해야 한다",
+  "bad": "You should have listened to your teacher now.",
+  "badko": "(지금 하는 조언이라서 should have listened(들었어야 했다)가 아니라 should listen이에요)",
+  "altw": "have listened",
+  "alt": "I should have listened to my teacher yesterday.",
+  "altko": "나는 어제 선생님 말씀을 들었어야 했어요(어제 일이라 should have listened).",
+  "why": "Today's young people(오늘날의 젊은이들)에게 지금 해 주는 조언이에요. 이미 지난 일을 아쉬워하는 게 아니라서 should 뒤에 동사원형 consider(고려하다)를 써요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>지금 하는 조언은 should + 동사원형이에요",
+  "d": {
+   "young": "젊은",
+   "hoping": "hope(희망하다)의 -ing형",
+   "nurses": "nurse(간호사)의 복수형",
+   "consider": "고려하다",
+   "example": "본보기",
+   "set": "set(보여 주다)의 과거분사형",
+   "become": "되다"
+  }
+ },
+ {
+  "dk": [
+   [
+    "His management style was harsher",
+    "그의 경영 방식은 더 가혹했다"
+   ],
+   [
+    "than that of most other CEOs,",
+    "대부분의 다른 CEO들의 것보다,"
+   ],
+   [
+    "according to former employees.",
+    "전 직원들에 따르면."
+   ]
+  ],
+  "ko": "전 직원들에 따르면, 그의 경영 방식은 대부분의 다른 CEO들의 경영 방식보다 더 가혹했다.",
+  "gist": "그의 경영 방식은 다른 대부분의 CEO들보다 더 심했다고 전 직원들이 말한다는 얘기예요.",
+  "fm": "than + that of ~ (같은 종류끼리 비교)",
+  "mp": [
+   [
+    "비교 대상 1",
+    "My bag",
+    "His management style"
+   ],
+   [
+    "비교 대상 2",
+    "that of my brother",
+    "that of most other CEOs"
+   ]
+  ],
+  "ex": "My bag is heavier than that of my brother.",
+  "exko": "내 가방은 형의 가방보다 더 무거워요(heavy 무거운, bag 가방).",
+  "tko": "대부분의 다른 CEO들의 경영 방식보다",
+  "bad": "My bag is heavier than my brother.",
+  "badko": "(가방을 형이라는 사람과 비교하면 안 돼요. 가방끼리 비교하려고 that of를 써요)",
+  "altw": "than my brother",
+  "alt": "I am taller than my brother.",
+  "altko": "나는 형보다 키가 커요(나와 형, 사람끼리 비교하니까 than my brother 그대로).",
+  "why": "management style(경영 방식)을 CEOs(최고 경영자들)라는 사람과 비교하면 안 돼요. '다른 CEO들의 경영 방식'과 비교해야 해요. style이 또 나오는 걸 피하려고 that으로 받아서 that of most other CEOs(대부분의 다른 CEO들의 그것)라고 해요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>비교하는 두 대상은 같은 종류여야 해요 (that of)",
+  "d": {
+   "management": "경영",
+   "style": "방식",
+   "harsher": "harsh(가혹한)의 비교급",
+   "ceos": "CEO(최고 경영자)의 복수형",
+   "according": "according to: ~에 따르면",
+   "former": "전(예전)의",
+   "employees": "employee(직원)의 복수형",
+   "most": "대부분의"
+  }
+ },
+ {
+  "dk": [
+   [
+    "He never showed his employees",
+    "그는 한 번도 직원들에게 보여 주지 않았다"
+   ],
+   [
+    "the same amount of respect",
+    "같은 양의 존경을"
+   ],
+   [
+    "that they did to him.",
+    "직원들이 그에게 한 것과."
+   ]
+  ],
+  "ko": "그는 직원들이 그에게 보인 것과 같은 양의 존경을 직원들에게 한 번도 보여 주지 않았다.",
+  "gist": "직원들은 그를 존경했지만 그는 직원들에게 같은 존경을 보인 적이 없다는 얘기예요.",
+  "fm": "앞 일반동사 → did (과거)",
+  "mp": [
+   [
+    "앞 동사",
+    "sang",
+    "showed"
+   ],
+   [
+    "대신하는 말",
+    "did",
+    "did"
+   ]
+  ],
+  "ex": "I sang a song, and my sister did too.",
+  "exko": "나는 노래를 불렀고, 내 여동생도 그랬어요(sing 노래하다 → sang).",
+  "tko": "직원들이 그에게 한 것과",
+  "bad": "I sang a song, and my sister was too.",
+  "badko": "(sang(노래했다)은 일반동사라서 was가 아니라 did로 받아요)",
+  "altw": "was",
+  "alt": "I was tired, and my sister was too.",
+  "altko": "나는 피곤했고, 내 여동생도 그랬어요(앞에 was(be동사)가 있어서 was로 받아요).",
+  "why": "that they did to him에서 did는 showed(show 보여 주다의 과거형)를 대신해요. showed는 일반동사 과거형이라서 did로 받아요. 그래서 '직원들이 그에게 존경을 보인 것'이라는 뜻이 돼요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>앞이 일반동사면 do/does/did로 받아요",
+  "d": {
+   "showed": "show(보여 주다)의 과거형",
+   "employees": "employee(직원)의 복수형",
+   "same": "같은",
+   "amount": "양",
+   "respect": "존경",
+   "never": "한 번도 ~않다"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Employees often wondered",
+    "직원들은 자주 궁금해했다"
+   ],
+   [
+    "why he never listened",
+    "그가 왜 귀를 기울이지 않는지"
+   ],
+   [
+    "to feedback.",
+    "피드백에."
+   ]
+  ],
+  "ko": "직원들은 그가 왜 피드백에 귀를 기울이지 않는지 자주 궁금해했다.",
+  "gist": "직원들은 그가 왜 의견을 안 듣는지 늘 궁금해했다는 얘기예요.",
+  "fm": "의문사 + 주어 + 동사 (did 없이)",
+  "mp": [
+   [
+    "의문사",
+    "why",
+    "why"
+   ],
+   [
+    "그 뒤 순서",
+    "she is sad",
+    "he never listened"
+   ]
+  ],
+  "ex": "I wonder why she is sad.",
+  "exko": "나는 그녀가 왜 슬픈지 궁금해요(wonder 궁금해하다, sad 슬픈).",
+  "tko": "그가 왜 귀를 기울이지 않는지",
+  "bad": "I wonder why is she sad.",
+  "badko": "(문장 안에 들어가면 is she가 아니라 she is 순서예요)",
+  "altw": "why is she",
+  "alt": "Why is she sad?",
+  "altko": "그녀는 왜 슬퍼요?(혼자 묻는 질문이라서 is she 순서).",
+  "why": "wondered(궁금해했다) 뒤의 why he never listened(그가 왜 듣지 않는지)는 질문이 아니라 문장의 한 조각이에요. 그래서 did를 앞에 빼지 않고 '주어 + 동사' 순서로 말해요. did never listen은 never listened가 돼요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>문장 속에 들어간 질문은 평소 순서(주어 + 동사)예요",
+  "d": {
+   "often": "자주",
+   "wondered": "wonder(궁금해하다)의 과거형",
+   "listened": "listen to: ~에 귀를 기울이다, listen의 과거형",
+   "feedback": "피드백(의견, 평가)",
+   "never": "한 번도 ~않다",
+   "employees": "employee(직원)의 복수형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Looking back,",
+    "돌이켜 보면,"
+   ],
+   [
+    "he must have felt regret",
+    "그는 후회를 느꼈음에 틀림없다"
+   ],
+   [
+    "for treating his staff so poorly.",
+    "직원들을 그토록 형편없이 대한 것에 대해."
+   ]
+  ],
+  "ko": "돌이켜 보면, 그는 직원들을 그토록 형편없이 대한 것에 대해 후회를 느꼈음에 틀림없다.",
+  "gist": "돌아보면 그는 직원을 심하게 대한 걸 후회했을 거라는 얘기예요.",
+  "fm": "must + have p.p. (~했음에 틀림없다)",
+  "mp": [
+   [
+    "조동사 + have",
+    "must have",
+    "must have"
+   ],
+   [
+    "p.p.",
+    "slept",
+    "felt"
+   ]
+  ],
+  "ex": "He must have slept late.",
+  "exko": "그는 늦게 잤음에 틀림없어요(sleep 자다 → slept).",
+  "tko": "후회를 느꼈음에 틀림없다",
+  "bad": "He must slept late.",
+  "badko": "(지난 일의 추측은 must slept가 아니라 must have slept예요)",
+  "altw": "sleep",
+  "alt": "I must sleep now.",
+  "altko": "나는 지금 자야 해요(지금 해야 할 일이라서 must sleep).",
+  "why": "Looking back(돌이켜 보면)이라서 이미 지난 일을 떠올리는 거예요. 지난 일을 '~했음에 틀림없다'고 추측할 때는 must have p.p.를 써요. feel(느끼다)의 p.p.는 felt예요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>지난 일의 추측은 조동사 + have p.p.예요",
+  "d": {
+   "looking": "look back: 돌이켜 보다, look의 -ing형",
+   "felt": "feel(느끼다)의 과거분사형",
+   "regret": "후회",
+   "treating": "treat(대하다)의 -ing형",
+   "staff": "직원들",
+   "poorly": "형편없이",
+   "must": "~했음에 틀림없다"
+  }
+ },
+ {
+  "dk": [
+   [
+    "He did believe",
+    "그는 정말 믿었다"
+   ],
+   [
+    "his approach was effective,",
+    "자신의 방식이 효과적이라고,"
+   ],
+   [
+    "even as morale dropped.",
+    "사기가 떨어지는 중에도."
+   ]
+  ],
+  "ko": "사기가 떨어지는 와중에도 그는 자신의 접근법이 효과적이라고 정말 믿었다.",
+  "gist": "사기가 떨어져도 그는 자기 방식이 옳다고 굳게 믿었다는 얘기예요.",
+  "fm": "did + 동사원형 (진짜 ~했다)",
+  "mp": [
+   [
+    "강조하는 말",
+    "did",
+    "did"
+   ],
+   [
+    "동사 모양",
+    "love",
+    "believe"
+   ]
+  ],
+  "ex": "She did love that song.",
+  "exko": "그녀는 그 노래를 정말 좋아했어요(love 아주 좋아하다).",
+  "tko": "정말 믿었다",
+  "bad": "She did loved that song.",
+  "badko": "(did 뒤에는 loved가 아니라 동사원형 love(아주 좋아하다)예요)",
+  "altw": "loved",
+  "alt": "She loved that song.",
+  "altko": "그녀는 그 노래를 아주 좋아했어요(did 없이 쓰면 과거형 loved).",
+  "why": "did 하나가 이미 '과거'를 알려 주기 때문에 동사는 원래 모양 believe(믿다)로 써요. 과거형 believed로 쓰면 과거를 두 번 말하는 셈이에요. did를 붙여서 '정말 믿었다'는 힘줌이 생겨요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>강조의 did 뒤에는 동사원형만 와요",
+  "d": {
+   "approach": "접근법, 방식",
+   "effective": "효과적인",
+   "even": "even as: ~하는 중에도",
+   "morale": "사기",
+   "dropped": "drop(떨어지다)의 과거형",
+   "believe": "믿다"
+  }
+ }
+]

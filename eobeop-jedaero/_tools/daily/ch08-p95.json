@@ -15,14 +15,14 @@
   "fm": "동사 and 동사 (같은 모양)",
   "mp": [
    [
-    "주어",
-    "You",
-    "you"
+    "and 앞 동사",
+    "look",
+    "look"
    ],
    [
-    "and 앞 동사 / 뒤 동사",
-    "look / sing",
-    "look / impress"
+    "and 뒤 동사",
+    "sing",
+    "impress"
    ]
   ],
   "ex": "You look happy and sing well.",
@@ -121,20 +121,20 @@
   "mp": [
    [
     "and 앞 말",
-    "to keep",
+    "to try",
     "to keep"
    ],
    [
     "and 뒤 말",
-    "to eat",
+    "to learn",
     "to publish"
    ]
   ],
-  "ex": "I want to keep trying and to eat well.",
-  "exko": "나는 계속 노력하고 잘 먹고 싶어요(keep 계속하다, try 노력하다).",
-  "tko": "발표하도록",
-  "bad": "I want to keep trying and to eating well.",
-  "badko": "(to 뒤에는 eating이 아니라 동사원형 eat이 와요)",
+  "ex": "I want to try and to learn.",
+  "exko": "나는 시도하고 배우고 싶어요(try 시도하다, learn 배우다).",
+  "tko": "계속하도록, 발표하도록",
+  "bad": "I want to try and to learning.",
+  "badko": "(to 뒤에는 learning이 아니라 동사원형 learn이 와요)",
   "altw": "to + 명사",
   "alt": "I look forward to eating well.",
   "altko": "나는 잘 먹기를 기대해요(look forward to의 to는 '~로'라서 뒤에 -ing를 써요).",
@@ -198,7 +198,7 @@
   "d": {
    "join": "가입하다",
    "club": "클럽",
-   "even though": "비록 ~지만",
+   "though": "even though: 비록 ~지만",
    "neither": "neither A nor B: A도 B도 아닌",
    "drawn": "draw(끌다)의 과거분사",
    "skilled": "능숙한",
@@ -231,13 +231,13 @@
   "mp": [
    [
     "and 앞 말",
-    "a kind",
-    "a calm"
+    "kind",
+    "calm"
    ],
    [
     "and 뒤 말",
-    "helpful voice",
-    "reassuring tone"
+    "gentle",
+    "reassuring"
    ]
   ],
   "ex": "She spoke in a kind and gentle voice.",

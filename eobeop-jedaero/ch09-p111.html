@@ -6,93 +6,97 @@
 <meta name="robots" content="noindex">
 <title>해커스 어법 제대로 CHAPTER 09 · p.111 어법변형문제 정답 및 해설</title>
 <style>
-  body{font-family:'Malgun Gothic','맑은 고딕',sans-serif;max-width:760px;margin:0 auto;padding:0 0 60px;line-height:1.85;color:#1a1a1a;background:#fafafa;}
-  .header{background:#1e3a5f;color:#fff;padding:26px 20px;text-align:center;}
-  .header h1{font-size:21px;margin:0 0 6px;}
-  .pagebar{background:#12314f;color:#fff;font-size:17px;font-weight:bold;padding:10px 18px;margin:34px 0 0;}
-  .quickbox{background:#fff;border:2px solid #12314f;border-radius:10px;margin:14px 16px 24px;padding:14px 16px;}
-  .quickbox p{font-size:15.5px;margin:0;color:#333;word-break:keep-all;}
-  .card{background:#fff;border:2px solid #e5e7eb;border-radius:12px;padding:18px 18px 16px;margin:16px 16px 22px;}
-  .qnum{display:inline-block;background:#111827;color:#fff;font-size:15px;font-weight:bold;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
-  .sentence{font-size:18px;line-height:1.75;margin:6px 0 14px;color:#111;}
-  .wrong{background:#ffe0e0;color:#b3261e;font-weight:bold;text-decoration:underline;text-decoration-color:#b3261e;padding:0 2px;border-radius:3px;}
-  .answerline{font-size:18.5px;font-weight:bold;margin:12px 0;padding:10px 14px;background:#fff4f2;border-left:5px solid #b3261e;border-radius:0 8px 8px 0;}
-  .answerline .from{color:#7a7a7a;text-decoration:line-through;font-weight:normal;}
-  .answerline .arrow{color:#999;margin:0 6px;}
-  .answerline .to{color:#0a7d32;}
-  .field{font-size:16.5px;margin:8px 0;color:#222;}
-  .interp{font-size:16px;color:#555;margin:8px 0;}
-  .badge{display:inline-block;color:#fff;font-weight:bold;font-size:13.5px;padding:4px 11px;border-radius:14px;margin:8px 0 10px;}
-  .explain{font-size:16.5px;line-height:1.85;margin:10px 0;color:#222;}
-  hr.sep{border:none;border-top:2px dashed #ddd;margin:30px 16px;}
-  .legend{margin:10px 16px 4px;font-size:13px;color:#777;}
-  .legend span{display:inline-block;margin:3px 6px 3px 0;padding:2px 9px;border-radius:10px;color:#fff;font-size:12.5px;}
-</style>
-<style>.nav{display:flex;gap:10px;margin:28px 16px 0;}.nav a{flex:1;text-align:center;padding:14px 8px;background:#12314f;color:#fff;border-radius:10px;text-decoration:none;font-size:16px;font-weight:bold;}.nav a.gray{background:#6b7280;}.nav a.off{visibility:hidden;}</style>
+:root{--bg:#f6f4ee;--card:#fff;--ink:#1c1f26;--mute:#6a6e78;--line:#e3dfd3;--accent:#2b5aa8;--soft:#e6edf8;--ok:#2d6a4f;--oks:#e3f1ea;--no:#b3261e;--nos:#fbe9e7}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Noto Sans KR","Malgun Gothic",system-ui,sans-serif;padding:14px 14px 110px;word-break:keep-all;overflow-wrap:break-word}
+.wrap{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+button{font-family:inherit}
+.hd{display:flex;justify-content:space-between;align-items:center}
+.hd h1{margin:0;font-size:20px;letter-spacing:-.01em}
+.hd .sub{font-size:13px;color:var(--mute)}
+.bk{border:0;background:none;color:var(--mute);font-size:14px;padding:6px 0;cursor:pointer}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 6px 20px rgba(30,30,40,.05)}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.sb{border:1.5px solid var(--line);background:#fff;border-radius:12px;height:48px;font-size:16px;font-weight:600;color:var(--ink);cursor:pointer}
+.sb.cur{border-color:var(--accent);background:var(--soft);color:var(--accent)}
+.sb.dn{background:var(--oks);border-color:#b9dcc9;color:var(--ok)}
+.sb.lk{color:#bdb9aa;background:#faf9f4;cursor:default}
+.sum{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.sum b{font-size:30px;letter-spacing:-.02em}
+.mute{color:var(--mute);font-size:14px}
+.go{display:block;width:100%;border:0;border-radius:14px;background:var(--accent);color:#fff;font-size:17px;font-weight:700;padding:15px;cursor:pointer}
+.go.ghost{background:#fff;color:var(--accent);border:1.5px solid var(--accent)}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mute)}
+.dots{display:flex;gap:6px}.dots i{width:22px;height:6px;border-radius:3px;background:var(--line)}.dots i.on{background:var(--accent)}.dots i.ok{background:var(--ok)}.dots i.no{background:var(--no)}
+.q{font-size:19px;line-height:1.95}
+.w{border-bottom:1px dotted #b9b4a3;cursor:pointer}.w.lk{background:#e9f3ff;border-bottom-color:var(--accent)}
+.br{display:inline-block;font-weight:700;color:var(--accent);background:var(--soft);padding:0 8px;border-radius:8px;margin:0 2px}
+.lbl{font-size:13px;color:var(--mute);margin:0 0 8px;letter-spacing:.02em}
+.row{display:flex;gap:10px}
+.ab{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px 10px;font-size:18px;font-weight:700;min-height:52px;cursor:pointer;color:var(--ink)}
+.ab.ok{background:var(--oks);border-color:var(--ok);color:var(--ok)}
+.ab.no{background:var(--nos);border-color:var(--no);color:var(--no)}
+.hide{display:none!important}
+.sec{margin-top:16px}.sec:first-child{margin-top:0}.sec h4{margin:0 0 6px;font-size:13px;color:var(--mute);font-weight:500;letter-spacing:.02em}
+.sl{border-top:1px solid var(--line)}
+.sl .r{padding:8px 0 8px 10px;border-bottom:1px solid var(--line);border-left:3px solid var(--line)}.sl .r>b,.sl .r>span{display:block}
+.sl .m{color:#8a8f98;font-weight:400}.sk .st{padding:6px 0 6px 10px;border-left:3px solid var(--line);margin-bottom:4px}.sk .st>small{display:block;color:var(--mute,#888);font-size:12.5px}.sk .st>b{display:block;font-size:15.5px;font-weight:600;line-height:1.45}.sk .st>span{display:block;font-size:14.5px;color:var(--accent)}.sk .sm{font-size:14px;margin-top:6px;font-weight:600}
+.sl .r>b{font-size:15.5px;line-height:1.45;font-weight:600}.sl .r>span{font-size:14.5px;color:var(--accent);line-height:1.45}
+.tx{font-size:15px;color:#3a3e48;line-height:1.7}
+.nat{font-size:16px;line-height:1.75;background:#faf9f4;border-radius:10px;padding:10px 12px}
+.gist{padding:12px 14px;border-radius:12px;background:#fff8e1;border:1px solid #f0e2b0;border-left:4px solid #d9a21b;font-size:16px;line-height:1.7;word-break:keep-all}
+.post{background:#fff;border:1px solid var(--ink);border-left:6px solid var(--ink);border-radius:6px;padding:14px 14px 12px;margin-top:16px}
+.post .lb{font-size:12px;letter-spacing:.1em;color:var(--mute);font-weight:600;margin-bottom:6px}
+.post .fm{font-family:"Noto Serif KR",Georgia,serif;font-size:21px;font-weight:700;line-height:1.4;color:var(--ink)}
+.post .fm i{font-style:normal;color:var(--accent);padding:0 .2em;font-weight:400}
+.mp{margin-top:12px}
+.mp .cl{font-size:12px;color:var(--mute);font-weight:600;display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:2px 0 4px}
+.mp .ph{display:grid;grid-template-columns:1fr 1fr;gap:3px 4px;margin-bottom:8px}
+.mp .pl{grid-column:1/-1;font-size:12px;font-weight:700;border-left:3px solid var(--ink);padding-left:6px;line-height:1.2}
+.mp .ce{background:#f1efe7;border-radius:6px;padding:6px 8px;font-size:15px;line-height:1.35}
+.mp .ct{background:var(--soft);border-radius:6px;padding:6px 8px;font-size:15px;line-height:1.35;font-weight:700}
+.mp .k{font-size:13px;color:#8a8f99;line-height:1.45;margin:2px 0 8px}
+.mp .bd{margin-top:8px;font-size:15px;font-weight:700;color:var(--no)}
+.mp .bd.alt{color:var(--ok,#1f8a4c)}.mp .bd.alt small{border-color:currentColor}.mp .bd small{font-size:12px;letter-spacing:.06em;margin-right:6px;border:1px solid var(--no);border-radius:4px;padding:0 5px;font-weight:600}
+.trend{background:var(--soft);border-radius:12px;padding:10px 14px;font-size:15px;line-height:1.6}
 
-<style id="anl-css">
-.anl{margin:14px 0 4px;border:1px solid #cbd5e1;border-radius:10px;background:#f8fafc;}
-.anl>summary{cursor:pointer;font-weight:bold;font-size:15.5px;padding:10px 14px;color:#1e3a5f;}
-.anl .in{padding:4px 14px 14px;font-size:16px;}
-.anl .en{font-size:17.5px;line-height:1.8;margin:6px 0;}
-.anl mark{background:linear-gradient(transparent 38%,rgba(255,214,0,.6) 38%,rgba(255,214,0,.6) 92%,transparent 92%);color:inherit;padding:0 2px;}
-.anl .lab{display:block;font-size:12.5px;color:#64748b;font-weight:bold;margin:12px 0 4px;letter-spacing:.04em;}
-.anl .form{display:inline-block;font-size:13px;font-weight:bold;color:#1d4ed8;background:#e0e9fb;border-radius:999px;padding:1px 10px;}
-.anl .mrow{display:flex;flex-wrap:wrap;align-items:center;gap:4px 5px;margin:4px 0;}
-.anl .mlab{font-size:12.5px;color:#64748b;width:48px;flex:none;}
-.anl .rc{display:inline-flex;flex-direction:column;align-items:center;line-height:1.15;border-radius:7px;padding:3px 8px 2px;font-size:14px;}
-.anl .rc i{font-style:normal;font-size:10px;opacity:.85;}
-.anl .rc.s{background:#dbeafe;color:#1e40af}.anl .rc.v{background:#dfe5ee;color:#1e293b}.anl .rc.o{background:#dcfce7;color:#166534}.anl .rc.c{background:#ffedd5;color:#9a3412}.anl .rc.io{background:#cffafe;color:#155e75}.anl .rc.do{background:#ecfccb;color:#3f6212}.anl .rc.oc{background:#fef3c7;color:#92400e}.anl .rc.x{background:#e5e7eb;color:#374151}
-.anl .rel{font-size:12.5px;color:#64748b;}
-.anl .easy{border:1px solid #e2e8f0;border-radius:8px;background:#fff;padding:8px 12px;}
-.anl .easy p{margin:0 0 8px;font-size:15.5px;}.anl .easy .q{font-size:13px;color:#64748b;}.anl .easy .e{font-weight:bold;display:block;}
-.anl .easy p.sum{border-top:1px dashed #cbd5e1;padding-top:8px;margin:0;font-weight:bold;}
-.anl .note{background:#fff4e8;border:2px dashed #c2410c;border-radius:10px;padding:10px 14px;margin-top:14px;}
-.anl .note .tag{display:inline-block;background:#c2410c;color:#fff;font-weight:bold;font-size:13px;padding:2px 10px;border-radius:999px;}
-.anl .note .hint{font-size:13px;color:#7c4a1d;margin:4px 0 2px;}
-.anl .note ol{margin:4px 0 8px;padding-left:22px;font-size:15.5px;}
-.anl .note label{display:flex;align-items:center;gap:8px;font-size:14px;color:#7c4a1d;cursor:pointer;}
-.anl .note input{width:20px;height:20px;}
+.item{margin-top:18px}.num{font-size:13px;color:var(--mute);margin-bottom:6px}
+.wrong{background:#fde7e4;color:var(--no);border-radius:4px;padding:0 3px;text-decoration:line-through}
+.ans{font-size:20px;font-weight:700}.ans s{color:var(--no);font-weight:500}.ans i{font-style:normal;color:var(--mute);padding:0 .3em}.ans b{color:var(--ok)}
+.badge{display:inline-block;margin-top:8px;color:#fff;font-size:13px;font-weight:600;padding:3px 10px;border-radius:8px;line-height:1.4}
+.sheet{position:fixed;left:0;right:0;bottom:16px;margin:0 auto;max-width:520px;background:#1c1f26;color:#fff;border-radius:14px;padding:12px 16px;font-size:16px;z-index:5}
+.sheet small{display:block;font-size:13px;color:#a9b0bd;margin-top:2px}
+.bar{margin-top:20px;font-size:15px;font-weight:700;color:var(--ink);border-bottom:2px solid var(--ink);padding-bottom:4px}
+.sub{margin-top:14px;font-size:16px;font-weight:700;color:var(--accent)}
+.quick{margin-top:8px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:15px;line-height:1.7}
+.quick b{color:var(--no)}
+.gc{margin:14px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;scroll-margin-top:12px}
+.gc .gl{font-size:12.5px;color:var(--mute);font-weight:600}
+.gc a{display:inline-block;background:var(--ink);color:#fff!important;text-decoration:none;font-weight:600;font-size:14px;padding:7px 12px;border-radius:999px}
+.navb{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:22px}
+.navb a{flex:1;text-align:center;border:1.5px solid var(--accent);color:var(--accent);text-decoration:none;font-weight:700;padding:11px 6px;border-radius:12px;background:#fff;font-size:15px}
+.navb a.gray{border-color:var(--line);color:var(--mute);flex:.6}.navb span{flex:1}
+details.anl{display:none}
 </style>
 <style id="ej-hide">html{background:#f6f4ee}body>*{visibility:hidden}</style>
 <script src="gate.js" defer></script>
-
-
-
-
-
-<style id="gc-css">
-.gc{margin:12px 0 4px;scroll-margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.gc .gl{font-size:12.5px;color:#64748b;font-weight:bold}
-.gc a{display:inline-block;background:#244138;color:#fff !important;text-decoration:none;font-weight:bold;font-size:14px;padding:7px 12px;border-radius:999px}
-</style>
 </head>
 <body>
-<body>
-<div class="header"><h1>해커스 어법 제대로 CHAPTER 09 · p.111 어법변형문제 정답 및 해설</h1></div>
-<div class="legend">챕터 색상 안내:<br><span style="background:#2563eb;">CH01</span> <span style="background:#059669;">CH02</span> <span style="background:#dc2626;">CH03</span> <span style="background:#7c3aed;">CH04</span> <span style="background:#c026d3;">CH05</span> <span style="background:#ea580c;">CH06</span> <span style="background:#0891b2;">CH07</span> <span style="background:#ca8a04;">CH08</span> <span style="background:#db2777;">CH09</span> <span style="background:#4338ca;">CH10</span> <span style="background:#16a34a;">CH11</span> <span style="background:#9333ea;">CH12</span> <span style="background:#0d9488;">CH13</span> <span style="background:#b91c1c;">CH14</span></div>
-<div class="pagebar">📘 p.111 정답 및 해설 (내신 서술형 대비 제대로)</div><div class="quickbox"><p><b>빠른정답</b><br>7) why life has prepared/which time passes → <b>what life has prepared/how time passes</b> / 8) because overspending/if causes → <b>because of overspending/what causes</b></p></div>
-<div class="card">
-<span class="qnum">문항 7</span>
-<p class="sentence">Don't worry about whether you can live to old age. It is impossible to know <span class="wrong">why life has prepared</span> for us, so it is essential to enjoy every day. You should never forget <span class="wrong">which time passes</span> by quickly as one gets older.</p>
-<p class="answerline"><span class="from">why life has prepared / which time passes</span><span class="arrow">→</span><span class="to">what life has prepared / how time passes</span></p>
-<p class="field"><b>바른문장</b> Don't worry about whether you can live to old age. It is impossible to know what life has prepared for us, so it is essential to enjoy every day. You should never forget how time passes by quickly as one gets older.</p>
-<p class="interp"><b>해석</b> 나이가 들도록 살 수 있을지 걱정하지 마라. 삶이 우리를 위해 무엇을 준비해 두었는지 아는 것은 불가능하다, 그러니 매일을 즐기는 것이 중요하다. 나이가 들수록 시간이 얼마나 빨리 지나가는지 절대 잊지 말아야 한다.</p>
-<span class="badge" style="background:#db2777;">1) 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞 (Chapter 09 POINT 3) / 2) 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞 (Chapter 09 POINT 3)</span>
-<p class="explain"><b>해설</b> ① has prepared의 목적어가 없는 불완전한 절이 이어지므로, 완전한 절을 이끄는 why가 아니라 불완전한 절을 이끄는 what이 와야 한다. 따라서 why가 아니라 <b>what</b>이 되어야 한다. ② time passes by quickly는 필요한 성분을 모두 갖춘 완전한 절이며 "얼마나 빨리 지나가는지"라는 정도의 의미를 나타내므로, 불완전한 절을 이끄는 which가 아니라 완전한 절을 이끄는 how가 와야 한다. 따라서 which가 아니라 <b>how</b>가 되어야 한다.</p><div class="gc" id="gc0"><span class="gl">그래머콕 개념</span><a href="https://nolbada.github.io/via-mid/m/grammarcock/?c=039&amp;back=https%3A%2F%2Fnolbada.github.io%2Fvia%2Feobeop-jedaero%2Fch09-p111.html%23gc0">명사절 접속사 that</a><a href="https://nolbada.github.io/via-mid/m/grammarcock/?c=085&amp;back=https%3A%2F%2Fnolbada.github.io%2Fvia%2Feobeop-jedaero%2Fch09-p111.html%23gc0">관계대명사 what</a></div><details class="anl"><summary>🔍 문장 분석 · 노트정리</summary><div class="in"><div class="en"><mark>It</mark> <mark>is</mark> <mark>impossible</mark> to know what life has prepared for us, so it is essential to enjoy every day.</div><span class="lab">뼈대 (노란 줄)</span><div>~는 불가능하다.</div><span class="lab">문형</span><span class="form">2형식</span><div class="mrow"><span class="mlab">닮은꼴</span><span class="rc s">I<i>주어</i></span><span class="rc v">am<i>동사</i></span><span class="rc c">happy<i>보어</i></span><span class="rel">I = happy</span></div><div class="mrow"><span class="mlab">이 문장</span><span class="rc s">It<i>주어</i></span><span class="rc v">is<i>동사</i></span><span class="rc c">impossible<i>보어</i></span><span class="rc x">to know what life has prepared for us,<i>덧붙는 말</i></span><span class="rc x">so it is essential to enjoy every day.<i>덧붙는 말</i></span><span class="rel">It = impossible</span></div><span class="lab">풀어보기</span><div class="easy"><p><span class="q">먼저 뼈대부터:</span><span class="e">It is impossible</span>불가능하다.</p><p><span class="q">무엇이?</span><span class="e">to know what life has prepared for us</span>삶이 우리를 위해 무엇을 준비해 두었는지 아는 것이.</p><p><span class="q">그러니?</span><span class="e">so it is essential to enjoy every day</span>그러니 매일을 즐기는 것이 중요하다.</p><p class="sum">요약: 앞날은 알 수 없으니 오늘을 즐기는 게 중요하다.</p></div><div class="note"><span class="tag">✍ 노트정리</span><div class="hint">알고 있어도 노트에 한 번만 직접 쓰세요.</div><ol><li><b>① what + 불완전한 절</b>: has prepared(준비해 두었다, prepare(준비하다))의 목적어가 빠졌으니 what(무엇을). why는 완전한 절 앞</li><li><b>② how + 완전한 절</b>: time passes by quickly는 다 갖춘 절이고 '얼마나 빨리'라는 뜻 → how ○, which ✕</li></ol><label><input type="checkbox" data-nt="0"> 노트에 썼어요</label></div></div></details>
-</div>
-<div class="card">
-<span class="qnum">문항 8</span>
-<p class="sentence">If some people sink into debt <span class="wrong">because overspending</span> or credit card abuse, is it solely their fault? Would they even know where they can find help? People often think <span class="wrong">if causes</span> this kind of problem is personal failure, but it can happen due to problems outside a person's control, such as a bad economy or an unexpected illness.</p>
-<p class="answerline"><span class="from">because overspending / if causes</span><span class="arrow">→</span><span class="to">because of overspending / what causes</span></p>
-<p class="field"><b>바른문장</b> If some people sink into debt because of overspending or credit card abuse, is it solely their fault? Would they even know where they can find help? People often think what causes this kind of problem is personal failure, but it can happen due to problems outside a person's control, such as a bad economy or an unexpected illness.</p>
-<p class="interp"><b>해석</b> 만약 어떤 사람들이 과소비나 신용카드 남용 때문에 빚더미에 빠진다면, 그것이 오로지 그들만의 잘못일까? 그들이 어디서 도움을 구할 수 있는지조차 알까? 사람들은 흔히 이런 종류의 문제를 일으키는 것이 개인의 실패라고 생각하지만, 그것은 나쁜 경제나 예상치 못한 질병과 같이 개인이 통제할 수 없는 문제 때문에 일어날 수도 있다.</p>
-<span class="badge" style="background:#db2777;">1) 부사절 접속사 vs. 전치사 (Chapter 09 POINT 1) / 2) 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞 (Chapter 09 POINT 3)</span>
-<p class="explain"><b>해설</b> ① because는 부사절 접속사이므로 뒤에 완전한 절이 와야 하는데, 여기서는 overspending or credit card abuse라는 명사(구)가 이어지고 있다. 따라서 부사절 접속사 because가 아니라 전치사 <b>because of</b>로 고쳐야 한다. ② causes의 주어가 없는 불완전한 절이 이어지므로, 완전한 절을 이끄는 if가 아니라 불완전한 절을 이끄는 what이 와야 한다. 따라서 if가 아니라 <b>what</b>이 되어야 한다.</p><div class="gc" id="gc1"><span class="gl">그래머콕 개념</span><a href="https://nolbada.github.io/via-mid/m/grammarcock/?c=093-H1&amp;back=https%3A%2F%2Fnolbada.github.io%2Fvia%2Feobeop-jedaero%2Fch09-p111.html%23gc1">접속사 vs 전치사 (while·during)</a><a href="https://nolbada.github.io/via-mid/m/grammarcock/?c=040&amp;back=https%3A%2F%2Fnolbada.github.io%2Fvia%2Feobeop-jedaero%2Fch09-p111.html%23gc1">부사절 접속사</a><a href="https://nolbada.github.io/via-mid/m/grammarcock/?c=039&amp;back=https%3A%2F%2Fnolbada.github.io%2Fvia%2Feobeop-jedaero%2Fch09-p111.html%23gc1">명사절 접속사 that</a></div><details class="anl"><summary>🔍 문장 분석 · 노트정리</summary><div class="in"><div class="en">If some people sink into debt because of overspending or credit card abuse, <mark>is</mark> <mark>it</mark> solely <mark>their fault</mark>?</div><span class="lab">뼈대 (노란 줄)</span><div>그것은 그들만의 잘못일까?</div><span class="lab">문형</span><span class="form">2형식</span><div class="mrow"><span class="mlab">닮은꼴</span><span class="rc s">I<i>주어</i></span><span class="rc v">am<i>동사</i></span><span class="rc c">happy<i>보어</i></span><span class="rel">I = happy</span></div><div class="mrow"><span class="mlab">이 문장</span><span class="rc x">If some people sink into debt because of overspending or credit card abuse,<i>덧붙는 말</i></span><span class="rc v">is<i>동사</i></span><span class="rc s">it<i>주어</i></span><span class="rc x">solely<i>덧붙는 말</i></span><span class="rc c">their fault?<i>보어</i></span><span class="rel">it = their fault</span></div><span class="lab">풀어보기</span><div class="easy"><p><span class="q">먼저 뼈대부터:</span><span class="e">is it their fault?</span>그것은 그들의 잘못일까?</p><p><span class="q">만약 어떤 일이면?</span><span class="e">If some people sink into debt</span>만약 어떤 사람들이 빚더미에 빠진다면.</p><p><span class="q">왜 빠졌나?</span><span class="e">because of overspending or credit card abuse</span>과소비나 신용카드 남용 때문에.</p><p class="sum">요약: 빚은 과소비 때문이라도 오직 개인 탓일까?</p></div><div class="note"><span class="tag">✍ 노트정리</span><div class="hint">알고 있어도 노트에 한 번만 직접 쓰세요.</div><ol><li><b>① because of + 명사(구)</b>, <b>because + 주어+동사(절)</b>. overspending or credit card abuse는 명사구 → because of</li><li><b>② what + 불완전한 절</b>: 'what causes this kind of problem'에서 causes(일으키다)의 주어가 없으니 what(~하는 것). if ✕</li></ol><label><input type="checkbox" data-nt="1"> 노트에 썼어요</label></div></div></details>
-</div><hr class="sep"><div class="nav"><a href="ch09-p110.html">◀ p.110</a><a class="gray" href="index.html">목록</a><a href="ch09-p112-113.html">p.112-113 ▶</a></div>
-
-<script id="anl-js">
-(function(){var p=location.pathname.split('/').pop();document.querySelectorAll('.anl input[data-nt]').forEach(function(c){var k='nt:'+p+':'+c.dataset.nt;try{c.checked=localStorage.getItem(k)==='1';}catch(e){}c.onchange=function(){try{localStorage.setItem(k,c.checked?'1':'0');}catch(e){}};});})();
+<div class="wrap"><div class="hd"><h1>CHAPTER 09 · p.111</h1><span class="sub">어법변형문제 정답 및 해설</span></div>
+<div class="bar">p.111 정답 및 해설 (내신 서술형 대비 제대로)</div>
+<div class="sub">문항 7</div>
+<div class="quick"><b>빠른정답</b><br>7) why life has prepared/which time passes → <b>what life has prepared/how time passes</b> / 8) because overspending/if causes → <b>because of overspending/what causes</b></div>
+<div class="item"><div class="num">문항 1</div><div class="card"><p class="lbl">문제</p><div class="q"><span class="w" data-w="it">It</span> <span class="w" data-w="is">is</span> <span class="w" data-w="impossible">impossible</span> <span class="w" data-w="to">to</span> <span class="w" data-w="know">know</span> <span class="wrong">why life has prepared</span> <span class="w" data-w="for">for</span> <span class="w" data-w="us">us</span>, <span class="w" data-w="so">so</span> <span class="w" data-w="it">it</span> <span class="w" data-w="is">is</span> <span class="w" data-w="essential">essential</span> <span class="w" data-w="to">to</span> <span class="w" data-w="enjoy">enjoy</span> <span class="w" data-w="every">every</span> <span class="w" data-w="day">day</span>.</div><div class="mute" style="margin-top:6px">모르는 단어는 눌러서 뜻 확인</div></div><div class="card" style="margin-top:10px"><div class="sec"><h4>정답</h4><div class="ans"><s>why life has prepared / which time passes</s><i>→</i><b>what life has prepared / how time passes</b></div><span class="badge" style="background:#db2777;">1) 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞 (Chapter 09 POINT 3) / 2) 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞 (Chapter 09 POINT 3)</span></div><div class="sec"><h4>직독직해</h4><div class="sl"><div class="r"><b><span class="w" data-w="it">It</span> <span class="w" data-w="is">is</span> <span class="w" data-w="impossible">impossible</span> <span class="w" data-w="to">to</span> <span class="w" data-w="know">know</span></b><span>알기란 불가능하다</span></div><div class="r"><b><span class="w" data-w="what">what</span> <span class="w" data-w="life">life</span> <span class="w" data-w="has">has</span> <span class="w" data-w="prepared">prepared</span> <span class="w" data-w="for">for</span> <span class="w" data-w="us">us</span>,</b><span>삶이 우리를 위해 무엇을 준비해 두었는지,</span></div><div class="r"><b><span class="w" data-w="so">so</span> <span class="w" data-w="it">it</span> <span class="w" data-w="is">is</span> <span class="w" data-w="essential">essential</span> <span class="w" data-w="to">to</span> <span class="w" data-w="enjoy">enjoy</span> <span class="w" data-w="every">every</span> <span class="w" data-w="day">day</span>.</b><span>그러니 매일을 즐기는 것이 필수적이다.</span></div></div></div><div class="sec"><h4>자연스러운 해석</h4><div class="nat">삶이 우리를 위해 무엇을 준비해 두었는지 알 수는 없으니, 매일을 즐기는 것이 필수적이다.</div></div><div class="sec"><h4>한 줄 정리</h4><div class="gist">앞날은 알 수 없으니 오늘 하루하루를 즐기는 게 중요하다는 얘기예요.</div></div><div class="post"><div class="lb">오답노트에는 이것만</div><div class="fm">what<i>+</i>목적어 빠진 문장</div><div class="mp"><div class="cl"><span>쉬운 예</span><span>이번 문장</span></div><div class="ph"><div class="pl">접속사</div><div class="ce">what</div><div class="ct">what</div></div><div class="ph"><div class="pl">이어지는 절</div><div class="ce">he wants</div><div class="ct">life has prepared</div></div><div class="k">쉬운 예 해석 · 나는 그가 무엇을 원하는지 알아요(know 알다, want 원하다).</div><div class="k">이번 문장 해석 · 삶이 준비해 둔 것</div><div class="bd"><small>틀린 예</small>I know why he wants.</div><div class="k">(wants(원하다) 뒤에 원하는 것이 빠져 있어요. 이유를 뜻하는 why는 빠진 게 없는 문장에 써요)</div><div class="bd alt"><small>why 가 맞는 예</small>I know why he is late.</div><div class="k">나는 그가 왜 늦는지 알아요(he is late는 빠진 게 없는 문장이라 why, late 늦은).</div></div></div><div class="sec"><h4>왜 그럴까요</h4><div class="tx">has prepared(prepare 준비하다의 현재완료) 뒤에는 준비한 '무엇'이 빠져 있어요. 빠진 목적어 자리까지 채워 주는 말이 what(무엇)이에요. why(왜)는 빠진 게 없는 문장 앞에서 이유를 물을 때 써요.</div></div><div class="sec trend"><b>출제 3위 · that[which] vs what</b><br>31년간 71회 나왔어요.<br>뒤에 빠진 게 있으면 what, 다 있으면 why·how 같은 말이에요</div><span class="badge" style="display:none">1) 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞 (Chapter 09 POINT 3) / 2) 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞 (Chapter 09 POINT 3)</span><details class="anl"></details></div></div>
+<div class="sub">문항 8</div>
+<div class="item"><div class="num">문항 2</div><div class="card"><p class="lbl">문제</p><div class="q"><span class="w" data-w="if">If</span> <span class="w" data-w="some">some</span> <span class="w" data-w="people">people</span> <span class="w" data-w="sink">sink</span> <span class="w" data-w="into">into</span> <span class="w" data-w="debt">debt</span> <span class="wrong">because overspending</span> <span class="w" data-w="or">or</span> <span class="w" data-w="credit">credit</span> <span class="w" data-w="card">card</span> <span class="w" data-w="abuse">abuse</span>, <span class="w" data-w="is">is</span> <span class="w" data-w="it">it</span> <span class="w" data-w="solely">solely</span> <span class="w" data-w="their">their</span> <span class="w" data-w="fault">fault</span>?</div><div class="mute" style="margin-top:6px">모르는 단어는 눌러서 뜻 확인</div></div><div class="card" style="margin-top:10px"><div class="sec"><h4>정답</h4><div class="ans"><s>because overspending / if causes</s><i>→</i><b>because of overspending / what causes</b></div><span class="badge" style="background:#db2777;">1) 부사절 접속사 vs. 전치사 (Chapter 09 POINT 1) / 2) 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞 (Chapter 09 POINT 3)</span></div><div class="sec"><h4>직독직해</h4><div class="sl"><div class="r"><b><span class="w" data-w="if">If</span> <span class="w" data-w="some">some</span> <span class="w" data-w="people">people</span> <span class="w" data-w="sink">sink</span> <span class="w" data-w="into">into</span> <span class="w" data-w="debt">debt</span></b><span>만약 일부 사람들이 빚에 빠진다면</span></div><div class="r"><b><span class="w" data-w="because">because</span> <span class="w" data-w="of">of</span> <span class="w" data-w="overspending">overspending</span> <span class="w" data-w="or">or</span> <span class="w" data-w="credit">credit</span> <span class="w" data-w="card">card</span> <span class="w" data-w="abuse">abuse</span>,</b><span>과소비나 신용카드 남용 때문에,</span></div><div class="r"><b><span class="w" data-w="is">is</span> <span class="w" data-w="it">it</span> <span class="w" data-w="solely">solely</span> <span class="w" data-w="their">their</span> <span class="w" data-w="fault">fault</span>?</b><span>그것은 오로지 그들의 잘못일까?</span></div></div></div><div class="sec"><h4>자연스러운 해석</h4><div class="nat">만약 일부 사람들이 과소비나 신용카드 남용 때문에 빚에 빠진다면, 그것은 오로지 그들의 잘못일까?</div></div><div class="sec"><h4>한 줄 정리</h4><div class="gist">과소비 때문에 빚진 사람이 있다면 그게 전부 그 사람 탓인지 묻는 얘기예요.</div></div><div class="post"><div class="lb">오답노트에는 이것만</div><div class="fm">because of<i>+</i>명사 / because<i>+</i>문장</div><div class="mp"><div class="cl"><span>쉬운 예</span><span>이번 문장</span></div><div class="ph"><div class="pl">~ 때문에</div><div class="ce">because of</div><div class="ct">because of</div></div><div class="ph"><div class="pl">이어지는 명사</div><div class="ce">the gift</div><div class="ct">overspending</div></div><div class="k">쉬운 예 해석 · 그녀는 선물 때문에 웃었어요(smile 웃다, gift 선물).</div><div class="k">이번 문장 해석 · 과소비 때문에</div><div class="bd"><small>틀린 예</small>She smiled because the gift.</div><div class="k">(because 뒤에는 문장이 와요. the gift는 명사라서 because of예요)</div><div class="bd alt"><small>because 가 맞는 예</small>She smiled because she got a gift.</div><div class="k">그녀는 선물을 받아서 웃었어요(she got a gift는 문장이라서 because, get 받다).</div></div></div><div class="sec"><h4>왜 그럴까요</h4><div class="tx">overspending or credit card abuse(과소비나 신용카드 남용)는 주어와 동사가 없는 명사 덩어리예요. 명사 앞에서 '~ 때문에'는 because of예요. because(~이기 때문에)는 뒤에 문장이 필요해요.</div></div><div class="sec trend"><b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>명사 앞은 because of, 문장 앞은 because예요</div><span class="badge" style="display:none">1) 부사절 접속사 vs. 전치사 (Chapter 09 POINT 1) / 2) 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞 (Chapter 09 POINT 3)</span><details class="anl"></details></div></div>
+<div class="navb"><a href="ch09-p110.html">&laquo; p.110</a><a class="gray" href="index.html">목록</a><a href="ch09-p112-113.html">p.112-113 &raquo;</a></div></div>
+<div class="sheet hide" id="sh"></div>
+<script>var D=[{"impossible": "불가능한", "know": "알다", "life": "삶", "prepared": "prepare(준비하다)의 과거분사", "essential": "필수적인", "enjoy": "즐기다", "every": "모든", "day": "날, 하루"}, {"sink": "가라앉다, 빠지다", "debt": "빚", "overspending": "과소비", "credit": "신용", "card": "카드", "abuse": "남용", "solely": "오로지", "fault": "잘못"}];
+document.addEventListener("click",function(ev){var w=ev.target.closest&&ev.target.closest(".w");if(!w)return;var it=w.closest(".item"),i=[].indexOf.call(document.querySelectorAll(".item"),it),d=D[i],k=w.dataset.w,v=d[k];
+ if(v==null){for(var key in d){if(d[key].indexOf(":")>0&&d[key].split(":")[0].toLowerCase().split(" ").indexOf(k)>-1&&key!=k){v=d[key];break}}}
+ var sh=document.getElementById("sh");if(v==null){sh.classList.add("hide");return}
+ sh.innerHTML="<b>"+w.textContent+"</b><small>"+v+"</small>";sh.classList.remove("hide");});
+document.addEventListener("scroll",function(){document.getElementById("sh").classList.add("hide")},{passive:true});
 </script>
-</body>
-</html>
+</body></html>
