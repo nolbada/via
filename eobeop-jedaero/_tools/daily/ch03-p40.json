@@ -294,12 +294,12 @@
   "mp": [
    [
     "앞 명사",
-    "a song",
+    "a game",
     "a rule"
    ],
    [
     "that 뒤 동사",
-    "that is sung",
+    "that is played",
     "that is followed"
    ],
    [
@@ -308,14 +308,14 @@
     "by experienced writers"
    ]
   ],
-  "ex": "This is a song that is sung by kids.",
-  "exko": "이것은 아이들이 부르는 노래예요(song 노래, sing 부르다).",
+  "ex": "This is a game that is played by kids.",
+  "exko": "이것은 아이들이 하는 게임이에요(game 게임, play 하다, 놀다).",
   "tko": "경력 있는 작가들이 지키는 규칙",
-  "bad": "This is a song that sings by kids.",
-  "badko": "(song(노래)은 부르는 쪽이 아니라 아이들에게 '불리는' 쪽이라서 sings가 아니라 is sung이에요)",
+  "bad": "This is a game that plays by kids.",
+  "badko": "(game(게임)은 하는 쪽이 아니라 아이들이 '하는' 대상이라서 plays가 아니라 is played예요)",
   "altw": "능동",
-  "alt": "He is a boy who sings well.",
-  "altko": "그는 노래를 잘하는 소년이에요(boy 소년이 직접 노래하니까 능동 sings).",
+  "alt": "He is a boy who plays the game well.",
+  "altko": "그는 그 게임을 잘하는 소년이에요(boy 소년이 직접 하니까 능동 plays).",
   "why": "a rule(규칙)은 스스로 따르는 게 아니라 작가들이 '따르는' 대상이에요. 그래서 '지켜진다'는 뜻의 is followed(follow 따르다의 수동)가 맞아요. by experienced writers(경력 있는 작가들에 의해)도 힌트예요.",
   "d": {
    "errors": "error(오류)의 복수형",
