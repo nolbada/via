@@ -1,0 +1,556 @@
+[
+ {
+  "dk": [
+   [
+    "Most of the paintings in this museum",
+    "이 박물관에 있는 그림 대부분은"
+   ],
+   [
+    "were created by talented local artists,",
+    "재능 있는 지역 화가들에 의해 그려졌다"
+   ],
+   [
+    "who were inspired by the nature around their town.",
+    "마을 주변의 자연에서 영감을 받은."
+   ]
+  ],
+  "gist": "이 박물관 그림 대부분은 자연에서 영감을 받은 마을 화가들이 그렸다는 얘기예요.",
+  "fm": "사람 + who (which X)",
+  "mp": [
+   [
+    "앞 명사 (사람)",
+    "a girl",
+    "talented local artists"
+   ],
+   [
+    "관계대명사",
+    "who",
+    "who"
+   ]
+  ],
+  "ex": "I know a girl who sings well.",
+  "exko": "나는 노래를 잘하는 소녀를 알아요(girl 소녀, sing 노래하다).",
+  "tko": "(화가들) 영감을 받은",
+  "bad": "I know a girl which sings well.",
+  "badko": "(girl(소녀)은 사람이라서 which가 아니라 who예요)",
+  "altw": "which",
+  "alt": "I have a dog which barks loudly.",
+  "altko": "나는 크게 짖는 개가 있어요(dog 개는 동물이라서 which, bark 짖다).",
+  "why": "who와 which는 앞에 오는 명사를 보고 골라요. artists(화가들)는 사람이니까 who예요. which(어떤 것)는 물건이나 동물 뒤에 써요.",
+  "trend": "<b>출제 2위 · 관계대명사와 관계부사</b><br>31년간 99회 나왔어요.<br>앞 명사가 사람이면 who, 사물이면 which예요",
+  "d": {
+   "paintings": "painting(그림)의 복수형",
+   "museum": "박물관",
+   "created": "create(만들다, 그리다)의 과거분사형",
+   "talented": "재능 있는",
+   "local": "지역의",
+   "artists": "artist(화가)의 복수형",
+   "inspired": "inspire(영감을 주다)의 과거분사형",
+   "nature": "자연",
+   "around": "~ 주변의",
+   "town": "마을"
+  },
+  "ko": "이 박물관에 있는 그림 대부분은 마을 주변의 자연에서 영감을 받은 재능 있는 지역 화가들이 그렸다."
+ },
+ {
+  "dk": [
+   [
+    "Most of the paintings in this museum",
+    "이 박물관에 있는 그림 대부분은"
+   ],
+   [
+    "were created by talented local artists,",
+    "재능 있는 지역 화가들에 의해 그려졌다"
+   ],
+   [
+    "who were inspired by the nature around their town.",
+    "마을 주변의 자연에서 영감을 받은."
+   ]
+  ],
+  "gist": "이 박물관 그림 대부분은 자연에서 영감을 받은 마을 화가들이 그렸다는 얘기예요.",
+  "fm": "받는 쪽이면 be + p.p. (수동)",
+  "mp": [
+   [
+    "받는 쪽",
+    "The kids",
+    "who (=artists)"
+   ],
+   [
+    "동사",
+    "were taught",
+    "were inspired"
+   ]
+  ],
+  "ex": "The kids were taught by Ms. Kim.",
+  "exko": "그 아이들은 김 선생님께 배웠어요(teach 가르치다 → taught).",
+  "tko": "영감을 받았다",
+  "bad": "The kids taught Ms. Kim.",
+  "badko": "(아이들이 선생님을 '가르쳤다'는 뜻이 돼요. 아이들은 가르침을 받는 쪽이라서 were taught ... by가 필요해요)",
+  "altw": "inspired",
+  "alt": "The artists inspired many people.",
+  "altko": "그 화가들은 많은 사람에게 영감을 줬어요(화가들이 영감을 주는 쪽이라서 능동 inspired).",
+  "why": "who가 가리키는 artists(화가들)는 자연에게서 영감을 '받는' 쪽이에요. 그래서 inspire(영감을 주다)는 '받다'를 뜻하는 were inspired가 돼요. 뒤의 by the nature(자연에 의해)도 힌트예요.",
+  "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>주어가 동작을 받는 쪽이면 be + p.p.예요. by 이하가 힌트가 돼요",
+  "d": {
+   "paintings": "painting(그림)의 복수형",
+   "museum": "박물관",
+   "created": "create(만들다, 그리다)의 과거분사형",
+   "talented": "재능 있는",
+   "local": "지역의",
+   "artists": "artist(화가)의 복수형",
+   "inspired": "inspire(영감을 주다)의 과거분사형",
+   "nature": "자연",
+   "around": "~ 주변의",
+   "town": "마을"
+  },
+  "ko": "이 박물관에 있는 그림 대부분은 마을 주변의 자연에서 영감을 받은 재능 있는 지역 화가들이 그렸다."
+ },
+ {
+  "dk": [
+   [
+    "Colleges in most places around the country",
+    "전국 대부분 지역의 대학들은"
+   ],
+   [
+    "have fewer students today than they did 10 years ago,",
+    "10년 전보다 오늘날 학생 수가 더 적어서"
+   ],
+   [
+    "so they are trying to attract more applicants",
+    "더 많은 지원자를 끌어들이려고 노력하고 있고"
+   ],
+   [
+    "and provide better programs.",
+    "더 나은 프로그램을 제공하려고."
+   ]
+  ],
+  "gist": "학생이 줄어든 대학들이 지원자를 더 끌어오려고 애쓴다는 얘기예요.",
+  "fm": "try + to 동사원형 (노력하다)",
+  "mp": [
+   [
+    "동사",
+    "try",
+    "are trying"
+   ],
+   [
+    "뒤에 오는 말",
+    "to get up",
+    "to attract"
+   ]
+  ],
+  "ex": "I try to get up early.",
+  "exko": "나는 일찍 일어나려고 노력해요(get up 일어나다, early 일찍).",
+  "tko": "끌어들이려고 노력하고 있다",
+  "bad": "I try getting up early.",
+  "badko": "(노력한다는 뜻이면 to get up이에요. getting up은 '시험 삼아 해 보다'가 돼요)",
+  "altw": "-ing",
+  "alt": "Let's try eating this soup.",
+  "altko": "이 수프를 한번 먹어 봐요(eat 먹다, try + -ing는 '시험 삼아 해 보다').",
+  "why": "try to 동사원형은 '~하려고 애쓰다'예요. 지원자를 끌어들이려고 '애쓰는' 거니까 to attract(attract 끌어들이다)예요. attracting을 쓰면 '시험 삼아 끌어들여 보다'가 돼서 뜻이 어색해요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>try to는 '애쓰다', try -ing는 '시험 삼아 해 보다'로 뜻이 달라요",
+  "d": {
+   "colleges": "college(대학)의 복수형",
+   "places": "place(곳)의 복수형",
+   "around": "~ 전체에",
+   "country": "나라",
+   "fewer": "few(적은)의 비교급, 더 적은",
+   "students": "student(학생)의 복수형",
+   "today": "오늘날",
+   "ago": "~ 전에",
+   "trying": "try(노력하다)의 -ing형",
+   "attract": "끌어들이다",
+   "applicants": "applicant(지원자)의 복수형",
+   "provide": "제공하다",
+   "better": "good(좋은)의 비교급, 더 나은",
+   "programs": "program(프로그램)의 복수형"
+  },
+  "ko": "[지문 해석] 대학생 수는 해마다 계속 줄고 있다. 전국 대부분 지역의 대학들은 10년 전보다 오늘날 학생 수가 더 적어서, 더 많은 지원자를 끌어들이고 더 나은 프로그램을 제공하려고 노력하고 있다."
+ },
+ {
+  "dk": [
+   [
+    "Colleges in most places around the country",
+    "전국 대부분 지역의 대학들은"
+   ],
+   [
+    "have fewer students today than they did 10 years ago,",
+    "10년 전보다 오늘날 학생 수가 더 적어서"
+   ],
+   [
+    "so they are trying to attract more applicants",
+    "더 많은 지원자를 끌어들이려고 노력하고 있고"
+   ],
+   [
+    "and provide better programs.",
+    "더 나은 프로그램을 제공하려고."
+   ]
+  ],
+  "gist": "학생이 줄어든 대학들이 지원자를 더 끌어오려고 애쓴다는 얘기예요.",
+  "fm": "A and B (같은 모양)",
+  "mp": [
+   [
+    "and 앞 말",
+    "to open",
+    "to attract"
+   ],
+   [
+    "and 뒤 말",
+    "(to) close",
+    "(to) provide"
+   ]
+  ],
+  "ex": "I want to open and close the door.",
+  "exko": "나는 문을 열고 닫고 싶어요(want 원하다, open 열다, close 닫다).",
+  "tko": "(to) 제공하다",
+  "bad": "I want to open and closing the door.",
+  "badko": "(앞이 to open이라서 closing이 아니라 close예요)",
+  "altw": "providing",
+  "alt": "She enjoys reading and writing.",
+  "altko": "그녀는 읽기와 쓰기를 즐겨요(enjoy 즐기다, 앞이 reading이라서 writing도 -ing).",
+  "why": "and는 같은 모양끼리 이어 줘요. 앞이 to attract(attract 끌어들이다)니까 뒤도 provide(제공하다)를 같은 모양으로 맞춰요. 두 번째 to는 빼도 돼요. providing은 모양이 달라서 안 돼요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and·or 앞뒤를 보고 같은 모양인지 확인해요",
+  "d": {
+   "colleges": "college(대학)의 복수형",
+   "places": "place(곳)의 복수형",
+   "around": "~ 전체에",
+   "country": "나라",
+   "fewer": "few(적은)의 비교급, 더 적은",
+   "students": "student(학생)의 복수형",
+   "today": "오늘날",
+   "ago": "~ 전에",
+   "trying": "try(노력하다)의 -ing형",
+   "attract": "끌어들이다",
+   "applicants": "applicant(지원자)의 복수형",
+   "provide": "제공하다",
+   "better": "good(좋은)의 비교급, 더 나은",
+   "programs": "program(프로그램)의 복수형"
+  },
+  "ko": "전국 대부분 지역의 대학들은 10년 전보다 오늘날 학생 수가 더 적어서, 더 많은 지원자를 끌어들이고 더 나은 프로그램을 제공하려고 노력하고 있다."
+ },
+ {
+  "dk": [
+   [
+    "This way of recycling plastic products",
+    "플라스틱 제품을 재활용하는 이런 방식은"
+   ],
+   [
+    "helps to protect the environment",
+    "환경을 보호하는 데 도움이 된다"
+   ],
+   [
+    "by reducing waste and saving resources.",
+    "쓰레기를 줄이고 자원을 아끼는 방법으로."
+   ]
+  ],
+  "gist": "플라스틱을 재활용하면 쓰레기도 줄고 자원도 아껴서 환경에 도움이 된다는 얘기예요.",
+  "fm": "A and B (같은 모양)",
+  "mp": [
+   [
+    "and 앞 말",
+    "cooking",
+    "reducing waste"
+   ],
+   [
+    "and 뒤 말",
+    "cleaning",
+    "saving resources"
+   ]
+  ],
+  "ex": "She helps by cooking and cleaning.",
+  "exko": "그녀는 요리하고 청소해서 도와요(help 돕다, cook 요리하다, clean 청소하다).",
+  "tko": "자원을 아끼는",
+  "bad": "She helps by cooking and clean.",
+  "badko": "(by 뒤 cooking(요리하기)이 -ing라서 clean이 아니라 cleaning이에요)",
+  "altw": "save",
+  "alt": "I want to cook and clean.",
+  "altko": "나는 요리하고 청소하고 싶어요(want to 뒤에서는 cook과 clean이 둘 다 원형).",
+  "why": "by(~하는 방법으로) 뒤에는 -ing가 오고, and로 이은 말도 같은 모양이어야 해요. 앞이 reducing(reduce 줄이다)이니 뒤도 saving(save 아끼다)이에요. save처럼 원형을 쓰면 모양이 달라요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and 앞이 -ing면 뒤도 -ing인지 확인해요",
+  "d": {
+   "way": "방식",
+   "recycling": "recycle(재활용하다)의 -ing형",
+   "plastic": "플라스틱",
+   "products": "product(제품)의 복수형",
+   "helps": "help(돕다)의 3인칭 단수형",
+   "protect": "보호하다",
+   "environment": "환경",
+   "reducing": "reduce(줄이다)의 -ing형",
+   "waste": "쓰레기, 낭비",
+   "saving": "save(아끼다)의 -ing형",
+   "resources": "resource(자원)의 복수형"
+  },
+  "ko": "이렇게 플라스틱 제품을 재활용하는 방식은 쓰레기를 줄이고 자원을 아끼는 방법으로 환경을 보호하는 데 도움이 된다."
+ },
+ {
+  "dk": [
+   [
+    "Solid rubber balls are great for such games,",
+    "단단한 고무공은 이런 경기에 아주 좋지만"
+   ],
+   [
+    "while balls made of clay do not bounce at all,",
+    "점토로 만든 공은 전혀 튀지 않아서"
+   ],
+   [
+    "so they are not suitable.",
+    "적합하지 않다."
+   ]
+  ],
+  "gist": "단단한 고무공은 경기에 좋지만 점토 공은 튀지 않아서 안 맞는다는 얘기예요.",
+  "fm": "do not + 동사원형 (-ing X)",
+  "mp": [
+   [
+    "조동사 부정",
+    "do not",
+    "do not"
+   ],
+   [
+    "동사원형",
+    "jump",
+    "bounce"
+   ]
+  ],
+  "ex": "Rocks do not jump.",
+  "exko": "돌은 뛰지 않아요(rock 돌, jump 뛰다).",
+  "tko": "전혀 튀지 않는다",
+  "bad": "Rocks do not jumping.",
+  "badko": "(do not 뒤에는 jump(뛰다) 원형이 와요. jumping은 동사 자리에 못 와요)",
+  "altw": "-ing",
+  "alt": "Balls are bouncing now.",
+  "altko": "공들이 지금 튀고 있어요(are 뒤에 -ing를 쓰면 '~하고 있다'는 진행형이에요).",
+  "why": "do not(~하지 않다) 바로 뒤는 동사원형 자리예요. bounce(튀다)를 그대로 써요. -ing는 혼자서는 진짜 동사가 못 돼요. 주어 balls(공들)가 여러 개라서 do를 쓴 것도 맞아요.",
+  "trend": "<b>출제 1위 · 정동사 vs 준동사</b><br>31년간 113회 나왔어요.<br>do·does·did 뒤에는 동사원형이에요",
+  "d": {
+   "solid": "단단한",
+   "rubber": "고무",
+   "balls": "ball(공)의 복수형",
+   "great": "아주 좋은",
+   "such": "이런",
+   "games": "game(경기)의 복수형",
+   "while": "반면에",
+   "made": "make(만들다)의 과거분사형",
+   "clay": "점토",
+   "bounce": "튀다",
+   "all": "at all: 전혀",
+   "suitable": "적합한"
+  },
+  "ko": "단단한 고무공은 이런 경기에 아주 좋지만, 점토로 만든 공은 전혀 튀지 않아서 적합하지 않다."
+ },
+ {
+  "dk": [
+   [
+    "Solid rubber balls are great for such games,",
+    "단단한 고무공은 이런 경기에 아주 좋지만"
+   ],
+   [
+    "while balls made of clay do not bounce at all,",
+    "점토로 만든 공은 전혀 튀지 않아서"
+   ],
+   [
+    "so they are not suitable.",
+    "적합하지 않다."
+   ]
+  ],
+  "gist": "단단한 고무공은 경기에 좋지만 점토 공은 튀지 않아서 안 맞는다는 얘기예요.",
+  "fm": "be + 형용사 (부사 X)",
+  "mp": [
+   [
+    "be동사",
+    "is",
+    "are not"
+   ],
+   [
+    "보어",
+    "safe",
+    "suitable"
+   ]
+  ],
+  "ex": "The toy is safe.",
+  "exko": "그 장난감은 안전해요(toy 장난감, safe 안전한).",
+  "tko": "적합하지 않다",
+  "bad": "The toy is safely.",
+  "badko": "(is 뒤에서 상태를 말하는 자리라서 safely(안전하게)가 아니라 safe(안전한)예요)",
+  "altw": "suitably",
+  "alt": "He drives safely.",
+  "altko": "그는 안전하게 운전해요(drive 운전하다를 꾸미니까 부사 safely).",
+  "why": "are not 뒤에는 '어떤 상태인지'를 말하는 형용사가 와요. suitable(적합한)은 형용사라서 그대로 써요. suitably(적합하게)는 동사를 꾸미는 말이라 여기서는 안 맞아요.",
+  "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>be동사 뒤는 상태를 말하는 형용사 자리예요",
+  "d": {
+   "solid": "단단한",
+   "rubber": "고무",
+   "balls": "ball(공)의 복수형",
+   "great": "아주 좋은",
+   "such": "이런",
+   "games": "game(경기)의 복수형",
+   "while": "반면에",
+   "made": "make(만들다)의 과거분사형",
+   "clay": "점토",
+   "bounce": "튀다",
+   "all": "at all: 전혀",
+   "suitable": "적합한",
+   "suitably": "적합하게"
+  },
+  "ko": "단단한 고무공은 이런 경기에 아주 좋지만, 점토로 만든 공은 전혀 튀지 않아서 적합하지 않다."
+ },
+ {
+  "dk": [
+   [
+    "As a result, a train service running on schedule",
+    "그 결과 일정대로 운행하는 열차 서비스는"
+   ],
+   [
+    "looks more practical to them",
+    "그들에게 더 실용적으로 보이고"
+   ],
+   [
+    "and allows them to avoid heavy traffic.",
+    "그들이 극심한 교통체증을 피할 수 있게 해 준다."
+   ]
+  ],
+  "gist": "정해진 시간에 오는 열차가 더 쓸 만해 보이고 교통체증도 피하게 해 준다는 얘기예요.",
+  "fm": "look + 형용사 (부사 X)",
+  "mp": [
+   [
+    "동사",
+    "looks",
+    "looks"
+   ],
+   [
+    "뒤에 오는 말",
+    "nice",
+    "more practical"
+   ]
+  ],
+  "ex": "The cake looks nice.",
+  "exko": "그 케이크는 맛있어 보여요(cake 케이크, nice 좋은).",
+  "tko": "더 실용적으로 보인다",
+  "bad": "The cake looks nicely.",
+  "badko": "(look(~해 보이다) 뒤는 모습을 말하는 자리라서 nicely(멋지게)가 아니라 nice(좋은)예요)",
+  "altw": "practically",
+  "alt": "He looked at it carefully.",
+  "altko": "그는 그것을 주의 깊게 봤어요(look at(보다)를 꾸미니까 부사 carefully).",
+  "why": "look은 '무엇을 보다'가 아니라 '~해 보이다'로 쓰일 때 뒤에 형용사가 와요. 기차 서비스가 어떻게 '보이는지'를 말하니까 practical(실용적인)이에요. practically는 부사라서 안 돼요.",
+  "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>look·feel·seem 뒤에는 형용사를 먼저 떠올려요",
+  "d": {
+   "result": "결과",
+   "train": "기차",
+   "service": "서비스",
+   "running": "run(운행하다)의 -ing형",
+   "schedule": "일정",
+   "looks": "look(~해 보이다)의 3인칭 단수형",
+   "practical": "실용적인",
+   "practically": "실용적으로",
+   "allows": "allow(허락하다, 가능하게 하다)의 3인칭 단수형",
+   "avoid": "피하다",
+   "heavy": "극심한",
+   "traffic": "교통"
+  },
+  "ko": "그 결과, 일정대로 운행하는 열차 서비스가 그들에게 더 실용적으로 보이고, 그들이 극심한 교통체증을 피할 수 있게 해 준다."
+ },
+ {
+  "dk": [
+   [
+    "As a result, a train service running on schedule",
+    "그 결과 일정대로 운행하는 열차 서비스는"
+   ],
+   [
+    "looks more practical to them",
+    "그들에게 더 실용적으로 보이고"
+   ],
+   [
+    "and allows them to avoid heavy traffic.",
+    "그들이 극심한 교통체증을 피할 수 있게 해 준다."
+   ]
+  ],
+  "gist": "정해진 시간에 오는 열차가 더 쓸 만해 보이고 교통체증도 피하게 해 준다는 얘기예요.",
+  "fm": "allow + 사람 + to 동사원형",
+  "mp": [
+   [
+    "동사 + 목적어",
+    "allows me",
+    "allows them"
+   ],
+   [
+    "to 동사원형",
+    "to go",
+    "to avoid"
+   ]
+  ],
+  "ex": "Mom allows me to play.",
+  "exko": "엄마는 내가 노는 걸 허락해요(allow 허락하다, play 놀다).",
+  "tko": "피할 수 있게",
+  "bad": "Mom allows me playing.",
+  "badko": "(allow(허락하다) 뒤에는 playing이 아니라 to play가 와요)",
+  "altw": "-ing",
+  "alt": "Mom enjoys playing games.",
+  "altko": "엄마는 게임하는 걸 즐겨요(enjoy 즐기다는 바로 뒤에 -ing를 써요).",
+  "why": "allow(허락하다) 뒤에는 '사람 + to 동사원형'이 와요. 'them이 avoid(피하다)할 수 있게 해 준다'는 뜻이라 to avoid예요. avoiding을 쓰면 allow의 짝이 맞지 않아요.",
+  "trend": "<b>출제 10위 · 목적격보어/준동사</b><br>31년간 30회 나왔어요.<br>allow·want·ask 뒤에는 '사람 + to 동사원형'을 떠올려요",
+  "d": {
+   "result": "결과",
+   "train": "기차",
+   "service": "서비스",
+   "running": "run(운행하다)의 -ing형",
+   "schedule": "일정",
+   "looks": "look(~해 보이다)의 3인칭 단수형",
+   "practical": "실용적인",
+   "allows": "allow(허락하다, 가능하게 하다)의 3인칭 단수형",
+   "avoid": "피하다",
+   "heavy": "극심한",
+   "traffic": "교통"
+  },
+  "ko": "그 결과, 일정대로 운행하는 열차 서비스가 그들에게 더 실용적으로 보이고, 그들이 극심한 교통체증을 피할 수 있게 해 준다."
+ },
+ {
+  "dk": [
+   [
+    "Using this technique with their characters",
+    "캐릭터에 이 기법을 쓰는 것은"
+   ],
+   [
+    "allows them to appeal to people’s emotions",
+    "그들이 사람들의 감정에 호소할 수 있게 해 준다"
+   ],
+   [
+    "more easily.",
+    "더 쉽게."
+   ]
+  ],
+  "gist": "캐릭터에 이 기법을 쓰면 사람들의 마음을 더 쉽게 움직일 수 있다는 얘기예요.",
+  "fm": "동사를 꾸미면 부사 (-ly)",
+  "mp": [
+   [
+    "꾸밈받는 말",
+    "speak",
+    "appeal to emotions"
+   ],
+   [
+    "꾸미는 부사",
+    "clearly",
+    "more easily"
+   ]
+  ],
+  "ex": "He speaks clearly.",
+  "exko": "그는 또렷하게 말해요(speak 말하다, clearly 또렷하게).",
+  "tko": "더 쉽게",
+  "bad": "He speaks clear.",
+  "badko": "(speak(말하다)를 꾸미는 자리라서 clear(또렷한)가 아니라 부사 clearly(또렷하게)예요)",
+  "altw": "easy",
+  "alt": "The test is easy.",
+  "altko": "그 시험은 쉬워요(is 뒤에서 상태를 말할 때는 형용사 easy(쉬운)).",
+  "why": "'호소할 수 있다'라는 동사를 '어떻게 하는지' 꾸며 주는 말이에요. 동사를 꾸미는 건 부사라서 easy(쉬운)가 아니라 easily(쉽게)예요. 앞의 more는 '더'라는 뜻이에요.",
+  "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>동사를 꾸미면 부사, 명사를 꾸미면 형용사예요",
+  "d": {
+   "using": "use(사용하다)의 -ing형",
+   "technique": "기법",
+   "characters": "character(캐릭터)의 복수형",
+   "allows": "allow(가능하게 하다)의 3인칭 단수형",
+   "appeal": "appeal to: ~에 호소하다",
+   "people": "사람들",
+   "emotions": "emotion(감정)의 복수형",
+   "easily": "쉽게",
+   "easy": "쉬운"
+  },
+  "ko": "[지문 해석] 귀여운 동물 캐릭터를 만들 때 흔히 쓰이는 일반적인 전략은 캐릭터가 아기처럼 보이게 하는 것이다. 실제로 이런 캐릭터를 꾸준히 작업하는 많은 애니메이터가 캐릭터를 이렇게 디자인하는 것을 선호한다. 캐릭터에 이 기법을 쓰면 사람들의 감정에 더 쉽게 호소할 수 있다."
+ }
+]

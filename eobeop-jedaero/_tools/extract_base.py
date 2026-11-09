@@ -58,9 +58,16 @@ for f in sorted(glob.glob('ch0*-p*.html')):
                 marked=re.sub(r'<span class="wrong">(.*?)</span>',lambda m:'\x03'+m.group(1)+'\x04',sent); marked=html.unescape(marked)
                 ws=sents(marked); cs=sents(fld)
                 if len(ws)!=len(cs): warn.append((f,qn,len(ws),len(cs)))
-                k=0
+                allw=[m_.group(1) for m_ in re.finditer('\x03(.*?)\x04',marked)]
+                used=set()
+                def pick(fr):
+                    f0=re.sub(r'^\s*(\(?[0-9A-Za-z]+\)|[0-9]+\.)\s*','',html.unescape(fr)).strip()
+                    for idx,w_ in enumerate(allw):
+                        if idx not in used and w_.strip()==f0: return idx
+                    for idx,w_ in enumerate(allw):
+                        if idx not in used: return idx
                 for (fr,to,col,bd,ex) in ans:
-                    # k-th wrong marker
+                    k=pick(fr); used.add(k)
                     cnt=0;si=None
                     for i,x in enumerate(ws):
                         n=x.count('\x03')
@@ -75,7 +82,6 @@ for f in sorted(glob.glob('ch0*-p*.html')):
                         else: out.append(p)
                     t=''.join(out); pre,_,post=t.partition('\x05')
                     g['items'].append(dict(pre=pre,wr=wr,post=post,fr=html.unescape(fr),to=html.unescape(to),correct=best(x,cs),interp='',color=col,badge=txt(bd),explain=ex.strip(),qn=qn))
-                    k+=1
     n=sum(len(g['items']) for g in groups); tot+=n
     assert n==s.count('class="answerline"'),(f,n,s.count('class="answerline"'))
     json.dump(dict(key=key,h1=h1,prev=prev,next=nxt,groups=groups),open('_tools/base/%s.json'%key,'w',encoding='utf8'),ensure_ascii=False,indent=1)

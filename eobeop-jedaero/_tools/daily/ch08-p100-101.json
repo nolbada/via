@@ -1,0 +1,989 @@
+[
+ {
+  "dk": [
+   [
+    "In small towns,",
+    "작은 마을에서는,"
+   ],
+   [
+    "the same worker makes chairs, doors, and tables,",
+    "같은 일꾼이 의자, 문, 탁자를 만들고,"
+   ],
+   [
+    "and also often builds houses,",
+    "또한 종종 집도 짓는다,"
+   ],
+   [
+    "a skillset that takes years to fully develop.",
+    "완전히 익히는 데 몇 년이 걸리는 기술 묶음을."
+   ]
+  ],
+  "ko": "작은 마을에서는 같은 일꾼이 의자, 문, 탁자를 만들고 종종 집도 짓는데, 이는 완전히 익히는 데 몇 년이 걸리는 기술 묶음이다.",
+  "gist": "작은 마을의 일꾼은 가구도 집도 다 만들어서 익힐 기술이 아주 많다는 얘기예요.",
+  "fm": "관계대명사 that + 동사 (앞 명사에 수 일치)",
+  "mp": [
+   [
+    "선행사 + that",
+    "a boy that",
+    "a skillset that"
+   ],
+   [
+    "동사",
+    "runs",
+    "takes"
+   ]
+  ],
+  "ex": "I know a boy that runs fast.",
+  "exko": "나는 빨리 달리는(run 달리다) 소년을 알아요(fast 빠르게).",
+  "tko": "몇 년이 걸리는 기술 묶음",
+  "bad": "I know a boy that run fast.",
+  "badko": "(that이 가리키는 말은 a boy 한 명이라서 run이 아니라 runs예요)",
+  "altw": "run",
+  "alt": "I know boys that run fast.",
+  "altko": "나는 빨리 달리는 소년들을 알아요(boys가 여러 명이라 run).",
+  "why": "that이 가리키는 말은 a skillset(기술 묶음) 하나예요. 그래서 동사도 하나에 맞춰 take(걸리다)가 아니라 takes예요. 바로 뒤의 years(몇 년)는 신경 쓰지 않아도 돼요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>관계대명사 뒤 동사는 앞에서 꾸미는 말(선행사)의 수에 맞춰요",
+  "d": {
+   "worker": "일꾼",
+   "makes": "make(만들다)의 3인칭 단수형",
+   "chairs": "의자",
+   "builds": "build(짓다)의 3인칭 단수형",
+   "skillset": "기술 묶음, 기술 모음",
+   "takes": "take(걸리다)의 3인칭 단수형",
+   "fully": "완전히",
+   "develop": "발달시키다, 익히다",
+   "often": "자주",
+   "tables": "탁자"
+  }
+ },
+ {
+  "dk": [
+   [
+    "It is difficult",
+    "어렵다"
+   ],
+   [
+    "for this person to become equally good and experienced",
+    "이 사람이 똑같이 능숙하고 경험이 풍부해지기는"
+   ],
+   [
+    "at all of those tasks.",
+    "그 모든 일에서."
+   ]
+  ],
+  "ko": "이 사람이 그 모든 일에서 똑같이 능숙하고 경험이 풍부해지기는 어렵다.",
+  "gist": "한 사람이 그 모든 일을 똑같이 잘하기는 어렵다는 얘기예요.",
+  "fm": "A and B (같은 모양)",
+  "mp": [
+   [
+    "and 앞 (형용사)",
+    "strong",
+    "good"
+   ],
+   [
+    "and 뒤 (형용사)",
+    "healthy",
+    "experienced"
+   ]
+  ],
+  "ex": "She became strong and healthy.",
+  "exko": "그녀는 튼튼하고(strong) 건강해졌어요(healthy).",
+  "tko": "능숙하고 경험이 풍부한",
+  "bad": "She became strong and health.",
+  "badko": "(strong(튼튼한)은 형용사라서 and 뒤도 형용사 healthy(건강한)여야 해요. health(건강)는 명사예요)",
+  "altw": "명사",
+  "alt": "She has strength and health.",
+  "altko": "그녀는 힘과 건강을 가졌어요(strength 힘, health 건강은 둘 다 명사).",
+  "why": "and가 good(능숙한)과 이어 주는 말이라서 뒤도 같은 형용사 모양이어야 해요. experience(경험)는 명사나 동사 모양이라 안 맞고, '경험이 많은'이라는 형용사 experienced가 맞아요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and·or 앞뒤를 보고 같은 모양인지 확인해요",
+  "d": {
+   "difficult": "어려운",
+   "person": "사람",
+   "become": "되다",
+   "equally": "똑같이",
+   "good": "능숙한",
+   "experienced": "경험이 풍부한",
+   "tasks": "일, 과제",
+   "at": "good at: ~을 잘하는"
+  }
+ },
+ {
+  "dk": [
+   [
+    "And there are shoe factories",
+    "그리고 신발 공장들이 있다"
+   ],
+   [
+    "where each person either prepares the leather pieces by cutting them",
+    "각 사람이 가죽 조각을 잘라서 준비하거나"
+   ],
+   [
+    "or stitches them into shoes.",
+    "그것들을 꿰매 신발로 만드는."
+   ]
+  ],
+  "ko": "그리고 각 사람이 가죽 조각을 잘라서 준비하거나 그것들을 꿰매 신발로 만드는 신발 공장도 있다.",
+  "gist": "신발 공장에서는 한 사람이 자르는 일이나 꿰매는 일 중 하나를 맡는다는 얘기예요.",
+  "fm": "either A or B (같은 모양)",
+  "mp": [
+   [
+    "either + 동사",
+    "either sings",
+    "either prepares"
+   ],
+   [
+    "or + 동사",
+    "or dances",
+    "or stitches"
+   ]
+  ],
+  "ex": "Each kid either sings or dances.",
+  "exko": "각 아이는 노래하거나(sing) 춤춰요(dance).",
+  "tko": "꿰매 신발로 만든다",
+  "bad": "Each kid either sings or dancing.",
+  "badko": "(sings(노래한다)는 동사라서 or 뒤도 dances처럼 같은 모양의 동사여야 해요)",
+  "altw": "-ing",
+  "alt": "Each kid likes singing or dancing.",
+  "altko": "각 아이는 노래하거나 춤추는 걸 좋아해요(likes 뒤에 -ing 둘이 이어져요).",
+  "why": "either A or B는 A와 B가 같은 모양이에요. A가 prepares(prepare 준비하다의 3인칭 현재)니까 B도 stitches(stitch 꿰매다의 3인칭 현재)예요. by cutting(자르는 방법으로)은 prepares에 딸린 꾸밈말이에요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>either A or B, not only A but also B도 A와 B가 같은 모양이에요",
+  "d": {
+   "factories": "공장",
+   "each": "각각의",
+   "either": "either A or B: A 또는 B",
+   "prepares": "prepare(준비하다)의 3인칭 단수형",
+   "leather": "가죽",
+   "pieces": "조각",
+   "cutting": "cut(자르다)의 -ing형",
+   "stitches": "stitch(꿰매다)의 3인칭 단수형",
+   "shoes": "신발",
+   "into": "~로"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Such specialization increased dramatically",
+    "이러한 전문화는 극적으로 증가했다"
+   ],
+   [
+    "since the industrial era began two centuries ago.",
+    "두 세기 전에 산업 시대가 시작된 이후로."
+   ]
+  ],
+  "ko": "이러한 전문화는 두 세기 전에 산업 시대가 시작된 이후 극적으로 증가했다.",
+  "gist": "산업 시대가 시작된 뒤로 일이 아주 잘게 나뉘어졌다는 얘기예요.",
+  "fm": "ago → 단순과거 (현재완료 X)",
+  "mp": [
+   [
+    "명백한 과거 표현",
+    "two days ago",
+    "two centuries ago"
+   ],
+   [
+    "동사",
+    "called",
+    "increased"
+   ]
+  ],
+  "ex": "She called me two days ago.",
+  "exko": "그녀는 이틀 전에 나에게 전화했어요(call 전화하다).",
+  "tko": "극적으로 증가했다",
+  "bad": "She has called me two days ago.",
+  "badko": "(two days ago(이틀 전)처럼 딱 정해진 과거에는 has called가 아니라 called예요)",
+  "altw": "have p.p.",
+  "alt": "She has called me three times.",
+  "altko": "그녀는 나에게 세 번 전화했어요(몇 번인지 경험을 말해서 has called가 맞아요).",
+  "why": "two centuries ago(두 세기 전)는 지난 딱 정해진 때를 말하는 표현이에요. 이 문장에서는 has increased 대신 지난 일을 나타내는 increased(increase 늘다의 과거형)로 써요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>ago·yesterday·last year처럼 정해진 과거는 단순과거예요",
+  "d": {
+   "such": "이러한",
+   "specialization": "전문화",
+   "increased": "increase(늘다)의 과거형",
+   "dramatically": "극적으로",
+   "since": "~이후로",
+   "industrial": "산업의",
+   "era": "시대",
+   "began": "begin(시작하다)의 과거형",
+   "centuries": "세기",
+   "ago": "~전에"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Such workers not only develop skills in one job",
+    "그런 노동자들은 한 가지 일에서 기술을 키울 뿐 아니라"
+   ],
+   [
+    "but also become more efficient.",
+    "더 효율적이 되기도 한다."
+   ]
+  ],
+  "ko": "그런 노동자들은 한 가지 일에서 기술을 발전시킬 뿐만 아니라 더 효율적이 된다.",
+  "gist": "한 가지 일만 하면 기술도 늘고 일도 더 효율적으로 하게 된다는 얘기예요.",
+  "fm": "not only A but also B (같은 모양)",
+  "mp": [
+   [
+    "not only 뒤",
+    "not only sing",
+    "not only develop"
+   ],
+   [
+    "but also 뒤",
+    "but also dance",
+    "but also become"
+   ]
+  ],
+  "ex": "They not only sing but also dance.",
+  "exko": "그들은 노래할(sing) 뿐만 아니라 춤도 춰요(dance).",
+  "tko": "더 효율적이 되기도 한다",
+  "bad": "They not only sing but also danced.",
+  "badko": "(sing(노래한다)이 현재 모양이라 danced가 아니라 dance예요)",
+  "altw": "danced",
+  "alt": "They not only sang but also danced.",
+  "altko": "그들은 노래했을 뿐만 아니라 춤도 췄어요(앞이 sang(과거)이라 뒤도 danced(과거)예요).",
+  "why": "not only A but also B는 A와 B가 같은 모양이에요. 앞의 develop(키우다)이 현재 동사니까 뒤도 현재 모양 become(되다)이고, 과거형 became은 안 맞아요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and·or 앞뒤를 보고 같은 모양인지 확인해요",
+  "d": {
+   "such": "그런",
+   "workers": "노동자",
+   "not only": "not only A but also B: A뿐만 아니라 B도",
+   "develop": "키우다, 발전시키다",
+   "skills": "기술",
+   "job": "일",
+   "become": "되다",
+   "efficient": "효율적인"
+  }
+ },
+ {
+  "dk": [
+   [
+    "You can choose to show more respect for yourself",
+    "당신은 스스로를 더 존중하기로 선택할 수 있다"
+   ],
+   [
+    "or stop hanging out with some friends.",
+    "아니면 몇몇 친구들과 어울리는 것을 그만두기로."
+   ]
+  ],
+  "ko": "당신은 스스로를 더 존중하기를 선택하거나, 몇몇 친구들과 어울리는 것을 그만두기를 선택할 수 있다.",
+  "gist": "나를 더 존중하든지 친구들과 어울리는 걸 그만두든지 고를 수 있다는 얘기예요.",
+  "fm": "to V or (to) V (같은 모양)",
+  "mp": [
+   [
+    "or 앞",
+    "to stay",
+    "to show"
+   ],
+   [
+    "or 뒤",
+    "leave",
+    "stop"
+   ]
+  ],
+  "ex": "I can choose to stay or leave.",
+  "exko": "나는 머물기(stay)나 떠나기(leave)를 선택할 수 있어요.",
+  "tko": "그만두기로",
+  "bad": "I can choose to stay or leaving.",
+  "badko": "(앞이 to stay(머물다)라서 뒤도 leave(떠나다) 원형이어야 해요)",
+  "altw": "-ing",
+  "alt": "I like staying home or going out.",
+  "altko": "나는 집에 있거나 나가는 걸 좋아해요(like 뒤에 -ing 둘이 이어져요).",
+  "why": "choose 뒤 to show(보여 주다)와 or로 이어지는 말이에요. or 뒤의 to는 없어도 돼서 stop(그만두다) 원형이 와요. stopping은 앞과 모양이 달라서 안 돼요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and·or 앞뒤를 보고 같은 모양인지 확인해요",
+  "d": {
+   "choose": "선택하다",
+   "show": "보이다, 나타내다",
+   "respect": "존중",
+   "yourself": "너 자신",
+   "hanging": "hang out: 어울려 놀다",
+   "stop": "그만두다",
+   "friends": "친구들"
+  }
+ },
+ {
+  "dk": [
+   [
+    "After all, you choose to be happy or miserable,",
+    "결국 당신은 행복할지 비참할지 선택하고,"
+   ],
+   [
+    "and this choice always affects",
+    "그리고 이 선택은 언제나 영향을 준다"
+   ],
+   [
+    "how others see you.",
+    "다른 사람들이 당신을 어떻게 보는지에."
+   ]
+  ],
+  "ko": "결국, 당신은 행복해지기로 하든 비참해지기로 하든 선택하고, 이 선택은 언제나 다른 사람들이 당신을 어떻게 보는지에 영향을 준다.",
+  "gist": "행복할지 비참할지는 내가 고르고, 그 선택이 남들의 시선에도 영향을 준다는 얘기예요.",
+  "fm": "핵심 주어 + 동사 (수 일치)",
+  "mp": [
+   [
+    "주어 + 부사 + 동사",
+    "This dog always barks",
+    "this choice always affects"
+   ]
+  ],
+  "ex": "This dog always barks.",
+  "exko": "이 개는 항상 짖어요(bark 짖다, always 항상).",
+  "tko": "항상 영향을 준다",
+  "bad": "This dog always bark.",
+  "badko": "(주어 dog가 한 마리라서 bark가 아니라 barks예요. always(항상)는 건너뛰고 주어를 봐요)",
+  "altw": "bark",
+  "alt": "These dogs always bark.",
+  "altko": "이 개들은 항상 짖어요(dogs가 여러 마리라 bark).",
+  "why": "주어는 this choice(이 선택) 하나예요. 중간의 always(항상)는 꾸밈말일 뿐이니 건너뛰고 봐요. 그래서 affect(영향을 주다)가 아니라 affects예요.",
+  "trend": "<b>출제 6위 · 수식받는 주어의 수일치</b><br>31년간 57회 나왔어요.<br>꾸미는 말은 건너뛰고 진짜 주어를 찾아 동사와 수를 맞춰요",
+  "d": {
+   "after all": "결국",
+   "choose": "선택하다",
+   "miserable": "비참한",
+   "choice": "선택",
+   "always": "항상",
+   "affects": "affect(영향을 주다)의 3인칭 단수형",
+   "others": "다른 사람들",
+   "see": "보다"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The reality is that,",
+    "현실은 ~라는 것이다,"
+   ],
+   [
+    "although you are free to choose,",
+    "비록 당신이 자유롭게 선택할 수 있지만,"
+   ],
+   [
+    "you can't choose the consequences",
+    "당신은 결과를 선택할 수 없다"
+   ],
+   [
+    "of saying something, taking an action, or making a certain decision.",
+    "무언가를 말하고, 행동을 취하고, 어떤 결정을 내리는 것의."
+   ]
+  ],
+  "ko": "현실은, 당신이 자유롭게 선택할 수 있다 해도, 무언가를 말하거나 행동을 취하거나 어떤 결정을 내리는 것의 결과는 선택할 수 없다는 것이다.",
+  "gist": "무엇을 할지는 고를 수 있어도 그 결과까지 고를 수는 없다는 얘기예요.",
+  "fm": "A-ing, B-ing, or C-ing (같은 모양)",
+  "mp": [
+   [
+    "or 앞뒤 (-ing)",
+    "drawing or dancing",
+    "taking or making"
+   ]
+  ],
+  "ex": "I like drawing or dancing.",
+  "exko": "나는 그림 그리기(draw 그리다)나 춤추기(dance)를 좋아해요.",
+  "tko": "행동을 취하거나 결정을 내리는 것",
+  "bad": "I like drawing or to dance.",
+  "badko": "(drawing(그리기)이 -ing라서 뒤도 dancing이어야 해요)",
+  "altw": "to V",
+  "alt": "I want to draw or to dance.",
+  "altko": "나는 그리거나 춤추고 싶어요(want 뒤에는 to draw, to dance 두 개가 이어져요).",
+  "why": "of(~의) 뒤에 saying(말하기), taking(취하기)이 모두 -ing예요. or로 이어진 마지막도 같은 -ing 모양인 making(내리기)이에요. to make는 모양이 달라서 안 돼요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and·or 앞뒤를 보고 같은 모양인지 확인해요",
+  "d": {
+   "reality": "현실",
+   "although": "비록 ~지만",
+   "free": "자유로운",
+   "choose": "선택하다",
+   "consequences": "결과",
+   "saying": "say(말하다)의 -ing형",
+   "taking": "take(취하다)의 -ing형",
+   "action": "행동",
+   "making": "make(내리다)의 -ing형",
+   "certain": "어떤",
+   "decision": "결정"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Many people wonder",
+    "많은 사람들은 궁금해한다"
+   ],
+   [
+    "why their choices matter so much",
+    "왜 그들의 선택이 그렇게 중요한지"
+   ],
+   [
+    "in the long run.",
+    "장기적으로."
+   ]
+  ],
+  "ko": "많은 사람들은 왜 자신의 선택이 장기적으로 그렇게 중요한지 궁금해한다.",
+  "gist": "사람들은 내 선택이 오랫동안 왜 그렇게 중요한지 궁금해한다는 얘기예요.",
+  "fm": "의문사 + 주어 + 동사 (do X)",
+  "mp": [
+   [
+    "의문사 + 주어 + 동사",
+    "why he cries",
+    "why their choices matter"
+   ]
+  ],
+  "ex": "I wonder why he cries.",
+  "exko": "나는 그가 왜 우는지 궁금해요(wonder 궁금해하다, cry 울다).",
+  "tko": "왜 그들의 선택이 중요한지",
+  "bad": "I wonder why does he cry.",
+  "badko": "(문장 안에 들어간 질문은 does를 빼고 why he cries 순서로 써요)",
+  "altw": "do",
+  "alt": "Why does he cry?",
+  "altko": "그는 왜 울어요?(그냥 질문일 때는 does가 앞에 와요)",
+  "why": "wonder(궁금해하다) 뒤에 질문이 들어가면 말하는 문장 순서로 써요. 그래서 their choices matter(그들의 선택이 중요하다) 순서이고 do는 필요 없어요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>문장 안에 들어간 의문문은 의문사 + 주어 + 동사 순서예요",
+  "d": {
+   "wonder": "궁금해하다",
+   "choices": "선택",
+   "matter": "중요하다",
+   "so much": "그렇게 많이",
+   "long run": "in the long run: 장기적으로"
+  }
+ },
+ {
+  "dk": [
+   [
+    "It happens at the same time",
+    "그것은 동시에 일어난다"
+   ],
+   [
+    "that a person makes a choice",
+    "한 사람이 선택을 하는 것과"
+   ],
+   [
+    "and meets the result.",
+    "그 결과를 맞닥뜨리는 것이."
+   ]
+  ],
+  "ko": "한 사람이 선택을 하는 것과 그 결과를 맞닥뜨리는 것은 동시에 일어난다.",
+  "gist": "선택하는 순간 그 결과도 곧바로 따라온다는 얘기예요.",
+  "fm": "A and B (같은 모양)",
+  "mp": [
+   [
+    "and 앞 동사",
+    "cooks",
+    "makes"
+   ],
+   [
+    "and 뒤 동사",
+    "washes",
+    "meets"
+   ]
+  ],
+  "ex": "Dad cooks dinner and washes dishes.",
+  "exko": "아빠는 저녁을 요리하고(cook) 설거지를 해요(wash dishes).",
+  "tko": "그 결과를 맞닥뜨린다",
+  "bad": "Dad cooks dinner and wash dishes.",
+  "badko": "(주어 Dad가 한 명이라서 cooks처럼 washes여야 해요)",
+  "altw": "wash",
+  "alt": "Mom and Dad cook dinner and wash dishes.",
+  "altko": "엄마와 아빠는 저녁을 요리하고 설거지를 해요(주어가 둘이라 cook, wash).",
+  "why": "and가 makes와 이어 주는 말이에요. 주어 a person(한 사람)이 한 일 두 가지니까 같은 모양으로 meets(meet 만나다)가 돼요. meet은 모양이 달라서 안 돼요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and·or 앞뒤를 보고 같은 모양인지 확인해요",
+  "d": {
+   "happens": "happen(일어나다)의 3인칭 단수형",
+   "same": "at the same time: 동시에",
+   "makes": "make(하다, 내리다)의 3인칭 단수형",
+   "choice": "선택",
+   "meets": "meet(마주치다)의 3인칭 단수형",
+   "result": "결과"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Lenox was a small town,",
+    "Lenox는 작은 마을이었다,"
+   ],
+   [
+    "and its quiet countryside remains largely unchanged",
+    "그리고 그곳의 조용한 시골은 대체로 변하지 않은 채 남아 있다"
+   ],
+   [
+    "even today.",
+    "오늘날에도."
+   ]
+  ],
+  "ko": "Lenox는 작은 마을이었고, 그곳의 조용한 시골 풍경은 오늘날에도 대체로 변하지 않은 채 남아 있다.",
+  "gist": "Lenox의 조용한 시골은 지금도 거의 그대로라는 얘기예요.",
+  "fm": "핵심 주어 + 동사 (수 일치)",
+  "mp": [
+   [
+    "주어 + 동사",
+    "My quiet town stays",
+    "its quiet countryside remains"
+   ]
+  ],
+  "ex": "My quiet town stays the same.",
+  "exko": "우리 조용한 마을은 그대로예요(stay 그대로 있다).",
+  "tko": "그대로 남아 있다",
+  "bad": "My quiet town stay the same.",
+  "badko": "(주어 town이 하나라서 stay가 아니라 stays예요)",
+  "altw": "stay",
+  "alt": "My quiet towns stay the same.",
+  "altko": "우리 조용한 마을들은 그대로예요(towns가 여러 개라 stay).",
+  "why": "and 뒤 문장의 주어는 its quiet countryside(그곳의 조용한 시골) 하나예요. 하나니까 동사도 remain(남아 있다)이 아니라 remains예요.",
+  "trend": "<b>출제 6위 · 수식받는 주어의 수일치</b><br>31년간 57회 나왔어요.<br>꾸미는 말은 건너뛰고 진짜 주어를 찾아 동사와 수를 맞춰요",
+  "d": {
+   "small": "작은",
+   "town": "마을",
+   "quiet": "조용한",
+   "countryside": "시골",
+   "remains": "remain(남아 있다)의 3인칭 단수형",
+   "largely": "대체로",
+   "unchanged": "변하지 않은",
+   "even today": "오늘날에도"
+  }
+ },
+ {
+  "dk": [
+   [
+    "His early photographs were deeply admired,",
+    "그의 초기 사진들은 깊이 감탄을 받았다,"
+   ],
+   [
+    "and several exhibitions were held in his honor",
+    "그리고 여러 전시회가 그를 기리며 열렸다"
+   ],
+   [
+    "during the 1920s.",
+    "1920년대 동안."
+   ]
+  ],
+  "ko": "그의 초기 사진들은 깊이 존경받았고, 1920년대 동안 그를 기리는 여러 전시회가 열렸다.",
+  "gist": "그의 초기 사진이 큰 사랑을 받았고 그를 기리는 전시회가 여러 번 열렸다는 얘기예요.",
+  "fm": "주어 + be + p.p. (당하는 주어)",
+  "mp": [
+   [
+    "주어 + be + p.p.",
+    "The party was held",
+    "several exhibitions were held"
+   ]
+  ],
+  "ex": "The party was held in May.",
+  "exko": "그 파티는 5월에 열렸어요(hold 열다).",
+  "tko": "열렸다",
+  "bad": "The party held in May.",
+  "badko": "(파티는 스스로 여는 게 아니라 열리는 쪽이라서 held 앞에 was가 있어야 해요)",
+  "altw": "held",
+  "alt": "The party held in May was fun.",
+  "altko": "5월에 열린 파티는 재미있었어요(held가 party를 꾸미는 말이고 동사는 was).",
+  "why": "several exhibitions(여러 전시회)는 스스로 여는 쪽이 아니라 '열리는' 쪽이에요. 그래서 held(hold 열다의 p.p.)만 쓰면 안 되고 be동사와 함께 were held(열렸다)가 돼요.",
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>주어가 직접 하면 능동, 당하면 be + p.p.예요",
+  "d": {
+   "early": "초기의",
+   "photographs": "사진",
+   "deeply": "깊이",
+   "admired": "admire(감탄하다)의 p.p. 감탄받은",
+   "several": "여러",
+   "exhibitions": "전시회",
+   "held": "hold(열다)의 p.p. 열린",
+   "honor": "in his honor: 그를 기리어",
+   "during": "~동안"
+  }
+ },
+ {
+  "dk": [
+   [
+    "In 1918,",
+    "1918년에,"
+   ],
+   [
+    "he moved to New York,",
+    "그는 뉴욕으로 이사했고,"
+   ],
+   [
+    "married Gaynella Greenlee,",
+    "Gaynella Greenlee와 결혼했고,"
+   ],
+   [
+    "and opened a studio.",
+    "스튜디오를 열었다."
+   ]
+  ],
+  "ko": "1918년에 그는 뉴욕으로 이사했고, Gaynella Greenlee와 결혼했으며, 스튜디오를 열었다.",
+  "gist": "1918년에 그는 뉴욕으로 이사해서 결혼하고 스튜디오도 열었다는 얘기예요.",
+  "fm": "A, B, and C (같은 모양)",
+  "mp": [
+   [
+    "앞의 동사",
+    "woke",
+    "moved"
+   ],
+   [
+    "and 뒤 동사",
+    "played",
+    "opened"
+   ]
+  ],
+  "ex": "He woke up, ate, and played.",
+  "exko": "그는 일어나서(wake up) 먹고(eat) 놀았어요(play).",
+  "tko": "스튜디오를 열었다",
+  "bad": "He woke up, ate, and playing.",
+  "badko": "(앞의 woke, ate가 과거라서 playing이 아니라 played예요)",
+  "altw": "-ing",
+  "alt": "He is eating and playing.",
+  "altko": "그는 먹고 놀고 있어요(is 뒤에 -ing 둘이 이어져요).",
+  "why": "he가 한 일 세 가지, moved(move 이사하다), married(marry 결혼하다), opened(open 열다)가 모두 과거 동사예요. 마지막도 같은 모양 opened여야 하고, opening은 동사가 못 돼요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and·or 앞뒤를 보고 같은 모양인지 확인해요",
+  "d": {
+   "moved": "move(이사하다)의 과거형",
+   "married": "marry(결혼하다)의 과거형",
+   "opened": "open(열다)의 과거형",
+   "studio": "스튜디오"
+  }
+ },
+ {
+  "dk": [
+   [
+    "He wanted his work to be remembered",
+    "그는 자신의 작품이 기억되기를 원했다"
+   ],
+   [
+    "for its emotional honesty",
+    "감정적인 정직함으로"
+   ],
+   [
+    "rather than technical perfection.",
+    "기술적 완벽함보다는."
+   ]
+  ],
+  "ko": "그는 자신의 작품이 기술적 완벽함보다는 감정적 정직함으로 기억되기를 원했다.",
+  "gist": "그는 자기 작품이 기술이 아니라 진심 어린 정직함으로 기억되길 바랐다는 얘기예요.",
+  "fm": "당하는 대상 + to be p.p.",
+  "mp": [
+   [
+    "대상 + to be p.p.",
+    "my toy to be fixed",
+    "his work to be remembered"
+   ]
+  ],
+  "ex": "I want my toy to be fixed.",
+  "exko": "나는 내 장난감이 고쳐지기를 원해요(fix 고치다).",
+  "tko": "그의 작품이 기억되기를",
+  "bad": "I want my toy to fix.",
+  "badko": "(장난감은 스스로 고치는 쪽이 아니라 고쳐지는 쪽이라서 to be fixed예요)",
+  "altw": "to V",
+  "alt": "I want my dad to fix my toy.",
+  "altko": "나는 아빠가 내 장난감을 고쳐 주기를 원해요(아빠가 직접 고치는 쪽이라 to fix).",
+  "why": "his work(그의 작품)는 remember(기억하다)를 하는 쪽이 아니라 사람들에게 기억되는 쪽이에요. 그래서 to remember가 아니라 to be remembered(기억되다)예요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>to V의 주어가 당하는 쪽이면 to be p.p.예요",
+  "d": {
+   "wanted": "want(원하다)의 과거형",
+   "work": "작품",
+   "remembered": "remember(기억하다)의 p.p. 기억되는",
+   "emotional": "감정적인",
+   "honesty": "정직",
+   "rather than": "~보다는",
+   "technical": "기술적인",
+   "perfection": "완벽"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Today, his portraits are considered more valuable",
+    "오늘날 그의 초상 사진들은 더 가치 있다고 여겨진다"
+   ],
+   [
+    "than most other collections from that era.",
+    "그 시대의 대부분의 다른 소장품들보다."
+   ]
+  ],
+  "ko": "오늘날 그의 초상 사진들은 그 시대의 대부분의 다른 소장품들보다 더 가치 있는 것으로 여겨진다.",
+  "gist": "그의 초상 사진은 그 시대의 다른 작품들보다 더 값지다고 평가받는다는 얘기예요.",
+  "fm": "긴 단어는 more + 원급 (-er X)",
+  "mp": [
+   [
+    "more + 긴 형용사",
+    "more famous",
+    "more valuable"
+   ]
+  ],
+  "ex": "This song is more famous than that one.",
+  "exko": "이 노래가 저 노래보다 더 유명해요(famous 유명한).",
+  "tko": "더 가치 있는",
+  "bad": "This song is famouser than that one.",
+  "badko": "(famous(유명한)는 긴 단어라서 -er을 붙이지 않고 more famous라고 써요)",
+  "altw": "-er",
+  "alt": "This song is shorter than that one.",
+  "altko": "이 노래가 저 노래보다 더 짧아요(short 짧은은 짧은 단어라서 -er).",
+  "why": "뒤에 than(~보다)이 있으니 '더 ~한'이라는 비교급이 와야 해요. valuable(가치 있는)은 긴 단어라서 -er을 붙이지 않고 앞에 more를 붙여 more valuable이 돼요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>짧은 단어는 -er, 긴 단어는 more를 앞에 붙여요",
+  "d": {
+   "today": "오늘날",
+   "portraits": "초상 사진",
+   "considered": "consider(여기다)의 p.p. 여겨지는",
+   "valuable": "가치 있는",
+   "than": "~보다",
+   "most": "대부분의",
+   "collections": "소장품",
+   "era": "시대"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Urban planners have long wondered",
+    "도시 계획가들은 오랫동안 궁금해해 왔다"
+   ],
+   [
+    "what makes certain streets feel more alive",
+    "무엇이 어떤 거리들을 더 활기차게 느끼게 만드는지"
+   ],
+   [
+    "than others.",
+    "다른 거리들보다."
+   ]
+  ],
+  "ko": "도시 계획가들은 어떤 거리들이 다른 거리들보다 더 활기차게 느껴지게 만드는 것이 무엇인지 오랫동안 궁금해해 왔다.",
+  "gist": "어떤 거리가 왜 더 활기찬지 도시 계획가들이 오래 궁금해했다는 얘기예요.",
+  "fm": "what + 동사 (~하는 것)",
+  "mp": [
+   [
+    "what + 동사",
+    "what makes him",
+    "what makes streets"
+   ]
+  ],
+  "ex": "I wonder what makes him sad.",
+  "exko": "나는 무엇이 그를 슬프게 만드는지 궁금해요(wonder 궁금해하다, sad 슬픈).",
+  "tko": "무엇이 거리들을 느끼게 만드는지",
+  "bad": "I wonder that makes him sad.",
+  "badko": "(wonder(궁금해하다) 뒤에 '무엇이 ~하는지'를 말하려면 that이 아니라 what이에요)",
+  "altw": "that",
+  "alt": "I know the news that made him sad.",
+  "altko": "나는 그를 슬프게 만든 소식을 알아요(앞에 news 소식이 있어서 that).",
+  "why": "that은 앞에 꾸며 줄 명사가 있을 때 써요. 여기엔 그런 명사가 없고 '무엇이 ~하는지'라는 뜻이라서 that makes가 아니라 what makes예요.",
+  "trend": "<b>출제 3위 · that[which] vs what</b><br>31년간 71회 나왔어요.<br>앞에 꾸밀 명사가 있으면 that, 없고 '~하는 것'이면 what이에요",
+  "d": {
+   "urban": "도시의",
+   "planners": "계획가",
+   "long": "오랫동안",
+   "wondered": "wonder(궁금해하다)의 p.p.",
+   "makes": "make(만들다)의 3인칭 단수형",
+   "certain": "어떤",
+   "streets": "거리",
+   "alive": "활기찬",
+   "others": "다른 것들"
+  }
+ },
+ {
+  "dk": [
+   [
+    "People gather where things are happening",
+    "사람들은 일들이 벌어지는 곳에 모이고"
+   ],
+   [
+    "and seek the presence of other people,",
+    "다른 사람들의 존재를 찾는다,"
+   ],
+   [
+    "feeling more comfortable in busy, lively spaces.",
+    "붐비고 활기찬 공간에서 더 편안함을 느끼면서."
+   ]
+  ],
+  "ko": "사람들은 일이 벌어지는 곳에 모이고 다른 사람들의 존재를 찾으며, 붐비고 활기찬 공간에서 더 편안함을 느낀다.",
+  "gist": "사람들은 북적이고 활기찬 곳에서 더 편안해서 그런 곳에 모인다는 얘기예요.",
+  "fm": "feel + 형용사 (부사 X)",
+  "mp": [
+   [
+    "feel + 형용사",
+    "feel safe",
+    "feeling more comfortable"
+   ]
+  ],
+  "ex": "I feel safe at home.",
+  "exko": "나는 집에서 안전하다고 느껴요(feel 느끼다, safe 안전한).",
+  "tko": "더 편안함을 느끼면서",
+  "bad": "I feel safely at home.",
+  "badko": "(feel 뒤에는 상태를 말하는 형용사 safe(안전한)가 와요. safely(안전하게)는 안 돼요)",
+  "altw": "부사",
+  "alt": "I walk safely at home.",
+  "altko": "나는 집에서 안전하게 걸어요(walk 걷다는 어떻게 걷는지 말해 주는 부사 safely가 맞아요).",
+  "why": "feeling은 '느끼다'라서 뒤에 느끼는 상태를 말하는 형용사 comfortable(편안한)이 와요. comfortably(편안하게)는 동작을 꾸미는 말이라 여기엔 안 맞아요.",
+  "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>feel·become 뒤 상태 설명은 형용사, 동작을 꾸밀 땐 부사예요",
+  "d": {
+   "gather": "모이다",
+   "happening": "happen(일어나다)의 -ing형",
+   "seek": "찾다",
+   "presence": "존재",
+   "feeling": "feel(느끼다)의 -ing형",
+   "comfortable": "편안한",
+   "busy": "붐비는, 바쁜",
+   "lively": "활기찬",
+   "spaces": "공간"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Crowded streets also bring singing, dancing, or performing of all kinds,",
+    "붐비는 거리는 또한 온갖 종류의 노래, 춤, 공연을 불러오고,"
+   ],
+   [
+    "creating scenes",
+    "장면들을 만들어 낸다"
+   ],
+   [
+    "that feel lively and welcoming",
+    "활기차고 환영하는 것처럼 느껴지는"
+   ],
+   [
+    "to visitors from around the world.",
+    "전 세계에서 온 방문객에게."
+   ]
+  ],
+  "ko": "붐비는 거리는 또한 온갖 종류의 노래, 춤, 공연을 불러오며, 전 세계에서 온 방문객에게 활기차고 환영하는 느낌이 드는 장면을 만들어 낸다.",
+  "gist": "북적이는 거리에는 노래, 춤, 공연이 가득해서 활기찬 분위기가 된다는 얘기예요.",
+  "fm": "A, B, or C (같은 모양)",
+  "mp": [
+   [
+    "나열 (-ing)",
+    "running, jumping, or swimming",
+    "singing, dancing, or performing"
+   ]
+  ],
+  "ex": "I like running, jumping, or swimming.",
+  "exko": "나는 달리기(run), 뛰기(jump), 수영하기(swim)를 좋아해요.",
+  "tko": "노래, 춤, 공연",
+  "bad": "I like running, jumping, or swim.",
+  "badko": "(앞의 running, jumping이 -ing라서 뒤도 swimming이어야 해요)",
+  "altw": "원형",
+  "alt": "I can run, jump, or swim.",
+  "altko": "나는 달리고 뛰고 수영할 수 있어요(can 뒤에는 동사원형 셋이 이어져요).",
+  "why": "bring(가져오다) 뒤에 singing(노래하기), dancing(춤추기)이 -ing로 이어지고 있어요. or 뒤의 마지막도 같은 모양인 performing(공연하기)이에요. perform은 원형이라 모양이 달라서 안 돼요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and·or 앞뒤를 보고 같은 모양인지 확인해요",
+  "d": {
+   "crowded": "붐비는",
+   "streets": "거리",
+   "bring": "가져오다",
+   "singing": "sing(노래하다)의 -ing형",
+   "dancing": "dance(춤추다)의 -ing형",
+   "performing": "perform(공연하다)의 -ing형",
+   "kinds": "종류",
+   "creating": "create(만들어 내다)의 -ing형",
+   "scenes": "장면",
+   "feel": "느껴지다",
+   "lively": "활기찬",
+   "welcoming": "환영하는",
+   "visitors": "방문객",
+   "world": "around the world: 전 세계"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Crowded streets also bring singing, dancing, or performing of all kinds,",
+    "붐비는 거리는 또한 온갖 종류의 노래, 춤, 공연을 불러오고,"
+   ],
+   [
+    "creating scenes",
+    "장면들을 만들어 낸다"
+   ],
+   [
+    "that feel lively and welcoming",
+    "활기차고 환영하는 것처럼 느껴지는"
+   ],
+   [
+    "to visitors from around the world.",
+    "전 세계에서 온 방문객에게."
+   ]
+  ],
+  "ko": "붐비는 거리는 또한 온갖 종류의 노래, 춤, 공연을 불러오며, 전 세계에서 온 방문객에게 활기차고 환영하는 느낌이 드는 장면을 만들어 낸다.",
+  "gist": "그런 거리의 장면은 방문객들에게 활기차고 반갑게 느껴진다는 얘기예요.",
+  "fm": "A and B (같은 모양: 형용사)",
+  "mp": [
+   [
+    "and 앞 (형용사)",
+    "fun",
+    "lively"
+   ],
+   [
+    "and 뒤 (형용사)",
+    "exciting",
+    "welcoming"
+   ]
+  ],
+  "ex": "The class feels fun and exciting.",
+  "exko": "그 수업은 재미있고(fun) 흥미진진하게(exciting) 느껴져요(feel 느껴지다).",
+  "tko": "활기차고 환영하는",
+  "bad": "The class feels fun and excited.",
+  "badko": "(수업이 흥미를 주는 쪽이라서 excited가 아니라 exciting이에요)",
+  "altw": "excited",
+  "alt": "The kids feel happy and excited.",
+  "altko": "아이들은 행복하고 신나게 느껴요(아이들이 신남을 느끼는 쪽이라 excited).",
+  "why": "and가 lively(활기찬)와 이어 주는 말이에요. scenes(장면)가 방문객을 '환영하는 느낌을 주는' 쪽이니까 능동의 welcoming이에요. welcomed는 환영을 '받는'이라는 뜻이라 안 맞아요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and·or 앞뒤를 보고 같은 모양인지 확인해요",
+  "d": {
+   "crowded": "붐비는",
+   "streets": "거리",
+   "bring": "가져오다",
+   "singing": "sing(노래하다)의 -ing형",
+   "dancing": "dance(춤추다)의 -ing형",
+   "performing": "perform(공연하다)의 -ing형",
+   "kinds": "종류",
+   "creating": "create(만들어 내다)의 -ing형",
+   "scenes": "장면",
+   "feel": "느껴지다",
+   "lively": "활기찬",
+   "welcoming": "환영하는",
+   "visitors": "방문객",
+   "world": "around the world: 전 세계"
+  }
+ },
+ {
+  "dk": [
+   [
+    "These events cause more people to gather and stay on the streets,",
+    "이런 행사들은 더 많은 사람이 모여 거리에 머물게 한다,"
+   ],
+   [
+    "and cities without such energy",
+    "그리고 그런 활기가 없는 도시는"
+   ],
+   [
+    "must have lost much of their charm over time.",
+    "시간이 지나며 매력의 상당 부분을 잃었음이 틀림없다."
+   ]
+  ],
+  "ko": "이런 행사들은 더 많은 사람이 모여 거리에 머물게 하고, 그런 활기가 없는 도시는 시간이 지나면서 매력의 상당 부분을 잃었음이 틀림없다.",
+  "gist": "활기가 없는 도시는 시간이 지나면서 매력을 많이 잃었을 거라는 얘기예요.",
+  "fm": "must + have + p.p. (~했음이 틀림없다)",
+  "mp": [
+   [
+    "조동사 + have + p.p.",
+    "must have left",
+    "must have lost"
+   ]
+  ],
+  "ex": "He must have left early.",
+  "exko": "그는 일찍 떠났음이 틀림없어요(leave 떠나다).",
+  "tko": "잃었음이 틀림없다",
+  "bad": "He must left early.",
+  "badko": "(must 뒤에는 동사원형이 오니까 '떠났다'는 must have left처럼 have를 넣어요)",
+  "altw": "must + 원형",
+  "alt": "He must leave now.",
+  "altko": "그는 지금 떠나야 해요(지금 일은 must 뒤에 원형 leave).",
+  "why": "must(~임이 틀림없다) 뒤에는 늘 동사원형이 와요. 이미 지난 일을 추측할 때는 have + p.p.를 써서 have lost(lose 잃다의 p.p.)가 돼요. must lost처럼 조동사 뒤에 과거형을 바로 쓰면 안 돼요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>조동사 뒤는 원형, 지난 일 추측은 조동사 + have p.p.예요",
+  "d": {
+   "events": "행사",
+   "cause": "일으키다",
+   "gather": "모이다",
+   "stay": "머물다",
+   "cities": "도시",
+   "without": "~없이",
+   "such": "그런",
+   "energy": "활기",
+   "must": "~했음이 틀림없다(must have p.p.)",
+   "lost": "lose(잃다)의 p.p.",
+   "charm": "매력",
+   "over time": "시간이 지나면서"
+  }
+ }
+]
