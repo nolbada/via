@@ -588,7 +588,9 @@ var TMF=/[?&]t=1(&|$)/.test(location.search);function rvMap(){return lj('wn_rv_'
 function rvId(){return'WNRV_'+String(name()).toLowerCase()}
 function missedDays(){var out=[];try{var I2=planInfo(name()),t2=iso(new Date());if(I2){var hc2=ctlOf(CTLM,name()),M2=rvMap();for(var k=adD(I2.P.s,1);k<t2;k=adD(k,1)){if(CLOSED.indexOf(k)<0&&!M2[k]&&!inHold(hc2,k))out.push(k)}}}catch(e){}return out}
 var NTG='';
-function fillStart(K){if(!DATA)return;var cp=NCX?NCX.cap:60,lv=DATA.items.filter(function(i){return!(i.st>=4)&&(!i.first||i.first<=K)}).sort(byPri).slice(0,cp);if(!lv.length){rvMark(K);var nm=missedDays();if(nm.length&&nm[0]!==K)fillStart(nm[0]);else recView('r');return}review(lv,K);R.prac=true}
+function fpGet(){return lj('wn_fp_'+name()+TCM,{})}
+function fpSet(o){try{ss('wn_fp_'+name()+TCM,JSON.stringify(o))}catch(e){}}
+function fillStart(K){if(!DATA)return;var cp=NCX?NCX.cap:60,lv=DATA.items.filter(function(i){return!(i.st>=4)&&(!i.first||i.first<=K)}).sort(byPri).slice(0,cp);if(!lv.length){rvMark(K);var nm=missedDays();if(nm.length&&nm[0]!==K)fillStart(nm[0]);else recView('r');return}review(lv,K);R.prac=true;var fp=fpGet()[K];if(fp&&fp.ws&&fp.ws.length===lv.length&&fp.ws.every(function(w,x){return w===lv[x].w})&&fp.res&&fp.res.length&&fp.res.length<=lv.length){R.res=fp.res.slice();R.i=fp.res.length;step()}}
 function rvRowH(I,n,ti,row){var M=rvMap(),S=lj('wn_rvs_'+n+TCM,{}),ks=Object.keys(M).filter(function(k){return k>I.P.s&&k<=ti}).sort(),tot=0,k;for(k=adD(I.P.s,1);k<=ti;k=adD(k,1)){if(CLOSED.indexOf(k)<0)tot++}var lk=ks.length?ks[ks.length-1]:'',sc=lk&&S[lk]?' '+S[lk].o+'/'+S[lk].n:'',ml=missedDays().length;var tz=(NCX&&NCX.today===0&&!M[ti])?1:0;return row('r','#c47a1a','누적 복습',lk?'최근 '+dshow(lk)+sc:(tz?'오늘 완료':'아직 시작 전'),ml?'밀린 날 '+ml+'일':'',(ks.length+tz)+' / '+tot)}
 function rvLate(day){var t=+rvMap()[day];return t>1e12?iso(new Date(t))!==day:false}
 function rvQ(){return lj('wn_rvq_'+name()+TCM,{})}
@@ -619,7 +621,7 @@ function rvPull(){
 function rvStart(K,ti){
   if(!DATA)return;var cp=NCX?NCX.cap:60,it=(K<=ti?DATA.items.filter(function(i){return i.nx&&i.nx<=DATA.today&&(!i.first||i.first<=K)}):DATA.items.filter(function(i){return i.nx&&i.nx<=K})).sort(byPri).slice(0,cp);
   if(!it.length){rvMark(K);if(K<ti&&RC)recView('r');else home(DATA);return}
-  review(it,K);
+  review(it,K);var fp=fpGet()[K];if(fp&&fp.base&&iso(new Date(fp.t||0))===iso(new Date())){R.base={o:fp.base.o,n:fp.base.n}}
 }
 function review(items,day){
   R={items:items,i:0,res:[],day:day};step();
@@ -684,16 +686,16 @@ function step(){
   }});
 }
 function mark(ok,wait){
-  var it=R.items[R.i];R.res.push(ok?1:0);
+  var it=R.items[R.i];R.res.push(ok?1:0);if(R.day){var FP=fpGet(),sm=R.res.reduce(function(a,b){return a+b},0);FP[R.day]=R.prac?{ws:R.items.map(function(x){return x.w}),res:R.res.slice(),t:Date.now()}:{base:{o:(R.base?R.base.o:0)+sm,n:(R.base?R.base.n:0)+R.res.length},t:Date.now()};fpSet(FP)}
   var SM=svS();if(!ok)SM[it.w]=1;else if(R.star)delete SM[it.w];ss('wn_star_'+name()+TCM,JSON.stringify(SM));var n=name(),Q=rq();if(!R.prac){Q.push({w:it.w,okk:ok});ss('wn_rq',JSON.stringify(Q));flushR()}
   var ar=document.getElementById('ar');
   if(wait){var b=document.createElement('button');b.className='btn pri';b.textContent=R.i+1>=R.items.length?'결과 보기':'다음';b.onclick=function(){R.i++;step()};ar.appendChild(b)}
   else{R.i++;step()}
 }
 function done(){
-  var ok=R.res.reduce(function(a,b){return a+b},0);if(R&&R.day)rvMark(R.day,ok,R.items.length);
+  var ok=R.res.reduce(function(a,b){return a+b},0),bs=R.base||{o:0,n:0},okT=ok+bs.o,totT=R.items.length+bs.n;if(R&&R.day){rvMark(R.day,okT,totT);var FP2=fpGet();delete FP2[R.day];fpSet(FP2)}
   var wr=R.items.filter(function(x,i){return!R.res[i]});
-  var h='<h1>복습 끝</h1><div class="card"><div class="big">'+ok+' / '+R.items.length+'</div></div>';
+  var h='<h1>복습 끝</h1><div class="card"><div class="big">'+okT+' / '+totT+'</div></div>';
   if(wr.length)h+='<div class="card"><div class="sub">다시 볼 단어</div>'+wr.map(function(i){return'<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+srcTag(i)+'</small></div>'+spk(i.w)+'</div>'}).join('')+'</div>';
   h+='<button class="btn pri" id="hm">홈으로</button>';$.innerHTML=h;
   document.getElementById('hm').onclick=function(){home()};
