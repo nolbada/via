@@ -106,9 +106,11 @@
    "expand": "확장하다",
    "view": "시야, 견해",
    "making": "make(만들다)의 -ing형",
-   "open-minded": "마음이 열린, 개방적인",
    "those": "those who: ~하는 사람들",
-   "avoid": "피하다"
+   "avoid": "피하다",
+   "open": "open-minded: 마음이 열린, 개방적인",
+   "one's": "사람의",
+   "minded": "open-minded: 마음이 열린, 개방적인"
   },
   "ko": "독서는 정말로 사람의 지식을 넓히고 세상을 보는 시야를 확장시킨다, 그래서 그것을 피하는 사람들보다 사람들을 훨씬 더 개방적으로 만든다."
  },
@@ -155,11 +157,12 @@
    "never": "결코 ~않다",
    "been": "be(이다, 가다)의 p.p.형",
    "country": "나라",
-   "America": "아메리카",
    "brother": "남자 형제",
    "travel": "여행하다",
    "twice": "두 번",
-   "alone": "혼자서, ~만"
+   "alone": "혼자서, ~만",
+   "america": "South America: 남아메리카",
+   "south": "South America: 남아메리카"
   },
   "ko": "나는 남아메리카의 어떤 나라에도 가본 적이 없지만, 내 남동생은 가본 적이 있다, 그리고 그는 작년에 혼자서 정말로 그곳을 두 번 여행했다."
  },
@@ -212,10 +215,11 @@
    "tough": "힘든",
    "distractions": "distraction(방해 요소)의 복수형",
    "especially": "특히",
-   "poorly-managed": "제대로 관리되지 않은",
    "schedule": "일정",
    "leaving": "leave(남기다)의 -ing형",
-   "free": "free time: 자유 시간"
+   "free": "free time: 자유 시간",
+   "poorly": "poorly-managed: 제대로 관리되지 않은",
+   "managed": "manage(관리하다)의 p.p.형"
   },
   "ko": "공부에 집중하는 것은 그렇게 많은 방해 요소들이 있을 때 힘들 수 있었다, 특히 제대로 관리되지 않은 일정이 자유 시간을 거의 남기지 않는 경우에는."
  },
@@ -254,7 +258,7 @@
   ],
   "ex": "The weather must have changed.",
   "exko": "날씨가 변했음이 틀림없어요(change 변하다).",
-  "tko": "분명 변화했다",
+  "tko": "분명 변화했을 것이다",
   "bad": "The weather must changed.",
   "badko": "(must 뒤에 changed처럼 과거형을 바로 쓸 수 없어요. must have changed예요)",
   "altw": "must + 원형",
@@ -287,7 +291,7 @@
    ],
    [
     "and when they do eat them,",
-    "그것들을 먹을 때에도,"
+    "그리고 막상 그것들을 먹을 때에는,"
    ],
    [
     "they often make funny faces,",
@@ -602,7 +606,7 @@
   ],
   "ex": "You must have felt tired.",
   "exko": "너는 피곤했음이 틀림없어요(feel 느끼다 → felt, tired 피곤한).",
-  "tko": "분명 감탄했다",
+  "tko": "분명 감탄했을 것이다",
   "bad": "You must felt tired.",
   "badko": "(must 뒤에 felt처럼 과거형을 바로 쓸 수 없어요. must have felt예요)",
   "altw": "must + 원형",

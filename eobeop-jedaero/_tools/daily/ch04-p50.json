@@ -11,7 +11,7 @@
    ],
    [
     "No one on my team had solved that kind of problem before, but I had once before,",
-    "우리 팀의 그 누구도 그런 종류의 문제를 전에 해결해 본 적이 없었지만 나는 예전에 한 번 있었고,"
+    "우리 팀의 그 누구도 그런 종류의 문제를 전에 해결해 본 적이 없었지만 나는 예전에 한 번 해결해 본 적이 있었고,"
    ],
    [
     "and that experience must have taught me valuable lessons",
@@ -38,7 +38,7 @@
   ],
   "ex": "He must have won the game.",
   "exko": "그가 경기를 이겼음이 틀림없어요(win 이기다 → won).",
-  "tko": "분명 가르쳐 주었다",
+  "tko": "분명 가르쳐 주었을 것이다",
   "bad": "He must won the game.",
   "badko": "(must 뒤에 won처럼 과거형을 바로 쓸 수 없어요. must have won이에요)",
   "altw": "must + 원형",
@@ -115,7 +115,6 @@
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>받는 쪽을 말할 때는 being + p.p.를 써요. look forward to 뒤에는 -ing 모양이 와요",
   "d": {
    "office": "사무실",
-   "Internet": "인터넷",
    "connected": "connect(연결하다)의 p.p.형",
    "normally": "정상적으로",
    "repairs": "repair(수리)의 복수형",
@@ -127,7 +126,8 @@
    "management": "경영진",
    "requests": "request(요청하다)의 3인칭 단수형",
    "report": "보고하다",
-   "within": "~이내에"
+   "within": "~이내에",
+   "internet": "인터넷"
   },
   "ko": "사무실 인터넷은 이제 정상적으로 연결되어야 한다, 수리가 완료되었기 때문이다, 그리고 직원들은 곧 있을 업데이트에 대해 안내받기를 기대하고 있다. 경영진은 문제가 있으면 누구든지 당일 안에 보고할 것을 요청한다."
  },
@@ -196,7 +196,6 @@
    "well": "as well as: ~만큼 잘",
    "climates": "climate(기후)의 복수형",
    "addition": "in addition: 게다가",
-   "anti-waste": "낭비를 반대하는",
    "campaigner": "운동가",
    "insists": "insist(주장하다)의 3인칭 단수형",
    "stores": "store(매장)의 복수형",
@@ -209,7 +208,8 @@
    "clearer": "clear(명확한)의 비교급",
    "labeling": "라벨 표기",
    "reduce": "줄이다",
-   "waste": "낭비"
+   "waste": "낭비",
+   "anti": "anti-waste: 낭비를 반대하는"
   },
   "ko": "신선함에 대한 수요는 막대한 환경적 비용을 숨기고 있다. 추운 계절에도 농부들은 다른 따뜻한 기후에서만큼 작물이 잘 자라도록 많은 연료를 사용해야 한다. 게다가 반(反)낭비 운동가인 Tristram Stuart는 많은 매장들이 신선함을 강조하기 위해 멀쩡한 상태의 음식을 많이 버리고 있다고 주장하며, 슈퍼마켓들이 이 낭비를 줄이기 위해 더 명확한 라벨 표기를 도입해야 한다고 제안했다."
  },
@@ -248,7 +248,7 @@
   ],
   "ex": "I have a friend that likes music.",
   "exko": "나는 음악을 좋아하는 친구가 있어요(friend 친구, music 음악).",
-  "tko": "계속될 흐름",
+  "tko": "계속되기를 바라는 흐름",
   "bad": "I have a friend what likes music.",
   "badko": "(what 앞에는 a friend 같은 명사가 올 수 없어요. 앞 명사를 받는 말은 that이에요)",
   "altw": "what",
@@ -395,7 +395,6 @@
   "why": "did(했다)를 believe(믿다) 앞에 붙이면 '정말로 믿었다'는 뜻이 돼요. 과거는 did가 이미 나타내 주니까 뒤 동사는 believed가 아니라 그대로인 believe예요. 앞의 does really feel도 같은 모양이에요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>강조의 do/does/did 뒤에는 늘 동사원형이 와요",
   "d": {
-   "fast-fashion": "패스트 패션(싸고 빨리 만드는 옷)",
    "items": "item(제품)의 복수형",
    "created": "create(만들다)의 p.p.형",
    "sold": "sell(팔다)의 p.p.형",
@@ -414,7 +413,9 @@
    "first": "at first: 처음에는",
    "spend": "쓰다",
    "another": "또 다른",
-   "soon": "soon after: 그 직후에"
+   "soon": "soon after: 그 직후에",
+   "fast": "fast-fashion: 패스트 패션(싸고 빨리 만드는 옷)",
+   "fashion": "fast-fashion: 패스트 패션(싸고 빨리 만드는 옷)"
   },
   "ko": "패스트 패션 제품은 전통적인 옷보다 훨씬 더 빠르게 만들어지고 소비자에게 판매된다. 그것들은 가격과 품질 면에서 매우 낮다. 만약 어떤 사람이 셔츠를 산다면, 그는 계산대에서 정말로 돈을 절약했다고 느낀다, 그리고 처음에는 자신이 현명한 선택을 했다고 정말로 믿었다. 하지만 그는 곧 또 다른 셔츠를 사야 하기 때문에 더 많은 돈을 쓰게 될 수도 있다."
  }

@@ -138,23 +138,23 @@
   "mp": [
    [
     "당하는 주인",
-    "The homework",
+    "The window",
     "schedule changes"
    ],
    [
     "need to + be p.p.",
-    "needs to be finished",
+    "needs to be fixed",
     "need to be approved"
    ]
   ],
-  "ex": "The homework needs to be finished.",
-  "exko": "숙제는 끝내져야 해요(homework 숙제, finish 끝내다).",
+  "ex": "The window needs to be fixed.",
+  "exko": "그 창문은 고쳐져야 해요(window 창문, fix 고치다).",
   "tko": "승인되어야 한다",
-  "bad": "The homework needs to finish.",
-  "badko": "(숙제는 스스로 끝내는 게 아니라 끝내지는 쪽이라서 to finish가 아니라 to be finished예요)",
+  "bad": "The window needs to fix.",
+  "badko": "(창문은 스스로 고치는 게 아니라 고쳐지는 쪽이라서 to fix가 아니라 to be fixed예요)",
   "altw": "to + 동사원형",
-  "alt": "The students need to finish the homework.",
-  "altko": "학생들은 숙제를 끝내야 해요(학생들은 직접 끝내는 쪽이라서 to finish가 맞아요).",
+  "alt": "Dad needs to fix the window.",
+  "altko": "아빠는 그 창문을 고쳐야 해요(아빠가 직접 고치는 쪽이라서 to fix가 맞아요).",
   "why": "일정 변경은 누군가가 '승인해 주는' 대상이에요. 스스로 승인하지 못해요. 그래서 need to approve(승인하다)가 아니라 need to be approved(승인되다)예요. changes가 여러 개라서 need에 -s가 없어요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>주어가 행동을 당하면 to 뒤에 be p.p.가 와요",
   "d": {
@@ -281,7 +281,8 @@
    "same": "같은",
    "love": "애정",
    "bold": "강렬한",
-   "flavors": "맛"
+   "flavors": "맛",
+   "lot": "a lot of: 많은"
   }
  },
  {
@@ -296,7 +297,7 @@
    ],
    [
     "and successful companies also practice responding quickly",
-    "그리고 성공적인 회사들은 신속하게 대응하는 것을 연습하기도 한다"
+    "그리고 성공적인 회사들은 신속하게 대응하는 것을 실천하기도 한다"
    ],
    [
     "to every complaint they receive.",
@@ -320,13 +321,13 @@
   ],
   "ex": "I enjoy swimming.",
   "exko": "나는 수영하는 걸 즐겨요(swim 수영하다).",
-  "tko": "대응하는 것을 연습하기도 한다",
+  "tko": "대응하는 것을 실천하기도 한다",
   "bad": "I enjoy to swim.",
   "badko": "(enjoy(즐기다) 뒤에는 to swim이 아니라 swimming이 와야 해요)",
   "altw": "to",
   "alt": "I want to swim.",
   "altko": "나는 수영하고 싶어요(want 원하다는 to swim을 써요).",
-  "why": "practice(연습하다)는 연습하는 일을 -ing(~하는 것)로 말하는 동사예요. respond(대응하다)는 responding(대응하는 것)이 돼요. to respond로 쓰면 안 돼요. 맨 끝의 to every complaint는 respond to(~에 대응하다)의 to예요.",
+  "why": "practice(실천하다, 연습하다)는 하는 일을 -ing(~하는 것)로 받는 동사예요. respond(대응하다)는 responding(대응하는 것)이 돼요. to respond로 쓰면 안 돼요. 맨 끝의 to every complaint는 respond to(~에 대응하다)의 to예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>enjoy·avoid·practice 같은 동사 뒤에는 -ing예요",
   "d": {
    "avoid": "피하다",
@@ -340,7 +341,7 @@
    "sale": "판매",
    "successful": "성공적인",
    "companies": "회사들",
-   "practice": "연습하다",
+   "practice": "(습관처럼) 실천하다, 연습하다",
    "responding": "respond(대응하다)의 -ing형",
    "quickly": "빨리",
    "complaint": "불만",

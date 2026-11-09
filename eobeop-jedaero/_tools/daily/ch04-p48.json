@@ -98,7 +98,7 @@
   "altw": "한 마리",
   "alt": "I have one cat that is cute.",
   "altko": "나는 귀여운 고양이 한 마리가 있어요(cat이 한 마리라서 that is예요).",
-  "why": "that이 가리키는 말은 바로 앞의 several items(여러 물건)예요. 여러 개니까 that 뒤 동사도 여러 개에 맞는 were(있었다)가 되어야 해요. one of ...가 앞에 있어서 단수처럼 보여도, 가리키는 대상은 items예요.",
+  "why": "that이 가리키는 말은 바로 앞의 several items(여러 물건)예요. 여러 개니까 that 뒤 동사도 여러 개에 맞는 were를 써서 were left(남겨졌다)가 되어야 해요. one of ...가 앞에 있어서 단수처럼 보여도, 가리키는 대상은 items예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>that·which·who 뒤 동사는 앞에서 가리키는 말의 수에 맞춰요",
   "d": {
    "impossible": "불가능한",
@@ -148,7 +148,7 @@
   ],
   "ex": "They must have come early.",
   "exko": "그들은 일찍 왔음이 틀림없어요(come 오다).",
-  "tko": "분명 다시 갔다",
+  "tko": "분명 다시 갔을 것이다",
   "bad": "They must came early.",
   "badko": "(must 뒤에 came처럼 과거형을 바로 쓸 수 없어요. must have come이에요)",
   "altw": "must + 원형",
@@ -253,7 +253,7 @@
    [
     "앞 문장 동사",
     "brings a map",
-    "should bring"
+    "bring their passports"
    ],
    [
     "대신하는 말",
@@ -478,9 +478,9 @@
   "tko": "CEO가 해결해야 한다고 권고했다",
   "bad": "The doctor recommends that Jim sleeps more.",
   "badko": "(recommend(권하다) 뒤 that절은 '~해야 한다'는 뜻이라서 sleeps가 아니라 sleep이에요)",
-  "altw": "show",
-  "alt": "The doctor shows that Jim sleeps well.",
-  "altko": "의사는 짐이 잘 잔다는 걸 보여 줘요(show 보여 주다는 사실을 보여 줄 뿐이라 sleeps로 써요).",
+  "altw": "suggest(보여 주다)",
+  "alt": "The test suggests that Jim sleeps well.",
+  "altko": "그 검사는 짐이 잘 잔다는 걸 보여 줘요(suggest가 '보여 주다'라는 뜻일 때는 사실을 말해서 sleeps로 써요).",
   "why": "recommend(권하다)는 '~하는 게 좋겠다'고 권하는 말이에요. 뒤에는 해야 할 일이 와서 동사를 그대로(원형) 써요. 그래서 addresses가 아니라 address(해결하다)예요. 앞쪽 suggests는 '보여 준다'는 뜻이라서 dropped처럼 있었던 일을 그대로 써요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>제안·요구 동사 뒤 that절은 동사에 -s나 -ed를 붙이지 않고 원형으로 써요",
   "d": {
@@ -493,10 +493,10 @@
    "past": "지난",
    "board": "이사회",
    "recommended": "recommend(권하다)의 과거형",
-   "CEO": "최고 경영자",
    "address": "해결하다",
    "issue": "문제",
-   "immediately": "즉시"
+   "immediately": "즉시",
+   "ceo": "CEO: 최고 경영자"
   },
   "ko": "그 보고서는 회사의 이익이 지난해 급격히 감소했다는 것을 시사한다, 그래서 이사회는 CEO가 그 문제를 즉시 해결해야 한다고 권고했다."
  },
@@ -581,7 +581,7 @@
   ],
   "ex": "It must have rained last night.",
   "exko": "어젯밤에 비가 왔음이 틀림없어요(rain 비가 오다).",
-  "tko": "분명 발달했다",
+  "tko": "분명 발달했을 것이다",
   "bad": "It must rained last night.",
   "badko": "(must 뒤에 rained처럼 과거형을 바로 쓸 수 없어요. must have rained예요)",
   "altw": "must + 원형",
@@ -650,7 +650,6 @@
   "d": {
    "amount": "양",
    "snowfall": "적설량",
-   "December": "12월",
    "significantly": "상당히",
    "higher": "high(높은, 많은)의 비교급",
    "crews": "crew(팀, 일행)의 복수형",
@@ -658,7 +657,8 @@
    "extremely": "매우",
    "carefully": "신중하게",
    "storms": "storm(폭풍)의 복수형",
-   "ahead": "앞에 있는"
+   "ahead": "앞에 있는",
+   "december": "12월"
   },
   "ko": "이번 12월의 적설량은 작년 12월보다 상당히 더 많을 것이다, 그래서 시 관계자들은 다가올 폭풍에 대비해 매우 신중하게 준비하고 있다."
  }

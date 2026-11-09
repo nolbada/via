@@ -80,14 +80,14 @@
     "continues"
    ],
    [
-    "will을 쓸까?",
-    "안 써요",
-    "will은 빼요"
+    "결과",
+    "we will stay home",
+    "the workforce could shrink"
    ]
   ],
   "ex": "If it rains tomorrow, we will stay home.",
   "exko": "내일 비가 오면 우리는 집에 있을 거예요(rain 비가 오다).",
-  "tko": "이 추세가 계속되면",
+  "tko": "이 추세가 계속되면 / 노동력은 줄어들 수 있다",
   "bad": "If it will rain tomorrow, we will stay home.",
   "badko": "(if절은 내일 일이어도 will rain이 아니라 rains예요)",
   "altw": "will",
@@ -140,7 +140,7 @@
   "exko": "작년에 많은 규칙이 만들어졌어요(rule 규칙, make 만들다).",
   "tko": "많은 정책이 제안되었다",
   "bad": "Many rules made last year.",
-  "badko": "(규칙은 만들어지는 쪽이라서 made만 쓰면 동사가 없어요. were made가 필요해요)",
+  "badko": "(규칙은 만들어지는 쪽이라서 made가 아니라 were made예요)",
   "altw": "made",
   "alt": "The school made many rules.",
   "altko": "학교가 많은 규칙을 만들었어요(학교가 직접 만든 쪽이라서 made).",
@@ -443,7 +443,7 @@
   "altw": "is",
   "alt": "Every time she is sad, I help her.",
   "altko": "그녀가 슬플 때마다 나는 그녀를 도와요(sad(슬픈)처럼 상태를 말하니까 is).",
-  "why": "he does this는 '그가 이것을 한다'는 뜻이에요. do(하다)라는 동작 뒤에 this(이것)가 붙었어요. is(이다) 뒤에는 this 같은 대상을 바로 붙일 수 없어요. 주어가 he(3인칭 단수)라서 do에 -es를 붙여 does예요.",
+  "why": "he does this(그가 이렇게 하다)는 앞 문장의 buys a new one(새것을 산다)이라는 행동을 대신 받는 말이에요. 행동을 대신 받을 때는 일반동사 do(하다)를 써요. is(이다)로는 '하다'라는 행동을 나타낼 수 없어요. 주어가 he라서 does예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>동작을 말할 땐 do/does, 상태를 말할 땐 be동사예요",
   "d": {
    "every": "every time: ~할 때마다",
@@ -535,7 +535,7 @@
   ],
   "ex": "A storm can break the window.",
   "exko": "폭풍은 창문을 깰 수 있어요(storm 폭풍, break 깨다).",
-  "tko": "많은 문제를",
+  "tko": "많은 문제를 일으킬 수 있다",
   "bad": "A storm can be broken the window.",
   "badko": "(뒤에 the window(창문)라는 목적어가 있어서 be broken이 아니라 break예요)",
   "altw": "be broken",
@@ -585,7 +585,7 @@
   ],
   "ex": "She is the only girl that can swim here.",
   "exko": "그녀는 여기서 수영할 수 있는 유일한 소녀예요(swim 수영하다).",
-  "tko": "~하는 (앞의 재해를 꾸며요)",
+  "tko": "덮치는 유일한 자연재해",
   "bad": "She is the only girl which can swim here.",
   "badko": "(the only(유일한) 뒤에는 which가 아니라 that만 써요)",
   "altw": "which",
@@ -634,7 +634,7 @@
   ],
   "ex": "Most of the water is dirty.",
   "exko": "그 물의 대부분은 더러워요(dirty 더러운).",
-  "tko": "발생한다",
+  "tko": "피해의 대부분은 발생한다",
   "bad": "Most of the water are dirty.",
   "badko": "(water(물)는 셀 수 없는 단수라서 are가 아니라 is예요)",
   "altw": "are",
@@ -798,11 +798,11 @@
   "d": {
    "opening": "개막",
    "exhibit": "전시회",
-   "16th-century": "16세기의",
    "artworks": "artwork(미술품)의 복수형",
    "announced": "announce(발표하다)의 과거분사형",
    "museum": "박물관",
-   "derbyshire": "더비셔(영국의 지역 이름)"
+   "derbyshire": "더비셔(영국의 지역 이름)",
+   "century": "16th-century: 16세기의"
   }
  },
  {
@@ -839,8 +839,8 @@
   "altw": "is made of",
   "alt": "The desk is made of wood.",
   "altko": "그 책상은 나무로 만들어졌어요(make(만들다)는 '만들어지다'일 때 be made of를 써요).",
-  "why": "consist of는 '~로 이루어져 있다'라는 뜻 자체가 이미 '되어 있다'는 느낌이에요. 그래서 be + p.p.로 바꾸지 않고 consist of 그대로 써요. They가 복수라서 consist예요.",
-  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>consist of처럼 '되다'는 뜻이 이미 든 동사는 수동태로 쓰지 않아요",
+  "why": "consist of(~로 이루어져 있다)는 누가 무엇에 하는 동작이 아니라서 '당하는 쪽' 모양(be + p.p.)이 없어요. 우리말로 '이루어져 있다'라서 수동처럼 느껴져도 영어로는 consist of 그대로 써요. They가 복수라서 consist예요.",
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>consist of, happen처럼 목적어가 없는 동사는 수동태로 쓰지 않아요",
   "d": {
    "consist": "consist of: ~로 이루어지다",
    "large": "큰",
@@ -883,8 +883,8 @@
   "bad": "The nurse recommended that Tom drinks more water.",
   "badko": "(recommend(권하다) 뒤 that절은 Tom이 한 명이어도 drinks가 아니라 drink예요)",
   "altw": "drinks",
-  "alt": "I know that Tom drinks a lot of water.",
-  "altko": "나는 톰이 물을 많이 마신다는 걸 알아요(know(알다)는 권고가 아니라 사실이라서 drinks).",
+  "alt": "Tom says that he drinks a lot of water.",
+  "altko": "톰은 물을 많이 마신다고 말해요(say 말하다는 권고가 아니라 사실을 전해서 drinks).",
   "why": "recommended(권했다) 뒤 that절에는 '~하는 게 좋겠다'는 should가 숨어 있어요. the museum은 하나(단수)라서 extends라고 쓰고 싶지만, should 뒤처럼 동사원형 extend(늘리다)를 써요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>권하는 말 뒤 that절은 주어가 단수여도 동사원형이에요",
   "d": {

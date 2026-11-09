@@ -79,7 +79,7 @@
   "altw": "-ing",
   "alt": "Try opening the window.",
   "altko": "시험 삼아 창문을 열어 보세요(try -ing는 '한번 해 보다').",
-  "why": "try to + 동사원형은 '애써서 ~하려고 하다'예요. try -ing는 '시험 삼아 한번 해 보다'예요. 숨을 더 빨리 쉬려고 애쓴다는 뜻이니까 to breathe(숨 쉬다)예요. trying breathing처럼 -ing를 두 번 겹쳐 쓰지도 않아요.",
+  "why": "try to + 동사원형은 '애써서 ~하려고 하다'예요. try -ing는 '시험 삼아 한번 해 보다'예요. 숨을 더 빨리 쉬려고 애쓴다는 뜻이니까 to breathe(숨 쉬다)예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>try 뒤에서 to V는 '애쓰다', -ing는 '시험 삼아 해 보다'예요",
   "d": {
    "result": "결과, as a result: 그 결과",
@@ -342,7 +342,8 @@
    "during": "~동안",
    "major": "큰, 주요한",
    "extinction": "멸종",
-   "events": "event(사건)의 복수형"
+   "events": "event(사건)의 복수형",
+   "earth": "지구"
   }
  },
  {
@@ -574,23 +575,23 @@
   "mp": [
    [
     "앞 말",
-    "the only boy",
+    "The only toy",
     "The only bird"
    ],
    [
     "관계대명사",
-    "that",
-    "that"
+    "that can talk",
+    "that can predict"
    ]
   ],
-  "ex": "The only boy that can swim is Tom.",
-  "exko": "수영할 수 있는 유일한 소년은 톰이에요(swim 수영하다).",
+  "ex": "The only toy that can talk is this robot.",
+  "exko": "말을 할 수 있는 유일한 장난감은 이 로봇이에요(toy 장난감, talk 말하다, robot 로봇).",
   "tko": "~할 수 있는 유일한 새",
-  "bad": "The only boy which can swim is Tom.",
-  "badko": "(the only가 앞에 있으면 which나 who가 아니라 that만 쓸 수 있어요)",
-  "altw": "who",
-  "alt": "The boy who can swim is Tom.",
-  "altko": "수영할 수 있는 그 소년은 톰이에요(the only 없이 사람 앞에는 who도 쓸 수 있어요).",
+  "bad": "The only toy which can talk is this robot.",
+  "badko": "(the only(유일한)가 앞에 있으면 which가 아니라 that을 써요)",
+  "altw": "which",
+  "alt": "This is a toy which can talk.",
+  "altko": "이것은 말을 할 수 있는 장난감이에요(the only가 없으면 which도 쓸 수 있어요).",
   "why": "the only(유일한) 같은 말이 앞에 붙으면 관계대명사는 that만 써요. which는 안 돼요. 'only가 있으면 that'으로 기억해요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>the only, the first, 최상급 뒤 관계대명사는 that이 잘 와요",
   "d": {
