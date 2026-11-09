@@ -16,7 +16,7 @@
   ],
   "ko": "화이트보드의 메시지는 매일 하루가 끝날 때 지워지고, 다음 날 아침 그 자리에 메모 하나가 나타났다.",
   "gist": "화이트보드 글은 매일 지워지고 다음 날 아침엔 새 메모가 나타난다는 얘기예요.",
-  "fm": "자동사 appear + (be p.p. 쓰지 않기)",
+  "fm": "appear + be p.p. (X)",
   "mp": [
    [
     "주어",
@@ -145,9 +145,9 @@
   "tko": "모든 농장이 따르는 관행",
   "bad": "It is a song that sings by kids.",
   "badko": "(song(노래)은 부르는 쪽이 아니라 아이들에게 '불리는' 쪽이라서 sings가 아니라 is sung이에요)",
-  "altw": "who",
-  "alt": "He is a boy who sings well.",
-  "altko": "그는 노래를 잘하는 소년이에요(boy 소년이 직접 노래하니까 능동 sings).",
+  "altw": "능동",
+  "alt": "It is a song that makes kids happy.",
+  "altko": "그것은 아이들을 행복하게 하는 노래예요(노래가 직접 행복하게 하니까 능동 makes; make 만들다).",
   "why": "that 앞의 a routine(관행)은 스스로 따르는 게 아니라 농장들이 '따르는' 쪽이에요. 그래서 '따라진다'는 뜻의 is followed(follow 따르다의 수동)가 맞아요. by every farm(모든 농장에 의해)도 힌트예요.",
   "d": {
    "winter": "겨울",
@@ -184,7 +184,7 @@
   ],
   "ko": "그 가게의 옷들은 부드러운 원단으로 만들어져서 입기에 편안한데, 만약 그것들을 조심스럽게 세탁한다면 여러 해 동안 오래갈 것이다.",
   "gist": "부드러운 옷은 조심해서 빨면 오래 입을 수 있다는 얘기예요.",
-  "fm": "if + 현재형 , will + 동사원형",
+  "fm": "if + 현재형, will + 동사원형",
   "mp": [
    [
     "if 절",
@@ -245,23 +245,23 @@
   "mp": [
    [
     "주어",
-    "The rule",
+    "The homework",
     "the new regulations"
    ],
    [
     "will be p.p.",
-    "will be changed",
+    "will be checked",
     "will be enforced"
    ]
   ],
-  "ex": "The rule will be changed.",
-  "exko": "그 규칙은 바뀔 거예요(rule 규칙, change 바꾸다).",
+  "ex": "The homework will be checked tomorrow.",
+  "exko": "그 숙제는 내일 검사될 거예요(homework 숙제, check 검사하다, tomorrow 내일).",
   "tko": "새 규정은 시행될 것이다",
-  "bad": "The rule will change it.",
-  "badko": "(rule(규칙)은 바꾸는 쪽이 아니라 바뀌는 쪽이라서 will change가 아니라 will be changed예요)",
-  "altw": "will 동사원형",
-  "alt": "The teacher will change the rule.",
-  "altko": "선생님이 그 규칙을 바꿀 거예요(teacher 선생님이 직접 바꾸니까 능동).",
+  "bad": "The homework will check tomorrow.",
+  "badko": "(homework(숙제)는 검사하는 쪽이 아니라 검사받는 쪽이라서 will check가 아니라 will be checked예요)",
+  "altw": "능동",
+  "alt": "The teacher will check the homework tomorrow.",
+  "altko": "선생님이 내일 그 숙제를 검사할 거예요(teacher 선생님이 직접 검사하니까 능동 will check).",
   "why": "the new regulations(새 규정)는 스스로 시행하는 게 아니라 사람들이 '시행하는' 대상이에요. 미래이니까 '시행될 것이다'를 뜻하는 will be enforced(enforce 시행하다의 수동)가 맞아요. 앞의 must be placed(놓여야 한다)도 같은 모양이에요.",
   "d": {
    "caution": "주의",
@@ -290,7 +290,7 @@
    ],
    [
     "and always found hidden gems among the pages.",
-    "그리고 늘 숨겨진 보물을 찾아냈다 페이지 속에서."
+    "그리고 페이지 속에서 늘 숨겨진 보물을 찾아냈다."
    ]
   ],
   "ko": "Sarah는 헌책방의 먼지 쌓인 선반에 놓인 오래된 책들을 살펴보는 것을 즐겼고, 페이지 속에서 항상 숨겨진 보물을 찾아냈다.",
@@ -351,7 +351,7 @@
   ],
   "ko": "우리 사무실의 프린터가 또 이상한 소리를 내고 있고, 여러 번의 수리 시도에도 그 문제는 계속되었다.",
   "gist": "프린터가 또 이상한 소리를 내는데 여러 번 고쳐도 문제가 계속됐다는 얘기예요.",
-  "fm": "자동사 persist + (be p.p. 쓰지 않기)",
+  "fm": "persist + be p.p. (X)",
   "mp": [
    [
     "주어",
@@ -462,28 +462,28 @@
   "mp": [
    [
     "앞 명사",
-    "a story",
+    "a secret",
     "a fact"
    ],
    [
     "that 뒤 동사",
-    "that is loved",
+    "that is kept",
     "that is noticed"
    ],
    [
     "하는 쪽",
-    "by kids",
+    "by Mom",
     "by even casual fans"
    ]
   ],
-  "ex": "It is a story that is loved by kids.",
-  "exko": "그것은 아이들이 사랑하는 이야기예요(story 이야기, love 사랑하다).",
+  "ex": "It is a secret that is kept by Mom.",
+  "exko": "그것은 엄마가 지키는 비밀이에요(secret 비밀, keep 지키다 → kept).",
   "tko": "평범한 팬들조차 알아차리는 사실",
-  "bad": "It is a story that loves by kids.",
-  "badko": "(story(이야기)는 사랑하는 쪽이 아니라 아이들에게 '사랑받는' 쪽이라서 loves가 아니라 is loved예요)",
-  "altw": "who",
-  "alt": "She is a girl who loves stories.",
-  "altko": "그녀는 이야기를 좋아하는 소녀예요(girl 소녀가 직접 좋아하니까 능동 loves).",
+  "bad": "It is a secret that keeps by Mom.",
+  "badko": "(secret(비밀)은 지키는 쪽이 아니라 엄마가 '지키는' 대상이라서 keeps가 아니라 is kept예요)",
+  "altw": "능동",
+  "alt": "She is a girl who keeps secrets.",
+  "altko": "그녀는 비밀을 지키는 소녀예요(girl 소녀가 직접 지키니까 능동 keeps).",
   "why": "a fact(사실)는 스스로 알아차리는 게 아니라 팬들이 '알아차리는' 대상이에요. 그래서 '알아차려진다'는 뜻의 is noticed(notice 알아차리다의 수동)가 맞아요. by even casual fans(평범한 팬들조차에 의해)도 힌트예요.",
   "d": {
    "worst": "bad(나쁜)의 최상급, 가장 나쁜",
@@ -634,7 +634,7 @@
   "mp": [
    [
     "꾸미는 말",
-    "really",
+    "amazingly",
     "surprisingly"
    ],
    [
@@ -643,14 +643,14 @@
     "fast"
    ]
   ],
-  "ex": "The cat is really fast.",
-  "exko": "그 고양이는 정말 빨라요(really 정말, fast 빠른).",
+  "ex": "The cat is amazingly fast.",
+  "exko": "그 고양이는 놀랍도록 빨라요(amazingly 놀랍도록, fast 빠른).",
   "tko": "놀랍도록 빠르게",
-  "bad": "The cat is real fast.",
-  "badko": "(fast(빠른)를 꾸미는 말은 형용사 real(진짜의)이 아니라 부사 really(정말)예요)",
+  "bad": "The cat is amazing fast.",
+  "badko": "(fast(빠른)를 꾸미는 말은 형용사 amazing(놀라운)이 아니라 부사 amazingly(놀랍도록)예요)",
   "altw": "surprising",
-  "alt": "She is a surprising girl.",
-  "altko": "그녀는 놀라운 소녀예요(surprising(놀라운)이 명사 girl(소녀)을 꾸밀 때는 형용사).",
+  "alt": "It was surprising news.",
+  "altko": "그건 놀라운 소식이었어요(surprising(놀라운)이 명사 news(소식)를 꾸밀 때는 형용사).",
   "why": "fast(빠른, 빠르게)가 '얼마나' 빠른지 말하려면 fast를 꾸며 주는 말이 필요해요. 형용사나 다른 부사를 꾸미는 건 부사의 일이라서 surprising(놀라운)이 아니라 surprisingly(놀랍도록)예요.",
   "d": {
    "baby": "아기",

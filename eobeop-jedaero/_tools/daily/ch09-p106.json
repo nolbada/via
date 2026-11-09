@@ -35,7 +35,7 @@
   "badko": "(엄마가 피곤함을 느끼는 쪽이라서 tiring(피곤하게 만드는)이 아니라 tired(피곤한)예요)",
   "altw": "-ing",
   "alt": "The long walk was tiring.",
-  "altko": "그 긴 산책은 피곤하게 만들었어요(산책이 피곤함을 주는 쪽이라서 tiring이에요).",
+  "altko": "그 긴 산책은 피곤했어요(산책이 피곤함을 주는 쪽이라서 tiring이에요).",
   "why": "실망을 느끼는 건 fans(팬들)예요. 감정을 느끼는 사람 쪽이면 disappointed(실망한)를 써요. 실망을 주는 일이나 물건 쪽이면 disappointing(실망스러운)을 써요.",
   "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>감정을 느끼는 사람은 p.p., 감정을 주는 것은 -ing예요",
   "d": {
@@ -120,7 +120,7 @@
    ],
    [
     "feeling proud of herself as she had planned every minute of her commute.",
-    "통근의 매 순간을 계획해 두었던 터라 스스로가 자랑스러운 기분으로."
+    "마치 통근의 매 순간을 계획해 두었던 것처럼 스스로를 자랑스러워하면서."
    ]
   ],
   "gist": "길이 막혔는데도 Sarah는 미리 계획한 덕에 제시간에 도착해 뿌듯했다는 얘기예요.",
@@ -128,19 +128,19 @@
   "mp": [
    [
     "as 뒤에 오는 말",
-    "as he had passed",
+    "as her mom had taught",
     "as she had planned"
    ]
   ],
-  "ex": "He was happy as he had passed the test.",
-  "exko": "그는 시험에 합격했기 때문에 행복했어요(pass 합격하다 → passed, test 시험).",
-  "tko": "그녀가 계획해 두었기 때문에",
-  "bad": "He was happy like he had passed the test.",
-  "badko": "(like(~처럼) 뒤에는 he had passed 같은 '주어+동사'가 올 수 없어서 as여야 해요)",
+  "ex": "She cooked as her mom had taught her.",
+  "exko": "그녀는 엄마가 가르쳐 준 대로 요리했어요(cook 요리하다, taught는 teach(가르치다)의 p.p.형).",
+  "tko": "그녀가 계획해 두었던 것처럼",
+  "bad": "She cooked like her mom had taught her.",
+  "badko": "(like(~처럼) 뒤에는 her mom had taught 같은 '주어+동사'가 올 수 없어서 as여야 해요)",
   "altw": "like",
   "alt": "She sings like a bird.",
   "altko": "그녀는 새처럼 노래해요(like 뒤에 a bird라는 명사가 와요).",
-  "why": "like(~처럼)는 뒤에 a bird(새)처럼 명사만 올 수 있어요. 그런데 여기에는 she had planned(그녀가 계획해 두었다)처럼 주어와 동사가 있는 문장이 이어져요. 문장 앞에서 이유나 '~처럼'을 말할 때는 as를 써요.",
+  "why": "like(~처럼)는 뒤에 a bird(새)처럼 명사만 올 수 있어요. 그런데 여기에는 she had planned(그녀가 계획해 두었다)처럼 주어와 동사가 있는 문장이 이어져요. 주어와 동사가 있는 문장 앞에서 '~처럼, ~대로'를 말할 때는 as를 써요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>like 뒤에는 명사, as 뒤에는 주어 + 동사가 와요",
   "d": {
    "despite": "~에도 불구하고",
@@ -212,11 +212,11 @@
   "dk": [
    [
     "Ms. Undset escaped Norway during the German attack,",
-    "Undset 여사는 독일의 공격 중에 노르웨이를 탈출했지만,"
+    "Undset 여사는 독일의 공격 중에 노르웨이를 탈출했다,"
    ],
    [
     "but she returned after WWII,",
-    "제2차 세계 대전 뒤에 돌아왔다,"
+    "하지만 제2차 세계 대전 뒤에 돌아왔다,"
    ],
    [
     "a journey she completed alone back in 1940.",
@@ -282,18 +282,18 @@
   "mp": [
    [
     "what 뒤 명사",
-    "what things",
+    "what toys",
     "what changes"
    ]
   ],
-  "ex": "I know what things matter to me.",
-  "exko": "나는 어떤 것들이 나에게 중요한지 알아요(thing 것, matter 중요하다).",
+  "ex": "I know what toys he wants.",
+  "exko": "나는 그가 어떤 장난감들을 원하는지 알아요(toy 장난감, want 원하다).",
   "tko": "어떤 변화가 중요한지",
-  "bad": "I know that things matter to me.",
-  "badko": "(이렇게 쓰면 '어떤 것들이 중요한지'가 아니라 '것들이 중요하다는 것'이 되어 뜻이 달라져요. '어떤'을 말하려면 what이어야 해요)",
+  "bad": "I know that toys he wants.",
+  "badko": "(that 뒤에 toys he wants가 오면 wants(원하다)가 원하는 대상이 비어서 말이 안 돼요. '어떤 장난감'은 what toys예요)",
   "altw": "that",
-  "alt": "I know that this thing matters to me.",
-  "altko": "나는 이것이 나에게 중요하다는 것을 알아요(that 뒤에는 this thing matters처럼 말이 다 갖춰진 문장이 와요).",
+  "alt": "I know that he wants toys.",
+  "altko": "나는 그가 장난감을 원한다는 것을 알아요(that 뒤에는 he wants toys처럼 말이 다 갖춰진 문장이 와요).",
   "why": "'어떤 변화가 이웃에게 중요한지 잘 모르겠다'고 할 때, '어떤'을 말해 주는 단어가 what이에요. that은 '~라는 것'이라는 뜻이라서 '어떤'이라는 뜻을 만들지 못해요. what changes matter(어떤 변화가 중요한지)로 써야 해요.",
   "trend": "<b>출제 3위 · that[which] vs what</b><br>31년간 71회 나왔어요.<br>완전한 문장이 이어지면 that, '무엇·어떤'을 물으면 what이에요",
   "d": {
@@ -443,8 +443,8 @@
   "bad": "I know if made him sad.",
   "badko": "(if 뒤에는 주어가 있는 문장이 와야 하는데 made 앞에 주어가 없어서 what이어야 해요)",
   "altw": "if",
-  "alt": "I know if he is sad.",
-  "altko": "나는 그가 슬픈지 아닌지 알아요(if 뒤에 he is sad라는 완전한 문장이 와요).",
+  "alt": "I wonder if he is sad.",
+  "altko": "나는 그가 슬픈지 궁금해요(wonder 궁금해하다, if 뒤에 he is sad라는 완전한 문장이 와요).",
   "why": "caused(cause 일으키다의 과거형) 앞에는 주어가 없어요. '무엇이 일으켰는지'에서 '무엇이'가 주어 자리를 채워 주는 what이 필요해요. if(~인지)는 뒤에 주어까지 갖춘 문장이 올 때 써요.",
   "trend": "<b>출제 3위 · that[which] vs what</b><br>31년간 71회 나왔어요.<br>뒤에 주어가 빠졌으면 what, 다 갖춰졌으면 that·if·why예요",
   "d": {

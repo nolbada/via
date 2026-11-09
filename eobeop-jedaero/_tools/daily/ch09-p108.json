@@ -220,23 +220,23 @@
   "mp": [
    [
     "that 앞 명사",
-    "a game",
+    "a song",
     "an issue"
    ],
    [
     "that 뒤 동사",
-    "is loved",
+    "is sung",
     "is discussed"
    ]
   ],
-  "ex": "It is a game that is loved by kids.",
-  "exko": "그것은 아이들에게 사랑받는 게임이에요(love 사랑하다 → loved 사랑받는).",
+  "ex": "It is a song that is sung by kids.",
+  "exko": "그것은 아이들이 부르는 노래예요(sing 노래하다 → sung 불리는).",
   "tko": "논의되는",
-  "bad": "It is a game that is loving by kids.",
-  "badko": "(game(게임)은 사랑을 받는 쪽이라서 is loving이 아니라 is loved예요)",
+  "bad": "It is a song that is singing by kids.",
+  "badko": "(song(노래)은 불리는 쪽이라서 is singing이 아니라 is sung이에요)",
   "altw": "능동",
-  "alt": "It is a dog that is loving kids.",
-  "altko": "그것은 아이들을 사랑하고 있는 개예요(dog가 스스로 사랑하는 쪽이라서 is loving이에요).",
+  "alt": "He is a boy who is singing a song.",
+  "altko": "그는 노래를 부르고 있는 소년이에요(boy가 직접 노래하는 쪽이라서 is singing이에요).",
   "why": "an issue(사안)는 스스로 discuss(논의하다)하는 게 아니라 팀원들에 의해 논의되는 쪽이에요. '논의된다'는 is discussed처럼 be + p.p.로 써요. is discussing은 사안이 스스로 논의한다는 뜻이 되어 버려요.",
   "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>당하는 쪽이면 be + p.p.예요",
   "d": {
@@ -313,7 +313,7 @@
    ],
    [
     "leaving them feeling frustrated about the wasted afternoon.",
-    "그래서 낭비된 오후에 대해 좌절감을 느끼게 만들면서."
+    "그들이 낭비된 오후에 대해 좌절감을 느끼게 만들면서."
    ]
   ],
   "gist": "파도가 모래성을 쓸어가서 아이들은 다시 만들어야 했고 기분이 상했다는 얘기예요.",
@@ -471,19 +471,19 @@
   "mp": [
    [
     "although 뒤",
-    "although it rained",
+    "although he never studied",
     "although they never receive"
    ]
   ],
-  "ex": "We played although it rained.",
-  "exko": "비가 왔지만 우리는 놀았어요(rain 비가 오다 → rained).",
+  "ex": "He passed the test although he never studied.",
+  "exko": "그는 공부를 전혀 안 했지만 시험에 합격했어요(pass 합격하다, study 공부하다).",
   "tko": "비록 정식 훈련을 전혀 받지 않지만",
-  "bad": "We played despite it rained.",
-  "badko": "(despite(~에도 불구하고) 뒤에는 it rained 같은 문장이 올 수 없어서 although여야 해요)",
+  "bad": "He passed the test despite he never studied.",
+  "badko": "(despite(~에도 불구하고) 뒤에는 he never studied 같은 문장이 올 수 없어서 although여야 해요)",
   "altw": "despite",
-  "alt": "We played despite the rain.",
-  "altko": "우리는 비에도 불구하고 놀았어요(despite 뒤에 the rain이라는 명사가 와요).",
-  "why": "despite(~에도 불구하고)는 뒤에 the rain(비)처럼 명사만 올 수 있어요. 그런데 여기에는 they never receive any formal training(그들은 정식 훈련을 전혀 받지 않는다)처럼 주어와 동사가 있는 문장이 이어져요. 문장 앞에서 '비록 ~지만'을 말할 때는 although를 써요.",
+  "alt": "He passed the test despite the hard questions.",
+  "altko": "그는 어려운 문제들에도 불구하고 시험에 합격했어요(despite 뒤에 the hard questions라는 명사가 와요).",
+  "why": "despite(~에도 불구하고)는 뒤에 the hard questions(어려운 문제들)처럼 명사만 올 수 있어요. 그런데 여기에는 they never receive any formal training(그들은 정식 훈련을 전혀 받지 않는다)처럼 주어와 동사가 있는 문장이 이어져요. 문장 앞에서 '비록 ~지만'을 말할 때는 although를 써요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>despite 뒤에는 명사, although 뒤에는 주어 + 동사가 와요",
   "d": {
    "wondered": "wonder(궁금해하다)의 p.p.형",

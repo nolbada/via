@@ -94,7 +94,7 @@
   ],
   "ex": "I see birds that come every day.",
   "exko": "나는 매일 오는 새들을 봐요(see 보다, bird 새, come 오다).",
-  "tko": "작은 조각들이 오다",
+  "tko": "산에서 오는 작은 조각들",
   "bad": "I see birds that comes every day.",
   "badko": "(that 앞의 birds(새들)가 여러 마리라서 comes가 아니라 come이에요)",
   "altw": "comes",
@@ -351,31 +351,30 @@
   "mp": [
    [
     "핵심 주어",
-    "The boy I know",
-    "something she waited for"
+    "The boy I met",
+    "something she had been waiting for"
    ],
    [
     "동사",
-    "is",
+    "was",
     "was"
    ]
   ],
-  "ex": "The boy I know is kind.",
-  "exko": "내가 아는 그 소년은 친절해요(know 알다, kind 친절한).",
+  "ex": "The boy I met was kind.",
+  "exko": "내가 만난 그 소년은 친절했어요(met은 meet(만나다)의 과거형, kind 친절한).",
   "tko": "기다려 온 무언가가 곧 일어날",
-  "bad": "The boy I know are kind.",
-  "badko": "(핵심 주어는 I(나)가 아니라 The boy(소년 한 명)라서 are가 아니라 is예요)",
+  "bad": "The boy I met were kind.",
+  "badko": "(핵심 주어는 The boy(소년 한 명)라서 were가 아니라 was예요)",
   "altw": "were",
-  "alt": "The boys I know are kind.",
-  "altko": "내가 아는 소년들은 친절해요(boys가 여러 명이라서 are).",
+  "alt": "The boys I met were kind.",
+  "altko": "내가 만난 소년들은 친절했어요(boys가 여러 명이라서 were).",
   "why": "was about to happen(곧 일어날 참이었다)의 주어는 something(무언가)이에요. she had been waiting for(그녀가 기다려 오던)는 something을 설명하는 말일 뿐이에요. something은 하나라서 동사도 단수 was예요. were는 복수일 때 써요.",
   "trend": "<b>출제 6위 · 수식받는 주어의 수일치</b><br>31년간 57회 나왔어요.<br>설명하는 말은 건너뛰고 핵심 주어의 수를 봐요",
   "d": {
    "night": "밤",
    "feeling": "느낌",
    "something": "무언가",
-   "waiting": "wait(기다리다)의 -ing형",
-   "wait": "wait: wait for는 ~을 기다리다",
+   "waiting": "wait(기다리다)의 -ing형, wait for: ~를 기다리다",
    "about": "be about to: 막 ~하려는",
    "happen": "일어나다"
   }
@@ -466,7 +465,7 @@
    "again": "다시",
    "sounding": "sound(들리다)의 -ing형",
    "much": "훨씬",
-   "louder": "더 시끄러운"
+   "louder": "loud(소리가 큰)의 비교급: 더 큰"
   }
  },
  {
@@ -516,7 +515,7 @@
    "thunderstorm": "뇌우",
    "brought": "bring(가져오다)의 과거분사",
    "rain": "비",
-   "as": "as: as if는 마치 ~인 것처럼"
+   "as": "as if: 마치 ~인 것처럼"
   }
  },
  {
@@ -604,7 +603,7 @@
   "exko": "근처에 사는 내 친구들은 그녀를 좋아해요(friend 친구, nearby 근처에, like 좋아하다).",
   "tko": "동료들은 묘사한다",
   "bad": "My friends, who live nearby, likes her.",
-  "badko": "(핵심 주어는 nearby 가까이 있는 말이 아니라 friends(친구들)라서 likes가 아니라 like예요)",
+  "badko": "(사이에 낀 who live nearby(근처에 사는)를 건너뛰면 주어는 friends(친구들)라서 likes가 아니라 like예요)",
   "altw": "likes",
   "alt": "My friend, who lives nearby, likes her.",
   "altko": "근처에 사는 내 친구는 그녀를 좋아해요(friend가 한 명이라서 likes).",
@@ -661,7 +660,7 @@
   "why": "excited to(~해서 신이 난)에서 to는 to부정사의 to예요. to부정사의 to 뒤에는 동사 원래 모양이 와요. 그래서 starting이 아니라 start(시작하다)예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>to부정사의 to 뒤에는 동사 원래 모양이 와요",
   "d": {
-   "starting": "start(시작하다)의 -ing형",
+   "starting": "starting next week: 다음 주부터",
    "next": "다음의",
    "begin": "시작하다",
    "teaching": "teach(가르치다)의 -ing형",
@@ -685,7 +684,7 @@
   ],
   "ko": "학부모들은 그 변화에 들떠서, 이미 그녀를 환영하려고 연락을 해 왔다.",
   "gist": "학부모들이 새 코치를 반기며 먼저 연락했다는 얘기예요.",
-  "fm": "느끼는 사람 + feel + 감정 -ed",
+  "fm": "느끼는 사람 + feeling + 감정 -ed",
   "mp": [
    [
     "느끼는 사람",
@@ -694,14 +693,14 @@
    ],
    [
     "감정을 느끼는 말",
-    "feel excited",
+    "feeling excited",
     "feeling excited"
    ]
   ],
-  "ex": "The kids feel excited.",
-  "exko": "아이들은 신이 나요(kid 아이, excited 신이 난).",
+  "ex": "The kids, feeling excited, ran to the park.",
+  "exko": "신이 난 아이들은 공원으로 달려갔어요(ran은 run(달리다)의 과거형, park 공원).",
   "tko": "들뜬 마음으로",
-  "bad": "The kids feel excite.",
+  "bad": "The kids, feeling excite, ran to the park.",
   "badko": "(excite(신나게 하다)는 동사 모양이에요. 신이 난 상태는 excited예요)",
   "altw": "-ing",
   "alt": "The game is exciting.",
@@ -714,8 +713,7 @@
    "excited": "신이 난",
    "change": "변화",
    "already": "이미",
-   "reached": "reach(닿다)의 과거분사",
-   "reach": "reach: reach out to는 ~에게 연락하다",
+   "reached": "reach(닿다)의 p.p.형, reach out to: ~에게 연락하다",
    "welcome": "환영하다"
   }
  },
@@ -755,7 +753,7 @@
   "bad": "I hope whether he wins.",
   "badko": "(whether는 '인지 아닌지'라는 뜻이라 바람을 말하는 hope와 안 어울려요. hope 뒤에는 that이에요)",
   "altw": "whether",
-  "alt": "I wonder whether he wins.",
+  "alt": "I wonder whether he will win.",
   "altko": "나는 그가 이길지 궁금해요(wonder 궁금해하다 뒤에는 '인지 아닌지' whether).",
   "why": "hope(바라다)는 '~하기를 바란다'는 내용을 that으로 이어요. whether(~인지 아닌지)는 알 수 없어서 궁금하거나 모르는 내용에 어울려요. 바람은 궁금증이 아니라서 hopes that이에요.",
   "trend": "<b>출제 3위 · that[which] vs what</b><br>31년간 71회 나왔어요.<br>바라는 내용은 that, 궁금하거나 모르는 내용은 whether예요",
@@ -891,14 +889,14 @@
    ],
    [
     "동사를 꾸미는 말",
-    "carefully",
+    "more carefully",
     "more carefully"
    ]
   ],
-  "ex": "Please open the box carefully.",
-  "exko": "그 상자를 조심스럽게 열어 주세요(open 열다, box 상자).",
+  "ex": "Please open the box more carefully.",
+  "exko": "그 상자를 더 조심스럽게 열어 주세요(open 열다, box 상자).",
   "tko": "더 신중하게",
-  "bad": "Please open the box careful.",
+  "bad": "Please open the box more careful.",
   "badko": "(open(열다)을 꾸미는 자리라서 형용사 careful(조심스러운)이 아니라 부사 carefully(조심스럽게)예요)",
   "altw": "형용사",
   "alt": "He is a careful driver.",
@@ -1014,9 +1012,8 @@
   "why": "the audience responds to a speech(청중이 연설에 반응한다)는 주어, 동사, 전치사의 목적어까지 다 있어서 빠진 게 없는 문장이에요. what(무엇)은 빠진 게 있을 때 써요. '어떻게 반응하는지'를 말하니까 how(어떻게)예요.",
   "trend": "<b>출제 3위 · that[which] vs what</b><br>31년간 71회 나왔어요.<br>빠진 게 없으면 how·when·why, 빠진 게 있으면 what이에요",
   "d": {
-   "paying": "pay(기울이다, 내다)의 -ing형",
+   "paying": "pay(기울이다)의 -ing형, pay attention to: ~에 주의를 기울이다",
    "attention": "주의",
-   "pay": "pay: pay attention to는 ~에 주의를 기울이다",
    "audience": "청중",
    "responds": "respond(반응하다)의 3인칭 단수형",
    "speech": "연설",

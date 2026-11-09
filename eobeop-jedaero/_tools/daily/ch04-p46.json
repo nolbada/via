@@ -23,8 +23,8 @@
   "mp": [
    [
     "앞 문장 동사",
-    "likes pizza",
-    "might visit"
+    "likes",
+    "visit"
    ],
    [
     "대신하는 말",
@@ -92,7 +92,7 @@
    ]
   ],
   "ex": "Playing games is fun.",
-  "exko": "게임하기는 재미있어요(play 놀다).",
+  "exko": "게임하기는 재미있어요(play 하다, game 게임, fun 재미있는).",
   "tko": "모든 부분을 끝내는 것은 ~였다",
   "bad": "Playing games are fun.",
   "badko": "(Playing games(게임하기)는 게임이 여러 개여도 '하나의 일'이라서 are가 아니라 is예요)",
@@ -214,8 +214,8 @@
   "badko": "(want(원하다)는 '사람' 뒤에 동사원형이 아니라 to help처럼 to가 붙어요)",
   "altw": "make",
   "alt": "Mom makes me help.",
-  "altko": "엄마는 나에게 돕게 시켜요(make 시키다는 to 없이 원형 help를 써요).",
-  "why": "want(원하다)는 '누가 ~하기를 원한다'고 말할 때 사람 뒤에 to + 동사원형을 써요. 그래서 you(당신) 뒤는 contact가 아니라 to contact(연락하다)예요. 같은 뜻으로 보이는 make(시키다)는 to가 없으니 헷갈리지 않게 해요.",
+  "altko": "엄마는 나를 돕게 해요(make(시키다)는 to 없이 원형 help를 써요).",
+  "why": "want(원하다)는 '누가 ~하기를 원한다'고 말할 때 사람 뒤에 to + 동사원형을 써요. 그래서 you(당신) 뒤는 contact가 아니라 to contact(연락하다)예요. 비슷한 자리에 오는 make(시키다)는 to 없이 원형을 쓰니까 헷갈리지 않게 해요.",
   "trend": "<b>출제 10위 · 목적격보어/준동사</b><br>31년간 30회 나왔어요.<br>want·ask·tell 뒤 사람 다음에는 to부정사예요",
   "d": {
    "book": "book a table: 테이블을 예약하다",
@@ -293,7 +293,7 @@
   "dk": [
    [
     "Professor Albert suggested that Dominic look for a recent article",
-    "Albert 교수님은 Dominic이 최신 기사를 찾아보라고 제안했다"
+    "Albert 교수님은 Dominic이 최신 기사를 찾아봐야 한다고 제안했다"
    ],
    [
     "to write his paper,",
@@ -324,13 +324,13 @@
   ],
   "ex": "He must have lost his key.",
   "exko": "그는 열쇠를 잃어버렸음이 틀림없어요(lose 잃어버리다 → lost).",
-  "tko": "분명 애를 먹었다",
+  "tko": "분명 애를 먹었을 것이다",
   "bad": "He must lost his key.",
   "badko": "(must 뒤에 lost처럼 과거형을 바로 쓸 수 없어요. must have lost예요)",
   "altw": "must + 원형",
   "alt": "You must wash your hands.",
   "altko": "너는 손을 씻어야 해요(wash 씻다. 지금·앞으로 할 일은 must 뒤에 원형을 써요).",
-  "why": "before this recommendation(이 조언 이전)이라는 말은 이미 지나간 일이에요. 지난 일을 '분명 ~했을 거야'하고 짐작할 때는 must have + p.p.(struggled처럼 ~ed 모양)를 써요. 그래서 must struggled가 아니라 must have struggled(애쓰다)예요.",
+  "why": "before this recommendation(이 조언 이전)이라는 말은 이미 지나간 일이에요. 지난 일을 '분명 ~했을 거야'하고 짐작할 때는 must have + p.p.(struggled처럼 ~ed 모양)를 써요. 그래서 must struggled가 아니라 must have struggled(struggle 애쓰다)예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>지난 일을 짐작할 때는 must 뒤에 have + p.p.를 써요",
   "d": {
    "professor": "교수",
@@ -412,7 +412,7 @@
   "mp": [
    [
     "앞 문장 동사",
-    "saw a bird",
+    "saw a rainbow",
     "saw a UFO"
    ],
    [
@@ -421,25 +421,25 @@
     "did"
    ]
   ],
-  "ex": "Tom saw a bird, and his sister did too.",
-  "exko": "톰은 새를 봤고 그의 여동생도 그랬어요(see 보다 → saw).",
+  "ex": "I saw a rainbow, and my dad did too.",
+  "exko": "나는 무지개를 봤고 아빠도 그랬어요(see 보다 → saw, rainbow 무지개).",
   "tko": "내 이웃도 그렇게 했다",
-  "bad": "Tom saw a bird, and his sister is too.",
-  "badko": "(saw(see 보다의 과거형)는 일반동사라서 is로 대신할 수 없어요. 과거니까 did예요)",
-  "altw": "is",
-  "alt": "Tom is tired, and his sister is too.",
-  "altko": "톰은 피곤하고 그의 여동생도 그래요(앞이 is tired처럼 be동사라서 is로 대신해요).",
+  "bad": "I saw a rainbow, and my dad was too.",
+  "badko": "(saw(see 보다의 과거형)는 일반동사라서 be동사 was로 대신할 수 없어요. 과거니까 did예요)",
+  "altw": "was",
+  "alt": "I was sleepy, and my dad was too.",
+  "altko": "나는 졸렸고 아빠도 그랬어요(sleepy 졸린, 앞이 was sleepy처럼 be동사라서 was로 대신해요).",
   "why": "앞에서 saw(see(보다)의 과거형)처럼 일반동사를 썼어요. 같은 말을 또 쓰지 않고 '나도 그랬어'라고 할 때, 일반동사는 do 모양으로 대신해요. 과거 이야기라서 did(그렇게 했다)예요. is는 앞이 is, are 같은 be동사일 때만 써요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>앞 문장이 일반동사면 do/does/did로 대신해요. be동사로 대신하지 않아요",
   "d": {
    "insist": "주장하다",
    "really": "정말로",
    "saw": "see(보다)의 과거형",
-   "UFO": "미확인 비행 물체",
    "neighbor": "이웃",
    "describing": "describe(묘사하다)의 -ing형",
    "vivid": "생생한",
-   "detail": "in vivid detail: 생생하게"
+   "detail": "in vivid detail: 생생하게",
+   "ufo": "미확인 비행 물체"
   },
   "ko": "어떤 사람들은 자신들이 정말로 UFO를 보았다고 주장하는데, 내 이웃도 그것을 생생하게 묘사하며 그렇게 주장한다."
  },
@@ -525,11 +525,11 @@
     "waited"
    ]
   ],
-  "ex": "He must have eaten my cake.",
-  "exko": "그가 내 케이크를 먹었음이 틀림없어요(eat 먹다 → eaten).",
+  "ex": "The dog must have eaten my cake.",
+  "exko": "개가 내 케이크를 먹은 게 틀림없어요(dog 개, eat 먹다 → eaten).",
   "tko": "분명 기다렸을 것이다",
-  "bad": "He must ate my cake.",
-  "badko": "(must 뒤에 ate처럼 과거형을 바로 쓸 수 없어요. must have eaten예요)",
+  "bad": "The dog must ate my cake.",
+  "badko": "(must 뒤에 ate처럼 과거형을 바로 쓸 수 없어요. must have eaten이에요)",
   "altw": "must + 원형",
   "alt": "You must eat breakfast.",
   "altko": "너는 아침을 먹어야 해요(breakfast 아침 식사. 앞으로 할 일은 must 뒤에 원형을 써요).",

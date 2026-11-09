@@ -29,18 +29,18 @@
    ],
    [
     "동사",
-    "has",
+    "has visited",
     "has launched"
    ]
   ],
-  "ex": "One of my friends has a dog.",
-  "exko": "내 친구들 중 한 명은 개를 키워요(friend 친구, have 가지다).",
+  "ex": "One of my friends has visited Paris.",
+  "exko": "내 친구들 중 한 명은 파리에 가 본 적이 있어요(friend 친구, visit 방문하다).",
   "tko": "가장 큰 경쟁사 중 하나가 출시했다",
-  "bad": "One of my friends have a dog.",
+  "bad": "One of my friends have visited Paris.",
   "badko": "(주어는 friends(친구들)가 아니라 One(한 명)이라서 have가 아니라 has예요)",
   "altw": "have",
-  "alt": "Two of my friends have a dog.",
-  "altko": "내 친구들 중 두 명은 개를 키워요(Two(둘)는 여러 명이라서 have).",
+  "alt": "Two of my friends have visited Paris.",
+  "altko": "내 친구들 중 두 명은 파리에 가 본 적이 있어요(Two(둘)는 여러 명이라서 have).",
   "why": "one of(~ 중 하나)에서 중심 말은 one(하나)이에요. 뒤의 competitors(경쟁자들)가 여러 명이어도 '하나'를 말하니까 동사는 단수예요. 그래서 have(가지다)가 아니라 has예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>one of 뒤에 복수명사가 있어도 동사는 one에 맞춰요",
   "d": {
@@ -319,23 +319,23 @@
   "mp": [
    [
     "느끼는 사람",
-    "She",
+    "me",
     "her"
    ],
    [
     "감정 보어",
-    "bored",
+    "worried",
     "confused"
    ]
   ],
-  "ex": "She feels bored.",
-  "exko": "그녀는 지루함을 느껴요(feel 느끼다, bored 지루한).",
-  "tko": "혼란스러움을 느끼는",
-  "bad": "She feels boring.",
-  "badko": "(She가 지루함을 느끼는 쪽이라서 boring(지루하게 만드는)이 아니라 bored(지루한 마음이 든)예요)",
+  "ex": "The news left me feeling worried.",
+  "exko": "그 소식은 나를 걱정스러운 기분이 들게 했어요(news 소식, left는 leave(두다)의 과거형, worried 걱정하는).",
+  "tko": "그녀가 혼란스러움을 느끼는",
+  "bad": "The news left me feeling worrying.",
+  "badko": "(내가 걱정을 느끼는 쪽이라서 worrying(걱정스럽게 만드는)이 아니라 worried(걱정하는)예요)",
   "altw": "-ing",
-  "alt": "The movie is boring.",
-  "altko": "그 영화는 지루해요(영화가 지루한 느낌을 주는 쪽이라서 -ing).",
+  "alt": "The news was worrying.",
+  "altko": "그 소식은 걱정스러웠어요(소식이 걱정을 주는 쪽이라서 -ing).",
   "why": "혼란스러움을 느끼는 사람은 Molly예요. 사람이 마음속으로 느낄 때는 confused(혼란스러운)처럼 -ed 모양이에요. confusing(혼란스럽게 만드는)은 그 느낌을 주는 쪽에 써요. 예를 들어 어려운 문제가 confusing이에요.",
   "trend": "<b>출제 4위 · 능동 v-ing vs 수동 p.p.(분사)</b><br>31년간 70회 나왔어요.<br>느끼는 사람이면 -ed, 느낌을 주는 쪽이면 -ing예요",
   "d": {
@@ -344,7 +344,7 @@
    "mysterious": "의문의, 정체를 알 수 없는",
    "lunch": "점심",
    "break": "쉬는 시간",
-   "leaving": "leave(남기다)의 -ing형",
+   "leaving": "leave(~한 상태로 두다)의 -ing형",
    "feeling": "feel(느끼다)의 -ing형",
    "confused": "혼란스러운",
    "confusing": "혼란스럽게 만드는",
@@ -445,8 +445,8 @@
   "bad": "I have much books.",
   "badko": "(books(책들)는 하나둘 셀 수 있어서 much가 아니라 many예요)",
   "altw": "much",
-  "alt": "I have much water.",
-  "altko": "나는 물이 많아요(water 물은 셀 수 없어서 much).",
+  "alt": "How much water do you have?",
+  "altko": "너는 물이 얼마나 있어요?(water 물은 셀 수 없어서 much)",
   "why": "opinions(opinion 의견의 복수형)는 하나, 둘 셀 수 있고 -s가 붙은 복수예요. 셀 수 있는 복수 앞에는 many(많은)를 써요. much(많은)는 물처럼 셀 수 없는 말 앞에 쓰고요. 그래서 too many opinions(너무 많은 의견)예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>셀 수 있으면 many, 셀 수 없으면 much예요",
   "d": {
@@ -457,11 +457,11 @@
    "another": "다른",
    "city": "도시",
    "since": "~이기 때문에",
-   "each": "각각",
+   "each": "each of us: 우리 각자",
    "opinions": "opinion(의견)의 복수형",
    "best": "최선의",
    "future": "미래",
-   "too": "too: too many는 너무 많은"
+   "too": "too many: 너무 많은"
   }
  },
  {
@@ -490,18 +490,18 @@
    ],
    [
     "이어지는 절",
-    "it rained",
+    "it was cold",
     "everyone tried"
    ]
   ],
-  "ex": "We played although it rained.",
-  "exko": "우리는 비가 왔지만 놀았어요(play 놀다, rain 비가 오다).",
+  "ex": "He went out although it was cold.",
+  "exko": "날씨가 추웠지만 그는 밖에 나갔어요(go out 밖에 나가다, cold 추운).",
   "tko": "모두가 설득하려 했지만",
-  "bad": "We played despite it rained.",
-  "badko": "(despite(~에도 불구하고) 뒤에는 명사만 와요. it rained는 문장이에요)",
+  "bad": "He went out despite it was cold.",
+  "badko": "(despite(~에도 불구하고) 뒤에는 명사만 와요. it was cold는 문장이에요)",
   "altw": "despite",
-  "alt": "We played despite the rain.",
-  "altko": "우리는 비에도 불구하고 놀았어요(the rain은 명사라서 despite).",
+  "alt": "He went out despite the cold.",
+  "altko": "그는 추위에도 불구하고 밖에 나갔어요(the cold(추위)는 명사라서 despite).",
   "why": "despite(~에도 불구하고)는 뒤에 명사만 받아요. 그런데 everyone tried to talk him out of it ... 은 주어와 동사가 있는 문장이에요. 문장을 받아서 '비록 ~지만'이라고 할 때는 although예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>명사 앞은 despite, 문장 앞은 although예요",
   "d": {
@@ -672,8 +672,8 @@
   "bad": "Today is extreme hot.",
   "badko": "(hot(더운)은 형용사라서 꾸미는 말은 형용사 extreme이 아니라 부사 extremely예요)",
   "altw": "형용사",
-  "alt": "It is an exciting game.",
-  "altko": "그것은 신나는 경기예요(exciting이 명사 game(경기)을 꾸미니까 형용사 모양).",
+  "alt": "It is an extreme sport.",
+  "altko": "그것은 극한 스포츠예요(extreme(극한의)이 명사 sport(스포츠)를 꾸미니까 형용사 모양).",
   "why": "controversial(논란이 많은)은 형용사예요. 형용사를 꾸며 주는 건 부사예요. increasing(점점 느는)은 형용사 모양이라 안 맞고, 부사 increasingly(점점 더)가 와야 해요.",
   "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>형용사를 꾸미는 말은 부사(-ly)예요",
   "d": {

@@ -16,7 +16,7 @@
   ],
   "ko": "만약 속도를 신경 쓴다면, 너는 '스물여덟 더하기 열넷은 마흔둘'이라고 쓰지 않을 것이다. 쓰는 데 너무 오래 걸릴 것이기 때문이다.",
   "gist": "속도가 중요하다면 숫자를 길게 풀어 쓰지 않는다는 얘기예요.",
-  "fm": "if + 과거형 , would + 동사원형",
+  "fm": "if + 과거형, would + 동사원형",
   "mp": [
    [
     "if 절",
@@ -111,7 +111,7 @@
    ],
    [
     "is that it saves time",
-    "시간을 절약해 준다는 것이고"
+    "시간을 절약해 준다는 것이다"
    ],
    [
     "for scientists everywhere.",
@@ -176,27 +176,27 @@
   ],
   "ko": "이 표기 체계는 18세기 유럽 과학자들 사이에서 생겨났다.",
   "gist": "이 표기 방법은 18세기 유럽 과학자들 사이에서 시작됐다는 얘기예요.",
-  "fm": "자동사 originate + (be p.p. 쓰지 않기)",
+  "fm": "originate + be p.p. (X)",
   "mp": [
    [
     "주어",
-    "The game",
+    "This game",
     "This labeling system"
    ],
    [
     "동사",
-    "began",
+    "came from",
     "originated"
    ]
   ],
-  "ex": "The game began in Korea.",
-  "exko": "그 게임은 한국에서 시작됐어요(game 게임, begin 시작되다).",
+  "ex": "This game came from Korea.",
+  "exko": "이 게임은 한국에서 왔어요(game 게임, come from ~에서 오다, 비롯되다 → came).",
   "tko": "이 표기 체계는 생겨났다",
-  "bad": "The game was began in Korea.",
-  "badko": "(begin(시작되다)은 스스로 시작되는 말이라서 was began처럼 be + p.p.로 쓰지 않아요)",
+  "bad": "This game was come from Korea.",
+  "badko": "(come(오다)은 '~을'에 해당하는 말이 없는 동사라서 was come처럼 be + p.p.로 쓰지 않아요)",
   "altw": "be p.p.",
-  "alt": "The game was played in Korea.",
-  "altko": "그 게임은 한국에서 행해졌어요(play(하다)는 '무엇을 하는' 말이라서 be p.p.가 가능해요).",
+  "alt": "This game was made in Korea.",
+  "altko": "이 게임은 한국에서 만들어졌어요(make 만들다 → made, 누가 만든 거라서 be p.p.가 가능해요).",
   "why": "originate(생겨나다, 비롯되다)는 누가 만들어 내는 게 아니라 저절로 생겨나는 말이에요. 그래서 '생겨나졌다'처럼 수동으로 쓰지 않고 originated(originate의 과거형)로 써요.",
   "d": {
    "labeling": "표기, 이름 붙이기",
@@ -205,8 +205,8 @@
    "eighteenth": "18번째의",
    "century": "세기",
    "among": "~ 사이에서",
-   "European": "유럽의",
-   "scientists": "scientist(과학자)의 복수형"
+   "scientists": "scientist(과학자)의 복수형",
+   "european": "유럽의"
   },
   "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>생겨나다·일어나다처럼 스스로 하는 동사는 수동태를 못 써요"
  },
@@ -245,7 +245,7 @@
   "tko": "비슷한 화학식이 쓰인다",
   "bad": "Many letters write for him.",
   "badko": "(letters(편지들)는 쓰는 쪽이 아니라 '쓰이는' 쪽이라서 write가 아니라 are written이에요)",
-  "altw": "write",
+  "altw": "능동",
   "alt": "Many kids write letters.",
   "altko": "많은 아이들이 편지를 써요(kids가 직접 쓰니까 능동 write).",
   "why": "similar formulas(비슷한 화학식)는 스스로 쓰는 게 아니라 사람들이 '적는' 대상이에요. 그래서 '쓰인다'는 뜻의 are written(write 쓰다의 수동)이 맞아요. 앞의 consists of(~로 이루어져 있다)는 수동으로 쓰지 않는 표현이에요.",
@@ -278,7 +278,7 @@
   ],
   "ko": "이 추세가 계속되면, 기업들은 마케팅 전략을 조정할 필요가 있을 것이다.",
   "gist": "이 흐름이 계속되면 회사들은 마케팅 방법을 바꿔야 한다는 얘기예요.",
-  "fm": "when + 현재형 , will + 동사원형",
+  "fm": "when + 현재형, will + 동사원형",
   "mp": [
    [
     "when 절",
@@ -293,7 +293,7 @@
   ],
   "ex": "When he comes, we will eat.",
   "exko": "그가 오면 우리는 먹을 거예요(come 오다, eat 먹다).",
-  "tko": "이 추세가 계속되면 기업들은 필요할 것이다",
+  "tko": "이 추세가 계속되면 기업들은 ~할 필요가 있을 것이다",
   "bad": "When he will come, we will eat.",
   "badko": "(때를 나타내는 when 뒤에서는 will come이 아니라 현재형 comes예요)",
   "altw": "will",
@@ -328,22 +328,22 @@
   ],
   "ko": "종종 구매 습관을 만드는 이 후기들은 오늘날 거의 모든 소매 웹사이트에 나타난다.",
   "gist": "구매 후기는 사람들이 물건 사는 습관에 영향을 주고 거의 모든 쇼핑 사이트에 올라온다는 얘기예요.",
-  "fm": "사물 , which (사람은 who)",
+  "fm": "사물 + which (사람은 who)",
   "mp": [
    [
     "앞 말 (사물)",
-    "The books",
+    "the books",
     "These reviews"
    ],
    [
     "관계사 + 동사",
     "which are fun",
-    "which shape habits"
+    "which often shape purchasing habits"
    ]
   ],
   "ex": "I like the books, which are fun.",
   "exko": "나는 그 책들이 좋아요, 그것들은 재미있어요(book 책, fun 재미있는).",
-  "tko": "습관을 만드는 이 후기들",
+  "tko": "종종 구매 습관을 만드는 이 후기들",
   "bad": "I like the books, who are fun.",
   "badko": "(books(책들)는 사람이 아니라 물건이라서 who가 아니라 which예요)",
   "altw": "who",
@@ -385,22 +385,22 @@
   ],
   "ko": "많은 시장에서 온라인 댓글의 영향력은 이제 전통적인 광고의 영향력보다 더 강하다.",
   "gist": "요즘은 온라인 댓글이 전통 광고보다 사람들에게 더 큰 영향을 준다는 얘기예요.",
-  "fm": "the 명사 vs. that of (같은 종류끼리 비교)",
+  "fm": "A of B ~ than that of C (같은 종류끼리 비교)",
   "mp": [
    [
     "비교 대상 1",
     "The price of apples",
-    "The influence of comments"
+    "The influence of online comments"
    ],
    [
     "비교 대상 2",
     "that of oranges",
-    "that of advertisements"
+    "that of traditional advertisements"
    ]
   ],
   "ex": "The price of apples is higher than that of oranges.",
   "exko": "사과의 가격은 오렌지의 가격보다 높아요(price 가격, high 높은).",
-  "tko": "댓글의 영향력이 광고의 그것보다",
+  "tko": "온라인 댓글의 영향력이 전통적인 광고의 그것(영향력)보다",
   "bad": "The price of apples is higher than oranges.",
   "badko": "(사과의 '가격'과 오렌지를 비교하게 되어 어색해요. 오렌지의 '가격'인 that of oranges여야 해요)",
   "altw": "than oranges",
@@ -453,7 +453,7 @@
   "tko": "부정적인 후기들은 처리된다",
   "bad": "Questions answer by the teacher.",
   "badko": "(questions(질문들)는 답하는 쪽이 아니라 답을 받는 쪽이라서 answer가 아니라 are answered예요)",
-  "altw": "answer",
+  "altw": "능동",
   "alt": "The teacher answers questions.",
   "altko": "선생님이 질문에 답해요(teacher 선생님이 직접 답하니까 능동 answers).",
   "why": "negative reviews(부정적인 후기)는 스스로 처리하는 게 아니라 고객팀이 '처리하는' 대상이에요. 그래서 '처리된다'는 뜻의 are addressed(address 처리하다의 수동)가 맞아요. by customer service teams(고객 서비스팀에 의해)도 힌트예요.",
@@ -492,23 +492,28 @@
   "mp": [
    [
     "앞 명사",
-    "a tree",
+    "a food",
     "a group"
    ],
    [
     "that 뒤 동사",
-    "that is planted",
+    "that is loved",
     "that is shaped"
+   ],
+   [
+    "하는 쪽",
+    "by Koreans",
+    "by constant online interaction"
    ]
   ],
-  "ex": "It is a tree that is planted by kids.",
-  "exko": "그것은 아이들이 심은 나무예요(tree 나무, plant 심다).",
+  "ex": "Kimchi is a food that is loved by Koreans.",
+  "exko": "김치는 한국 사람들이 사랑하는 음식이에요(food 음식, love 사랑하다 → loved, Korean 한국 사람).",
   "tko": "상호작용에 의해 형성되는 집단",
-  "bad": "It is a tree that plants by kids.",
-  "badko": "(tree(나무)는 심는 쪽이 아니라 아이들이 '심는' 대상이라서 plants가 아니라 is planted예요)",
-  "altw": "who",
-  "alt": "She is a girl who plants trees.",
-  "altko": "그녀는 나무를 심는 소녀예요(girl 소녀가 직접 심으니까 능동 plants).",
+  "bad": "Kimchi is a food that loves by Koreans.",
+  "badko": "(food(음식)는 사랑하는 쪽이 아니라 한국 사람들에게 '사랑받는' 쪽이라서 loves가 아니라 is loved예요)",
+  "altw": "능동",
+  "alt": "Koreans love kimchi.",
+  "altko": "한국 사람들은 김치를 사랑해요(한국 사람들이 직접 사랑하니까 능동 love).",
   "why": "a group(집단)은 스스로 만드는 게 아니라 끊임없는 온라인 상호작용에 의해 '만들어지는' 쪽이에요. 그래서 '형성된다'는 뜻의 is shaped(shape 형성하다의 수동)가 맞아요. by constant online interaction(끊임없는 온라인 상호작용에 의해)도 힌트예요.",
   "d": {
    "therefore": "따라서",
@@ -578,11 +583,11 @@
   "dk": [
    [
     "Every soldier's bed",
-    "모든 병사의 침대는 점검된다"
+    "모든 병사의 침대는"
    ],
    [
     "is inspected each morning",
-    "매일 아침"
+    "매일 아침 점검된다"
    ],
    [
     "by a senior officer.",
@@ -609,7 +614,7 @@
   "tko": "모든 병사의 침대는 점검된다",
   "bad": "Every desk cleans by a student.",
   "badko": "(desk(책상)는 청소하는 쪽이 아니라 청소되는 쪽이라서 cleans가 아니라 is cleaned예요)",
-  "altw": "cleans",
+  "altw": "능동",
   "alt": "A student cleans every desk.",
   "altko": "학생이 모든 책상을 청소해요(student 학생이 직접 하니까 능동 cleans).",
   "why": "Every soldier's bed(모든 병사의 침대)는 스스로 검사하는 게 아니라 장교가 '검사하는' 대상이에요. 그래서 '점검된다'는 뜻의 is inspected(inspect 점검하다의 수동)가 맞아요. by a senior officer(상급 장교에 의해)도 힌트예요.",
@@ -743,28 +748,28 @@
   "mp": [
    [
     "앞 명사",
-    "a gift",
+    "a habit",
     "a routine"
    ],
    [
     "that 뒤 동사",
-    "that is loved",
+    "that is praised",
     "that is valued"
    ],
    [
     "하는 쪽",
-    "by kids",
+    "by teachers",
     "by even the most senior generals"
    ]
   ],
-  "ex": "It is a gift that is loved by kids.",
-  "exko": "그것은 아이들이 좋아하는 선물이에요(gift 선물, love 사랑하다).",
+  "ex": "Reading is a habit that is praised by teachers.",
+  "exko": "독서는 선생님들이 칭찬하는 습관이에요(reading 독서, habit 습관, praise 칭찬하다 → praised).",
   "tko": "가장 높은 장군들조차 소중히 여기는 습관",
-  "bad": "It is a gift that loves by kids.",
-  "badko": "(gift(선물)는 사랑하는 쪽이 아니라 아이들에게 '사랑받는' 쪽이라서 loves가 아니라 is loved예요)",
-  "altw": "who",
-  "alt": "She is a girl who loves gifts.",
-  "altko": "그녀는 선물을 좋아하는 소녀예요(girl 소녀가 직접 좋아하니까 능동 loves).",
+  "bad": "Reading is a habit that praises by teachers.",
+  "badko": "(habit(습관)은 칭찬하는 쪽이 아니라 선생님들에게 '칭찬받는' 쪽이라서 praises가 아니라 is praised예요)",
+  "altw": "능동",
+  "alt": "She is a teacher who praises her students.",
+  "altko": "그녀는 학생들을 칭찬하는 선생님이에요(선생님이 직접 칭찬하니까 능동 praises).",
   "why": "a routine(습관)은 스스로 소중히 여기는 게 아니라 장군들이 '소중히 여기는' 대상이에요. 그래서 '소중히 여겨진다'는 뜻의 is valued(value 소중히 여기다의 수동)가 맞아요. by even the most senior generals(가장 높은 장군들조차에 의해)도 힌트예요.",
   "d": {
    "task": "일, 과업",
@@ -793,7 +798,7 @@
   ],
   "ko": "자동화로의 이 변화는 지난 10년에 걸쳐 서서히 나타났다.",
   "gist": "자동화 쪽으로의 변화가 지난 10년 동안 조금씩 나타났다는 얘기예요.",
-  "fm": "자동사 emerge + (be p.p. 쓰지 않기)",
+  "fm": "emerge + be p.p. (X)",
   "mp": [
    [
     "주어",
@@ -813,7 +818,7 @@
   "badko": "(appear(나타나다)는 스스로 나타나는 말이라서 was appeared처럼 be + p.p.로 쓰지 않아요)",
   "altw": "be p.p.",
   "alt": "The door was opened by Tom.",
-  "altko": "문은 Tom이 열었어요(open(열다)은 '무엇을 여는' 말이라서 be p.p.가 가능해요).",
+  "altko": "문은 Tom에 의해 열렸어요(open(열다)은 '무엇을 여는' 말이라서 be p.p.가 가능해요).",
   "why": "emerge(생겨나다, 나타나다)는 누가 하는 게 아니라 저절로 나타나는 말이에요. 그래서 '나타나졌다'처럼 수동으로 쓰지 않고 emerged(emerge의 과거형)로 써요.",
   "d": {
    "shift": "변화",
@@ -847,7 +852,7 @@
   "mp": [
    [
     "주어",
-    "Every car",
+    "My bag",
     "Every movement"
    ],
    [
@@ -856,14 +861,14 @@
     "is tracked"
    ]
   ],
-  "ex": "Every car is checked by a guard.",
-  "exko": "모든 차는 경비원이 확인해요(car 차, check 확인하다, guard 경비원).",
+  "ex": "My bag is checked by a guard.",
+  "exko": "내 가방은 경비원에게 검사받아요(bag 가방, check 검사하다, guard 경비원).",
   "tko": "모든 움직임은 추적된다",
-  "bad": "Every car checks by a guard.",
-  "badko": "(car(차)는 확인하는 쪽이 아니라 확인받는 쪽이라서 checks가 아니라 is checked예요)",
-  "altw": "checks",
-  "alt": "A guard checks every car.",
-  "altko": "경비원이 모든 차를 확인해요(guard 경비원이 직접 하니까 능동 checks).",
+  "bad": "My bag checks by a guard.",
+  "badko": "(bag(가방)은 검사하는 쪽이 아니라 검사받는 쪽이라서 checks가 아니라 is checked예요)",
+  "altw": "능동",
+  "alt": "A guard checks my bag.",
+  "altko": "경비원이 내 가방을 검사해요(guard 경비원이 직접 하니까 능동 checks).",
   "why": "Every movement(모든 움직임)는 스스로 따라가는 게 아니라 센서가 '추적하는' 대상이에요. 그래서 '추적된다'는 뜻의 is tracked(track 추적하다의 수동)가 맞아요. by hidden sensors(숨겨진 센서에 의해)도 힌트예요.",
   "d": {
    "movement": "움직임",
@@ -910,7 +915,7 @@
   "tko": "관리자들이 신뢰하는 시스템",
   "bad": "It is a system that uses by schools.",
   "badko": "(system(시스템)은 쓰는 쪽이 아니라 학교가 '쓰는' 대상이라서 uses가 아니라 is used예요)",
-  "altw": "controls",
+  "altw": "능동",
   "alt": "It is a program that controls the lights.",
   "altko": "그것은 불을 조절하는 프로그램이에요(program이 직접 조절하니까 능동 controls).",
   "why": "a system(시스템)은 스스로 믿는 게 아니라 관리자들이 '믿는' 대상이에요. 그래서 '신뢰받는다'는 뜻의 is trusted(trust 믿다의 수동)가 맞아요. 앞의 a software program that controls(통제하는 프로그램)는 프로그램이 직접 통제하니까 능동이 맞아요.",

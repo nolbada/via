@@ -73,18 +73,18 @@
    ],
    [
     "이어지는 절",
-    "he comes",
+    "he will come",
     "she will meet someone"
    ]
   ],
-  "ex": "I wonder when he comes.",
-  "exko": "나는 그가 언제 오는지 궁금해요(wonder 궁금해하다, come 오다).",
+  "ex": "I wonder when he will come.",
+  "exko": "나는 그가 언제 올지 궁금해요(wonder 궁금해하다, come 오다).",
   "tko": "그녀가 언제 누군가를 만날지",
-  "bad": "I wonder who he comes.",
-  "badko": "(he comes(그가 온다)는 빠진 게 없는 문장이라서 '누가'를 뜻하는 who가 필요 없어요. 때를 묻는 when이에요)",
+  "bad": "I wonder who he will come.",
+  "badko": "(he will come(그가 올 것이다)은 빠진 게 없는 문장이라서 '누가'를 뜻하는 who가 필요 없어요. 때를 묻는 when이에요)",
   "altw": "who",
-  "alt": "I wonder who comes.",
-  "altko": "나는 누가 오는지 궁금해요(comes 앞에 주어가 없어서 주어 역할을 하는 who).",
+  "alt": "I wonder who will come.",
+  "altko": "나는 누가 올지 궁금해요(will come 앞에 주어가 없어서 주어 역할을 하는 who).",
   "why": "she will meet someone ... 은 meet(만나다)의 목적어 someone(누군가)까지 다 있어서 빠진 게 없는 문장이에요. 빠진 게 없으면 who(누가)는 안 어울려요. '언제 만나게 될까'가 궁금한 거라서 when(언제)이에요.",
   "trend": "<b>출제 3위 · that[which] vs what</b><br>31년간 71회 나왔어요.<br>뒤가 빠진 게 없는 문장이면 when·how·why 같은 말이 와요",
   "d": {
@@ -94,8 +94,8 @@
    "wonders": "wonder(궁금해하다)의 3인칭 단수형",
    "meet": "만나다",
    "someone": "누군가",
-   "fall": "fall: fall in love는 사랑에 빠지다",
-   "married": "get married는 결혼하다"
+   "fall": "fall in love: 사랑에 빠지다",
+   "married": "get married: 결혼하다"
   }
  },
  {
@@ -146,7 +146,7 @@
    "constant": "끊임없는",
    "calls": "call(전화)의 복수형",
    "messages": "message(메시지)의 복수형",
-   "mobile": "이동하는",
+   "mobile": "mobile phone: 휴대전화",
    "phones": "phone(전화기)의 복수형",
    "should": "~해야 한다"
   }
