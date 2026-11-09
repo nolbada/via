@@ -98,6 +98,7 @@ select{font:inherit;font-size:15px;border:1px solid var(--line);background:var(-
 .gate{background:var(--surface);border:2px dashed var(--muted);border-radius:12px;padding:22px;text-align:center}
 .gate b{display:block;font-size:17px;margin-bottom:4px}.gate p{margin:0;color:var(--muted)}
 .leave{display:block;text-align:center;margin:22px 0 0;color:var(--muted);font-size:13px}
+.rst{display:block;width:100%;margin-top:10px;border:2px solid var(--line);background:var(--surface);color:var(--muted);border-radius:8px;padding:12px;font:inherit;font-weight:700;min-height:44px;cursor:pointer}.rst.arm{border-color:#b42318;color:#b42318}.rst:disabled{opacity:.6;cursor:default}
 </style>
 </head>
 <body>
@@ -157,7 +158,10 @@ function view(){var p=pr(),v=document.getElementById("view");v.innerHTML="";var 
 function foot(){var p=pr(),sb=document.getElementById("sbar");if(!sb||done[p.id])return;sb.innerHTML="";var n=p.items.filter(function(it){return answered(p,it)}).length;sb.appendChild(el("span","cnt","답한 문항 "+n+" / 10"));var b=el("button","sub-btn","제출");b.disabled=n<10;b.onclick=function(){submit(p)};sb.appendChild(b)}
 async function hash(s){var d=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.prototype.map.call(new Uint8Array(d),function(b){return b.toString(16).padStart(2,"0")}).join("").slice(0,10)}
 async function submit(p){var s=0,ok={};for(var i=0;i<p.items.length;i++){var it=p.items[i],a=(ans[p.id]||{})[it.n];var str=it.t==="fill"?a.map(function(x){return x.toLowerCase()}).join(","):String(a);if(await hash(p.id+"|"+it.n+"|"+str)===it.h){s++;ok[it.n]=true}else ok[it.n]=false}done[p.id]={s:s,ok:ok};view();window.scrollTo(0,0)}
-function showScore(p){var sb=document.getElementById("sbar");sb.innerHTML="";var d=done[p.id];var c=el("div","score");c.appendChild(el("span",null,readName(p)+" 점수"));c.appendChild(el("b",null,(d.s*10)+"점"));c.appendChild(el("span",null,d.s+" / 10 문항"));sb.style.display="block";sb.appendChild(c);sb.appendChild(navBar())}
+function showScore(p){var sb=document.getElementById("sbar");sb.innerHTML="";var d=done[p.id];var c=el("div","score");c.appendChild(el("span",null,readName(p)+" 점수"));c.appendChild(el("b",null,(d.s*10)+"점"));c.appendChild(el("span",null,d.s+" / 10 문항"));sb.style.display="block";sb.appendChild(c);sb.appendChild(navBar());sb.appendChild(resetBtn())}
+var RESET_KEYS=["1316reading1","1316reading2","1316reading3","bricks1","bricks2","bricks3","bricks4","hackers1","hackers2","hackers3","hackers4","hackersmaster1","hackersmaster2","hackersmaster3","hackersmaster4","hackersstarter1","hackersstarter2","readinggraphy1","readinggraphy2","readinggraphy3","readinggraphy4","readinggraphy5","readinggraphy6","tutorchallenger1","tutorchallenger2","tutorchallenger3","tutorjunior1","tutorjunior2","tutorjunior3","tutorjunior4","tutorstarter1","tutorstarter2","tutorstarter3"],RESET_LEGACY=["b1done","rg5u6"];
+function doReset(){RESET_KEYS.forEach(function(k){["done","bk","unit"].forEach(function(s){try{localStorage.removeItem(k+s)}catch(e){}})});RESET_LEGACY.forEach(function(k){try{localStorage.removeItem(k)}catch(e){}})}
+function resetBtn(){var L="다음 학생을 위한 초기화",b=el("button","rst",L),t=null;b.onclick=function(){if(!b.getAttribute("data-arm")){b.setAttribute("data-arm","1");b.textContent="한 번 더 누르면 모든 책 기록이 지워져요";b.className="rst arm";t=setTimeout(function(){b.removeAttribute("data-arm");b.textContent=L;b.className="rst"},4000);return}clearTimeout(t);doReset();b.textContent="초기화됨";b.className="rst";b.disabled=true;setTimeout(function(){location.href="../../links/books/"},900)};return b}
 boot();
 
 function picker(){var v=document.getElementById("view");v.innerHTML="";
@@ -170,7 +174,7 @@ function picker(){var v=document.getElementById("view");v.innerHTML="";
     var r=document.createElement(ok?"a":"div");r.className="pk"+(ok?"":" lk");if(ok)r.href="?r="+encodeURIComponent(p.id);
     var l=document.createElement("div");var b=document.createElement("b");b.textContent=readName(p);var s=document.createElement("span");s.className="t";s.textContent=p.ko;l.appendChild(b);l.appendChild(s);r.appendChild(l);
     if(!ok){var st=document.createElement("span");st.className="st";st.textContent="잠김";r.appendChild(st)}v.appendChild(r)});
-  var n=document.createElement("div");n.className="nav";n.appendChild(lnk("홈으로","../",true));v.appendChild(n)}
+  var n=document.createElement("div");n.className="nav";n.appendChild(lnk("홈으로","../",true));v.appendChild(n);v.appendChild(resetBtn())}
 function gate(p){var v=document.getElementById("view");v.innerHTML="";v.appendChild(testHead(p));
   var g=document.createElement("div");g.className="gate";g.innerHTML="<b>아직 응시할 수 없어요</b><p>지문 읽기와 문제 선지를 모두 마친 뒤에 열려요.</p>";v.appendChild(g);
   var n=document.createElement("div");n.className="nav";n.appendChild(lnk("이 Reading으로 돌아가기","../?r="+encodeURIComponent(p.id),true));n.appendChild(lnk("Exit test 목록","./"));v.appendChild(n)}
