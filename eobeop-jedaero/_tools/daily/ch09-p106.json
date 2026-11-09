@@ -84,7 +84,7 @@
   ],
   "ex": "She has a nice habit that helps her.",
   "exko": "그녀에게는 그녀를 돕는 좋은 습관이 있어요(habit 습관, help 돕다).",
-  "tko": "늘 가깝게 해 주는",
+  "tko": "늘 가깝게 해 주는 평화로운 일상",
   "bad": "She has a nice habit that help her.",
   "badko": "(habit(습관)이 하나라서 help가 아니라 helps여야 해요)",
   "altw": "복수",
@@ -103,7 +103,7 @@
    "peaceful": "평화로운",
    "routine": "(매일 하는) 일상",
    "always": "항상",
-   "brings": "bring(가져오다)의 -s형",
+   "brings": "bring(가져오다, ~하게 만들다)의 -s형: bring ~ closer ~를 더 가깝게 하다",
    "closer": "close(가까운)의 비교급: 더 가까운"
   },
   "ko": "부모는 아이들이 공원에서 노는 동안 앉아서 대화를 즐겼다, 그들을 가족으로서 항상 더 가깝게 만들어주는 평화로운 일상이다."
@@ -288,7 +288,7 @@
   ],
   "ex": "I know what toys he wants.",
   "exko": "나는 그가 어떤 장난감들을 원하는지 알아요(toy 장난감, want 원하다).",
-  "tko": "어떤 변화가 중요한지",
+  "tko": "어떤 변화가",
   "bad": "I know that toys he wants.",
   "badko": "(that 뒤에 toys he wants가 오면 wants(원하다)가 원하는 대상이 비어서 말이 안 돼요. '어떤 장난감'은 what toys예요)",
   "altw": "that",
@@ -330,23 +330,23 @@
   "mp": [
    [
     "that 앞 명사",
-    "a game",
+    "a song",
     "a tradition"
    ],
    [
     "that 뒤 동사",
-    "is loved",
+    "has been loved",
     "has been celebrated"
    ]
   ],
-  "ex": "It is a game that is loved by kids.",
-  "exko": "그것은 아이들에게 사랑받는 게임이에요(love 사랑하다 → loved 사랑받는).",
-  "tko": "기념되어 온",
-  "bad": "It is a game that loves by kids.",
-  "badko": "(game(게임)은 사랑을 받는 쪽이라서 loves가 아니라 is loved예요)",
+  "ex": "It is a song that has been loved by kids.",
+  "exko": "그것은 아이들에게 사랑받아 온 노래예요(love 사랑하다 → loved 사랑받는, song 노래).",
+  "tko": "기념되어 온 전통",
+  "bad": "It is a song that has loved by kids.",
+  "badko": "(song(노래)은 사랑을 받는 쪽이라서 has loved가 아니라 has been loved예요)",
   "altw": "능동",
-  "alt": "It is a dog that loves kids.",
-  "altko": "그것은 아이들을 사랑하는 개예요(dog가 스스로 사랑하는 쪽이라서 loves를 써요).",
+  "alt": "It is a song that has made many kids happy.",
+  "altko": "그것은 많은 아이들을 행복하게 해 온 노래예요(노래가 직접 아이들을 행복하게 하는 쪽이라서 has made, make ~하게 만들다).",
   "why": "a tradition(전통)은 스스로 celebrate(기념하다)하는 게 아니라 졸업반 학생들에게 기념되는 쪽이에요. '기념되어 왔다'는 has been celebrated처럼 be + p.p.로 써요. 뒤에 by ~(~에 의해)가 있는 것도 힌트예요.",
   "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>당하는 쪽이면 be + p.p., by ~가 있으면 수동 힌트예요",
   "d": {

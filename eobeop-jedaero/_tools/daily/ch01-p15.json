@@ -163,19 +163,19 @@
   "fm": "부정어 + do + 주어 + 동사원형",
   "mp": [
    [
-    "do + 주어 + 동사",
-    "Never do I eat",
+    "부정어 + do + 주어 + 동사",
+    "Little do I know",
     "Little do the children realize"
    ]
   ],
-  "ex": "Never do I eat bugs.",
-  "exko": "나는 벌레를 절대 먹지 않아요(bug 벌레, eat 먹다).",
+  "ex": "Little do I know about cars.",
+  "exko": "나는 자동차에 대해 거의 몰라요(little 거의 ~않다, know 알다, car 자동차).",
   "tko": "아이들은 거의 깨닫지 못한다",
-  "bad": "Never I eat bugs.",
-  "badko": "(Never가 맨 앞에 오면 Never do I eat처럼 do + 주어 + 동사원형 순서가 되어야 해요)",
+  "bad": "Little I know about cars.",
+  "badko": "(Little이 맨 앞에 오면 Little do I know처럼 do + 주어 + 동사원형 순서가 되어야 해요)",
   "altw": "보통 순서",
-  "alt": "I never eat bugs.",
-  "altko": "나는 벌레를 절대 먹지 않아요.",
+  "alt": "I know little about cars.",
+  "altko": "나는 자동차에 대해 거의 몰라요(little이 맨 앞이 아니면 보통 순서예요).",
   "why": "Little(거의 ~않다)처럼 '아니다' 뜻의 말이 문장 맨 앞으로 나오면 순서가 바뀌어요. 일반 동사 realize(깨닫다)가 있으면 do를 주어 앞에 꺼내 do + 주어 + 동사원형이 돼요. children이 여러 명이라서 do예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>부정어가 맨 앞에 오면 do[does] + 주어 + 동사원형 순서예요",
   "d": {
@@ -258,19 +258,19 @@
   "fm": "부정어 + do + 주어 + 동사원형",
   "mp": [
    [
-    "do[does] + 주어 + 동사원형",
-    "does he cry",
+    "do + 주어 + 동사원형",
+    "do my parents forget",
     "do employees forget"
    ]
   ],
-  "ex": "Never does he cry.",
-  "exko": "그는 절대 울지 않아요(cry 울다).",
+  "ex": "Never do my parents forget my birthday.",
+  "exko": "부모님은 내 생일을 절대 잊지 않아요(parent 부모, forget 잊다, birthday 생일).",
   "tko": "직원들은 결코 잊지 않는다",
-  "bad": "Never he cries.",
-  "badko": "(Never가 맨 앞이면 does를 주어 앞에 써서 Never does he cry처럼 해야 해요)",
+  "bad": "Never my parents forget my birthday.",
+  "badko": "(Never가 맨 앞이면 do를 주어 앞에 써서 Never do my parents forget처럼 해야 해요)",
   "altw": "보통 순서",
-  "alt": "He never cries.",
-  "altko": "그는 절대 울지 않아요.",
+  "alt": "My parents never forget my birthday.",
+  "altko": "부모님은 내 생일을 절대 잊지 않아요(Never가 맨 앞이 아니면 보통 순서예요).",
   "why": "Never(결코 ~않다)가 문장 맨 앞으로 나오면 순서가 바뀌어요. 일반 동사 forget(잊다)에는 do를 주어 employees(직원들) 앞에 꺼내 Never do employees forget이 돼요. 보통 순서라면 Employees never forget이에요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>부정어가 맨 앞에 오면 do[does] + 주어 + 동사원형 순서예요",
   "d": {

@@ -224,23 +224,23 @@
   "mp": [
    [
     "핵심 주어",
-    "The books",
+    "The toys",
     "the plans"
    ],
    [
     "동사",
-    "are",
-    "were"
+    "were wrapped",
+    "were arranged"
    ]
   ],
-  "ex": "The books, which I like, are new.",
-  "exko": "내가 좋아하는 그 책들은 새것이에요(book 책, new 새로운).",
+  "ex": "The toys, which my dad bought, were wrapped carefully.",
+  "exko": "아빠가 산 그 장난감들은 꼼꼼하게 포장되었어요(toy 장난감, bought는 buy(사다)의 과거형, wrap 포장하다).",
   "tko": "그 계획들은 준비되었다",
-  "bad": "The books, which I like, is new.",
-  "badko": "(주어가 books(책들)로 여러 권이라서 is가 아니라 are여야 해요)",
+  "bad": "The toys, which my dad bought, was wrapped carefully.",
+  "badko": "(주어가 toys(장난감들)로 여러 개라서 was가 아니라 were여야 해요)",
   "altw": "단수",
-  "alt": "The book, which I like, is new.",
-  "altko": "내가 좋아하는 그 책은 새것이에요(book이 한 권이라서 is예요).",
+  "alt": "The toy, which my dad bought, was wrapped carefully.",
+  "altko": "아빠가 산 그 장난감은 꼼꼼하게 포장되었어요(toy가 하나라서 was예요).",
   "why": "주어와 동사 사이에 which relied on everyone's schedule(모두의 일정에 달려 있던)이라는 긴 말이 끼어 있어요. 이런 끼인 말은 건너뛰고 진짜 주어 the plans(그 계획들)를 보면 복수예요. 그래서 was가 아니라 were예요.",
   "trend": "<b>출제 6위 · 수식받는 주어의 수일치</b><br>31년간 57회 나왔어요.<br>주어와 동사 사이에 낀 말은 건너뛰고 진짜 주어의 수를 봐요",
   "d": {
@@ -250,7 +250,7 @@
    "planning": "plan(계획하다)의 -ing형",
    "birthday": "생일",
    "plans": "plan(계획)의 복수형",
-   "relied": "rely on: ~에 달려 있다",
+   "relied": "rely(의존하다)의 과거형: rely on ~에 달려 있다",
    "everyone": "모든 사람",
    "schedule": "일정",
    "arranged": "arrange(준비하다)의 p.p.형: 준비된",
@@ -300,7 +300,7 @@
   "why": "never(결코 ~않다)처럼 '아니다'를 뜻하는 말이 문장 맨 앞에 나오면 뒤의 순서가 do + 주어 + 동사원형으로 뒤집혀요. 그래서 never we truly appreciate가 아니라 never do we truly appreciate(결코 우리는 진가를 알아보지 못한다)예요. appreciate(진가를 알아보다)는 동사원형 그대로 써요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>never, rarely가 문장 맨 앞에 오면 do + 주어 순서예요",
   "d": {
-   "essential": "가장 중요한, 필수적인",
+   "essential": "필수적인, 매우 중요한",
    "decisions": "decision(결정)의 복수형",
    "invest": "(시간·돈을) 쓰다, 투자하다",
    "time": "시간",

@@ -381,15 +381,15 @@
    ],
    [
     "이어지는 절",
-    "I do",
+    "he had learned it",
     "we had visited it"
    ]
   ],
-  "ex": "Do as I do.",
-  "exko": "내가 하는 것처럼 해요(do 하다).",
+  "ex": "He made the cake as he had learned it.",
+  "exko": "그는 배운 대로 케이크를 만들었어요(made는 make(만들다)의 과거형, learn 배우다).",
   "tko": "우리가 와봤던 것처럼",
-  "bad": "Do like I do.",
-  "badko": "(like(~처럼) 뒤에는 I do 같은 문장이 못 와요. 문장 앞에서는 as예요)",
+  "bad": "He made the cake like he had learned it.",
+  "badko": "(like(~처럼) 뒤에는 he had learned it 같은 문장이 못 와요. 문장 앞에서는 as예요)",
   "altw": "like",
   "alt": "He sings like a bird.",
   "altko": "그는 새처럼 노래해요(a bird는 명사라서 like가 맞아요, sing 노래하다).",
@@ -430,7 +430,7 @@
   "mp": [
    [
     "수 표현",
-    "many",
+    "too many",
     "too many"
    ],
    [
@@ -439,11 +439,11 @@
     "opinions"
    ]
   ],
-  "ex": "I have many books.",
-  "exko": "나는 책이 많아요(book 책).",
+  "ex": "I have too many books.",
+  "exko": "나는 책이 너무 많아요(book 책).",
   "tko": "너무 많은 의견",
-  "bad": "I have much books.",
-  "badko": "(books(책들)는 하나둘 셀 수 있어서 much가 아니라 many예요)",
+  "bad": "I have too much books.",
+  "badko": "(books(책들)는 하나둘 셀 수 있어서 too much가 아니라 too many예요)",
   "altw": "much",
   "alt": "How much water do you have?",
   "altko": "너는 물이 얼마나 있어요?(water 물은 셀 수 없어서 much)",
@@ -628,7 +628,7 @@
    "game": "경기",
    "pushing": "push(몰아붙이다)의 -ing형",
    "themselves": "그들 자신",
-   "harder": "더 열심히",
+   "harder": "hard(열심히)의 비교급: 더 열심히",
    "ever": "지금까지"
   }
  },
