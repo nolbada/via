@@ -12,11 +12,11 @@
   function s(k,v){try{LS.setItem(k,v)}catch(e){}}
   function d(k){try{LS.removeItem(k)}catch(e){}}
   function jg(k){try{return JSON.parse(g(k)||'null')}catch(e){return null}}
-  /* 이 연동이 잇는 기록. 데일리어법(eobeop_daily_v1_)은 자체 연동이 있고, 누적복습(wn_rv*)은 로드맵이 따로 잇는다 */
+  /* 이 연동이 잇는 기록. 누적복습(wn_rv*)은 로드맵이 따로 잇는다. 데일리어법은 날짜별 점수 연동(EO_)과 함께 문제별 기록까지 잇는다 */
   function mirrored(k){
     if(!k||typeof k!=='string')return false;
     if(k.indexOf('via_')===0||k.indexOf('rec_')===0||k.indexOf('demo_')===0)return false;
-    return /^(dv_|dvc_|dvp_|wl_|star_|wn_mm_|wn_star_|wn_fp_)/.test(k);
+    return /^(dv_|dvc_|dvp_|wl_|star_|wn_mm_|wn_star_|wn_fp_|eobeop_daily_v1_)/.test(k);
   }
   function keys(){var o=[],i,k;for(i=0;i<LS.length;i++){k=LS.key(i);if(mirrored(k))o.push(k)}return o}
   function nm(){
@@ -35,7 +35,13 @@
       o={};for(k in a)o[k]=(k in b)?dm(a[k],b[k]):a[k];for(k in b)if(!(k in a))o[k]=b[k];return o}
     return b;
   }
-  function merge(loc,rem){try{return JSON.stringify(dm(JSON.parse(loc),JSON.parse(rem)))}catch(e){return rem}}
+  function merge(loc,rem,k){try{var a=JSON.parse(loc),b=JSON.parse(rem);
+    if(k&&k.indexOf('eobeop_daily_v1_')===0&&a&&b){
+      /* 처음부터 다시(rsT)를 누른 쪽이 이긴다. 같은 시점이면 합치되 '전체 열기'는 이 기기 값을 쓴다 */
+      var ra=Number(a.rsT||0),rb=Number(b.rsT||0);
+      if(ra>rb)return loc;if(rb>ra)return rem;
+      var m=dm(a,b);m.open=!!a.open;return JSON.stringify(m)}
+    return JSON.stringify(dm(a,b))}catch(e){return rem}}
   function post(body,keep){
     return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body),keepalive:!!keep})
       .then(function(r){return r.json()}).then(function(r){if(!r||!r.ok)throw new Error('via');return r});
@@ -63,7 +69,7 @@
         if(lv===rs){meta[k]=rs;continue}
         if(lv===null){s(k,rs);meta[k]=rs;rl=true;continue}
         if(meta[k]!==lv){
-          var mg=merge(lv,rs);if(mg!==lv){s(k,mg);rl=true}
+          var mg=merge(lv,rs,k);if(mg!==lv){s(k,mg);rl=true}
         }else{s(k,rs);meta[k]=rs;rl=true}
       }
       s(MK,JSON.stringify(meta));s(AK,String(Date.now()));
