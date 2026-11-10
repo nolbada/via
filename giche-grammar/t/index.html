@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>문법 기출 풀기 - 선생님 확인</title>
+<style>
+:root{--bg:#f3efe6;--card:#fffdf8;--ink:#1f2a2e;--sub:#5b6a6e;--line:#e2dccd;--ac:#1f6f6b;--good:#1f7a4d;--goodBg:#d9f0e3;--bad:#b3372f;--badBg:#f8dcd8;--chip:#f1ece0;--am:#b7791f}
+@media (prefers-color-scheme:dark){:root{--bg:#12191b;--card:#1b2528;--ink:#eef2f1;--sub:#9db0b3;--line:#2c393c;--ac:#58c2b9;--good:#6fd6a0;--goodBg:#1c3a2b;--bad:#ff8f86;--badBg:#432220;--chip:#243134;--am:#e9b44c}}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;line-height:1.5;font-size:16px}
+#app{max-width:980px;margin:0 auto;padding:14px 14px 60px}
+button{font:inherit;color:inherit;cursor:pointer}
+h1{font-size:20px;margin:6px 0 10px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+.tabs button,.btn{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 14px}
+.tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0;overflow-x:auto}
+table{border-collapse:collapse;width:100%}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--sub);font-size:13px;font-weight:600;white-space:nowrap}
+tr.row{cursor:pointer}tr.row:hover{background:var(--chip)}
+.sub{color:var(--sub);font-size:13px}
+.dots{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}.dots i{width:16px;height:16px;border-radius:50%;background:var(--line);display:block}.dots i.g{background:var(--good)}.dots i.b{background:var(--bad)}
+.pill{display:inline-block;border-radius:999px;padding:1px 9px;font-size:13px;background:var(--chip)}
+.bad{color:var(--bad);font-weight:700}.good{color:var(--good);font-weight:700}
+.q{padding:8px 0;border-bottom:1px solid var(--line)}.q:last-child{border:0}
+.stem{font-weight:600}
+.tg{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:3px 10px;font-size:13px}.tg.off{background:var(--badBg);color:var(--bad);border-color:var(--bad)}
+.msg{color:var(--sub);padding:10px 0}
+</style></head><body><div id="app"></div>
+<script>
+var TOPICS={
+pp:{name:'현재완료',card:['모양: have/has + 과거분사(p.p.) (동사의 세 번째 모양. 예: eat(먹다) - ate - eaten)','완료(방금 끝났어요): already(이미)·just(막)·yet(아직)','경험(해 본 적 있어요): ever(~한 적)·never(한 번도 ~않은)','계속(지금까지 이어져요): for(~동안 + 시간의 길이), since(~부터 + 시작한 때)','yesterday·last week·ago·when(언제)처럼 "지난 어느 때"를 콕 집는 말과는 같이 못 써요 → 과거형(did)으로 쓰기']},
+ind:{name:'간접의문문',card:['의문사(who·what·where·when·why·how)가 있는 질문이 문장 안에 들어가면 "의문사 + 주어 + 동사" 순서','do/does/did는 사라져요: Where does she live? → I know where she lives.','의문사가 없으면 if/whether(~인지 아닌지)','의문사가 주어면 순서 그대로: Who ate it? → I know who ate it.','B.I.G.S.T 동사(Believe, Imagine, Guess, Suppose, Think)가 있으면 의문사를 맨 앞으로: What do you think he wants?']}
+};
+var QS=[
+{id:'pp1',t:'pp',src:'인천해원 2024 2학기 기말',tag:'8과',stem:'다음 중 어법상 올바른 문장은?',body:[],ch:['When have you gone fishing?','He has have a cold for two months.','They have been to Jeju-do last month.','They have studied English since last year.','She has written this song three years ago.'],ans:[3],lab:'ch',
+ex:[
+{ok:0,m:'너는 언제 낚시하러 갔니?',w:'When(언제)은 "과거의 어느 때"를 묻는 말이라 현재완료와 같이 못 써요. → When did you go fishing? (go 가다)'},
+{ok:0,m:'그는 두 달 동안 감기에 걸려 있다.',w:'has 뒤에는 과거분사(p.p.)가 와요. have(가지다)의 과거분사(p.p.)는 had. → He has had a cold.'},
+{ok:0,m:'그들은 지난달에 제주도에 갔다 왔다.',w:'last month(지난달)는 과거를 콕 집는 말이에요. → They went to Jeju-do last month. (go 가다)'},
+{ok:1,m:'그들은 작년부터 영어를 공부해 왔다.',w:'since(~부터) 뒤에 시작한 때가 오면 현재완료가 딱 맞아요.'},
+{ok:0,m:'그녀는 3년 전에 이 노래를 썼다.',w:'ago(~전에)도 과거를 콕 집는 말이에요. → She wrote this song three years ago. (write 쓰다)'}]},
+{id:'pp2',t:'pp',src:'가림 2024 2학기 기말',tag:'7과',stem:'다음 중 어법상 옳은 문장은?',body:[],ch:['Somebody has took my umbrella.','I have lost my camera yesterday.','She has teaching English for 2010.','How long were you been in Canada?','She has been in hospital since yesterday.'],ans:[4],lab:'ch',
+ex:[
+{ok:0,m:'누군가 내 우산을 가져갔다.',w:'has 뒤에는 과거분사(p.p.)! took은 과거형이에요. take(가져가다)의 과거분사(p.p.)는 taken. → has taken'},
+{ok:0,m:'나는 어제 카메라를 잃어버렸다.',w:'yesterday(어제)는 과거를 콕 집는 말. → I lost my camera yesterday. (lose 잃어버리다)'},
+{ok:0,m:'그녀는 2010년부터 영어를 가르쳐 왔다.',w:'has teaching은 모양이 틀려요. has taught(teach 가르치다) 또는 has been teaching. 그리고 2010처럼 시작한 때에는 for가 아니라 since를 써요.'},
+{ok:0,m:'너는 캐나다에 얼마나 오래 있었니?',w:'현재완료는 have/has + 과거분사(p.p.)예요. were you been이 아니라 have you been. → How long have you been in Canada?'},
+{ok:1,m:'그녀는 어제부터 병원에 있다.',w:'has been(be 이다·있다의 현재완료) + since yesterday. 시작한 때를 말하니까 맞아요.'}]},
+{id:'pp3',t:'pp',src:'구리여자 2024 2학기 기말',tag:'7과',stem:'다음 중 어법상 올바른 문장만을 <보기>에서 있는 대로 고른 것은?',body:['ⓐ Have you been to Paris?','ⓑ He has lived there for ten years.','ⓒ I’ve bought a new car last week.','ⓓ When has this book been published?','ⓔ We have not finished our homework yet.'],ch:['ⓐ','ⓑ, ⓒ','ⓐ, ⓑ, ⓔ','ⓑ, ⓓ, ⓔ','ⓒ, ⓓ, ⓔ'],ans:[2],lab:'body',
+ex:[
+{l:'ⓐ',ok:1,m:'너는 파리에 가 본 적 있니?',w:'경험을 묻는 현재완료예요. Have you been to ~?는 "~에 가 본 적 있니?"'},
+{l:'ⓑ',ok:1,m:'그는 거기서 10년 동안 살아 왔다.',w:'for + 기간(ten years)은 현재완료와 잘 어울려요.'},
+{l:'ⓒ',ok:0,m:'나는 지난주에 새 차를 샀다.',w:'last week(지난주)는 과거를 콕 집는 말. → I bought a new car last week. (buy 사다)'},
+{l:'ⓓ',ok:0,m:'이 책은 언제 출판되었니?',w:'When(언제)은 현재완료와 못 써요. → When was this book published? (publish 출판하다)'},
+{l:'ⓔ',ok:1,m:'우리는 아직 숙제를 끝내지 못했다.',w:'yet(아직)은 현재완료와 잘 쓰는 말이에요. (finish 끝내다)'}]},
+{id:'pp4',t:'pp',src:'성암여자 2024 2학기 기말',tag:'7과',stem:'다음 중 어법상 어색한 것은?',body:[],ch:['I haven’t have dinner yet.','The family has stayed there for 2 hours.','Have you ever visited the United States before?','Kate has known Britney since they were teenagers.','He has just finished his artwork for the exhibition.'],ans:[0],lab:'ch',
+ex:[
+{ok:0,m:'나는 아직 저녁을 먹지 않았다.',w:'haven’t 뒤에도 과거분사(p.p.)! have(먹다)의 과거분사(p.p.)는 had. → I haven’t had dinner yet. (어색한 문장 = 정답)'},
+{ok:1,m:'그 가족은 거기에 2시간 동안 머물렀다.',w:'has stayed(stay 머무르다) + for 2 hours. 자연스러워요.'},
+{ok:1,m:'너는 미국에 방문해 본 적 있니?',w:'Have you ever visited ~? 경험을 묻는 말. 자연스러워요.'},
+{ok:1,m:'케이트는 브리트니가 십대였을 때부터 그녀를 알아 왔다.',w:'has known(know 알다) + since + 시작한 때. 자연스러워요.'},
+{ok:1,m:'그는 방금 전시회에 낼 작품을 끝냈다.',w:'has just finished(finish 끝내다). just(막)는 현재완료와 잘 어울려요.'}]},
+{id:'pp5',t:'pp',src:'모산 2024 2학기 기말',tag:'7과',stem:'다음 <보기>의 문장 중 올바른 것의 개수는?',body:['ⓐ He has slept since an hour.','ⓑ When have you visited Seoul?','ⓒ Someone have eaten my cookies.','ⓓ Have you ever saw the movie before?','ⓔ They have already finished their project.','ⓕ She has written many interesting stories last year.'],ch:['1개','2개','3개','4개','5개'],ans:[0],lab:'body',
+ex:[
+{l:'ⓐ',ok:0,m:'그는 한 시간 전부터 자고 있다.',w:'since 뒤에는 시작한 때(since 3 o’clock)가 와요. "한 시간 동안"이면 for an hour.'},
+{l:'ⓑ',ok:0,m:'너는 언제 서울을 방문했니?',w:'When(언제)은 현재완료와 못 써요. → When did you visit Seoul? (visit 방문하다)'},
+{l:'ⓒ',ok:0,m:'누군가 내 쿠키를 먹었다.',w:'Someone은 한 사람(3인칭 단수)이라 have가 아니라 has. → Someone has eaten (eat 먹다)'},
+{l:'ⓓ',ok:0,m:'너는 전에 그 영화를 본 적 있니?',w:'ever 뒤에도 과거분사(p.p.)! saw는 과거형이에요. see(보다)의 과거분사(p.p.)는 seen. → Have you ever seen'},
+{l:'ⓔ',ok:1,m:'그들은 이미 프로젝트를 끝냈다.',w:'already(이미) + have finished. 딱 맞아요.'},
+{l:'ⓕ',ok:0,m:'그녀는 작년에 재미있는 이야기를 많이 썼다.',w:'last year(작년)는 과거를 콕 집는 말. → She wrote many interesting stories last year. (write 쓰다)'}]},
+{id:'pp6',t:'pp',src:'산정 2024 2학기 기말',tag:'7과',stem:'다음 우리말을 현재완료를 사용하여 바르게 영작한 것은?',pre:'나는 파란 하늘을 한 번도 본 적이 없다.',body:[],ch:['I have never seen a blue sky.','I have seen never a blue sky.','I see never have a blue sky.','I have never saw a blue sky.','I never have saw a blue sky.'],ans:[0],lab:'ch',adapted:1,
+ex:[
+{ok:1,m:'나는 파란 하늘을 한 번도 본 적이 없다.',w:'have + never + 과거분사(p.p.) 순서! see(보다)의 과거분사(p.p.)는 seen.'},
+{ok:0,m:'',w:'never는 have 바로 뒤에 와요. have seen never는 순서가 틀렸어요.'},
+{ok:0,m:'',w:'have + 과거분사(p.p.) 모양이 아니에요. 아예 현재완료가 안 됐어요.'},
+{ok:0,m:'',w:'saw는 과거형이에요. have 뒤에는 과거분사(p.p.) seen이 와야 해요.'},
+{ok:0,m:'',w:'never가 have 앞에 있고, saw도 과거형이라 두 군데가 틀려요.'}]},
+{id:'pp7',t:'pp',src:'유곡 2024 2학기 기말',tag:'7과',stem:'다음 중 영작이 알맞은 것은?',body:[],ch:['올해는 비가 많이 왔다. → This year have rained a lot.','너는 캐나다에서 얼마나 살았니? → How have you lived in Canada?','너는 그 도시를 언제 방문했니? → When have you visit the city?','나는 전에 이 노래를 들어본 적이 없어. → I have heard not this song before.','너는 작년 이후로 키가 아주 많이 컸다. → You have grown very tall since last year.'],ans:[4],lab:'ch',
+ex:[
+{ok:0,m:'',w:'It이 빠졌어요. 날씨는 It을 주어로 써요. → It has rained a lot this year. (rain 비가 오다)'},
+{ok:0,m:'',w:'"얼마나 오래"는 How long. → How long have you lived in Canada? (live 살다)'},
+{ok:0,m:'',w:'When(언제)은 현재완료와 못 쓰고, visit도 과거분사(p.p.) visited여야 해요. → When did you visit the city?'},
+{ok:0,m:'',w:'부정은 have 뒤에 not! → I have not heard this song before. (hear 듣다)'},
+{ok:1,m:'',w:'have grown(grow 자라다) + since last year. 시작한 때를 말하는 since라 딱 맞아요.'}]},
+{id:'pp8',t:'pp',src:'천보 2024 2학기 기말',tag:'5~7과',stem:'다음 중 어법상 올바른 문장의 개수는?',body:['I felt my heart beating fast.','He is enough strong to carry the desk.','I was so busy that I forget his concert.','They were too tired to clean the house.','He has just arrived at the airport at 9 o’clock.','The students that are in the library is reading books.'],ch:['1개','2개','3개','4개','5개'],ans:[1],lab:'body',
+ex:[
+{l:'·',ok:1,m:'나는 내 심장이 빠르게 뛰는 것을 느꼈다.',w:'felt(feel 느끼다) + 목적어(동사의 대상, ~을/를) + beating. 지각동사(보고·듣고·느끼는 동사) 뒤에는 ‘~하고 있는’ 모양(-ing)이 올 수 있어요.'},
+{l:'·',ok:0,m:'그는 책상을 옮길 만큼 충분히 강하다.',w:'enough는 형용사 뒤에 와요. → strong enough to carry (carry 나르다)'},
+{l:'·',ok:0,m:'나는 너무 바빠서 그의 콘서트를 잊었다.',w:'앞이 was(과거)라서 forget(잊다)도 과거형 forgot. → I forgot his concert.'},
+{l:'·',ok:1,m:'그들은 너무 피곤해서 집을 청소할 수 없었다.',w:'too + 형용사 + to + 동사원형 = "너무 ~해서 …할 수 없다". 맞아요. (clean 청소하다)'},
+{l:'·',ok:0,m:'그는 9시에 막 공항에 도착했다.',w:'at 9 o’clock(9시에)은 과거를 콕 집는 말이라 현재완료와 못 써요. → He arrived at the airport at 9. (arrive 도착하다)'},
+{l:'·',ok:0,m:'도서관에 있는 학생들은 책을 읽고 있다.',w:'주어 The students가 여러 명이니까 is가 아니라 are. → are reading'}]},
+{id:'pp9',t:'pp',src:'교문 2024 2학기 기말',tag:'7~8과',stem:'다음 중 어법상 옳은 문장의 총 개수는?',body:['Did you ever been to Paris?','He didn’t know where were his books.','I am not sure if he will like my birthday present.','The car accident happened because the slippery road.','She has been interested in Korean culture for a long time.'],ch:['1개','2개','3개','4개','5개'],ans:[1],lab:'body',
+ex:[
+{l:'·',ok:0,m:'너는 파리에 가 본 적 있니?',w:'Did와 been(be의 과거분사(p.p.))은 같이 못 써요. 경험을 물을 땐 Have you ever been to Paris?'},
+{l:'·',ok:0,m:'그는 자기 책들이 어디 있는지 몰랐다.',w:'간접의문문은 “의문사 + 주어 + 동사” 순서! → where his books were'},
+{l:'·',ok:1,m:'나는 그가 내 생일 선물을 좋아할지 확실하지 않다.',w:'if(~인지 아닌지) 뒤에 주어 + 동사 순서로 잘 썼어요. 미래의 일이라 will도 OK.'},
+{l:'·',ok:0,m:'그 교통사고는 길이 미끄러워서 일어났다.',w:'because 뒤에는 ‘주어+동사’, because of 뒤에는 명사. 여기엔 명사(the slippery road)만 있으니 because of.'},
+{l:'·',ok:1,m:'그녀는 오랫동안 한국 문화에 관심을 가져 왔다.',w:'has been interested in + for a long time. 계속을 나타내는 현재완료로 맞아요.'}]},
+{id:'ind1',t:'ind',src:'산정 2024 2학기 기말',tag:'8과',stem:'다음 중 어법상 옳은 것은?',body:[],ch:['Tell me how Daeun is tall.','I wonder what in Soyul’s bag was.','Please tell me where are we going.','Can you tell me why Jiae is angry?','Do you know who Yubin’s candy ate?'],ans:[3],lab:'ch',
+ex:[
+{ok:0,m:'다은이가 얼마나 키가 큰지 말해 줘.',w:'how와 tall은 한 덩어리! → how tall Daeun is'},
+{ok:0,m:'소율이 가방 안에 뭐가 있었는지 궁금해.',w:'what이 주어 자리라서 바로 뒤에 동사가 와요. → what was in Soyul’s bag'},
+{ok:0,m:'우리가 어디로 가는지 말해 줘.',w:'간접의문문은 “의문사 + 주어 + 동사”. → where we are going'},
+{ok:1,m:'지애가 왜 화났는지 말해 줄래?',w:'why + 주어(Jiae) + 동사(is) 순서가 맞아요.'},
+{ok:0,m:'유빈이의 사탕을 누가 먹었는지 아니?',w:'who가 주어예요. 순서 그대로 who + 동사 + 목적어(동사의 대상, ~을/를). → who ate Yubin’s candy (eat 먹다)'}]},
+{id:'ind2',t:'ind',src:'구리 2024 2학기 기말',tag:'8과',stem:'다음 중 주어진 문장을 간접의문문으로 옳게 바꾸어 쓴 것은?',body:[],ch:['Which one does she want? → Let’s ask her which one does she want.','What kind of bag does he have? → I want to ask him what he has kind of bag.','How far is to the library? → I’d like to know how far is it to the library.','How much time did we have for the test? → I didn’t know how much time we have for the test?','Who is going to meet you in the park? → Do you know who is going to meet you in the park?'],ans:[4],lab:'ch',
+ex:[
+{ok:0,m:'',w:'does가 남아 있어요. 간접의문문에서는 do/does/did가 사라져요. → which one she wants (want 원하다)'},
+{ok:0,m:'',w:'what kind of bag은 한 덩어리! → what kind of bag he has'},
+{ok:0,m:'',w:'“의문사 + 주어 + 동사” 순서. → how far it is to the library'},
+{ok:0,m:'',w:'didn’t know(과거)라서 have도 과거형 had가 되고, 평서문이라 끝에 물음표(?)도 틀려요. → how much time we had for the test.'},
+{ok:1,m:'너는 누가 공원에서 너를 만날 건지 아니?',w:'who가 주어라서 순서 그대로 둬요. 맞아요.'}]},
+{id:'ind3',t:'ind',src:'구리여자 2024 2학기 기말',tag:'8과',stem:'다음 우리말을 영어로 알맞게 옮긴 것은?',body:[],ch:['나는 그가 어디 사는지 알고 싶어. → I want to know where does he live.','그들이 다음에는 무엇을 할 것 같나요? → What do you guess they’ll do next?','그들에게 무슨 일이 일어났는지 난 궁금해. → I wonder what does happened to them.','그녀가 어디에 그 열쇠를 숨겼다고 상상해? → Do you imagine where she hide the keys?','그는 친구가 언제 올지 알고 싶어 해. → He wants to know why his friends will come.'],ans:[1],lab:'ch',
+ex:[
+{ok:0,m:'',w:'does가 남아 있어요. → where he lives (live 살다)'},
+{ok:1,m:'',w:'guess(추측하다)가 있어서 의문사 What이 맨 앞으로 나왔어요. → What do you guess + they’ll do next. 맞아요!'},
+{ok:0,m:'',w:'does를 없애야 해요. 그리고 happen(일어나다)은 ‘일어나지다’로 안 써서 happened. → what happened to them'},
+{ok:0,m:'',w:'imagine(상상하다)이 있으면 의문사를 맨 앞으로: Where do you imagine she hid the keys? (hide 숨기다의 과거형 hid)'},
+{ok:0,m:'',w:'"언제"는 when이에요. why는 "왜"라서 뜻이 달라져요. → when his friends will come'}]},
+{id:'ind4',t:'ind',src:'모산 2024 2학기 기말',tag:'8과',stem:'다음 중 어법상 옳은 문장은?',body:[],ch:['I want to know who are you.','I’m not sure what is happened to him.','I don’t know if she go to the library to study.','Can you tell me how long will you stay here?','How many books do you guess Tom can read for a week?'],ans:[4],lab:'ch',
+ex:[
+{ok:0,m:'나는 네가 누구인지 알고 싶어.',w:'"의문사 + 주어 + 동사" 순서. → who you are'},
+{ok:0,m:'그에게 무슨 일이 일어났는지 모르겠어.',w:'happen(일어나다)은 수동태(is happened)로 안 써요. → what happened to him'},
+{ok:0,m:'나는 그녀가 공부하러 도서관에 가는지 모르겠어.',w:'she는 한 사람이라 go가 아니라 goes. → if she goes'},
+{ok:0,m:'너는 여기 얼마나 오래 머물 건지 말해 줄래?',w:'→ how long you will stay here (stay 머무르다)'},
+{ok:1,m:'너는 톰이 일주일 동안 책을 몇 권 읽을 수 있다고 생각해?',w:'guess(추측하다)가 있어서 How many books를 맨 앞에 두고, 뒤는 Tom can read 순서. 맞아요.'}]},
+{id:'ind5',t:'ind',src:'성덕 2024 2학기 기말',tag:'8과',stem:'다음 중 어법상 올바른 문장을 모두 고르면? (정답 2개)',body:[],ch:['Can you tell me where does he live?','Do you think why he is happy?','I don’t know if he has a brother or a sister.','Where do you suppose he come from?','I wonder if he passed the exam or not.'],ans:[2,4],multi:2,lab:'ch',
+ex:[
+{ok:0,m:'',w:'does가 남아 있어요. → where he lives'},
+{ok:0,m:'',w:'think(생각하다)가 있으면 의문사를 맨 앞으로! → Why do you think he is happy?'},
+{ok:1,m:'그가 형이나 누나가 있는지 모르겠어.',w:'if(~인지 아닌지) + 주어 + 동사 순서가 맞아요.'},
+{ok:0,m:'',w:'he는 한 사람이라 come이 아니라 comes. → Where do you suppose he comes from?'},
+{ok:1,m:'그가 시험에 합격했는지 궁금해.',w:'if + 주어 + 동사, 뒤에 or not도 붙을 수 있어요. 맞아요. (pass 합격하다)'}]},
+{id:'ind6',t:'ind',src:'인천해원 2024 2학기 기말',tag:'8과',stem:'다음 중 어법상 옳은 문장의 개수는?',body:['I don’t know where the nearest station is.','How was the book that you read last week?','Could you tell me why is she late for class?','Do you know what time does the train leave?','She wants to know if I can help her with homework.'],ch:['1개','2개','3개','4개','5개'],ans:[2],lab:'body',
+ex:[
+{l:'·',ok:1,m:'나는 가장 가까운 역이 어디인지 모른다.',w:'where + 주어(the nearest station) + 동사(is). 순서가 맞아요.'},
+{l:'·',ok:1,m:'네가 지난주에 읽은 책은 어땠니?',w:'이 문장은 간접의문문이 아니라 보통 질문이에요. that you read는 book을 꾸며 줘요. 틀린 곳 없어요.'},
+{l:'·',ok:0,m:'그녀가 왜 수업에 늦었는지 말해 줄래요?',w:'→ why she is late for class. "의문사 + 주어 + 동사"'},
+{l:'·',ok:0,m:'기차가 몇 시에 떠나는지 아세요?',w:'does를 없애고 → what time the train leaves (leave 떠나다)'},
+{l:'·',ok:1,m:'그녀는 내가 숙제를 도와줄 수 있는지 알고 싶어 한다.',w:'if(~인지 아닌지) + 주어 + 동사. 맞아요. (help 돕다)'}]},
+{id:'ind7',t:'ind',src:'가림 2024 2학기 기말',tag:'8과',stem:'다음 중 어법상 옳은 문장의 개수를 고르면?',body:['I’m not sure if she will like my gift.','I don’t know who stole my notebook.','I wonder if Sue is coming to my house.','I want to know who you met yesterday.','I’d like to know whom your best friend is.','I’d like to know how many you have made movies so far.'],ch:['1개','2개','3개','4개','5개'],ans:[3],lab:'body',
+ex:[
+{l:'·',ok:1,m:'나는 그녀가 내 선물을 좋아할지 확실하지 않다.',w:'if(~인지 아닌지) 뒤에는 미래 will을 써도 돼요.'},
+{l:'·',ok:1,m:'나는 누가 내 공책을 훔쳤는지 모른다.',w:'who가 주어라서 순서 그대로: who + 동사(stole) + 목적어(동사의 대상, ~을/를). (steal 훔치다)'},
+{l:'·',ok:1,m:'수가 우리 집에 오는 중인지 궁금하다.',w:'if + 주어 + 동사. 맞아요.'},
+{l:'·',ok:1,m:'나는 네가 어제 누구를 만났는지 알고 싶다.',w:'who(누구를) + 주어(you) + 동사(met). 맞아요. (meet 만나다)'},
+{l:'·',ok:0,m:'네 가장 친한 친구가 누구인지 알고 싶다.',w:'이 문장의 who는 "누구(주어 자리 말)"이 아니라 보어예요. whom이 아니라 who. → who your best friend is'},
+{l:'·',ok:0,m:'너는 영화를 몇 편 만들었는지 알고 싶다.',w:'how many 뒤에 명사를 붙여 한 덩어리! → how many movies you have made'}]},
+{id:'ind8',t:'ind',src:'연화 2024 2학기 기말',tag:'8과',stem:'다음 인터뷰 질문을 간접의문문으로 바꾼 것으로 <보기>에서 어법상 적절한 것의 개수는?',body:['Please tell me what was your first movie.','I’d like to know who is your favorite actor.','Can I ask you why did you become a director?','Can you tell me why you did became a director?','Can you tell me how many movies you have made so far?'],ch:['1개','2개','3개','4개','5개'],ans:[0],lab:'body',
+ex:[
+{l:'·',ok:0,m:'당신의 첫 영화가 무엇이었는지 말해 주세요.',w:'→ what your first movie was. "의문사 + 주어 + 동사"'},
+{l:'·',ok:0,m:'당신이 가장 좋아하는 배우가 누구인지 알고 싶어요.',w:'→ who your favorite actor is'},
+{l:'·',ok:0,m:'당신이 왜 감독이 되었는지 물어봐도 될까요?',w:'did를 없애야 해요. → why you became a director (become ~이 되다)'},
+{l:'·',ok:0,m:'당신이 왜 감독이 되었는지 말해 주실래요?',w:'did와 became이 겹쳤어요. 과거는 became 하나만! → why you became a director'},
+{l:'·',ok:1,m:'지금까지 영화를 몇 편 만들었는지 말해 주실래요?',w:'how many movies + 주어 + 동사 순서가 맞아요.'}]}
+];
+TOPICS.pp.cards=[
+{type:'vs',title:'과거 vs 현재완료',a:{t:'과거',rows:[['모양','동사 과거형 (did)'],['뜻','그때 끝난 일'],['짝꿍 말','yesterday · last week · ago · When'],['예문','I **lost** my bag yesterday.'],['','어제 가방을 잃어버렸어요.']]},b:{t:'현재완료',rows:[['모양','have/has + p.p.'],['뜻','과거에 시작해서 지금과 이어지는 일'],['짝꿍 말','already · yet · ever · never · for · since'],['예문','I **have lost** my bag.'],['','가방을 잃어버려서 지금 없어요.']]}},
+{type:'rules',title:'현재완료 3가지 뜻',items:[
+{n:'완료',d:'방금 끝났어요',chips:['already 이미','just 막','yet 아직'],e:'I have **just finished** my homework.',k:'나는 방금 숙제를 끝냈어요.'},
+{n:'경험',d:'해 본 적 있어요',chips:['ever ~한 적','never 한 번도 ~않은'],e:'Have you **ever seen** a whale?',k:'고래를 본 적 있니?'},
+{n:'계속',d:'지금까지 이어져요',chips:['for ~동안 + 시간의 길이','since ~부터 + 시작한 때'],e:'I have lived here **since 2020**. / **for** two years.',k:'나는 2020년부터 / 2년 동안 여기 살아 왔어요.'}]},
+{type:'ban',title:'이 말이 나오면 현재완료 금지',chips:['yesterday 어제','last week 지난주','ago ~전에','When 언제'],bad:'I have visited Seoul last year.',good:'I **visited** Seoul last year.',k:'나는 작년에 서울을 방문했어요.',why:'지난 어느 때를 콕 집으면 과거형(did)으로 써요.'},
+{type:'table',title:'p.p.는 동사의 세 번째 모양',head:['원형(뜻)','과거','p.p.'],rows:[['eat(먹다)','ate','eaten'],['see(보다)','saw','seen'],['take(가져가다)','took','taken'],['write(쓰다)','wrote','written'],['have(가지다)','had','had']],hl:2}
+];
+TOPICS.ind.cards=[
+{type:'vs',title:'직접의문문 vs 간접의문문',a:{t:'직접의문문',rows:[['모양','의문사 + do/does + 주어 + 동사'],['뜻','상대에게 바로 묻는 질문'],['예문','Where **does she live**?'],['','그녀는 어디 살아요?']]},b:{t:'간접의문문',rows:[['모양','의문사 + 주어 + 동사'],['뜻','문장 안에 들어간 질문'],['예문','I know where **she lives**.'],['','그녀가 어디 사는지 알아요.']]}},
+{type:'rules',title:'4가지만 기억해요',items:[
+{n:'1',d:'do/does/did는 사라져요',chips:[],e:'Where does she live? → I know where **she lives**.',k:'그녀가 어디 사는지 알아요.'},
+{n:'2',d:'의문사가 없으면 if / whether',chips:['if ~인지 아닌지','whether ~인지 아닌지'],e:'Do you like it? → I wonder **if you like it**.',k:'네가 그걸 좋아하는지 궁금해요.'},
+{n:'3',d:'의문사가 주어면 순서 그대로',chips:[],e:'Who ate it? → I know **who ate it**.',k:'누가 그걸 먹었는지 알아요.'},
+{n:'4',d:'B.I.G.S.T 동사가 있으면 의문사를 맨 앞으로',chips:['Believe 믿다','Imagine 상상하다','Guess 추측하다','Suppose 가정하다','Think 생각하다'],bad:'Do you think where he lives?',e:'**Where** do you think he lives?',k:'그가 어디 산다고 생각해요?'}]}
+];
+var KEY={
+pp1:{h:'since + 시작한 때 → 현재완료가 딱 맞아요',a:[['They have studied English **since last year**.','그들은 작년부터 영어를 공부해 왔다.']],c:['since = ~부터','last month · ago · When → 과거형(did)']},
+pp2:{h:'since yesterday → has been 현재완료',a:[['She **has been** in hospital **since yesterday**.','그녀는 어제부터 병원에 있다.']],c:['has + p.p. (took ✕ → taken)','yesterday만 있으면 과거형']},
+pp3:{h:'경험·계속·완료는 OK, 지난 때 말은 ✕',a:[['ⓐ Have you **been to** Paris?','너는 파리에 가 본 적 있니?'],['ⓑ He has lived there **for ten years**.','그는 거기서 10년 동안 살아 왔다.'],['ⓔ We have not finished our homework **yet**.','우리는 아직 숙제를 끝내지 못했다.']],c:['last week → 과거형','When → did']},
+pp4:{h:'haven’t 뒤에는 p.p.(had)',al:'고친 문장',a:[['I haven’t **had** dinner yet.','나는 아직 저녁을 먹지 않았다.']],c:['have(가지다·먹다) – had – had','yet = 아직']},
+pp5:{h:'맞는 문장은 ⓔ 딱 하나',a:[['ⓔ They have **already finished** their project.','그들은 이미 프로젝트를 끝냈다.']],c:['already · yet · ever + p.p.','When · last year → 과거형','since + 때 / for + 기간']},
+pp6:{h:'have + never + p.p.',a:[['I **have never seen** a blue sky.','나는 파란 하늘을 한 번도 본 적이 없다.']],c:['never는 have 바로 뒤','see – saw – seen']},
+pp7:{h:'since last year → have grown',a:[['You **have grown** very tall **since last year**.','너는 작년 이후로 키가 아주 많이 컸다.']],c:['얼마나 오래 → How long','부정은 have not + p.p.']},
+pp8:{h:'맞는 문장은 1번, 4번',a:[['I felt my heart **beating** fast.','나는 내 심장이 빠르게 뛰는 것을 느꼈다.'],['They were **too tired to** clean the house.','그들은 너무 피곤해서 집을 청소할 수 없었다.']],c:['too + 형용사 + to ~ = 너무 ~해서 …못해','at 9 o’clock → 현재완료 ✕']},
+pp9:{h:'맞는 문장은 3번, 5번',a:[['I am not sure **if he will like** my birthday present.','나는 그가 내 생일 선물을 좋아할지 확실하지 않다.'],['She has been interested in Korean culture **for a long time**.','그녀는 오랫동안 한국 문화에 관심을 가져 왔다.']],c:['if + 주어 + 동사','for a long time = 계속']},
+ind1:{h:'why + 주어 + 동사 순서',a:[['Can you tell me **why Jiae is** angry?','지애가 왜 화났는지 말해 줄래?']],c:['의문사 + 주어 + 동사','how tall은 한 덩어리']},
+ind2:{h:'의문사가 주어면 순서 그대로',a:[['Do you know **who is going to meet** you in the park?','너는 누가 공원에서 너를 만날 건지 아니?']],c:['do/does/did는 사라져요','what kind of bag은 한 덩어리']},
+ind3:{h:'Guess가 있으니 What이 맨 앞으로',a:[['**What** do you guess they’ll do next?','그들이 다음에는 무엇을 할 것 같나요?']],c:['B.I.G.S.T 동사 → 의문사 맨 앞','when = 언제 / why = 왜']},
+ind4:{h:'Guess가 있으니 How many books가 맨 앞으로',a:[['**How many books** do you guess Tom can read for a week?','너는 톰이 일주일 동안 책을 몇 권 읽을 수 있다고 생각해?']],c:['B.I.G.S.T 동사 → 의문사 맨 앞','what happened (is happened ✕)']},
+ind5:{h:'의문사가 없으면 if (~인지 아닌지)',a:[['I don’t know **if he has** a brother or a sister.','그가 형이나 누나가 있는지 모르겠어.'],['I wonder **if he passed** the exam or not.','그가 시험에 합격했는지 궁금해.']],c:['if + 주어 + 동사','Why do you think he is happy?']},
+ind6:{h:'맞는 문장은 1번, 2번, 5번',a:[['I don’t know **where the nearest station is**.','나는 가장 가까운 역이 어디인지 모른다.'],['How was the book that you read last week?','네가 지난주에 읽은 책은 어땠니? (보통 질문)'],['She wants to know **if I can help** her with homework.','그녀는 내가 숙제를 도와줄 수 있는지 알고 싶어 한다.']],c:['의문사 + 주어 + 동사','2번은 간접의문문이 아닌 보통 질문']},
+ind7:{h:'맞는 문장은 1번~4번 (4개)',a:[['I’m not sure **if she will like** my gift.','나는 그녀가 내 선물을 좋아할지 확실하지 않다.'],['I don’t know **who stole** my notebook.','나는 누가 내 공책을 훔쳤는지 모른다.'],['I wonder **if Sue is coming** to my house.','수가 우리 집에 오는 중인지 궁금하다.'],['I want to know **who you met** yesterday.','나는 네가 어제 누구를 만났는지 알고 싶다.']],c:['who가 주어면 순서 그대로','how many movies는 한 덩어리']},
+ind8:{h:'맞는 문장은 5번 하나',a:[['Can you tell me **how many movies you have made** so far?','지금까지 영화를 몇 편 만들었는지 말해 주실래요?']],c:['의문사 + 주어 + 동사','did와 became을 겹쳐 쓰지 않기']}
+};
+TOPICS.gj={name:'가주어·진주어',sets:[['gj1','gj2','gj3','gj4','gj5','gj6','gj7','gj8','gj9','gj10'],['gj11','gj12','gj13','gj14','gj15','gj16','gj17','gj18','gj19','gj20']],cards:[
+{type:'vs',title:'긴 주어는 뒤로 보내요',a:{t:'진짜 주어가 길어요',rows:[['모양','To + 동사원형 ~ + be + 형용사'],['예문','**To play** games is fun.'],['','게임하는 것은 재미있다.']]},b:{t:'가주어 It을 써요',rows:[['모양','It + be + 형용사 + to + 동사원형 ~'],['예문','**It** is fun **to play** games.'],['','It은 해석하지 않아요!']]}},
+{type:'rules',title:'It의 3가지 얼굴',items:[
+{n:'가주어',d:'뒤에 to + 동사원형이 있어요',chips:['It = 해석 안 해요','진짜 주어 = to 이하'],e:'**It** is important **to follow** the rules.',k:'규칙을 따르는 것은 중요하다.'},
+{n:'비인칭',d:'시간·날씨·요일·날짜·거리·명암',chips:['It is ten o’clock.','It is raining.','It is getting dark.'],e:'**It** is Friday today.',k:'오늘은 금요일이다. (It은 해석 안 해요)'},
+{n:'대명사',d:'앞에 나온 것을 가리켜요',chips:['it = 그것'],e:'The hat is pretty. I like **it**.',k:'그 모자는 예쁘다. 나는 그것이 마음에 든다.'}]},
+{type:'rules',title:'to 앞에 for일까, of일까?',items:[
+{n:'for',d:'일이 어떤지 말할 때 (easy · hard · possible · necessary · important)',chips:['for + 목적격'],e:'It is easy **for her** to make cookies.',k:'그녀가 쿠키를 만드는 것은 쉽다.'},
+{n:'of',d:'사람의 성격을 말할 때 (kind · nice · wise · foolish · silly)',chips:['of + 목적격'],e:'It is kind **of you** to help me.',k:'나를 도와주다니 너는 친절하구나.'},
+{n:'꿀팁',d:'"사람 + is + 형용사"로 바꿔 말이 되면 of',chips:['You are kind. (○) → of you','She is easy. (✕) → for her'],e:'You are **kind**. → It is kind **of you** to ~',k:'너는 친절하다 → of you'}]},
+{type:'ban',title:'자주 틀려요',chips:['for/of 뒤는 목적격 (him · her · us · them)','to 뒤는 동사원형'],bad:'It was silly for his to do that.',good:'It was silly **of him** to do that.',k:'그렇게 하다니 그는 어리석었다.',why:'silly는 사람 성격이라 of, his가 아니라 him! to 뒤에는 do처럼 동사원형.'}
+]};
+QS.push(
+{id:'gj1',t:'gj',src:'가람 2024 2학기 중간',tag:'7과',stem:'다음 <보기>의 It과 쓰임이 같은 것은?',pre:'It is impossible to predict the future.',body:[],ch:['It is not your fault.','It is getting dark outside.','It is ten minutes to eleven.','It was a gift from my friend.','It is important to follow the rules.'],ans:[4],lab:'ch',vo:'○ 가주어',vx:'✕ 가주어 아님',
+ex:[
+{ok:0,m:'그것은 네 잘못이 아니다.',w:'앞에서 말한 일을 가리키는 "그것"이에요. 뒤에 to + 동사원형이 없어서 가주어가 아니에요.'},
+{ok:0,m:'밖이 어두워지고 있다.',w:'어둡고 밝은 것을 말하는 It은 해석하지 않는 비인칭 주어예요.'},
+{ok:0,m:'11시 10분 전이다.',w:'시간을 말하는 It도 비인칭 주어예요.'},
+{ok:0,m:'그것은 내 친구가 준 선물이었다.',w:'"그것"이라는 뜻의 대명사 it이에요.'},
+{ok:1,m:'규칙을 따르는 것은 중요하다.',w:'It is important 뒤에 to follow(follow 따르다)가 와요. 진짜 주어가 to 이하라서 <보기>와 같은 가주어예요.'}]},
+{id:'gj2',t:'gj',src:'울산제일 2024 2학기 기말',tag:'7과',stem:'다음 중 It이 가주어로 쓰인 것은?',body:[],ch:['It is 7 o’clock.','It is raining now.','It weighs 150 kg.','It is fun to play with friends.','It is too big for your sister.'],ans:[3],lab:'ch',vo:'○ 가주어',vx:'✕ 가주어 아님',
+ex:[
+{ok:0,m:'7시 정각이다.',w:'시간을 말하는 비인칭 주어예요.'},
+{ok:0,m:'지금 비가 오고 있다.',w:'날씨를 말하는 비인칭 주어예요.'},
+{ok:0,m:'그것은 무게가 150kg이다.',w:'물건을 가리키는 it이에요. to + 동사원형이 없어요.'},
+{ok:1,m:'친구들과 노는 것은 재미있다.',w:'It is fun 뒤에 to play(play 놀다)가 있어요. 노는 것이 진짜 주어라서 가주어예요.'},
+{ok:0,m:'그것은 네 여동생에게 너무 크다.',w:'it은 어떤 물건을 가리켜요. to + 동사원형이 없어서 가주어가 아니에요.'}]},
+{id:'gj3',t:'gj',src:'울산 2024 2학기 기말',tag:'7과',stem:'다음 중 It이 가주어로 쓰인 것은?',body:[],ch:['It is five o’clock.','It is not your fault.','It is getting dark outside.','The hat is pretty. I like it.','It is impossible to predict the future.'],ans:[4],lab:'ch',vo:'○ 가주어',vx:'✕ 가주어 아님',
+ex:[
+{ok:0,m:'5시이다.',w:'시간을 말하는 비인칭 주어예요.'},
+{ok:0,m:'그것은 네 잘못이 아니다.',w:'앞에서 말한 일을 가리키는 "그것"이에요.'},
+{ok:0,m:'밖이 어두워지고 있다.',w:'명암을 말하는 비인칭 주어예요.'},
+{ok:0,m:'그 모자는 예쁘다. 나는 그것이 마음에 든다.',w:'like(like 좋아하다) 뒤의 it은 "그것(모자)"이라는 대명사예요.'},
+{ok:1,m:'미래를 예측하는 것은 불가능하다.',w:'It is impossible 뒤에 to predict(predict 예측하다)가 와요. 예측하는 것이 진짜 주어라서 가주어예요.'}]},
+{id:'gj4',t:'gj',src:'구리여자 2024 2학기 기말',tag:'7과',stem:'다음 중 It이 가주어로 쓰인 것은?',body:[],ch:['It is often hot in summer.','It is getting dark early these days.','It is already 7 o’clock in the evening.','It is 3km from my school to my house.','It is good to read books in the evening.'],ans:[4],lab:'ch',adapted:1,vo:'○ 가주어',vx:'✕ 가주어 아님',
+ex:[
+{ok:0,m:'여름에는 자주 덥다.',w:'날씨를 말하는 비인칭 주어예요.'},
+{ok:0,m:'요즘은 일찍 어두워진다.',w:'명암을 말하는 비인칭 주어예요.'},
+{ok:0,m:'벌써 저녁 7시다.',w:'시간을 말하는 비인칭 주어예요.'},
+{ok:0,m:'학교에서 우리 집까지는 3km다.',w:'거리를 말하는 비인칭 주어예요. to 뒤에 동사가 아니라 my house(명사)가 와요.'},
+{ok:1,m:'저녁에 책을 읽는 것은 좋다.',w:'It is good 뒤에 to read(read 읽다)가 와요. 책을 읽는 것이 진짜 주어라서 가주어예요.'}]},
+{id:'gj5',t:'gj',src:'다사 2024 2학기 기말',tag:'7과',stem:'다음 중 밑줄 친 It(it)의 쓰임이 다른 하나는?',body:[],ch:['It is necessary to wear a helmet.','Is it safe to drink water while we ride a bike?','It’s not difficult to guess the ending of the story.','I want to say that I am so sorry. It was my fault.','It was very important to do the project in three days.'],ans:[3],lab:'ch',vo:'○ 가주어',vx:'✕ 가주어 아님',
+ex:[
+{ok:1,m:'헬멧을 쓰는 것은 필요하다.',w:'It is necessary 뒤에 to wear(wear 쓰다·입다)가 와요. 가주어예요.'},
+{ok:1,m:'자전거를 타는 동안 물을 마시는 것은 안전한가?',w:'물어보는 문장이라 Is it ~?로 순서만 바뀌었어요. 뒤에 to drink(drink 마시다)가 있으니 가주어예요.'},
+{ok:1,m:'이야기의 결말을 짐작하는 것은 어렵지 않다.',w:'It’s not difficult 뒤에 to guess(guess 짐작하다)가 와요. 가주어예요.'},
+{ok:0,m:'정말 미안하다고 말하고 싶어. 그것은 내 잘못이었어.',w:'앞에서 말한 일을 가리키는 "그것"이에요. to + 동사원형이 없어서 가주어가 아니에요. (정답: 쓰임이 다른 하나)'},
+{ok:1,m:'프로젝트를 사흘 안에 하는 것은 매우 중요했다.',w:'It was very important 뒤에 to do(do 하다)가 와요. 가주어예요.'}]},
+{id:'gj6',t:'gj',src:'태성 2024 2학기 기말',tag:'7과',stem:'다음 중 It의 쓰임이 나머지 넷과 다른 것은?',body:[],ch:['It is 5km to our school.','Is it safe to drink this water?','It is necessary to wear a helmet.','It will be helpful to read the book.','It is impossible to predict the future.'],ans:[0],lab:'ch',vo:'○ 가주어',vx:'✕ 가주어 아님',
+ex:[
+{ok:0,m:'우리 학교까지는 5km다.',w:'거리를 말하는 비인칭 주어예요. to 뒤에 our school(명사)이 와서 to + 동사원형이 아니에요. (정답: 쓰임이 다른 하나)'},
+{ok:1,m:'이 물을 마시는 것은 안전한가?',w:'to drink(drink 마시다)가 진짜 주어인 가주어예요.'},
+{ok:1,m:'헬멧을 쓰는 것은 필요하다.',w:'to wear(wear 쓰다)가 진짜 주어인 가주어예요.'},
+{ok:1,m:'그 책을 읽는 것은 도움이 될 것이다.',w:'to read(read 읽다)가 진짜 주어인 가주어예요.'},
+{ok:1,m:'미래를 예측하는 것은 불가능하다.',w:'to predict(predict 예측하다)가 진짜 주어인 가주어예요.'}]},
+{id:'gj7',t:'gj',src:'연화 2024 2학기 기말',tag:'7과',stem:'다음 중 It의 쓰임이 나머지 넷과 다른 것은?',body:[],ch:['It is nice to see you again.','It is impossible to understand her.','It wasn’t easy to find your house.','Is it okay to call you at your office?','I was afraid because it was very dark.'],ans:[4],lab:'ch',vo:'○ 가주어',vx:'✕ 가주어 아님',
+ex:[
+{ok:1,m:'너를 다시 만나서 반갑다.',w:'to see(see 만나다·보다)가 진짜 주어인 가주어예요.'},
+{ok:1,m:'그녀를 이해하는 것은 불가능하다.',w:'to understand(understand 이해하다)가 진짜 주어인 가주어예요.'},
+{ok:1,m:'네 집을 찾는 것은 쉽지 않았다.',w:'to find(find 찾다)가 진짜 주어인 가주어예요.'},
+{ok:1,m:'네 사무실로 전화해도 괜찮니?',w:'to call(call 전화하다)이 진짜 주어인 가주어예요. 물음표 문장이라 Is it이 됐을 뿐이에요.'},
+{ok:0,m:'나는 매우 어두워서 무서웠다.',w:'어두운 것을 말하는 비인칭 주어예요. to + 동사원형이 없어요. (정답: 쓰임이 다른 하나)'}]},
+{id:'gj8',t:'gj',src:'성덕 2024 1학기 중간',tag:'7과',stem:'다음 중 It의 쓰임이 나머지 넷과 다른 것은?',body:[],ch:['It is easy to take a taxi in Korea.','It’s eleven a.m. now.','It’s getting dark outside.','It’s April 30th today.','It was Friday yesterday.'],ans:[0],lab:'ch',vo:'○ 가주어',vx:'✕ 가주어 아님',
+ex:[
+{ok:1,m:'한국에서 택시를 타는 것은 쉽다.',w:'to take(take 타다)가 진짜 주어인 가주어예요. 나머지 넷은 모두 해석하지 않는 비인칭 주어예요. (정답: 쓰임이 다른 하나)'},
+{ok:0,m:'지금은 오전 11시다.',w:'시간을 말하는 비인칭 주어예요.'},
+{ok:0,m:'밖이 어두워지고 있다.',w:'명암을 말하는 비인칭 주어예요.'},
+{ok:0,m:'오늘은 4월 30일이다.',w:'날짜를 말하는 비인칭 주어예요.'},
+{ok:0,m:'어제는 금요일이었다.',w:'요일을 말하는 비인칭 주어예요.'}]},
+{id:'gj9',t:'gj',src:'인천여자 2024 2학기 기말',tag:'7과',stem:'다음 중 It이 가주어로 쓰인 것은?',body:[],ch:['It is a beautiful day today.','It was Saturday when she came back.','It was a great movie, I really enjoyed it.','It is important to choose the right one.','It has been a long time since we last met.'],ans:[3],lab:'ch',vo:'○ 가주어',vx:'✕ 가주어 아님',
+ex:[
+{ok:0,m:'오늘은 아름다운 날이다.',w:'오늘의 날씨나 상황을 말하는 비인칭 주어예요. to + 동사원형이 없어요.'},
+{ok:0,m:'그녀가 돌아왔을 때는 토요일이었다.',w:'요일을 말하는 비인칭 주어예요.'},
+{ok:0,m:'훌륭한 영화였고, 나는 그것을 정말 즐겼다.',w:'It은 앞에서 말한 영화를 가리키는 대명사예요.'},
+{ok:1,m:'맞는 것을 고르는 것은 중요하다.',w:'It is important 뒤에 to choose(choose 고르다)가 와요. 고르는 것이 진짜 주어라서 가주어예요.'},
+{ok:0,m:'우리가 마지막으로 만난 지 오래됐다.',w:'시간이 흐른 것을 말하는 비인칭 주어예요.'}]},
+{id:'gj10',t:'gj',src:'청량 2024 2학기 기말',tag:'7과',stem:'다음 중 it이 가주어로 쓰인 것은?',body:[],ch:['It’s going to be difficult.','It’s going to rain tomorrow.','It’s too hot outside to play soccer.','He said that it was time to go to school.','Everyone knows it’s impossible to succeed without hard work.'],ans:[4],lab:'ch',adapted:1,vo:'○ 가주어',vx:'✕ 가주어 아님',
+ex:[
+{ok:0,m:'어려워질 것이다.',w:'앞에서 말한 일을 가리키는 it이에요. to + 동사원형이 뒤에 없어요.'},
+{ok:0,m:'내일 비가 올 것이다.',w:'날씨를 말하는 비인칭 주어예요.'},
+{ok:0,m:'밖이 너무 더워서 축구를 할 수 없다.',w:'to가 보여도 날씨 It이에요. "too hot to play"는 "너무 더워서 ~할 수 없다"라는 뜻이에요. (play 하다)'},
+{ok:0,m:'그는 학교에 갈 시간이라고 말했다.',w:'it was time(시간이었다)은 시간을 말하는 비인칭 주어예요. time to go는 "갈 시간"이에요. (go 가다)'},
+{ok:1,m:'열심히 노력하지 않고 성공하는 것은 불가능하다는 걸 모두가 안다.',w:'it’s impossible 뒤에 to succeed(succeed 성공하다)가 와요. 성공하는 것이 진짜 주어라서 가주어예요.'}]},
+{id:'gj11',t:'gj',src:'모산 2024 2학기 기말',tag:'7과',stem:'다음 <보기>의 문장 중 It의 쓰임이 같은 것끼리 짝지어진 것은?',body:['ⓐ It is winter.','ⓑ It is ten o’clock.','ⓒ It’s fun to play games.','ⓓ It is getting dark outside.','ⓔ It is not the correct answer.','ⓕ It is difficult to walk on Earth.','ⓖ It is exciting to learn new things.'],ch:['ⓐ, ⓑ, ⓒ','ⓑ, ⓔ, ⓖ','ⓑ, ⓒ, ⓓ','ⓒ, ⓕ, ⓖ','ⓓ, ⓔ, ⓕ'],ans:[3],lab:'body',vo:'○ 가주어',vx:'✕ 가주어 아님',
+ex:[
+{l:'ⓐ',ok:0,m:'겨울이다.',w:'계절을 말하는 비인칭 주어예요.'},
+{l:'ⓑ',ok:0,m:'10시이다.',w:'시간을 말하는 비인칭 주어예요.'},
+{l:'ⓒ',ok:1,m:'게임하는 것은 재미있다.',w:'to play(play 하다)가 진짜 주어인 가주어예요.'},
+{l:'ⓓ',ok:0,m:'밖이 어두워지고 있다.',w:'명암을 말하는 비인칭 주어예요.'},
+{l:'ⓔ',ok:0,m:'그것은 정답이 아니다.',w:'"그것"이라는 뜻의 대명사예요.'},
+{l:'ⓕ',ok:1,m:'지구에서 걷는 것은 어렵다.',w:'to walk(walk 걷다)가 진짜 주어인 가주어예요.'},
+{l:'ⓖ',ok:1,m:'새로운 것들을 배우는 것은 신난다.',w:'to learn(learn 배우다)이 진짜 주어인 가주어예요.'}]},
+{id:'gj12',t:'gj',src:'성암여자 2024 2학기 기말',tag:'7과',stem:'다음 우리말을 영어로 옮긴 것으로 알맞은 것은?',pre:'아침에 물 한 잔을 마시는 것은 건강에 좋다.',body:[],ch:['It is healthy drink a cup of water in the morning.','I am healthy drink a cup of water in the morning.','It is healthy to drank a cup of water in the morning.','It is healthy to drinking a cup of water in the morning.','It is healthy to drink a cup of water in the morning.'],ans:[4],lab:'ch',
+ex:[
+{ok:0,m:'',w:'to가 빠졌어요. 가주어 It 뒤에는 to + 동사원형이 와야 해요. → It is healthy to drink a cup of water in the morning. (drink 마시다)'},
+{ok:0,m:'',w:'주어가 I(나)가 되면 "내가 건강하다"라는 뜻이 되고 to도 없어요. → It is healthy to drink ~'},
+{ok:0,m:'',w:'to 뒤에는 동사원형이에요. drank는 과거형이라 틀려요. → to drink (drink 마시다)'},
+{ok:0,m:'',w:'to 뒤에 -ing를 쓰면 안 돼요. → to drink (drink 마시다)'},
+{ok:1,m:'아침에 물 한 잔을 마시는 것은 건강에 좋다.',w:'It is healthy + to drink(drink 마시다). 가주어 모양 그대로예요.'}]},
+{id:'gj13',t:'gj',src:'교문 2024 2학기 기말',tag:'7과',stem:'다음 우리말을 영어로 바르게 표현한 것은?',pre:'그녀는 쿠키 만드는 것이 쉬웠습니다.',body:[],ch:['It was not easy to make cookies.','It was easy of him making cookies.','It was easy for him making cookies.','It was easy of her to make cookies.','It was easy for her to make cookies.'],ans:[4],lab:'ch',
+ex:[
+{ok:0,m:'쿠키를 만드는 것은 쉽지 않았다.',w:'not(아니다)이 들어가서 뜻이 반대가 됐어요. 또 "그녀"도 빠졌어요.'},
+{ok:0,m:'그가 쿠키를 만드는 것은 쉬웠다.',w:'"그녀"가 아니라 him이고, easy는 for를 써요. making이 아니라 to make예요. → It was easy for her to make cookies. (make 만들다)'},
+{ok:0,m:'그가 쿠키를 만드는 것은 쉬웠다.',w:'"그녀"가 아니라 him이고, making이 아니라 to make예요. → It was easy for her to make cookies. (make 만들다)'},
+{ok:0,m:'',w:'easy는 일이 어떤지 말하는 말이라 of가 아니라 for를 써요. → It was easy for her to make cookies.'},
+{ok:1,m:'그녀는 쿠키 만드는 것이 쉬웠다.',w:'easy(쉬운)는 일이 어떤지 말하는 말이라 for her. 뒤에는 to make(make 만들다)가 와요.'}]},
+{id:'gj14',t:'gj',src:'청학 2024 2학기 기말',tag:'7과',stem:'다음 중 어법상 옳은 것은?',body:[],ch:['She has met John four years ago.','It is important to on time at school.','I never have finished my homework.','It was hard for her to understand him.','Is it possible get tickets for the game?'],ans:[3],lab:'ch',
+ex:[
+{ok:0,m:'그녀는 4년 전에 존을 만났다.',w:'four years ago(4년 전)는 과거를 콕 집는 말이라 현재완료와 못 써요. → She met John four years ago. (meet 만나다)'},
+{ok:0,m:'학교에서 시간을 지키는 것은 중요하다.',w:'to 뒤에는 동사원형이 와야 해요. be(이다) 빠졌어요. → It is important to be on time at school.'},
+{ok:0,m:'나는 숙제를 한 번도 끝낸 적이 없다.',w:'never는 have 바로 뒤에 와요. → I have never finished my homework. (finish 끝내다)'},
+{ok:1,m:'그녀가 그를 이해하는 것은 어려웠다.',w:'hard(어려운)는 for + 목적격(her) + to understand(understand 이해하다). 가주어 모양이 딱 맞아요.'},
+{ok:0,m:'그 경기 표를 구하는 것이 가능한가?',w:'to가 빠졌어요. → Is it possible to get tickets for the game? (get 구하다)'}]},
+{id:'gj15',t:'gj',src:'유곡 2024 2학기 기말',tag:'7과',stem:'다음 중 어법상 옳은 문장은?',body:[],ch:['It was silly for his to do like that.','It was so kind for you to help me then.','It was necessary of you to see a doctor.','It was hard for him to understand her.','It’s impossible for we to predict the future.'],ans:[3],lab:'ch',
+ex:[
+{ok:0,m:'',w:'silly(어리석은)는 사람의 성격이라 of를 쓰고, his가 아니라 him이에요. → It was silly of him to do like that. (do 하다)'},
+{ok:0,m:'',w:'kind(친절한)는 사람의 성격이라 for가 아니라 of예요. → It was so kind of you to help me then. (help 돕다)'},
+{ok:0,m:'',w:'necessary(필요한)는 일이 어떤지 말하는 말이라 of가 아니라 for예요. → It was necessary for you to see a doctor. (see 진찰받다)'},
+{ok:1,m:'그가 그녀를 이해하는 것은 어려웠다.',w:'hard(어려운)는 for + 목적격(him) + to understand(understand 이해하다). 맞아요.'},
+{ok:0,m:'',w:'for 뒤에는 we가 아니라 us(목적격)예요. → It’s impossible for us to predict the future. (predict 예측하다)'}]},
+{id:'gj16',t:'gj',src:'성덕 2024 2학기 기말',tag:'7과',stem:'다음 문장 중 어법상 어색한 것은?',body:[],ch:['It’s nice of you to remember my birthday.','It’s not necessary of you to change your plans.','It’s possible for him to get tickets for the game.','It is bad for your teeth to drink too much soda.','It was foolish of you to believe him.'],ans:[1],lab:'ch',
+ex:[
+{ok:1,m:'내 생일을 기억해 주다니 너는 친절하구나.',w:'nice(친절한)는 사람의 성격이라 of you. 맞아요. (remember 기억하다)'},
+{ok:0,m:'네가 계획을 바꿀 필요는 없다.',w:'necessary(필요한)는 일이 어떤지 말하는 말이라 of가 아니라 for예요. → It’s not necessary for you to change your plans. (change 바꾸다) (어색한 문장 = 정답)'},
+{ok:1,m:'그가 그 경기 표를 구하는 것은 가능하다.',w:'possible(가능한)은 for him. 맞아요. (get 구하다)'},
+{ok:1,m:'탄산음료를 너무 많이 마시는 것은 이에 나쁘다.',w:'bad for ~는 "~에 나쁜"이라는 뜻이에요. for your teeth to drink가 맞아요. (drink 마시다)'},
+{ok:1,m:'그를 믿다니 너는 어리석었다.',w:'foolish(어리석은)는 사람의 성격이라 of you. 맞아요. (believe 믿다)'}]},
+{id:'gj17',t:'gj',src:'인천여자 2024 2학기 기말',tag:'7과',stem:'다음 중 어법상 옳은 것은?',body:[],ch:['It’s exciting travel to new places.','It’s nice for you to help the child.','It’s wise of you to save money for the future.','It’s interesting me to read about different cultures.','It’s necessary of you to spend a lot of time studying.'],ans:[2],lab:'ch',
+ex:[
+{ok:0,m:'',w:'to가 travel 앞에 와야 해요. → It’s exciting to travel to new places. (travel 여행하다)'},
+{ok:0,m:'',w:'nice(친절한)는 사람의 성격이라 for가 아니라 of예요. → It’s nice of you to help the child. (help 돕다)'},
+{ok:1,m:'미래를 위해 돈을 모으다니 너는 현명하구나.',w:'wise(현명한)는 사람의 성격이라 of you. to save(save 모으다)가 뒤에 와요. 맞아요.'},
+{ok:0,m:'',w:'for me처럼 for + 목적격이 필요하고, to read(read 읽다) 앞에 와야 해요. → It’s interesting for me to read about different cultures.'},
+{ok:0,m:'',w:'necessary(필요한)는 일이 어떤지 말하는 말이라 of가 아니라 for예요. → It’s necessary for you to spend a lot of time studying. (spend 쓰다)'}]},
+{id:'gj18',t:'gj',src:'잠신 2024 2학기 기말',tag:'7과',stem:'다음 중 의미와 어법을 고려할 때 올바른 문장은?',body:[],ch:['It is so kind of you to take care of my dog while I’m away.','It’s not necessary of you to change your plans.','Is it possible for him get tickets for the game?','It’s nice for you to remember my birthday.','It is easy of me to play the piano.'],ans:[0],lab:'ch',
+ex:[
+{ok:1,m:'내가 없는 동안 우리 개를 돌봐 주다니 너는 정말 친절하구나.',w:'kind(친절한)는 사람의 성격이라 of you. 맞아요. (take care of 돌보다)'},
+{ok:0,m:'',w:'necessary(필요한)는 for를 써요. → It’s not necessary for you to change your plans. (change 바꾸다)'},
+{ok:0,m:'',w:'get 앞에 to가 빠졌어요. → Is it possible for him to get tickets for the game? (get 구하다)'},
+{ok:0,m:'',w:'nice(친절한)는 사람의 성격이라 for가 아니라 of예요. → It’s nice of you to remember my birthday. (remember 기억하다)'},
+{ok:0,m:'',w:'easy(쉬운)는 일이 어떤지 말하는 말이라 of가 아니라 for예요. → It is easy for me to play the piano. (play 연주하다)'}]},
+{id:'gj19',t:'gj',src:'태성 2024 2학기 기말',tag:'7과',stem:'다음 <보기>에서 어법상 옳은 문장만을 있는 대로 고른 것은?',body:['ⓐ I don’t know if he has a brother or a sister.','ⓑ It is a dream of mine to fly an airplane.','ⓒ Did you ever seen the movie before?','ⓓ My English has improved since I moved to America.','ⓔ When have you visited the city?'],ch:['ⓐ, ⓑ','ⓑ, ⓓ','ⓐ, ⓑ, ⓓ','ⓐ, ⓒ, ⓔ','ⓑ, ⓒ, ⓓ, ⓔ'],ans:[2],lab:'body',
+ex:[
+{l:'ⓐ',ok:1,m:'그에게 형이나 누나가 있는지 모르겠다.',w:'if(~인지 아닌지) + 주어 + 동사 순서가 맞아요.'},
+{l:'ⓑ',ok:1,m:'비행기를 조종하는 것은 내 꿈이다.',w:'It is a dream of mine + to fly(fly 조종하다). 가주어 모양이 맞아요.'},
+{l:'ⓒ',ok:0,m:'너는 전에 그 영화를 본 적 있니?',w:'Did와 seen(see의 p.p.)은 같이 못 써요. → Have you ever seen the movie before? (see 보다)'},
+{l:'ⓓ',ok:1,m:'내 영어는 내가 미국으로 이사 온 이후로 나아졌다.',w:'since(~이후로) 뒤에 시작한 때가 와서 현재완료가 딱 맞아요. (improve 나아지다, move 이사하다)'},
+{l:'ⓔ',ok:0,m:'너는 그 도시를 언제 방문했니?',w:'When(언제)은 현재완료와 못 써요. → When did you visit the city? (visit 방문하다)'}]},
+{id:'gj20',t:'gj',src:'와우 2024 2학기 기말',tag:'7과',stem:'다음 중 어법상 옳은 문장만을 <보기>에서 있는 대로 고른 것은?',body:['ⓐ It is important that we wear a helmet.','ⓑ Do you think where you lost your phone?','ⓒ Can you tell me how will long you stay here?','ⓓ Is it possible for him to get tickets for the game?','ⓔ I’d like to know if my brother will love my present.'],ch:['ⓐ, ⓔ','ⓑ, ⓓ','ⓐ, ⓑ, ⓔ','ⓐ, ⓓ, ⓔ','ⓑ, ⓒ, ⓓ'],ans:[3],lab:'body',
+ex:[
+{l:'ⓐ',ok:1,m:'우리가 헬멧을 쓰는 것은 중요하다.',w:'It is important 뒤에 that + 주어 + 동사가 와도 가주어예요. that 이하가 진짜 주어예요. (wear 쓰다)'},
+{l:'ⓑ',ok:0,m:'너는 어디서 휴대폰을 잃어버렸다고 생각하니?',w:'think(생각하다)가 있으면 의문사를 맨 앞으로 보내요. → Where do you think you lost your phone? (lose 잃어버리다)'},
+{l:'ⓒ',ok:0,m:'여기에 얼마나 오래 머물 건지 말해 줄래?',w:'how long은 한 덩어리! 순서는 의문사 + 주어 + 동사예요. → how long you will stay here (stay 머무르다)'},
+{l:'ⓓ',ok:1,m:'그가 그 경기 표를 구하는 것이 가능한가?',w:'possible(가능한)은 for him + to get(get 구하다). 맞아요.'},
+{l:'ⓔ',ok:1,m:'내 남동생이 내 선물을 좋아할지 알고 싶다.',w:'if(~인지 아닌지) 뒤에 주어 + 동사 순서가 맞아요. (love 좋아하다)'}]}
+);
+Object.assign(KEY,{
+gj1:{h:'It is ~ + to 동사원형 = 가주어',a:[['It is important **to follow** the rules.','규칙을 따르는 것은 중요하다.']],c:['가주어 It은 해석하지 않아요','진짜 주어 = to 이하']},
+gj2:{h:'가주어 = It + 형용사 + to 동사원형',a:[['It is fun **to play** with friends.','친구들과 노는 것은 재미있다.']],c:['시간·날씨 It = 비인칭','to + 동사원형이 있나 확인']},
+gj3:{h:'to + 동사원형이 뒤에 있으면 가주어',a:[['It is impossible **to predict** the future.','미래를 예측하는 것은 불가능하다.']],c:['대명사 it = 그것','비인칭 It = 시간·날씨·명암']},
+gj4:{h:'가주어는 to + 동사원형이 진짜 주어',a:[['It is good **to read** books in the evening.','저녁에 책을 읽는 것은 좋다.']],c:['거리 It + to 명사 ≠ 가주어','시간·명암·날씨 = 비인칭']},
+gj5:{h:'4개는 가주어, 1개는 “그것”',al:'쓰임이 다른 문장',a:[['It was my fault.','그것은 내 잘못이었다.']],c:['가주어 = to + 동사원형이 진짜 주어','앞 내용을 가리키면 대명사']},
+gj6:{h:'거리 It은 비인칭, 나머지는 가주어',al:'쓰임이 다른 문장',a:[['It is 5km **to our school**.','우리 학교까지는 5km다.']],c:['to 뒤가 명사면 가주어 ✕','거리·시간·날씨 = 비인칭']},
+gj7:{h:'어두운 건 비인칭, 나머지 넷은 가주어',al:'쓰임이 다른 문장',a:[['I was afraid because **it was very dark**.','나는 매우 어두워서 무서웠다.']],c:['명암 It = 비인칭','가주어 = to + 동사원형']},
+gj8:{h:'택시 타는 것 = 가주어, 나머지는 비인칭',al:'쓰임이 다른 문장',a:[['It is easy **to take** a taxi in Korea.','한국에서 택시를 타는 것은 쉽다.']],c:['시간·날짜·요일·명암 = 비인칭','가주어 = to + 동사원형']},
+gj9:{h:'to choose가 진짜 주어인 가주어',a:[['It is important **to choose** the right one.','맞는 것을 고르는 것은 중요하다.']],c:['요일·시간 = 비인칭','영화를 가리키는 it = 대명사']},
+gj10:{h:'가주어 = 진짜 주어가 to 이하',a:[['Everyone knows it’s impossible **to succeed** without hard work.','열심히 노력하지 않고 성공하는 것은 불가능하다는 걸 모두가 안다.']],c:['too hot to ~ = 날씨 It','time to ~ = 시간 It']},
+gj11:{h:'ⓒ ⓕ ⓖ 가 가주어',a:[['ⓒ It’s fun **to play** games.','게임하는 것은 재미있다.'],['ⓕ It is difficult **to walk** on Earth.','지구에서 걷는 것은 어렵다.'],['ⓖ It is exciting **to learn** new things.','새로운 것들을 배우는 것은 신난다.']],c:['계절·시간·명암 = 비인칭','It = 그것 → 대명사']},
+gj12:{h:'It is + 형용사 + to 동사원형',a:[['It is healthy **to drink** a cup of water in the morning.','아침에 물 한 잔을 마시는 것은 건강에 좋다.']],c:['to 뒤는 동사원형','to를 빼먹지 않기']},
+gj13:{h:'easy → for her + to 동사원형',a:[['It was easy **for her to make** cookies.','그녀는 쿠키 만드는 것이 쉬웠다.']],c:['easy · hard · possible → for','to 뒤는 동사원형']},
+gj14:{h:'hard → for + 목적격 + to 동사원형',a:[['It was hard **for her to understand** him.','그녀가 그를 이해하는 것은 어려웠다.']],c:['현재완료 + ago ✕','possible 뒤에도 to를 써요']},
+gj15:{h:'hard는 for, for 뒤는 목적격',a:[['It was hard **for him to understand** her.','그가 그녀를 이해하는 것은 어려웠다.']],c:['kind · silly → of','necessary · impossible → for']},
+gj16:{h:'necessary는 for, kind·nice·foolish는 of',al:'고친 문장',a:[['It’s not necessary **for you** to change your plans.','네가 계획을 바꿀 필요는 없다.']],c:['사람 성격 → of','일의 성질 → for']},
+gj17:{h:'wise는 사람의 성격 → of you',a:[['It’s wise **of you** to save money for the future.','미래를 위해 돈을 모으다니 너는 현명하구나.']],c:['wise · nice · kind → of','necessary · interesting → for']},
+gj18:{h:'kind는 사람의 성격 → of you',a:[['It is so kind **of you** to take care of my dog while I’m away.','내가 없는 동안 우리 개를 돌봐 주다니 너는 정말 친절하구나.']],c:['nice · kind → of','easy · possible → for']},
+gj19:{h:'맞는 문장은 ⓐ ⓑ ⓓ',a:[['ⓑ It is a dream of mine **to fly** an airplane.','비행기를 조종하는 것은 내 꿈이다.'],['ⓓ My English has improved **since I moved** to America.','내 영어는 내가 미국으로 이사 온 이후로 나아졌다.'],['ⓐ I don’t know **if he has** a brother or a sister.','그에게 형이나 누나가 있는지 모르겠다.']],c:['Did + 과거분사 ✕','When + 현재완료 ✕']},
+gj20:{h:'맞는 문장은 ⓐ ⓓ ⓔ',a:[['ⓐ It is important **that we wear** a helmet.','우리가 헬멧을 쓰는 것은 중요하다.'],['ⓓ Is it possible **for him to get** tickets for the game?','그가 그 경기 표를 구하는 것이 가능한가?'],['ⓔ I’d like to know **if my brother will love** my present.','내 남동생이 내 선물을 좋아할지 알고 싶다.']],c:['가주어 It + that절도 가능','think가 있으면 의문사를 맨 앞으로']}
+});
+(function(){
+var G=function(m,v){return{ok:1,m:m,w:v+'가 진짜 주어인 가주어예요.'}};
+var N=function(m,w){return{ok:0,m:m,w:w}};
+var V1=' (play 놀다)';
+TOPICS.gj.sets.push(
+['gj21','gj22','gj23','gj24','gj25','gj26','gj27','gj28','gj29','gj30'],
+['gj31','gj32','gj33','gj34','gj35','gj36','gj37','gj38','gj39','gj40'],
+['gj41','gj42','gj43','gj44','gj45','gj46','gj47','gj48','gj49','gj50']);
+var D='가주어',X='다음 중 밑줄 친 It의 쓰임이 나머지 넷과 다른 것은?';
+function Q(id,src,stem,ch,ans,ex,o){var q={id:id,t:'gj',src:src,tag:'7과',stem:stem,body:[],ch:ch,ans:ans,lab:'ch',vo:'○ 가주어',vx:'✕ 가주어 아님',ex:ex};for(var k in(o||{}))q[k]=o[k];QS.push(q)}
+/* ---- 세트 3 ---- */
+Q('gj21','삼호 2019 2학기 기말',X,['It rains a lot.','It’s impossible to live alone.','It is kind to help the children.','It is important to exercise regularly.','It is interesting to learn a new language.'],[0],[
+N('비가 많이 온다.','날씨를 말하는 비인칭 주어예요. 뒤에 to + 동사원형이 없어요. (정답: 쓰임이 다른 하나)'),
+G('혼자 사는 것은 불가능하다.','to live(live 살다)'),G('아이들을 돕는 것은 친절하다.','to help(help 돕다)'),G('규칙적으로 운동하는 것은 중요하다.','to exercise(exercise 운동하다)'),G('새로운 언어를 배우는 것은 흥미롭다.','to learn(learn 배우다)')]);
+Q('gj22','구로 2020 2학기 기말',X,['It will be helpful to read the book.','It’s exciting to have you here.','It is necessary to go see a doctor.','It’s raining outside, so take an umbrella.','It was hard to understand her.'],[3],[
+G('그 책을 읽는 것은 도움이 될 것이다.','to read(read 읽다)'),G('너와 함께 있는 것은 신난다.','to have(have 함께 두다)'),G('진찰을 받으러 가는 것은 필요하다.','to go(go 가다)'),
+N('밖에 비가 오니 우산을 가져가라.','날씨를 말하는 비인칭 주어예요. (정답: 쓰임이 다른 하나)'),G('그녀를 이해하는 것은 어려웠다.','to understand(understand 이해하다)')]);
+Q('gj23','대신여자 2020 2학기 기말',X,['It is hard to fix a bike.','It was very hot outside the school.','It is good to eat a lot of vegetables.','It was difficult to speak Chinese.','It was exciting to watch the 4D movie.'],[1],[
+G('자전거를 고치는 것은 어렵다.','to fix(fix 고치다)'),N('학교 밖은 매우 더웠다.','날씨를 말하는 비인칭 주어예요. to + 동사원형이 없어요. (정답: 쓰임이 다른 하나)'),G('채소를 많이 먹는 것은 좋다.','to eat(eat 먹다)'),G('중국어를 말하는 것은 어려웠다.','to speak(speak 말하다)'),G('4D 영화를 보는 것은 신났다.','to watch(watch 보다)')]);
+Q('gj24','양진 2020 2학기 기말',X,['It’s going to be a long trip.','It’s difficult to walk on Earth.','It is dangerous to drive at night.','It is wonderful to travel to other countries.','It was exciting to think about all the new things they were going to see and do.'],[0],[
+N('긴 여행이 될 것이다.','be going to는 "~할 것이다"예요. 뒤에 to + 동사원형이 아니라 a long trip(명사)이 와서 가주어가 아니에요. (정답: 쓰임이 다른 하나)'),
+G('지구에서 걷는 것은 어렵다.','to walk(walk 걷다)'),G('밤에 운전하는 것은 위험하다.','to drive(drive 운전하다)'),G('다른 나라를 여행하는 것은 멋지다.','to travel(travel 여행하다)'),G('그들이 보고 하게 될 모든 새로운 것들에 대해 생각하는 것은 신났다.','to think(think 생각하다)')]);
+Q('gj25','온곡 2020 2학기 기말','다음 중 밑줄 친 부분의 쓰임이 나머지 넷과 다른 것은?',['It is fun to swim.','It is nice to read books.','It is boring to travel alone.','It is hard to fix a computer.','It is a good time to take a walk.'],[4],[
+G('수영하는 것은 재미있다.','to swim(swim 수영하다)'),G('책을 읽는 것은 좋다.','to read(read 읽다)'),G('혼자 여행하는 것은 지루하다.','to travel(travel 여행하다)'),G('컴퓨터를 고치는 것은 어렵다.','to fix(fix 고치다)'),
+N('산책하기 좋은 때이다.','to take a walk(산책하다)는 time(때)을 꾸며 줘서 "~할"이라는 뜻이에요. 진짜 주어가 아니라서 가주어가 아니에요. (정답: 쓰임이 다른 하나)')]);
+Q('gj26','영남 2020 2학기 기말',X,['It was painted by Henri Matisse.','It is the biggest country in the world.','It will carry the coconut shells to use later.','It is between the bank and the post office.','It is important to finish this project in a day.'],[4],[
+N('그것은 앙리 마티스가 그렸다.','앞에서 말한 그림을 가리키는 "그것"이에요.'),N('그것은 세계에서 가장 큰 나라이다.','"그것"이라는 뜻의 대명사예요.'),N('그것은 나중에 쓰려고 코코넛 껍데기를 나를 것이다.','"그것"이라는 뜻이에요. to use는 "쓰려고"라는 뜻으로 따로 쓰였어요. (carry 나르다)'),N('그것은 은행과 우체국 사이에 있다.','"그것"이 있는 곳을 말하는 문장이에요.'),
+G('이 프로젝트를 하루 만에 끝내는 것은 중요하다.','to finish(finish 끝내다)')]);
+Q('gj27','천안신방 2021 2학기 기말','다음 중 밑줄 친 it의 쓰임이 다른 하나는?',['Is it okay to sit here?','It was made to help us.','It was silly to believe him.','Is it safe to drink this water?','It is not easy to play the piano.'],[1],[
+G('여기 앉아도 괜찮을까요?','to sit(sit 앉다)'),N('그것은 우리를 돕기 위해 만들어졌다.','It은 "그것"이에요. to help(help 돕다)는 "돕기 위해"라는 뜻이라 가주어 모양이 아니에요. (정답: 쓰임이 다른 하나)'),G('그를 믿다니 어리석었다.','to believe(believe 믿다)'),G('이 물을 마셔도 안전한가?','to drink(drink 마시다)'),G('피아노를 치는 것은 쉽지 않다.','to play(play 치다)')]);
+Q('gj28','청학 2021 2학기 기말','다음 중 It의 쓰임이 다른 것은?',['It was so fun.','It is great to be here.','It’s wonderful to live on Earth.','It’s good to eat a lot of vegetables.','It was nice to swim in the cool blue sea.'],[0],[
+N('그것은 정말 재미있었다.','앞에서 말한 일을 가리키는 "그것"이에요. 뒤에 to + 동사원형이 없어요. (정답: 쓰임이 다른 하나)'),
+G('여기 있는 것은 멋지다.','to be(be 있다)'),G('지구에서 사는 것은 멋지다.','to live(live 살다)'),G('채소를 많이 먹는 것은 좋다.','to eat(eat 먹다)'),G('시원한 푸른 바다에서 수영하는 것은 좋았다.','to swim(swim 수영하다)')]);
+Q('gj29','부일 2023 2학기 기말',X,['It is getting dark outside.','Is it safe to drink this water?','It is good to eat a lot of vegetables.','It is important that we follow the rules.','It will be helpful for him to visit the website.'],[0],[
+N('밖이 어두워지고 있다.','밝고 어두운 것을 말하는 비인칭 주어예요. (정답: 쓰임이 다른 하나)'),G('이 물을 마셔도 안전한가?','to drink(drink 마시다)'),G('채소를 많이 먹는 것은 좋다.','to eat(eat 먹다)'),
+{ok:1,m:'우리가 규칙을 따르는 것은 중요하다.',w:'It is important 뒤에 that + 주어 + 동사가 와도 가주어예요. that 이하가 진짜 주어예요. (follow 따르다)'},G('그가 그 웹사이트를 방문하는 것은 도움이 될 것이다.','to visit(visit 방문하다)')],{adapted:1});
+Q('gj30','수완 2023 2학기 기말',X,['It is windy and rainy outside.','It is impossible for them to get lost.','It is not necessary to bring a suitcase.','It is difficult to understand the meaning.','It is easy to find happiness in ourselves.'],[0],[
+N('밖은 바람이 불고 비가 온다.','날씨를 말하는 비인칭 주어예요. (정답: 쓰임이 다른 하나)'),G('그들이 길을 잃는 것은 불가능하다.','to get lost(길을 잃다)'),G('여행 가방을 가져올 필요는 없다.','to bring(bring 가져오다)'),G('그 뜻을 이해하는 것은 어렵다.','to understand(understand 이해하다)'),G('우리 안에서 행복을 찾는 것은 쉽다.','to find(find 찾다)')]);
+/* ---- 세트 4 ---- */
+Q('gj31','배화여자 2021 2학기 기말','다음 중 밑줄 친 부분이 <보기>의 It과 쓰임이 같은 것은?',['It is already 3 p.m.','It is hard for her to understand me.','It is not my fault.','It is getting cold outside.','It is so exciting, and I want to try it again.'],[1],[
+N('벌써 오후 3시이다.','시간을 말하는 비인칭 주어예요.'),G('그녀가 나를 이해하는 것은 어렵다.','to understand(understand 이해하다)'),N('그것은 내 잘못이 아니다.','앞에서 말한 일을 가리키는 "그것"이에요.'),N('밖이 추워지고 있다.','날씨를 말하는 비인칭 주어예요.'),N('그것은 정말 신나서 다시 해 보고 싶다.','앞에서 말한 일을 가리키는 "그것"이에요. (try 해 보다)')],{pre:'It was hard to fix the bike.'});
+Q('gj32','무룡 2020 2학기 기말','다음 중 밑줄 친 It의 쓰임이 <보기>와 같은 것은?',['It weighs 10 kg.','It is too big for you.','It is my present to give you.','It will be helpful to read the book.','Wear your coat because it’s cold outside.'],[3],[
+N('그것은 무게가 10kg이다.','"그것"이라는 물건을 가리키는 it이에요. (weigh 무게가 ~이다)'),N('그것은 너에게 너무 크다.','"그것"이라는 물건을 가리키는 it이에요. to + 동사원형이 없어요.'),N('그것은 내가 너에게 주는 선물이다.','It은 "그것"이에요. to give you는 present(선물)를 꾸며 줘요. (give 주다)'),G('그 책을 읽는 것은 도움이 될 것이다.','to read(read 읽다)'),N('밖이 추우니 코트를 입어라.','날씨를 말하는 비인칭 주어예요.')],{pre:'It was easy to answer his questions.'});
+Q('gj33','인천동방 2023 2학기 기말','다음 중 밑줄 친 It(it)의 쓰임이 <보기>와 같은 것은?',['I found my lost phone. It was under my bed.','It will be helpful for him to talk to his parents.','It’s getting dark, so we should turn on the lights.','She gave me a new smartphone. I like it so much.','I don’t like tomato, but some people find it delicious.'],[1],[
+N('잃어버린 휴대폰을 찾았다. 그것은 침대 밑에 있었다.','앞에서 말한 휴대폰을 가리키는 "그것"이에요.'),G('그가 부모님께 이야기하는 것은 도움이 될 것이다.','to talk(talk 이야기하다)'),N('어두워지고 있으니 불을 켜야 한다.','밝고 어두운 것을 말하는 비인칭 주어예요.'),N('그녀는 나에게 새 스마트폰을 주었다. 나는 그것이 정말 좋다.','like 뒤의 it은 스마트폰을 가리키는 "그것"이에요.'),N('나는 토마토를 싫어하지만 어떤 사람들은 그것이 맛있다고 생각한다.','it은 토마토를 가리키는 "그것"이에요. (find 생각하다)')],{pre:'It’s nice of you to remember my birthday.'});
+Q('gj34','인천논현 2022 2학기 기말','다음 중 밑줄 친 부분의 용법이 <보기>와 같은 것은?',['It was Wednesday yesterday.','It is not easy to study foreign languages.','How far is it to the nearest subway station?','It happens very often to students in the library.','Where is the school? It’s across from the hospital.'],[1],[
+N('어제는 수요일이었다.','요일을 말하는 비인칭 주어예요.'),G('외국어를 공부하는 것은 쉽지 않다.','to study(study 공부하다)'),N('가장 가까운 지하철역까지 얼마나 머니?','거리를 말하는 비인칭 주어예요. to 뒤에 동사가 아니라 명사(station)가 와요.'),N('도서관에서 학생들에게 그 일이 아주 자주 일어난다.','앞에서 말한 일을 가리키는 "그것"이에요. (happen 일어나다)'),N('학교는 어디에 있나요? 병원 맞은편이에요.','"그것(학교)"이 있는 곳을 말하는 문장이에요.')],{pre:'It is important to read a lot of books.'});
+Q('gj35','한천 2019 2학기 기말','다음 주어진 문장의 밑줄 친 it과 쓰임이 같은 것은?',['It’s on the table.','It was my birthday yesterday.','It’s interesting to learn about Korean culture.','It’s a very beautiful country to visit in winter.','It was getting dark, so we had to turn back.'],[2],[
+N('그것은 탁자 위에 있다.','"그것"이라는 물건을 가리키는 it이에요.'),N('어제는 내 생일이었다.','날짜·날을 말하는 비인칭 주어예요.'),G('한국 문화에 대해 배우는 것은 흥미롭다.','to learn(learn 배우다)'),N('그곳은 겨울에 방문하기 매우 아름다운 나라이다.','to visit(visit 방문하다)은 country(나라)를 꾸며 줘요. 진짜 주어가 아니라서 가주어가 아니에요.'),N('어두워지고 있어서 우리는 돌아가야 했다.','밝고 어두운 것을 말하는 비인칭 주어예요.')],{pre:'If you go to bed late, it is difficult to get up early in the morning.'});
+QS.push({id:'gj36',t:'gj',src:'김천여자 2022 2학기 기말',tag:'7과',stem:'다음 중 밑줄 친 It(it)의 쓰임이 같은 것끼리 짝지어진 것은?',body:['ⓐ I like it.','ⓑ It is fall.','ⓒ It is five o’clock.','ⓓ It is not your fault.','ⓔ It is getting dark outside.','ⓕ It is important to follow the rules.','ⓖ It is necessary for you to take a break regularly.'],ch:['ⓐ, ⓒ','ⓑ, ⓓ','ⓒ, ⓖ','ⓑ, ⓕ','ⓕ, ⓖ'],ans:[4],lab:'body',vo:'○ 가주어',vx:'✕ 가주어 아님',ex:[
+{l:'ⓐ',ok:0,m:'나는 그것이 좋다.',w:'like 뒤의 it은 "그것"이라는 대명사예요.'},{l:'ⓑ',ok:0,m:'가을이다.',w:'계절을 말하는 비인칭 주어예요.'},{l:'ⓒ',ok:0,m:'5시이다.',w:'시간을 말하는 비인칭 주어예요.'},{l:'ⓓ',ok:0,m:'그것은 네 잘못이 아니다.',w:'앞에서 말한 일을 가리키는 "그것"이에요.'},{l:'ⓔ',ok:0,m:'밖이 어두워지고 있다.',w:'명암을 말하는 비인칭 주어예요.'},
+{l:'ⓕ',ok:1,m:'규칙을 따르는 것은 중요하다.',w:'to follow(follow 따르다)가 진짜 주어인 가주어예요.'},{l:'ⓖ',ok:1,m:'네가 규칙적으로 쉬는 것은 필요하다.',w:'for you 뒤에 to take(take 취하다)가 와요. 쉬는 것이 진짜 주어인 가주어예요.'}]});
+QS.push({id:'gj37',t:'gj',src:'장검 2022 2학기 기말',tag:'7과',stem:'다음 <보기>에서 It(it)이 시간·날씨·명암·거리 등을 말하는 비인칭 주어로 쓰인 것끼리 짝지어진 것은?',body:['ⓐ It is a little dark here.','ⓑ Is it safe to drink this juice?','ⓒ It is a beautiful summer day.','ⓓ It is very important to have healthy meals.','ⓔ Jenny lost her book and she couldn’t find it.','ⓕ It is about 5 kilometers from here to my house.'],ch:['ⓐ, ⓔ','ⓑ, ⓕ','ⓐ, ⓒ, ⓕ','ⓑ, ⓒ, ⓔ','ⓑ, ⓓ, ⓕ'],ans:[2],lab:'body',vo:'○ 비인칭',vx:'✕ 비인칭 아님',adapted:1,ex:[
+{l:'ⓐ',ok:1,m:'여기는 조금 어둡다.',w:'명암을 말하는 비인칭 주어예요.'},{l:'ⓑ',ok:0,m:'이 주스를 마셔도 안전한가?',w:'to drink(drink 마시다)가 있는 가주어예요.'},{l:'ⓒ',ok:1,m:'아름다운 여름날이다.',w:'날씨·날을 말하는 비인칭 주어예요.'},{l:'ⓓ',ok:0,m:'건강한 식사를 하는 것은 매우 중요하다.',w:'to have(have 먹다)가 있는 가주어예요.'},{l:'ⓔ',ok:0,m:'Jenny는 책을 잃어버려서 그것을 찾을 수 없었다.',w:'find 뒤의 it은 책을 가리키는 "그것"이라는 대명사예요.'},{l:'ⓕ',ok:1,m:'여기서 우리 집까지는 약 5킬로미터이다.',w:'거리를 말하는 비인칭 주어예요.'}]});
+Q('gj38','인천청호 2023 2학기 기말','다음 중 It이 가주어로 쓰이지 않은 것은?',['Is it necessary to take a break?','It is a wonderful park to play in.','It is a dream of mine to dance with you.','It will be helpful to write a diary everyday.','It is impossible to understand the human heart.'],[1],[
+G('쉬는 것이 필요한가?','to take(take 취하다)'),N('그곳은 놀기 좋은 멋진 공원이다.','to play in은 park(공원)을 꾸며 줘요. 진짜 주어가 아니라서 가주어가 아니에요. (정답: 가주어 아닌 것)'),G('너와 춤추는 것은 내 꿈이다.','to dance(dance 춤추다)'),G('일기를 쓰는 것은 도움이 될 것이다.','to write(write 쓰다)'),G('사람의 마음을 이해하는 것은 불가능하다.','to understand(understand 이해하다)')],{adapted:1});
+Q('gj39','인천해원 2023 2학기 기말','다음 중 It이 가주어로 쓰인 것은?',['It doesn’t need to be repaired anymore.','It is not okay to take a bath after a vaccination.','It is necessary for the upcoming school festivals.','It is too high to climb without special equipments.','It is clever enough to understand my words directly.'],[1],[
+N('그것은 더 이상 수리할 필요가 없다.','"그것"이라는 물건을 가리키는 it이에요. (need 필요하다)'),G('예방 접종 후에 목욕을 하는 것은 괜찮지 않다.','to take(take 하다)'),N('그것은 다가오는 학교 축제에 필요하다.','for 뒤에 사람이 아니라 festivals(명사)가 와요. to + 동사원형이 없어서 가주어가 아니에요.'),N('그것은 특별한 장비 없이 오르기에는 너무 높다.','too high to climb은 "너무 높아서 오를 수 없다"예요. it은 "그것"이에요. (climb 오르다)'),N('그것은 내 말을 바로 이해할 만큼 영리하다.','enough to understand는 "~할 만큼 충분히"예요. it은 "그것"이에요. (understand 이해하다)')],{adapted:1});
+Q('gj40','장검 2023 2학기 기말','다음 중 It이 가주어로 쓰인 것은?',['It is getting dark outside.','Is it far from here to my school?','Is it possible to get the tickets?','It is the house which he bought.','It is going to be an exciting game.'],[2],[
+N('밖이 어두워지고 있다.','명암을 말하는 비인칭 주어예요.'),N('여기서 우리 학교까지 머니?','거리를 말하는 비인칭 주어예요. to 뒤에 동사가 아니라 명사(school)가 와요.'),G('표를 구하는 것이 가능한가?','to get(get 구하다)'),N('그것은 그가 산 집이다.','"그것"이라는 대명사예요. which he bought(그가 산)는 house를 꾸며 줘요. (buy 사다)'),N('그것은 신나는 경기가 될 것이다.','be going to는 "~할 것이다"예요. 뒤에 명사가 와서 가주어가 아니에요.')],{adapted:1});
+/* ---- 세트 5 ---- */
+function P(id,src,stem,pre,ch,ans,ex,o){var q={id:id,t:'gj',src:src,tag:'7과',stem:stem,body:[],ch:ch,ans:ans,lab:'ch',ex:ex};if(pre)q.pre=pre;for(var k in(o||{}))q[k]=o[k];QS.push(q)}
+P('gj41','논곡 2021 2학기 기말','다음 주어진 우리말을 어법에 맞게 영작한 문장은?','네가 내 생일을 기억해 주다니 친절하다.',['It is nice you to remember my birthday.','It is nice of you to remember my birthday.','It is nice of you remembering my birthday.','It is nice for you remembering my birthday.','It is nice for you to remember my birthday.'],[1],[
+N('','of나 for가 빠졌어요. → It is nice of you to remember my birthday. (remember 기억하다)'),{ok:1,m:'네가 내 생일을 기억해 주다니 친절하다.',w:'nice(친절한)는 사람의 성격이라 of you. 뒤에는 to remember(remember 기억하다)가 와요.'},N('','to 뒤에는 동사원형이에요. remembering이 아니라 to remember예요. → to remember (remember 기억하다)'),N('','nice는 사람의 성격이라 for가 아니라 of예요. remembering도 to remember로 → It is nice of you to remember my birthday.'),N('','nice(친절한)는 사람의 성격이라 for가 아니라 of를 써요. → It is nice of you to remember my birthday.')]);
+P('gj42','잠신 2021 2학기 기말','다음 문장을 바르게 영작한 것은?','그가 그 경기의 표를 구하는 것이 가능하니?',['It is possible to get tickets for the game.','It is possible of him to get tickets for the game.','Is it possible for him to get tickets for the game?','Is it possible to get tickets for the game of him?','Is it possible for him get tickets for the game?'],[2],[
+N('','물어보는 문장이어야 하는데 평서문이에요. 또 "그가"(for him)도 빠졌어요. → Is it possible for him to get tickets for the game?'),N('','possible(가능한)은 일이 어떤지 말하는 말이라 of가 아니라 for예요. 또 물음표 문장이 되어야 해요. → Is it possible for him to ~?'),{ok:1,m:'그가 그 경기의 표를 구하는 것이 가능하니?',w:'Is it possible for him to get(get 구하다). 물어볼 때는 Is it ~?으로 순서만 바꿔요.'},N('','"그가"는 for him으로 to get 앞에 와야 해요. → Is it possible for him to get tickets for the game?'),N('','get 앞에 to가 빠졌어요. → Is it possible for him to get tickets for the game?')]);
+P('gj43','장검 2022 2학기 기말','다음 주어진 우리말에 맞게 바르게 영작한 것은?','우리가 그 소설을 읽는 것은 도움이 될 것이다.',['To read the novel is helpful.','It was helpful to read the novel.','It is helpful for our to read the novel.','It will be helpful to we read the novel.','It will be helpful for us to read the novel.'],[4],[
+N('','"우리가"가 빠졌고, "도움이 될 것이다"는 will be로 써야 해요. → It will be helpful for us to read the novel.'),N('','was는 과거예요. "될 것이다"는 will be, "우리가"는 for us가 필요해요. → It will be helpful for us to read the novel.'),N('','for 뒤에는 our(소유격)가 아니라 us(목적격)예요. → for us'),N('','to 앞에 for us가 와야 해요. we는 쓸 수 없어요. → for us to read (read 읽다)'),{ok:1,m:'우리가 그 소설을 읽는 것은 도움이 될 것이다.',w:'will be helpful + for us(for + 목적격) + to read(read 읽다). 모두 맞아요.'}]);
+P('gj44','인천동방 2020 2학기 기말','다음을 바르게 영작한 것은?','너는 꼭 병원에 가야 한다.',['It is necessary for you go see a doctor.','It is to go see a doctor necessary for you.','It is to go see a doctor for you necessary.','It is necessary to go see a doctor for you.','It is necessary for you to go see a doctor.'],[4],[
+N('','go 앞에 to가 빠졌어요. → It is necessary for you to go see a doctor. (go 가다)'),N('','가주어 It 다음에는 형용사가 먼저 와요. → It is necessary for you to go ~'),N('','순서가 틀렸어요. It is + 형용사 + for 사람 + to 동사원형 순서예요. → It is necessary for you to go see a doctor.'),N('','for you는 to go 앞에 와야 해요. → It is necessary for you to go see a doctor.'),{ok:1,m:'너는 꼭 병원에 가야 한다.',w:'It is necessary + for you + to go see a doctor. 가주어 모양 순서가 맞아요.'}]);
+P('gj45','영남 2020 2학기 기말','다음 문장을 영어로 표현한 것 중 알맞은 것은?','내가 이 팀에서 축구를 하게 되어 운이 좋다.',['It’s lucky soccer play to me on the team.','It’s lucky for me plays soccer on the team.','It’s lucky to me for play soccer on the team.','It’s lucky me for play to soccer on the team.','It’s lucky for me to play soccer on the team.'],[4],[
+N('','순서가 틀렸어요. It’s lucky for me to play ~ 순서예요.'),N('','to가 빠지고 plays가 됐어요. to 뒤에는 동사원형이에요. → for me to play (play 하다)'),N('','"to me for"가 아니라 "for me to"예요. → It’s lucky for me to play soccer on the team.'),N('','단어 순서가 뒤섞였어요. → It’s lucky for me to play soccer on the team.'),{ok:1,m:'내가 이 팀에서 축구를 하게 되어 운이 좋다.',w:'It’s lucky + for me + to play(play 하다). 순서가 맞아요.'}]);
+P('gj46','온양용화 2019 2학기 기말','다음 중 어법상 어색한 것은?',null,['It was hard for her to understand him.','It is nice for you to remember my birthday.','It was difficult for me to answer the questions.','It is important for you to be careful all the time.','It looked necessary for Daniel to talk to his parents.'],[1],[
+{ok:1,m:'그녀가 그를 이해하는 것은 어려웠다.',w:'hard는 일이 어떤지 말하는 말이라 for her. 맞아요. (understand 이해하다)'},N('','nice(친절한)는 사람의 성격이라 for가 아니라 of예요. → It is nice of you to remember my birthday. (remember 기억하다) (어색한 문장 = 정답)'),{ok:1,m:'내가 그 질문들에 답하는 것은 어려웠다.',w:'difficult는 for me. 맞아요. (answer 답하다)'},{ok:1,m:'네가 항상 조심하는 것은 중요하다.',w:'important는 for you. 맞아요. (be ~이다)'},{ok:1,m:'Daniel이 부모님께 이야기하는 것은 필요해 보였다.',w:'necessary는 for Daniel. 맞아요. (talk 이야기하다)'}]);
+P('gj47','송정여자 2021 2학기 기말','다음 중 어법상 어색한 것은?',null,['It’s easy to play a computer game.','It’s a dream of mine to fly an airplane.','It is kind for Daniel to help me everyday.','It was stupid of Jeniffer to believe her words.','It looked necessary for her to talk to her parents.'],[2],[
+{ok:1,m:'컴퓨터 게임을 하는 것은 쉽다.',w:'to play(play 하다)가 진짜 주어인 가주어예요.'},{ok:1,m:'비행기를 조종하는 것은 내 꿈이다.',w:'It is a dream of mine + to fly(fly 조종하다). 맞아요.'},N('','kind(친절한)는 사람의 성격이라 for가 아니라 of예요. → It is kind of Daniel to help me every day. (help 돕다) (어색한 문장 = 정답)'),{ok:1,m:'Jeniffer가 그녀의 말을 믿다니 어리석었다.',w:'stupid(어리석은)는 사람의 성격이라 of Jeniffer. 맞아요. (believe 믿다)'},{ok:1,m:'그녀가 부모님께 이야기하는 것은 필요해 보였다.',w:'necessary는 for her. 맞아요. (talk 이야기하다)'}]);
+P('gj48','인천여자 2021 2학기 기말','다음 중 어법상 가장 어색한 것은?',null,['It was wise of her to say so.','It was silly of me to believe him.','It is a dream of mine to fly an airplane.','It was easy of her to find his new house.','It is nice of you to remember my birthday.'],[3],[
+{ok:1,m:'그렇게 말하다니 그녀는 현명했다.',w:'wise(현명한)는 사람의 성격이라 of her. 맞아요. (say 말하다)'},{ok:1,m:'그를 믿다니 나는 어리석었다.',w:'silly(어리석은)는 사람의 성격이라 of me. 맞아요. (believe 믿다)'},{ok:1,m:'비행기를 조종하는 것은 내 꿈이다.',w:'It is a dream of mine + to fly(fly 조종하다). 맞아요.'},N('','easy(쉬운)는 일이 어떤지 말하는 말이라 of가 아니라 for예요. → It was easy for her to find his new house. (find 찾다) (어색한 문장 = 정답)'),{ok:1,m:'내 생일을 기억해 주다니 너는 친절하구나.',w:'nice(친절한)는 사람의 성격이라 of you. 맞아요. (remember 기억하다)'}]);
+P('gj49','왕선 2022 2학기 기말','다음 중 어법상 어색한 것은?',null,['It was foolish of me to believe him.','It is a dream of mine to fly an airplane.','It looked necessary Daniel to talk to his parents.','It is very lucky for me to play soccer on the team.','It’s important for the students to do the project in three days.'],[2],[
+{ok:1,m:'그를 믿다니 나는 어리석었다.',w:'foolish(어리석은)는 사람의 성격이라 of me. 맞아요. (believe 믿다)'},{ok:1,m:'비행기를 조종하는 것은 내 꿈이다.',w:'It is a dream of mine + to fly(fly 조종하다). 맞아요.'},N('','for Daniel처럼 for가 있어야 해요. → It looked necessary for Daniel to talk to his parents. (talk 이야기하다) (어색한 문장 = 정답)'),{ok:1,m:'내가 이 팀에서 축구를 하게 되어 매우 운이 좋다.',w:'lucky는 for me. 맞아요. (play 하다)'},{ok:1,m:'학생들이 사흘 안에 프로젝트를 하는 것은 중요하다.',w:'important는 for the students. 맞아요. (do 하다)'}]);
+P('gj50','천안가온 2023 2학기 기말','다음 중 어법상 적절한 것은?',null,['It is difficult him to solve the problem.','It is stupid for Jessica to do such thing.','It is kind of her to help Mia with her homework.','It is useful for us to learning a new language.','It is hard for I to wake up early in the morning.'],[2],[
+N('','for가 빠졌어요. → It is difficult for him to solve the problem. (solve 풀다)'),N('','stupid(어리석은)는 사람의 성격이라 for가 아니라 of예요. → It is stupid of Jessica to do such a thing. (do 하다)'),{ok:1,m:'Mia의 숙제를 도와주다니 그녀는 친절하다.',w:'kind(친절한)는 사람의 성격이라 of her. 뒤에 to help(help 돕다)가 와요.'},N('','to 뒤에는 동사원형이에요. learning이 아니라 to learn이에요. → It is useful for us to learn a new language. (learn 배우다)'),N('','for 뒤에는 I가 아니라 me(목적격)예요. → It is hard for me to wake up early in the morning. (wake up 일어나다)')]);
+/* ---- KEY ---- */
+Object.assign(KEY,{
+gj21:{h:'날씨 It은 비인칭, 나머지 넷은 가주어',al:'쓰임이 다른 문장',a:[['**It rains** a lot.','비가 많이 온다.']],c:['날씨·시간·명암 = 비인칭','가주어 = to + 동사원형이 진짜 주어']},
+gj22:{h:'비 오는 날씨 It만 비인칭',al:'쓰임이 다른 문장',a:[['**It’s raining** outside, so take an umbrella.','밖에 비가 오니 우산을 가져가라.']],c:['날씨 It = 해석 안 해요','나머지 넷 = to + 동사원형']},
+gj23:{h:'더운 날씨는 비인칭, 나머지는 가주어',al:'쓰임이 다른 문장',a:[['**It was** very hot outside the school.','학교 밖은 매우 더웠다.']],c:['날씨 It = 비인칭','가주어 뒤에는 to + 동사원형']},
+gj24:{h:'be going to 뒤 명사 = 가주어 아님',al:'쓰임이 다른 문장',a:[['It’s going to be **a long trip**.','긴 여행이 될 것이다.']],c:['가주어는 to + 동사원형이 진짜 주어','나머지 넷은 모두 가주어']},
+gj25:{h:'time 뒤의 to는 시간을 꾸며요',al:'쓰임이 다른 문장',a:[['It is a good time **to take** a walk.','산책하기 좋은 때이다.']],c:['명사 + to 동사원형 = ~할','형용사 + to 동사원형 = 가주어']},
+gj26:{h:'나머지 넷은 “그것”, ⑤만 가주어',a:[['It is important **to finish** this project in a day.','이 프로젝트를 하루 만에 끝내는 것은 중요하다.']],c:['앞에서 말한 물건 = 대명사 it','to + 동사원형이 진짜 주어 = 가주어']},
+gj27:{h:'to help = “~하기 위해”, 가주어 아님',al:'쓰임이 다른 문장',a:[['It was made **to help** us.','그것은 우리를 돕기 위해 만들어졌다.']],c:['It = 그것(물건)','가주어는 It is + 형용사 + to ~']},
+gj28:{h:'to + 동사원형이 없으면 가주어 ✕',al:'쓰임이 다른 문장',a:[['**It was** so fun.','그것은 정말 재미있었다.']],c:['형용사만 있고 to 없음','나머지 넷은 to be·live·eat·swim']},
+gj29:{h:'어두워지는 It은 비인칭',al:'쓰임이 다른 문장',a:[['**It is getting dark** outside.','밖이 어두워지고 있다.']],c:['명암 It = 비인칭','that절이 진짜 주어여도 가주어']},
+gj30:{h:'바람·비 날씨 It은 비인칭',al:'쓰임이 다른 문장',a:[['**It is windy** and rainy outside.','밖은 바람이 불고 비가 온다.']],c:['날씨 It = 비인칭','가주어 = for 사람 + to 동사원형도 가능']},
+gj31:{h:'It is hard for her to ~ = 가주어',a:[['It is hard **for her to understand** me.','그녀가 나를 이해하는 것은 어렵다.']],c:['시간 It, 대명사 it은 가주어 ✕','for + 목적격 + to 동사원형']},
+gj32:{h:'It will be helpful to ~ = 가주어',a:[['It will be helpful **to read** the book.','그 책을 읽는 것은 도움이 될 것이다.']],c:['present to give = 선물을 꾸밈','날씨 It = 비인칭']},
+gj33:{h:'for him to ~ 가 붙은 가주어',a:[['It will be helpful **for him to talk** to his parents.','그가 부모님께 이야기하는 것은 도움이 될 것이다.']],c:['find it delicious의 it = 토마토','like it의 it = 스마트폰']},
+gj34:{h:'It is not easy to ~ = 가주어',a:[['It is not easy **to study** foreign languages.','외국어를 공부하는 것은 쉽지 않다.']],c:['how far is it to + 명사 = 거리 It','요일 It = 비인칭']},
+gj35:{h:'It’s interesting to ~ = 가주어',a:[['It’s interesting **to learn** about Korean culture.','한국 문화에 대해 배우는 것은 흥미롭다.']],c:['country to visit = 나라를 꾸밈','날짜·날씨·장소 It = 가주어 ✕']},
+gj36:{h:'ⓕ ⓖ 가 가주어',a:[['ⓕ It is important **to follow** the rules.','규칙을 따르는 것은 중요하다.'],['ⓖ It is necessary **for you to take** a break regularly.','네가 규칙적으로 쉬는 것은 필요하다.']],c:['계절·시간·명암 = 비인칭','like it·not your fault = 대명사']},
+gj37:{h:'ⓐ ⓒ ⓕ 가 비인칭',al:'비인칭 It',a:[['ⓐ **It is** a little dark here.','여기는 조금 어둡다.'],['ⓒ **It is** a beautiful summer day.','아름다운 여름날이다.'],['ⓕ **It is** about 5 kilometers from here to my house.','여기서 우리 집까지는 약 5킬로미터이다.']],c:['명암·날씨·거리 = 비인칭','to + 동사원형이 있으면 가주어']},
+gj38:{h:'park 뒤의 to play in은 공원을 꾸며요',al:'가주어 아닌 문장',a:[['It is a wonderful park **to play in**.','그곳은 놀기 좋은 멋진 공원이다.']],c:['명사 + to 동사원형 = ~할','a dream of mine to ~ = 가주어']},
+gj39:{h:'to take a bath가 진짜 주어',a:[['It is not okay **to take** a bath after a vaccination.','예방 접종 후에 목욕을 하는 것은 괜찮지 않다.']],c:['too ~ to / enough to = 가주어 ✕','for + 명사만 있으면 가주어 ✕']},
+gj40:{h:'Is it possible to ~? = 가주어',a:[['Is it possible **to get** the tickets?','표를 구하는 것이 가능한가?']],c:['from here to my school = 거리','be going to + 명사 = 가주어 ✕']},
+gj41:{h:'친절한(nice) → of you + to 동사원형',a:[['It is nice **of you to remember** my birthday.','네가 내 생일을 기억해 주다니 친절하다.']],c:['사람의 성격 → of','to 뒤는 동사원형']},
+gj42:{h:'possible → for him + to 동사원형',a:[['Is it possible **for him to get** tickets for the game?','그가 그 경기의 표를 구하는 것이 가능하니?']],c:['possible → for','물음표 문장은 Is it ~?']},
+gj43:{h:'helpful → for us + to 동사원형',a:[['It will be helpful **for us to read** the novel.','우리가 그 소설을 읽는 것은 도움이 될 것이다.']],c:['for 뒤는 목적격 us','will be로 미래 표현']},
+gj44:{h:'necessary → for you + to 동사원형',a:[['It is necessary **for you to go** see a doctor.','너는 꼭 병원에 가야 한다.']],c:['It is + 형용사 + for 사람 + to ~','to를 빼먹지 않기']},
+gj45:{h:'lucky → for me + to 동사원형',a:[['It’s lucky **for me to play** soccer on the team.','내가 이 팀에서 축구를 하게 되어 운이 좋다.']],c:['for + 목적격 + to 동사원형','순서가 뒤섞이지 않기']},
+gj46:{h:'nice는 사람 성격 → of you',al:'고친 문장',a:[['It is nice **of you** to remember my birthday.','내 생일을 기억해 주다니 너는 친절하구나.']],c:['hard · difficult · important → for','nice · kind · wise → of']},
+gj47:{h:'kind는 사람 성격 → of Daniel',al:'고친 문장',a:[['It is kind **of Daniel** to help me every day.','매일 나를 도와주다니 Daniel은 친절하다.']],c:['kind · stupid → of','easy · necessary → for']},
+gj48:{h:'easy는 일의 성질 → for her',al:'고친 문장',a:[['It was easy **for her** to find his new house.','그녀가 그의 새 집을 찾는 것은 쉬웠다.']],c:['wise · silly · nice → of','easy · hard → for']},
+gj49:{h:'necessary 뒤에도 for Daniel이 필요해요',al:'고친 문장',a:[['It looked necessary **for Daniel to talk** to his parents.','Daniel이 부모님께 이야기하는 것은 필요해 보였다.']],c:['for + 목적격 + to 동사원형','looked necessary = 필요해 보였다']},
+gj50:{h:'kind → of her + to 동사원형',a:[['It is kind **of her to help** Mia with her homework.','Mia의 숙제를 도와주다니 그녀는 친절하다.']],c:['stupid · kind → of','for 뒤는 목적격(me, him, us)']}
+});
+})();
+
+for(var _k in TOPICS)if(_k!=='gj')delete TOPICS[_k];QS=QS.filter(function(q){return q.t==='gj'});
+
+var $=document.getElementById('app');
+var URL_='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec';
+function post(b){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()}).then(function(r){if(!r||!r.ok)throw new Error('gk');return r})}
+function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function pj(r,k){try{return JSON.parse(r.data[k].v.s)}catch(e){return null}}
+function fmt(t){if(!t)return'-';var d=new Date(t),n=new Date(),p=function(x){return(x<10?'0':'')+x};
+  var s=(d.getMonth()+1)+'/'+d.getDate()+' '+p(d.getHours())+':'+p(d.getMinutes());return s}
+var NQ=QS.length,QBY={};QS.forEach(function(q,i){QBY[q.id]=q;q._n=i+1});
+function setOf(id){var T=TOPICS[QBY[id].t],i,k;if(T.sets)for(i=0;i<T.sets.length;i++)if(T.sets[i].indexOf(id)>=0)return TOPICS[QBY[id].t].name+' 세트 '+(i+1)+'-'+(T.sets[i].indexOf(id)+1);return TOPICS[QBY[id].t].name}
+var TAB='st',ROSTER=null,CTL={},CACHE={},ERR='';
+function load(){
+  $.innerHTML='<h1>문법 기출 풀기 - 선생님 확인</h1><div class="msg">불러오는 중...</div>';
+  Promise.all([post({act:'put',id:'GK_ROSTER',data:{}}),post({act:'put',id:'GK_CTL',data:{}})]).then(function(rs){
+    var d=rs[0].data||{},L=[],k;
+    for(k in d){try{var o=JSON.parse(d[k].v.s);o._t=d[k].t||o.t||0;L.push(o)}catch(e){}}
+    L.sort(function(a,b){return(b.t||0)-(a.t||0)});ROSTER=L;
+    CTL=pj(rs[1],'hide')||{};ERR='';draw();
+  }).catch(function(){ERR='서버에 연결하지 못했어요. 잠시 뒤 새로고침을 눌러 주세요.';ROSTER=ROSTER||[];draw()});
+}
+function head(){
+  return '<h1>문법 기출 풀기 - 선생님 확인</h1><div class="tabs"><button data-tab="st" class="'+(TAB==='st'?'on':'')+'">학생별</button><button data-tab="qs" class="'+(TAB==='qs'?'on':'')+'">문제별</button><button data-tab="hd" class="'+(TAB==='hd'?'on':'')+'">문제 숨기기</button><button class="btn" id="rf">새로고침</button></div>'+(ERR?'<div class="card bad">'+esc(ERR)+'</div>':'');
+}
+function wire(){
+  $.querySelectorAll('[data-tab]').forEach(function(b){b.onclick=function(){TAB=b.dataset.tab;draw()}});
+  var rf=document.getElementById('rf');if(rf)rf.onclick=function(){CACHE={};load()};
+}
+function draw(){
+  var h=head();
+  if(TAB==='st')h+=viewSt();else if(TAB==='qs')h+=viewQs();else h+=viewHd();
+  $.innerHTML=h;wire();
+  if(TAB==='st')$.querySelectorAll('tr.row').forEach(function(r){r.onclick=function(){detail(r.dataset.n)}});
+  if(TAB==='qs'){var b=document.getElementById('qall');if(b)b.onclick=loadAll}
+  if(TAB==='hd')$.querySelectorAll('[data-q]').forEach(function(b){b.onclick=function(){toggle(b.dataset.q)}});
+}
+function viewSt(){
+  if(!ROSTER||!ROSTER.length)return'<div class="card msg">아직 이름을 넣고 푼 학생이 없어요.</div>';
+  var h='<div class="card"><table><tr><th>이름</th><th>푼 문제</th><th>정답률</th><th>마지막으로 푼 때</th></tr>';
+  ROSTER.forEach(function(s){var rate=s.a?Math.round(s.c/s.a*100):0;
+    h+='<tr class="row" data-n="'+esc(s.n)+'"><td><b>'+esc(s.n)+'</b></td><td>'+s.a+' / '+NQ+'</td><td>'+(s.a?rate+'%':'-')+'</td><td class="sub">'+fmt(s.t)+'</td></tr>'});
+  return h+'</table><div class="sub" style="margin-top:8px">학생 이름을 누르면 자세히 볼 수 있어요. 푼 문제 수는 마지막 결과 기준이에요.</div></div>';
+}
+function detail(n){
+  var box=document.createElement('div');box.className='card';box.id='dt';box.innerHTML='<div class="msg">'+esc(n)+' 불러오는 중...</div>';
+  var old=document.getElementById('dt');if(old)old.remove();$.appendChild(box);box.scrollIntoView({behavior:'smooth',block:'start'});
+  getStu(n).then(function(S){
+    var h='<b style="font-size:18px">'+esc(n)+'</b>',R=S.r||{},SS=S.s||{},T=Object.keys(TOPICS);
+    T.forEach(function(t){var T0=TOPICS[t],sets=T0.sets||[QS.filter(function(q){return q.t===t}).map(function(q){return q.id})];
+      sets.forEach(function(ids,k){var ok=0,an=0;ids=ids.filter(function(id){return QBY[id]});
+        var d=ids.map(function(id){var r=R[id];if(r!==undefined){an++;if(r===1)ok++}return'<i class="'+(r===1?'g':r===0?'b':'')+'" title="'+id+'"></i>'}).join('');
+        h+='<div style="margin-top:10px"><span class="pill">'+esc(T0.name)+(T0.sets?' 세트 '+(k+1):'')+'</span> <span class="sub">'+an+'/'+ids.length+'문제, 맞힘 '+ok+'</span><div class="dots">'+d+'</div></div>'})});
+    var W=Object.keys(R).filter(function(id){return R[id]===0&&QBY[id]});
+    h+='<div style="margin-top:14px"><b>지금 틀린 문제 ('+W.length+')</b></div>';
+    if(!W.length)h+='<div class="msg">없어요.</div>';
+    W.forEach(function(id){var q=QBY[id],s=SS[id]||{};
+      h+='<div class="q"><div class="stem">'+esc(q.stem)+'</div><div class="sub">'+esc(setOf(id))+' · '+esc(q.src)+' · 시도 '+(s.n||1)+'번, 틀림 '+(s.w||1)+'번 · 정답 '+q.ans.map(function(i){return'①②③④⑤'[i]}).join(' ')+'</div></div>'});
+    box.innerHTML=h;
+  }).catch(function(){box.innerHTML='<div class="msg bad">불러오지 못했어요.</div>'});
+}
+function getStu(n){
+  if(CACHE[n])return Promise.resolve(CACHE[n]);
+  return post({act:'put',id:'GK|'+String(n).toLowerCase(),data:{}}).then(function(r){var S=pj(r,'st')||{r:{},s:{}};CACHE[n]=S;return S});
+}
+var LOADED=false;
+function loadAll(){
+  var b=document.getElementById('qall');if(b){b.disabled=true;b.textContent='불러오는 중...'}
+  var L=(ROSTER||[]).slice(),i=0;
+  (function next(){if(i>=L.length){LOADED=true;draw();return}
+    var n=L[i++].n;getStu(n).catch(function(){}).then(function(){if(b)b.textContent='불러오는 중... '+i+'/'+L.length;next()})})();
+}
+function viewQs(){
+  if(!ROSTER||!ROSTER.length)return'<div class="card msg">아직 푼 학생이 없어요.</div>';
+  if(!LOADED)return'<div class="card"><div class="msg">문제별 틀린 학생 수를 보려면 모든 학생 기록을 한 번 불러와야 해요 (학생 '+ROSTER.length+'명).</div><button class="btn" id="qall">전체 불러오기</button></div>';
+  var st={};QS.forEach(function(q){st[q.id]={a:0,w:0}});
+  ROSTER.forEach(function(s){var S=CACHE[s.n];if(!S)return;var R=S.r||{};for(var id in R)if(st[id]){st[id].a++;if(R[id]===0)st[id].w++}});
+  var L=QS.filter(function(q){return st[q.id].a>0}).sort(function(a,b){var x=st[a.id],y=st[b.id];return(y.w/y.a-x.w/x.a)||(y.w-x.w)});
+  if(!L.length)return'<div class="card msg">푼 기록이 아직 없어요.</div>';
+  var h='<div class="card"><table><tr><th>문제</th><th>푼 학생</th><th>틀린 학생</th></tr>';
+  L.forEach(function(q){var s=st[q.id];h+='<tr><td><div class="stem">'+esc(q.stem)+'</div><div class="sub">'+esc(setOf(q.id))+' · '+esc(q.src)+(q.pre?' · '+esc(q.pre):'')+'</div></td><td>'+s.a+'명</td><td class="'+(s.w?'bad':'')+'">'+s.w+'명 ('+Math.round(s.w/s.a*100)+'%)</td></tr>'});
+  return h+'</table></div>';
+}
+function viewHd(){
+  var h='<div class="card"><div class="sub">숨긴 문제는 학생 앱에서 다음에 열 때부터 목록에서 빠져요 (이미 푼 기록은 그대로).</div>';
+  QS.forEach(function(q){var off=!!CTL[q.id];
+    h+='<div class="q" style="display:flex;gap:10px;align-items:flex-start"><button class="tg'+(off?' off':'')+'" data-q="'+q.id+'">'+(off?'숨김':'보임')+'</button><div><div class="stem">'+esc(q.stem)+'</div><div class="sub">'+esc(setOf(q.id))+' · '+esc(q.src)+(q.adapted?' · 윗글→우리말로 바꿈':'')+'</div></div></div>'});
+  return h+'</div>';
+}
+function toggle(id){
+  if(CTL[id])delete CTL[id];else CTL[id]=1;
+  var d={hide:{v:{s:JSON.stringify(CTL)},t:Date.now()}};
+  post({act:'put',id:'GK_CTL',data:d}).then(function(){ERR=''}).catch(function(){ERR='저장하지 못했어요. 다시 눌러 주세요.'}).then(draw);
+  draw();
+}
+load();
+</script></body></html>
