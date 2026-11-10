@@ -342,7 +342,7 @@ function build(r,h){
 function schAv(s){var x=String(s.school||'').replace(/(고등학교|중학교|여고|여중|고|중)$/,'').slice(0,3);return x||String(s.grade||'').slice(0,3)||'-'}
 function stLabel(o){var P=o.P;
   if(o.state==='pre')return dshow(P.s)+' 시작';
-  if(o.state==='late')return '밀림 '+o.behind+'일';
+  if(o.state==='late')return '어제까지 '+o.behind+'일 부족';
   if(o.state==='ok')return '오늘 완료';
   if(o.state==='wait')return '오늘 대기';
   if(o.state==='off')return '오늘 쉬는 날';
@@ -418,9 +418,9 @@ function draw(r){
   var late=L.filter(function(o){return o.state==='late'}).length,done=L.filter(function(o){return o.state==='ok'}).length,ask=0;
   L.forEach(function(o){ask+=o.s.askDue});var rl=L.filter(function(o){return rvMiss(o)>0}).length;
   var t0=kst(),idle=L.filter(function(o){return o.P&&o.state!=='pre'&&o.state!=='hold'&&(!o.last||addd(o.last,2)<=t0)}).length;
-  var h=cmpChips()+'<div class="sub2">'+dshow(kst())+' 기준</div><div class="kq"><div><span>재원</span><b>'+L.length+'<small>명</small></b></div><div><span>오늘 완료</span><b>'+done+'<small>명</small></b></div><div><span>데일리 밀림</span><b'+(late?' class="bad"':'')+'>'+late+'<small>명</small></b></div><div><span>누적 밀림</span><b'+(rl?' class="bad"':'')+'>'+rl+'<small>명</small></b></div><div><span>2일 이상 기록 없음</span><b'+(idle?' class="bad"':'')+'>'+idle+'<small>명</small></b></div><div><span>질문 대기</span><b>'+ask+'<small>개</small></b></div></div>';
+  var h=cmpChips()+'<div class="sub2">'+dshow(kst())+' 기준</div><div class="kq"><div><span>재원</span><b>'+L.length+'<small>명</small></b></div><div><span>오늘 완료</span><b>'+done+'<small>명</small></b></div><div><span>어제까지 부족</span><b'+(late?' class="bad"':'')+'>'+late+'<small>명</small></b></div><div><span>누적 밀림</span><b'+(rl?' class="bad"':'')+'>'+rl+'<small>명</small></b></div><div><span>2일 이상 기록 없음</span><b'+(idle?' class="bad"':'')+'>'+idle+'<small>명</small></b></div><div><span>질문 대기</span><b>'+ask+'<small>개</small></b></div></div>';
   h+='<div class="fl">'+gs.map(function(g){return'<button data-g="'+esc(g)+'"'+(g===FIL?' class="on"':'')+'>'+esc(g)+'</button>'}).join('')+'</div>';
-  h+='<div class="lg3"><span><u style="background:#16a34a"></u>오늘 완료</span><span><u style="background:#94a3b8"></u>대기·기타</span><span><u style="background:#dc2626"></u>밀림</span></div>';
+  h+='<div class="lg3"><span><u style="background:#16a34a"></u>오늘 완료</span><span><u style="background:#94a3b8"></u>대기·기타</span><span><u style="background:#dc2626"></u>어제까지 부족</span></div>';
   h+='<div class="lst">'+L.map(cardH).join('')+'</div>';
   b.innerHTML=h;
   bindCmp(r);b.querySelectorAll('.fl button[data-g]').forEach(function(x){x.onclick=function(){FIL=x.dataset.g;ss('wn_fil',FIL);draw(r)}});
@@ -430,7 +430,7 @@ function detail(n,r){
   var o=STAT.filter(function(z){return z.s.name===n})[0],s=o.s,P=o.P,t=kst();
   var h='<div class="top"><button class="sbtn" id="bk">목록</button><div class="t">'+esc(n)+' · '+esc(s.grade)+(s.school?' '+esc(s.school):'')+'</div></div>';
   if(P){
-    h+='<div class="card"><div class="kv"><span>데일리보카</span><b>'+P.d+' · '+dshow(P.s)+' 시작</b></div><div class="kv"><span>데일리보카 진행</span><b>'+o.ddone+' / '+o.N+'일</b></div><div class="kv"><span>어제까지 해야 할 일수</span><b>'+o.dexp+'일'+(o.behind?' (밀림 '+o.behind+'일)':'')+'</b></div><div class="kv"><span>더블보카 '+P.dv+'</span><b>'+o.dvdone+' / 32 Day</b></div><div class="kv"><span>미니모의고사</span><b>'+esc(P.m)+' · 자유 진행</b></div></div>';
+    h+='<div class="card"><div class="kv"><span>데일리보카</span><b>'+P.d+' · '+dshow(P.s)+' 시작</b></div><div class="kv"><span>데일리보카 진행</span><b>'+o.ddone+' / '+o.N+'일</b></div><div class="kv"><span>어제까지 해야 할 일수</span><b>'+o.dexp+'일'+(o.behind?' (어제까지 '+o.behind+'일 부족)':'')+'</b></div><div class="kv"><span>더블보카 '+P.dv+'</span><b>'+o.dvdone+' / 32 Day</b></div><div class="kv"><span>미니모의고사</span><b>'+esc(P.m)+' · 자유 진행</b></div></div>';
     h+='<h2 class="sec">최근 14일 데일리보카</h2><div class="dg">';
     for(var i=13;i>=0;i--){var d=addd(t,-i),w=pd(d).getUTCDay(),cl='',tx='';
       if(d<P.s)cl='';else if(CLOSED.indexOf(d)>=0){cl='c';tx='휴원'}else if(HWD.indexOf(w)<0){tx='쓰기'}else{var dn=dayOf(P.s,d,o.N);tx='D'+dn;cl=o.dd[dn]?'d':(d<t?'l':'')}
