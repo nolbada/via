@@ -219,7 +219,9 @@ function ctlWrite(n,o){var d={};d[n]={v:{s:JSON.stringify(o)},t:Date.now()};retu
 var CTLM=null,CTLL=0;
 setTimeout(function(){try{rvPull()}catch(e){}},1800);setTimeout(eoPullR,2200);
 try{window.addEventListener('online',function(){try{rvFlush()}catch(e){}});document.addEventListener('visibilitychange',function(){if(!document.hidden){try{rvPull()}catch(e){}}})}catch(e){}
-function inHold(c,dk){return !!(c&&c.hold&&c.hs&&dk>=c.hs&&dk<=c.hold)}
+function inHold(c,dk){return !!(c&&((c.hold&&c.hs&&dk>=c.hs&&dk<=c.hold)||(c.holds||[]).some(function(z){return dk>=z.a&&dk<=z.b})))}
+function hEnd(c,d){if(!c)return'';var e='';if(c.hold&&d<=c.hold)e=c.hold;(c.holds||[]).forEach(function(z){if(d>=z.a&&d<=z.b&&z.b>e)e=z.b});return e}
+function hMsg(e){return e<'9999'?dshow(adD(e,1))+'에 다시 시작해요.':'선생님이 다시 알려 줄 거예요.'}
 var TT=['김소희','윤유란','정다원','김민서','이지민','조혜린','신유정A'];
 function exTaken(n,pre){
   var r={},low=String(n).toLowerCase(),a='dvc_exam_',b='dvp_exam_',k,m,v;
@@ -234,7 +236,7 @@ var FIRSTEX={'mw':'2026-11-04','tt':'2026-11-05'};
 function exNote(n,now,ti,nd){
   var w=now.getDay(),sp=(n==='최의준'&&ti<='2026-11-06'),bx='<div style="margin:-2px 2px 8px;padding:8px 12px;border-radius:10px;background:#fbefd9;color:#6b3f06;font-size:13px;line-height:1.5">';
   var c=ctlOf(CTLM,n),grp=TT.indexOf(n)>=0?'tt':'mw',ds=grp==='tt'?[2,4]:[1,3],tk=exTaken(n),has=Object.keys(tk).length>0,nx=nd;
-  if(c.hold&&ti<=c.hold)return bx+'진도 안내를 잠시 멈췄어요. '+(c.hold<'9999'?dshow(c.hold)+'에 다시 시작해요.':'선생님이 다시 알려 줄 거예요.')+'</div>';
+  if(hEnd(c,ti))return bx+'진도 안내를 잠시 멈췄어요. '+hMsg(hEnd(c,ti))+'</div>';
   if(has){nx=0;for(var z=1;z<=32;z++){if(!tk[z]){nx=z;break}}}
   if(sp){
     if(ti==='2026-11-06')return bx+(tk[1]?'Day 1 시험을 봤어요. 수고했어요.':'오늘 더블보카 Day 1 시험이 있어요 (말하기 시험 대신)')+'</div>';
@@ -422,7 +424,7 @@ function exStat(n,ti){
 function examPlan(n,I,ti){
   var map={},P=PLAN[n];if(!P)return map;
   var c=ctlOf(CTLM,n),st=exStat(n,ti),grp=TT.indexOf(n)>=0?'tt':'mw',ds=grp==='tt'?[2,4]:[1,3];
-  if(c.hold&&ti<=c.hold)return map;
+  if(hEnd(c,ti))return map;
   var day=st.todayT?st.nx:st.nx,cur=new Date(ti+'T00:00:00'),i,key,w;
   if(!day)return map;
   var fri1=!st.d1&&ti<=FRI1;
@@ -441,7 +443,7 @@ function drawDP(I,ti,EP){
   var K=ti,r=DATA,n=name(),hc=ctlOf(CTLM,n),P=I.P,h='<div class="dpl">';
   var BL=dayItems(K,I,ti,EP);if(!BL.length){el.innerHTML='';return}
   var isT=K===ti,isPast=K<ti,w=new Date(K+'T00:00:00').getDay(),dn=I.map[K];
-  if(hc.hold&&ti<=hc.hold)h+='<div style="margin:0 2px 8px;padding:8px 12px;border-radius:10px;background:#fbefd9;color:#6b3f06;font-size:13px;line-height:1.5">진도 안내를 잠시 멈췄어요. '+(hc.hold<'9999'?dshow(hc.hold)+'에 다시 시작해요.':'선생님이 다시 알려 줄 거예요.')+'</div>';
+  if(hEnd(hc,ti))h+='<div style="margin:0 2px 8px;padding:8px 12px;border-radius:10px;background:#fbefd9;color:#6b3f06;font-size:13px;line-height:1.5">진도 안내를 잠시 멈췄어요. '+hMsg(hEnd(hc,ti))+'</div>';
   if(dn&&K>=P.s&&!(isT&&I.S[dn])){
     var sub=dn+'일차 · 15문항',chip;
     if(I.S[dn])chip='<span class="chip">완료 '+I.S[dn].s+'</span>';
