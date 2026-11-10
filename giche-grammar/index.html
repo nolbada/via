@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>문법 기출 풀기</title><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" type="image/png" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1f6f6b">
+
 <style>
 :root{--bg:#f3efe6;--card:#fffdf8;--ink:#1f2a2e;--sub:#5b6a6e;--line:#e2dccd;--ac:#1f6f6b;--acInk:#fff;--acSoft:#dcefec;--good:#1f7a4d;--goodBg:#d9f0e3;--bad:#b3372f;--badBg:#f8dcd8;--chip:#f1ece0;--am:#b7791f;--amBg:#fbefd5;--pu:#6b4fb3;--sh:0 8px 24px rgba(31,42,46,.10)}
 @media (prefers-color-scheme:dark){:root{--bg:#12191b;--card:#1b2528;--ink:#eef2f1;--sub:#9db0b3;--line:#2c393c;--ac:#58c2b9;--acInk:#0d1c1b;--acSoft:#1d3a39;--good:#6fd6a0;--goodBg:#1c3a2b;--bad:#ff8f86;--badBg:#432220;--chip:#243134;--am:#e9b44c;--amBg:#3a2f16;--pu:#b9a2f2;--sh:0 8px 24px rgba(0,0,0,.35)}}
@@ -203,7 +204,7 @@ ex:[
 ];
 TOPICS.pp.cards=[
 {type:'vs',title:'과거 vs 현재완료',a:{t:'과거',rows:[['모양','동사 과거형 (did)'],['뜻','그때 끝난 일'],['짝꿍 말','yesterday · last week · ago · When'],['예문','I **lost** my bag yesterday.'],['','어제 가방을 잃어버렸어요.']]},b:{t:'현재완료',rows:[['모양','have/has + p.p.'],['뜻','과거에 시작해서 지금과 이어지는 일'],['짝꿍 말','already · yet · ever · never · for · since'],['예문','I **have lost** my bag.'],['','가방을 잃어버려서 지금 없어요.']]}},
-{type:'rules',title:'현재완료 3가지 뜻',items:[
+{type:'rules',title:'현재완료의 뜻',items:[
 {n:'완료',d:'방금 끝났어요',chips:['already 이미','just 막','yet 아직'],e:'I have **just finished** my homework.',k:'나는 방금 숙제를 끝냈어요.'},
 {n:'경험',d:'해 본 적 있어요',chips:['ever ~한 적','never 한 번도 ~않은'],e:'Have you **ever seen** a whale?',k:'고래를 본 적 있니?'},
 {n:'계속',d:'지금까지 이어져요',chips:['for ~동안 + 시간의 길이','since ~부터 + 시작한 때'],e:'I have lived here **since 2020**. / **for** two years.',k:'나는 2020년부터 / 2년 동안 여기 살아 왔어요.'}]},
@@ -531,9 +532,324 @@ gj49:{h:'necessary 뒤에도 for Daniel이 필요해요',al:'고친 문장',a:[[
 gj50:{h:'kind → of her + to 동사원형',a:[['It is kind **of her to help** Mia with her homework.','Mia의 숙제를 도와주다니 그녀는 친절하다.']],c:['stupid · kind → of','for 뒤는 목적격(me, him, us)']}
 });
 })();
+(function(){
+var O=function(m,w){return{ok:1,m:m,w:w}};
+var X=function(m,w){return{ok:0,m:m,w:w}};
+TOPICS.pp.sets=[
+['pp1','pp2','pp10','pp11','pp12','pp13','pp14','pp15','pp16','pp17'],
+['pp4','pp18','pp19','pp20','pp21','pp22','pp23','pp24','pp25','pp26'],
+['pp27','pp28','pp29','pp30','pp31','pp32','pp33','pp34','pp35','pp36'],
+['pp6','pp7','pp37','pp38','pp39','pp40','pp41','pp42','pp43','pp44'],
+['pp3','pp5','pp8','pp9','pp45','pp46','pp47','pp48','pp49','pp50']];
+var S1='다음 중 어법상 옳은 것은?',S2='다음 중 어법상 어색한 문장은?',SU='다음 문장의 밑줄 친 부분과 쓰임이 같은 것은?';
+function Q(id,src,stem,ch,ans,ex,o){var q={id:id,t:'pp',src:src,tag:'7과',stem:stem,body:[],ch:ch,ans:ans,lab:'ch',ex:ex};for(var k in(o||{}))q[k]=o[k];QS.push(q)}
+TOPICS.pp.cards[1].items.push({n:'결과',d:'그 일 때문에 지금 ~이에요',chips:['lost 잃어버려서 지금 없다','taken 가져가서 지금 없다'],e:'I have **lost** my bag.',k:'가방을 잃어버렸어요. (그래서 지금 없어요)'});
+TOPICS.pp.cards.splice(3,0,{type:'vs',title:'have been to vs have gone to',a:{t:'have been to',rows:[['뜻','가 본 적 있다 / 갔다 왔다 (경험)'],['예문','I **have been to** Paris.'],['','나는 파리에 가 본 적 있어요.']]},b:{t:'have gone to',rows:[['뜻','가 버렸다 (지금 여기 없다)'],['예문','He **has gone to** Paris.'],['','그는 파리에 가 버렸어요. (지금 없어요)']]}});
+var U={vo:'○ 같은 용법',vx:'✕ 다른 용법'};
+function U2(o){var r={};for(var k in U)r[k]=U[k];for(var k in o)r[k]=o[k];return r}
 
-for(var _k in TOPICS)if(_k!=='gj')delete TOPICS[_k];QS=QS.filter(function(q){return q.t==='gj'});
+/* ---- 세트 1: 어법상 옳은 것 ---- */
+Q('pp10','평택여자 2019 2학기 기말',S1,['I have gone to France four times.','When has she got up this morning?','Chris has arrived here for two days.','I have dropped my mirror last night.','I have taken piano lessons since October.'],[4],[
+X('나는 프랑스에 네 번 가 봤다.','경험(가 본 적 있다)은 have been to예요. have gone to는 "가 버리고 지금 여기 없다"는 뜻이라 네 번(four times)과 안 맞아요. → I have been to France four times. (go 가다)'),
+X('그녀는 오늘 아침 언제 일어났니?','When(언제)은 현재완료와 같이 못 써요. → When did she get up this morning? (get up 일어나다)'),
+X('Chris는 이틀 동안 여기 도착해 있다.','arrive(도착하다)는 한 순간에 끝나는 동작이라 for two days(이틀 동안)와 안 맞아요. → Chris has been here for two days. (be 있다)'),
+X('나는 어젯밤에 거울을 떨어뜨렸다.','last night(어젯밤)은 과거를 콕 집는 말이에요. → I dropped my mirror last night. (drop 떨어뜨리다)'),
+O('나는 10월부터 피아노 수업을 받아 왔다.','since(~부터) + 시작한 때(October)는 계속을 나타내는 현재완료와 딱 맞아요. has taken(take 받다)')]);
+Q('pp11','당산 2020 2학기 기말',S1,['How long does she slept?','She hasn’t made any mistakes.','When have you visited the city?','Someone have eaten my cookies.','He has written many short stories last year.'],[1],[
+X('그녀는 얼마나 오래 잤니?','does 뒤에는 동사원형! slept는 과거형이에요. → How long did she sleep? (sleep 자다)'),
+O('그녀는 실수를 하나도 하지 않았다.','hasn’t made(make 만들다·하다)는 have not + p.p. 모양이 맞아요.'),
+X('너는 그 도시를 언제 방문했니?','When(언제)은 과거를 묻는 말이라 현재완료와 같이 못 써요. → When did you visit the city? (visit 방문하다)'),
+X('누군가 내 쿠키를 먹었다.','Someone(누군가)은 3인칭 단수라서 have가 아니라 has! → Someone has eaten my cookies. (eat 먹다)'),
+X('그는 작년에 많은 짧은 이야기를 썼다.','last year(작년)는 과거를 콕 집는 말이에요. → He wrote many short stories last year. (write 쓰다)')]);
+Q('pp12','장위 2020 2학기 기말',S1,['She has been to America before.','Did you know him since last year?','I have took this class for 3 months.','He has lost his cell phone tomorrow.','How long have you finished your homework?'],[0],[
+O('그녀는 전에 미국에 가 본 적이 있다.','have been to(가 본 적 있다)는 경험이에요. before(전에)와 잘 어울려요.'),
+X('너는 작년부터 그를 알았니?','since(~부터)가 있으면 현재완료예요. → Have you known him since last year? (know 알다)'),
+X('나는 3개월 동안 이 수업을 들어 왔다.','have 뒤에는 과거분사(p.p.)! take(듣다)의 p.p.는 taken. → I have taken this class for 3 months.'),
+X('그는 내일 휴대폰을 잃어버렸다.','tomorrow(내일)는 미래라서 과거·현재완료와 같이 못 써요. 또 현재완료는 과거와 이어진 일에만 써요.'),
+X('너는 숙제를 얼마나 오래 끝냈니?','finish(끝내다)는 한 순간에 끝나는 동작이라 How long(얼마나 오래)과 안 맞아요. → How long have you been doing your homework?')]);
+Q('pp13','능허대 2021 2학기 기말',S1,['I’ve never did my homework.','When have you visited the city?','It was hard for she to understand him.','How long have you lived in Australia?','My English improved since I moved to the U.S.A.'],[3],[
+X('나는 숙제를 한 번도 안 했다.','have never 뒤에는 과거분사(p.p.)! do(하다)의 p.p.는 done. → I’ve never done my homework.'),
+X('너는 그 도시를 언제 방문했니?','When(언제)은 현재완료와 같이 못 써요. → When did you visit the city? (visit 방문하다)'),
+X('그녀가 그를 이해하는 것은 어려웠다.','for 뒤에는 목적격! she → her. → It was hard for her to understand him. (understand 이해하다)'),
+O('너는 호주에서 얼마나 오래 살았니?','How long(얼마나 오래) + have you lived(live 살다)는 계속을 묻는 말이에요.'),
+X('내 영어는 미국으로 이사한 이후로 나아졌다.','since(~이후로)가 있으면 현재완료! → My English has improved since I moved to the U.S.A. (improve 나아지다)')]);
+Q('pp14','유곡 2021 2학기 기말',S1,['James has been on TV yesterday.','I knew him since I have been a child.','William have lived in Ulsan for two years.','Have you meet a famous person before?','Thomas and his friends haven’t made any mistakes.'],[4],[
+X('James는 어제 TV에 나왔다.','yesterday(어제)는 과거를 콕 집는 말이에요. → James was on TV yesterday. (be 있다·나오다)'),
+X('나는 어릴 때부터 그를 알아 왔다.','since(~부터)가 있으면 현재완료! knew가 아니라 have known. → I have known him since I was a child. (know 알다)'),
+X('William은 울산에서 2년 동안 살았다.','William은 3인칭 단수라서 have가 아니라 has! → William has lived in Ulsan for two years. (live 살다)'),
+X('너는 전에 유명한 사람을 만나 본 적 있니?','Have you 뒤에는 과거분사(p.p.)! meet(만나다)의 p.p.는 met. → Have you met a famous person before?'),
+O('Thomas와 그의 친구들은 실수를 하나도 하지 않았다.','주어가 복수(Thomas and his friends)라서 haven’t + made(make 하다)가 맞아요.')]);
+Q('pp15','연화 2022 2학기 기말',S1,['I’ve rode the bike only twice.','He has slept thirty minutes ago.','Did you swum in the lake before?','I have already finished my project.','He has lived in Incheon since 15 years.'],[3],[
+X('나는 그 자전거를 두 번밖에 안 탔다.','have 뒤에는 과거분사(p.p.)! ride(타다)의 p.p.는 ridden. → I’ve ridden the bike only twice.'),
+X('그는 30분 전에 잠을 잤다.','ago(~전에)는 과거를 콕 집는 말이에요. → He slept thirty minutes ago. (sleep 자다)'),
+X('너는 전에 호수에서 수영한 적 있니?','Did 뒤에는 동사원형! swum은 p.p.예요. → Did you swim in the lake before? / Have you swum in the lake before? (swim 수영하다)'),
+O('나는 이미 프로젝트를 끝냈다.','already(이미) + have finished(finish 끝내다)는 완료를 나타내요.'),
+X('그는 15년 동안 인천에 살았다.','since 뒤에는 시작한 때(2008, I was ten 등)가 와요. 시간의 길이(15 years)에는 for! → He has lived in Incheon for 15 years. (live 살다)')]);
+Q('pp16','이호 2022 2학기 기말',S1,['I have know her since 2010.','Did you ever eaten Indian food?','We have already finished dinner.','Judy has lived in Busan 5 years ago.','I never have visited New York before.'],[2],[
+X('나는 2010년부터 그녀를 알아 왔다.','have 뒤에는 p.p.! know(알다)의 p.p.는 known. → I have known her since 2010.'),
+X('너는 인도 음식을 먹어 본 적 있니?','Did 뒤에는 동사원형, eaten은 p.p.예요. → Have you ever eaten Indian food? / Did you ever eat Indian food? (eat 먹다)'),
+O('우리는 이미 저녁을 먹었다.','already(이미) + have finished(finish 끝내다). 완료예요.'),
+X('Judy는 5년 전에 부산에서 살았다.','ago(~전에)는 과거를 콕 집는 말이에요. → Judy lived in Busan 5 years ago. (live 살다)'),
+X('나는 전에 뉴욕을 방문해 본 적이 없다.','never는 have와 p.p. 사이에 와요. → I have never visited New York before. (visit 방문하다)')]);
+Q('pp17','장검 2022 2학기 기말',S1,['They never have eaten the cake.','How long have you known him?','Jane has studied English since 10 years.','My son has rode a roller coaster before.','I have finished my homework last night.'],[1],[
+X('그들은 그 케이크를 먹어 본 적이 없다.','never는 have와 p.p. 사이에 와요. → They have never eaten the cake. (eat 먹다)'),
+O('너는 그를 얼마나 오래 알아 왔니?','How long + have you known(know 알다). 계속을 묻는 말이에요.'),
+X('Jane은 10년 동안 영어를 공부해 왔다.','since 뒤에는 시작한 때! 시간의 길이(10 years)에는 for. → Jane has studied English for 10 years. (study 공부하다)'),
+X('내 아들은 전에 롤러코스터를 타 본 적이 있다.','has 뒤에는 p.p.! ride(타다)의 p.p.는 ridden. → My son has ridden a roller coaster before.'),
+X('나는 어젯밤에 숙제를 끝냈다.','last night(어젯밤)은 과거를 콕 집는 말이에요. → I finished my homework last night. (finish 끝내다)')]);
 
+/* ---- 세트 2: 어색한 문장 ---- */
+Q('pp18','천안성정 2019 2학기 기말',S2,['When did you see that movie?','I haven’t read this magazine yet.','Have you already solved the problem?','I haven’t opened the window 2 hours ago.','I have wanted to have this I-phone for a long time.'],[3],[
+O('너는 그 영화를 언제 봤니?','When(언제)은 과거를 묻는 말이라 과거형(did)과 써요. 자연스러워요. (see 보다)'),
+O('나는 이 잡지를 아직 읽지 않았다.','yet(아직) + haven’t read(read 읽다). 완료예요.'),
+O('너는 벌써 그 문제를 풀었니?','Have you already solved ~? 완료를 묻는 말이에요. (solve 풀다)'),
+X('나는 2시간 전에 창문을 열지 않았다.','ago(~전에)는 과거를 콕 집는 말이라 현재완료와 못 써요. → I didn’t open the window 2 hours ago. (open 열다) (어색한 문장 = 정답)'),
+O('나는 오랫동안 이 아이폰을 갖고 싶어 했다.','for a long time(오랫동안)은 계속을 나타내요. have wanted(want 원하다)')]);
+Q('pp19','청량 2019 2학기 기말',S2,['I’ve been to France last year.','Sumi has not finished her homework.','Minho has studied English since 2011.','Have you ever seen the movie before?','How long have you used the cell phone?'],[0],[
+X('나는 작년에 프랑스에 갔었다.','last year(작년)는 과거를 콕 집는 말이라 현재완료와 못 써요. → I went to France last year. (go 가다) (어색한 문장 = 정답)'),
+O('수미는 아직 숙제를 끝내지 못했다.','has not finished(finish 끝내다). 완료예요.'),
+O('민호는 2011년부터 영어를 공부해 왔다.','since + 시작한 때(2011). 계속이에요. (study 공부하다)'),
+O('너는 전에 그 영화를 본 적 있니?','Have you ever seen ~? 경험을 묻는 말이에요. (see 보다)'),
+O('너는 그 휴대폰을 얼마나 오래 사용해 왔니?','How long + have you used(use 사용하다). 계속을 묻는 말이에요.')]);
+Q('pp20','충북여자 2019 2학기 기말',S2,['I have just finished my homework.','I’ve known her since I was a child.','Have you ever met a famous actor?','They have won five games this year.','She has eaten breakfast ten minutes ago.'],[4],[
+O('나는 방금 숙제를 끝냈다.','just(막) + have finished(finish 끝내다). 완료예요.'),
+O('나는 어릴 때부터 그녀를 알아 왔다.','since + 시작한 때. 계속이에요. (know 알다)'),
+O('너는 유명한 배우를 만나 본 적 있니?','Have you ever met ~? 경험이에요. (meet 만나다)'),
+O('그들은 올해 다섯 경기를 이겼다.','this year(올해)는 지금도 이어지는 때라서 현재완료와 쓸 수 있어요. (win 이기다)'),
+X('그녀는 10분 전에 아침을 먹었다.','ten minutes ago(10분 전에)는 과거를 콕 집는 말이에요. → She ate breakfast ten minutes ago. (eat 먹다) (어색한 문장 = 정답)')]);
+Q('pp21','성일 2020 2학기 기말',S2,['Is it safe to drink this water?','She has lived in Seoul last year.','It’s lucky for me to be on your team.','We have never seen this movie before.','I have just arrived from my trip to Busan.'],[1],[
+O('이 물을 마셔도 안전한가요?','It은 가주어, to drink(drink 마시다) 이하가 진짜 주어예요.'),
+X('그녀는 작년에 서울에 살았다.','last year(작년)는 과거를 콕 집는 말이에요. → She lived in Seoul last year. (live 살다) (어색한 문장 = 정답)'),
+O('내가 너희 팀에 있는 것은 행운이다.','It is lucky for me to ~. 가주어 It과 for + 목적격이 맞아요. (be 있다)'),
+O('우리는 전에 이 영화를 본 적이 없다.','never + seen(see 보다). 경험이에요.'),
+O('나는 부산 여행에서 방금 도착했다.','just(막) + have arrived(arrive 도착하다). 완료예요.')]);
+Q('pp22','아산 2020 2학기 기말',S2,['He has arrived home thirty minutes ago.','I’ve never been to Egypt before.','Has she told you the good news yet?','I haven’t seen David today.','My mom has been sick since last week.'],[0],[
+X('그는 30분 전에 집에 도착했다.','thirty minutes ago(30분 전에)는 과거를 콕 집는 말이에요. → He arrived home thirty minutes ago. (arrive 도착하다) (어색한 문장 = 정답)'),
+O('나는 이집트에 가 본 적이 없다.','never + been to(가 본 적 있다). 경험이에요.'),
+O('그녀가 너에게 좋은 소식을 벌써 말해 줬니?','yet(벌써) + Has she told(tell 말하다). 완료를 묻는 말이에요.'),
+O('나는 오늘 David를 보지 못했다.','today(오늘)는 아직 안 끝난 때라서 현재완료와 쓸 수 있어요. (see 보다)'),
+O('우리 엄마는 지난주부터 아프시다.','since + 시작한 때. 계속이에요. (be 이다·있다)')]);
+Q('pp23','하남 2020 2학기 기말',S2,['Have you ever lived in Busan?','I’ve been to Dok-do 10 years ago.','I’ve known her since I was a child.','Jane has never eaten Kimchi before.','I’ve just finished my science homework.'],[1],[
+O('너는 부산에서 살아 본 적 있니?','Have you ever lived ~? 경험을 묻는 말이에요. (live 살다)'),
+X('나는 10년 전에 독도에 가 봤다.','10 years ago(10년 전에)는 과거를 콕 집는 말이에요. → I went to Dok-do 10 years ago. (go 가다) (어색한 문장 = 정답)'),
+O('나는 어릴 때부터 그녀를 알아 왔다.','since + 시작한 때. 계속이에요. (know 알다)'),
+O('Jane은 김치를 먹어 본 적이 없다.','never + eaten(eat 먹다). 경험이에요.'),
+O('나는 과학 숙제를 방금 끝냈다.','just(막) + finished(finish 끝내다). 완료예요.')]);
+Q('pp24','성암여자 2021 2학기 기말',S2,['I think I have seen him before.','My best friend has gone to China.','Tom never has win the soccer game.','Have you heard about the new teacher?','We have been friends for about 10 years.'],[2],[
+O('나는 전에 그를 본 것 같다.','have seen(see 보다) + before. 경험이에요.'),
+O('내 가장 친한 친구는 중국에 갔다.','has gone to(가 버렸다)는 지금 여기 없다는 뜻의 결과예요. (go 가다)'),
+X('Tom은 축구 경기에서 이긴 적이 없다.','never는 has와 p.p. 사이에 오고, win(이기다)은 p.p.인 won! → Tom has never won the soccer game. (어색한 문장 = 정답)'),
+O('너는 새로 오신 선생님에 대해 들어 봤니?','Have you heard(hear 듣다) about ~? 경험을 묻는 말이에요.'),
+O('우리는 약 10년 동안 친구였다.','for + 시간의 길이(10 years). 계속이에요. (be 이다)')]);
+Q('pp25','향산 2021 2학기 기말',S2,['How long have you been in Japan?','I wrote two short stories since 2019.','The banana has not turned brown yet.','I have watched the video many times.','My dog has had a cold for two weeks.'],[1],[
+O('너는 일본에 얼마나 오래 있었니?','How long + have you been(be 있다). 계속을 묻는 말이에요.'),
+X('나는 2019년부터 짧은 이야기 두 편을 썼다.','since(~부터)가 있으면 현재완료! → I have written two short stories since 2019. (write 쓰다) (어색한 문장 = 정답)'),
+O('그 바나나는 아직 갈색으로 변하지 않았다.','yet(아직) + has not turned(turn 변하다). 완료예요.'),
+O('나는 그 영상을 여러 번 봤다.','have watched(watch 보다) + many times. 경험이에요.'),
+O('내 개는 2주 동안 감기에 걸려 있다.','have의 p.p.는 had! has had(have 걸리다) + for two weeks. 계속이에요.')]);
+Q('pp26','남대문 2022 2학기 기말',S2,['When did you visit the city?','I have had a cold for two weeks.','You have grown very tall since 2002.','My English has improved since I moved to Australia.','He has written very creative short stories two days ago.'],[4],[
+O('너는 그 도시를 언제 방문했니?','When(언제)은 과거형(did)과 써요. (visit 방문하다)'),
+O('나는 2주 동안 감기에 걸려 있다.','for + 시간의 길이. 계속이에요. have had(have 걸리다)'),
+O('너는 2002년 이후로 키가 아주 많이 컸다.','since + 시작한 때. has grown(grow 자라다)'),
+O('내 영어는 호주로 이사한 이후로 나아졌다.','since 뒤에 과거(moved)가 와도 앞은 현재완료예요. (improve 나아지다)'),
+X('그는 이틀 전에 아주 창의적인 짧은 이야기를 썼다.','two days ago(이틀 전에)는 과거를 콕 집는 말이에요. → He wrote very creative short stories two days ago. (write 쓰다) (어색한 문장 = 정답)')]);
+
+/* ---- 세트 3: 현재완료의 용법 ---- */
+Q('pp27','상봉 2020 2학기 기말',SU,['I have been to Africa twice.','They have already finished the project.','He has just arrived at the station.','I’ve known him since I was a child.','Somebody has taken my umbrella.'],[0],[
+O('나는 아프리카에 두 번 가 봤다.','경험이에요. twice(두 번)가 단서! have been to(가 본 적 있다)'),
+X('그들은 이미 프로젝트를 끝냈다.','완료예요. already(이미)가 단서! (finish 끝내다)'),
+X('그는 방금 역에 도착했다.','완료예요. just(막)가 단서! (arrive 도착하다)'),
+X('나는 어릴 때부터 그를 알아 왔다.','계속이에요. since(~부터)가 단서! (know 알다)'),
+X('누군가 내 우산을 가져갔다.','결과예요. 가져가서 지금 내 우산이 없어요. (take 가져가다)')],U2({body:['Have you ever seen the movie before?'],adapted:0}));
+Q('pp28','문수 2021 2학기 기말',SU,['I have heard this song before.','He has slept for thirty minutes.','She has never met a movie star.','The banana has not turned brown yet.','They have just arrived from their trip to Europe.'],[1],[
+X('나는 전에 이 노래를 들어 본 적이 있다.','경험이에요. before(전에)가 단서! (hear 듣다)'),
+O('그는 30분 동안 자고 있다.','계속이에요. for + 시간의 길이가 단서! (sleep 자다)'),
+X('그녀는 영화배우를 만난 적이 없다.','경험이에요. never(한 번도 ~않은)가 단서! (meet 만나다)'),
+X('그 바나나는 아직 갈색으로 변하지 않았다.','완료예요. yet(아직)이 단서! (turn 변하다)'),
+X('그들은 유럽 여행에서 막 도착했다.','완료예요. just(막)가 단서! (arrive 도착하다)')],U2({body:['He has known her since he was ten years old.']}));
+Q('pp29','장검 2021 2학기 기말','다음 중 밑줄 친 부분의 쓰임이 나머지와 다른 하나는?',['I have never been to Italy.','I have heard this song before.','Have you ever read this book?','I have watched the movie four times.','My English has improved since I moved to America.'],[4],[
+O('나는 이탈리아에 가 본 적이 없다.','경험이에요. never가 단서! (be 가다)'),
+O('나는 전에 이 노래를 들어 본 적이 있다.','경험이에요. before가 단서! (hear 듣다)'),
+O('너는 이 책을 읽어 본 적 있니?','경험이에요. ever가 단서! (read 읽다)'),
+O('나는 그 영화를 네 번 봤다.','경험이에요. four times(네 번)가 단서! (watch 보다)'),
+X('내 영어는 미국으로 이사한 이후로 나아졌다.','계속이에요. since(~이후로)가 단서! 나머지 넷은 모두 경험이에요. (정답: 쓰임이 다른 하나)')],U2({}));
+Q('pp30','성암여자 2021 2학기 기말',SU,['Our final test has just finished.','How long have you waited here?','Amy has lost her bag in the park.','Has she ever tried this new dessert?','My sister and I have never been to Japan.'],[0],[
+O('우리 기말시험이 방금 끝났다.','완료예요. just(막)가 단서! (finish 끝나다)'),
+X('너는 여기서 얼마나 오래 기다렸니?','계속이에요. How long(얼마나 오래)이 단서! (wait 기다리다)'),
+X('Amy는 공원에서 가방을 잃어버렸다.','결과예요. 잃어버려서 지금 가방이 없어요. (lose 잃어버리다)'),
+X('그녀는 이 새 디저트를 먹어 본 적 있니?','경험이에요. ever(~한 적)가 단서! (try 먹어 보다)'),
+X('내 여동생과 나는 일본에 가 본 적이 없다.','경험이에요. never가 단서! (be 가다)')],U2({body:['The library has not opened yet.']}));
+Q('pp31','분성 2021 2학기 기말',SU,['He’s just arrived at the airport.','I haven’t bought the jacket yet.','I have read this book many times.','Someone has already eaten my cookies.','She has worked for this company for ten years.'],[4],[
+X('그는 방금 공항에 도착했다.','완료예요. just(막)가 단서! (arrive 도착하다)'),
+X('나는 아직 그 재킷을 사지 않았다.','완료예요. yet(아직)이 단서! (buy 사다)'),
+X('나는 이 책을 여러 번 읽었다.','경험이에요. many times(여러 번)가 단서! (read 읽다)'),
+X('누군가 내 쿠키를 이미 먹어 버렸다.','완료(결과)예요. already(이미)가 단서! (eat 먹다)'),
+O('그녀는 이 회사에서 10년 동안 일해 왔다.','계속이에요. for ten years(10년 동안)가 단서! (work 일하다)')],U2({body:['How long have you known him?']}));
+Q('pp32','태릉 2021 2학기 기말','다음 중 밑줄 친 현재완료의 용법이 나머지 넷과 다른 것은?',['I have just eaten my pizza.','I have heard this song before.','I have read the story three times.','Have you ever eaten Korean food?','I have never met a movie star.'],[0],[
+X('나는 피자를 방금 먹었다.','완료예요. just(막)가 단서! 나머지 넷은 경험이에요. (eat 먹다) (정답: 쓰임이 다른 하나)'),
+O('나는 전에 이 노래를 들어 본 적이 있다.','경험이에요. before가 단서! (hear 듣다)'),
+O('나는 그 이야기를 세 번 읽었다.','경험이에요. three times(세 번)가 단서! (read 읽다)'),
+O('너는 한국 음식을 먹어 본 적 있니?','경험이에요. ever가 단서! (eat 먹다)'),
+O('나는 영화배우를 만난 적이 없다.','경험이에요. never가 단서! (meet 만나다)')],U2({adapted:1}));
+Q('pp33','동변 2022 2학기 기말',SU,['Have you ever baked cookies before?','He has taught English for 20 years.','Somebody has stolen my umbrella.','I have read the book three times.','Anne has already done it.'],[1],[
+X('너는 전에 쿠키를 구워 본 적 있니?','경험이에요. ever가 단서! (bake 굽다)'),
+O('그는 20년 동안 영어를 가르쳐 왔다.','계속이에요. for 20 years가 단서! (teach 가르치다)'),
+X('누군가 내 우산을 훔쳐 갔다.','결과예요. 훔쳐 가서 지금 우산이 없어요. (steal 훔치다)'),
+X('나는 그 책을 세 번 읽었다.','경험이에요. three times가 단서! (read 읽다)'),
+X('Anne은 그것을 이미 했다.','완료예요. already가 단서! (do 하다)')],U2({body:['She has worked in the company since 2012.']}));
+Q('pp34','인천해원 2022 2학기 기말',SU,['I have eaten French food before.','My family has known her for 10 years.','They have already finished their project.','She has felt so bad since last Thursday.','He has never read the novel written by Isaac Asimov.'],[2],[
+X('나는 전에 프랑스 음식을 먹어 본 적이 있다.','경험이에요. before가 단서! (eat 먹다)'),
+X('우리 가족은 10년 동안 그녀를 알아 왔다.','계속이에요. for 10 years가 단서! (know 알다)'),
+O('그들은 이미 프로젝트를 끝냈다.','완료예요. already(이미)가 단서! (finish 끝내다)'),
+X('그녀는 지난 목요일부터 몸이 아주 안 좋다.','계속이에요. since(~부터)가 단서! (feel 느끼다)'),
+X('그는 아이작 아시모프가 쓴 소설을 읽어 본 적이 없다.','경험이에요. never가 단서! (read 읽다)')],U2({body:['The man has just finished doing the dishes.']}));
+Q('pp35','고실 2023 2학기 기말',SU,['She has never been on TV.','The train hasn’t arrived yet.','The plane has just landed.','I haven’t finished my homework yet.','Junho and Minsu have studied English for 5 years.'],[0],[
+O('그녀는 TV에 나온 적이 없다.','경험이에요. never가 단서! (be 있다·나오다)'),
+X('그 기차는 아직 도착하지 않았다.','완료예요. yet이 단서! (arrive 도착하다)'),
+X('그 비행기는 방금 착륙했다.','완료예요. just가 단서! (land 착륙하다)'),
+X('나는 아직 숙제를 끝내지 못했다.','완료예요. yet이 단서! (finish 끝내다)'),
+X('준호와 민수는 5년 동안 영어를 공부해 왔다.','계속이에요. for 5 years가 단서! (study 공부하다)')],U2({body:['I have eaten Indian curry before.']}));
+Q('pp36','유곡 2022 2학기 기말',SU,['Mary has left for Hawaii.','She has lived in Ulsan for 5 years.','Jane has been to Jeju-do many times.','I have known him since I was a child.','They have already finished their project.'],[2],[
+X('Mary는 하와이로 떠났다.','결과예요. 떠나서 지금 여기 없어요. (leave 떠나다)'),
+X('그녀는 울산에서 5년 동안 살아 왔다.','계속이에요. for 5 years가 단서! (live 살다)'),
+O('Jane은 제주도에 여러 번 가 봤다.','경험이에요. many times가 단서! (be 가다)'),
+X('나는 어릴 때부터 그를 알아 왔다.','계속이에요. since가 단서! (know 알다)'),
+X('그들은 이미 프로젝트를 끝냈다.','완료예요. already가 단서! (finish 끝내다)')],U2({body:['I have eaten French food before.']}));
+
+/* ---- 세트 4: 영작·문장 전환 ---- */
+Q('pp37','인왕 2019 2학기 기말','다음 한글 문장을 영어 문장으로 바꿨을 때 문법적으로 가장 자연스러운 것은?',['He has already finish his homework.','He already has finish his homework.','He has already finished his homework.','He have already finished his homework.','He already have finished his homework.'],[2],[
+X('그는 이미 숙제를 끝마쳤다.','has 뒤에는 과거분사(p.p.)! finish가 아니라 finished. → has already finished (finish 끝내다)'),
+X('그는 이미 숙제를 끝마쳤다.','already는 has와 p.p. 사이에 와요. 그리고 finish가 아니라 finished. → He has already finished ~.'),
+O('그는 이미 숙제를 끝마쳤다.','주어 He(3인칭 단수) + has + already + finished(p.p.). 순서가 딱 맞아요.'),
+X('그는 이미 숙제를 끝마쳤다.','He는 3인칭 단수라서 have가 아니라 has! → He has already finished ~.'),
+X('그는 이미 숙제를 끝마쳤다.','already는 has/have와 p.p. 사이! He는 have가 아니라 has! → He has already finished ~.')],{body:['그는 이미 그의 숙제를 끝마쳤다.']});
+Q('pp38','인왕 2019 2학기 기말','다음 빈칸에 들어갈 말이 알맞게 짝지어진 것은?',['lived – lived','lived – have lived','lived – have living','have lived – have lived','have lived – have living'],[1],[
+X('2015년에 살았다 / 3년 동안 살았다','두 번째 칸은 for three years(3년 동안)라서 지금까지 이어지는 현재완료가 필요해요. → have lived'),
+O('2015년에 살았다 / 3년 동안 살아 왔다','in 2015(2015년에)는 과거를 콕 집는 말이라 lived, for three years(3년 동안)는 계속이라 have lived! (live 살다)'),
+X('2015년에 살았다 / 3년 동안 살고 있다','have 뒤에는 과거분사(p.p.)! living이 아니라 lived. → have lived'),
+X('2015년부터 살아 왔다 / 3년 동안 살아 왔다','in 2015는 과거를 콕 집는 말이라 첫 칸은 have lived가 아니라 lived!'),
+X('2015년부터 살아 왔다 / 3년 동안 살고 있다','첫 칸은 lived, 둘째 칸은 have lived가 맞아요. have 뒤에는 p.p.!')],{body:['ㆍ We _______ in this apartment in 2015.','ㆍ We _______ in this apartment for three years.']});
+Q('pp39','개운 2020 2학기 기말','다음 <보기>의 두 문장을 한 문장으로 쓸 때 빈칸 (A), (B)에 들어갈 말로 짝지어진 것은?',['has moved – for','moved – since','was lived – for','have moved – since','has lived – for'],[4],[
+X('그녀는 5년 동안 이사해 왔다.','move(이사하다)는 한 순간에 끝나는 동작이라 for five years와 안 맞아요. "지금도 산다"는 live(살다)로 써요.'),
+X('그녀는 5년 이후로 이사했다.','지금도 산다는 뜻이 빠졌고, since 뒤에는 시작한 때가 오는데 five years는 시간의 길이예요.'),
+X('was lived는 틀린 모양이에요.','live(살다)는 be + p.p.(수동)로 쓰지 않아요. → has lived'),
+X('그녀는 5년 이후로 이사해 왔다.','주어 She는 has! 또 since + five years(시간의 길이)도 안 맞아요.'),
+O('그녀는 부산에서 5년 동안 살아 왔다.','5년 전에 이사해서 지금도 산다 = 5년 동안 계속 산다. She + has lived + for + 시간의 길이(five years)')],{body:['<보기>','ㆍ She moved to Busan five years ago.','ㆍ And she still lives in Busan.','→ She (A)__________ in Busan (B)__________ five years.']});
+Q('pp40','동주 2021 2학기 기말','다음 두 문장을 한 문장으로 표현할 때 빈칸에 들어갈 말을 순서대로 바르게 짝지은 것은?',['has known – since','knew – for','have known – since','knew – in','have known – for'],[2],[
+X('나는 열 살 때부터 Daniel을 알아 왔다.','주어 I는 has가 아니라 have!'),
+X('나는 열 살 때 Daniel을 알았다.','과거형 knew는 "지금도 안다"를 담지 못해요. 또 I was ten years old는 시작한 때라서 for가 아니라 since!'),
+O('나는 열 살 때부터 Daniel을 알아 왔다.','지금까지 이어지니까 have known(know 알다). 뒤에 "I was ten years old"처럼 시작한 때가 오면 since!'),
+X('나는 열 살 때 Daniel을 알았다.','지금도 안다는 뜻이 필요해서 현재완료 have known이 맞아요. in 뒤에는 절이 올 수 없어요.'),
+X('나는 열 살 동안 Daniel을 알아 왔다.','have known은 맞지만, for 뒤에는 시간의 길이(ten years)가 와요. 시작한 때(I was ten years old)에는 since!')],{body:['‧ I knew Daniel when I was ten years old.','‧ I still know Daniel now.','→ I _______________ Daniel ____________ I was ten years old.']});
+Q('pp41','구월 2023 2학기 기말','다음 두 문장을 한 문장으로 바꾸어 쓸 때, 빈칸에 들어갈 가장 옳은 말로 순서대로 짝지어진 것은?',['owned – for','owned – since','has owned – for','has owned – since','have owned – for'],[3],[
+X('우리 아빠는 작년 동안 서점을 가졌다.','지금도 갖고 있다는 뜻이 빠졌고, last year는 시작한 때라서 for가 안 맞아요.'),
+X('우리 아빠는 작년에 서점을 가졌다.','since는 맞지만 과거형 owned는 지금도 갖고 있다는 뜻을 못 담아요. → has owned'),
+X('우리 아빠는 작년 동안 서점을 갖고 있다.','has owned는 맞지만 last year는 시간의 길이가 아니라 시작한 때예요. → since last year'),
+O('우리 아빠는 작년부터 서점을 갖고 있다.','주어 My dad(3인칭 단수) + has owned(own 갖고 있다) + since + 시작한 때(last year)!'),
+X('My dad는 3인칭 단수라서 have가 아니라 has!','또 last year 앞은 for가 아니라 since! → has owned ~ since last year')],{body:['My dad started to own a bookstore last year.','He still owns it.','→ My dad __________ a bookstore __________ last year.']});
+Q('pp42','을지 2020 2학기 기말','다음 중 영작이 바르게 된 것은?',['Paul has been out the house since he went to the party last month.','Paul has been out of the house since he didn’t went to the party last month.','Paul hasn’t been out the house he went to the party last month ago.','Paul hasn’t been out of the house since he has gone to the party last month.','Paul hasn’t been out of the house since he went to the party last month.'],[4],[
+X('Paul은 집 밖에 나가 있다는 뜻이 돼요.','"나가지 않았다"라서 부정문(hasn’t)이어야 하고, out the house가 아니라 out of the house!'),
+X('didn’t went는 틀려요.','didn’t 뒤에는 동사원형! 그리고 "나가지 않았다"는 부정문이 앞 문장에 있어야 해요.'),
+X('since가 빠졌어요.','"~이후로"는 since! last month ago도 어색해요(last month와 ago는 같이 안 써요). out of the house'),
+X('since 뒤의 절은 과거형으로 써요.','since he has gone이 아니라 since he went! last month(지난달)는 과거를 콕 집는 말이에요.'),
+O('Paul은 지난달 파티에 간 이후로 집 밖을 나가지 않았다.','hasn’t been out of the house(be 있다) + since + 과거형 절(he went to the party last month). 모두 맞아요.')],{body:['Paul은 지난달 파티에 간 이후로 집 밖을 나가지 않았다.']});
+Q('pp43','풍양 2022 2학기 기말','다음 우리말 뜻과 같도록 바르게 영작한 것은?',['He knew her 10 years ago.','He knew her since he was 10.','He has known her 10 years ago.','He has known her for 10 years.','He has known her since he was 10.'],[4],[
+X('그는 10년 전에 그녀를 알았다.','knew + ago는 문법은 맞지만 뜻이 달라요. 우리말은 "10살 때부터" 지금까지 아는 거예요.'),
+X('since가 있는데 과거형 knew를 썼어요.','since(~부터)가 있으면 현재완료! → He has known her since he was 10.'),
+X('10 years ago(10년 전에)는 과거를 콕 집는 말이라 현재완료와 못 써요.','→ He knew her 10 years ago. (know 알다)'),
+X('그는 10년 동안 그녀를 알아 왔다.','문법은 맞지만 뜻이 달라요. "10살 때부터"는 시작한 때라서 for 10 years가 아니라 since he was 10!'),
+O('그는 10살 때부터 그녀를 알아 왔다.','has known(know 알다) + since + 시작한 때(he was 10). 뜻과 문법이 모두 맞아요.')],{body:['그는 10살 때부터 그녀를 알았다.']});
+Q('pp44','향산 2021 2학기 기말','다음 문장을 영작한 것으로 가장 적절한 것은?',['Gimpo has changed a lot after Lisa moved.','Lisa has changed much after moving to Gimpo.','Lisa moved to Gimpo before many things changed.','Many things changed after Lisa has moved to Gimpo.','Things have changed a lot since Lisa moved to Gimpo.'],[4],[
+X('김포는 Lisa가 이사한 뒤에 많이 변했다.','주어가 Gimpo로 바뀌어 뜻이 달라요. 우리말의 주어는 "많은 것들"이고, "이후로"는 after가 아니라 since.'),
+X('Lisa는 김포로 이사한 뒤에 많이 변했다.','변한 것은 Lisa가 아니라 "많은 것들"이에요.'),
+X('Lisa는 많은 것들이 변하기 전에 김포로 이사했다.','before(~전에)라서 순서와 뜻이 달라요.'),
+X('많은 것들이 Lisa가 이사한 뒤에 변했다.','"이사한 이후로 지금까지 변해 왔다"는 현재완료 + since예요. after 뒤의 절에 has moved도 어색해요. → since Lisa moved'),
+O('Lisa가 김포로 이사한 이후로 많은 것들이 변했다.','Things + have changed(change 변하다) + since + 과거형 절(Lisa moved). 딱 맞아요.')],{body:['Lisa가 김포로 이사한 이후로 많은 것들이 변했다.']});
+
+/* ---- 세트 5: 대화·종합 ---- */
+Q('pp45','인천여자 2021 2학기 기말','다음 중 내용과 어법으로 보아 가장 자연스러운 대화는?',['A: Have you gone to London? B: No. This is my first time.','A: How long have you known her? B: For more than two years.','A: Let’s go see the movie, Spider-Man. B: I’m sorry, but I have already saw it.','A: Have you read this book? B: Yes. I’ve already read the book last year.','A: When has your mom been sick? B: My mom has been sick since May 1st.'],[1],[
+X('런던에 가 본 적 있니? 아니, 이번이 처음이야.','가 본 적 있는지는 have been to! have gone to는 "가 버리고 여기 없다"예요. → Have you been to London?'),
+O('그녀를 얼마나 오래 알았니? 2년 넘게.','How long + have you known(know 알다) / For + 시간의 길이. 질문과 대답이 모두 자연스러워요.'),
+X('스파이더맨 보러 가자. 미안, 난 이미 봤어.','have 뒤에는 p.p.! saw가 아니라 seen. → I have already seen it. (see 보다)'),
+X('이 책 읽어 봤니? 응, 작년에 이미 읽었어.','last year(작년)는 과거를 콕 집는 말이라 현재완료와 못 써요. → I read the book last year.'),
+X('너희 엄마는 언제 아프셨니? 5월 1일부터 아프셔.','When(언제)은 현재완료와 못 써요. 얼마나 오래 아팠는지 묻는 How long이 어울려요.')]);
+Q('pp46','천안신방 2021 2학기 기말','다음 대화 중 어법상 어색한 것은?',['A: Have you ever tried skydiving? B: Yes, I have. It was really amazing.','A: How long have you lived here? B: Since 9 years.','A: Can you return my notebook now? B: I’m sorry but I can’t. I have lost it.','A: Do you know where Kate is? B: I haven’t seen Kate since last week.','A: Let’s see the movie ‘Life on the Moon’. B: I have already seen it.'],[1],[
+O('스카이다이빙 해 본 적 있니? 응, 정말 멋졌어.','경험을 물으면 Yes, I have. 그다음 자세한 이야기는 과거형(was)으로 해요.'),
+X('여기서 얼마나 오래 살았니? 9년 전부터.','since 뒤에는 시작한 때가 와요. 9 years는 시간의 길이라서 For 9 years! → For 9 years. (어색한 대화 = 정답)'),
+O('내 공책 지금 돌려줄래? 미안, 못 줘. 잃어버렸어.','have lost(lose 잃어버리다)는 잃어버려서 지금 없다는 결과예요.'),
+O('Kate가 어디 있는지 아니? 지난주부터 못 봤어.','where Kate is(간접의문문, 어디 + 주어 + 동사)와 since last week 모두 맞아요. (see 보다)'),
+O('영화 보러 가자. 난 이미 봤어.','already + have seen(see 보다). 완료예요.')]);
+Q('pp47','한천 2019 2학기 기말','다음 대화 중 어색한 것은?',['A: What’s wrong with you? You look sick. B: I have had a cold for a week.','A: Have you heard about Jane’s car accident? B: Yes. I have.','A: Are you still doing your homework? B: No, I have already finished my homework.','A: What is the most delicious food you have eaten? B: I’ve never tried tacos.','A: When did you first meet him? B: Five years ago. Since then, we have been best friends.'],[3],[
+O('어디 아프니? 아파 보여. 일주일 동안 감기에 걸려 있어.','have had(have 걸리다) + for a week. 계속이에요.'),
+O('Jane의 교통사고에 대해 들어 봤니? 응, 들어 봤어.','Have you heard(hear 듣다) ~? 에는 Yes, I have.로 답해요.'),
+O('아직도 숙제하는 중이니? 아니, 이미 끝냈어.','already + have finished(finish 끝내다). 완료예요.'),
+X('네가 먹어 본 가장 맛있는 음식은 뭐니? 나는 타코를 먹어 본 적이 없어.','질문은 "가장 맛있던 음식이 뭐냐"인데 대답이 먹어 본 적 없다고 해서 질문과 어긋나요. (어색한 대화 = 정답)'),
+O('그를 처음 언제 만났니? 5년 전에. 그때부터 우리는 가장 친한 친구야.','When은 과거형(did)으로 묻고 Five years ago로 답해요. 그 뒤 Since then + have been(be 이다)은 계속이에요.')]);
+Q('pp48','을지 2020 2학기 기말','다음 글의 빈칸에 들어갈 말이 순서대로 짝지어진 것은?',['lived – of them','lived – for them','has lived – of them','has lived – for them','have lived – of them'],[3],[
+X('열 살 때부터 살았다 / 그들이 길을 잃는 것은 불가능하다(of)','since(~부터)가 있으면 현재완료 has lived! 또 impossible 뒤는 of가 아니라 for.'),
+X('열 살 때부터 살았다 / 그들이 길을 잃는 것은 불가능하다','두 번째 칸은 맞지만 첫 칸이 과거형이에요. since가 있으면 has lived!'),
+X('열 살 때부터 살아 왔다 / 그들이 길을 잃는 것은 불가능하다(of)','첫 칸은 맞지만 impossible은 일이 어떤지 말하니까 of가 아니라 for. (of는 kind·foolish처럼 사람 성격)'),
+O('열 살 때부터 살아 왔다 / 그들이 길을 잃는 것은 불가능하다','Kelly는 3인칭 단수라 has lived(live 살다) + since. impossible은 일이 어떤지를 말해서 for them! (It = 가주어, to get lost = 진짜 주어)'),
+X('Kelly는 열 살 때부터 살아 왔다 / ... (of)','Kelly는 3인칭 단수라서 have가 아니라 has! 또 impossible 뒤는 for.')],{body:['ㆍ Kelly __________ in LA since she was 10 years old.','ㆍ It is impossible __________ to get lost.'],tag:'7과 (가주어)'});
+Q('pp49','을지 2020 2학기 기말','다음 빈칸에 들어갈 말이 순서대로 짝지어진 것은?',['of you – have you seen','of you – has you seen','of you – did you see','for you – have you seen','for you – did you see'],[2],[
+X('너는 그를 믿다니 어리석었다. / 너는 그녀를 언제 봤니? (현재완료)','앞은 맞지만 When(언제)은 현재완료와 못 써요. → did you see'),
+X('has you는 틀린 모양이에요.','you는 has가 아니라 have! 또 When이라서 did you see.'),
+O('너는 그를 믿다니 어리석었다. / 너는 그녀를 언제 봤니?','foolish는 사람의 성격이라서 of you! When(언제)이 있으니 과거형 did you see(see 보다)!'),
+X('foolish인데 for you / When인데 have you seen','foolish는 사람 성격이라 of you! 또 When이라서 did you see.'),
+X('foolish인데 for you','뒤는 맞지만 foolish는 사람의 성격을 말하니까 for가 아니라 of! "너는 어리석다"가 말이 되면 of you.')],{body:['ㆍ It was foolish __________ to believe him.','ㆍ When __________ her?'],tag:'7과 (가주어)'});
+Q('pp50','성신여자 2020 2학기 기말','다음 중 어법상 가장 적절한 문장은?',['Can you tell me what was the missing child wearing?','Don’t ask me what is Amber going to buy on her way home.','Alex wonders how many movies the director has made so far.','John couldn’t ask how Jessica’s sister was tall because he didn’t want to be rude.','I don’t know who did stole the dog which has stayed with Ann for over 10 years.'],[2],[
+X('실종된 아이가 무엇을 입고 있었는지 말해 줄래요?','간접의문문은 의문사 뒤에 "주어 + 동사" 순서! → what the missing child was wearing (wear 입다)'),
+X('Amber가 집에 가는 길에 무엇을 살지 묻지 마세요.','간접의문문은 "의문사 + 주어 + 동사"! → what Amber is going to buy (buy 사다)'),
+O('Alex는 그 감독이 지금까지 몇 편의 영화를 만들었는지 궁금해한다.','how many movies(의문사 덩어리) + the director(주어) + has made(동사). 간접의문문 순서와 현재완료가 모두 맞아요.'),
+X('John은 Jessica의 여동생이 얼마나 큰지 물을 수 없었다.','how tall을 한 덩어리로 써요. → how tall Jessica’s sister was'),
+X('나는 누가 그 개를 훔쳤는지 모른다.','의문사가 주어면 did를 쓰지 않아요. → who stole the dog (steal 훔치다)')],{tag:'8과'});
+
+Object.assign(KEY,{
+pp10:{h:'since + 시작한 때 → 계속(현재완료)',a:[['I have taken piano lessons **since October**.','나는 10월부터 피아노 수업을 받아 왔다.']],c:['가 본 적 있다 = have been to (have gone to ✕)','When · last night → 과거형','arrive 같은 순간 동작 + for ✕']},
+pp11:{h:'부정은 hasn’t + p.p.',a:[['She **hasn’t made** any mistakes.','그녀는 실수를 하나도 하지 않았다.']],c:['Someone → has','last year → 과거형','does 뒤는 동사원형']},
+pp12:{h:'have been to = 가 본 적 있다(경험)',a:[['She **has been to** America **before**.','그녀는 전에 미국에 가 본 적이 있다.']],c:['has + p.p. (took ✕ → taken)','tomorrow와 현재완료 ✕']},
+pp13:{h:'How long + have you + p.p.',a:[['**How long have you lived** in Australia?','너는 호주에서 얼마나 오래 살았니?']],c:['for 뒤는 목적격 (her)','since + 과거 → 앞은 현재완료']},
+pp14:{h:'복수 주어 → haven’t + p.p.',a:[['Thomas and his friends **haven’t made** any mistakes.','Thomas와 친구들은 실수를 하나도 하지 않았다.']],c:['3인칭 단수 → has','meet – met – met']},
+pp15:{h:'already + have + p.p. (완료)',a:[['I have **already finished** my project.','나는 이미 프로젝트를 끝냈다.']],c:['ride – rode – ridden','시간의 길이 → for / 시작한 때 → since']},
+pp16:{h:'already + have + p.p.',a:[['We have **already finished** dinner.','우리는 이미 저녁을 먹었다.']],c:['know – knew – known','never는 have와 p.p. 사이']},
+pp17:{h:'How long + have you known',a:[['**How long have you known** him?','너는 그를 얼마나 오래 알아 왔니?']],c:['ride – rode – ridden','10 years → for','last night → 과거형']},
+pp18:{h:'ago → 과거형(did) 쓰기',al:'고친 문장',a:[['I **didn’t open** the window 2 hours **ago**.','나는 2시간 전에 창문을 열지 않았다.']],c:['When did you ~? (과거형)','yet · for a long time → 현재완료']},
+pp19:{h:'last year → 과거형(went)',al:'고친 문장',a:[['I **went** to France **last year**.','나는 작년에 프랑스에 갔다.']],c:['been to = 가 본 적 있다','How long + have you + p.p.']},
+pp20:{h:'ten minutes ago → 과거형(ate)',al:'고친 문장',a:[['She **ate** breakfast ten minutes **ago**.','그녀는 10분 전에 아침을 먹었다.']],c:['this year → 현재완료 가능','just · since · ever']},
+pp21:{h:'last year → 과거형(lived)',al:'고친 문장',a:[['She **lived** in Seoul **last year**.','그녀는 작년에 서울에 살았다.']],c:['It is lucky for me to ~ (가주어)','never + p.p.']},
+pp22:{h:'30분 전에 → 과거형(arrived)',al:'고친 문장',a:[['He **arrived** home thirty minutes **ago**.','그는 30분 전에 집에 도착했다.']],c:['today는 현재완료 가능','since last week → 계속']},
+pp23:{h:'10 years ago → 과거형(went)',al:'고친 문장',a:[['I **went** to Dok-do 10 years **ago**.','나는 10년 전에 독도에 갔다.']],c:['Have you ever lived ~?','never + eaten']},
+pp24:{h:'never + has + p.p. (won)',al:'고친 문장',a:[['Tom has **never won** the soccer game.','Tom은 축구 경기에서 이긴 적이 없다.']],c:['has gone to = 가 버렸다','for + 시간의 길이']},
+pp25:{h:'since 2019 → 현재완료',al:'고친 문장',a:[['I **have written** two short stories **since 2019**.','나는 2019년부터 짧은 이야기 두 편을 썼다.']],c:['write – wrote – written','have had a cold for two weeks']},
+pp26:{h:'two days ago → 과거형(wrote)',al:'고친 문장',a:[['He **wrote** very creative short stories two days **ago**.','그는 이틀 전에 아주 창의적인 이야기를 썼다.']],c:['When did you ~? (과거형)','since 뒤는 과거형']},
+pp27:{h:'경험 = twice · before · ever · never',a:[['I have been to Africa **twice**.','나는 아프리카에 두 번 가 봤다.']],c:['already · just · yet → 완료','since · for → 계속']},
+pp28:{h:'계속 = for + 시간의 길이 / since + 시작한 때',a:[['He has slept **for thirty minutes**.','그는 30분 동안 자고 있다.']],c:['yet · just → 완료','before · never → 경험']},
+pp29:{h:'나머지 넷은 경험, since는 계속',a:[['My English **has improved since** I moved to America.','내 영어는 미국으로 이사한 이후로 나아졌다.']],c:['never · before · ever · times → 경험','다른 하나 찾기']},
+pp30:{h:'just · yet · already → 완료',a:[['Our final test has **just** finished.','우리 기말시험이 방금 끝났다.']],c:['lost her bag → 결과','ever → 경험']},
+pp31:{h:'계속 = for ten years',a:[['She has worked **for ten years**.','그녀는 10년 동안 일해 왔다.']],c:['How long → 계속','just · yet → 완료']},
+pp32:{h:'네 문장은 경험, 하나만 완료',a:[['I have **just** eaten my pizza.','나는 피자를 방금 먹었다.']],c:['before · times · ever · never → 경험','just → 완료']},
+pp33:{h:'계속 = since 2012 / for 20 years',a:[['He has taught English **for 20 years**.','그는 20년 동안 영어를 가르쳐 왔다.']],c:['stolen my umbrella → 결과','already → 완료']},
+pp34:{h:'already → 완료',a:[['They have **already** finished their project.','그들은 이미 프로젝트를 끝냈다.']],c:['before · never → 경험','for · since → 계속']},
+pp35:{h:'never → 경험',a:[['She has **never** been on TV.','그녀는 TV에 나온 적이 없다.']],c:['yet · just → 완료','for 5 years → 계속']},
+pp36:{h:'been to + many times → 경험',a:[['Jane has been to Jeju-do **many times**.','Jane은 제주도에 여러 번 가 봤다.']],c:['has left for → 결과','for · since → 계속']},
+pp37:{h:'have/has + already + p.p.',a:[['He **has already finished** his homework.','그는 이미 숙제를 끝마쳤다.']],c:['He → has','already는 has와 p.p. 사이']},
+pp38:{h:'in 2015 → lived / for three years → have lived',a:[['We **lived** in this apartment in 2015.','우리는 2015년에 이 아파트에서 살았다.'],['We **have lived** in this apartment for three years.','우리는 이 아파트에서 3년 동안 살아 왔다.']],c:['in + 연도 → 과거형','for + 기간 → 현재완료']},
+pp39:{h:'moved ~ ago + still lives → has lived for',a:[['She **has lived** in Busan **for** five years.','그녀는 부산에서 5년 동안 살아 왔다.']],c:['moved는 순간 동작','for + 시간의 길이']},
+pp40:{h:'I was ten → since + 시작한 때',a:[['I **have known** Daniel **since** I was ten years old.','나는 열 살 때부터 Daniel을 알아 왔다.']],c:['I → have','since + 절']},
+pp41:{h:'last year → since + 시작한 때',a:[['My dad **has owned** a bookstore **since** last year.','우리 아빠는 작년부터 서점을 갖고 있다.']],c:['3인칭 단수 → has','last year = 시작한 때']},
+pp42:{h:'since + 과거형 절',a:[['Paul **hasn’t been** out of the house **since** he **went** to the party last month.','Paul은 지난달 파티에 간 이후로 집 밖에 나가지 않았다.']],c:['out of the house','since 뒤는 과거형']},
+pp43:{h:'10살 때부터 → since he was 10',a:[['He **has known** her **since** he was 10.','그는 10살 때부터 그녀를 알아 왔다.']],c:['for 10 years = 10년 동안','10 years ago ✕']},
+pp44:{h:'since Lisa moved → have changed',a:[['Things **have changed** a lot **since** Lisa moved to Gimpo.','Lisa가 김포로 이사한 이후로 많은 것들이 변했다.']],c:['since 뒤는 과거형','주어는 Things']},
+pp45:{h:'How long + have you known / For + 기간',a:[['**How long have you known** her?','그녀를 얼마나 오래 알아 왔니?'],['**For** more than two years.','2년 넘게.']],c:['가 본 적 → been to','last year → 과거형']},
+pp46:{h:'얼마나 오래 → For + 시간의 길이',al:'고친 문장',a:[['**For** 9 years.','9년 동안이요.']],c:['since + 시작한 때','where Kate is (간접의문문)']},
+pp47:{h:'질문과 대답이 맞아야 해요',a:[['**Five years ago.** Since then, we **have been** best friends.','5년 전에. 그때부터 우리는 가장 친한 친구야.']],c:['When did ~? → 과거형으로 답','Since then → 계속']},
+pp48:{h:'since → has lived / impossible → for + 목적격',a:[['Kelly **has lived** in LA **since** she was 10.','Kelly는 열 살 때부터 LA에 살아 왔다.'],['It is impossible **for them** to get lost.','그들이 길을 잃는 것은 불가능하다.']],c:['impossible → for','foolish · kind → of']},
+pp49:{h:'foolish → of you / When → did',a:[['It was foolish **of you** to believe him.','그를 믿다니 너는 어리석었다.'],['When **did you see** her?','너는 그녀를 언제 봤니?']],c:['사람 성격 → of','When → 과거형']},
+pp50:{h:'간접의문문: 의문사 + 주어 + 동사',a:[['Alex wonders **how many movies the director has made** so far.','Alex는 그 감독이 지금까지 몇 편의 영화를 만들었는지 궁금해한다.']],c:['what + 주어 + 동사','의문사가 주어면 did 안 써요']}
+});
+})();
+
+for(var _k in TOPICS)if(_k!=='gj'&&_k!=='pp')delete TOPICS[_k];QS=QS.filter(function(q){return q.t==='gj'||q.t==='pp'});
 var $=document.getElementById('app'),NUM=['①','②','③','④','⑤'];
 function ls(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
@@ -695,4 +1011,5 @@ function fin(){
   $.querySelectorAll('[data-k]').forEach(function(b){b.onclick=function(){RUN={L:[R.L[+b.dataset.k]],i:0,name:'다시 보기',res:{},sel:[],shown:0};show()}});
 }
 boot();
-</script><script src="../common/base.js"></script></body></html>
+</script><script src="../common/base.js"></script>
+</body></html>
