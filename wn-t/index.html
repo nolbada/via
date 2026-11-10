@@ -245,7 +245,7 @@ var CTL_SEED={'김서진':{ex:[{d:1,at:'2026-11-04'}]},'장은율':{ex:[{d:1,at:
 function ctlParse(d){var m={};try{for(var k in d){var x=d[k],s=(x&&x.v&&typeof x.v.s==='string')?x.v.s:(x&&typeof x.s==='string'?x.s:null);if(s)m[k]=JSON.parse(s)}}catch(e){}return m}
 function ctlOf(M,n){return (M&&M[n])||CTL_SEED[n]||{}}
 function ctlRead(){return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:{}})}).then(function(r){return r.json()}).then(function(r){return ctlParse(r&&r.data||{})})}
-function ctlWrite(n,o){var d={};d[n]={v:{s:JSON.stringify(o)},t:Date.now()};return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:d})}).then(function(r){return r.json()})}
+function ctlWrite(n,o){var d={};d[n]={v:{s:JSON.stringify(o)},t:Date.now()};return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:d})}).then(function(r){return r.json()}).then(function(r){try{post({act:'t_hold',name:n,holds:o.holds||[],hold:o.hold||'',hs:o.hs||''}).catch(function(){})}catch(e){}return r})}
 
 var CTM=null,VARM={};
 function voidSj(x){
