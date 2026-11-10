@@ -142,7 +142,7 @@ details.mo{margin-top:10px}details.mo>summary{cursor:pointer;font-size:14px;font
 .nt .ns2{margin:16px 0 0;padding-top:14px;border-top:1px solid rgba(201,166,107,.35)}.nt .ns2 h3{margin:0 0 9px;font-size:13px;font-weight:700;color:#d9bd86;letter-spacing:.02em}
 .nt .nstg{display:flex}.nt .nstg div{flex:1;text-align:center;padding:2px 0}.nt .nstg div+div{border-left:1px solid rgba(255,255,255,.18)}.nt .nstg b{display:block;font-size:22px;font-weight:800}.nt .nstg span{font-size:11px;opacity:.85}.nt .nstg .g b{color:#d9bd86}
 .nt .nx{font-size:12px;opacity:.85;margin:10px 0 0;line-height:1.5}
-</style></head><body><div id="app"></div>
+.pcd{margin:8px 0 10px}.pcd .pt{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;margin-bottom:6px}.pcd .pt small{color:var(--sub);font-weight:400;font-size:12px}.pcd .pr{padding:8px 0;border-top:1px solid var(--line)}.pcd .pr:first-of-type{border-top:0}.pcd .ph{display:flex;justify-content:space-between;align-items:baseline;font-size:14px}.pcd .ph b{font-size:18px}.pcd .pb{height:6px;border-radius:3px;background:var(--line);margin:6px 0 4px;overflow:hidden}.pcd .pb i{display:block;height:100%;background:#2fa66b;border-radius:3px}.pcd .pd{font-size:12px;color:var(--sub)}</style></head><body><div id="app"></div>
 <script>
 var URL_=/[?&]t=1(&|$)/.test(location.search)?'https://script.google.com/macros/s/AKfycbz0OolJAHbhYzjWxOkRY851Sn1-ZKL3JOYf4eWancUEotJsm4-z6aWzcm-71I9CIWyR/exec':(window.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec'),PIN='6900',WD=['일','월','화','수','목','금','토'];
 function ls(k){try{return localStorage.getItem(k)}catch(e){return null}}
@@ -355,6 +355,7 @@ function home(r){
   document.querySelectorAll('[data-rv]').forEach(function(b){b.onclick=function(){recView(b.dataset.rv)}});
   if(IU){document.querySelectorAll('.st3>button').forEach(function(b){b.onclick=function(){openSp(I,n,ti,b.dataset.i,b)}})}
   if(IU){if(!CALM)CALM=new Date(now.getFullYear(),now.getMonth(),1);drawCal(I,ti)}
+  if(IU)paceLoad(n);
 }
 var FRI1='2026-11-06';
 function adD(k,n){var d=new Date(k+'T00:00:00');d.setDate(d.getDate()+n);return iso(d)}
@@ -373,7 +374,7 @@ function rvStat(P,ti){var M=rvMap(),MD=missedDays(),k,num=0,tot=0,lt=0,ld='';for
 function roomH(I,n,ti){
   var D=recData(I,n,ti),P=D.P;
   function row(key,c,t,l1,l2,chip){return'<button class="tk" data-rv="'+key+'"><i class="bd" style="background:'+c+'"></i><div class="tt"><b>'+t+'</b><small>'+l1+(l2?'<br>'+l2:'')+'</small></div><span class="chip n">'+chip+'</span></button>'}
-  return'<div class="rmz"><h2 class="sec">기록 열람 및 평소 학습</h2>'
+  return'<div class="rmz"><h2 class="sec">기록 열람 및 평소 학습</h2><div id="pace"></div>'
    +row('d','#ff7a66','데일리보카 '+P.d,D.ld?'최근 '+D.ld+'일차 '+I.S[D.ld].s:'아직 시작 전',D.nd?'다음 '+D.nd:'',D.dk.length+' / '+I.Q.n)
    +(function(){var z=rvStat(P,ti);return row('r','#c47a1a','누적 복습',z.ld?'최근 완료 '+dshow(z.ld):'아직 완료한 날 없음',z.ms?'밀림 '+z.ms+'일':(z.lt?'보충 '+z.lt+'일 포함':''),z.num+' / '+z.tot)})()
    +row('x','#4a90e2','더블보카 '+P.dv,D.xl?'최근 시험 Day '+D.xl:'아직 본 시험 없음',D.nx?'다음 시험 '+D.nx:'',D.xn+' / 32')
@@ -382,6 +383,17 @@ function roomH(I,n,ti){
    +row('f','#2fa66b','금요일 말하기',D.lf?'최근 통과 '+dshow(D.lf):'아직 통과한 금요일 없음',D.nf?'다음 '+D.nf:'',D.okN+' / '+D.fr.length)+'</div>';
 }
 function svS(){return lj('wn_star_'+name()+TCM,{})}
+function paceLoad(n){
+  var el=document.getElementById('pace');if(!el)return;
+  function f(x){x=Math.round(x*10)/10;return String(x)}
+  function draw(r){var el2=document.getElementById('pace');if(!el2||!r||!r.ok||!r.me)return;
+    var rows=[['데일리보카','day','일차'],['연속 학습','streak','일'],['이번 주 완료','week','일']];
+    el2.innerHTML='<div class="card pcd"><div class="pt">우리 반 속도<small>'+r.n+'명 기준</small></div>'+rows.map(function(z){var me=r.me[z[1]]||0,o=r[z[1]]||{top:0,avg:0},w=o.top>0?Math.min(100,me/o.top*100):0;
+      return'<div class="pr"><div class="ph"><span>'+z[0]+'</span><b>'+me+'<small> '+z[2]+'</small></b></div><div class="pb"><i style="width:'+w+'%"></i></div><div class="pd">선두 '+o.top+z[2]+' · 평균 '+f(o.avg)+z[2]+'</div></div>'}).join('')+'</div>'}
+  var ck='wn_pace_'+n,c=null;try{c=JSON.parse(sessionStorage.getItem(ck)||'null')}catch(e){}
+  if(c&&Date.now()-c.t<600000){draw(c.r);return}
+  post({act:'pace',name:n,pin:PIN}).then(function(r){if(!r||!r.ok)return;try{sessionStorage.setItem(ck,JSON.stringify({t:Date.now(),r:r}))}catch(e){}draw(r)},function(){})
+}
 function recView(key){
   if(!RC)return;var I=RC.I,n=RC.n,ti=RC.ti,D=recData(I,n,ti),P=D.P,c,t,num,tot,dots='',lst='',q;
   function dot(i,st,c2,lab,x){return'<span class="dc'+(x?' '+x:'')+(st===1?' on':st===2?' ab':'')+'" style="'+(st===1?'background:'+c2:st===2?'border-color:'+c2:'')+'">'+lab+'</span>'}
