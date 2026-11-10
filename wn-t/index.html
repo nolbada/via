@@ -67,6 +67,12 @@ h2.sec{font-size:15px;margin:20px 2px 8px;color:var(--sub);font-weight:700;lette
 .rr .tp .l{font-size:12.5px;color:var(--sub);white-space:nowrap}
 .rr .gr{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 14px;margin-top:10px}.rr .gr span{display:block;font-size:12px;color:var(--sub)}.rr .gr b{font-size:16px;font-weight:600}
 .rr .mt{margin-top:8px;font-size:13.5px;color:var(--sub)}
+.rr.hk{cursor:default}.wkg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:10px}
+.wc{border:1px solid var(--line);border-radius:9px;padding:4px 2px 6px;text-align:center;min-height:62px;background:var(--card)}
+.wc b{display:block;font-size:11.5px;color:var(--sub);font-weight:600}.wc i{display:block;font-style:normal;font-size:13px;font-weight:700;margin-bottom:3px}
+.wc.e{background:transparent;opacity:.7}.wc.tdy{outline:2px solid var(--pri);outline-offset:-1px}
+.cp{display:block;margin-top:3px;border-radius:6px;background:var(--bg);padding:2px 1px;line-height:1.2}
+.cp em{display:block;font-style:normal;font-size:10px;color:var(--c,var(--sub));font-weight:600}.cp small{display:block;font-size:9.5px!important;font-weight:400}.cp u{display:block;text-decoration:none;font-size:12.5px;font-weight:700}
 .kv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}.kv:last-child{border:0}.kv b{font-variant-numeric:tabular-nums}
 .ox{display:flex;gap:6px;flex:none}.obtn{width:46px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-weight:800;font-size:17px}.obtn.o.on{background:var(--ok);color:#fff;border-color:var(--ok)}.obtn.x.on{background:var(--ng);color:#fff;border-color:var(--ng)}
 </style></head><body><div id="app"></div>
@@ -90,11 +96,13 @@ function login(msg){
   $.innerHTML='<h1>REC H</h1><div class="card"><input class="tx" id="pw" type="password" autocomplete="off" placeholder="비밀번호"><button class="btn pri" id="go">열기</button><div class="msg" id="m">'+(msg||'')+'</div></div>';
   document.getElementById('go').onclick=function(){PW=document.getElementById('pw').value;ss('wn_pw',PW);main()};
 }
+var MID2=['이상현','이지호','김하율','최승후','문준서','최신후'];
 var TAB=ls('wn_tab')||'st',LIM=Number(ls('wn_lim'))||10;
 function main(){
   $.innerHTML='<div class="msg">불러오는 중...</div>';
   post({act:'t_students'}).then(function(r){
     if(!r||!r.ok){login('비밀번호를 확인해 주세요.');return}
+    r.students.forEach(function(s){if(MID2.indexOf(s.name)>=0)s.grade='중2'});
     var h='<h1>REC H</h1><div class="tabs"><button data-t="st"'+(TAB==='st'?' class="on"':'')+'>현황</button><button data-t="ask"'+(TAB==='ask'?' class="on"':'')+'>질문</button><button data-t="hw"'+(TAB==='hw'?' class="on"':'')+'>숙제 체크</button><button data-t="sc"'+(TAB==='sc'?' class="on"':'')+'>점수 체크</button><button data-t="ct"'+(TAB==='ct'?' class="on"':'')+'>컨트롤</button></div><div id="body"></div>';
     $.innerHTML=h;
     $.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){TAB=b.dataset.t;ss('wn_tab',TAB);main()}});
@@ -471,13 +479,19 @@ function hw(r){
     var fl=SC?[['all','전체'],['v','더블보카'],['m','미니모의']]:[['all','전체'],['d','데일리'],['r','누적복습']];
     var t='<div class="top"><button class="sbtn" id="pv">이전 주</button><div class="t" style="text-align:center">'+dshow(from)+' ~ '+dshow(last)+'</div><button class="sbtn" id="nx">다음 주</button></div><div style="display:flex;gap:6px;margin:8px 0">'+fl.map(function(f){return'<button class="sbtn" data-f="'+f[0]+'" style="flex:1;padding:6px 2px;'+(F===f[0]?'background:var(--soft);border-color:var(--pri)':'')+'">'+f[1]+'</button>'}).join('')+'</div>';
     if(!SC&&!revOk&&F==='r')t+='<div class="msg">누적복습 기록은 서버를 새로 배포하면 보여요.</div>';
-    t+='<div class="card"><table style="font-size:12.5px"><tr><th>이름</th>'+days.map(function(d){return'<th>'+d+'<div class="sub" style="font-weight:400">'+dshow(ymd(new Date(m.getTime()+offs[d]*86400e3))).replace(/\(.*\)/,'')+'</div></th>'}).join('')+'</tr>';
-    r.students.forEach(function(s){t+='<tr><td>'+esc(s.name)+'</td>'+days.map(function(d){var x=(map[s.name]||{})[d];if(!x)return'<td></td>';
-      return'<td class="x">'+x.map(function(e){var l=lab(e),sc=String(e.score||'');
-        if(SC)return'<div style="line-height:1.25"><small style="display:block;font-size:9.5px;font-weight:400;color:'+l[1]+'">'+l[0]+'</small>'+mmt(e)+'<b style="color:'+tone(sc)+'">'+esc(sc.replace(/\s*✓/,''))+'</b></div>';
-        var prog=/진행중/.test(sc);
-        return'<div style="line-height:1.2"><small style="display:block;font-size:9.5px;font-weight:400;color:'+l[1]+'">'+l[0]+'</small>'+mmt(e)+'<span style="font-size:15px;color:'+(prog?'#999':'#1f7a4d')+'">'+(prog?'…':'✔')+'</span><small style="display:block;font-size:9.5px;font-weight:400;color:#888">'+(prog?'진행중':esc(sc))+'</small></div>'}).join('')+'</td>'}).join('')+'</tr>'});
-    t+='</table></div>';b.innerHTML=t;
+    var tdy=kst(),cnt=0;
+    t+='<div class="lst">'+r.students.map(function(s){
+      var q=map[s.name]||{},n=0;
+      var cells=days.map(function(d){var x=q[d],dt=ymd(new Date(m.getTime()+offs[d]*86400e3)),dn=+dt.slice(8),cl='wc'+(dt===tdy?' tdy':'');
+        if(!x)return'<div class="'+cl+' e"><b>'+d+'</b><i>'+dn+'</i></div>';
+        n+=x.length;
+        return'<div class="'+cl+'"><b>'+d+'</b><i>'+dn+'</i>'+x.map(function(e){var l=lab(e),sc=String(e.score||'');
+          if(SC)return'<span class="cp" style="--c:'+l[1]+'"><em>'+l[0]+'</em>'+mmt(e)+'<u style="color:'+tone(sc)+'">'+esc(sc.replace(/\s*✓/,''))+'</u></span>';
+          var prog=/진행중/.test(sc);
+          return'<span class="cp" style="--c:'+l[1]+'"><em>'+l[0]+'</em>'+mmt(e)+'<u style="color:'+(prog?'#94a3b8':'#16a34a')+'">'+(prog?'진행중':(/누적/.test(l[0])?esc(sc):'완료'))+'</u></span>'}).join('')+'</div>'}).join('');
+      cnt+=n;
+      return'<div class="rr hk" style="--sc:'+(n?'#16a34a':'#94a3b8')+'"><div class="av">'+esc(schAv(s))+'</div><div class="bd"><div class="tp"><div class="nm"><b>'+esc(s.name)+'</b><span class="s">'+esc(s.grade)+(s.school?' '+esc(s.school):'')+'</span></div><div class="l">'+(n?'이번 주 '+n+'건':'이번 주 기록 없음')+'</div></div><div class="wkg">'+cells+'</div></div></div>'}).join('')+'</div>';
+    b.innerHTML=t;
     Array.prototype.forEach.call(b.querySelectorAll('[data-f]'),function(x){x.onclick=function(){HFS[SC?'sc':'hw']=x.dataset.f;hw(r)}});document.getElementById('pv').onclick=function(){WK--;hw(r)};document.getElementById('nx').onclick=function(){WK++;hw(r)};
   },function(){b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
 }
