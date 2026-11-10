@@ -335,7 +335,7 @@ function bkOk(it,v){
 function bkDone(it,v){
   if(v==null)return false;
   if(it.kind==="mc")return typeof v==="number";
-  if(it.kind==="ms")return Array.isArray(v)&&v.length===it.k;
+  if(it.kind==="ms")return Array.isArray(v)&&v.length>=1;
   for(var k=0;k<it.n;k++)if(!v[k])return false;return true}
 function bkResult(p,qi){
   var st=bkState(p);if(!st.sub)return null;
