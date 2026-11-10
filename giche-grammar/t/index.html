@@ -810,8 +810,343 @@ else if(/빈칸|한 문장으로/.test(s))t='빈칸·문장 전환';
 else if(/어색|옳지|바르지|않은/.test(s))t='어색한 것 찾기';
 else t='옳은 것 고르기';
 q.ty=t})})();
+(function(){
+var O=function(m,w){return{ok:1,m:m,w:w}};
+var X=function(m,w){return{ok:0,m:m,w:w}};
+var Ob=function(l,m,w){return{l:l,ok:1,m:m,w:w}};
+var Xb=function(l,m,w){return{l:l,ok:0,m:m,w:w}};
+TOPICS.ind.sets=[
+['ind1','ind4','ind9','ind10','ind11','ind12','ind13','ind14','ind15','ind16'],
+['ind17','ind18','ind19','ind20','ind21','ind22','ind23','ind24','ind25','ind26'],
+['ind2','ind27','ind28','ind29','ind30','ind31','ind32','ind33','ind34','ind35'],
+['ind3','ind36','ind37','ind38','ind39','ind40','ind41','ind42','ind43','ind44'],
+['ind5','ind6','ind7','ind8','ind45','ind46','ind47','ind48','ind49','ind50']];
+TOPICS.ind.cards[1].items.push({n:'5',d:'의문사와 뒤 낱말은 한 덩어리',chips:['how tall','how many books','what time','what color'],e:'I know **how tall he is**.',k:'그가 키가 얼마나 큰지 알아요.'});
+TOPICS.ind.cards.splice(2,0,{type:'vs',title:'if의 두 얼굴',a:{t:'~인지 아닌지',rows:[['자리','know · wonder · ask · sure 뒤'],['예문','I don’t know **if** it will rain.'],['','비가 올지 모르겠어요. (will 쓸 수 있어요)']]},b:{t:'만약 ~라면',rows:[['자리','문장 맨 앞이나 중간에서 조건'],['예문','**If** it rains, I will stay home.'],['','비가 오면 집에 있을 거예요. (will 쓰지 않아요)']]}});
+function Q(id,src,stem,ch,ans,ex,o){var q={id:id,t:'ind',src:src,tag:'8과',stem:stem,body:[],ch:ch,ans:ans,lab:'ch',ex:ex};for(var k in(o||{}))q[k]=o[k];QS.push(q)}
+function B(id,src,stem,body,ch,ans,ex,o){var q={id:id,t:'ind',src:src,tag:'8과',stem:stem,body:body,ch:ch,ans:ans,lab:'body',ex:ex};for(var k in(o||{}))q[k]=o[k];QS.push(q)}
+var S1='다음 중 어법상 옳은 것은?',S2='다음 중 어법상 어색한 문장은?';
 
-for(var _k in TOPICS)if(_k!=='gj'&&_k!=='pp')delete TOPICS[_k];QS=QS.filter(function(q){return q.t==='gj'||q.t==='pp'});
+/* ---- 세트 1 ---- */
+Q('ind9','대신 2019 2학기 기말',S1,['Nobody knew where did he come from.','Can you tell me where is the bathroom?','Do you know when does the bank close?','Please tell me what your first movie was.','I’d like to know did who you meet at the party.'],[3],[
+X('아무도 그가 어디서 왔는지 몰랐다.','do/does/did는 사라지고 "의문사 + 주어 + 동사"! → where he came from (come 오다)'),
+X('화장실이 어디인지 말해 줄래요?','→ where the bathroom is. 주어(the bathroom)가 동사(is) 앞에 와요.'),
+X('은행이 언제 닫는지 아세요?','does를 없애고 동사에 -s! → when the bank closes (close 닫다)'),
+O('당신의 첫 영화가 무엇이었는지 말해 주세요.','what + 주어(your first movie) + 동사(was). 순서가 맞아요.'),
+X('네가 파티에서 누구를 만났는지 알고 싶다.','did가 앞에 나오면 안 돼요. → who you met at the party (meet 만나다)')]);
+Q('ind10','동평 2019 2학기 기말','다음 중 어법상 올바른 문장은?',['I wonder why is she crying.','He asked me I was Simon’s sister.','Do you know who is going to come?','Can you tell me how it will take long?','Tell me how did you spend your vacation.'],[2],[
+X('그녀가 왜 울고 있는지 궁금하다.','→ why she is crying. "의문사 + 주어 + 동사" (cry 울다)'),
+X('그는 내가 Simon의 여동생인지 물었다.','의문사가 없을 땐 if/whether가 필요해요. → He asked me if I was Simon’s sister. (ask 묻다)'),
+O('누가 올 건지 아니?','who가 주어 자리라서 바로 뒤에 동사(is going to)가 와요. 순서 그대로 맞아요.'),
+X('그것이 얼마나 오래 걸릴지 말해 줄래요?','how long은 한 덩어리! → how long it will take (take 걸리다)'),
+X('방학을 어떻게 보냈는지 말해 줘.','did를 없애고 동사는 과거형으로. → how you spent your vacation (spend 보내다)')]);
+Q('ind11','삼호 2019 2학기 기말','다음 중 어법상 올바른 문장은?',['I wonder who is he.','I know where does she live.','Tell me when the guest will arrive.','Can you tell me how old are you?','Do you remember when is his birthday?'],[2],[
+X('그가 누구인지 궁금하다.','→ who he is. 주어(he)가 먼저, 동사(is)가 뒤.'),
+X('나는 그녀가 어디 사는지 안다.','does를 없애고 동사에 -s! → where she lives (live 살다)'),
+O('손님이 언제 도착할지 말해 주세요.','when + 주어(the guest) + 동사(will arrive). 맞아요.'),
+X('너는 몇 살인지 말해 줄래?','how old는 한 덩어리! → how old you are'),
+X('그의 생일이 언제인지 기억하니?','→ when his birthday is (remember 기억하다)')]);
+Q('ind12','선린 2019 2학기 기말',S1,['He asked me I had any money.','I want to know who wrote this book.','Nobody knew where did he come from.','Can you tell me where is the bathroom?','Do you know when does the bank close?'],[1],[
+X('그는 내게 돈이 있는지 물었다.','의문사가 없으니 if/whether가 필요해요. → He asked me if I had any money. (ask 묻다)'),
+O('누가 이 책을 썼는지 알고 싶다.','who가 주어라서 바로 뒤에 동사(wrote)가 와요. 순서 그대로 맞아요. (write 쓰다)'),
+X('아무도 그가 어디서 왔는지 몰랐다.','→ where he came from. did는 사라져요. (come 오다)'),
+X('화장실이 어디인지 말해 줄래요?','→ where the bathroom is'),
+X('은행이 언제 닫는지 아세요?','→ when the bank closes (close 닫다)')]);
+Q('ind13','신연 2019 2학기 기말',S1,['I don’t know what she want.','Tell me when the guests arrives.','I don’t know who did such a thing.','Tell me why is this happening to me.','Don’t ask me what did he buy in the store.'],[2],[
+X('나는 그녀가 무엇을 원하는지 모른다.','she는 3인칭 단수라서 동사에 -s! → what she wants (want 원하다)'),
+X('손님들이 언제 도착하는지 말해 줘.','guests는 복수라서 arrives가 아니라 arrive! → when the guests arrive'),
+O('나는 누가 그런 일을 했는지 모른다.','who가 주어 자리! 바로 뒤에 동사(did)가 와요. (do 하다)'),
+X('왜 나한테 이런 일이 일어나는지 말해 줘.','→ why this is happening to me. 주어(this)가 먼저. (happen 일어나다)'),
+X('그가 가게에서 무엇을 샀는지 묻지 마.','did를 없애고 동사는 과거형으로. → what he bought (buy 사다)')]);
+Q('ind14','인왕 2019 2학기 기말','다음 중 문법적으로 옳은 문장은?',['I don’t know why are they angry.','Don’t tell me what should I do with my life.','I want to know what will you do on the weekend.','You always ask the teacher when is his class finished.','Please tell me how I can go to Inwang Middle School.'],[4],[
+X('나는 그들이 왜 화났는지 모른다.','→ why they are angry'),
+X('내가 내 인생을 어떻게 해야 할지 말하지 마.','→ what I should do with my life. 조동사(should)도 주어 뒤로! (do 하다)'),
+X('나는 네가 주말에 뭘 할지 알고 싶다.','→ what you will do on the weekend'),
+X('너는 선생님께 수업이 언제 끝나는지 늘 묻는다.','→ when his class is finished. 주어(his class)가 먼저. (finish 끝내다)'),
+O('인왕중학교에 어떻게 가는지 말해 주세요.','how + 주어(I) + 동사(can go). 순서가 맞아요. (go 가다)')],{adapted:1});
+Q('ind15','갈뫼 2020 2학기 기말',S1,['I want to know who wrote this book.','I don’t know if has a brother or sister.','I sat down because of was feeling dizzy.','They stopped playing soccer because the rain.','I wonder if when Simon is coming to my house.'],[0],[
+O('나는 누가 이 책을 썼는지 알고 싶다.','who가 주어라서 바로 뒤에 동사. 맞아요. (write 쓰다)'),
+X('나는 그에게 형제나 자매가 있는지 모른다.','if 뒤에도 주어가 필요해요. → if he has a brother or sister'),
+X('나는 어지러워서 앉았다.','because of 뒤에는 명사만! → because I was feeling dizzy (dizzy 어지러운)'),
+X('비 때문에 그들은 축구를 멈췄다.','because 뒤에 명사만 오면 because of! → because of the rain'),
+X('나는 Simon이 언제 오는지 궁금하다.','if와 when을 같이 쓰지 않아요. → I wonder when Simon is coming. / I wonder if Simon is coming.')]);
+Q('ind16','다사 2020 2학기 기말','다음 중 어법상 올바른 것은?',['I’d like to know his who favorite actress is.','Do you know when and he where was born?','She doesn’t know where does his friends live.','I want to ask you what you subject like to study.','I don’t know how long her parents have been in Korea.'],[4],[
+X('그의 가장 좋아하는 여배우가 누구인지 알고 싶다.','의문사는 맨 앞! → who his favorite actress is'),
+X('너는 그가 언제 어디서 태어났는지 아니?','→ when and where he was born. 의문사끼리 먼저 쓰고 주어·동사가 뒤.'),
+X('그녀는 그의 친구들이 어디 사는지 모른다.','does를 없애고 friends는 복수라서 live! → where his friends live'),
+X('나는 네가 무슨 과목을 공부하고 싶은지 묻고 싶다.','what subject는 한 덩어리! → what subject you like to study'),
+O('나는 그녀의 부모님이 한국에 얼마나 오래 계셨는지 모른다.','how long + 주어 + have been. 현재완료도 순서만 지키면 돼요.')]);
+
+/* ---- 세트 2 ---- */
+Q('ind17','대전괴정 2019 2학기 기말',S2,['I’m not sure if she likes it.','He asked me if I had any money.','Do you know who stole the wallet?','Can you tell me where is the bathroom?','I want to know how you spent your vacation.'],[3],[
+O('그녀가 그것을 좋아하는지 확실하지 않다.','if(~인지 아닌지) + 주어 + 동사. 자연스러워요. (like 좋아하다)'),
+O('그는 내게 돈이 있는지 물었다.','if + 주어 + 동사. 자연스러워요.'),
+O('누가 그 지갑을 훔쳤는지 아세요?','who가 주어라서 순서 그대로. 자연스러워요. (steal 훔치다)'),
+X('화장실이 어디인지 말해 줄래요?','→ where the bathroom is. 주어가 동사 앞! (어색한 문장 = 정답)'),
+O('나는 방학을 어떻게 보냈는지 알고 싶다.','how + 주어 + 동사(spent). 자연스러워요. (spend 보내다)')]);
+Q('ind18','무룡 2019 2학기 기말',S2,['I don’t know who stole my camera.','Tell me when the guests will arrive.','Don’t ask me what did he buy in the store.','Can you tell me who your favorite actor is?','I’d like to know how many movies you have made so far.'],[2],[
+O('나는 누가 내 카메라를 훔쳤는지 모른다.','who가 주어. 자연스러워요.'),
+O('손님들이 언제 도착할지 말해 주세요.','when + 주어 + 동사. 자연스러워요.'),
+X('그가 가게에서 무엇을 샀는지 묻지 마세요.','did를 없애고 동사는 과거형으로. → what he bought (buy 사다) (어색한 문장 = 정답)'),
+O('당신이 가장 좋아하는 배우가 누구인지 말해 줄래요?','who + 주어 + 동사(is). 자연스러워요.'),
+O('지금까지 몇 편의 영화를 만드셨는지 알고 싶습니다.','how many movies를 앞에 묶고 you have made. 자연스러워요. (make 만들다)')]);
+Q('ind19','구로 2020 2학기 기말','다음 중 어법상 옳지 않은 문장은?',['David told me what was she doing.','Tell me how the movie was.','Do you know where she went?','He asked me how she saved money.','I wonder why she is crying.'],[0],[
+X('David는 그녀가 뭘 하고 있는지 내게 말했다.','→ what she was doing. 주어(she)가 먼저! (어색한 문장 = 정답)'),
+O('그 영화가 어땠는지 말해 줘.','how + 주어 + 동사. 자연스러워요.'),
+O('그녀가 어디 갔는지 아니?','where + 주어 + 동사(went). 자연스러워요. (go 가다)'),
+O('그는 내게 그녀가 어떻게 돈을 모았는지 물었다.','how + 주어 + 동사. 자연스러워요. (save 모으다)'),
+O('나는 그녀가 왜 울고 있는지 궁금하다.','why + 주어 + 동사. 자연스러워요. (cry 울다)')]);
+Q('ind20','무룡 2020 2학기 기말',S2,['Tell me when will you come home.','I don’t know who stole my camera.','Can you tell me what time it was?','Minsu didn’t know where the book was.','Don’t ask me what he bought in the store.'],[0],[
+X('언제 집에 올 건지 말해 줘.','→ when you will come home. 주어(you)가 먼저! (come 오다) (어색한 문장 = 정답)'),
+O('나는 누가 내 카메라를 훔쳤는지 모른다.','who가 주어. 맞아요.'),
+O('몇 시였는지 말해 줄래요?','what time + 주어(it) + 동사(was). 맞아요.'),
+O('민수는 그 책이 어디 있는지 몰랐다.','where + 주어 + 동사. 맞아요.'),
+O('그가 가게에서 무엇을 샀는지 묻지 마세요.','what + 주어 + 동사(bought). 맞아요.')]);
+Q('ind21','세일 2020 2학기 기말',S2,['John asked me who the girl was.','I don’t know who borrowed your book.','Tell me when you will come home.','I don’t know who stole my camera.','She didn’t know where were the books.'],[4],[
+O('John은 그 소녀가 누구인지 내게 물었다.','who + 주어 + 동사. 맞아요.'),
+O('나는 누가 네 책을 빌렸는지 모른다.','who가 주어. 맞아요. (borrow 빌리다)'),
+O('언제 집에 올지 말해 줘.','when + 주어 + 동사. 맞아요.'),
+O('나는 누가 내 카메라를 훔쳤는지 모른다.','who가 주어. 맞아요.'),
+X('그녀는 그 책들이 어디 있는지 몰랐다.','→ where the books were. 주어(the books)가 먼저! (어색한 문장 = 정답)')]);
+Q('ind22','윤중 2020 2학기 기말',S2,['I don’t know who stole my phone.','Tell me when the guests will arrive.','She didn’t know where the books were.','Don’t ask me what he bought in the store.','I’d like to know how have you made many movies so far.'],[4],[
+O('나는 누가 내 휴대폰을 훔쳤는지 모른다.','who가 주어. 맞아요.'),
+O('손님들이 언제 도착할지 말해 주세요.','when + 주어 + 동사. 맞아요.'),
+O('그녀는 책들이 어디 있는지 몰랐다.','where + 주어 + 동사. 맞아요.'),
+O('그가 가게에서 무엇을 샀는지 묻지 마세요.','what + 주어 + 동사. 맞아요.'),
+X('지금까지 몇 편의 영화를 만들었는지 알고 싶다.','how many movies는 한 덩어리로 묶고 → how many movies you have made so far (어색한 문장 = 정답)')]);
+B('ind23','남성 2019 2학기 기말','다음 중 어법상 어색한 것을 모두 고른 것은?',['(A) I’ve known him since I was a child.','(B) I’ve been to Jeju-do last year.','(C) I asked him who the girl was.','(D) I don’t know what did he buy in the store.'],['(A), (B)','(B), (C)','(A), (C)','(B), (D)','(A), (D)'],[3],[
+Ob('(A)','나는 어릴 때부터 그를 알아 왔다.','since + 시작한 때. 현재완료가 맞아요. (know 알다)'),
+Xb('(B)','나는 작년에 제주도에 갔었다.','last year(작년)는 과거를 콕 집는 말이라 현재완료와 못 써요. → I went to Jeju-do last year. (go 가다)'),
+Ob('(C)','나는 그에게 그 소녀가 누구인지 물었다.','who + 주어 + 동사(was). 맞아요.'),
+Xb('(D)','나는 그가 가게에서 무엇을 샀는지 모른다.','did를 없애고 → what he bought in the store (buy 사다)')],{tag:'7·8과'});
+B('ind24','연화 2020 2학기 기말','다음 <보기> 중 어법상 오류가 있는 문장만을 모두 고른 것은?',['ⓐ He asked me I had any money.','ⓑ Nobody knew where did he come from.','ⓒ Can you tell me where is the bathroom?','ⓓ Do you know when does the bank close?','ⓔ I’d like to know what can you do at the party.'],['ⓐ','ⓐ, ⓑ','ⓑ, ⓒ, ⓓ','ⓑ, ⓒ, ⓓ, ⓔ','ⓐ, ⓑ, ⓒ, ⓓ, ⓔ'],[4],[
+Xb('ⓐ','그는 내게 돈이 있는지 물었다.','if/whether가 빠졌어요. → He asked me if I had any money.'),
+Xb('ⓑ','아무도 그가 어디서 왔는지 몰랐다.','→ where he came from (come 오다)'),
+Xb('ⓒ','화장실이 어디인지 말해 줄래요?','→ where the bathroom is'),
+Xb('ⓓ','은행이 언제 닫는지 아세요?','→ when the bank closes (close 닫다)'),
+Xb('ⓔ','파티에서 뭘 할 수 있는지 알고 싶다.','→ what you can do at the party. 조동사(can)도 주어 뒤! (do 하다)')]);
+Q('ind25','북악 2020 2학기 기말',S1,['She didn’t know where were the books.','I want to know what color the boy was wearing.','Do you know how many books does she have?','Can you tell me why did you become a director?','I’d like to know how many movies have you made so far.'],[1],[
+X('그녀는 책들이 어디 있는지 몰랐다.','→ where the books were'),
+O('나는 그 소년이 무슨 색을 입고 있었는지 알고 싶다.','what color는 한 덩어리 + 주어(the boy) + 동사(was wearing). 맞아요. (wear 입다)'),
+X('그녀가 책을 몇 권 갖고 있는지 아니?','→ how many books she has. does는 사라져요. (have 갖고 있다)'),
+X('왜 감독이 되었는지 말해 줄래요?','→ why you became a director. did는 사라지고 과거형으로. (become 되다)'),
+X('지금까지 몇 편의 영화를 만들었는지 알고 싶다.','→ how many movies you have made so far (make 만들다)')],{tag:'7·8과'});
+Q('ind26','상원 2020 2학기 기말','다음 중 어법상 바른 것은?',['I don’t care where are you from.','I don’t know who stole my camera.','Can you tell me where do you live?','I want to know where does Kevin live.','Tell me what time will the guests arrive.'],[1],[
+X('나는 네가 어디서 왔는지 신경 쓰지 않는다.','→ where you are from (care 신경 쓰다)'),
+O('나는 누가 내 카메라를 훔쳤는지 모른다.','who가 주어라서 순서 그대로. 맞아요.'),
+X('어디 사는지 말해 줄래요?','→ where you live. do는 사라져요.'),
+X('나는 Kevin이 어디 사는지 알고 싶다.','→ where Kevin lives (live 살다)'),
+X('손님들이 몇 시에 도착할지 말해 줘.','→ what time the guests will arrive. what time은 한 덩어리.')]);
+
+/* ---- 세트 3 ---- */
+Q('ind27','인왕 2019 2학기 기말','다음 주어진 두 문장을 한 문장으로 올바르게 합친 것은?',['You didn’t tell me where you go during your summer vacation.','You didn’t tell me where did you go during your summer vacation.','You didn’t tell me where you did go during your summer vacation.','You didn’t tell me where you went during your summer vacation.','You didn’t tell me where did you go to during your summer vacation.'],[3],[
+X('너는 여름방학에 어디 가는지 말해 주지 않았다.','Where did you go?는 과거라서 합쳐도 과거형(went)이어야 해요.'),
+X('You didn’t tell me where did you go ~','did you는 질문 순서! 간접의문문은 → where you went'),
+X('You didn’t tell me where you did go ~','did를 없애고 동사를 과거형으로 바꿔요. → where you went'),
+O('너는 여름방학에 어디 갔었는지 말해 주지 않았다.','Where did you go? → where you went. did가 없어지고 go가 과거형 went로!'),
+X('You didn’t tell me where did you go to ~','질문 순서가 남아 있어요. → where you went')],{body:['You didn’t tell me.','+','Where did you go during your summer vacation?'],adapted:1});
+Q('ind28','중앙 2019 2학기 기말','다음 두 문장을 어법에 맞게 한 문장으로 바르게 만든 것은?',['Can you tell me why he send me the box?','Can you tell me why he sent me the box?','Can you tell me why did he sent me the box?','Can you tell me why he did sent me the box?','Can you tell me why did he sends me the box?'],[1],[
+X('왜 그가 내게 상자를 보내는지 말해 줄래요?','did를 없앴으면 send를 과거형 sent로! → why he sent'),
+O('왜 그가 내게 상자를 보냈는지 말해 줄래요?','Why did he send ~? → why he sent. did가 사라지고 send가 sent(send 보내다)로!'),
+X('why did he sent','did가 남아 있고 sent도 틀려요. → why he sent'),
+X('why he did sent','did sent는 둘 다 과거예요. did는 없애요. → why he sent'),
+X('why did he sends','질문 순서가 남아 있고 sends도 틀려요. → why he sent')],{body:['Can you tell me?','Why did he send me the box?'],tag:'8과'});
+Q('ind29','가림 2020 2학기 기말','다음 중 주어진 문장을 완곡한 표현으로 바르게 전환한 것은?',['Is Jack back home? → I wonder Jack is back home?','Who borrowed the book? → I want to know who the book borrowed.','Will he come early? → I’d like to know whether he comes early.','Why did you become a director? → Tell me why you become a director.','How many years have you lived here? → Can you tell me how many years you have lived here?'],[4],[
+X('Jack이 집에 돌아왔는지 궁금하다.','의문사가 없으니 if/whether가 필요해요. → I wonder if Jack is back home.'),
+X('누가 그 책을 빌렸는지 알고 싶다.','who가 주어예요. 순서 그대로 → who borrowed the book (borrow 빌리다)'),
+X('그가 일찍 오는지 알고 싶다.','Will he come?의 will이 사라졌어요. → whether he will come early'),
+X('왜 감독이 되었는지 말해 주세요.','Why did you become? 과거라서 → why you became a director (become 되다)'),
+O('여기서 몇 년 살았는지 말해 줄래요?','how many years + 주어(you) + have lived. 현재완료도 그대로 유지돼요.')]);
+Q('ind30','온곡 2020 2학기 기말','다음 빈칸에 들어갈 말이 순서대로 바르게 된 것은?',['arrive - is - makes','arrives - is - made','arrived - was - makes','will arrive - is - has made','will arrive - was - have made'],[4],[
+X('arrive – is – makes','첫 칸은 "언제 도착할지"라서 will arrive가 어울리고, 셋째 칸은 you에 맞게 have made.'),
+X('arrives – is – made','students는 복수라 arrives가 틀렸고 셋째 칸도 have made가 맞아요.'),
+X('arrived – was – makes','셋째 칸이 you makes로 틀렸어요. → how many movies you have made so far'),
+X('will arrive – is – has made','첫 칸은 맞지만 셋째 칸 you has made가 틀려요. you에는 have!'),
+O('will arrive – was – have made','학생들이 언제 도착할지 / 몇 시였는지 / 영화를 몇 편 만들었는지. arrive(도착하다), make(만들다). 모두 "의문사 + 주어 + 동사" 순서예요.')],{body:['ㆍTell me when the students __________.','ㆍCan you tell me what time it __________.','ㆍDo you know how many movies you __________ so far.']});
+Q('ind31','온곡 2020 2학기 기말','다음 우리말과 같도록 빈칸에 들어갈 말로 알맞은 것은?',['he will buy','he is buying','does he buy','he bought','did he buy'],[3],[
+X('그가 살 것이다','과거(샀는지)를 물었으니 will은 안 맞아요.'),
+X('그가 사고 있다','과거(샀는지)를 물었으니 is buying은 안 맞아요.'),
+X('does he buy','질문 순서예요. 간접의문문은 "주어 + 동사"!'),
+O('그가 샀는지','what + he + bought. 샀는지 = 과거형 bought(buy 사다)!'),
+X('did he buy','did는 사라지고 과거형 bought로! → what he bought')],{body:['Don’t ask me what __________ in the store.','그가 그 가게에서 무엇을 샀는지 나에게 묻지 마세요.']});
+Q('ind32','갈뫼 2020 2학기 기말','다음 중 주어진 단어를 배열해서 문장을 만들 수 없는 것은?',['want / where / to / I / is / know / she','me / much / tell / how / book / please / this','where / from / nobody / came / knew / he','you / me / can / is / tell / she / why / angry','sure / I / if / present / like / not / she / will / am / my'],[1],[
+O('I want to know where she is.','나는 그녀가 어디 있는지 알고 싶다. 모든 낱말이 쓰였어요.'),
+X('Please tell me how much this book ...','how much this book 뒤에 동사 is가 없어서 완성할 수 없어요. 문장을 만들 수 없는 것 = 정답'),
+O('Nobody knew where he came from.','아무도 그가 어디서 왔는지 몰랐다. (come 오다)'),
+O('Can you tell me why she is angry?','그녀가 왜 화났는지 말해 줄래요? 순서 맞아요.'),
+O('I am not sure if she will like my present.','그녀가 내 선물을 좋아할지 확실하지 않다. (like 좋아하다)')],{vo:'○ 만들 수 있음',vx:'✕ 만들 수 없음',adapted:1});
+Q('ind33','성신여자 2020 2학기 기말','다음 중 밑줄 친 if의 의미가 다른 하나는?',['He cannot talk to Amy if she is still angry at him.','Even teachers are not sure if Tom will come back to school.','I will let you know as soon as possible if I decide what to buy.','If the weather is nice, I will go on a picnic with my close friends.','If you make the same mistake many times, it is not a mistake.'],[1],[
+O('그녀가 아직 화나 있다면 그는 Amy에게 말을 걸 수 없다.','if = 만약 ~라면 (조건)'),
+X('선생님들조차 Tom이 학교에 돌아올지 확신하지 못한다.','sure(확신하는) 뒤의 if는 "~인지 아닌지"예요. 다른 하나 = 정답'),
+O('무엇을 살지 정하면 가능한 한 빨리 알려 줄게.','if = 만약 ~라면 (decide 정하다)'),
+O('날씨가 좋으면 친한 친구들과 소풍을 갈 거야.','if = 만약 ~라면. 맞아요.'),
+O('같은 실수를 여러 번 하면 그것은 실수가 아니다.','if = 만약 ~라면')],{vo:'○ 만약 ~라면',vx:'✕ ~인지 아닌지',tag:'8과',ty:'if 구분'});
+Q('ind34','성암여자 2021 2학기 기말','다음 중 밑줄 친 who의 쓰임이 <보기>와 같은 것은?',['Guess who this is?','Do you know who I am?','Who do you like the most?','I don’t remember who broke the cup.','The girl who is standing next to him is my sister.'],[4],[
+X('이게 누구인지 맞혀 봐.','"누구"라는 뜻의 의문사예요. <보기>는 the man을 꾸며 주는 관계대명사 who. (guess 추측하다)'),
+X('내가 누구인지 아니?','"누구"라는 의문사 who예요. (know 알다)'),
+X('너는 누구를 가장 좋아하니?','"누구"라는 의문사 who예요. (like 좋아하다)'),
+X('나는 누가 컵을 깼는지 기억나지 않는다.','"누가"라는 의문사 who예요. 간접의문문이에요. (break 깨다)'),
+O('그의 옆에 서 있는 소녀는 내 여동생이다.','the girl을 꾸며 주는 관계대명사 who예요. <보기>와 같아요.')],{body:['Do you know the man who is crying over there?'],vo:'○ 같은 쓰임(관계대명사)',vx:'✕ 다른 쓰임(의문사)',tag:'4·8과',ty:'용법 구분'});
+Q('ind35','부산대신 2020 2학기 기말','다음 중 문법상 옳은 것은?',['Tell me who it did.','I want to know what is his name.','Kevin asked me why I was angry.','Do you know when he leave Korea?','I don’t know Tom did tell you about it.'],[2],[
+X('누가 그랬는지 말해 줘.','뜻이 되려면 → Tell me who did it. who가 주어라서 who 바로 뒤에 동사.'),
+X('그의 이름이 뭔지 알고 싶다.','→ what his name is. 주어(his name)가 먼저!'),
+O('Kevin은 내가 왜 화났는지 물었다.','why + 주어(I) + 동사(was). 맞아요.'),
+X('그가 언제 한국을 떠나는지 아니?','he는 3인칭 단수라서 leaves! → when he leaves Korea (leave 떠나다)'),
+X('나는 Tom이 그것에 대해 말해 줬는지 모른다.','의문사가 없으니 if가 필요하고 did는 사라져요. → if Tom told you about it (tell 말하다)')]);
+
+/* ---- 세트 4 ---- */
+Q('ind36','고려대사범대부속 2020 2학기 기말','다음 중 “어떻게 의궤에 관심을 갖게 되셨는지 말씀해 주실 수 있나요?”를 영어로 가장 바르게 옮긴 것은?',['How you became interested in Uigwe?','How did you become interested in Uigwe?','Can you tell me how interesting Uigwe was to you?','Can you tell me how you became interested in Uigwe?','Can you tell me how did you become interested in Uigwe?'],[3],[
+X('어떻게 의궤에 관심을 갖게 됐나요?','"말씀해 주실 수 있나요?"가 빠졌고 질문 모양도 틀려요. (Uigwe 의궤)'),
+X('어떻게 의궤에 관심을 갖게 됐니?','직접 질문이라 "말씀해 주실 수 있나요?"가 없어요.'),
+X('의궤가 당신에게 얼마나 흥미로웠는지 말해 줄래요?','뜻이 달라요. "관심을 갖게 되셨는지(become interested)"를 옮겨야 해요.'),
+O('어떻게 의궤에 관심을 갖게 되셨는지 말씀해 주실 수 있나요?','Can you tell me + how + you + became. did는 사라지고 과거형 became(become 되다)!'),
+X('Can you tell me how did you become ~','did you는 질문 순서예요. → how you became')],{tag:'8과'});
+Q('ind37','대전전민 2020 2학기 기말','다음 우리말을 영어로 바르게 표현한 것은?',['Can you tell me how you found 297 books of Uigwe?','How can you tell me you found 297 books of Uigwe?','Can you tell me how did you find 297 books of Uigwe?','Can you tell me how 297 books of Uigwe you found?','Can you tell me how do you found 297 books of Uigwe?'],[0],[
+O('297권의 의궤를 어떻게 찾으셨는지 말씀해 주실 수 있나요?','Can you tell me + how + you + found(find 찾다). 간접의문문 순서가 맞아요.'),
+X('How can you tell me ~','how의 자리가 틀려서 뜻이 달라져요. "말해 줄 수 있나요?"가 먼저 와야 해요.'),
+X('how did you find','did you는 질문 순서예요. → how you found'),
+X('how 297 books of Uigwe you found','how 바로 뒤에 주어(you)가 와요. 목적어는 동사 뒤!'),
+X('how do you found','do와 found(과거)가 같이 쓰였어요. → how you found')],{body:['297권의 의궤를 어떻게 찾으셨는지 말씀해 주실 수 있나요?'],adapted:1});
+Q('ind38','성신여자 2020 2학기 기말','다음 중 어법상 가장 적절한 문장은?',['Can you tell me what was the missing child wearing?','Don’t ask me what is Amber going to buy on her way home.','Alex wonders how many movies the director has made so far.','John couldn’t ask how Jessica’s sister was tall because he didn’t want to be rude.','I don’t know who did stole the dog which has stayed with Ann for over 10 years.'],[2],[
+X('실종된 아이가 무엇을 입고 있었는지 말해 줄래요?','→ what the missing child was wearing (wear 입다)'),
+X('Amber가 집에 가는 길에 무엇을 살지 묻지 마세요.','→ what Amber is going to buy (buy 사다)'),
+O('Alex는 그 감독이 지금까지 몇 편의 영화를 만들었는지 궁금해한다.','how many movies(한 덩어리) + the director + has made. 순서와 현재완료가 맞아요.'),
+X('John은 Jessica의 여동생이 얼마나 큰지 물을 수 없었다.','how tall은 한 덩어리! → how tall Jessica’s sister was'),
+X('나는 누가 그 개를 훔쳤는지 모른다.','who가 주어라서 did를 쓰지 않아요. → who stole the dog (steal 훔치다)')]);
+Q('ind39','양진 2020 2학기 기말',S1,['Haven’t she arrived yet?','It’s sweet for her to do that for you.','I wonder if he did his homework by himself.','The teacher is very angry because his bad attitude.','I’m not sure how much did she feel disappointed with her grade.'],[2],[
+X('그녀는 아직 도착하지 않았니?','she는 3인칭 단수라서 Hasn’t she arrived yet? (arrive 도착하다)'),
+X('그녀가 너를 위해 그렇게 해 주다니 다정하다.','sweet은 사람의 성격이라서 of her! → It’s sweet of her to do that for you.'),
+O('나는 그가 혼자서 숙제를 했는지 궁금하다.','if(~인지 아닌지) + 주어 + 동사. 맞아요. (do 하다)'),
+X('선생님은 그의 나쁜 태도 때문에 매우 화나셨다.','because 뒤에 명사만 오면 because of! → because of his bad attitude'),
+X('나는 그녀가 성적에 얼마나 실망했는지 모르겠다.','→ how much she felt disappointed (feel 느끼다)')],{tag:'7·8과'});
+Q('ind40','온양여자 2020 2학기 기말','다음 중 어법상 바르게 쓰인 문장은?',['Can you tell me why did you become a director?','Don’t ask me what did he buy in the store.','She didn’t know where were the books.','I don’t know who stole my camera.','Tell me when will the guests arrive.'],[3],[
+X('왜 감독이 되었는지 말해 줄래요?','→ why you became a director (become 되다)'),
+X('그가 가게에서 무엇을 샀는지 묻지 마세요.','→ what he bought (buy 사다)'),
+X('그녀는 책들이 어디 있는지 몰랐다.','→ where the books were'),
+O('나는 누가 내 카메라를 훔쳤는지 모른다.','who가 주어. 순서 그대로 맞아요. (steal 훔치다)'),
+X('손님들이 언제 도착할지 말해 주세요.','→ when the guests will arrive')]);
+Q('ind41','산남 2019 2학기 기말','다음 중 어법상 적절한 문장은?',['Do you know who this book bought?','I’d like to know how your car is much.','Don’t ask me if he likes playing soccer.','Can you ask her what time the bus leave?','He is wondering does the guest come on time.'],[2],[
+X('이 책을 누가 샀는지 아니?','뜻은 "이 책을 누가 샀는지" → who bought this book. 주어 who가 먼저! (buy 사다)'),
+X('네 차가 얼마인지 알고 싶다.','how much는 한 덩어리! → how much your car is'),
+O('그가 축구하는 것을 좋아하는지 묻지 마.','if(~인지 아닌지) + 주어 + 동사(likes). 맞아요.'),
+X('그녀에게 버스가 몇 시에 떠나는지 물어볼래?','the bus는 3인칭 단수라서 leaves! → what time the bus leaves'),
+X('그는 손님이 제시간에 오는지 궁금해한다.','→ if the guest comes on time. 의문사 없이 does를 쓰면 안 돼요.')]);
+B('ind42','다정 2019 2학기 기말','다음 <보기> 중 어법상 옳은 문장의 수는?',['We don’t have met you before.','She has sicked since last Wednesday.','Do you know who the window broke?','I don’t know what an avocado taste like.'],['0개','1개','2개','3개','4개'],[0],[
+Xb('·','우리는 전에 너를 만난 적이 없다.','don’t 뒤에는 동사원형이라 have met이 틀려요. → We haven’t met you before. (meet 만나다)'),
+Xb('·','그녀는 지난 수요일부터 아팠다.','sick은 동사가 아니에요. → She has been sick since last Wednesday.'),
+Xb('·','누가 창문을 깼는지 아니?','→ Do you know who broke the window? who가 주어! (break 깨다)'),
+Xb('·','나는 아보카도가 무슨 맛인지 모른다.','an avocado는 3인칭 단수라서 tastes! → what an avocado tastes like (taste 맛이 나다)')],{tag:'7·8과'});
+B('ind43','신암 2020 2학기 기말','다음 중 어법상 올바른 문장의 개수는?',['ⓐ I wonder if does she like me.','ⓑ It is important exercise regularly.','ⓒ When do you think they met first?','ⓓ People call New York the Big Apple.','ⓔ I knew Tom since I was 10 years old.'],['1개','2개','3개','4개','5개'],[1],[
+Xb('ⓐ','그녀가 나를 좋아하는지 궁금하다.','if 뒤에 does를 쓰지 않아요. → if she likes me'),
+Xb('ⓑ','규칙적으로 운동하는 것은 중요하다.','진짜 주어는 to 부정사! → It is important to exercise regularly. (exercise 운동하다)'),
+Ob('ⓒ','그들이 처음 언제 만났다고 생각하니?','think가 있으면 의문사(When)가 맨 앞으로 나와요. 맞아요.'),
+Ob('ⓓ','사람들은 뉴욕을 Big Apple이라고 부른다.','call + 목적어 + 이름(~을 ...라고 부르다). 맞아요.'),
+Xb('ⓔ','나는 열 살 때부터 Tom을 알았다.','since가 있으면 현재완료! → I have known Tom since I was 10. (know 알다)')],{tag:'5·7·8과'});
+B('ind44','을지 2020 2학기 기말','다음 중 어법상 맞는 문장의 개수는?',['ⓐ I wonder where she lives.','ⓑ I’ve never rode a bike before.','ⓒ He asked me who the window broke.','ⓓ It is bad for your teeth to drink too much soda.','ⓔ Because his jacket that was put on the chair, I knew he did not leave.'],['1개','2개','3개','4개','5개'],[1],[
+Ob('ⓐ','그녀가 어디 사는지 궁금하다.','where + 주어 + 동사(lives). 맞아요.'),
+Xb('ⓑ','나는 전에 자전거를 타 본 적이 없다.','have never 뒤에는 과거분사(p.p.)! ride(타다)의 p.p.는 ridden. → I’ve never ridden a bike before.'),
+Xb('ⓒ','그는 내게 누가 창문을 깼는지 물었다.','who가 주어예요. → who broke the window (break 깨다)'),
+Ob('ⓓ','소다를 너무 많이 마시는 것은 이에 나쁘다.','가주어 It + for your teeth + to drink(진짜 주어). 맞아요.'),
+Xb('ⓔ','그의 재킷이 의자 위에 있었기 때문에 그가 떠나지 않았음을 알았다.','because 뒤에는 주어 + 동사가 와야 해요. his jacket 뒤에 that was put이 붙어서 진짜 동사가 없어요. → Because his jacket was on the chair, I knew he did not leave. (leave 떠나다)')],{tag:'7·8과'});
+
+/* ---- 세트 5 ---- */
+B('ind45','평택여자 2019 2학기 기말','다음 중 어법상 옳은 문장만을 <보기>에서 있는 대로 고른 것은?',['(A) I’d like to know whether you can swim.','(B) Can you tell me where does she live?','(C) What do you think is he doing now?','(D) Why did you guess I ate the apple?','(E) Tell us who broke the window.'],['(A), (B)','(A), (C)','(A), (D)','(D), (E)','(A), (D), (E)'],[4],[
+Ob('(A)','네가 수영할 수 있는지 알고 싶다.','whether(~인지 아닌지) + 주어 + 동사. 맞아요. (swim 수영하다)'),
+Xb('(B)','그녀가 어디 사는지 말해 줄래요?','→ where she lives. do/does는 사라져요.'),
+Xb('(C)','너는 그가 지금 뭘 하고 있다고 생각하니?','think가 있으면 의문사가 맨 앞으로, 그 뒤는 주어 + 동사 순서! → What do you think he is doing now?'),
+Ob('(D)','왜 내가 사과를 먹었다고 추측했니?','guess(추측하다)는 B.I.G.S.T 동사라서 의문사(Why)가 맨 앞. 뒤는 I ate the apple. 맞아요. (eat 먹다)'),
+Ob('(E)','누가 창문을 깼는지 말해 줘.','who가 주어라서 순서 그대로. 맞아요. (break 깨다)')]);
+B('ind46','능허대 2019 2학기 기말','다음 중 어법상 옳은 것만을 <보기>에서 있는 대로 고른 것은?',['ⓐ He asked when the next bus came.','ⓑ Please tell me who your favorite actor is.','ⓒ Do you know when does the bank close?','ⓓ I’d like to know who you met at the party.','ⓔ I want to know how did you spend your vacation.','ⓕ I’d like to know how many movies have you made so far.'],['ⓑ, ⓓ','ⓐ, ⓑ, ⓓ','ⓒ, ⓔ, ⓕ','ⓐ, ⓑ, ⓓ, ⓕ','ⓐ, ⓑ, ⓓ, ⓔ'],[1],[
+Ob('ⓐ','그는 다음 버스가 언제 오는지 물었다.','when + 주어(the next bus) + 동사(came). 맞아요. (come 오다)'),
+Ob('ⓑ','당신이 가장 좋아하는 배우가 누구인지 말해 주세요.','who + 주어 + 동사(is). 맞아요.'),
+Xb('ⓒ','은행이 언제 닫는지 아세요?','→ when the bank closes (close 닫다)'),
+Ob('ⓓ','파티에서 누구를 만났는지 알고 싶다.','who + 주어 + 동사(met). 맞아요. (meet 만나다)'),
+Xb('ⓔ','방학을 어떻게 보냈는지 알고 싶다.','→ how you spent your vacation (spend 보내다)'),
+Xb('ⓕ','지금까지 몇 편의 영화를 만들었는지 알고 싶다.','→ how many movies you have made so far (make 만들다)')],{adapted:1});
+B('ind47','중앙 2019 2학기 기말','다음 ⓐ~ⓔ 중 어법상 올바른 것만을 <보기>에서 있는 대로 고른 것은?',['ⓐ Do you know what Mary want?','ⓑ I know when does she eat lunch.','ⓒ He doesn’t know who stole his bag.','ⓓ Tell me what color the thief’s hair was.','ⓔ I want to ask you where is your teacher.'],['ⓐ, ⓔ','ⓒ, ⓓ','ⓐ, ⓑ, ⓓ','ⓐ, ⓒ, ⓔ','ⓑ, ⓓ, ⓔ'],[1],[
+Xb('ⓐ','Mary가 무엇을 원하는지 아니?','Mary는 3인칭 단수라서 wants! → what Mary wants (want 원하다)'),
+Xb('ⓑ','나는 그녀가 언제 점심을 먹는지 안다.','→ when she eats lunch. does는 사라져요. (eat 먹다)'),
+Ob('ⓒ','그는 누가 자기 가방을 훔쳤는지 모른다.','who가 주어. 맞아요. (steal 훔치다)'),
+Ob('ⓓ','도둑의 머리카락이 무슨 색이었는지 말해 줘.','what color(한 덩어리) + 주어 + 동사(was). 맞아요.'),
+Xb('ⓔ','네 선생님이 어디 계신지 묻고 싶다.','→ where your teacher is')],{tag:'8과 문법'});
+B('ind48','관천 2020 2학기 기말','다음 중 어법상 옳은 문장의 개수는?',['Tell me when will you come home.','He asked me when the next bus came.','I don’t know who borrowed your book.','Because of the loud noise, I didn’t sleep well.','Can you tell me how long you will stay here?','I don’t know whether has a brother or a sister.','I am nervous because I have an exam tomorrow.'],['2개','3개','4개','5개','6개'],[3],[
+Xb('·','언제 집에 올 건지 말해 줘.','→ when you will come home (come 오다)'),
+Ob('·','그는 다음 버스가 언제 오는지 물었다.','when + 주어 + 동사. 맞아요.'),
+Ob('·','나는 누가 네 책을 빌렸는지 모른다.','who가 주어. 맞아요. (borrow 빌리다)'),
+Ob('·','시끄러운 소음 때문에 잘 못 잤다.','because of + 명사(the loud noise). 맞아요. (sleep 자다)'),
+Ob('·','여기 얼마나 오래 머물 건지 말해 줄래요?','how long(한 덩어리) + you will stay. 맞아요. (stay 머물다)'),
+Xb('·','나는 그에게 형제나 자매가 있는지 모른다.','whether 뒤에도 주어가 필요해요. → whether he has a brother or a sister'),
+Ob('·','내일 시험이 있어서 긴장된다.','because + 주어 + 동사(I have). 맞아요.')]);
+B('ind49','전민 2020 2학기 기말','다음 <보기>에서 어법상 옳은 것만을 있는 대로 고른 것은?',['ⓐ Do you think how old she is?','ⓑ Did you seen the movie before?','ⓒ When have you bought your new car?','ⓓ It’s necessary for him to take a break regularly.','ⓔ I’m not sure if she will come to my birthday party.'],['ⓐ, ⓓ','ⓑ, ⓒ','ⓓ, ⓔ','ⓑ, ⓒ, ⓓ','ⓒ, ⓓ, ⓔ'],[2],[
+Xb('ⓐ','그녀가 몇 살이라고 생각하니?','think가 있으면 의문사가 맨 앞으로! → How old do you think she is?'),
+Xb('ⓑ','너는 전에 그 영화를 본 적 있니?','Did 뒤에는 동사원형! → Did you see / Have you seen the movie before?'),
+Xb('ⓒ','너는 새 차를 언제 샀니?','When(언제)은 현재완료와 못 써요. → When did you buy ~? (buy 사다)'),
+Ob('ⓓ','그가 규칙적으로 쉬는 것은 필요하다.','가주어 It + for him + to take. 맞아요.'),
+Ob('ⓔ','그녀가 내 생일 파티에 올지 잘 모르겠다.','if(~인지 아닌지) + 주어 + 동사(will come). 맞아요.')],{tag:'7·8과'});
+B('ind50','아산 2020 2학기 기말','다음 중 어법상 맞는 문장의 개수는?',['ⓐ Mark couldn’t join us because of he had to work.','ⓑ I don’t know when will he come back.','ⓒ I wonder where does she lives.','ⓓ I’m not sure if my grandfather will like my present.','ⓔ Can you tell me what happened to Jessie?'],['1개','2개','3개','4개','5개'],[1],[
+Xb('ⓐ','Mark는 일을 해야 해서 우리와 함께할 수 없었다.','because of 뒤에는 명사! 절이면 because. → because he had to work'),
+Xb('ⓑ','나는 그가 언제 돌아올지 모른다.','→ when he will come back'),
+Xb('ⓒ','나는 그녀가 어디 사는지 궁금하다.','→ where she lives. does와 lives를 같이 쓰면 안 돼요.'),
+Ob('ⓓ','할아버지가 내 선물을 좋아하실지 잘 모르겠다.','if + 주어 + will like. 맞아요.'),
+Ob('ⓔ','Jessie에게 무슨 일이 있었는지 말해 줄래요?','what이 주어 자리라서 바로 뒤에 동사(happened). 맞아요. (happen 일어나다)')]);
+
+Object.assign(KEY,{
+ind9:{h:'what + 주어 + 동사',a:[['Please tell me **what your first movie was**.','당신의 첫 영화가 무엇이었는지 말해 주세요.']],c:['do/does/did 사라짐','주어가 동사 앞']},
+ind10:{h:'who가 주어면 순서 그대로',a:[['Do you know **who is going to come**?','누가 올 건지 아니?']],c:['의문사 없으면 if/whether','how long 한 덩어리']},
+ind11:{h:'when + 주어 + 동사',a:[['Tell me **when the guest will arrive**.','손님이 언제 도착할지 말해 주세요.']],c:['how old 한 덩어리','is는 주어 뒤로']},
+ind12:{h:'who 뒤에 바로 동사',a:[['I want to know **who wrote** this book.','누가 이 책을 썼는지 알고 싶다.']],c:['asked 뒤 if','did 사라짐']},
+ind13:{h:'who가 주어면 did 뒤에 바로',a:[['I don’t know **who did** such a thing.','누가 그런 일을 했는지 모른다.']],c:['she wants / guests arrive','주어에 동사 맞추기']},
+ind14:{h:'조동사도 주어 뒤로',a:[['Please tell me **how I can go** to Inwang Middle School.','인왕중학교에 어떻게 가는지 말해 주세요.']],c:['what I should do','what you will do']},
+ind15:{h:'if 뒤에도 주어',a:[['I want to know **who wrote** this book.','누가 이 책을 썼는지 알고 싶다.']],c:['because + 절 / because of + 명사','if와 when 같이 ✕']},
+ind16:{h:'의문사는 맨 앞, 한 덩어리',a:[['I don’t know **how long her parents have been** in Korea.','그녀의 부모님이 한국에 얼마나 오래 계셨는지 모른다.']],c:['what subject 한 덩어리','when and where']},
+ind17:{h:'where + 주어 + 동사',al:'고친 문장',a:[['Can you tell me **where the bathroom is**?','화장실이 어디인지 말해 줄래요?']],c:['if + 주어 + 동사','who가 주어']},
+ind18:{h:'did는 없애고 과거형',al:'고친 문장',a:[['Don’t ask me **what he bought** in the store.','그가 가게에서 무엇을 샀는지 묻지 마세요.']],c:['who가 주어면 순서 그대로','how many movies 한 덩어리']},
+ind19:{h:'what + 주어 + was doing',al:'고친 문장',a:[['David told me **what she was doing**.','David는 그녀가 뭘 하고 있는지 내게 말했다.']],c:['how / where / why 모두 같음','주어 먼저']},
+ind20:{h:'when + 주어 + will + 동사',al:'고친 문장',a:[['Tell me **when you will come** home.','언제 집에 올 건지 말해 줘.']],c:['what time it was','where the book was']},
+ind21:{h:'where + the books + were',al:'고친 문장',a:[['She didn’t know **where the books were**.','그녀는 책들이 어디 있는지 몰랐다.']],c:['who borrowed','when you will come']},
+ind22:{h:'how many movies 한 덩어리',al:'고친 문장',a:[['I’d like to know **how many movies you have made** so far.','지금까지 몇 편의 영화를 만들었는지 알고 싶다.']],c:['where the books were','what he bought']},
+ind23:{h:'last year → 과거형 / did 사라짐',a:[['I **went** to Jeju-do last year.','나는 작년에 제주도에 갔다.'],['I don’t know **what he bought** in the store.','그가 가게에서 무엇을 샀는지 모른다.']],c:['(B) 현재완료 ✕','(D) did ✕']},
+ind24:{h:'다섯 문장 모두 고쳐야 해요',a:[['I’d like to know **what you can do** at the party.','파티에서 무엇을 할 수 있는지 알고 싶다.']],c:['asked 뒤 if','조동사도 주어 뒤']},
+ind25:{h:'what color 한 덩어리',a:[['I want to know **what color the boy was wearing**.','그 소년이 무슨 색을 입고 있었는지 알고 싶다.']],c:['how many books she has','why you became']},
+ind26:{h:'who가 주어',a:[['I don’t know **who stole** my camera.','누가 내 카메라를 훔쳤는지 모른다.']],c:['where you are from','what time the guests will arrive']},
+ind27:{h:'did 사라지고 go → went',a:[['You didn’t tell me **where you went** during your summer vacation.','너는 여름방학에 어디 갔었는지 말해 주지 않았다.']],c:['시제는 과거 그대로','did 남기지 않기']},
+ind28:{h:'did 사라지고 send → sent',a:[['Can you tell me **why he sent** me the box?','왜 그가 내게 상자를 보냈는지 말해 줄래요?']],c:['did는 없애고','동사를 과거형으로']},
+ind29:{h:'현재완료는 그대로, 의문사 없으면 if',a:[['Can you tell me **how many years you have lived** here?','여기서 몇 년 살았는지 말해 줄래요?']],c:['wonder if Jack is back','whether he will come']},
+ind30:{h:'will · was · have 시제 그대로',a:[['Do you know **how many movies you have made** so far?','지금까지 영화를 몇 편 만들었는지 아세요?']],c:['when the students will arrive','what time it was']},
+ind31:{h:'샀는지 → he bought',a:[['Don’t ask me what **he bought** in the store.','그가 가게에서 무엇을 샀는지 묻지 마세요.']],c:['did 사라짐','과거형 bought']},
+ind32:{h:'동사가 빠지면 문장이 안 돼요',a:[['Please tell me how much this book **is**.','이 책이 얼마인지 말해 주세요.']],c:['how much this book is','주어 + 동사 꼭 필요']},
+ind33:{h:'sure 뒤 if = ~인지 아닌지',a:[['Even teachers are not sure **if** Tom will come back.','선생님들조차 Tom이 돌아올지 확신하지 못한다.']],c:['조건 if = 만약 ~라면','know · wonder · sure 뒤 = ~인지']},
+ind34:{h:'의문사 who vs 관계대명사 who',a:[['The girl **who** is standing next to him is my sister.','그의 옆에 서 있는 소녀는 내 여동생이다.']],c:['명사를 꾸미면 관계대명사','"누구/누가"면 의문사']},
+ind35:{h:'why + 주어(I) + was',a:[['Kevin asked me **why I was** angry.','Kevin은 내가 왜 화났는지 물었다.']],c:['what his name is','when he leaves']},
+ind36:{h:'Can you tell me + how + 주어 + 동사',a:[['Can you tell me **how you became** interested in Uigwe?','어떻게 의궤에 관심을 갖게 되셨는지 말씀해 주실 수 있나요?']],c:['did 사라짐','became']},
+ind37:{h:'Can you tell me + how + you + found',a:[['Can you tell me **how you found** 297 books of Uigwe?','297권의 의궤를 어떻게 찾으셨는지 말씀해 주실 수 있나요?']],c:['how 뒤에 바로 주어','과거형 found']},
+ind38:{h:'how many movies 한 덩어리 + 현재완료',a:[['Alex wonders **how many movies the director has made** so far.','Alex는 감독이 몇 편의 영화를 만들었는지 궁금해한다.']],c:['how tall Jessica’s sister was','who stole']},
+ind39:{h:'if + 주어 + 동사',a:[['I wonder **if he did** his homework by himself.','그가 혼자서 숙제를 했는지 궁금하다.']],c:['sweet → of her','because of + 명사']},
+ind40:{h:'who가 주어면 바로 동사',a:[['I don’t know **who stole** my camera.','누가 내 카메라를 훔쳤는지 모른다.']],c:['why you became','where the books were']},
+ind41:{h:'if + 주어 + 동사(likes)',a:[['Don’t ask me **if he likes** playing soccer.','그가 축구하는 걸 좋아하는지 묻지 마.']],c:['how much your car is','what time the bus leaves']},
+ind42:{h:'네 문장 모두 고쳐야 해요',al:'고친 문장',a:[['Do you know **who broke the window**?','누가 창문을 깼는지 아니?']],c:['haven’t met','what an avocado tastes like']},
+ind43:{h:'think가 있으면 의문사 맨 앞',a:[['**When do you think** they met first?','그들이 처음 언제 만났다고 생각하니?']],c:['if she likes me','since + 현재완료']},
+ind44:{h:'where she lives',a:[['I wonder **where she lives**.','그녀가 어디 사는지 궁금하다.']],c:['ridden','who broke the window']},
+ind45:{h:'B.I.G.S.T 동사는 의문사 앞으로',a:[['**Why** did you **guess** I ate the apple?','왜 내가 사과를 먹었다고 추측했니?']],c:['What do you think he is doing?','whether you can swim']},
+ind46:{h:'did · does 쓰지 않기',a:[['I’d like to know **who you met** at the party.','파티에서 누구를 만났는지 알고 싶다.']],c:['how you spent','how many movies you have made']},
+ind47:{h:'주어에 동사 맞추기',a:[['Tell me **what color the thief’s hair was**.','도둑의 머리카락이 무슨 색이었는지 말해 줘.']],c:['what Mary wants','where your teacher is']},
+ind48:{h:'다섯 문장이 맞아요',a:[['Can you tell me **how long you will stay** here?','여기 얼마나 오래 머물 건지 말해 줄래요?']],c:['when you will come','whether he has']},
+ind49:{h:'think가 있으면 의문사 앞',a:[['I’m not sure **if she will come** to my party.','그녀가 파티에 올지 잘 모르겠다.']],c:['How old do you think she is?','When did you buy']},
+ind50:{h:'because of + 명사',a:[['Can you tell me **what happened** to Jessie?','Jessie에게 무슨 일이 있었는지 말해 줄래요?']],c:['when he will come back','where she lives']}
+});
+/* 유형 태그 (이미 있으면 그대로) */
+QS.forEach(function(q){if(q.ty)return;var s=q.stem,t;
+if(/대화/.test(s))t='대화';
+else if(/영어 문장|영작|우리말|영어로/.test(s))t='영작';
+else if(/쓰임|용법|가주어로 쓰인|It의/.test(s))t='용법 구분';
+else if(/개수|있는 대로/.test(s))t='개수·조합';
+else if(/빈칸|한 문장으로/.test(s))t='빈칸·문장 전환';
+else if(/어색|옳지|바르지|않은/.test(s))t='어색한 것 찾기';
+else t='옳은 것 고르기';
+q.ty=t});
+})();
+
+for(var _k in TOPICS)if(_k!=='gj'&&_k!=='pp'&&_k!=='ind')delete TOPICS[_k];QS=QS.filter(function(q){return q.t==='gj'||q.t==='pp'||q.t==='ind'});
 var $=document.getElementById('app');
 var URL_='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec';
 function post(b){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()}).then(function(r){if(!r||!r.ok)throw new Error('gk');return r})}
