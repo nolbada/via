@@ -332,7 +332,7 @@ function judged(q,r,showAns){
   h+='<button class="btn pri nb" id="nx">'+(R.i+1>=R.list.length?'결과 보기':'다음')+'</button>';
   document.getElementById('fbk').innerHTML=h;
   document.getElementById('nx').onclick=()=>{R.i++;if(R.i>=R.list.length)result();else quiz()};
-  document.getElementById('nx').scrollIntoView({block:'nearest'});
+  {const f=document.getElementById('fbk');if(f){const y=f.getBoundingClientRect().top+window.pageYOffset-12;window.scrollTo(0,Math.max(0,y))}}
 }
 function result(){
   const tot=R.list.length,ok=R.res.reduce((a,b)=>a+b,0);
