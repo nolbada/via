@@ -67,7 +67,7 @@ h2.sec{font-size:15px;margin:20px 2px 8px;color:var(--sub);font-weight:700;lette
 .rr .tp .l{font-size:12.5px;color:var(--sub);white-space:nowrap}
 .rr .gr{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 14px;margin-top:10px}.rr .gr span{display:block;font-size:12px;color:var(--sub)}.rr .gr b{font-size:16px;font-weight:600}
 .rr .mt{margin-top:8px;font-size:13.5px;color:var(--sub)}
-.rr.hk{cursor:default}.rr.cmp .cv{align-self:center;margin-left:8px;font-size:20px;font-weight:800;white-space:nowrap}.pbar{height:5px;border-radius:3px;background:var(--line);margin-top:8px;overflow:hidden}.pbar i{display:block;height:100%}.cbar2{display:flex;gap:8px;align-items:center;margin:0 0 8px}.cbar2 select{flex:1;min-width:0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:inherit;font-size:14px}.nn{display:inline-block;margin:0 10px 0 0;cursor:pointer;font-weight:600}.rr.cmp .av{font-size:15px}.wkg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:10px}
+.rr.hk{cursor:default}.rr.cmp .cv{align-self:center;margin-left:8px;font-size:20px;font-weight:800;white-space:nowrap}.pbar{height:5px;border-radius:3px;background:var(--line);margin-top:8px;overflow:hidden}.pbar i{display:block;height:100%}.cbar2{display:flex;gap:8px;align-items:center;margin:0 0 8px}.cbar2 select{flex:1;min-width:0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:inherit;font-size:14px}.hr{display:flex;align-items:center;gap:8px;margin:4px 0}.hr span{flex:1}.nn{display:inline-block;margin:0 10px 0 0;cursor:pointer;font-weight:600}.rr.cmp .av{font-size:15px}.wkg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:10px}
 .wc{border:1px solid var(--line);border-radius:9px;padding:4px 2px 6px;text-align:center;min-height:62px;background:var(--card)}
 .wc b{display:block;font-size:11.5px;color:var(--sub);font-weight:600}.wc i{display:block;font-style:normal;font-size:13px;font-weight:700;margin-bottom:3px}
 .wc.e{background:transparent;opacity:.7}.wc.tdy{outline:2px solid var(--pri);outline-offset:-1px}
@@ -298,7 +298,7 @@ function cdraw(r){
     var holdOn=c.hold&&c.hold>=tdy();
     h+='<div class="card" data-n="'+esc(n)+'"><b>'+esc(n)+'</b><small style="color:var(--sub)"> '+esc(s.grade||'')+'</small>';
     h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">시험 본 Day <b>'+(exn?exn+'까지':'없음')+'</b></span><button class="sbtn" data-a="exm">−1</button><button class="sbtn" data-a="exp">시험 봄 +1</button></div>';
-    h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">안내 멈춤 '+(holdOn?'<b>'+(c.hold<'9999'?dshow(c.hold)+'까지':'계속')+'</b>':'<span style="color:var(--sub)">안 함</span>')+'</span>'+(holdOn?'<button class="sbtn" data-a="hoff">해제</button>':'<input type="date" id="hd_'+esc(n)+'" class="sbtn" style="padding:4px 6px"><button class="sbtn" data-a="hon">멈춤</button>')+'</div>';
+    h+='<div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--line)"><div style="font-weight:600;margin-bottom:6px">학습 멈춤 기간 <small style="color:var(--sub);font-weight:400">이 기간은 밀림에서 제외</small></div>'+holdList(c)+'<div style="display:flex;align-items:center;gap:6px;margin-top:8px"><input type="date" class="ha sbtn" style="padding:4px 6px;flex:1;min-width:0"><span>~</span><input type="date" class="hb sbtn" style="padding:4px 6px;flex:1;min-width:0"><button class="sbtn" data-a="hadd">추가</button></div></div>';
     h+='<div style="display:flex;align-items:center;gap:8px;margin-top:10px"><span style="flex:1">천일문S 오답 서버에서 지우기</span><button class="sbtn" data-a="void" style="border-color:var(--ng);color:var(--ng)">지우기</button></div>';
     var dvp=(PLAN[n]&&PLAN[n].dv)||'Core',dvo='';for(var dz=1;dz<=32;dz++)dvo+='<option value="'+dz+'"'+(dz===(exn||1)?' selected':'')+'>Day '+dz+'</option>';
     h+='<div style="display:flex;align-items:center;gap:6px;margin-top:10px"><span style="flex:1">더블보카 시험 리셋</span><select class="dvl sbtn" style="padding:4px 4px"><option'+(dvp==='Core'?' selected':'')+'>Core</option><option'+(dvp==='Pro'?' selected':'')+'>Pro</option></select><select class="dvd sbtn" style="padding:4px 4px">'+dvo+'</select><button class="sbtn" data-a="dvr" style="border-color:var(--ng);color:var(--ng)">리셋</button></div>';
@@ -312,7 +312,8 @@ function cdraw(r){
     c.ex=c.ex||[];
     if(a==='exp'){var m=0;c.ex.forEach(function(e){if(e.d>m)m=e.d});c.ex.push({d:m+1,at:t})}
     else if(a==='exm'){var m2=0;c.ex.forEach(function(e){if(e.d>m2)m2=e.d});c.ex=c.ex.filter(function(e){return e.d!==m2})}
-    else if(a==='hon'){var v=(card.querySelector('input[type=date]')||{}).value||'9999-12-31';c.hold=v;c.hs=t}
+    else if(a==='hadd'){var va=(card.querySelector('.ha')||{}).value,vb=(card.querySelector('.hb')||{}).value;if(!va||!vb||vb<va){var se=document.getElementById('sv_'+n);if(se)se.textContent='시작일과 끝나는 날을 다시 골라 주세요.';return}c.holds=(c.holds||[]).concat([{a:va,b:vb}]).sort(function(p,q){return p.a<q.a?-1:1})}
+    else if(a==='hdel'){c.holds=(c.holds||[]).filter(function(z,i){return i!==+x.dataset.i})}
     else if(a==='hoff'){c.hold='';c.hs=''}
     else if(a==='hide'){var hh=c.hide||[],ix=hh.indexOf('천일문S');if(ix>=0)hh.splice(ix,1);else hh.push('천일문S');c.hide=hh}
     var sv=document.getElementById('sv_'+n);if(sv)sv.textContent='저장 중...';
@@ -320,6 +321,13 @@ function cdraw(r){
   }});
 }
 var STAT=null;
+function inHold(c,d){return !!(c&&((c.hold&&c.hs&&d>=c.hs&&d<=c.hold)||(c.holds||[]).some(function(z){return d>=z.a&&d<=z.b})))}
+function hEnd(c,d){if(!c)return'';var e='';if(c.hold&&d<=c.hold&&(!c.hs||d>=c.hs))e=c.hold;(c.holds||[]).forEach(function(z){if(d>=z.a&&d<=z.b&&z.b>e)e=z.b});return e}
+function holdCnt(c,st,upto){var n=0,d=st;while(d<=upto){if(HWD.indexOf(pd(d).getUTCDay())>=0&&inHold(c,d))n++;d=addd(d,1)}return n}
+function holdList(c){var t0=tdy(),a=[];
+  if(c.hold&&c.hold>=t0)a.push('<div class="hr"><span>지금 ~ <b>'+(c.hold<'9999'?dshow(c.hold):'계속')+'</b></span><button class="sbtn" data-a="hoff">해제</button></div>');
+  (c.holds||[]).forEach(function(z,i){var past=z.b<t0;a.push('<div class="hr"'+(past?' style="opacity:.55"':'')+'><span><b>'+dshow(z.a)+'</b> ~ <b>'+dshow(z.b)+'</b>'+(past?' (지남)':'')+'</span><button class="sbtn" data-a="hdel" data-i="'+i+'">삭제</button></div>')});
+  return a.join('')||'<div style="color:var(--sub);font-size:14px">설정한 기간 없음</div>'}
 function build(r,h){
   var t=kst(),y=addd(t,-1),out=[];
   r.students.forEach(function(s){
@@ -330,23 +338,23 @@ function build(r,h){
     o.ddone=Object.keys(o.dd).length;o.dvdone=Object.keys(dvm).length;
     if(P){var N=DN[P.d];o.N=N;
       if(t<P.s){o.state='pre'}else{
-        o.dexp=expDays(P.s,y,N);o.behind=Math.max(0,o.dexp-o.ddone);
+        var c0=ctlOf(CTM,s.name);o.dexp=Math.max(0,expDays(P.s,y,N)-holdCnt(c0,P.s,y));o.hcnt=holdCnt(c0,P.s,y);o.behind=Math.max(0,o.dexp-o.ddone);
         var td=dayOf(P.s,t,N),isHw=HWD.indexOf(pd(t).getUTCDay())>=0;
         o.todayDay=td;o.tdone=!!(isHw&&o.dd[td]);
         o.state=o.behind>0?'late':(isHw?(o.tdone?'ok':'wait'):'off');
       }}
-    var cc=ctlOf(CTM,s.name);if(P&&cc.hold&&cc.hold>=t){o.state='hold';o.behind=0}
+    var cc=ctlOf(CTM,s.name);if(P&&hEnd(cc,t)){o.state='hold';o.behind=0;o.hend=hEnd(cc,t)}
     out.push(o)});
   return out;
 }
 function schAv(s){var x=String(s.school||'').replace(/(고등학교|중학교|여고|여중|고|중)$/,'').slice(0,3);return x||String(s.grade||'').slice(0,3)||'-'}
 function stLabel(o){var P=o.P;
   if(o.state==='pre')return dshow(P.s)+' 시작';
-  if(o.state==='late')return '어제까지 '+o.behind+'일 부족';
+  if(o.state==='late')return '밀림 '+o.behind+'일';
   if(o.state==='ok')return '오늘 완료';
   if(o.state==='wait')return '오늘 대기';
   if(o.state==='off')return '오늘 쉬는 날';
-  if(o.state==='hold')return '안내 멈춤';
+  if(o.state==='hold')return o.hend&&o.hend<'9999'?'멈춤 ~'+dshow(o.hend):'안내 멈춤';
   return '배정 없음'}
 function cardH(o){
   var s=o.s,P=o.P,sc=o.state==='ok'?'#16a34a':(o.state==='late'?'#dc2626':'#94a3b8');
@@ -418,9 +426,9 @@ function draw(r){
   var late=L.filter(function(o){return o.state==='late'}).length,done=L.filter(function(o){return o.state==='ok'}).length,ask=0;
   L.forEach(function(o){ask+=o.s.askDue});var rl=L.filter(function(o){return rvMiss(o)>0}).length;
   var t0=kst(),idle=L.filter(function(o){return o.P&&o.state!=='pre'&&o.state!=='hold'&&(!o.last||addd(o.last,2)<=t0)}).length;
-  var h=cmpChips()+'<div class="sub2">'+dshow(kst())+' 기준</div><div class="kq"><div><span>재원</span><b>'+L.length+'<small>명</small></b></div><div><span>오늘 완료</span><b>'+done+'<small>명</small></b></div><div><span>어제까지 부족</span><b'+(late?' class="bad"':'')+'>'+late+'<small>명</small></b></div><div><span>누적 밀림</span><b'+(rl?' class="bad"':'')+'>'+rl+'<small>명</small></b></div><div><span>2일 이상 기록 없음</span><b'+(idle?' class="bad"':'')+'>'+idle+'<small>명</small></b></div><div><span>질문 대기</span><b>'+ask+'<small>개</small></b></div></div>';
+  var h=cmpChips()+'<div class="sub2">'+dshow(kst())+' 기준</div><div class="kq"><div><span>재원</span><b>'+L.length+'<small>명</small></b></div><div><span>오늘 완료</span><b>'+done+'<small>명</small></b></div><div><span>데일리 밀림</span><b'+(late?' class="bad"':'')+'>'+late+'<small>명</small></b></div><div><span>누적 밀림</span><b'+(rl?' class="bad"':'')+'>'+rl+'<small>명</small></b></div><div><span>2일 이상 기록 없음</span><b'+(idle?' class="bad"':'')+'>'+idle+'<small>명</small></b></div><div><span>질문 대기</span><b>'+ask+'<small>개</small></b></div></div>';
   h+='<div class="fl">'+gs.map(function(g){return'<button data-g="'+esc(g)+'"'+(g===FIL?' class="on"':'')+'>'+esc(g)+'</button>'}).join('')+'</div>';
-  h+='<div class="lg3"><span><u style="background:#16a34a"></u>오늘 완료</span><span><u style="background:#94a3b8"></u>대기·기타</span><span><u style="background:#dc2626"></u>어제까지 부족</span></div>';
+  h+='<div class="lg3"><span><u style="background:#16a34a"></u>오늘 완료</span><span><u style="background:#94a3b8"></u>대기·기타</span><span><u style="background:#dc2626"></u>밀림</span></div>';
   h+='<div class="lst">'+L.map(cardH).join('')+'</div>';
   b.innerHTML=h;
   bindCmp(r);b.querySelectorAll('.fl button[data-g]').forEach(function(x){x.onclick=function(){FIL=x.dataset.g;ss('wn_fil',FIL);draw(r)}});
@@ -430,10 +438,10 @@ function detail(n,r){
   var o=STAT.filter(function(z){return z.s.name===n})[0],s=o.s,P=o.P,t=kst();
   var h='<div class="top"><button class="sbtn" id="bk">목록</button><div class="t">'+esc(n)+' · '+esc(s.grade)+(s.school?' '+esc(s.school):'')+'</div></div>';
   if(P){
-    h+='<div class="card"><div class="kv"><span>데일리보카</span><b>'+P.d+' · '+dshow(P.s)+' 시작</b></div><div class="kv"><span>데일리보카 진행</span><b>'+o.ddone+' / '+o.N+'일</b></div><div class="kv"><span>어제까지 해야 할 일수</span><b>'+o.dexp+'일'+(o.behind?' (어제까지 '+o.behind+'일 부족)':'')+'</b></div><div class="kv"><span>더블보카 '+P.dv+'</span><b>'+o.dvdone+' / 32 Day</b></div><div class="kv"><span>미니모의고사</span><b>'+esc(P.m)+' · 자유 진행</b></div></div>';
+    h+='<div class="card"><div class="kv"><span>데일리보카</span><b>'+P.d+' · '+dshow(P.s)+' 시작</b></div><div class="kv"><span>데일리보카 진행</span><b>'+o.ddone+' / '+o.N+'일</b></div><div class="kv"><span>어제까지 해야 할 일수</span><b>'+o.dexp+'일'+(o.behind?' (밀림 '+o.behind+'일)':'')+'</b></div><div class="kv"><span>더블보카 '+P.dv+'</span><b>'+o.dvdone+' / 32 Day</b></div><div class="kv"><span>미니모의고사</span><b>'+esc(P.m)+' · 자유 진행</b></div></div>';
     h+='<h2 class="sec">최근 14일 데일리보카</h2><div class="dg">';
     for(var i=13;i>=0;i--){var d=addd(t,-i),w=pd(d).getUTCDay(),cl='',tx='';
-      if(d<P.s)cl='';else if(CLOSED.indexOf(d)>=0){cl='c';tx='휴원'}else if(HWD.indexOf(w)<0){tx='쓰기'}else{var dn=dayOf(P.s,d,o.N);tx='D'+dn;cl=o.dd[dn]?'d':(d<t?'l':'')}
+      if(d<P.s)cl='';else if(CLOSED.indexOf(d)>=0){cl='c';tx='휴원'}else if(HWD.indexOf(w)<0){tx='쓰기'}else{var dn=dayOf(P.s,d,o.N);tx='D'+dn;var hh0=inHold(ctlOf(CTM,n),d);cl=o.dd[dn]?'d':(hh0?'c':(d<t?'l':''));if(hh0&&!o.dd[dn])tx='멈춤'}
       if(d===t)cl+=' td';
       h+='<div class="'+cl+'"><b>'+(+d.slice(8))+'</b>'+tx+'</div>'}
     h+='</div>';
