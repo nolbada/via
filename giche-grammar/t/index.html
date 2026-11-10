@@ -800,6 +800,17 @@ pp50:{h:'간접의문문: 의문사 + 주어 + 동사',a:[['Alex wonders **how m
 });
 })();
 
+/* 유형 태그 (ty): 문항 고유번호(id)는 불변, 분류는 여기서 부여 */
+(function(){QS.forEach(function(q){var s=q.stem,t;
+if(/대화/.test(s))t='대화';
+else if(/영어 문장|영작|우리말|영어로/.test(s))t='영작';
+else if(/쓰임|용법|가주어로 쓰인|It의/.test(s))t='용법 구분';
+else if(/개수|있는 대로/.test(s))t='개수·조합';
+else if(/빈칸|한 문장으로/.test(s))t='빈칸·문장 전환';
+else if(/어색|옳지|바르지|않은/.test(s))t='어색한 것 찾기';
+else t='옳은 것 고르기';
+q.ty=t})})();
+
 for(var _k in TOPICS)if(_k!=='gj'&&_k!=='pp')delete TOPICS[_k];QS=QS.filter(function(q){return q.t==='gj'||q.t==='pp'});
 var $=document.getElementById('app');
 var URL_='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec';
