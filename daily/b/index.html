@@ -131,6 +131,24 @@ input.tx.ok{border-color:var(--ok);background:var(--okBg)}input.tx.ng{border-col
 .fc .ans .ou{border-color:var(--ok)}.fc .pick .ou{border-color:var(--ng)}
 .fc .oex{padding-left:14px;font-size:14px;color:var(--sub);overflow-wrap:anywhere}
 .fc .oex .k{word-break:keep-all}
+
+.fc .sh{border:2px solid var(--ok);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(var(--okBg),var(--card) 75%)}
+.fc .sl2{font-size:12px;font-weight:700;color:var(--sub);letter-spacing:.06em}
+.fc .tls{display:flex;gap:5px;flex-wrap:wrap}
+.fc .tl{width:32px;height:40px;border-radius:9px;display:grid;place-items:center;font-size:21px;font-weight:800;background:var(--chip);border:2px solid var(--line)}
+.fc .tsp{width:14px}
+.fc .tls.good .tl{background:var(--ok);border-color:var(--ok);color:#fff}
+.fc .tls.mine .tl.bad{background:var(--ngBg);border-color:var(--ng);color:var(--ng)}
+.fc .chs{display:flex;gap:8px;flex-wrap:wrap}
+.fc .mc{font-size:14px;font-weight:700;background:var(--ok);color:#fff;border-radius:999px;padding:2px 11px;word-break:keep-all}
+.fc .mrow{display:flex;flex-direction:column;gap:6px}
+.fc .sents{display:flex;flex-direction:column;gap:10px}
+.fc .sent{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.fc .sent .en{font-size:17px;line-height:1.55;overflow-wrap:anywhere}
+.fc .sent .ko{font-size:14px;color:var(--sub);word-break:keep-all}
+.fc .sd{display:flex;align-items:center;gap:8px}
+.fc .sn{width:24px;height:24px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}
+.fc .fill{background:var(--ok);color:#fff;border-radius:6px;padding:0 6px;font-weight:800}
 </style>
 <script src="../../common/sync.js?v=1"></script>
 </head>
@@ -278,7 +296,7 @@ function quiz(){
   document.getElementById('bst').onclick=e=>{if(S.star[q.id])delete S.star[q.id];else S.star[q.id]=1;save();e.target.classList.toggle('on',!!S.star[q.id])};
   if(sub){
     const tx=document.getElementById('tx'),ok=document.getElementById('ok');
-    const go=()=>{if(!tx.value.trim())return;const n=s=>s.trim().toLowerCase().replace(/\s+/g,' ');const v=n(tx.value);const accept=[q.a].concat(q.al?q.al.split('|'):[]).map(n);const r=accept.indexOf(v)>=0;tx.disabled=true;tx.classList.add(r?'ok':'ng');ok.style.display='none';judged(q,r,q.a)};
+    const go=()=>{if(!tx.value.trim())return;const n=s=>s.trim().toLowerCase().replace(/\s+/g,' ');const v=n(tx.value);const accept=[q.a].concat(q.al?q.al.split('|'):[]).map(n);const r=accept.indexOf(v)>=0;tx.disabled=true;tx.classList.add(r?'ok':'ng');ok.style.display='none';window.__tv=tx.value;judged(q,r,q.a)};
     ok.onclick=go;tx.onkeydown=e=>{if(e.key==='Enter')go()};
   } else if(multi){
     const sel=new Set(),ok=document.getElementById('ok');
@@ -349,12 +367,51 @@ function optblock(q,r){
   });
   return h+'</div></div>';
 }
+function lcsmark(a,b){
+  const n=a.length,m=b.length,d=[];for(let i=0;i<=n;i++){d.push(new Array(m+1).fill(0))}
+  for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)d[i][j]=a[i]===b[j]?d[i+1][j+1]+1:Math.max(d[i+1][j],d[i][j+1]);
+  const ok=new Array(b.length).fill(false);let i=0,j=0;
+  while(i<n&&j<m){if(a[i]===b[j]){ok[j]=true;i++;j++}else if(d[i+1][j]>=d[i][j+1])i++;else j++}
+  return ok;
+}
+function tiles(s,cls,okm){
+  let h='<div class="tls '+cls+'">';
+  Array.from(s).forEach((c,i)=>{h+=c===' '?'<span class="tsp"></span>':'<span class="tl'+(okm&&!okm[i]?' bad':'')+'">'+esc(c)+'</span>'});
+  return h+'</div>';
+}
+function subjblock(q,r){
+  const parts=(q.mn||'').split(' / ').filter(Boolean);
+  let h='<div class="sh"><div class="sl2">정답 철자</div>'+tiles(q.a,'good');
+  if(parts.length)h+='<div class="chs">'+parts.map(p=>'<span class="mc">'+esc(p)+'</span>').join('')+'</div>';
+  const tv=(window.__tv||'').trim();
+  if(!r&&tv){const a=q.a.toLowerCase(),b=tv.toLowerCase();h+='<div class="mrow"><div class="sl2">내가 쓴 답</div>'+tiles(tv,'mine',lcsmark(a,b))+'</div>'}
+  h+='</div>';
+  const L=(q.sl||'').split('\n'),K=(q.ks||q.k||'').split('\n');
+  if(q.t==='COMMON'&&L.length>1){
+    h+='<div><h4>문제</h4><div class="sents">';
+    L.forEach((s,i)=>{
+      const en=slh(s).replace(/\b[A-Za-z]*_{2,}[A-Za-z]*/g,'<span class="fill">'+esc(q.a)+'</span>');
+      h+='<div class="sent"><div class="sd"><span class="sn">'+(i+1)+'</span>'+(parts.length===L.length?'<span class="mc">'+esc(parts[i])+'</span>':'')+'</div><div class="en">'+en+'</div>'+(K[i]?'<div class="ko">'+kmk(K[i],q.kh&&q.kh[i])+'</div>':'')+'</div>';
+    });
+    h+='</div></div>';
+  }else if(q.sl){
+    const en=slh(L[0]).replace(/\b[A-Za-z]*_{2,}[A-Za-z]*/g,'<span class="fill">'+esc(q.a)+'</span>');
+    h+='<div><h4>문제</h4><div class="sents"><div class="sent"><div class="en">'+en+'</div>'+(K[0]?'<div class="ko">'+kmk(K[0],q.kh&&q.kh[0])+'</div>':'')+'</div></div></div>';
+  }
+  return h;
+}
 function mk(s){return esc(s).replace(/\[\[(.+?)\]\]/g,'<mark>$1</mark>')}
 function card(q,r,showAns){
   let ans;
   if(q.f==='주관식')ans=q.a;
   else ans=q.a.split(',').map(n=>{const c=q.c[+n-1]||'';return CN[+n-1]+(q.t==='POLY'||c.length>34?'':' '+c)}).join(', ');
   let h='<div class="fc '+(r?'ok':'ng')+'"><div class="head"><span>'+(r?'정답':'오답')+'</span><span class="ans">'+esc(ans)+'</span></div><div class="body">';
+  if(q.f==='주관식'&&q.hk&&q.ex&&q.ex.length){h+=subjblock(q,r);
+  h+='<div class="note"><span class="lab">'+(r?'기억 한 줄':'이것만 챙기기')+'</span>'+hkl(q.hk)+'</div>';
+  h+='<div><h4>이렇게 쓰여요</h4><div class="exs">';
+  q.ex.forEach(e=>{h+='<div class="e">'+(e[2]?'<div class="lb">'+esc(e[2])+'</div>':'')+'<div class="en">'+mk(e[0])+'</div><div class="ko">'+mk(e[1])+'</div></div>'});
+  h+='</div></div></div></div>';
+  return h}
   if(q.ax){h+=(q.sl?'<div><h4>문제</h4>'+qblock(q)+'</div>':'')+optblock(q,r);
   h+='<div class="note"><span class="lab">'+(r?'기억 한 줄':'이것만 챙기기')+'</span>'+hkl(q.hk)+'</div>';
   h+='<div><h4>이렇게 쓰여요</h4><div class="exs">';
