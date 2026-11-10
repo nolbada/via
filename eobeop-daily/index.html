@@ -70,7 +70,7 @@ button{font-family:inherit}
 .tp .l{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.tp .l span{flex:1 1 100%;color:var(--mute);font-size:13px}
 .tp button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;font-size:14px;cursor:pointer}.tp button.on{background:var(--accent);border-color:var(--accent);color:#fff}
 .rr{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}.rr:last-child{border:0}
-.rn{flex:none;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;margin-top:2px}.rn.o{background:var(--ok)}.rn.x{background:var(--no)}
+.rn{flex:none;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;margin-top:2px}.rn.u{background:#c9c5b6}.rn.o{background:var(--ok)}.rn.x{background:var(--no)}
 .rt{font-size:16px;line-height:1.6}.rt b{background:var(--oks);border-radius:6px;padding:0 4px}.rt small{display:block;color:var(--mute);font-size:13px;line-height:1.5;margin-top:2px}
 .rec{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}.rec:last-child{border:0}.rec span:last-child{font-weight:700}
 .bt{display:flex;flex-direction:column;gap:10px}.big{font-size:42px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
@@ -131,7 +131,7 @@ var Q=DATA.Q,PL=DATA.P; /* PL: 질문 번호 순서(중복 없음) */
 var KEY="eobeop_daily_v1";var S;
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
-function initS(){KEY="eobeop_daily_v1"+(WN.name()?"_"+WN.name():"");S=load();S.pos=S.pos||0;S.res=S.res||{};S.n=S.n||5;S.open=!!S.open;S.words=S.words||{};S.dt=S.dt||{};S.rt=S.rt||{}}
+function initS(){KEY="eobeop_daily_v1"+(WN.name()?"_"+WN.name():"");S=load();S.pos=S.pos||0;S.res=S.res||{};S.n=S.n||5;S.open=!!S.open;S.words=S.words||{};S.dt=S.dt||{};S.rt=S.rt||{};S.sv=S.sv||{};S.q=S.q||{}}
 var $=function(s){return document.querySelector(s)};
 function esc(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
 var TOK=/[A-Za-zÀ-ɏ0-9]+(?:[’'.\-,][A-Za-zÀ-ɏ0-9]+)*[’]?/g;
@@ -162,6 +162,12 @@ function teacher(){
   +'<div class="l"><span>전체 열기</span><button data-op="1" class="'+(S.open?'on':'')+'">전체 열기</button><button data-op="0" class="'+(!S.open?'on':'')+'">단계식</button></div>'
   +'<div class="l"><span>진도</span><button data-rs="1">처음부터 다시</button></div></div>';
 }
+var EOKV='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec';
+function eoId(){return'EO_'+String(WN.name()).toLowerCase()}
+function eoPost(data){return fetch(EOKV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:eoId(),data:data})}).then(function(r){return r.json()})}
+function eoFlush(){var q=S.q||{},ks=Object.keys(q);if(!ks.length||!WN.name())return;var d={};ks.forEach(function(k){d[k]={v:{s:q[k].s},t:q[k].t}});eoPost(d).then(function(r){if(r&&r.ok){ks.forEach(function(k){delete S.q[k]});save()}}).catch(function(){})}
+function eoSend(day,ok,tot){S.q[day]={s:ok+'/'+tot,t:Date.now()};S.sv[day]=ok+'/'+tot;save();eoFlush()}
+function eoPull(cb){var ch=false;if(!WN.name()){cb(false);return}eoPost({}).then(function(r){var d=(r&&r.data)||{};for(var k in d){if(!/^\d+$/.test(k))continue;var v=d[k]&&d[k].v,t=(d[k]&&d[k].t)||0;if(!v||!v.s||t<=(S.rsT||0))continue;S.sv[k]=v.s;var need=Math.min((+k)*S.n,total());if(S.pos<need){S.pos=need;ch=true}}save();cb(ch)}).catch(function(){cb(false)})}
 function startS(s){ /* 세션 s 시작: 질문 위치 이어하기 */
   var n=S.n,from=s*n,to=Math.min(from+n,total());
   var pos=(S.pos>=from&&S.pos<to)?S.pos:from;
@@ -176,9 +182,11 @@ function retryS(s){var n=S.n;cur={s:s,from:s*n,to:Math.min(s*n+n,total()),k:s*n,
 function result(s,msg){
   cur=null;$("#nx").classList.add("hide");$("#sheet").classList.add("hide");
   var n=S.n,from=s*n,to=Math.min(from+n,total()),tot=to-from,ok=0,rows='',i,r,d;
+  var known=false;for(i=from;i<to;i++)if(S.res[i]!=null)known=true;
   for(i=from;i<to;i++){r=S.res[i];d=Q[PL[i]];if(r===1)ok++;
-    rows+='<div class="rr"><span class="rn '+(r===1?'o':'x')+'">'+(i-from+1)+'</span><div class="rt"><div>'+esc(d.pre)+'<b>'+esc(d[d.ans])+'</b>'+esc(d.post)+'</div><small>'+esc(d.ko)+'</small><small>'+(r===1?'정답':'오답')+'</small></div></div>'}
-  var wr=tot-ok,rt=S.rt[s]||[],rec='<div class="rec"><span>첫 풀이'+(S.dt[s]?' · '+S.dt[s]:'')+'</span><span>'+ok+' / '+tot+'</span></div>';
+    rows+='<div class="rr"><span class="rn '+(r===1?'o':((r==null&&!known)?'u':'x'))+'">'+(i-from+1)+'</span><div class="rt"><div>'+esc(d.pre)+'<b>'+esc(d[d.ans])+'</b>'+esc(d.post)+'</div><small>'+esc(d.ko)+'</small><small>'+(r===1?'정답':((r==null&&!known)?'다른 기기에서 푼 기록':'오답'))+'</small></div></div>'}
+  var svm=(!known&&S.sv[s+1])?/^(\d+)\/(\d+)$/.exec(S.sv[s+1]):null;if(svm)ok=+svm[1];
+  var wr=known?tot-ok:0,rt=S.rt[s]||[],rec='<div class="rec"><span>첫 풀이'+(S.dt[s]?' · '+S.dt[s]:'')+'</span><span>'+ok+' / '+tot+'</span></div>';
   rt.forEach(function(x,j){rec+='<div class="rec"><span>'+(j+2)+'회차 · '+esc(x.d)+'</span><span>'+x.n+' / '+tot+'</span></div>'});
   var h='<div class="top"><button class="bk" data-act="home">목록</button><span>'+(s+1)+'일차 결과</span><span></span></div>';
   if(msg)h+='<div class="rg">'+esc(msg)+'</div>';
@@ -253,6 +261,7 @@ function adv(){
   if(cur.review){result(cur.s);return}
   if(cur.retry){var n=0,a=cur.rr;for(var k in a)if(a[k]===1)n++;(S.rt[cur.s]=S.rt[cur.s]||[]).push({d:fmtD(),n:n});save();result(cur.s,'다시 풀기 기록을 남겼어요');return}
   if(!S.dt[cur.s]){S.dt[cur.s]=fmtD();save()}
+  (function(){var ok=0,i;for(i=cur.from;i<cur.to;i++)if(S.res[i]===1)ok++;eoSend(cur.s+1,ok,cur.to-cur.from)})();
   finish();
 }
 function finish(){result(cur.s,'오늘 학습을 마쳤어요 · 누적 단어 '+Object.keys(S.words).length+'개가 오답노트에 쌓였어요')}
@@ -275,9 +284,13 @@ document.addEventListener("click",function(e){
   var s=t.closest&&t.closest(".sb");if(s&&!s.classList.contains("lk")){var si=+s.dataset.s,cs=doneN();if(si<cs)result(si);else startS(si);return}
   var nn=t.closest&&t.closest("[data-n]");if(nn){var pos=S.pos;S.n=+nn.dataset.n;save();home();teacher();return}
   var op=t.closest&&t.closest("[data-op]");if(op){S.open=op.dataset.op=="1";save();home();teacher();return}
-  var rs=t.closest&&t.closest("[data-rs]");if(rs){if(rs.dataset.armed){S.pos=0;S.res={};S.dt={};S.rt={};save();home();return}rs.dataset.armed=1;rs.textContent="한 번 더 누르면 처음부터";return}
+  var rs=t.closest&&t.closest("[data-rs]");if(rs){if(rs.dataset.armed){S.pos=0;S.res={};S.dt={};S.rt={};S.sv={};S.q={};S.rsT=Date.now();save();home();return}rs.dataset.armed=1;rs.textContent="한 번 더 누르면 처음부터";return}
 });
 $("#nb").onclick=adv;
-WN.gate(function(){initS();home();var q=/[?&]day=(\d+)/.exec(location.search);if(q){var cs=doneN(),sc=sessionCount(),d=+q[1]-1;if(d<cs)result(d);else if(cs<sc)startS(cs)}});
+WN.gate(function(){initS();eoFlush();var q=/[?&]day=(\d+)/.exec(location.search),fin=false;
+  function deep(){if(!q)return;var cs=doneN(),sc=sessionCount(),d=+q[1]-1;if(d<cs)result(d);else if(cs<sc)startS(cs)}
+  function go(){if(fin)return;fin=true;home();deep()}
+  if(q){$("#app").innerHTML='<div class="mute" style="padding:40px 0;text-align:center">기록 확인 중</div>';setTimeout(go,2500);eoPull(go)}
+  else{home();eoPull(function(ch){if(ch&&$("#ttl"))home()})}});
 </script></body></html>
 
