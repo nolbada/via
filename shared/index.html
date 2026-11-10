@@ -4,7 +4,7 @@
 (function(){
 var q=new URLSearchParams(location.search),a=q.get('a')||'';
 if(!a||!/^[A-Za-z0-9_\-\/.]+$/.test(a)||a.indexOf('..')>-1||a.charAt(0)==='/'){location.replace('/via/links/');return;}
-var MK='__shared_mem',LK='__shared_last',IDLE=900000,ss=window.sessionStorage,now=Date.now();
+var MK='__shared_mem',LK='__shared_last',IDLE=1200000,ss=window.sessionStorage,now=Date.now();
 try{
 var last=+ss.getItem(LK)||0;
 if(q.get('new')==='1'||now-last>IDLE){ss.removeItem(MK);}
@@ -12,7 +12,7 @@ ss.setItem(LK,String(now));
 }catch(e){}
 if(q.get('new')==='1'){try{q.delete('new');history.replaceState(null,'',location.pathname+'?'+q.toString()+location.hash);}catch(e){}}
 var url='/via/'+a,base=url.replace(/[^\/]*$/,'');
-var SHIM='(function(){var P=Storage.prototype,oG=P.getItem,oS=P.setItem,oR=P.removeItem,oC=P.clear,oK=P.key,SS=window.sessionStorage,MK="__shared_mem",LK="__shared_last",IDLE=900000,m={};'
+var SHIM='(function(){var P=Storage.prototype,oG=P.getItem,oS=P.setItem,oR=P.removeItem,oC=P.clear,oK=P.key,SS=window.sessionStorage,MK="__shared_mem",LK="__shared_last",IDLE=1200000,m={};'
 +'try{m=JSON.parse(oG.call(SS,MK)||"{}")}catch(e){}'
 +'function sv(){try{oS.call(SS,MK,JSON.stringify(m))}catch(e){}}'
 +'P.getItem=function(k){if(this===SS)return oG.call(this,k);return Object.prototype.hasOwnProperty.call(m,k)?m[k]:null};'
