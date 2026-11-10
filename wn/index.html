@@ -196,8 +196,9 @@ function eoMap(n){
     if(ok.indexOf(w)>=0&&CLOSED.indexOf(k)<0){c++;m[k]=c}}
   return m;
 }
-function eoStat(n){var s=lj('eobeop_daily_v1_'+n,{}),c=s.n||5,d=(s.pos||0)>=418?84:Math.floor((s.pos||0)/c),sc={},i,j,o;for(i=0;i<d;i++){o=0;for(j=i*c;j<Math.min((i+1)*c,418);j++)if((s.res||{})[j]===1)o++;sc[i+1]=o+' / '+(Math.min((i+1)*c,418)-i*c)}return{d:d,c:c,sc:sc}}
-function eoDone(n){var s=lj('eobeop_daily_v1_'+n,{});return Math.floor((s.pos||0)/(s.n||5))}
+function eoStat(n){var s=lj('eobeop_daily_v1_'+n,{}),c=s.n||5,d=(s.pos||0)>=418?84:Math.floor((s.pos||0)/c),sc={},sv=lj('wn_eosv_'+n,{}),sm=0,i,j,o,kn,k;for(k in sv)sm=Math.max(sm,+k||0);d=Math.max(d,Math.min(sm,84));for(i=0;i<d;i++){o=0;kn=0;for(j=i*c;j<Math.min((i+1)*c,418);j++){if((s.res||{})[j]!=null)kn++;if((s.res||{})[j]===1)o++}sc[i+1]=(!kn&&sv[i+1])?String(sv[i+1]).replace('/',' / '):o+' / '+(Math.min((i+1)*c,418)-i*c)}return{d:d,c:c,sc:sc}}
+function eoDone(n){var s=lj('eobeop_daily_v1_'+n,{}),sv=lj('wn_eosv_'+n,{}),m=Math.floor((s.pos||0)/(s.n||5)),k;for(k in sv)m=Math.max(m,+k||0);return m}
+function eoPullR(){var n=name();if(PV||!n)return;try{fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:'EO_'+String(n).toLowerCase(),data:{}})}).then(function(r){return r.json()}).then(function(r){var d=(r&&r.data)||{},rt=(lj('eobeop_daily_v1_'+n,{}).rsT)||0,m={},k,old=JSON.stringify(lj('wn_eosv_'+n,{}));for(k in d){if(!/^\d+$/.test(k))continue;var v=d[k]&&d[k].v,t=(d[k]&&d[k].t)||0;if(v&&v.s&&t>rt)m[k]=v.s}if(JSON.stringify(m)!==old){ss('wn_eosv_'+n,JSON.stringify(m));if(document.getElementById('wk'))home(DATA||undefined)}}).catch(function(){})}catch(e){}}
 function eoFirstOpen(n){return eoDone(n)+1}
 function planInfo(n){
   var P=PLAN[n];if(!P)return null;
@@ -215,7 +216,7 @@ function ctlOf(M,n){return (M&&M[n])||CTL_SEED[n]||{}}
 function ctlRead(){return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:{}})}).then(function(r){return r.json()}).then(function(r){return ctlParse(r&&r.data||{})})}
 function ctlWrite(n,o){var d={};d[n]={v:{s:JSON.stringify(o)},t:Date.now()};return fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:CTL_ID,data:d})}).then(function(r){return r.json()})}
 var CTLM=null,CTLL=0;
-setTimeout(function(){try{rvPull()}catch(e){}},1800);
+setTimeout(function(){try{rvPull()}catch(e){}},1800);setTimeout(eoPullR,2200);
 try{window.addEventListener('online',function(){try{rvFlush()}catch(e){}});document.addEventListener('visibilitychange',function(){if(!document.hidden){try{rvPull()}catch(e){}}})}catch(e){}
 function inHold(c,dk){return !!(c&&c.hold&&c.hs&&dk>=c.hs&&dk<=c.hold)}
 var TT=['김소희','윤유란','정다원','김민서','이지민','조혜린','신유정A'];
