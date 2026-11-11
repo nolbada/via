@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" translate="no">
 <head>
 <meta charset="utf-8">
+<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>데일리보카 M</title>
 <meta name="theme-color" content="#7a45d1">
@@ -149,6 +150,8 @@ input.tx.ok{border-color:var(--ok);background:var(--okBg)}input.tx.ng{border-col
 .fc .sd{display:flex;align-items:center;gap:8px}
 .fc .sn{width:24px;height:24px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}
 .fc .fill{background:var(--ok);color:#fff;border-radius:6px;padding:0 6px;font-weight:800}
+.tw{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation}
+.tw.got{background:#fff0b3;box-shadow:0 0 0 2px #f2c230;border-radius:6px}
 </style>
 <script src="../../common/sync.js?v=1"></script>
 </head>
@@ -333,6 +336,38 @@ function optmean(q,n,line){
   if(q.t==='W2M')return {big:c,chip:word,sub:''};
   return {big:c,chip:mean,sub:''};
 }
+var __got={};try{__got=JSON.parse(localStorage.getItem('dv_got_'+D.level))||{}}catch(e){}
+function tpair(q,n,m,c,line){
+  if(q.t==='POLY'||q.t==='REL')return null;
+  var EN=/^[A-Za-z][A-Za-z' -]*$/,w,mean,chip;
+  if(q.t==='W2M'){
+    line=String(line||'');var cand=[],ci=line.indexOf(': '),pm=line.match(/\(([^()]*)\)\s*$/);
+    if(ci>=0){cand.push(line.slice(0,ci).trim());cand.push(line.slice(ci+2).trim())}
+    if(pm)cand.push(pm[1].trim());
+    w='';for(var i=0;i<cand.length;i++){if(EN.test(cand[i])){w=cand[i];break}}
+    mean=String(c||'').trim();chip=true;
+  }else{w=String(c||'').trim();mean=String(m.chip||'').trim();chip=false}
+  if(!w||!mean||!EN.test(w))return null;
+  return {w:w,m:mean,chip:chip};
+}
+function tcls(q,tp){return ' tw'+(__got[q.id+'|'+tp.w]?' got':'')}
+function tatt(tp){return ' data-tw="'+esc(tp.w)+'" data-tm="'+esc(tp.m)+'"'}
+(function(){var T=null,X=0,Y=0;
+  function clr(){clearTimeout(T);T=null}
+  function lp(e){
+    var q=(typeof R!=='undefined'&&R&&R.list)?R.list[R.i]:null;if(!q)return;
+    var w=e.getAttribute('data-tw'),m=e.getAttribute('data-tm'),k=q.id+'|'+w;
+    if(__got[k])return;
+    __got[k]=1;try{localStorage.setItem('dv_got_'+D.level,JSON.stringify(__got))}catch(x){}
+    e.classList.add('got');
+    try{WN.add([{w:w,m:m,src:'데일리보카',how:'해설에서 담음',ask:false,q:'m:'+q.id+':'+w}])}catch(x){}
+    try{if(navigator.vibrate)navigator.vibrate(30)}catch(x){}
+  }
+  document.addEventListener('pointerdown',function(ev){var e=ev.target.closest?ev.target.closest('.tw[data-tw]'):null;if(!e)return;X=ev.clientX;Y=ev.clientY;clr();T=setTimeout(function(){T=null;lp(e)},550)},true);
+  document.addEventListener('pointermove',function(ev){if(T&&(Math.abs(ev.clientX-X)>10||Math.abs(ev.clientY-Y)>10))clr()},true);
+  document.addEventListener('pointerup',clr,true);document.addEventListener('pointercancel',clr,true);document.addEventListener('scroll',clr,true);
+  document.addEventListener('contextmenu',function(ev){if(ev.target.closest&&ev.target.closest('.tw'))ev.preventDefault()},true);
+})();
 const BF={
 "acquired": "acquire(얻다)의 과거분사형, 형용사로 쓰임",
 "advanced": "advance(나아가다)의 과거분사형, 형용사로 쓰임",
@@ -556,8 +591,8 @@ function optblock(q,r){
     const n=i+1,isA=ans.indexOf(n)>=0,isP=pk.indexOf(n)>=0&&!isA;
     const m=optmean(q,n,L[n]);
     const x=isA?(q.ax&&q.ax[n]):(q.wx&&q.wx[n]);
-    let big=m.big===null?hl(c,hs[i]):esc(m.big);
-    h+='<div class="ch2'+(isA?' ans':'')+(isP?' pick':'')+'"><div class="orow"><span class="on">'+(i+1)+'</span><span class="ow'+(q.t==='POLY'?' ps':'')+'">'+big+'</span>'+(isP?'<span class="tg">내가 고름</span>':(isA?'<span class="tg">정답</span>':''))+(m.chip?'<span class="om">'+esc(m.chip)+'</span>':'')+'</div>';
+    let big=m.big===null?hl(c,hs[i]):esc(m.big);const tp=tpair(q,n,m,c,L[n]);
+    h+='<div class="ch2'+(isA?' ans':'')+(isP?' pick':'')+'"><div class="orow"><span class="on">'+(i+1)+'</span><span class="ow'+(q.t==='POLY'?' ps':'')+(tp&&!tp.chip?tcls(q,tp):'')+'"'+(tp&&!tp.chip?tatt(tp):'')+'>'+big+'</span>'+(isP?'<span class="tg">내가 고름</span>':(isA?'<span class="tg">정답</span>':''))+(m.chip?'<span class="om'+(tp&&tp.chip?tcls(q,tp):'')+'"'+(tp&&tp.chip?tatt(tp):'')+'>'+esc(m.chip)+'</span>':'')+'</div>';
     {const bn=bfnote(q,n,L[n]);if(bn)h+='<div class="obf">'+esc(bn)+'</div>'}
     if(q.t==='POLY'&&ka[i])h+='<div class="osub">'+esc(ka[i].replace(/^[①-⑤]\s*/,''))+'</div>';
     if(m.sub)h+='<div class="osub">'+esc(m.sub)+'</div>';
