@@ -23,6 +23,44 @@ tr.row{cursor:pointer}tr.row:hover{background:var(--chip)}
 .stem{font-weight:600}
 .tg{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:3px 10px;font-size:13px}.tg.off{background:var(--badBg);color:var(--bad);border-color:var(--bad)}
 .msg{color:var(--sub);padding:10px 0}
+
+.pbar{position:sticky;top:0;z-index:5;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pbar label{font-size:14px;display:flex;gap:5px;align-items:center}
+.pbtn{border:1px solid var(--ac);background:var(--ac);color:#fff;border-radius:10px;padding:8px 16px;font-weight:700}
+.plist .row2{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--line)}
+.plist .row2:last-child{border:0}.plist .nm{min-width:96px;font-weight:600}
+.paper{background:#fff;color:#111;border:1px solid #ccc;border-radius:4px;padding:16px 18px;margin:10px 0;font-family:"Malgun Gothic","Noto Sans KR","Apple SD Gothic Neo",sans-serif;line-height:1.55;font-size:13px}
+.paper .hd{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #111;padding-bottom:5px;margin-bottom:10px;gap:10px}
+.paper .hd .t1{font-size:11px;color:#444}.paper .hd .t2{font-size:17px;font-weight:700}
+.paper .hd .nm2{font-size:12px;white-space:nowrap}
+.paper .cols{column-count:2;column-gap:22px;column-rule:1px solid #ddd}
+.paper .pq{break-inside:avoid;page-break-inside:avoid;margin:0 0 14px}
+.paper .pq .pn{font-weight:700;display:inline}
+.paper .pq .ps{display:inline;font-weight:600}
+.paper .pq .sc{display:block;font-size:10px;color:#666;margin:0}
+.paper .pq .pp{margin:3px 0 0 0;font-size:12.5px}
+.paper .pq .pb{border:1px solid #888;padding:5px 8px;margin:5px 0;font-size:12.5px}
+.paper .pq .pc{margin:1px 0 0 0;padding-left:1.35em;text-indent:-1.35em;font-size:12.5px}
+.paper .pq .mu{font-size:11px;color:#333;margin-top:2px}
+.paper.an{font-size:15px}
+.paper.an .quick{display:flex;flex-wrap:wrap;gap:6px 14px;margin:6px 0 14px;font-size:17px}
+.paper.an .quick b{display:inline-block;min-width:58px;border:1px solid #111;border-radius:6px;padding:1px 8px;text-align:center}
+.paper.an .aq{break-inside:avoid;page-break-inside:avoid;border-top:1px solid #bbb;padding:8px 0 6px}
+.paper.an .aq .a1{font-size:16px;font-weight:700}.paper.an .aq .a1 em{font-style:normal;color:#b3372f;margin-left:8px}
+.paper.an .aq .key{margin:2px 0;color:#222}
+.paper.an .aq .en{font-size:15.5px;margin-top:5px}.paper.an .aq .ko{font-size:14px;color:#333}
+.paper.an .aq .vb{margin-top:4px;font-size:14px;color:#333}
+.paper.an .aq .ee{margin-top:4px;font-size:13.5px;color:#222}
+.paper.an .aq .ee div{margin:2px 0}
+.paper.an .aq .ee .x{color:#a02a22}
+@page{size:A4;margin:11mm 12mm}
+@media print{
+ html,body{background:#fff !important}
+ #app{max-width:none;padding:0}
+ .noprint{display:none !important}
+ .paper{border:0;border-radius:0;padding:0;margin:0}
+ .paper + .paper{break-before:page;page-break-before:always}
+}
 </style></head><body><div id="app"></div>
 <script>
 var TOPICS={
@@ -1175,7 +1213,7 @@ function load(){
   }).catch(function(){ERR='서버에 연결하지 못했어요. 잠시 뒤 새로고침을 눌러 주세요.';ROSTER=ROSTER||[];draw()});
 }
 function head(){
-  return '<h1>문법 기출 풀기 - 선생님 확인</h1><div class="tabs"><button data-tab="st" class="'+(TAB==='st'?'on':'')+'">학생별</button><button data-tab="qs" class="'+(TAB==='qs'?'on':'')+'">문제별</button><button data-tab="hd" class="'+(TAB==='hd'?'on':'')+'">문제 숨기기</button><button class="btn" id="rf">새로고침</button></div>'+(ERR?'<div class="card bad">'+esc(ERR)+'</div>':'');
+  return '<h1>문법 기출 풀기 - 선생님 확인</h1><div class="tabs"><button data-tab="st" class="'+(TAB==='st'?'on':'')+'">학생별</button><button data-tab="qs" class="'+(TAB==='qs'?'on':'')+'">문제별</button><button data-tab="hd" class="'+(TAB==='hd'?'on':'')+'">문제 숨기기</button><button data-tab="pr" class="'+(TAB==='pr'?'on':'')+'">인쇄</button><button class="btn" id="rf">새로고침</button></div>'+(ERR?'<div class="card bad">'+esc(ERR)+'</div>':'');
 }
 function wire(){
   $.querySelectorAll('[data-tab]').forEach(function(b){b.onclick=function(){TAB=b.dataset.tab;draw()}});
@@ -1183,8 +1221,9 @@ function wire(){
 }
 function draw(){
   var h=head();
-  if(TAB==='st')h+=viewSt();else if(TAB==='qs')h+=viewQs();else h+=viewHd();
-  $.innerHTML=h;wire();
+  if(TAB==='st')h+=viewSt();else if(TAB==='qs')h+=viewQs();else if(TAB==='pr')h+=viewPr();else h+=viewHd();
+  if(TAB==='pr'&&PR)h=h.replace(/<h1>.*?<\/h1><div class="tabs">.*?<\/div>(<div class="card bad">.*?<\/div>)?/s,function(m){return'<div class="noprint">'+m+'</div>'});
+  $.innerHTML=h;wire();if(TAB==='pr')wirePr();
   if(TAB==='st')$.querySelectorAll('tr.row').forEach(function(r){r.onclick=function(){detail(r.dataset.n)}});
   if(TAB==='qs'){var b=document.getElementById('qall');if(b)b.onclick=loadAll}
   if(TAB==='hd')$.querySelectorAll('[data-q]').forEach(function(b){b.onclick=function(){toggle(b.dataset.q)}});
@@ -1247,5 +1286,66 @@ function toggle(id){
   post({act:'put',id:'GK_CTL',data:d}).then(function(){ERR=''}).catch(function(){ERR='저장하지 못했어요. 다시 눌러 주세요.'}).then(draw);
   draw();
 }
+/* ===== 인쇄 ===== */
+var PR=null,PSCH=false,PEX=false;
+function pbold(t){return esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}
+var NUMS='①②③④⑤';
+function setList(){var L=[];['gj','pp','ind','bs'].filter(function(t){return TOPICS[t]}).forEach(function(t){var T0=TOPICS[t],sets=T0.sets||[QS.filter(function(q){return q.t===t}).map(function(q){return q.id})];
+  sets.forEach(function(ids,k){ids=ids.filter(function(id){return QBY[id]});L.push({t:t,k:k,name:T0.name+(T0.sets?' 세트 '+(k+1):' 전체'),ids:ids})})});return L}
+function paperHead(S,kind){return '<div class="hd"><div><div class="t1">비타민 영어클리닉 · 중등 문법 기출 풀기</div><div class="t2">'+esc(S.name)+' '+kind+'</div></div><div class="nm2">학교 ________ 이름 ________ 점수 ____ / '+S.ids.length+'</div></div>'}
+function ulIt(q,t){
+  if(q.t!=='gj'||!/밑줄/.test(q.stem))return esc(t);
+  var m=String(t).match(/\bit\b/ig),re=null;
+  if(m&&m.length===1)re=/\b(it)\b/i;else if(m&&m.length>1)re=/\b(It)\b/;
+  if(!re)return esc(t);
+  return esc(String(t).replace(re,'\u0001$1\u0002')).replace('\u0001','<u>').replace('\u0002','</u>');
+}
+function paperQ(S){
+  var h='<div class="paper">'+paperHead(S,'문제');
+  h+='<div class="cols">';
+  S.ids.forEach(function(id,i){var q=QBY[id];
+    h+='<div class="pq"><span class="pn">'+(i+1)+'.</span> <span class="ps">'+esc(q.stem)+'</span>'+(PSCH?'<span class="sc">['+esc(q.src)+']</span>':'')+
+      (q.multi?'<div class="mu">(정답 '+q.multi+'개를 고르세요)</div>':'')+
+      (q.pre?'<div class="pp">'+esc(q.pre)+'</div>':'')+
+      (q.body&&q.body.length?'<div class="pb">'+q.body.map(function(x){return'<div>'+ulIt(q,x)+'</div>'}).join('')+'</div>':'')+
+      q.ch.map(function(c,j){return'<div class="pc">'+NUMS[j]+' '+ulIt(q,c)+'</div>'}).join('')+'</div>'});
+  return h+'</div></div>';
+}
+function paperA(S){
+  var h='<div class="paper an">'+paperHead(S,'정답·해설');
+  h+='<div class="quick">'+S.ids.map(function(id,i){var q=QBY[id];return'<span>'+(i+1)+'번 <b>'+q.ans.map(function(a){return NUMS[a]}).join(' ')+'</b></span>'}).join('')+'</div>';
+  S.ids.forEach(function(id,i){var q=QBY[id],K=KEY[id]||{a:[],c:[]};
+    h+='<div class="aq"><div class="a1">'+(i+1)+'번<em>정답 '+q.ans.map(function(a){return NUMS[a]}).join(' ')+'</em>'+(PSCH?'<span class="sub" style="font-weight:400;margin-left:8px">'+esc(q.src)+'</span>':'')+'</div>';
+    if(K.h)h+='<div class="key">'+esc(K.h)+'</div>';
+    (K.a||[]).forEach(function(x){h+='<div class="en">'+pbold(x[0])+'</div><div class="ko">'+esc(x[1])+'</div>'});
+    if(K.c&&K.c.length)h+='<div class="vb">'+K.c.map(esc).join(' · ')+'</div>';
+    if(PEX&&q.ex){h+='<div class="ee">'+q.ex.map(function(e,j){
+      var en=q.lab==='ch'?String(q.ch[j]).split(' → ').pop():(q.body[j]||''),w=e.w||'',p=w.indexOf('→'),fx='';
+      if(p>=0){fx=w.slice(p+1).trim();w=w.slice(0,p).trim()}
+      var lb=(q.lab==='body'&&e.l&&e.l!=='·')?e.l:NUMS[j];
+      return'<div class="'+(e.ok?'':'x')+'">'+lb+' '+(e.ok?'○':'✕')+' '+esc(en)+(e.m?' - '+esc(e.m):'')+(w?' / '+esc(w):'')+(fx?' (고치면: '+esc(fx)+')':'')+'</div>'}).join('')+'</div>'}
+    h+='</div>'});
+  return h+'</div>';
+}
+function viewPr(){
+  var L=setList();
+  if(!PR){
+    var h='<div class="card plist"><div class="sub" style="margin-bottom:6px">세트를 골라 인쇄 화면을 열어요. 인쇄창에서 "PDF로 저장"을 고르면 PDF 파일이 돼요.</div>';
+    L.forEach(function(S,n){h+='<div class="row2"><span class="nm">'+esc(S.name)+'</span><span class="sub">'+S.ids.length+'문제</span><button class="btn" data-pr="'+n+'|q">문제지</button><button class="btn" data-pr="'+n+'|a">정답·해설지</button><button class="btn" data-pr="'+n+'|qa">문제+정답</button></div>'});
+    return h+'</div>';
+  }
+  var S=L[PR.n],h='<div class="pbar noprint"><button class="btn" id="prb">목록으로</button><label><input type="checkbox" id="psc"'+(PSCH?' checked':'')+'> 출처 학교 표시</label><label><input type="checkbox" id="pex"'+(PEX?' checked':'')+'> 정답지에 번호별 풀이 포함</label><button class="pbtn" id="prp">인쇄 / PDF 저장</button></div>';
+  if(PR.m.indexOf('q')>=0)h+=paperQ(S);
+  if(PR.m.indexOf('a')>=0)h+=paperA(S);
+  return h;
+}
+function wirePr(){
+  $.querySelectorAll('[data-pr]').forEach(function(b){b.onclick=function(){var a=b.dataset.pr.split('|');PR={n:+a[0],m:a[1]};draw();window.scrollTo(0,0)}});
+  var b=document.getElementById('prb');if(b)b.onclick=function(){PR=null;draw()};
+  var c=document.getElementById('psc');if(c)c.onchange=function(){PSCH=c.checked;draw()};
+  var e=document.getElementById('pex');if(e)e.onchange=function(){PEX=e.checked;draw()};
+  var p=document.getElementById('prp');if(p)p.onclick=function(){window.print()};
+}
+
 load();
 </script></body></html>
