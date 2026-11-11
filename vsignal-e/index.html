@@ -1703,7 +1703,7 @@ function finishQuiz(){
   var okN=S.res.reduce(function(x,r){return x+(r.ok||0);},0)+Q.list.length,acc=okN+total?okN/(okN+total):1,pass=acc>=CUT;
   addHist({k:'lesson',d:S.day,m:total,p:pass});
   if(S.day===curDay()){var _nx=dayList[dayList.indexOf(S.day)+1];if(_nx){store.sel=_nx;save();}}
-  S.fin={total:total,sm:sm,qm:qm,redo:redo,pass:pass,acc:acc,wrong:wrong};
+  S.fin={total:total,sm:sm,qm:qm,redo:redo,pass:pass,acc:acc,wrong:wrong};try{window.BoardLink&&BoardLink.score("ve",{p:Math.floor(acc*100),ok:pass,d:S.day})}catch(_e){}
   try{var _f={};for(var _k in S.fin)if(_k!=='wrong')_f[_k]=S.fin[_k];store.lastRec={d:S.day,t:Date.now(),f:_f};save();}catch(_e){}
   renderFin();
 }
@@ -1822,4 +1822,5 @@ BRK.init(app,function(){return store;},save);
 home();
 })();
 </script>
+<script src="https://nolbada.github.io/board/link.js" data-app="ve"></script>
 </html>
