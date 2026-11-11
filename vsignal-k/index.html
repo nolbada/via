@@ -1214,7 +1214,7 @@ function finishQuiz(){
   S.res.forEach(function(r){if(r.mis>0){var s0=days[S.day].filter(function(x){return x.n===r.n;})[0];if(s0)wl[r.n]={s:s0,sm:r.mis,qm:0,qc:[]};}});
   Q.list.forEach(function(it){if(it.mist>0){var o=wl[it.s.n]||(wl[it.s.n]={s:it.s,sm:0,qm:0,qc:[]});o.qm+=it.mist;o.qc.push(it.k);}});
   var wrong=Object.keys(wl).map(Number).sort(function(a,b){return a-b;}).map(function(k){return wl[k];});
-  S.fin={total:total,sm:sm,qm:qm,redo:redo,pass:passed,pct:pct,wrong:wrong};
+  S.fin={total:total,sm:sm,qm:qm,redo:redo,pass:passed,pct:pct,wrong:wrong};try{window.BoardLink&&BoardLink.score("vk",{p:pct,ok:passed,d:S.day})}catch(_e){}
   try{var _f={};for(var _k in S.fin)if(_k!=='wrong')_f[_k]=S.fin[_k];store.lastRec={d:S.day,t:Date.now(),f:_f};save();}catch(_e){}
   renderFin();
 }
@@ -1342,4 +1342,5 @@ app.addEventListener('click',function(e){
 home();
 })();
 </script>
+<script src="https://nolbada.github.io/board/link.js" data-app="vk"></script>
 </html>
