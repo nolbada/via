@@ -150,7 +150,9 @@ function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function ds(k){try{localStorage.removeItem(k)}catch(e){}}
 var $=document.getElementById('app');
 function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function post(b){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
+function post(b){var one=function(){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})};
+if(b.act!=='list'||name()!=='서승언')return one();
+var tr=0;var go=function(){return one().catch(function(e){if(++tr>=4)throw e;return new Promise(function(ok){setTimeout(ok,900*tr)}).then(go)})};return go()}
 function name(){if(/[?&]t=1(&|$)/.test(location.search))return'신유정'+((/[?&]c=([AB])(&|$)/.exec(location.search)||[])[1]||'');return(ls('wn_name')||ls('recm_name')||ls('rec_name')||'').replace(/\s+/g,'')}
 function dshow(d){if(!d)return'';var p=d.split('-');var w=WD[new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay()];return(+p[1])+'/'+(+p[2])+'('+w+')'}
 function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
@@ -282,7 +284,7 @@ function home(r){
   if(!r){var cz=lj('wn_ls_'+n+TCM,null);if(cz&&cz.ok&&cz.items&&cz.today===iso(new Date())){home(cz)}else{$.innerHTML='<h1>로드맵</h1><div class="sub">불러오는 중...</div>'}
     flushR().then(function(){return post({act:'list',name:n,pin:PIN})}).then(function(x){
       if(x&&x.ok){try{ss('wn_ls_'+n+TCM,JSON.stringify(x))}catch(e){}if(SUBF()){DATA=x}else home(x)}else if(isAdm(n))home(admData());else{ds('wn_name');login()}
-    },function(){$.innerHTML='<h1>로드맵</h1><div class="card">연결이 안 됐어요. 인터넷을 확인해 주세요.<button class="btn pri" id="rt">다시 불러오기</button></div>';document.getElementById('rt').onclick=function(){home()}});return
+    },function(){if(name()==='서승언'&&cz&&cz.ok&&cz.items&&cz.today===iso(new Date()))return;$.innerHTML='<h1>로드맵</h1><div class="card">연결이 안 됐어요. 인터넷을 확인해 주세요.<button class="btn pri" id="rt">다시 불러오기</button></div>';document.getElementById('rt').onclick=function(){home()}});return
   }
   var hc=ctlOf(CTLM,n);if(hc.hide&&hc.hide.length){r=Object.assign({},r,{items:r.items.filter(function(i){return hc.hide.indexOf(i.src)<0})})}
   DATA=r;
