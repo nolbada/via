@@ -606,7 +606,7 @@ function finish(pass){
   var b=cur(),bs=bstore();
   var prev=bs.done[kk(b)];if(!prev||st.miss<prev.miss){bs.done[kk(b)]={miss:st.miss,at:stamp()};}
   delete bs.prog[kk(b)];bs.last[kk(b)]={miss:st.miss,qm:st.qm,at:stamp(),pass:!!pass,log:JSON.parse(JSON.stringify(st.log))};
-  saveFn();st.mode='review';review();
+  saveFn();try{window.BoardLink&&BoardLink.score("xr",{m:st.miss,ok:st.miss<=2,d:b.id})}catch(_e){}st.mode='review';review();
 }
 function review(){
   var b=cur(),bs=bstore(),r=bs.last[kk(b)]||{miss:(bs.done[kk(b)]||{}).miss||0,at:(bs.done[kk(b)]||{}).at||'',pass:false,log:{}};
@@ -766,5 +766,6 @@ BRK.init(app,function(){return store;},save);
 XC.show();
 })();
 </script>
+<script src="https://nolbada.github.io/board/link.js" data-app="xr"></script>
 </body>
 </html>
