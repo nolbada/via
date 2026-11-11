@@ -7,10 +7,11 @@
   if(/\/wn-t\//.test(P))return;
   var URL_=W.REC_URL||'https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec';
   var LS=null;try{LS=W.localStorage;LS.getItem('x')}catch(e){return}
-  var UK='via_uid',MK='via_meta',AK='via_at',MAXV=60000,T0=Date.now();
+  var UK='via_uid',MK='via_meta',AK='via_at',LK='via_lt',TK='via_tomb',MAXV=60000,T0=Date.now();
   function g(k){try{return LS.getItem(k)}catch(e){return null}}
-  function s(k,v){try{LS.setItem(k,v)}catch(e){}}
-  function d(k){try{LS.removeItem(k)}catch(e){}}
+  var inS=0;
+  function s(k,v){inS++;try{LS.setItem(k,v)}catch(e){}inS--}
+  function d(k){inS++;try{LS.removeItem(k)}catch(e){}inS--}
   function jg(k){try{return JSON.parse(g(k)||'null')}catch(e){return null}}
   /* 이 연동이 잇는 기록. 누적복습(wn_rv*)은 로드맵이 따로 잇는다. 데일리어법은 날짜별 점수 연동(EO_)과 함께 문제별 기록까지 잇는다 */
   function mirrored(k){
@@ -19,6 +20,10 @@
     return /^(dv_|dvc_|dvp_|wl_|star_|wn_mm_|wn_star_|wn_fp_|eobeop_daily_v1_)/.test(k);
   }
   function keys(){var o=[],i,k;for(i=0;i<LS.length;i++){k=LS.key(i);if(mirrored(k))o.push(k)}return o}
+  /* 별표·틀린 목록·이어풀기 진행처럼 '지우거나 줄어드는' 기록은 합치지 않고, 더 나중에 바꾼 쪽이 이긴다(지운 것도 기록으로 남긴다) */
+  function lww(k){return /^(wn_star_|dvc_|dvp_|star_|wl_)/.test(k)}
+  function stamp(k){var o=jg(LK)||{};o[k]=Date.now();s(LK,JSON.stringify(o));var tb=jg(TK)||{};if(k in tb){delete tb[k];s(TK,JSON.stringify(tb))}}
+  function tomb(k){var tb=jg(TK)||{};tb[k]=Date.now();s(TK,JSON.stringify(tb));var o=jg(LK)||{};delete o[k];s(LK,JSON.stringify(o))}
   function nm(){
     var q=W.location.search;
     if(/[?&]t=1(&|$)/.test(q)){var c=(/[?&]c=([AB])(&|$)/.exec(q)||[])[1]||'';return '신유정'+c}
@@ -51,6 +56,9 @@
   function pending(){
     var meta=jg(MK)||{},ch={},sent={};
     keys().forEach(function(k){var v=g(k);if(v===null||v.length>MAXV)return;if(meta[k]!==v){ch[k]={v:{s:v},t:Date.now()};sent[k]=v}});
+    var tb=jg(TK)||{},lt=jg(LK)||{};
+    for(var k in tb){if(g(k)===null&&meta[k]!==''){ch[k]={v:{s:''},t:tb[k]};sent[k]=''}}
+    for(var k2 in ch){if(ch[k2].v.s!==''&&lww(k2)&&lt[k2])ch[k2].t=lt[k2]}
     return {ch:ch,sent:sent,n:Object.keys(sent).length};
   }
   function push(id,keep){
@@ -66,6 +74,21 @@
         if(!mirrored(k))continue;
         var rs=unwrap(rem[k]&&rem[k].v);if(rs===null)continue;
         var lv=g(k);
+        if(lww(k)){
+          var rt=Number(rem[k].t||0),tbm=jg(TK)||{},ltm=jg(LK)||{};
+          if(lv===null){
+            if(rs===''){meta[k]='';continue}
+            if(tbm[k]&&tbm[k]>=rt)continue; /* 이 기기에서 지운 게 더 나중 → 그대로 지운 채로 두고 올린다 */
+            s(k,rs);meta[k]=rs;rl=true;continue}
+          if(lv===rs){meta[k]=rs;continue}
+          if(rs===''){ /* 다른 기기에서 지움 */
+            if(meta[k]!==lv&&ltm[k]&&ltm[k]>rt)continue;
+            d(k);meta[k]='';rl=true;continue}
+          if(meta[k]!==lv){
+            if(ltm[k]){ if(ltm[k]>rt)continue; s(k,rs);meta[k]=rs;rl=true;continue }
+            /* 변경 시각을 모르는 예전 값: 예전 방식대로 합친다 */
+            var mg0=merge(lv,rs,k);if(mg0!==lv){s(k,mg0);rl=true}continue}
+          s(k,rs);meta[k]=rs;rl=true;continue}
         if(lv===rs){meta[k]=rs;continue}
         if(lv===null){s(k,rs);meta[k]=rs;rl=true;continue}
         if(meta[k]!==lv){
@@ -76,7 +99,7 @@
       return push(id,false).then(function(){busy=false;if(again){again=false;sched()}return rl},function(){busy=false;return rl});
     },function(e){busy=false;throw e});
   }
-  function wipe(){keys().forEach(d);d(MK)}
+  function wipe(){keys().forEach(d);d(MK);d(LK);d(TK)}
   function reloadOnce(){
     try{var t=Number(sessionStorage.getItem('via_rl')||0);if(Date.now()-t>20000){sessionStorage.setItem('via_rl',String(Date.now()));location.reload()}}catch(e){}
   }
@@ -87,7 +110,8 @@
     if(timer)return;
     timer=setTimeout(function(){timer=null;var id=ident();if(id&&id===g(UK))sync(id).catch(function(){})},4000);
   }
-  try{var sp=W.Storage.prototype,os=sp.setItem;sp.setItem=function(k){os.apply(this,arguments);try{if(this===LS){if(mirrored(k))sched();else if(k==='wn_name'&&!started)setTimeout(start,50)}}catch(e){}}}catch(e){}
+  try{var sp=W.Storage.prototype,os=sp.setItem;var orm=sp.removeItem;sp.removeItem=function(k){var had=null;try{if(this===LS&&!inS&&lww(k)&&mirrored(k))had=LS.getItem(k)}catch(e){}orm.apply(this,arguments);try{if(had!==null){tomb(k);sched()}}catch(e){}};
+  sp.setItem=function(k){os.apply(this,arguments);try{if(this===LS){if(mirrored(k)){if(!inS&&lww(k))stamp(k);sched()}else if(k==='wn_name'&&!started)setTimeout(start,50)}}catch(e){}}}catch(e){}
   function start(){
     if(started)return;var id=ident();if(!id)return;started=true;
     var prev=g(UK);
