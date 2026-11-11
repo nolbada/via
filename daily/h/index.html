@@ -355,12 +355,17 @@ function optmean(q,n,line){
   return {big:c,chip:mean,sub:''};
 }
 var __got={};try{__got=JSON.parse(localStorage.getItem('dv_got_'+D.level))||{}}catch(e){}
-function tpair(q,n,m,c){
+function tpair(q,n,m,c,line){
   if(q.t==='POLY'||q.t==='REL')return null;
-  var w,mean,chip;
-  if(q.t==='W2M'){w=m.chip;mean=m.big;chip=true}else{w=c;mean=m.chip;chip=false}
-  w=String(w||'').trim();mean=String(mean||'').trim();
-  if(!w||!mean||!/^[A-Za-z][A-Za-z' -]*$/.test(w))return null;
+  var EN=/^[A-Za-z][A-Za-z' -]*$/,w,mean,chip;
+  if(q.t==='W2M'){
+    line=String(line||'');var cand=[],ci=line.indexOf(': '),pm=line.match(/\(([^()]*)\)\s*$/);
+    if(ci>=0){cand.push(line.slice(0,ci).trim());cand.push(line.slice(ci+2).trim())}
+    if(pm)cand.push(pm[1].trim());
+    w='';for(var i=0;i<cand.length;i++){if(EN.test(cand[i])){w=cand[i];break}}
+    mean=String(c||'').trim();chip=true;
+  }else{w=String(c||'').trim();mean=String(m.chip||'').trim();chip=false}
+  if(!w||!mean||!EN.test(w))return null;
   return {w:w,m:mean,chip:chip};
 }
 function tcls(q,tp){return ' tw'+(__got[q.id+'|'+tp.w]?' got':'')}
@@ -604,7 +609,7 @@ function optblock(q,r){
     const n=i+1,isA=ans.indexOf(n)>=0,isP=pk.indexOf(n)>=0&&!isA;
     const m=optmean(q,n,L[n]);
     const x=isA?(q.ax&&q.ax[n]):(q.wx&&q.wx[n]);
-    let big=m.big===null?hl(c,hs[i]):esc(m.big);const tp=tpair(q,n,m,c);
+    let big=m.big===null?hl(c,hs[i]):esc(m.big);const tp=tpair(q,n,m,c,L[n]);
     h+='<div class="ch2'+(isA?' ans':'')+(isP?' pick':'')+'"><div class="orow"><span class="on">'+(i+1)+'</span><span class="ow'+(q.t==='POLY'?' ps':'')+(tp&&!tp.chip?tcls(q,tp):'')+'"'+(tp&&!tp.chip?tatt(tp):'')+'>'+big+'</span>'+(isP?'<span class="tg">내가 고름</span>':(isA?'<span class="tg">정답</span>':''))+(m.chip?'<span class="om'+(tp&&tp.chip?tcls(q,tp):'')+'"'+(tp&&tp.chip?tatt(tp):'')+'>'+esc(m.chip)+'</span>':'')+'</div>';
     {const bn=bfnote(q,n,L[n]);if(bn)h+='<div class="obf">'+esc(bn)+'</div>'}
     if(q.t==='POLY'&&ka[i])h+='<div class="osub">'+esc(ka[i].replace(/^[①-⑤]\s*/,''))+'</div>';
