@@ -48,6 +48,58 @@
  {
   "dk": [
    [
+    "Animals eat to survive",
+    "동물은 살아남으려고 먹지만"
+   ],
+   [
+    "but care nothing",
+    "아무 관심도 두지 않는다"
+   ],
+   [
+    "about the thoughts of other creatures.",
+    "다른 생명체의 생각에 대해서는."
+   ]
+  ],
+  "ko": "동물은 살아남으려고 먹을 뿐 다른 생명체의 생각에는 아무 관심이 없다.",
+  "gist": "동물은 살려고 먹을 뿐 다른 생명체의 생각엔 관심이 없다는 얘기예요.",
+  "fm": "주어 + 동사 but 동사 (같은 모양)",
+  "mp": [
+   [
+    "but 앞 동사",
+    "sleep",
+    "eat"
+   ],
+   [
+    "but 뒤 동사",
+    "play",
+    "care"
+   ]
+  ],
+  "ex": "Cats sleep all day but play at night.",
+  "exko": "고양이는 낮엔 자고 밤엔 놀아요(sleep 자다, play 놀다).",
+  "tko": "아무 관심도 두지 않는다",
+  "bad": "Cats sleep all day but to play at night.",
+  "badko": "(sleep이 동사라서 to play가 아니라 play(놀다)여야 해요)",
+  "altw": "to부정사",
+  "alt": "Cats sleep to rest and to save energy.",
+  "altko": "고양이는 쉬고 힘을 아끼려고 자요(목적을 말하는 to rest, to save는 to부정사끼리 나란히 와요).",
+  "why": "주어 Animals(동물)의 동사 eat(먹다) 뒤에 but이 와요. but 뒤의 말도 같은 주어의 동사여야 해서 to care(신경 쓰려고)가 아니라 care(신경 쓰다)예요. eat to survive의 to survive(살아남으려고)는 목적을 말하는 부분이고, but 뒤는 새로운 동사예요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>but으로 이어진 동사는 앞 동사와 같은 모양이에요",
+  "d": {
+   "animals": "animal(동물)의 복수형",
+   "eat": "먹다",
+   "survive": "살아남다",
+   "care": "신경 쓰다, 관심을 두다",
+   "nothing": "아무것도 ~않다",
+   "about": "~에 대해",
+   "thoughts": "thought(생각)의 복수형",
+   "other": "다른",
+   "creatures": "creature(생명체)의 복수형"
+  }
+ },
+ {
+  "dk": [
+   [
     "Can your life either get worse or become better",
     "당신의 삶이 더 나빠지거나 더 좋아질 수 있을까"
    ],
@@ -91,5 +143,59 @@
    "thoughts": "thought(생각)의 복수형"
   },
   "ko": "단지 당신이 가진 생각 때문에 당신의 삶이 더 나빠지거나 더 좋아질 수 있을까?"
+ },
+ {
+  "dk": [
+   [
+    "Later, these individuals actually found jobs,",
+    "나중에 이 사람들은 실제로 일자리를 구했고,"
+   ],
+   [
+    "passed their exams,",
+    "시험에 합격했고,"
+   ],
+   [
+    "or successfully recovered from illness.",
+    "혹은 병에서 성공적으로 회복했다."
+   ]
+  ],
+  "ko": "나중에 이 사람들은 실제로 일자리를 구하거나 시험에 합격하거나 병에서 성공적으로 회복했다.",
+  "gist": "나중에 이 사람들이 실제로 취직하고 시험에 붙고 병에서 회복했다는 얘기예요.",
+  "fm": "동사과거, 동사과거, or 동사과거 (같은 모양)",
+  "mp": [
+   [
+    "or 앞 동사",
+    "cleaned",
+    "found, passed"
+   ],
+   [
+    "or 뒤 동사",
+    "walked",
+    "recovered"
+   ]
+  ],
+  "ex": "Yesterday, he cleaned his room and walked the dog.",
+  "exko": "어제 그는 방을 청소하고 개를 산책시켰어요(clean 청소하다, walk 산책시키다).",
+  "tko": "병에서 회복했다",
+  "bad": "Yesterday, he cleaned his room and to walk the dog.",
+  "badko": "(cleaned가 과거형이라서 to walk가 아니라 walked(산책시켰다)여야 해요)",
+  "altw": "원형",
+  "alt": "He wants to clean his room and walk the dog.",
+  "altko": "그는 방을 청소하고 개를 산책시키고 싶어 해요(want to 뒤에서는 clean, walk처럼 동사원형이 나란히 와요).",
+  "why": "found(find 찾다의 과거), passed(pass 통과하다의 과거)처럼 or 앞에 과거형 동사가 나란히 나와요. or 뒤의 동사도 같은 주어 these individuals(이 사람들)의 동사라서 to recover(회복하려고)가 아니라 과거형 recovered(recover 회복하다의 과거)예요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>or로 이어진 동사는 앞 동사와 같은 모양이에요",
+  "d": {
+   "later": "나중에",
+   "these": "이",
+   "individuals": "individual(개인)의 복수형",
+   "actually": "실제로",
+   "found": "find(찾다, 구하다)의 과거형",
+   "jobs": "job(일자리)의 복수형",
+   "passed": "pass(합격하다)의 과거형",
+   "exams": "exam(시험)의 복수형",
+   "successfully": "성공적으로",
+   "recovered": "recover(회복하다)의 과거형",
+   "illness": "병"
+  }
  }
 ]

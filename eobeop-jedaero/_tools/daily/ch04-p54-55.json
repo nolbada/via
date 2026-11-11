@@ -408,50 +408,51 @@
  {
   "dk": [
    [
-    "It is such a waste of money",
-    "그것은 정말 돈 낭비다"
+    "And many people in modern times",
+    "그리고 현대에 많은 사람들이"
    ],
    [
-    "every time he does this,",
-    "그가 이렇게 할 때마다,"
+    "have similar problems",
+    "비슷한 문제를 갖고 있다"
    ],
    [
-    "according to his friends.",
-    "그의 친구들에 따르면."
+    "as my brother does.",
+    "내 남자 형제가 그렇듯이."
    ]
   ],
-  "ko": "그의 친구들에 따르면, 그가 이렇게 할 때마다 그것은 정말 돈 낭비다.",
-  "gist": "그가 이런 행동을 할 때마다 돈이 아깝다는 얘기예요.",
-  "fm": "주어 + does + 목적어 (do 하다의 3인칭 단수)",
+  "ko": "그리고 현대에 많은 사람들이 내 남자 형제가 그렇듯이 비슷한 문제를 갖고 있다.",
+  "gist": "요즘 많은 사람이 내 형제처럼 비슷한 문제를 갖고 있다는 얘기예요.",
+  "fm": "일반동사 (반복) → do/does/did (be동사 X)",
   "mp": [
    [
-    "주어",
-    "she",
-    "he"
+    "앞에 나온 일반동사",
+    "like pizza",
+    "have similar problems"
    ],
    [
-    "동사 + 목적어",
-    "does this",
-    "does this"
+    "대신 쓰는 말",
+    "does",
+    "does"
    ]
   ],
-  "ex": "Every time she does this, I laugh.",
-  "exko": "그녀가 이렇게 할 때마다 나는 웃어요(laugh 웃다).",
-  "tko": "그가 이렇게 할 때마다",
-  "bad": "Every time she is this, I laugh.",
-  "badko": "('이렇게 하다'라는 동작이라서 is(이다)가 아니라 does(하다)예요)",
+  "ex": "Many kids like pizza, as my sister does.",
+  "exko": "내 여동생이 그렇듯이 많은 아이들이 피자를 좋아해요(like 좋아하다, kid 아이, pizza 피자).",
+  "tko": "내 남자 형제가 그렇듯이",
+  "bad": "Many kids like pizza, as my sister is.",
+  "badko": "(like(좋아하다)는 일반동사라서 is(이다)가 아니라 does예요)",
   "altw": "is",
-  "alt": "Every time she is sad, I help her.",
-  "altko": "그녀가 슬플 때마다 나는 그녀를 도와요(sad(슬픈)처럼 상태를 말하니까 is).",
-  "why": "he does this(그가 이렇게 하다)는 앞 문장의 buys a new one(새것을 산다)이라는 행동을 대신 받는 말이에요. 행동을 대신 받을 때는 일반동사 do(하다)를 써요. is(이다)로는 '하다'라는 행동을 나타낼 수 없어요. 주어가 he라서 does예요.",
-  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>동작을 말할 땐 do/does, 상태를 말할 땐 be동사예요",
+  "alt": "Many kids are shy, as my sister is.",
+  "altko": "많은 아이들이 수줍음이 많은데 내 여동생도 그래요(앞이 are shy처럼 be동사라서 is로 대신해요).",
+  "why": "have(가지다)는 일반동사예요. 같은 동사를 또 쓰지 않고 'my brother도 그렇다'고 할 때는 do 모양으로 대신해요. 주어가 my brother 한 명(3인칭 단수)이라서 does예요. is(이다)는 앞이 be동사일 때만 대신 써요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>앞 문장이 일반동사면 do/does/did로 대신해요. be동사나 have동사로 대신하지 않아요",
   "d": {
-   "every": "every time: ~할 때마다",
+   "modern": "현대의",
+   "times": "time(시대)의 복수형",
+   "similar": "비슷한",
+   "problems": "problem(문제)의 복수형",
+   "brother": "남자 형제",
    "does": "do(하다)의 3인칭 단수형",
-   "this": "이것",
-   "waste": "낭비",
-   "according": "according to: ~에 따르면",
-   "friends": "friend(친구)의 복수형"
+   "have": "가지다"
   }
  },
  {

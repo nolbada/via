@@ -19,13 +19,26 @@
      "pre": "They also wonder when humans will find the perfect cure for this disease, which ",
      "wr": "frustrating",
      "post": " researchers worldwide.",
-     "fr": "frustrating / easier",
-     "to": "frustrates / is easier",
+     "fr": "1) frustrating",
+     "to": "frustrates",
      "correct": "They also wonder when humans will find the perfect cure for this disease, which frustrates researchers worldwide.",
      "interp": "",
      "color": "#0891b2",
-     "badge": "1) 동사 vs. 분사 (Chapter 07 POINT 1) / 2) 주격 관계대명사절 동사와 선행사의 수일치 (Chapter 01 POINT 5)",
-     "explain": "① which 이하는 선행사 this disease를 보충 설명하는 계속적 용법의 주격 관계대명사절인데, 이 절의 동사 자리에는 분사가 아니라 완전한 동사가 와야 한다. 선행사가 단수이므로 frustrating이 아니라 <b>frustrates</b>가 되어야 한다. ② that 이하 관계대명사절에서 비교급 easier 앞에 be동사가 빠져 완전한 동사를 갖추지 못했으므로, easier가 아니라 <b>is easier</b>로 고쳐 동사를 완성해야 한다.",
+     "badge": "동사 vs. 분사 (Chapter 07 POINT 1)",
+     "explain": "which 이하는 선행사 this disease를 보충 설명하는 계속적 용법의 주격 관계대명사절인데, 이 절의 동사 자리에는 분사가 아니라 완전한 동사가 와야 한다. 선행사가 단수이므로 frustrating이 아니라 <b>frustrates</b>가 되어야 한다.",
+     "qn": "문항 7"
+    },
+    {
+     "pre": "In fact, a few years ago, some scientists made important progress by creating an innovative treatment for cancer that ",
+     "wr": "easier",
+     "post": " to access.",
+     "fr": "2) easier",
+     "to": "is easier",
+     "correct": "In fact, a few years ago, some scientists made important progress by creating an innovative treatment for cancer that is easier to access.",
+     "interp": "",
+     "color": "#2563eb",
+     "badge": "주격 관계대명사절 동사와 선행사의 수일치 (Chapter 01 POINT 5)",
+     "explain": "that 이하 관계대명사절에서 비교급 easier 앞에 be동사가 빠져 완전한 동사를 갖추지 못했으므로, easier가 아니라 <b>is easier</b>로 고쳐야 한다. 선행사 an innovative treatment가 하나(단수)이므로 be동사는 is이다.",
      "qn": "문항 7"
     }
    ]
@@ -37,9 +50,9 @@
    "items": [
     {
      "pre": "And by the time I left college at the age of 22, I had also learned tennis, golf, and basketball, skills ",
-     "wr": "that",
-     "post": " useful in my daily life even now.",
-     "fr": "that / useful",
+     "wr": "that useful",
+     "post": " in my daily life even now.",
+     "fr": "1) that / useful",
      "to": "which / are useful",
      "correct": "And by the time I left college at the age of 22, I had also learned tennis, golf, and basketball, skills which are useful in my daily life even now.",
      "interp": "",

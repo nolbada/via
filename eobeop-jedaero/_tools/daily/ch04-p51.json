@@ -46,6 +46,53 @@
  {
   "dk": [
    [
+    "This issue truly does need more attention",
+    "이 문제는 정말로 더 많은 관심이 필요하다"
+   ],
+   [
+    "because it is important for our survival.",
+    "그것이 우리의 생존에 중요하기 때문이다."
+   ]
+  ],
+  "ko": "이 문제는 우리의 생존에 중요하기 때문에 정말로 더 많은 관심이 필요하다.",
+  "gist": "이 문제는 우리가 살아가는 데 중요해서 더 관심을 가져야 한다는 얘기예요.",
+  "fm": "does + 동사원형 (정말로 ~한다)",
+  "mp": [
+   [
+    "주어 + does",
+    "he does",
+    "this issue does"
+   ],
+   [
+    "뒤 동사(원형)",
+    "like",
+    "need"
+   ]
+  ],
+  "ex": "He does like pizza.",
+  "exko": "그는 정말로 피자를 좋아해요(like 좋아하다, pizza 피자).",
+  "tko": "정말로 필요하다",
+  "bad": "He does likes pizza.",
+  "badko": "(does 뒤에는 likes처럼 s가 붙은 말이 아니라 like(좋아하다)가 와요)",
+  "altw": "likes",
+  "alt": "He likes pizza.",
+  "altko": "그는 피자를 좋아해요(does 없이 쓸 때만 likes처럼 s를 붙여요).",
+  "why": "does를 동사 앞에 붙이면 '정말로 ~한다'는 강조가 돼요. 3인칭 하나(this issue 이 문제)를 나타내는 s는 does가 이미 가지고 있어서, 뒤 동사는 needs가 아니라 s가 없는 need(필요로 하다)예요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>강조의 do/does/did 뒤에는 늘 동사원형이 와요",
+  "d": {
+   "issue": "문제, 쟁점",
+   "truly": "정말로",
+   "does": "do(하다)의 3인칭 단수형, 강조할 때: 정말로 ~하다",
+   "need": "필요로 하다",
+   "attention": "관심",
+   "because": "~때문에",
+   "important": "중요한",
+   "survival": "생존"
+  }
+ },
+ {
+  "dk": [
+   [
     "Doris arrived at the meeting late,",
     "Doris는 회의에 늦게 도착했다,"
    ],
@@ -92,5 +139,50 @@
    "promotion": "승진"
   },
   "ko": "Doris는 회의에 늦게 도착했으므로, 자신의 승진에 관한 발표를 분명 놓쳤을 것이다."
+ },
+ {
+  "dk": [
+   [
+    "She might need a moment",
+    "그녀는 잠시 시간이 필요할지도 모른다"
+   ],
+   [
+    "to calm herself down.",
+    "스스로를 진정시키기 위해."
+   ]
+  ],
+  "ko": "그녀는 스스로를 진정시킬 잠깐의 시간이 필요할지도 모른다.",
+  "gist": "소식을 들으면 놀랄 Doris가 마음을 가라앉힐 시간이 좀 필요할지도 모른다는 얘기예요.",
+  "fm": "might + 동사원형 (앞으로의 짐작)",
+  "mp": [
+   [
+    "조동사",
+    "might",
+    "might"
+   ],
+   [
+    "뒤 동사(원형)",
+    "rain",
+    "need"
+   ]
+  ],
+  "ex": "It might rain tomorrow.",
+  "exko": "내일 비가 올지도 몰라요(rain 비가 오다, tomorrow 내일).",
+  "tko": "필요할지도 모른다",
+  "bad": "It might have rained tomorrow.",
+  "badko": "(tomorrow(내일)는 앞으로의 일이라서 might have rained가 아니라 might rain이에요)",
+  "altw": "might have p.p.",
+  "alt": "It might have rained last night.",
+  "altko": "어젯밤에 비가 왔을지도 몰라요(last night 어젯밤은 지난 일이라서 might have + p.p.를 써요).",
+  "why": "앞 문장에서 소식을 들으면 놀랄 거라고(will be surprised) 앞으로의 일을 말했어요. 그러니 마음을 가라앉힐 시간이 필요할 수도 있다는 짐작도 앞으로의 일이에요. 앞으로의 일을 짐작할 때는 might 뒤에 원형 need(필요로 하다)를 써요. 지난 일일 때만 might have + p.p.예요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>might 뒤에서 앞으로의 일은 동사원형, 지난 일은 have p.p.예요",
+  "d": {
+   "might": "~일지도 모른다",
+   "need": "필요로 하다",
+   "moment": "잠깐, 순간",
+   "calm": "calm down: 진정시키다",
+   "herself": "그녀 자신",
+   "down": "calm down: 진정하다"
+  }
  }
 ]

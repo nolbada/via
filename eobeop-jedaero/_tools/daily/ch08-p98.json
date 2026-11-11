@@ -54,6 +54,55 @@
  {
   "dk": [
    [
+    "Make an effort to plan your spending carefully",
+    "지출을 신중하게 계획하려고 노력하고"
+   ],
+   [
+    "and leave some money in the bank.",
+    "은행에 돈을 조금 남겨 두어라."
+   ]
+  ],
+  "ko": "지출을 신중하게 계획하려고 노력하고 은행에 돈을 조금 남겨 두어라.",
+  "gist": "지출을 잘 계획하고 은행에 돈을 조금 남겨 두라는 얘기예요.",
+  "fm": "동사원형 and 동사원형 (같은 모양)",
+  "mp": [
+   [
+    "and 앞 동사",
+    "wash",
+    "plan"
+   ],
+   [
+    "and 뒤 동사",
+    "dry",
+    "leave"
+   ]
+  ],
+  "ex": "Wash your hands and dry them.",
+  "exko": "손을 씻고 말리세요(wash 씻다, dry 말리다).",
+  "tko": "돈을 남겨 두어라",
+  "bad": "Wash your hands and drying them.",
+  "badko": "(wash가 동사원형이라서 drying이 아니라 dry(말리다)여야 해요)",
+  "altw": "-ing",
+  "alt": "Washing and drying the dishes is fun.",
+  "altko": "접시를 씻고 말리는 건 재미있어요(주어 자리에서는 -ing끼리 나란히 와요).",
+  "why": "Make(~하라)와 plan(계획하다)처럼 and 앞에 동사원형이 나왔어요. and 뒤에 이어지는 말도 똑같이 동사원형이어야 해서, leaving(남기는 중인)이 아니라 leave(남기다)예요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and 앞이 동사원형이면 뒤도 동사원형이에요",
+  "d": {
+   "make": "만들다, 하다",
+   "effort": "노력",
+   "plan": "계획하다",
+   "your": "너의",
+   "spending": "지출",
+   "carefully": "신중하게",
+   "leave": "남기다",
+   "some": "조금",
+   "money": "돈",
+   "bank": "은행"
+  }
+ },
+ {
+  "dk": [
+   [
     "It's good to try and solve problems on your own,",
     "스스로 문제를 풀어 보려고 애쓰는 것은 좋지만,"
    ],
@@ -97,6 +146,61 @@
    "others": "다른 사람들"
   },
   "ko": "스스로 문제를 해결하려고 노력하는 것은 좋지만, 언제나 혼자이고 다른 사람들로부터 고립되어 있을 필요는 없다."
+ },
+ {
+  "dk": [
+   [
+    "When making a difficult decision,",
+    "어려운 결정을 내릴 때,"
+   ],
+   [
+    "you can either trust your instincts",
+    "당신은 직감을 믿거나"
+   ],
+   [
+    "or get advice from a friend or family member.",
+    "친구나 가족에게 조언을 구할 수 있다."
+   ]
+  ],
+  "ko": "어려운 결정을 내릴 때, 당신은 직감을 믿거나 친구나 가족에게 조언을 구할 수 있다.",
+  "gist": "어려운 결정을 할 땐 내 직감을 믿거나 친구나 가족에게 조언을 구하면 된다는 얘기예요.",
+  "fm": "can either 동사원형 or 동사원형",
+  "mp": [
+   [
+    "or 앞 동사",
+    "sit",
+    "trust"
+   ],
+   [
+    "or 뒤 동사",
+    "stand",
+    "get"
+   ]
+  ],
+  "ex": "You can either sit here or stand there.",
+  "exko": "여기 앉거나 저기 서 있을 수 있어요(sit 앉다, stand 서다).",
+  "tko": "조언을 구할 수 있다",
+  "bad": "You can either sit here or to stand there.",
+  "badko": "(can 뒤 sit이 동사원형이라서 to stand가 아니라 stand(서다)여야 해요)",
+  "altw": "to부정사",
+  "alt": "I want either to sit here or to stand there.",
+  "altko": "나는 여기 앉거나 저기 서고 싶어요(want 뒤에서는 to sit, to stand처럼 to가 같이 붙어요).",
+  "why": "can 뒤에 trust(믿다)가 동사원형으로 나와 있어요. or 뒤의 말도 can 뒤에 오는 같은 자리라서 똑같이 동사원형이어야 해요. to get이 아니라 get(얻다)이에요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>either A or B에서 A와 B는 모양이 같아요",
+  "d": {
+   "when": "~할 때",
+   "making": "make(하다, 내리다)의 -ing형",
+   "difficult": "어려운",
+   "decision": "결정",
+   "either": "either A or B: A거나 B거나",
+   "trust": "믿다",
+   "instincts": "instinct(직감)의 복수형",
+   "get": "얻다, 받다",
+   "advice": "조언",
+   "friend": "친구",
+   "family": "가족",
+   "member": "구성원"
+  }
  },
  {
   "dk": [
@@ -152,6 +256,64 @@
    "others": "다른 사람들"
   },
   "ko": "한 연구에 따르면, 사람들은 감정을 전달하기 위해 음성 채팅보다 문자 채팅을 쓰거나 다른 사람에게 요청을 하는 것을 더 좋아한다."
+ },
+ {
+  "dk": [
+   [
+    "Users say",
+    "사용자들은 말한다"
+   ],
+   [
+    "that text chat is more enjoyable,",
+    "문자 채팅이 더 즐겁고"
+   ],
+   [
+    "requires less effort,",
+    "노력이 덜 들고"
+   ],
+   [
+    "and feels more polite than voice chat.",
+    "음성 채팅보다 더 정중하게 느껴진다고."
+   ]
+  ],
+  "ko": "사용자들은 문자 채팅이 더 즐겁고, 노력이 덜 들며, 음성 채팅보다 더 정중하게 느껴진다고 말한다.",
+  "gist": "문자 채팅이 더 즐겁고 덜 힘들고 더 예의 바르게 느껴진다고 사람들이 말한다는 얘기예요.",
+  "fm": "주어 + 동사s, 동사s, and 동사s (같은 모양)",
+  "mp": [
+   [
+    "앞 동사",
+    "runs",
+    "requires"
+   ],
+   [
+    "and 뒤 동사",
+    "sleeps",
+    "feels"
+   ]
+  ],
+  "ex": "My dog runs fast, jumps high, and sleeps a lot.",
+  "exko": "우리 강아지는 빨리 달리고, 높이 뛰고, 잠을 많이 자요(run 달리다, jump 뛰다, sleep 자다).",
+  "tko": "더 정중하게 느껴진다",
+  "bad": "My dog runs fast, jumps high, and sleep a lot.",
+  "badko": "(runs, jumps에 -s가 붙어 있으니 sleep이 아니라 sleeps여야 해요)",
+  "altw": "복수",
+  "alt": "My dogs run fast, jump high, and sleep a lot.",
+  "altko": "우리 강아지들은 빨리 달리고, 높이 뛰고, 잠을 많이 자요(주어가 여러 마리면 run, jump, sleep처럼 -s가 없어요).",
+  "why": "주어 text chat 하나에 is(~이다), requires(필요로 하다)처럼 -s가 붙은 동사가 나란히 와요. and 뒤의 동사도 같은 주어의 동사라서 feel이 아니라 feels(느껴지다)여야 해요.",
+  "trend": "<b>출제 5위 · 병렬구조</b><br>31년간 68회 나왔어요.<br>and로 이어진 동사는 앞 동사와 같은 모양이에요",
+  "d": {
+   "users": "user(사용자)의 복수형",
+   "say": "말하다",
+   "text": "문자",
+   "chat": "채팅, 대화",
+   "enjoyable": "즐거운",
+   "requires": "require(필요로 하다)의 -s형",
+   "less": "더 적은",
+   "effort": "노력",
+   "feels": "feel(느끼다, 느껴지다)의 -s형",
+   "polite": "정중한",
+   "voice": "음성"
+  }
  },
  {
   "dk": [
