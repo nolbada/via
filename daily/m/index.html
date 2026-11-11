@@ -134,11 +134,11 @@ input.tx.ok{border-color:var(--ok);background:var(--okBg)}input.tx.ng{border-col
 
 .fc .sh{border:2px solid var(--ok);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(var(--okBg),var(--card) 75%)}
 .fc .sl2{font-size:12px;font-weight:700;color:var(--sub);letter-spacing:.06em}
-.fc .tls{display:flex;gap:5px;flex-wrap:wrap}
-.fc .tl{width:32px;height:40px;border-radius:9px;display:grid;place-items:center;font-size:21px;font-weight:800;background:var(--chip);border:2px solid var(--line)}
-.fc .tsp{width:14px}
-.fc .tls.good .tl{background:var(--ok);border-color:var(--ok);color:#fff}
-.fc .tls.mine .tl.bad{background:var(--ngBg);border-color:var(--ng);color:var(--ng)}
+.fc .tls{display:block;font-size:24px;font-weight:800;letter-spacing:.03em;line-height:1.45;overflow-wrap:anywhere}
+.fc .tl{display:inline;font-weight:800}
+.fc .tsp{display:inline-block;width:.45em}
+.fc .tls.good .tl{color:var(--ok)}
+.fc .tls.mine .tl.bad{color:var(--ng);text-decoration:underline}
 .fc .chs{display:flex;gap:8px;flex-wrap:wrap}
 .fc .mc{font-size:14px;font-weight:700;background:var(--ok);color:#fff;border-radius:999px;padding:2px 11px;word-break:keep-all}
 .fc .mrow{display:flex;flex-direction:column;gap:6px}
