@@ -50,8 +50,8 @@
      "correct": "We were so embarrassed when we missed the train that we had planned to take, a mistake that taught us to check the schedule.",
      "interp": "우리는 타기로 계획했던 기차를 놓쳤을 때 너무 당황했는데, 그것은 우리에게 시간표를 확인하도록 가르쳐준 실수였다.",
      "color": "#059669",
-     "badge": "단순과거 vs. 현재완료 (Chapter 02 POINT 1)",
-     "explain": "a mistake를 선행사로 하는 관계대명사절 안의 사건(그 실수가 가르침을 준 것)은 문장 전체가 서술하는 과거의 특정 사건(기차를 놓쳤을 때)과 같은 시점에 속하는 완결된 과거의 일이므로 현재완료가 아니라 단순과거로 써야 한다. 따라서 teach가 아니라 <b>taught</b>가 되어야 한다. had planned는 기차를 타기로 계획한 시점이 기차를 놓친 시점보다 더 이전이므로 과거완료로 올바르게 쓰였다.",
+     "badge": "단순과거 vs. 현재완료 (Chapter 02 POINT 1) 관련 시제 일관성",
+     "explain": "a mistake를 꾸며 주는 that절의 동사 teach는 현재형이다. 이 문장은 기차를 놓친 지난 일을 이야기하고 있고(missed, had planned), 그 실수가 준 가르침도 그때 일어난 과거의 일이므로 과거 시제로 맞춰야 한다. 따라서 teach가 아니라 <b>taught</b>가 되어야 한다. had planned는 기차를 타기로 계획한 시점이 기차를 놓친 시점보다 더 이전이므로 과거완료로 올바르게 쓰였다.",
      "qn": "문항 3"
     },
     {
@@ -64,7 +64,7 @@
      "interp": "나는 로스앤젤레스로 이사한 이래로 10명이 넘는 새 친구를 사귀었는데, 나는 그들을 거의 매주 만난다.",
      "color": "#4338ca",
      "badge": "관계대명사 선택 (Chapter 10 POINT 1)",
-     "explain": "이 관계대명사절 뒤에는 meet의 목적어가 빠진 불완전한 절(I meet)이 이어지는 것처럼 보이지만, 실제로 who/whom은 이 절에서 meet의 목적어 역할을 한다. 목적격 관계대명사는 자리에 따라 who 또는 whom을 쓸 수 있는데, 구어적이고 격식이 낮은 문맥에서는 whom 대신 who를 쓰는 것이 일반적이며 이 교재의 판단 기준상 whom은 지나치게 격식적이므로 <b>who</b>로 고쳐야 한다. since I moved는 특정 과거 시점을 나타내므로 moved가 단순과거로 쓰인 것은 올바르다.",
+     "explain": "friends를 보충 설명하는 관계대명사절에서 who/whom은 meet의 목적어 역할을 한다. 목적격 자리에는 격식체의 whom도 문법상 가능하지만, 이 문제에서는 일상적으로 쓰는 who를 정답으로 정했다. 따라서 whom이 아니라 <b>who</b>로 고친다. since I moved는 특정 과거 시점을 나타내므로 moved가 단순과거로 쓰인 것은 올바르다.",
      "qn": "문항 4"
     },
     {
@@ -114,8 +114,8 @@
      "to": "save",
      "correct": "Unless they save enough money, they will not be able to go on vacation, a plan more important than anything else this year.",
      "interp": "충분한 돈을 저축하지 않는다면, 그들은 휴가를 갈 수 없을 것이며, 그것은 올해 다른 무엇보다 더 중요한 계획이다.",
-     "color": "#db2777",
-     "badge": "부사절 접속사 vs. 전치사 (Chapter 09 POINT 1)",
+     "color": "#059669",
+     "badge": "미래시제를 대신하는 현재시제 (Chapter 02 POINT 3)",
      "explain": "Unless(만약 ~하지 않는다면)는 조건을 나타내는 부사절 접속사이므로 뒤에는 미래의 일이라도 현재시제를 써야 한다. 따라서 will save가 아니라 <b>save</b>가 되어야 한다. more important than anything else는 원급이 아닌 비교급 표현으로 자연스럽게 쓰였다.",
      "qn": "문항 8"
     },
@@ -127,8 +127,8 @@
      "to": "is",
      "correct": "The actors will continue to work until their performance is perfect, a goal shared for the whole team.",
      "interp": "배우들은 그들의 공연이 완벽해질 때까지 계속 작업할 것이며, 이는 팀 전체가 공유하는 목표이다.",
-     "color": "#db2777",
-     "badge": "부사절 접속사 vs. 전치사 (Chapter 09 POINT 1)",
+     "color": "#059669",
+     "badge": "미래시제를 대신하는 현재시제 (Chapter 02 POINT 3)",
      "explain": "until은 시간을 나타내는 부사절 접속사이므로 미래의 일이라도 현재시제로 나타내야 한다. 따라서 will be가 아니라 <b>is</b>가 되어야 한다.",
      "qn": "문항 9"
     },
@@ -140,8 +140,8 @@
      "to": "a training schedule",
      "correct": "Ms. Connor wants to know when the new employees will start working, so that she can prepare a training schedule properly.",
      "interp": "Connor 씨는 신입 사원들이 언제 일을 시작할지 알고 싶어 하는데, 그래야 훈련 일정을 제대로 준비할 수 있기 때문이다.",
-     "color": "#db2777",
-     "badge": "명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞 (Chapter 09 POINT 3)",
+     "color": "#16a34a",
+     "badge": "셀 수 있는 명사 앞 관사 a (Chapter 11)",
      "explain": "training schedule은 셀 수 있는 단수명사이므로 앞에 관사 a가 필요하다. 따라서 training schedule이 아니라 <b>a training schedule</b>로 고쳐야 한다. wants to know 뒤의 when절은 '언제 ~인지'를 의미하는 명사절(간접의문문)이므로, 시간의 부사절과 달리 미래의 일을 will start로 나타낸 것은 올바르다.",
      "qn": "문항 10"
     }

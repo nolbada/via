@@ -593,7 +593,7 @@
    ]
   ],
   "gist": "사고 때문에 길이 막혀서 운전자들이 다른 길을 찾아야 했다는 얘기예요.",
-  "fm": "leave + 사람 + to 동사원형",
+  "fm": "to + 동사원형 (to 뒤에 과거형 X)",
   "mp": [
    [
     "동사 + 사람",
@@ -601,7 +601,7 @@
     "leaving drivers"
    ],
    [
-    "그 뒤",
+    "to 뒤 동사",
     "to wait",
     "to find"
    ]
@@ -609,12 +609,12 @@
   "ex": "The rain left us to wait inside.",
   "exko": "비 때문에 우리는 안에서 기다려야 했어요(wait 기다리다, inside 안에서).",
   "tko": "찾게",
-  "bad": "The rain left us wait inside.",
-  "badko": "(leave 뒤에서는 wait가 아니라 to wait(기다리다)처럼 to + 동사원형이 와요)",
-  "altw": "find",
-  "alt": "I can find my key.",
-  "altko": "나는 내 열쇠를 찾을 수 있어요(can 뒤에는 동사원형).",
-  "why": "leaving drivers(운전자들을 두는 것) 뒤에는 '운전자들이 무엇을 하게 되는지'가 필요해요. leave는 그 뒤에 to + 동사원형을 쓰는 말이라서 to find(find 찾다)가 돼요. found는 find의 과거형이라 자리에 안 맞아요.",
+  "bad": "The rain left us to waited inside.",
+  "badko": "(to 뒤에는 waited처럼 과거형이 아니라 wait(기다리다)처럼 동사원형이 와요)",
+  "altw": "원형",
+  "alt": "The rain made us wait inside.",
+  "altko": "비 때문에 우리는 안에서 기다렸어요(made us 뒤에는 to 없이 wait를 써요).",
+  "why": "leaving drivers to find(운전자들이 찾게 하면서)에서 leave(두다)는 사람 뒤에 to + 동사원형을 쓰는 말이라 to는 맞아요. 그런데 to 뒤에는 동사원형만 올 수 있어요. found는 find(찾다)의 과거형이라서 쓸 수 없고 find가 돼요.",
   "trend": "<b>출제 10위 · 목적격보어/준동사</b><br>31년간 30회 나왔어요.<br>leave 뒤에는 to + 동사원형이 오는 걸 외워 둬요",
   "d": {
    "road": "도로",
