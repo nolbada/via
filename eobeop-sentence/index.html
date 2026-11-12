@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1f3b73">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="어법 문장분석">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>어법 문장분석</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:#eef2f9;font-family:'Malgun Gothic','Noto Sans KR','Apple SD Gothic Neo',sans-serif;color:#1d2433}
+#app{max-width:760px;margin:0 auto;padding:14px 14px 40px}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.brand{font-weight:700;color:#1f3b73;font-size:14px}
+.sp{flex:1}
+.btn{border:0;border-radius:12px;background:#1f3b73;color:#fff;font-size:17px;padding:13px 18px;font-family:inherit;cursor:pointer}
+.btn.ghost{background:#fff;color:#1f3b73;border:1.5px solid #1f3b73}
+.btn.sm{font-size:14px;padding:8px 12px}
+.btn:disabled{opacity:.4}
+.card{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(31,59,115,.12)}
+.setbtn{display:block;width:100%;text-align:left;border:0;background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(31,59,115,.12);font-family:inherit;cursor:pointer}
+.setbtn .t{font-size:19px;font-weight:700;color:#1f3b73}
+.setbtn .s{font-size:14px;color:#55627d;margin-top:3px}
+.setbtn .p{font-size:13px;color:#1f3b73;margin-top:8px}
+.setbtn.done{background:#e6f4ea}
+.bar{height:6px;background:#d6deee;border-radius:3px;overflow:hidden;margin:2px 0 12px}
+.bar i{display:block;height:100%;background:#1f3b73}
+.prompt{font-size:16px;color:#1f3b73;font-weight:700;margin:2px 0 12px}
+.line{display:flex;flex-wrap:wrap;align-items:flex-start;row-gap:10px;column-gap:2px}
+.ch{display:flex;flex-direction:column;border:0;background:none;padding:0 2px;font-family:inherit;text-align:left;color:inherit}
+.ch .lab{font-size:11px;font-weight:700;min-height:14px;white-space:nowrap}
+.ch .en{font-size:21px;line-height:1.45;border-radius:6px;padding:1px 4px}
+.ch .ko{font-size:13px;color:#4a5a78;line-height:1.3;padding:0 4px;max-width:240px}
+.slash{color:#9aa5bd;font-size:22px;padding-top:15px}
+.tapok .ch{cursor:pointer}
+.tapok .ch .en{background:#f1f4fb}
+.ch.hit .en{background:#cfe3ff;color:#173a6b;font-weight:700}
+.ch.hitM .en{background:#e6e6e6;color:#555;font-weight:700}
+.ch.wrong .en{background:#ffb4b4;animation:sh .3s}
+@keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.rev .ch .lab{color:#4a5a78}
+.rev .ch.S .en{background:#cfe3ff;color:#173a6b;font-weight:700}
+.rev .ch.M .en{background:#e6e6e6;color:#555}
+.rev .ch.V .en{background:#d6f0d2;color:#1b5e3a;font-weight:700}
+.rev .ch.hh .en{background:none;color:inherit;font-weight:400}
+.ms{background:#cfe3ff;color:#173a6b;border-radius:4px;font-weight:700;padding:0 2px}
+.mc{background:#ffe3c2;color:#8a4a00;border-radius:4px;font-weight:700;padding:0 2px}
+.chips2{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip2{border-radius:8px;padding:3px 10px;font-size:15px}
+.chip2 em{font-style:normal;font-weight:700;font-size:12px;margin-right:6px;opacity:.8}
+.chip2.s{background:#cfe3ff;color:#173a6b}.chip2.m{background:#e6e6e6;color:#555}.chip2.v{background:#d6f0d2;color:#1b5e3a}.chip2.c{background:#ffe3c2;color:#8a4a00}
+.exb{background:#fff8e8;color:#5b4a2a;border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.6;margin-top:8px}
+.note{border:2px solid #1f3b73;border-radius:14px;padding:12px 14px;margin-top:14px;background:#fff}
+.note .nt{display:inline-block;background:#1f3b73;color:#fff;border-radius:6px;font-size:13px;font-weight:700;padding:1px 9px}
+.note .nti{font-size:19px;font-weight:700;color:#1f3b73;margin:8px 0 6px}
+.note .nl{font-size:17px;line-height:1.7}
+.note .nw{font-size:12px;color:#6b7690;margin:6px 0 0}
+.wrote{margin-top:10px;width:100%;border:2px solid #1f3b73;background:#fff;color:#1f3b73;border-radius:12px;font-size:16px;padding:11px;font-family:inherit;cursor:pointer}
+.wrote.on{background:#1f9d55;border-color:#1f9d55;color:#fff}
+.opts{display:flex;gap:10px;margin-top:6px}
+.opt{flex:1;border:2px solid #1f3b73;background:#fff;color:#1f3b73;border-radius:14px;font-size:22px;font-weight:700;padding:16px 8px;font-family:inherit;cursor:pointer}
+.opt.ok{background:#1f9d55;border-color:#1f9d55;color:#fff}
+.opt.bad{background:#fde2e2;border-color:#c0151b;color:#c0151b}
+.res{margin-top:12px}
+.tr{background:#e6f4ea;color:#14663a;border-radius:10px;padding:10px 12px;font-size:16px;line-height:1.5}
+.why{background:#f3f6fc;border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.6;margin-top:8px;color:#2a3550}
+.tog{margin-top:10px}
+.blank{display:inline-block;min-width:76px;border-bottom:2px solid #1d2433;text-align:center;font-weight:700;color:#1f9d55;margin:0 2px}
+.sline{font-size:17px;line-height:2.1;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 6px}
+.chip{border:1.5px solid #1f3b73;background:#fff;color:#1f3b73;border-radius:18px;padding:6px 14px;font-size:15px;font-family:inherit;cursor:pointer}
+.chip.bad{background:#fde2e2;border-color:#c0151b;color:#c0151b}
+textarea{width:100%;min-height:120px;border:1.5px solid #c8d1e5;border-radius:12px;padding:10px;font-size:17px;font-family:inherit;resize:vertical}
+.small{font-size:13px;color:#6b7690}
+.row{display:flex;gap:10px;margin-top:14px}
+.row .btn{flex:1}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+var DATA=[{"id": "p1", "page": 12, "title": "POINT 1", "sub": "수식어가 사이에 있는 주어와 동사의 수 일치", "prompt": "주어를 누르세요", "pnote": {"t": "수식어는 지우고, 진짜 주어에 맞춘다", "lines": ["주어 ( 수식어 ) 동사 → 수식어를 지우고 남은 주어에 맞춘다", "수식어 종류: 전치사+명사 / 형용사구 / to부정사구 / 분사구 / 관계사절"]}, "items": [{"no": "예제", "chunks": [{"en": "In this study,", "ko": "이 연구에서,", "k": "", "lab": ""}, {"en": "a group", "ko": "한 무리가", "k": "S", "lab": "S 단수"}, {"en": "of six strangers", "ko": "여섯 명의 낯선 사람들의", "k": "M", "lab": "전치사+명사구 수식어"}, {"en": "sits down", "ko": "앉는다", "k": "V", "lab": "V sits"}, {"en": "in a room", "ko": "한 방에", "k": "", "lab": ""}, {"en": "and chats", "ko": "그리고 이야기한다", "k": "V", "lab": "V (같은 주어)"}, {"en": "for 15 minutes.", "ko": "15분 동안.", "k": "", "lab": ""}], "tr": "이 연구에서는, 여섯 명의 낯선 사람들이 한 방에 앉아서 15분 동안 이야기를 나눈다.", "why": "주어는 <b>a group</b>(한 무리) 하나예요. <b>of six strangers</b>는 무리를 꾸며 주는 말이라서 지우고 봅니다. 가까이 있는 strangers가 복수여도 동사는 a group에 맞춰 <b>단수동사 sits</b>(sit: 앉다)가 맞아요.", "ex": "<b>and chats</b> — and 뒤의 동사도 같은 주어(a group)에 맞춰 chats(chat: 이야기를 나누다)입니다. 문장 맨 앞 <b>In this study,</b>는 &ldquo;이 연구에서는&rdquo; 하는 꾸밈말이에요.", "st": [["s", "주어", "a group"], ["m", "수식어", "of six strangers"], ["v", "동사", "sits down ... and chats"]], "verb": {"ok": "sits", "no": "sit"}, "note": {"t": "꾸며 주는 말은 지운다", "lines": ["a group (of six strangers) → sits", "of six strangers = 수식어(전치사+명사) → 지운다. 주어 a group 단수 → sits"]}}, {"no": "1", "chunks": [{"en": "The children", "ko": "그 아이들이", "k": "S", "lab": "S 복수"}, {"en": "playing in the street", "ko": "거리에서 놀고 있는", "k": "M", "lab": "분사구 수식어"}, {"en": "make", "ko": "낸다", "k": "V", "lab": "V make (makes 아님)"}, {"en": "a lot of noises.", "ko": "많은 소음을.", "k": "", "lab": ""}], "tr": "거리에서 놀고 있는 어린이들이 많은 소음을 낸다.", "why": "playing in the street는 children을 꾸며 주는 말이에요. 지우면 &ldquo;The children ( ) make a lot of noises.&rdquo; 가까이 있는 street(단수)에 속지 마세요. 주어 children이 복수라서 <b>make</b>(make: 내다)가 맞아요.", "ex": "", "st": [["s", "주어", "The children"], ["m", "수식어(분사구)", "playing in the street"], ["v", "동사", "make"]], "verb": {"ok": "make", "no": "makes"}, "note": {"t": "분사구 수식어 건너뛰기", "lines": ["The children (playing in the street) → make", "playing ~ = children을 꾸미는 분사구. street(단수)에 속지 않기 → 주어 children(복수)"]}}, {"no": "2", "chunks": [{"en": "Usually,", "ko": "보통,", "k": "", "lab": ""}, {"en": "clothes", "ko": "옷들은", "k": "S", "lab": "S 복수"}, {"en": "that have a zipper", "ko": "지퍼가 있는", "k": "M", "lab": "관계사절 수식어"}, {"en": "are", "ko": "~이다", "k": "V", "lab": "V are (is 아님)"}, {"en": "easy to wear and take off.", "ko": "입고 벗기 쉬운.", "k": "", "lab": ""}], "tr": "보통, 지퍼가 있는 옷들은 입고 벗기 쉽다.", "why": "that have a zipper는 clothes를 꾸며 주는 말이에요. zipper(단수)가 가까이 있어도 주어는 <b>clothes(복수)</b>예요. 그래서 <b>are</b>(be: ~이다)가 맞아요.", "ex": "<b>easy to wear and take off</b> — be easy to V: ~하기 쉽다. wear(입다)와 take off(벗다)가 and로 이어졌어요.", "st": [["s", "주어", "clothes"], ["m", "수식어(관계사절)", "that have a zipper"], ["v", "동사", "are"]], "verb": {"ok": "are", "no": "is"}, "note": {"t": "관계사절 수식어 건너뛰기", "lines": ["clothes (that have a zipper) → are", "that절 = 꾸며 주는 말. zipper(단수) X → 주어 clothes(복수)"]}}, {"no": "3", "chunks": [{"en": "The first step", "ko": "첫 번째 단계는", "k": "S", "lab": "S 단수"}, {"en": "to take in the mastery of new skills", "ko": "새로운 기술의 숙달에서 취할", "k": "M", "lab": "to부정사구 수식어"}, {"en": "is", "ko": "~이다", "k": "V", "lab": "V is (are 아님)"}, {"en": "to practice consistently.", "ko": "꾸준히 연습하는 것.", "k": "", "lab": ""}], "tr": "새로운 기술의 숙달에 있어서 취할 첫 번째 단계는 꾸준히 연습하는 것이다.", "why": "to take ~ new skills는 step을 꾸며 주는 to부정사구(&ldquo;취할&rdquo;)예요. 뒤에 skills(복수)가 있지만 주어는 <b>The first step(첫 단계 하나)</b>라서 <b>is</b>(be: ~이다)가 맞아요.", "ex": "<b>is to practice consistently</b> — to practice가 &ldquo;연습하는 것&rdquo;이라는 뜻의 보어예요.", "st": [["s", "주어", "The first step"], ["m", "수식어(to부정사구)", "to take in the mastery of new skills"], ["v", "동사", "is"]], "verb": {"ok": "is", "no": "are"}, "note": {"t": "to부정사구 수식어 건너뛰기", "lines": ["The first step (to take in the mastery of new skills) → is", "to take ~ = 취할(step을 꾸밈). skills(복수) X → 주어 step(하나)"]}}, {"no": "4", "chunks": [{"en": "Most days,", "ko": "대부분의 날에,", "k": "", "lab": ""}, {"en": "the students", "ko": "학생들은", "k": "S", "lab": "S 복수"}, {"en": "at this school", "ko": "이 학교의", "k": "M", "lab": "전치사+명사구 수식어"}, {"en": "eat", "ko": "먹는다", "k": "V", "lab": "V eat (eats 아님)"}, {"en": "lunch", "ko": "점심을", "k": "", "lab": ""}, {"en": "in the school cafeteria.", "ko": "학교 식당에서.", "k": "", "lab": ""}], "tr": "대부분의 날에, 이 학교 학생들은 학교 식당에서 점심을 먹는다.", "why": "at this school은 students를 꾸며 주는 말이에요. school(단수)에 속지 말고 주어 <b>the students(복수)</b>를 보세요. <b>eat</b>(eat: 먹다)가 맞아요.", "ex": "<b>Most days,</b>는 &ldquo;대부분의 날에&rdquo;라는 문장 앞 꾸밈말이에요. days(복수)가 있지만 주어가 아닙니다.", "st": [["s", "주어", "the students"], ["m", "수식어(전치사+명사)", "at this school"], ["v", "동사", "eat"]], "verb": {"ok": "eat", "no": "eats"}, "note": {"t": "전치사+명사 수식어 건너뛰기", "lines": ["the students (at this school) → eat", "at this school = 수식어. school(단수) X → 주어 students(복수)"]}}, {"no": "5", "chunks": [{"en": "During the summer,", "ko": "여름 동안,", "k": "", "lab": ""}, {"en": "the city's air,", "ko": "도시의 공기는", "k": "S", "lab": "S 단수 (셀 수 없는 명사)"}, {"en": "full of smog and harmful gases,", "ko": "스모그와 해로운 가스로 가득 찬", "k": "M", "lab": "형용사구 수식어"}, {"en": "causes", "ko": "일으킨다", "k": "V", "lab": "V causes (cause → causes)"}, {"en": "various health problems.", "ko": "다양한 건강 문제를.", "k": "", "lab": ""}], "tr": "여름 동안에, 스모그와 해로운 가스로 가득 찬 도시의 공기는 다양한 건강 문제를 일으킨다.", "why": "full of smog and harmful gases는 air를 꾸며 주는 형용사구예요. gases(복수)에 속지 마세요. 주어 <b>the city’s air</b>는 셀 수 없는 명사라서 단수로 취급해요. <b>cause → causes</b>(cause: 일으키다)로 고칩니다.", "ex": "<b>셀 수 없는 명사</b>(air, water, information, money 등)는 단수 취급해서 단수동사를 씁니다.", "st": [["s", "주어", "the city’s air"], ["m", "수식어(형용사구)", "full of smog and harmful gases"], ["v", "동사", "cause → causes"]], "verb": {"ok": "causes", "no": "cause"}, "note": {"t": "셀 수 없는 명사는 단수", "lines": ["the city’s air (full of smog and harmful gases) → causes", "full of ~ = 형용사구 수식어. air = 셀 수 없는 명사 → 단수. cause → causes"]}}, {"no": "6", "chunks": [{"en": "The vegetables", "ko": "채소들은", "k": "S", "lab": "S 복수"}, {"en": "sold at the market", "ko": "시장에서 팔리는", "k": "M", "lab": "분사구 수식어"}, {"en": "come", "ko": "온다", "k": "V", "lab": "V come (comes → come)"}, {"en": "from nearby farms.", "ko": "근처의 농장에서.", "k": "", "lab": ""}], "tr": "시장에서 팔리는 채소들은 근처의 농장에서 온다.", "why": "sold at the market은 vegetables를 꾸며 주는 말(&ldquo;팔리는&rdquo;)이에요. market(단수)에 속지 마세요. 주어 <b>The vegetables(복수)</b>니까 <b>comes → come</b>(come: 오다)으로 고칩니다.", "ex": "", "st": [["s", "주어", "The vegetables"], ["m", "수식어(분사구)", "sold at the market"], ["v", "동사", "comes → come"]], "verb": {"ok": "come", "no": "comes"}, "note": {"t": "과거분사구 수식어", "lines": ["The vegetables (sold at the market) → come", "sold ~ = 팔리는(vegetables를 꾸밈). market(단수) X → 주어 vegetables(복수). comes → come"]}}, {"no": "7", "chunks": [{"en": "The purpose", "ko": "목적은", "k": "S", "lab": "S 단수"}, {"en": "of traffic lights", "ko": "신호등의", "k": "M", "lab": "전치사+명사구 수식어"}, {"en": "is", "ko": "~이다", "k": "V", "lab": "V is (are → is)"}, {"en": "to control the movement of cars.", "ko": "자동차들의 움직임을 통제하는 것.", "k": "", "lab": ""}], "tr": "신호등의 목적은 자동차들의 움직임을 통제하는 것이다.", "why": "of traffic lights는 purpose를 꾸며 주는 말이에요. lights(복수)에 속지 마세요. 주어 <b>The purpose(목적 하나)</b>는 단수라서 <b>are → is</b>(be: ~이다)로 고칩니다.", "ex": "<b>is to control ~</b> — &ldquo;~하는 것이다&rdquo;. to control(통제하다)이 보어 역할을 해요.", "st": [["s", "주어", "The purpose"], ["m", "수식어(전치사+명사)", "of traffic lights"], ["v", "동사", "are → is"]], "verb": {"ok": "is", "no": "are"}, "note": {"t": "of 뒤 복수에 속지 않기", "lines": ["The purpose (of traffic lights) → is", "of traffic lights = 수식어. lights(복수) X → 주어 purpose(하나). are → is"]}}, {"no": "8", "chunks": [{"en": "Conveniently for me,", "ko": "나에게 편리하게도,", "k": "", "lab": ""}, {"en": "the bus", "ko": "버스는", "k": "S", "lab": "S 단수"}, {"en": "that I take every morning to go to work", "ko": "내가 출근하려고 매일 아침 타는", "k": "M", "lab": "관계사절 수식어"}, {"en": "stops", "ko": "선다", "k": "V", "lab": "V stops (이미 맞음)"}, {"en": "one block away from here.", "ko": "여기서 한 블록 떨어진 곳에.", "k": "", "lab": ""}], "tr": "나에게 편리하게도, 내가 매일 아침 출근하기 위해 타는 버스는 여기에서 한 블록 떨어진 곳에 선다.", "why": "that I take every morning to go to work는 bus를 꾸며 주는 관계사절이에요. 지우면 &ldquo;the bus stops one block away.&rdquo; 주어 <b>the bus(단수)</b>니까 단수동사 <b>stops</b>(stop: 서다)가 맞아요. 고칠 곳이 없어요.", "ex": "<b>Conveniently for me,</b>는 문장 앞 꾸밈말(나에게 편리하게도)이에요. <b>to go to work</b>는 &ldquo;출근하기 위해&rdquo;(목적)를 뜻해요.", "st": [["s", "주어", "the bus"], ["m", "수식어(관계사절)", "that I take every morning to go to work"], ["v", "동사", "stops (맞음)"]], "verb": {"ok": "stops", "no": "stop"}, "note": {"t": "관계사절 안 동사에 속지 않기", "lines": ["the bus (that I take every morning to go to work) → stops (맞음)", "관계사절 안의 I take X. 주어 the bus(단수) → stops. 고칠 곳 없음(○)"]}}]}, {"id": "p2", "page": 13, "title": "POINT 2", "sub": "of 앞 표현에 수 일치", "prompt": "of 앞 표현이 있는 덩어리를 누르세요", "pnote": {"t": "of 앞 표현이 기준", "lines": ["one · much · the number of → 단수동사 / many · a number of → 복수동사", "of 뒤 명사는 상관없음. the number of = ~의 수, a number of = 많은"]}, "items": [{"no": "예제", "chunks": [{"en": "One", "ko": "하나는", "k": "S", "lab": "S 단수 취급 표현"}, {"en": "of the key features", "ko": "핵심 특징들 중의", "k": "M", "lab": "of 뒤는 기준이 아님"}, {"en": "is", "ko": "~이다", "k": "V", "lab": "V is"}, {"en": "that this AI program enables machines to learn new things.", "ko": "이 인공지능 프로그램이 기계가 새로운 것들을 배울 수 있게 한다는 것.", "k": "", "lab": ""}], "tr": "핵심 특징들 중의 하나는 이 인공지능 프로그램이 기계가 새로운 것들을 배울 수 있게 한다는 것이다.", "why": "of 앞이 <b>One(하나)</b>이면 단수로 취급해요. features(복수)는 of 뒤라서 상관없어요. 그래서 <b>is</b>(be: ~이다)가 맞아요.", "ex": "<b>that this AI program enables ~</b> — that이 이끄는 말이 &ldquo;~라는 것&rdquo;이라는 뜻의 보어예요. <b>enable A to V</b>는 &ldquo;A가 V할 수 있게 하다&rdquo;.", "st": [["s", "주어", "One (of the key features)"], ["c", "of 앞 표현", "One → 단수"], ["v", "동사", "is"]], "verb": {"ok": "is", "no": "are"}, "note": {"t": "one은 단수 취급", "lines": ["One of the key features → is", "of 앞 표현 one = 단수 → is. features(복수)는 상관없음"]}}, {"no": "1", "chunks": [{"en": "A number of people", "ko": "많은 사람들이", "k": "S", "lab": "S = A number of (복수 취급)", "h": [["A number of", "c"], ["people", "s"]]}, {"en": "are worried", "ko": "걱정한다", "k": "V", "lab": "V are (is → are)"}, {"en": "about the recent increase in crime.", "ko": "최근의 범죄 증가에 대해.", "k": "", "lab": ""}], "tr": "많은 사람들이 최근의 범죄 증가에 대해 걱정한다.", "why": "<b>A number of</b>는 &ldquo;많은&rdquo;이라는 뜻이라 복수로 취급해요. 그래서 <b>is → are</b>(be: ~이다)로 고칩니다.", "ex": "<b>be worried about ~</b> — ~에 대해 걱정하다. <b>the recent increase in crime</b>은 &ldquo;최근의 범죄 증가&rdquo;.", "st": [["c", "of 앞 표현", "A number (of) → 복수"], ["s", "명사", "people"], ["v", "동사", "is → are"]], "verb": {"ok": "are", "no": "is"}, "note": {"t": "a number of = 많은 → 복수", "lines": ["A number of people → are", "a number of = “많은” → 복수 취급. is → are"]}}, {"no": "2", "chunks": [{"en": "In many parts of the world,", "ko": "세계의 많은 지역에서,", "k": "", "lab": ""}, {"en": "much of the forest", "ko": "많은 숲이", "k": "S", "lab": "S = much (단수 취급)", "h": [["much of", "c"]]}, {"en": "has been destroyed", "ko": "파괴되었다", "k": "V", "lab": "V has (have → has)"}, {"en": "by wildfires.", "ko": "산불에 의해.", "k": "", "lab": ""}], "tr": "세계의 많은 지역에서, 많은 숲이 산불에 의해 파괴되었다.", "why": "<b>much</b>는 &ldquo;많은 양&rdquo;이라서 단수로 취급해요. 주어는 much of the forest이고, 앞의 many parts(복수)는 문장 앞 꾸밈말이라 주어가 아니에요. <b>have → has</b>로 고칩니다.", "ex": "<b>has been destroyed</b> — &ldquo;파괴되었다&rdquo;(be + p.p.가 완료로 쓰인 모양)에서 수에 맞추는 부분은 맨 앞 <b>has</b>(have의 단수형)예요. destroy: 파괴하다.", "st": [["c", "of 앞 표현", "much (of) → 단수"], ["s", "주어", "much of the forest"], ["v", "동사", "have → has (been destroyed)"]], "verb": {"ok": "has", "no": "have"}, "note": {"t": "much of = 단수 취급", "lines": ["much of the forest → has been destroyed", "much = 많은 양 → 단수. have → has (has been destroyed에서 수는 has가 정함)"]}}, {"no": "3", "chunks": [{"en": "Many of the buildings", "ko": "많은 건물들이", "k": "S", "lab": "S = Many (복수 취급)", "h": [["Many of", "c"]]}, {"en": "in this city", "ko": "이 도시의", "k": "M", "lab": "전치사+명사구 수식어"}, {"en": "are", "ko": "~이다", "k": "V", "lab": "V are (이미 맞음)"}, {"en": "over 100 years old.", "ko": "100년이 넘은.", "k": "", "lab": ""}], "tr": "이 도시의 많은 건물들은 100년이 넘었다.", "why": "<b>Many</b>는 복수로 취급해요. 그래서 복수동사 <b>are</b>(be: ~이다)가 맞아요. 고칠 곳이 없어요.", "ex": "<b>in this city</b>는 buildings를 꾸며 주는 말이에요. 100 years old는 &ldquo;100살인&rdquo;이라는 뜻이에요.", "st": [["c", "of 앞 표현", "Many (of) → 복수"], ["s", "주어", "Many of the buildings"], ["v", "동사", "are (맞음)"]], "verb": {"ok": "are", "no": "is"}, "note": {"t": "many of = 복수 (맞는 문장)", "lines": ["Many of the buildings → are (맞음)", "many = 복수 취급 → are 그대로(○)"]}}, {"no": "4", "chunks": [{"en": "At our school,", "ko": "우리 학교에서는,", "k": "", "lab": ""}, {"en": "one of the teachers", "ko": "선생님들 중 한 분이", "k": "S", "lab": "S = one (단수 취급)", "h": [["one of", "c"]]}, {"en": "trains", "ko": "훈련시킨다", "k": "V", "lab": "V trains (train → trains)"}, {"en": "the soccer team.", "ko": "축구팀을.", "k": "", "lab": ""}], "tr": "우리 학교에서는, 선생님들 중 한 분이 축구팀을 훈련시킨다.", "why": "<b>one</b>은 &ldquo;하나&rdquo;라서 단수로 취급해요. teachers(복수)에 속지 마세요. <b>train → trains</b>(train: 훈련시키다)로 고칩니다.", "ex": "", "st": [["c", "of 앞 표현", "one (of) → 단수"], ["s", "주어", "one of the teachers"], ["v", "동사", "train → trains"]], "verb": {"ok": "trains", "no": "train"}, "note": {"t": "one of = 단수", "lines": ["one of the teachers → trains", "one = 하나 → 단수. teachers(복수) X. train → trains"]}}, {"no": "5", "chunks": [{"en": "The number of native English speakers", "ko": "영어가 모국어인 화자들의 수는", "k": "S", "lab": "S = The number (단수 취급)", "h": [["The number of", "c"]]}, {"en": "is", "ko": "~이다", "k": "V", "lab": "V is (are → is)"}, {"en": "smaller than the number of native Spanish speakers.", "ko": "스페인어가 모국어인 화자들의 수보다 더 적은.", "k": "", "lab": ""}], "tr": "영어가 모국어인 화자의 수는 스페인어가 모국어인 화자의 수보다 더 적다.", "why": "<b>The number of ~</b>는 &ldquo;~의 수&rdquo;라서 단수로 취급해요. speakers(복수)에 속지 마세요. <b>are → is</b>(be: ~이다)로 고칩니다.", "ex": "<b>smaller than ~</b> — 더 작은(적은). 뒤쪽 <b>the number of native Spanish speakers</b>도 같은 뜻(스페인어가 모국어인 화자의 수)으로 비교해요. 수를 말할 때 a number of(많은)와 헷갈리지 마세요.", "st": [["c", "of 앞 표현", "The number (of) → 단수"], ["s", "주어", "The number of native English speakers"], ["v", "동사", "are → is"]], "verb": {"ok": "is", "no": "are"}, "note": {"t": "the number of = ~의 수 → 단수", "lines": ["The number of native English speakers → is", "the number of = ~의 수(수 하나) → 단수. are → is. a number of(많은)와 구별"]}}]}, {"id": "p3", "page": 13, "title": "POINT 3", "sub": "of 뒤 명사에 수 일치", "prompt": "of 뒤 명사가 있는 덩어리를 누르세요", "pnote": {"t": "of 뒤 명사가 기준", "lines": ["all · most · some · any · half · 퍼센트 · 분수 · a lot of + of + 명사", "of 뒤 명사가 복수 → 복수동사 / 단수·셀 수 없는 명사 → 단수동사. (POINT 2 = of 앞, POINT 3 = of 뒤)"]}, "items": [{"no": "예제", "chunks": [{"en": "After searching for the missing dog for hours,", "ko": "사라진 개를 몇 시간 동안 찾아다닌 후에,", "k": "", "lab": ""}, {"en": "most of the children", "ko": "대부분의 아이들은", "k": "S", "lab": "S = most + of 뒤 복수", "h": [["most", "s"], ["of", "c"], ["the children", "s"]]}, {"en": "were tired", "ko": "지쳤다", "k": "V", "lab": "V were (was → were)"}, {"en": "and gave up.", "ko": "그리고 포기했다.", "k": "", "lab": ""}], "tr": "사라진 개를 몇 시간 동안 찾아다닌 후에, 대부분의 아이들은 지쳐서 포기했다.", "why": "<b>most of</b>는 of 뒤의 명사에 맞춰요. 뒤의 <b>the children</b>이 복수라서 <b>were</b>(be: ~이다)가 맞아요.", "ex": "<b>After searching for ~</b> — &ldquo;~을 찾아다닌 후에&rdquo;(문장 앞 꾸밈말). <b>tired and gave up</b> — were tired(지쳤다)와 gave up(포기했다)이 and로 이어졌어요.", "st": [["s", "주어", "most of the children"], ["c", "of 뒤 명사", "the children → 복수"], ["v", "동사", "were"]], "verb": {"ok": "were", "no": "was"}, "note": {"t": "of 뒤 명사가 기준 (복수)", "lines": ["most of the children → were", "most/all/some/half/% + of → of 뒤 명사가 기준. children = 복수 → were"]}}, {"no": "1", "chunks": [{"en": "Some of the food", "ko": "음식 중 일부는", "k": "S", "lab": "S = Some + of 뒤 단수", "h": [["Some", "s"], ["of", "c"], ["the food", "s"], ["of", "c"]]}, {"en": "served in this restaurant", "ko": "이 식당에서 제공되는", "k": "M", "lab": "분사구 수식어"}, {"en": "smells delicious,", "ko": "맛있는 냄새가 난다,", "k": "V", "lab": "V smells (smell → smells)"}, {"en": "but most of it", "ko": "하지만 그중 대부분은", "k": "S", "lab": "S = most + of 뒤 it(단수)", "h": [["of", "c"], ["most", "s"], ["of", "c"], ["it", "s"]]}, {"en": "is", "ko": "~이다", "k": "V", "lab": "V is"}, {"en": "too spicy for me.", "ko": "나에게는 너무 매운.", "k": "", "lab": ""}], "tr": "이 식당에서 제공되는 음식 중 일부는 맛있는 냄새가 나지만, 그중 대부분은 나에게 너무 맵다.", "why": "<b>Some of</b>는 of 뒤 명사에 맞춰요. <b>the food</b>는 셀 수 없는 명사라서 단수예요. 그래서 <b>smells</b>(smell: 냄새가 나다)가 맞아요. served in this restaurant는 food를 꾸며 주는 말입니다.", "ex": "<b>most of it is</b> — 뒤쪽 문장도 같은 규칙이에요. it(=the food)이 단수라서 is. <b>too spicy for me</b>는 &ldquo;나에게 너무 매운&rdquo;.", "st": [["s", "주어", "Some of the food"], ["c", "of 뒤 명사", "the food → 단수(셀 수 없음)"], ["v", "동사", "smells"]], "verb": {"ok": "smells", "no": "smell"}, "note": {"t": "of 뒤가 셀 수 없는 명사 → 단수", "lines": ["Some of the food → smells", "food = 셀 수 없는 명사 → 단수. smell → smells. 뒤의 most of it도 it(단수) → is"]}}, {"no": "2", "chunks": [{"en": "A lot of information", "ko": "많은 정보는", "k": "S", "lab": "S = A lot + of 뒤 셀 수 없는 명사", "h": [["A lot of information", "s"]]}, {"en": "on social media", "ko": "소셜 미디어에 있는", "k": "M", "lab": "전치사+명사구 수식어"}, {"en": "is", "ko": "~이다", "k": "V", "lab": "V is (are → is)"}, {"en": "false.", "ko": "사실이 아닌.", "k": "", "lab": ""}], "tr": "소셜 미디어에 있는 많은 정보는 사실이 아니다.", "why": "<b>A lot of</b>는 of 뒤 명사에 맞춰요. <b>information</b>은 셀 수 없는 명사라서 단수예요. 그래서 <b>is</b>(be: ~이다)가 맞아요. on social media는 information을 꾸며 주는 말이에요.", "ex": "<b>information</b>은 -s를 붙여 복수로 만들 수 없는 명사예요. 그래서 항상 단수 취급입니다.", "st": [["s", "주어", "A lot of information"], ["c", "of 뒤 명사", "information → 단수(셀 수 없음)"], ["v", "동사", "is"]], "verb": {"ok": "is", "no": "are"}, "note": {"t": "information은 항상 단수", "lines": ["A lot of information → is", "information = 셀 수 없는 명사 → 단수. are → is"]}}, {"no": "3", "chunks": [{"en": "In a survey,", "ko": "한 조사에서,", "k": "", "lab": ""}, {"en": "30 percent of the employees", "ko": "직원들의 30퍼센트는", "k": "S", "lab": "S = 30 percent + of 뒤 복수", "h": [["30 percent", "s"], ["of", "c"], ["the employees", "s"]]}, {"en": "prefer", "ko": "선호한다", "k": "V", "lab": "V prefer (prefers → prefer)"}, {"en": "to work from home.", "ko": "집에서 일하는 것을.", "k": "", "lab": ""}], "tr": "한 조사에서, 직원들의 30%는 집에서 일하는 것을 선호한다.", "why": "<b>퍼센트(%) of</b>도 of 뒤 명사에 맞춰요. <b>the employees</b>가 복수라서 <b>prefer</b>(prefer: 선호하다)가 맞아요.", "ex": "<b>prefer to V</b> — V하는 것을 더 좋아하다.", "st": [["s", "주어", "30 percent of the employees"], ["c", "of 뒤 명사", "the employees → 복수"], ["v", "동사", "prefer"]], "verb": {"ok": "prefer", "no": "prefers"}, "note": {"t": "퍼센트도 of 뒤를 본다", "lines": ["30 percent of the employees → prefer", "퍼센트 of + 복수명사 → 복수동사. prefers → prefer"]}}, {"no": "4", "chunks": [{"en": "More than half of the students", "ko": "학생들의 절반 넘게가", "k": "S", "lab": "S = half + of 뒤 복수", "h": [["More than half", "s"], ["of", "c"], ["the students", "s"]]}, {"en": "in my class", "ko": "우리 반의", "k": "M", "lab": "전치사+명사구 수식어"}, {"en": "use", "ko": "사용한다", "k": "V", "lab": "V use (uses → use)"}, {"en": "desktops", "ko": "데스크톱 컴퓨터를", "k": "", "lab": ""}, {"en": "to access the Internet.", "ko": "인터넷에 접속하려고.", "k": "", "lab": ""}], "tr": "우리 반 학생들의 절반 이상이 인터넷에 접속하기 위해 데스크톱 컴퓨터를 사용한다.", "why": "<b>half of</b>는 of 뒤 명사에 맞춰요. <b>the students</b>가 복수라서 <b>use</b>(use: 사용하다)가 맞아요. in my class는 students를 꾸며 주는 말입니다.", "ex": "<b>to access the Internet</b> — &ldquo;인터넷에 접속하기 위해&rdquo;(목적을 뜻하는 to부정사)예요.", "st": [["s", "주어", "More than half of the students"], ["c", "of 뒤 명사", "the students → 복수"], ["v", "동사", "use"]], "verb": {"ok": "use", "no": "uses"}, "note": {"t": "half of도 of 뒤를 본다", "lines": ["More than half of the students → use", "half of + 복수명사 → 복수동사. uses → use"]}}, {"no": "5", "chunks": [{"en": "All of the money", "ko": "모든 돈은", "k": "S", "lab": "S = All + of 뒤 셀 수 없는 명사", "h": [["All", "s"], ["of", "c"], ["the money", "s"]]}, {"en": "collected from the event", "ko": "그 행사에서 모인", "k": "M", "lab": "분사구 수식어"}, {"en": "goes", "ko": "간다", "k": "V", "lab": "V goes (go → goes)"}, {"en": "to a children's hospital.", "ko": "어린이 병원으로.", "k": "", "lab": ""}], "tr": "그 행사에서 모인 모든 돈은 어린이 병원으로 간다.", "why": "<b>All of</b>는 of 뒤 명사에 맞춰요. <b>the money</b>는 셀 수 없는 명사라서 단수예요. 그래서 <b>goes</b>(go: 가다)가 맞아요. collected from the event는 money를 꾸며 주는 말(&ldquo;모인&rdquo;)이에요.", "ex": "", "st": [["s", "주어", "All of the money"], ["c", "of 뒤 명사", "the money → 단수(셀 수 없음)"], ["v", "동사", "goes"]], "verb": {"ok": "goes", "no": "go"}, "note": {"t": "all of + 셀 수 없는 명사 → 단수", "lines": ["All of the money → goes", "money = 셀 수 없는 명사 → 단수. go → goes"]}}]}];
+var KEY='eobeop-sent-v2';
+var st={done:{},wrote:{}};
+try{var raw=localStorage.getItem(KEY);if(raw){st=JSON.parse(raw);st.wrote=st.wrote||{};st.done=st.done||{}}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+var $=document.getElementById('app');
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function home(){
+  $.innerHTML='';
+  var t=el('div','top','<span class="brand">비타민 영어클리닉</span>');$.appendChild(t);
+  DATA.forEach(function(set,si){
+    var n=set.items.length,d=0;set.items.forEach(function(it,i){if(st.done[set.id+'-'+i])d++});
+    var b=el('button','setbtn'+(d==n?' done':''),'<div class="t">'+set.title+' <span class="small">p.'+set.page+'</span></div><div class="s">'+esc(set.sub)+'</div><div class="p">'+(d==n?'분석 완료':d+' / '+n)+'</div>');
+    b.onclick=function(){run(si,firstOpen(set))};$.appendChild(b);
+  });
+}
+function firstOpen(set){for(var i=0;i<set.items.length;i++){if(!st.done[set.id+'-'+i])return i}return 0}
+function mk(en,h){
+  var out='',pos=0;
+  if(!h)return esc(en);
+  h.forEach(function(x){var i=en.indexOf(x[0],pos);if(i<0)return;out+=esc(en.slice(pos,i))+'<span class="m'+x[1]+'">'+esc(x[0])+'</span>';pos=i+x[0].length});
+  return out+esc(en.slice(pos));
+}
+function noteBox(nt,key,label){
+  var box=el('div','note');
+  box.appendChild(el('span','nt',label));
+  box.appendChild(el('div','nti',esc(nt.t)));
+  nt.lines.forEach(function(l){box.appendChild(el('div','nl',esc(l)))});
+  var w=el('button','wrote'+(st.wrote[key]?' on':''),st.wrote[key]?'교재에 썼어요':'교재에 썼어요');
+  w.onclick=function(){st.wrote[key]=!st.wrote[key];save();w.className='wrote'+(st.wrote[key]?' on':'')};
+  box.appendChild(w);return box;
+}
+function run(si,idx){
+  var set=DATA[si];
+  if(idx>=set.items.length){return summary(si)}
+  var it=set.items[idx];
+  $.innerHTML='';
+  var top=el('div','top');var back=el('button','btn ghost sm','목록');back.onclick=home;top.appendChild(back);
+  top.appendChild(el('span','brand',set.title+' · '+(it.no=='예제'?'예제':it.no+'번')));top.appendChild(el('span','sp'));
+  top.appendChild(el('span','small',(idx+1)+' / '+set.items.length));$.appendChild(top);
+  var bar=el('div','bar','<i style="width:'+((idx)/set.items.length*100)+'%"></i>');$.appendChild(bar);
+  var card=el('div','card');$.appendChild(card);
+  var prompt=el('div','prompt');card.appendChild(prompt);
+  var line=el('div','line tapok');card.appendChild(line);
+  var res=el('div','res');card.appendChild(res);
+  var Sidx=[],Midx=[];
+  it.chunks.forEach(function(c,i){if(c.k=='S')Sidx.push(i);if(c.k=='M')Midx.push(i)});
+  var steps=[{t:set.prompt,idx:Sidx,cls:'hit'}];
+  if(Midx.length)steps.push({t:'건너뛸 수식어를 누르세요',idx:Midx,cls:'hitM'});
+  steps.push({t:'맞는 동사를 고르세요',verb:true});
+  var chEls=[];
+  function draw(){
+    line.innerHTML='';chEls=[];var vdone=false;
+    it.chunks.forEach(function(c,i){
+      if(i>0)line.appendChild(el('span','slash','/'));
+      var shown=esc(c.en);
+      if(c.k=='V'&&!vdone){var re=new RegExp('(^|\\s)'+it.verb.ok.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?=\\s|,|\\.|$)');if(re.test(c.en)){shown=esc(c.en.replace(re,'$1______'));vdone=true}}
+      var b=el('button','ch','<span class="lab">&nbsp;</span><span class="en">'+shown+'</span><span class="ko"></span>');
+      b.onclick=function(){tap(i)};line.appendChild(b);chEls.push(b);
+    });
+  }
+  var si2=0,found={};
+  function setPrompt(){prompt.textContent=steps[si2].t}
+  function tap(i){
+    var s=steps[si2];if(!s||s.verb)return;
+    if(s.idx.indexOf(i)>=0){
+      found[i]=1;chEls[i].classList.add(s.cls);
+      if(s.idx.every(function(k){return found[k]})){found={};si2++;setPrompt();if(steps[si2].verb)showVerb()}
+    }else{
+      chEls[i].classList.add('wrong');setTimeout(function(){chEls[i].classList.remove('wrong')},350);
+    }
+  }
+  function showVerb(){
+    var o=el('div','opts');var pair=(idx%2==0)?[it.verb.ok,it.verb.no]:[it.verb.no,it.verb.ok];
+    pair.forEach(function(w){
+      var b=el('button','opt',esc(w));
+      b.onclick=function(){
+        if(w==it.verb.ok){b.classList.add('ok');Array.prototype.forEach.call(o.children,function(x){x.disabled=true});reveal()}
+        else{b.classList.add('bad');b.disabled=true}
+      };o.appendChild(b);
+    });
+    res.appendChild(o);
+  }
+  function reveal(){
+    prompt.textContent='분석';line.className='line rev';
+    it.chunks.forEach(function(c,i){
+      var b=chEls[i];b.className='ch '+c.k+(c.h?' hh':'');b.disabled=true;
+      b.querySelector('.lab').textContent=c.lab||' ';b.querySelector('.ko').textContent=c.ko;
+      var inner=mk(c.en,c.h);if(c.k=='M')inner='【 '+inner+' 】';
+      b.querySelector('.en').innerHTML=inner;
+    });
+    st.done[set.id+'-'+idx]=1;save();
+    var chips=el('div','chips2');
+    it.st.forEach(function(x){chips.appendChild(el('span','chip2 '+x[0],'<em>'+esc(x[1])+'</em>'+esc(x[2])))});
+    res.appendChild(chips);
+    var tg=el('button','btn ghost sm tog','해석·해설 보기');var body=el('div','');body.style.display='none';
+    body.appendChild(el('div','tr',esc(it.tr)));body.appendChild(el('div','why',it.why));
+    if(it.ex)body.appendChild(el('div','exb','<b>함께 알아둘 것</b> '+it.ex));
+    tg.onclick=function(){var o=body.style.display=='none';body.style.display=o?'block':'none';tg.textContent=o?'닫기':'해석·해설 보기'};
+    res.appendChild(tg);res.appendChild(body);
+    var nb=noteBox(it.note,set.id+'-'+idx,'꼭 정리해야 할 사항');
+    nb.insertBefore(el('div','nw','교재 문장 옆에 쓰기'),nb.children[1]);
+    res.appendChild(nb);
+    var nx=el('div','row');var n=el('button','btn',idx+1>=set.items.length?'POINT 노트':'다음 문장');n.onclick=function(){run(si,idx+1)};nx.appendChild(n);res.appendChild(nx);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  draw();setPrompt();
+}
+function summary(si){
+  var set=DATA[si];$.innerHTML='';
+  var top=el('div','top');var back=el('button','btn ghost sm','목록');back.onclick=home;top.appendChild(back);
+  top.appendChild(el('span','brand',set.title+' 노트'));$.appendChild(top);
+  var card=el('div','card');
+  var nb=noteBox(set.pnote,set.id+'-pn','POINT 노트');nb.style.marginTop='0';
+  nb.insertBefore(el('div','nw','교재 POINT 옆에 쓰기'),nb.children[1]);
+  card.appendChild(nb);$.appendChild(card);
+  var r=el('div','row');var h=el('button','btn','목록으로');h.onclick=home;r.appendChild(h);$.appendChild(r);
+}
+if(location.hash=='#solve'){/* test hook */}
+home();
+if('serviceWorker' in navigator&&location.protocol.indexOf('http')==0){navigator.serviceWorker.register('sw.js').catch(function(){})}
+</script>
+</body>
+</html>
