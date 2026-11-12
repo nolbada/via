@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ko" translate="no" class="notranslate"><head><meta charset="utf-8"><meta name="google" content="notranslate"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M2 Reading 71</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}.bmw{text-align:center;margin:2px 0 0}.bmk{align-items:center;gap:8px;font-size:12px;color:#7a5a00;background:#fff3bf;border:1px solid #e0a800;border-radius:99px;padding:2px 4px 2px 12px}.bmk button{background:#fff;color:#7a5a00;border:1px solid #e0a800;padding:1px 10px;font-size:12px;font-weight:600;border-radius:99px}.res{border-radius:14px;padding:18px 16px;margin:12px 0;text-align:center;border:2px solid}.rp{background:#e6f5ec;border-color:#1a7f4b}.rf{background:#fdecea;border-color:#c0392b}.rt2{font-weight:700;font-size:15px}.rp .rt2{color:#1a7f4b}.rf .rt2{color:#c0392b}.rpct{font-size:54px;font-weight:700;line-height:1.1}.rpct small{font-size:18px;margin-left:2px}.rl2{font-size:13px;color:var(--mut);margin-bottom:10px}.rtb{width:100%;border-collapse:collapse;font-size:14px;text-align:left;background:#fff;border-radius:8px;margin:6px 0 12px}.rtb td{padding:7px 10px;border-top:1px solid var(--line)}.rtb tr:first-child td{border-top:0}.rtb td:last-child{text-align:right}.part{position:relative}.pane{position:sticky;top:0;z-index:6;max-height:40vh;max-height:40dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--bg,#f2f6f9);padding:2px 0 8px;box-shadow:0 10px 8px -9px rgba(18,38,58,.45)}.pane .dlg{margin:0}.pane.open{position:static;max-height:none;overflow:visible;box-shadow:none}.pp.np{margin-top:8px}.pp .k{margin-bottom:2px}.hl{display:inline-block;font-size:11px;font-weight:700;color:var(--pri);border:1px solid var(--pri);border-radius:4px;padding:0 6px;margin:6px 0 2px}.memo{transform:rotate(-.4deg);box-shadow:0 6px 14px rgba(138,90,0,.15)}.grp{position:relative}.sumbox{margin:2px 0 8px 28px;padding:8px 10px;background:#f4f7fa;border-left:3px solid var(--pri);border-radius:4px;font-size:15px;line-height:1.5}.ow{font-size:13.5px;line-height:1.55;margin:4px 0;padding:6px 9px;border-radius:7px;background:#f4f6f8;border-left:3px solid #c9d2da}.ow.g{background:#e8f6ee;border-left-color:#1a7f4b}.ow b{margin-right:4px}
+mark{background:linear-gradient(transparent 45%,#f6e27a 45%);color:inherit;padding:0 1px}
+.neg{background:linear-gradient(transparent 45%,#f6e27a 45%);font-weight:800}
+.lbl{float:right;font-size:11px;color:var(--mut);font-weight:400;margin-left:8px}
+.ac{border:1px solid var(--line);border-radius:12px;background:#fff;margin:10px 0;overflow:hidden}
+.ac-top{background:#fdecea;border-bottom:1px solid #f3c1bb;padding:10px 14px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.ac-top b{color:var(--bad);font-size:15px}.ac-top.g{background:var(--okbg);border-color:#b9e0c9}.ac-top.g b{color:var(--ok)}.ac-top.fine{background:#eef3f8;border-color:var(--line)}.ac-top.fine b{color:var(--pri)}
+.ac-a{font-weight:700;font-size:16px}.ac-k{flex-basis:100%;font-size:13px;color:var(--mut)}.ac-x{font-size:13px;color:var(--bad)}
+.ac-sec{font-size:13px;font-weight:700;color:var(--pri);margin:14px 14px 6px}
+.pass{margin:0 14px;padding:6px 12px;background:#fafbfc;border-radius:8px}
+.pl1{padding:4px 0}.pl1 .e{font-size:16px}.pl1 .k{font-size:13px;color:var(--mut)}
+.oc{margin:6px 14px;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;background:#f7f8fa}
+.oc.g{border-color:var(--ok);background:linear-gradient(90deg,#d7efe0,#fff)}
+.oc.r{border-color:var(--bad);background:linear-gradient(90deg,#fadbd8,#fff)}
+.oh{display:flex;gap:8px;align-items:flex-start}.oh .cn{min-width:20px;color:var(--mut)}.ot{flex:1;font-size:16px}.ot .okr{font-size:13px;color:var(--mut)}
+.tg{font-size:12px;font-weight:700;padding:1px 8px;border-radius:99px;background:#fff;border:1px solid currentColor;color:var(--mut);white-space:nowrap}.oc.g .tg{color:var(--ok)}.oc.r .tg{color:var(--bad)}
+.why{margin-top:6px;padding-left:10px;border-left:3px solid #cbd3dc;font-size:14px;color:#33404f}.oc.g .why{border-color:var(--ok)}.oc.r .why{border-color:var(--bad)}
+.trap{margin:10px 14px;padding:8px 12px;border-radius:8px;background:#fff7e0;font-size:14px}.trap b{color:#8a5a00}
+.fix{margin:12px 14px 14px}.fh{font-weight:700;font-size:13px;color:var(--pri);margin-bottom:4px}
+.opt.xx{opacity:.4;text-decoration:line-through;pointer-events:none}
+.fixed{margin:12px 14px 4px;padding:8px 12px;border-radius:8px;background:var(--okbg);color:var(--ok);font-weight:700}
+.nx{margin:10px 14px 16px}.nx button{display:block;width:100%;padding:14px 0;font-size:17px;font-weight:700;border-radius:10px}
+.post{margin:12px 14px 14px;padding:12px 14px;background:#fff9c4;border:1.5px solid #e6d44f;border-radius:6px;box-shadow:2px 3px 0 #ece3a0}
+.ph{font-size:13px;font-weight:700;color:#7a6500;margin-bottom:6px}.post .pl{font-size:17px;font-weight:700}.post .pk{font-size:14.5px;color:#4a5563;margin:2px 0 8px}.post .pw{font-size:15px}.post .pd{margin-top:8px;font-size:13px;color:var(--ok);font-weight:700}.post button{margin-top:10px}
+.sumbox{margin:6px 0 10px;padding:10px 12px;background:#f3f6fa;border-radius:8px;font-size:17px;line-height:1.7}
+.qd{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;padding:8px 12px;margin:6px 0;border-radius:8px;background:var(--okbg);border:1px solid #b9e0c9;font-size:15px}.qd .qn{color:var(--ok);font-weight:700}.qd .qk{flex-basis:100%;font-size:13px;color:var(--mut);padding-left:32px}
+.res{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0;text-align:center}
+.res .rpct{font-size:44px;font-weight:800;color:var(--pri)}.res .rpct small{font-size:18px;color:var(--mut)}.res .rl{font-size:14px;color:var(--mut)}
+.rtb{margin:10px auto;border-collapse:collapse;font-size:14px}.rtb td{padding:3px 12px;border-bottom:1px solid var(--line)}
+.chip{display:inline-block;margin-top:8px;padding:4px 14px;border-radius:99px;font-size:13px;font-weight:700;background:#eef3f8;color:var(--mut)}.chip.on{background:var(--okbg);color:var(--ok)}
+.tp{margin-top:14px;padding:12px;border:2px dashed #999;border-radius:10px;text-align:left;font-size:14px}.tp b{color:#555}.tp .fl{color:var(--bad);font-weight:700}
+.fc{margin:6px 14px;padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);font-size:15px}.fc.f{border-color:var(--ok);background:linear-gradient(90deg,#d7efe0,#fff)}.fc.m{border-color:var(--bad);background:linear-gradient(90deg,#fadbd8,#fff)}
+.fc .tg2{font-size:12px;font-weight:700;margin-right:6px}.fc.f .tg2{color:var(--ok)}.fc.m .tg2{color:var(--bad)}
+.fcb{margin-top:3px;padding-left:10px;border-left:3px solid #cbd3dc;font-size:14px;color:#33404f}
+.fixs{margin:4px 14px 6px;font-size:17px}.fixs-l{font-size:12.5px;color:var(--mut);margin:10px 14px 0}
+.ac.s1{margin:10px 0 4px 34px}
+
+.crit{margin-top:4px;font-size:12px;color:var(--mut)}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M2 Reading</a><h1>Reading 71 · A Chat with an AI Chatbot</h1><div class="sub">AI 챗봇과의 대화 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div class="bmw"><span id="bm" class="bmk" style="display:none">책갈피 저장됨 &middot; 다음에 이어서 풀기<button type="button">처음부터</button></span></div><div id="app"></div>
+</div>
+<script>
+var D=[{"n": 1, "tag": null, "en": "(1) Talk to an AI chatbot, and asks it some questions. (2) Share your chat with your classmates.", "ko": "(1) AI 챗봇과 이야기하고, 그것에게 질문을 하세요. (2) 학급 친구들과 대화 내용을 공유하세요.", "ok": false, "foot": [], "fixes": [{"wrong": "asks", "right": "ask", "partial": false, "at": [7], "point": "명령문의 병렬: Talk ~, and ask ~: 명령문 두 개는 동사원형으로 병렬", "topic": "명령문의 병렬", "memo": "Talk ~, and ask ~: 명령문 두 개는 동사원형으로 병렬"}]}, {"n": 2, "tag": "AI란 무엇인가", "en": "User: Hi, nice to meet you! ANNIE: Hello! Nice to meet you, too! I'm your AI friend ANNIE. I can answer ANY questions what you have. How can I help you?", "ko": "User: 안녕, 만나서 반가워! ANNIE: 안녕! 나도 만나서 반가워! 나는 네 AI 친구 ANNIE야. 네가 하는 모든 질문에 나는 답할 수 있어. 어떻게 도와줄까?", "ok": false, "foot": [], "fixes": [{"wrong": "what", "right": "that", "partial": false, "at": [23], "point": "목적격 관계대명사: 선행사 ANY questions가 있어 that", "topic": "목적격 관계대명사", "memo": "선행사 ANY questions가 있어 that"}]}, {"n": 3, "tag": null, "en": "User: Can I asking you some questions about AI? ANNIE: Sure! I'd be happy to answer your questions!", "ko": "User: 네게 AI에 관해 몇 가지 질문해도 될까? ANNIE: 물론! 네 질문에 답하게 되어 기뻐!", "ok": false, "foot": [], "fixes": [{"wrong": "asking", "right": "ask", "partial": false, "at": [3], "point": "조동사 + 동사원형: 조동사 Can 뒤에는 동사원형 ask", "topic": "조동사 + 동사원형", "memo": "조동사 Can 뒤에는 동사원형 ask"}]}, {"n": 4, "tag": null, "en": "User: My first question is: What is AI?", "ko": "User: 내 첫 질문은, AI가 뭐야?", "ok": true, "foot": [], "fixes": []}, {"n": 5, "tag": null, "en": "ANNIE: AI stand for “Artificial Intelligence.” It is a kind of computer system. AI can understand language, learn from experiences, and making decisions like humans.", "ko": "ANNIE: AI는 ‘인공지능’을 의미해. 그건 일종의 컴퓨터 시스템이야. AI는 인간처럼 언어를 이해하고, 경험으로부터 배우며, 의사결정을 해.", "ok": false, "foot": [], "fixes": [{"wrong": "stand", "right": "stands", "partial": false, "at": [2], "point": "주어와 동사의 수일치: 주어 AI는 단수라 stands", "topic": "주어와 동사의 수일치", "memo": "주어 AI는 단수라 stands"}, {"wrong": "making", "right": "make", "partial": false, "at": [21], "point": "병렬 구조: understand, learn, and make: 동사원형으로 병렬", "topic": "병렬 구조", "memo": "understand, learn, and make: 동사원형으로 병렬"}]}, {"n": 6, "tag": null, "en": "User: It is hard understand your explanation. Can you give me an example?", "ko": "User: 네 설명을 이해하기가 힘들어. 예를 들어줄 수 있니?", "ok": false, "foot": [], "fixes": [{"wrong": "understand", "right": "to understand", "partial": false, "at": [4], "point": "가주어 it과 진주어 to부정사: It is hard 뒤의 진주어는 to understand", "topic": "가주어 it과 진주어 to부정사", "memo": "It is hard 뒤의 진주어는 to understand"}]}, {"n": 7, "tag": null, "en": "ANNIE: Sure! Imagine that you have a new pet dog and you want teaching it how to sit and stay. Your dog will learns from information and experiences.", "ko": "ANNIE: 그럴게! 네게 반려견이 새로 생겨서 그것에게 앉아 있도록 가르치고 싶다고 상상해 봐. 네 개는 정보와 경험으로부터 배우게 될 거야.", "ok": false, "foot": [], "fixes": [{"wrong": "teaching", "right": "to teach", "partial": false, "at": [13], "point": "want + to부정사: want는 목적어로 to부정사를 씀", "topic": "want + to부정사", "memo": "want는 목적어로 to부정사를 씀"}, {"wrong": "learns", "right": "learn", "partial": false, "at": [23], "point": "조동사 + 동사원형: 조동사 will 뒤에는 동사원형 learn", "topic": "조동사 + 동사원형", "memo": "조동사 will 뒤에는 동사원형 learn"}]}, {"n": 8, "tag": null, "en": "AI is similarly. But you don't have to give AI a snack!", "ko": "AI도 비슷해. 하지만 AI에게 간식을 줄 필요는 없어!", "ok": false, "foot": [], "fixes": [{"wrong": "similarly", "right": "similar", "partial": false, "at": [2], "point": "보어 자리의 형용사: be동사 뒤 보어에는 형용사 similar", "topic": "보어 자리의 형용사", "memo": "be동사 뒤 보어에는 형용사 similar"}]}, {"n": 9, "tag": "일상 속 AI", "en": "User: How AI is used in everyday life? ANNIE: AI is used in many situations.", "ko": "User: 일상생활에 AI가 어떻게 사용되니? ANNIE: AI는 많은 상황에서 사용돼.", "ok": false, "foot": [], "fixes": [{"wrong": "AI is", "right": "is AI", "partial": false, "at": [2], "point": "의문문의 어순: 의문사 How 뒤 의문문은 be동사 + 주어", "topic": "의문문의 어순", "memo": "의문사 How 뒤 의문문은 be동사 + 주어"}]}, {"n": 10, "tag": null, "en": "For example, AI technology can recommends new videos that you may like. It studies which videos you have already watch.", "ko": "예를 들어, AI 기술은 네가 좋아할 법한 새 영상을 추천할 수 있어. 그것은 네가 어떤 영상들을 이미 봤는지 학습해.", "ok": false, "foot": [], "fixes": [{"wrong": "recommends", "right": "recommend", "partial": false, "at": [5], "point": "조동사 + 동사원형: 조동사 can 뒤에는 동사원형 recommend", "topic": "조동사 + 동사원형", "memo": "조동사 can 뒤에는 동사원형 recommend"}, {"wrong": "watch", "right": "watched", "partial": false, "at": [19], "point": "현재완료: have + 과거분사 watched", "topic": "현재완료", "memo": "have + 과거분사 watched"}]}, {"n": 11, "tag": null, "en": "Then it decides what recommend. AI can also recognize your face to unlock your smartphone.", "ko": "그런 다음 무엇을 추천할지 결정해. AI는 또 네 스마트폰의 잠금을 해제하기 위해 네 안면을 인식할 수 있어.", "ok": false, "foot": [], "fixes": [{"wrong": "recommend", "right": "to recommend", "partial": false, "at": [4], "point": "의문사 + to부정사: what 뒤에는 to부정사 to recommend", "topic": "의문사 + to부정사", "memo": "what 뒤에는 to부정사 to recommend"}]}, {"n": 12, "tag": null, "en": "It learns what your face looks like. Over time, it gets better at recognize you, even if you change your hair or wear a mask.", "ko": "그것은 네 얼굴이 어떻게 생겼는지 학습해. 시간이 흐르면서, 그건 네가 머리를 바꾸거나 마스크를 쓰더라도 너를 인식하는 것에 더 능숙해져.", "ok": false, "foot": [], "fixes": [{"wrong": "recognize", "right": "recognizing", "partial": false, "at": [13], "point": "전치사 뒤 동명사: 전치사 at 뒤에는 동명사 recognizing", "topic": "전치사 뒤 동명사", "memo": "전치사 at 뒤에는 동명사 recognizing"}]}, {"n": 13, "tag": "주의할 점", "en": "User: Here is my last question: What should I be careful about when I use AI? ANNIE: You should keep the following things in mind:", "ko": "User: 내 마지막 질문이야: 내가 AI를 사용할 때 무엇을 주의해야 하니? ANNIE: 너는 다음 사항들을 명심해야 해.", "ok": true, "foot": [], "fixes": []}, {"n": 14, "tag": null, "en": "1. Accuracy: AI is not always correct, so you should always carefully check the information what it provides.", "ko": "1. 정확성: AI가 항상 정확하지는 않아, 그러니 너는 항상 그것이 제공하는 정보를 주의 깊게 확인해야 해.", "ok": false, "foot": [], "fixes": [{"wrong": "what", "right": "that", "partial": false, "at": [15], "point": "목적격 관계대명사: 선행사 the information이 있어 that", "topic": "목적격 관계대명사", "memo": "선행사 the information이 있어 that"}]}, {"n": 15, "tag": null, "en": "2. Originality: Even if the information is correct, do not blindly copying it. Make sure you understand it, and then write it in your own words.", "ko": "2. 독창성: 정보가 정확하더라도, 그것을 맹목적으로 옮기면 안 돼. 반드시 그것을 이해하고, 네 자신의 말로 써야 해.", "ok": false, "foot": [], "fixes": [{"wrong": "copying", "right": "copy", "partial": false, "at": [11], "point": "부정 명령문: do not 뒤에는 동사원형 copy", "topic": "부정 명령문", "memo": "do not 뒤에는 동사원형 copy"}]}, {"n": 16, "tag": null, "en": "3. Privacy: It is not safe sharing your personal information with AI. If you are careful about these things, you can use AI safe and wisely.", "ko": "3. 프라이버시: 네 개인 정보를 AI와 공유하는 것은 안전하지 않아. 네가 이런 점들에 주의한다면, AI를 안전하고 현명하게 사용할 수 있어.", "ok": false, "foot": [], "fixes": [{"wrong": "sharing", "right": "to share", "partial": false, "at": [6], "point": "가주어 it과 진주어 to부정사: It is not safe 뒤의 진주어는 to share", "topic": "가주어 it과 진주어 to부정사", "memo": "It is not safe 뒤의 진주어는 to share"}, {"wrong": "safe", "right": "safely", "partial": false, "at": [23], "point": "부사: 동사 use를 꾸미는 부사 safely (wisely와 병렬)", "topic": "부사", "memo": "동사 use를 꾸미는 부사 safely (wisely와 병렬)"}]}, {"n": 17, "tag": null, "en": "User: Got it, thanks! ANNIE: You're welcome! If you will need help in the future, feel free to ask. Have a great day!", "ko": "User: 알겠어, 고마워! ANNIE: 천만에! 앞으로 도움이 필요하면 편하게 물어줘. 좋은 하루 보내!", "ok": false, "foot": [], "fixes": [{"wrong": "will need", "right": "need", "partial": false, "at": [9], "point": "조건 부사절의 시제: 조건 부사절에서는 미래를 현재형으로 씀", "topic": "조건 부사절의 시제", "memo": "조건 부사절에서는 미래를 현재형으로 씀"}]}];var PP=[["(1) Talk to an AI chatbot, and ask it some questions.", "(1) AI 챗봇과 이야기하고, 그것에게 질문을 하세요.", 1], ["(2) Share your chat with your classmates.", "(2) 학급 친구들과 대화 내용을 공유하세요.", 0], ["What Is AI?", "AI란 무엇인가?", 1], ["User: Hi, nice to meet you!", "User: 안녕, 만나서 반가워!", 0], ["ANNIE: Hello! Nice to meet you, too!", "ANNIE: 안녕! 나도 만나서 반가워!", 0], ["I'm your AI friend ANNIE.", "나는 네 AI 친구 ANNIE야.", 0], ["I can answer ANY questions that you have.", "네가 하는 모든 질문에 나는 답할 수 있어.", 0], ["How can I help you?", "어떻게 도와줄까?", 0], ["User: Can I ask you some questions about AI?", "User: 네게 AI에 관해 몇 가지 질문해도 될까?", 0], ["ANNIE: Sure! I'd be happy to answer your questions!", "ANNIE: 물론! 네 질문에 답하게 되어 기뻐!", 0], ["User: My first question is: What is AI?", "User: 내 첫 질문은, AI가 뭐야?", 0], ["ANNIE: AI stands for “Artificial Intelligence.”", "ANNIE: AI는 ‘인공지능’을 의미해.", 0], ["It is a kind of computer system.", "그건 일종의 컴퓨터 시스템이야.", 0], ["AI can understand language, learn from experiences, and make decisions like humans.", "AI는 인간처럼 언어를 이해하고, 경험으로부터 배우며, 의사결정을 해.", 0], ["User: It is hard to understand your explanation.", "User: 네 설명을 이해하기가 힘들어.", 0], ["Can you give me an example?", "예를 들어줄 수 있니?", 0], ["ANNIE: Sure! Imagine that you have a new pet dog and you want to teach it how to sit and stay.", "ANNIE: 그럴게! 네게 반려견이 새로 생겨서 그것에게 앉아 있도록 가르치고 싶다고 상상해 봐.", 0], ["Your dog will learn from information and experiences.", "네 개는 정보와 경험으로부터 배우게 될 거야.", 0], ["AI is similar.", "AI도 비슷해.", 0], ["But you don't have to give AI a snack!", "하지만 AI에게 간식을 줄 필요는 없어!", 0], ["AI in Everyday Life", "일상생활 속 AI", 1], ["User: How is AI used in everyday life?", "User: 일상생활에 AI가 어떻게 사용되니?", 0], ["ANNIE: AI is used in many situations.", "ANNIE: AI는 많은 상황에서 사용돼.", 0], ["For example, AI technology can recommend new videos that you may like.", "예를 들어, AI 기술은 네가 좋아할 법한 새 영상을 추천할 수 있어.", 0], ["It studies which videos you have already watched.", "그것은 네가 어떤 영상들을 이미 봤는지 학습해.", 0], ["Then it decides what to recommend.", "그런 다음 무엇을 추천할지 결정해.", 0], ["AI can also recognize your face to unlock your smartphone.", "AI는 또 네 스마트폰의 잠금을 해제하기 위해 네 안면을 인식할 수 있어.", 0], ["It learns what your face looks like.", "그것은 네 얼굴이 어떻게 생겼는지 학습해.", 0], ["Over time, it gets better at recognizing you, even if you change your hair or wear a mask.", "시간이 흐르면서, 그건 네가 머리를 바꾸거나 마스크를 쓰더라도 너를 인식하는 것에 더 능숙해져.", 0], ["Things to Be Careful About", "AI를 사용할 때 주의할 점", 1], ["User: Here is my last question: What should I be careful about when I use AI?", "User: 내 마지막 질문이야: 내가 AI를 사용할 때 무엇을 주의해야 하니?", 0], ["ANNIE: You should keep the following things in mind:", "ANNIE: 너는 다음 사항들을 명심해야 해.", 0], ["1. Accuracy: AI is not always correct, so you should always carefully check the information that it provides.", "1. 정확성: AI가 항상 정확하지는 않아, 그러니 너는 항상 그것이 제공하는 정보를 주의 깊게 확인해야 해.", 0], ["2. Originality: Even if the information is correct, do not blindly copy it.", "2. 독창성: 정보가 정확하더라도, 그것을 맹목적으로 옮기면 안 돼.", 0], ["Make sure you understand it, and then write it in your own words.", "반드시 그것을 이해하고, 네 자신의 말로 써야 해.", 0], ["3. Privacy: It is not safe to share your personal information with AI.", "3. 프라이버시: 네 개인 정보를 AI와 공유하는 것은 안전하지 않아.", 0], ["If you are careful about these things, you can use AI safely and wisely.", "네가 이런 점들에 주의한다면, AI를 안전하고 현명하게 사용할 수 있어.", 0], ["User: Got it, thanks!", "User: 알겠어, 고마워!", 0], ["ANNIE: You're welcome! If you need help in the future, feel free to ask. Have a great day!", "ANNIE: 천만에! 앞으로 도움이 필요하면 편하게 물어줘. 좋은 하루 보내!", 0]];var RNUM=71;var TITLE_EN="A Chat with an AI Chatbot";var PASS_EN=["A Chat with an AI Chatbot", "(1) Talk to an AI chatbot, and ask it some questions. (2) Share your chat with your classmates.", "What Is AI?", "User: Hi, nice to meet you! ANNIE: Hello! Nice to meet you, too! I'm your AI friend ANNIE. I can answer ANY questions that you have. How can I help you? User: Can I ask you some questions about AI? ANNIE: Sure! I'd be happy to answer your questions! User: My first question is: What is AI? ANNIE: AI stands for “Artificial Intelligence.” It is a kind of computer system. AI can understand language, learn from experiences, and make decisions like humans. User: It is hard to understand your explanation. Can you give me an example? ANNIE: Sure! Imagine that you have a new pet dog and you want to teach it how to sit and stay. Your dog will learn from information and experiences. AI is similar. But you don't have to give AI a snack!", "AI in Everyday Life", "User: How is AI used in everyday life? ANNIE: AI is used in many situations. For example, AI technology can recommend new videos that you may like. It studies which videos you have already watched. Then it decides what to recommend. AI can also recognize your face to unlock your smartphone. It learns what your face looks like. Over time, it gets better at recognizing you, even if you change your hair or wear a mask.", "Things to Be Careful About", "User: Here is my last question: What should I be careful about when I use AI? ANNIE: You should keep the following things in mind: 1. Accuracy: AI is not always correct, so you should always carefully check the information that it provides. 2. Originality: Even if the information is correct, do not blindly copy it. Make sure you understand it, and then write it in your own words. 3. Privacy: It is not safe to share your personal information with AI. If you are careful about these things, you can use AI safely and wisely. User: Got it, thanks! ANNIE: You're welcome! If you need help in the future, feel free to ask. Have a great day!"];var PASS_KO=["AI 챗봇과의 대화", "(1) AI 챗봇과 이야기하고, 그것에게 질문을 하세요. (2) 학급 친구들과 대화 내용을 공유하세요.", "AI란 무엇인가?", "User: 안녕, 만나서 반가워! ANNIE: 안녕! 나도 만나서 반가워! 나는 네 AI 친구 ANNIE야. 네가 하는 모든 질문에 나는 답할 수 있어. 어떻게 도와줄까? User: 네게 AI에 관해 몇 가지 질문해도 될까? ANNIE: 물론! 네 질문에 답하게 되어 기뻐! User: 내 첫 질문은, AI가 뭐야? ANNIE: AI는 ‘인공지능’을 의미해. 그건 일종의 컴퓨터 시스템이야. AI는 인간처럼 언어를 이해하고, 경험으로부터 배우며, 의사결정을 해. User: 네 설명을 이해하기가 힘들어. 예를 들어줄 수 있니? ANNIE: 그럴게! 네게 반려견이 새로 생겨서 그것에게 앉아 있도록 가르치고 싶다고 상상해 봐. 네 개는 정보와 경험으로부터 배우게 될 거야. AI도 비슷해. 하지만 AI에게 간식을 줄 필요는 없어!", "일상생활 속 AI", "User: 일상생활에 AI가 어떻게 사용되니? ANNIE: AI는 많은 상황에서 사용돼. 예를 들어, AI 기술은 네가 좋아할 법한 새 영상을 추천할 수 있어. 그것은 네가 어떤 영상들을 이미 봤는지 학습해. 그런 다음 무엇을 추천할지 결정해. AI는 또 네 스마트폰의 잠금을 해제하기 위해 네 안면을 인식할 수 있어. 그것은 네 얼굴이 어떻게 생겼는지 학습해. 시간이 흐르면서, 그건 네가 머리를 바꾸거나 마스크를 쓰더라도 너를 인식하는 것에 더 능숙해져.", "AI를 사용할 때 주의할 점", "User: 내 마지막 질문이야: 내가 AI를 사용할 때 무엇을 주의해야 하니? ANNIE: 너는 다음 사항들을 명심해야 해. 1. 정확성: AI가 항상 정확하지는 않아, 그러니 너는 항상 그것이 제공하는 정보를 주의 깊게 확인해야 해. 2. 독창성: 정보가 정확하더라도, 그것을 맹목적으로 옮기면 안 돼. 반드시 그것을 이해하고, 네 자신의 말로 써야 해. 3. 프라이버시: 네 개인 정보를 AI와 공유하는 것은 안전하지 않아. 네가 이런 점들에 주의한다면, AI를 안전하고 현명하게 사용할 수 있어. User: 알겠어, 고마워! ANNIE: 천만에! 앞으로 도움이 필요하면 편하게 물어줘. 좋은 하루 보내!"];var BG=[{"qs": [{"n": 6, "q": "윗글의 주제로 알맞은 것은?", "o": ["differences between AI and humans", "what AI is and how it works", "amazing changes from AI", "when and how AI started", "how to use AI properly"], "a": 1, "ans": "what AI is and how it works", "ko": ["AI와 인간의 차이점", "AI가 무엇이고 어떻게 작동하는지", "AI로 인한 놀라운 변화", "AI가 언제 어떻게 시작되었는지", "AI를 올바르게 사용하는 방법"], "evs": [["AI stands for “Artificial Intelligence.” It is a kind of computer system.", "AI는 ‘인공지능’을 의미해. 그건 일종의 컴퓨터 시스템이야."]], "ow": ["오답 ✕ — 'make decisions like humans'(인간처럼 의사결정을 한다)는 있지만 인간과의 차이를 비교하는 글은 아니다.", "정답 ○ — 'AI stands for Artificial Intelligence'(AI는 인공지능을 의미한다), 'learn from experiences'(경험으로부터 배운다) 등 AI가 무엇이고 어떻게 작동하는지를 설명한다.", "오답 ✕ — AI로 인한 변화는 다루지 않는다.", "오답 ✕ — AI의 시작 시기나 역사는 나오지 않는다.", "오답 ✕ — 올바른 사용법은 이 글에 나오지 않는다."], "memo": ["정답 ②: what AI is and how it works(AI가 무엇이고 어떻게 작동하는지)", "근거: AI can understand language, learn from experiences, and make decisions like humans.(AI는 인간처럼 언어를 이해하고, 경험으로부터 배우며, 의사결정을 해.)", "함정: 사용법은 뒷부분 일부 내용일 뿐 ✕"], "why": "AI의 뜻과 작동 방식을 설명하는 대화이다.", "ev": ["AI stands for “Artificial Intelligence.” It is a kind of computer system.", "AI는 ‘인공지능’을 의미해. 그건 일종의 컴퓨터 시스템이야."]}, {"n": 7, "q": "윗글의 내용과 일치하지 않는 것은?", "o": ["ANNIE는 AI 친구이다.", "AI는 ‘인공지능’을 의미한다.", "AI는 일종의 컴퓨터 시스템이다.", "AI는 언어를 이해하지 못한다.", "AI는 인간처럼 결정을 내릴 수 있다."], "a": 3, "ans": "AI는 언어를 이해하지 못한다.", "evs": [["AI can understand language, learn from experiences, and make decisions like humans.", "AI는 인간처럼 언어를 이해하고, 경험으로부터 배우며, 의사결정을 해."]], "ow": ["오답 ✕ — 'I’m your AI friend ANNIE.'(나는 네 AI 친구 ANNIE야.)라고 했으므로 일치.", "오답 ✕ — 'AI stands for Artificial Intelligence.'(AI는 인공지능을 의미해.)라고 했으므로 일치.", "오답 ✕ — 'It is a kind of computer system.'(일종의 컴퓨터 시스템이야.)라고 했으므로 일치.", "정답 ○ — 'AI can understand language'(AI는 언어를 이해할 수 있다)라고 했으므로 이해하지 못한다는 말은 일치하지 않는다.", "오답 ✕ — 'make decisions like humans'(인간처럼 의사결정을 한다)라고 했으므로 일치."], "memo": ["정답 ④: AI는 언어를 이해할 수 있다.", "근거: AI can understand language, learn from experiences, and make decisions like humans.(AI는 인간처럼 언어를 이해하고, 경험으로부터 배우며, 의사결정을 해.)", "함정: 일치하지 않는 것 찾기! understand language(언어를 이해한다)를 반대로 바꿔 놓음"], "why": "AI는 언어를 이해할 수 있다.", "ev": ["AI can understand language, learn from experiences, and make decisions like humans.", "AI는 인간처럼 언어를 이해하고, 경험으로부터 배우며, 의사결정을 해."]}], "pp": [["What Is AI?", "AI란 무엇인가?"], ["User: Hi, nice to meet you!", "User: 안녕, 만나서 반가워!"], ["ANNIE: Hello! Nice to meet you, too!", "ANNIE: 안녕! 나도 만나서 반가워!"], ["I'm your AI friend ANNIE.", "나는 네 AI 친구 ANNIE야."], ["I can answer ANY questions that you have.", "네가 하는 모든 질문에 나는 답할 수 있어."], ["How can I help you?", "어떻게 도와줄까?"], ["User: Can I ask you some questions about AI?", "User: 네게 AI에 관해 몇 가지 질문해도 될까?"], ["ANNIE: Sure! I'd be happy to answer your questions!", "ANNIE: 물론! 네 질문에 답하게 되어 기뻐!"], ["User: My first question is: What is AI?", "User: 내 첫 질문은, AI가 뭐야?"], ["ANNIE: AI stands for “Artificial Intelligence.”", "ANNIE: AI는 ‘인공지능’을 의미해."], ["It is a kind of computer system.", "그건 일종의 컴퓨터 시스템이야."], ["AI can understand language, learn from experiences, and make decisions like humans.", "AI는 인간처럼 언어를 이해하고, 경험으로부터 배우며, 의사결정을 해."], ["User: It is hard to understand your explanation.", "User: 네 설명을 이해하기가 힘들어."], ["Can you give me an example?", "예를 들어줄 수 있니?"], ["ANNIE: Sure! Imagine that you have a new pet dog and you want to teach it how to sit and stay.", "ANNIE: 그럴게! 네게 반려견이 새로 생겨서 그것에게 앉아 있도록 가르치고 싶다고 상상해 봐."], ["Your dog will learn from information and experiences.", "네 개는 정보와 경험으로부터 배우게 될 거야."], ["AI is similar.", "AI도 비슷해."], ["But you don't have to give AI a snack!", "하지만 AI에게 간식을 줄 필요는 없어!"]]}, {"qs": [{"n": 8, "q": "윗글의 밑줄 친 For example과 바꾸어 쓸 수 있는 것은?", "o": ["For instance", "Similarly", "Furthermore", "In fact", "However"], "a": 0, "ans": "For instance", "ko": ["예를 들어", "마찬가지로", "더욱이", "사실", "하지만"], "evs": [["AI is used in many situations. For example, AI technology can recommend new videos that you may like.", "AI는 많은 상황에서 사용돼. 예를 들어, AI 기술은 네가 좋아할 법한 새 영상을 추천할 수 있어."]], "ow": ["정답 ○ — For example은 '예를 들어'이고 For instance도 같은 뜻이다. 'AI is used in many situations'(많은 상황에서 사용돼) 뒤에 예시가 이어진다.", "오답 ✕ — Similarly는 '마찬가지로'이다. 예시가 아니라 비슷한 내용을 덧붙일 때 쓴다.", "오답 ✕ — Furthermore는 '더욱이'이다. 예시가 아니라 추가 내용에 쓴다.", "오답 ✕ — In fact는 '사실'이다. 예시를 드는 말이 아니다.", "오답 ✕ — However는 '하지만'이다. 앞 내용과 반대일 때 쓴다."], "memo": ["정답 ①: For instance(예를 들어)", "근거: AI is used in many situations. For example, AI technology can recommend new videos ...(AI는 많은 상황에서 사용돼. 예를 들어, AI 기술은 새 영상을 추천할 수 있어.)", "함정: 예시 연결어는 For instance뿐 ✕"], "why": "For example과 For instance는 같은 뜻이다.", "ev": ["AI is used in many situations. For example, AI technology can recommend new videos that you may like.", "AI는 많은 상황에서 사용돼. 예를 들어, AI 기술은 네가 좋아할 법한 새 영상을 추천할 수 있어."]}], "pp": [["AI in Everyday Life", "일상생활 속 AI"], ["User: How is AI used in everyday life?", "User: 일상생활에 AI가 어떻게 사용되니?"], ["ANNIE: AI is used in many situations.", "ANNIE: AI는 많은 상황에서 사용돼."], ["For example, AI technology can recommend new videos that you may like.", "예를 들어, AI 기술은 네가 좋아할 법한 새 영상을 추천할 수 있어."], ["It studies which videos you have already watched.", "그것은 네가 어떤 영상들을 이미 봤는지 학습해."], ["Then it decides what to recommend.", "그런 다음 무엇을 추천할지 결정해."], ["AI can also recognize your face to unlock your smartphone.", "AI는 또 네 스마트폰의 잠금을 해제하기 위해 네 안면을 인식할 수 있어."], ["It learns what your face looks like.", "그것은 네 얼굴이 어떻게 생겼는지 학습해."], ["Over time, it gets better at recognizing you, even if you change your hair or wear a mask.", "시간이 흐르면서, 그건 네가 머리를 바꾸거나 마스크를 쓰더라도 너를 인식하는 것에 더 능숙해져."]]}, {"qs": [{"n": 9, "q": "윗글의 내용과 일치하는 것은?", "o": ["AI is always correct, so we do not need to check it.", "We can copy AI’s answers without changing them.", "Sharing personal information with AI is not safe.", "AI can unlock a smartphone only with a password.", "ANNIE is a real classmate of the user."], "a": 2, "ans": "Sharing personal information with AI is not safe.", "ko": ["AI는 항상 정확하므로 확인할 필요가 없다.", "AI의 답을 바꾸지 않고 그대로 옮겨도 된다.", "AI와 개인 정보를 공유하는 것은 안전하지 않다.", "AI는 비밀번호로만 스마트폰의 잠금을 풀 수 있다.", "ANNIE는 사용자의 실제 반 친구이다."], "evs": [["3. Privacy: It is not safe to share your personal information with AI.", "3. 프라이버시: 네 개인 정보를 AI와 공유하는 것은 안전하지 않아."]], "ow": ["오답 ✕ — 'AI is not always correct'(AI가 항상 정확하지는 않아)라고 했으므로 확인해야 한다.", "오답 ✕ — 'do not blindly copy it'(맹목적으로 옮기면 안 돼)라고 했다.", "정답 ○ — 'It is not safe to share your personal information with AI.'(개인 정보를 AI와 공유하는 것은 안전하지 않아.)와 일치한다.", "오답 ✕ — 'AI can also recognize your face to unlock your smartphone'(얼굴을 인식해 잠금을 풀 수 있다)라고 했다.", "오답 ✕ — ANNIE는 'your AI friend'(AI 친구)이다."], "memo": ["정답 ③: AI와 개인 정보를 공유하는 것은 안전하지 않다.", "근거: It is not safe to share your personal information with AI.(네 개인 정보를 AI와 공유하는 것은 안전하지 않아.)", "함정: 정확성·독창성·프라이버시 세 가지 주의점을 반대로 바꾼 보기 ✕"], "why": "AI와 개인 정보를 공유하면 안전하지 않다.", "ev": ["3. Privacy: It is not safe to share your personal information with AI.", "3. 프라이버시: 네 개인 정보를 AI와 공유하는 것은 안전하지 않아."]}, {"n": 10, "q": "다음은 윗글 전체를 요약한 문장이다. 빈칸 (A), (B)에 들어갈 말로 가장 알맞은 것은?", "sum": "When we use AI, we should (A)________ its answers and (B)________ our personal information.", "lab": "완성된 요약문 : ", "o": ["trust - share", "copy - protect", "check - share", "ignore - protect", "check - protect"], "a": 4, "ans": "check - protect", "ko": ["믿다 - 공유하다", "베끼다 - 보호하다", "확인하다 - 공유하다", "무시하다 - 보호하다", "확인하다 - 보호하다"], "evs": [["you should always carefully check the information that it provides", "너는 항상 그것이 제공하는 정보를 주의 깊게 확인해야 해"], ["It is not safe to share your personal information with AI.", "네 개인 정보를 AI와 공유하는 것은 안전하지 않아."]], "ow": ["오답 ✕ — 'AI is not always correct'(항상 정확하지는 않아)이므로 그대로 믿으면 안 되고, 개인 정보는 공유하면 안 된다.", "오답 ✕ — (B) protect는 맞지만, 'do not blindly copy it'(맹목적으로 옮기면 안 돼)이므로 베끼면 안 된다.", "오답 ✕ — (A) check는 맞지만, 'not safe to share your personal information'(개인 정보를 공유하는 것은 안전하지 않다)이므로 공유하면 안 된다.", "오답 ✕ — (B) protect는 맞지만, 답은 무시하는 것이 아니라 'carefully check'(주의 깊게 확인)해야 한다.", "정답 ○ — 'carefully check the information'(정보를 주의 깊게 확인)이므로 (A)는 check, 'not safe to share'(공유는 안전하지 않다)이므로 (B)는 protect이다."], "memo": ["정답 ⑤: check(확인하다) - protect(보호하다)", "근거: you should always carefully check the information that it provides(그것이 제공하는 정보를 주의 깊게 확인해야 해)", "함정: 믿거나 베끼거나 개인 정보를 공유하는 행동은 모두 반대 ✕"], "why": "AI의 답은 확인하고 개인 정보는 보호해야 한다.", "note": {"en": "When we use AI, we should check its answers and protect our personal information.", "ko": "AI를 사용할 때 우리는 그 답을 확인하고 개인 정보를 보호해야 한다.", "words": [["check", "확인하다"], ["protect", "보호하다"]]}, "ev": ["you should always carefully check the information that it provides", "너는 항상 그것이 제공하는 정보를 주의 깊게 확인해야 해"]}], "pp": [["Things to Be Careful About", "AI를 사용할 때 주의할 점"], ["User: Here is my last question: What should I be careful about when I use AI?", "User: 내 마지막 질문이야: 내가 AI를 사용할 때 무엇을 주의해야 하니?"], ["ANNIE: You should keep the following things in mind:", "ANNIE: 너는 다음 사항들을 명심해야 해."], ["1. Accuracy: AI is not always correct, so you should always carefully check the information that it provides.", "1. 정확성: AI가 항상 정확하지는 않아, 그러니 너는 항상 그것이 제공하는 정보를 주의 깊게 확인해야 해."], ["2. Originality: Even if the information is correct, do not blindly copy it.", "2. 독창성: 정보가 정확하더라도, 그것을 맹목적으로 옮기면 안 돼."], ["Make sure you understand it, and then write it in your own words.", "반드시 그것을 이해하고, 네 자신의 말로 써야 해."], ["3. Privacy: It is not safe to share your personal information with AI.", "3. 프라이버시: 네 개인 정보를 AI와 공유하는 것은 안전하지 않아."], ["If you are careful about these things, you can use AI safely and wisely.", "네가 이런 점들에 주의한다면, AI를 안전하고 현명하게 사용할 수 있어."], ["User: Got it, thanks!", "User: 알겠어, 고마워!"], ["ANNIE: You're welcome! If you need help in the future, feel free to ask. Have a great day!", "ANNIE: 천만에! 앞으로 도움이 필요하면 편하게 물어줘. 좋은 하루 보내!"]]}];
+/* board owner guard + server resume: previous student's records are wiped on a new board name; own records come back from the board server */
+var BSYNC=(function(){var P='m2-',SRV='https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec',D0='2000-01-01',KEY='p_m2';
+var n='',c='';
+try{n=localStorage.getItem('bd-name')||'';c=localStorage.getItem('bd-cls')||'';
+if(!n){var w=null;try{w=JSON.parse(sessionStorage.getItem('bl-who')||'null')}catch(e){}n=(w&&w.n)||'';c=(w&&w.c)||c}
+if(n){var o=localStorage.getItem(P+'owner');
+if(o!==n){Object.keys(localStorage).filter(function(k){return k.indexOf(P)===0||k.indexOf('m-find-')===0}).forEach(function(k){localStorage.removeItem(k)});
+try{sessionStorage.removeItem('bl-snap-m2')}catch(e){}
+try{sessionStorage.removeItem(P+'rst')}catch(e){}
+localStorage.setItem(P+'owner',n)}}}catch(e){}
+function get(cb){fetch(SRV+'?a=get&date='+D0+'&name='+encodeURIComponent(n)).then(function(r){return r.json()}).then(function(j){if(!j||!j.ok)throw 0;cb((j.chk&&j.chk.app)||{})}).catch(function(){})}
+function put(card){fetch(SRV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({a:'put',date:D0,cls:c,name:n,card:'app',chk:card}),keepalive:true}).catch(function(){})}
+function parse(s){try{return JSON.parse(s||'{}')||{}}catch(e){return {}}}
+/* restore: runs once per tab session, reloads the page only when something was restored */
+if(n){try{if(!sessionStorage.getItem(P+'rst')){sessionStorage.setItem(P+'rst','1');
+get(function(card){var m=parse(card[KEY]),ks=Object.keys(m),any=0,last=0,lt=0;
+var st=parse(localStorage.getItem(P+'st'));
+ks.forEach(function(r){var e=m[r];if(!e||!e.p)return;
+if(!localStorage.getItem(P+'prog-'+r)){window.__bsR=1;localStorage.setItem(P+'prog-'+r,JSON.stringify(e.p));st[r]=e.s||1;any=1}
+if((e.t||0)>=lt){lt=e.t||0;last=r}});
+if(any){localStorage.setItem(P+'st',JSON.stringify(st));if(last)localStorage.setItem(P+'last',String(last));location.reload()}})}}catch(e){}}
+var tm=0,pend=null;
+function run(){if(!pend)return;var a=pend;pend=null;get(function(card){var m=parse(card[KEY]);
+if(a.fin||!a.prog){delete m[a.r]}else{m[a.r]={p:a.prog,s:a.stv,t:Date.now()}}
+var ks=Object.keys(m).sort(function(x,y){return (m[y].t||0)-(m[x].t||0)});ks.slice(3).forEach(function(k){delete m[k]});
+card[KEY]=JSON.stringify(m);put(card)})}
+document.addEventListener('visibilitychange',function(){if(document.hidden){clearTimeout(tm);run()}});
+return function(r,prog,stv,fin){if(!n)return;pend={r:r,prog:prog,stv:stv,fin:fin};clearTimeout(tm);tm=setTimeout(run,1200)}})();
+var LABEL='능률(김) 8과';
+var BK='m-find-r'+RNUM+'-best';
+var TEACH=/[?&]t=1(&|$)/.test(location.search);
+var CN='①②③④⑤';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={},qst={},chk=0,s1t={},mark=Date.now();
+var QL=[];BG.forEach(function(g){g.qs.forEach(function(q){q.g=g;QL.push(q)})});QL.forEach(function(q,i){q.dn=i+1});
+function key(i,t){return i+':'+t}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function en(s){return '<span lang="en">'+esc(s)+'</span>'}
+function neg(s){return esc(s).replace(/(일치하지 않는|알 수 없는|않은|않는|틀린|잘못된|어색한|다른)/g,'<span class="neg">$1</span>')}
+function reasonHtml(t){t=t.replace(/^(오답|정답)\s*[○✕]\s*—\s*/,'').replace(/\s*✕/g,'');return esc(t).replace(/'(.+?)'(?=\()/g,'<mark lang="en">$1</mark>')}
+function qById(n){for(var i=0;i<QL.length;i++)if(QL[i].n===n)return QL[i]}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})});(f.alt||[]).forEach(function(a){r.push({s:a,e:a+1,f:f,k:k,alt:1})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=stepQHtml();
+ document.getElementById('app').innerHTML=h;relayUp();persist();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function allAdv(){return QL.every(function(q){return qst[q.n]&&qst[q.n].adv})}
+function relayUp(){var st=[aDone(),allAdv()],nm=['본문 오류 찾기','본문 '+QL.length+'문제'],f=-1;for(var i=0;i<st.length;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt" lang="en">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,inMain=sp.filter(function(x){return !x.alt&&ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inMain)cls+=(sp.some(function(x){return !x.alt&&ti>=x.s&&ti<x.e&&foundFix(i,x.k)})?' hit':' miss');else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})||(f.alt||[]).some(function(t){return !!sel[key(i,t)]})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function fixedHtml(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,'\u0001'+f.right+'\u0002');return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+'\u0001'+f.right+'\u0002'+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return esc(tk.join(' ').replace(/ ?\u0000/g,'')).replace(/\u0001/g,'<mark>').replace(/\u0002/g,'</mark>')}
+function noteHtml(i){
+ var it=D[i],wp=wrongPicks(i);
+ if(it.ok){return '<div class="ac s1"><div class="ac-top fine"><b>맞는 문장</b><span class="ac-a">어법 오류 없음</span>'+(wp?'<span class="ac-x">고른 곳은 틀린 곳이 아니에요</span>':'')+'</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ var h='<div class="ac s1"><div class="ac-top'+(all?' g':'')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+'</b>'+(wp?'<span class="ac-x">틀리게 고른 곳 '+wp+'개</span>':'')+'</div>';
+ h+='<div class="fixs-l">고친 문장</div><div class="fixs" lang="en">'+fixedHtml(it)+'</div>';
+ it.fixes.forEach(function(f,k){var ok=foundFix(i,k);
+  h+='<div class="fc '+(ok?'f':'m')+'"><div><span class="tg2">'+(ok?'찾음':'놓침')+'</span>'+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr" lang="en">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt" lang="en">'+esc(f.right)+'</span></div><div class="fcb">'+pointHtml(f)+'</div></div>'});
+ return h+'<div style="height:12px"></div></div>';
+}
+function critHtml(f){var w=f.wrong.split(/\s+/),r=f.right.split(/\s+/);
+ if(f.alt&&f.alt.length)return '<div class="crit">빠진 말 문제 : 빠진 자리 양옆 어느 단어를 눌러도 정답으로 인정</div>';
+ if(w.length==2&&r.length==2&&w.slice().sort().join()==r.slice().sort().join()&&w.join()!=r.join())return '<div class="crit">어순 문제 : 옮겨진 말과 짝이 되는 단어, 어느 쪽을 눌러도 정답으로 인정</div>';return ''}
+function pointHtml(f){var p=f.point,ix=p.indexOf(':');return (ix>0&&ix<24?'<b>'+esc(p.slice(0,ix))+'</b> : '+esc(p.slice(ix+1).trim()):'<b>'+esc(f.topic)+'</b> : '+esc(p))+critHtml(f)}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ return '<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+function ppHtml(pp){
+ return '<div class="dlg"><div class="who">'+en(TITLE_EN)+' &middot; '+en(pp[0][0])+'</div><div class="ln"><div class="en" lang="en">'+esc(pp.slice(1).map(function(p){return p[0]}).join(' '))+'</div></div></div>';
+}
+function qVisible(i){if(!aDone())return false;for(var j=0;j<i;j++){var s=qst[QL[j].n];if(!(s&&s.adv))return false}return true}
+function stepQHtml(){
+ if(!aDone())return '';
+ var h='<div class="stage">2 · 본문 '+QL.length+'문제</div>',lastG=null;
+ for(var i=0;i<QL.length;i++){
+  if(!qVisible(i))break;
+  var q=QL[i];
+  if(q.g!==lastG){if(q.g.pp)h+=ppHtml(q.g.pp);lastG=q.g}
+  h+=qCard(i);
+ }
+ if(allAdv())h+=resultHtml();
+ return h;
+}
+function optText(q,j){return q.ko?en(q.o[j]):esc(q.o[j])}
+function doneRow(q){return '<div class="qd" id="q'+q.n+'"><span class="qn">'+q.dn+'</span><span>정답 '+CN[q.a]+' '+optText(q,q.a)+'</span>'+(q.ko?'<span class="qk">'+esc(q.ko[q.a])+'</span>':'')+'</div>'}
+function postHtml(q,st){var n=q.note;
+ return '<div class="post"><div class="ph">노트에 쓰기 &middot; 요약문 완성</div><div class="pl" lang="en">'+esc(n.en)+'</div><div class="pk">'+esc(n.ko)+'</div><div class="pw">'+n.words.map(function(w){return '<span lang="en">'+esc(w[0])+'</span> = '+esc(w[1])}).join(' &nbsp;&middot;&nbsp; ')+'</div>'+(st.wrote?'<div class="pd">작성 완료</div>':'<button type="button" data-wrote="'+q.n+'">노트에 썼어요</button>')+'</div>';
+}
+function qCard(i){
+ var q=QL[i],st=qst[q.n]||(qst[q.n]={w:[],ok:0,adv:0,t0:Date.now(),t1:0,wrote:0});
+ if(st.adv&&!q.note&&!st.w.length)return doneRow(q);
+ var h='<div class="q" id="q'+q.n+'"><div class="qt"><span class="lbl">'+LABEL+'</span><span class="qn">'+q.dn+'</span>'+neg(q.q)+'</div>';
+ if(q.sum)h+='<div class="sumbox" lang="en">'+esc(q.sum)+'</div>';
+ if(!st.w.length){
+  q.o.forEach(function(t,j){
+   h+='<div class="opt'+(st.ok&&j===q.a?' good':'')+'"'+(st.ok?'':' data-q="'+q.n+'" data-o="'+j+'"')+'><span class="cn">'+CN[j]+'</span><span>'+(q.ko?en(t):esc(t))+'</span></div>';
+  });
+  if(st.ok&&q.note)h+=postHtml(q,st);
+  return h+'</div>';
+ }
+ return h+'</div>'+wrongCard(q,st);
+}
+function wrongCard(q,st){
+ var h='<div class="ac"><div class="ac-top"><b>오답</b><span class="ac-a">정답 '+CN[q.a]+' '+optText(q,q.a)+'</span>'+(q.ko?'<div class="ac-k">'+esc(q.ko[q.a])+'</div>':'')+'</div>';
+ var isEv=function(t){return q.evs.some(function(e){return t===e[0]||(t.length>8&&t.indexOf(e[0])>=0)})};
+ if(q.g.pp){
+  h+='<div class="ac-sec">본문</div><div class="pass">';
+  q.g.pp.forEach(function(p,ix){if(ix===0)return;h+='<div class="pl1"><div class="e" lang="en">'+(isEv(p[0])?'<mark>'+esc(p[0])+'</mark>':esc(p[0]))+'</div><div class="k">'+esc(p[1])+'</div></div>'});
+  h+='</div>';
+ } else {
+  h+='<div class="ac-sec">본문 근거</div><div class="pass">';
+  q.evs.forEach(function(e){h+='<div class="pl1"><div class="e" lang="en"><mark>'+esc(e[0])+'</mark></div><div class="k">'+esc(e[1])+'</div></div>'});
+  h+='</div>';
+ }
+ h+='<div class="ac-sec">보기 풀이</div>';
+ q.o.forEach(function(t,j){var isA=j===q.a,isW=st.w.indexOf(j)>=0;
+  h+='<div class="oc'+(isA?' g':isW?' r':'')+'"><div class="oh"><span class="cn">'+CN[j]+'</span><div class="ot">'+(q.ko?en(t):esc(t))+(q.ko?'<div class="okr">'+esc(q.ko[j])+'</div>':'')+'</div>'+(isA?'<span class="tg">정답</span>':isW?'<span class="tg">내가 고름</span>':'')+'</div><div class="why">'+reasonHtml(q.ow[j])+'</div></div>';
+ });
+ var tr=(q.memo||[]).filter(function(l){return /^함정/.test(l)})[0];
+ if(tr)h+='<div class="trap"><b>함정</b> '+esc(tr.replace(/^함정\s*:\s*/,'').replace(/\s*✕/g,''))+'</div>';
+ if(!st.ok){
+  h+='<div class="fix"><div class="fh">고쳐 보기</div>';
+  q.o.forEach(function(t,j){var xx=st.w.indexOf(j)>=0;h+='<div class="opt'+(xx?' xx':'')+'" data-q="'+q.n+'" data-o="'+j+'"><span class="cn">'+CN[j]+'</span><span>'+(q.ko?en(t):esc(t))+'</span></div>'});
+  h+='</div>';
+ } else {
+  h+='<div class="fixed">정답 '+CN[q.a]+'</div>';
+  if(q.note)h+=postHtml(q,st);
+  else if(!st.adv)h+='<div class="nx"><button type="button" data-next="'+q.n+'">다음 문제</button></div>';
+ }
+ return h+'</div>';
+}
+function fcount(){return QL.filter(function(q){var s=qst[q.n];return s&&s.ok&&!s.w.length}).length}
+function fastInfo(){
+ var s1=[];secs.forEach(function(S,si){if(s1t[si]!=null&&s1t[si]<1500*S.items.length)s1.push(S.name||('구간 '+(si+1)))});
+ var q2=[];QL.forEach(function(q){var s=qst[q.n];if(s&&s.t1&&s.t1-s.t0<2500)q2.push(q.dn)});
+ return{s1:s1,q2:q2};
+}
+function resultHtml(){
+ var f=fcount(),fx=QL.reduce(function(a,q){return a+qst[q.n].w.length},0),fi=fastInfo();
+ var h='<div class="stage">완료</div><div class="res"><div class="rl">처음에 맞힌 문제</div><div class="rpct">'+f+'<small> / '+QL.length+'</small></div>';
+ h+='<table class="rtb">'+QL.map(function(q){var s=qst[q.n];return '<tr><td>'+q.dn+'번</td><td>'+(s.w.length?'틀림':'처음에 맞힘')+'</td></tr>'}).join('')+'</table>';
+ h+='<div class="rl">총 학습 시간 '+fmtT(TM.act)+'</div>';
+ h+='<div class="chip'+(chk?' on':'')+'">'+(chk?'선생님 확인 완료':'선생님 확인 대기')+'</div>';
+ if(TEACH){
+  h+='<div class="tp"><b>선생님용</b><div>빠른 제출 : '+((fi.s1.length||fi.q2.length)?'<span class="fl">'+(fi.s1.length?'오류 찾기 '+fi.s1.join(', ')+' ':'')+(fi.q2.length?'문제 '+fi.q2.join(', ')+'번':'')+'</span>':'없음')+'</div><div>첫 시도 정답 '+f+'/'+QL.length+'· 틀린 횟수 '+fx+'</div><div style="margin-top:8px"><button type="button" data-chk="1">'+(chk?'확인 취소':'노트 확인 완료')+'</button></div></div>';
+ }
+ h+='<div style="margin-top:14px"><a href="./" style="display:inline-block;background:var(--pri);color:#fff;text-decoration:none;font-weight:700;padding:9px 20px;border-radius:8px">M1 Reading 목록으로</a></div>';
+ return h+'</div>';
+}
+function lognote(q){var n=q.note;wlog('s','2단계 · 요약문 완성',[{n:q.dn,a:'정답 '+CN[q.a]+' '+q.ans,m:[n.en,n.ko].concat(n.words.map(function(w){return w[0]+' = '+w[1]}))}])}
+function pickOpt(n,j){var q=qById(n),st=qst[n];if(!st||st.ok)return;if(!st.t1)st.t1=Date.now();
+ if(j===q.a){st.ok=1;if(q.note)lognote(q);if(!st.w.length&&!q.note){setTimeout(function(){advQ(n)},700)}}
+ else if(st.w.indexOf(j)<0){st.w.push(j);st.ok=1;if(q.note)lognote(q)}
+ var y=window.scrollY;render();window.scrollTo(0,y);
+}
+function advQ(n){var st=qst[n];if(!st||st.adv)return;st.adv=1;if(allAdv()){tmFlush();TM.done=1}
+ render();var ix=QL.indexOf(qById(n)),nx=ix<QL.length-1?QL[ix+1]:null,el=nx?document.getElementById('q'+nx.n):document.querySelector('.res');
+ if(el){var ty=el.getBoundingClientRect().top+window.pageYOffset-8;window.scrollTo(0,ty);setTimeout(function(){window.scrollTo(0,el.getBoundingClientRect().top+window.pageYOffset-8)},60)}
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){var sb=+b.dataset.sub;s1t[sb]=Date.now()-mark;mark=Date.now();done[sb]=true;render();
+  var fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(aDone())save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'});return}
+ var o=e.target.closest('.opt[data-q]');if(o){pickOpt(+o.dataset.q,+o.dataset.o);return}
+ var nx=e.target.closest('button[data-next]');if(nx){advQ(+nx.dataset.next);return}
+ var wr=e.target.closest('button[data-wrote]');if(wr){var qn=+wr.dataset.wrote;qst[qn].wrote=1;advQ(qn);return}
+ var ck=e.target.closest('button[data-chk]');if(ck){chk=chk?0:1;var y2=window.scrollY;render();window.scrollTo(0,y2);return}
+});
+function wlog(key,title,items){try{var W=JSON.parse(localStorage.getItem('m2-wrong')||'{}');var r=W[RNUM]||(W[RNUM]={t:TITLE_EN,e:{}});r.t=TITLE_EN;if(r.e[key])return;r.e[key]={h:title,i:items,ts:Date.now()};localStorage.setItem('m2-wrong',JSON.stringify(W))}catch(e){}}
+var TM={act:0,lv:0,lt:0,done:0},_last=Date.now(),_hid=0;
+function tmFlush(){if(TM.done||document.hidden)return;var n=Date.now();TM.act+=n-_last;_last=n}
+function fmtT(ms){var s=Math.round(ms/1000),m=Math.floor(s/60);return m?m+'분 '+('0'+(s%60)).slice(-2)+'초':s+'초'}
+document.addEventListener('visibilitychange',function(){var n=Date.now();if(document.hidden){if(!TM.done){TM.act+=n-_last;TM.lv++}_hid=n;persist()}else{if(!TM.done&&_hid)TM.lt+=n-_hid;_last=n;_hid=0}});
+setInterval(function(){if(!document.hidden&&!TM.done){tmFlush();persist()}},5000);
+var PK='m2-prog-'+RNUM;
+function persist(){if(window.__bsR)return;try{var any=Object.keys(sel).length||Object.keys(qst).length||Object.keys(done).length;
+ if(any)localStorage.setItem(PK,JSON.stringify({v:2,sel:sel,done:done,qst:qst,chk:chk,s1t:s1t,tm:TM}));else localStorage.removeItem(PK);
+ var st=JSON.parse(localStorage.getItem('m2-st')||'{}');var n=(aDone()?1:0)+(allAdv()?1:0);var rs=JSON.parse(localStorage.getItem('m2-res')||'{}');
+ if(n>=2){rs[RNUM]={p:Math.round(fcount()*100/QL.length),ok:1,t:Math.round(TM.act/1000)}}else{delete rs[RNUM]}
+ localStorage.setItem('m2-res',JSON.stringify(rs));
+ if(any){st[RNUM]=(n>=2?3:n);localStorage.setItem('m2-st',JSON.stringify(st));localStorage.setItem('m2-last',String(RNUM))}else{delete st[RNUM];localStorage.setItem('m2-st',JSON.stringify(st))}
+ var el=document.getElementById('bm');if(el)el.style.display=any?'inline-flex':'none';
+ try{if(any)BSYNC(RNUM,JSON.parse(localStorage.getItem(PK)),n>=2?3:n,n>=2)}catch(e){}}catch(e){}}
+try{var sv=JSON.parse(localStorage.getItem(PK)||'null');if(sv&&sv.v===2){sel=sv.sel||{};done=sv.done||{};qst=sv.qst||{};chk=sv.chk||0;s1t=sv.s1t||{};if(sv.tm){TM=sv.tm;TM.done=TM.done||0;_last=Date.now()}}}catch(e){}
+document.getElementById('bm').addEventListener('click',function(e){if(e.target.closest('button')){if(confirm('이 Reading의 진행 기록을 지우고 처음부터 다시 할까요?')){try{localStorage.removeItem(PK)}catch(x){}try{BSYNC(RNUM,null,0,true)}catch(x){}sel={};done={};qst={};chk=0;s1t={};mark=Date.now();TM={act:0,lv:0,lt:0,done:0};_last=Date.now();render();window.scrollTo(0,0)}}});
+render();
+
+</script></body></html>
