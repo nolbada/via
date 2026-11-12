@@ -157,6 +157,36 @@ input.tx.ok{border-color:var(--ok);background:var(--okBg)}input.tx.ng{border-col
 </head>
 <body>
 <div id="app"></div>
+<script>/* board link: owner guard + server resume for 데일리보카 (only when opened from the board) */
+(function(){var SRV='https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec',D0='2000-01-01';
+var n='',c='',L=localStorage;
+try{n=L.getItem('bd-name')||'';c=L.getItem('bd-cls')||'';if(!n){var w=null;try{w=JSON.parse(sessionStorage.getItem('bl-who')||'null')}catch(e){}n=(w&&w.n)||'';c=(w&&w.c)||c}
+if(!n||/[?&]t=1(&|$)/.test(location.search))return;
+var o=L.getItem('dv-owner')||L.getItem('wn_name')||'';
+if(o&&o!==n){Object.keys(L).filter(function(k){return k.indexOf('dv_got_')===0||k==='wn_q'||k==='wn_hq'}).forEach(function(k){L.removeItem(k)});try{sessionStorage.removeItem('dv-rst')}catch(e){}}
+L.setItem('dv-owner',n);L.setItem('wn_name',n)}catch(e){return}
+var SX='_'+n;function mine(k){return typeof k==='string'&&k.indexOf('dv_')===0&&k.indexOf('dv_got_')!==0&&k.length>SX.length&&k.slice(-SX.length)===SX}
+function keys(){return Object.keys(L).filter(mine)}
+function pack(k){try{var s=JSON.parse(L.getItem(k))||{},d={},p=Object.keys(s.pg||{});Object.keys(s.done||{}).forEach(function(x){var v=s.done[x];d[x]=[v.s,v.t||0,v.dt||'']});return {d:d,p:p,c:s.cur||null}}catch(e){return null}}
+function srvGet(cb){fetch(SRV+'?a=get&date='+D0+'&name='+encodeURIComponent(n)).then(function(r){return r.json()}).then(function(j){if(!j||!j.ok)throw 0;cb((j.chk&&j.chk.app)||{})}).catch(function(){})}
+function srvPut(card){fetch(SRV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({a:'put',date:D0,cls:c,name:n,card:'app',chk:card}),keepalive:true}).catch(function(){})}
+/* restore once per tab session */
+try{if(!sessionStorage.getItem('dv-rst')){sessionStorage.setItem('dv-rst','1');
+srvGet(function(ap){var ch=false;
+['dv_M','dv_B','dv_H'].forEach(function(b){var k=b+SX,m=ap['p'+b];if(!m)return;var s={};try{s=JSON.parse(L.getItem(k))||{}}catch(e){}
+s.done=s.done||{};s.pg=s.pg||{};
+Object.keys(m.d||{}).forEach(function(x){if(!s.done[x]){var v=m.d[x];s.done[x]={s:v[0],t:v[1],dt:v[2]};ch=true}});
+(m.p||[]).forEach(function(x){if(!s.pg[x]&&!s.done[x]){s.pg[x]=1;ch=true}});
+if(m.c&&!s.cur&&!s.done[m.c.day]){s.cur=m.c;ch=true}
+if(ch)L.setItem(k,JSON.stringify(s))});
+if(ch)location.reload()})}}catch(e){}
+/* save: whenever the app writes its progress key */
+var tm=null,last={};
+function push(){tm=null;srvGet(function(ap){var any=false;keys().forEach(function(k){var p=pack(k);if(!p)return;if(!Object.keys(p.d).length&&!p.p.length&&!p.c)return;var js=JSON.stringify(p);if(last[k]===js)return;last[k]=js;ap['p'+k.slice(0,k.length-SX.length)]=p;any=true});if(any)srvPut(ap)})}
+var si=Storage.prototype.setItem;
+Storage.prototype.setItem=function(k,v){var r=si.apply(this,arguments);try{if(this===L&&mine(k)){if(tm)clearTimeout(tm);tm=setTimeout(push,1500)}}catch(e){}return r};
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden'&&tm){clearTimeout(tm);push()}});
+})();</script>
 <script>
 /* 통합 오답노트 연결 스크립트: WN.add([{w,m,src,how,ask}]) 단어 전송, WN.hw(level,day,score) 숙제 기록, WN.gate(cb) 이름 확인 */
 (function(W){
