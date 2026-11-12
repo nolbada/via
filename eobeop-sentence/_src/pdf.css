@@ -1,0 +1,48 @@
+'
+@page{size:A4;margin:8mm 11mm}
+*{box-sizing:border-box}
+body{font-family:'Noto Sans CJK KR','Malgun Gothic',sans-serif;color:#222;margin:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pg{page-break-after:always}
+.top{display:flex;align-items:center;border-bottom:2px solid #1f3b73;padding-bottom:4px}
+.brand{font-weight:700;color:#1f3b73;font-size:10pt;margin-right:12px}
+.ttl{flex:1;font-size:10pt}
+.pn2{border:1.5px solid #1f3b73;color:#1f3b73;border-radius:10px;padding:0 9px;font-size:9.5pt;font-weight:700}
+.pt{margin:6px 0 4px;background:#1f3b73;color:#fff;padding:4px 10px;font-size:10.5pt;font-weight:700;border-radius:3px}
+.legend{font-size:8pt;margin-bottom:4px}
+.cc{display:inline-block;border-radius:4px;padding:0 8px;margin-right:6px;font-weight:700}
+.cc.s,.chip.s,.ch.S .en,.ms{background:#cfe3ff;color:#173a6b}
+.cc.m,.chip.m,.ch.M .en{background:#e6e6e6;color:#555}
+.cc.v,.chip.v,.ch.V .en{background:#d6f0d2;color:#1b5e3a}
+.cc.c,.chip.c,.mc{background:#ffe3c2;color:#8a4a00}
+.sb{border:1px solid #cdd5e4;border-radius:5px;padding:4px 9px 5px;margin-bottom:5px;page-break-inside:avoid}
+.hd{display:flex;align-items:center}
+.no{background:#1f3b73;color:#fff;border-radius:50%;min-width:18px;height:18px;line-height:18px;text-align:center;font-size:9pt;font-weight:700;padding:0 2px}
+.no.ex{border-radius:9px;padding:0 8px;background:#6b7a99}
+.line{display:flex;flex-wrap:wrap;align-items:flex-start;row-gap:2px;margin-top:-2px}
+.ch{display:flex;flex-direction:column;padding:0 1px}
+.sl{color:#999;font-size:11pt;padding:11px 3px 0}
+.lab{font-size:6.6pt;color:#4a5a78;min-height:9px;line-height:9px;font-weight:700;white-space:nowrap}
+.en{font-size:11pt;line-height:1.35;border-radius:3px;padding:0 2px}
+.ch.S .en{font-weight:700}.ch.V .en{font-weight:700}
+.ch.hh .en{background:none;color:inherit;font-weight:400}
+.ms,.mc{border-radius:3px;font-weight:700;padding:0 2px}
+.ko{font-size:7.6pt;color:#4a5a78;line-height:1.25;max-width:200px}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}
+.chip{border-radius:4px;padding:0 7px;font-size:8.4pt;line-height:15px}
+.chip em{font-style:normal;font-weight:700;margin-right:5px;font-size:7.4pt;opacity:.8}
+.tr{margin-top:3px;font-size:8.6pt;color:#14663a;line-height:1.35}
+.tr b{background:#14663a;color:#fff;border-radius:3px;font-size:7.3pt;padding:0 4px;margin-right:4px}
+.wy{margin-top:2px;font-size:8.2pt;color:#333;line-height:1.4;background:#f6f8fc;border-radius:3px;padding:2px 6px}
+.exb{margin-top:2px;font-size:8pt;color:#5b4a2a;line-height:1.4;background:#fff8e8;border-radius:3px;padding:2px 6px}
+.exb b{color:#8a4a00;margin-right:4px}
+.note{margin-top:3px;border:1.8px solid #1f3b73;border-radius:5px;padding:3px 8px 4px;background:#fff}
+.note.pn{margin:0 0 5px;background:#f2f6ff}
+.nh{display:flex;align-items:center;gap:8px;margin-bottom:1px}
+.nt{background:#1f3b73;color:#fff;font-size:7.6pt;font-weight:700;border-radius:3px;padding:0 6px}
+.nti{font-weight:700;font-size:9.4pt;color:#1f3b73;flex:1}
+.nwh{font-size:7pt;color:#6b7690}
+.nl{font-size:9pt;line-height:1.5}
+
+.ch.C .en{background:#ffe3c2;color:#8a4a00;font-weight:700}
+.mv{background:#d6f0d2;color:#1b5e3a;border-radius:3px;font-weight:700;padding:0 2px}
+.ch.hh.C .en,.ch.hh.V .en,.ch.hh.S .en{background:none;color:inherit;font-weight:400}
