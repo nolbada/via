@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ko" translate="no" class="notranslate"><head><meta charset="utf-8"><meta name="google" content="notranslate"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M2 Reading 62</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}.bmw{text-align:center;margin:2px 0 0}.bmk{align-items:center;gap:8px;font-size:12px;color:#7a5a00;background:#fff3bf;border:1px solid #e0a800;border-radius:99px;padding:2px 4px 2px 12px}.bmk button{background:#fff;color:#7a5a00;border:1px solid #e0a800;padding:1px 10px;font-size:12px;font-weight:600;border-radius:99px}.res{border-radius:14px;padding:18px 16px;margin:12px 0;text-align:center;border:2px solid}.rp{background:#e6f5ec;border-color:#1a7f4b}.rf{background:#fdecea;border-color:#c0392b}.rt2{font-weight:700;font-size:15px}.rp .rt2{color:#1a7f4b}.rf .rt2{color:#c0392b}.rpct{font-size:54px;font-weight:700;line-height:1.1}.rpct small{font-size:18px;margin-left:2px}.rl2{font-size:13px;color:var(--mut);margin-bottom:10px}.rtb{width:100%;border-collapse:collapse;font-size:14px;text-align:left;background:#fff;border-radius:8px;margin:6px 0 12px}.rtb td{padding:7px 10px;border-top:1px solid var(--line)}.rtb tr:first-child td{border-top:0}.rtb td:last-child{text-align:right}.part{position:relative}.pane{position:sticky;top:0;z-index:6;max-height:40vh;max-height:40dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--bg,#f2f6f9);padding:2px 0 8px;box-shadow:0 10px 8px -9px rgba(18,38,58,.45)}.pane .dlg{margin:0}.pane.open{position:static;max-height:none;overflow:visible;box-shadow:none}.pp.np{margin-top:8px}.pp .k{margin-bottom:2px}.hl{display:inline-block;font-size:11px;font-weight:700;color:var(--pri);border:1px solid var(--pri);border-radius:4px;padding:0 6px;margin:6px 0 2px}.memo{transform:rotate(-.4deg);box-shadow:0 6px 14px rgba(138,90,0,.15)}.grp{position:relative}.sumbox{margin:2px 0 8px 28px;padding:8px 10px;background:#f4f7fa;border-left:3px solid var(--pri);border-radius:4px;font-size:15px;line-height:1.5}.ow{font-size:13.5px;line-height:1.55;margin:4px 0;padding:6px 9px;border-radius:7px;background:#f4f6f8;border-left:3px solid #c9d2da}.ow.g{background:#e8f6ee;border-left-color:#1a7f4b}.ow b{margin-right:4px}
+mark{background:linear-gradient(transparent 45%,#f6e27a 45%);color:inherit;padding:0 1px}
+.neg{background:linear-gradient(transparent 45%,#f6e27a 45%);font-weight:800}
+.lbl{float:right;font-size:11px;color:var(--mut);font-weight:400;margin-left:8px}
+.ac{border:1px solid var(--line);border-radius:12px;background:#fff;margin:10px 0;overflow:hidden}
+.ac-top{background:#fdecea;border-bottom:1px solid #f3c1bb;padding:10px 14px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.ac-top b{color:var(--bad);font-size:15px}.ac-top.g{background:var(--okbg);border-color:#b9e0c9}.ac-top.g b{color:var(--ok)}.ac-top.fine{background:#eef3f8;border-color:var(--line)}.ac-top.fine b{color:var(--pri)}
+.ac-a{font-weight:700;font-size:16px}.ac-k{flex-basis:100%;font-size:13px;color:var(--mut)}.ac-x{font-size:13px;color:var(--bad)}
+.ac-sec{font-size:13px;font-weight:700;color:var(--pri);margin:14px 14px 6px}
+.pass{margin:0 14px;padding:6px 12px;background:#fafbfc;border-radius:8px}
+.pl1{padding:4px 0}.pl1 .e{font-size:16px}.pl1 .k{font-size:13px;color:var(--mut)}
+.oc{margin:6px 14px;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;background:#f7f8fa}
+.oc.g{border-color:var(--ok);background:linear-gradient(90deg,#d7efe0,#fff)}
+.oc.r{border-color:var(--bad);background:linear-gradient(90deg,#fadbd8,#fff)}
+.oh{display:flex;gap:8px;align-items:flex-start}.oh .cn{min-width:20px;color:var(--mut)}.ot{flex:1;font-size:16px}.ot .okr{font-size:13px;color:var(--mut)}
+.tg{font-size:12px;font-weight:700;padding:1px 8px;border-radius:99px;background:#fff;border:1px solid currentColor;color:var(--mut);white-space:nowrap}.oc.g .tg{color:var(--ok)}.oc.r .tg{color:var(--bad)}
+.why{margin-top:6px;padding-left:10px;border-left:3px solid #cbd3dc;font-size:14px;color:#33404f}.oc.g .why{border-color:var(--ok)}.oc.r .why{border-color:var(--bad)}
+.trap{margin:10px 14px;padding:8px 12px;border-radius:8px;background:#fff7e0;font-size:14px}.trap b{color:#8a5a00}
+.fix{margin:12px 14px 14px}.fh{font-weight:700;font-size:13px;color:var(--pri);margin-bottom:4px}
+.opt.xx{opacity:.4;text-decoration:line-through;pointer-events:none}
+.fixed{margin:12px 14px 4px;padding:8px 12px;border-radius:8px;background:var(--okbg);color:var(--ok);font-weight:700}
+.nx{margin:10px 14px 16px}.nx button{display:block;width:100%;padding:14px 0;font-size:17px;font-weight:700;border-radius:10px}
+.post{margin:12px 14px 14px;padding:12px 14px;background:#fff9c4;border:1.5px solid #e6d44f;border-radius:6px;box-shadow:2px 3px 0 #ece3a0}
+.ph{font-size:13px;font-weight:700;color:#7a6500;margin-bottom:6px}.post .pl{font-size:17px;font-weight:700}.post .pk{font-size:14.5px;color:#4a5563;margin:2px 0 8px}.post .pw{font-size:15px}.post .pd{margin-top:8px;font-size:13px;color:var(--ok);font-weight:700}.post button{margin-top:10px}
+.sumbox{margin:6px 0 10px;padding:10px 12px;background:#f3f6fa;border-radius:8px;font-size:17px;line-height:1.7}
+.qd{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;padding:8px 12px;margin:6px 0;border-radius:8px;background:var(--okbg);border:1px solid #b9e0c9;font-size:15px}.qd .qn{color:var(--ok);font-weight:700}.qd .qk{flex-basis:100%;font-size:13px;color:var(--mut);padding-left:32px}
+.res{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0;text-align:center}
+.res .rpct{font-size:44px;font-weight:800;color:var(--pri)}.res .rpct small{font-size:18px;color:var(--mut)}.res .rl{font-size:14px;color:var(--mut)}
+.rtb{margin:10px auto;border-collapse:collapse;font-size:14px}.rtb td{padding:3px 12px;border-bottom:1px solid var(--line)}
+.chip{display:inline-block;margin-top:8px;padding:4px 14px;border-radius:99px;font-size:13px;font-weight:700;background:#eef3f8;color:var(--mut)}.chip.on{background:var(--okbg);color:var(--ok)}
+.tp{margin-top:14px;padding:12px;border:2px dashed #999;border-radius:10px;text-align:left;font-size:14px}.tp b{color:#555}.tp .fl{color:var(--bad);font-weight:700}
+.fc{margin:6px 14px;padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);font-size:15px}.fc.f{border-color:var(--ok);background:linear-gradient(90deg,#d7efe0,#fff)}.fc.m{border-color:var(--bad);background:linear-gradient(90deg,#fadbd8,#fff)}
+.fc .tg2{font-size:12px;font-weight:700;margin-right:6px}.fc.f .tg2{color:var(--ok)}.fc.m .tg2{color:var(--bad)}
+.fcb{margin-top:3px;padding-left:10px;border-left:3px solid #cbd3dc;font-size:14px;color:#33404f}
+.fixs{margin:4px 14px 6px;font-size:17px}.fixs-l{font-size:12.5px;color:var(--mut);margin:10px 14px 0}
+.ac.s1{margin:10px 0 4px 34px}
+
+.crit{margin-top:4px;font-size:12px;color:var(--mut)}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M2 Reading</a><h1>Reading 62 · The Baby Turtles' Journey at Night</h1><div class="sub">아기 바다거북들의 밤 여행 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div class="bmw"><span id="bm" class="bmk" style="display:none">책갈피 저장됨 &middot; 다음에 이어서 풀기<button type="button">처음부터</button></span></div><div id="app"></div>
+</div>
+<script>
+var D=[{"n": 1, "tag": null, "en": "The following story is from Follow the Moon Home, which is a non-fiction book writing by Philippe Cousteau and Deborah Hopkinson. The book is based in a true story of a group of children who started a campaign to help baby turtles.", "ko": "다음 이야기는 Philippe Cousteau와 Deborah Hopkinson이 쓴 논픽션 책 Follow the Moon Home에서 가져온 것이다. 이 책은 아기 바다거북들을 돕기 위해 캠페인을 시작한 아이들의 실제 이야기를 바탕으로 하고 있다.", "ok": false, "foot": [], "fixes": [{"wrong": "writing", "right": "written", "partial": false, "at": [14], "point": "분사의 수동 관계: 책은 '쓰여진' 것이라 과거분사 written 사용", "topic": "분사의 수동 관계", "memo": "책은 '쓰여진' 것이라 과거분사 written 사용"}, {"wrong": "in", "right": "on", "partial": false, "at": [25], "point": "전치사: be based on: ~을 바탕으로 하다", "topic": "전치사", "memo": "be based on: ~을 바탕으로 하다"}]}, {"n": 2, "tag": "해변 · 길 잃은 거북", "en": "My name are Vivian. I just moved to a town by the sea.", "ko": "제 이름은 Vivian이에요. 저는 얼마 전 바닷가 근처 마을로 이사 왔어요.", "ok": false, "foot": [], "fixes": [{"wrong": "are", "right": "is", "partial": false, "at": [2], "point": "be동사의 수일치: 주어 My name은 단수라 is 사용", "topic": "be동사의 수일치", "memo": "주어 My name은 단수라 is 사용"}]}, {"n": 3, "tag": null, "en": "One Saturday night, I went to the sea with my mother and we took a walk around the beach. There, many baby turtle were crawling out of their nests building in the sand.", "ko": "어느 토요일 밤, 엄마와 함께 바다로 가서 해변을 산책했어요. 거기에서는, 모래 속에 지어진 둥지에서 많은 아기 바다거북들이 기어 나오고 있었어요.", "ok": false, "foot": [], "fixes": [{"wrong": "turtle", "right": "turtles", "partial": false, "at": [22], "point": "명사의 복수형: many 뒤에는 복수명사 turtles 사용", "topic": "명사의 복수형", "memo": "many 뒤에는 복수명사 turtles 사용"}, {"wrong": "building", "right": "built", "partial": false, "at": [29], "point": "분사의 수동 관계: 둥지는 '지어진' 것이라 과거분사 built 사용", "topic": "분사의 수동 관계", "memo": "둥지는 '지어진' 것이라 과거분사 built 사용"}]}, {"n": 4, "tag": null, "en": "I asked my mom, \"Are those cute baby turtles trying finding their way to the sea? But they seem confused and lost.\"", "ko": "저는 엄마에게 물었어요. “저 귀여운 아기 바다거북들이 바다로 가는 길을 찾고 있는 거예요? 그런데 혼란스러워하고 길을 잃은 것 같아 보여요.”", "ok": false, "foot": [], "fixes": [{"wrong": "finding", "right": "to find", "partial": false, "at": [10], "point": "to부정사: try 뒤 '~하려고 애쓰다'는 to부정사 to find 사용", "topic": "to부정사", "memo": "try 뒤 '~하려고 애쓰다'는 to부정사 to find 사용"}]}, {"n": 5, "tag": null, "en": "My mom answered, \"Baby turtles follow the moonlight going to the sea. But they are going the wrong way because the bright lights from the beach houses.", "ko": "엄마가 대답했어요. “아기 바다거북들은 달빛을 따라 바다로 간단다. 그런데 해변가 집들의 밝은 불빛 때문에 길을 잘못 가고 있어.", "ok": false, "foot": [], "fixes": [{"wrong": "going", "right": "to go", "partial": false, "at": [8], "point": "to부정사의 부사적 용법: '바다로 가기 위해'라는 목적은 to go 사용", "topic": "to부정사의 부사적 용법", "memo": "'바다로 가기 위해'라는 목적은 to go 사용"}, {"wrong": "because", "right": "because of", "partial": false, "at": [19], "point": "전치사구: 뒤에 명사구(the bright lights)가 오면 because of 사용", "topic": "전치사구", "memo": "뒤에 명사구(the bright lights)가 오면 because of 사용"}]}, {"n": 6, "tag": null, "en": "When they cannot find their way to the sea, they dies.\" I felt so sad. I wanted to help the turtles.", "ko": "바다로 가는 길을 찾지 못하면 죽게 되지.” 저는 너무 슬펐어요. 저는 바다거북들을 돕고 싶었어요.", "ok": false, "foot": [], "fixes": [{"wrong": "dies", "right": "die", "partial": false, "at": [10], "point": "동사의 수일치: 주어 they(복수)이므로 die 사용", "topic": "동사의 수일치", "memo": "주어 they(복수)이므로 die 사용"}]}, {"n": 7, "tag": "학교 · 구하기 모임", "en": "Next Monday at school, I told the class about the poor turtles. My classmates all feels sorry for them.", "ko": "다음 주 월요일에 학교에서 저는 가엾은 바다거북들의 이야기를 반 친구들에게 들려줬어요. 친구들은 모두 바다거북들을 안쓰럽게 느꼈어요.", "ok": false, "foot": [], "fixes": [{"wrong": "feels", "right": "felt", "partial": false, "at": [15], "point": "동사의 시제: 이야기 전체가 과거라 과거형 felt 사용", "topic": "동사의 시제", "memo": "이야기 전체가 과거라 과거형 felt 사용"}]}, {"n": 8, "tag": null, "en": "We made a \"Save the Turtle Campaign\" group. Our group was not certain about what doing, so we brainstormed solutions.", "ko": "우리는 ‘바다거북 구하기 캠페인’ 모임을 만들었어요. 우리 모임은 무엇을 해야 할지 확신이 없어서, 함께 해결책을 떠올려 보았어요.", "ok": false, "foot": [], "fixes": [{"wrong": "doing", "right": "to do", "partial": false, "at": [15], "point": "의문사+to부정사: what 뒤에는 to부정사 to do 사용", "topic": "의문사+to부정사", "memo": "what 뒤에는 to부정사 to do 사용"}]}, {"n": 9, "tag": null, "en": "\"People should knows about the problem,\" I said. Samson suggested, \"Why we don't invite neighbors to a town meeting?\"", "ko": "저는 “사람들이 이 문제를 알아야 해.”라고 말했어요. Samson이 “이웃들을 마을 회의에 초대하는 게 어때?”라고 제안했어요.", "ok": false, "foot": [], "fixes": [{"wrong": "knows", "right": "know", "partial": false, "at": [2], "point": "조동사: 조동사 should 뒤에는 동사원형 know 사용", "topic": "조동사", "memo": "조동사 should 뒤에는 동사원형 know 사용"}, {"wrong": "we don't", "right": "don't we", "partial": false, "at": [11], "point": "의문문의 어순: Why 의문문은 don't가 주어 we 앞에 옴", "topic": "의문문의 어순", "memo": "Why 의문문은 don't가 주어 we 앞에 옴"}]}, {"n": 10, "tag": null, "en": "Rebecca agreed, \"That's a good idea!\"", "ko": "Rebecca가 “좋은 생각이야!”라고 동의했어요.", "ok": true, "foot": [], "fixes": []}, {"n": 11, "tag": "준비 · 마을 회의", "en": "All in the group did their part in prepare for the meeting. Rebecca made posters and Samson put them up in the neighborhood.", "ko": "모임에 속한 모두는 회의를 준비하면서 각자 맡은 일을 했어요. Rebecca는 포스터를 만들고, Samson은 그것을 동네에 붙였어요.", "ok": false, "foot": [], "fixes": [{"wrong": "prepare", "right": "preparing", "partial": false, "at": [8], "point": "동명사: 전치사 in 뒤에는 동명사 preparing 사용", "topic": "동명사", "memo": "전치사 in 뒤에는 동명사 preparing 사용"}]}, {"n": 12, "tag": null, "en": "Max spreading the word on the Internet. I wrote about the town meeting in the local newspaper.", "ko": "Max는 인터넷에 소식을 알렸죠. 저는 지역 신문에 마을 회의에 관한 글을 썼어요.", "ok": false, "foot": [], "fixes": [{"wrong": "spreading", "right": "spread", "partial": false, "at": [1], "point": "동사의 시제: 문장의 동사 자리에는 과거형 spread 사용", "topic": "동사의 시제", "memo": "문장의 동사 자리에는 과거형 spread 사용"}]}, {"n": 13, "tag": null, "en": "On the meeting day, the town hall was full from neighbors. Our group explained to them that the baby turtles lose their way because of the bright lights from the houses.", "ko": "회의가 있던 날, 마을 회관은 이웃들로 가득 찼어요. 우리는 아기 바다거북들이 집에서 나오는 밝은 불빛 때문에 길을 잃는다고 이웃들에게 설명했어요.", "ok": false, "foot": [], "fixes": [{"wrong": "from", "right": "of", "partial": false, "at": [9], "point": "전치사: be full of: ~로 가득 차다", "topic": "전치사", "memo": "be full of: ~로 가득 차다"}]}, {"n": 14, "tag": null, "en": "They all talked about how saving baby turtles. Many volunteered for start a campaign to turn off lights at night.", "ko": "이웃들은 모두 아기 바다거북을 구하는 방법에 관해 이야기했어요. 많은 사람들이 밤에 불 끄기 캠페인을 시작하자고 자원했어요.", "ok": false, "foot": [], "fixes": [{"wrong": "saving", "right": "to save", "partial": false, "at": [5], "point": "의문사+to부정사: how 뒤에는 to부정사 to save 사용", "topic": "의문사+to부정사", "memo": "how 뒤에는 to부정사 to save 사용"}, {"wrong": "start", "right": "starting", "partial": false, "at": [11], "point": "동명사: 전치사 for 뒤에는 동명사 starting 사용", "topic": "동명사", "memo": "전치사 for 뒤에는 동명사 starting 사용"}]}, {"n": 15, "tag": null, "en": "Others agreed to patrol the beach together and protect the nests.", "ko": "다른 이웃들은 함께 해변을 순찰하며 둥지를 지키자는 데 동의했어요.", "ok": true, "foot": [], "fixes": []}, {"n": 16, "tag": "순찰 · 달빛", "en": "I went on a turtle patrol with my classmates and volunteers. Everyone smiled because the lights along the beach go out one by one.", "ko": "저는 반 친구들과 자원봉사자들과 함께 바다거북을 위한 순찰에 나섰어요. 해변가의 불빛이 하나씩 꺼지자 모두 미소를 지었어요.", "ok": false, "foot": [], "fixes": [{"wrong": "go", "right": "went", "partial": false, "at": [19], "point": "동사의 시제: 이야기가 과거라 과거형 went 사용", "topic": "동사의 시제", "memo": "이야기가 과거라 과거형 went 사용"}]}, {"n": 17, "tag": null, "en": "The shine moon was bright like silver. Soon, tiny turtles crawled out of the nests.", "ko": "빛나는 달은 은처럼 밝았어요. 곧, 작은 바다거북들이 둥지에서 기어 나왔어요.", "ok": false, "foot": [], "fixes": [{"wrong": "shine", "right": "shining", "partial": false, "at": [1], "point": "현재분사: 달이 '빛나는'이라는 능동 관계라 shining 사용", "topic": "현재분사", "memo": "달이 '빛나는'이라는 능동 관계라 shining 사용"}]}, {"n": 18, "tag": null, "en": "Then, the turtles moved slowly over the sand and disappear into the sea. We remained silent with wonder and followed the moon home just like the turtles.", "ko": "그 후 그들은 모래 위에서 천천히 움직이며 바다로 사라졌어요. 우리는 경이감으로 할 말을 잊은 채 바다거북들처럼 달빛을 따라 집으로 돌아갔어요.", "ok": false, "foot": [], "fixes": [{"wrong": "disappear", "right": "disappeared", "partial": false, "at": [9], "point": "동사의 시제: moved와 병렬이라 과거형 disappeared 사용", "topic": "동사의 시제", "memo": "moved와 병렬이라 과거형 disappeared 사용"}]}];var PP=[["The following story is from Follow the Moon Home, which is a non-fiction book written by Philippe Cousteau and Deborah Hopkinson.", "다음 이야기는 Philippe Cousteau와 Deborah Hopkinson이 쓴 논픽션 책 Follow the Moon Home에서 가져온 것이다.", 1], ["The book is based on a true story of a group of children who started a campaign to help baby turtles.", "이 책은 아기 바다거북들을 돕기 위해 캠페인을 시작한 아이들의 실제 이야기를 바탕으로 하고 있다.", 0], ["Vivian and the Baby Turtles", "Vivian과 아기 바다거북", 1], ["My name is Vivian.", "제 이름은 Vivian이에요.", 0], ["I just moved to a town by the sea.", "저는 얼마 전 바닷가 근처 마을로 이사 왔어요.", 0], ["One Saturday night, I went to the sea with my mother and we took a walk around the beach.", "어느 토요일 밤, 엄마와 함께 바다로 가서 해변을 산책했어요.", 0], ["There, many baby turtles were crawling out of their nests built in the sand.", "거기에서는, 모래 속에 지어진 둥지에서 많은 아기 바다거북들이 기어 나오고 있었어요.", 0], ["I asked my mom, \"Are those cute baby turtles trying to find their way to the sea?", "저는 엄마에게 물었어요. “저 귀여운 아기 바다거북들이 바다로 가는 길을 찾고 있는 거예요?", 0], ["But they seem confused and lost.\"", "그런데 혼란스러워하고 길을 잃은 것 같아 보여요.”", 0], ["My mom answered, \"Baby turtles follow the moonlight to go to the sea.", "엄마가 대답했어요. “아기 바다거북들은 달빛을 따라 바다로 간단다.", 0], ["But they are going the wrong way because of the bright lights from the beach houses.", "그런데 해변가 집들의 밝은 불빛 때문에 길을 잘못 가고 있어.", 0], ["When they cannot find their way to the sea, they die.\"", "바다로 가는 길을 찾지 못하면 죽게 되지.”", 0], ["I felt so sad.", "저는 너무 슬펐어요.", 0], ["I wanted to help the turtles.", "저는 바다거북들을 돕고 싶었어요.", 0], ["The Campaign Group", "바다거북 구하기 모임", 1], ["Next Monday at school, I told the class about the poor turtles.", "다음 주 월요일에 학교에서 저는 가엾은 바다거북들의 이야기를 반 친구들에게 들려줬어요.", 0], ["My classmates all felt sorry for them.", "친구들은 모두 바다거북들을 안쓰럽게 느꼈어요.", 0], ["We made a \"Save the Turtle Campaign\" group.", "우리는 ‘바다거북 구하기 캠페인’ 모임을 만들었어요.", 0], ["Our group was not certain about what to do, so we brainstormed solutions.", "우리 모임은 무엇을 해야 할지 확신이 없어서, 함께 해결책을 떠올려 보았어요.", 0], ["\"People should know about the problem,\" I said.", "저는 “사람들이 이 문제를 알아야 해.”라고 말했어요.", 0], ["Samson suggested, \"Why don't we invite neighbors to a town meeting?\"", "Samson이 “이웃들을 마을 회의에 초대하는 게 어때?”라고 제안했어요.", 0], ["Rebecca agreed, \"That's a good idea!\"", "Rebecca가 “좋은 생각이야!”라고 동의했어요.", 0], ["The Town Meeting", "마을 회의", 1], ["All in the group did their part in preparing for the meeting.", "모임에 속한 모두는 회의를 준비하면서 각자 맡은 일을 했어요.", 0], ["Rebecca made posters and Samson put them up in the neighborhood.", "Rebecca는 포스터를 만들고, Samson은 그것을 동네에 붙였어요.", 0], ["Max spread the word on the Internet.", "Max는 인터넷에 소식을 알렸죠.", 0], ["I wrote about the town meeting in the local newspaper.", "저는 지역 신문에 마을 회의에 관한 글을 썼어요.", 0], ["On the meeting day, the town hall was full of neighbors.", "회의가 있던 날, 마을 회관은 이웃들로 가득 찼어요.", 0], ["Our group explained to them that the baby turtles lose their way because of the bright lights from the houses.", "우리는 아기 바다거북들이 집에서 나오는 밝은 불빛 때문에 길을 잃는다고 이웃들에게 설명했어요.", 0], ["They all talked about how to save baby turtles.", "이웃들은 모두 아기 바다거북을 구하는 방법에 관해 이야기했어요.", 0], ["Many volunteered for starting a campaign to turn off lights at night.", "많은 사람들이 밤에 불 끄기 캠페인을 시작하자고 자원했어요.", 0], ["Others agreed to patrol the beach together and protect the nests.", "다른 이웃들은 함께 해변을 순찰하며 둥지를 지키자는 데 동의했어요.", 0], ["The Turtle Patrol", "바다거북 순찰", 1], ["I went on a turtle patrol with my classmates and volunteers.", "저는 반 친구들과 자원봉사자들과 함께 바다거북을 위한 순찰에 나섰어요.", 0], ["Everyone smiled because the lights along the beach went out one by one.", "해변가의 불빛이 하나씩 꺼지자 모두 미소를 지었어요.", 0], ["The shining moon was bright like silver.", "빛나는 달은 은처럼 밝았어요.", 0], ["Soon, tiny turtles crawled out of the nests.", "곧, 작은 바다거북들이 둥지에서 기어 나왔어요.", 0], ["Then, the turtles moved slowly over the sand and disappeared into the sea.", "그 후 그들은 모래 위에서 천천히 움직이며 바다로 사라졌어요.", 0], ["We remained silent with wonder and followed the moon home just like the turtles.", "우리는 경이감으로 할 말을 잊은 채 바다거북들처럼 달빛을 따라 집으로 돌아갔어요.", 0]];var RNUM=62;var TITLE_EN="The Baby Turtles' Journey at Night";var PASS_EN=["The Baby Turtles' Journey at Night", "The following story is from Follow the Moon Home, which is a non-fiction book written by Philippe Cousteau and Deborah Hopkinson. The book is based on a true story of a group of children who started a campaign to help baby turtles.", "Vivian and the Baby Turtles", "My name is Vivian. I just moved to a town by the sea. One Saturday night, I went to the sea with my mother and we took a walk around the beach. There, many baby turtles were crawling out of their nests built in the sand. I asked my mom, \"Are those cute baby turtles trying to find their way to the sea? But they seem confused and lost.\" My mom answered, \"Baby turtles follow the moonlight to go to the sea. But they are going the wrong way because of the bright lights from the beach houses. When they cannot find their way to the sea, they die.\" I felt so sad. I wanted to help the turtles.", "The Campaign Group", "Next Monday at school, I told the class about the poor turtles. My classmates all felt sorry for them. We made a \"Save the Turtle Campaign\" group. Our group was not certain about what to do, so we brainstormed solutions. \"People should know about the problem,\" I said. Samson suggested, \"Why don't we invite neighbors to a town meeting?\" Rebecca agreed, \"That's a good idea!\"", "The Town Meeting", "All in the group did their part in preparing for the meeting. Rebecca made posters and Samson put them up in the neighborhood. Max spread the word on the Internet. I wrote about the town meeting in the local newspaper. On the meeting day, the town hall was full of neighbors. Our group explained to them that the baby turtles lose their way because of the bright lights from the houses. They all talked about how to save baby turtles. Many volunteered for starting a campaign to turn off lights at night. Others agreed to patrol the beach together and protect the nests.", "The Turtle Patrol", "I went on a turtle patrol with my classmates and volunteers. Everyone smiled because the lights along the beach went out one by one. The shining moon was bright like silver. Soon, tiny turtles crawled out of the nests. Then, the turtles moved slowly over the sand and disappeared into the sea. We remained silent with wonder and followed the moon home just like the turtles."];var PASS_KO=["아기 바다거북들의 밤 여행", "다음 이야기는 Philippe Cousteau와 Deborah Hopkinson이 쓴 논픽션 책 Follow the Moon Home에서 가져온 것이다. 이 책은 아기 바다거북들을 돕기 위해 캠페인을 시작한 아이들의 실제 이야기를 바탕으로 하고 있다.", "Vivian과 아기 바다거북", "제 이름은 Vivian이에요. 저는 얼마 전 바닷가 근처 마을로 이사 왔어요. 어느 토요일 밤, 엄마와 함께 바다로 가서 해변을 산책했어요. 거기에서는, 모래 속에 지어진 둥지에서 많은 아기 바다거북들이 기어 나오고 있었어요. 저는 엄마에게 물었어요. “저 귀여운 아기 바다거북들이 바다로 가는 길을 찾고 있는 거예요? 그런데 혼란스러워하고 길을 잃은 것 같아 보여요.” 엄마가 대답했어요. “아기 바다거북들은 달빛을 따라 바다로 간단다. 그런데 해변가 집들의 밝은 불빛 때문에 길을 잘못 가고 있어. 바다로 가는 길을 찾지 못하면 죽게 되지.” 저는 너무 슬펐어요. 저는 바다거북들을 돕고 싶었어요.", "바다거북 구하기 모임", "다음 주 월요일에 학교에서 저는 가엾은 바다거북들의 이야기를 반 친구들에게 들려줬어요. 친구들은 모두 바다거북들을 안쓰럽게 느꼈어요. 우리는 ‘바다거북 구하기 캠페인’ 모임을 만들었어요. 우리 모임은 무엇을 해야 할지 확신이 없어서, 함께 해결책을 떠올려 보았어요. 저는 “사람들이 이 문제를 알아야 해.”라고 말했어요. Samson이 “이웃들을 마을 회의에 초대하는 게 어때?”라고 제안했어요. Rebecca가 “좋은 생각이야!”라고 동의했어요.", "마을 회의", "모임에 속한 모두는 회의를 준비하면서 각자 맡은 일을 했어요. Rebecca는 포스터를 만들고, Samson은 그것을 동네에 붙였어요. Max는 인터넷에 소식을 알렸죠. 저는 지역 신문에 마을 회의에 관한 글을 썼어요. 회의가 있던 날, 마을 회관은 이웃들로 가득 찼어요. 우리는 아기 바다거북들이 집에서 나오는 밝은 불빛 때문에 길을 잃는다고 이웃들에게 설명했어요. 이웃들은 모두 아기 바다거북을 구하는 방법에 관해 이야기했어요. 많은 사람들이 밤에 불 끄기 캠페인을 시작하자고 자원했어요. 다른 이웃들은 함께 해변을 순찰하며 둥지를 지키자는 데 동의했어요.", "바다거북 순찰", "저는 반 친구들과 자원봉사자들과 함께 바다거북을 위한 순찰에 나섰어요. 해변가의 불빛이 하나씩 꺼지자 모두 미소를 지었어요. 빛나는 달은 은처럼 밝았어요. 곧, 작은 바다거북들이 둥지에서 기어 나왔어요. 그 후 그들은 모래 위에서 천천히 움직이며 바다로 사라졌어요. 우리는 경이감으로 할 말을 잊은 채 바다거북들처럼 달빛을 따라 집으로 돌아갔어요."];var BG=[{"qs": [{"n": 6, "q": "윗글의 내용과 일치하지 않는 것은?", "o": ["The story is about children who tried to help baby turtles.", "Vivian lived in a town near the beach.", "The baby turtles were heading toward the sea in the right direction.", "Baby turtles need the moonlight to go to the sea.", "Baby turtles die if they can't go to the sea."], "a": 2, "ans": "The baby turtles were heading toward the sea in the right direction.", "ko": ["이 이야기는 아기 바다거북들을 도우려 한 아이들에 관한 것이다.", "Vivian은 해변 근처 마을에 살았다.", "아기 바다거북들은 바른 방향으로 바다를 향해 가고 있었다.", "아기 바다거북들은 바다로 가려면 달빛이 필요하다.", "아기 바다거북들은 바다로 가지 못하면 죽는다."], "evs": [["But they are going the wrong way because of the bright lights from the beach houses.", "그런데 해변가 집들의 밝은 불빛 때문에 길을 잘못 가고 있어."]], "ow": ["오답 ✕ — 'a group of children who started a campaign to help baby turtles'(아기 바다거북들을 돕기 위해 캠페인을 시작한 아이들)라고 했으므로 본문과 일치해서 틀림.", "오답 ✕ — 'I just moved to a town by the sea.'(저는 얼마 전 바닷가 근처 마을로 이사 왔어요.)라고 했으므로 본문과 일치해서 틀림.", "정답 ○ — 'they are going the wrong way'(길을 잘못 가고 있어)라고 했으므로 바른 방향으로 가고 있었다는 말은 본문과 일치하지 않는다.", "오답 ✕ — 'Baby turtles follow the moonlight to go to the sea.'(아기 바다거북들은 달빛을 따라 바다로 간단다.)라고 했으므로 본문과 일치해서 틀림.", "오답 ✕ — 'When they cannot find their way to the sea, they die.'(바다로 가는 길을 찾지 못하면 죽게 되지.)라고 했으므로 본문과 일치해서 틀림."], "memo": ["정답 ③: 아기 바다거북들은 바른 방향이 아니라 길을 잘못 가고 있었다.", "근거: But they are going the wrong way because of the bright lights from the beach houses.(그런데 해변가 집들의 밝은 불빛 때문에 길을 잘못 가고 있어.)", "함정: 일치하지 않는 것 찾기! the wrong way(잘못된 길)를 the right direction(바른 방향)으로 바꿔 놓음"], "why": "아기 바다거북들은 집들의 불빛 때문에 바다로 가는 길을 잘못 가고 있었다.", "ev": ["But they are going the wrong way because of the bright lights from the beach houses.", "그런데 해변가 집들의 밝은 불빛 때문에 길을 잘못 가고 있어."]}], "pp": [["Vivian and the Baby Turtles", "Vivian과 아기 바다거북"], ["My name is Vivian.", "제 이름은 Vivian이에요."], ["I just moved to a town by the sea.", "저는 얼마 전 바닷가 근처 마을로 이사 왔어요."], ["One Saturday night, I went to the sea with my mother and we took a walk around the beach.", "어느 토요일 밤, 엄마와 함께 바다로 가서 해변을 산책했어요."], ["There, many baby turtles were crawling out of their nests built in the sand.", "거기에서는, 모래 속에 지어진 둥지에서 많은 아기 바다거북들이 기어 나오고 있었어요."], ["I asked my mom, \"Are those cute baby turtles trying to find their way to the sea?", "저는 엄마에게 물었어요. “저 귀여운 아기 바다거북들이 바다로 가는 길을 찾고 있는 거예요?"], ["But they seem confused and lost.\"", "그런데 혼란스러워하고 길을 잃은 것 같아 보여요.”"], ["My mom answered, \"Baby turtles follow the moonlight to go to the sea.", "엄마가 대답했어요. “아기 바다거북들은 달빛을 따라 바다로 간단다."], ["But they are going the wrong way because of the bright lights from the beach houses.", "그런데 해변가 집들의 밝은 불빛 때문에 길을 잘못 가고 있어."], ["When they cannot find their way to the sea, they die.\"", "바다로 가는 길을 찾지 못하면 죽게 되지.”"], ["I felt so sad.", "저는 너무 슬펐어요."], ["I wanted to help the turtles.", "저는 바다거북들을 돕고 싶었어요."]]}, {"qs": [{"n": 7, "q": "윗글의 제목으로 알맞은 것은?", "o": ["Whose Idea is the Best?", "A New Group to Save Turtles", "What Makes Turtles in Danger?", "How to Prepare a Town Meeting", "Brainstorming Gives You the Answer"], "a": 1, "ans": "A New Group to Save Turtles", "ko": ["누구의 아이디어가 가장 좋을까?", "바다거북을 구하기 위한 새 모임", "무엇이 바다거북을 위험에 빠뜨릴까?", "마을 회의를 준비하는 방법", "브레인스토밍이 답을 준다"], "evs": [["We made a \"Save the Turtle Campaign\" group.", "우리는 ‘바다거북 구하기 캠페인’ 모임을 만들었어요."], ["Our group was not certain about what to do, so we brainstormed solutions.", "우리 모임은 무엇을 해야 할지 확신이 없어서, 함께 해결책을 떠올려 보았어요."]], "ow": ["오답 ✕ — Samson의 'Why don't we invite neighbors to a town meeting?'(이웃들을 마을 회의에 초대하는 게 어때?)에 Rebecca가 동의했을 뿐, 누구의 생각이 가장 좋은지 겨루는 글이 아니다.", "정답 ○ — 'We made a \"Save the Turtle Campaign\" group.'(우리는 ‘바다거북 구하기 캠페인’ 모임을 만들었어요.)라고 했으므로 새 모임을 만들어 거북을 구하려는 이야기이다.", "오답 ✕ — 'I told the class about the poor turtles.'(가엾은 바다거북들의 이야기를 반 친구들에게 들려줬어요.)처럼 거북이 가엾다는 말은 있지만, 위험의 원인을 따지는 글은 아니다.", "오답 ✕ — 'Why don't we invite neighbors to a town meeting?'(이웃들을 마을 회의에 초대하는 게 어때?)는 제안일 뿐, 회의 준비 방법을 알려 주는 글은 아니다.", "오답 ✕ — 'we brainstormed solutions'(함께 해결책을 떠올려 보았어요)는 일부 내용이다. 브레인스토밍이 답을 준다는 주장은 본문에 없다."], "memo": ["정답 ②: A New Group to Save Turtles(바다거북을 구하기 위한 새 모임)", "근거: We made a \"Save the Turtle Campaign\" group.(우리는 ‘바다거북 구하기 캠페인’ 모임을 만들었어요.)", "함정: 브레인스토밍이나 회의 준비는 글의 일부일 뿐 ✕"], "why": "친구들이 바다거북을 구하는 모임을 만들고 해결책을 의논하는 이야기이다.", "ev": ["We made a \"Save the Turtle Campaign\" group.", "우리는 ‘바다거북 구하기 캠페인’ 모임을 만들었어요."]}], "pp": [["The Campaign Group", "바다거북 구하기 모임"], ["Next Monday at school, I told the class about the poor turtles.", "다음 주 월요일에 학교에서 저는 가엾은 바다거북들의 이야기를 반 친구들에게 들려줬어요."], ["My classmates all felt sorry for them.", "친구들은 모두 바다거북들을 안쓰럽게 느꼈어요."], ["We made a \"Save the Turtle Campaign\" group.", "우리는 ‘바다거북 구하기 캠페인’ 모임을 만들었어요."], ["Our group was not certain about what to do, so we brainstormed solutions.", "우리 모임은 무엇을 해야 할지 확신이 없어서, 함께 해결책을 떠올려 보았어요."], ["\"People should know about the problem,\" I said.", "저는 “사람들이 이 문제를 알아야 해.”라고 말했어요."], ["Samson suggested, \"Why don't we invite neighbors to a town meeting?\"", "Samson이 “이웃들을 마을 회의에 초대하는 게 어때?”라고 제안했어요."], ["Rebecca agreed, \"That's a good idea!\"", "Rebecca가 “좋은 생각이야!”라고 동의했어요."]]}, {"qs": [{"n": 8, "q": "윗글의 내용과 일치하지 않는 것은?", "o": ["Samson posted the posters that Rebecca made.", "Max told people about the town meeting in the newspaper.", "Many neighbors attended the meeting.", "Neighbors discussed the way to save baby turtles.", "Some people agreed to turn off lights at night for baby turtles."], "a": 1, "ans": "Max told people about the town meeting in the newspaper.", "ko": ["Samson은 Rebecca가 만든 포스터를 붙였다.", "Max는 신문에서 마을 회의를 사람들에게 알렸다.", "많은 이웃이 회의에 참석했다.", "이웃들은 아기 바다거북을 구할 방법을 의논했다.", "어떤 사람들은 아기 바다거북을 위해 밤에 불을 끄는 데 동의했다."], "evs": [["Max spread the word on the Internet.", "Max는 인터넷에 소식을 알렸죠."], ["I wrote about the town meeting in the local newspaper.", "저는 지역 신문에 마을 회의에 관한 글을 썼어요."]], "ow": ["오답 ✕ — 'Rebecca made posters and Samson put them up in the neighborhood.'(Rebecca는 포스터를 만들고 Samson은 그것을 동네에 붙였어요.)라고 했으므로 본문과 일치해서 틀림.", "정답 ○ — Max는 'spread the word on the Internet'(인터넷에 소식을 알렸다)이고, 신문에 글을 쓴 사람은 'I wrote about the town meeting in the local newspaper'(저)이다. 그래서 일치하지 않는다.", "오답 ✕ — 'the town hall was full of neighbors'(마을 회관은 이웃들로 가득 찼어요)라고 했으므로 본문과 일치해서 틀림.", "오답 ✕ — 'They all talked about how to save baby turtles.'(이웃들은 모두 아기 바다거북을 구하는 방법에 관해 이야기했어요.)라고 했으므로 본문과 일치해서 틀림.", "오답 ✕ — 'Many volunteered for starting a campaign to turn off lights at night.'(많은 사람들이 밤에 불 끄기 캠페인을 시작하자고 자원했어요.)라고 했으므로 본문과 일치해서 틀림."], "memo": ["정답 ②: 신문에 글을 쓴 사람은 Max가 아니라 Vivian이다.", "근거: I wrote about the town meeting in the local newspaper.(저는 지역 신문에 마을 회의에 관한 글을 썼어요.)", "함정: 일치하지 않는 것 찾기! Max는 신문이 아니라 the Internet(인터넷)으로 알림"], "why": "Max는 인터넷에 소식을 알렸고, 신문에 글을 쓴 사람은 Vivian이다.", "ev": ["Max spread the word on the Internet.", "Max는 인터넷에 소식을 알렸죠."]}], "pp": [["The Town Meeting", "마을 회의"], ["All in the group did their part in preparing for the meeting.", "모임에 속한 모두는 회의를 준비하면서 각자 맡은 일을 했어요."], ["Rebecca made posters and Samson put them up in the neighborhood.", "Rebecca는 포스터를 만들고, Samson은 그것을 동네에 붙였어요."], ["Max spread the word on the Internet.", "Max는 인터넷에 소식을 알렸죠."], ["I wrote about the town meeting in the local newspaper.", "저는 지역 신문에 마을 회의에 관한 글을 썼어요."], ["On the meeting day, the town hall was full of neighbors.", "회의가 있던 날, 마을 회관은 이웃들로 가득 찼어요."], ["Our group explained to them that the baby turtles lose their way because of the bright lights from the houses.", "우리는 아기 바다거북들이 집에서 나오는 밝은 불빛 때문에 길을 잃는다고 이웃들에게 설명했어요."], ["They all talked about how to save baby turtles.", "이웃들은 모두 아기 바다거북을 구하는 방법에 관해 이야기했어요."], ["Many volunteered for starting a campaign to turn off lights at night.", "많은 사람들이 밤에 불 끄기 캠페인을 시작하자고 자원했어요."], ["Others agreed to patrol the beach together and protect the nests.", "다른 이웃들은 함께 해변을 순찰하며 둥지를 지키자는 데 동의했어요."]]}, {"qs": [{"n": 9, "q": "윗글의 제목으로 알맞은 것은?", "o": ["A Night Walk on the Beach", "It's Time to Say Goodbye to Turtles", "How to Find Baby Turtles in the Sand", "Finally Following the Moon to the Sea", "A Smile at the Bright Beach and Moon"], "a": 3, "ans": "Finally Following the Moon to the Sea", "ko": ["해변에서의 밤 산책", "바다거북들에게 작별 인사를 할 시간", "모래 속에서 아기 바다거북을 찾는 방법", "마침내 달을 따라 바다로 가다", "밝은 해변과 달 앞에서의 미소"], "evs": [["The shining moon was bright like silver.", "빛나는 달은 은처럼 밝았어요."], ["We remained silent with wonder and followed the moon home just like the turtles.", "우리는 경이감으로 할 말을 잊은 채 바다거북들처럼 달빛을 따라 집으로 돌아갔어요."]], "ow": ["오답 ✕ — 순찰은 'a turtle patrol'(바다거북 순찰)이었고, 중심은 불빛이 꺼진 뒤 거북이 바다로 가는 모습이다. 단순한 밤 산책 이야기가 아니다.", "오답 ✕ — 'the turtles ... disappeared into the sea'(거북들이 바다로 사라졌어요)지만 작별의 아쉬움이 아니라 경이로움을 말한다. 'We remained silent with wonder'(경이감으로 할 말을 잊었어요)라고 했다.", "오답 ✕ — 거북들은 'crawled out of the nests'(둥지에서 기어 나왔어요)였고 찾는 방법을 알려 주는 글이 아니다.", "정답 ○ — 불빛이 꺼지고 거북들이 'disappeared into the sea'(바다로 사라졌어요), 사람들은 'followed the moon home'(달빛을 따라 집으로 돌아갔어요)라고 했으므로 마침내 달을 따라 바다로 가는 이야기이다.", "오답 ✕ — 'Everyone smiled'(모두 미소를 지었어요)는 일부 장면일 뿐, 미소가 중심 내용은 아니다."], "memo": ["정답 ④: Finally Following the Moon to the Sea(마침내 달을 따라 바다로 가다)", "근거: We remained silent with wonder and followed the moon home just like the turtles.(우리는 경이감으로 할 말을 잊은 채 바다거북들처럼 달빛을 따라 집으로 돌아갔어요.)", "함정: 작별(Goodbye)이 아니라 경이로움과 달빛 따라가기 ✕"], "why": "불빛이 꺼진 뒤 바다거북들이 달빛을 따라 바다로 간 장면이 중심이다.", "ev": ["The shining moon was bright like silver.", "빛나는 달은 은처럼 밝았어요."]}, {"n": 10, "q": "다음은 윗글 전체를 요약한 문장이다. 빈칸 (A), (B)에 들어갈 말로 가장 알맞은 것은?", "sum": "Vivian and her group held a town meeting to (A)________ baby turtles, and the neighbors agreed to turn off the lights at night. At last, the turtles (B)________ the moon to the sea.", "lab": "완성된 요약문 : ", "o": ["find - ignored", "sell - followed", "save - avoided", "feed - lost", "save - followed"], "a": 4, "ans": "save - followed", "ko": ["찾다 - 무시했다", "팔다 - 따라갔다", "구하다 - 피했다", "먹이다 - 잃었다", "구하다 - 따라갔다"], "evs": [["They all talked about how to save baby turtles.", "이웃들은 모두 아기 바다거북을 구하는 방법에 관해 이야기했어요."], ["Then, the turtles moved slowly over the sand and disappeared into the sea.", "그 후 그들은 모래 위에서 천천히 움직이며 바다로 사라졌어요."]], "ow": ["오답 ✕ — 'how to save baby turtles'(아기 바다거북을 구하는 방법)이므로 (A)는 find가 아니라 save이고, 거북은 달빛을 무시한 것이 아니라 따라갔다.", "오답 ✕ — (B) followed는 맞지만, 회의의 목적은 'how to save baby turtles'(아기 바다거북을 구하는 방법)이지 거북을 파는(sell) 것이 아니다.", "오답 ✕ — (A) save는 맞지만, 'followed the moon home just like the turtles'(바다거북들처럼 달빛을 따라 집으로 돌아갔어요)이므로 거북은 달을 피한(avoided) 것이 아니라 따랐다.", "오답 ✕ — 회의의 목적은 거북에게 먹이를 주는(feed) 것이 아니라 구하는 것이고, 거북은 길을 잃은(lost) 것이 아니라 'disappeared into the sea'(바다로 사라졌어요).", "정답 ○ — 'how to save baby turtles'(아기 바다거북을 구하는 방법)이므로 (A)는 save이고, 'followed the moon'(달빛을 따라)이므로 (B)는 followed이다."], "memo": ["정답 ⑤: save(구하다) - followed(따라갔다)", "근거: They all talked about how to save baby turtles.(이웃들은 모두 아기 바다거북을 구하는 방법에 관해 이야기했어요.)", "함정: 거북은 달빛을 피하거나 무시한 것이 아니라 따라서 바다로 감 ✕"], "why": "마을 회의로 불이 꺼지자 아기 바다거북들이 달빛을 따라 바다로 갔다.", "note": {"en": "Vivian and her group held a town meeting to save baby turtles, and the neighbors agreed to turn off the lights at night. At last, the turtles followed the moon to the sea.", "ko": "Vivian과 모임 친구들은 아기 바다거북을 구하려고 마을 회의를 열었고, 이웃들은 밤에 불을 끄는 데 동의했다. 마침내 바다거북들은 달을 따라 바다로 갔다.", "words": [["save", "구하다"], ["followed", "따라갔다 (follow의 과거형)"]]}, "ev": ["They all talked about how to save baby turtles.", "이웃들은 모두 아기 바다거북을 구하는 방법에 관해 이야기했어요."]}], "pp": [["The Turtle Patrol", "바다거북 순찰"], ["I went on a turtle patrol with my classmates and volunteers.", "저는 반 친구들과 자원봉사자들과 함께 바다거북을 위한 순찰에 나섰어요."], ["Everyone smiled because the lights along the beach went out one by one.", "해변가의 불빛이 하나씩 꺼지자 모두 미소를 지었어요."], ["The shining moon was bright like silver.", "빛나는 달은 은처럼 밝았어요."], ["Soon, tiny turtles crawled out of the nests.", "곧, 작은 바다거북들이 둥지에서 기어 나왔어요."], ["Then, the turtles moved slowly over the sand and disappeared into the sea.", "그 후 그들은 모래 위에서 천천히 움직이며 바다로 사라졌어요."], ["We remained silent with wonder and followed the moon home just like the turtles.", "우리는 경이감으로 할 말을 잊은 채 바다거북들처럼 달빛을 따라 집으로 돌아갔어요."]]}];
+/* board owner guard + server resume: previous student's records are wiped on a new board name; own records come back from the board server */
+var BSYNC=(function(){var P='m2-',SRV='https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec',D0='2000-01-01',KEY='p_m2';
+var n='',c='';
+try{n=localStorage.getItem('bd-name')||'';c=localStorage.getItem('bd-cls')||'';
+if(!n){var w=null;try{w=JSON.parse(sessionStorage.getItem('bl-who')||'null')}catch(e){}n=(w&&w.n)||'';c=(w&&w.c)||c}
+if(n){var o=localStorage.getItem(P+'owner');
+if(o!==n){Object.keys(localStorage).filter(function(k){return k.indexOf(P)===0||k.indexOf('m-find-')===0}).forEach(function(k){localStorage.removeItem(k)});
+try{sessionStorage.removeItem('bl-snap-m2')}catch(e){}
+try{sessionStorage.removeItem(P+'rst')}catch(e){}
+localStorage.setItem(P+'owner',n)}}}catch(e){}
+function get(cb){fetch(SRV+'?a=get&date='+D0+'&name='+encodeURIComponent(n)).then(function(r){return r.json()}).then(function(j){if(!j||!j.ok)throw 0;cb((j.chk&&j.chk.app)||{})}).catch(function(){})}
+function put(card){fetch(SRV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({a:'put',date:D0,cls:c,name:n,card:'app',chk:card}),keepalive:true}).catch(function(){})}
+function parse(s){try{return JSON.parse(s||'{}')||{}}catch(e){return {}}}
+/* restore: runs once per tab session, reloads the page only when something was restored */
+if(n){try{if(!sessionStorage.getItem(P+'rst')){sessionStorage.setItem(P+'rst','1');
+get(function(card){var m=parse(card[KEY]),ks=Object.keys(m),any=0,last=0,lt=0;
+var st=parse(localStorage.getItem(P+'st'));
+ks.forEach(function(r){var e=m[r];if(!e||!e.p)return;
+if(!localStorage.getItem(P+'prog-'+r)){window.__bsR=1;localStorage.setItem(P+'prog-'+r,JSON.stringify(e.p));st[r]=e.s||1;any=1}
+if((e.t||0)>=lt){lt=e.t||0;last=r}});
+if(any){localStorage.setItem(P+'st',JSON.stringify(st));if(last)localStorage.setItem(P+'last',String(last));location.reload()}})}}catch(e){}}
+var tm=0,pend=null;
+function run(){if(!pend)return;var a=pend;pend=null;get(function(card){var m=parse(card[KEY]);
+if(a.fin||!a.prog){delete m[a.r]}else{m[a.r]={p:a.prog,s:a.stv,t:Date.now()}}
+var ks=Object.keys(m).sort(function(x,y){return (m[y].t||0)-(m[x].t||0)});ks.slice(3).forEach(function(k){delete m[k]});
+card[KEY]=JSON.stringify(m);put(card)})}
+document.addEventListener('visibilitychange',function(){if(document.hidden){clearTimeout(tm);run()}});
+return function(r,prog,stv,fin){if(!n)return;pend={r:r,prog:prog,stv:stv,fin:fin};clearTimeout(tm);tm=setTimeout(run,1200)}})();
+var LABEL='YBM(김) 7과';
+var BK='m-find-r'+RNUM+'-best';
+var TEACH=/[?&]t=1(&|$)/.test(location.search);
+var CN='①②③④⑤';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={},qst={},chk=0,s1t={},mark=Date.now();
+var QL=[];BG.forEach(function(g){g.qs.forEach(function(q){q.g=g;QL.push(q)})});QL.forEach(function(q,i){q.dn=i+1});
+function key(i,t){return i+':'+t}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function en(s){return '<span lang="en">'+esc(s)+'</span>'}
+function neg(s){return esc(s).replace(/(일치하지 않는|알 수 없는|않은|않는|틀린|잘못된|어색한|다른)/g,'<span class="neg">$1</span>')}
+function reasonHtml(t){t=t.replace(/^(오답|정답)\s*[○✕]\s*—\s*/,'').replace(/\s*✕/g,'');return esc(t).replace(/'(.+?)'(?=\()/g,'<mark lang="en">$1</mark>')}
+function qById(n){for(var i=0;i<QL.length;i++)if(QL[i].n===n)return QL[i]}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})});(f.alt||[]).forEach(function(a){r.push({s:a,e:a+1,f:f,k:k,alt:1})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=stepQHtml();
+ document.getElementById('app').innerHTML=h;relayUp();persist();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function allAdv(){return QL.every(function(q){return qst[q.n]&&qst[q.n].adv})}
+function relayUp(){var st=[aDone(),allAdv()],nm=['본문 오류 찾기','본문 '+QL.length+'문제'],f=-1;for(var i=0;i<st.length;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt" lang="en">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,inMain=sp.filter(function(x){return !x.alt&&ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inMain)cls+=(sp.some(function(x){return !x.alt&&ti>=x.s&&ti<x.e&&foundFix(i,x.k)})?' hit':' miss');else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})||(f.alt||[]).some(function(t){return !!sel[key(i,t)]})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function fixedHtml(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,'\u0001'+f.right+'\u0002');return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+'\u0001'+f.right+'\u0002'+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return esc(tk.join(' ').replace(/ ?\u0000/g,'')).replace(/\u0001/g,'<mark>').replace(/\u0002/g,'</mark>')}
+function noteHtml(i){
+ var it=D[i],wp=wrongPicks(i);
+ if(it.ok){return '<div class="ac s1"><div class="ac-top fine"><b>맞는 문장</b><span class="ac-a">어법 오류 없음</span>'+(wp?'<span class="ac-x">고른 곳은 틀린 곳이 아니에요</span>':'')+'</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ var h='<div class="ac s1"><div class="ac-top'+(all?' g':'')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+'</b>'+(wp?'<span class="ac-x">틀리게 고른 곳 '+wp+'개</span>':'')+'</div>';
+ h+='<div class="fixs-l">고친 문장</div><div class="fixs" lang="en">'+fixedHtml(it)+'</div>';
+ it.fixes.forEach(function(f,k){var ok=foundFix(i,k);
+  h+='<div class="fc '+(ok?'f':'m')+'"><div><span class="tg2">'+(ok?'찾음':'놓침')+'</span>'+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr" lang="en">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt" lang="en">'+esc(f.right)+'</span></div><div class="fcb">'+pointHtml(f)+'</div></div>'});
+ return h+'<div style="height:12px"></div></div>';
+}
+function critHtml(f){var w=f.wrong.split(/\s+/),r=f.right.split(/\s+/);
+ if(f.alt&&f.alt.length)return '<div class="crit">빠진 말 문제 : 빠진 자리 양옆 어느 단어를 눌러도 정답으로 인정</div>';
+ if(w.length==2&&r.length==2&&w.slice().sort().join()==r.slice().sort().join()&&w.join()!=r.join())return '<div class="crit">어순 문제 : 옮겨진 말과 짝이 되는 단어, 어느 쪽을 눌러도 정답으로 인정</div>';return ''}
+function pointHtml(f){var p=f.point,ix=p.indexOf(':');return (ix>0&&ix<24?'<b>'+esc(p.slice(0,ix))+'</b> : '+esc(p.slice(ix+1).trim()):'<b>'+esc(f.topic)+'</b> : '+esc(p))+critHtml(f)}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ return '<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+function ppHtml(pp){
+ return '<div class="dlg"><div class="who">'+en(TITLE_EN)+' &middot; '+en(pp[0][0])+'</div><div class="ln"><div class="en" lang="en">'+esc(pp.slice(1).map(function(p){return p[0]}).join(' '))+'</div></div></div>';
+}
+function qVisible(i){if(!aDone())return false;for(var j=0;j<i;j++){var s=qst[QL[j].n];if(!(s&&s.adv))return false}return true}
+function stepQHtml(){
+ if(!aDone())return '';
+ var h='<div class="stage">2 · 본문 '+QL.length+'문제</div>',lastG=null;
+ for(var i=0;i<QL.length;i++){
+  if(!qVisible(i))break;
+  var q=QL[i];
+  if(q.g!==lastG){if(q.g.pp)h+=ppHtml(q.g.pp);lastG=q.g}
+  h+=qCard(i);
+ }
+ if(allAdv())h+=resultHtml();
+ return h;
+}
+function optText(q,j){return q.ko?en(q.o[j]):esc(q.o[j])}
+function doneRow(q){return '<div class="qd" id="q'+q.n+'"><span class="qn">'+q.dn+'</span><span>정답 '+CN[q.a]+' '+optText(q,q.a)+'</span>'+(q.ko?'<span class="qk">'+esc(q.ko[q.a])+'</span>':'')+'</div>'}
+function postHtml(q,st){var n=q.note;
+ return '<div class="post"><div class="ph">노트에 쓰기 &middot; 요약문 완성</div><div class="pl" lang="en">'+esc(n.en)+'</div><div class="pk">'+esc(n.ko)+'</div><div class="pw">'+n.words.map(function(w){return '<span lang="en">'+esc(w[0])+'</span> = '+esc(w[1])}).join(' &nbsp;&middot;&nbsp; ')+'</div>'+(st.wrote?'<div class="pd">작성 완료</div>':'<button type="button" data-wrote="'+q.n+'">노트에 썼어요</button>')+'</div>';
+}
+function qCard(i){
+ var q=QL[i],st=qst[q.n]||(qst[q.n]={w:[],ok:0,adv:0,t0:Date.now(),t1:0,wrote:0});
+ if(st.adv&&!q.note&&!st.w.length)return doneRow(q);
+ var h='<div class="q" id="q'+q.n+'"><div class="qt"><span class="lbl">'+LABEL+'</span><span class="qn">'+q.dn+'</span>'+neg(q.q)+'</div>';
+ if(q.sum)h+='<div class="sumbox" lang="en">'+esc(q.sum)+'</div>';
+ if(!st.w.length){
+  q.o.forEach(function(t,j){
+   h+='<div class="opt'+(st.ok&&j===q.a?' good':'')+'"'+(st.ok?'':' data-q="'+q.n+'" data-o="'+j+'"')+'><span class="cn">'+CN[j]+'</span><span>'+(q.ko?en(t):esc(t))+'</span></div>';
+  });
+  if(st.ok&&q.note)h+=postHtml(q,st);
+  return h+'</div>';
+ }
+ return h+'</div>'+wrongCard(q,st);
+}
+function wrongCard(q,st){
+ var h='<div class="ac"><div class="ac-top"><b>오답</b><span class="ac-a">정답 '+CN[q.a]+' '+optText(q,q.a)+'</span>'+(q.ko?'<div class="ac-k">'+esc(q.ko[q.a])+'</div>':'')+'</div>';
+ var isEv=function(t){return q.evs.some(function(e){return t===e[0]||(t.length>8&&t.indexOf(e[0])>=0)})};
+ if(q.g.pp){
+  h+='<div class="ac-sec">본문</div><div class="pass">';
+  q.g.pp.forEach(function(p,ix){if(ix===0)return;h+='<div class="pl1"><div class="e" lang="en">'+(isEv(p[0])?'<mark>'+esc(p[0])+'</mark>':esc(p[0]))+'</div><div class="k">'+esc(p[1])+'</div></div>'});
+  h+='</div>';
+ } else {
+  h+='<div class="ac-sec">본문 근거</div><div class="pass">';
+  q.evs.forEach(function(e){h+='<div class="pl1"><div class="e" lang="en"><mark>'+esc(e[0])+'</mark></div><div class="k">'+esc(e[1])+'</div></div>'});
+  h+='</div>';
+ }
+ h+='<div class="ac-sec">보기 풀이</div>';
+ q.o.forEach(function(t,j){var isA=j===q.a,isW=st.w.indexOf(j)>=0;
+  h+='<div class="oc'+(isA?' g':isW?' r':'')+'"><div class="oh"><span class="cn">'+CN[j]+'</span><div class="ot">'+(q.ko?en(t):esc(t))+(q.ko?'<div class="okr">'+esc(q.ko[j])+'</div>':'')+'</div>'+(isA?'<span class="tg">정답</span>':isW?'<span class="tg">내가 고름</span>':'')+'</div><div class="why">'+reasonHtml(q.ow[j])+'</div></div>';
+ });
+ var tr=(q.memo||[]).filter(function(l){return /^함정/.test(l)})[0];
+ if(tr)h+='<div class="trap"><b>함정</b> '+esc(tr.replace(/^함정\s*:\s*/,'').replace(/\s*✕/g,''))+'</div>';
+ if(!st.ok){
+  h+='<div class="fix"><div class="fh">고쳐 보기</div>';
+  q.o.forEach(function(t,j){var xx=st.w.indexOf(j)>=0;h+='<div class="opt'+(xx?' xx':'')+'" data-q="'+q.n+'" data-o="'+j+'"><span class="cn">'+CN[j]+'</span><span>'+(q.ko?en(t):esc(t))+'</span></div>'});
+  h+='</div>';
+ } else {
+  h+='<div class="fixed">정답 '+CN[q.a]+'</div>';
+  if(q.note)h+=postHtml(q,st);
+  else if(!st.adv)h+='<div class="nx"><button type="button" data-next="'+q.n+'">다음 문제</button></div>';
+ }
+ return h+'</div>';
+}
+function fcount(){return QL.filter(function(q){var s=qst[q.n];return s&&s.ok&&!s.w.length}).length}
+function fastInfo(){
+ var s1=[];secs.forEach(function(S,si){if(s1t[si]!=null&&s1t[si]<1500*S.items.length)s1.push(S.name||('구간 '+(si+1)))});
+ var q2=[];QL.forEach(function(q){var s=qst[q.n];if(s&&s.t1&&s.t1-s.t0<2500)q2.push(q.dn)});
+ return{s1:s1,q2:q2};
+}
+function resultHtml(){
+ var f=fcount(),fx=QL.reduce(function(a,q){return a+qst[q.n].w.length},0),fi=fastInfo();
+ var h='<div class="stage">완료</div><div class="res"><div class="rl">처음에 맞힌 문제</div><div class="rpct">'+f+'<small> / '+QL.length+'</small></div>';
+ h+='<table class="rtb">'+QL.map(function(q){var s=qst[q.n];return '<tr><td>'+q.dn+'번</td><td>'+(s.w.length?'틀림':'처음에 맞힘')+'</td></tr>'}).join('')+'</table>';
+ h+='<div class="rl">총 학습 시간 '+fmtT(TM.act)+'</div>';
+ h+='<div class="chip'+(chk?' on':'')+'">'+(chk?'선생님 확인 완료':'선생님 확인 대기')+'</div>';
+ if(TEACH){
+  h+='<div class="tp"><b>선생님용</b><div>빠른 제출 : '+((fi.s1.length||fi.q2.length)?'<span class="fl">'+(fi.s1.length?'오류 찾기 '+fi.s1.join(', ')+' ':'')+(fi.q2.length?'문제 '+fi.q2.join(', ')+'번':'')+'</span>':'없음')+'</div><div>첫 시도 정답 '+f+'/'+QL.length+'· 틀린 횟수 '+fx+'</div><div style="margin-top:8px"><button type="button" data-chk="1">'+(chk?'확인 취소':'노트 확인 완료')+'</button></div></div>';
+ }
+ h+='<div style="margin-top:14px"><a href="./" style="display:inline-block;background:var(--pri);color:#fff;text-decoration:none;font-weight:700;padding:9px 20px;border-radius:8px">M1 Reading 목록으로</a></div>';
+ return h+'</div>';
+}
+function lognote(q){var n=q.note;wlog('s','2단계 · 요약문 완성',[{n:q.dn,a:'정답 '+CN[q.a]+' '+q.ans,m:[n.en,n.ko].concat(n.words.map(function(w){return w[0]+' = '+w[1]}))}])}
+function pickOpt(n,j){var q=qById(n),st=qst[n];if(!st||st.ok)return;if(!st.t1)st.t1=Date.now();
+ if(j===q.a){st.ok=1;if(q.note)lognote(q);if(!st.w.length&&!q.note){setTimeout(function(){advQ(n)},700)}}
+ else if(st.w.indexOf(j)<0){st.w.push(j);st.ok=1;if(q.note)lognote(q)}
+ var y=window.scrollY;render();window.scrollTo(0,y);
+}
+function advQ(n){var st=qst[n];if(!st||st.adv)return;st.adv=1;if(allAdv()){tmFlush();TM.done=1}
+ render();var ix=QL.indexOf(qById(n)),nx=ix<QL.length-1?QL[ix+1]:null,el=nx?document.getElementById('q'+nx.n):document.querySelector('.res');
+ if(el){var ty=el.getBoundingClientRect().top+window.pageYOffset-8;window.scrollTo(0,ty);setTimeout(function(){window.scrollTo(0,el.getBoundingClientRect().top+window.pageYOffset-8)},60)}
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){var sb=+b.dataset.sub;s1t[sb]=Date.now()-mark;mark=Date.now();done[sb]=true;render();
+  var fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(aDone())save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'});return}
+ var o=e.target.closest('.opt[data-q]');if(o){pickOpt(+o.dataset.q,+o.dataset.o);return}
+ var nx=e.target.closest('button[data-next]');if(nx){advQ(+nx.dataset.next);return}
+ var wr=e.target.closest('button[data-wrote]');if(wr){var qn=+wr.dataset.wrote;qst[qn].wrote=1;advQ(qn);return}
+ var ck=e.target.closest('button[data-chk]');if(ck){chk=chk?0:1;var y2=window.scrollY;render();window.scrollTo(0,y2);return}
+});
+function wlog(key,title,items){try{var W=JSON.parse(localStorage.getItem('m2-wrong')||'{}');var r=W[RNUM]||(W[RNUM]={t:TITLE_EN,e:{}});r.t=TITLE_EN;if(r.e[key])return;r.e[key]={h:title,i:items,ts:Date.now()};localStorage.setItem('m2-wrong',JSON.stringify(W))}catch(e){}}
+var TM={act:0,lv:0,lt:0,done:0},_last=Date.now(),_hid=0;
+function tmFlush(){if(TM.done||document.hidden)return;var n=Date.now();TM.act+=n-_last;_last=n}
+function fmtT(ms){var s=Math.round(ms/1000),m=Math.floor(s/60);return m?m+'분 '+('0'+(s%60)).slice(-2)+'초':s+'초'}
+document.addEventListener('visibilitychange',function(){var n=Date.now();if(document.hidden){if(!TM.done){TM.act+=n-_last;TM.lv++}_hid=n;persist()}else{if(!TM.done&&_hid)TM.lt+=n-_hid;_last=n;_hid=0}});
+setInterval(function(){if(!document.hidden&&!TM.done){tmFlush();persist()}},5000);
+var PK='m2-prog-'+RNUM;
+function persist(){if(window.__bsR)return;try{var any=Object.keys(sel).length||Object.keys(qst).length||Object.keys(done).length;
+ if(any)localStorage.setItem(PK,JSON.stringify({v:2,sel:sel,done:done,qst:qst,chk:chk,s1t:s1t,tm:TM}));else localStorage.removeItem(PK);
+ var st=JSON.parse(localStorage.getItem('m2-st')||'{}');var n=(aDone()?1:0)+(allAdv()?1:0);var rs=JSON.parse(localStorage.getItem('m2-res')||'{}');
+ if(n>=2){rs[RNUM]={p:Math.round(fcount()*100/QL.length),ok:1,t:Math.round(TM.act/1000)}}else{delete rs[RNUM]}
+ localStorage.setItem('m2-res',JSON.stringify(rs));
+ if(any){st[RNUM]=(n>=2?3:n);localStorage.setItem('m2-st',JSON.stringify(st));localStorage.setItem('m2-last',String(RNUM))}else{delete st[RNUM];localStorage.setItem('m2-st',JSON.stringify(st))}
+ var el=document.getElementById('bm');if(el)el.style.display=any?'inline-flex':'none';
+ try{if(any)BSYNC(RNUM,JSON.parse(localStorage.getItem(PK)),n>=2?3:n,n>=2)}catch(e){}}catch(e){}}
+try{var sv=JSON.parse(localStorage.getItem(PK)||'null');if(sv&&sv.v===2){sel=sv.sel||{};done=sv.done||{};qst=sv.qst||{};chk=sv.chk||0;s1t=sv.s1t||{};if(sv.tm){TM=sv.tm;TM.done=TM.done||0;_last=Date.now()}}}catch(e){}
+document.getElementById('bm').addEventListener('click',function(e){if(e.target.closest('button')){if(confirm('이 Reading의 진행 기록을 지우고 처음부터 다시 할까요?')){try{localStorage.removeItem(PK)}catch(x){}try{BSYNC(RNUM,null,0,true)}catch(x){}sel={};done={};qst={};chk=0;s1t={};mark=Date.now();TM={act:0,lv:0,lt:0,done:0};_last=Date.now();render();window.scrollTo(0,0)}}});
+render();
+
+</script></body></html>
