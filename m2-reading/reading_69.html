@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ko" translate="no" class="notranslate"><head><meta charset="utf-8"><meta name="google" content="notranslate"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M2 Reading 69</title>
+<style>
+:root{--pri:#1f4e79;--bg:#f5f7fa;--card:#fff;--ink:#1d2733;--mut:#6b7684;--line:#dde3ea;--ok:#1a7f4b;--okbg:#e6f5ec;--bad:#c0392b;--badbg:#fdecea;--sel:#fff3bf;--selb:#e0a800}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+header{padding:22px 0 8px}h1{margin:0;font-size:20px;color:var(--pri)}.sub{color:var(--mut);font-size:14px}
+.sec{margin:26px 0 8px;font-weight:700;color:var(--pri);font-size:15px;border-left:4px solid var(--pri);padding-left:8px}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start}.n{min-width:24px;color:var(--mut);font-size:13px;padding-top:3px}
+.txt{font-size:18px;line-height:2}
+.wd{cursor:pointer;border-radius:5px;padding:1px 2px;margin:0 1px;-webkit-tap-highlight-color:transparent}
+.wd:hover{background:#eef3f8}.wd.on{background:var(--sel);box-shadow:inset 0 -2px 0 var(--selb)}
+.locked .wd{cursor:default}.locked .wd:hover{background:none}
+.wd.hit{background:var(--okbg);box-shadow:inset 0 -2px 0 var(--ok)}.wd.miss{background:var(--badbg);box-shadow:inset 0 -2px 0 var(--bad)}.wd.x{text-decoration:line-through;color:var(--mut)}
+.gl{font-size:13px;color:var(--mut);margin:2px 0 0 34px}.gl.kr{font-size:15px;color:#4a5563;margin-top:0}
+.note{margin:10px 0 0 34px;padding:10px 12px;border-radius:8px;font-size:14.5px}
+.note.found{background:var(--okbg)}.note.lost{background:var(--badbg)}.note.fine{background:#eef3f8}
+.note b{display:block;margin-bottom:2px}.fx{margin:2px 0}.arr{color:var(--mut)}.wr{color:var(--bad);font-weight:700}.rt{color:var(--ok);font-weight:700}.pt{color:#33404f}.ko{margin-top:4px;color:var(--mut)}
+.bar{position:sticky;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -16px;z-index:5}
+.bar .c{font-size:14px;color:var(--mut)}.bar .c b{color:var(--pri);font-size:16px}
+button{font:inherit;background:var(--pri);color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:700;cursor:pointer}
+button.ghost{background:#fff;color:var(--pri);border:1px solid var(--pri)}button:disabled{opacity:.4;cursor:default}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;font-size:15px}
+.memo{background:#fffdf3;border:2px solid #e0b84a;border-radius:12px;padding:14px 16px;margin:26px 0}
+.memo h2{margin:0 0 4px;font-size:17px;color:#8a5a00}.memo .hint{font-size:13px;color:var(--mut);margin-bottom:10px}
+.mi{border-top:1px dashed #e0c98a;padding:10px 0}.mi:first-of-type{border-top:0}
+.mi .no{display:inline-block;background:#8a5a00;color:#fff;border-radius:5px;font-size:12px;padding:0 6px;margin-right:6px}
+.mi .en{font-size:17px;font-weight:700}.mi ul{margin:4px 0;padding-left:20px}.mi li{margin:1px 0}.mi .k{color:var(--mut);font-size:14.5px}
+.gl b{color:var(--ink)}
+
+.stage{margin:34px 0 4px;font-size:13px;font-weight:700;color:#fff;background:var(--pri);display:inline-block;padding:3px 12px;border-radius:99px}
+.dlg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.dlg .who{font-weight:700;color:var(--pri);margin-bottom:4px}
+.dlg .ln{display:flex;gap:10px;padding:3px 0}.dlg .sp{min-width:22px;font-weight:700;color:var(--mut);white-space:nowrap}
+.dlg .en{font-size:17px}.dlg .k,.dlg .kr{font-size:14.5px;color:#4a5563}.dlg .kr{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.qt{font-weight:700;margin-bottom:6px}.qn{display:inline-block;min-width:24px;color:var(--pri)}
+.opt{display:flex;gap:8px;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:#eef3f8}.opt.on{background:var(--sel);border-color:var(--selb)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad);text-decoration:line-through}
+.stem{font-weight:700;margin:12px 0 4px}.st{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;font-size:16px}.st:hover{background:#eef3f8}.st.on{background:var(--sel);border-color:var(--selb)}.st.hit{background:var(--okbg);border-color:var(--ok)}.st.miss{background:var(--badbg);border-color:var(--bad)}.st.x{text-decoration:line-through;color:var(--mut)}.note.sn{margin:0 0 6px}.q .note{margin:10px 0 0}.opt.ox{display:inline-flex;min-width:90px;justify-content:center;margin-right:8px}.cn{color:var(--mut)}
+.grp{position:relative}.sec{position:sticky;top:0;z-index:4;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0 8px 8px}.bd{background:var(--pri);color:#fff;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700}.bd2{background:var(--sel);color:#5c4400;font-size:12px;border-radius:99px;padding:1px 10px;font-weight:700;border:1px solid var(--selb)}.relay{display:flex;gap:6px;margin:12px 0 4px}.rs{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.35;color:var(--mut)}.rs b{display:block;font-size:11px;letter-spacing:.04em;color:var(--pri)}.rs.now{border-color:var(--pri);background:#eef4fa;color:var(--ink)}.rs.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink)}.rs.ok b{color:var(--ok)}.rs.lk{opacity:.55}.rn{text-align:center;font-size:12px;color:var(--mut);margin:0 0 4px}.bmw{text-align:center;margin:2px 0 0}.bmk{align-items:center;gap:8px;font-size:12px;color:#7a5a00;background:#fff3bf;border:1px solid #e0a800;border-radius:99px;padding:2px 4px 2px 12px}.bmk button{background:#fff;color:#7a5a00;border:1px solid #e0a800;padding:1px 10px;font-size:12px;font-weight:600;border-radius:99px}.res{border-radius:14px;padding:18px 16px;margin:12px 0;text-align:center;border:2px solid}.rp{background:#e6f5ec;border-color:#1a7f4b}.rf{background:#fdecea;border-color:#c0392b}.rt2{font-weight:700;font-size:15px}.rp .rt2{color:#1a7f4b}.rf .rt2{color:#c0392b}.rpct{font-size:54px;font-weight:700;line-height:1.1}.rpct small{font-size:18px;margin-left:2px}.rl2{font-size:13px;color:var(--mut);margin-bottom:10px}.rtb{width:100%;border-collapse:collapse;font-size:14px;text-align:left;background:#fff;border-radius:8px;margin:6px 0 12px}.rtb td{padding:7px 10px;border-top:1px solid var(--line)}.rtb tr:first-child td{border-top:0}.rtb td:last-child{text-align:right}.part{position:relative}.pane{position:sticky;top:0;z-index:6;max-height:40vh;max-height:40dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--bg,#f2f6f9);padding:2px 0 8px;box-shadow:0 10px 8px -9px rgba(18,38,58,.45)}.pane .dlg{margin:0}.pane.open{position:static;max-height:none;overflow:visible;box-shadow:none}.pp.np{margin-top:8px}.pp .k{margin-bottom:2px}.hl{display:inline-block;font-size:11px;font-weight:700;color:var(--pri);border:1px solid var(--pri);border-radius:4px;padding:0 6px;margin:6px 0 2px}.memo{transform:rotate(-.4deg);box-shadow:0 6px 14px rgba(138,90,0,.15)}.grp{position:relative}.sumbox{margin:2px 0 8px 28px;padding:8px 10px;background:#f4f7fa;border-left:3px solid var(--pri);border-radius:4px;font-size:15px;line-height:1.5}.ow{font-size:13.5px;line-height:1.55;margin:4px 0;padding:6px 9px;border-radius:7px;background:#f4f6f8;border-left:3px solid #c9d2da}.ow.g{background:#e8f6ee;border-left-color:#1a7f4b}.ow b{margin-right:4px}
+mark{background:linear-gradient(transparent 45%,#f6e27a 45%);color:inherit;padding:0 1px}
+.neg{background:linear-gradient(transparent 45%,#f6e27a 45%);font-weight:800}
+.lbl{float:right;font-size:11px;color:var(--mut);font-weight:400;margin-left:8px}
+.ac{border:1px solid var(--line);border-radius:12px;background:#fff;margin:10px 0;overflow:hidden}
+.ac-top{background:#fdecea;border-bottom:1px solid #f3c1bb;padding:10px 14px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.ac-top b{color:var(--bad);font-size:15px}.ac-top.g{background:var(--okbg);border-color:#b9e0c9}.ac-top.g b{color:var(--ok)}.ac-top.fine{background:#eef3f8;border-color:var(--line)}.ac-top.fine b{color:var(--pri)}
+.ac-a{font-weight:700;font-size:16px}.ac-k{flex-basis:100%;font-size:13px;color:var(--mut)}.ac-x{font-size:13px;color:var(--bad)}
+.ac-sec{font-size:13px;font-weight:700;color:var(--pri);margin:14px 14px 6px}
+.pass{margin:0 14px;padding:6px 12px;background:#fafbfc;border-radius:8px}
+.pl1{padding:4px 0}.pl1 .e{font-size:16px}.pl1 .k{font-size:13px;color:var(--mut)}
+.oc{margin:6px 14px;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;background:#f7f8fa}
+.oc.g{border-color:var(--ok);background:linear-gradient(90deg,#d7efe0,#fff)}
+.oc.r{border-color:var(--bad);background:linear-gradient(90deg,#fadbd8,#fff)}
+.oh{display:flex;gap:8px;align-items:flex-start}.oh .cn{min-width:20px;color:var(--mut)}.ot{flex:1;font-size:16px}.ot .okr{font-size:13px;color:var(--mut)}
+.tg{font-size:12px;font-weight:700;padding:1px 8px;border-radius:99px;background:#fff;border:1px solid currentColor;color:var(--mut);white-space:nowrap}.oc.g .tg{color:var(--ok)}.oc.r .tg{color:var(--bad)}
+.why{margin-top:6px;padding-left:10px;border-left:3px solid #cbd3dc;font-size:14px;color:#33404f}.oc.g .why{border-color:var(--ok)}.oc.r .why{border-color:var(--bad)}
+.trap{margin:10px 14px;padding:8px 12px;border-radius:8px;background:#fff7e0;font-size:14px}.trap b{color:#8a5a00}
+.fix{margin:12px 14px 14px}.fh{font-weight:700;font-size:13px;color:var(--pri);margin-bottom:4px}
+.opt.xx{opacity:.4;text-decoration:line-through;pointer-events:none}
+.fixed{margin:12px 14px 4px;padding:8px 12px;border-radius:8px;background:var(--okbg);color:var(--ok);font-weight:700}
+.nx{margin:10px 14px 16px}.nx button{display:block;width:100%;padding:14px 0;font-size:17px;font-weight:700;border-radius:10px}
+.post{margin:12px 14px 14px;padding:12px 14px;background:#fff9c4;border:1.5px solid #e6d44f;border-radius:6px;box-shadow:2px 3px 0 #ece3a0}
+.ph{font-size:13px;font-weight:700;color:#7a6500;margin-bottom:6px}.post .pl{font-size:17px;font-weight:700}.post .pk{font-size:14.5px;color:#4a5563;margin:2px 0 8px}.post .pw{font-size:15px}.post .pd{margin-top:8px;font-size:13px;color:var(--ok);font-weight:700}.post button{margin-top:10px}
+.sumbox{margin:6px 0 10px;padding:10px 12px;background:#f3f6fa;border-radius:8px;font-size:17px;line-height:1.7}
+.qd{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;padding:8px 12px;margin:6px 0;border-radius:8px;background:var(--okbg);border:1px solid #b9e0c9;font-size:15px}.qd .qn{color:var(--ok);font-weight:700}.qd .qk{flex-basis:100%;font-size:13px;color:var(--mut);padding-left:32px}
+.res{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0;text-align:center}
+.res .rpct{font-size:44px;font-weight:800;color:var(--pri)}.res .rpct small{font-size:18px;color:var(--mut)}.res .rl{font-size:14px;color:var(--mut)}
+.rtb{margin:10px auto;border-collapse:collapse;font-size:14px}.rtb td{padding:3px 12px;border-bottom:1px solid var(--line)}
+.chip{display:inline-block;margin-top:8px;padding:4px 14px;border-radius:99px;font-size:13px;font-weight:700;background:#eef3f8;color:var(--mut)}.chip.on{background:var(--okbg);color:var(--ok)}
+.tp{margin-top:14px;padding:12px;border:2px dashed #999;border-radius:10px;text-align:left;font-size:14px}.tp b{color:#555}.tp .fl{color:var(--bad);font-weight:700}
+.fc{margin:6px 14px;padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);font-size:15px}.fc.f{border-color:var(--ok);background:linear-gradient(90deg,#d7efe0,#fff)}.fc.m{border-color:var(--bad);background:linear-gradient(90deg,#fadbd8,#fff)}
+.fc .tg2{font-size:12px;font-weight:700;margin-right:6px}.fc.f .tg2{color:var(--ok)}.fc.m .tg2{color:var(--bad)}
+.fcb{margin-top:3px;padding-left:10px;border-left:3px solid #cbd3dc;font-size:14px;color:#33404f}
+.fixs{margin:4px 14px 6px;font-size:17px}.fixs-l{font-size:12.5px;color:var(--mut);margin:10px 14px 0}
+.ac.s1{margin:10px 0 4px 34px}
+
+.crit{margin-top:4px;font-size:12px;color:var(--mut)}</style></head><body><div class="wrap">
+<header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M2 Reading</a><h1>Reading 69 · Wild Wonderlands</h1><div class="sub">야생의 아주 멋진 곳 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
+<div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div class="bmw"><span id="bm" class="bmk" style="display:none">책갈피 저장됨 &middot; 다음에 이어서 풀기<button type="button">처음부터</button></span></div><div id="app"></div>
+</div>
+<script>
+var D=[{"n": 1, "tag": null, "en": "National parks are special places for preserve nature. They keep many animal and plant species safe.", "ko": "국립 공원은 자연을 보존하기 위한 특별한 장소입니다. 그곳들은 많은 동물과 식물종을 안전하게 지켜 줍니다.", "ok": false, "foot": [], "fixes": [{"wrong": "preserve", "right": "preserving", "partial": false, "at": [6], "point": "전치사 뒤 동명사: 전치사 for 뒤에는 동명사 preserving", "topic": "전치사 뒤 동명사", "memo": "전치사 for 뒤에는 동명사 preserving"}]}, {"n": 2, "tag": null, "en": "At the same time, they let people enjoy the beauty of nature. Let's take a look at two famous national parks in South America and Africa.", "ko": "동시에 그곳들은 사람들이 자연의 아름다움을 즐기도록 해 줍니다. 남미와 아프리카의 유명한 두 국립 공원을 살펴봅시다.", "ok": true, "foot": [], "fixes": []}, {"n": 3, "tag": "칠레 · 토레스 델 파이네", "en": "Can you believe you can experiencing four seasons in one day? Torres del Paine National Park in Chile are the perfect place for this.", "ko": "하루에 사계절을 경험할 수 있다는 것을 믿을 수 있나요? 칠레의 토레스 델 파이네 국립 공원은 이것을 위한 완벽한 장소입니다.", "ok": false, "foot": [], "fixes": [{"wrong": "experiencing", "right": "experience", "partial": false, "at": [5], "point": "조동사 + 동사원형: 조동사 can 뒤에는 동사원형 experience", "topic": "조동사 + 동사원형", "memo": "조동사 can 뒤에는 동사원형 experience"}, {"wrong": "are", "right": "is", "partial": false, "at": [18], "point": "주어와 동사의 수일치: 주어 Torres del Paine National Park는 단수라 is", "topic": "주어와 동사의 수일치", "memo": "주어 Torres del Paine National Park는 단수라 is"}]}, {"n": 4, "tag": null, "en": "It is famous to its dynamic weather. It can be sunny, rainy, or snowy in a single day!", "ko": "그곳은 역동적인 날씨로 유명합니다. 단 하루 안에 맑을 수도, 비가 올 수도, 또는 눈이 내릴 수도 있습니다!", "ok": false, "foot": [], "fixes": [{"wrong": "to", "right": "for", "partial": false, "at": [3], "point": "전치사: be famous for: ~로 유명하다", "topic": "전치사", "memo": "be famous for: ~로 유명하다"}]}, {"n": 5, "tag": null, "en": "Also, you can see mountains, lakes, and even a big ice field in this park.", "ko": "또한, 이 공원에서는 산, 호수, 그리고 심지어 큰 빙원을 볼 수 있습니다.", "ok": true, "foot": [], "fixes": []}, {"n": 6, "tag": null, "en": "For example, Grey Glacier, one of the most wonderful glacier in Chile, welcomes you in the park. It is exciting walk on the glacier and enjoy the icy view.", "ko": "예를 들어, 칠레에서 가장 멋진 빙하 중 하나인 그레이 빙하가 공원에서 여러분을 환영합니다. 빙하 위를 걷고 얼음에 뒤덮인 경치를 즐기는 것은 흥미진진합니다.", "ok": false, "foot": [], "fixes": [{"wrong": "glacier", "right": "glaciers", "partial": false, "at": [9], "point": "one of + 복수명사: one of the most wonderful 뒤에는 복수명사", "topic": "one of + 복수명사", "memo": "one of the most wonderful 뒤에는 복수명사"}, {"wrong": "walk", "right": "to walk", "partial": false, "at": [20], "point": "가주어 it과 진주어 to부정사: It is exciting 뒤의 진주어는 to walk", "topic": "가주어 it과 진주어 to부정사", "memo": "It is exciting 뒤의 진주어는 to walk"}]}, {"n": 7, "tag": "자연 보존 노력", "en": "The park is making efforts preserve its natural beauty. First, it controls the number of visitors, so they should book to enter the park.", "ko": "그 공원은 자연의 아름다움을 보존하기 위해 노력하고 있습니다. 첫째, 그곳은 방문객의 수를 통제해서 방문객들은 공원에 들어가기 위해 예약을 해야 합니다.", "ok": false, "foot": [], "fixes": [{"wrong": "preserve", "right": "to preserve", "partial": false, "at": [5], "point": "to부정사의 형용사적 용법: efforts를 꾸며 주는 to부정사 to preserve", "topic": "to부정사의 형용사적 용법", "memo": "efforts를 꾸며 주는 to부정사 to preserve"}]}, {"n": 8, "tag": null, "en": "Second, only some park trails open to visitors for hiking. Third, the park makes visitors to take their trash with them when they leave.", "ko": "둘째, 공원의 일부 산책로만 방문객들에게 하이킹용으로 개방되어 있습니다. 셋째, 그 공원은 방문객들이 떠날 때 그들의 쓰레기를 가져가게 합니다.", "ok": false, "foot": [], "fixes": [{"wrong": "open", "right": "are open", "partial": false, "at": [5], "point": "be동사 생략 오류: 문장에 동사가 없으므로 are open", "topic": "be동사 생략 오류", "memo": "문장에 동사가 없으므로 are open"}, {"wrong": "to take", "right": "take", "partial": false, "at": [15], "point": "사역동사 make: make + 목적어 + 동사원형", "topic": "사역동사 make", "memo": "make + 목적어 + 동사원형"}]}, {"n": 9, "tag": null, "en": "There's one more thing: the hotels in the park does not use plastic and only use eco-friendly products.", "ko": "한 가지가 더 있습니다: 공원 내 호텔들은 플라스틱을 사용하지 않고 친환경 제품만 사용합니다.", "ok": false, "foot": [], "fixes": [{"wrong": "does", "right": "do", "partial": false, "at": [9], "point": "주어와 동사의 수일치: 주어 the hotels는 복수라 do", "topic": "주어와 동사의 수일치", "memo": "주어 the hotels는 복수라 do"}]}, {"n": 10, "tag": "남아공 · 크루거", "en": "Have you hear about the Big Five? They are lions, leopards, elephants, rhinos, and buffaloes.", "ko": "빅 파이브에 대해 들어 본 적이 있나요? 그것들은 사자, 표범, 코끼리, 코뿔소, 그리고 버팔로입니다.", "ok": false, "foot": [], "fixes": [{"wrong": "hear", "right": "heard", "partial": false, "at": [2], "point": "현재완료: Have you + 과거분사 heard", "topic": "현재완료", "memo": "Have you + 과거분사 heard"}]}, {"n": 11, "tag": null, "en": "You can see them all in Kruger National Park in South Africa. Many wild animals moves around this park freely.", "ko": "여러분은 이 모든 동물들을 남아프리카 공화국의 크루거 국립 공원에서 볼 수 있습니다. 많은 야생 동물들이 이 공원에서 자유롭게 돌아다닙니다.", "ok": false, "foot": [], "fixes": [{"wrong": "moves", "right": "move", "partial": false, "at": [15], "point": "주어와 동사의 수일치: 주어 Many wild animals는 복수라 move", "topic": "주어와 동사의 수일치", "memo": "주어 Many wild animals는 복수라 move"}]}, {"n": 12, "tag": null, "en": "If you will be lucky, you can see rhinos which are sleeping under baobab trees.", "ko": "운이 좋으면, 바오밥 나무 아래에서 자고 있는 코뿔소를 볼 수 있습니다.", "ok": false, "foot": [], "fixes": [{"wrong": "will be", "right": "are", "partial": false, "at": [2], "point": "조건 부사절의 시제: 조건 부사절에서는 미래를 현재형으로 씀", "topic": "조건 부사절의 시제", "memo": "조건 부사절에서는 미래를 현재형으로 씀"}]}, {"n": 13, "tag": null, "en": "However, the Big Five are in danger because too much hunting. To protect the Big Five, the park has being a “no-hunting” area from the start.", "ko": "하지만, 빅 파이브는 너무 많은 사냥 때문에 위험에 처해 있습니다. 빅 파이브를 보호하기 위해서 그 공원은 처음부터 ‘사냥 금지’ 지역이었습니다.", "ok": false, "foot": [], "fixes": [{"wrong": "because", "right": "because of", "partial": false, "at": [7], "point": "전치사구: 뒤에 명사구(too much hunting)가 오므로 because of", "topic": "전치사구", "memo": "뒤에 명사구(too much hunting)가 오므로 because of"}, {"wrong": "being", "right": "been", "partial": false, "at": [19], "point": "현재완료: have/has + 과거분사 been", "topic": "현재완료", "memo": "have/has + 과거분사 been"}]}, {"n": 14, "tag": null, "en": "These days, drones and helicopters used to monitor hunting activities. Also, the park runs many nature volunteer programs.", "ko": "요즘에는 드론과 헬리콥터가 사냥 활동을 감시하는 데 사용됩니다. 또한, 그 공원은 많은 자연 자원봉사 프로그램을 운영합니다.", "ok": false, "foot": [], "fixes": [{"wrong": "used", "right": "are used", "partial": false, "at": [5], "point": "수동태: 드론과 헬리콥터가 '사용되는' 것이라 are used", "topic": "수동태", "memo": "드론과 헬리콥터가 '사용되는' 것이라 are used"}]}, {"n": 15, "tag": null, "en": "Volunteers monitor signs of illegal hunting activities and remove animal traps.", "ko": "자원봉사자들은 불법 사냥 활동의 징후를 관찰하고 동물 덫을 제거합니다.", "ok": true, "foot": [], "fixes": []}, {"n": 16, "tag": null, "en": "National parks preserve the Earth's past, present, and future. Thanks to them, future generations will also able to experience many natural wonders.", "ko": "국립 공원은 지구의 과거, 현재, 그리고 미래를 보존합니다. 그곳들 덕분에 미래 세대 또한 많은 자연의 경이로움을 경험할 수 있을 것입니다.", "ok": false, "foot": [], "fixes": [{"wrong": "able", "right": "be able", "partial": false, "at": [16], "point": "조동사 will + be able to: will 뒤에는 동사원형 be가 필요", "topic": "조동사 will + be able to", "memo": "will 뒤에는 동사원형 be가 필요"}]}];var PP=[["National parks are special places for preserving nature.", "국립 공원은 자연을 보존하기 위한 특별한 장소입니다.", 1], ["They keep many animal and plant species safe.", "그곳들은 많은 동물과 식물종을 안전하게 지켜 줍니다.", 0], ["At the same time, they let people enjoy the beauty of nature.", "동시에 그곳들은 사람들이 자연의 아름다움을 즐기도록 해 줍니다.", 0], ["Let's take a look at two famous national parks in South America and Africa.", "남미와 아프리카의 유명한 두 국립 공원을 살펴봅시다.", 0], ["Exploring the Dynamic Nature – Torres del Paine National Park", "역동적인 자연 탐험하기 – 토레스 델 파이네 국립 공원", 1], ["Can you believe you can experience four seasons in one day?", "하루에 사계절을 경험할 수 있다는 것을 믿을 수 있나요?", 0], ["Torres del Paine National Park in Chile is the perfect place for this.", "칠레의 토레스 델 파이네 국립 공원은 이것을 위한 완벽한 장소입니다.", 0], ["It is famous for its dynamic weather.", "그곳은 역동적인 날씨로 유명합니다.", 0], ["It can be sunny, rainy, or snowy in a single day!", "단 하루 안에 맑을 수도, 비가 올 수도, 또는 눈이 내릴 수도 있습니다!", 0], ["Also, you can see mountains, lakes, and even a big ice field in this park.", "또한, 이 공원에서는 산, 호수, 그리고 심지어 큰 빙원을 볼 수 있습니다.", 0], ["For example, Grey Glacier, one of the most wonderful glaciers in Chile, welcomes you in the park.", "예를 들어, 칠레에서 가장 멋진 빙하 중 하나인 그레이 빙하가 공원에서 여러분을 환영합니다.", 0], ["It is exciting to walk on the glacier and enjoy the icy view.", "빙하 위를 걷고 얼음에 뒤덮인 경치를 즐기는 것은 흥미진진합니다.", 0], ["Efforts to Preserve Nature", "자연 보존을 위한 노력", 1], ["The park is making efforts to preserve its natural beauty.", "그 공원은 자연의 아름다움을 보존하기 위해 노력하고 있습니다.", 0], ["First, it controls the number of visitors, so they should book to enter the park.", "첫째, 그곳은 방문객의 수를 통제해서 방문객들은 공원에 들어가기 위해 예약을 해야 합니다.", 0], ["Second, only some park trails are open to visitors for hiking.", "둘째, 공원의 일부 산책로만 방문객들에게 하이킹용으로 개방되어 있습니다.", 0], ["Third, the park makes visitors take their trash with them when they leave.", "셋째, 그 공원은 방문객들이 떠날 때 그들의 쓰레기를 가져가게 합니다.", 0], ["There's one more thing: the hotels in the park do not use plastic and only use eco-friendly products.", "한 가지가 더 있습니다: 공원 내 호텔들은 플라스틱을 사용하지 않고 친환경 제품만 사용합니다.", 0], ["Discovering the Big Five – Kruger National Park", "빅 파이브 발견하기 – 크루거 국립 공원", 1], ["Have you heard about the Big Five?", "빅 파이브에 대해 들어 본 적이 있나요?", 0], ["They are lions, leopards, elephants, rhinos, and buffaloes.", "그것들은 사자, 표범, 코끼리, 코뿔소, 그리고 버팔로입니다.", 0], ["You can see them all in Kruger National Park in South Africa.", "여러분은 이 모든 동물들을 남아프리카 공화국의 크루거 국립 공원에서 볼 수 있습니다.", 0], ["Many wild animals move around this park freely.", "많은 야생 동물들이 이 공원에서 자유롭게 돌아다닙니다.", 0], ["If you are lucky, you can see rhinos which are sleeping under baobab trees.", "운이 좋으면, 바오밥 나무 아래에서 자고 있는 코뿔소를 볼 수 있습니다.", 0], ["However, the Big Five are in danger because of too much hunting.", "하지만, 빅 파이브는 너무 많은 사냥 때문에 위험에 처해 있습니다.", 0], ["To protect the Big Five, the park has been a “no-hunting” area from the start.", "빅 파이브를 보호하기 위해서 그 공원은 처음부터 ‘사냥 금지’ 지역이었습니다.", 0], ["These days, drones and helicopters are used to monitor hunting activities.", "요즘에는 드론과 헬리콥터가 사냥 활동을 감시하는 데 사용됩니다.", 0], ["Also, the park runs many nature volunteer programs.", "또한, 그 공원은 많은 자연 자원봉사 프로그램을 운영합니다.", 0], ["Volunteers monitor signs of illegal hunting activities and remove animal traps.", "자원봉사자들은 불법 사냥 활동의 징후를 관찰하고 동물 덫을 제거합니다.", 0], ["National parks preserve the Earth's past, present, and future.", "국립 공원은 지구의 과거, 현재, 그리고 미래를 보존합니다.", 0], ["Thanks to them, future generations will also be able to experience many natural wonders.", "그곳들 덕분에 미래 세대 또한 많은 자연의 경이로움을 경험할 수 있을 것입니다.", 0]];var RNUM=69;var TITLE_EN="Wild Wonderlands";var PASS_EN=["Wild Wonderlands", "National parks are special places for preserving nature. They keep many animal and plant species safe. At the same time, they let people enjoy the beauty of nature. Let's take a look at two famous national parks in South America and Africa.", "Exploring the Dynamic Nature – Torres del Paine National Park", "Can you believe you can experience four seasons in one day? Torres del Paine National Park in Chile is the perfect place for this. It is famous for its dynamic weather. It can be sunny, rainy, or snowy in a single day! Also, you can see mountains, lakes, and even a big ice field in this park. For example, Grey Glacier, one of the most wonderful glaciers in Chile, welcomes you in the park. It is exciting to walk on the glacier and enjoy the icy view.", "Efforts to Preserve Nature", "The park is making efforts to preserve its natural beauty. First, it controls the number of visitors, so they should book to enter the park. Second, only some park trails are open to visitors for hiking. Third, the park makes visitors take their trash with them when they leave. There's one more thing: the hotels in the park do not use plastic and only use eco-friendly products.", "Discovering the Big Five – Kruger National Park", "Have you heard about the Big Five? They are lions, leopards, elephants, rhinos, and buffaloes. You can see them all in Kruger National Park in South Africa. Many wild animals move around this park freely. If you are lucky, you can see rhinos which are sleeping under baobab trees. However, the Big Five are in danger because of too much hunting. To protect the Big Five, the park has been a “no-hunting” area from the start. These days, drones and helicopters are used to monitor hunting activities. Also, the park runs many nature volunteer programs. Volunteers monitor signs of illegal hunting activities and remove animal traps. National parks preserve the Earth's past, present, and future. Thanks to them, future generations will also be able to experience many natural wonders."];var PASS_KO=["야생의 아주 멋진 곳", "국립 공원은 자연을 보존하기 위한 특별한 장소입니다. 그곳들은 많은 동물과 식물종을 안전하게 지켜 줍니다. 동시에 그곳들은 사람들이 자연의 아름다움을 즐기도록 해 줍니다. 남미와 아프리카의 유명한 두 국립 공원을 살펴봅시다.", "역동적인 자연 탐험하기 – 토레스 델 파이네 국립 공원", "하루에 사계절을 경험할 수 있다는 것을 믿을 수 있나요? 칠레의 토레스 델 파이네 국립 공원은 이것을 위한 완벽한 장소입니다. 그곳은 역동적인 날씨로 유명합니다. 단 하루 안에 맑을 수도, 비가 올 수도, 또는 눈이 내릴 수도 있습니다! 또한, 이 공원에서는 산, 호수, 그리고 심지어 큰 빙원을 볼 수 있습니다. 예를 들어, 칠레에서 가장 멋진 빙하 중 하나인 그레이 빙하가 공원에서 여러분을 환영합니다. 빙하 위를 걷고 얼음에 뒤덮인 경치를 즐기는 것은 흥미진진합니다.", "자연 보존을 위한 노력", "그 공원은 자연의 아름다움을 보존하기 위해 노력하고 있습니다. 첫째, 그곳은 방문객의 수를 통제해서 방문객들은 공원에 들어가기 위해 예약을 해야 합니다. 둘째, 공원의 일부 산책로만 방문객들에게 하이킹용으로 개방되어 있습니다. 셋째, 그 공원은 방문객들이 떠날 때 그들의 쓰레기를 가져가게 합니다. 한 가지가 더 있습니다: 공원 내 호텔들은 플라스틱을 사용하지 않고 친환경 제품만 사용합니다.", "빅 파이브 발견하기 – 크루거 국립 공원", "빅 파이브에 대해 들어 본 적이 있나요? 그것들은 사자, 표범, 코끼리, 코뿔소, 그리고 버팔로입니다. 여러분은 이 모든 동물들을 남아프리카 공화국의 크루거 국립 공원에서 볼 수 있습니다. 많은 야생 동물들이 이 공원에서 자유롭게 돌아다닙니다. 운이 좋으면, 바오밥 나무 아래에서 자고 있는 코뿔소를 볼 수 있습니다. 하지만, 빅 파이브는 너무 많은 사냥 때문에 위험에 처해 있습니다. 빅 파이브를 보호하기 위해서 그 공원은 처음부터 ‘사냥 금지’ 지역이었습니다. 요즘에는 드론과 헬리콥터가 사냥 활동을 감시하는 데 사용됩니다. 또한, 그 공원은 많은 자연 자원봉사 프로그램을 운영합니다. 자원봉사자들은 불법 사냥 활동의 징후를 관찰하고 동물 덫을 제거합니다. 국립 공원은 지구의 과거, 현재, 그리고 미래를 보존합니다. 그곳들 덕분에 미래 세대 또한 많은 자연의 경이로움을 경험할 수 있을 것입니다."];var BG=[{"qs": [{"n": 6, "q": "윗글의 내용과 일치하지 않는 것은?", "o": ["Torres del Paine National Park is located in Chile.", "Walking on Grey Glacier is not allowed.", "People can see mountains, lakes, and an ice field in the park.", "The weather can change a lot in a single day in the park.", "Grey Glacier is one of the glaciers in Chile."], "a": 1, "ans": "Walking on Grey Glacier is not allowed.", "ko": ["토레스 델 파이네 국립 공원은 칠레에 있다.", "그레이 빙하 위를 걷는 것은 허용되지 않는다.", "사람들은 공원에서 산, 호수, 빙원을 볼 수 있다.", "공원에서는 하루 안에 날씨가 크게 바뀔 수 있다.", "그레이 빙하는 칠레의 빙하 중 하나이다."], "evs": [["It is exciting to walk on the glacier and enjoy the icy view.", "빙하 위를 걷고 얼음에 뒤덮인 경치를 즐기는 것은 흥미진진합니다."]], "ow": ["오답 ✕ — 'Torres del Paine National Park in Chile'(칠레의 토레스 델 파이네 국립 공원)라고 했으므로 일치.", "정답 ○ — 'It is exciting to walk on the glacier'(빙하 위를 걷는 것은 흥미진진하다)라고 했으므로 걷는 것이 허용되지 않는다는 말은 일치하지 않는다.", "오답 ✕ — 'you can see mountains, lakes, and even a big ice field'(산, 호수, 큰 빙원을 볼 수 있다)라고 했으므로 일치.", "오답 ✕ — 'It can be sunny, rainy, or snowy in a single day!'(하루 안에 맑거나 비가 오거나 눈이 올 수 있다)라고 했으므로 일치.", "오답 ✕ — 'one of the most wonderful glaciers in Chile'(칠레에서 가장 멋진 빙하 중 하나)라고 했으므로 일치."], "memo": ["정답 ②: 그레이 빙하 위를 걷는 것은 흥미진진한 체험이다.", "근거: It is exciting to walk on the glacier and enjoy the icy view.(빙하 위를 걷고 얼음에 뒤덮인 경치를 즐기는 것은 흥미진진합니다.)", "함정: 일치하지 않는 것 찾기! 걷는 것이 가능한 체험인데 금지라고 바꿔 놓음"], "why": "빙하 위를 걷는 것은 이 공원의 흥미진진한 체험이다.", "ev": ["It is exciting to walk on the glacier and enjoy the icy view.", "빙하 위를 걷고 얼음에 뒤덮인 경치를 즐기는 것은 흥미진진합니다."]}, {"n": 7, "q": "윗글의 빈칸에 들어갈 말로 알맞은 것은?   It is exciting to walk on the glacier and enjoy the ________ view.", "o": ["warm", "sandy", "grassy", "icy", "muddy"], "a": 3, "ans": "icy", "ko": ["따뜻한", "모래로 덮인", "풀이 무성한", "얼음에 뒤덮인", "진흙투성이의"], "evs": [["Also, you can see mountains, lakes, and even a big ice field in this park.", "또한, 이 공원에서는 산, 호수, 그리고 심지어 큰 빙원을 볼 수 있습니다."]], "ow": ["오답 ✕ — warm은 '따뜻한'이다. 빙하 경치와 어울리지 않는다.", "오답 ✕ — sandy는 '모래로 덮인'이다. 빙하는 모래가 아니라 얼음이다.", "오답 ✕ — grassy는 '풀이 무성한'이다. 빙하 위에는 풀이 없다.", "정답 ○ — 'Grey Glacier'(그레이 빙하)와 'a big ice field'(큰 빙원)가 나오므로 얼음에 뒤덮인 경치, 즉 icy가 알맞다.", "오답 ✕ — muddy는 '진흙투성이의'이다. 빙하 경치와 맞지 않는다."], "memo": ["정답 ④: icy(얼음에 뒤덮인)", "근거: Grey Glacier ... a big ice field(그레이 빙하, 큰 빙원)", "함정: 빙하는 얼음! warm, sandy, grassy, muddy는 모두 어울리지 않음 ✕"], "why": "빙하의 경치는 얼음에 뒤덮인 모습이다.", "ev": ["Also, you can see mountains, lakes, and even a big ice field in this park.", "또한, 이 공원에서는 산, 호수, 그리고 심지어 큰 빙원을 볼 수 있습니다."]}], "pp": [["Exploring the Dynamic Nature – Torres del Paine National Park", "역동적인 자연 탐험하기 – 토레스 델 파이네 국립 공원"], ["Can you believe you can experience four seasons in one day?", "하루에 사계절을 경험할 수 있다는 것을 믿을 수 있나요?"], ["Torres del Paine National Park in Chile is the perfect place for this.", "칠레의 토레스 델 파이네 국립 공원은 이것을 위한 완벽한 장소입니다."], ["It is famous for its dynamic weather.", "그곳은 역동적인 날씨로 유명합니다."], ["It can be sunny, rainy, or snowy in a single day!", "단 하루 안에 맑을 수도, 비가 올 수도, 또는 눈이 내릴 수도 있습니다!"], ["Also, you can see mountains, lakes, and even a big ice field in this park.", "또한, 이 공원에서는 산, 호수, 그리고 심지어 큰 빙원을 볼 수 있습니다."], ["For example, Grey Glacier, one of the most wonderful glaciers in Chile, welcomes you in the park.", "예를 들어, 칠레에서 가장 멋진 빙하 중 하나인 그레이 빙하가 공원에서 여러분을 환영합니다."], ["It is exciting to walk on the glacier and enjoy the icy view.", "빙하 위를 걷고 얼음에 뒤덮인 경치를 즐기는 것은 흥미진진합니다."]]}, {"qs": [{"n": 8, "q": "윗글의 제목으로 알맞은 것은?", "o": ["The Best Hotels Near the Park", "Eco-Friendly Efforts in the World", "Recommendation for Hiking Trails", "Guideline for Booking a Visit to the Park", "How the Park Protects Its Natural Beauty"], "a": 4, "ans": "How the Park Protects Its Natural Beauty", "ko": ["공원 근처의 최고의 호텔들", "세계의 친환경 노력", "하이킹 코스 추천", "공원 방문 예약 안내", "공원은 자연의 아름다움을 어떻게 지킬까"], "evs": [["The park is making efforts to preserve its natural beauty.", "그 공원은 자연의 아름다움을 보존하기 위해 노력하고 있습니다."]], "ow": ["오답 ✕ — 'the hotels in the park do not use plastic'(공원 내 호텔은 플라스틱을 쓰지 않는다)는 일부일 뿐, 호텔 추천 글이 아니다.", "오답 ✕ — 세계의 노력이 아니라 한 공원의 노력을 다룬다.", "오답 ✕ — 'only some park trails are open'(일부 산책로만 개방)은 일부일 뿐, 추천 글이 아니다.", "오답 ✕ — 'they should book to enter the park'(예약을 해야 한다)는 일부일 뿐이다.", "정답 ○ — 예약으로 방문객 수 통제, 일부 산책로만 개방, 쓰레기 되가져가기, 친환경 호텔 등 공원이 자연의 아름다움을 지키는 방법을 소개한다."], "memo": ["정답 ⑤: How the Park Protects Its Natural Beauty(공원은 자연의 아름다움을 어떻게 지킬까)", "근거: The park is making efforts to preserve its natural beauty.(그 공원은 자연의 아름다움을 보존하기 위해 노력하고 있습니다.)", "함정: 예약, 산책로, 호텔은 모두 보존 노력의 예시일 뿐 ✕"], "why": "공원의 여러 보존 노력을 소개하는 글이다.", "ev": ["The park is making efforts to preserve its natural beauty.", "그 공원은 자연의 아름다움을 보존하기 위해 노력하고 있습니다."]}], "pp": [["Efforts to Preserve Nature", "자연 보존을 위한 노력"], ["The park is making efforts to preserve its natural beauty.", "그 공원은 자연의 아름다움을 보존하기 위해 노력하고 있습니다."], ["First, it controls the number of visitors, so they should book to enter the park.", "첫째, 그곳은 방문객의 수를 통제해서 방문객들은 공원에 들어가기 위해 예약을 해야 합니다."], ["Second, only some park trails are open to visitors for hiking.", "둘째, 공원의 일부 산책로만 방문객들에게 하이킹용으로 개방되어 있습니다."], ["Third, the park makes visitors take their trash with them when they leave.", "셋째, 그 공원은 방문객들이 떠날 때 그들의 쓰레기를 가져가게 합니다."], ["There's one more thing: the hotels in the park do not use plastic and only use eco-friendly products.", "한 가지가 더 있습니다: 공원 내 호텔들은 플라스틱을 사용하지 않고 친환경 제품만 사용합니다."]]}, {"qs": [{"n": 9, "q": "윗글의 내용과 일치하지 않는 것은?", "o": ["The Big Five animals live in Kruger National Park.", "People can see rhinos sleep under baobab trees.", "The park has recently changed to a “no-hunting” area.", "Drones and helicopters watch hunting to protect the Big Five.", "The park has volunteer programs that help stop illegal hunting activities."], "a": 2, "ans": "The park has recently changed to a “no-hunting” area.", "ko": ["빅 파이브 동물들은 크루거 국립 공원에 산다.", "사람들은 바오밥 나무 아래에서 자는 코뿔소를 볼 수 있다.", "그 공원은 최근에 ‘사냥 금지’ 지역으로 바뀌었다.", "드론과 헬리콥터가 빅 파이브를 보호하기 위해 사냥을 감시한다.", "그 공원에는 불법 사냥을 막는 것을 돕는 자원봉사 프로그램이 있다."], "evs": [["To protect the Big Five, the park has been a “no-hunting” area from the start.", "빅 파이브를 보호하기 위해서 그 공원은 처음부터 ‘사냥 금지’ 지역이었습니다."]], "ow": ["오답 ✕ — 'You can see them all in Kruger National Park'(이 모든 동물들을 크루거 국립 공원에서 볼 수 있다)라고 했으므로 일치.", "오답 ✕ — 'you can see rhinos which are sleeping under baobab trees'(바오밥 나무 아래에서 자고 있는 코뿔소를 볼 수 있다)라고 했으므로 일치.", "정답 ○ — 'has been a no-hunting area from the start'(처음부터 사냥 금지 지역이었다)이므로 최근에 바뀌었다는 말은 일치하지 않는다.", "오답 ✕ — 'drones and helicopters are used to monitor hunting activities'(드론과 헬리콥터가 사냥 활동을 감시하는 데 사용된다)라고 했으므로 일치.", "오답 ✕ — 'Volunteers monitor signs of illegal hunting activities and remove animal traps.'(자원봉사자들은 불법 사냥의 징후를 관찰하고 덫을 제거한다.)라고 했으므로 일치."], "memo": ["정답 ③: 공원은 처음부터 사냥 금지 지역이었다.", "근거: To protect the Big Five, the park has been a “no-hunting” area from the start.(빅 파이브를 보호하기 위해서 그 공원은 처음부터 ‘사냥 금지’ 지역이었다.)", "함정: 일치하지 않는 것 찾기! from the start(처음부터)를 recently(최근에)로 바꿔 놓음"], "why": "공원은 처음부터 사냥 금지 지역이었다.", "ev": ["To protect the Big Five, the park has been a “no-hunting” area from the start.", "빅 파이브를 보호하기 위해서 그 공원은 처음부터 ‘사냥 금지’ 지역이었습니다."]}, {"n": 10, "q": "다음은 윗글 전체를 요약한 문장이다. 빈칸 (A), (B)에 들어갈 말로 가장 알맞은 것은?", "sum": "To protect the Big Five, Kruger National Park has been a (A)________ area from the start, and volunteers (B)________ signs of illegal hunting.", "lab": "완성된 요약문 : ", "o": ["no-hunting - monitor", "hunting - monitor", "no-hunting - ignore", "tourist - remove", "no-hunting - allow"], "a": 0, "ans": "no-hunting - monitor", "ko": ["사냥 금지 - 감시하다", "사냥 - 감시하다", "사냥 금지 - 무시하다", "관광 - 제거하다", "사냥 금지 - 허락하다"], "evs": [["To protect the Big Five, the park has been a “no-hunting” area from the start.", "빅 파이브를 보호하기 위해서 그 공원은 처음부터 ‘사냥 금지’ 지역이었습니다."], ["Volunteers monitor signs of illegal hunting activities and remove animal traps.", "자원봉사자들은 불법 사냥 활동의 징후를 관찰하고 동물 덫을 제거합니다."]], "ow": ["정답 ○ — 'a no-hunting area from the start'(처음부터 사냥 금지 지역)이므로 (A)는 no-hunting, 'Volunteers monitor signs'(자원봉사자들은 징후를 관찰한다)이므로 (B)는 monitor이다.", "오답 ✕ — 빅 파이브를 보호하기 위해 사냥을 금지한 곳이지 사냥하는 곳이 아니다. (B) monitor는 맞다.", "오답 ✕ — (A) no-hunting은 맞지만, 자원봉사자들은 징후를 무시하지 않고 관찰한다.", "오답 ✕ — 관광지로 만든다는 내용이 아니며, 징후를 제거하는 것이 아니라 관찰하고 덫을 제거한다.", "오답 ✕ — (A) no-hunting은 맞지만, 자원봉사자들은 불법 사냥을 허락하지 않고 감시한다."], "memo": ["정답 ①: no-hunting(사냥 금지) - monitor(감시하다)", "근거: Volunteers monitor signs of illegal hunting activities and remove animal traps.(자원봉사자들은 불법 사냥 활동의 징후를 관찰하고 동물 덫을 제거한다.)", "함정: 사냥을 허락하거나 무시하는 것이 아니라 막기 위해 감시 ✕"], "why": "공원은 처음부터 사냥 금지 지역이고 자원봉사자들이 불법 사냥의 징후를 감시한다.", "note": {"en": "To protect the Big Five, Kruger National Park has been a no-hunting area from the start, and volunteers monitor signs of illegal hunting.", "ko": "빅 파이브를 보호하기 위해 크루거 국립 공원은 처음부터 사냥 금지 지역이었고, 자원봉사자들은 불법 사냥의 징후를 감시한다.", "words": [["no-hunting", "사냥 금지의"], ["monitor", "감시하다"]]}, "ev": ["To protect the Big Five, the park has been a “no-hunting” area from the start.", "빅 파이브를 보호하기 위해서 그 공원은 처음부터 ‘사냥 금지’ 지역이었습니다."]}], "pp": [["Discovering the Big Five – Kruger National Park", "빅 파이브 발견하기 – 크루거 국립 공원"], ["Have you heard about the Big Five?", "빅 파이브에 대해 들어 본 적이 있나요?"], ["They are lions, leopards, elephants, rhinos, and buffaloes.", "그것들은 사자, 표범, 코끼리, 코뿔소, 그리고 버팔로입니다."], ["You can see them all in Kruger National Park in South Africa.", "여러분은 이 모든 동물들을 남아프리카 공화국의 크루거 국립 공원에서 볼 수 있습니다."], ["Many wild animals move around this park freely.", "많은 야생 동물들이 이 공원에서 자유롭게 돌아다닙니다."], ["If you are lucky, you can see rhinos which are sleeping under baobab trees.", "운이 좋으면, 바오밥 나무 아래에서 자고 있는 코뿔소를 볼 수 있습니다."], ["However, the Big Five are in danger because of too much hunting.", "하지만, 빅 파이브는 너무 많은 사냥 때문에 위험에 처해 있습니다."], ["To protect the Big Five, the park has been a “no-hunting” area from the start.", "빅 파이브를 보호하기 위해서 그 공원은 처음부터 ‘사냥 금지’ 지역이었습니다."], ["These days, drones and helicopters are used to monitor hunting activities.", "요즘에는 드론과 헬리콥터가 사냥 활동을 감시하는 데 사용됩니다."], ["Also, the park runs many nature volunteer programs.", "또한, 그 공원은 많은 자연 자원봉사 프로그램을 운영합니다."], ["Volunteers monitor signs of illegal hunting activities and remove animal traps.", "자원봉사자들은 불법 사냥 활동의 징후를 관찰하고 동물 덫을 제거합니다."], ["National parks preserve the Earth's past, present, and future.", "국립 공원은 지구의 과거, 현재, 그리고 미래를 보존합니다."], ["Thanks to them, future generations will also be able to experience many natural wonders.", "그곳들 덕분에 미래 세대 또한 많은 자연의 경이로움을 경험할 수 있을 것입니다."]]}];
+/* board owner guard + server resume: previous student's records are wiped on a new board name; own records come back from the board server */
+var BSYNC=(function(){var P='m2-',SRV='https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec',D0='2000-01-01',KEY='p_m2';
+var n='',c='';
+try{n=localStorage.getItem('bd-name')||'';c=localStorage.getItem('bd-cls')||'';
+if(!n){var w=null;try{w=JSON.parse(sessionStorage.getItem('bl-who')||'null')}catch(e){}n=(w&&w.n)||'';c=(w&&w.c)||c}
+if(n){var o=localStorage.getItem(P+'owner');
+if(o!==n){Object.keys(localStorage).filter(function(k){return k.indexOf(P)===0||k.indexOf('m-find-')===0}).forEach(function(k){localStorage.removeItem(k)});
+try{sessionStorage.removeItem('bl-snap-m2')}catch(e){}
+try{sessionStorage.removeItem(P+'rst')}catch(e){}
+localStorage.setItem(P+'owner',n)}}}catch(e){}
+function get(cb){fetch(SRV+'?a=get&date='+D0+'&name='+encodeURIComponent(n)).then(function(r){return r.json()}).then(function(j){if(!j||!j.ok)throw 0;cb((j.chk&&j.chk.app)||{})}).catch(function(){})}
+function put(card){fetch(SRV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({a:'put',date:D0,cls:c,name:n,card:'app',chk:card}),keepalive:true}).catch(function(){})}
+function parse(s){try{return JSON.parse(s||'{}')||{}}catch(e){return {}}}
+/* restore: runs once per tab session, reloads the page only when something was restored */
+if(n){try{if(!sessionStorage.getItem(P+'rst')){sessionStorage.setItem(P+'rst','1');
+get(function(card){var m=parse(card[KEY]),ks=Object.keys(m),any=0,last=0,lt=0;
+var st=parse(localStorage.getItem(P+'st'));
+ks.forEach(function(r){var e=m[r];if(!e||!e.p)return;
+if(!localStorage.getItem(P+'prog-'+r)){window.__bsR=1;localStorage.setItem(P+'prog-'+r,JSON.stringify(e.p));st[r]=e.s||1;any=1}
+if((e.t||0)>=lt){lt=e.t||0;last=r}});
+if(any){localStorage.setItem(P+'st',JSON.stringify(st));if(last)localStorage.setItem(P+'last',String(last));location.reload()}})}}catch(e){}}
+var tm=0,pend=null;
+function run(){if(!pend)return;var a=pend;pend=null;get(function(card){var m=parse(card[KEY]);
+if(a.fin||!a.prog){delete m[a.r]}else{m[a.r]={p:a.prog,s:a.stv,t:Date.now()}}
+var ks=Object.keys(m).sort(function(x,y){return (m[y].t||0)-(m[x].t||0)});ks.slice(3).forEach(function(k){delete m[k]});
+card[KEY]=JSON.stringify(m);put(card)})}
+document.addEventListener('visibilitychange',function(){if(document.hidden){clearTimeout(tm);run()}});
+return function(r,prog,stv,fin){if(!n)return;pend={r:r,prog:prog,stv:stv,fin:fin};clearTimeout(tm);tm=setTimeout(run,1200)}})();
+var LABEL='천재(소) 7과';
+var BK='m-find-r'+RNUM+'-best';
+var TEACH=/[?&]t=1(&|$)/.test(location.search);
+var CN='①②③④⑤';
+var secs=[],cur=null;
+D.forEach(function(it,i){if(it.tag||!cur){cur={name:it.tag||'',items:[]};secs.push(cur)}cur.items.push(i)});
+var sel={},done={},qst={},chk=0,s1t={},mark=Date.now();
+var QL=[];BG.forEach(function(g){g.qs.forEach(function(q){q.g=g;QL.push(q)})});QL.forEach(function(q,i){q.dn=i+1});
+function key(i,t){return i+':'+t}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function en(s){return '<span lang="en">'+esc(s)+'</span>'}
+function neg(s){return esc(s).replace(/(일치하지 않는|알 수 없는|않은|않는|틀린|잘못된|어색한|다른)/g,'<span class="neg">$1</span>')}
+function reasonHtml(t){t=t.replace(/^(오답|정답)\s*[○✕]\s*—\s*/,'').replace(/\s*✕/g,'');return esc(t).replace(/'(.+?)'(?=\()/g,'<mark lang="en">$1</mark>')}
+function qById(n){for(var i=0;i<QL.length;i++)if(QL[i].n===n)return QL[i]}
+function span(it){var r=[];it.fixes.forEach(function(f,k){var n=f.wrong.split(/\s+/).length;f.at.forEach(function(a){r.push({s:a,e:a+n,f:f,k:k})});(f.alt||[]).forEach(function(a){r.push({s:a,e:a+1,f:f,k:k,alt:1})})});return r}
+function render(){
+ var h='<div class="stage">1 · 본문 오류 찾기</div>';
+ secs.forEach(function(S,si){
+  var N=errN(S),c=S.items.reduce(function(a,i){return a+countSel(i)},0);
+  h+='<section class="grp"><div class="sec"><span>'+esc(S.name)+'</span><span class="bd">틀린 것 '+N+'개</span>'+(done[si]?'':'<span class="bd2">고른 곳 '+c+' / '+N+'개</span>')+'</div>';
+  S.items.forEach(function(i){h+=sentHtml(i,done[si])});
+  if(done[si]){h+=summary(S,si)}
+  else{h+='<div class="bar"><span class="c">고른 곳 <b>'+c+'</b> / '+N+'개</span><button data-sub="'+si+'">제출하기</button></div>'}
+  h+='</section>';
+ });
+ h+=stepQHtml();
+ document.getElementById('app').innerHTML=h;relayUp();persist();
+ var b=load();document.getElementById('best').textContent=b!=null?'최고 기록: 찾은 오류 '+b+'개':'';
+}
+function aDone(){return secs.every(function(S,si){return done[si]})}
+function allAdv(){return QL.every(function(q){return qst[q.n]&&qst[q.n].adv})}
+function relayUp(){var st=[aDone(),allAdv()],nm=['본문 오류 찾기','본문 '+QL.length+'문제'],f=-1;for(var i=0;i<st.length;i++)if(!st[i]){f=i;break}document.getElementById('relay').innerHTML=nm.map(function(n,i){return '<div class="rs '+(st[i]?'ok':i===f?'now':'lk')+'"><b>STEP '+(i+1)+(st[i]?' &middot; 완료':'')+'</b>'+n+'</div>'}).join('')}
+function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length},0)}
+function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
+function sentHtml(i,lock){
+ var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
+ h+='<div class="sent'+(lock?' locked':'')+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt" lang="en">';
+ toks.forEach(function(t,ti){
+  var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,inMain=sp.filter(function(x){return !x.alt&&ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
+  if(lock){if(inSp&&on)cls+=' hit';else if(inMain)cls+=(sp.some(function(x){return !x.alt&&ti>=x.s&&ti<x.e&&foundFix(i,x.k)})?' hit':' miss');else if(on)cls+=' x'}
+  else if(on)cls+=' on';
+  h+='<span class="'+cls+'" data-i="'+i+'" data-t="'+ti+'">'+esc(t)+'</span> ';
+ });
+ h+='</div></div>';
+ h+='<div class="gl kr">'+esc(it.ko)+'</div>';
+ if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');
+ if(lock)h+=noteHtml(i);
+ return h+'</div>';
+}
+function foundFix(i,k){var it=D[i],f=it.fixes[k],n=f.wrong.split(/\s+/).length;return f.at.some(function(a){for(var t=a;t<a+n;t++)if(sel[key(i,t)])return true;return false})||(f.alt||[]).some(function(t){return !!sel[key(i,t)]})}
+function wrongPicks(i){var it=D[i],sp=span(it),c=0;for(var k in sel){var p=k.split(':');if(+p[0]!==i)continue;var t=+p[1];if(!sp.some(function(x){return t>=x.s&&t<x.e}))c++}return c}
+function fixedHtml(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,'\u0001'+f.right+'\u0002');return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+'\u0001'+f.right+'\u0002'+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return esc(tk.join(' ').replace(/ ?\u0000/g,'')).replace(/\u0001/g,'<mark>').replace(/\u0002/g,'</mark>')}
+function noteHtml(i){
+ var it=D[i],wp=wrongPicks(i);
+ if(it.ok){return '<div class="ac s1"><div class="ac-top fine"><b>맞는 문장</b><span class="ac-a">어법 오류 없음</span>'+(wp?'<span class="ac-x">고른 곳은 틀린 곳이 아니에요</span>':'')+'</div></div>'}
+ var fo=0;it.fixes.forEach(function(f,k){if(foundFix(i,k))fo++});
+ var all=fo===it.fixes.length;
+ var h='<div class="ac s1"><div class="ac-top'+(all?' g':'')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+'</b>'+(wp?'<span class="ac-x">틀리게 고른 곳 '+wp+'개</span>':'')+'</div>';
+ h+='<div class="fixs-l">고친 문장</div><div class="fixs" lang="en">'+fixedHtml(it)+'</div>';
+ it.fixes.forEach(function(f,k){var ok=foundFix(i,k);
+  h+='<div class="fc '+(ok?'f':'m')+'"><div><span class="tg2">'+(ok?'찾음':'놓침')+'</span>'+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr" lang="en">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt" lang="en">'+esc(f.right)+'</span></div><div class="fcb">'+pointHtml(f)+'</div></div>'});
+ return h+'<div style="height:12px"></div></div>';
+}
+function critHtml(f){var w=f.wrong.split(/\s+/),r=f.right.split(/\s+/);
+ if(f.alt&&f.alt.length)return '<div class="crit">빠진 말 문제 : 빠진 자리 양옆 어느 단어를 눌러도 정답으로 인정</div>';
+ if(w.length==2&&r.length==2&&w.slice().sort().join()==r.slice().sort().join()&&w.join()!=r.join())return '<div class="crit">어순 문제 : 옮겨진 말과 짝이 되는 단어, 어느 쪽을 눌러도 정답으로 인정</div>';return ''}
+function pointHtml(f){var p=f.point,ix=p.indexOf(':');return (ix>0&&ix<24?'<b>'+esc(p.slice(0,ix))+'</b> : '+esc(p.slice(ix+1).trim()):'<b>'+esc(f.topic)+'</b> : '+esc(p))+critHtml(f)}
+function summary(S,si){
+ var tot=0,fo=0,wp=0;S.items.forEach(function(i){var it=D[i];it.fixes.forEach(function(f,k){tot++;if(foundFix(i,k))fo++});wp+=wrongPicks(i)});
+ return '<div class="sum"><b>'+esc(S.name)+'</b> · 오류 '+tot+'개 중 <b>'+fo+'개</b> 찾았어요'+(wp?' · 틀리게 고른 곳 '+wp+'개':'')+'</div>';
+}
+function load(){try{var v=localStorage.getItem(BK);return v==null?null:+v}catch(e){return null}}
+function save(n){try{var b=load();if(b==null||n>b)localStorage.setItem(BK,n)}catch(e){}}
+function ppHtml(pp){
+ return '<div class="dlg"><div class="who">'+en(TITLE_EN)+' &middot; '+en(pp[0][0])+'</div><div class="ln"><div class="en" lang="en">'+esc(pp.slice(1).map(function(p){return p[0]}).join(' '))+'</div></div></div>';
+}
+function qVisible(i){if(!aDone())return false;for(var j=0;j<i;j++){var s=qst[QL[j].n];if(!(s&&s.adv))return false}return true}
+function stepQHtml(){
+ if(!aDone())return '';
+ var h='<div class="stage">2 · 본문 '+QL.length+'문제</div>',lastG=null;
+ for(var i=0;i<QL.length;i++){
+  if(!qVisible(i))break;
+  var q=QL[i];
+  if(q.g!==lastG){if(q.g.pp)h+=ppHtml(q.g.pp);lastG=q.g}
+  h+=qCard(i);
+ }
+ if(allAdv())h+=resultHtml();
+ return h;
+}
+function optText(q,j){return q.ko?en(q.o[j]):esc(q.o[j])}
+function doneRow(q){return '<div class="qd" id="q'+q.n+'"><span class="qn">'+q.dn+'</span><span>정답 '+CN[q.a]+' '+optText(q,q.a)+'</span>'+(q.ko?'<span class="qk">'+esc(q.ko[q.a])+'</span>':'')+'</div>'}
+function postHtml(q,st){var n=q.note;
+ return '<div class="post"><div class="ph">노트에 쓰기 &middot; 요약문 완성</div><div class="pl" lang="en">'+esc(n.en)+'</div><div class="pk">'+esc(n.ko)+'</div><div class="pw">'+n.words.map(function(w){return '<span lang="en">'+esc(w[0])+'</span> = '+esc(w[1])}).join(' &nbsp;&middot;&nbsp; ')+'</div>'+(st.wrote?'<div class="pd">작성 완료</div>':'<button type="button" data-wrote="'+q.n+'">노트에 썼어요</button>')+'</div>';
+}
+function qCard(i){
+ var q=QL[i],st=qst[q.n]||(qst[q.n]={w:[],ok:0,adv:0,t0:Date.now(),t1:0,wrote:0});
+ if(st.adv&&!q.note&&!st.w.length)return doneRow(q);
+ var h='<div class="q" id="q'+q.n+'"><div class="qt"><span class="lbl">'+LABEL+'</span><span class="qn">'+q.dn+'</span>'+neg(q.q)+'</div>';
+ if(q.sum)h+='<div class="sumbox" lang="en">'+esc(q.sum)+'</div>';
+ if(!st.w.length){
+  q.o.forEach(function(t,j){
+   h+='<div class="opt'+(st.ok&&j===q.a?' good':'')+'"'+(st.ok?'':' data-q="'+q.n+'" data-o="'+j+'"')+'><span class="cn">'+CN[j]+'</span><span>'+(q.ko?en(t):esc(t))+'</span></div>';
+  });
+  if(st.ok&&q.note)h+=postHtml(q,st);
+  return h+'</div>';
+ }
+ return h+'</div>'+wrongCard(q,st);
+}
+function wrongCard(q,st){
+ var h='<div class="ac"><div class="ac-top"><b>오답</b><span class="ac-a">정답 '+CN[q.a]+' '+optText(q,q.a)+'</span>'+(q.ko?'<div class="ac-k">'+esc(q.ko[q.a])+'</div>':'')+'</div>';
+ var isEv=function(t){return q.evs.some(function(e){return t===e[0]||(t.length>8&&t.indexOf(e[0])>=0)})};
+ if(q.g.pp){
+  h+='<div class="ac-sec">본문</div><div class="pass">';
+  q.g.pp.forEach(function(p,ix){if(ix===0)return;h+='<div class="pl1"><div class="e" lang="en">'+(isEv(p[0])?'<mark>'+esc(p[0])+'</mark>':esc(p[0]))+'</div><div class="k">'+esc(p[1])+'</div></div>'});
+  h+='</div>';
+ } else {
+  h+='<div class="ac-sec">본문 근거</div><div class="pass">';
+  q.evs.forEach(function(e){h+='<div class="pl1"><div class="e" lang="en"><mark>'+esc(e[0])+'</mark></div><div class="k">'+esc(e[1])+'</div></div>'});
+  h+='</div>';
+ }
+ h+='<div class="ac-sec">보기 풀이</div>';
+ q.o.forEach(function(t,j){var isA=j===q.a,isW=st.w.indexOf(j)>=0;
+  h+='<div class="oc'+(isA?' g':isW?' r':'')+'"><div class="oh"><span class="cn">'+CN[j]+'</span><div class="ot">'+(q.ko?en(t):esc(t))+(q.ko?'<div class="okr">'+esc(q.ko[j])+'</div>':'')+'</div>'+(isA?'<span class="tg">정답</span>':isW?'<span class="tg">내가 고름</span>':'')+'</div><div class="why">'+reasonHtml(q.ow[j])+'</div></div>';
+ });
+ var tr=(q.memo||[]).filter(function(l){return /^함정/.test(l)})[0];
+ if(tr)h+='<div class="trap"><b>함정</b> '+esc(tr.replace(/^함정\s*:\s*/,'').replace(/\s*✕/g,''))+'</div>';
+ if(!st.ok){
+  h+='<div class="fix"><div class="fh">고쳐 보기</div>';
+  q.o.forEach(function(t,j){var xx=st.w.indexOf(j)>=0;h+='<div class="opt'+(xx?' xx':'')+'" data-q="'+q.n+'" data-o="'+j+'"><span class="cn">'+CN[j]+'</span><span>'+(q.ko?en(t):esc(t))+'</span></div>'});
+  h+='</div>';
+ } else {
+  h+='<div class="fixed">정답 '+CN[q.a]+'</div>';
+  if(q.note)h+=postHtml(q,st);
+  else if(!st.adv)h+='<div class="nx"><button type="button" data-next="'+q.n+'">다음 문제</button></div>';
+ }
+ return h+'</div>';
+}
+function fcount(){return QL.filter(function(q){var s=qst[q.n];return s&&s.ok&&!s.w.length}).length}
+function fastInfo(){
+ var s1=[];secs.forEach(function(S,si){if(s1t[si]!=null&&s1t[si]<1500*S.items.length)s1.push(S.name||('구간 '+(si+1)))});
+ var q2=[];QL.forEach(function(q){var s=qst[q.n];if(s&&s.t1&&s.t1-s.t0<2500)q2.push(q.dn)});
+ return{s1:s1,q2:q2};
+}
+function resultHtml(){
+ var f=fcount(),fx=QL.reduce(function(a,q){return a+qst[q.n].w.length},0),fi=fastInfo();
+ var h='<div class="stage">완료</div><div class="res"><div class="rl">처음에 맞힌 문제</div><div class="rpct">'+f+'<small> / '+QL.length+'</small></div>';
+ h+='<table class="rtb">'+QL.map(function(q){var s=qst[q.n];return '<tr><td>'+q.dn+'번</td><td>'+(s.w.length?'틀림':'처음에 맞힘')+'</td></tr>'}).join('')+'</table>';
+ h+='<div class="rl">총 학습 시간 '+fmtT(TM.act)+'</div>';
+ h+='<div class="chip'+(chk?' on':'')+'">'+(chk?'선생님 확인 완료':'선생님 확인 대기')+'</div>';
+ if(TEACH){
+  h+='<div class="tp"><b>선생님용</b><div>빠른 제출 : '+((fi.s1.length||fi.q2.length)?'<span class="fl">'+(fi.s1.length?'오류 찾기 '+fi.s1.join(', ')+' ':'')+(fi.q2.length?'문제 '+fi.q2.join(', ')+'번':'')+'</span>':'없음')+'</div><div>첫 시도 정답 '+f+'/'+QL.length+'· 틀린 횟수 '+fx+'</div><div style="margin-top:8px"><button type="button" data-chk="1">'+(chk?'확인 취소':'노트 확인 완료')+'</button></div></div>';
+ }
+ h+='<div style="margin-top:14px"><a href="./" style="display:inline-block;background:var(--pri);color:#fff;text-decoration:none;font-weight:700;padding:9px 20px;border-radius:8px">M1 Reading 목록으로</a></div>';
+ return h+'</div>';
+}
+function lognote(q){var n=q.note;wlog('s','2단계 · 요약문 완성',[{n:q.dn,a:'정답 '+CN[q.a]+' '+q.ans,m:[n.en,n.ko].concat(n.words.map(function(w){return w[0]+' = '+w[1]}))}])}
+function pickOpt(n,j){var q=qById(n),st=qst[n];if(!st||st.ok)return;if(!st.t1)st.t1=Date.now();
+ if(j===q.a){st.ok=1;if(q.note)lognote(q);if(!st.w.length&&!q.note){setTimeout(function(){advQ(n)},700)}}
+ else if(st.w.indexOf(j)<0){st.w.push(j);st.ok=1;if(q.note)lognote(q)}
+ var y=window.scrollY;render();window.scrollTo(0,y);
+}
+function advQ(n){var st=qst[n];if(!st||st.adv)return;st.adv=1;if(allAdv()){tmFlush();TM.done=1}
+ render();var ix=QL.indexOf(qById(n)),nx=ix<QL.length-1?QL[ix+1]:null,el=nx?document.getElementById('q'+nx.n):document.querySelector('.res');
+ if(el){var ty=el.getBoundingClientRect().top+window.pageYOffset-8;window.scrollTo(0,ty);setTimeout(function(){window.scrollTo(0,el.getBoundingClientRect().top+window.pageYOffset-8)},60)}
+}
+document.getElementById('app').addEventListener('click',function(e){
+ var w=e.target.closest('.wd');
+ if(w){var i=+w.dataset.i,t=w.dataset.t,si=secs.findIndex(function(S){return S.items.indexOf(i)>=0});if(done[si])return;
+  var k=key(i,t);if(sel[k])delete sel[k];else sel[k]=1;
+  var y=window.scrollY;render();window.scrollTo(0,y);return}
+ var b=e.target.closest('button[data-sub]');
+ if(b){var sb=+b.dataset.sub;s1t[sb]=Date.now()-mark;mark=Date.now();done[sb]=true;render();
+  var fo=0;secs.forEach(function(S,si){if(done[si])S.items.forEach(function(i){D[i].fixes.forEach(function(f,k){if(foundFix(i,k))fo++})})});
+  if(aDone())save(fo);
+  var s=document.querySelectorAll('.sum');if(s.length)s[s.length-1].scrollIntoView({behavior:'smooth',block:'start'});return}
+ var o=e.target.closest('.opt[data-q]');if(o){pickOpt(+o.dataset.q,+o.dataset.o);return}
+ var nx=e.target.closest('button[data-next]');if(nx){advQ(+nx.dataset.next);return}
+ var wr=e.target.closest('button[data-wrote]');if(wr){var qn=+wr.dataset.wrote;qst[qn].wrote=1;advQ(qn);return}
+ var ck=e.target.closest('button[data-chk]');if(ck){chk=chk?0:1;var y2=window.scrollY;render();window.scrollTo(0,y2);return}
+});
+function wlog(key,title,items){try{var W=JSON.parse(localStorage.getItem('m2-wrong')||'{}');var r=W[RNUM]||(W[RNUM]={t:TITLE_EN,e:{}});r.t=TITLE_EN;if(r.e[key])return;r.e[key]={h:title,i:items,ts:Date.now()};localStorage.setItem('m2-wrong',JSON.stringify(W))}catch(e){}}
+var TM={act:0,lv:0,lt:0,done:0},_last=Date.now(),_hid=0;
+function tmFlush(){if(TM.done||document.hidden)return;var n=Date.now();TM.act+=n-_last;_last=n}
+function fmtT(ms){var s=Math.round(ms/1000),m=Math.floor(s/60);return m?m+'분 '+('0'+(s%60)).slice(-2)+'초':s+'초'}
+document.addEventListener('visibilitychange',function(){var n=Date.now();if(document.hidden){if(!TM.done){TM.act+=n-_last;TM.lv++}_hid=n;persist()}else{if(!TM.done&&_hid)TM.lt+=n-_hid;_last=n;_hid=0}});
+setInterval(function(){if(!document.hidden&&!TM.done){tmFlush();persist()}},5000);
+var PK='m2-prog-'+RNUM;
+function persist(){if(window.__bsR)return;try{var any=Object.keys(sel).length||Object.keys(qst).length||Object.keys(done).length;
+ if(any)localStorage.setItem(PK,JSON.stringify({v:2,sel:sel,done:done,qst:qst,chk:chk,s1t:s1t,tm:TM}));else localStorage.removeItem(PK);
+ var st=JSON.parse(localStorage.getItem('m2-st')||'{}');var n=(aDone()?1:0)+(allAdv()?1:0);var rs=JSON.parse(localStorage.getItem('m2-res')||'{}');
+ if(n>=2){rs[RNUM]={p:Math.round(fcount()*100/QL.length),ok:1,t:Math.round(TM.act/1000)}}else{delete rs[RNUM]}
+ localStorage.setItem('m2-res',JSON.stringify(rs));
+ if(any){st[RNUM]=(n>=2?3:n);localStorage.setItem('m2-st',JSON.stringify(st));localStorage.setItem('m2-last',String(RNUM))}else{delete st[RNUM];localStorage.setItem('m2-st',JSON.stringify(st))}
+ var el=document.getElementById('bm');if(el)el.style.display=any?'inline-flex':'none';
+ try{if(any)BSYNC(RNUM,JSON.parse(localStorage.getItem(PK)),n>=2?3:n,n>=2)}catch(e){}}catch(e){}}
+try{var sv=JSON.parse(localStorage.getItem(PK)||'null');if(sv&&sv.v===2){sel=sv.sel||{};done=sv.done||{};qst=sv.qst||{};chk=sv.chk||0;s1t=sv.s1t||{};if(sv.tm){TM=sv.tm;TM.done=TM.done||0;_last=Date.now()}}}catch(e){}
+document.getElementById('bm').addEventListener('click',function(e){if(e.target.closest('button')){if(confirm('이 Reading의 진행 기록을 지우고 처음부터 다시 할까요?')){try{localStorage.removeItem(PK)}catch(x){}try{BSYNC(RNUM,null,0,true)}catch(x){}sel={};done={};qst={};chk=0;s1t={};mark=Date.now();TM={act:0,lv:0,lt:0,done:0};_last=Date.now();render();window.scrollTo(0,0)}}});
+render();
+
+</script></body></html>
