@@ -10,6 +10,8 @@ for n in range(1,15):
     p=f'{lib.BASE}/data/ch{n:02d}.json'
     if not os.path.exists(p): continue
     sets=json.load(open(p,encoding='utf-8'))
+    pq=f'{lib.BASE}/data/ch{n:02d}q.json'
+    if os.path.exists(pq): sets+=json.load(open(pq,encoding='utf-8'))
     open(f'{out}/d/ch{n:02d}.js','w',encoding='utf-8').write('window.DB['+str(n)+']='+json.dumps(sets,ensure_ascii=False,separators=(',',':'))+';')
     files.append(f'./d/ch{n:02d}.js')
     meta.append(dict(n=n,t=CH[str(n)],sets=[dict(id=s['id'],title=s['title'],sub=s['sub'],page=s['page'],n=len(s['items'])) for s in sets]))

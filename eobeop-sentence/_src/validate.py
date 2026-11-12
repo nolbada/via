@@ -2,12 +2,12 @@
 import sys, json, re, html
 import lib
 KINDS={'','S','M','V','C'}
-def check(ch, path=None):
-    path=path or f'{lib.BASE}/data/ch{ch:02d}.json'
+def check(ch, path=None, part='p'):
+    path=path or f'{lib.BASE}/data/ch{ch:02d}{"" if part=="p" else "q"}.json'
     errs=[];warn=[]
     try: sets=json.load(open(path,encoding='utf-8'))
     except Exception as e: return [f'JSON load fail: {e}'],[]
-    src=lib.src_items(ch)
+    src=lib.src_items(ch,part)
     got={}
     for s in sets:
         for k in ('id','page','title','sub','prompt','pnote','items'):
@@ -16,7 +16,7 @@ def check(ch, path=None):
         if not pn.get('t') or not pn.get('lines'): errs.append(f'set {s.get("id")} pnote empty')
         for it in s['items']: got[(s['id'],it['no'])]=(s,it)
     # expected set ids
-    setid=lambda k: ('p%d'%k) if ch==1 else 'c%02dp%d'%(ch,k)
+    setid=(lambda k: ('p%d'%k) if ch==1 else 'c%02dp%d'%(ch,k)) if part=='p' else (lambda k: 'c%02dq%d'%(ch,k-100))
     exp=[(setid(k),no,d) for k,no,d in src]
     if len(got)!=len(exp): errs.append(f'count {len(got)} != source {len(exp)}')
     for sid,no,d in exp:
@@ -47,7 +47,7 @@ def check(ch, path=None):
             vch=[c for c in ch_ if c['k']=='V']
             if not vch: errs.append(f'{tag}: no V chunk')
             elif not any(re.search(r'(?<![\w])'+re.escape(ok)+r'(?![\w])',c['en']) for c in vch): errs.append(f'{tag}: verb.ok "{ok}" not found in V chunk')
-        tk=[x['k'] for x in s.get('taps',[])] or ['S']
+        tk=[x['k'] for x in (it.get('taps') or s.get('taps',[]))] or ['S']
         if not any(c['k'] in tk for c in ch_): errs.append(f'{tag}: no chunk of tap kind {tk}')
         for c in ch_:
             pos=0
@@ -70,7 +70,7 @@ def check(ch, path=None):
 if __name__=='__main__':
     tot=0
     for a in sys.argv[1:]:
-        ch=int(a); e,w=check(ch)
+        part='q' if a.endswith('q') else 'p'; ch=int(a.rstrip('q')); e,w=check(ch,part=part)
         print(f'== CH{ch:02d}: {len(e)} errors, {len(w)} warnings')
         for x in e: print('  ERR',x)
         for x in w[:40]: print('  warn',x)

@@ -161,7 +161,7 @@ function run(n,si,idx){
   var prompt=el('div','prompt');card.appendChild(prompt);
   var line=el('div','line tapok');card.appendChild(line);
   var res=el('div','res');card.appendChild(res);
-  var taps=set.taps||[{k:'S',t:set.prompt},{k:'M',t:'건너뛸 수식어를 누르세요'}];
+  var taps=it.taps||set.taps||[{k:'S',t:set.prompt},{k:'M',t:'건너뛸 수식어를 누르세요'}];
   var steps=[];
   taps.forEach(function(tp){
     var ix=[];it.chunks.forEach(function(c,i){if(c.k==tp.k)ix.push(i)});
@@ -229,7 +229,7 @@ function summary(n,si){
   var top=el('div','top');var back=el('button','btn ghost sm','목록');back.onclick=function(){chap(n)};top.appendChild(back);
   top.appendChild(el('span','brand',set.title+' 노트'));$.appendChild(top);
   var card=el('div','card');
-  var nb=noteBox(set.pnote,set.id+'-pn','POINT 노트','교재 POINT 옆에 쓰기');nb.style.marginTop='0';
+  var isq=/q\d$/.test(set.id);var nb=noteBox(set.pnote,set.id+'-pn',isq?'정리 노트':'POINT 노트',isq?'교재 이 쪽 위에 쓰기':'교재 POINT 옆에 쓰기');nb.style.marginTop='0';
   card.appendChild(nb);$.appendChild(card);
   var r=el('div','row');var h=el('button','btn','목록으로');h.onclick=function(){chap(n)};r.appendChild(h);$.appendChild(r);
 }

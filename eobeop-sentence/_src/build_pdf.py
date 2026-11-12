@@ -33,7 +33,8 @@ def sent(it):
 <div class="note"><div class="nh"><span class="nt">꼭 정리해야 할 사항</span><span class="nti">{E(nt['t'])}</span><span class="nwh">교재 문장 옆에 쓰기</span></div>{ls}</div></div>'''
 def pnote(s):
     q=s['pnote']; ls=''.join(f'<div class="nl">{E(x)}</div>' for x in q['lines'])
-    return f'<div class="note pn"><div class="nh"><span class="nt">POINT 노트</span><span class="nti">{E(q["t"])}</span><span class="nwh">교재 POINT 옆에 쓰기</span></div>{ls}</div>'
+    isq=bool(re.search(r'q\d$',s['id']))
+    return f'<div class="note pn"><div class="nh"><span class="nt">{"정리 노트" if isq else "POINT 노트"}</span><span class="nti">{E(q["t"])}</span><span class="nwh">{"교재 이 쪽 위에 쓰기" if isq else "교재 POINT 옆에 쓰기"}</span></div>{ls}</div>'
 def page(ch,s,items,first):
     leg=s.get('legend') or DEF_LEG
     lg=''.join(f'<span class="cc {c}">{E(l)}</span>' for c,l in leg)
@@ -44,6 +45,8 @@ def page(ch,s,items,first):
 CSS=open(f'{lib.BASE}/pdf.css',encoding='utf-8').read()
 def build(ch,date):
     sets=json.load(open(f'{lib.BASE}/data/ch{ch:02d}.json',encoding='utf-8'))
+    pq=f'{lib.BASE}/data/ch{ch:02d}q.json'
+    if os.path.exists(pq): sets+=json.load(open(pq,encoding='utf-8'))
     pages=[]
     for s in sets:
         its=s['items']; per=3

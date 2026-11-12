@@ -3,11 +3,18 @@ import re, json, html, itertools, importlib.util, os
 BASE=os.path.dirname(os.path.abspath(__file__))
 def load_points(ch):
     sp=importlib.util.spec_from_file_location('dp%d'%ch,f'{BASE}/src/data_ch{ch:02d}_points.py'); m=importlib.util.module_from_spec(sp); sp.loader.exec_module(m); return m.P
-def src_items(ch):
+def load_rest(ch):
+    sp=importlib.util.spec_from_file_location('dr%d'%ch,f'{BASE}/src/data_ch{ch:02d}_rest.py'); m=importlib.util.module_from_spec(sp); sp.loader.exec_module(m)
+    txt=open(f'{BASE}/src/data_ch{ch:02d}_rest.py',encoding='utf-8').read()
+    mm=re.search(r'문장 연습[^\n]*네모[^\n]*p\.(\d+)',txt); p1=int(mm.group(1)) if mm else 0
+    mm=re.search(r'문장 연습[^\n]*밑줄[^\n]*p\.(\d+)',txt); p2=int(mm.group(1)) if mm else p1+1
+    return {101:dict(page='p.%d'%p1,title='문장 연습 네모',groups=[('a','',m.BOX)]),102:dict(page='p.%d'%p2,title='문장 연습 밑줄',groups=[('a','',m.UL)])}
+def src_items(ch,part='p'):
     """yield (setno, no, item) in book order. no='예제' or '1','2'.."""
-    P=load_points(ch); out=[]
+    P=load_points(ch) if part=='p' else load_rest(ch); out=[]
     for k in sorted(P):
-        v=P[k]; out.append((k,'예제',v['ex'][1]))
+        v=P[k]
+        if 'ex' in v: out.append((k,'예제',v['ex'][1]))
         for g in v['groups']:
             for no,d in g[2]: out.append((k,str(no),d))
     return out
@@ -23,8 +30,13 @@ def variants(t,ans):
         else:
             x=m.group(3); o=[x]
             if ans and ans!='O':
-                for a in re.split(r'\s*/\s*|\s*,\s*|\s*\(또는\s*|\)',ans):
-                    if a.strip(): o.append(a.strip())
+                pat=r'\s*/\s*|\s*,\s*|\s*\(또는\s*|\)' if '(또는' in ans else r'\s*/\s*|\s*,\s*'
+                for a in re.split(pat,ans):
+                    a=a.strip()
+                    if not a: continue
+                    mm=re.fullmatch(r'(\w+)\((\w+)\)',a)
+                    if mm: o+= [mm.group(1),mm.group(1)+mm.group(2)]
+                    else: o.append(a)
             opts.append(o)
     res=set()
     for combo in itertools.product(*opts) if opts else [()]:
