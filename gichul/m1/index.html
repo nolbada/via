@@ -8,8 +8,8 @@
 <meta name="application-name" content="대화문 기출 중1">
 <meta name="apple-mobile-web-app-title" content="대화문 기출 중1">
 <meta name="theme-color" content="#1F7A5C">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22%3E%3Crect%20width=%22100%22%20height=%22100%22%20rx=%2222%22%20fill=%22%23FFE3A6%22/%3E%3Ctext%20x=%2242%22%20y=%2276%22%20font-size=%2260%22%20text-anchor=%22middle%22%3E%F0%9F%91%A8%3C/text%3E%3Ctext%20x=%2276%22%20y=%2238%22%20font-size=%2226%22%20text-anchor=%22middle%22%3E%F0%9F%92%AC%3C/text%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22%3E%3Crect%20width=%22100%22%20height=%22100%22%20rx=%2222%22%20fill=%22%23FFE3A6%22/%3E%3Ctext%20x=%2242%22%20y=%2276%22%20font-size=%2260%22%20text-anchor=%22middle%22%3E%F0%9F%91%A8%3C/text%3E%3Ctext%20x=%2276%22%20y=%2238%22%20font-size=%2226%22%20text-anchor=%22middle%22%3E%F0%9F%92%AC%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22%3E%3Crect%20width=%22100%22%20height=%22100%22%20rx=%2222%22%20fill=%22%23FFE3A6%22/%3E%3Ctext%20x=%2230%22%20y=%2272%22%20font-size=%2240%22%20text-anchor=%22middle%22%3E%F0%9F%91%A8%3C/text%3E%3Ctext%20x=%2270%22%20y=%2272%22%20font-size=%2240%22%20text-anchor=%22middle%22%3E%F0%9F%91%A9%3C/text%3E%3Ctext%20x=%2250%22%20y=%2240%22%20font-size=%2226%22%20text-anchor=%22middle%22%3E%F0%9F%92%AC%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22%3E%3Crect%20width=%22100%22%20height=%22100%22%20rx=%2222%22%20fill=%22%23FFE3A6%22/%3E%3Ctext%20x=%2230%22%20y=%2272%22%20font-size=%2240%22%20text-anchor=%22middle%22%3E%F0%9F%91%A8%3C/text%3E%3Ctext%20x=%2270%22%20y=%2272%22%20font-size=%2240%22%20text-anchor=%22middle%22%3E%F0%9F%91%A9%3C/text%3E%3Ctext%20x=%2250%22%20y=%2240%22%20font-size=%2226%22%20text-anchor=%22middle%22%3E%F0%9F%92%AC%3C/text%3E%3C/svg%3E">
 <style>
 :root{--bg:#F4F5F2;--sf:#fff;--ink:#1c2420;--soft:#6b766f;--bd:#dde3dd;--ok:#1F7A5C;--okb:#e3f3ec;--no:#C22E1C;--nob:#fbe8e5;--ac:#1F7A5C}
 *{box-sizing:border-box}
@@ -68,6 +68,7 @@ u{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:
 </head>
 <body>
 <div id="app" translate="no">불러오는 중</div>
+<script src="/board/link.js" data-app="gk1"></script>
 <script>
 (function(){
 var GRADE="m1",URL_JSON="/board/gichul_m1.json";
@@ -80,6 +81,49 @@ var KEY="gk-"+GRADE+"|"+NAME;
 var st={last:"",wr:[]};
 try{var o=JSON.parse(lget(KEY)||"null");if(o&&typeof o==="object"){st.last=o.last||"";st.wr=o.wr||[]}}catch(e){}
 function save(){lset(KEY,JSON.stringify(st))}
+var SRV="https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec";
+var APPID=GRADE==="m1"?"gk1":"gk2",LABEL="대화문 기출 중"+(GRADE==="m1"?"1":"2");
+function who(){var n=lget("bd-name"),t=+lget("bd-t")||0;return n&&Date.now()-t<=600000?n:""}
+function pad2(n){return("0"+n).slice(-2)}
+function isoD(){var d=new Date();return d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate())}
+function hmT(){var d=new Date();return pad2(d.getHours())+":"+pad2(d.getMinutes())}
+function srvGet(n){return fetch(SRV+"?a=get&date=2000-01-01&name="+encodeURIComponent(n)).then(function(r){return r.json()})}
+var chain=Promise.resolve();
+function send(rec){
+  var n=who();if(!n)return;
+  chain=chain.then(function(){
+    var dead=false;
+    return Promise.race([srvGet(n).then(function(j){
+      if(dead||!j||!j.ok)return;
+      var cd=(j.chk&&j.chk.app)||{};cd["l_"+APPID]=JSON.stringify(rec);
+      return fetch(SRV,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({a:"put",date:"2000-01-01",cls:lget("bd-cls")||"",name:n,card:"app",chk:cd})});
+    }),new Promise(function(r){setTimeout(function(){dead=true;r()},8000)})]);
+  }).catch(function(){});
+}
+function pushRec(q,ok){
+  send({w:LABEL+" No."+(idx+1)+(ok?" 정답":" 오답"),nx:(idx+2<=Q.length?LABEL+" No."+(idx+2):""),t:hmT(),d:isoD(),id:q.id,wr:st.wr.slice()});
+}
+function pushReset(){
+  send({w:LABEL+" 처음부터 다시",nx:LABEL+" No.1",t:hmT(),d:isoD(),id:"",wr:st.wr.slice()});
+}
+function blScore(ok){try{if(window.BoardLink)window.BoardLink.score(APPID,{ok:ok})}catch(e){}}
+var pulled=false;
+function pullRec(){
+  var n=who();if(!n)return Promise.resolve();
+  var tm=new Promise(function(r){setTimeout(r,3000)});
+  var g=srvGet(n).then(function(j){
+    if(pulled||!j||!j.ok)return;
+    var cd=(j.chk&&j.chk.app)||{},rec=null;
+    try{rec=JSON.parse(cd["l_"+APPID]||"null")}catch(e){}
+    if(!rec||!rec.id)return;
+    var si=-1,li=-1,i;
+    for(i=0;i<Q.length;i++){if(Q[i].id===rec.id)si=i;if(Q[i].id===st.last)li=i}
+    if(si>li)st.last=rec.id;
+    (rec.wr||[]).forEach(function(x){if(st.wr.indexOf(x)<0)st.wr.push(x)});
+    save();
+  }).catch(function(){});
+  return Promise.race([g,tm]).then(function(){pulled=true});
+}
 function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
 function fmt(s,neg){
   var t=esc(s);
@@ -128,7 +172,7 @@ function showQ(){
   window.scrollTo(0,0);
   if(idx>=Q.length){
     app.innerHTML='<div class="end"><b>여기까지 모두 풀었습니다</b></div><button class="rs2" id="again">처음부터</button>'+backBtn();
-    document.getElementById("again").onclick=function(){st.last="";save();idx=0;showQ()};
+    document.getElementById("again").onclick=function(){st.last="";save();pushReset();idx=0;showQ()};
     return;
   }
   var q=Q[idx],h=head(q)+'<div class="ins">'+fmt(q.ins,true)+'</div>'+dlHtml(q)+'<div class="chs">';
@@ -145,11 +189,11 @@ function pick(i,el){
   for(var k=0;k<bs.length;k++)bs[k].disabled=true;
   if(i+1===q.ans){
     el.className="ch okc";
-    st.last=q.id;save();
+    st.last=q.id;save();pushRec(q,true);blScore(true);
     setTimeout(function(){idx++;showQ()},700);
   }else{
     if(st.wr.indexOf(q.id)<0)st.wr.push(q.id);
-    st.last=q.id;save();
+    st.last=q.id;save();pushRec(q,false);blScore(false);
     showWrong(q,i);
   }
 }
@@ -177,8 +221,7 @@ function showWrong(q,i){
 }
 fetch(URL_JSON,{cache:"no-cache"}).then(function(r){return r.json()}).then(function(d){
   Q=d.questions.filter(function(q){return !q.retired});
-  idx=startIndex();
-  showQ();
+  return pullRec().then(function(){idx=startIndex();showQ()});
 }).catch(function(){app.innerHTML='<div class="end"><b>문제를 불러오지 못했습니다</b></div>'+backBtn()});
 })();
 </script>
