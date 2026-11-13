@@ -43,10 +43,11 @@ def page(ch,s,items,first):
 <div class="legend">{lg}</div>
 {pnote(s) if first else ''}{''.join(sent(i) for i in items)}</section>'''
 CSS=open(f'{lib.BASE}/pdf.css',encoding='utf-8').read()
-def build(ch,date):
+def build(ch,date,pr=None):
     sets=json.load(open(f'{lib.BASE}/data/ch{ch:02d}.json',encoding='utf-8'))
     pq=f'{lib.BASE}/data/ch{ch:02d}q.json'
     if os.path.exists(pq): sets+=json.load(open(pq,encoding='utf-8'))
+    if pr: sets=[x for x in sets if pr[0]<=x['page']<=pr[1]]
     pages=[]
     for s in sets:
         its=s['items']; per=3
@@ -54,6 +55,7 @@ def build(ch,date):
         for j,(a,b) in enumerate(cuts): pages.append(page(ch,s,its[a:b],j==0))
     doc=f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>{CSS}</style></head><body>{"".join(pages)}</body></html>'
     base=f'{lib.BASE}/out/{date}_어법제대로_CH{ch:02d}_문장분석_v1'
+    if pr: base=f'{lib.BASE}/out/{date}_어법제대로_CH{ch:02d}_p{pr[0]}-{pr[1]}_문장분석_v1'
     open(base+'.html','w',encoding='utf-8').write(doc)
     from playwright.sync_api import sync_playwright
     with sync_playwright() as pw:
@@ -62,4 +64,5 @@ def build(ch,date):
     return base+'.pdf',len(pages)
 if __name__=='__main__':
     date=sys.argv[2] if len(sys.argv)>2 else '261113'
-    p,n=build(int(sys.argv[1]),date); print(p,n,'pages')
+    pr=tuple(int(x) for x in sys.argv[3].split('-')) if len(sys.argv)>3 else None
+    p,n=build(int(sys.argv[1]),date,pr); print(p,n,'pages')
