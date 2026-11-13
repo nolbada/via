@@ -514,7 +514,7 @@ function drawDP(I,ti,EP){
   if(K<ti&&!rvMap()[K]&&NCX&&NCX.today>0&&K>=P.s&&CLOSED.indexOf(K)<0)h+='<button class="tk" id="stp"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>밀린 복습 · 지금 모인 단어로</small></div><span class="chip w">'+NCX.today+'개</span></button>';
   if(K<ti&&rvMap()[K])h+='<div class="tk"><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>'+(rvLate(K)?'나중에 채움':'이날 복습 끝냄')+'</small></div><span class="chip'+(rvLate(K)?' n':'')+'">'+(rvLate(K)?'보충':'완료')+'</span></div>';
   if(K>ti&&DATA){var fd=DATA.items.filter(function(i){return i.nx&&i.nx<=K}),fc=Math.min(fd.length,NCX?NCX.cap:60);h+='<button class="tk" id="stf"'+(fc?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#c47a1a"></i><div class="tt"><b>오답 누적복습</b><small>이날까지 모인 단어 · 미리 풀기</small></div>'+(rvMap()[K]?'<span class="chip">완료</span>':'<span class="chip n">'+fc+'개</span>')+'</button>'}
-  if(w===5&&!isT&&K>=P.s&&DATA){var fl=DATA.items.filter(function(i){return isL(i)&&(!i.first||i.first<=K)}).length;h+='<button class="tk" id="ls3"'+(fl?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>이날까지 모인 말하기 단어</small></div><span class="chip n">'+fl+'개</span></button>'}
+  if(w===5&&!isT&&K>=P.s&&DATA){var fl=friList(DATA.items,K).length;h+='<button class="tk" id="ls3"'+(fl?'':' disabled style="opacity:.5"')+'><i class="bd" style="background:#6b7a8f"></i><div class="tt"><b>금요일 말하기 대비</b><small>이날까지 모인 말하기 단어</small></div><span class="chip n">'+fl+'개</span></button>'}
   if(w===5&&K>=P.s&&CLOSED.indexOf(K)<0){var sp1=(hc.sp||{})[K],c1=sp1===1?'<span class="chip">완료</span>':sp1===2?'<span class="chip n">결석</span>':(isPast&&!inHold(hc,K)?'<span class="chip w">밀림</span>':'<span class="chip n">'+(isT?'오늘':'예정')+'</span>');h+='<div class="tk"><i class="bd" style="background:#1f8a56"></i><div class="tt"><b>금요일 말하기 시험</b><small>누적보카 · 학원</small></div>'+c1+'</div>'}
   if(EP&&EP[K]){var xdv=P.dv==='Pro'?'dvpro/':'dvcore/';h+=('<a class="tk" href="'+VB+xdv+'">')+'<i class="bd" style="background:#2d6a9f"></i><div class="tt"><b>더블보카 '+P.dv+' 시험</b><small>Day '+EP[K]+' · 학원 테스트</small></div><span class="chip n">'+(isT?'오늘':'예정')+'</span></a>'}
   el.innerHTML=(h==='<div class="dpl">'?'':h+'</div>');
@@ -646,8 +646,16 @@ function wlist(){
   if(!tot)h+='<div class="card">아직 모인 단어가 없어요.</div>';
   $.innerHTML=h;window.scrollTo(0,0);document.getElementById('hm').onclick=function(){recView('r')};
 }
+function friList(items,K){
+  var M=adD(K,-4),cp=50,cmp=function(a,b){return a<b?-1:a>b?1:0};
+  var base=items.filter(function(i){return isL(i)&&!(i.st>=4)&&(!i.first||i.first<=M)});
+  var A=base.filter(function(i){return!i.nx||i.nx<=K}).sort(function(a,b){return(a.st-b.st)||cmp(a.nx||'',b.nx||'')||cmp(a.w.toLowerCase(),b.w.toLowerCase())});
+  var B=base.filter(function(i){return i.nx&&i.nx>K}).sort(function(a,b){return cmp(a.nx,b.nx)||(a.st-b.st)||cmp(a.w.toLowerCase(),b.w.toLowerCase())});
+  var out=A.slice(0,cp);if(out.length<cp)out=out.concat(B.slice(0,cp-out.length));
+  return out.sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1})
+}
 function list(K){
-  var items=DATA.items.filter(function(i){return isL(i)&&(!K||!i.first||i.first<=K)}).sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});
+  var items=K?friList(DATA.items,K):DATA.items.filter(function(i){return isL(i)}).sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});
   if(K){spStart(K,items);return}
   var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+(K?dshow(K)+' 말하기 대비 ':'오답 단어 리스트 ')+items.length+'개</div></div><div class="card">';
   items.forEach(function(i){h+='<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+srcTag(i)+'</small></div>'+spk(i.w)+'<span class="badge">'+i.st+'/4 · '+dshow(i.nx)+'</span></div>'});
