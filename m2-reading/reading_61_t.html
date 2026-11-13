@@ -78,7 +78,7 @@ mark{background:linear-gradient(transparent 45%,#f6e27a 45%);color:inherit;paddi
 .fixs{margin:4px 14px 6px;font-size:17px}.fixs-l{font-size:12.5px;color:var(--mut);margin:10px 14px 0}
 .ac.s1{margin:10px 0 4px 34px}
 
-.crit{margin-top:4px;font-size:12px;color:var(--mut)}.rsum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;font-size:15px}.rsum b{color:var(--pri)}.rchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.rchip{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:99px;padding:5px 11px;font-size:14px;font-weight:700;cursor:pointer}.rchip.m{border-color:#e08a7f;color:var(--bad)}.gobar{margin:22px 0}.gobar button{display:block;width:100%;padding:15px 0;font-size:17px;font-weight:700;border-radius:10px;background:var(--pri);color:#fff;border:0;cursor:pointer}</style></head><body><div class="wrap">
+.crit{margin-top:4px;font-size:12px;color:var(--mut)}.rsum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;font-size:15px}.rsum b{color:var(--pri)}.rchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.rchip{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:99px;padding:5px 11px;font-size:14px;font-weight:700;cursor:pointer}.rchip.m{border-color:#e08a7f;color:var(--bad)}.gobar{margin:22px 0}.fgl{font-size:13px;color:var(--mut);margin-top:5px;line-height:1.5}.gobar button{display:block;width:100%;padding:15px 0;font-size:17px;font-weight:700;border-radius:10px;background:var(--pri);color:#fff;border:0;cursor:pointer}</style></head><body><div class="wrap">
 <header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M2 Reading</a><h1>Reading 61 (시험본) · My Day with the Sharing Economy</h1><div class="sub">공유 경제와 함께 한 나의 하루 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
 <div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div class="bmw"><span id="bm" class="bmk" style="display:none">책갈피 저장됨 &middot; 다음에 이어서 풀기<button type="button">처음부터</button></span></div><div id="app"></div>
 </div>
@@ -181,7 +181,7 @@ function noteHtml(i){
  var h='<div class="ac s1"><div class="ac-top'+(all?' g':'')+'"><b>'+(all?'모두 찾았어요':fo?'일부 놓쳤어요 ('+fo+'/'+it.fixes.length+')':'놓쳤어요')+'</b>'+(wp?'<span class="ac-x">틀리게 고른 곳 '+wp+'개</span>':'')+'</div>';
  h+='<div class="fixs-l">고친 문장</div><div class="fixs" lang="en">'+fixedHtml(it)+'</div>';
  it.fixes.forEach(function(f,k){var ok=foundFix(i,k);
-  h+='<div class="fc '+(ok?'f':'m')+'"><div><span class="tg2">'+(ok?'찾음':'놓침')+'</span>'+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr" lang="en">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt" lang="en">'+esc(f.right)+'</span></div><div class="fcb">'+pointHtml(f)+'</div></div>'});
+  h+='<div class="fc '+(ok?'f':'m')+'"><div><span class="tg2">'+(ok?'찾음':'놓침')+'</span>'+(it.fixes.length>1?'①②'.charAt(k)+' ':'')+'<span class="wr" lang="en">'+esc(f.wrong)+'</span> <span class="arr">→</span> <span class="rt" lang="en">'+esc(f.right)+'</span></div><div class="fcb">'+pointHtml(f)+(f.gl?f.gl.map(function(g){return '<div class="fgl">'+esc(g)+'</div>'}).join(''):'')+'</div></div>'});
  return h+'<div style="height:12px"></div></div>';
 }
 function critHtml(f){var w=f.wrong.split(/\s+/),r=f.right.split(/\s+/);
@@ -338,6 +338,7 @@ function persist(){if(window.__bsR)return;try{var any=Object.keys(sel).length||O
  try{if(any)BSYNC(RNUM,JSON.parse(localStorage.getItem(PK)),n>=2?3:n,n>=2)}catch(e){}}catch(e){}}
 try{var sv=JSON.parse(localStorage.getItem(PK)||'null');if(sv&&sv.v===2){sel=sv.sel||{};done=sv.done||{};qst=sv.qst||{};qgo=sv.go||0;if(!qgo&&Object.keys(qst).length)qgo=1;chk=sv.chk||0;s1t=sv.s1t||{};if(sv.tm){TM=sv.tm;TM.done=TM.done||0;_last=Date.now()}}}catch(e){}
 document.getElementById('bm').addEventListener('click',function(e){if(e.target.closest('button')){if(confirm('이 Reading의 진행 기록을 지우고 처음부터 다시 할까요?')){try{localStorage.removeItem(PK)}catch(x){}try{BSYNC(RNUM,null,0,true)}catch(x){}sel={};done={};qst={};chk=0;s1t={};qgo=0;mark=Date.now();TM={act:0,lv:0,lt:0,done:0};_last=Date.now();render();window.scrollTo(0,0)}}});
+var GLX=[[10,1,['easy = 쉬운','easily = 쉽게']],[12,0,['careful = 조심스러운','carefully = 조심스럽게']],[11,0,['of = ~의','on = ~에 붙어서']],[7,0,['to = ~로 (목적지를 향해)']]];GLX.forEach(function(g){D.forEach(function(it){if(it.n===g[0]&&it.fixes[g[1]])it.fixes[g[1]].gl=g[2]})});
 BSYNC=function(){};wlog=function(){};function persist(){try{localStorage.setItem(PK,JSON.stringify({v:2,sel:sel,done:done,qst:qst,chk:chk,s1t:s1t,tm:TM,go:qgo}))}catch(e){}}
 render();
 
