@@ -99,20 +99,27 @@ function login(msg){
 }
 var MID2=['이상현','이지호','김하율','최승후','문준서','최신후'];
 var TAB=ls('wn_tab')||'st';if(TAB!=='ask'&&TAB!=='ct')TAB='st';var LIM=Number(ls('wn_lim'))||10;
+var SR=null;
 function main(){
-  $.innerHTML='<div class="msg">불러오는 중...</div>';
+  var had=!!SR;
+  if(had)mainDraw(SR);else $.innerHTML='<div class="msg">불러오는 중...</div>';
   post({act:'t_students'}).then(function(r){
-    if(!r||!r.ok){login('비밀번호를 확인해 주세요.');return}
+    if(!r||!r.ok){if(!had)login('비밀번호를 확인해 주세요.');return}
+    SR=r;
+    if(!had||document.querySelector('.tabs'))mainDraw(r);
+  },function(){if(!had)login('연결이 안 됐어요.')});
+}
+function mainDraw(r){
     r.students.forEach(function(s){if(MID2.indexOf(s.name)>=0)s.grade='중2'});
     var h='<h1>REC H</h1><div class="tabs"><button data-t="st"'+(TAB==='st'?' class="on"':'')+'>현황</button><button data-t="ask"'+(TAB==='ask'?' class="on"':'')+'>질문</button><button data-t="ct"'+(TAB==='ct'?' class="on"':'')+'>컨트롤</button></div><div id="body"></div>';
     $.innerHTML=h;
     $.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){TAB=b.dataset.t;ss('wn_tab',TAB);main()}});
     if(TAB==='ask')asklist(r);else if(TAB==='ct')control(r);else status(r);
-  },function(){login('연결이 안 됐어요.')});
 }
 function asklist(r,sk){
   if(!sk){ctlRead().then(function(m){CTM=m;if(document.getElementById('lim')&&!SAV)asklist(r,1)},function(){});return asklist(r,1)}
   if(!SPD)SPD=lastFri();
+  setTimeout(function(){prefetch(r)},1500);
   var b=document.getElementById('body');
   var ss_=r.students.slice().sort(function(a,c){return c.total-a.total||(a.name<c.name?-1:1)});
   var h='<div style="display:flex;align-items:center;gap:8px;margin:0 0 10px"><button class="sbtn" id="spp"'+(SPD<='2026-11-06'?' disabled':'')+'>&lsaquo;</button><b style="flex:1;text-align:center">말하기 시험 '+dshow(SPD)+'</b><button class="sbtn" id="spn"'+(SPD>=lastFri()?' disabled':'')+'>&rsaquo;</button></div><div class="seg" id="lim">'+[5,10,15].map(function(x){return'<button data-l="'+x+'"'+(x===LIM?' class="on"':'')+'>'+x+'개</button>'}).join('')+'</div>';
@@ -129,12 +136,25 @@ function asklist(r,sk){
   var sb=document.getElementById('spsave');if(sb)sb.onclick=function(){if(SAV)return;SAV=1;asklist(r,1);spFlush().then(function(ok){SAV=0;asklist(r,1);if(!ok){var bb=document.getElementById('body');if(bb)bb.insertAdjacentHTML('afterbegin','<div class="msg">저장이 안 됐어요. 한 번만 다시 눌러 주세요.</div>')}})};
 }
 var Q=null,WL=null;
+var WLR={},PF=0;
+function wbuild(r,n){var K=SPD||lastFri();var li=r.items.filter(function(i){return i.src!=='데일리보카'&&i.src!=='데일리어법'&&(!i.first||i.first<=K)}).sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});return{n:n,K:K,items:li,askDue:0,total:li.length}}
 function wlist(n){
-  $.innerHTML='<div class="msg">불러오는 중...</div>';
+  var c=WLR[n];
+  if(c){WL=wbuild(c,n);drawWL()}else $.innerHTML='<div class="msg">불러오는 중...</div>';
   post({act:'t_list',name:n,all:1,max:300,limit:LIM}).then(function(r){
-    if(!r||!r.ok){main();return}
-    var K=SPD||lastFri();var li=r.items.filter(function(i){return i.src!=='데일리보카'&&i.src!=='데일리어법'&&(!i.first||i.first<=K)}).sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});WL={n:n,K:K,items:li,askDue:0,total:li.length};drawWL();
-  },function(){main()});
+    if(!r||!r.ok){if(!c)main();return}
+    WLR[n]=r;
+    if(!c||(document.getElementById('oral')&&WL&&WL.n===n)){WL=wbuild(r,n);drawWL()}
+  },function(){if(!c)main()});
+}
+function prefetch(r){
+  if(PF)return;PF=1;
+  var names=r.students.map(function(x){return x.name}).filter(function(n){return!WLR[n]});
+  (function nx(){
+    var n=names.shift();
+    if(!n||PQ.length){PF=0;return}
+    post({act:'t_list',name:n,all:1,max:300,limit:LIM}).then(function(x){if(x&&x.ok)WLR[n]=x},function(){}).then(function(){setTimeout(nx,300)});
+  })();
 }
 function drawWL(){
   var W=WL,k=Math.min(LIM,W.items.length);
@@ -162,7 +182,7 @@ function ask(n){
 function qstep(){
   if(!Q.res)Q.res={};
   var N=Q.items.length;
-  function back(){whenDrained(Q.back?function(){wlist(Q.n)}:main)}
+  function back(){if(Q.back)wlist(Q.n);else main()}
   if(Q.done){
     var a=Q.ok+Q.ng;
     $.innerHTML='<h1>'+esc(Q.n)+'</h1><div class="card"><div class="word">'+Q.ok+' / '+a+'</div><div class="sub">맞음 '+Q.ok+' · 틀림 '+Q.ng+(N>a?' · 안 물어봄 '+(N-a):'')+'</div></div><button class="btn pri" id="hm">목록으로</button>';
