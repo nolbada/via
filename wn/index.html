@@ -629,6 +629,19 @@ function byPri(a,b){return(b.c-a.c)||(a.nx<b.nx?-1:a.nx>b.nx?1:0)}
 function mStrip(m){return String(m||'').replace(/\s*\((비슷|반대)[^:)]*:[^)]*\)/,'')}
 function synBtns(m){var x=/\((비슷|반대)[^:)]*:\s*([^)]+)\)/.exec(m||'');if(!x)return'';return'<div class="synr"><small>'+x[1]+'</small>'+x[2].split(/\s*,\s*/).filter(Boolean).map(function(w){return'<button class="syc" type="button" data-say="'+esc(w).replace(/"/g,'&quot;')+'">'+esc(w)+SPKS+'</button>'}).join('')+'</div>'}
 var SP=null;
+function spTable(K,items){var td=iso(new Date()),dd=Math.round((new Date(K+'T00:00:00')-new Date(td+'T00:00:00'))/864e5),dl=dd>0?'D-'+dd:dd===0?'오늘':'',op={},all=false,n=items.length;
+  var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+dshow(K)+' 말하기 대비 '+n+'개'+(dl?' · '+dl:'')+'</div></div>';
+  h+='<button class="btn" id="ta">뜻 전체 보기</button><div class="card">';
+  items.forEach(function(it,i){h+='<div class="row" data-i="'+i+'" style="cursor:pointer"><div><b>'+esc(it.w)+'</b><small class="mn">· · ·</small></div>'+spk(it.w)+'</div>'});
+  if(!n)h+='<div class="sub">범위 단어가 없어요.</div>';
+  h+='</div><button class="btn" id="hm2">홈</button>';
+  $.innerHTML=h;window.scrollTo(0,0);
+  var rows=[].slice.call($.querySelectorAll('.row[data-i]'));
+  function paint(i){var it=items[i],o=all||op[i];rows[i].querySelector('.mn').innerHTML=o?esc(it.m||'')+srcTag(it):'· · ·'}
+  rows.forEach(function(r,i){r.onclick=function(){if(all)return;op[i]=!op[i];paint(i)}});
+  document.getElementById('ta').onclick=function(){all=!all;if(!all)op={};this.textContent=all?'뜻 전체 가리기':'뜻 전체 보기';rows.forEach(function(r,i){paint(i)})};
+  document.getElementById('hm').onclick=document.getElementById('hm2').onclick=function(){home(DATA)};
+}
 function spStart(K,items){SP={K:K,a:shuffle(items.slice()),i:0};spShow()}
 function spShow(){var S=SP,n=S.a.length,K=S.K;
   var td=iso(new Date()),dd=Math.round((new Date(K+'T00:00:00')-new Date(td+'T00:00:00'))/864e5),dl=dd>0?'D-'+dd:dd===0?'오늘':'';
@@ -656,7 +669,7 @@ function friList(items,K){
 }
 function list(K){
   var items=K?friList(DATA.items,K):DATA.items.filter(function(i){return isL(i)}).sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});
-  if(K){spStart(K,items);return}
+  if(K){spTable(K,items);return}
   var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+(K?dshow(K)+' 말하기 대비 ':'오답 단어 리스트 ')+items.length+'개</div></div><div class="card">';
   items.forEach(function(i){h+='<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+srcTag(i)+'</small></div>'+spk(i.w)+'<span class="badge">'+i.st+'/4 · '+dshow(i.nx)+'</span></div>'});
   h+='</div>';$.innerHTML=h;document.getElementById('hm').onclick=function(){home(DATA)};
