@@ -137,7 +137,15 @@ function asklist(r,sk){
 }
 var Q=null,WL=null;
 var WLR={},PF=0;
-function wbuild(r,n){var K=SPD||lastFri();var li=r.items.filter(function(i){return i.src!=='데일리보카'&&i.src!=='데일리어법'&&(!i.first||i.first<=K)}).sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});return{n:n,K:K,items:li,askDue:0,total:li.length}}
+function friList(items,K){
+  var M=addd(K,-4),cp=50,cmp=function(a,b){return a<b?-1:a>b?1:0};
+  var base=items.filter(function(i){return i.src!=='데일리보카'&&i.src!=='데일리어법'&&!(i.st>=4)&&(!i.first||i.first<=M)});
+  var A=base.filter(function(i){return!i.nx||i.nx<=K}).sort(function(a,b){return(a.st-b.st)||cmp(a.nx||'',b.nx||'')||cmp(a.w.toLowerCase(),b.w.toLowerCase())});
+  var B=base.filter(function(i){return i.nx&&i.nx>K}).sort(function(a,b){return cmp(a.nx,b.nx)||(a.st-b.st)||cmp(a.w.toLowerCase(),b.w.toLowerCase())});
+  var out=A.slice(0,cp);if(out.length<cp)out=out.concat(B.slice(0,cp-out.length));
+  return out.sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1})
+}
+function wbuild(r,n){var K=SPD||lastFri();var li=friList(r.items,K);return{n:n,K:K,items:li,askDue:0,total:li.length}}
 function wlist(n){
   var c=WLR[n];
   if(c){WL=wbuild(c,n);drawWL()}else $.innerHTML='<div class="msg">불러오는 중...</div>';
