@@ -98,7 +98,7 @@ function login(msg){
   document.getElementById('go').onclick=function(){PW=document.getElementById('pw').value;ss('wn_pw',PW);main()};
 }
 var MID2=['이상현','이지호','김하율','최승후','문준서','최신후'];
-var TAB=ls('wn_tab')||'st';if(TAB!=='ask'&&TAB!=='ct')TAB='st',LIM=Number(ls('wn_lim'))||10;
+var TAB=ls('wn_tab')||'st';if(TAB!=='ask'&&TAB!=='ct')TAB='st';var LIM=Number(ls('wn_lim'))||10;
 function main(){
   $.innerHTML='<div class="msg">불러오는 중...</div>';
   post({act:'t_students'}).then(function(r){
@@ -111,7 +111,7 @@ function main(){
   },function(){login('연결이 안 됐어요.')});
 }
 function asklist(r,sk){
-  if(!sk){return ctlRead().then(function(m){CTM=m},function(){}).then(function(){asklist(r,1)})}
+  if(!sk){ctlRead().then(function(m){CTM=m;if(document.getElementById('lim')&&!SAV)asklist(r,1)},function(){});return asklist(r,1)}
   if(!SPD)SPD=lastFri();
   var b=document.getElementById('body');
   var ss_=r.students.slice().sort(function(a,c){return c.total-a.total||(a.name<c.name?-1:1)});
