@@ -9,7 +9,7 @@ with sync_playwright() as pw:
     # walk every set / item automatically
     total=0
     for c in pg.evaluate("META.map(x=>x.n)"):
-        pg.evaluate(f"chap({c})")
+        pg.evaluate(f"chap({c},true)")
         ns=pg.evaluate(f"META.filter(x=>x.n=={c})[0].sets.length")
         for si in range(ns):
             pg.evaluate(f"load({c},function(s){{run({c},{si},0)}})"); pg.wait_for_timeout(150)

@@ -88,6 +88,7 @@ textarea{width:100%;min-height:120px;border:1.5px solid #c8d1e5;border-radius:12
 .chcard .ct{flex:1;font-size:17px;font-weight:700;color:#1f3b73}
 .chcard .cp{font-size:13px;color:#55627d}
 .chcard.done{background:#e6f4ea}
+.setbtn.lk{opacity:.55;background:#eceef3;cursor:default}
 </style>
 </head>
 <body>
@@ -97,8 +98,20 @@ var META=__META__;
 window.DB={};
 var KEY='eobeop-sent-v2';
 var st={done:{},wrote:{}};
-try{var raw=localStorage.getItem(KEY);if(raw){st=JSON.parse(raw);st.wrote=st.wrote||{};st.done=st.done||{}}}catch(e){}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+try{var raw=sessionStorage.getItem(KEY);if(raw){st=JSON.parse(raw);st.wrote=st.wrote||{};st.done=st.done||{}}}catch(e){}
+function save(){try{sessionStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+var KV='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec',KID='EJCTL',OKEY='eobeop-sent-open';
+var OPEN={};try{var oc=localStorage.getItem(OKEY);if(oc)OPEN=JSON.parse(oc)||{}}catch(e){}
+function teacher(){try{return localStorage.getItem('ej_teacher')==='1'}catch(e){return false}}
+function isOpen(set){return teacher()||!!OPEN['sa-'+set.id]}
+function fetchOpen(cb){
+  fetch(KV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:KID,data:{}})}).then(function(r){return r.json()}).then(function(r){
+    var d=(r&&r.data)||{},o={};
+    for(var k in d){if(k.indexOf('sa-')!==0)continue;try{var x=d[k],q=(x&&x.v&&typeof x.v.s==='string')?x.v.s:null;if(q&&JSON.parse(q).o)o[k]=1}catch(e){}}
+    OPEN=o;try{localStorage.setItem(OKEY,JSON.stringify(o))}catch(e){}
+    if(cb)cb(true);
+  },function(){if(cb)cb(false)});
+}
 var $=document.getElementById('app');
 function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
@@ -111,6 +124,8 @@ function home(){
     var b=el('button','chcard'+(d==n&&n?' done':''),'<span class="cn">CH.'+(c.n<10?'0':'')+c.n+'</span><span class="ct">'+esc(c.t)+'</span><span class="cp">'+d+' / '+n+'</span>');
     b.onclick=function(){chap(c.n)};$.appendChild(b);
   });
+  var cl=el('button','btn ghost sm','기록 지우기');cl.style.marginTop='10px';
+  cl.onclick=function(){st={done:{},wrote:{}};save();home()};$.appendChild(cl);
 }
 function load(n,cb){
   if(window.DB[n])return cb(window.DB[n]);
@@ -119,17 +134,23 @@ function load(n,cb){
   s.onerror=function(){$.innerHTML='';$.appendChild(el('div','card','불러오지 못했어요. 인터넷 연결을 확인하고 다시 열어 주세요.'));var b=el('button','btn',' 목록으로');b.onclick=home;$.appendChild(b)};
   document.head.appendChild(s);
 }
-function chap(n){
+var curChap=0;
+function chap(n,keep){
+  curChap=n;
   var c=META.filter(function(x){return x.n==n})[0];
   $.innerHTML='';
-  var t=el('div','top');var back=el('button','btn ghost sm','목록');back.onclick=home;t.appendChild(back);
+  var t=el('div','top');var back=el('button','btn ghost sm','목록');back.onclick=function(){curChap=0;home()};t.appendChild(back);
   t.appendChild(el('span','brand','CH.'+(n<10?'0':'')+n+' '+c.t));$.appendChild(t);
   c.sets.forEach(function(s,si){
-    var d=cnt(s);
-    var b=el('button','setbtn'+(d==s.n?' done':''),'<div class="t">'+esc(s.title)+' <span class="small">p.'+s.page+'</span></div><div class="s">'+esc(s.sub)+'</div><div class="p">'+(d==s.n?'분석 완료':d+' / '+s.n)+'</div>');
-    b.onclick=function(){$.innerHTML='<div class="card">불러오는 중…</div>';load(n,function(sets){var set=sets[si];run(n,si,firstOpen(set))})};
+    var d=cnt(s),op=isOpen(s);
+    var b=el('button','setbtn'+(op?(d==s.n?' done':''):' lk'),'<div class="t">'+esc(s.title)+' <span class="small">p.'+s.page+'</span></div><div class="s">'+esc(s.sub)+'</div><div class="p">'+(op?(d==s.n?'분석 완료':d+' / '+s.n):'선생님이 열어 주면 풀 수 있어요')+'</div>');
+    b.onclick=function(){
+      if(!isOpen(s)){return}
+      curChap=0;
+      $.innerHTML='<div class="card">불러오는 중…</div>';load(n,function(sets){var set=sets[si];run(n,si,firstOpen(set))})};
     $.appendChild(b);
   });
+  if(!keep)fetchOpen(function(ok){if(curChap==n)chap(n,true)});
 }
 function firstOpen(set){for(var i=0;i<set.items.length;i++){if(!st.done[set.id+'-'+i])return i}return 0}
 function mk(en,h){

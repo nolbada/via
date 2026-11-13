@@ -22,9 +22,12 @@ sw=f"""var C='eobeop-sent-{ver}';
 var F=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png',{','.join(repr(f) for f in files)}];
 self.addEventListener('install',function(e){{e.waitUntil(caches.open(C).then(function(c){{return c.addAll(F)}}));self.skipWaiting()}});
 self.addEventListener('activate',function(e){{e.waitUntil(caches.keys().then(function(k){{return Promise.all(k.filter(function(x){{return x!==C}}).map(function(x){{return caches.delete(x)}}))}}));self.clients.claim()}});
-self.addEventListener('fetch',function(e){{e.respondWith(fetch(e.request).then(function(r){{var cp=r.clone();caches.open(C).then(function(c){{c.put(e.request,cp)}});return r}}).catch(function(){{return caches.match(e.request)}}))}});
+self.addEventListener('fetch',function(e){{if(e.request.method!=='GET'||new URL(e.request.url).origin!==location.origin)return;e.respondWith(fetch(e.request).then(function(r){{var cp=r.clone();caches.open(C).then(function(c){{c.put(e.request,cp)}});return r}}).catch(function(){{return caches.match(e.request)}}))}});
 """
 open(out+'/sw.js','w',encoding='utf-8').write(sw)
 for f in ('manifest.webmanifest','icon-192.png','icon-512.png'):
     shutil.copy(f'/home/claude/via/eobeop-sentence/{f}',f'{out}/{f}')
+os.makedirs(out+'/sa-t',exist_ok=True)
+tt=open(f'{lib.BASE}/teacher3.html',encoding='utf-8').read().replace('__META__',json.dumps(meta,ensure_ascii=False,separators=(',',':')))
+open(out+'/sa-t/index.html','w',encoding='utf-8').write(tt)
 print('app built:',len(meta),'chapters ->',out)

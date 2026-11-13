@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>문장분석 · 선생님 열기</title>
+<style>
+:root{--bg:#f6f4ee;--card:#fff;--ink:#1c1f26;--mute:#6a6e78;--line:#e3dfd3;--ok:#2d6a4f;--okbg:#e3f1ea;--acc:#2b5aa8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Malgun Gothic","Noto Sans KR",sans-serif;padding:18px 16px 80px;line-height:1.6}
+.w{max-width:640px;margin:0 auto}h1{font-size:20px;margin:0 0 4px}.sub{font-size:14px;color:var(--mute);margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.hd b{font-size:16px}
+.btns{display:flex;gap:6px}.sm{border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:13px;padding:5px 10px;border-radius:8px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.pg{border:1.5px solid var(--line);background:var(--card);color:var(--mute);font:inherit;font-size:15px;padding:12px 6px;border-radius:10px}
+.pg.on{border-color:var(--ok);background:var(--okbg);color:var(--ok);font-weight:700}
+.pg small{display:block;font-size:11px;font-weight:400}
+.top{display:flex;gap:8px;flex-wrap:wrap}.top .sm{font-size:14px;padding:8px 12px}
+#st{font-size:13px;color:var(--mute);margin:6px 0}
+.tg.on{border-color:var(--acc);color:var(--acc);font-weight:700}
+</style></head><body><div class="w">
+<h1>문장분석 · 선생님 열기</h1>
+<div class="sub">쪽을 누르면 그 쪽의 문장분석이 학생 태블릿에 열려요. 초록색이 열린 쪽이에요. 해설 열기와는 따로 움직여요.</div>
+<div class="top"><button class="sm" id="allc">전체 닫기</button><button class="sm tg" id="tv">이 폰에서 전부 보기: 꺼짐</button></div>
+<div id="st"></div><div id="list"></div></div>
+<script>
+var META=__META__;
+var KV='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec',ID='EJCTL';
+var OPEN={},$=function(i){return document.getElementById(i)};
+function ls(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function post(d){return fetch(KV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:ID,data:d})}).then(function(r){return r.json()})}
+function parse(d){var m={};for(var k in d){if(k.indexOf('sa-')!==0)continue;try{var x=d[k],s=(x&&x.v&&typeof x.v.s==='string')?x.v.s:null;if(s)m[k]=JSON.parse(s).o?1:0}catch(e){}}return m}
+function st(t){$('st').textContent=t}
+function draw(){
+  var h='';
+  META.forEach(function(c){
+    var n=c.sets.filter(function(p){return OPEN['sa-'+p.id]}).length;
+    h+='<div class="card"><div class="hd"><b>CHAPTER '+(c.n<10?'0':'')+c.n+' <span style="font-weight:400;font-size:13px;color:var(--mute)">'+n+'/'+c.sets.length+' 열림</span></b><div class="btns"><button class="sm" data-ca="'+c.n+'" data-v="1">전체 열기</button><button class="sm" data-ca="'+c.n+'" data-v="0">전체 닫기</button></div></div><div class="grid">';
+    c.sets.forEach(function(p){h+='<button class="pg'+(OPEN['sa-'+p.id]?' on':'')+'" data-k="sa-'+p.id+'">p.'+p.page+' '+p.title+'<small>'+(OPEN['sa-'+p.id]?'열림':'잠김')+'</small></button>'});
+    h+='</div></div>';
+  });
+  $('list').innerHTML=h;
+}
+function save(keys,v){
+  var d={},t=Date.now();keys.forEach(function(k){OPEN[k]=v;d[k]={v:{s:JSON.stringify({o:v})},t:t}});draw();st('저장 중...');
+  post(d).then(function(r){st(r&&r.ok===false?'저장이 안 됐어요. 다시 눌러 주세요.':'저장됐어요.')},function(){st('연결이 안 됐어요. 다시 눌러 주세요.')});
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-k]');if(b){save([b.dataset.k],OPEN[b.dataset.k]?0:1);return}
+  var c=e.target.closest('[data-ca]');if(c){var ks=[];META.forEach(function(x){if(String(x.n)===c.dataset.ca)x.sets.forEach(function(p){ks.push('sa-'+p.id)})});save(ks,+c.dataset.v)}
+});
+$('allc').onclick=function(){if(!confirm('모든 쪽을 닫을까요?'))return;var ks=[];META.forEach(function(x){x.sets.forEach(function(p){ks.push('sa-'+p.id)})});save(ks,0)};
+function tvu(){var on=ls('ej_teacher')==='1';$('tv').className='sm tg'+(on?' on':'');$('tv').textContent='이 폰에서 전부 보기: '+(on?'켜짐':'꺼짐')}
+$('tv').onclick=function(){ss('ej_teacher',ls('ej_teacher')==='1'?'0':'1');tvu()};
+tvu();draw();st('불러오는 중...');
+post({}).then(function(r){OPEN=parse((r&&r.data)||{});draw();st('')},function(){st('연결이 안 됐어요. 새로고침해 주세요.')});
+</script></body></html>
