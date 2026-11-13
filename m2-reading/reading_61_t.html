@@ -78,7 +78,8 @@ mark{background:linear-gradient(transparent 45%,#f6e27a 45%);color:inherit;paddi
 .fixs{margin:4px 14px 6px;font-size:17px}.fixs-l{font-size:12.5px;color:var(--mut);margin:10px 14px 0}
 .ac.s1{margin:10px 0 4px 34px}
 
-.crit{margin-top:4px;font-size:12px;color:var(--mut)}.rsum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;font-size:15px}.rsum b{color:var(--pri)}.rchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.rchip{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:99px;padding:5px 11px;font-size:14px;font-weight:700;cursor:pointer}.rchip.m{border-color:#e08a7f;color:var(--bad)}.gobar{margin:22px 0}.fgl{font-size:13px;color:var(--mut);margin-top:5px;line-height:1.5}.gobar button{display:block;width:100%;padding:15px 0;font-size:17px;font-weight:700;border-radius:10px;background:var(--pri);color:#fff;border:0;cursor:pointer}</style></head><body><div class="wrap">
+.crit{margin-top:4px;font-size:12px;color:var(--mut)}.rsum{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;font-size:15px}.rsum b{color:var(--pri)}.rchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.rchip{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:99px;padding:5px 11px;font-size:14px;font-weight:700;cursor:pointer}.rchip.m{border-color:#e08a7f;color:var(--bad)}.gobar{margin:22px 0}.fgl{font-size:13px;color:var(--mut);margin-top:5px;line-height:1.5}.gobar button{display:block;width:100%;padding:15px 0;font-size:17px;font-weight:700;border-radius:10px;background:var(--pri);color:#fff;border:0;cursor:pointer}.fixd del{color:var(--bad);text-decoration:line-through;text-decoration-thickness:2px;font-weight:700}.fixd mark{background:linear-gradient(transparent 45%,#bfe5cd 45%);color:var(--ok);font-weight:700}
+</style></head><body><div class="wrap">
 <header><a href="./" style="font-size:13px;color:var(--mut);text-decoration:none">&larr; M2 Reading</a><h1>Reading 61 (시험본) · My Day with the Sharing Economy</h1><div class="sub">공유 경제와 함께 한 나의 하루 · 틀린 곳 찾기</div><div class="sub" id="best"></div></header>
 <div class="relay" id="relay"></div><div class="rn">RELAY &middot; 앞 단계를 끝내야 다음 단계 오픈</div><div class="bmw"><span id="bm" class="bmk" style="display:none">책갈피 저장됨 &middot; 다음에 이어서 풀기<button type="button">처음부터</button></span></div><div id="app"></div>
 </div>
@@ -149,7 +150,7 @@ function errN(S){return S.items.reduce(function(a,i){return a+D[i].fixes.length}
 function countSel(i){var c=0;for(var k in sel)if(k.indexOf(i+':')===0)c++;return c}
 function sentHtml(i,lock){
  var it=D[i],toks=it.en.split(/\s+/),sp=span(it),h='';
- if(lock&&!it.ok){h='<div class="sent locked fixd" id="s'+i+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt" lang="en">'+fixedHtml(it)+'</div></div><div class="gl kr">'+esc(it.ko)+'</div>';if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');return h+noteHtml(i)+'</div>'}
+ if(lock&&!it.ok){h='<div class="sent locked fixd" id="s'+i+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt" lang="en">'+diffHtml(it)+'</div></div><div class="gl kr">'+esc(it.ko)+'</div>';if(it.foot.length)h+=it.foot.map(function(f){return '<div class="gl">'+esc(f.replace(/^\d+/,''))+'</div>'}).join('');return h+noteHtml(i)+'</div>'}
  h+='<div class="sent'+(lock?' locked':'')+'" id="s'+i+'"><div class="row"><div class="n">'+String(it.n).padStart(2,'0')+'</div><div class="txt" lang="en">';
  toks.forEach(function(t,ti){
   var cls='wd',inSp=sp.filter(function(x){return ti>=x.s&&ti<x.e}).length>0,inMain=sp.filter(function(x){return !x.alt&&ti>=x.s&&ti<x.e}).length>0,on=!!sel[key(i,ti)];
@@ -175,6 +176,16 @@ function fixedHtml(it){var tk=it.en.split(/\s+/);
    tk.splice.apply(tk,[a,n,lead+'\u0001'+f.right+'\u0002'+trail].concat(Array(n-1).fill('\u0000')))});
  });
  return esc(tk.join(' ').replace(/ ?\u0000/g,'')).replace(/\u0001/g,'<mark>').replace(/\u0002/g,'</mark>')}
+function diffHtml(it){var tk=it.en.split(/\s+/);
+ it.fixes.forEach(function(f){
+  var n=f.wrong.split(/\s+/).length,pos=f.all?f.at:[f.at[0]];
+  pos.forEach(function(a){
+   var R=f.right?'\u0001'+f.right+'\u0002':'';
+   if(f.partial){tk[a]=tk[a].replace(f.wrong,'\u0003'+f.wrong+'\u0004'+R);return}
+   var seg=tk.slice(a,a+n),lead=(seg[0].match(/^[^\w]*/)||[''])[0],trail=(seg[seg.length-1].match(/[^\w]*$/)||[''])[0];
+   tk.splice.apply(tk,[a,n,lead+'\u0003'+f.wrong+'\u0004'+(R?' '+R:'')+trail].concat(Array(n-1).fill('\u0000')))});
+ });
+ return esc(tk.join(' ').replace(/ ?\u0000/g,'')).replace(/\u0001/g,'<mark>').replace(/\u0002/g,'</mark>').replace(/\u0003/g,'<del>').replace(/\u0004/g,'</del>')}
 function noteHtml(i){
  var it=D[i],wp=wrongPicks(i);
  if(it.ok){return '<div class="ac s1"><div class="ac-top fine"><b>맞는 문장</b><span class="ac-a">어법 오류 없음</span>'+(wp?'<span class="ac-x">틀리게 고른 곳 : <span lang="en">'+esc(wrongWords(i).join(', '))+'</span></span>':'')+'</div></div>'}
