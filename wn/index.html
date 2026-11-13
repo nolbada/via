@@ -151,8 +151,8 @@ function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function ds(k){try{localStorage.removeItem(k)}catch(e){}}
 var $=document.getElementById('app');
 function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function post(b){var one=function(){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})};
-if(b.act!=='list'||name()!=='서승언')return one();
+function post(b){var one=function(){var ac=window.AbortController?new AbortController():null;var tm=ac?setTimeout(function(){ac.abort()},b.act==='list'?25000:60000):0;return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b),signal:ac?ac.signal:undefined}).then(function(r){return r.json()}).then(function(x){clearTimeout(tm);return x},function(e){clearTimeout(tm);throw e})};
+if(b.act!=='list')return one();
 var tr=0;var go=function(){return one().catch(function(e){if(++tr>=4)throw e;return new Promise(function(ok){setTimeout(ok,900*tr)}).then(go)})};return go()}
 function name(){if(/[?&]t=1(&|$)/.test(location.search))return'신유정'+((/[?&]c=([AB])(&|$)/.exec(location.search)||[])[1]||'');return(ls('wn_name')||ls('recm_name')||ls('rec_name')||'').replace(/\s+/g,'')}
 function dshow(d){if(!d)return'';var p=d.split('-');var w=WD[new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay()];return(+p[1])+'/'+(+p[2])+'('+w+')'}
