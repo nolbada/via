@@ -179,6 +179,7 @@ function login(){
 var SUBF=function(){return false};var RC=null,NCX=null,DATA=null,resetArm=false,resetT=null,CALM=null,SEL=null;
 var PLAN={"김서진": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "서승언": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "장은율": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김지효": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김린": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "이동우": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고2"}, "김도현": {"dv": "Pro", "d": "H", "s": "2026-11-02", "m": "고1"}, "김소희": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "윤유란": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "정다원": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "김민서": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "이지민": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "조혜린": {"dv": "Core", "d": "B", "s": "2026-11-03", "m": "고1"}, "최의준": {"dv": "Core", "d": "B", "s": "2026-11-05", "m": "고1"}};
 var ADMIN=['신유정'];
+PLAN['샘플1']={"dv":"Core","d":"B","s":"2026-11-03","m":"고1"};PLAN['샘플2']={"dv":"Pro","d":"H","s":"2026-11-02","m":"고2"};
 var TCM=(function(){var m=/[?&]c=([AB])(&|$)/.exec(location.search);return(/[?&]t=1(&|$)/.test(location.search)&&m)?m[1]:''})();
 if(TCM)PLAN['신유정'+TCM]=TCM==='A'?{"dv":"Core","d":"B","s":"2026-11-03","m":"고1"}:{"dv":"Pro","d":"H","s":"2026-11-02","m":"고2"};
 try{if(TCM&&/[?&]fresh=1(&|$)/.test(location.search)){var _sf='신유정'+TCM.toLowerCase(),_dk=[];for(var _q=0;_q<localStorage.length;_q++){var _k=localStorage.key(_q)||'';if(_k.toLowerCase().indexOf(_sf)>=0)_dk.push(_k)}_dk.forEach(function(k){localStorage.removeItem(k)});history.replaceState(null,'',location.pathname+'?t=1&c='+TCM)}}catch(e){}
@@ -195,7 +196,7 @@ function lj(k,def){try{return JSON.parse(ls(k)||'')||def}catch(e){return def}}
 var EOT=['김소희','윤유란','정다원','김민서','이지민','조혜린'];
 function eoMap(n){
   var P=PLAN[n];if(!P)return{};
-  var tt=EOT.indexOf(n)>=0||n==='신유정A'||(n==='선생님'&&P.dv==='Core'),st=tt?'2026-11-10':'2026-11-09',m={},c=0,cur=new Date(st+'T00:00:00'),end=new Date('2027-04-30T00:00:00');
+  var tt=EOT.indexOf(n)>=0||n==='신유정A'||n==='샘플1'||(n==='선생님'&&P.dv==='Core'),st=tt?'2026-11-10':'2026-11-09',m={},c=0,cur=new Date(st+'T00:00:00'),end=new Date('2027-04-30T00:00:00');
   for(;cur<=end&&c<84;cur.setDate(cur.getDate()+1)){var k=iso(cur),w=cur.getDay(),ok=(tt&&k<'2026-11-16')?[2,3,4,5,6,0]:HWD;
     if(ok.indexOf(w)>=0&&CLOSED.indexOf(k)<0){c++;m[k]=c}}
   return m;
@@ -225,7 +226,7 @@ try{window.addEventListener('online',function(){try{rvFlush()}catch(e){}});docum
 function inHold(c,dk){return !!(c&&((c.hold&&c.hs&&dk>=c.hs&&dk<=c.hold)||(c.holds||[]).some(function(z){return dk>=z.a&&dk<=z.b})))}
 function hEnd(c,d){if(!c)return'';var e='';if(c.hold&&d<=c.hold)e=c.hold;(c.holds||[]).forEach(function(z){if(d>=z.a&&d<=z.b&&z.b>e)e=z.b});return e}
 function hMsg(e){return e<'9999'?dshow(adD(e,1))+'에 다시 시작해요.':'선생님이 다시 알려 줄 거예요.'}
-var TT=['김소희','윤유란','정다원','김민서','이지민','조혜린','신유정A'];
+var TT=['김소희','윤유란','정다원','김민서','이지민','조혜린','신유정A','샘플1'];
 function exTaken(n,pre){
   var r={},low=String(n).toLowerCase(),a='dvc_exam_',b='dvp_exam_',k,m,v;
   try{for(var q=0;q<localStorage.length;q++){k=localStorage.key(q)||'';
