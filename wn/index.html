@@ -227,7 +227,7 @@ function hEnd(c,d){if(!c)return'';var e='';if(c.hold&&d<=c.hold)e=c.hold;(c.hold
 function hMsg(e){return e<'9999'?dshow(adD(e,1))+'에 다시 시작해요.':'선생님이 다시 알려 줄 거예요.'}
 var TT=['김소희','윤유란','정다원','김민서','이지민','조혜린','샘플1'];
 function exTaken(n,pre){
-  var r={},low=String(n).toLowerCase(),a='dvc_exam_',b='dvp_exam_',k,m,v;
+  var r={},low=String(n).toLowerCase(),a='dvc_exam_',b='dvp_exam_',k,m,v,P0=PLAN[n];if(P0){if(P0.dv==='Pro')a=b;else b=a}
   try{for(var q=0;q<localStorage.length;q++){k=localStorage.key(q)||'';
     if(k.indexOf(a)!==0&&k.indexOf(b)!==0)continue;
     m=/^dv[cp]_exam_(\d+)_(.+)$/.exec(k);if(!m||m[2]!==low)continue;
@@ -595,7 +595,7 @@ function drawCal(I,ti){
 }
 function exRecs(n){
   var out=[],low=String(n).toLowerCase(),k,m,v;
-  try{for(var q=0;q<localStorage.length;q++){k=localStorage.key(q)||'';m=/^dv[cp]_exam_(\d+)_(.+)$/.exec(k);if(!m||m[2]!==low)continue;v=JSON.parse(localStorage.getItem(k)||'null');if(v&&v.done)out.push({d:+m[1],s:v.score,t:v.total,at:v.t||0})}}catch(e){}
+  var P1=PLAN[n],pf=P1?(P1.dv==='Pro'?'dvp':'dvc'):'';try{for(var q=0;q<localStorage.length;q++){k=localStorage.key(q)||'';m=/^dv[cp]_exam_(\d+)_(.+)$/.exec(k);if(!m||m[2]!==low||(pf&&k.indexOf(pf)!==0))continue;v=JSON.parse(localStorage.getItem(k)||'null');if(v&&v.done)out.push({d:+m[1],s:v.score,t:v.total,at:v.t||0})}}catch(e){}
   var seen={};out.forEach(function(r){seen[r.d]=1});
   var tk=exTaken(n);for(var d in tk){if(!seen[d])out.push({d:+d,at:tk[d]})}
   return out.sort(function(a,b){return a.d-b.d});
@@ -850,7 +850,7 @@ window.addEventListener('popstate',function(){if(skip){skip=0;return}if(sub){sub
 try{if(history.state&&history.state.sub)history.replaceState(null,'')}catch(e){}
 })()}catch(e){}
 home();
-try{(function(){var n=name(),P=PLAN[n];if(!n||!P)return;post({act:'hwget',name:n,pin:PIN}).then(function(r){var L=(r&&r.ok&&r.hw)||[],ch=0;L.forEach(function(x){var lv=x.level;var xm=/^더블보카 (Core|Pro)$/.exec(lv),sm=/^(\d+)\/(\d+)$/.exec(x.score||'');if(xm&&sm){var ek=(xm[1]==='Pro'?'dvp':'dvc')+'_exam_'+x.day+'_'+String(n).toLowerCase();if(!ls(ek)){var et=x.date?new Date(x.date+'T12:00:00').getTime():Date.now();ss(ek,JSON.stringify({done:true,score:+sm[1],total:+sm[2],used:0,t:et}));ch=1}return}if(!/^[HBM]$/.test(lv)||!x.score||x.score==='진행중')return;var kk='dv_'+lv+'_'+n,cc=lj(kk,{});cc.done=cc.done||{};if(!cc.done[x.day]){cc.done[x.day]={s:x.score,t:Date.now()};ss(kk,JSON.stringify(cc));ch=1}});if(ch&&document.getElementById('wk'))home(DATA||undefined)},function(){})})()}catch(e){}
+try{(function(){var n=name(),P=PLAN[n];if(!n||!P)return;post({act:'hwget',name:n,pin:PIN}).then(function(r){var L=(r&&r.ok&&r.hw)||[],ch=0;L.forEach(function(x){var lv=x.level;var xm=/^더블보카 (Core|Pro)$/.exec(lv),sm=/^(\d+)\/(\d+)$/.exec(x.score||'');if(xm&&sm){var ek=(xm[1]==='Pro'?'dvp':'dvc')+'_exam_'+x.day+'_'+String(n).toLowerCase();if(!ls(ek)){var et=Date.now();ss(ek,JSON.stringify({done:true,score:+sm[1],total:+sm[2],used:0,t:et}));ch=1}return}if(!/^[HBM]$/.test(lv)||!x.score||x.score==='진행중')return;var kk='dv_'+lv+'_'+n,cc=lj(kk,{});cc.done=cc.done||{};if(!cc.done[x.day]){cc.done[x.day]={s:x.score,t:Date.now()};ss(kk,JSON.stringify(cc));ch=1}});if(ch&&document.getElementById('wk'))home(DATA||undefined)},function(){})})()}catch(e){}
 try{var _sg=function(){var n=name(),P=PLAN[n];if(!P)return'';return['H','B','M'].map(function(L){return(ls('dv_'+L+'_'+n)||'')+(isAdm(n)?(ls('dv_'+L+'_선생님')||''):'')}).join('~')+'|'+(ls((P.dv==='Pro'?'dvp':'dvc')+'_done_'+n)||'')},_s0=_sg();setInterval(function(){if(document.hidden||!document.getElementById('wk'))return;var s=_sg();if(s!==_s0){_s0=s;home(DATA||undefined)}},1500)}catch(e){}
 try{if(PV)document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a.tk');if(!a)return;var u=a.getAttribute('href')||'';if(/\/(daily\/[bh]|dvcore|dvpro)\/(\?day=\d+)?$/.test(u))a.setAttribute('href',u+(u.indexOf('?')<0?'?t=1':'&t=1'))},true)}catch(e){}
 try{if(TCM)document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a.tk');if(!a)return;var u=a.getAttribute('href')||'';if(/\/(daily\/[bh]|dvcore|dvpro|sj|minimock\/h[12])\/(\?day=\d+)?$/.test(u))a.setAttribute('href',u+(u.indexOf('?')<0?'?t=1':'&t=1')+'&c='+TCM)},true)}catch(e){}
