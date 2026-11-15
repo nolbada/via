@@ -195,7 +195,7 @@ function lj(k,def){try{return JSON.parse(ls(k)||'')||def}catch(e){return def}}
 var EOT=['김소희','윤유란','정다원','김민서','이지민','조혜린'];
 function eoMap(n){
   var P=PLAN[n];if(!P)return{};
-  var tt=EOT.indexOf(n)>=0||n==='샘플1'||(n==='선생님'&&P.dv==='Core'),st=tt?'2026-11-10':'2026-11-09',m={},c=0,cur=new Date(st+'T00:00:00'),end=new Date('2027-04-30T00:00:00');
+  var tt=EOT.indexOf(n)>=0||n==='샘플1'||(n==='선생님'&&P.dv==='Core'),st=tt?'2026-11-10':'2026-11-09',st=(n==='선생님'&&P.s>st)?P.s:st,m={},c=0,cur=new Date(st+'T00:00:00'),end=new Date('2027-04-30T00:00:00');
   for(;cur<=end&&c<84;cur.setDate(cur.getDate()+1)){var k=iso(cur),w=cur.getDay(),ok=(tt&&k<'2026-11-16')?[2,3,4,5,6,0]:HWD;
     if(ok.indexOf(w)>=0&&CLOSED.indexOf(k)<0){c++;m[k]=c}}
   return m;
@@ -807,7 +807,8 @@ function done(){
 var PV=(new URLSearchParams(location.search).get('v')||'').toUpperCase();
 if(PV==='B'||PV==='H'){
   /* 교사 열람용: 학생 첫 화면 그대로, 시트 기록 없음 (v=B: Core+B+고1 / v=H: Pro+H+고2) */
-  PLAN['선생님']={dv:PV==='H'?'Pro':'Core',d:PV,s:'2026-11-02',m:PV==='H'?'고2':'고1'};
+  var PVS=iso(new Date());try{var _pk='demo_wn_start_'+PV,_pv=localStorage.getItem(_pk);if(_pv&&!/[?&]fresh=1(&|$)/.test(location.search))PVS=_pv;else localStorage.setItem(_pk,PVS)}catch(e){}
+  PLAN['선생님']={dv:PV==='H'?'Pro':'Core',d:PV,s:PVS,m:PV==='H'?'고2':'고1'};
   name=function(){return'선생님'};
   ds=function(){};
   login=function(){location.href='../wn-t/'};
