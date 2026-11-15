@@ -138,6 +138,7 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
 .prog .bar{height:8px;border-radius:99px;background:var(--chip);margin-top:10px;overflow:hidden}
 .prog .bar b{display:block;height:100%;background:var(--accent);border-radius:99px}
 .dbtn.dn{background:var(--accent-soft);border-color:var(--accent)}
+.dbtn small{display:block;font-size:calc(10px*var(--fs));font-weight:600;color:var(--sub);margin-top:1px}
 .map{position:relative;margin:14px 0 6px}
 .map>svg{position:absolute;left:0;top:0;pointer-events:none;z-index:0;overflow:visible}
 .ln{fill:none;stroke-width:2;stroke-linecap:round;opacity:.55}
@@ -512,10 +513,10 @@ function progStat(){
 }
 function daysRefresh(){
   var P=progStat(),pe=document.getElementById('prog');
-  pe.innerHTML='<div class="big2">'+P.a.toLocaleString()+'<small>단어 마주침</small></div><div class="psub">표제어 '+P.h+' / '+P.H+' · 보기 포함 전체 '+P.A.toLocaleString()+' · '+P.d+' / '+DAYS.length+'일 완료</div><div class="bar"><b style="width:'+Math.round(P.a/P.A*100)+'%"></b></div>';
+  pe.innerHTML='<div class="big2">'+P.a.toLocaleString()+'<small>단어 마주침</small></div><div class="psub">표제어 '+P.h+' / '+P.H+' · 보기 포함 전체 '+P.A.toLocaleString()+' · 시험 '+DAYS.filter(function(d,i){return exDone(i)}).length+' / '+DAYS.length+'</div><div class="bar"><b style="width:'+Math.round(P.a/P.A*100)+'%"></b></div>';
   var g=document.getElementById('dgrid');g.innerHTML='';
   DAYS.forEach(function(d,i){
-    var n=starCount(i),b=el('button','dbtn',pad2(i+1)+(n?'<i>★'+n+'</i>':''));b.type='button';if(doneSet().indexOf(i)>=0)b.className+=' dn';
+    var n=starCount(i),x=exDone(i),b=el('button','dbtn',pad2(i+1)+(x?'<small>'+(x.total?x.score+'/'+x.total:'응시')+'</small>':'')+(n?'<i>★'+n+'</i>':''));b.type='button';if(x)b.className+=' dn';
     b.onclick=function(){selectDay(i)};g.appendChild(b);
   });
 }
@@ -546,10 +547,12 @@ function startPractice(only,scope,inst){ var sv=(!only&&scope=='day')?loadP(inst
 }
 var RSK='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec',PFXE='dvc_exam_';
 /* 선생님 시험 리셋: 서버 설정(WNCTL)의 리셋 표시보다 오래된 이 기기의 시험 기록을 지운다 (3.5초 안에 못 읽으면 그대로 진행) */
+var CEX=({'김서진':1,'장은율':1,'김지효':1,'김린':1,'이동우':1,'김도현':1}[WN.name()])?[{d:1}]:[];
+function exDone(i){var r=sget(PFXE+(i+1)+'_'+WN.name().toLowerCase());if(r){try{var j=JSON.parse(r);if(j&&j.done)return j}catch(e){}}for(var q=0;q<CEX.length;q++)if(+CEX[q].d===i+1)return{done:true};return null}
 function rsSync(n){return new Promise(function(res){var dn=false,t=setTimeout(function(){if(!dn){dn=true;res()}},3500);
   function fin(){if(!dn){dn=true;clearTimeout(t);res()}}
   fetch(RSK,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:'WNCTL',data:{}})}).then(function(r){return r.json()}).then(function(r){
-    var d=(r&&r.data)||{},e=d[n],o=null;try{var s0=e&&e.v&&e.v.s;o=s0?JSON.parse(s0):null}catch(x){}
+    var d=(r&&r.data)||{},e=d[n],o=null;try{var s0=e&&e.v&&e.v.s;o=s0?JSON.parse(s0):null}catch(x){}if(n===WN.name())CEX=o?(o.ex||[]):({'김서진':1,'장은율':1,'김지효':1,'김린':1,'이동우':1,'김도현':1}[n]?[{d:1}]:[]);
     (o&&o.rs||[]).forEach(function(z){var k=PFXE+z.d+'_'+n.toLowerCase(),rec=sget(k);if(rec){try{var j=JSON.parse(rec);if((j.t||0)<z.at)sdel(k)}catch(x){sdel(k)}}});fin()},fin)})}
 function examGate(msg){
   if(window.TEACHER_MODE&&!msg){startExam('선생님','dvc_exam_t_tmp');return}
@@ -774,6 +777,6 @@ document.getElementById('mReset').onclick=function(){var b=this;if(!b._a){b._a=1
 document.getElementById('hbd').onclick=goDays;
 function twoTap(id,txt,fn){document.getElementById(id).onclick=fn}
 twoTap('mClrStar','',function(){clearStars(DI);homeRefresh()});
-WN.gate(function(){daysRefresh();showView('days');WN.hwget().then(function(L){var n=WN.name().toLowerCase(),ch=0;L.forEach(function(x){if(x.level==='더블보카 Core'&&x.score&&x.score!=='진행중'){var m=/^(\d+)\/(\d+)$/.exec(x.score),k='dvc_exam_'+x.day+'_'+n;if(m){if(!sget(k))sset(k,JSON.stringify({done:true,score:+m[1],total:+m[2],used:0,t:Date.now()}));markDone(x.day-1);ch=1}}});if(ch)daysRefresh()})});
+WN.gate(function(){daysRefresh();showView('days');rsSync(WN.name()).then(function(){if(!document.getElementById('days').hidden)daysRefresh()});WN.hwget().then(function(L){var n=WN.name().toLowerCase(),ch=0;L.forEach(function(x){if(x.level==='더블보카 Core'&&x.score&&x.score!=='진행중'){var m=/^(\d+)\/(\d+)$/.exec(x.score),k='dvc_exam_'+x.day+'_'+n;if(m){if(!sget(k))sset(k,JSON.stringify({done:true,score:+m[1],total:+m[2],used:0,t:Date.now()}));markDone(x.day-1);ch=1}}});if(ch)daysRefresh()})});
 
 </script>
