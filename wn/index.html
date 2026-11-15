@@ -360,7 +360,6 @@ function home(r){
   document.querySelectorAll('[data-rv]').forEach(function(b){b.onclick=function(){recView(b.dataset.rv)}});
   if(IU){document.querySelectorAll('.st3>button').forEach(function(b){b.onclick=function(){openSp(I,n,ti,b.dataset.i,b)}})}
   if(IU){if(!CALM)CALM=new Date(now.getFullYear(),now.getMonth(),1);drawCal(I,ti)}
-  if(IU)paceLoad(n);
 }
 /* 금요일 학습 (보드 지정하기 기록을 읽어 옴) */
 var FRB='https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec',FRS=null,FRO=false;
