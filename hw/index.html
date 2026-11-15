@@ -489,7 +489,7 @@ function runParent(tok){
 
 /* ================= 선생님(입력) ================= */
 function runTeacher(code){
-  var ID='HW|'+code,roster=[],cfg={},recs={},T={},dirty={},selCls=g('hw_cls')||'',saving=false,retry=null,loaded=false;
+  var ID='HW|'+code,roster=[],cfg={},recs={},T={},dirty={},selCls=Q.get('c')||g('hw_cls')||'',saving=false,retry=null,loaded=false;
   var mgrOpen={stu:false,items:false},draft=null,xdraft=null;
   function rk(sid,wk){return 'w:'+sid+':'+wk}
   function findS(id){for(var i=0;i<roster.length;i++)if(roster[i].id===id)return roster[i];return null}
