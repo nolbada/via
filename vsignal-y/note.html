@@ -103,4 +103,5 @@ var h='<div class="top"><a href="./" style="color:var(--ac);text-decoration:none
 if(!L.length){h+='<div class="ncard"><p class="ntt">쓸 오답이 없습니다.</p><p class="hint" style="margin:0">틀린 문장이 있으면 여기에 노트에 쓸 내용이 정리됩니다.</p></div>'}
 else{h+='<p class="hint">모두 '+L.length+'문장</p>'+L.map(function(e){return '<div class="ncard"><p class="ntt">'+esc(e.title)+'</p>'+e.html+'</div>'}).join('')}
 document.getElementById('app').innerHTML=h;
-</script></body></html>
+</script><script src="https://nolbada.github.io/board/link.js" data-app="vy"></script>
+</body></html>
