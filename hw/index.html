@@ -122,6 +122,7 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 .colh b{display:block;color:var(--ink);font-size:13px}
 .savest{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0));font-size:12px;padding:5px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--border);color:var(--ink-soft);box-shadow:var(--shadow);z-index:20}
 .savest.err{background:var(--x);color:#fff;border-color:var(--x)}
+.pnb{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:#ffe3ec;color:#c2185b}.pnb:empty{display:none}
 .savest.dirty{background:#00A1A7;color:#fff;border-color:#00A1A7;font-size:16px;font-weight:700;padding:11px 26px;cursor:pointer}
 .mgr{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:10px 14px}
 .mgr summary{cursor:pointer;font-weight:700;font-size:14px}
@@ -516,15 +517,16 @@ function runTeacher(code){
 
   function pull(){
     return readAll(ID).then(function(d){
-      if(d.roster&&!dirty.roster&&(!T.roster||d.roster.t>T.roster)){var rs=unwrap(d.roster.v);if(rs){try{roster=JSON.parse(rs);T.roster=d.roster.t}catch(e){}}}
-      if(d.cfg&&!dirty.cfg&&(!T.cfg||d.cfg.t>T.cfg)){var cs=unwrap(d.cfg.v);if(cs){try{cfg=JSON.parse(cs)||{};T.cfg=d.cfg.t}catch(e){}}}
+      pchg=false;
+      if(d.roster&&!dirty.roster&&(!T.roster||d.roster.t>T.roster)){var rs=unwrap(d.roster.v);if(rs){try{var nr=JSON.parse(rs);if(JSON.stringify(nr)!==JSON.stringify(roster))pchg=true;roster=nr;T.roster=d.roster.t}catch(e){}}}
+      if(d.cfg&&!dirty.cfg&&(!T.cfg||d.cfg.t>T.cfg)){var cs=unwrap(d.cfg.v);if(cs){try{var nc=JSON.parse(cs)||{};if(JSON.stringify(nc)!==JSON.stringify(cfg))pchg=true;cfg=nc;T.cfg=d.cfg.t}catch(e){}}}
       for(var k in d){
         if(k.indexOf('w:')!==0)continue;
         var p=k.split(':'),sid=p[1],wk=p[2];
         if(dirty[k])continue;
         if(T[k]&&d[k].t<=T[k])continue;
         var v=unwrap(d[k].v);if(!v)continue;
-        try{recs[sid]=recs[sid]||{};recs[sid][wk]=JSON.parse(v);T[k]=d[k].t}catch(e){}
+        try{recs[sid]=recs[sid]||{};var nv2=JSON.parse(v);if(JSON.stringify(nv2)!==JSON.stringify(recs[sid][wk]))pchg=true;recs[sid][wk]=nv2;T[k]=d[k].t}catch(e){}
       }
       loaded=true;
     });
@@ -552,12 +554,12 @@ function runTeacher(code){
       clearTimeout(retry);retry=setTimeout(flush,4000);
     });
   }
-  var ft=null;
+  var ft=null,pchg=false,lastAct=0;
   function setDirtySt(){var n=Object.keys(dirty).filter(function(k){return k.indexOf('w:')===0}).length;if(!n)return;setSt('저장하기 · '+n+'명 저장 안 됨');stEl.className='savest dirty'}
   stEl.onclick=function(){if(Object.keys(dirty).length&&!saving)flush()};
-  function mark(k){dirty[k]=(dirty[k]||0)+1;if(k.indexOf('w:')===0){setDirtySt()}else{setSt('저장 대기…');clearTimeout(ft);ft=setTimeout(flush,900)}}
+  function mark(k){lastAct=Date.now();dirty[k]=(dirty[k]||0)+1;if(k.indexOf('w:')===0){setDirtySt()}else{setSt('저장 대기…');clearTimeout(ft);ft=setTimeout(flush,900)}}
 
-  var BSRV='https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec',penS={},penT={};
+  var BSRV='https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec',penS={},penT={},penO={};
   function ymd(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
   function penBase(S){
     if(penS[S.id])return penS[S.id];
@@ -565,10 +567,12 @@ function runTeacher(code){
       if(!j||!j.ok)throw 0;
       var s=j.chk&&j.chk.pen&&j.chk.pen.j,o=null;try{o=s?JSON.parse(s):null}catch(e){}
       if(!o||typeof o.c!=='object'||!o.c)o={d:ymd(),c:{}};
-      return o;
+      penO[S.id]=o;return o;
     }).catch(function(){penS[S.id]=null;setSt('보드 연결 실패 · 다시 눌러 주세요',true);return null});
     return penS[S.id];
   }
+  function penUpd(S){var el=app.querySelector('[data-pn="'+S.id+'"]'),o=penO[S.id];if(!el)return;var n=(o&&o.d===ymd())?Object.keys(o.c).length:0;el.textContent=n?'페널티 전달 '+n:''}
+  function penPre(){if(selCls==='__all'||!selCls)return;stu().forEach(function(S){if(penO[S.id])penUpd(S);else{var p=penBase(S);if(p)p.then(function(){penUpd(S)})}})}
   function penSet(S,k,i,nv){
     if(viewKey!==curKey())return;
     var on=(nv==='T'||nv==='X');
@@ -576,6 +580,7 @@ function runTeacher(code){
       if(!o)return;
       if(o.d!==ymd()){o.d=ymd();o.c={}}
       if(on)o.c[k+i]=nv;else delete o.c[k+i];
+      penUpd(S);
       clearTimeout(penT[S.id]);
       penT[S.id]=setTimeout(function(){
         fetch(BSRV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({a:'put',date:'2000-01-01',cls:'',name:S.name,card:'pen',chk:{j:JSON.stringify(o)}}),keepalive:true}).then(function(r){return r.json()}).then(function(r){if(!r||!r.ok)throw 0}).catch(function(){penS[S.id]=null;setSt('보드 전달 실패 · 다시 눌러 주세요',true)});
@@ -674,7 +679,7 @@ function runTeacher(code){
   function draw(){
     var gw=app.querySelector('.gridwrap'),sig=selCls+'|'+viewKey,y=window.pageYOffset;
     if(gw&&sig===keepSig)keepX=gw.scrollLeft;else keepX=0;
-    drawBoard();
+    drawBoard();penPre();
     keepSig=selCls+'|'+viewKey;
     var g2=app.querySelector('.gridwrap');
     if(g2&&keepX)g2.scrollLeft=keepX;
@@ -709,7 +714,7 @@ function runTeacher(code){
     L.forEach(function(S){
       var SI=itemsFor(S),r=getRec(S.id,viewKey),sc=score(r,SI),pct=sc?sc.pct:null,jd=judged(viewKey)&&pct!==null,note='';
       if(status(r,SI)==='perfect')note='완벽';else if(jd&&pct<70)note='토요일 보충';else if(jd&&pct<80)note='주의';
-      h+='<tr><td class="nm">'+esc(S.name)+'</td>';
+      h+='<tr><td class="nm">'+esc(S.name)+'<span class="pnb" data-pn="'+S.id+'"></span></td>';
       TF.forEach(function(it){
         var has=hasIt(S,it);
         for(var i=0;i<nOf(it);i++){
@@ -860,7 +865,7 @@ function runTeacher(code){
   document.addEventListener('visibilitychange',function(){if(document.hidden&&Object.keys(dirty).length)flush()});
   app.innerHTML='<div class="hero"><div class="meta">불러오는 중…</div></div>';
   pull().then(draw,function(){app.innerHTML='<div class="hero"><div class="name">불러오지 못했어요</div><div class="meta">인터넷 연결을 확인하고 다시 열어 주세요.</div><button class="btn" id="rc" type="button" style="margin-top:12px">열기 코드 다시 입력</button></div>';document.getElementById('rc').onclick=function(){try{LS.removeItem('hw_code')}catch(e){}location.reload()}});
-  setInterval(function(){if(document.hidden||saving||Object.keys(dirty).length)return;pull().then(function(){var a=document.activeElement;if(!a||(a.tagName!=='INPUT'&&a.tagName!=='SELECT'))draw()},function(){})},30000);
+  setInterval(function(){if(document.hidden||saving||Object.keys(dirty).length)return;pull().then(function(){var a=document.activeElement;if(!pchg||Date.now()-lastAct<8000)return;if(!a||(a.tagName!=='INPUT'&&a.tagName!=='SELECT'))draw()},function(){})},30000);
 }
 
 /* ================= 진입 ================= */
