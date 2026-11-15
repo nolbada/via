@@ -145,14 +145,25 @@ function friList(items,K){
   var out=A.slice(0,cp);if(out.length<cp)out=out.concat(B.slice(0,cp-out.length));
   return out.sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1})
 }
-function wbuild(r,n){var K=SPD||lastFri();var li=friList(r.items,K);return{n:n,K:K,items:li,askDue:0,total:li.length}}
+var FZT={};
+function fzT(n){return FZT[n]||(FZT[n]={})}
+function spList(items,K,n){var a=fzT(n)[K];if(!a||!a.length)return friList(items,K);var by={},o=[];items.forEach(function(i){by[String(i.w).toLowerCase()]=i});a.forEach(function(w){var x=by[String(w).toLowerCase()];if(x&&o.indexOf(x)<0)o.push(x)});return o.sort(function(p,q){return p.w.toLowerCase()<q.w.toLowerCase()?-1:1})}
+function fzIt(r,n){var hd=(ctlOf(CTM,n).hide)||[];return(r&&r.items||[]).filter(function(i){return hd.indexOf(i.src)<0})}
+function fzU(a){var u={};return a.filter(function(w){var k=String(w).toLowerCase();if(u[k])return false;u[k]=1;return true})}
+function fzPull(n,r,K){
+  var t=kst(),d={};if(CTM&&r&&r.items&&addd(K,-2)<=t&&t<=K){var L=fzU(friList(fzIt(r,n),K).map(function(i){return i.w}));if(L.length)d[K]={v:{s:JSON.stringify(L)},t:1}}
+  return Promise.race([fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:'WNFRI_'+String(n).toLowerCase(),data:d})}).then(function(x){return x.json()}),new Promise(function(z,j){setTimeout(j,8000)})]).then(function(x){
+    if(!x||!x.ok)return;var D=x.data||{},m=fzT(n);Object.keys(D).forEach(function(k){try{var a=JSON.parse(D[k].v.s);if(a&&a.length)m[k]=a}catch(e){}});
+  },function(){});
+}
+function wbuild(r,n){var K=SPD||lastFri();var li=spList(fzIt(r,n),K,n);return{n:n,K:K,fz:!!(fzT(n)[K]&&fzT(n)[K].length),items:li,askDue:0,total:li.length}}
 function wlist(n){
   var c=WLR[n];
   if(c){WL=wbuild(c,n);drawWL()}else $.innerHTML='<div class="msg">불러오는 중...</div>';
   post({act:'t_list',name:n,all:1,max:300,limit:LIM}).then(function(r){
     if(!r||!r.ok){if(!c)main();return}
     WLR[n]=r;
-    if(!c||(document.getElementById('oral')&&WL&&WL.n===n)){WL=wbuild(r,n);drawWL()}
+    return fzPull(n,r,SPD||lastFri()).then(function(){if(!c||(document.getElementById('oral')&&WL&&WL.n===n)){WL=wbuild(r,n);drawWL()}});
   },function(){if(!c)main()});
 }
 function prefetch(r){
@@ -161,12 +172,12 @@ function prefetch(r){
   (function nx(){
     var n=names.shift();
     if(!n||PQ.length){PF=0;return}
-    post({act:'t_list',name:n,all:1,max:300,limit:LIM}).then(function(x){if(x&&x.ok)WLR[n]=x},function(){}).then(function(){setTimeout(nx,300)});
+    post({act:'t_list',name:n,all:1,max:300,limit:LIM}).then(function(x){if(x&&x.ok){WLR[n]=x;return fzPull(n,x,SPD||lastFri())}},function(){}).then(function(){setTimeout(nx,300)});
   })();
 }
 function drawWL(){
   var W=WL,k=Math.min(LIM,W.items.length);
-  var h='<div class="top"><button class="sbtn" id="hm">목록</button><div class="t">'+esc(W.n)+' · '+dshow(W.K)+' 말하기 범위 '+W.total+'개 (학생 화면과 동일)</div></div>';
+  var h='<div class="top"><button class="sbtn" id="hm">목록</button><div class="t">'+esc(W.n)+' · '+dshow(W.K)+' 말하기 범위 '+W.total+'개'+(W.fz?' (학생 화면과 동일)':' (고정 전)')+'</div></div>';
   h+='<div class="seg" id="lim">'+[5,10,15,30].map(function(x){return'<button data-l="'+x+'"'+(x===LIM?' class="on"':'')+'>'+x+'개</button>'}).join('')+'</div>';
   h+='<button class="btn pri" id="oral"'+(W.items.length?'':' disabled style="opacity:.5"')+'>이 범위에서 무작위 '+k+'개 질문</button>';
   if(W.items.length)h+='<button class="btn" id="due">범위 전체 '+W.items.length+'개 질문</button>';
