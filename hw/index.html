@@ -222,6 +222,7 @@ var CYCLE={'':'O','O':'T','T':'X','X':'A','A':'','R':'O'}, VCYC={'':'O','O':'T',
 var SYM={O:'O',T:'△',X:'X',N:'미지참',A:'결석',R:'쉼','':''};
 var LATE_MS=10*60*1000, PASS_LINE='통과 70점 · 70점 미만 토요일 보충';
 var Q=new URLSearchParams(location.search), LS=window.localStorage;
+if(Q.get('c')){var _hs=document.createElement('style');_hs.textContent='.nav{display:none!important}';document.head.appendChild(_hs)}
 function g(k){try{return LS.getItem(k)}catch(e){return null}}
 function s_(k,v){try{LS.setItem(k,v)}catch(e){}}
 
