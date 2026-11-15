@@ -486,7 +486,7 @@ function runParent(tok){
     app.querySelectorAll('[data-more]').forEach(function(b){b.onclick=function(){showOld=!showOld;draw()}});
   }
   app.innerHTML='<div class="hero"><div class="meta">불러오는 중…</div></div>';
-  load().then(draw,function(){app.innerHTML='<div class="hero"><div class="name">불러오지 못했어요</div><div class="meta">인터넷 연결을 확인하고 다시 열어 주세요.</div></div>'});
+  load().then(draw,function(){app.innerHTML='<div class="hero"><div class="name" style="font-size:17px">불러오지 못했어요</div><div class="meta">인터넷 연결을 확인하고 다시 열어 주세요.</div></div>'});
   setInterval(function(){if(!document.hidden)load().then(draw,function(){})},60000);
 }
 
@@ -528,6 +528,7 @@ function runTeacher(code){
         var v=unwrap(d[k].v);if(!v)continue;
         try{recs[sid]=recs[sid]||{};var nv2=JSON.parse(v);if(JSON.stringify(nv2)!==JSON.stringify(recs[sid][wk]))pchg=true;recs[sid][wk]=nv2;T[k]=d[k].t}catch(e){}
       }
+      if(!lastInit){lastInit=1;roster.forEach(function(S){lastMeta[S.tok]=JSON.stringify(metaOf(S))})}
       loaded=true;
     });
   }
@@ -541,20 +542,21 @@ function runTeacher(code){
       var p=k.split(':'),sid=p[1],wk=p[2],r=recs[sid][wk];main[k]=r;
       var S=findS(sid);if(S){mirror[S.tok]=mirror[S.tok]||{};mirror[S.tok]['w:'+wk]=r}
     });
-    if(dirty.roster||dirty.cfg){roster.forEach(function(S){mirror[S.tok]=mirror[S.tok]||{};mirror[S.tok].meta=metaOf(S)})}
+    metaNew={};if(dirty.roster||dirty.cfg){roster.forEach(function(S){var mj=JSON.stringify(metaOf(S));if(lastMeta[S.tok]!==mj){mirror[S.tok]=mirror[S.tok]||{};mirror[S.tok].meta=metaOf(S);metaNew[S.tok]=mj}})}
     var snap=keys.map(function(k){return [k,dirty[k]]}),t0=Date.now();
     var jobs=[putKeys(ID,main)];
     Object.keys(mirror).forEach(function(tok){jobs.push(putKeys('HWP|'+tok,mirror[tok]))});
     Promise.all(jobs).then(function(){
       snap.forEach(function(s){if(dirty[s[0]]===s[1])delete dirty[s[0]];T[s[0]]=t0});
+      for(var tk in metaNew)lastMeta[tk]=metaNew[tk];metaNew={};retryN=0;
       saving=false;var n=new Date();setSt('저장됨 '+pad(n.getHours())+':'+pad(n.getMinutes()));
       if(Object.keys(dirty).length)setDirtySt();
     },function(){
       saving=false;setSt('저장 실패 · 다시 시도 중',true);
-      clearTimeout(retry);retry=setTimeout(flush,4000);
+      clearTimeout(retry);retry=setTimeout(flush,Math.min(60000,4000*Math.pow(2,retryN++)));
     });
   }
-  var ft=null,pchg=false,lastAct=0;
+  var ft=null,pchg=false,lastAct=0,lastMeta={},metaNew={},lastInit=0,retryN=0;
   function setDirtySt(){var n=Object.keys(dirty).filter(function(k){return k.indexOf('w:')===0}).length;if(!n)return;setSt('저장하기 · '+n+'명 저장 안 됨');stEl.className='savest dirty'}
   stEl.onclick=function(){if(Object.keys(dirty).length&&!saving)flush()};
   function mark(k){lastAct=Date.now();dirty[k]=(dirty[k]||0)+1;if(k.indexOf('w:')===0){setDirtySt()}else{setSt('저장 대기…');clearTimeout(ft);ft=setTimeout(flush,900)}}
@@ -864,7 +866,7 @@ function runTeacher(code){
   window.addEventListener('beforeunload',function(e){if(Object.keys(dirty).length){e.preventDefault();e.returnValue=''}});
   document.addEventListener('visibilitychange',function(){if(document.hidden&&Object.keys(dirty).length)flush()});
   app.innerHTML='<div class="hero"><div class="meta">불러오는 중…</div></div>';
-  pull().then(draw,function(){app.innerHTML='<div class="hero"><div class="name">불러오지 못했어요</div><div class="meta">인터넷 연결을 확인하고 다시 열어 주세요.</div><button class="btn" id="rc" type="button" style="margin-top:12px">열기 코드 다시 입력</button></div>';document.getElementById('rc').onclick=function(){try{LS.removeItem('hw_code')}catch(e){}location.reload()}});
+  pull().then(draw,function(){app.innerHTML='<div class="hero"><div class="name" style="font-size:17px">불러오지 못했어요</div><div class="meta">인터넷 연결을 확인하고 다시 열어 주세요.</div><button class="btn" id="rc" type="button" style="margin-top:12px">열기 코드 다시 입력</button></div>';document.getElementById('rc').onclick=function(){try{LS.removeItem('hw_code')}catch(e){}location.reload()}});
   setInterval(function(){if(document.hidden||saving||Object.keys(dirty).length)return;pull().then(function(){var a=document.activeElement;if(!pchg||Date.now()-lastAct<8000)return;if(!a||(a.tagName!=='INPUT'&&a.tagName!=='SELECT'))draw()},function(){})},30000);
 }
 
