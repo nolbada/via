@@ -550,7 +550,7 @@ function exDone(i){var r=sget(PFXE+(i+1)+'_'+WN.name().toLowerCase());if(r){try{
 function rsSync(n){return new Promise(function(res){var dn=false,t=setTimeout(function(){if(!dn){dn=true;res()}},3500);
   function fin(){if(!dn){dn=true;clearTimeout(t);res()}}
   fetch(RSK,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:'WNCTL',data:{}})}).then(function(r){return r.json()}).then(function(r){
-    var d=(r&&r.data)||{},e=d[n],o=null;try{var s0=e&&e.v&&e.v.s;o=s0?JSON.parse(s0):null}catch(x){}if(n===WN.name())CEX=o?(o.ex||[]):({'김서진':1,'장은율':1,'김지효':1,'김린':1,'이동우':1,'김도현':1}[n]?[{d:1}]:[]);
+    var d=(r&&r.data)||{},e=d[n],o=null;try{var s0=e&&e.v&&e.v.s;o=s0?JSON.parse(s0):null}catch(x){}if(n===WN.name()){CEX=o?(o.ex||[]):({'김서진':1,'장은율':1,'김지효':1,'김린':1,'이동우':1,'김도현':1}[n]?[{d:1}]:[]);try{if(!document.getElementById('days').hidden)daysRefresh()}catch(x){}}
     (o&&o.rs||[]).forEach(function(z){var k=PFXE+z.d+'_'+n.toLowerCase(),rec=sget(k);if(rec){try{var j=JSON.parse(rec);if((j.t||0)<z.at)sdel(k)}catch(x){sdel(k)}}});fin()},fin)})}
 function examGate(msg){
   if(window.TEACHER_MODE&&!msg){startExam('선생님','dvc_exam_t_tmp');return}
@@ -764,7 +764,7 @@ function submitT(){ if(!T||T.done)return;if(T.mode=='P'&&!T.only&&T.scope=='day'
   var n=T.items.length,good=T.items.filter(itemOK),bad=T.items.filter(function(x){return !itemOK(x)});
   var used=E?T.total-T.left:0;
   if(!T.inst)recordResults(T.items,E);
-  if(E)sset(T.key,JSON.stringify({done:true,score:good.length,total:n,used:used,t:Date.now()}));if(E)WN.hw('더블보카 Pro',DN,good.length+'/'+n);
+  if(E){var ER=JSON.stringify({done:true,score:good.length,total:n,used:used,t:Date.now()});sset(T.key,ER);if(window.TEACHER_MODE)sset(PFXE+DN+'_'+WN.name().toLowerCase(),ER)}if(E)WN.hw('더블보카 Pro',DN,good.length+'/'+n);
   var head=E?('시험 · '+esc(T.name)+' · 걸린 시간 '+fmt(used)):(T.inst?(T.only?'틀린 것 다시':'관계 지도 연습'):(T.retry||T.only?'실전 예행연습 · 틀린 것 다시':'실전 예행연습'));
   rvShow(tv,E,head,good,bad);
 }
