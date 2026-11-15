@@ -553,9 +553,35 @@ function runTeacher(code){
   }
   var ft=null;function mark(k){dirty[k]=1;setSt('저장 대기…');clearTimeout(ft);ft=setTimeout(flush,900)}
 
+  var BSRV='https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec',penS={},penT={};
+  function ymd(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+  function penBase(S){
+    if(penS[S.id])return penS[S.id];
+    penS[S.id]=fetch(BSRV+'?a=get&date=2000-01-01&name='+encodeURIComponent(S.name)+'&x='+Date.now()).then(function(r){return r.json()}).then(function(j){
+      if(!j||!j.ok)throw 0;
+      var s=j.chk&&j.chk.pen&&j.chk.pen.j,o=null;try{o=s?JSON.parse(s):null}catch(e){}
+      if(!o||typeof o.c!=='object'||!o.c)o={d:ymd(),c:{}};
+      return o;
+    }).catch(function(){penS[S.id]=null;setSt('보드 연결 실패 · 다시 눌러 주세요',true);return null});
+    return penS[S.id];
+  }
+  function penSet(S,k,i,nv){
+    if(viewKey!==curKey())return;
+    var on=(nv==='T'||nv==='X');
+    penBase(S).then(function(o){
+      if(!o)return;
+      if(o.d!==ymd()){o.d=ymd();o.c={}}
+      if(on)o.c[k+i]=nv;else delete o.c[k+i];
+      clearTimeout(penT[S.id]);
+      penT[S.id]=setTimeout(function(){
+        fetch(BSRV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({a:'put',date:'2000-01-01',cls:'',name:S.name,card:'pen',chk:{j:JSON.stringify(o)}}),keepalive:true}).then(function(r){return r.json()}).then(function(r){if(!r||!r.ok)throw 0}).catch(function(){penS[S.id]=null;setSt('보드 전달 실패 · 다시 눌러 주세요',true)});
+      },900);
+    });
+  }
   function setCell(S,k,i,nv){
     var r=getRec(S.id,viewKey),prev=r[k][i];if(prev===nv)return;
     r[k][i]=nv;trackLate(r,k+i,prev,nv);r.ck=new Date().toISOString();mark(rk(S.id,viewKey));
+    penSet(S,k,i,nv);
   }
   function byName(a,b){return a.name.localeCompare(b.name,'ko')}
   function stu(){return act().filter(function(s){return s.cls===selCls}).sort(byName)}
