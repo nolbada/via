@@ -122,6 +122,7 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 .colh b{display:block;color:var(--ink);font-size:13px}
 .savest{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0));font-size:12px;padding:5px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--border);color:var(--ink-soft);box-shadow:var(--shadow);z-index:20}
 .savest.err{background:var(--x);color:#fff;border-color:var(--x)}
+.savest.dirty{background:#00A1A7;color:#fff;border-color:#00A1A7;font-size:16px;font-weight:700;padding:11px 26px;cursor:pointer}
 .mgr{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:10px 14px}
 .mgr summary{cursor:pointer;font-weight:700;font-size:14px}
 .mgr .line{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
@@ -539,19 +540,22 @@ function runTeacher(code){
       var S=findS(sid);if(S){mirror[S.tok]=mirror[S.tok]||{};mirror[S.tok]['w:'+wk]=r}
     });
     if(dirty.roster||dirty.cfg){roster.forEach(function(S){mirror[S.tok]=mirror[S.tok]||{};mirror[S.tok].meta=metaOf(S)})}
-    var snap=keys.slice(),t0=Date.now();
+    var snap=keys.map(function(k){return [k,dirty[k]]}),t0=Date.now();
     var jobs=[putKeys(ID,main)];
     Object.keys(mirror).forEach(function(tok){jobs.push(putKeys('HWP|'+tok,mirror[tok]))});
     Promise.all(jobs).then(function(){
-      snap.forEach(function(k){delete dirty[k];T[k]=t0});
+      snap.forEach(function(s){if(dirty[s[0]]===s[1])delete dirty[s[0]];T[s[0]]=t0});
       saving=false;var n=new Date();setSt('저장됨 '+pad(n.getHours())+':'+pad(n.getMinutes()));
-      if(Object.keys(dirty).length)flush();
+      if(Object.keys(dirty).length)setDirtySt();
     },function(){
       saving=false;setSt('저장 실패 · 다시 시도 중',true);
       clearTimeout(retry);retry=setTimeout(flush,4000);
     });
   }
-  var ft=null;function mark(k){dirty[k]=1;setSt('저장 대기…');clearTimeout(ft);ft=setTimeout(flush,900)}
+  var ft=null;
+  function setDirtySt(){var n=Object.keys(dirty).filter(function(k){return k.indexOf('w:')===0}).length;if(!n)return;setSt('저장하기 · '+n+'명 저장 안 됨');stEl.className='savest dirty'}
+  stEl.onclick=function(){if(Object.keys(dirty).length&&!saving)flush()};
+  function mark(k){dirty[k]=(dirty[k]||0)+1;if(k.indexOf('w:')===0){setDirtySt()}else{setSt('저장 대기…');clearTimeout(ft);ft=setTimeout(flush,900)}}
 
   var BSRV='https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec',penS={},penT={};
   function ymd(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
