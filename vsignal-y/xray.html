@@ -419,4 +419,5 @@ function fin(){
   const LL=S.filter(x=>x.lv==cur.lv),nx=LL[LL.indexOf(cur)+1];TAB=cur.lv;
   h+='</div>'+(wr>0?'<a class="wlstrip" href="note.html" style="margin-top:12px">오답노트 쓰러 가기</a>':'')+'<button class="btn" onclick="'+(nx?"play('"+nx.id+"')":"home()")+'">'+(nx?'다음 문장':'목록으로')+'</button></div>';$.innerHTML=h;window.scrollTo(0,0);wkBind(document.querySelector('.fsent'),cur.id,cur.tok)}
 home();
-</script></body></html>
+</script><script src="https://nolbada.github.io/board/link.js" data-app="vy"></script>
+</body></html>
