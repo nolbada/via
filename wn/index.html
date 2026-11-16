@@ -284,12 +284,26 @@ function noteCard(r,cap,due,today,LN,nb){
 }
   return h;
 }
+/* 261116: 첫 화면을 빨리 띄우기 위해, 서버가 Firebase(h-roadmap)에 넣어 둔 '할 일 목록 사본'을 먼저 받아 그린다.
+   서버 list 는 지금처럼 뒤에서 받아 다시 그리므로 사본이 틀려도 결과는 예전과 같다. 사본은 읽기만 한다.
+   체험·미리보기·다른 서버를 쓰는 화면, 아직 서버로 못 보낸 복습 결과가 남아 있을 때는 쓰지 않는다. */
+var FB_DOC='https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents/wnlist/';
+function fbList(n,cb){
+  try{
+    if(!n||window.WN_URL||/[?&](t=1|v=)/i.test(location.search)||rq().length||!window.fetch)return;
+    var ac=window.AbortController?new AbortController():null,tm=setTimeout(function(){try{if(ac)ac.abort()}catch(e){}},4000);
+    fetch(FB_DOC+encodeURIComponent(n+'_'+PIN),{signal:ac?ac.signal:undefined}).then(function(r){return r.ok?r.json():null}).then(function(d){
+      clearTimeout(tm);if(!d||!d.fields||!d.fields.j)return;var m=JSON.parse(d.fields.j.stringValue);
+      if(!m||!m.ok||!m.items)return;m.today=iso(new Date());cb(m)}).catch(function(){});
+  }catch(e){}
+}
 function home(r){
   window.__wnBusy=0;var n=name();if(!n){login();return}
-  if(!r){var cz=lj('wn_ls_'+n+TCM,null),czOk=!!(cz&&cz.ok&&cz.items&&cz.today===iso(new Date())),rtCard=function(){if(SUBF())return;$.innerHTML='<h1>로드맵</h1><div class="card">연결이 안 됐어요. 인터넷을 확인해 주세요.<button class="btn pri" id="rt">다시 불러오기</button></div>';document.getElementById('rt').onclick=function(){home()}};if(czOk){home(cz)}else{$.innerHTML='<h1>로드맵</h1><div class="sub">불러오는 중...</div>'}
+  if(!r){var cz=lj('wn_ls_'+n+TCM,null),czOk=!!(cz&&cz.ok&&cz.items&&cz.today===iso(new Date())),rtCard=function(){if(SUBF())return;$.innerHTML='<h1>로드맵</h1><div class="card">연결이 안 됐어요. 인터넷을 확인해 주세요.<button class="btn pri" id="rt">다시 불러오기</button></div>';document.getElementById('rt').onclick=function(){home()}};var fbSt=0;if(czOk){home(cz)}else{$.innerHTML='<h1>로드맵</h1><div class="sub" id="wnld">불러오는 중...</div>';fbList(n,function(m){if(fbSt||SUBF()||name()!==n||!document.getElementById('wnld'))return;fbSt=2;home(m)})}
     flushR().then(function(){return post({act:'list',name:n,pin:PIN})}).then(function(x){
-      if(x&&x.ok){try{ss('wn_ls_'+n+TCM,JSON.stringify(x))}catch(e){}if(SUBF()){DATA=x}else home(x)}else if(isAdm(n))home(admData());else if(PLAN[n]){if(!czOk)rtCard()}else{ds('wn_name');login()}
-    },function(){if(czOk)return;rtCard()});return
+      var fbShown=fbSt===2;fbSt=1;
+      if(x&&x.ok){try{ss('wn_ls_'+n+TCM,JSON.stringify(x))}catch(e){}if(SUBF()){DATA=x}else home(x)}else if(isAdm(n))home(admData());else if(PLAN[n]){if(!czOk&&!fbShown)rtCard()}else{ds('wn_name');login()}
+    },function(){var fbShown=fbSt===2;fbSt=1;if(czOk||fbShown)return;rtCard()});return
   }
   var hc=ctlOf(CTLM,n);if(hc.hide&&hc.hide.length){r=Object.assign({},r,{items:r.items.filter(function(i){return hc.hide.indexOf(i.src)<0})})}
   DATA=r;if(CTLM)fzSync(nextFri());
