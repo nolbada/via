@@ -352,4 +352,4 @@ try{var sv=JSON.parse(localStorage.getItem(PK)||'null');if(sv&&sv.v===2){sel=sv.
 document.getElementById('bm').addEventListener('click',function(e){if(e.target.closest('button')){if(confirm('이 Reading의 진행 기록을 지우고 처음부터 다시 할까요?')){try{localStorage.removeItem(PK)}catch(x){}try{BSYNC(RNUM,null,0,true)}catch(x){}sel={};done={};qst={};chk=0;s1t={};qgo=0;mark=Date.now();TM={act:0,lv:0,lt:0,done:0};_last=Date.now();render();window.scrollTo(0,0)}}});
 render();
 
-</script></body></html>
+</script><script src="https://nolbada.github.io/board/link.js" data-app="m2" data-noback></script></body></html>
