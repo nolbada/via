@@ -21,7 +21,7 @@
   }
   function keys(){var o=[],i,k;for(i=0;i<LS.length;i++){k=LS.key(i);if(mirrored(k))o.push(k)}return o}
   /* 별표·틀린 목록·이어풀기 진행처럼 '지우거나 줄어드는' 기록은 합치지 않고, 더 나중에 바꾼 쪽이 이긴다(지운 것도 기록으로 남긴다) */
-  function lww(k){return /^(wn_star_|dvc_|dvp_|star_|wl_)/.test(k)}
+  function lww(k){return /^(wn_star_|wn_fp_|dvc_|dvp_|star_|wl_)/.test(k)}
   function stamp(k){var o=jg(LK)||{};o[k]=Date.now();s(LK,JSON.stringify(o));var tb=jg(TK)||{};if(k in tb){delete tb[k];s(TK,JSON.stringify(tb))}}
   function tomb(k){var tb=jg(TK)||{};tb[k]=Date.now();s(TK,JSON.stringify(tb));var o=jg(LK)||{};delete o[k];s(LK,JSON.stringify(o))}
   function nm(){
@@ -35,7 +35,7 @@
     var ta=typeof a,tb=typeof b,o,k;
     if(ta==='number'&&tb==='number')return Math.max(a,b);
     if(ta==='boolean'&&tb==='boolean')return a||b;
-    if(Array.isArray(a)&&Array.isArray(b)){var seen={};o=[];a.concat(b).forEach(function(x){var t=JSON.stringify(x);if(!seen[t]){seen[t]=1;o.push(x)}});return o}
+    if(Array.isArray(a)&&Array.isArray(b)){/* 261116: 이 기기 목록은 그대로 두고, 저쪽에만 더 있는 것만 뒤에 붙인다(같은 값이 여러 번 있어도 지우지 않는다) */var cnt={};o=a.slice();a.forEach(function(x){var t=JSON.stringify(x);cnt[t]=(cnt[t]||0)+1});b.forEach(function(x){var t=JSON.stringify(x);if(cnt[t]>0)cnt[t]--;else o.push(x)});return o}
     if(a&&b&&ta==='object'&&tb==='object'&&!Array.isArray(a)&&!Array.isArray(b)){
       o={};for(k in a)o[k]=(k in b)?dm(a[k],b[k]):a[k];for(k in b)if(!(k in a))o[k]=b[k];return o}
     return b;
@@ -104,7 +104,7 @@
     try{var t=Number(sessionStorage.getItem('via_rl')||0);if(Date.now()-t>20000){sessionStorage.setItem('via_rl',String(Date.now()));location.reload()}}catch(e){}
   }
   var isBoard=/\/wn\/?(index\.html)?$/.test(P);
-  function after(rl,early){if(rl&&(early||isBoard))reloadOnce()}
+  function after(rl,early){if(W.__wnBusy)return;/* 복습을 푸는 중에는 새로고침하지 않는다 */if(rl&&(early||isBoard))reloadOnce()}
   var timer=null,started=false;
   function sched(){
     if(timer)return;
@@ -119,7 +119,7 @@
     var first=function(){s(UK,id);d(MK);return sync(id).then(function(rl){after(rl,true)}).catch(function(){})};
     if(prev&&prev!==id){
       /* 공용 기기에서 다른 학생이 들어옴: 이전 학생 기록을 올리고 지운 뒤 새 학생 기록을 받는다 */
-      push(prev,false).catch(function(){}).then(function(){wipe();return first()});
+      push(prev,false).catch(function(){return new Promise(function(ok){setTimeout(ok,1500)}).then(function(){return push(prev,false)})}).catch(function(){return new Promise(function(ok){setTimeout(ok,3000)}).then(function(){return push(prev,false)})}).catch(function(){}).then(function(){wipe();return first()});
     }else if(!prev){first()}
     else{sync(id).then(function(rl){after(rl,early())}).catch(function(){})}
     setInterval(function(){if(!D.hidden)sync(id).then(function(rl){after(rl,false)}).catch(function(){})},60000);
