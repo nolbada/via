@@ -69,7 +69,7 @@
   function sync(id){
     if(busy){again=true;return Promise.resolve(false)}busy=true;
     return post({act:'put',id:id,data:{}}).then(function(r){
-      var rem=r.data||{},meta=jg(MK)||{},rl=false,k;
+      var rem=r.data||{},meta=jg(MK)||{},rl=false,k,ltA=jg(LK)||{};
       for(k in rem){
         if(!mirrored(k))continue;
         var rs=unwrap(rem[k]&&rem[k].v);if(rs===null)continue;
@@ -93,7 +93,11 @@
         if(lv===null){s(k,rs);meta[k]=rs;rl=true;continue}
         if(meta[k]!==lv){
           var mg=merge(lv,rs,k);if(mg!==lv){s(k,mg);rl=true}
-        }else{s(k,rs);meta[k]=rs;rl=true}
+        }else{
+          /* 261116b: 서버 값이 이 기기에서 바꾼 시각보다 옛것이면 받지 않고, 이 기기 값을 다시 올린다(옛 값이 새 값을 덮어쓰지 못하게) */
+          var rt2=Number((rem[k]&&rem[k].t)||0);
+          if(ltA[k]&&rt2&&rt2<ltA[k]){delete meta[k]}else{s(k,rs);meta[k]=rs;rl=true}
+        }
       }
       s(MK,JSON.stringify(meta));s(AK,String(Date.now()));
       return push(id,false).then(function(){busy=false;if(again){again=false;sched()}return rl},function(){busy=false;return rl});
@@ -106,12 +110,22 @@
   var isBoard=/\/wn\/?(index\.html)?$/.test(P);
   function after(rl,early){if(W.__wnBusy)return;/* 복습을 푸는 중에는 새로고침하지 않는다 */if(rl&&(early||isBoard))reloadOnce()}
   var timer=null,started=false;
+  /* 261116b: 저장이 일어날 때마다 서버와 맞추지 않는다. 마지막 저장 뒤 5초 조용하면(계속 풀고 있으면 늦어도 15초마다) 바뀐 것만 한 번 올린다.
+     받기는 화면을 열 때·돌아올 때 한다. 서버가 한 번에 한 요청씩만 처리하므로 요청 수를 줄이는 것이 곧 속도다 */
+  var firstAt=0;
+  function pushNow(){
+    var id=ident();if(!id||id!==g(UK))return;
+    if(busy){again=true;return}
+    busy=true;push(id,false).catch(function(){}).then(function(){busy=false;if(again){again=false;sched()}});
+  }
   function sched(){
-    if(timer)return;
-    timer=setTimeout(function(){timer=null;var id=ident();if(id&&id===g(UK))sync(id).catch(function(){})},4000);
+    var now=Date.now();if(!firstAt)firstAt=now;
+    if(timer)clearTimeout(timer);
+    timer=setTimeout(function(){timer=null;firstAt=0;pushNow()},Math.max(0,Math.min(5000,firstAt+15000-now)));
   }
   try{var sp=W.Storage.prototype,os=sp.setItem;var orm=sp.removeItem;sp.removeItem=function(k){var had=null;try{if(this===LS&&!inS&&lww(k)&&mirrored(k))had=LS.getItem(k)}catch(e){}orm.apply(this,arguments);try{if(had!==null){tomb(k);sched()}}catch(e){}};
-  sp.setItem=function(k){os.apply(this,arguments);try{if(this===LS){if(mirrored(k)){if(!inS&&lww(k))stamp(k);sched()}else if(k==='wn_name'&&!started)setTimeout(start,50)}}catch(e){}}}catch(e){}
+  /* 261116b: 합치는 기록도, 앱이 값을 실제로 바꿨을 때 시각을 적는다 */
+  sp.setItem=function(k,v){var old,mine=false;try{mine=this===LS&&!inS&&mirrored(k);if(mine&&!lww(k))old=LS.getItem(k)}catch(e){}os.apply(this,arguments);try{if(this===LS){if(mirrored(k)){if(mine&&(lww(k)||old!==String(v)))stamp(k);if(!inS)sched()}else if(k==='wn_name'&&!started)setTimeout(start,50)}}catch(e){}}}catch(e){}
   function start(){
     if(started)return;var id=ident();if(!id)return;started=true;
     var prev=g(UK);
@@ -121,8 +135,10 @@
       /* 공용 기기에서 다른 학생이 들어옴: 이전 학생 기록을 올리고 지운 뒤 새 학생 기록을 받는다 */
       push(prev,false).catch(function(){return new Promise(function(ok){setTimeout(ok,1500)}).then(function(){return push(prev,false)})}).catch(function(){return new Promise(function(ok){setTimeout(ok,3000)}).then(function(){return push(prev,false)})}).catch(function(){}).then(function(){wipe();return first()});
     }else if(!prev){first()}
-    else{sync(id).then(function(rl){after(rl,early())}).catch(function(){})}
-    setInterval(function(){if(!D.hidden)sync(id).then(function(rl){after(rl,false)}).catch(function(){})},60000);
+    /* 261116b: 45초 안에 이미 맞췄으면(앱 사이를 오갈 때) 다시 받지 않고, 올릴 것이 있을 때만 올린다. 1분마다도 올리기만 한다 */
+    else if(Date.now()-Number(g(AK)||0)>45000){sync(id).then(function(rl){after(rl,early())}).catch(function(){})}
+    else if(pending().n)sched();
+    setInterval(function(){if(!D.hidden&&pending().n)pushNow()},60000);
     var hid=0;
     D.addEventListener('visibilitychange',function(){
       if(D.hidden){hid=Date.now();push(id,true).catch(function(){})}
