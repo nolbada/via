@@ -112,10 +112,13 @@ button{font-family:inherit}
     document.body.appendChild(d);
     var b=d.querySelector('#wnb'),m=d.querySelector('#wnm'),i=d.querySelector('#wng');
     function go(){var v=(i.value||'').replace(/\s+/g,'');if(!v)return;b.disabled=true;m.textContent='확인 중...';
-      post({act:'list',name:v,pin:PIN}).then(function(r){
+      var viaSrv=function(){post({act:'list',name:v,pin:PIN}).then(function(r){
         if(r&&r.ok){s('wn_name',v);d.remove();cb();flush()}
         else{b.disabled=false;m.textContent='등록된 이름이 아니에요.'}
-      },function(){b.disabled=false;m.textContent='연결이 안 됐어요. 인터넷을 확인해 주세요.'})}
+      },function(){b.disabled=false;m.textContent='연결이 안 됐어요. 인터넷을 확인해 주세요.'})};
+      /* 261117: 명단에 있는 학생은 Firebase(h-roadmap) 목록 사본 문서가 있으므로 그것으로 바로 확인한다. 문서가 없거나 실패하면 예전처럼 서버에 묻는다 */
+      try{if(TM||W.WN_URL||!W.fetch)return viaSrv();var ac=W.AbortController?new AbortController():null,tm=setTimeout(function(){try{if(ac)ac.abort()}catch(e){}},2500);
+        W.fetch('https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents/wnlist/'+encodeURIComponent(v+'_'+PIN),{signal:ac?ac.signal:undefined}).then(function(r){clearTimeout(tm);if(r.ok){s('wn_name',v);d.remove();cb();flush()}else viaSrv()},function(){clearTimeout(tm);viaSrv()})}catch(e){viaSrv()}}
     b.onclick=go;i.onkeydown=function(e){if(e.key==='Enter')go()};i.focus();
   }
   W.WN={tap:function(items){var now=Date.now(),Q=jq(QK),HOLD=6000,w0=items.map(function(x){return x.w});Q=Q.map(function(b){return b.filter(function(it){return!(it.hu&&it.hu>now&&w0.indexOf(it.w)>=0)})}).filter(function(b){return b.length});var id0=now+'_'+Math.random().toString(36).slice(2,7);Q.push(items.map(function(it,i){var c={};for(var k in it)c[k]=it[k];c.hu=now+HOLD;c.id=id0+i;return c}));s(QK,JSON.stringify(Q));setTimeout(flush,HOLD+300);return true},untap:function(w){var now=Date.now(),Q=jq(QK),hit=false;Q=Q.map(function(b){return b.filter(function(it){if(it.hu&&it.hu>now&&it.w===w){hit=true;return false}return true})}).filter(function(b){return b.length});if(hit)s(QK,JSON.stringify(Q));return hit},add:function(items){

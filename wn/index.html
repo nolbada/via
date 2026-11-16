@@ -173,11 +173,14 @@ function login(){
   document.getElementById('go').onclick=function(){
     var v=(document.getElementById('nm').value||'').replace(/\s+/g,'');if(!v)return;
     var b=this;b.disabled=true;document.getElementById('m').textContent='확인 중...';
-    post({act:'list',name:v,pin:PIN}).then(function(r){
+    var viaSrv=function(){post({act:'list',name:v,pin:PIN}).then(function(r){
       if(r&&r.ok){ss('wn_name',v);home(r)}
       else if(isAdm(v)){ss('wn_name',v);home(admData())}
       else{b.disabled=false;document.getElementById('m').textContent='등록된 이름이 아니에요.'}
-    },function(){if(isAdm(v)){ss('wn_name',v);home(admData());return}b.disabled=false;document.getElementById('m').textContent='연결이 안 됐어요. 인터넷을 확인해 주세요.'});
+    },function(){if(isAdm(v)){ss('wn_name',v);home(admData());return}b.disabled=false;document.getElementById('m').textContent='연결이 안 됐어요. 인터넷을 확인해 주세요.'})};
+    /* 261117: 명단에 있는 학생은 Firebase 목록 사본 문서가 있으므로 그것으로 바로 들여보낸다(home() 이 사본으로 그리고 뒤에서 서버로 다시 확인한다). 문서가 없거나 실패하면 예전처럼 서버에 묻는다 */
+    try{if(window.WN_URL||!window.fetch)return viaSrv();var ac=window.AbortController?new AbortController():null,tm=setTimeout(function(){try{if(ac)ac.abort()}catch(e){}},2500);
+      fetch(FB_DOC+encodeURIComponent(v+'_'+PIN),{signal:ac?ac.signal:undefined}).then(function(r){clearTimeout(tm);if(r.ok){ss('wn_name',v);home()}else viaSrv()},function(){clearTimeout(tm);viaSrv()})}catch(e){viaSrv()}
   };
 }
 var SUBF=function(){return false};var RC=null,NCX=null,DATA=null,resetArm=false,resetT=null,CALM=null,SEL=null;
