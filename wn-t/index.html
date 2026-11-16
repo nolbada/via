@@ -100,15 +100,21 @@ function login(msg){
 var MID2=['이상현','이지호','김하율','최승후','문준서','최신후'];
 var TAB=ls('wn_tab')||'st';if(TAB!=='ask'&&TAB!=='ct')TAB='st';var LIM=Number(ls('wn_lim'))||10;
 var SR=null;
-var PRE=null;
+var PRE=null,FC=0;
+/* 261117: 현황 탭은 지난번에 받은 내용을 이 기기에 저장해 두었다가, 다음에 열 때 그것으로 먼저 그리고 뒤에서 새로 받는다(보여 주기만 한다. 컨트롤 탭과 저장은 늘 서버에서 새로 받은 값으로 한다) */
+function tcSig(){var s=String(PW||''),x=5381,i;for(i=0;i<s.length;i++)x=((x<<5)+x+s.charCodeAt(i))|0;return s.length+':'+x}
+function tcGet(){try{var c=JSON.parse(ls('wn_tc')||'null');return(c&&c.p===tcSig()&&c.t&&Date.now()-c.t<7*86400000&&c.SR&&c.SR.ok&&c.SR.students&&c.HI&&c.HI.length)?c:null}catch(e){return null}}
+function tcPut(){try{if(SR&&SR.ok&&HI&&HI.length)ss('wn_tc',JSON.stringify({t:Date.now(),p:tcSig(),SR:SR,HI:HI,CTM:CTM}))}catch(e){}}
+function tcDel(){try{localStorage.removeItem('wn_tc')}catch(e){}}
 function main(){
+  if(!SR&&TAB==='st'&&PW){var c0=tcGet();if(c0){SR=c0.SR;HI=c0.HI;if(!CTM)CTM=c0.CTM||null;FC=1}}
   var had=!!SR;
   if(had)mainDraw(SR);else $.innerHTML='<div class="msg">불러오는 중...</div>';
   /* 261117: 처음 열 때 현황 탭이면, 학생 목록(t_students)과 함께 설정(ctlRead)·숙제 기록(t_hw)도 같이 받기 시작한다(전에는 하나가 온 뒤에 다음 것을 보냈다) */
   if(!had&&TAB==='st'){PRE=[ctlRead().then(function(m){CTM=m},function(){}),post({act:'t_hw',from:FROM0})];PRE[1].catch(function(){})}
   post({act:'t_students'}).then(function(r){
-    if(!r||!r.ok){if(!had)login('비밀번호를 확인해 주세요.');return}
-    SR=r;
+    if(!r||!r.ok){if(FC){FC=0;tcDel();SR=null;HI=[];STAT=null;login('비밀번호를 확인해 주세요.')}else if(!had)login('비밀번호를 확인해 주세요.');return}
+    FC=0;SR=r;tcPut();
     if(!had){mainDraw(r);return}
     /* 261117: 이미 그려 둔 현황 탭은 다시 통째로 불러오지 않고(전에는 같은 요청을 두 번씩 보냈다) 받은 학생 목록만 반영한다. 질문·컨트롤 탭은 예전처럼 다시 그린다 */
     if(TAB==='st'){if(STAT&&HI&&HI.length&&document.getElementById('body')&&document.querySelector('.tabs')){r.students.forEach(function(s){if(MID2.indexOf(s.name)>=0)s.grade='중2'});STAT=build(r,HI);draw(r)}}
@@ -456,14 +462,14 @@ var FIL=ls('wn_fil')||'전체';
 function status(r){
   var b=document.getElementById('body'),t=kst();
   /* 261117: 이미 받아 둔 현황이 있으면 그것으로 바로 그리고 뒤에서 새로 받는다. 설정(ctlRead)과 숙제 기록(t_hw)은 차례로가 아니라 동시에 받는다 */
-  var hadS=!!(STAT&&HI&&HI.length);
+  var hadS=!!(HI&&HI.length);
   if(hadS){STAT=build(r,HI);draw(r)}else b.innerHTML='<div class="msg">불러오는 중...</div>';
   var ps=PRE||[ctlRead().then(function(m){CTM=m},function(){}),post({act:'t_hw',from:FROM0})];PRE=null;
   var here=function(){return TAB==='st'&&document.getElementById('body')===b};
   Promise.all(ps).then(function(a){
     var h=a[1];
     if(!h||!h.ok){if(!hadS&&here())b.innerHTML='<div class="msg">불러오지 못했어요.</div>';return}
-    HI=h.items;STAT=build(SR||r,h.items);if(here())draw(SR||r);rvLoad().then(function(){if(here())draw(SR||r)});
+    HI=h.items;STAT=build(SR||r,h.items);if(!FC)tcPut();if(here())draw(SR||r);rvLoad().then(function(){if(here())draw(SR||r)});
   },function(){if(!hadS&&here())b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
 }
 function draw(r){
