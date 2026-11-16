@@ -63,7 +63,8 @@
   }
   function push(id,keep){
     var c=pending();if(!c.n)return Promise.resolve(false);
-    return post({act:'put',id:id,data:c.ch},keep).then(function(){
+    /* 261116e: 올리기만 할 때는 서버가 기록을 돌려주지 않게 한다(nr:1) */
+    return post({act:'put',id:id,nr:1,data:c.ch},keep).then(function(){
       var meta=jg(MK)||{},k;for(k in c.sent)meta[k]=c.sent[k];s(MK,JSON.stringify(meta));return true});
   }
   function sync(id){
