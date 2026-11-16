@@ -100,13 +100,19 @@ function login(msg){
 var MID2=['이상현','이지호','김하율','최승후','문준서','최신후'];
 var TAB=ls('wn_tab')||'st';if(TAB!=='ask'&&TAB!=='ct')TAB='st';var LIM=Number(ls('wn_lim'))||10;
 var SR=null;
+var PRE=null;
 function main(){
   var had=!!SR;
   if(had)mainDraw(SR);else $.innerHTML='<div class="msg">불러오는 중...</div>';
+  /* 261117: 처음 열 때 현황 탭이면, 학생 목록(t_students)과 함께 설정(ctlRead)·숙제 기록(t_hw)도 같이 받기 시작한다(전에는 하나가 온 뒤에 다음 것을 보냈다) */
+  if(!had&&TAB==='st'){PRE=[ctlRead().then(function(m){CTM=m},function(){}),post({act:'t_hw',from:FROM0})];PRE[1].catch(function(){})}
   post({act:'t_students'}).then(function(r){
     if(!r||!r.ok){if(!had)login('비밀번호를 확인해 주세요.');return}
     SR=r;
-    if(!had||document.querySelector('.tabs'))mainDraw(r);
+    if(!had){mainDraw(r);return}
+    /* 261117: 이미 그려 둔 현황 탭은 다시 통째로 불러오지 않고(전에는 같은 요청을 두 번씩 보냈다) 받은 학생 목록만 반영한다. 질문·컨트롤 탭은 예전처럼 다시 그린다 */
+    if(TAB==='st'){if(STAT&&HI&&HI.length&&document.getElementById('body')&&document.querySelector('.tabs')){r.students.forEach(function(s){if(MID2.indexOf(s.name)>=0)s.grade='중2'});STAT=build(r,HI);draw(r)}}
+    else if(document.querySelector('.tabs'))mainDraw(r);
   },function(){if(!had)login('연결이 안 됐어요.')});
 }
 function mainDraw(r){
@@ -449,11 +455,16 @@ function rvMiss(o){return rvMissL(o).length}
 var FIL=ls('wn_fil')||'전체';
 function status(r){
   var b=document.getElementById('body'),t=kst();
-  b.innerHTML='<div class="msg">불러오는 중...</div>';
-  ctlRead().then(function(m){CTM=m},function(){}).then(function(){return post({act:'t_hw',from:FROM0})}).then(function(h){
-    if(!h||!h.ok){b.innerHTML='<div class="msg">불러오지 못했어요.</div>';return}
-    HI=h.items;STAT=build(r,h.items);draw(r);rvLoad().then(function(){draw(r)});
-  },function(){b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
+  /* 261117: 이미 받아 둔 현황이 있으면 그것으로 바로 그리고 뒤에서 새로 받는다. 설정(ctlRead)과 숙제 기록(t_hw)은 차례로가 아니라 동시에 받는다 */
+  var hadS=!!(STAT&&HI&&HI.length);
+  if(hadS){STAT=build(r,HI);draw(r)}else b.innerHTML='<div class="msg">불러오는 중...</div>';
+  var ps=PRE||[ctlRead().then(function(m){CTM=m},function(){}),post({act:'t_hw',from:FROM0})];PRE=null;
+  var here=function(){return TAB==='st'&&document.getElementById('body')===b};
+  Promise.all(ps).then(function(a){
+    var h=a[1];
+    if(!h||!h.ok){if(!hadS&&here())b.innerHTML='<div class="msg">불러오지 못했어요.</div>';return}
+    HI=h.items;STAT=build(SR||r,h.items);if(here())draw(SR||r);rvLoad().then(function(){if(here())draw(SR||r)});
+  },function(){if(!hadS&&here())b.innerHTML='<div class="msg">연결이 안 됐어요.</div>'});
 }
 function draw(r){
   if(CM!=='st'){drawCmp(r);return}
