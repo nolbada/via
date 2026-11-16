@@ -468,7 +468,9 @@ function paceLoad(n){
       return'<div class="pr"><div class="ph"><span>'+z[0]+'</span><b>'+me+'<small> '+z[2]+'</small></b></div><div class="pb"><i style="width:'+w+'%"></i></div><div class="pd">선두 '+o.top+z[2]+' · 평균 '+f(o.avg)+z[2]+'</div></div>'}).join('')+'</div>'}
   var ck='wn_pace_'+n,c=null;try{c=JSON.parse(sessionStorage.getItem(ck)||'null')}catch(e){}
   if(c&&Date.now()-c.t<600000){draw(c.r);return}
-  post({act:'pace',name:n,pin:PIN}).then(function(r){if(!r||!r.ok)return;try{sessionStorage.setItem(ck,JSON.stringify({t:Date.now(),r:r}))}catch(e){}draw(r)},function(){})
+  /* 261117: 지난번에 받아 둔 값을 먼저 그리고(카드가 늦게 튀어나오지 않게), 뒤에서 새로 받아 다시 그린다 */
+  try{var lc=JSON.parse(localStorage.getItem(ck)||'null');if(lc&&lc.r)draw(lc.r)}catch(e){}
+  post({act:'pace',name:n,pin:PIN}).then(function(r){if(!r||!r.ok)return;try{var pv=JSON.stringify({t:Date.now(),r:r});sessionStorage.setItem(ck,pv);localStorage.setItem(ck,pv)}catch(e){}draw(r)},function(){})
 }
 function recView(key){
   if(!RC)return;var I=RC.I,n=RC.n,ti=RC.ti,D=recData(I,n,ti),P=D.P,c,t,num,tot,dots='',lst='',q;
