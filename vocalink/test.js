@@ -93,7 +93,9 @@ function submit(n){
  const st=load();delete st.pend;
  add(st,n,{p:D.map(it=>pick[it.n]||0).join(''),s,t:stamp()});save(st);
  if(window.VLWN)D.forEach(it=>{if(pick[it.n]!==it.slot){const c=wcard(it);if(c)VLWN.add(c[0],c[1]);}});
- const r=st.d[n],all=[r.first].concat(r.re||[]);result(n,all.length-1);
+ const r=st.d[n],all=[r.first].concat(r.re||[]);
+ try{const q=all.length-1;if(window.BoardLink)BoardLink.score('vl',{d:n,p:Math.round(s/N*100),ok:s>=PASS,w:'보카링크 DAY '+n+(q?' 재도전 '+q+'회':' 제출 완료')+' · '+s+'/'+N+(s>=PASS?' 통과':'')});}catch(x){}
+ result(n,all.length-1);
 }
 function explain(it){
  let h=`<div class="q">${it.n}. ${it.q}</div><div class="vt-ko">${it.ko}</div><div class="vt-key"><b>정답 ${C[it.slot-1]}</b> ${it.key}</div>`;
