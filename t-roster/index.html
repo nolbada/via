@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>명단 관리</title>
+<style>
+  :root{--ink:#1f2328;--sub:#667085;--line:#e3e5e8;--bg:#f5f4f0;--pri:#2b5cab;--warn:#b4402c}
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);margin:0;line-height:1.5}
+  .wrap{max-width:560px;margin:0 auto;padding:16px 14px 80px}
+  h1{font-size:19px;margin:6px 0 12px}
+  button{font:inherit;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 14px;cursor:pointer}
+  button.p{background:var(--pri);border-color:var(--pri);color:#fff}
+  button.w{color:var(--warn);border-color:#e8c9c2}
+  button:disabled{opacity:.5;cursor:default}
+  .tabs{display:flex;gap:6px;margin-bottom:10px}
+  .tabs button{flex:1;padding:9px 4px;font-size:14px}
+  .tabs button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+  .bar{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+  .bar input{flex:1;font:inherit;padding:9px 10px;border:1px solid var(--line);border-radius:8px;min-width:0}
+  .grp{font-size:13px;color:var(--sub);margin:14px 2px 6px}
+  .row{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 12px;margin-bottom:6px;cursor:pointer}
+  .row .n{font-weight:600}
+  .row .s{color:var(--sub);font-size:13px;margin-left:auto;text-align:right}
+  .row.out .n{color:var(--sub);text-decoration:line-through}
+  #msg{font-size:14px;color:var(--sub);min-height:20px;margin:4px 2px 8px}
+  #msg.no{color:var(--warn)}
+  .mask{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;align-items:flex-end;justify-content:center;z-index:5}
+  .sheet{background:#fff;width:100%;max-width:560px;border-radius:14px 14px 0 0;padding:16px 16px 20px;max-height:90vh;overflow:auto}
+  .sheet h2{font-size:17px;margin:0 0 10px}
+  .f{margin-bottom:10px}
+  .f label{display:block;font-size:13px;color:var(--sub);margin-bottom:3px}
+  .f input,.f select{width:100%;font:inherit;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+  .act{display:flex;gap:8px;margin-top:14px}
+  .act .sp{flex:1}
+  #gate{max-width:420px;margin:60px auto;padding:24px;background:#fff;border:1px solid var(--line);border-radius:12px;text-align:center}
+  #gerr{color:var(--warn);margin-top:10px;font-size:14px;min-height:20px}
+  .test{background:#fff4d6;border:1px solid #ecd9a0;border-radius:8px;padding:6px 10px;font-size:13px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<div id="gate" style="display:none">
+  <h1>명단 관리</h1>
+  <button class="p" id="glog" style="width:100%">구글로 로그인</button>
+  <div id="gerr"></div>
+</div>
+<div class="wrap" id="app" style="display:none">
+  <h1>명단 관리</h1>
+  <div class="test" id="testb" style="display:none">시험용 명단입니다. 실제 학생 명단이 아닙니다.</div>
+  <div class="tabs" id="tabs"></div>
+  <div class="bar"><input id="q" placeholder="이름 찾기"><button class="p" id="add">학생 추가</button></div>
+  <div id="msg"></div>
+  <div id="list"></div>
+</div>
+<div class="mask" id="mask"><div class="sheet">
+  <h2 id="eh"></h2>
+  <div id="ef"></div>
+  <div id="eerr" style="color:var(--warn);font-size:14px;min-height:20px"></div>
+  <div class="act"><button class="w" id="edel">명단에서 빼기</button><span class="sp"></span><button id="ecancel">닫기</button><button class="p" id="esave">저장</button></div>
+</div></div>
+<script>
+/* t-roster 261117a — 명단 관리(선생님 전용). 저장소: ros/<wn|mid|hi> 문서의 j = {head:[...], rows:[[...]]} */
+(function(){
+var TEST=/[?&]t=1/.test(location.search),COL=TEST?'ros_t':'ros';
+var DB='projects/h-roadmap/databases/(default)',BASE='https://firestore.googleapis.com/v1/'+DB+'/documents';
+var TABS=[
+  {id:'wn',name:'H로드맵',head:['이름','구분','학교','하루 상한','더블보카 단계','더블보카 시험일','데일리보카 시작일','비고','데일리보카 단계','미니모의고사','천일문S','메모'],
+   grp:1,sub:[4],def:{'하루 상한':40},
+   opt:{'구분':['중3','고등','선생님'],'더블보카 단계':['','Core','Pro']},num:{'하루 상한':1},date:{'더블보카 시험일':1,'데일리보카 시작일':1},
+   hint:{'비고':'퇴원이면 "퇴원"이라고 적습니다'}},
+  {id:'mid',name:'중등 내신',head:['이름','학교·학년','비상 코드(4자리)','메모'],grp:1,sub:[],def:{},
+   opt:{'학교·학년':['용아중2','금천중2','용성중2','운동중2']},num:{},date:{},hint:{}},
+  {id:'hi',name:'고등 내신',head:['이름','학교·학년','비상 코드(4자리)','메모'],grp:1,sub:[],def:{},
+   opt:{'학교·학년':['','금천고1','주성고1','청석고1','금천고2','주성고2','청석고2']},num:{},date:{},hint:{}}
+];
+var T=TABS[0],D={},UT={},AUTH=null,EDIT=-1,BUSY=false;
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function say(t,no){$('msg').textContent=t||'';$('msg').className=no?'no':'';}
+function nm(id){return DB+'/documents/'+COL+'/'+id;}
+function api(path,opt){return AUTH.token().then(function(tok){opt=opt||{};opt.headers={'Authorization':'Bearer '+tok,'Content-Type':'application/json'};return fetch(BASE+path,opt);});}
+function load(id){
+  return api('/'+COL+'/'+id).then(function(r){
+    if(r.status===404){var t=TABS.filter(function(x){return x.id===id;})[0];D[id]={head:t.head.slice(),rows:[]};UT[id]=null;return;}
+    if(r.status===401||r.status===403)throw {auth:1};
+    if(!r.ok)throw new Error('읽기 실패 '+r.status);
+    return r.json().then(function(j){D[id]=JSON.parse(j.fields.j.stringValue);UT[id]=j.updateTime;});
+  });
+}
+/* 바꾼 내용을 저장: 최신본을 다시 읽고 그 위에 fn 을 적용해, 읽은 뒤 안 바뀌었을 때만 쓴다 */
+function change(id,fn){
+  var n=0;
+  function run(){
+    return load(id).then(function(){
+      var err=fn(D[id]);if(err)throw new Error(err);
+      var body={writes:[{update:{name:nm(id),fields:{j:{stringValue:JSON.stringify(D[id])},t:{integerValue:String(Date.now())}}},currentDocument:UT[id]?{updateTime:UT[id]}:{exists:false}}]};
+      return api(':commit',{method:'POST',body:JSON.stringify(body)}).then(function(r){
+        if(r.status===401||r.status===403)throw {auth:1};
+        if(r.ok)return load(id);
+        if(++n<4)return run();
+        throw new Error('저장 실패 '+r.status);
+      });
+    });
+  }
+  return run();
+}
+function col(name){return D[T.id].head.indexOf(name);}
+function norm(s){return String(s==null?'':s).replace(/\s+/g,'');}
+function render(){
+  $('tabs').innerHTML=TABS.map(function(t){return '<button data-t="'+t.id+'" class="'+(t.id===T.id?'on':'')+'">'+esc(t.name)+(D[t.id]?' '+D[t.id].rows.length:'')+'</button>';}).join('');
+  var d=D[T.id];if(!d){$('list').innerHTML='';return;}
+  var q=norm($('q').value),g={},order=[];
+  d.rows.forEach(function(r,i){
+    if(q&&norm(r[0]).indexOf(q)<0)return;
+    var k=String(r[T.grp]||'')||'(구분 없음)';
+    if(!g[k]){g[k]=[];order.push(k);}
+    g[k].push(i);
+  });
+  order.sort();
+  var bi=col('비고');
+  $('list').innerHTML=order.map(function(k){
+    return '<div class="grp">'+esc(k)+' · '+g[k].length+'명</div>'+g[k].map(function(i){
+      var r=d.rows[i],out=bi>=0&&String(r[bi]||'').indexOf('퇴원')>=0;
+      var sub=T.sub.map(function(c){return r[c];}).filter(function(x){return x!==''&&x!=null;}).join(' · ');
+      return '<div class="row'+(out?' out':'')+'" data-i="'+i+'"><span class="n">'+esc(r[0])+'</span><span class="s">'+esc(out?'퇴원':sub)+'</span></div>';
+    }).join('');
+  }).join('')||'<div class="grp">학생이 없습니다</div>';
+}
+function openEdit(i){
+  EDIT=i;var d=D[T.id],r=i>=0?d.rows[i]:d.head.map(function(h){return T.def[h]!==undefined?T.def[h]:'';});
+  $('eh').textContent=i>=0?String(r[0]):'학생 추가';
+  $('ef').innerHTML=d.head.map(function(h,c){
+    var v=r[c]==null?'':r[c],id='e_'+c,inner;
+    if(T.opt[h]){var o=T.opt[h].slice();if(o.indexOf(String(v))<0)o.push(String(v));inner='<select id="'+id+'">'+o.map(function(x){return '<option'+(String(v)===x?' selected':'')+' value="'+esc(x)+'">'+esc(x||'(없음)')+'</option>';}).join('')+'</select>';}
+    else inner='<input id="'+id+'" value="'+esc(v)+'"'+(T.date[h]?' type="date"':T.num[h]?' type="number" inputmode="numeric"':'')+(T.hint[h]?' placeholder="'+esc(T.hint[h])+'"':'')+'>';
+    return '<div class="f"><label for="'+id+'">'+esc(h)+'</label>'+inner+'</div>';
+  }).join('');
+  $('edel').style.display=i>=0?'':'none';$('eerr').textContent='';
+  $('mask').style.display='flex';
+}
+function closeEdit(){$('mask').style.display='none';EDIT=-1;}
+function readForm(){
+  var d=D[T.id];
+  return d.head.map(function(h,c){var v=$('e_'+c).value;if(c===0)v=v.trim();if(T.num[h])return v===''?'':Number(v);return v;});
+}
+function busy(b){BUSY=b;['esave','edel','add'].forEach(function(id){$(id).disabled=b;});}
+function fail(e){busy(false);if(e&&e.auth){authFail();return;}var m=String(e&&e.message||e);if($('mask').style.display==='flex')$('eerr').textContent=m;else say(m,1);}
+$('tabs').onclick=function(ev){var b=ev.target.closest('[data-t]');if(!b)return;T=TABS.filter(function(t){return t.id===b.getAttribute('data-t');})[0];$('q').value='';say('');render();};
+$('q').oninput=render;
+$('list').onclick=function(ev){var r=ev.target.closest('[data-i]');if(r)openEdit(Number(r.getAttribute('data-i')));};
+$('add').onclick=function(){openEdit(-1);};
+$('ecancel').onclick=closeEdit;
+$('mask').onclick=function(ev){if(ev.target===this)closeEdit();};
+$('esave').onclick=function(){
+  if(BUSY)return;var row=readForm(),i=EDIT,d0=D[T.id],old=i>=0?JSON.stringify(d0.rows[i]):null;
+  if(!norm(row[0])){$('eerr').textContent='이름을 적어 주세요';return;}
+  busy(true);
+  change(T.id,function(d){
+    var at=-1;
+    if(old!==null){for(var k=0;k<d.rows.length;k++)if(JSON.stringify(d.rows[k])===old){at=k;break;}if(at<0)return '다른 곳에서 명단이 바뀌었습니다. 닫고 다시 열어 주세요.';}
+    for(var j=0;j<d.rows.length;j++)if(j!==at&&norm(d.rows[j][0])===norm(row[0])&&String(d.rows[j][T.grp]||'')===String(row[T.grp]||''))return '같은 이름이 이미 있습니다';
+    if(at>=0)d.rows[at]=row;else d.rows.push(row);
+  }).then(function(){busy(false);closeEdit();render();say('저장했습니다. 학생 화면에는 1분 안에 반영됩니다.');},fail);
+};
+var DELARM=0;
+$('edel').onclick=function(){
+  if(BUSY||EDIT<0)return;
+  if(Date.now()-DELARM>4000){DELARM=Date.now();$('eerr').textContent='정말 빼려면 한 번 더 눌러 주세요. 기록은 지워지지 않습니다.';return;}
+  DELARM=0;var old=JSON.stringify(D[T.id].rows[EDIT]);busy(true);
+  change(T.id,function(d){for(var k=0;k<d.rows.length;k++)if(JSON.stringify(d.rows[k])===old){d.rows.splice(k,1);return;}return '다른 곳에서 명단이 바뀌었습니다. 닫고 다시 열어 주세요.';})
+    .then(function(){busy(false);closeEdit();render();say('명단에서 뺐습니다.');},fail);
+};
+function authFail(){$('app').style.display='none';$('gate').style.display='block';$('gerr').textContent='이 계정으로는 열 수 없습니다. 선생님 계정으로 로그인해 주세요.';if(AUTH)AUTH.signOut();}
+function start(){
+  $('gate').style.display='none';$('app').style.display='block';if(TEST)$('testb').style.display='';
+  say('불러오는 중...');
+  Promise.all(TABS.map(function(t){return load(t.id);})).then(function(){say('');render();},fail);
+}
+$('glog').onclick=function(){
+  var b=this;$('gerr').textContent='';if(!AUTH){$('gerr').textContent='준비 중입니다. 잠시 뒤 다시 눌러 주세요.';return;}
+  b.disabled=true;AUTH.signIn().then(function(){b.disabled=false;},function(e){b.disabled=false;var c=e&&e.code||'';$('gerr').textContent=c==='auth/popup-blocked'?'로그인 창이 막혔습니다. 크롬에서 열어 주세요.':(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')?'':'로그인 실패: '+(c||e);});
+};
+window.__rosReady=function(a){AUTH=a;};
+window.__rosUser=function(u){if(u)start();else{$('app').style.display='none';$('gate').style.display='block';}};
+if(TEST)window.__ros={D:D,change:change,load:load};
+})();
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+const auth=getAuth(initializeApp({apiKey:"AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA",authDomain:"h-roadmap.firebaseapp.com",projectId:"h-roadmap",appId:"1:575520405083:web:b9f40b64cb0ae3d1a9317e"}));
+let first=true;
+onAuthStateChanged(auth,u=>{
+  if(first){first=false;window.__rosReady({
+    token:()=>auth.currentUser?auth.currentUser.getIdToken():Promise.reject({auth:1}),
+    signIn:()=>{const p=new GoogleAuthProvider();p.setCustomParameters({prompt:"select_account"});return signInWithPopup(auth,p);},
+    signOut:()=>signOut(auth)
+  });}
+  window.__rosUser(u);
+});
+</script>
+</body>
+</html>
