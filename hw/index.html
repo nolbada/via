@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko" translate="no">
 <head>
-<meta charset="utf-8"><script src="../common/recfs.js?v=261117g"></script>
+<meta charset="utf-8"><script src="../common/recfs.js?v=261117g"></script><script type="module" src="../common/recwatch.js?v=261118a"></script>
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
@@ -300,7 +300,9 @@ function post(body,keep){
   return fetch(SRV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body),keepalive:!!keep})
     .then(function(r){return r.json()}).then(function(r){if(!r||!r.ok)throw new Error('srv');return r});
 }
-function readAll(id){return post({act:'put',id:id,data:{}}).then(function(r){return r.data||{}})}
+function readAll(id){var d=window.__recData&&window.__recData(id);if(d)return Promise.resolve(d);return post({act:'put',id:id,data:{}}).then(function(r){return r.data||{}})}
+function live(id){return !!(window.__recLive&&window.__recLive(id))}
+function watch(id,cb){function go(){try{window.__recWatch(id,cb)}catch(e){}}if(window.__recWatch)go();else window.addEventListener('recwatch',go)}
 function unwrap(v){return(v&&typeof v==='object'&&typeof v.s==='string')?v.s:null}
 function putKeys(id,map){var d={},t=Date.now();for(var k in map)d[k]={v:{s:JSON.stringify(map[k])},t:t};return post({act:'put',id:id,data:d})}
 
@@ -487,7 +489,10 @@ function runParent(tok){
   }
   app.innerHTML='<div class="hero"><div class="meta">불러오는 중…</div></div>';
   load().then(draw,function(){app.innerHTML='<div class="hero"><div class="name" style="font-size:17px">불러오지 못했어요</div><div class="meta">인터넷 연결을 확인하고 다시 열어 주세요.</div></div>'});
-  setInterval(function(){if(!document.hidden)load().then(draw,function(){})},60000);
+  var stale=false;
+  watch(ID,function(){if(document.hidden){stale=true;return}load().then(draw,function(){})});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden&&stale){stale=false;load().then(draw,function(){})}});
+  setInterval(function(){if(document.hidden||live(ID))return;load().then(draw,function(){})},60000);
 }
 
 /* ================= 선생님(입력) ================= */
@@ -867,7 +872,11 @@ function runTeacher(code){
   document.addEventListener('visibilitychange',function(){if(document.hidden&&Object.keys(dirty).length)flush()});
   app.innerHTML='<div class="hero"><div class="meta">불러오는 중…</div></div>';
   pull().then(draw,function(){app.innerHTML='<div class="hero"><div class="name" style="font-size:17px">불러오지 못했어요</div><div class="meta">인터넷 연결을 확인하고 다시 열어 주세요.</div><button class="btn" id="rc" type="button" style="margin-top:12px">열기 코드 다시 입력</button></div>';document.getElementById('rc').onclick=function(){try{LS.removeItem('hw_code')}catch(e){}location.reload()}});
-  setInterval(function(){if(document.hidden||saving||Object.keys(dirty).length)return;pull().then(function(){var a=document.activeElement;if(!pchg||Date.now()-lastAct<8000)return;if(!a||(a.tagName!=='INPUT'&&a.tagName!=='SELECT'))draw()},function(){})},30000);
+  var stale=false;
+  watch(ID,function(){stale=true;tick()});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)tick()});
+  function tick(){if(document.hidden||saving||Object.keys(dirty).length)return;if(live(ID)&&!stale)return;stale=false;pull().then(function(){var a=document.activeElement;if(!pchg||Date.now()-lastAct<8000)return;if(!a||(a.tagName!=='INPUT'&&a.tagName!=='SELECT'))draw()},function(){})}
+  setInterval(tick,30000);
 }
 
 /* ================= 진입 ================= */
