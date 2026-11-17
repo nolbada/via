@@ -55,11 +55,13 @@
   function mirrored(k){
     if(!k||typeof k!=='string')return false;
     if(k.indexOf('via_')===0||k.indexOf('rec_')===0||k.indexOf('demo_')===0)return false;
+    /* 261118: 보드 밖에서 바로 여는 앱의 기록도 같은 방식으로 잇는다(앱마다 저장값 이름을 여기에 더한다). 천일문S: 놓친 문장·본 문장 목록 */
+    if(/^(sj_missed|sj_looked2)$/.test(k))return true;
     return /^(dv_|dvc_|dvp_|wl_|star_|wn_mm_|wn_star_|wn_fp_|eobeop_daily_v1_)/.test(k);
   }
   function keys(){var o=[],i,k;for(i=0;i<LS.length;i++){k=LS.key(i);if(mirrored(k))o.push(k)}return o}
   /* 별표·틀린 목록·이어풀기 진행처럼 '지우거나 줄어드는' 기록은 합치지 않고, 더 나중에 바꾼 쪽이 이긴다(지운 것도 기록으로 남긴다) */
-  function lww(k){return /^(wn_star_|wn_fp_|dvc_|dvp_|star_|wl_)/.test(k)}
+  function lww(k){return /^(wn_star_|wn_fp_|dvc_|dvp_|star_|wl_|sj_missed$|sj_looked2$)/.test(k)}
   function stamp(k){var o=jg(LK)||{};o[k]=Date.now();s(LK,JSON.stringify(o));var tb=jg(TK)||{};if(k in tb){delete tb[k];s(TK,JSON.stringify(tb))}}
   function tomb(k){var tb=jg(TK)||{};tb[k]=Date.now();s(TK,JSON.stringify(tb));var o=jg(LK)||{};delete o[k];s(LK,JSON.stringify(o))}
   function nm(){
