@@ -1,2 +1,2 @@
-/* 선생님 구글 시트 연결 주소. 비어 있으면 자동 기록을 하지 않습니다. */
-window.VOCA_SYNC="https://script.google.com/macros/s/AKfycbztUTJcOi6Sak76lr4mU-HPvIqgN23UJ0LwUHno5TTMRvWegaOMWGanBpEuBX2K8Vc0/exec";
+/* 선생님 쪽 자동 기록 스위치. 261117: 구글 시트(없어짐) 대신 Firebase 로 보낸다. 0 으로 바꾸면 보내지 않는다. */
+window.VOCA_FS=1;

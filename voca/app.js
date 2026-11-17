@@ -164,7 +164,7 @@ function srcBlock(G,l,hub){
 
 /* ---------- 화면 ---------- */
 function App(G,id,root){
-  this.G=G;this.id=id;this.root=root;this.st=new Store(id);
+  this.G=G;this.id=id;this.root=root;this.st=new Store(id);var me0=this;setTimeout(function(){try{me0.sync()}catch(e){}},3000);
   var first=G.B.lessons[0].no; this.l=String(this.st.s.lesson||first);
   this.home();
 }
@@ -287,19 +287,32 @@ App.prototype.finish=function(ok,nm){ /* 한 문제 끝 */
   if(nm!=='broken')addToday(this.st.s,this.l);
   this.st.save();this.sync();
 };
-/* --- 선생님 시트로 자동 기록 (voca/sync.js 에 주소가 있을 때만) --- */
+/* --- 선생님 쪽으로 자동 기록 (261117: 구글 시트 대신 Firebase 로 바로 보낸다. voca/sync.js 의 VOCA_FS 가 켜져 있을 때만)
+   보내는 것: 이름, 묶음, 날짜, 이어받기 코드(지금까지의 전체 기록). 20초에 한 번을 넘지 않게 묶어 보내고, 화면을 떠날 때 한 번 더 보낸다. --- */
+var VFS='https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents/vocalog/';
+App.prototype.syncNow=function(leaving){
+  try{
+    if(!window.VOCA_FS||!this._dirty)return;
+    var s=this.st.s; if(!s.dev){s.dev=Math.random().toString(36).slice(2,10)+Date.now().toString(36);this.st.save()}
+    var code=this.st.code(this.id); if(code.length>450000)return;
+    var body=JSON.stringify({fields:{code:{stringValue:code},name:{stringValue:String(s.name||'').slice(0,30)},set:{stringValue:String(this.id).slice(0,50)},date:{stringValue:today()},t:{integerValue:String(Date.now())}}});
+    this._dirty=false;this._last=Date.now();
+    var self=this,opt={method:'PATCH',headers:{'Content-Type':'application/json'},body:body};
+    if(leaving&&body.length<60000)opt.keepalive=true;
+    fetch(VFS+encodeURIComponent(this.id+'~'+s.dev),opt).then(function(r){if(!r.ok)self._dirty=true},function(){self._dirty=true});
+  }catch(e){}
+};
 App.prototype.sync=function(){
-  var self=this,url=window.VOCA_SYNC; if(!url)return;
+  if(!window.VOCA_FS)return;
+  var self=this;this._dirty=true;
+  if(!this._hook){this._hook=true;
+    var bye=function(){self.syncNow(true)};
+    document.addEventListener('visibilitychange',function(){if(document.hidden)bye()});
+    window.addEventListener('pagehide',bye);
+  }
   clearTimeout(this._t);
-  this._t=setTimeout(function(){
-    try{
-      var s=self.st.s; if(!s.dev){s.dev=Math.random().toString(36).slice(2,10)+Date.now().toString(36);self.st.save()}
-      var G=self.G,ls=Object.keys(G.L).map(function(l){var L=G.L[l],c=counts(s,L),im=immunity(s,L);
-        return {l:l,n:L.edges.length,c:c,im:im,t:todayN(s,l)}});
-      var body=JSON.stringify({dev:s.dev,name:s.name||'',id:self.id,date:today(),ls:ls,code:self.st.code(self.id)});
-      fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:body,keepalive:true}).catch(function(){});
-    }catch(e){}
-  },1500);
+  var wait=Math.max(1500,20000-(Date.now()-(this._last||0)));
+  this._t=setTimeout(function(){self.syncNow(false)},wait);
 };
 /* --- 연결 퀴즈 --- */
 App.prototype.quiz=function(){
