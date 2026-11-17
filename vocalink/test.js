@@ -2,7 +2,7 @@
 "use strict";
 // 보카링크 1차 테스트(A형) — 시험지에 표시한 답을 앱에 입력 → 제출 → 채점 → 해설/오답 정리.
 // 풀다가 나가면 0점을 기록하지 않고 '중간에 나간 횟수'만 센다. 다시 들어오면 처음부터 새로 풀기. 기록은 이 폰에만 저장.
-const C='①②③④',N=20,PASS=16,DAYS=30,KEY='vl_test_v1',LIM=2,CODE='8800';
+const C='①②③④',N=20,PASS=16,DAYS=30,KEY='vl_test_v1',LIM=2,CODE='7372';
 const AV=Array.from({length:DAYS},(_,i)=>i+1);
 let $=null,back=null,D=null,pick={};
 // 예전에 '나가서 0점'으로 남은 기록(20문항 모두 미응답)은 점수 기록에서 빼고 '중간에 나간 횟수'로 옮긴다.
