@@ -9,7 +9,7 @@ def rep(a,b,n=1):
     s=s.replace(a,b)
 rep('''  <input id="pwin" type="password" placeholder="비밀번호" autocomplete="current-password">
   <button class="p" id="pwok" style="width:100%">확인</button>''','''  <button class="p" id="glog" style="width:100%">구글로 로그인</button>''')
-rep('<script>\n(function(){\nvar API=','<script src="attfs.js?v=261117a"></script>\n<script>\n(function(){\nvar TEST=/[?&]t=1/.test(location.search),NS=TEST?\'attt_\':\'attg_\';\nvar AUTHW=[],AUTHR=null;window.__attReady=function(a){AUTHR=a;AUTHW.splice(0).forEach(function(f){f();});};\nfunction authReady(){return new Promise(function(z){if(AUTHR)z();else AUTHW.push(z);});}\nvar STORE=AttFs.make({col:TEST?\'att_t\':\'att\',token:function(){return authReady().then(function(){return AUTHR.token();});}});\nvar API=')
+rep('<script>\n(function(){\nvar API=','<script src="attfs.js?v=261117a"></script>\n<script>\n(function(){\nvar TEST=/[?&]t=1/.test(location.search),NS=TEST?\'attt_\':\'attg_\';\nvar AUTHW=[],AUTHR=null;window.__attReady=function(a){AUTHR=a;AUTHW.splice(0).forEach(function(f){f();});};\nfunction authReady(){return new Promise(function(z){if(AUTHR)z();else AUTHW.push(z);});}\nvar STORE=AttFs.make({col:TEST?\'att_t\':\'att\',token:function(){return authReady().then(function(){return AUTHR.token();});}});if(TEST)window.__store=STORE;\nvar API=')
 rep("'att_q_'","NS+'q_'",2)
 rep("'att_s_'","NS+'s_'",2)
 rep('''  var c=new AbortController(),tm=setTimeout(function(){c.abort();},40000);

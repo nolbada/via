@@ -269,7 +269,7 @@ details.mkd summary{margin:10px 2px 4px;font-size:13px}
 var TEST=/[?&]t=1/.test(location.search),NS=TEST?'attt_':'attg_';
 var AUTHW=[],AUTHR=null;window.__attReady=function(a){AUTHR=a;AUTHW.splice(0).forEach(function(f){f();});};
 function authReady(){return new Promise(function(z){if(AUTHR)z();else AUTHW.push(z);});}
-var STORE=AttFs.make({col:TEST?'att_t':'att',token:function(){return authReady().then(function(){return AUTHR.token();});}});
+var STORE=AttFs.make({col:TEST?'att_t':'att',token:function(){return authReady().then(function(){return AUTHR.token();});}});if(TEST)window.__store=STORE;
 var API='https://script.google.com/macros/s/AKfycby5Y6FhgpP3jiNQSAwITDIMzBp8CVIuyLWUPEVIShUUMlXh5UOzupcL8aPyvN-xfsBO/exec';
 var TEACH={'남':'남쌤','여':'여쌤'};
 var DAYS=['일','월','화','수','목','금','토'];
