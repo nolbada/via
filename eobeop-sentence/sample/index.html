@@ -95,7 +95,7 @@ textarea{width:100%;min-height:120px;border:1.5px solid #c8d1e5;border-radius:12
 <body>
 <div id="app"></div>
 <script>
-var META=[{"n": 1, "t": "주어-동사 수 일치 (샘플)", "sets": [{"id": "s1", "title": "짧은 지문 연습 제대로", "sub": "각 네모 안에서 어법에 맞는 표현 고르기", "page": 18, "n": 4}, {"id": "s2", "title": "서술형 방식 1 · 빈칸 완성", "sub": "정답 문장을 덩어리로 분석하고 교재에 쓰기 (p.19 1·2번)", "page": 19, "n": 2}, {"id": "s3", "title": "서술형 방식 2 · 배열", "sub": "덩어리를 눌러 순서 맞추기 (p.19 4·5번)", "page": 19, "n": 2}]}];
+var META=[{"n": 1, "t": "주어-동사 수 일치 (샘플)", "sets": [{"id": "s1", "title": "짧은 지문 연습 제대로", "sub": "각 네모 안에서 어법에 맞는 표현 고르기", "page": 18, "n": 4}, {"id": "s2", "title": "서술형 방식 1", "sub": "정답 문장을 분석하고 교재에 쓰기 (p.19 1·2·4·5번)", "page": 19, "n": 4}, {"id": "s3", "title": "서술형 방식 2", "sub": "배열은 덩어리를 눌러 순서 맞추기 (p.19 1·2·4·5번)", "page": 19, "n": 4}]}];
 window.DB={};
 var KEY='eobeop-sent-sample';
 var st={done:{},wrote:{}};
@@ -268,7 +268,7 @@ function summary(n,si){
   card.appendChild(nb);$.appendChild(card);
   var r=el('div','row');var h=el('button','btn','목록으로');h.onclick=function(){chap(n)};r.appendChild(h);$.appendChild(r);
 }
-home();
+var qq=location.search.match(/[?&]s=(\d)/);if(qq){load(1,function(){run(1,+qq[1],0)})}else{home()}
 </script>
 </body>
 </html>
