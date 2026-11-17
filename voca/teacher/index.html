@@ -54,13 +54,16 @@
       try{var o=core.decode(d.code),B=window.VOCADATA[o.id];if(B){var G=core.build(B);line=Object.keys(G.L).map(function(l){var L=G.L[l],c=core.counts(o.s,L);return l+'과 정복 '+c[3]+' · 익힘 '+c[2]+' / '+L.edges.length}).join('  ')}}catch(e){line='코드를 읽지 못함'}
       var when=new Date(d.t),ws=(when.getMonth()+1)+'/'+when.getDate()+' '+('0'+when.getHours()).slice(-2)+':'+('0'+when.getMinutes()).slice(-2);
       var reg=(window.VOCAREG||[]).filter(function(r){return r.id===d.set})[0];
-      return '<div class="row" style="display:grid;gap:4px"><div><b>'+core.esc(d.name||'이름 없음')+'</b> · '+core.esc(reg?reg.school:d.set)+' · 마지막 '+ws+'</div><div>'+core.esc(line)+'</div><div class="btnrow" style="margin-top:0"><button class="btn" data-see="'+i+'">자세히</button><button class="btn" data-cp="'+i+'">코드 복사</button></div></div>';
+      return '<div class="row" style="display:grid;gap:4px"><div><b>'+core.esc(d.name||'이름 없음')+'</b> · '+core.esc(reg?reg.school:d.set)+' · 마지막 '+ws+'</div><div>'+core.esc(line)+'</div><div class="btnrow" style="margin-top:0"><button class="btn" data-see="'+i+'">자세히</button><button class="btn" data-cp="'+i+'">코드 복사</button><button class="btn" data-rm="'+i+'">목록에서 지우기</button></div></div>';
     }).join('');
     document.getElementById('vlist').innerHTML=h;document.getElementById('vcnt').textContent=VDOCS.length+'명';
     vsay(VDOCS.length?'':'아직 올라온 기록이 없습니다. 학생이 앱을 열면 올라옵니다.');
   }
   document.getElementById('vlist').onclick=function(ev){
-    var a=ev.target.closest('[data-see]'),b=ev.target.closest('[data-cp]');
+    var a=ev.target.closest('[data-see]'),b=ev.target.closest('[data-cp]'),c0=ev.target.closest('[data-rm]');
+    if(c0){if(c0.getAttribute('data-arm')!=='1'){c0.setAttribute('data-arm','1');c0.textContent='한 번 더 누르면 지워집니다';return}
+      var dd=VDOCS[Number(c0.getAttribute('data-rm'))];c0.disabled=true;
+      VAUTH.token().then(function(t){return fetch('https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents/vocalog/'+encodeURIComponent(dd.id),{method:'DELETE',headers:{Authorization:'Bearer '+t}})}).then(function(r){if(!r.ok)throw new Error('지우기 실패 '+r.status);vload()},function(e){vsay(e.message)}).catch(function(e){vsay(e.message)});return}
     if(a){document.getElementById('in').value=VDOCS[Number(a.getAttribute('data-see'))].code;document.getElementById('go').click();document.getElementById('out').scrollIntoView({behavior:'smooth'})}
     if(b){var c=VDOCS[Number(b.getAttribute('data-cp'))].code;try{navigator.clipboard.writeText(c).then(function(){b.textContent='복사됨'},function(){b.textContent='직접 복사해 주세요'})}catch(e){b.textContent='직접 복사해 주세요'}}
   };
@@ -71,7 +74,7 @@
       return VAUTH.token().then(function(t){return fetch(base+(tok?'&pageToken='+encodeURIComponent(tok):''),{headers:{Authorization:'Bearer '+t}})}).then(function(r){
         if(r.status===401||r.status===403)throw new Error('이 계정으로는 볼 수 없습니다. 선생님 계정으로 로그인해 주세요.');
         if(!r.ok)throw new Error('읽기 실패 '+r.status);return r.json()}).then(function(j){
-        (j.documents||[]).forEach(function(d){var f=d.fields||{};VDOCS.push({code:f.code?f.code.stringValue:'',name:f.name?f.name.stringValue:'',set:f.set?f.set.stringValue:'',t:Number(f.t&&f.t.integerValue)||0})});
+        (j.documents||[]).forEach(function(d){var f=d.fields||{};VDOCS.push({id:d.name.split('/').pop(),code:f.code?f.code.stringValue:'',name:f.name?f.name.stringValue:'',set:f.set?f.set.stringValue:'',t:Number(f.t&&f.t.integerValue)||0})});
         if(j.nextPageToken)return page(j.nextPageToken)});
     }
     page('').then(vrender,function(e){vsay(e.message)});
