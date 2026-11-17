@@ -977,7 +977,7 @@ function authFail(){ls(NS+'in',null);pw='';var em='';try{em=AUTHR&&AUTHR.email()
 document.getElementById('glog').onclick=function(){
   var b=this;FAILMSG='';document.getElementById('gerr').textContent='';
   if(!AUTHR){document.getElementById('gerr').textContent='준비 중입니다. 잠시 뒤 다시 눌러 주세요.';return;}
-  b.disabled=true;AUTHR.signIn().then(function(){b.disabled=false;},function(e){b.disabled=false;var c=e&&e.code||'';document.getElementById('gerr').textContent=c==='auth/popup-blocked'?'로그인 창이 막혔습니다. 주소창 오른쪽의 "팝업 차단됨" 표시를 눌러 허용한 뒤 다시 눌러 주세요. 카톡 안에서 열었다면 크롬에서 열어 주세요.':(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')?'로그인 창이 닫혔습니다. 다시 누르고, 뜨는 창에서 선생님 구글 계정을 골라 주세요.':c==='auth/network-request-failed'?'인터넷 연결이 안 됩니다. 연결을 확인하고 다시 눌러 주세요.':'로그인이 안 됐습니다. 이 글을 그대로 알려 주세요: '+(c||e);});
+  b.disabled=true;AUTHR.signIn().then(function(){b.disabled=false;},function(e){b.disabled=false;var c=e&&e.code||'';document.getElementById('gerr').textContent=c==='auth/popup-blocked'?'로그인 창이 막혔습니다. 크롬 앱에서 이 주소를 열어 다시 눌러 주세요.':(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')?'로그인 창이 닫혔습니다. 다시 누르고, 뜨는 창에서 선생님 구글 계정을 골라 주세요.':c==='auth/network-request-failed'?'인터넷 연결이 안 됩니다. 연결을 확인하고 다시 눌러 주세요.':'로그인이 안 됐습니다. 이 글을 그대로 알려 주세요: '+(c||e);});
 };
 var STARTED=false;
 window.__attUser=function(u){
@@ -1008,18 +1008,22 @@ document.addEventListener('visibilitychange',function(){if(!document.hidden)sync
 </script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 const auth=getAuth(initializeApp({apiKey:"AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA",authDomain:"h-roadmap.firebaseapp.com",projectId:"h-roadmap",appId:"1:575520405083:web:b9f40b64cb0ae3d1a9317e"}));
 let first=true;
 onAuthStateChanged(auth,u=>{
   if(first){first=false;window.__attReady({
     token:()=>auth.currentUser?auth.currentUser.getIdToken():Promise.reject({auth:1}),
-    signIn:()=>{const p=new GoogleAuthProvider();p.setCustomParameters({prompt:"select_account"});return signInWithPopup(auth,p);},
+    /* 로그인 창(팝업)이 막히는 폰에서는 창을 띄우지 않고 구글 화면으로 갔다가 돌아오는 방식으로 다시 시도한다 */
+    signIn:()=>{const p=new GoogleAuthProvider();p.setCustomParameters({prompt:"select_account"});return signInWithPopup(auth,p).catch(e=>{const c=e&&e.code||"";if(c==="auth/popup-blocked"||c==="auth/operation-not-supported-in-this-environment"||c==="auth/web-storage-unsupported"){try{sessionStorage.setItem("att_redir","1")}catch(x){}return signInWithRedirect(auth,p);}throw e;});},
     signOut:()=>signOut(auth),
     email:()=>auth.currentUser?auth.currentUser.email:''
   });}
   window.__attUser(u);
+  let rd=null;try{rd=sessionStorage.getItem("att_redir");sessionStorage.removeItem("att_redir")}catch(x){}
+  if(rd&&!u){const g=document.getElementById("gerr");if(g)g.textContent="이 브라우저에서는 구글 로그인이 끝까지 되지 않았습니다. 크롬 앱에서 이 주소를 열어 다시 눌러 주세요.";}
 });
+getRedirectResult(auth).catch(e=>{const g=document.getElementById("gerr");if(g)g.textContent="로그인이 안 됐습니다. 이 글을 그대로 알려 주세요: "+(e&&e.code||e);});
 </script>
 </body>
 </html>
