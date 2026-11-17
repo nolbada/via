@@ -153,7 +153,7 @@ function datesOf(q){
 
 /* ---- 저장소 연결부 ---- */
 function make(opt){
-  /* opt: {col, token(): Promise<string>, fetch?} */
+  /* opt: {col, token(): Promise<string>, fetch?, vnow?(): 지금 번호표 값 또는 null} */
   var F=opt.fetch||root.fetch.bind(root);
   var DB='projects/h-roadmap/databases/(default)',BASE='https://firestore.googleapis.com/v1/'+DB+'/documents';
   var cache={};
@@ -227,8 +227,10 @@ function make(opt){
     }
     var p;
     if(!hasOps&&cache[k]){
-      p=get(['v']).then(function(g){
-        var vn=g.v?JSON.parse(g.v.j).n:0;
+      /* 번호표(v)를 "바뀔 때만" 받는 연결이 살아 있으면(opt.vnow) 다시 읽지 않고 그 값을 쓴다 */
+      var live=opt.vnow?opt.vnow():null;
+      p=(typeof live==='number'?Promise.resolve(null):get(['v'])).then(function(g){
+        var vn=g===null?live:(g.v?JSON.parse(g.v.j).n:0);
         if(vn===cache[k].v){ var c=clone(cache[k].res); c.now=Date.now(); return c; }
         return run();
       });

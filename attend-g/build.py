@@ -11,7 +11,7 @@ def rep(a,b,n=1):
 rep('''  <input id="pwin" type="password" placeholder="비밀번호" autocomplete="current-password">
   <button class="p" id="pwok" style="width:100%">확인</button>''','''  <button class="p" id="glog" style="width:100%">구글로 로그인</button>
   <div style="color:#6a7a7d;font-size:13px;margin-top:10px;line-height:1.6">선생님 구글 계정으로만 열립니다.</div>''')
-rep('<script>\n(function(){\nvar API=','<script src="attfs.js?v=261117a"></script>\n<script>\n(function(){\nvar TEST=/[?&]t=1/.test(location.search),NS=TEST?\'attt_\':\'attg_\';\nvar AUTHW=[],AUTHR=null;window.__attReady=function(a){AUTHR=a;AUTHW.splice(0).forEach(function(f){f();});};\nfunction authReady(){return new Promise(function(z){if(AUTHR)z();else AUTHW.push(z);});}\nvar STORE=AttFs.make({col:TEST?\'att_t\':\'att\',token:function(){return authReady().then(function(){return AUTHR.token();});}});if(TEST)window.__store=STORE;\nvar API=')
+rep('<script>\n(function(){\nvar API=','<script src="attfs.js?v=261118a"></script>\n<script>\n(function(){\nvar TEST=/[?&]t=1/.test(location.search),NS=TEST?\'attt_\':\'attg_\';\nvar AUTHW=[],AUTHR=null;window.__attReady=function(a){AUTHR=a;AUTHW.splice(0).forEach(function(f){f();});};\nfunction authReady(){return new Promise(function(z){if(AUTHR)z();else AUTHW.push(z);});}\nvar STORE=AttFs.make({col:TEST?\'att_t\':\'att\',token:function(){return authReady().then(function(){return AUTHR.token();});},vnow:function(){var w=window.__attV;return (w&&typeof w.n===\'number\')?w.n:null;}});if(TEST)window.__store=STORE;\nvar API=')
 rep("'att_q_'","NS+'q_'",2)
 rep("'att_s_'","NS+'s_'",2)
 rep('''  var c=new AbortController(),tm=setTimeout(function(){c.abort();},40000);
@@ -29,6 +29,7 @@ document.getElementById('glog').onclick=function(){
   b.disabled=true;AUTHR.signIn().then(function(){b.disabled=false;},function(e){b.disabled=false;var c=e&&e.code||'';document.getElementById('gerr').textContent=c==='auth/popup-blocked'?'로그인 창이 막혔습니다. 크롬 앱에서 이 주소를 열어 다시 눌러 주세요.':(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')?'로그인 창이 닫혔습니다. 다시 누르고, 뜨는 창에서 선생님 구글 계정을 골라 주세요.':c==='auth/network-request-failed'?'인터넷 연결이 안 됩니다. 연결을 확인하고 다시 눌러 주세요.':'로그인이 안 됐습니다. 이 글을 그대로 알려 주세요: '+(c||e);});
 };
 var STARTED=false;
+window.__attVchg=function(){if(STARTED&&!document.hidden)syncAll();};
 window.__attUser=function(u){
   if(u){ls(NS+'in','1');pw='g';if(!STARTED)start();else syncAll();}
   else{ls(NS+'in',null);pw='';STARTED=false;showGate(FAILMSG);}
@@ -43,6 +44,24 @@ rep('</body>','''<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 const auth=getAuth(initializeApp({apiKey:"AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA",authDomain:"nolbada.github.io",projectId:"h-roadmap",appId:"1:575520405083:web:b9f40b64cb0ae3d1a9317e"}));
+/* 번호표 문서(v)를 "바뀔 때만" 받는다. 연결되어 있으면 10초마다 다시 읽지 않는다. 주소에 snap=0 을 붙이면 끈다 */
+let vUnsub=null;
+async function vWatch(u){
+  if(/[?&]snap=0/.test(location.search))return;
+  if(!u){if(vUnsub){try{vUnsub()}catch(e){}vUnsub=null}window.__attV=null;return}
+  if(vUnsub)return;
+  vUnsub=()=>{};
+  try{
+    const {getFirestore,doc,onSnapshot}=await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js");
+    const col=/[?&]t=1/.test(location.search)?"att_t":"att";
+    vUnsub=onSnapshot(doc(getFirestore(auth.app),col,"v"),s=>{
+      if(s.metadata.fromCache)return;
+      let n=0;try{n=s.exists()?(JSON.parse(s.data().j).n||0):0}catch(e){}
+      const old=window.__attV;window.__attV={n:n};
+      if(old&&old.n!==n&&window.__attVchg)window.__attVchg();
+    },()=>{window.__attV=null;vUnsub=null});
+  }catch(e){window.__attV=null;vUnsub=null}
+}
 let first=true;
 onAuthStateChanged(auth,u=>{
   if(first){first=false;window.__attReady({
@@ -53,6 +72,7 @@ onAuthStateChanged(auth,u=>{
     email:()=>auth.currentUser?auth.currentUser.email:''
   });}
   window.__attUser(u);
+  vWatch(u);
   let rd=null;try{rd=sessionStorage.getItem("att_redir");sessionStorage.removeItem("att_redir")}catch(x){}
   if(rd&&!u){const g=document.getElementById("gerr");if(g)g.textContent="이 브라우저에서는 구글 로그인이 끝까지 되지 않았습니다. 크롬 앱에서 이 주소를 열어 다시 눌러 주세요.";}
 });
