@@ -90,12 +90,12 @@ textarea{width:100%;min-height:120px;border:1.5px solid #c8d1e5;border-radius:12
 .chcard .cp{font-size:13px;color:#55627d}
 .chcard.done{background:#e6f4ea}
 .setbtn.lk{opacity:.55;background:#eceef3;cursor:default}
-.korq{background:#fff7e6;border:1px solid #f0d9a8;border-radius:10px;padding:10px 12px;font-size:16px;line-height:1.6;margin-bottom:10px;color:#5a4410}.ctxq{background:#f3f6fc;border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.7;margin-bottom:10px;color:#2a3550}.ctxq b:first-child,.korq b:first-child{display:inline-block;background:#1f3b73;color:#fff;border-radius:6px;font-size:12px;padding:0 7px;margin-right:6px}.ctxq u{text-decoration:none;font-weight:700;color:#1f3b73;background:#dfe8fa;border-radius:4px;padding:0 3px}</style>
+.ordans{min-height:54px;border:2px dashed #b9c4de;border-radius:12px;padding:8px;margin:6px 0 10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}.oc{background:#d6f0d2;color:#1b5e3a;border-radius:8px;padding:6px 10px;font-size:18px;font-weight:700}.ordpool{display:flex;flex-wrap:wrap;gap:8px}.ob{flex:none;font-size:18px;padding:10px 14px}.ob:disabled{opacity:.35}.korq{background:#fff7e6;border:1px solid #f0d9a8;border-radius:10px;padding:10px 12px;font-size:16px;line-height:1.6;margin-bottom:10px;color:#5a4410}.ctxq{background:#f3f6fc;border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.7;margin-bottom:10px;color:#2a3550}.ctxq b:first-child,.korq b:first-child{display:inline-block;background:#1f3b73;color:#fff;border-radius:6px;font-size:12px;padding:0 7px;margin-right:6px}.ctxq u{text-decoration:none;font-weight:700;color:#1f3b73;background:#dfe8fa;border-radius:4px;padding:0 3px}</style>
 </head>
 <body>
 <div id="app"></div>
 <script>
-var META=[{"n": 1, "t": "주어-동사 수 일치 (샘플)", "sets": [{"id": "s1", "title": "짧은 지문 연습 제대로", "sub": "각 네모 안에서 어법에 맞는 표현 고르기", "page": 18, "n": 4}, {"id": "s2", "title": "내신 서술형 대비 제대로", "sub": "괄호 단어를 알맞은 형태로 써서 문장 완성", "page": 19, "n": 2}]}];
+var META=[{"n": 1, "t": "주어-동사 수 일치 (샘플)", "sets": [{"id": "s1", "title": "짧은 지문 연습 제대로", "sub": "각 네모 안에서 어법에 맞는 표현 고르기", "page": 18, "n": 4}, {"id": "s2", "title": "서술형 방식 1 · 빈칸 완성", "sub": "정답 문장을 덩어리로 분석하고 교재에 쓰기 (p.19 1·2번)", "page": 19, "n": 2}, {"id": "s3", "title": "서술형 방식 2 · 배열", "sub": "덩어리를 눌러 순서 맞추기 (p.19 4·5번)", "page": 19, "n": 2}]}];
 window.DB={};
 var KEY='eobeop-sent-sample';
 var st={done:{},wrote:{}};
@@ -242,11 +242,22 @@ function run(n,si,idx){
     if(it.ex)body.appendChild(el('div','exb','<b>함께 알아둘 것</b> '+it.ex));
     tg.onclick=function(){var o=body.style.display=='none';body.style.display=o?'block':'none';tg.textContent=o?'닫기':'해석·해설 보기'};
     res.appendChild(tg);res.appendChild(body);
-    res.appendChild(noteBox(it.note,set.id+'-'+idx,'꼭 정리해야 할 사항',set.id=='s2'?'교재 서술형 문제 옆에 쓰기':'교재 지문 문제 옆에 쓰기'));
+    res.appendChild(noteBox(it.note,set.id+'-'+idx,'꼭 정리해야 할 사항',(set.id=='s2'||set.id=='s3')?'교재 서술형 문제 옆에 쓰기':'교재 지문 문제 옆에 쓰기'));
     var nx=el('div','row');var nb=el('button','btn',idx+1>=set.items.length?'POINT 노트':'다음 문장');nb.onclick=function(){run(n,si,idx+1)};nx.appendChild(nb);res.appendChild(nx);
     window.scrollTo({top:0,behavior:'smooth'});
   }
-  draw();setPrompt();
+  function startOrder(){
+    var od=it.order;prompt.textContent='뜻에 맞게 순서대로 누르세요';line.style.display='none';
+    var ans=el('div','ordans','');res.appendChild(ans);var pool=el('div','ordpool');res.appendChild(pool);var pos=0;
+    function paint(){ans.innerHTML=pos?od.seq.slice(0,pos).map(function(w){return '<span class="oc">'+esc(w)+'</span>'}).join(''):'<span class="small">여기에 순서대로 쌓여요</span>'}
+    paint();
+    od.pool.forEach(function(w){var b=el('button','opt ob',esc(w));b.onclick=function(){
+      if(w==od.seq[pos]){pos++;b.disabled=true;b.classList.add('ok');paint();
+        if(pos==od.seq.length){var fin=function(){res.innerHTML='';line.style.display='';line.className='line tapok';draw();setPrompt();};
+          if(od.fix){var m=el('div','exb','<b>형태 바꾸기</b> '+od.fix);res.appendChild(m);var nb=el('button','btn','문장 분석 보기');nb.style.marginTop='10px';nb.onclick=fin;res.appendChild(nb)}else{setTimeout(fin,350)}}
+      }else{b.classList.add('bad');setTimeout(function(){b.classList.remove('bad')},350)}};pool.appendChild(b)});
+  }
+  if(it.order){startOrder()}else{draw();setPrompt()}
 }
 function summary(n,si){
   var set=window.DB[n][si];$.innerHTML='';
