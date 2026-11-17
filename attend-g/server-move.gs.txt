@@ -1,0 +1,129 @@
+
+/* ===== Firebase 이사 (261117): 출석부 기록을 Firestore(att 묶음)로 옮긴다. =====
+   옮긴 뒤에는 ATT_MOVED=1 이 되어 이 서버는 더 이상 기록을 받지 않는다(옛 화면은 '서버 오류'로 보이고 기록은 기기에 남는다).
+   되돌리기: aBack() 실행 → ATT_MOVED 끔 (옮긴 뒤 새로 쌓인 기록은 aExport() 로 '_FS' 탭에 꺼낼 수 있음) */
+var A_BASE = 'https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents';
+var A_DB = 'projects/h-roadmap/databases/(default)/documents/';
+function aMoved_(){ return PropertiesService.getScriptProperties().getProperty('ATT_MOVED') === '1'; }
+function aCall_(path, body){
+  var r = UrlFetchApp.fetch(A_BASE + path, {method:'post', contentType:'application/json', payload:JSON.stringify(body),
+    headers:{Authorization:'Bearer ' + ScriptApp.getOAuthToken()}, muteHttpExceptions:true});
+  return {code:r.getResponseCode(), text:r.getContentText()};
+}
+function aBuild_(){
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var rd = ss.getSheetByName('명단').getDataRange().getValues(), ros = [];
+  for(var i=1;i<rd.length;i++){
+    if(rd[i][0]==='' && rd[i][1]==='') continue;
+    ros.push({name:rd[i][0], group:rd[i][1], grade:rd[i][2], active:rd[i][3]});
+  }
+  var data = ss.getSheetByName('기록').getDataRange().getValues(), days = {}, nrec = 0, skip = 0;
+  for(var j=1;j<data.length;j++){
+    var row = data[j], date = fmtDate_(row[1]), name = row[3];
+    if(!date || name==='' || !/^\d{4}-\d{2}-\d{2}$/.test(date)){ skip++; continue; }
+    if(!days[date]) days[date] = {};
+    var k = row[2] + '|' + name;
+    if(!days[date][k]) nrec++;
+    days[date][k] = {arrive:row[4], teacher:row[5], leave:row[6], status:row[7], memo:row[8], a0:row[9], l0:row[10], updated:row[11]};
+  }
+  var list = mkRows_(mkSheet_()), next = 2;
+  list.forEach(function(x){ if(x.row >= next) next = x.row + 1; });
+  var docs = {ros:JSON.stringify(ros), mk:JSON.stringify({next:next, list:list}), v:JSON.stringify({n:1, seen:[]})};
+  Object.keys(days).forEach(function(d){ docs['d_' + d] = JSON.stringify(days[d]); });
+  var big = 0; Object.keys(docs).forEach(function(id){ if(docs[id].length > big) big = docs[id].length; });
+  return {docs:docs, stat:{roster:ros.length, records:nrec, skipped:skip, days:Object.keys(days).length, mk:list.length, mkNext:next, biggest:big}};
+}
+function aCanon_(o){
+  if(o === null || typeof o !== 'object') return JSON.stringify(o);
+  if(Array.isArray(o)) return '[' + o.map(aCanon_).join(',') + ']';
+  return '{' + Object.keys(o).sort().map(function(k){ return JSON.stringify(k) + ':' + aCanon_(o[k]); }).join(',') + '}';
+}
+function aHash_(s){
+  return Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, s, Utilities.Charset.UTF_8)
+    .map(function(b){ return ('0' + (b & 255).toString(16)).slice(-2); }).join('').slice(0, 16);
+}
+/* 옛 방식(시트)으로 계산한 화면 내용의 지문. 새 화면이 같은 내용을 내는지 비교용. 이름은 찍지 않는다. */
+function aFinger_(){
+  var rec = sheet_('기록', REC_HEAD), ros = sheet_('명단', ROS_HEAD);
+  var data = rec.getDataRange().getValues(), dates = {};
+  for(var j=1;j<data.length;j++){ var d = fmtDate_(data[j][1]); if(/^\d{4}-\d{2}-\d{2}$/.test(d)) dates[d] = 1; }
+  var ds = Object.keys(dates).sort(), out = {};
+  ds.forEach(function(d){
+    ['금','토','보'].forEach(function(g){
+      var s = state_(rec, ros, d, g, []);
+      out[d + '|' + g] = aHash_(aCanon_({roster:s.roster, rec:s.rec, mk:s.mk}));
+    });
+  });
+  var m = mkHandle_({ops:[]});
+  out.mk = aHash_(aCanon_({list:m.list, names:m.names}));
+  return out;
+}
+function aFinger(){ var f = aFinger_(); Logger.log('FINGER ' + JSON.stringify(f)); }
+function aDry(){ var b = aBuild_(); Logger.log('DRY ' + JSON.stringify(b.stat)); }
+function aImport_(col){
+  var chk = aCall_(':batchGet', {documents:[A_DB + col + '/v']});
+  if(chk.code !== 200) throw new Error('확인 실패 ' + chk.code + ' ' + chk.text.slice(0,200));
+  if(JSON.parse(chk.text)[0].found) throw new Error('이미 옮겨져 있습니다(' + col + '). 다시 옮기지 않습니다.');
+  var b = aBuild_(), ids = Object.keys(b.docs);
+  if(b.stat.biggest > 900000) throw new Error('문서가 너무 큽니다: ' + b.stat.biggest);
+  for(var i=0;i<ids.length;i+=20){
+    var ws = ids.slice(i, i+20).map(function(id){ return {update:{name:A_DB + col + '/' + id, fields:{j:{stringValue:b.docs[id]}}}}; });
+    var r = aCall_(':commit', {writes:ws});
+    if(r.code !== 200) throw new Error('쓰기 실패 ' + r.code + ' ' + r.text.slice(0,200));
+  }
+  var bad = 0;
+  for(var k=0;k<ids.length;k+=50){
+    var part = ids.slice(k, k+50);
+    var g = aCall_(':batchGet', {documents:part.map(function(id){ return A_DB + col + '/' + id; })});
+    if(g.code !== 200) throw new Error('검증 읽기 실패 ' + g.code);
+    var got = {};
+    JSON.parse(g.text).forEach(function(x){ if(x.found) got[x.found.name.split('/').pop()] = x.found.fields.j.stringValue; });
+    part.forEach(function(id){ if(got[id] !== b.docs[id]) bad++; });
+  }
+  if(bad) throw new Error('검증 불일치 ' + bad + '건');
+  return b.stat;
+}
+function aImportTest(){ Logger.log('IMPORT att_t ' + JSON.stringify(aImport_('att_t'))); }
+function aImportReal(){
+  var lock = LockService.getScriptLock(); lock.waitLock(30000);
+  try{
+    var p = PropertiesService.getScriptProperties();
+    if(aMoved_()) throw new Error('이미 옮긴 상태입니다.');
+    p.setProperty('ATT_MOVED', '1');
+    try{ var st = aImport_('att'); Logger.log('IMPORT att ' + JSON.stringify(st)); }
+    catch(e){ p.deleteProperty('ATT_MOVED'); throw e; }
+  } finally { lock.releaseLock(); }
+}
+function aBack(){ PropertiesService.getScriptProperties().deleteProperty('ATT_MOVED'); Logger.log('ATT_MOVED off'); }
+function aShow(){ Logger.log('ATT_MOVED=' + PropertiesService.getScriptProperties().getProperty('ATT_MOVED')); }
+/* Firestore 내용을 시트의 새 탭(_FS)으로 꺼낸다. 기존 탭은 건드리지 않는다. */
+function aExport(){
+  var col = 'att', ss = SpreadsheetApp.getActiveSpreadsheet(), all = [], tok = '';
+  do{
+    var r = UrlFetchApp.fetch(A_BASE + '/' + col + '?pageSize=300' + (tok ? '&pageToken=' + encodeURIComponent(tok) : ''),
+      {headers:{Authorization:'Bearer ' + ScriptApp.getOAuthToken()}, muteHttpExceptions:true});
+    if(r.getResponseCode() !== 200) throw new Error('읽기 실패 ' + r.getResponseCode());
+    var j = JSON.parse(r.getContentText());
+    (j.documents || []).forEach(function(d){ all.push({id:d.name.split('/').pop(), j:d.fields.j.stringValue}); });
+    tok = j.nextPageToken || '';
+  } while(tok);
+  var stamp = Utilities.formatDate(new Date(), TZ, 'yyMMdd_HHmm');
+  var recRows = [REC_HEAD], rosRows = [ROS_HEAD], mkRows = [['row','done','name','date','slot','kind','arr','abs','reason','memo','part','amt','grp']];
+  all.forEach(function(d){
+    var o = JSON.parse(d.j);
+    if(d.id === 'ros') o.forEach(function(x){ rosRows.push([x.name, x.group, x.grade, x.active]); });
+    else if(d.id === 'mk') o.list.forEach(function(x){ mkRows.push([x.row, x.done, x.name, x.date, x.slot, x.kind, x.arr, x.abs, x.reason, x.memo, x.part, x.amt, x.grp]); });
+    else if(d.id.indexOf('d_') === 0){
+      var date = d.id.slice(2);
+      Object.keys(o).forEach(function(k){
+        var p = k.indexOf('|'), g = k.slice(0, p), n = k.slice(p + 1), x = o[k];
+        recRows.push([date + '|' + g + '|' + n, date, g, n, x.arrive, x.teacher, x.leave, x.status, x.memo, x.a0, x.l0, x.updated]);
+      });
+    }
+  });
+  [['기록_FS_', recRows], ['명단_FS_', rosRows], ['결석보강_FS_', mkRows]].forEach(function(t){
+    var s = ss.insertSheet(t[0] + stamp);
+    s.getRange(1, 1, t[1].length, t[1][0].length).setNumberFormat('@').setValues(t[1]);
+  });
+  Logger.log('EXPORT rec=' + (recRows.length-1) + ' ros=' + (rosRows.length-1) + ' mk=' + (mkRows.length-1));
+}
