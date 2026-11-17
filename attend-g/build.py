@@ -1,7 +1,8 @@
 # attend/index.html (비밀번호 방식) -> attend-g/index.html (구글 로그인 + Firebase 직통) 변환기
 # 사용: python3 attend-g/build.py   (via 저장소 맨 위에서)
+# 원본(비밀번호판)은 attend-g/src-pw.html 에 보관. 결과: attend-g/index.html(시험 겸용), attend/index.html(실사용)
 import re,io
-s=io.open('attend/index.html',encoding='utf-8').read()
+s=io.open('attend-g/src-pw.html',encoding='utf-8').read()
 def rep(a,b,n=1):
     global s
     c=s.count(a)
@@ -34,6 +35,7 @@ rep('''  document.getElementById('app').style.display='block';
   render();syncAll();''','''  document.getElementById('app').style.display='block';
   STARTED=true;if(TEST)document.title='출석부 (시험)';
   render();syncAll();''')
+rep("  try{S.Q=JSON.parse(ls(NS+'q_'+g)||'[]');}catch(e){S.Q=[];}","  try{S.Q=JSON.parse(ls(NS+'q_'+g)||'[]');}catch(e){S.Q=[];}\n  if(!TEST){try{var oq=JSON.parse(ls('att'+'_q_'+g)||'[]');if(oq&&oq.length){S.Q=oq.concat(S.Q);saveQ(g);}ls('att'+'_q_'+g,null);}catch(e){}}")
 rep("pw=ls('att_pw')||'';\nif(pw)start();else showGate('');","pw=ls(NS+'in')==='1'?'g':'';\nif(pw)start();else showGate('');")
 rep('</body>','''<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
@@ -52,4 +54,6 @@ onAuthStateChanged(auth,u=>{
 </body>''')
 s=s.replace('<head>','<head>\n<meta name="robots" content="noindex,nofollow">',1) if 'noindex' not in s else s
 io.open('attend-g/index.html','w',encoding='utf-8').write(s)
+assert s.count('src="attfs.js?v=')==1
+io.open('attend/index.html','w',encoding='utf-8').write(s.replace('src="attfs.js?v=','src="../attend-g/attfs.js?v='))
 print('ok',len(s))

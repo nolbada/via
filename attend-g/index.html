@@ -994,6 +994,7 @@ pruneCache();
   var S=ST[g];
   DATES[g]=defDate(g);DEFD[g]=DATES[g];
   try{S.Q=JSON.parse(ls(NS+'q_'+g)||'[]');}catch(e){S.Q=[];}
+  if(!TEST){try{var oq=JSON.parse(ls('att'+'_q_'+g)||'[]');if(oq&&oq.length){S.Q=oq.concat(S.Q);saveQ(g);}ls('att'+'_q_'+g,null);}catch(e){}}
   loadCache(g);
 });
 pw=ls(NS+'in')==='1'?'g':'';

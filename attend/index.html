@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="ko" translate="no">
 <head>
+<meta name="robots" content="noindex,nofollow">
 <meta charset="utf-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -208,8 +209,7 @@ details.mkd summary{margin:10px 2px 4px;font-size:13px}
 <body>
 <div id="gate" style="display:none">
   <h1>출석부</h1>
-  <input id="pwin" type="password" placeholder="비밀번호" autocomplete="current-password">
-  <button class="p" id="pwok" style="width:100%">확인</button>
+  <button class="p" id="glog" style="width:100%">구글로 로그인</button>
   <div id="gerr" style="color:#b4402c;margin-top:8px"></div>
 </div>
 <div id="app" style="display:none">
@@ -263,8 +263,13 @@ details.mkd summary{margin:10px 2px 4px;font-size:13px}
   <div id="err"></div>
   <div class="act"><button id="mc">닫기</button><button class="p" id="ms">저장</button></div>
 </div></div>
+<script src="../attend-g/attfs.js?v=261117a"></script>
 <script>
 (function(){
+var TEST=/[?&]t=1/.test(location.search),NS=TEST?'attt_':'attg_';
+var AUTHW=[],AUTHR=null;window.__attReady=function(a){AUTHR=a;AUTHW.splice(0).forEach(function(f){f();});};
+function authReady(){return new Promise(function(z){if(AUTHR)z();else AUTHW.push(z);});}
+var STORE=AttFs.make({col:TEST?'att_t':'att',token:function(){return authReady().then(function(){return AUTHR.token();});}});if(TEST)window.__store=STORE;
 var API='https://script.google.com/macros/s/AKfycby5Y6FhgpP3jiNQSAwITDIMzBp8CVIuyLWUPEVIShUUMlXh5UOzupcL8aPyvN-xfsBO/exec';
 var TEACH={'남':'남쌤','여':'여쌤'};
 var DAYS=['일','월','화','수','목','금','토'];
@@ -316,8 +321,8 @@ function applyLocal(op,g){
 function memDec(m){m=String(m==null?'':m);if(m.indexOf('예약')===0)return m.slice(2);if(/(^|\D)0?3\s*[:시]\s*30/.test(m)||/T0?3:30/.test(m))return '3시30분';if(/(^|\D)0?2\s*[:시]\s*30/.test(m))return '2시30분';return m;}
 function memEnc(m){return BOSL.indexOf(m)>=0?'예약'+m:m;}
 function recDec(rec){Object.keys(rec||{}).forEach(function(n){if(rec[n]&&rec[n].memo)rec[n].memo=memDec(rec[n].memo);});return rec;}
-function saveQ(g){ls('att_q_'+g,JSON.stringify(ST[g].Q));}
-function cacheKey(g,d){return 'att_s_'+g+'_'+d;}
+function saveQ(g){ls(NS+'q_'+g,JSON.stringify(ST[g].Q));}
+function cacheKey(g,d){return NS+'s_'+g+'_'+d;}
 function loadCache(g){
   var S=ST[g],d=DATES[g];S.rec={};S.mk=[];S.loaded=false;
   try{var cc=JSON.parse(ls(cacheKey(g,d))||'null');if(cc&&cc.roster){S.roster=cc.roster;S.rec=cc.rec||{};if(g==='보')recDec(S.rec);S.mk=cc.mk||[];S.loaded=true;}}catch(e){}
@@ -326,7 +331,7 @@ function loadCache(g){
 function pruneCache(){
   try{var lim=addDays(todayKey(),-14),del=[];
     for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
-      if(k&&k.indexOf('att_s_')===0){var m=k.match(/_(\d{4}-\d{2}-\d{2})$/);if(!m||m[1]<lim)del.push(k);}}
+      if(k&&k.indexOf(NS+'s_')===0){var m=k.match(/_(\d{4}-\d{2}-\d{2})$/);if(!m||m[1]<lim)del.push(k);}}
     del.forEach(function(k){localStorage.removeItem(k);});}catch(e){}
 }
 var UNDO={'금':[],'토':[],'보':[]};
@@ -601,8 +606,7 @@ function render(){
 
 /* 서버 동기화 (탭별) */
 function post(body){
-  var c=new AbortController(),tm=setTimeout(function(){c.abort();},40000);
-  return fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body),signal:c.signal}).then(function(r){clearTimeout(tm);return r.json();},function(e){clearTimeout(tm);throw e;});
+  return new Promise(function(ok,no){var tm=setTimeout(function(){no(new Error('timeout'));},40000);STORE.post(body).then(function(r){clearTimeout(tm);ok(r);},function(e){clearTimeout(tm);no(e);});});
 }
 function sync(g){
   g=g||G;
@@ -615,7 +619,7 @@ function sync(g){
     if(g==='보'&&res&&res.rec)recDec(res.rec);
     S.busy=false;
     if(!res.ok){
-      if(res.err==='auth'){ls('att_pw',null);pw='';showGate('비밀번호가 맞지 않습니다');return;}
+      if(res.err==='auth'){authFail();return;}
       FAILS++;if(FAILS>=3)errState='서버 오류';else setTimeout(function(){sync(g);},3000);render();return;
     }
     FAILS=0;errState='';
@@ -766,7 +770,7 @@ function mkPost(ops,n){
   n=n||0;MK.busy=true;
   return post({act:'mk',pw:pw,ops:ops||[]}).then(function(res){
     MK.busy=false;
-    if(!res.ok){if(res.err==='auth'){ls('att_pw',null);pw='';showGate('비밀번호가 맞지 않습니다');return;}return mkFail(ops,n,'서버 오류');}
+    if(!res.ok){if(res.err==='auth'){authFail();return;}return mkFail(ops,n,'서버 오류');}
     MKF=0;var nerr=(res.errs&&res.errs[0])||'',same=MK.loaded&&MK.err===nerr&&JSON.stringify(res.list)===JSON.stringify(MK.list);
     MK.list=res.list;MK.names=res.names;MK.loaded=true;MK.err=nerr;
     if(VIEW==='mk'&&!same)render();
@@ -967,30 +971,52 @@ function showGate(m){
   document.getElementById('gate').style.display='block';
   document.getElementById('gerr').textContent=m||'';
 }
-document.getElementById('pwok').onclick=function(){
-  var v=document.getElementById('pwin').value;if(!v)return;
-  pw=v;ls('att_pw',v);start();
+function authFail(){ls(NS+'in',null);pw='';showGate('이 계정으로는 열 수 없습니다. 선생님 계정으로 로그인해 주세요.');if(AUTHR)AUTHR.signOut();}
+document.getElementById('glog').onclick=function(){
+  var b=this;document.getElementById('gerr').textContent='';
+  if(!AUTHR){document.getElementById('gerr').textContent='준비 중입니다. 잠시 뒤 다시 눌러 주세요.';return;}
+  b.disabled=true;AUTHR.signIn().then(function(){b.disabled=false;},function(e){b.disabled=false;var c=e&&e.code||'';document.getElementById('gerr').textContent=c==='auth/popup-blocked'?'로그인 창이 막혔습니다. 크롬에서 열어 주세요.':(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')?'':'로그인 실패: '+(c||e);});
 };
-document.getElementById('pwin').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('pwok').click();});
+var STARTED=false;
+window.__attUser=function(u){
+  if(u){ls(NS+'in','1');pw='g';if(!STARTED)start();else syncAll();}
+  else{ls(NS+'in',null);pw='';STARTED=false;showGate('');}
+};
 
 function start(){
   document.getElementById('gate').style.display='none';
   document.getElementById('app').style.display='block';
+  STARTED=true;if(TEST)document.title='출석부 (시험)';
   render();syncAll();
 }
 pruneCache();
 ['금','토','보'].forEach(function(g){
   var S=ST[g];
   DATES[g]=defDate(g);DEFD[g]=DATES[g];
-  try{S.Q=JSON.parse(ls('att_q_'+g)||'[]');}catch(e){S.Q=[];}
+  try{S.Q=JSON.parse(ls(NS+'q_'+g)||'[]');}catch(e){S.Q=[];}
+  if(!TEST){try{var oq=JSON.parse(ls('att'+'_q_'+g)||'[]');if(oq&&oq.length){S.Q=oq.concat(S.Q);saveQ(g);}ls('att'+'_q_'+g,null);}catch(e){}}
   loadCache(g);
 });
-pw=ls('att_pw')||'';
+pw=ls(NS+'in')==='1'?'g':'';
 if(pw)start();else showGate('');
 setInterval(syncAll,10000);
 setInterval(function(){if(VIEW==='att'&&!document.hidden&&!SEL&&!editing&&!LV&&!RV&&!(G==='보'&&Object.keys(BSEL).length))render();},30000);
 document.addEventListener('visibilitychange',function(){if(!document.hidden)syncAll();});
 })();
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+const auth=getAuth(initializeApp({apiKey:"AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA",authDomain:"h-roadmap.firebaseapp.com",projectId:"h-roadmap",appId:"1:575520405083:web:b9f40b64cb0ae3d1a9317e"}));
+let first=true;
+onAuthStateChanged(auth,u=>{
+  if(first){first=false;window.__attReady({
+    token:()=>auth.currentUser?auth.currentUser.getIdToken():Promise.reject({auth:1}),
+    signIn:()=>{const p=new GoogleAuthProvider();p.setCustomParameters({prompt:"select_account"});return signInWithPopup(auth,p);},
+    signOut:()=>signOut(auth)
+  });}
+  window.__attUser(u);
+});
 </script>
 </body>
 </html>
