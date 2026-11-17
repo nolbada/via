@@ -95,7 +95,7 @@ function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'
 var PW=ls('wn_pw')||'';
 function postSrv(b){b.pw=PW;return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
 /* 261117: 보는 요청(t_students·t_list·t_hw·t_rev)은 선생님 구글 로그인이 되어 있으면 Firebase 에서 바로 읽고, 안 되면 예전처럼 서버에 묻는다 */
-var CMP=/[?&]cmp=1/.test(location.search),FSON=CMP||/[?&]fs=1/.test(location.search);window.__cmp=[];
+var CMP=/[?&]cmp=1/.test(location.search),FSON=CMP||!/[?&]fs=0/.test(location.search);window.__cmp=[];
 function canon(o){if(o===null||typeof o!=='object')return JSON.stringify(o);if(Array.isArray(o))return '['+o.map(canon).join(',')+']';return '{'+Object.keys(o).sort().map(function(k){return JSON.stringify(k)+':'+canon(o[k])}).join(',')+'}'}
 function post(b){
   var p=(FSON&&window.WNFS)?WNFS.handle(b):null;
