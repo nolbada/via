@@ -42,7 +42,7 @@ rep("pw=ls('att_pw')||'';\nif(pw)start();else showGate('');","pw=ls(NS+'in')==='
 rep('</body>','''<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-const auth=getAuth(initializeApp({apiKey:"AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA",authDomain:"h-roadmap.firebaseapp.com",projectId:"h-roadmap",appId:"1:575520405083:web:b9f40b64cb0ae3d1a9317e"}));
+const auth=getAuth(initializeApp({apiKey:"AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA",authDomain:"nolbada.github.io",projectId:"h-roadmap",appId:"1:575520405083:web:b9f40b64cb0ae3d1a9317e"}));
 let first=true;
 onAuthStateChanged(auth,u=>{
   if(first){first=false;window.__attReady({
