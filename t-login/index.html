@@ -27,13 +27,13 @@
   <div id="out">준비 중...</div>
 </div>
 <script type="module">
-/* t-login 261117a */
+/* t-login 261118a — 로그인 처리 주소를 앱과 같은 주소(nolbada.github.io/__/auth)로. 창이 막히면 구글 화면으로 갔다 돌아오는 방식으로 다시 시도 */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
 const cfg = {
   apiKey: "AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA",
-  authDomain: "h-roadmap.firebaseapp.com",
+  authDomain: "nolbada.github.io",
   projectId: "h-roadmap",
   appId: "1:575520405083:web:b9f40b64cb0ae3d1a9317e"
 };
@@ -74,13 +74,15 @@ $("in").onclick = async () => {
     await signInWithPopup(auth, p);
   }catch(e){
     const c = e && e.code || "";
-    if(c === "auth/popup-blocked") say("로그인 창이 막혔습니다. 크롬에서 이 주소를 열어 다시 눌러 주세요.", "no");
+    if(c === "auth/popup-blocked" || c === "auth/operation-not-supported-in-this-environment"){ say("로그인 화면으로 이동합니다..."); try{ await signInWithRedirect(auth, p); return; }catch(e2){ say("로그인 실패: " + (e2 && e2.code || e2), "no"); } }
+    else if(c === "auth/popup-blocked") say("로그인 창이 막혔습니다. 크롬에서 이 주소를 열어 다시 눌러 주세요.", "no");
     else if(c === "auth/popup-closed-by-user" || c === "auth/cancelled-popup-request") say("로그인 창이 닫혔습니다. 다시 눌러 주세요.");
     else say("로그인 실패: " + (c || e), "no");
   }
   $("in").disabled = false;
 };
 $("out_btn").onclick = () => signOut(auth);
+getRedirectResult(auth).catch(e => say("로그인 실패: " + (e && e.code || e), "no"));
 </script>
 </body>
 </html>
