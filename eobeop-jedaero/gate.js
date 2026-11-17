@@ -7,7 +7,10 @@
   var hide=document.getElementById('ej-hide');
   function show(){ if(hide&&hide.parentNode) hide.parentNode.removeChild(hide); var o=document.getElementById('ej-lock'); if(o) o.parentNode.removeChild(o); if(location.hash){ setTimeout(function(){ var t=document.getElementById(decodeURIComponent(location.hash.slice(1))); if(t) t.scrollIntoView(); },60); } }
   if(ls('ej_teacher')==='1'||!key||key==='index'){ show(); return; }
+  function pick(d){var x=d[key],s=(x&&x.v&&typeof x.v.s==='string')?x.v.s:(x&&typeof x.s==='string'?x.s:null),o=0;try{ if(s) o=JSON.parse(s).o?1:0; }catch(e){}return o}
+  function live(){return !!(window.__recLive&&window.__recLive(ID))}
   function read(){
+    var d0=window.__recData&&window.__recData(ID);if(d0)return Promise.resolve(pick(d0));
     return fetch(KV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:ID,data:{}})})
       .then(function(r){return r.json()}).then(function(r){
         var d=(r&&r.data)||{},x=d[key],s=(x&&x.v&&typeof x.v.s==='string')?x.v.s:(x&&typeof x.s==='string'?x.s:null),o=0;
@@ -35,6 +38,9 @@
       else lock('연결이 안 됐어요. 잠시 뒤 다시 눌러 주세요.');
     });
   }
-  function start(){ check(); timer=setInterval(check,15000); }
+  /* 바뀔 때만 받는 연결(recwatch)이 살아 있으면 15초마다 묻지 않는다 */
+  function hookW(){try{window.__recWatch(ID,check)}catch(e){}}
+  try{if(window.__recWatch)hookW();else{window.addEventListener('recwatch',hookW);var m=document.createElement('script');m.type='module';m.src='../common/recwatch.js?v=261118a';document.head.appendChild(m)}}catch(e){}
+  function start(){ check(); timer=setInterval(function(){if(!live())check()},15000); }
   if(document.body) start(); else document.addEventListener('DOMContentLoaded',start);
 })();

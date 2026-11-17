@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko" translate="no"><head><meta charset="utf-8"><script src="../common/recfs.js?v=261117g"></script>
+<html lang="ko" translate="no"><head><meta charset="utf-8"><script src="../common/recfs.js?v=261117g"></script><script type="module" src="../common/recwatch.js?v=261118a"></script>
 <meta name="google" content="notranslate"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>문법 기출 풀기</title><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" type="image/png" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1f6f6b">
 
@@ -1235,16 +1235,19 @@ function mergeIn(rm){
   for(k in rr){if(!(k in ST.r)){ST.r[k]=rr[k];ch=true}}
   return ch;
 }
+function rdFs(id){var d=window.__recData&&window.__recData(id);if(d)return Promise.resolve({ok:1,data:d});return post({act:'put',id:id,data:{}})}
+function live(id){return !!(window.__recLive&&window.__recLive(id))}
+function watch(id,cb){function go(){try{window.__recWatch(id,cb)}catch(e){}}if(window.__recWatch)go();else window.addEventListener('recwatch',go)}
 function pull(){
   if(!NAME)return;var me=uid();
-  post({act:'put',id:me,data:{}}).then(function(r){
+  rdFs(me).then(function(r){
     if(me!==uid())return;var v=r.data&&r.data.st&&r.data.st.v&&r.data.st.v.s;
     if(v){var ch=false;try{ch=mergeIn(JSON.parse(v))}catch(e){}if(ch){ss(skey(),JSON.stringify(ST));if(!RUN&&document.getElementById('hm0'))home()}}
     sched();
   }).catch(function(){});
 }
 function pullCtl(){
-  post({act:'put',id:'GK_CTL',data:{}}).then(function(r){
+  rdFs('GK_CTL').then(function(r){
     var v=r.data&&r.data.hide&&r.data.hide.v&&r.data.hide.v.s;
     if(v){try{CH=JSON.parse(v)||{}}catch(e){CH={}}if(!RUN&&document.getElementById('hm0'))home()}
   }).catch(function(){});
@@ -1252,7 +1255,9 @@ function pullCtl(){
 function boot(){
   if(!NAME){askName();return}
   loadST();home();pull();pullCtl();
-  setInterval(function(){if(!document.hidden){pull();pullCtl()}},90000);
+  var _me=uid();watch(_me,function(){if(!document.hidden)pull()});watch('GK_CTL',function(){if(!document.hidden)pullCtl()});
+  setInterval(function(){if(document.hidden)return;if(!live(uid()))pull();if(!live('GK_CTL'))pullCtl()},90000);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden&&live(uid())){pull();pullCtl()}});
   document.addEventListener('visibilitychange',function(){if(document.hidden)push(true)});
   window.addEventListener('pagehide',function(){push(true)});
 }
