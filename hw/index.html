@@ -655,7 +655,7 @@ function runTeacher(code){
       h+='<input class="ed" data-f="labels" value="'+esc((it.labels||[]).join(','))+'" placeholder="칸 이름 (예: 화,목,금)" size="12"'+(isDay?' disabled':'')+'>';
       h+='<input class="ed" data-f="sub" value="'+esc(it.sub||'')+'" placeholder="설명 (예: 주 3회)" size="14">';
       h+='<label class="chk"><input type="checkbox" data-f="vc"'+(it.vc?' checked':'')+'> 미지참 칸</label>';
-      h+='<span class="stb"><button class="btn sub" data-mv="-1"'+(ix===0?' disabled':'')+'>위</button><button class="btn sub" data-mv="1"'+(ix===arr.length-1?' disabled':'')+'>아래</button><button class="btn sub" data-rm="1">삭제</button></span></div>';
+      h+='<span class="stb"><button class="btn sub" data-mv="-1"'+(ix===0?' disabled':'')+'>위</button><button class="btn sub" data-mv="1"'+(ix===arr.length-1?' disabled':'')+'>아래</button><button class="btn sub" data-rm="1">삭제</button></span>'+(src==='c'?'<span class="stb"><button class="btn sub" data-all="add">모든 반에 넣기</button><button class="btn sub" data-all="rm">모든 반에서 빼기</button></span>':'')+'</div>';
       return h;
     }
     h+='<div class="h3">이 반 공통 항목 (전원)</div>';
@@ -830,6 +830,22 @@ function runTeacher(code){
       row.querySelectorAll('[data-mv]').forEach(function(b){b.onclick=function(){
         var d=+b.getAttribute('data-mv'),j=ix+d;if(j<0||j>=ar.length)return;
         var t=ar[ix];ar[ix]=ar[j];ar[j]=t;mgrOpen.items=true;draw();
+      }});
+      /* 이 항목 하나를 모든 반에 한꺼번에 넣거나 뺀다. 다른 반의 나머지 항목은 건드리지 않는다 */
+      row.querySelectorAll('[data-all]').forEach(function(b){b.onclick=function(){
+        var lb=(it.label||'').trim(),add=b.getAttribute('data-all')==='add';
+        if(!lb){window.alert('항목 이름을 먼저 입력해 주세요');return}
+        var one=cleanItems([it]).items[0],cls=classes(),n=0;
+        if(!window.confirm(add?'"'+lb+'" 항목을 모든 반('+cls.length+'개 반)에 넣을까요? 이미 있는 반은 그대로 둡니다.':'"'+lb+'" 항목을 모든 반에서 뺄까요? 기존 기록은 보존되지만 화면과 점수에서는 빠져요.'))return;
+        cls.forEach(function(c){
+          var L=cloneJ(c===selCls?cleanItems(draft.items.filter(function(q){return (q.label||'').trim()})).items:itemsOf(c));
+          var has=L.some(function(q){return q.k===one.k||q.label===lb});
+          if(add){if(has)return;L.push(cloneJ(one));cfg[c]=L;n++}
+          else{if(!has)return;var L2=L.filter(function(q){return q.k!==one.k&&q.label!==lb});if(!L2.length)return;cfg[c]=L2;n++}
+        });
+        if(add&&selCls&&selCls!=='__all'){var me=cleanItems(draft.items.filter(function(q){return (q.label||'').trim()})).items;if(me.length)cfg[selCls]=me}
+        mark('cfg');draft=null;mgrOpen.items=true;draw();
+        setTimeout(function(){window.alert((add?'넣었습니다: ':'뺐습니다: ')+n+'개 반')},50);
       }});
       row.querySelectorAll('[data-rm]').forEach(function(b){b.onclick=function(){
         if(!window.confirm('"'+(it.label||'이 항목')+'" 항목을 뺄까요? 기존 기록은 보존되지만 화면과 점수에서는 빠져요.'))return;
