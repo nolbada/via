@@ -9,7 +9,8 @@ def rep(a,b,n=1):
     assert c==n,(a[:50],c)
     s=s.replace(a,b)
 rep('''  <input id="pwin" type="password" placeholder="비밀번호" autocomplete="current-password">
-  <button class="p" id="pwok" style="width:100%">확인</button>''','''  <button class="p" id="glog" style="width:100%">구글로 로그인</button>''')
+  <button class="p" id="pwok" style="width:100%">확인</button>''','''  <button class="p" id="glog" style="width:100%">구글로 로그인</button>
+  <div style="color:#6a7a7d;font-size:13px;margin-top:10px;line-height:1.6">선생님 구글 계정으로만 열립니다.</div>''')
 rep('<script>\n(function(){\nvar API=','<script src="attfs.js?v=261117a"></script>\n<script>\n(function(){\nvar TEST=/[?&]t=1/.test(location.search),NS=TEST?\'attt_\':\'attg_\';\nvar AUTHW=[],AUTHR=null;window.__attReady=function(a){AUTHR=a;AUTHW.splice(0).forEach(function(f){f();});};\nfunction authReady(){return new Promise(function(z){if(AUTHR)z();else AUTHW.push(z);});}\nvar STORE=AttFs.make({col:TEST?\'att_t\':\'att\',token:function(){return authReady().then(function(){return AUTHR.token();});}});if(TEST)window.__store=STORE;\nvar API=')
 rep("'att_q_'","NS+'q_'",2)
 rep("'att_s_'","NS+'s_'",2)
@@ -20,16 +21,17 @@ rep('''document.getElementById('pwok').onclick=function(){
   var v=document.getElementById('pwin').value;if(!v)return;
   pw=v;ls('att_pw',v);start();
 };
-document.getElementById('pwin').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('pwok').click();});''','''function authFail(){ls(NS+'in',null);pw='';showGate('이 계정으로는 열 수 없습니다. 선생님 계정으로 로그인해 주세요.');if(AUTHR)AUTHR.signOut();}
+document.getElementById('pwin').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('pwok').click();});''','''var FAILMSG='';
+function authFail(){ls(NS+'in',null);pw='';var em='';try{em=AUTHR&&AUTHR.email()||''}catch(e){}FAILMSG=(em?'방금 로그인한 계정('+em+')은 선생님 계정이 아닙니다. ':'이 계정으로는 열 수 없습니다. ')+'아래 버튼을 눌러 선생님 구글 계정을 골라 주세요. 목록에 없으면 "다른 계정 사용"을 누르면 됩니다.';showGate(FAILMSG);if(AUTHR)AUTHR.signOut();}
 document.getElementById('glog').onclick=function(){
-  var b=this;document.getElementById('gerr').textContent='';
+  var b=this;FAILMSG='';document.getElementById('gerr').textContent='';
   if(!AUTHR){document.getElementById('gerr').textContent='준비 중입니다. 잠시 뒤 다시 눌러 주세요.';return;}
-  b.disabled=true;AUTHR.signIn().then(function(){b.disabled=false;},function(e){b.disabled=false;var c=e&&e.code||'';document.getElementById('gerr').textContent=c==='auth/popup-blocked'?'로그인 창이 막혔습니다. 크롬에서 열어 주세요.':(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')?'':'로그인 실패: '+(c||e);});
+  b.disabled=true;AUTHR.signIn().then(function(){b.disabled=false;},function(e){b.disabled=false;var c=e&&e.code||'';document.getElementById('gerr').textContent=c==='auth/popup-blocked'?'로그인 창이 막혔습니다. 주소창 오른쪽의 "팝업 차단됨" 표시를 눌러 허용한 뒤 다시 눌러 주세요. 카톡 안에서 열었다면 크롬에서 열어 주세요.':(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')?'로그인 창이 닫혔습니다. 다시 누르고, 뜨는 창에서 선생님 구글 계정을 골라 주세요.':c==='auth/network-request-failed'?'인터넷 연결이 안 됩니다. 연결을 확인하고 다시 눌러 주세요.':'로그인이 안 됐습니다. 이 글을 그대로 알려 주세요: '+(c||e);});
 };
 var STARTED=false;
 window.__attUser=function(u){
   if(u){ls(NS+'in','1');pw='g';if(!STARTED)start();else syncAll();}
-  else{ls(NS+'in',null);pw='';STARTED=false;showGate('');}
+  else{ls(NS+'in',null);pw='';STARTED=false;showGate(FAILMSG);}
 };''')
 rep('''  document.getElementById('app').style.display='block';
   render();syncAll();''','''  document.getElementById('app').style.display='block';
@@ -46,7 +48,8 @@ onAuthStateChanged(auth,u=>{
   if(first){first=false;window.__attReady({
     token:()=>auth.currentUser?auth.currentUser.getIdToken():Promise.reject({auth:1}),
     signIn:()=>{const p=new GoogleAuthProvider();p.setCustomParameters({prompt:"select_account"});return signInWithPopup(auth,p);},
-    signOut:()=>signOut(auth)
+    signOut:()=>signOut(auth),
+    email:()=>auth.currentUser?auth.currentUser.email:''
   });}
   window.__attUser(u);
 });
