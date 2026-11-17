@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>선생님 로그인 확인</title>
+<style>
+  body{font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;background:#f6f5f1;color:#222;margin:0;padding:32px 16px;line-height:1.6}
+  .box{max-width:460px;margin:0 auto;background:#fff;border:1px solid #ddd;border-radius:12px;padding:24px}
+  h1{font-size:20px;margin:0 0 6px}
+  p{margin:6px 0;color:#555;font-size:15px}
+  button{font-size:16px;padding:12px 18px;border-radius:8px;border:1px solid #2b5cab;background:#2b5cab;color:#fff;cursor:pointer;margin-top:14px}
+  button.sub{background:#fff;color:#2b5cab}
+  button:disabled{opacity:.5;cursor:default}
+  #out{margin-top:18px;padding:14px;border-radius:8px;background:#f1f3f6;font-size:15px;white-space:pre-line;min-height:24px}
+  #out.ok{background:#e6f4ea;color:#17602c}
+  #out.no{background:#fdecea;color:#9b1c1c}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>선생님 로그인 확인</h1>
+  <p>선생님 구글 계정으로 들어가지는지 확인하는 시험 화면입니다. 학생 자료는 건드리지 않습니다.</p>
+  <button id="in">구글로 로그인</button>
+  <button id="out_btn" class="sub" style="display:none">로그아웃</button>
+  <div id="out">준비 중...</div>
+</div>
+<script type="module">
+/* t-login 261117a */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+const cfg = {
+  apiKey: "AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA",
+  authDomain: "h-roadmap.firebaseapp.com",
+  projectId: "h-roadmap",
+  appId: "1:575520405083:web:b9f40b64cb0ae3d1a9317e"
+};
+const auth = getAuth(initializeApp(cfg));
+const $ = id => document.getElementById(id);
+const DOC = "https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents/tcheck/ping";
+
+function say(t, cls){ const o = $("out"); o.textContent = t; o.className = cls || ""; }
+
+async function check(user){
+  say("로그인됨: " + user.email + "\n저장소 확인 중...");
+  try{
+    const tok = await user.getIdToken();
+    const h = { "Authorization": "Bearer " + tok, "Content-Type": "application/json" };
+    const now = new Date().toISOString();
+    const w = await fetch(DOC, { method: "PATCH", headers: h, body: JSON.stringify({ fields: { t: { stringValue: now } } }) });
+    if(w.status === 403){ say("로그인은 됐지만 이 계정은 선생님 계정이 아닙니다.\n(" + user.email + ")\n저장소는 열리지 않습니다.", "no"); return; }
+    if(!w.ok){ say("저장 시험 실패 (번호 " + w.status + ")", "no"); return; }
+    const r = await fetch(DOC, { headers: h });
+    const j = await r.json();
+    const back = j && j.fields && j.fields.t && j.fields.t.stringValue;
+    if(r.ok && back === now) say("성공\n계정: " + user.email + "\n선생님 계정으로 저장소에 쓰고 읽기까지 확인했습니다.", "ok");
+    else say("읽기 시험 실패 (번호 " + r.status + ")", "no");
+  }catch(e){ say("확인 중 오류: " + (e && e.message || e), "no"); }
+}
+
+onAuthStateChanged(auth, user => {
+  $("in").style.display = user ? "none" : "";
+  $("out_btn").style.display = user ? "" : "none";
+  if(user) check(user); else say("아직 로그인하지 않았습니다.");
+});
+
+$("in").onclick = async () => {
+  $("in").disabled = true;
+  try{
+    const p = new GoogleAuthProvider();
+    p.setCustomParameters({ prompt: "select_account" });
+    await signInWithPopup(auth, p);
+  }catch(e){
+    const c = e && e.code || "";
+    if(c === "auth/popup-blocked") say("로그인 창이 막혔습니다. 크롬에서 이 주소를 열어 다시 눌러 주세요.", "no");
+    else if(c === "auth/popup-closed-by-user" || c === "auth/cancelled-popup-request") say("로그인 창이 닫혔습니다. 다시 눌러 주세요.");
+    else say("로그인 실패: " + (c || e), "no");
+  }
+  $("in").disabled = false;
+};
+$("out_btn").onclick = () => signOut(auth);
+</script>
+</body>
+</html>
