@@ -77,6 +77,8 @@ h2.sec{font-size:15px;margin:20px 2px 8px;color:var(--sub);font-weight:700;lette
 .kv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}.kv:last-child{border:0}.kv b{font-variant-numeric:tabular-nums}
 .ox{display:flex;gap:6px;flex:none}.obtn{width:46px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-weight:800;font-size:17px}.obtn.o.on{background:var(--ok);color:#fff;border-color:var(--ok)}.obtn.x.on{background:var(--ng);color:#fff;border-color:var(--ng)}
 </style></head><body><div id="app"></div>
+<script src="../common/recfs.js?v=261117g"></script>
+<script src="wnfs.js?v=261117a"></script>
 <script>
 var URL_=window.WN_URL||'https://script.google.com/macros/s/AKfycbzc2ei1hfWwFPviIFZndCLPchR7NRlrUtY9IqZ6mL2sruJxshFJMpGaKp3LeHHUEl6Apg/exec',WD=['일','월','화','수','목','금','토'];
 function ls(k){try{return localStorage.getItem(k)}catch(e){return null}}
@@ -91,7 +93,16 @@ function tset(n,ok,ng){spWrite(n,function(sp){if(sp[lastFri()]!==1)sp[lastFri()]
 var $=document.getElementById('app');
 function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 var PW=ls('wn_pw')||'';
-function post(b){b.pw=PW;return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
+function postSrv(b){b.pw=PW;return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
+/* 261117: 보는 요청(t_students·t_list·t_hw·t_rev)은 선생님 구글 로그인이 되어 있으면 Firebase 에서 바로 읽고, 안 되면 예전처럼 서버에 묻는다 */
+var CMP=/[?&]cmp=1/.test(location.search),FSON=CMP||/[?&]fs=1/.test(location.search);window.__cmp=[];
+function canon(o){if(o===null||typeof o!=='object')return JSON.stringify(o);if(Array.isArray(o))return '['+o.map(canon).join(',')+']';return '{'+Object.keys(o).sort().map(function(k){return JSON.stringify(k)+':'+canon(o[k])}).join(',')+'}'}
+function post(b){
+  var p=(FSON&&window.WNFS)?WNFS.handle(b):null;
+  if(!p)return postSrv(b);
+  if(CMP){var t0=Date.now(),t1=0,t2=0;return Promise.all([p.then(function(r){t1=Date.now()-t0;return r},function(e){return {err:String(e)}}),postSrv(JSON.parse(JSON.stringify(b))).then(function(r){t2=Date.now()-t0;return r})]).then(function(a){window.__cmp.push({act:b.act,same:canon(a[0])===canon(a[1]),fs:t1,srv:t2,n:(a[1]&&(a[1].students||a[1].items)||[]).length});return a[1]})}
+  return p.then(function(r){return (r&&r.ok)?r:postSrv(b)},function(){return postSrv(b)});
+}
 function dshow(d){var p=d.split('-');return(+p[1])+'/'+(+p[2])+'('+WD[new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay()]+')'}
 function login(msg){
   $.innerHTML='<h1>REC H</h1><div class="card"><input class="tx" id="pw" type="password" autocomplete="off" placeholder="비밀번호"><button class="btn pri" id="go">열기</button><div class="msg" id="m">'+(msg||'')+'</div></div>';
@@ -589,4 +600,10 @@ function weekHtml(n){
 if(PW)main();else login();
 pump();
 window.addEventListener('beforeunload',function(e){if(PQ.length){e.preventDefault();e.returnValue=''}});
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+const auth=getAuth(initializeApp({apiKey:"AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA",authDomain:"h-roadmap.firebaseapp.com",projectId:"h-roadmap",appId:"1:575520405083:web:b9f40b64cb0ae3d1a9317e"}));
+window.__wnAuthReady({signedIn:()=>!!auth.currentUser,token:()=>auth.currentUser.getIdToken(),ready:new Promise(r=>onAuthStateChanged(auth,()=>r()))});
 </script></body></html>
