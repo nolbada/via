@@ -34,7 +34,7 @@ tr.row{cursor:pointer}tr.row:hover{background:var(--chip)}
 .paper .hd{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #111;padding-bottom:5px;margin-bottom:10px;gap:10px}
 .paper .hd .t1{font-size:calc(11px*var(--k,1));color:#444}.paper .hd .t2{font-size:calc(17px*var(--k,1));font-weight:700}
 .paper .hd .nm2{font-size:calc(12px*var(--k,1));white-space:nowrap}
-.paper .cols{column-count:2;column-gap:22px;column-rule:1px solid #ddd}
+.paper .cols{display:grid;grid-template-columns:1fr 1fr;column-gap:0;align-items:start}.paper .cols .cl{padding:0 calc(11px*var(--k,1)) 0 0}.paper .cols .cl+.cl{padding:0 0 0 calc(11px*var(--k,1));border-left:1px solid #ddd;min-height:100%}
 .paper .pq{break-inside:avoid;page-break-inside:avoid;margin:0 0 calc(14px*var(--k,1))}
 .paper .pq .pn{font-weight:700;display:inline}
 .paper .pq .ps{display:inline;font-weight:600}
@@ -1305,14 +1305,16 @@ function ulIt(q,t){
 }
 function paperQ(S){
   var h='<div class="paper q">'+paperHead(S,'문제');
-  h+='<div class="cols">';
+  var half=Math.ceil(S.ids.length/2);
+  h+='<div class="cols"><div class="cl">';
   S.ids.forEach(function(id,i){var q=QBY[id];
+    if(i===half)h+='</div><div class="cl">';
     h+='<div class="pq"><span class="pn">'+(i+1)+'.</span> <span class="ps">'+esc(q.stem)+'</span>'+(PSCH?'<span class="sc">['+esc(q.src)+']</span>':'')+
       (q.multi?'<div class="mu">(정답 '+q.multi+'개를 고르세요)</div>':'')+
       (q.pre?'<div class="pp">'+esc(q.pre)+'</div>':'')+
       (q.body&&q.body.length?'<div class="pb">'+q.body.map(function(x){return'<div>'+ulIt(q,x)+'</div>'}).join('')+'</div>':'')+
       q.ch.map(function(c,j){return'<div class="pc">'+NUMS[j]+' '+ulIt(q,c)+'</div>'}).join('')+'</div>'});
-  return h+'</div></div>';
+  return h+'</div></div></div>';
 }
 function paperA(S){
   var h='<div class="paper an">'+paperHead(S,'정답·해설');
@@ -1347,10 +1349,11 @@ function viewPr(){
 function fitQ(){
   var H=265*96/25.4;
   document.querySelectorAll('.paper.q').forEach(function(el){
-    var lo=0.8,hi=1.7,i;
-    for(i=0;i<9;i++){var m=(lo+hi)/2;el.style.setProperty('--k',m);if(el.offsetHeight<=H)lo=m;else hi=m}
-    el.style.setProperty('--k',lo)})}
+    var k=1.7;el.style.setProperty('--k',k);
+    while(k>0.6&&el.offsetHeight>H){k=Math.round((k-0.02)*100)/100;el.style.setProperty('--k',k)}
+  })}
 window.addEventListener('beforeprint',fitQ);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){if(document.querySelector('.paper.q'))fitQ()});
 function wirePr(){fitQ();
   function cnt(){var n=Object.keys(PSEL).filter(function(k){return PSEL[k]}).length,el=document.getElementById('pselc');if(el)el.textContent='선택 '+n+'개';
     $.querySelectorAll('[data-go]').forEach(function(g){g.disabled=!n;g.style.opacity=n?1:.5})}
