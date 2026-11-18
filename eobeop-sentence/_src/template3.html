@@ -90,7 +90,7 @@ textarea{width:100%;min-height:120px;border:1.5px solid #c8d1e5;border-radius:12
 .chcard .cp{font-size:13px;color:#55627d}
 .chcard.done{background:#e6f4ea}
 .setbtn.lk{opacity:.55;background:#eceef3;cursor:default}
-</style>
+.ordans{min-height:54px;border:2px dashed #b9c4de;border-radius:12px;padding:8px;margin:6px 0 10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}.oc{background:#d6f0d2;color:#1b5e3a;border-radius:8px;padding:6px 10px;font-size:18px;font-weight:700}.ordpool{display:flex;flex-wrap:wrap;gap:8px}.ob{flex:none;font-size:18px;padding:10px 14px}.ob:disabled{opacity:.35}.korq{background:#fff7e6;border:1px solid #f0d9a8;border-radius:10px;padding:10px 12px;font-size:16px;line-height:1.6;margin-bottom:10px;color:#5a4410}.ctxq{background:#f3f6fc;border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.7;margin-bottom:10px;color:#2a3550}.ctxq b:first-child,.korq b:first-child{display:inline-block;background:#1f3b73;color:#fff;border-radius:6px;font-size:12px;padding:0 7px;margin-right:6px}.ctxq u{text-decoration:none;font-weight:700;color:#1f3b73;background:#dfe8fa;border-radius:4px;padding:0 3px}.ptb{border-left:4px solid #1f3b73;background:#eef3fc;border-radius:0 10px 10px 0;padding:9px 12px;margin-top:8px;font-size:14px;line-height:1.55;color:#2a3550}.ptl{background:#1f3b73;color:#fff;border-radius:6px;font-size:12px;padding:1px 7px;margin-right:6px}.ptt{font-weight:700;color:#1f3b73;margin-top:3px;font-size:15px}.ptn{font-size:14px}</style>
 </head>
 <body>
 <div id="app"></div>
@@ -180,6 +180,8 @@ function run(n,si,idx){
   top.appendChild(el('span','small',(idx+1)+' / '+set.items.length));$.appendChild(top);
   $.appendChild(el('div','bar','<i style="width:'+((idx)/set.items.length*100)+'%"></i>'));
   var card=el('div','card');$.appendChild(card);
+  if(it.kor)card.appendChild(el('div','korq','<b>우리말</b> '+it.kor));
+  if(it.ctx)card.appendChild(el('div','ctxq','<b>교재 문장</b> '+it.ctx));
   var prompt=el('div','prompt');card.appendChild(prompt);
   var line=el('div','line tapok');card.appendChild(line);
   var res=el('div','res');card.appendChild(res);
@@ -235,23 +237,46 @@ function run(n,si,idx){
     var chips=el('div','chips2');
     it.st.forEach(function(x){chips.appendChild(el('span','chip2 '+x[0],'<em>'+esc(x[1])+'</em>'+esc(x[2])))});
     res.appendChild(chips);
+    if(it.pts&&it.pts.length){var ph=el('div','ptwrap');res.appendChild(ph);it.pts.forEach(function(r){ptBox(r,ph)})}
     var tg=el('button','btn ghost sm tog','해석·해설 보기');var body=el('div','');body.style.display='none';
     body.appendChild(el('div','tr',esc(it.tr)));body.appendChild(el('div','why',it.why));
     if(it.ex)body.appendChild(el('div','exb','<b>함께 알아둘 것</b> '+it.ex));
     tg.onclick=function(){var o=body.style.display=='none';body.style.display=o?'block':'none';tg.textContent=o?'닫기':'해석·해설 보기'};
     res.appendChild(tg);res.appendChild(body);
-    res.appendChild(noteBox(it.note,set.id+'-'+idx,'꼭 정리해야 할 사항','교재 문장 옆에 쓰기'));
+    res.appendChild(noteBox(it.note,set.id+'-'+idx,'꼭 정리해야 할 사항',/s1$/.test(set.id)?'교재 지문 문제 옆에 쓰기':(/s2$/.test(set.id)?'교재 서술형 문제 옆에 쓰기':'교재 문장 옆에 쓰기')));
     var nx=el('div','row');var nb=el('button','btn',idx+1>=set.items.length?'POINT 노트':'다음 문장');nb.onclick=function(){run(n,si,idx+1)};nx.appendChild(nb);res.appendChild(nx);
     window.scrollTo({top:0,behavior:'smooth'});
   }
-  draw();setPrompt();
+  function startOrder(){
+    var od=it.order;prompt.textContent='뜻에 맞게 순서대로 누르세요';line.style.display='none';
+    var ans=el('div','ordans','');res.appendChild(ans);var pool=el('div','ordpool');res.appendChild(pool);var pos=0;
+    function paint(){ans.innerHTML=pos?od.seq.slice(0,pos).map(function(w){return '<span class="oc">'+esc(w)+'</span>'}).join(''):'<span class="small">여기에 순서대로 쌓여요</span>'}
+    paint();
+    od.pool.forEach(function(w){var b=el('button','opt ob',esc(w));b.onclick=function(){
+      if(w==od.seq[pos]){pos++;b.disabled=true;b.classList.add('ok');paint();
+        if(pos==od.seq.length){var fin=function(){res.innerHTML='';line.style.display='';line.className='line tapok';draw();setPrompt();};
+          if(od.fix){var m=el('div','exb','<b>형태 바꾸기</b> '+od.fix);res.appendChild(m);var nb=el('button','btn','문장 분석 보기');nb.style.marginTop='10px';nb.onclick=fin;res.appendChild(nb)}else{setTimeout(fin,350)}}
+      }else{b.classList.add('bad');setTimeout(function(){b.classList.remove('bad')},350)}};pool.appendChild(b)});
+  }
+  if(it.order){startOrder()}else{draw();setPrompt()}
+}
+function ptBox(ref,holder){
+  var a=ref.split('.'),pn=+a[0],pk=a[1];var slot=el('div','');holder.appendChild(slot);
+  load(pn,function(sets){
+    var id=pn==1?('p'+pk):('c'+(pn<10?'0':'')+pn+'p'+pk);var s0=null;sets.forEach(function(x){if(x.id==id)s0=x});
+    if(!s0)return;
+    var cn=META.filter(function(x){return x.n==pn})[0];
+    var h='<b class="ptl">교재 CH.'+(pn<10?'0':'')+pn+' POINT '+pk+'</b> '+esc(s0.sub)+'<div class="ptt">'+esc(s0.pnote.t)+'</div>';
+    s0.pnote.lines.forEach(function(l){h+='<div class="ptn">'+esc(l)+'</div>'});
+    slot.className='ptb';slot.innerHTML=h;
+  });
 }
 function summary(n,si){
   var set=window.DB[n][si];$.innerHTML='';
   var top=el('div','top');var back=el('button','btn ghost sm','목록');back.onclick=function(){chap(n)};top.appendChild(back);
   top.appendChild(el('span','brand',set.title+' 노트'));$.appendChild(top);
   var card=el('div','card');
-  var isq=/q\d$/.test(set.id);var nb=noteBox(set.pnote,set.id+'-pn',isq?'정리 노트':'POINT 노트',isq?'교재 이 쪽 위에 쓰기':'교재 POINT 옆에 쓰기');nb.style.marginTop='0';
+  var isq=/[qs]\d$/.test(set.id);var nb=noteBox(set.pnote,set.id+'-pn',isq?'정리 노트':'POINT 노트',isq?'교재 이 쪽 위에 쓰기':'교재 POINT 옆에 쓰기');nb.style.marginTop='0';
   card.appendChild(nb);$.appendChild(card);
   var r=el('div','row');var h=el('button','btn','목록으로');h.onclick=function(){chap(n)};r.appendChild(h);$.appendChild(r);
 }

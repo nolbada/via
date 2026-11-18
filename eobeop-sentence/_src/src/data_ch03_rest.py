@@ -231,7 +231,7 @@ FILL = [
    pre='We should fix <u>the broken chair</u> before someone gets injured.<br>(누군가가 다치기 전에 우리는 그 부러진 의자를 고쳐야 한다.)', hint='밑줄 친 단어를 주어로 하는 문장으로 바꾸기')),
 ]
 F7 = [
- ('1', PI('I was ((ⓐ|trying)) to reach one of my clients earlier today because his order has ((ⓑ|revised)).', 'x',
+ ('1', PI('I was ((ⓐ|trying)) to reach one of my clients earlier today because his order has ((ⓑ|revised)).', 'been revised',
    '그의 주문이 수정되었기 때문에 나는 오늘 일찍 나의 고객들 중 한 명에게 연락하려고 노력하고 있었다.', '',
    ps=[dict(ans='O', ko='그의 주문이 수정되었기 때문에 나는 오늘 일찍 나의 고객들 중 한 명에게 연락하려고 노력하고 있었다.',
             why='주어 <b>I(나)</b>가 연락하려고 “노력하는” 쪽이라 능동태 <b>trying</b>(try: 노력하다)이 맞아요. was trying은 과거진행이에요. 고칠 곳이 없어요.',

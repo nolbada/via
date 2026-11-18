@@ -200,7 +200,7 @@ PASS = [
     '만화 동물의 재미있고 흥미로운 특징은 어떤 면에서 그들이 사람들을 닮은 것이다.',
     '<b>their</b>(그들의)가 동명사의 의미상 주어예요. 만화 동물이 사람들을 “닮는” 쪽이라서 능동 <b>resembling</b>(resemble: 닮다)이 맞아요. resemble은 수동으로 쓰지 않는 동사예요.',
     [S_('A funny and interesting characteristic'), V_('is'), C_('their resembling people', '보어(의미상 주어 + 동명사)')])),
-  ('2', PI('<S>((②|Change)) the cartoon animal’s face or feet</S> is something cartoonists often do.', 'Changing 또는 To change',
+  ('2', PI('<S>((②|Change)) the cartoon animal’s face or feet</S> is something cartoonists often do.', 'Changing / To change',
     '만화 동물의 얼굴이나 발을 바꾸는 것은 만화가들이 자주 하는 일이다.',
     '동사 <b>is</b>가 따로 있으니 <b>Change ~ feet</b>가 주어 덩어리예요. 주어는 명사 자리라서 동명사 <b>Changing</b>(change: 바꾸다) 또는 to부정사 <b>To change</b>로 고쳐요.',
     [S_('Change → Changing / To change the cartoon animal’s face or feet', '주어'), V_('is'), C_('something cartoonists often do', '보어')],

@@ -12,12 +12,14 @@ for n in range(1,15):
     sets=json.load(open(p,encoding='utf-8'))
     pq=f'{lib.BASE}/data/ch{n:02d}q.json'
     if os.path.exists(pq): sets+=json.load(open(pq,encoding='utf-8'))
+    ps=f'{lib.BASE}/data/ch{n:02d}s.json'
+    if os.path.exists(ps): sets+=json.load(open(ps,encoding='utf-8'))
     open(f'{out}/d/ch{n:02d}.js','w',encoding='utf-8').write('window.DB['+str(n)+']='+json.dumps(sets,ensure_ascii=False,separators=(',',':'))+';')
     files.append(f'./d/ch{n:02d}.js')
     meta.append(dict(n=n,t=CH[str(n)],sets=[dict(id=s['id'],title=s['title'],sub=s['sub'],page=s['page'],n=len(s['items'])) for s in sets]))
 t=open(f'{lib.BASE}/template3.html',encoding='utf-8').read().replace('__META__',json.dumps(meta,ensure_ascii=False,separators=(',',':')))
 open(out+'/index.html','w',encoding='utf-8').write(t)
-ver=sys.argv[2] if len(sys.argv)>2 else 'v3'
+ver=sys.argv[2] if len(sys.argv)>2 else 'v6'
 sw=f"""var C='eobeop-sent-{ver}';
 var F=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png',{','.join(repr(f) for f in files)}];
 self.addEventListener('install',function(e){{e.waitUntil(caches.open(C).then(function(c){{return c.addAll(F)}}));self.skipWaiting()}});
@@ -28,6 +30,8 @@ open(out+'/sw.js','w',encoding='utf-8').write(sw)
 for f in ('manifest.webmanifest','icon-192.png','icon-512.png'):
     shutil.copy(f'/home/claude/via/eobeop-sentence/{f}',f'{out}/{f}')
 os.makedirs(out+'/sa-t',exist_ok=True)
+for f in ('manifest.webmanifest','icon-192.png','icon-512.png'):
+    shutil.copy(f'/home/claude/via/eobeop-sentence/sa-t/{f}',f'{out}/sa-t/{f}')
 tt=open(f'{lib.BASE}/teacher3.html',encoding='utf-8').read().replace('__META__',json.dumps(meta,ensure_ascii=False,separators=(',',':')))
 open(out+'/sa-t/index.html','w',encoding='utf-8').write(tt)
 print('app built:',len(meta),'chapters ->',out)
