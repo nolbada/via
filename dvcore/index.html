@@ -1,6 +1,9 @@
 <html lang="ko" translate="no"><meta name="google" content="notranslate"><meta name="theme-color" content="#165446"><meta name="application-name" content="더블보카 Core"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="더블보카 Core"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" type="image/png" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest"><title>더블보카 Core</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><script src="../common/base.js?v=261105a"></script>
-<script src="../common/sync.js?v=1"></script>
+<script>/* 보드에서 열렸을 때(261118): EM보드에 들어와 있는 학생 이름을 이 화면의 이름으로 쓴다(이 화면이 떠 있는 동안만. 폰에 저장된 로드맵 이름은 바꾸지 않는다).
+   공용 폰에 다른 학생의 로드맵 이름이 남아 있어도 기록이 그 학생 것으로 가지 않게 하려는 것. 보드 밖에서 열면 아무 일도 하지 않는다. */
+(function(){try{if(window.top===window||/[?&]t=1(&|$)/.test(location.search))return;var L=localStorage,w=JSON.parse(sessionStorage.getItem('bl-who')||'null'),n=(L.getItem('bd-name')||'').replace(/\s+/g,''),t=+L.getItem('bd-t')||0;if(!w||!w.n||String(w.n).replace(/\s+/g,'')!==n||!n||n==='열람'||Date.now()-t>600000)return;var o=(L.getItem('wn_name')||'').replace(/\s+/g,'');if(o&&o!==n){L.removeItem('wn_q');L.removeItem('wn_hq')}window.__bdName=n}catch(e){}})();</script>
+<script src="../common/sync.js?v=261118c"></script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="build" content="1793985320">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
@@ -228,11 +231,16 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
   function ls(){try{return W.localStorage}catch(e){return null}}
   function g(k){var l=ls();try{return l&&l.getItem(k)}catch(e){return null}}
   function s(k,v){var l=ls();try{l&&l.setItem(k,v)}catch(e){}}
-  function name(){if(TM)return'신유정'+((/[?&]c=([AB])(&|$)/.exec(W.location.search)||[])[1]||'');return(g('wn_name')||g('recm_name')||g('rec_name')||'').replace(/\s+/g,'')}
+  function name(){if(TM)return'신유정'+((/[?&]c=([AB])(&|$)/.exec(W.location.search)||[])[1]||'');if(W.__bdName)return W.__bdName;return(g('wn_name')||g('recm_name')||g('rec_name')||'').replace(/\s+/g,'')}
   function jq(k){try{return JSON.parse(g(k)||'[]')}catch(e){return[]}}
   function post(b){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b),keepalive:true}).then(function(r){return r.json()})}
   var busy=false,again=false;
+  /* 보드에서 연 경우: 그 학생이 로드맵 명단에 있는지 한 번 확인한다. 명단에 없으면 오답노트 서버로는 아무것도 보내지 않는다(받아 주지 않으므로). 앱 안의 학습 기록은 그대로 남는다 */
+  var BCK=null;
+  if(W.__bdName&&W.fetch){try{BCK=W.fetch('https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents/wnlist/'+encodeURIComponent(W.__bdName+'_'+PIN)).then(function(r){if(r.status===404)W.__bdNoRoster=1},function(){}).then(function(){BCK=null})}catch(e){BCK=null}}
   function flush(){
+    if(BCK)return BCK.then(flush);
+    if(W.__bdNoRoster){s(QK,'[]');s(HK,'[]');return Promise.resolve(false)}
     var n=name(),Q=jq(QK),H=jq(HK);
     if(busy){again=true;return Promise.resolve(false)}
     if(!n||(!Q.length&&!H.length))return Promise.resolve(false);
@@ -264,7 +272,7 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
     var Q=jq(QK);Q.push(items);s(QK,JSON.stringify(Q));return flush();
   },hw:function(level,day,score){
     var H=jq(HK);H.push({level:level,day:day,score:score});s(HK,JSON.stringify(H));return flush();
-  },hwget:function(){var n=name();if(!n)return Promise.resolve([]);return post({act:'hwget',name:n,pin:PIN}).then(function(r){return(r&&r.ok&&r.hw)||[]},function(){return[]})},gate:gate,flush:flush,name:name};
+  },hwget:function(){var n=name();if(!n||W.__bdNoRoster)return Promise.resolve([]);return post({act:'hwget',name:n,pin:PIN}).then(function(r){return(r&&r.ok&&r.hw)||[]},function(){return[]})},gate:gate,flush:flush,name:name};
   flush();
 })(window);
 
@@ -447,7 +455,7 @@ function fillEnd(){
   var c=document.getElementById('endc');if(!c)return;
   var done=0,ok=0,miss=[];
   W.forEach(function(w,wi){if(wordDone(wi)){done++;if(wordOK(wi))ok++;else miss.push(wi)}});
-  if(done==W.length)markDone(DI);
+  if(done==W.length){var _nd=doneSet().indexOf(DI)<0;markDone(DI);if(_nd)bdDv('Day '+DN+' 학습 끝')}
   c.innerHTML='<div class="no">DAY '+pad2(DN)+'</div><h2>'+ok+' / '+W.length+'</h2><div>'+(done<W.length?('푼 단어 '+done+' / '+W.length):'오늘의 단어 끝')+'</div>';
   if(miss.length){var m=el('div','miss-list');miss.forEach(function(wi){var b=el('button','',esc(W[wi].h));b.type='button';b.onclick=function(){go(wi*2)};m.appendChild(b)});c.appendChild(el('div','lab','다시 볼 단어'));c.appendChild(m)}
 }
@@ -504,6 +512,8 @@ function recordResults(items,exam){
 }
 function homeRefresh(){var n=starCount(DI);document.getElementById('strow').hidden=!n;document.getElementById('mClrStar').textContent='★ 별표 '+n+'개 모두 지우기';var wa=wlCount('i',DI),wb=wlCount('x',DI),ea=document.getElementById('mPracW'),eb=document.getElementById('mPracXW');ea.hidden=!wa;ea.textContent='틀린 '+wa+'개만 다시';eb.hidden=!wb;eb.textContent='틀린 '+wb+'개만 다시';
   document.getElementById('dayh').textContent='Day '+pad2(DN);var dw=doneWords(),tc=touched(),pv=loadP();document.getElementById('mLearnS').textContent=dw>=W.length?'모두 풀었어요':(tc||RES>0)?('이어서 · '+Math.min(W.length,Math.floor(RES/2)+1)+' / '+W.length+' 단어'):'같은 뜻, 다른 쓰임 · 언제 쓰는지까지';var pvi=loadP(true);document.getElementById('mPracS').textContent=pvi?('이어서 · '+(pvi.i+1)+' / '+pvi.items.length):'한 문제씩 풀고 · 바로 지도로 확인';document.getElementById('mPracXS').textContent=pv?('이어서 · '+(pv.i+1)+' / '+pv.items.length):'시험처럼 한번에 · 틀린 것만 다시';document.getElementById('mReset').hidden=!(tc||RES>0||pv||pvi)}
+/* 보드에서 열었을 때만: 끝낸 것을 보드 기록(타임테이블)에도 남긴다 */
+function bdDv(w){try{if(window.BoardLink)BoardLink.score('dv',{w:'더블보카 Core '+w,d:DN})}catch(e){}}
 function doneSet(){try{return JSON.parse(localStorage.getItem('dvc_done_'+WN.name())||'[]')}catch(e){return[]}}
 function markDone(di){try{var s=doneSet();if(s.indexOf(di)<0){s.push(di);localStorage.setItem('dvc_done_'+WN.name(),JSON.stringify(s))}}catch(e){}}
 function progStat(){
@@ -769,7 +779,7 @@ function submitT(){ if(!T||T.done)return;if(T.mode=='P'&&!T.only&&T.scope=='day'
   var n=T.items.length,good=T.items.filter(itemOK),bad=T.items.filter(function(x){return !itemOK(x)});
   var used=E?T.total-T.left:0;
   if(!T.inst)recordResults(T.items,E);
-  if(E){var ER=JSON.stringify({done:true,score:good.length,total:n,used:used,t:Date.now()});sset(T.key,ER);if(window.TEACHER_MODE)sset(PFXE+DN+'_'+WN.name().toLowerCase(),ER)}if(E)WN.hw('더블보카 Core',DN,good.length+'/'+n);
+  if(E){var ER=JSON.stringify({done:true,score:good.length,total:n,used:used,t:Date.now()});sset(T.key,ER);if(window.TEACHER_MODE)sset(PFXE+DN+'_'+WN.name().toLowerCase(),ER)}if(E)WN.hw('더블보카 Core',DN,good.length+'/'+n);if(E)bdDv('Day '+DN+' 시험 '+good.length+'/'+n);
   var head=E?('시험 · '+esc(T.name)+' · 걸린 시간 '+fmt(used)):(T.inst?(T.only?'틀린 것 다시':'관계 지도 연습'):(T.retry||T.only?'실전 예행연습 · 틀린 것 다시':'실전 예행연습'));
   rvShow(tv,E,head,good,bad);
 }
@@ -783,3 +793,4 @@ twoTap('mClrStar','',function(){clearStars(DI);homeRefresh()});
 WN.gate(function(){daysRefresh();showView('days');rsSync(WN.name()).then(function(){if(!document.getElementById('days').hidden)daysRefresh()});WN.hwget().then(function(L){var n=WN.name().toLowerCase(),ch=0;L.forEach(function(x){if(x.level==='더블보카 Core'&&x.score&&x.score!=='진행중'){var m=/^(\d+)\/(\d+)$/.exec(x.score),k='dvc_exam_'+x.day+'_'+n;if(m){if(!sget(k))sset(k,JSON.stringify({done:true,score:+m[1],total:+m[2],used:0,t:Date.now()}));markDone(x.day-1);ch=1}}});if(ch)daysRefresh()})});
 
 </script>
+<script src="https://nolbada.github.io/board/link.js" data-app="dv" data-noback></script>

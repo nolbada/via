@@ -67,6 +67,8 @@
   function nm(){
     var q=W.location.search;
     if(/[?&]t=1(&|$)/.test(q)){var c=(/[?&]c=([AB])(&|$)/.exec(q)||[])[1]||'';return '신유정'+c}
+    /* 261118: 보드에서 연 화면이 '지금 보드에 들어온 학생'을 알려 주면 그 이름으로 잇는다 */
+    if(W.__bdName)return String(W.__bdName).replace(/\s+/g,'');
     return (g('wn_name')||g('recm_name')||g('rec_name')||'').replace(/\s+/g,'');
   }
   function ident(){var n=nm();return n?'VIA|'+n.toLowerCase():''}
