@@ -27,6 +27,9 @@ h1{font-size:22px;margin:6px 2px 2px}.sub{color:var(--sub);font-size:14px;margin
 .qno{display:flex;align-items:center;gap:8px;margin:2px 0 6px}.qno b{font-size:15px;color:var(--ac)}.qno span{font-size:12.5px;background:var(--chip);color:var(--sub);border-radius:999px;padding:1px 10px}
 .stem{font-weight:700;font-size:18px;margin:4px 0 10px;line-height:1.5}
 .pass{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:8px 0;font-size:16.5px;line-height:1.85}
+.tblw{overflow-x:auto;margin:8px 0}.qt{border-collapse:collapse;width:100%;background:var(--card);font-size:15px}
+.qt th,.qt td{border:1px solid var(--line);padding:7px 9px;text-align:center}.qt th{background:#e8f0f6}
+.qimg{max-width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:#fff}
 .tw{border-bottom:1px dotted #c3ccd6;cursor:pointer}
 .tip{position:absolute;z-index:50;background:#1f2d3a;color:#fff;border-radius:10px;padding:7px 11px;font-size:14px;line-height:1.45;max-width:78vw;box-shadow:0 6px 18px rgba(0,0,0,.25);display:flex;gap:8px;align-items:baseline}
 .tip b{font-size:15px}.tip span{color:#e6eef5}
@@ -67,12 +70,12 @@ mark{background:var(--hl);color:inherit;border-radius:3px;padding:0 2px}
 .nm{text-align:center;padding:30px 6px}.nm p{color:var(--sub)}
 </style></head><body>
 <div id="app"></div>
-<script src="d/words.js?v=261118b"></script>
-<script src="d/meta.js?v=261118a"></script>
+<script src="d/words.js?v=261118c"></script>
+<script src="d/meta.js?v=261118c"></script>
 <script>
 (function(){
 "use strict";
-var APP='g2v1',VER='261118b',LAB='ⓐⓑⓒⓓⓔⓕⓖ',NUMS='①②③④⑤',SET=10;
+var APP='g2v1',VER='261118c',LAB='ⓐⓑⓒⓓⓔⓕⓖ',NUMS='①②③④⑤',SET=10;
 var ls=null;try{ls=window.localStorage;ls.getItem('x')}catch(e){ls=null}
 var mem={};
 function gs(k){try{return ls?ls.getItem(k):(mem[k]||null)}catch(e){return mem[k]||null}}
@@ -80,8 +83,8 @@ function ss(k,v){try{if(ls)ls.setItem(k,v);else mem[k]=v}catch(e){mem[k]=v}}
 function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function hasKo(t){return /[가-힣]/.test(t)}
 function enWrap(t){ // 이미 이스케이프된 문자열에서 영어 덩어리를 lang=en 으로 감쌈 (태그 안쪽은 건드리지 않음)
-  return t.split(/(<[^>]+>)/).map(function(p){
-    if(p.charAt(0)==='<'&&p.charAt(p.length-1)==='>')return p;
+  return t.split(/(<[^>]+>|&[a-zA-Z]+;|&#\d+;)/).map(function(p){
+    if((p.charAt(0)==='<'&&p.charAt(p.length-1)==='>')||/^&[a-zA-Z#0-9]+;$/.test(p))return p;
     return p.replace(/([A-Za-z][A-Za-z0-9'’\-\.\/]*(?:\s+[A-Za-z][A-Za-z0-9'’\-\.\/]*)*)/g,'<span lang="en" translate="no">$1</span>');
   }).join('');
 }
@@ -144,6 +147,9 @@ function qView(){
   var q=S.list[S.i],tot=S.list.length;
   var h='<div class="top"><button class="back" data-act="exit">‹ 그만</button><span style="flex:1"></span><span>'+(S.i+1)+' / '+tot+'</span></div><div class="bar"><i style="width:'+Math.round(100*(S.i+(S.done?1:0))/tot)+'%"></i></div>';
   h+='<div class="qno"><b>'+q.n+'번</b><span>'+esc(q.ty)+'</span></div><div class="stem">'+enWrap(esc(q.st))+'</div>';
+  if(q.tbl){h+='<div class="tblw"><table class="qt">'+(q.tbl.head?'<thead><tr>'+q.tbl.head.map(function(c){return '<th>'+esc(c)+'</th>'}).join('')+'</tr></thead>':'')+'<tbody>'+q.tbl.rows.map(function(r){return '<tr>'+r.map(function(c){return '<td>'+esc(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>'}
+  if(q.img)h+='<img class="qimg" alt="" src="'+esc(q.img)+'">';
+  CURU=q.u;
   if(q.body)h+='<div class="pass">'+passHtml(q.body)+'</div>'+(q.kind==='seg'||q.kind==='abc'?'<div class="hint">모르는 단어는 눌러서 뜻 확인</div>':'');
   var plain=q.kind==='seg'&&q.opts.every(function(o,i){return o===LAB[i]});
   var multi=q.ans.length>1;
@@ -172,11 +178,13 @@ function bodyHtml(b){
   if(!hasKo(plainTxt))return '<span lang="en" translate="no">'+b+'</span>';
   parts.forEach(function(p){out+=(p.charAt(0)==='<')?p:enWrap(p)});return out;
 }
+var CURU=0;
+function gloss(k){var U=(window.G2WU||{})[CURU];return (U&&U[k])||(window.G2W||{})[k]||''}
 function passHtml(b){ // 지문: 영어 단어를 누르면 뜻이 나오도록 감쌈 (태그 안쪽은 그대로)
-  var W=window.G2W||{};
+  var W={};
   var out=b.split(/(<[^>]+>)/).map(function(p){
     if(p.charAt(0)==='<')return p;
-    return p.replace(/[A-Za-z]+(?:['’][A-Za-z]+)?/g,function(w){var k=w.toLowerCase().replace(/’/g,"'");return W[k]?'<span class="tw" data-w="'+k+'">'+w+'</span>':w});
+    return p.replace(/[A-Za-z]+(?:['’][A-Za-z]+)?/g,function(w){var k=w.toLowerCase().replace(/’/g,"'");return gloss(k)?'<span class="tw" data-w="'+k+'">'+w+'</span>':w});
   }).join('');
   return '<span lang="en" translate="no">'+out+'</span>';
 }
@@ -185,7 +193,7 @@ function closeTip(){if(TIP){TIP.remove();TIP=null}}
 document.addEventListener('click',function(e){
   var w=e.target.closest('.tw');
   if(!w){if(!e.target.closest('.tip'))closeTip();return}
-  var k=w.dataset.w,m=(window.G2W||{})[k];if(!m)return;
+  var k=w.dataset.w,m=gloss(k);if(!m)return;
   var same=TIP&&TIP.dataset.w===k&&TIP.dataset.i===String(w.dataset.i||'');closeTip();if(same)return;
   var t=document.createElement('div');t.className='tip';t.dataset.w=k;
   t.innerHTML='<b lang="en" translate="no">'+w.textContent+'</b><span>'+esc(m)+'</span>';
@@ -226,9 +234,9 @@ function explain(q,plain){
       var c=stateCls(q,i),isAns=q.ans.indexOf(i)>-1,mine=S.sel.indexOf(i)>-1&&!isAns;
       h+='<div class="ex '+c+'">'+badge(isAns,mine)+'<div class="hd"><span class="n">'+NUMS[i]+'</span><span class="t">'+enSpanKo(o.full||o.t)+'</span></div>';
       if(o.ko)h+='<div class="ko">'+esc(o.ko)+'</div>';
-      if(typeof o.ok==='boolean'&&q.kind==='sent'&&o.why)h+='<span class="st '+(o.ok?'g':'r')+'">'+(o.ok?'바른 문장':'틀린 문장')+'</span>';
+      if(typeof o.ok==='boolean'&&q.kind==='sent'&&o.why&&!q.nolabel&&!o.nolabel)h+='<span class="st '+(o.ok?'g':'r')+'">'+esc(o.lab||(o.ok?'바른 문장':'틀린 문장'))+'</span>';
       if(o.why)h+='<div class="why">'+why(o.why)+'</div>';
-      if(o.fix)h+=fixLine(o.fix);
+      if(o.fix&&o.ok!==true)h+=fixLine(o.fix);
       h+='</div>';
     });
     if(q.blob)h+='<div class="box"><h4>해설</h4><div class="p">'+blobHtml(q.blob)+'</div></div>';
@@ -241,7 +249,7 @@ function explain(q,plain){
 function segCard(s,cls,isAns,isMine,num){
   var h='<div class="ex '+cls+'">'+badge(isAns,isMine)+'<div class="hd"><span class="n">'+(num?num+' ':'')+s.k+'</span><span class="t">'+enSpanKo(s.en)+'</span></div>';
   if(s.ko)h+='<div class="ko">'+esc(s.ko)+'</div>';
-  h+='<span class="st '+(s.ok?'g':'r')+'">'+(s.ok?'바른 표현':'틀린 표현')+'</span>';
+  h+='<span class="st '+(s.ok?'g':'r')+'">'+esc(s.lab||(s.ok?'바른 표현':'틀린 표현'))+'</span>';
   if(s.why)h+='<div class="why">'+why(s.why)+'</div>';
   if(!s.ok&&s.fix)h+=fixLine(s.fix);
   return h+'</div>';
