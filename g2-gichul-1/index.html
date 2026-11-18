@@ -27,6 +27,10 @@ h1{font-size:22px;margin:6px 2px 2px}.sub{color:var(--sub);font-size:14px;margin
 .qno{display:flex;align-items:center;gap:8px;margin:2px 0 6px}.qno b{font-size:15px;color:var(--ac)}.qno span{font-size:12.5px;background:var(--chip);color:var(--sub);border-radius:999px;padding:1px 10px}
 .stem{font-weight:700;font-size:18px;margin:4px 0 10px;line-height:1.5}
 .pass{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:8px 0;font-size:16.5px;line-height:1.85}
+.tw{border-bottom:1px dotted #c3ccd6;cursor:pointer}
+.tip{position:absolute;z-index:50;background:#1f2d3a;color:#fff;border-radius:10px;padding:7px 11px;font-size:14px;line-height:1.45;max-width:78vw;box-shadow:0 6px 18px rgba(0,0,0,.25);display:flex;gap:8px;align-items:baseline}
+.tip b{font-size:15px}.tip span{color:#e6eef5}
+.hint{font-size:12.5px;color:#7a8794;margin:-2px 2px 8px}
 .pass u{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:var(--ac)}
 .lb{display:inline-block;color:var(--ac);font-weight:800;margin-right:1px}
 .chips{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0}
@@ -63,19 +67,23 @@ mark{background:var(--hl);color:inherit;border-radius:3px;padding:0 2px}
 .nm{text-align:center;padding:30px 6px}.nm p{color:var(--sub)}
 </style></head><body>
 <div id="app"></div>
+<script src="d/words.js?v=261118b"></script>
 <script src="d/meta.js?v=261118a"></script>
 <script>
 (function(){
 "use strict";
-var APP='g2v1',VER='261118a',LAB='ⓐⓑⓒⓓⓔⓕⓖ',NUMS='①②③④⑤',SET=10;
+var APP='g2v1',VER='261118b',LAB='ⓐⓑⓒⓓⓔⓕⓖ',NUMS='①②③④⑤',SET=10;
 var ls=null;try{ls=window.localStorage;ls.getItem('x')}catch(e){ls=null}
 var mem={};
 function gs(k){try{return ls?ls.getItem(k):(mem[k]||null)}catch(e){return mem[k]||null}}
 function ss(k,v){try{if(ls)ls.setItem(k,v);else mem[k]=v}catch(e){mem[k]=v}}
 function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function hasKo(t){return /[가-힣]/.test(t)}
-function enWrap(t){ // 이미 이스케이프된 문자열에서 영어 덩어리를 lang=en 으로 감쌈
-  return t.replace(/([A-Za-z][A-Za-z0-9'’\-\.\/]*(?:\s+[A-Za-z][A-Za-z0-9'’\-\.\/]*)*)/g,'<span lang="en" translate="no">$1</span>');
+function enWrap(t){ // 이미 이스케이프된 문자열에서 영어 덩어리를 lang=en 으로 감쌈 (태그 안쪽은 건드리지 않음)
+  return t.split(/(<[^>]+>)/).map(function(p){
+    if(p.charAt(0)==='<'&&p.charAt(p.length-1)==='>')return p;
+    return p.replace(/([A-Za-z][A-Za-z0-9'’\-\.\/]*(?:\s+[A-Za-z][A-Za-z0-9'’\-\.\/]*)*)/g,'<span lang="en" translate="no">$1</span>');
+  }).join('');
 }
 function enSpan(t){var e=esc(t);return hasKo(t)?enWrap(e):'<span lang="en" translate="no">'+e+'</span>'}
 function mk(t){return t.replace(/\{\{(.+?)\}\}/g,'<mark>$1</mark>')}
@@ -136,7 +144,7 @@ function qView(){
   var q=S.list[S.i],tot=S.list.length;
   var h='<div class="top"><button class="back" data-act="exit">‹ 그만</button><span style="flex:1"></span><span>'+(S.i+1)+' / '+tot+'</span></div><div class="bar"><i style="width:'+Math.round(100*(S.i+(S.done?1:0))/tot)+'%"></i></div>';
   h+='<div class="qno"><b>'+q.n+'번</b><span>'+esc(q.ty)+'</span></div><div class="stem">'+enWrap(esc(q.st))+'</div>';
-  if(q.body)h+='<div class="pass">'+bodyHtml(q.body)+'</div>';
+  if(q.body)h+='<div class="pass">'+passHtml(q.body)+'</div>'+(q.kind==='seg'||q.kind==='abc'?'<div class="hint">모르는 단어는 눌러서 뜻 확인</div>':'');
   var plain=q.kind==='seg'&&q.opts.every(function(o,i){return o===LAB[i]});
   var multi=q.ans.length>1;
   if(multi&&!S.done)h+='<p class="hint">'+q.ans.length+'개를 고르세요</p>';
@@ -156,7 +164,7 @@ function qView(){
 function optText(q,t){return enSpanKo(t)}
 function enSpanKo(t){
   var e=esc(t);
-  if(hasKo(t))return enWrap(e);
+  if(hasKo(t))return enWrap(e).replace(/\s*→\s*/g,'<br>');
   return '<span lang="en" translate="no">'+e+'</span>';
 }
 function bodyHtml(b){
@@ -164,6 +172,29 @@ function bodyHtml(b){
   if(!hasKo(plainTxt))return '<span lang="en" translate="no">'+b+'</span>';
   parts.forEach(function(p){out+=(p.charAt(0)==='<')?p:enWrap(p)});return out;
 }
+function passHtml(b){ // 지문: 영어 단어를 누르면 뜻이 나오도록 감쌈 (태그 안쪽은 그대로)
+  var W=window.G2W||{};
+  var out=b.split(/(<[^>]+>)/).map(function(p){
+    if(p.charAt(0)==='<')return p;
+    return p.replace(/[A-Za-z]+(?:['’][A-Za-z]+)?/g,function(w){var k=w.toLowerCase().replace(/’/g,"'");return W[k]?'<span class="tw" data-w="'+k+'">'+w+'</span>':w});
+  }).join('');
+  return '<span lang="en" translate="no">'+out+'</span>';
+}
+var TIP=null;
+function closeTip(){if(TIP){TIP.remove();TIP=null}}
+document.addEventListener('click',function(e){
+  var w=e.target.closest('.tw');
+  if(!w){if(!e.target.closest('.tip'))closeTip();return}
+  var k=w.dataset.w,m=(window.G2W||{})[k];if(!m)return;
+  var same=TIP&&TIP.dataset.w===k&&TIP.dataset.i===String(w.dataset.i||'');closeTip();if(same)return;
+  var t=document.createElement('div');t.className='tip';t.dataset.w=k;
+  t.innerHTML='<b lang="en" translate="no">'+w.textContent+'</b><span>'+esc(m)+'</span>';
+  document.body.appendChild(t);
+  var r=w.getBoundingClientRect(),tw=t.offsetWidth,x=Math.max(8,Math.min(window.innerWidth-tw-8,r.left+r.width/2-tw/2));
+  var y=r.top+window.scrollY-t.offsetHeight-8;if(y<window.scrollY+4)y=r.bottom+window.scrollY+8;
+  t.style.left=x+'px';t.style.top=y+'px';TIP=t;
+},true);
+window.addEventListener('scroll',function(){},{passive:true});
 function badge(isAns,isMine){
   var h='';
   if(isAns)h+='<span class="bdg g">정답</span>';
@@ -238,6 +269,17 @@ function resView(){
 function nameView(){
   return '<div class="nm"><h1>중2 문법(기출) Vol. 1</h1><p>보드에서 이름을 누르고 들어오면<br>푼 기록이 저장돼요.</p><a class="go" style="text-decoration:none" href="https://nolbada.github.io/board/">보드로 가기</a><button class="go sub" data-act="anon">이름 없이 풀어 보기</button></div>';
 }
+function langFix(root){ // 한글 문장 속 영어도 lang=en / translate=no 로 표시
+  var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),L=[],n;
+  while(n=w.nextNode()){if(/[A-Za-z]/.test(n.nodeValue)){var p=n.parentElement;if(p&&!p.closest('[lang="en"],script,style'))L.push(n)}}
+  var re=/[A-Za-z][A-Za-z0-9'’\-\.\/]*(?:\s+[A-Za-z][A-Za-z0-9'’\-\.\/]*)*/g;
+  L.forEach(function(n){
+    var t=n.nodeValue,m,last=0,f=document.createDocumentFragment(),any=false;re.lastIndex=0;
+    while(m=re.exec(t)){any=true;if(m.index>last)f.appendChild(document.createTextNode(t.slice(last,m.index)));
+      var sp=document.createElement('span');sp.lang='en';sp.setAttribute('translate','no');sp.textContent=m[0];f.appendChild(sp);last=m.index+m[0].length}
+    if(!any)return;if(last<t.length)f.appendChild(document.createTextNode(t.slice(last)));n.parentNode.replaceChild(f,n);
+  });
+}
 function render(){
   var h='';
   if(S.msg)h+='<div class="card">'+esc(S.msg)+'</div>';
@@ -246,7 +288,7 @@ function render(){
   else if(S.v==='unit')h+=unitView();
   else if(S.v==='q')h+=qView();
   else if(S.v==='res')h+=resView();
-  $().innerHTML=h;
+  $().innerHTML=h;langFix($());
   if(S.v==='q'&&S.done){var e=document.querySelector('.res');if(e&&S.justDone){S.justDone=0;e.scrollIntoView({block:'start',behavior:'smooth'})}}
   else if(S.v!=='q')window.scrollTo(0,0);
 }
