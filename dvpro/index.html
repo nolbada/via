@@ -511,7 +511,7 @@ function recordResults(items,exam){
 function homeRefresh(){var n=starCount(DI);document.getElementById('strow').hidden=!n;document.getElementById('mClrStar').textContent='★ 별표 '+n+'개 모두 지우기';var wa=wlCount('i',DI),wb=wlCount('x',DI),ea=document.getElementById('mPracW'),eb=document.getElementById('mPracXW');ea.hidden=!wa;ea.textContent='틀린 '+wa+'개만 다시';eb.hidden=!wb;eb.textContent='틀린 '+wb+'개만 다시';
   document.getElementById('dayh').textContent='Day '+pad2(DN);var dw=doneWords(),tc=touched(),pv=loadP();document.getElementById('mLearnS').textContent=dw>=W.length?'모두 풀었어요':(tc||RES>0)?('이어서 · '+Math.min(W.length,Math.floor(RES/2)+1)+' / '+W.length+' 단어'):'같은 뜻, 다른 쓰임 · 언제 쓰는지까지';var pvi=loadP(true);document.getElementById('mPracS').textContent=pvi?('이어서 · '+(pvi.i+1)+' / '+pvi.items.length):'한 문제씩 풀고 · 바로 지도로 확인';document.getElementById('mPracXS').textContent=pv?('이어서 · '+(pv.i+1)+' / '+pv.items.length):'시험처럼 한번에 · 틀린 것만 다시';document.getElementById('mReset').hidden=!(tc||RES>0||pv||pvi)}
 /* 보드에서 열었을 때만: 끝낸 것을 보드 기록(타임테이블)에도 남긴다 */
-function bdDv(w){try{if(window.BoardLink)BoardLink.score('dv',{w:'더블보카 Pro '+w,d:DN})}catch(e){}}
+function bdDv(w){try{if(window.BoardLink)BoardLink.score('dd',{w:'더블보카 Pro '+w,d:DN})}catch(e){}}
 function doneSet(){try{return JSON.parse(localStorage.getItem('dvp_done_'+WN.name())||'[]')}catch(e){return[]}}
 function markDone(di){try{var s=doneSet();if(s.indexOf(di)<0){s.push(di);localStorage.setItem('dvp_done_'+WN.name(),JSON.stringify(s))}}catch(e){}}
 function progStat(){
@@ -791,4 +791,4 @@ twoTap('mClrStar','',function(){clearStars(DI);homeRefresh()});
 WN.gate(function(){daysRefresh();showView('days');rsSync(WN.name()).then(function(){if(!document.getElementById('days').hidden)daysRefresh()});WN.hwget().then(function(L){var n=WN.name().toLowerCase(),ch=0;L.forEach(function(x){if(x.level==='더블보카 Pro'&&x.score&&x.score!=='진행중'){var m=/^(\d+)\/(\d+)$/.exec(x.score),k='dvp_exam_'+x.day+'_'+n;if(m){if(!sget(k))sset(k,JSON.stringify({done:true,score:+m[1],total:+m[2],used:0,t:Date.now()}));markDone(x.day-1);ch=1}}});if(ch)daysRefresh()})});
 
 </script>
-<script src="https://nolbada.github.io/board/link.js" data-app="dv" data-noback></script>
+<script src="https://nolbada.github.io/board/link.js" data-app="dd" data-noback></script>
