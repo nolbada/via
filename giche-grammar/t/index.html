@@ -29,7 +29,7 @@ tr.row{cursor:pointer}tr.row:hover{background:var(--chip)}
 .pbar label{font-size:14px;display:flex;gap:5px;align-items:center}
 .pbtn{border:1px solid var(--ac);background:var(--ac);color:#fff;border-radius:10px;padding:8px 16px;font-weight:700}
 .plist .row2{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--line)}
-.plist .row2:last-child{border:0}.plist .nm{min-width:96px;font-weight:600}
+.plist .row2:last-child{border:0}.plist .nm{min-width:96px;font-weight:600}.plist .row2{cursor:pointer}.plist .row2.tp{background:#f4f1ea;padding-left:6px;border-radius:8px}.plist input[type=checkbox]{width:20px;height:20px}#pselbar{position:sticky;bottom:0;top:auto}#pselbar button:disabled{cursor:default}
 .paper{background:#fff;color:#111;border:1px solid #ccc;border-radius:4px;padding:16px 18px;margin:10px 0;font-family:"Malgun Gothic","Noto Sans KR","Apple SD Gothic Neo",sans-serif;line-height:1.55;font-size:13px}
 .paper .hd{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #111;padding-bottom:5px;margin-bottom:10px;gap:10px}
 .paper .hd .t1{font-size:11px;color:#444}.paper .hd .t2{font-size:17px;font-weight:700}
@@ -1288,7 +1288,7 @@ function toggle(id){
   draw();
 }
 /* ===== 인쇄 ===== */
-var PR=null,PSCH=false,PEX=false;
+var PR=null,PSCH=false,PEX=false,PSEL={};
 function pbold(t){return esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}
 var NUMS='①②③④⑤';
 function setList(){var L=[];['gj','pp','ind','bs'].filter(function(t){return TOPICS[t]}).forEach(function(t){var T0=TOPICS[t],sets=T0.sets||[QS.filter(function(q){return q.t===t}).map(function(q){return q.id})];
@@ -1331,17 +1331,26 @@ function paperA(S){
 function viewPr(){
   var L=setList();
   if(!PR){
-    var h='<div class="card plist"><div class="sub" style="margin-bottom:6px">세트를 골라 인쇄 화면을 열어요. 인쇄창에서 "PDF로 저장"을 고르면 PDF 파일이 돼요.</div>';
-    L.forEach(function(S,n){h+='<div class="row2"><span class="nm">'+esc(S.name)+'</span><span class="sub">'+S.ids.length+'문제</span><button class="btn" data-pr="'+n+'|q">문제지</button><button class="btn" data-pr="'+n+'|a">정답·해설지</button><button class="btn" data-pr="'+n+'|qa">문제+정답</button></div>'});
-    return h+'</div>';
+    var h='<div class="card plist"><div class="sub" style="margin-bottom:6px">인쇄할 세트에 체크한 뒤, 아래에서 "문제" 또는 "문제+정답해설"을 누르세요. 인쇄창에서 "PDF로 저장"을 고르면 PDF 파일이 돼요.</div>',lt='';
+    L.forEach(function(S,n){
+      if(S.t!==lt){lt=S.t;h+='<label class="row2 tp"><input type="checkbox" data-top="'+S.t+'"> <span class="nm">'+esc(TOPICS[S.t].name)+' 전체</span></label>'}
+      h+='<label class="row2"><input type="checkbox" data-sel="'+n+'" data-t="'+S.t+'"'+(PSEL[n]?' checked':'')+'> <span class="nm">'+esc(S.name)+'</span><span class="sub">'+S.ids.length+'문제</span></label>'});
+    h+='</div><div class="pbar" id="pselbar"><span id="pselc"></span><button class="pbtn" data-go="q">문제</button><button class="pbtn" data-go="qa">문제+정답해설</button><button class="btn" id="pclr">선택 모두 해제</button></div>';
+    return h;
   }
-  var S=L[PR.n],h='<div class="pbar noprint"><button class="btn" id="prb">목록으로</button><label><input type="checkbox" id="psc"'+(PSCH?' checked':'')+'> 출처 학교 표시</label><label><input type="checkbox" id="pex"'+(PEX?' checked':'')+'> 정답지에 번호별 풀이 포함</label><button class="pbtn" id="prp">인쇄 / PDF 저장</button></div>';
-  if(PR.m.indexOf('q')>=0)h+=paperQ(S);
-  if(PR.m.indexOf('a')>=0)h+=paperA(S);
+  var h='<div class="pbar noprint"><button class="btn" id="prb">목록으로</button><label><input type="checkbox" id="psc"'+(PSCH?' checked':'')+'> 출처 학교 표시</label><label><input type="checkbox" id="pex"'+(PEX?' checked':'')+'> 정답지에 번호별 풀이 포함</label><button class="pbtn" id="prp">인쇄 / PDF 저장</button></div>';
+  PR.ns.forEach(function(n){var S=L[n];if(!S)return;h+=paperQ(S);if(PR.m==='qa')h+=paperA(S)});
   return h;
 }
 function wirePr(){
-  $.querySelectorAll('[data-pr]').forEach(function(b){b.onclick=function(){var a=b.dataset.pr.split('|');PR={n:+a[0],m:a[1]};draw();window.scrollTo(0,0)}});
+  function cnt(){var n=Object.keys(PSEL).filter(function(k){return PSEL[k]}).length,el=document.getElementById('pselc');if(el)el.textContent='선택 '+n+'개';
+    $.querySelectorAll('[data-go]').forEach(function(g){g.disabled=!n;g.style.opacity=n?1:.5})}
+  function topState(){$.querySelectorAll('[data-top]').forEach(function(t){var xs=$.querySelectorAll('[data-sel][data-t="'+t.dataset.top+'"]'),c=0;xs.forEach(function(x){if(x.checked)c++});t.checked=xs.length>0&&c===xs.length;t.indeterminate=c>0&&c<xs.length})}
+  $.querySelectorAll('[data-sel]').forEach(function(x){x.onchange=function(){PSEL[x.dataset.sel]=x.checked;cnt();topState()}});
+  $.querySelectorAll('[data-top]').forEach(function(t){t.onchange=function(){$.querySelectorAll('[data-sel][data-t="'+t.dataset.top+'"]').forEach(function(x){x.checked=t.checked;PSEL[x.dataset.sel]=t.checked});cnt();topState()}});
+  $.querySelectorAll('[data-go]').forEach(function(g){g.onclick=function(){var ns=Object.keys(PSEL).filter(function(k){return PSEL[k]}).map(Number).sort(function(a,b){return a-b});if(!ns.length)return;PR={ns:ns,m:g.dataset.go};draw();window.scrollTo(0,0)}});
+  var cl=document.getElementById('pclr');if(cl)cl.onclick=function(){PSEL={};$.querySelectorAll('[data-sel],[data-top]').forEach(function(x){x.checked=false;x.indeterminate=false});cnt()};
+  cnt();topState();
   var b=document.getElementById('prb');if(b)b.onclick=function(){PR=null;draw()};
   var c=document.getElementById('psc');if(c)c.onchange=function(){PSCH=c.checked;draw()};
   var e=document.getElementById('pex');if(e)e.onchange=function(){PEX=e.checked;draw()};
