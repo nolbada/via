@@ -185,6 +185,7 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
 .rvchips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
 .rvchips button{border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:999px;padding:5px 12px;font:inherit;cursor:pointer}
 .rvchips.bad button{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+.rvchips.bad button.seen{border-color:var(--line);background:var(--chip);color:var(--sub)}
 .rvchips.ok button{border-color:var(--good);background:var(--good-bg);color:var(--good);cursor:default}
 .dbtn i{color:var(--star)}
 .starb{z-index:2}
@@ -209,6 +210,7 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 
     <button class="big" id="mPracX" type="button"><b>실전 예행연습</b><span id="mPracXS">시험처럼 한번에 · 틀린 것만 다시</span></button>
     <button class="home-btn wl" id="mPracXW" type="button" hidden></button>
     <button class="big" id="mExam" type="button"><b>시험</b><span>1회 · 타임어택</span></button>
+    <button class="home-btn wl" id="mRv" type="button" hidden></button>
     <div class="wlnote">오답노트에는 시험 오답만 쌓여요</div>
     <button class="home-btn" id="mReset" type="button" style="align-self:flex-start" hidden>이어풀기 지우고 처음부터</button><button class="home-btn" id="hbd" type="button" style="align-self:flex-start">Day 목록</button>
   </div>
@@ -508,7 +510,7 @@ function recordResults(items,exam){
   if(m)wlSet(md,m);
   if(WNB.length){WN.add(WNB);WNB=[]}
 }
-function homeRefresh(){var n=starCount(DI);document.getElementById('strow').hidden=!n;document.getElementById('mClrStar').textContent='★ 별표 '+n+'개 모두 지우기';var wa=wlCount('i',DI),wb=wlCount('x',DI),ea=document.getElementById('mPracW'),eb=document.getElementById('mPracXW');ea.hidden=!wa;ea.textContent='틀린 '+wa+'개만 다시';eb.hidden=!wb;eb.textContent='틀린 '+wb+'개만 다시';
+function homeRefresh(){try{var rb0=document.getElementById('mRv'),ro0=rvLoad(),on0=!!(ro0&&ro0.di===DI);if(rb0){rb0.hidden=!on0;if(on0)rb0.textContent=rvLabel(ro0)}}catch(e){}var n=starCount(DI);document.getElementById('strow').hidden=!n;document.getElementById('mClrStar').textContent='★ 별표 '+n+'개 모두 지우기';var wa=wlCount('i',DI),wb=wlCount('x',DI),ea=document.getElementById('mPracW'),eb=document.getElementById('mPracXW');ea.hidden=!wa;ea.textContent='틀린 '+wa+'개만 다시';eb.hidden=!wb;eb.textContent='틀린 '+wb+'개만 다시';
   document.getElementById('dayh').textContent='Day '+pad2(DN);var dw=doneWords(),tc=touched(),pv=loadP();document.getElementById('mLearnS').textContent=dw>=W.length?'모두 풀었어요':(tc||RES>0)?('이어서 · '+Math.min(W.length,Math.floor(RES/2)+1)+' / '+W.length+' 단어'):'같은 뜻, 다른 쓰임 · 언제 쓰는지까지';var pvi=loadP(true);document.getElementById('mPracS').textContent=pvi?('이어서 · '+(pvi.i+1)+' / '+pvi.items.length):'한 문제씩 풀고 · 바로 지도로 확인';document.getElementById('mPracXS').textContent=pv?('이어서 · '+(pv.i+1)+' / '+pv.items.length):'시험처럼 한번에 · 틀린 것만 다시';document.getElementById('mReset').hidden=!(tc||RES>0||pv||pvi)}
 /* 보드에서 열었을 때만: 끝낸 것을 보드 기록(타임테이블)에도 남긴다 */
 function bdDv(w){try{if(window.BoardLink)BoardLink.score('dd',{w:'더블보카 Pro '+w,d:DN})}catch(e){}}
@@ -584,7 +586,8 @@ function examLocked(n,key,rec){
   c.innerHTML='<div class="no">DAY '+pad2(DN)+' · '+esc(n)+'</div><div class="ask">'+(rec.done?'응시 완료':'응시 기록 있음')+'</div><div>'+(rec.done?('점수 '+rec.score+' / '+rec.total+(rec.used?' · 걸린 시간 '+fmt(rec.used):'')):'제출 전에 종료됨')+'</div>';
   var b=el('button','sub2','기록 해제');b.type='button';
   var armed=false;b.onclick=function(){if(!armed){armed=true;b.textContent='한 번 더 누르면 기록이 지워집니다';return}sdel(key);examGate('해제되었습니다')};
-  c.appendChild(b);wrap.appendChild(c);tv.appendChild(wrap);
+  c.appendChild(b);
+  var ro1=rvLoad();if(ro1&&ro1.di===DI){var rb1=el('button','go',rvLabel(ro1));rb1.type='button';rb1.style.marginTop='10px';rb1.onclick=rvResume;c.appendChild(rb1)}wrap.appendChild(c);tv.appendChild(wrap);
   document.getElementById('hbx').onclick=goHome;
 }
 function startExam(n,key){
@@ -718,8 +721,20 @@ function retryBad(bad){
   T={mode:'P',inst:false,retry:true,only:false,scope:T.scope,items:items,i:0,done:false,armed:false};
   showView('testv');renderT();
 }
+/* 261118 틀린 단어 카드: 본 단어는 색이 바뀌고, 보다가 나가도 이어서 복습할 수 있다. 가장 최근 결과 하나만 기억한다(이름별) */
+function rvKey(){return 'dvp_rv_'+WN.name()}
+function rvLoad(){try{var o=JSON.parse(sget(rvKey())||'null');return(o&&Array.isArray(o.bad)&&o.bad.length)?o:null}catch(e){return null}}
+function rvLeft(o){var n=0;for(var i=0;i<o.bad.length;i++)if(!(o.seen&&o.seen[i]))n++;return n}
+function rvLabel(o){var lf=rvLeft(o);return lf?('틀린 단어 이어서 복습 · 남은 '+lf+'개'):('틀린 단어 다시 보기 · '+o.bad.length+'개')}
+function rvResume(){var o=rvLoad();if(!o)return;if(T&&T.tm)clearInterval(T.tm);
+  T={mode:o.E?'E':'P',scope:'day',inst:false,only:false,items:o.bad,i:0,done:true,armed:false,rv:o};
+  var tv=document.getElementById('testv');tv.innerHTML='';showView('testv');rvShow(tv,!!o.E,o.head,[],o.bad)}
 function rvShow(tv,E,head,good,bad){
-  var n=T.items.length,X=!E&&!T.inst;
+  var RV=T.rv||null,n=RV?RV.n:T.items.length,gN=RV?RV.g:good.length,X=!E&&!T.inst;
+  var seen=(RV&&RV.seen)?RV.seen.slice():[],chips=[];
+  function rvSave(pos){if(!bad.length)return;try{sset(rvKey(),JSON.stringify({di:DI,E:E?1:0,head:head,n:n,g:gN,bad:bad,seen:seen,pos:pos||0,t:Date.now()}))}catch(e){}}
+  if(!RV){if(bad.length)rvSave(0);else sdel(rvKey())}
+  function firstLeft(){for(var i=0;i<bad.length;i++)if(!seen[i])return i;return -1}
   tv.appendChild(el('div','top','<b>'+(E?'시험 결과':'연습 결과')+'</b><span id="rvc"></span>'));
   tv.appendChild(el('div','bar','<i id="rvb"></i>'));
   var dk=el('div','deck'),sl=[];
@@ -730,12 +745,12 @@ function rvShow(tv,E,head,good,bad){
   var badW={};bad.forEach(function(it){badW[iw(it).h+'|'+it.di]=1});var rightW={};good.forEach(function(it){var kk=iw(it).h+'|'+it.di;if(!badW[kk])rightW[kk]=it.di});
   var rn=Object.keys(rightW).length;
   var c0=el('div','card end');
-  c0.innerHTML='<div class="no">'+head+'</div><h2>'+good.length+' / '+n+'</h2><div>'+(bad.length?('틀린 단어 '+bad.length+'개 · 카드로 하나씩 짚어 봐요'):'전부 맞혔어요')+'</div>';
+  c0.innerHTML='<div class="no">'+head+'</div><h2>'+gN+' / '+n+'</h2><div>'+(bad.length?('틀린 단어 '+bad.length+'개 · 카드로 하나씩 짚어 봐요'):'전부 맞혔어요')+'</div>';
   if(bad.length){
     var ch=el('div','rvchips bad');
-    bad.forEach(function(it,i){var b=el('button','',esc(iw(it).h));b.type='button';b.onclick=function(){jump(i+1)};ch.appendChild(b)});
+    bad.forEach(function(it,i){var b=el('button',seen[i]?'seen':'',esc(iw(it).h));b.type='button';b.onclick=function(){jump(i+1)};ch.appendChild(b);chips.push(b)});
     c0.appendChild(ch);
-    var stb=el('button','go','틀린 단어 카드 보기');stb.type='button';stb.onclick=function(){jump(1)};c0.appendChild(stb);
+    var fl0=firstLeft(),stb=el('button','go',(RV&&fl0>0)?('이어서 복습 · 남은 '+rvLeft({bad:bad,seen:seen})+'개'):'틀린 단어 카드 보기');stb.type='button';stb.onclick=function(){var q=firstLeft();jump(q<0?1:q+1)};c0.appendChild(stb);
     if(X)c0.appendChild(retryBtn());
   }
   add(c0);
@@ -765,6 +780,7 @@ function rvShow(tv,E,head,good,bad){
     document.getElementById('rvb').style.width=(last?i/last*100:100)+'%';
     P.disabled=i<=0;N.disabled=i>=last;
     if(sl[i])sl[i].classList.add('on');
+    if(i>=1&&i<=bad.length&&!seen[i-1]){seen[i-1]=1;if(chips[i-1])chips[i-1].className='seen';rvSave(i)}
   }
   P.onclick=function(){jump(cur()-1)};N.onclick=function(){jump(cur()+1)};
   dk.addEventListener('scroll',function(){clearTimeout(dk._t);dk._t=setTimeout(upd,60)});
@@ -783,7 +799,7 @@ function submitT(){ if(!T||T.done)return;if(T.mode=='P'&&!T.only&&T.scope=='day'
 }
 document.getElementById('mLearn').onclick=startLearn;
 document.getElementById('mPrac').onclick=function(){startPractice(false,'day',true)};document.getElementById('mPracX').onclick=function(){startPractice(false,'day',false)};document.getElementById('mPracW').onclick=function(){startPractice(true,'day',true)};document.getElementById('mPracXW').onclick=function(){startPractice(true,'day',false)};
-document.getElementById('mExam').onclick=function(){examGate()};
+document.getElementById('mExam').onclick=function(){examGate()};document.getElementById('mRv').onclick=rvResume;
 document.getElementById('mReset').onclick=function(){var b=this;if(!b._a){b._a=1;b.textContent='한 번 더 누르면 지워져요';return}b._a=0;b.textContent='이어풀기 지우고 처음부터';sdel(lKey());sdel(pKey());sdel(pKeyI());ST[DI]={};st=ST[DI];RES=0;build();deck.scrollLeft=0;update();homeRefresh()};document.getElementById('hb1').onclick=goHome;
 document.getElementById('hbd').onclick=goDays;
 function twoTap(id,txt,fn){document.getElementById(id).onclick=fn}
