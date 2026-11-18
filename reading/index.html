@@ -86,7 +86,7 @@ function render(){
     s.b.forEach(b=>{
       const r=document.createElement('div');r.className='bk'+(hidden[b[0]]?' off':'');
       r.innerHTML='<label><input type="checkbox" '+(hidden[b[0]]?'checked':'')+' data-id="'+b[0]+'"></label>'+
-        '<a class="main" href="../'+b[0]+'/">'+s.n+' '+b[1]+'</a><a class="ex" href="../'+b[0]+'/exit/">Exit test</a>';
+        '<a class="main" href="../'+b[0]+'/">'+s.n+' '+b[1]+'</a>';
       w.appendChild(r);
     });
     d.appendChild(w);
