@@ -254,7 +254,13 @@ function nOf(it){return it.type==='day'?6:Math.max(1,Math.min(6,+it.n||1))}
 function arrOf(r,k,n){var a=r[k];if(!Array.isArray(a)){a=r[k]=[]}while(a.length<n)a.push('');return a}
 function ensure(r,items){items.forEach(function(it){arrOf(r,it.k,nOf(it))});r.xd=r.xd||{};r.lt=r.lt||{};r.ck=r.ck||'';return r}
 function cloneJ(x){return JSON.parse(JSON.stringify(x))}
-function itemsOfMeta(m){return(m.items&&m.items.length)?m.items:defItems(!!m.vocalink,m.bidanDays)}
+/* 261118: 칸 이름을 '월,화,수,목,토,일'처럼 글자로 적어 넣은 6칸 항목은 '매일(요일별 6칸)'으로 본다. 주간은 토요일에 시작해 목요일에 끝나므로 칸 순서는 늘 토·일·월·화·수·목 */
+function dayFix(items){return(items||[]).map(function(it){
+  if(!it||it.type==='day'||!Array.isArray(it.labels))return it;
+  var j=it.labels.join('').replace(/[^월화수목토일]/g,''),raw=it.labels.join('').replace(/[\s,·\/]/g,'');
+  if(j.length!==6||raw.length!==6||!/^(?!.*(.).*\1)[월화수목토일]{6}$/.test(j))return it;
+  var o={};for(var k in it)if(k!=='labels')o[k]=it[k];o.type='day';o.n=6;return o})}
+function itemsOfMeta(m){return(m.items&&m.items.length)?dayFix(m.items):defItems(!!m.vocalink,m.bidanDays)}
 function hasN(items){return items.some(function(it){return it.vc})}
 function slotInfo(it,i,start,teacher){
   if(it.type==='day'){var d=addDays(start,i);return {lb:'<b>'+WD[i]+'</b>'+md(d),fut:d>today()}}
@@ -507,12 +513,12 @@ function runTeacher(code){
   function clKey(c){var m=c.match(/(초|중|고)\s*(\d)/),l=c.match(/(초|중|고)\s*\d\s*[-(]?\s*([A-Za-z])\b/);return [grpOf(c),m?'초중고'.indexOf(m[1]):9,m?+m[2]:9,l?l[2].toUpperCase().charCodeAt(0):999]}
   function classes(){var o=[];act().forEach(function(s){if(o.indexOf(s.cls)<0)o.push(s.cls)});var ix={};o.forEach(function(c,i){ix[c]=i});return o.sort(function(x,y){var p=clKey(x),q=clKey(y);for(var i=0;i<4;i++){if(p[i]!==q[i])return p[i]-q[i]}return ix[x]-ix[y]})}
   function itemsOf(cl){
-    var c=cfg[cl];if(c&&c.length)return c;
+    var c=cfg[cl];if(c&&c.length)return dayFix(c);
     var L=act().filter(function(s){return s.cls===cl}),bd=null;
     L.forEach(function(s){if(!bd&&s.bidanDays)bd=s.bidanDays});
     return [{k:'b',label:'비단챌',sub:'예문 해석 주 3회'+(bd?' · '+bd.join('·')+'까지':''),n:3,labels:bd||null}];
   }
-  function xcat(){var c=cfg['*x'];return(c&&c.length)?c:XDEF}
+  function xcat(){var c=cfg['*x'];return(c&&c.length)?dayFix(c):XDEF}
   function hasX(S,k){return(S.xs||[]).indexOf(k)>=0}
   function itemsFor(S){var b=itemsOf(S.cls);return b.concat(xcat().filter(function(it){return hasX(S,it.k)&&!b.some(function(q){return q.k===it.k})}))}
   function itemsUnion(cl){var b=itemsOf(cl),L=act().filter(function(s){return s.cls===cl});return b.concat(xcat().filter(function(it){return !b.some(function(q){return q.k===it.k})&&L.some(function(S){return hasX(S,it.k)})}))}
