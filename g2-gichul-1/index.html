@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko" translate="no"><head><meta charset="utf-8">
 <meta name="google" content="notranslate"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>중2 문법(기출) Vol. 1</title><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" type="image/png" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#2a6f97">
+<title>중등 문법 기출</title><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" type="image/png" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#2a6f97">
 <style>
 :root{--bg:#f2f5f7;--card:#fff;--ink:#1d2a33;--sub:#5d6d78;--line:#dde5ea;--ac:#2a6f97;--acInk:#fff;--acSoft:#e3eff6;--good:#1f7a4d;--bad:#b3372f;--chip:#edf1f4;--hl:#fff1a8;--sh:0 6px 20px rgba(29,42,51,.08)}
 @media (prefers-color-scheme:dark){:root{--bg:#10171c;--card:#1a242b;--ink:#eaf0f3;--sub:#9db0ba;--line:#2a3944;--ac:#6cb6dd;--acInk:#0c1a22;--acSoft:#1c3441;--good:#6fd6a0;--bad:#ff8f86;--chip:#243540;--hl:#5a4f10;--sh:0 6px 20px rgba(0,0,0,.35)}}
@@ -117,7 +117,7 @@ function stat(ids){var a=0,r=0,w=0;ids.forEach(function(id){var x=RES[id];if(x){
 /* ---------- 화면 ---------- */
 function home(){
   var tot=0,sol=0,wrong=0;
-  var h='<h1>중2 문법(기출) Vol. 1</h1><p class="sub">단원을 골라 한 문제씩 풀어요</p>';
+  var h='<h1>중등 문법 기출</h1><p class="sub">단원을 골라 한 문제씩 풀어요</p>';
   META.forEach(function(m){
     var ids=m.ids||[];var st=stat(ids);tot+=m.n;sol+=st.a;wrong+=st.w;
     h+='<button class="unit" data-act="unit" data-u="'+m.u+'"><span class="nb">'+m.u+'단원</span><span class="tx"><b>'+esc(m.name)+'</b><small>'+m.n+'문항 · 푼 문제 '+st.a+'개</small><div class="pg"><i style="width:'+(m.n?Math.round(100*st.a/m.n):0)+'%"></i></div></span></button>';
@@ -275,7 +275,7 @@ function resView(){
   return h;
 }
 function nameView(){
-  return '<div class="nm"><h1>중2 문법(기출) Vol. 1</h1><p>보드에서 이름을 누르고 들어오면<br>푼 기록이 저장돼요.</p><a class="go" style="text-decoration:none" href="https://nolbada.github.io/board/">보드로 가기</a><button class="go sub" data-act="anon">이름 없이 풀어 보기</button></div>';
+  return '<div class="nm"><h1>중등 문법 기출</h1><p>보드에서 이름을 누르고 들어오면<br>푼 기록이 저장돼요.</p><a class="go" style="text-decoration:none" href="https://nolbada.github.io/board/">보드로 가기</a><button class="go sub" data-act="anon">이름 없이 풀어 보기</button></div>';
 }
 function langFix(root){ // 한글 문장 속 영어도 lang=en / translate=no 로 표시
   var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),L=[],n;
