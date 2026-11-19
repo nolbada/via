@@ -21,6 +21,7 @@ h1{font-size:22px;margin:6px 2px 2px}.sub{color:var(--sub);font-size:14px;margin
 .unit .pg{height:5px;background:var(--line);border-radius:3px;margin-top:6px;overflow:hidden}.unit .pg i{display:block;height:100%;background:var(--good)}
 .go{display:block;width:100%;border:0;border-radius:14px;padding:14px;font-weight:700;background:var(--ac);color:var(--acInk);margin-top:12px;font-size:17px}
 .go.sub{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.pkg{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}.pk{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);font:700 14px inherit;color:var(--sub);padding:0}.pk.g{background:var(--good);color:var(--acInk);border-color:var(--good)}.pk.b{background:var(--bad,#d9534f);color:var(--acInk);border-color:var(--bad,#d9534f)}
 .set{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 14px;margin:8px 0}
 .set b{flex:none;width:76px;font-size:15px}.dots{display:flex;gap:4px;flex:1;flex-wrap:wrap}.dots i{width:12px;height:12px;border-radius:50%;background:var(--line)}.dots i.g{background:var(--good)}.dots i.b{background:var(--bad)}
 .set em{font-style:normal;color:var(--sub);font-size:13px;flex:none}
@@ -134,6 +135,7 @@ function unitView(){
   if(nxt>=qs.length){h+='<button class="go" data-act="startSet" data-s="0">처음부터 다시 풀기</button>'}
   else h+='<button class="go" data-act="resume" data-i="'+nxt+'">이어서 풀기 · '+qs[nxt].n+'번부터</button>';
   if(st.w)h+='<button class="go sub" data-act="wrongUnit">이 단원 틀린 문제 다시 풀기 ('+st.w+')</button>';
+  h+='<p class="sub" style="margin:14px 0 4px">번호를 누르면 그 문제부터 풀어요</p><div class="pkg">'+qs.map(function(q,i){var x=RES[q.id];return'<button class="pk '+(x?(x[0]?'g':'b'):'')+'" data-act="resume" data-i="'+i+'">'+q.n+'</button>'}).join('')+'</div>';
   var ns=Math.ceil(qs.length/SET);
   for(var s=0;s<ns;s++){
     var part=qs.slice(s*SET,s*SET+SET),dots='';
