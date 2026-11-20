@@ -558,33 +558,65 @@ function runTeacher(code){
     });
     cfg['*d1119']=1;pchg=true;mark('cfg');
   }
+  /* 261120: 저장 폭주 방지. 반 전체 기록(main)을 먼저 한 번에 저장하고, 부모용 기록(mirror)은 4개씩 차례로 보낸다.
+     mirror 가 실패해도 main 은 이미 저장된 것이므로 전체를 다시 보내지 않고 실패한 학생 것만 모아 두었다가 다시 보낸다.
+     자동 재시도는 횟수 상한이 있고, 넘으면 멈춘 뒤 저장하기를 누르면 다시 시도한다 */
+  var pend={},pendV=0,mirRun=false,mirRetry=null,mirN=0,mainN=0;
+  function runMirrors(){
+    if(mirRun)return;var toks=Object.keys(pend);if(!toks.length)return;
+    mirRun=true;var i=0,ok=0,bad=0,live=0;
+    function done(){
+      mirRun=false;var left=Object.keys(pend).length;
+      if(!left){mirN=0;return}
+      if(ok)mirN=0;
+      if(mirN>=6){setSt('저장하기 · 부모 화면 반영 '+left+'명 안 됨',true);stEl.className='savest dirty';return}
+      clearTimeout(mirRetry);mirRetry=setTimeout(runMirrors,Math.min(60000,4000*Math.pow(2,mirN++)));
+    }
+    function next(){
+      if(i>=toks.length){if(!live)done();return}
+      var tok=toks[i++],e=pend[tok];if(!e){next();return}
+      live++;
+      putKeys('HWP|'+tok,e.m).then(function(){
+        if(pend[tok]===e){delete pend[tok];if(e.mj)lastMeta[tok]=e.mj}
+        ok++;
+      },function(){bad++}).then(function(){live--;next()});
+    }
+    for(var w=0;w<4&&w<toks.length;w++)next();
+  }
   function flush(){
     if(saving)return;var keys=Object.keys(dirty);if(!keys.length)return;
     saving=true;setSt('저장 중…');
-    var main={},mirror={};
+    var main={},mirror={},mj={};
     keys.forEach(function(k){
       if(k==='roster'){main.roster=roster;return}
       if(k==='cfg'){main.cfg=cfg;return}
       var p=k.split(':'),sid=p[1],wk=p[2],r=recs[sid][wk];main[k]=r;
       var S=findS(sid);if(S){mirror[S.tok]=mirror[S.tok]||{};mirror[S.tok]['w:'+wk]=r}
     });
-    metaNew={};if(dirty.roster||dirty.cfg){roster.forEach(function(S){var mj=JSON.stringify(metaOf(S));if(lastMeta[S.tok]!==mj){mirror[S.tok]=mirror[S.tok]||{};mirror[S.tok].meta=metaOf(S);metaNew[S.tok]=mj}})}
+    if(dirty.roster||dirty.cfg){roster.forEach(function(S){var m=JSON.stringify(metaOf(S));if(lastMeta[S.tok]!==m){mirror[S.tok]=mirror[S.tok]||{};mirror[S.tok].meta=metaOf(S);mj[S.tok]=m}})}
     var snap=keys.map(function(k){return [k,dirty[k]]}),t0=Date.now();
-    var jobs=[putKeys(ID,main)];
-    Object.keys(mirror).forEach(function(tok){jobs.push(putKeys('HWP|'+tok,mirror[tok]))});
-    Promise.all(jobs).then(function(){
+    putKeys(ID,main).then(function(){
       snap.forEach(function(s){if(dirty[s[0]]===s[1])delete dirty[s[0]];T[s[0]]=t0});
-      for(var tk in metaNew)lastMeta[tk]=metaNew[tk];metaNew={};retryN=0;
+      Object.keys(mirror).forEach(function(tok){
+        var e=pend[tok];if(!e){e=pend[tok]={m:{},mj:null}}
+        for(var k in mirror[tok])e.m[k]=mirror[tok][k];
+        if(mj[tok])e.mj=mj[tok];
+        pendV++;
+      });
+      mainN=0;retryN=0;mirN=0;
       saving=false;var n=new Date();setSt('저장됨 '+pad(n.getHours())+':'+pad(n.getMinutes()));
       if(Object.keys(dirty).length)setDirtySt();
+      runMirrors();
     },function(){
-      saving=false;setSt('저장 실패 · 다시 시도 중',true);
+      saving=false;mainN++;
+      if(mainN>=8){setSt('저장 실패 · 저장하기를 눌러 다시 시도',true);stEl.className='savest err dirty';return}
+      setSt('저장 실패 · 다시 시도 중',true);
       clearTimeout(retry);retry=setTimeout(flush,Math.min(60000,4000*Math.pow(2,retryN++)));
     });
   }
   var ft=null,pchg=false,lastAct=0,lastMeta={},metaNew={},lastInit=0,retryN=0;
   function setDirtySt(){var n=Object.keys(dirty).filter(function(k){return k.indexOf('w:')===0}).length;if(!n)return;setSt('저장하기 · '+n+'명 저장 안 됨');stEl.className='savest dirty'}
-  stEl.onclick=function(){if(Object.keys(dirty).length&&!saving)flush()};
+  stEl.onclick=function(){if(Object.keys(dirty).length&&!saving){mainN=0;flush()}else if(Object.keys(pend).length&&!mirRun){mirN=0;runMirrors()}};
   function mark(k){lastAct=Date.now();dirty[k]=(dirty[k]||0)+1;if(k.indexOf('w:')===0){setDirtySt()}else{setSt('저장 대기…');clearTimeout(ft);ft=setTimeout(flush,900)}}
 
   var BSRV='https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec',penS={},penT={},penO={};
