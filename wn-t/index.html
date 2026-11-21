@@ -170,7 +170,7 @@ function friList(items,K){
 }
 var FZT={};
 function fzT(n){return FZT[n]||(FZT[n]={})}
-function spList(items,K,n){var a=fzT(n)[K];if(!a||!a.length)return friList(items,K);var by={},o=[];items.forEach(function(i){by[String(i.w).toLowerCase()]=i});a.forEach(function(w){var x=by[String(w).toLowerCase()];if(x&&o.indexOf(x)<0)o.push(x)});return o.sort(function(p,q){return p.w.toLowerCase()<q.w.toLowerCase()?-1:1})}
+function spList(items,K,n){var a=fzT(n)[K];if(!a||!a.length)return friList(items,K);var by={},o=[];items.forEach(function(i){by[String(i.w).toLowerCase()]=i});a.forEach(function(w){var x=by[String(w).toLowerCase()];if(x&&o.indexOf(x)<0)o.push(x)});var miss=a.length-o.length;if(miss>0){var u={};o.forEach(function(x){u[String(x.w).toLowerCase()]=1});friList(items,K).forEach(function(i){var k=String(i.w).toLowerCase();if(miss>0&&!u[k]){u[k]=1;o.push(i);miss--}})}return o.sort(function(p,q){return p.w.toLowerCase()<q.w.toLowerCase()?-1:1})}
 function fzIt(r,n){var hd=(ctlOf(CTM,n).hide)||[];return(r&&r.items||[]).filter(function(i){return hd.indexOf(i.src)<0})}
 function fzU(a){var u={};return a.filter(function(w){var k=String(w).toLowerCase();if(u[k])return false;u[k]=1;return true})}
 function fzPull(n,r,K){
