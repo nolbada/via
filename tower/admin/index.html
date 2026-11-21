@@ -25,6 +25,14 @@
   .row .s{margin-left:auto;display:flex;gap:8px;align-items:center;font-size:13px;color:var(--sub)}
   .row.out .n{color:var(--sub);text-decoration:line-through}
   .bar{display:flex;gap:8px;margin-bottom:8px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:8px}
+  .k{color:var(--sub);font-size:13px}
+  .line{display:flex;gap:8px;margin-top:6px;align-items:center}
+  input{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;min-width:0;flex:1}
+  .n2{cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+  .tag{font-size:12px;color:var(--pri);margin-left:6px}
+  .lg{font-size:13px;padding:6px 0;border-top:1px solid var(--line);display:flex;gap:8px;align-items:center}
+  .lg span.m{flex:1}
 </style>
 </head>
 <body>
@@ -35,8 +43,9 @@
   <div id="msg"></div>
   <div id="list"></div>
 </div>
+<div class="wrap" id="st" style="display:none"></div>
 <script>
-/* tower-admin 261121c — 선생님 전용. 학생 문서 등록(이미 있으면 건드리지 않음)·재원/퇴원 전환·위치 새로 읽기. 모든 변경은 tower_log 에 새로 쌓인다. */
+/* tower-admin 261121d — 선생님 전용. 학생 문서 등록(이미 있으면 건드리지 않음)·재원/퇴원 전환·위치 새로 읽기. 모든 변경은 tower_log 에 새로 쌓인다. */
 (function(){
 var ROSTER={"M초6A":["윤여름","조서인"],"M초6C":["김동권","김은찬","김이한","민윤찬","박윤수","신도건","이상윤"],"T초6B":["김지율","김태율","노지훈","이재빈","연휘건"],"T초6C":["김예슬","노예린","류이안","이연서","이재인","조은유","연다혜"],"M중1B":["김시원","김윤슬","류아인","박대환","이지성","임건호","정해윤"],"T중1A":["김태건","장도율","조이준","최민준","홍윤제"]};
 var ORDER=["M초6A","M초6C","T초6B","T초6C","M중1B","T중1A"];
@@ -89,7 +98,7 @@ function render(){
     h+='<div class="grp">'+esc(c)+" · 재원 "+n+"명</div>";
     a.sort(function(x,y){return x.name<y.name?-1:1;}).forEach(function(d){
       var out=d.status!=="active";
-      h+='<div class="row'+(out?" out":"")+'"><span class="n">'+esc(d.name)+'</span><span class="s">'+(out?"퇴원":"재원")+'<button class="'+(out?"":"w")+'" data-id="'+d.id+'">'+(out?"다시 재원":"퇴원 처리")+"</button></span></div>";
+      h+='<div class="row'+(out?" out":"")+'"><span class="n n2" data-open="'+d.id+'">'+esc(d.name)+'</span><span class="s">'+(out?"퇴원":"재원")+'<button class="'+(out?"":"w")+'" data-id="'+d.id+'">'+(out?"다시 재원":"퇴원 처리")+"</button></span></div>";
     });
   });
   $("list").innerHTML=h||'<div class="grp">등록된 학생이 없습니다</div>';
@@ -237,6 +246,135 @@ $("syn").onclick=function(){
     });
   }).catch(function(e){$("syn").disabled=false;fail(e);});
 };
+/* ===== 학생 한 명 화면: 반 옮기기 · 위치 지정 · 지정 대기 처리 · 되돌리기 ===== */
+var ST=null,STLOG=[],STK=[],TRK=["V시그널","M 리딩","대화문 기출","비단챌","보카링크","독해33","데일리보카"];
+var ACT={register:"등록",left:"퇴원",active:"재원",pos:"위치 읽기",cls:"반 이동",ov:"위치 지정",asg:"지정 입력",undo:"되돌림"};
+function fv(x){
+  if(x===null||x===undefined)return {nullValue:null};
+  if(typeof x==="string")return S(x);
+  if(typeof x==="number")return {integerValue:String(x)};
+  if(Array.isArray(x))return {arrayValue:{values:x.map(fv)}};
+  var f={};for(var k in x)f[k]=fv(x[k]);return {mapValue:{fields:f}};
+}
+function fdec(f){var d={};for(var k in f)d[k]=dec(f[k]);return d;}
+function stFail(e){BUSY=false;if(e&&e.auth){authFail();return;}say(String(e&&e.message||e),1);}
+function stLoad(id){
+  return api("/tower_s/"+id).then(function(r){
+    if(r.status===401||r.status===403)throw {auth:1};
+    if(!r.ok)throw new Error("학생 읽기 실패 "+r.status);
+    return r.json();
+  }).then(function(j){
+    var d=fdec(j.fields||{});d.id=id;d.ut=j.updateTime;
+    if(!d.ov||Array.isArray(d.ov)||typeof d.ov!=="object")d.ov={};
+    if(!Array.isArray(d.asg))d.asg=[];
+    if(!Array.isArray(d.pos))d.pos=[];
+    if(!Array.isArray(d.pend))d.pend=[];
+    ST=d;
+    return api(":runQuery",{method:"POST",body:JSON.stringify({structuredQuery:{from:[{collectionId:"tower_log"}],where:{fieldFilter:{field:{fieldPath:"name"},op:"EQUAL",value:S(d.name)}},limit:100}})});
+  }).then(function(r){
+    if(r.status===401||r.status===403)throw {auth:1};
+    if(!r.ok)throw new Error("기록 읽기 실패 "+r.status);
+    return r.json();
+  }).then(function(a){
+    STLOG=a.filter(function(x){return x.document;}).map(function(x){var q=fdec(x.document.fields||{});q.id=x.document.name.split("/").pop();return q;}).sort(function(x,y){return y.t-x.t;});
+  });
+}
+function ptime(t){var d=new Date(t),W=["일","월","화","수","목","금","토"];return (d.getMonth()+1)+"/"+d.getDate()+"("+W[d.getDay()]+") "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);}
+function compV(k){for(var i=0;i<ST.pos.length;i++)if(ST.pos[i].k===k)return ST.pos[i].v;return "";}
+function ovOn(k){var o=ST.ov[k];return !!(o&&typeof o==="object"&&o.b===compV(k));}
+function undoId(){
+  for(var i=0;i<STLOG.length;i++){var e=STLOG[i];
+    if(e.act!=="cls"&&e.act!=="ov"&&e.act!=="asg")continue;
+    if(STLOG.some(function(x){return x.act==="undo"&&x.of===e.id;}))continue;
+    return e.id;
+  }
+  return "";
+}
+function stView(){
+  var d=ST,h="",cl={};
+  DOCS.forEach(function(x){cl[x.cls]=1;});
+  STK=[];d.pos.forEach(function(x){STK.push(x.k);});
+  Object.keys(d.ov).forEach(function(k){if(STK.indexOf(k)<0)STK.push(k);});
+  h+='<button data-a="back">목록으로</button>';
+  h+='<h1>'+esc(d.name)+'</h1><div class="grp">'+esc(d.cls)+" · "+(d.status==="active"?"재원":"퇴원")+(d.sy?" · 기록 읽은 시각 "+ptime(d.sy):"")+'</div>';
+  h+='<div class="card"><div class="k">반</div><div class="line"><input id="stcls" list="clsl" value="'+esc(d.cls)+'"><button class="p" data-a="cls">옮기기</button></div><datalist id="clsl">'+Object.keys(cl).map(function(c){return '<option value="'+esc(c)+'">';}).join("")+'</datalist></div>';
+  h+='<div class="grp">위치</div>';
+  STK.forEach(function(k,i){
+    var on=ovOn(k),cur=on?d.ov[k].t:compV(k);
+    h+='<div class="card"><div class="k">'+esc(k)+(on?'<span class="tag">선생님 지정</span>':"")+'</div><div class="line"><input id="stv'+i+'" value="'+esc(cur)+'"><button class="p" data-a="ov" data-i="'+i+'">저장</button>'+(on?'<button data-a="ovx" data-i="'+i+'">지정 해제</button>':"")+'</div></div>';
+  });
+  h+='<div class="card"><div class="k">항목 추가</div><div class="line"><input id="stnk" list="trkl" placeholder="항목"><datalist id="trkl">'+TRK.map(function(c){return '<option value="'+esc(c)+'">';}).join("")+'</datalist><input id="stnv" placeholder="위치"><button class="p" data-a="ovn">추가</button></div></div>';
+  h+='<div class="grp">지정 대기</div>';
+  if(!d.pend.length)h+='<div class="card k">없음</div>';
+  d.pend.forEach(function(x,i){
+    var a=null;d.asg.forEach(function(q){if(q&&q.p===x)a=q;});
+    h+='<div class="card"><div>'+esc(x)+(a?'<span class="tag">지정함</span>':"")+'</div><div class="line"><input id="sta'+i+'" value="'+esc(a?a.t:"")+'" placeholder="지정할 내용"><button class="p" data-a="asg" data-i="'+i+'">저장</button>'+(a?'<button data-a="asgx" data-i="'+i+'">지정 해제</button>':"")+'</div></div>';
+  });
+  h+='<div class="grp">변경 기록</div><div class="card">';
+  var u=undoId(),n=0;
+  STLOG.slice(0,8).forEach(function(e){
+    h+='<div class="lg"><span class="k">'+ptime(e.t)+'</span><span class="m">'+esc(ACT[e.act]||e.act)+(e.msg?" · "+esc(e.msg):"")+'</span>'+(e.id===u?'<button data-a="undo">되돌리기</button>':"")+'</div>';n++;
+  });
+  if(!n)h+='<div class="k">기록 없음</div>';
+  h+='</div><button data-a="re">새로 읽기</button> <button data-a="back">목록으로</button>';
+  $("st").innerHTML=h;
+}
+function stOpen(id){
+  say("읽는 중...");
+  stLoad(id).then(function(){$("app").style.display="none";$("st").style.display="block";stView();say("");window.scrollTo(0,0);}).catch(stFail);
+}
+function stSave(act,changes,msg,of){
+  if(BUSY)return;BUSY=true;say("저장 중...");
+  var before={},after={},fields={},mask=[];
+  for(var f in changes){before[f]=ST[f];after[f]=changes[f];fields[f]=fv(changes[f]);mask.push(f);}
+  var lw=logW(act,ST.name,ST.cls);
+  lw.update.fields.before=S(JSON.stringify(before));lw.update.fields.after=S(JSON.stringify(after));lw.update.fields.msg=S(msg);
+  if(of)lw.update.fields.of=S(of);
+  var w=[{update:{name:DB+"/documents/tower_s/"+ST.id,fields:fields},updateMask:{fieldPaths:mask},currentDocument:{updateTime:ST.ut}},lw];
+  return api(":commit",{method:"POST",body:JSON.stringify({writes:w})}).then(function(r){
+    if(r.status===401||r.status===403)throw {auth:1};
+    if(!r.ok)throw new Error("저장 실패 "+r.status+" (아래 새로 읽기를 누르고 다시 해 주세요)");
+    BUSY=false;
+    return stLoad(ST.id).then(function(){stView();say(msg+" 저장했습니다.");});
+  }).catch(stFail);
+}
+function cp(o){return JSON.parse(JSON.stringify(o));}
+function ovSet(k,val){
+  var o=cp(ST.ov);val=String(val||"").trim();
+  if(!val||val===compV(k))delete o[k];else o[k]={t:val,b:compV(k)};
+  return o;
+}
+$("st").addEventListener("click",function(ev){
+  var b=ev.target.closest("[data-a]");if(!b||BUSY)return;
+  var a=b.getAttribute("data-a"),i=+b.getAttribute("data-i"),k=STK[i];
+  if(a==="back"){$("st").style.display="none";$("app").style.display="block";say("읽는 중...");reload();return;}
+  if(a==="re"){say("읽는 중...");stLoad(ST.id).then(function(){stView();say("");}).catch(stFail);return;}
+  if(a==="cls"){
+    var c=norm($("stcls").value);if(!c||c===ST.cls){say("다른 반 이름을 넣어 주세요.",1);return;}
+    stSave("cls",{cls:c},ST.cls+" → "+c);return;
+  }
+  if(a==="ov"){var v=$("stv"+i).value;stSave("ov",{ov:ovSet(k,v)},k+": "+(String(v).trim()||"지정 해제"));return;}
+  if(a==="ovx"){stSave("ov",{ov:ovSet(k,"")},k+": 지정 해제");return;}
+  if(a==="ovn"){
+    var nk=String($("stnk").value).trim(),nv=String($("stnv").value).trim();
+    if(!nk||!nv){say("항목과 위치를 모두 넣어 주세요.",1);return;}
+    var o=cp(ST.ov);o[nk]={t:nv,b:compV(nk)};stSave("ov",{ov:o},nk+": "+nv);return;
+  }
+  if(a==="asg"||a==="asgx"){
+    var p=ST.pend[i],t=a==="asg"?String($("sta"+i).value).trim():"",L=ST.asg.filter(function(q){return q&&q.p!==p;});
+    if(t)L.push({p:p,t:t});
+    stSave("asg",{asg:L},p+": "+(t||"지정 해제"));return;
+  }
+  if(a==="undo"){
+    var id=undoId(),e=STLOG.filter(function(x){return x.id===id;})[0];if(!e)return;
+    var bf;try{bf=JSON.parse(e.before);}catch(x){bf=null;}
+    if(!bf){say("되돌릴 수 없는 기록입니다.",1);return;}
+    stSave("undo",bf,(ACT[e.act]||e.act)+(e.msg?" · "+e.msg:""),e.id);return;
+  }
+});
+$("list").addEventListener("click",function(ev){
+  var n=ev.target.closest("[data-open]");if(!n||BUSY)return;stOpen(n.getAttribute("data-open"));
+});
 function authFail(){$("app").style.display="none";$("gate").style.display="block";$("gerr").textContent="이 계정으로는 열 수 없습니다. 선생님 계정으로 로그인해 주세요.";if(AUTH)AUTH.signOut();}
 function start(){$("gate").style.display="none";$("app").style.display="block";say("읽는 중...");reload();}
 $("glog").onclick=function(){var b=this;$("gerr").textContent="";if(!AUTH){$("gerr").textContent="준비 중입니다. 잠시 뒤 다시 눌러 주세요.";return;}b.disabled=true;AUTH.signIn().then(function(){b.disabled=false;},function(e){b.disabled=false;var c=e&&e.code||"";$("gerr").textContent=(c==="auth/popup-closed-by-user"||c==="auth/cancelled-popup-request")?"":"로그인 실패: "+(c||e);});};
