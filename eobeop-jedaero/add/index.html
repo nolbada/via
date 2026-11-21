@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko" translate="no"><head>
+<meta charset="utf-8"><script src="../../common/recfs.js?v=261117g"></script>
+<meta name="google" content="notranslate">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="icon" href="../icon-192.png"><link rel="apple-touch-icon" href="../icon-192.png"><meta name="theme-color" content="#f2a63c"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>제대로 어법 추가문제 정답·분석·해설</title>
+<style>
+body{margin:0;background:#f4f6f5;color:#16211f;font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif}
+main{max-width:560px;margin:0 auto;padding:28px 16px 40px}
+h1{font-size:22px;margin:0 0 6px}p.note{font-size:14px;color:#5b6b67;margin:0 0 14px}
+a.pg{display:flex;flex-direction:column;justify-content:center;min-height:60px;background:#fff;border:1px solid #dbe3e0;border-left:5px solid #12314f;border-radius:10px;padding:10px 14px;color:#16211f;text-decoration:none;margin-bottom:8px}
+a.pg b{font-size:17px}a.pg span{font-size:13px;color:#5b6b67;margin-top:2px}
+a.pg:active{background:#dbe3e0}a.pg.lk{opacity:.45;border-left-color:#9aa6a3}a.pg.lk span:after{content:" · 잠김";font-size:12px}
+</style></head><body><main>
+<h1>제대로 어법 추가문제</h1>
+<p class="note">챕터를 눌러 정답, 문장 분석, 해설을 보세요. 잠김 표시는 선생님이 아직 열지 않은 챕터예요.</p>
+<a class="pg" href="../ch01-add.html"><b>CHAPTER 01</b><span>주어-동사 수 일치 · 30문항</span></a>
+<a class="pg" href="../ch02-add.html"><b>CHAPTER 02</b><span>동사의 시제 · 15문항</span></a>
+<a class="pg" href="../ch03-add.html"><b>CHAPTER 03</b><span>동사의 능동태·수동태 · 15문항</span></a>
+<a class="pg" href="../ch04-add.html"><b>CHAPTER 04</b><span>조동사 · 20문항</span></a>
+<a class="pg" href="../ch05-add.html"><b>CHAPTER 05</b><span>가정법 · 15문항</span></a>
+<a class="pg" href="../ch06-add.html"><b>CHAPTER 06</b><span>동명사와 to부정사 · 30문항</span></a>
+<a class="pg" href="../ch07-add.html"><b>CHAPTER 07</b><span>분사 · 25문항</span></a>
+<a class="pg" href="../ch08-add.html"><b>CHAPTER 08</b><span>등위·상관접속사와 병렬구조 · 15문항</span></a>
+<a class="pg" href="../ch09-add.html"><b>CHAPTER 09</b><span>부사절 접속사와 명사절 접속사 · 15문항</span></a>
+<a class="pg" href="../ch10-add.html"><b>CHAPTER 10</b><span>관계사 · 25문항</span></a>
+<a class="pg" href="../ch11-add.html"><b>CHAPTER 11</b><span>명사와 대명사 · 25문항</span></a>
+<a class="pg" href="../ch12-add.html"><b>CHAPTER 12</b><span>형용사와 부사 · 25문항</span></a>
+<a class="pg" href="../ch13-add.html"><b>CHAPTER 13</b><span>비교구문 · 15문항</span></a>
+<a class="pg" href="../ch14-add.html"><b>CHAPTER 14</b><span>도치와 어순 · 15문항</span></a>
+</main><script>
+(function(){
+var KV='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec',ID='EJCTL';
+var A=[].slice.call(document.querySelectorAll('a.pg')),OPEN=null;
+function key(a){return a.getAttribute('href').replace('../','').replace('.html','')}
+function ls(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function teacher(){return ls('ej_teacher')==='1'}
+function mark(){A.forEach(function(a){var o=teacher()||(OPEN&&OPEN[key(a)]);if(OPEN===null&&!teacher()){a.classList.remove('lk');return}a.classList.toggle('lk',!o)})}
+fetch(KV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:ID,data:{}})}).then(function(r){return r.json()}).then(function(r){
+ var d=(r&&r.data)||{};OPEN={};for(var k in d){try{var x=d[k],s=(x&&x.v&&typeof x.v.s==='string')?x.v.s:null;if(s&&JSON.parse(s).o)OPEN[k]=1}catch(e){}}mark()},function(){});
+})();
+</script></body></html>
