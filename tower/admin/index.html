@@ -36,7 +36,7 @@
   <div id="list"></div>
 </div>
 <script>
-/* tower-admin 261121b — 선생님 전용. 학생 문서 등록(이미 있으면 건드리지 않음)·재원/퇴원 전환·위치 새로 읽기. 모든 변경은 tower_log 에 새로 쌓인다. */
+/* tower-admin 261121c — 선생님 전용. 학생 문서 등록(이미 있으면 건드리지 않음)·재원/퇴원 전환·위치 새로 읽기. 모든 변경은 tower_log 에 새로 쌓인다. */
 (function(){
 var ROSTER={"M초6A":["윤여름","조서인"],"M초6C":["김동권","김은찬","김이한","민윤찬","박윤수","신도건","이상윤"],"T초6B":["김지율","김태율","노지훈","이재빈","연휘건"],"T초6C":["김예슬","노예린","류이안","이연서","이재인","조은유","연다혜"],"M중1B":["김시원","김윤슬","류아인","박대환","이지성","임건호","정해윤"],"T중1A":["김태건","장도율","조이준","최민준","홍윤제"]};
 var ORDER=["M초6A","M초6C","T초6B","T초6C","M중1B","T중1A"];
@@ -222,7 +222,7 @@ $("syn").onclick=function(){
     var now=Date.now(),w=[],ch=0;
     res.forEach(function(x){
       var d=x[0],r=x[1],c=computePos(r);
-      var np=c.pos.map(function(q){return [q.k,q.v];}),op=(d.pos||[]).map(function(q){return [q.k,q.v];});
+      var np=c.pos.map(function(q){return [q.k,q.v];}),op=(Array.isArray(d.pos)?d.pos:[]).map(function(q){return [q.k,q.v];});
       var chg=!same(np,op)||!same(c.pend,d.pend);
       var f={pos:posField(c.pos),pend:arrV(c.pend,S),r:S(JSON.stringify(r)),sy:{integerValue:String(now)}};
       w.push({update:{name:DB+"/documents/tower_s/"+d.id,fields:f},updateMask:{fieldPaths:["pos","pend","r","sy"]},currentDocument:{exists:true}});
