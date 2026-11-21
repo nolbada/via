@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko" translate="no">
 <head>
-<meta charset="utf-8"><script src="../common/recfs.js?v=261117g"></script><script type="module" src="../common/recwatch.js?v=261118a"></script>
+<meta charset="utf-8"><script src="../common/hwfs.js?v=261121a"></script>
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
@@ -218,7 +218,6 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 <script>
 (function(){
 'use strict';
-var SRV='https://script.google.com/macros/s/AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A/exec';
 var DAYS=['일','월','화','수','목','금','토'], WD=['토','일','월','화','수','목'];
 var CYCLE={'':'O','O':'T','T':'X','X':'A','A':'','R':'O'}, VCYC={'':'O','O':'T','T':'X','X':'N','N':'A','A':'','R':'O'}, LONG={'':'R','O':'R','T':'R','X':'R','N':'R','A':'R','R':''};
 var SYM={O:'O',T:'△',X:'X',N:'미지참',A:'결석',R:'쉼','':''};
@@ -301,16 +300,12 @@ function trackLate(r,key,prev,nv){
   else if(nv==='O'||nv==='R'){delete r.xd[key]}
 }
 
-/* 서버 */
-function post(body,keep){
-  return fetch(SRV,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body),keepalive:!!keep})
-    .then(function(r){return r.json()}).then(function(r){if(!r||!r.ok)throw new Error('srv');return r});
-}
-function readAll(id){var d=window.__recData&&window.__recData(id);if(d)return Promise.resolve(d);return post({act:'put',id:id,data:{}}).then(function(r){return r.data||{}})}
-function live(id){return !!(window.__recLive&&window.__recLive(id))}
-function watch(id,cb){function go(){try{window.__recWatch(id,cb)}catch(e){}}if(window.__recWatch)go();else window.addEventListener('recwatch',go)}
+/* 서버: Firebase (common/hwfs.js). 화면 쪽은 예전과 같은 모양({키:{v:{s:JSON문자열},t:시각}})으로 주고받는다 */
+function readAll(id){return id.indexOf('HWP|')===0?HWFS.readP(id.slice(4)):HWFS.readT()}
+function live(id){return id.indexOf('HW|')===0&&HWFS.live()}
+function watch(id,cb){if(id.indexOf('HW|')===0)HWFS.watchT(cb)}
 function unwrap(v){return(v&&typeof v==='object'&&typeof v.s==='string')?v.s:null}
-function putKeys(id,map){var d={},t=Date.now();for(var k in map)d[k]={v:{s:JSON.stringify(map[k])},t:t};return post({act:'put',id:id,data:d,nr:1})}
+function putKeys(id,map){return id.indexOf('HWP|')===0?HWFS.writeP(id.slice(4),map):HWFS.writeT(map)}
 
 /* 공통 상태 */
 var app=document.getElementById('app'),stEl=document.getElementById('savest');
@@ -498,7 +493,6 @@ function runParent(tok){
   var stale=false;
   watch(ID,function(){if(document.hidden){stale=true;return}load().then(draw,function(){})});
   document.addEventListener('visibilitychange',function(){if(!document.hidden&&stale){stale=false;load().then(draw,function(){})}});
-  setInterval(function(){if(document.hidden||live(ID))return;load().then(draw,function(){})},60000);
 }
 
 /* ================= 선생님(입력) ================= */
@@ -544,6 +538,12 @@ function runTeacher(code){
       try{healDay()}catch(e){}
     });
   }
+  function ensureWk(wk){
+    if(!wk||HWFS.loaded[wk])return Promise.resolve();
+    return HWFS.readWeek(wk).then(function(d){
+      for(var k in d){if(k.indexOf('w:')!==0||dirty[k])continue;var p=k.split(':'),v=unwrap(d[k].v);if(!v)continue;try{recs[p[1]]=recs[p[1]]||{};recs[p[1]][p[2]]=JSON.parse(v);T[k]=d[k].t}catch(e){}}
+    });
+  }
   /* 261119: 선생님이 '단어 매일(6칸)' 검사표를 모든 반에 넣어 달라고 했는데 화목금반에 빠져 있었다. 이미 들어 있는 반의 항목을 그대로 본떠
      빠진 초·중 반에 딱 한 번만 채운다(표시 *d1119). 그 뒤에 선생님이 어느 반에서 빼면 다시 넣지 않는다 */
   function healDay(){
@@ -564,24 +564,17 @@ function runTeacher(code){
   var pend={},pendV=0,mirRun=false,mirRetry=null,mirN=0,mainN=0;
   function runMirrors(){
     if(mirRun)return;var toks=Object.keys(pend);if(!toks.length)return;
-    mirRun=true;var i=0,ok=0,bad=0,live=0;
-    function done(){
+    mirRun=true;
+    var sent=toks.map(function(t){return [t,pend[t]]});
+    HWFS.writeManyP(sent.map(function(x){return [x[0],x[1].m]})).then(function(){
+      sent.forEach(function(x){if(pend[x[0]]===x[1]){delete pend[x[0]];if(x[1].mj)lastMeta[x[0]]=x[1].mj}});
+      mirN=0;mirRun=false;
+      if(Object.keys(pend).length)runMirrors();
+    },function(){
       mirRun=false;var left=Object.keys(pend).length;
-      if(!left){mirN=0;return}
-      if(ok)mirN=0;
       if(mirN>=6){setSt('저장하기 · 부모 화면 반영 '+left+'명 안 됨',true);stEl.className='savest dirty';return}
       clearTimeout(mirRetry);mirRetry=setTimeout(runMirrors,Math.min(60000,4000*Math.pow(2,mirN++)));
-    }
-    function next(){
-      if(i>=toks.length){if(!live)done();return}
-      var tok=toks[i++],e=pend[tok];if(!e){next();return}
-      live++;
-      putKeys('HWP|'+tok,e.m).then(function(){
-        if(pend[tok]===e){delete pend[tok];if(e.mj)lastMeta[tok]=e.mj}
-        ok++;
-      },function(){bad++}).then(function(){live--;next()});
-    }
-    for(var w=0;w<4&&w<toks.length;w++)next();
+    });
   }
   function flush(){
     if(saving)return;var keys=Object.keys(dirty);if(!keys.length)return;
@@ -805,7 +798,7 @@ function runTeacher(code){
     return {items:out,bad:bad};
   }
   function bind(){
-    app.querySelectorAll('[data-nav]').forEach(function(b){b.onclick=function(){viewKey=keyOf(addDays(parseKey(viewKey),7*(+b.getAttribute('data-nav'))));draw()}});
+    app.querySelectorAll('[data-nav]').forEach(function(b){b.onclick=function(){viewKey=keyOf(addDays(parseKey(viewKey),7*(+b.getAttribute('data-nav'))));ensureWk(viewKey).then(draw,draw)}});
     app.querySelectorAll('[data-cls]').forEach(function(b){b.onclick=function(){selCls=b.getAttribute('data-cls');s_('hw_cls',selCls);draw()}});
     app.querySelectorAll('[data-jump]').forEach(function(b){b.onclick=function(){selCls=b.getAttribute('data-jump');s_('hw_cls',selCls);draw();window.scrollTo({top:0})}});
     app.querySelectorAll('details.mgr').forEach(function(d){d.addEventListener('toggle',function(){mgrOpen[d.getAttribute('data-m')]=d.open})});
@@ -940,11 +933,11 @@ function runTeacher(code){
   window.addEventListener('beforeunload',function(e){if(Object.keys(dirty).length){e.preventDefault();e.returnValue=''}});
   document.addEventListener('visibilitychange',function(){if(document.hidden&&Object.keys(dirty).length)flush()});
   app.innerHTML='<div class="hero"><div class="meta">불러오는 중…</div></div>';
-  pull().then(draw,function(){app.innerHTML='<div class="hero"><div class="name" style="font-size:17px">불러오지 못했어요</div><div class="meta">인터넷 연결을 확인하고 다시 열어 주세요.</div><button class="btn" id="rc" type="button" style="margin-top:12px">열기 코드 다시 입력</button></div>';document.getElementById('rc').onclick=function(){try{LS.removeItem('hw_code')}catch(e){}location.reload()}});
-  var stale=false;
+  pull().then(draw,function(){app.innerHTML='<div class="hero"><div class="name" style="font-size:17px">불러오지 못했어요</div><div class="meta">인터넷 연결을 확인하고 다시 열어 주세요.</div><button class="btn" id="rc" type="button" style="margin-top:12px">다시 시도</button></div>';document.getElementById('rc').onclick=function(){location.reload()}});
+  var stale=false,tickT=null,pdraw=false;
   watch(ID,function(){stale=true;tick()});
   document.addEventListener('visibilitychange',function(){if(!document.hidden)tick()});
-  function tick(){if(document.hidden||saving||Object.keys(dirty).length)return;if(live(ID)&&!stale)return;stale=false;pull().then(function(){var a=document.activeElement;if(!pchg||Date.now()-lastAct<8000)return;if(!a||(a.tagName!=='INPUT'&&a.tagName!=='SELECT'))draw()},function(){})}
+  function tick(){if(document.hidden||saving||Object.keys(dirty).length)return;if(live(ID)&&!stale)return;stale=false;pull().then(function(){var a=document.activeElement;if(pchg)pdraw=true;if(!pdraw)return;if(Date.now()-lastAct<8000){stale=true;clearTimeout(tickT);tickT=setTimeout(tick,8100);return}pdraw=false;if(!a||(a.tagName!=='INPUT'&&a.tagName!=='SELECT'))draw()},function(){})}
   setInterval(tick,30000);
 }
 
@@ -952,12 +945,23 @@ function runTeacher(code){
 (function(){
   var tok=Q.get('s');
   if(tok){runParent(tok);return}
-  var m=/(?:^|[#&])k=([A-Za-z0-9]{8,})/.exec(location.hash);
-  if(m){s_('hw_code',m[1]);try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
-  var code=g('hw_code');
-  if(code){runTeacher(code);return}
-  app.innerHTML='<form class="gate" id="gf" action="javascript:void(0)"><div class="name">선생님 입력</div><div class="meta">열기 코드를 한 번 입력하면 이 기기에 저장돼요.</div><input id="kc" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="열기 코드"><button class="btn" id="go" type="submit">열기</button><div class="meta" id="ke" style="color:#c0392b;margin-top:8px"></div></form>';
-  document.getElementById('gf').onsubmit=function(e){if(e&&e.preventDefault)e.preventDefault();var v=(document.getElementById('kc').value||'').replace(/\s+/g,'');if(/^[A-Za-z0-9]{8,}$/.test(v)){s_('hw_code',v);location.reload()}else document.getElementById('ke').textContent='열기 코드를 다시 확인해 주세요. 영문·숫자만 입력되고, 한글 자판이면 영문으로 바꿔 주세요.';return false};
+  function gate(msg,btn){
+    app.innerHTML='<div class="gate"><div class="name">선생님 입력</div><div class="meta">'+esc(msg)+'</div><button class="btn" id="go" type="button">'+esc(btn)+'</button><div class="meta" id="ke" style="color:#c0392b;margin-top:8px"></div></div>';
+    return document.getElementById('go');
+  }
+  function login(){
+    var b=gate('구글 계정으로 한 번 로그인하면 이 기기에 유지돼요.','구글로 로그인');
+    b.onclick=function(){b.disabled=true;HWFS.signIn().then(function(){location.reload()},function(e){b.disabled=false;document.getElementById('ke').textContent='로그인이 안 됐어요. 다시 눌러 주세요.'})};
+  }
+  app.innerHTML='<div class="hero"><div class="meta">불러오는 중…</div></div>';
+  HWFS.user().then(function(u){
+    if(!u){login();return}
+    if(!u.ok){var b=gate('이 계정('+u.email+')은 사용할 수 없어요. 선생님 계정으로 다시 로그인해 주세요.','다른 계정으로 로그인');b.onclick=function(){HWFS.signOut().then(function(){location.reload()})};return}
+    HWFS.setWeeks(curKey(),keyOf(addDays(weekStart(today()),-7)));
+    runTeacher('main');
+  },function(){
+    var b=gate('연결이 안 돼요. 인터넷을 확인하고 다시 눌러 주세요.','다시 시도');b.onclick=function(){location.reload()};
+  });
 })();
 })();
 </script>
