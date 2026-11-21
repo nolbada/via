@@ -41,7 +41,7 @@
   </div>
 </div>
 <script>
-/* tower-enter 261121b — 이름 입력 입장. 읽기만 한다(쓰기 없음). 이 화면은 아무것도 기기에 저장하지 않는다. */
+/* tower-enter 261121c — 이름 입력 입장. 읽기만 한다(쓰기 없음). 이 화면은 아무것도 기기에 저장하지 않는다. */
 (function(){
 var KEY="AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA";
 var BASE="https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents/tower_s/";
@@ -67,10 +67,12 @@ function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){retur
 function show(d){
   $("who").textContent=d.name;
   $("info").innerHTML='<div class="row"><span class="k">반</span><span>'+esc(d.cls)+'</span></div><div class="row"><span class="k">소속</span><span>'+esc(d.season)+'</span></div>';
-  var p=d.pos||[],h="";
+  var p=d.pos||[],h="",ov=(d.ov&&typeof d.ov==="object"&&!Array.isArray(d.ov))?d.ov:{},seen={};
   if(!Array.isArray(p))p=[];
-  p.forEach(function(x){h+='<div class="row"><span>'+esc(x.k)+'</span><span>'+esc(x.v)+'</span></div>';});
-  (d.pend||[]).forEach(function(x){h+='<div class="row"><span>'+esc(x)+'</span><span class="k">선생님 지정 대기</span></div>';});
+  p.forEach(function(x){seen[x.k]=1;var o=ov[x.k];var v=(o&&o.b===x.v)?o.t:x.v;h+='<div class="row"><span>'+esc(x.k)+'</span><span>'+esc(v)+'</span></div>';});
+  Object.keys(ov).forEach(function(k){var o=ov[k];if(!seen[k]&&o&&(o.b===""||o.b==null))h+='<div class="row"><span>'+esc(k)+'</span><span>'+esc(o.t)+'</span></div>';});
+  var asg=Array.isArray(d.asg)?d.asg:[];
+  (d.pend||[]).forEach(function(x){var a=null;asg.forEach(function(q){if(q&&q.p===x)a=q;});h+='<div class="row"><span>'+esc(x)+'</span><span'+(a?'':' class="k"')+'>'+(a?esc("지정: "+a.t):"선생님 지정 대기")+'</span></div>';});
   if(d.sy){var t=new Date(d.sy),W=["일","월","화","수","목","금","토"];h+='<div class="k" style="margin-top:8px">'+(t.getMonth()+1)+"/"+t.getDate()+"("+W[t.getDay()]+") "+("0"+t.getHours()).slice(-2)+":"+("0"+t.getMinutes()).slice(-2)+" 기준</div>";}
   $("pos").innerHTML=h||'<span class="k">연결 준비 중</span>';
   $("s1").style.display="none";$("s2").style.display="";window.scrollTo(0,0);
