@@ -71,6 +71,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .synr{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}.synr small{font-size:13px;opacity:.7}.syc{border:1px solid var(--line);background:transparent;color:inherit;border-radius:999px;padding:6px 12px;font-size:16px;display:inline-flex;align-items:center;gap:6px;cursor:pointer}.syc svg{width:15px;height:15px}.row>.spk{margin-left:0;align-self:center}
 .dc.dd{width:auto;min-width:46px;height:auto;padding:4px 6px;border-radius:10px;flex-direction:column;line-height:1.15;font-size:12px}.dc.dd.miss{border-color:#d4553f;color:#d4553f}.dc.dd small{font-size:10px;font-weight:700;opacity:.85}.hdn{flex-basis:100%;font-size:13px;font-weight:700;color:var(--sub)}.dc.rs{width:auto;min-width:56px;height:auto;padding:6px 8px;border-radius:12px;flex-direction:column;line-height:1.25;font-size:13px}.dc.rs small{font-size:11px;font-weight:700}.dc.rs[data-f]{cursor:pointer}.fb{border:0;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:800;background:#c47a1a;color:#fff;align-self:center}.row:first-child{border-top:0}.row b{font-size:16px}.row small{color:var(--sub);display:block}.row .src{display:inline-block;font-size:10px;font-weight:400;color:var(--sub);opacity:.6;border:1px solid var(--line);border-radius:6px;padding:0 5px;margin-left:5px;vertical-align:1px}
 .badge{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 9px;color:var(--sub);white-space:nowrap;align-self:flex-start}
+.rmx{display:block;margin-top:4px;border:1px solid var(--line);background:none;color:var(--sub);opacity:.6;font:inherit;font-size:11px;padding:2px 8px;border-radius:6px;cursor:pointer}
 input.tx{width:100%;font-size:18px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
 .msg{color:var(--sub);font-size:14px;margin-top:8px;min-height:20px}
 
@@ -710,12 +711,35 @@ function spShow(){var S=SP,n=S.a.length,K=S.K;
   var ar=document.getElementById('ar');ar.innerHTML='<button class="btn pri" id="sh">뜻 보기</button>';
   document.getElementById('sh').onclick=function(){ar.innerHTML='<div class="word" style="font-size:22px">'+esc(mStrip(it.m))+'</div>'+synBtns(it.m)+(srcTag(it)?'<div>'+srcTag(it)+'</div>':'')+'<button class="btn pri" id="nx">다음</button>';document.getElementById('nx').onclick=function(){S.i++;spShow()}};
 }
+var RMB={'더블보카':1,'데일리보카':1,'데일리어법':1,'미니모고':1};
+function rmOk(i){var s=String(i.src||'');return!!s&&s.indexOf(',')<0&&!RMB[s]&&!PV}
+function rmBtn(i){return rmOk(i)?'<button class="rmx" type="button" data-rw="'+esc(i.w)+'" data-rs="'+esc(i.src)+'">빼기</button>':''}
+function rmBind(re){[].forEach.call($.querySelectorAll('.rmx'),function(b){b.onclick=function(e){e.stopPropagation();wnRm(b.getAttribute('data-rw'),b.getAttribute('data-rs'));re()}})}
+function fzRefill(w){
+  try{var n=name(),m=fzLoc(),t=iso(new Date()),k0=String(w).toLowerCase(),ch=0;
+    Object.keys(m).forEach(function(K){if(K<t)return;var a=m[K];if(!a||!a.length)return;var j=-1;a.forEach(function(x,x2){if(String(x).toLowerCase()===k0)j=x2});if(j<0)return;
+      a=a.slice();a.splice(j,1);var u={};a.forEach(function(x){u[String(x).toLowerCase()]=1});
+      friList(DATA.items,K).forEach(function(i){var k=String(i.w).toLowerCase();if(a.length<50&&!u[k]){u[k]=1;a.push(i.w)}});
+      m[K]=a;ch=1;
+      if(!TMF){var d={};d[K]={v:{s:JSON.stringify(a)},t:Date.now()};try{fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:'WNFRI_'+String(n).toLowerCase(),data:d})}).catch(function(){})}catch(e){}}
+    });
+    if(ch)ss('wn_fz_'+n,JSON.stringify(m))
+  }catch(e){}
+}
+function wnRm(w,s){
+  var n=name(),same=function(i){return i.w===w&&i.src===s};
+  DATA.items=DATA.items.filter(function(i){return!same(i)});
+  try{var c=lj('wn_ls_'+n+TCM,null);if(c&&c.items){c.items=c.items.filter(function(i){return!same(i)});ss('wn_ls_'+n+TCM,JSON.stringify(c))}}catch(e){}
+  fzRefill(w);
+  var go=function(){return post({act:'del',name:n,pin:PIN,w:w,src:s})};
+  go().then(function(r){if(r&&r.ok&&r.removed===false&&r.reason==='none')setTimeout(function(){go().catch(function(){})},3000)}).catch(function(){})
+}
 function wlist(){
   var IVN=['1일','3일','7일','15일'],g=[[],[],[],[]],h,tot=0;DATA.items.forEach(function(i){var x=Math.max(0,Math.min(3,i.st||0));g[x].push(i);tot++});
   h='<div class="top"><button class="sbtn" id="hm">뒤로</button><div class="t">누적 단어 '+tot+'개</div></div>';
-  g.forEach(function(a,x){if(!a.length)return;a.sort(function(p,q){return p.w.toLowerCase()<q.w.toLowerCase()?-1:1});h+='<h2 class="sec">'+IVN[x]+' 단계 · '+a.length+'개</h2><div class="card">';a.forEach(function(i){h+='<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+srcTag(i)+'</small></div>'+spk(i.w)+'<span class="badge">다음 '+dshow(i.nx)+'</span></div>'});h+='</div>'});
+  g.forEach(function(a,x){if(!a.length)return;a.sort(function(p,q){return p.w.toLowerCase()<q.w.toLowerCase()?-1:1});h+='<h2 class="sec">'+IVN[x]+' 단계 · '+a.length+'개</h2><div class="card">';a.forEach(function(i){h+='<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+srcTag(i)+'</small>'+rmBtn(i)+'</div>'+spk(i.w)+'<span class="badge">다음 '+dshow(i.nx)+'</span></div>'});h+='</div>'});
   if(!tot)h+='<div class="card">아직 모인 단어가 없어요.</div>';
-  $.innerHTML=h;window.scrollTo(0,0);document.getElementById('hm').onclick=function(){recView('r')};
+  var sy=window.pageYOffset;$.innerHTML=h;window.scrollTo(0,0);document.getElementById('hm').onclick=function(){recView('r')};rmBind(function(){wlist();window.scrollTo(0,sy)});
 }
 function friList(items,K){
   var M=adD(K,-4),cp=50,cmp=function(a,b){return a<b?-1:a>b?1:0};
@@ -742,8 +766,8 @@ function list(K){
   if(K)fzSync(K);var items=K?spList(DATA.items,K):DATA.items.filter(function(i){return isL(i)}).sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1});
   if(K){spTable(K,items);return}
   var h='<div class="top"><button class="sbtn" id="hm">홈</button><div class="t">'+(K?dshow(K)+' 말하기 대비 ':'오답 단어 리스트 ')+items.length+'개</div></div><div class="card">';
-  items.forEach(function(i){h+='<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+srcTag(i)+'</small></div>'+spk(i.w)+'<span class="badge">'+i.st+'/4 · '+dshow(i.nx)+'</span></div>'});
-  h+='</div>';$.innerHTML=h;document.getElementById('hm').onclick=function(){home(DATA)};
+  items.forEach(function(i){h+='<div class="row"><div><b>'+esc(i.w)+'</b><small>'+esc(i.m)+srcTag(i)+'</small>'+rmBtn(i)+'</div>'+spk(i.w)+'<span class="badge">'+i.st+'/4 · '+dshow(i.nx)+'</span></div>'});
+  h+='</div>';var sy=window.pageYOffset;$.innerHTML=h;document.getElementById('hm').onclick=function(){home(DATA)};rmBind(function(){list();window.scrollTo(0,sy)});
 }
 var R=null;
 var TMF=/[?&]t=1(&|$)/.test(location.search);function rvMap(){return lj('wn_rv_'+name()+TCM,{})}
