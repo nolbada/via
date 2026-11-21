@@ -392,53 +392,52 @@
  {
   "dk": [
    [
-    "Rita cheered loudly",
-    "리타는 큰 소리로 응원했다"
+    "Rita was very happy",
+    "리타는 매우 행복했다"
    ],
    [
     "when she watched her daughter finish her first marathon,",
     "딸이 첫 마라톤을 끝내는 것을 지켜봤을 때"
    ],
    [
-    "and so did her husband.",
+    "and so was her husband.",
     "그리고 그녀의 남편도 그랬다."
    ]
   ],
-  "ko": "Rita는 딸이 첫 마라톤을 완주하는 것을 지켜보았을 때 큰 소리로 응원했다, 그리고 그녀의 남편도 그랬다.",
-  "gist": "딸의 첫 마라톤 완주를 보며 리타가 크게 응원했고 남편도 그랬다는 얘기예요.",
-  "fm": "so + do/does/did + 주어 (앞 동사 대신)",
+  "ko": "Rita는 딸이 첫 마라톤을 완주하는 것을 지켜보았을 때 매우 행복했다, 그리고 그녀의 남편도 그랬다.",
+  "gist": "딸의 첫 마라톤 완주를 지켜보며 리타도 남편도 행복했다는 얘기예요.",
+  "fm": "so + be동사 + 주어 (앞 be동사 대신)",
   "mp": [
    [
     "앞 문장 동사",
-    "likes",
-    "cheered"
+    "is happy",
+    "was very happy"
    ],
    [
     "대신하는 말",
-    "so does Dad",
-    "so did her husband"
+    "so is Dad",
+    "so was her husband"
    ]
   ],
-  "ex": "Mom likes tea, and so does Dad.",
-  "exko": "엄마는 차를 좋아하고 아빠도 그래요(like 좋아하다, tea 차).",
+  "ex": "Mom is happy, and so is Dad.",
+  "exko": "엄마는 행복하고 아빠도 그래요(happy 행복한).",
   "tko": "그리고 그녀의 남편도 그랬다",
-  "bad": "Mom likes tea, and so is Dad.",
-  "badko": "(앞 동사 likes가 be동사가 아니라 일반동사라서 is가 아니라 does로 받아요)",
-  "altw": "be동사",
-  "alt": "Mom is happy, and so is Dad.",
-  "altko": "엄마는 행복하고 아빠도 그래요(앞에 be동사 is가 있어서 so is로 받아요).",
-  "why": "'so + 동사 + 주어'는 '~도 그래요'라는 뜻이에요. 앞에 나온 cheered(cheer 응원하다의 과거형)처럼 일반동사를 받을 때는 do(하다)의 과거형 did를 써요. was는 앞 문장에 be동사(is, was)가 있을 때만 받을 수 있어요. 여기서는 남편도 응원했다는 뜻이라서 did예요.",
+  "bad": "Mom is happy, and so does Dad.",
+  "badko": "(앞 동사가 is happy처럼 be동사라서 does가 아니라 is로 받아요)",
+  "altw": "did",
+  "alt": "Mom likes tea, and so does Dad.",
+  "altko": "엄마는 차를 좋아하고 아빠도 그래요(앞이 likes처럼 일반동사라서 does로 받아요).",
+  "why": "'so + 동사 + 주어'는 '~도 그래요'라는 뜻이에요. 앞 문장이 Rita was very happy(리타는 매우 행복했다)처럼 be동사 was로 말했으니 받을 때도 be동사 was를 써요. did(do 하다의 과거형)는 앞이 watched처럼 일반동사일 때만 써요. 여기서는 남편도 행복했다는 뜻이라서 was예요.",
   "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>앞 동사가 일반동사면 do/does/did, be동사면 be동사로 받아요",
   "d": {
+   "happy": "행복한",
    "watched": "watch(지켜보다)의 과거형",
    "daughter": "딸",
    "finish": "끝내다",
    "first": "첫",
    "marathon": "마라톤",
    "husband": "남편",
-   "so": "so did her husband: 그녀의 남편도 그랬다",
-   "cheered": "cheer(응원하다)의 과거형",
-   "loudly": "큰 소리로"
+   "so": "so was her husband: 그녀의 남편도 그랬다"
   }
  },
  {

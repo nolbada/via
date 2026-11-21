@@ -94,16 +94,16 @@
      "qn": "문항 6"
     },
     {
-     "pre": "In the kitchen was cooking a famous chef, ",
+     "pre": "In the kitchen a famous chef was cooking, ",
      "wr": "which",
      "post": " prepared our delicious meal.",
      "fr": "which",
      "to": "who",
-     "correct": "In the kitchen was cooking a famous chef, who prepared our delicious meal.",
-     "interp": "부엌에는 요리하고 있던 유명한 요리사가 있었는데, 그가 우리의 맛있는 식사를 준비했다.",
+     "correct": "In the kitchen a famous chef was cooking, who prepared our delicious meal.",
+     "interp": "부엌에서 유명한 요리사가 요리하고 있었는데, 그가 우리의 맛있는 식사를 준비했다.",
      "color": "#4338ca",
      "badge": "관계대명사 선택 (Chapter 10 POINT 1)",
-     "explain": "선행사 a famous chef(유명한 요리사)는 사람이므로 사물에 쓰는 관계대명사 which를 쓸 수 없다. 따라서 which가 아니라 <b>who</b>가 되어야 한다. (In the kitchen was cooking a famous chef는 장소 표현이 앞에 나와 동사 + 주어로 도치된 문장이며, 단수 주어 a famous chef에 맞춰 was를 쓴 것이 올바르다.)",
+     "explain": "선행사 a famous chef(유명한 요리사)는 사람이므로 사물에 쓰는 관계대명사 which를 쓸 수 없다. 따라서 which가 아니라 <b>who</b>가 되어야 한다.",
      "qn": "문항 7"
     },
     {
