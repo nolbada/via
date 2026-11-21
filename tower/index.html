@@ -31,7 +31,7 @@ table.g td{padding:7px 8px;border-bottom:1px solid #eef0f3;vertical-align:top}
 .cls{color:#6b7580;font-size:12px}
 .nm{font-weight:700;white-space:nowrap}
 .pill{display:inline-block;background:#eef6f2;color:#1f5f48;border-radius:4px;padding:1px 6px;margin:1px 3px 1px 0;white-space:nowrap}
-.pill.warn{background:#fff3d9;color:#8a5a00;font-weight:700}
+.pill.warn{background:#fde8e8;color:#c0141c;font-weight:800;border:1px solid #f3b8b8}
 .dim{color:#9aa3ad}
 .note{font-size:12.5px;color:#5b6570;line-height:1.7}
 .note b{color:#1b1f23}
@@ -49,9 +49,9 @@ table.g td{padding:7px 8px;border-bottom:1px solid #eef0f3;vertical-align:top}
 </div>
 
 <div class="card">
-<h2>한 달 안에 끝나는 항목</h2>
+<h2>곧 끝나는 항목 (D-10 이내)</h2>
 <div id="soon"></div>
-<div class="muted" style="margin-top:6px">일주일에 3회 진행 기준 추정. 실제 속도는 기록이 쌓이면 보정.</div>
+<div class="muted" style="margin-top:6px">남은 횟수가 10회 이하인 항목만 표시. 날짜는 주 3회 기준 추정(데일리보카는 주 6일).</div>
 </div>
 
 <div class="card">
@@ -146,23 +146,24 @@ function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;
 function rem(done,total){return Math.max(total-done,0);}
 function wk(r){return Math.ceil(r/PER_WEEK);}
 function pill(t,warn){return '<span class="pill'+(warn?" warn":"")+'">'+esc(t)+"</span>";}
-var SOON=PER_WEEK*4;
+var SOON=10;
+function dd(n){return n<=SOON?" D-"+n:"";}
 
 function cells(r){
   var v=[],m=[];
-  if(r.K!=null){var a=rem(r.K,LEN.K);v.push(pill("K "+r.K+"/"+LEN.K+" (약 "+wk(a)+"주)",a<=SOON));}
-  if(r.E!=null){var b=rem(r.E,LEN.E);v.push(pill("E "+r.E+"/"+LEN.E+" (약 "+wk(b)+"주)",b<=SOON));}
+  if(r.K!=null){var a=rem(r.K,LEN.K);v.push(pill("K "+r.K+"/"+LEN.K+dd(a),a<=SOON));}
+  if(r.E!=null){var b=rem(r.E,LEN.E);v.push(pill("E "+r.E+"/"+LEN.E+dd(b),b<=SOON));}
   if(r.X!=null){v.push(pill("엑스레이 "+r.X+"/"+LEN.X));}
-  if(r.Y!=null){var yy=rem(r.Y,LEN.Y);v.push(pill("Y "+r.Y+"/"+LEN.Y+" (약 "+wk(yy)+"주)",yy<=SOON));}
-  if(r.M1!=null){var c=rem(r.M1,LEN.M1);m.push(pill("M1 "+r.M1+"/"+LEN.M1+" (약 "+wk(c)+"주)",c<=SOON));}
+  if(r.Y!=null){var yy=rem(r.Y,LEN.Y);v.push(pill("Y "+r.Y+"/"+LEN.Y+dd(yy),yy<=SOON));}
+  if(r.M1!=null){var c=rem(r.M1,LEN.M1);m.push(pill("M1 "+r.M1+"/"+LEN.M1+dd(c),c<=SOON));}
   if(r.M2!=null){m.push(pill("M2 Reading "+r.M2));}
   var gk=r.GK!=null?pill(r.GK+"/"+LEN.GK):'<span class="dim">-</span>';
   var bd=r.BD?pill(r.BD+(BDEND[r.BDL]?"/"+BDEND[r.BDL]:"")):'<span class="dim">-</span>';
   var vl='<span class="dim">-</span>';
-  if(r.VL!=null){var e=rem(r.VL,LEN.VL);vl=pill("DAY "+r.VL+"/"+LEN.VL+" (약 "+wk(e)+"주)",e<=SOON);}
+  if(r.VL!=null){var e=rem(r.VL,LEN.VL);vl=pill("DAY "+r.VL+"/"+LEN.VL+dd(e),e<=SOON);}
   var rd=r.RD?esc(r.RD):'<span class="dim">-</span>';
   var dv=r.DV?pill("데일리보카 "+r.DV):"";
-  if(r.DVL&&DVEND[r.DVL]){var dr=rem(r.DVN,DVEND[r.DVL]);dv=pill("데일리보카 "+r.DVL+" "+r.DVN+"/"+DVEND[r.DVL]+" (약 "+Math.ceil(dr/DV_WEEK)+"주)",dr<=DV_WEEK*4);}
+  if(r.DVL&&DVEND[r.DVL]){var dr=rem(r.DVN,DVEND[r.DVL]);dv=pill("데일리보카 "+r.DVL+" "+r.DVN+"/"+DVEND[r.DVL]+dd(dr),dr<=SOON);}
   return {v:v.join("")||'<span class="dim">-</span>',m:m.join("")||'<span class="dim">-</span>',gk:gk,bd:bd,vl:vl,rd:rd,dv:dv};
 }
 
@@ -175,7 +176,7 @@ function drawSoon(){
     if(r.E!=null&&rem(r.E,LEN.E)<=SOON){var b=rem(r.E,LEN.E);out.push({n:r.n,c:r.c,what:"V시그널 E "+r.E+"/"+LEN.E,left:b,wk:wk(b),next:"자동 연결(엑스레이)"});}
     if(r.Y!=null&&rem(r.Y,LEN.Y)<=SOON){var y2=rem(r.Y,LEN.Y);out.push({n:r.n,c:r.c,what:"V시그널 Y "+r.Y+"/"+LEN.Y,left:y2,wk:wk(y2),next:"자동 연결(Y 주요문장 100)"});}
     if(r.BDL&&BDEND[r.BDL]){var b3=Math.max(Math.ceil((BDEND[r.BDL]-(r.BDN+9))/10),0);if(b3<=SOON){var bd2=new Date(TODAY.getTime());bd2.setDate(bd2.getDate()+wk(b3)*7);out.push({n:r.n,c:r.c,what:"비단챌 "+r.BDL+" "+r.BDN+"/"+BDEND[r.BDL],left:b3,wk:wk(b3),when:fdate(bd2),next:BDNEXT[r.BDL]});}}
-    if(r.DVL&&DVEND[r.DVL]){var d3=rem(r.DVN,DVEND[r.DVL]);if(d3<=DV_WEEK*4){var dd3=new Date(TODAY.getTime());dd3.setDate(dd3.getDate()+Math.ceil(d3/DV_WEEK)*7);out.push({n:r.n,c:r.c,what:"데일리보카 "+r.DVL+" "+r.DVN+"/"+DVEND[r.DVL],left:d3,wk:Math.ceil(d3/DV_WEEK),when:fdate(dd3),next:DVNEXT[r.DVL]});}}
+    if(r.DVL&&DVEND[r.DVL]){var d3=rem(r.DVN,DVEND[r.DVL]);if(d3<=SOON){var dd3=new Date(TODAY.getTime());dd3.setDate(dd3.getDate()+Math.ceil(d3/DV_WEEK)*7);out.push({n:r.n,c:r.c,what:"데일리보카 "+r.DVL+" "+r.DVN+"/"+DVEND[r.DVL],left:d3,wk:Math.ceil(d3/DV_WEEK),when:fdate(dd3),next:DVNEXT[r.DVL]});}}
     if(r.RDN!=null&&rem(r.RDN,r.RDL)<=SOON){var g=rem(r.RDN,r.RDL),gd=new Date(TODAY.getTime());gd.setDate(gd.getDate()+wk(g)*7);out.push({n:r.n,c:r.c,what:"독해33 "+r.RDB+" "+r.RDN+"/"+r.RDL,left:g,wk:wk(g),when:fdate(gd),next:"지정 대기(독해33 다음 책)"});}
     if(r.M1!=null&&rem(r.M1,LEN.M1)<=SOON){var c=rem(r.M1,LEN.M1);out.push({n:r.n,c:r.c,what:"M1 리딩 "+r.M1+"/"+LEN.M1,left:c,wk:wk(c),next:"자동 연결(M2)"});}
   });
@@ -184,7 +185,7 @@ function drawSoon(){
   if(!out.length){el.innerHTML='<div class="muted">없음</div>';return;}
   var h='<table class="soon"><tr><th>학생</th><th>반</th><th>항목</th><th>남은 횟수</th><th>끝나는 시기(추정)</th><th>끝나면</th></tr>';
   out.forEach(function(o){
-    h+="<tr><td><b>"+esc(o.n)+'</b></td><td class="cls">'+esc(o.c)+"</td><td>"+esc(o.what)+"</td><td>"+o.left+"회</td><td>약 "+o.wk+"주 뒤"+(o.when?" · "+o.when+" 무렵":"")+"</td><td>"+esc(o.next)+"</td></tr>";
+    h+="<tr><td><b>"+esc(o.n)+'</b></td><td class="cls">'+esc(o.c)+"</td><td>"+esc(o.what)+"</td><td><b style=\"color:#c0141c;font-size:15px\">D-"+o.left+"</b></td><td>약 "+o.wk+"주 뒤"+(o.when?" · "+o.when+" 무렵":"")+"</td><td>"+esc(o.next)+"</td></tr>";
   });
   h+="</table>";
   el.innerHTML=h;
