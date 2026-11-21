@@ -13,7 +13,7 @@
   {
    "bar": "p.15 정답 및 해설",
    "sub": "",
-   "quick": "<b>빠른정답</b><br>1) comfortably → <b>comfortable</b> / 2) waited → <b>waiting</b> / 3) returning → <b>return</b> / 4) Little the children → <b>Little do the children</b> / 5) play → <b>playing</b> / 6) Never employees → <b>Never do employees</b> / 7) was cooking → <b>cooked</b> / 8) Not only music entertains → <b>Not only does music entertain</b>",
+   "quick": "<b>빠른정답</b><br>1) comfortably → <b>comfortable</b> / 2) waited → <b>waiting</b> / 3) returning → <b>return</b> / 4) Little the children → <b>Little do the children</b> / 5) play → <b>playing</b> / 6) Never employees → <b>Never do employees</b> / 7) which → <b>who</b> / 8) Not only music entertains → <b>Not only does music entertain</b>",
    "items": [
     {
      "pre": "Rarely does a cat refuse a warm lap on a cold winter’s night because it feels ",
@@ -94,16 +94,16 @@
      "qn": "문항 6"
     },
     {
-     "pre": "In the kitchen ",
-     "wr": "was cooking",
-     "post": " a famous chef, who prepared our delicious meal.",
-     "fr": "was cooking",
-     "to": "cooked",
-     "correct": "In the kitchen cooked a famous chef, who prepared our delicious meal.",
-     "interp": "부엌에서는 유명한 요리사가 요리를 했는데, 그가 우리의 맛있는 식사를 준비했다.",
-     "color": "#2563eb",
-     "badge": "도치된 주어와 동사의 수일치 (Chapter 01 POINT 6)",
-     "explain": "<b>In the kitchen</b>(부엌에서)처럼 장소 표현이 앞에 나오면 <b>동사 + 주어</b> 순서로 도치되고, 이때 동사는 뒤에 오는 주어 a famous chef(유명한 요리사, 단수)에 수를 맞춘다. 뒤의 who prepared(prepare 준비하다)는 그 요리사를 설명하는 말이다. 여기서는 was cooking(cook 요리하다 → 요리하고 있었다) 대신 단순한 과거 <b>cooked</b>로 쓴 문장으로 정리한다. (※ 원문에 오류가 불분명한 항목, 확인 필요)",
+     "pre": "In the kitchen was cooking a famous chef, ",
+     "wr": "which",
+     "post": " prepared our delicious meal.",
+     "fr": "which",
+     "to": "who",
+     "correct": "In the kitchen was cooking a famous chef, who prepared our delicious meal.",
+     "interp": "부엌에는 요리하고 있던 유명한 요리사가 있었는데, 그가 우리의 맛있는 식사를 준비했다.",
+     "color": "#4338ca",
+     "badge": "관계대명사 선택 (Chapter 10 POINT 1)",
+     "explain": "선행사 a famous chef(유명한 요리사)는 사람이므로 사물에 쓰는 관계대명사 which를 쓸 수 없다. 따라서 which가 아니라 <b>who</b>가 되어야 한다. (In the kitchen was cooking a famous chef는 장소 표현이 앞에 나와 동사 + 주어로 도치된 문장이며, 단수 주어 a famous chef에 맞춰 was를 쓴 것이 올바르다.)",
      "qn": "문항 7"
     },
     {

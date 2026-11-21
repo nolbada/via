@@ -286,47 +286,49 @@
  {
   "dk": [
    [
-    "In the kitchen cooked a famous chef,",
-    "부엌에서 유명한 요리사가 요리를 했는데"
+    "In the kitchen was cooking a famous chef,",
+    "부엌에는 요리하고 있던 유명한 요리사가 있었는데"
    ],
    [
     "who prepared our delicious meal.",
     "그가 우리의 맛있는 식사를 준비했다."
    ]
   ],
-  "ko": "부엌에서는 유명한 요리사가 요리를 했는데, 그가 우리의 맛있는 식사를 준비했다.",
-  "gist": "부엌에서 유명한 요리사가 맛있는 식사를 만들었다는 얘기예요.",
-  "fm": "장소 + 동사 + 주어 (동사는 뒤 주어에 맞춰요)",
+  "ko": "부엌에는 요리하고 있던 유명한 요리사가 있었는데, 그가 우리의 맛있는 식사를 준비했다.",
+  "gist": "부엌에서 유명한 요리사가 요리하며 맛있는 식사를 준비했다는 얘기예요.",
+  "fm": "사람 + who (사물 + which)",
   "mp": [
    [
-    "장소 + 동사",
-    "Under the tree sits",
-    "In the kitchen cooked"
-   ],
-   [
-    "진짜 주어",
+    "앞 말",
     "a boy",
     "a famous chef"
+   ],
+   [
+    "연결말",
+    "who",
+    "who"
    ]
   ],
-  "ex": "Under the tree sits a boy.",
-  "exko": "나무 아래에 한 소년이 앉아 있어요(under ~ 아래에, sit 앉다).",
-  "tko": "부엌에서 유명한 요리사가 요리했다",
-  "bad": "Under the tree sit a boy.",
-  "badko": "(진짜 주어 a boy는 한 명이라서 sit이 아니라 sits여야 해요)",
-  "altw": "was cooking",
-  "alt": "My mom was cooking in the kitchen.",
-  "altko": "엄마는 부엌에서 요리하고 있었어요(cook 요리하다).",
-  "why": "In the kitchen(부엌에서)처럼 장소가 맨 앞에 나오면 동사가 주어 앞으로 와요. 그래서 동사 cooked(cook 요리하다의 과거)가 먼저, 진짜 주어 a famous chef(유명한 요리사)가 뒤에 와요. 주어가 한 명이니 동사도 단수에 맞아요. 뒤의 who prepared(prepare 준비하다)는 그 요리사를 설명해요.",
-  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>장소가 맨 앞이면 동사 뒤에 있는 진짜 주어에 수를 맞춰요",
+  "ex": "I know a boy who plays the piano.",
+  "exko": "나는 피아노를 치는 소년을 알아요(know 알다, play 치다).",
+  "tko": "그가 우리의 식사를 준비했다",
+  "bad": "I know a boy which plays the piano.",
+  "badko": "(boy는 사람이라서 which가 아니라 who예요)",
+  "altw": "which",
+  "alt": "I know a book which is useful.",
+  "altko": "나는 유용한 책을 알아요(book은 사물이라서 which를 써요).",
+  "why": "a famous chef(유명한 요리사)는 사람이에요. 사람을 설명하며 이어 주는 말은 which가 아니라 who예요. which는 책, 물건 같은 사물에만 써요. 앞에 In the kitchen(부엌에서)이 나와서 동사 was cooking이 주어 a famous chef 앞에 온 문장이지만, 이 문제에서 고칠 곳은 뒤의 who 자리예요.",
+  "trend": "<b>출제 2위 · 관계대명사와 관계부사</b><br>31년간 99회 나왔어요.<br>앞 말이 사람이면 who(m), 사물이면 which예요",
   "d": {
    "kitchen": "부엌",
-   "cooked": "cook(요리하다)의 과거형",
+   "cooking": "cook(요리하다)의 -ing형",
    "famous": "유명한",
    "chef": "요리사",
    "prepared": "prepare(준비하다)의 과거형",
    "delicious": "맛있는",
-   "meal": "식사"
+   "meal": "식사",
+   "which": "어느 것(사물에 쓰는 연결말)",
+   "who": "누구(사람에 쓰는 연결말)"
   }
  },
  {

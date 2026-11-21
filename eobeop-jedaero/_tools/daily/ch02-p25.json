@@ -186,12 +186,12 @@
   "ex": "These are friends who I meet.",
   "exko": "이 사람들은 내가 만나는 친구들이에요(meet 만나다).",
   "tko": "내가 만나는 친구들",
-  "bad": "These are friends whom I meet.",
-  "badko": "(말할 때나 쉬운 글에서는 whom 대신 who를 쓰는 게 보통이에요)",
-  "altw": "whom",
-  "alt": "He is the man to whom I spoke.",
-  "altko": "그는 내가 말을 건 그 남자예요(to whom처럼 전치사 바로 뒤에서는 whom).",
-  "why": "I meet(내가 만난다)에서 만나는 대상은 friends(친구들)예요. 사람을 이어 주는 말로 who를 써서 who I meet라고 해요. 참고로 whom도 아주 틀린 말은 아니에요(아주 딱딱한 글에서 써요). 하지만 이 문제에서는 평소에 많이 쓰는 who가 정답이에요.",
+  "bad": "These are friends which I meet.",
+  "badko": "(friends는 사람이라서 사물에 쓰는 which가 아니라 who예요)",
+  "altw": "which",
+  "alt": "This is the book which I read.",
+  "altko": "이건 내가 읽은 책이에요(book은 사물이라서 which를 써요).",
+  "why": "I meet(내가 만난다)에서 만나는 대상은 friends(친구들)예요. 친구는 사람이라서 which가 아니라 who를 써요. which는 책, 물건 같은 사물에만 써요. 참고로 딱딱한 글에서는 whom(누구를)도 쓰지만 보통은 who를 써요.",
   "trend": "<b>출제 2위 · 관계대명사와 관계부사</b><br>31년간 99회 나왔어요.<br>앞 말이 사람이면 who(m), 사물이면 which예요",
   "d": {
    "made": "make(만들다)의 과거분사, make friends: 친구를 사귀다",
@@ -202,7 +202,8 @@
    "almost": "거의",
    "every": "모든, 매 ~",
    "weekend": "주말",
-   "whom": "누구를(격식 있는 말)"
+   "whom": "누구를(격식 있는 말)",
+   "which": "어느 것(사물에 쓰는 연결말)"
   },
   "ko": "나는 로스앤젤레스로 이사한 이래로 10명이 넘는 새 친구를 사귀었는데, 나는 그들을 거의 매주 만난다."
  },

@@ -13,7 +13,7 @@
   {
    "bar": "p.25 정답 및 해설",
    "sub": "",
-   "quick": "<b>빠른정답</b><br>1) has sold → <b>had sold</b> / 2) embarrassing → <b>embarrassed</b> / 3) teach → <b>taught</b> / 4) whom → <b>who</b> / 5) has been eaten → <b>had been eaten</b> / 6) keep → <b>keeps</b> / 7) hoping playing → <b>hoping to play</b> / 8) will save → <b>save</b> / 9) will be → <b>is</b> / 10) training schedule → <b>a training schedule</b>",
+   "quick": "<b>빠른정답</b><br>1) has sold → <b>had sold</b> / 2) embarrassing → <b>embarrassed</b> / 3) teach → <b>taught</b> / 4) which → <b>who</b> / 5) has been eaten → <b>had been eaten</b> / 6) keep → <b>keeps</b> / 7) hoping playing → <b>hoping to play</b> / 8) will save → <b>save</b> / 9) will be → <b>is</b> / 10) training schedule → <b>a training schedule</b>",
    "items": [
     {
      "pre": "The bakery ",
@@ -56,15 +56,15 @@
     },
     {
      "pre": "I have made more than 10 new friends since I moved to Los Angeles, ",
-     "wr": "whom",
+     "wr": "which",
      "post": " I meet almost every weekend.",
-     "fr": "whom",
+     "fr": "which",
      "to": "who",
      "correct": "I have made more than 10 new friends since I moved to Los Angeles, who I meet almost every weekend.",
      "interp": "나는 로스앤젤레스로 이사한 이래로 10명이 넘는 새 친구를 사귀었는데, 나는 그들을 거의 매주 만난다.",
      "color": "#4338ca",
      "badge": "관계대명사 선택 (Chapter 10 POINT 1)",
-     "explain": "friends를 보충 설명하는 관계대명사절에서 who/whom은 meet의 목적어 역할을 한다. 목적격 자리에는 격식체의 whom도 문법상 가능하지만, 이 문제에서는 일상적으로 쓰는 who를 정답으로 정했다. 따라서 whom이 아니라 <b>who</b>로 고친다. since I moved는 특정 과거 시점을 나타내므로 moved가 단순과거로 쓰인 것은 올바르다.",
+     "explain": "friends(친구들)는 사람이므로 사물에 쓰는 관계대명사 which를 쓸 수 없다. meet의 목적어 자리이므로 사람에는 who(격식체로는 whom)를 쓴다. 따라서 which가 아니라 <b>who</b>로 고친다. since I moved는 특정 과거 시점을 나타내므로 moved가 단순과거로 쓰인 것은 올바르다.",
      "qn": "문항 4"
     },
     {
