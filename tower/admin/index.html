@@ -31,12 +31,12 @@
 <div id="gate" style="display:none"><h1>관제탑 등록</h1><button class="p" id="glog" style="width:100%">구글로 로그인</button><div id="gerr"></div></div>
 <div class="wrap" id="app" style="display:none">
   <h1>관제탑 등록</h1>
-  <div class="bar"><button class="p" id="reg">빠진 학생 등록</button><button id="reload">새로 읽기</button></div>
+  <div class="bar"><button class="p" id="reg">빠진 학생 등록</button><button id="reload">새로 읽기</button><button id="syn">위치 새로 읽기</button></div>
   <div id="msg"></div>
   <div id="list"></div>
 </div>
 <script>
-/* tower-admin 261121a — 선생님 전용. 학생 문서 등록(이미 있으면 건드리지 않음)·재원/퇴원 전환. 모든 변경은 tower_log 에 새로 쌓인다. */
+/* tower-admin 261121b — 선생님 전용. 학생 문서 등록(이미 있으면 건드리지 않음)·재원/퇴원 전환·위치 새로 읽기. 모든 변경은 tower_log 에 새로 쌓인다. */
 (function(){
 var ROSTER={"M초6A":["윤여름","조서인"],"M초6C":["김동권","김은찬","김이한","민윤찬","박윤수","신도건","이상윤"],"T초6B":["김지율","김태율","노지훈","이재빈","연휘건"],"T초6C":["김예슬","노예린","류이안","이연서","이재인","조은유","연다혜"],"M중1B":["김시원","김윤슬","류아인","박대환","이지성","임건호","정해윤"],"T중1A":["김태건","장도율","조이준","최민준","홍윤제"]};
 var ORDER=["M초6A","M초6C","T초6B","T초6C","M중1B","T중1A"];
@@ -52,6 +52,15 @@ function docId(name){
   });
 }
 function S(v){return {stringValue:String(v)};}
+function dec(f){
+  if(!f)return null;
+  if("stringValue" in f)return f.stringValue;
+  if("integerValue" in f)return Number(f.integerValue);
+  if("nullValue" in f)return null;
+  if("arrayValue" in f)return (f.arrayValue.values||[]).map(dec);
+  if("mapValue" in f){var o={},m=f.mapValue.fields||{};for(var k in m)o[k]=dec(m[k]);return o;}
+  return null;
+}
 function api(path,opt){return AUTH.token().then(function(t){opt=opt||{};opt.headers={"Authorization":"Bearer "+t,"Content-Type":"application/json"};return fetch(BASE+path,opt);});}
 function logW(act,name,cls){
   var t=Date.now(),id=t+"_"+Math.random().toString(36).slice(2,8);
@@ -64,7 +73,7 @@ function load(){
       if(r.status===401||r.status===403)throw {auth:1};
       if(!r.ok)throw new Error("읽기 실패 "+r.status);
       return r.json().then(function(j){
-        (j.documents||[]).forEach(function(d){var f=d.fields||{};DOCS.push({id:d.name.split("/").pop(),ut:d.updateTime,name:(f.name||{}).stringValue,cls:(f.cls||{}).stringValue,status:(f.status||{}).stringValue});});
+        (j.documents||[]).forEach(function(d){var f=d.fields||{};DOCS.push({id:d.name.split("/").pop(),ut:d.updateTime,name:(f.name||{}).stringValue,cls:(f.cls||{}).stringValue,status:(f.status||{}).stringValue,pos:dec(f.pos),pend:dec(f.pend)});});
         if(j.nextPageToken)return page(j.nextPageToken);
       });
     });
@@ -127,6 +136,106 @@ $("list").onclick=function(ev){
     if(!r.ok)throw new Error("저장 실패 "+r.status+" (새로 읽고 다시 해 주세요)");
     BUSY=false;return reload(d.name+" 학생을 "+(to==="left"?"퇴원":"재원")+"으로 바꿨습니다.");
   }).catch(fail);
+};
+
+/* ===== 위치 새로 읽기: 기존 기록(l_*)을 읽어 학생 문서의 위치(pos)·지정 대기(pend)에 저장 ===== */
+var SRV="https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec";
+var GK_URL="https://nolbada.github.io/board/gichul_m1.json";
+var LEN={K:64,E:64,Y:64,X:100,M1:78,GK:232,VL:30};
+var BDEND={"기본":950,"발전":1140,"심화":950,"고교":1440};
+var BDORD=["기본","발전","심화","고교","워마2000"];
+var DVEND={M:80,B:80,H:112};
+var DVORD=["M","B","H"];
+var RDINFO={tutorstarter:["리딩튜터 주니어 스타터",24],hackersstarter:["해커스 스타터",24],tutorjunior:["리딩튜터 주니어",40],hackers:["해커스 리딩스마트",40],"1316reading":["능률 1316",40],bricks:["브릭스",40],readinggraphy:["리딩그라피",36],tutorchallenger:["리딩튜터 챌린저",40],hackersmaster:["해커스 마스터",40]};
+var RDPER={tutorstarter:3,hackersstarter:3,tutorjunior:4,hackers:4,"1316reading":4,bricks:4,readinggraphy:3,tutorchallenger:4,hackersmaster:4};
+function P(s){try{return JSON.parse(s)}catch(e){return {}}}
+function num(s,re){var m=(s||"").match(re);return m?+m[1]:null}
+function bookInfo(k){var m=k.match(/^(.*?)(\d+)$/),b=m?m[1]:k,n=m?m[2]:"",t=RDINFO[b]||[b,40];return {name:t[0]+" "+n,len:t[1],per:RDPER[b]||4};}
+function readOne(n){
+  return fetch(SRV+"?a=get&date=2000-01-01&name="+encodeURIComponent(n)).then(function(r){return r.json()}).then(function(j){
+    var a=(j&&j.chk&&j.chk.app)||{},o={};
+    for(var k in a){if(k.indexOf("l_")===0)o[k]=P(a[k]);}
+    var r={};
+    if(o.l_vk)r.K=num(o.l_vk.w,/Day (\d+)/);
+    if(o.l_ve)r.E=num(o.l_ve.w,/Day (\d+)/);
+    if(o.l_vy)r.Y=num(o.l_vy.w,/Day (\d+)/);
+    if(o.l_xr)r.X=num(o.l_xr.w,/엑스레이 (\d+)/);
+    if(o.l_m1)r.M1=num(o.l_m1.w,/Reading (\d+)/);
+    if(o.l_m2)r.M2=num(o.l_m2.w,/Reading (\d+)/);
+    if(o.l_gk1)r.GK=num(o.l_gk1.w,/No\.(\d+)/);
+    if(o.l_vl)r.VL=num(o.l_vl.w,/DAY (\d+)/);
+    if(o.l_dv){var md=(o.l_dv.w||"").match(/데일리보카 ([MBH]) Day (\d+)/);if(md){r.DVL=md[1];r.DVN=+md[2];}}
+    if(o.l_bd){var m=(o.l_bd.w||"").match(/비단챌 (\S+) (\d+)/);if(m){r.BDL=m[1];r.BDN=+m[2];}}
+    var best=null;
+    for(var k2 in o){var m2=k2.match(/^l_rd_(.+?)(_exit)?$/);if(!m2)continue;var dd=(o[k2].d||"")+(o[k2].t||"");if(!best||dd>best.d)best={d:dd,b:m2[1],u:o[k2].u||""};}
+    if(best){var bi=bookInfo(best.b),mr=/[?&]r=([^&]+)/.exec(best.u),id=mr?mr[1]:"",q,ord=null;
+      if(/^r\d+$/.test(id))ord=+id.slice(1);else{q=id.match(/-(\d+)-(\d+)$/);if(q)ord=(+q[1]-1)*bi.per+(+q[2]);}
+      r.RDB=bi.name;r.RDL=bi.len;r.RDN=ord;}
+    var last="";for(var k3 in o){if((o[k3].d||"")>last)last=o[k3].d;}
+    r.last=last;
+    return r;
+  });
+}
+/* 자동 연결 규칙: 지금 단계가 끝(진행>=길이)이면 다음 단계 "시작 전"으로 보인다. 끝에서 사람이 정해야 하면 지정 대기에 올린다. */
+function computePos(r){
+  var pos=[],pend=[];
+  var vs=[["K",r.K,LEN.K],["E",r.E,LEN.E],["엑스레이",r.X,LEN.X],["Y",r.Y,LEN.Y]],li=-1,i;
+  for(i=0;i<vs.length;i++)if(vs[i][1]!=null)li=i;
+  if(li>=0){var c=vs[li];
+    if(c[1]>=c[2])pos.push({k:"V시그널",v:c[0]+" 끝 · 다음 "+(li<3?vs[li+1][0]:"Y 주요문장 100")+" 시작 전"});
+    else pos.push({k:"V시그널",v:c[0]+" "+c[1]+"/"+c[2]});}
+  if(r.M2!=null)pos.push({k:"M 리딩",v:"M2 Reading "+r.M2});
+  else if(r.M1!=null){if(r.M1>=LEN.M1)pos.push({k:"M 리딩",v:"M1 끝 · 다음 M2 시작 전"});else pos.push({k:"M 리딩",v:"M1 "+r.M1+"/"+LEN.M1});}
+  if(r.GK!=null){pos.push({k:"대화문 기출",v:r.GK+"/"+LEN.GK});if(r.GK>=LEN.GK)pend.push("대화문 기출 중1 끝, 새 문제 대기 또는 중2 지정");}
+  if(r.BDL){var e=BDEND[r.BDL];
+    if(e&&r.BDN>=e){var nx=BDORD[BDORD.indexOf(r.BDL)+1]||"";pos.push({k:"비단챌",v:r.BDL+" 끝"+(nx?" · 다음 "+nx+" 시작 전":"")});}
+    else pos.push({k:"비단챌",v:r.BDL+" "+r.BDN+(e?"/"+e:"")+(e&&r.BDN+9>=e?" · 마지막 묶음":"")});}
+  if(r.VL!=null){pos.push({k:"보카링크",v:"DAY "+r.VL+"/"+LEN.VL});if(r.VL>=LEN.VL)pend.push("보카링크 끝, 시험 대기");}
+  if(r.RDN!=null){pos.push({k:"독해33",v:r.RDB+" "+r.RDN+"/"+r.RDL});if(r.RDN>=r.RDL)pend.push("독해33 "+r.RDB+" 끝, 다음 책 지정 대기");}
+  if(r.DVL&&DVEND[r.DVL]){
+    if(r.DVN>=DVEND[r.DVL]){
+      if(r.DVL==="H"){pos.push({k:"데일리보카",v:"H 끝"});pend.push("데일리보카 H 끝, 다음 지정 대기");}
+      else pos.push({k:"데일리보카",v:r.DVL+" 끝 · 다음 "+DVORD[DVORD.indexOf(r.DVL)+1]+" 시작 전"});
+    }else pos.push({k:"데일리보카",v:r.DVL+" "+r.DVN+"/"+DVEND[r.DVL]});
+  }
+  return {pos:pos,pend:pend};
+}
+function arrV(a,f){return {arrayValue:{values:a.map(f)}};}
+function posField(p){return arrV(p,function(x){return {mapValue:{fields:{k:S(x.k),v:S(x.v)}}};});}
+function same(a,b){return JSON.stringify(a||[])===JSON.stringify(b||[]);}
+function wdate(t){var d=new Date(t),W=["일","월","화","수","목","금","토"];return (d.getMonth()+1)+"/"+d.getDate()+"("+W[d.getDay()]+")";}
+$("syn").onclick=function(){
+  if(BUSY)return;BUSY=true;$("syn").disabled=true;say("기록을 읽는 중...");
+  var act=[],res=[],bad=[];
+  load().then(function(){
+    act=DOCS.filter(function(d){return d.status==="active";});
+    return fetch(GK_URL).then(function(r){return r.json()}).then(function(j){if(j&&j.questions)LEN.GK=j.questions.length;}).catch(function(){});
+  }).then(function(){
+    var i=0;
+    function batch(){
+      if(i>=act.length)return Promise.resolve();
+      var part=act.slice(i,i+6);i+=6;
+      return Promise.all(part.map(function(d){return readOne(d.name).then(function(r){res.push([d,r]);}).catch(function(){bad.push(d.name);});})).then(batch);
+    }
+    return batch();
+  }).then(function(){
+    var now=Date.now(),w=[],ch=0;
+    res.forEach(function(x){
+      var d=x[0],r=x[1],c=computePos(r);
+      var np=c.pos.map(function(q){return [q.k,q.v];}),op=(d.pos||[]).map(function(q){return [q.k,q.v];});
+      var chg=!same(np,op)||!same(c.pend,d.pend);
+      var f={pos:posField(c.pos),pend:arrV(c.pend,S),r:S(JSON.stringify(r)),sy:{integerValue:String(now)}};
+      w.push({update:{name:DB+"/documents/tower_s/"+d.id,fields:f},updateMask:{fieldPaths:["pos","pend","r","sy"]},currentDocument:{exists:true}});
+      if(chg){ch++;var lw=logW("pos",d.name,d.cls);lw.update.fields.before=S(JSON.stringify({pos:op,pend:d.pend||[]}));lw.update.fields.after=S(JSON.stringify({pos:np,pend:c.pend}));w.push(lw);}
+    });
+    if(!w.length){BUSY=false;$("syn").disabled=false;say("읽을 학생이 없습니다.",1);return;}
+    return api(":commit",{method:"POST",body:JSON.stringify({writes:w})}).then(function(r){
+      if(r.status===401||r.status===403)throw {auth:1};
+      if(!r.ok)throw new Error("위치 저장 실패 "+r.status);
+      BUSY=false;$("syn").disabled=false;
+      return reload("위치를 새로 읽었습니다. 바뀐 학생 "+ch+"명 · "+res.length+"명 확인"+(bad.length?" · 읽지 못함: "+bad.join(", "):"")+" ("+wdate(now)+")");
+    });
+  }).catch(function(e){$("syn").disabled=false;fail(e);});
 };
 function authFail(){$("app").style.display="none";$("gate").style.display="block";$("gerr").textContent="이 계정으로는 열 수 없습니다. 선생님 계정으로 로그인해 주세요.";if(AUTH)AUTH.signOut();}
 function start(){$("gate").style.display="none";$("app").style.display="block";say("읽는 중...");reload();}
