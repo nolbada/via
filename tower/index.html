@@ -49,9 +49,9 @@ table.g td{padding:7px 8px;border-bottom:1px solid #eef0f3;vertical-align:top}
 </div>
 
 <div class="card">
-<h2>곧 끝나는 항목 (D-10 이내)</h2>
+<h2>곧 끝나는 항목 (D-4 이내, 약 열흘 전)</h2>
 <div id="soon"></div>
-<div class="muted" style="margin-top:6px">남은 횟수가 10회 이하인 항목만 표시. 날짜는 주 3회 기준 추정(데일리보카는 주 6일).</div>
+<div class="muted" style="margin-top:6px">남은 횟수가 4회 이하인 항목만 표시(주 3회 기준 약 열흘 전). 데일리보카는 주 6일이라 8일 이하. 날짜는 추정.</div>
 </div>
 
 <div class="card">
@@ -146,8 +146,9 @@ function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;
 function rem(done,total){return Math.max(total-done,0);}
 function wk(r){return Math.ceil(r/PER_WEEK);}
 function pill(t,warn){return '<span class="pill'+(warn?" warn":"")+'">'+esc(t)+"</span>";}
-var SOON=10;
-function dd(n){return n<=SOON?" D-"+n:"";}
+var SOON=4;
+var SOONDV=8;
+function dd(n,l){return n<=(l||SOON)?" D-"+n:"";}
 
 function cells(r){
   var v=[],m=[];
@@ -163,7 +164,7 @@ function cells(r){
   if(r.VL!=null){var e=rem(r.VL,LEN.VL);vl=pill("DAY "+r.VL+"/"+LEN.VL+dd(e),e<=SOON);}
   var rd=r.RD?esc(r.RD):'<span class="dim">-</span>';
   var dv=r.DV?pill("데일리보카 "+r.DV):"";
-  if(r.DVL&&DVEND[r.DVL]){var dr=rem(r.DVN,DVEND[r.DVL]);dv=pill("데일리보카 "+r.DVL+" "+r.DVN+"/"+DVEND[r.DVL]+dd(dr),dr<=SOON);}
+  if(r.DVL&&DVEND[r.DVL]){var dr=rem(r.DVN,DVEND[r.DVL]);dv=pill("데일리보카 "+r.DVL+" "+r.DVN+"/"+DVEND[r.DVL]+dd(dr,SOONDV),dr<=SOONDV);}
   return {v:v.join("")||'<span class="dim">-</span>',m:m.join("")||'<span class="dim">-</span>',gk:gk,bd:bd,vl:vl,rd:rd,dv:dv};
 }
 
@@ -176,7 +177,7 @@ function drawSoon(){
     if(r.E!=null&&rem(r.E,LEN.E)<=SOON){var b=rem(r.E,LEN.E);out.push({n:r.n,c:r.c,what:"V시그널 E "+r.E+"/"+LEN.E,left:b,wk:wk(b),next:"자동 연결(엑스레이)"});}
     if(r.Y!=null&&rem(r.Y,LEN.Y)<=SOON){var y2=rem(r.Y,LEN.Y);out.push({n:r.n,c:r.c,what:"V시그널 Y "+r.Y+"/"+LEN.Y,left:y2,wk:wk(y2),next:"자동 연결(Y 주요문장 100)"});}
     if(r.BDL&&BDEND[r.BDL]){var b3=Math.max(Math.ceil((BDEND[r.BDL]-(r.BDN+9))/10),0);if(b3<=SOON){var bd2=new Date(TODAY.getTime());bd2.setDate(bd2.getDate()+wk(b3)*7);out.push({n:r.n,c:r.c,what:"비단챌 "+r.BDL+" "+r.BDN+"/"+BDEND[r.BDL],left:b3,wk:wk(b3),when:fdate(bd2),next:BDNEXT[r.BDL]});}}
-    if(r.DVL&&DVEND[r.DVL]){var d3=rem(r.DVN,DVEND[r.DVL]);if(d3<=SOON){var dd3=new Date(TODAY.getTime());dd3.setDate(dd3.getDate()+Math.ceil(d3/DV_WEEK)*7);out.push({n:r.n,c:r.c,what:"데일리보카 "+r.DVL+" "+r.DVN+"/"+DVEND[r.DVL],left:d3,wk:Math.ceil(d3/DV_WEEK),when:fdate(dd3),next:DVNEXT[r.DVL]});}}
+    if(r.DVL&&DVEND[r.DVL]){var d3=rem(r.DVN,DVEND[r.DVL]);if(d3<=SOONDV){var dd3=new Date(TODAY.getTime());dd3.setDate(dd3.getDate()+Math.ceil(d3/DV_WEEK)*7);out.push({n:r.n,c:r.c,what:"데일리보카 "+r.DVL+" "+r.DVN+"/"+DVEND[r.DVL],left:d3,wk:Math.ceil(d3/DV_WEEK),when:fdate(dd3),next:DVNEXT[r.DVL]});}}
     if(r.RDN!=null&&rem(r.RDN,r.RDL)<=SOON){var g=rem(r.RDN,r.RDL),gd=new Date(TODAY.getTime());gd.setDate(gd.getDate()+wk(g)*7);out.push({n:r.n,c:r.c,what:"독해33 "+r.RDB+" "+r.RDN+"/"+r.RDL,left:g,wk:wk(g),when:fdate(gd),next:"지정 대기(독해33 다음 책)"});}
     if(r.M1!=null&&rem(r.M1,LEN.M1)<=SOON){var c=rem(r.M1,LEN.M1);out.push({n:r.n,c:r.c,what:"M1 리딩 "+r.M1+"/"+LEN.M1,left:c,wk:wk(c),next:"자동 연결(M2)"});}
   });
