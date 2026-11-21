@@ -63,9 +63,9 @@ table.g td{padding:7px 8px;border-bottom:1px solid #eef0f3;vertical-align:top}
 
 <div class="card note">
 <b>끝 길이 기준</b><br>
-V시그널 K 64일 · E 64일 · 엑스레이 100문장 · M1 리딩 78회 · 대화문 기출 중1은 현재 등록된 문제 수(문제를 올리면 늘어남) · 보카링크 30일 · 독해33 책별 24회(스타터류)/36회(리딩그라피)/40회(그 외), 1회차 1수업 기준<br>
+V시그널 K 64일 · E 64일 · 엑스레이 100문장 · M1 리딩 78회 · 대화문 기출 중1은 현재 등록된 문제 수(문제를 올리면 늘어남) · 보카링크 30일 · V시그널 Y 64일 · 독해33 책별 24회(스타터류)/36회(리딩그라피)/40회(그 외), 1회차 1수업 기준 · 비단챌 기본 950·발전 1140·심화 950·고교 1440번(10번 묶음 1수업 기준) · 데일리보카 M 80일·B 80일·H 112일(주 6일 기준)<br>
 <b>길이를 아직 못 읽은 항목</b><br>
-V시그널 Y · 비단챌 단계별 끝 · 데일리보카. 이 항목은 위치만 표시하고 남은 기간은 계산하지 않음<br>
+없음. 비단챌 묶음 수와 데일리보카 속도는 실제 기록이 쌓이면 보정<br>
 <b>자동 연결 순서</b><br>
 V시그널 K, E, 엑스레이, Y, Y 주요문장 100 · M1, M2 · 비단챌 기본, 발전, 심화, 고교, 워마2000 · 더블보카 코어, 프로 · 데일리보카 M, B, H<br>
 <b>선생님 지정 항목</b><br>
@@ -79,7 +79,12 @@ var SRV="https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc
 var GK_URL="https://nolbada.github.io/board/gichul_m1.json";
 var ROSTER={"M초6A":["윤여름","조서인"],"M초6C":["김동권","김은찬","김이한","민윤찬","박윤수","신도건","이상윤"],"T초6B":["김지율","김태율","노지훈","이재빈","연휘건"],"T초6C":["김예슬","노예린","류이안","이연서","이재인","조은유","연다혜"],"M중1B":["김시원","김윤슬","류아인","박대환","이지성","임건호","정해윤"],"T중1A":["김태건","장도율","조이준","최민준","홍윤제"]};
 var ORDER=["M초6A","M초6C","T초6B","T초6C","M중1B","T중1A"];
-var LEN={K:64,E:64,X:100,M1:78,GK:232,VL:30};
+var LEN={K:64,E:64,Y:64,X:100,M1:78,GK:232,VL:30};
+var BDEND={"기본":950,"발전":1140,"심화":950,"고교":1440};
+var BDNEXT={"기본":"자동 연결(발전)","발전":"자동 연결(심화)","심화":"자동 연결(고교)","고교":"자동 연결(워마2000)"};
+var DVEND={M:80,B:80,H:112};
+var DVNEXT={M:"자동 연결(B)",B:"자동 연결(H)",H:"지정 대기(데일리보카 H 끝)"};
+var DV_WEEK=6;
 var PER_WEEK=3;
 var ROWS=[];
 var ERRS=[];
@@ -103,8 +108,8 @@ function readOne(c,n){
     if(o.l_m2)r.M2=num(o.l_m2.w,/Reading (\d+)/);
     if(o.l_gk1)r.GK=num(o.l_gk1.w,/No\.(\d+)/);
     if(o.l_vl)r.VL=num(o.l_vl.w,/DAY (\d+)/);
-    if(o.l_dv)r.DV=(o.l_dv.w||"").replace("데일리보카 ","").slice(0,14);
-    if(o.l_bd){var m=(o.l_bd.w||"").match(/비단챌 (\S+) (\d+)/);if(m)r.BD=m[1]+" "+m[2];}
+    if(o.l_dv){r.DV=(o.l_dv.w||"").replace("데일리보카 ","").slice(0,14);var md=(o.l_dv.w||"").match(/데일리보카 ([MBH]) Day (\d+)/);if(md){r.DVL=md[1];r.DVN=+md[2];}}
+    if(o.l_bd){var m=(o.l_bd.w||"").match(/비단챌 (\S+) (\d+)/);if(m){r.BD=m[1]+" "+m[2];r.BDL=m[1];r.BDN=+m[2];}}
     var best=null;
     for(var k2 in o){var m2=k2.match(/^l_rd_(.+?)(_exit)?$/);if(!m2)continue;var dd=(o[k2].d||"")+(o[k2].t||"");if(!best||dd>best.d)best={d:dd,b:m2[1],u:o[k2].u||""};}
     if(best){var bi=bookInfo(best.b),mr=/[?&]r=([^&]+)/.exec(best.u),id=mr?mr[1]:"",q,ord=null;
@@ -148,15 +153,16 @@ function cells(r){
   if(r.K!=null){var a=rem(r.K,LEN.K);v.push(pill("K "+r.K+"/"+LEN.K+" (약 "+wk(a)+"주)",a<=SOON));}
   if(r.E!=null){var b=rem(r.E,LEN.E);v.push(pill("E "+r.E+"/"+LEN.E+" (약 "+wk(b)+"주)",b<=SOON));}
   if(r.X!=null){v.push(pill("엑스레이 "+r.X+"/"+LEN.X));}
-  if(r.Y!=null){v.push(pill("Y Day "+r.Y));}
+  if(r.Y!=null){var yy=rem(r.Y,LEN.Y);v.push(pill("Y "+r.Y+"/"+LEN.Y+" (약 "+wk(yy)+"주)",yy<=SOON));}
   if(r.M1!=null){var c=rem(r.M1,LEN.M1);m.push(pill("M1 "+r.M1+"/"+LEN.M1+" (약 "+wk(c)+"주)",c<=SOON));}
   if(r.M2!=null){m.push(pill("M2 Reading "+r.M2));}
   var gk=r.GK!=null?pill(r.GK+"/"+LEN.GK):'<span class="dim">-</span>';
-  var bd=r.BD?pill(r.BD):'<span class="dim">-</span>';
+  var bd=r.BD?pill(r.BD+(BDEND[r.BDL]?"/"+BDEND[r.BDL]:"")):'<span class="dim">-</span>';
   var vl='<span class="dim">-</span>';
   if(r.VL!=null){var e=rem(r.VL,LEN.VL);vl=pill("DAY "+r.VL+"/"+LEN.VL+" (약 "+wk(e)+"주)",e<=SOON);}
   var rd=r.RD?esc(r.RD):'<span class="dim">-</span>';
   var dv=r.DV?pill("데일리보카 "+r.DV):"";
+  if(r.DVL&&DVEND[r.DVL]){var dr=rem(r.DVN,DVEND[r.DVL]);dv=pill("데일리보카 "+r.DVL+" "+r.DVN+"/"+DVEND[r.DVL]+" (약 "+Math.ceil(dr/DV_WEEK)+"주)",dr<=DV_WEEK*4);}
   return {v:v.join("")||'<span class="dim">-</span>',m:m.join("")||'<span class="dim">-</span>',gk:gk,bd:bd,vl:vl,rd:rd,dv:dv};
 }
 
@@ -167,6 +173,9 @@ function drawSoon(){
     if(r.VL!=null){var e=rem(r.VL,LEN.VL);if(e<=SOON){var d=new Date(TODAY.getTime());d.setDate(d.getDate()+wk(e)*7);out.push({n:r.n,c:r.c,what:"보카링크 DAY "+r.VL+"/"+LEN.VL,left:e,wk:wk(e),when:fdate(d),next:"지정 대기(보카링크 시험)"});}}
     if(r.K!=null&&rem(r.K,LEN.K)<=SOON){var a=rem(r.K,LEN.K);out.push({n:r.n,c:r.c,what:"V시그널 K "+r.K+"/"+LEN.K,left:a,wk:wk(a),next:"자동 연결(E)"});}
     if(r.E!=null&&rem(r.E,LEN.E)<=SOON){var b=rem(r.E,LEN.E);out.push({n:r.n,c:r.c,what:"V시그널 E "+r.E+"/"+LEN.E,left:b,wk:wk(b),next:"자동 연결(엑스레이)"});}
+    if(r.Y!=null&&rem(r.Y,LEN.Y)<=SOON){var y2=rem(r.Y,LEN.Y);out.push({n:r.n,c:r.c,what:"V시그널 Y "+r.Y+"/"+LEN.Y,left:y2,wk:wk(y2),next:"자동 연결(Y 주요문장 100)"});}
+    if(r.BDL&&BDEND[r.BDL]){var b3=Math.max(Math.ceil((BDEND[r.BDL]-(r.BDN+9))/10),0);if(b3<=SOON){var bd2=new Date(TODAY.getTime());bd2.setDate(bd2.getDate()+wk(b3)*7);out.push({n:r.n,c:r.c,what:"비단챌 "+r.BDL+" "+r.BDN+"/"+BDEND[r.BDL],left:b3,wk:wk(b3),when:fdate(bd2),next:BDNEXT[r.BDL]});}}
+    if(r.DVL&&DVEND[r.DVL]){var d3=rem(r.DVN,DVEND[r.DVL]);if(d3<=DV_WEEK*4){var dd3=new Date(TODAY.getTime());dd3.setDate(dd3.getDate()+Math.ceil(d3/DV_WEEK)*7);out.push({n:r.n,c:r.c,what:"데일리보카 "+r.DVL+" "+r.DVN+"/"+DVEND[r.DVL],left:d3,wk:Math.ceil(d3/DV_WEEK),when:fdate(dd3),next:DVNEXT[r.DVL]});}}
     if(r.RDN!=null&&rem(r.RDN,r.RDL)<=SOON){var g=rem(r.RDN,r.RDL),gd=new Date(TODAY.getTime());gd.setDate(gd.getDate()+wk(g)*7);out.push({n:r.n,c:r.c,what:"독해33 "+r.RDB+" "+r.RDN+"/"+r.RDL,left:g,wk:wk(g),when:fdate(gd),next:"지정 대기(독해33 다음 책)"});}
     if(r.M1!=null&&rem(r.M1,LEN.M1)<=SOON){var c=rem(r.M1,LEN.M1);out.push({n:r.n,c:r.c,what:"M1 리딩 "+r.M1+"/"+LEN.M1,left:c,wk:wk(c),next:"자동 연결(M2)"});}
   });
@@ -187,6 +196,7 @@ function drawWait(){
   ROWS.forEach(function(r){
     if(r.bad)return;
     if(r.VL!=null&&r.VL>=LEN.VL)w.push(r.n+" - 보카링크 끝, 시험 대기");
+    if(r.DVL&&DVEND[r.DVL]&&r.DVN>=DVEND[r.DVL]&&r.DVL==="H")w.push(r.n+" - 데일리보카 H 끝, 다음 지정 대기");
     if(r.RDN!=null&&r.RDN>=r.RDL)w.push(r.n+" - 독해33 "+r.RDB+" 끝, 다음 책 지정 대기");
     if(r.GK!=null&&r.GK>=LEN.GK)w.push(r.n+" - 대화문 기출 중1 끝, 새 문제 대기 또는 중2 지정");
   });
