@@ -315,7 +315,7 @@ function randTok(n){var a='abcdefghjkmnpqrstuvwxyz23456789',o='';var u=new Uint8
 
 /* ================= 학부모(조회) ================= */
 function weekNav(start,end,isCur,showNav){
-  var h='<div class="weeknav"><button data-nav="-1" aria-label="이전 주">‹</button><div class="weeklabel">'+md(start)+'(토) – '+md(end)+'('+DAYS[end.getDay()]+')<small>'+(isCur?'이번 주':Math.round((parseKey(curKey())-start)/604800000)+'주 전')+'</small></div><button data-nav="1" aria-label="다음 주"'+(isCur?' disabled':'')+'>›</button></div>';
+  var h='<div class="weeknav"><button data-nav="-1" aria-label="이전 주">‹</button><div class="weeklabel">'+md(start)+'(토) – '+md(end)+'('+DAYS[end.getDay()]+')'+(isCur?'<small>이번 주</small>':'')+'</div><button data-nav="1" aria-label="다음 주"'+(isCur?' disabled':'')+'>›</button></div>';
   return h;
 }
 function slot(label,val,fut,late,attrs){
@@ -457,11 +457,12 @@ function reportView(meta,weeks,reps){
     h+='</ul>';
     if(LS.note)h+='<p class="rp-note">'+esc(LS.note)+'</p>';
     h+='</div>';}
-    h+='<div class="rp-msg"><b>학부모님께 당부드립니다</b><p>문법 시간은 클래스카드 정오표에 기록된 문제 풀이 시간만 더한 순수 학습 시간입니다. 단어숙제는 학생마다 걸리는 시간 차이가 커서, 완료 여부, 요일, 점수로 확인합니다.</p><p>하루 단어숙제는 평균 5~7분 정도면 끝나는 분량입니다. 아이가 주로 언제, 얼마나 숙제를 하는지 함께 살펴봐 주세요.</p><p>숙제 마감은 금요일 오후 6시입니다.<br>금요일 오후 6시 이후에 한 숙제는 집이든 학원이든 크게 감점되니, 주중에 나누어 하도록 지도해 주세요.</p></div>';
+    h+='<div class="rp-msg"><b>학부모님께 당부드립니다</b><p>문법 시간은 클래스카드 정오표에 기록된 문제 풀이 시간만 더한 순수 학습 시간입니다. 단어숙제는 학생마다 걸리는 시간 차이가 커서, 완료 여부, 요일, 점수로 확인합니다.</p><p>하루 단어숙제는 평균 5~7분 정도면 끝나는 분량입니다. 아이가 주로 언제, 얼마나 숙제를 하는지 함께 살펴봐 주세요.</p><p>숙제 마감은 금요일 오후 10시입니다.<br>금요일 오후 10시 이후에 한 숙제는 집이든 학원이든 크게 감점되니, 주중에 나누어 하도록 지도해 주세요.</p></div>';
   }
   var FL=itemsOfMeta(meta).filter(function(it){return it.k!=='w'&&it.k!=='g'});
   if(FL.length){
     var r=ensure(cloneJ(weeks[viewKey]||{}),FL);
+    if(!isCur){FL.forEach(function(it){var q=r[it.k]||[];for(var z=0;z<nOf(it);z++){if(!q[z])q[z]='O'}})}
     h+='<div class="h2">선생님 검사 항목</div>';
     FL.forEach(function(it){
       var n=nOf(it),a=r[it.k],c=cntIt(r,it);
