@@ -715,22 +715,10 @@ var RMB={'더블보카':1,'데일리보카':1,'데일리어법':1,'미니모고'
 function rmOk(i){var s=String(i.src||'');return!!s&&s.indexOf(',')<0&&!RMB[s]&&!PV}
 function rmBtn(i){return rmOk(i)?'<button class="rmx" type="button" data-rw="'+esc(i.w)+'" data-rs="'+esc(i.src)+'">빼기</button>':''}
 function rmBind(re){[].forEach.call($.querySelectorAll('.rmx'),function(b){b.onclick=function(e){e.stopPropagation();wnRm(b.getAttribute('data-rw'),b.getAttribute('data-rs'));re()}})}
-function fzRefill(w){
-  try{var n=name(),m=fzLoc(),t=iso(new Date()),k0=String(w).toLowerCase(),ch=0;
-    Object.keys(m).forEach(function(K){if(K<t)return;var a=m[K];if(!a||!a.length)return;var j=-1;a.forEach(function(x,x2){if(String(x).toLowerCase()===k0)j=x2});if(j<0)return;
-      a=a.slice();a.splice(j,1);var u={};a.forEach(function(x){u[String(x).toLowerCase()]=1});
-      friList(DATA.items,K).forEach(function(i){var k=String(i.w).toLowerCase();if(a.length<50&&!u[k]){u[k]=1;a.push(i.w)}});
-      m[K]=a;ch=1;
-      if(!TMF){var d={};d[K]={v:{s:JSON.stringify(a)},t:Date.now()};try{fetch(KV_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({act:'put',id:'WNFRI_'+String(n).toLowerCase(),data:d})}).catch(function(){})}catch(e){}}
-    });
-    if(ch)ss('wn_fz_'+n,JSON.stringify(m))
-  }catch(e){}
-}
 function wnRm(w,s){
   var n=name(),same=function(i){return i.w===w&&i.src===s};
   DATA.items=DATA.items.filter(function(i){return!same(i)});
   try{var c=lj('wn_ls_'+n+TCM,null);if(c&&c.items){c.items=c.items.filter(function(i){return!same(i)});ss('wn_ls_'+n+TCM,JSON.stringify(c))}}catch(e){}
-  fzRefill(w);
   var go=function(){return post({act:'del',name:n,pin:PIN,w:w,src:s})};
   go().then(function(r){if(r&&r.ok&&r.removed===false&&r.reason==='none')setTimeout(function(){go().catch(function(){})},3000)}).catch(function(){})
 }
@@ -750,7 +738,7 @@ function friList(items,K){
   return out.sort(function(a,b){return a.w.toLowerCase()<b.w.toLowerCase()?-1:1})
 }
 function fzLoc(){return lj('wn_fz_'+name(),{})}
-function spList(items,K){var a=(PV||TMF)?null:fzLoc()[K];if(!a||!a.length)return friList(items,K);var by={},o=[];items.forEach(function(i){by[String(i.w).toLowerCase()]=i});a.forEach(function(w){var x=by[String(w).toLowerCase()];if(x&&o.indexOf(x)<0)o.push(x)});return o.sort(function(p,q){return p.w.toLowerCase()<q.w.toLowerCase()?-1:1})}
+function spList(items,K){var a=(PV||TMF)?null:fzLoc()[K];if(!a||!a.length)return friList(items,K);var by={},o=[];items.forEach(function(i){by[String(i.w).toLowerCase()]=i});a.forEach(function(w){var x=by[String(w).toLowerCase()];if(x&&o.indexOf(x)<0)o.push(x)});var miss=a.length-o.length;if(miss>0){var u={};o.forEach(function(x){u[String(x.w).toLowerCase()]=1});friList(items,K).forEach(function(i){var k=String(i.w).toLowerCase();if(miss>0&&!u[k]){u[k]=1;o.push(i);miss--}})}return o.sort(function(p,q){return p.w.toLowerCase()<q.w.toLowerCase()?-1:1})}
 function nextFri(){var t=iso(new Date()),w=new Date(t+'T00:00:00').getDay();return adD(t,(5-w+7)%7)}
 var FZD={};
 function fzSync(K){
