@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google" content="notranslate">
+<meta name="robots" content="noindex,nofollow">
+<title>입장</title>
+<style>
+  :root{--ink:#1f2328;--sub:#667085;--line:#e3e5e8;--bg:#f5f4f0;--pri:#2b5cab;--warn:#b4402c}
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);margin:0;line-height:1.5}
+  .wrap{max-width:480px;margin:0 auto;padding:40px 16px 60px}
+  h1{font-size:20px;margin:0 0 14px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+  input{width:100%;font:inherit;font-size:18px;padding:12px;border:1px solid var(--line);border-radius:8px}
+  button{font:inherit;font-size:17px;width:100%;padding:12px;border-radius:8px;border:1px solid var(--pri);background:var(--pri);color:#fff;margin-top:10px;cursor:pointer}
+  button.sub{background:#fff;color:var(--ink);border-color:var(--line)}
+  button:disabled{opacity:.5}
+  #err{color:var(--warn);min-height:22px;margin-top:8px;font-size:15px}
+  .k{color:var(--sub);font-size:13px}
+  .row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
+  .row:first-child{border-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="s1">
+    <h1>이름</h1>
+    <div class="card">
+      <input id="nm" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <button id="go">들어가기</button>
+      <div id="err"></div>
+    </div>
+  </div>
+  <div id="s2" style="display:none">
+    <h1 id="who"></h1>
+    <div class="card" id="info"></div>
+    <div class="card" id="pos"></div>
+    <button class="sub" id="out">나가기</button>
+  </div>
+</div>
+<script>
+/* tower-enter 261121a — 이름 입력 입장. 읽기만 한다(쓰기 없음). 이 화면은 아무것도 기기에 저장하지 않는다. */
+(function(){
+var KEY="AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA";
+var BASE="https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents/tower_s/";
+function $(i){return document.getElementById(i);}
+function norm(s){return String(s||"").normalize("NFC").replace(/\s+/g,"");}
+function docId(name){
+  var b=new TextEncoder().encode("tower|"+norm(name));
+  return crypto.subtle.digest("SHA-256",b).then(function(h){
+    return Array.prototype.map.call(new Uint8Array(h),function(x){return ("0"+x.toString(16)).slice(-2);}).join("").slice(0,20);
+  });
+}
+function val(f){
+  if(!f)return null;
+  if("stringValue" in f)return f.stringValue;
+  if("integerValue" in f)return Number(f.integerValue);
+  if("booleanValue" in f)return f.booleanValue;
+  if("nullValue" in f)return null;
+  if("arrayValue" in f)return (f.arrayValue.values||[]).map(val);
+  if("mapValue" in f){var o={},m=f.mapValue.fields||{};for(var k in m)o[k]=val(m[k]);return o;}
+  return null;
+}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function show(d){
+  $("who").textContent=d.name;
+  $("info").innerHTML='<div class="row"><span class="k">반</span><span>'+esc(d.cls)+'</span></div><div class="row"><span class="k">소속</span><span>'+esc(d.season)+'</span></div>';
+  var p=d.pos||{},ks=Object.keys(p),h="";
+  ks.forEach(function(k){h+='<div class="row"><span>'+esc(k)+'</span><span>'+esc(p[k])+'</span></div>';});
+  (d.pend||[]).forEach(function(x){h+='<div class="row"><span>'+esc(x)+'</span><span class="k">선생님 지정 대기</span></div>';});
+  $("pos").innerHTML=h||'<span class="k">연결 준비 중</span>';
+  $("s1").style.display="none";$("s2").style.display="";window.scrollTo(0,0);
+}
+function enter(){
+  var n=norm($("nm").value);if(!n)return;
+  $("go").disabled=true;$("err").textContent="";
+  docId(n).then(function(id){return fetch(BASE+id+"?key="+KEY);}).then(function(r){
+    if(r.ok)return r.json().then(function(j){
+      var f=j.fields||{},d={};for(var k in f)d[k]=val(f[k]);
+      if(d.status!=="active")throw {nf:1};
+      show(d);
+    });
+    if(r.status===403||r.status===404)throw {nf:1};
+    throw {net:1};
+  }).catch(function(e){$("err").textContent=e&&e.nf?"이름을 찾을 수 없습니다":"연결이 안 됩니다. 잠시 뒤 다시 해 주세요";}).then(function(){$("go").disabled=false;});
+}
+$("go").onclick=enter;
+$("nm").onkeydown=function(e){if(e.key==="Enter")enter();};
+$("out").onclick=function(){$("nm").value="";$("err").textContent="";$("s2").style.display="none";$("s1").style.display="";window.scrollTo(0,0);};
+window.__docId=docId;
+})();
+</script>
+</body>
+</html>
