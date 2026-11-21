@@ -106,8 +106,10 @@
         listen(f.doc(db, "hw_w", cur), "w" + cur, function (x) { if (x) ST.w[cur] = x; else delete ST.w[cur]; });
         listen(f.doc(db, "hw_w", prev), "w" + prev, function (x) { if (x) ST.w[prev] = x; else delete ST.w[prev]; });
       }).then(function () {
-        return f.getDocs(f.query(f.collection(db, "hw_w"), f.where(f.documentId(), "<", prev), f.orderBy(f.documentId(), "desc"), f.limit(OLDER)))
-          .then(function (q) { q.forEach(function (d) { ST.w[d.id] = d.data(); }); });
+        var lo = new Date(prev + "T00:00:00Z"); lo.setUTCDate(lo.getUTCDate() - 7 * OLDER);
+        var lok = lo.toISOString().slice(0, 10);
+        return f.getDocs(f.query(f.collection(db, "hw_w"), f.where(f.documentId(), ">=", lok), f.where(f.documentId(), "<", prev)))
+          .then(function (q) { q.forEach(function (d) { ST.w[d.id] = d.data(); LOADED[d.id] = 1; }); });
       });
     });
     ST.ready.catch(function () { ST = null; });
