@@ -37,11 +37,12 @@
     <h1 id="who"></h1>
     <div class="card" id="info"></div>
     <div class="card" id="pos"></div>
+    <div class="card" id="today" style="display:none"></div>
     <button class="sub" id="out">나가기</button>
   </div>
 </div>
 <script>
-/* tower-enter 261121c — 이름 입력 입장. 읽기만 한다(쓰기 없음). 이 화면은 아무것도 기기에 저장하지 않는다. */
+/* tower-enter 261121d — 이름 입력 입장. 읽기만 한다(쓰기 없음). 이 화면은 아무것도 기기에 저장하지 않는다. */
 (function(){
 var KEY="AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA";
 var BASE="https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents/tower_s/";
@@ -64,6 +65,46 @@ function val(f){
   return null;
 }
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+var CBASE="https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents/board/";
+/* 카드 읽기: 기존 카드 시스템(board)의 우선순위를 그대로 따른다. 이 화면은 카드를 읽기만 한다. */
+var CARDDOC="2000-01-04|_카드";
+function cPick(CC,cls,slot,name,date){
+  var v=CC.day&&CC.day[date]&&CC.day[date][name]&&CC.day[date][name][slot];if(v)return {id:v,src:"이 날만"};
+  var rg=CC.rg||[];for(var i=rg.length-1;i>=0;i--){var r=rg[i];if(r.slot===slot&&date>=r.from&&date<=r.to&&r.names.indexOf(name)>-1)return {id:r.card,src:"기간 지정"}}
+  v=CC.st&&CC.st[name]&&CC.st[name][slot];if(v)return {id:v,src:"개별 지정"};
+  v=CC.cls&&CC.cls[cls]&&CC.cls[cls][slot];if(v)return {id:v,src:"반 기본"};
+  return {id:"",src:""};
+}
+function cItems(CC,cls,slot,name,date){
+  var tid=cPick(CC,cls,slot,name,date).id,tp=(tid&&tid!=="-")?CC.cards.filter(function(x){return x.id===tid})[0]:null,sk=(CC.st&&CC.st[name]&&CC.st[name].skip)||[];
+  var out=(tp&&tp.items)?tp.items.filter(function(i){return !i.plus}).concat(tp.items.filter(function(i){return i.plus})):[];
+  return sk.length?out.filter(function(i){return sk.indexOf(i.id)<0}):out;
+}
+function cParse(j){
+  try{var chk=JSON.parse(j.fields.chk.stringValue),c=JSON.parse(chk.cards.j);return Array.isArray(c.cards)?c:null;}catch(e){return null;}
+}
+function cIso(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);}
+var SLN={reg:"정규",fri:"금요일",sat:"토요일",nae:"내신",hw:"숙제",add:"추가 숙제"};
+function cSlots(CC,cls,name,date){
+  var w=new Date().getDay(),main=w===5?"fri":w===6?"sat":"reg",s;
+  if(cItems(CC,cls,"nae",name,date).length)return ["nae"];
+  s=[main];["hw","add"].forEach(function(x){if(cItems(CC,cls,x,name,date).length)s.push(x);});
+  return s;
+}
+function today(d){
+  $("today").style.display="none";
+  fetch(CBASE+encodeURIComponent(CARDDOC)+"?key="+KEY).then(function(r){return r.ok?r.json():null;}).then(function(j){
+    var CC=j&&cParse(j);if(!CC||$("who").textContent!==d.name)return;
+    var date=cIso(new Date()),h="";
+    cSlots(CC,d.cls,d.name,date).forEach(function(sl){
+      var it=cItems(CC,d.cls,sl,d.name,date);if(!it.length)return;
+      h+='<div class="k" style="margin-top:6px">'+esc(SLN[sl]||sl)+'</div>'+it.map(function(i){return '<div class="row"><span>'+esc(i.t)+'</span><span class="k">'+esc(i.sub||"")+'</span></div>';}).join("");
+    });
+    if(!h)return;
+    var t=new Date(),W=["일","월","화","수","목","금","토"];
+    $("today").innerHTML='<div style="font-weight:600">오늘 할 일 '+(t.getMonth()+1)+"/"+t.getDate()+"("+W[t.getDay()]+")"+'</div>'+h;$("today").style.display="";
+  }).catch(function(){});
+}
 function show(d){
   $("who").textContent=d.name;
   $("info").innerHTML='<div class="row"><span class="k">반</span><span>'+esc(d.cls)+'</span></div><div class="row"><span class="k">소속</span><span>'+esc(d.season)+'</span></div>';
@@ -76,6 +117,7 @@ function show(d){
   if(d.sy){var t=new Date(d.sy),W=["일","월","화","수","목","금","토"];h+='<div class="k" style="margin-top:8px">'+(t.getMonth()+1)+"/"+t.getDate()+"("+W[t.getDay()]+") "+("0"+t.getHours()).slice(-2)+":"+("0"+t.getMinutes()).slice(-2)+" 기준</div>";}
   $("pos").innerHTML=h||'<span class="k">연결 준비 중</span>';
   $("s1").style.display="none";$("s2").style.display="";window.scrollTo(0,0);
+  today(d);
 }
 function enter(){
   var n=norm($("nm").value);if(!n)return;
@@ -92,7 +134,7 @@ function enter(){
 }
 $("go").onclick=enter;
 $("nm").onkeydown=function(e){if(e.key==="Enter")enter();};
-$("out").onclick=function(){$("nm").value="";$("err").textContent="";$("s2").style.display="none";$("s1").style.display="";window.scrollTo(0,0);};
+$("out").onclick=function(){$("today").style.display="none";$("nm").value="";$("err").textContent="";$("s2").style.display="none";$("s1").style.display="";window.scrollTo(0,0);};
 window.__docId=docId;
 })();
 </script>
