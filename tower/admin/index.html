@@ -45,7 +45,7 @@
 </div>
 <div class="wrap" id="st" style="display:none"></div>
 <script>
-/* tower-admin 261121e — 선생님 전용. 학생 문서 등록(이미 있으면 건드리지 않음)·재원/퇴원 전환·위치 새로 읽기. 모든 변경은 tower_log 에 새로 쌓인다. */
+/* tower-admin 261121f — 선생님 전용. 학생 문서 등록(이미 있으면 건드리지 않음)·재원/퇴원 전환·위치 새로 읽기. 모든 변경은 tower_log 에 새로 쌓인다. */
 (function(){
 var ROSTER={"M초6A":["윤여름","조서인"],"M초6C":["김동권","김은찬","김이한","민윤찬","박윤수","신도건","이상윤"],"T초6B":["김지율","김태율","노지훈","이재빈","연휘건"],"T초6C":["김예슬","노예린","류이안","이연서","이재인","조은유","연다혜"],"M중1B":["김시원","김윤슬","류아인","박대환","이지성","임건호","정해윤"],"T중1A":["김태건","장도율","조이준","최민준","홍윤제"]};
 var ORDER=["M초6A","M초6C","T초6B","T초6C","M중1B","T중1A"];
@@ -65,6 +65,7 @@ function dec(f){
   if(!f)return null;
   if("stringValue" in f)return f.stringValue;
   if("integerValue" in f)return Number(f.integerValue);
+  if("booleanValue" in f)return f.booleanValue;
   if("nullValue" in f)return null;
   if("arrayValue" in f)return (f.arrayValue.values||[]).map(dec);
   if("mapValue" in f){var o={},m=f.mapValue.fields||{};for(var k in m)o[k]=dec(m[k]);return o;}
@@ -248,10 +249,11 @@ $("syn").onclick=function(){
 };
 /* ===== 학생 한 명 화면: 반 옮기기 · 위치 지정 · 지정 대기 처리 · 되돌리기 ===== */
 var ST=null,STLOG=[],STK=[],TRK=["V시그널","M 리딩","대화문 기출","비단챌","보카링크","독해33","데일리보카"];
-var ACT={register:"등록",left:"퇴원",active:"재원",pos:"위치 읽기",cls:"반 이동",ov:"위치 지정",asg:"지정 입력",undo:"되돌림"};
+var ACT={register:"등록",left:"퇴원",active:"재원",pos:"위치 읽기",cls:"반 이동",ov:"위치 지정",asg:"지정 입력",ck:"체크 기능",undo:"되돌림"};
 function fv(x){
   if(x===null||x===undefined)return {nullValue:null};
   if(typeof x==="string")return S(x);
+  if(typeof x==="boolean")return {booleanValue:x};
   if(typeof x==="number")return {integerValue:String(x)};
   if(Array.isArray(x))return {arrayValue:{values:x.map(fv)}};
   var f={};for(var k in x)f[k]=fv(x[k]);return {mapValue:{fields:f}};
@@ -292,10 +294,11 @@ function stLoad(id){
     var d=fdec(j.fields||{});d.id=id;d.ut=j.updateTime;
     if(!d.ov||Array.isArray(d.ov)||typeof d.ov!=="object")d.ov={};
     if(!Array.isArray(d.asg))d.asg=[];
+    if(typeof d.ck!=="boolean")d.ck=false;
     if(!Array.isArray(d.pos))d.pos=[];
     if(!Array.isArray(d.pend))d.pend=[];
     ST=d;ST.cc=null;
-    return api("/board/"+encodeURIComponent(CARDDOC)).then(function(r){return r.ok?r.json():null;}).then(function(j){ST.cc=j?cParse(j):null;}).catch(function(){ST.cc=null;}).then(function(){return api(":runQuery",{method:"POST",body:JSON.stringify({structuredQuery:{from:[{collectionId:"tower_log"}],where:{fieldFilter:{field:{fieldPath:"name"},op:"EQUAL",value:S(d.name)}},limit:100}})});});
+    return api("/board/"+encodeURIComponent(CARDDOC)).then(function(r){return r.ok?r.json():null;}).then(function(j){ST.cc=j?cParse(j):null;}).catch(function(){ST.cc=null;}).then(function(){return api("/tower_c/"+id+"_"+cIso(new Date()).replace(/-/g,""));}).then(function(r){return r.ok?r.json():null;}).then(function(j){ST.tc=null;if(j&&j.fields){var m=(j.fields.k&&j.fields.k.mapValue&&j.fields.k.mapValue.fields)||{},k={};for(var x in m)k[x]=m[x].stringValue;ST.tc={k:k,m:(j.fields.m&&j.fields.m.stringValue)||""};}}).catch(function(){ST.tc=null;}).then(function(){return api(":runQuery",{method:"POST",body:JSON.stringify({structuredQuery:{from:[{collectionId:"tower_log"}],where:{fieldFilter:{field:{fieldPath:"name"},op:"EQUAL",value:S(d.name)}},limit:100}})});});
   }).then(function(r){
     if(r.status===401||r.status===403)throw {auth:1};
     if(!r.ok)throw new Error("기록 읽기 실패 "+r.status);
@@ -309,7 +312,7 @@ function compV(k){for(var i=0;i<ST.pos.length;i++)if(ST.pos[i].k===k)return ST.p
 function ovOn(k){var o=ST.ov[k];return !!(o&&typeof o==="object"&&o.b===compV(k));}
 function undoId(){
   for(var i=0;i<STLOG.length;i++){var e=STLOG[i];
-    if(e.act!=="cls"&&e.act!=="ov"&&e.act!=="asg")continue;
+    if(e.act!=="cls"&&e.act!=="ov"&&e.act!=="asg"&&e.act!=="ck")continue;
     if(STLOG.some(function(x){return x.act==="undo"&&x.of===e.id;}))continue;
     return e.id;
   }
@@ -335,6 +338,10 @@ function stView(){
     var a=null;d.asg.forEach(function(q){if(q&&q.p===x)a=q;});
     h+='<div class="card"><div>'+esc(x)+(a?'<span class="tag">지정함</span>':"")+'</div><div class="line"><input id="sta'+i+'" value="'+esc(a?a.t:"")+'" placeholder="지정할 내용"><button class="p" data-a="asg" data-i="'+i+'">저장</button>'+(a?'<button data-a="asgx" data-i="'+i+'">지정 해제</button>':"")+'</div></div>';
   });
+  h+='<div class="grp">체크 기능</div><div class="card"><div class="line"><span>'+(d.ck===true?"켜짐":"꺼짐")+'</span><button class="'+(d.ck===true?"":"p")+'" data-a="ck">'+(d.ck===true?"끄기":"켜기")+'</button></div>';
+  if(d.ck===true){var tk=ST.tc?Object.keys(ST.tc.k):[],ts={};tk.forEach(function(x){var q=x.split("~")[0];ts[q]=(ts[q]||0)+1;});
+    h+='<div class="k" style="margin-top:6px">오늘 체크 '+tk.length+'개'+(tk.length?" · "+Object.keys(ts).map(function(q){return (SLN[q]||q)+" "+ts[q];}).join(", ")+(ST.tc.m?" · 마지막 "+(SLN[ST.tc.m]||ST.tc.m):""):"")+'</div>';}
+  h+='</div>';
   h+='<div class="grp">오늘 카드 (기존 카드 읽기)</div><div class="card">';
   if(!ST.cc)h+='<div class="k">카드를 읽지 못했습니다</div>';
   else{var dt=cIso(new Date());["reg","fri","sat","nae","hw","add"].forEach(function(sl){
@@ -382,6 +389,7 @@ $("st").addEventListener("click",function(ev){
   var a=b.getAttribute("data-a"),i=+b.getAttribute("data-i"),k=STK[i];
   if(a==="back"){$("st").style.display="none";$("app").style.display="block";say("읽는 중...");reload();return;}
   if(a==="re"){say("읽는 중...");stLoad(ST.id).then(function(){stView();say("");}).catch(stFail);return;}
+  if(a==="ck"){var on=ST.ck!==true;stSave("ck",{ck:on},"체크 기능 "+(on?"켬":"끔"));return;}
   if(a==="cls"){
     var c=norm($("stcls").value);if(!c||c===ST.cls){say("다른 반 이름을 넣어 주세요.",1);return;}
     stSave("cls",{cls:c},ST.cls+" → "+c);return;
