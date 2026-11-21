@@ -397,6 +397,15 @@ function scoreCard(S){
   h+='</div><p class="sm">'+esc(S.msg||'').split('\n').join('<br>')+'</p></div>';
   return h;
 }
+function usageCmp(tot,u){
+  var d=Math.round(tot/7),b='flex:1;background:#fff;border:1px solid #e1e7e3;border-radius:14px;padding:12px 14px',s1='font-size:12px;color:#6b7a72',s2='font-size:24px;font-weight:800;line-height:1.3',s3='font-size:12px;color:#6b7a72';
+  var h='<div style="display:flex;gap:10px;margin:-4px 0 14px">';
+  h+='<div style="'+b+'"><div style="'+s1+'">우리 아이</div><div style="'+s2+'">'+tot+'<span style="font-size:13px;font-weight:600">분</span></div><div style="'+s3+'">(하루 평균 '+d+'분)</div></div>';
+  if(u&&u.a!=null)h+='<div style="'+b+'"><div style="'+s1+'">다른 학생 평균</div><div style="'+s2+'">'+u.a+'<span style="font-size:13px;font-weight:600">분</span></div><div style="'+s3+'">(하루 평균 '+u.d+'분)</div></div>';
+  h+='</div>';
+  if(u&&u.a!=null)h+='<div style="font-size:11px;color:#6b7a72;margin:-8px 4px 14px">평균은 해당 주 숙제를 가장 적게 한 10%를 뺀 학생들 기준입니다.</div>';
+  return h;
+}
 function reportView(meta,weeks,reps){
   var cur=curKey(),rkeys=Object.keys(reps).sort();
   if(viewKey>cur)viewKey=cur;
@@ -410,7 +419,7 @@ function reportView(meta,weeks,reps){
     var gMin=(R.g&&R.g.min)||0,lMin=(R.l&&R.l.min)||0,H=R.h||{};
     h+=scoreCard(R.s);
     if(R.n&&R.n.length){h+='<div class="rp-next"><b>다음 보충 안내</b>';R.n.forEach(function(t){h+='<p>'+esc(t)+'</p>'});h+='</div>'}
-    if(!(H.w&&H.g))h+='<div class="rp-tot"><span class="k">이번 주 숙제 순수 학습 시간</span><span class="v">'+(gMin+lMin)+'<small>분</small></span><span class="d">'+(H.g?'':'문법 '+gMin+'분')+(lMin?(H.g?'':' · ')+'듣기 '+lMin+'분':'')+' 합산'+(H.w?'':'<br>단어숙제는 완료 여부로 확인 (하루 평균 5~7분 분량)')+'</span></div>';
+    if(!(H.w&&H.g))h+='<div class="rp-tot"><span class="k">이번 주 숙제 순수 학습 시간</span><span class="v">'+(gMin+lMin)+'<small>분</small></span><span class="d">'+(H.g?'':'문법 '+gMin+'분')+(lMin?(H.g?'':' · ')+'듣기 '+lMin+'분':'')+' 합산'+(H.w?'':'<br>단어숙제는 완료 여부로 확인 (하루 평균 5~7분 분량)')+'</span></div>'+usageCmp(gMin+lMin,R.u);
     h+='<div class="rp-msg"><b>선생님이 직접 확인하고 정리한 한 주입니다</b><p>클래스카드가 자동으로 내주는 성적표가 아닙니다.<br>비타민 영어클리닉 학원 선생님이 한 주 동안의 단어숙제, 문법, 단어테스트 기록을 요일별로 하나하나 확인하고, 밀리지 않고 했는지 따져서 직접 편집한 리포트입니다.</p></div>';
     var W=R.w||{sets:[],days:[]},G=R.g||{units:[],days:[]},T=R.t||{items:[],days:[]};
     var wOk=0;(W.sets||[]).forEach(function(x){if(x.ok)wOk++});
