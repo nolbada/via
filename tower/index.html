@@ -63,9 +63,9 @@ table.g td{padding:7px 8px;border-bottom:1px solid #eef0f3;vertical-align:top}
 
 <div class="card note">
 <b>끝 길이 기준</b><br>
-V시그널 K 64일 · E 64일 · 엑스레이 100문장 · M1 리딩 78회 · 대화문 기출 중1은 현재 등록된 문제 수(문제를 올리면 늘어남) · 보카링크 30일<br>
+V시그널 K 64일 · E 64일 · 엑스레이 100문장 · M1 리딩 78회 · 대화문 기출 중1은 현재 등록된 문제 수(문제를 올리면 늘어남) · 보카링크 30일 · 독해33 책별 24회(스타터류)/36회(리딩그라피)/40회(그 외), 1회차 1수업 기준<br>
 <b>길이를 아직 못 읽은 항목</b><br>
-V시그널 Y · 비단챌 단계별 끝 · 독해33 책별 끝 · 데일리보카. 이 항목은 위치만 표시하고 남은 기간은 계산하지 않음<br>
+V시그널 Y · 비단챌 단계별 끝 · 데일리보카. 이 항목은 위치만 표시하고 남은 기간은 계산하지 않음<br>
 <b>자동 연결 순서</b><br>
 V시그널 K, E, 엑스레이, Y, Y 주요문장 100 · M1, M2 · 비단챌 기본, 발전, 심화, 고교, 워마2000 · 더블보카 코어, 프로 · 데일리보카 M, B, H<br>
 <b>선생님 지정 항목</b><br>
@@ -85,6 +85,8 @@ var ROWS=[];
 var ERRS=[];
 var TODAY=new Date();
 
+var RDINFO={tutorstarter:["리딩튜터 주니어 스타터",24,3],hackersstarter:["해커스 스타터",24,3],tutorjunior:["리딩튜터 주니어",40,4],hackers:["해커스 리딩스마트",40,4],"1316reading":["능률 1316",40,4],bricks:["브릭스",40,4],readinggraphy:["리딩그라피",36,3],tutorchallenger:["리딩튜터 챌린저",40,4],hackersmaster:["해커스 마스터",40,4]};
+function bookInfo(k){var m=k.match(/^(.*?)(\d+)$/),b=m?m[1]:k,n=m?m[2]:"",t=RDINFO[b]||[b,40,4];return {name:t[0]+" "+n,len:t[1],per:t[2]};}
 function P(s){try{return JSON.parse(s)}catch(e){return {}}}
 function num(s,re){var m=(s||"").match(re);return m?+m[1]:null}
 
@@ -104,8 +106,10 @@ function readOne(c,n){
     if(o.l_dv)r.DV=(o.l_dv.w||"").replace("데일리보카 ","").slice(0,14);
     if(o.l_bd){var m=(o.l_bd.w||"").match(/비단챌 (\S+) (\d+)/);if(m)r.BD=m[1]+" "+m[2];}
     var best=null;
-    for(var k2 in o){if(/^l_rd_/.test(k2)&&!/_exit$/.test(k2)){var d=o[k2].d||"";if(!best||d>best.d)best={d:d,k:k2,w:o[k2].w};}}
-    if(best){var mm=(best.w||"").match(/(UNIT|Section|Chapter)\s*\d+(?:\s*·\s*(?:Reading\s*)?\d+번?)?/);r.RD=best.k.replace("l_rd_","")+" "+(mm?mm[0]:"");}
+    for(var k2 in o){var m2=k2.match(/^l_rd_(.+?)(_exit)?$/);if(!m2)continue;var dd=(o[k2].d||"")+(o[k2].t||"");if(!best||dd>best.d)best={d:dd,b:m2[1],u:o[k2].u||""};}
+    if(best){var bi=bookInfo(best.b),mr=/[?&]r=([^&]+)/.exec(best.u),id=mr?mr[1]:"",q,ord=null;
+      if(/^r\d+$/.test(id))ord=+id.slice(1);else{q=id.match(/-(\d+)-(\d+)$/);if(q)ord=(+q[1]-1)*bi.per+(+q[2]);}
+      r.RDB=bi.name;r.RDL=bi.len;r.RDN=ord;r.RD=bi.name+" "+(ord!=null?ord+"/"+bi.len:"");}
     var last="";
     for(var k3 in o){if((o[k3].d||"")>last)last=o[k3].d;}
     r.last=last;
@@ -163,6 +167,7 @@ function drawSoon(){
     if(r.VL!=null){var e=rem(r.VL,LEN.VL);if(e<=SOON){var d=new Date(TODAY.getTime());d.setDate(d.getDate()+wk(e)*7);out.push({n:r.n,c:r.c,what:"보카링크 DAY "+r.VL+"/"+LEN.VL,left:e,wk:wk(e),when:fdate(d),next:"지정 대기(보카링크 시험)"});}}
     if(r.K!=null&&rem(r.K,LEN.K)<=SOON){var a=rem(r.K,LEN.K);out.push({n:r.n,c:r.c,what:"V시그널 K "+r.K+"/"+LEN.K,left:a,wk:wk(a),next:"자동 연결(E)"});}
     if(r.E!=null&&rem(r.E,LEN.E)<=SOON){var b=rem(r.E,LEN.E);out.push({n:r.n,c:r.c,what:"V시그널 E "+r.E+"/"+LEN.E,left:b,wk:wk(b),next:"자동 연결(엑스레이)"});}
+    if(r.RDN!=null&&rem(r.RDN,r.RDL)<=SOON){var g=rem(r.RDN,r.RDL),gd=new Date(TODAY.getTime());gd.setDate(gd.getDate()+wk(g)*7);out.push({n:r.n,c:r.c,what:"독해33 "+r.RDB+" "+r.RDN+"/"+r.RDL,left:g,wk:wk(g),when:fdate(gd),next:"지정 대기(독해33 다음 책)"});}
     if(r.M1!=null&&rem(r.M1,LEN.M1)<=SOON){var c=rem(r.M1,LEN.M1);out.push({n:r.n,c:r.c,what:"M1 리딩 "+r.M1+"/"+LEN.M1,left:c,wk:wk(c),next:"자동 연결(M2)"});}
   });
   out.sort(function(a,b){return a.left-b.left});
@@ -182,9 +187,10 @@ function drawWait(){
   ROWS.forEach(function(r){
     if(r.bad)return;
     if(r.VL!=null&&r.VL>=LEN.VL)w.push(r.n+" - 보카링크 끝, 시험 대기");
+    if(r.RDN!=null&&r.RDN>=r.RDL)w.push(r.n+" - 독해33 "+r.RDB+" 끝, 다음 책 지정 대기");
     if(r.GK!=null&&r.GK>=LEN.GK)w.push(r.n+" - 대화문 기출 중1 끝, 새 문제 대기 또는 중2 지정");
   });
-  el.innerHTML=w.length?w.map(function(x){return "<div>"+esc(x)+"</div>"}).join(""):"현재 대기 0명. 독해33은 책별 끝 길이를 읽으면 같은 목록에 함께 표시";
+  el.innerHTML=w.length?w.map(function(x){return "<div>"+esc(x)+"</div>"}).join(""):"현재 대기 0명";
 }
 
 var sel="전체";
