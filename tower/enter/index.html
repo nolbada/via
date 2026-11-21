@@ -21,6 +21,10 @@
   .k{color:var(--sub);font-size:13px}
   .row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
   .row:first-child{border-top:0}
+  .it{cursor:pointer}
+  .it.done .t{text-decoration:line-through;color:var(--sub)}
+  .it.off{cursor:default}
+  #tmsg{color:var(--warn);font-size:14px;min-height:0;margin-top:6px}
 </style>
 </head>
 <body>
@@ -42,7 +46,7 @@
   </div>
 </div>
 <script>
-/* tower-enter 261121d — 이름 입력 입장. 읽기만 한다(쓰기 없음). 이 화면은 아무것도 기기에 저장하지 않는다. */
+/* tower-enter 261121e — 이름 입력 입장. 위치·카드는 읽기만 하고, 체크 기능이 켜진 학생만 오늘 체크를 서버(tower_c)에 저장한다. 기기에는 아무것도 저장하지 않는다. */
 (function(){
 var KEY="AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA";
 var BASE="https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents/tower_s/";
@@ -91,20 +95,54 @@ function cSlots(CC,cls,name,date){
   s=[main];["hw","add"].forEach(function(x){if(cItems(CC,cls,x,name,date).length)s.push(x);});
   return s;
 }
-function today(d){
-  $("today").style.display="none";
-  fetch(CBASE+encodeURIComponent(CARDDOC)+"?key="+KEY).then(function(r){return r.ok?r.json():null;}).then(function(j){
-    var CC=j&&cParse(j);if(!CC||$("who").textContent!==d.name)return;
-    var date=cIso(new Date()),h="";
-    cSlots(CC,d.cls,d.name,date).forEach(function(sl){
-      var it=cItems(CC,d.cls,sl,d.name,date);if(!it.length)return;
-      h+='<div class="k" style="margin-top:6px">'+esc(SLN[sl]||sl)+'</div>'+it.map(function(i){return '<div class="row"><span>'+esc(i.t)+'</span><span class="k">'+esc(i.sub||"")+'</span></div>';}).join("");
-    });
-    if(!h)return;
-    var t=new Date(),W=["일","월","화","수","목","금","토"];
-    $("today").innerHTML='<div style="font-weight:600">오늘 할 일 '+(t.getMonth()+1)+"/"+t.getDate()+"("+W[t.getDay()]+")"+'</div>'+h;$("today").style.display="";
-  }).catch(function(){});
+var CKB="https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents/tower_c/";
+var CHK={k:{},m:"",u:0},CKON=false,CKID="",CCC=null,CKD=null,wbusy=false,wdirty=false;
+function ckDate(){return cIso(new Date()).replace(/-/g,"");}
+function hm(){var t=new Date();return ("0"+t.getHours()).slice(-2)+":"+("0"+t.getMinutes()).slice(-2);}
+function ckFlush(){
+  if(wbusy){wdirty=true;return;}
+  wbusy=true;wdirty=false;
+  var f={sid:{stringValue:CUR},d:{stringValue:cIso(new Date())},m:{stringValue:CHK.m||""},u:{integerValue:String(CHK.u||0)},k:{mapValue:{fields:{}}}};
+  for(var x in CHK.k)f.k.mapValue.fields[x]={stringValue:CHK.k[x]};
+  var q="updateMask.fieldPaths=sid&updateMask.fieldPaths=d&updateMask.fieldPaths=m&updateMask.fieldPaths=u&updateMask.fieldPaths=k&key="+KEY;
+  fetch(CKB+CKID+"?"+q,{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({fields:f})}).then(function(r){
+    if(!r.ok)throw 1;$("tmsg").textContent="";
+  }).catch(function(){$("tmsg").textContent="저장이 안 됐습니다. 연결을 확인하고 다시 눌러 주세요";wdirty=false;}).then(function(){wbusy=false;if(wdirty)ckFlush();});
 }
+function drawToday(d){
+  var CC=CCC;if(!CC)return;
+  var date=cIso(new Date()),sl=cSlots(CC,d.cls,d.name,date).slice(),h="";
+  if(CKON&&CHK.m&&sl.indexOf(CHK.m)>0){sl.splice(sl.indexOf(CHK.m),1);sl.unshift(CHK.m);}
+  sl.forEach(function(s){
+    var it=cItems(CC,d.cls,s,d.name,date);if(!it.length)return;
+    h+='<div class="k" style="margin-top:6px">'+esc(SLN[s]||s)+'</div>'+it.map(function(i){
+      var key=s+"~"+i.id,tm=CHK.k[key];
+      return '<div class="row it'+(CKON?"":" off")+(tm?" done":"")+'" data-s="'+esc(s)+'" data-i="'+esc(i.id)+'"><span class="t">'+esc(i.t)+'</span><span class="k">'+esc(tm||i.sub||"")+'</span></div>';
+    }).join("");
+  });
+  if(!h){$("today").style.display="none";return;}
+  var t=new Date(),W=["일","월","화","수","목","금","토"];
+  $("today").innerHTML='<div style="font-weight:600">오늘 할 일 '+(t.getMonth()+1)+"/"+t.getDate()+"("+W[t.getDay()]+")"+'</div>'+h+'<div id="tmsg"></div>';$("today").style.display="";
+}
+function today(d){
+  $("today").style.display="none";CCC=null;CHK={k:{},m:"",u:0};CKON=d.ck===true;CKID=CUR+"_"+ckDate();
+  var pc=fetch(CBASE+encodeURIComponent(CARDDOC)+"?key="+KEY).then(function(r){return r.ok?r.json():null;}).then(function(j){return j&&cParse(j);}).catch(function(){return null;});
+  var pk=CKON?fetch(CKB+CKID+"?key="+KEY).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}):Promise.resolve(null);
+  Promise.all([pc,pk]).then(function(a){
+    if($("who").textContent!==d.name||!a[0])return;
+    CCC=a[0];
+    if(a[1]&&a[1].fields){var f=a[1].fields,k={},m=(f.k&&f.k.mapValue&&f.k.mapValue.fields)||{};for(var x in m)k[x]=m[x].stringValue;CHK={k:k,m:(f.m&&f.m.stringValue)||"",u:Number((f.u&&f.u.integerValue)||0)};}
+    drawToday(d);
+  });
+}
+$("today").onclick=function(ev){
+  var r=ev.target.closest(".it");if(!r||!CKON||!CCC)return;
+  var s=r.getAttribute("data-s"),key=s+"~"+r.getAttribute("data-i");
+  if(CHK.k[key]){delete CHK.k[key];}else{CHK.k[key]=hm();CHK.m=s;}
+  CHK.u=Date.now();
+  drawToday({cls:CURD.cls,name:CURD.name});ckFlush();
+};
+var CURD={cls:"",name:""};
 function show(d){
   $("who").textContent=d.name;
   $("info").innerHTML='<div class="row"><span class="k">반</span><span>'+esc(d.cls)+'</span></div><div class="row"><span class="k">소속</span><span>'+esc(d.season)+'</span></div>';
@@ -117,12 +155,13 @@ function show(d){
   if(d.sy){var t=new Date(d.sy),W=["일","월","화","수","목","금","토"];h+='<div class="k" style="margin-top:8px">'+(t.getMonth()+1)+"/"+t.getDate()+"("+W[t.getDay()]+") "+("0"+t.getHours()).slice(-2)+":"+("0"+t.getMinutes()).slice(-2)+" 기준</div>";}
   $("pos").innerHTML=h||'<span class="k">연결 준비 중</span>';
   $("s1").style.display="none";$("s2").style.display="";window.scrollTo(0,0);
-  today(d);
+  CURD={cls:d.cls,name:d.name};today(d);
 }
+var CUR="";
 function enter(){
   var n=norm($("nm").value);if(!n)return;
   $("go").disabled=true;$("err").textContent="";
-  docId(n).then(function(id){return fetch(BASE+id+"?key="+KEY);}).then(function(r){
+  docId(n).then(function(id){CUR=id;return fetch(BASE+id+"?key="+KEY);}).then(function(r){
     if(r.ok)return r.json().then(function(j){
       var f=j.fields||{},d={};for(var k in f)d[k]=val(f[k]);
       if(d.status!=="active")throw {nf:1};
