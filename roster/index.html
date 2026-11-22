@@ -49,7 +49,7 @@ var OK=["nolbada727@gmail.com","ysbada@gmail.com"];
 var app;try{app=getApp("hwfs")}catch(e){app=initializeApp(CFG,"hwfs")}
 var auth=getAuth(app),db=getFirestore(app);
 var MASTER=doc(db,"hw_c","master"),HIST=doc(db,"hw_c","master_h");
-var S={user:null,m:null,sel:{},grp:"all",q:"",msg:"",err:false,merge:null,busy:false,hist:[],tab:"list"};
+var S={user:null,m:null,sel:{},grp:"all",q:"",msg:"",err:false,merge:null,busy:false,hist:[],tab:"list",edit:null};
 
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function norm(n){return String(n||"").replace(/\s+/g,"")}
@@ -108,6 +108,7 @@ function selNames(){return Object.keys(S.sel).filter(function(k){return S.sel[k]
 function mutate(fn,desc){var n=selNames();if(!n.length){msg("학생을 먼저 선택해 주세요",true);return}var arr=copy(S.m.s);arr.forEach(function(x){if(S.sel[x.id])fn(x)});commit(arr,desc+" ("+n.length+"명)")}
 
 function classes(){var o={};(S.m?S.m.s:[]).forEach(function(x){if(x.cls&&x.status==="on")o[x.cls]=1});return Object.keys(o).sort(ko)}
+function schools(){var o={};(S.m?S.m.s:[]).forEach(function(x){if(x.school)o[x.school]=1});return Object.keys(o).sort(ko)}
 function visible(){
   var q=norm(S.q);
   return S.m.s.filter(function(x){
@@ -147,6 +148,7 @@ function render(){
   if(S.tab==="add"){
     h+="<div class=card><b>신규 학생</b><div class=bar><input type=text id=an placeholder=이름 style='width:90px'><select id=ag><option>초6</option><option>중1</option><option>중2</option><option>중3</option><option>고1</option><option>고2</option></select><input type=text id=as placeholder=학교 style='width:90px'><select id=ac>"+classes().map(function(c){return "<option>"+esc(c)+"</option>"}).join("")+"</select></div><div class=bar><button class=pri id=addok>추가</button><button id=addno>닫기</button></div></div>";
   }
+  if(S.edit){var ex=S.m.s.filter(function(z){return z.id===S.edit})[0];if(ex){var cl=classes();if(ex.cls&&cl.indexOf(ex.cls)<0)cl.push(ex.cls);h+='<div class=card><b>'+esc(ex.name)+' 수정</b><div class=bar><input type=text id=en value="'+esc(ex.name)+'" style="width:90px"><input type=text id=es value="'+esc(ex.school||'')+'" placeholder=학교 style="width:90px"><select id=eg>'+['','초5','초6','중1','중2','중3','고1','고2','고3'].map(function(g){return '<option'+(g===ex.grade?' selected':'')+'>'+g+'</option>'}).join('')+'</select><select id=ec>'+cl.map(function(c){return '<option'+(c===ex.cls?' selected':'')+'>'+esc(c)+'</option>'}).join('')+'</select><select id=ef><option value=none'+(!ex.fri&&!ex.sat?' selected':'')+'>출석 없음</option><option value=fri'+(ex.fri?' selected':'')+'>금요일</option><option value=sat'+(ex.sat?' selected':'')+'>토요일</option></select></div><div class=bar><button class=pri id=editok>저장</button><button id=editno>닫기</button></div></div>'}}
   var list=visible(),grp={};
   list.forEach(function(x){var k=x.cls||"반 없음";(grp[k]=grp[k]||[]).push(x)});
   Object.keys(grp).sort(ko).forEach(function(k){h+="<div class=gh>"+esc(k)+" "+grp[k].length+"명</div><div class=card style='padding:2px 8px'>"+grp[k].map(rowHtml).join("")+"</div>"});
@@ -154,7 +156,7 @@ function render(){
   var n=selNames().length;
   h+="<div class=dock><div class=in><span class=small>선택 "+n+"명</span><button id=selall>보이는 학생 전체</button><button id=selno>해제</button>";
   if(S.grp==="퇴원")h+="<button class=pri id=restore>재원으로 복귀</button>";
-  else h+="<select id=mvc><option value=''>반 이동</option>"+classes().map(function(c){return "<option>"+esc(c)+"</option>"}).join("")+"</select><select id=gr><option value=''>학년 변경</option><option>초5</option><option>초6</option><option>중1</option><option>중2</option><option>중3</option><option>고1</option><option>고2</option></select><select id=fs><option value=''>출석 그룹</option><option value='fri'>금요일</option><option value='sat'>토요일</option><option value='none'>없음</option></select><button class=warn id=out>퇴원</button>";
+  else h+="<select id=mvc><option value=''>반 이동</option>"+classes().map(function(c){return "<option>"+esc(c)+"</option>"}).join("")+"</select><select id=gr><option value=''>학년 변경</option><option>초5</option><option>초6</option><option>중1</option><option>중2</option><option>중3</option><option>고1</option><option>고2</option></select><select id=sc><option value=''>학교 변경</option>"+schools().map(function(s){return "<option>"+esc(s)+"</option>"}).join("")+"<option value='__new'>직접 입력</option></select><select id=fs><option value=''>출석 그룹</option><option value='fri'>금요일</option><option value='sat'>토요일</option><option value='none'>없음</option></select><button class=warn id=out>퇴원</button>";
   h+="</div></div>";
   A.innerHTML=h;
 }
@@ -180,12 +182,16 @@ document.addEventListener("click",function(e){
     S.tab="list";commit(arr2,"신규 추가 "+n);return}
   if(t.id==="out"){if(!selNames().length){msg("학생을 먼저 선택해 주세요",true);return}if(!confirm("선택한 "+selNames().length+"명을 퇴원 처리할까요? 기록은 남고 되돌릴 수 있습니다"))return;mutate(function(x){x.status="off"},"퇴원");return}
   if(t.id==="restore"){mutate(function(x){x.status="on"},"재원 복귀");return}
+  if(t.id==="editno"){S.edit=null;render();return}
+  if(t.id==="editok"){var nn=norm(document.getElementById("en").value);if(!nn){msg("이름을 입력해 주세요",true);return}var arr3=copy(S.m.s),id3=S.edit,tg=arr3.filter(function(z){return z.id===id3})[0];if(!tg)return;if(arr3.some(function(z){return z.id!==id3&&z.name===nn&&z.status==="on"})){msg("이미 같은 이름의 재원생이 있습니다",true);return}var ef=document.getElementById("ef").value,old3=tg.name;tg.name=nn;tg.school=document.getElementById("es").value.trim();tg.grade=document.getElementById("eg").value;tg.cls=document.getElementById("ec").value;tg.fri=ef==="fri";tg.sat=ef==="sat";S.edit=null;commit(arr3,"개별 수정 "+old3);return}
+  if(!t.dataset.sel&&t.type!=="checkbox"&&t.closest&&t.closest(".row")){S.edit=t.closest(".row").dataset.id;render();return}
   if(t.id==="undo"){var last=S.hist[S.hist.length-1];if(!last)return;if(!confirm("직전 변경을 되돌릴까요?"))return;var hh=S.hist.slice(0,-1);commit(last.s,"되돌리기").then(function(ok){if(ok){S.hist=hh;setDoc(HIST,{j:JSON.stringify(hh)}).catch(function(){});render()}});return}
 });
 document.addEventListener("change",function(e){
   var t=e.target;
   if(t.id==="mvc"&&t.value){var c=t.value;mutate(function(x){x.cls=c},"반 이동 → "+c);return}
   if(t.id==="gr"&&t.value){var g=t.value;mutate(function(x){x.grade=g;if(!x.school)x.school=defSchool(g)},"학년 변경 → "+g);return}
+  if(t.id==="sc"&&t.value){if(!selNames().length){msg("학생을 먼저 선택해 주세요",true);return}var sv=t.value;if(sv==="__new"){sv=(prompt("학교 이름")||"").trim();if(!sv){render();return}}mutate(function(x){x.school=sv},"학교 변경 → "+sv);return}
   if(t.id==="fs"&&t.value){var v=t.value;mutate(function(x){x.fri=v==="fri";x.sat=v==="sat"},"출석 그룹 → "+(v==="fri"?"금요일":v==="sat"?"토요일":"없음"));return}
 });
 document.addEventListener("input",function(e){if(e.target.id==="q"){S.q=e.target.value;var p=e.target.selectionStart;render();var q=document.getElementById("q");q.focus();try{q.setSelectionRange(p,p)}catch(x){}}});
