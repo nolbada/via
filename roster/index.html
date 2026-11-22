@@ -49,7 +49,7 @@ var OK=["nolbada727@gmail.com","ysbada@gmail.com"];
 var app;try{app=getApp("hwfs")}catch(e){app=initializeApp(CFG,"hwfs")}
 var auth=getAuth(app),db=getFirestore(app);
 var MASTER=doc(db,"hw_c","master"),HIST=doc(db,"hw_c","master_h");
-var S={user:null,m:null,sel:{},grp:"all",q:"",msg:"",err:false,merge:null,busy:false,hist:[],tab:"list",edit:null};
+var S={user:null,m:null,sel:{},grp:"all",q:"",msg:"",err:false,merge:null,busy:false,hist:[],tab:"list",edit:null,up:false};
 
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function norm(n){return String(n||"").replace(/\s+/g,"")}
@@ -124,6 +124,9 @@ function rowHtml(x){
   var t="";if(x.fri)t+="<span class=tag>금</span> ";if(x.sat)t+="<span class=tag>토</span> ";if(x.status==="off")t+="<span class='tag off'>퇴원</span>";
   return "<div class=row data-id=\""+x.id+"\"><input type=checkbox "+(S.sel[x.id]?"checked":"")+" data-sel=\""+x.id+"\"><span class=nm>"+esc(x.name)+"</span><span class=meta>"+esc(x.school||"-")+" · "+esc(x.grade||"-")+" · "+esc(x.cls||"반 없음")+"</span>"+t+"</div>";
 }
+var NX={"초5":"초6","초6":"중1","중1":"중2","중2":"중3","중3":"고1","고1":"고2","고2":"고3"};
+function upPlan(){var p={mv:{},grad:[],none:[]};S.m.s.forEach(function(x){if(x.status!=="on")return;var g=x.grade;if(g==="고3"){p.grad.push(x.name);return}if(NX[g]){var k=g+" → "+NX[g];(p.mv[k]=p.mv[k]||[]).push(x.name)}else p.none.push(x.name)});return p}
+function upHtml(){var p=upPlan(),h="<div class=card><b>새 학년 올리기</b><div class=small>재원생의 학년을 한 단계씩 올립니다. 반 이름은 바꾸지 않으니, 올린 뒤 반 이동으로 정해 주세요. 초6 → 중1, 중3 → 고1은 학교가 바뀌므로 학교 칸을 비웁니다.</div>";Object.keys(NX).forEach(function(g){var k=g+" → "+NX[g],a=p.mv[k];if(a)h+="<div class=small style='margin-top:6px'><b>"+esc(k)+" "+a.length+"명</b> "+esc(a.join(", "))+"</div>"});if(p.grad.length)h+="<div class=small style='margin-top:6px'><b>고3 졸업(퇴원 처리) "+p.grad.length+"명</b> "+esc(p.grad.join(", "))+"</div>";if(p.none.length)h+="<div class=small style='margin-top:6px'><b>학년이 비어 있어 그대로 "+p.none.length+"명</b> "+esc(p.none.join(", "))+"</div>";h+="<div class=bar><button class=pri id=upok "+(S.busy?"disabled":"")+">올리기</button><button id=upno>닫기</button></div></div>";return h}
 function render(){
   var A=document.getElementById("app");
   if(!S.user){A.innerHTML="<h1>통합 명부</h1><div class=sub>선생님 구글 로그인이 필요합니다</div><button class=pri id=login>구글로 로그인</button><div class='msg "+(S.err?"err":"")+"'>"+esc(S.msg)+"</div>";return}
@@ -144,10 +147,11 @@ function render(){
   var cnt={all:0,"초등":0,"중등":0,"고등":0,"관리형":0,"퇴원":0};
   S.m.s.forEach(function(x){if(x.status==="off")cnt["퇴원"]++;else{cnt.all++;var g=groupOf(x);if(cnt[g]!=null)cnt[g]++}});
   h+="<div class=bar>";["all","초등","중등","고등","관리형","퇴원"].forEach(function(g){h+="<button class='chip "+(S.grp===g?"on":"")+"' data-grp=\""+g+"\">"+(g==="all"?"전체":g)+" "+cnt[g]+"</button>"});h+="</div>";
-  h+="<div class=bar><input type=search id=q placeholder=\"이름·반 검색\" value=\""+esc(S.q)+"\" style=\"flex:1\"><button id=addb>신규 추가</button><button id=undo "+(S.hist.length?"":"disabled")+">되돌리기</button></div>";
+  h+="<div class=bar><input type=search id=q placeholder=\"이름·반 검색\" value=\""+esc(S.q)+"\" style=\"flex:1\"><button id=addb>신규 추가</button><button id=undo "+(S.hist.length?"":"disabled")+">되돌리기</button><button id=upb>새 학년 올리기</button></div>";
   if(S.tab==="add"){
     h+="<div class=card><b>신규 학생</b><div class=bar><input type=text id=an placeholder=이름 style='width:90px'><select id=ag><option>초6</option><option>중1</option><option>중2</option><option>중3</option><option>고1</option><option>고2</option></select><input type=text id=as placeholder=학교 style='width:90px'><select id=ac>"+classes().map(function(c){return "<option>"+esc(c)+"</option>"}).join("")+"</select></div><div class=bar><button class=pri id=addok>추가</button><button id=addno>닫기</button></div></div>";
   }
+  if(S.up){h+=upHtml()}
   if(S.edit){var ex=S.m.s.filter(function(z){return z.id===S.edit})[0];if(ex){var cl=classes();if(ex.cls&&cl.indexOf(ex.cls)<0)cl.push(ex.cls);h+='<div class=card><b>'+esc(ex.name)+' 수정</b><div class=bar><input type=text id=en value="'+esc(ex.name)+'" style="width:90px"><input type=text id=es value="'+esc(ex.school||'')+'" placeholder=학교 style="width:90px"><select id=eg>'+['','초5','초6','중1','중2','중3','고1','고2','고3'].map(function(g){return '<option'+(g===ex.grade?' selected':'')+'>'+g+'</option>'}).join('')+'</select><select id=ec>'+cl.map(function(c){return '<option'+(c===ex.cls?' selected':'')+'>'+esc(c)+'</option>'}).join('')+'</select><select id=ef><option value=none'+(!ex.fri&&!ex.sat?' selected':'')+'>출석 없음</option><option value=fri'+(ex.fri?' selected':'')+'>금요일</option><option value=sat'+(ex.sat?' selected':'')+'>토요일</option></select></div><div class=bar><button class=pri id=editok>저장</button><button id=editno>닫기</button></div></div>'}}
   var list=visible(),grp={};
   list.forEach(function(x){var k=x.cls||"반 없음";(grp[k]=grp[k]||[]).push(x)});
@@ -182,6 +186,9 @@ document.addEventListener("click",function(e){
     S.tab="list";commit(arr2,"신규 추가 "+n);return}
   if(t.id==="out"){if(!selNames().length){msg("학생을 먼저 선택해 주세요",true);return}if(!confirm("선택한 "+selNames().length+"명을 퇴원 처리할까요? 기록은 남고 되돌릴 수 있습니다"))return;mutate(function(x){x.status="off"},"퇴원");return}
   if(t.id==="restore"){mutate(function(x){x.status="on"},"재원 복귀");return}
+  if(t.id==="upb"){S.up=true;render();return}
+  if(t.id==="upno"){S.up=false;render();return}
+  if(t.id==="upok"){var arr4=copy(S.m.s),n4=0;arr4.forEach(function(x){if(x.status!=="on")return;var g=x.grade;if(g==="고3"){x.status="off";n4++;return}if(NX[g]){x.grade=NX[g];if(g==="초6"||g==="중3")x.school="";n4++}});S.up=false;commit(arr4,"새 학년 올리기 ("+n4+"명)");return}
   if(t.id==="editno"){S.edit=null;render();return}
   if(t.id==="editok"){var nn=norm(document.getElementById("en").value);if(!nn){msg("이름을 입력해 주세요",true);return}var arr3=copy(S.m.s),id3=S.edit,tg=arr3.filter(function(z){return z.id===id3})[0];if(!tg)return;if(arr3.some(function(z){return z.id!==id3&&z.name===nn&&z.status==="on"})){msg("이미 같은 이름의 재원생이 있습니다",true);return}var ef=document.getElementById("ef").value,old3=tg.name;tg.name=nn;tg.school=document.getElementById("es").value.trim();tg.grade=document.getElementById("eg").value;tg.cls=document.getElementById("ec").value;tg.fri=ef==="fri";tg.sat=ef==="sat";S.edit=null;commit(arr3,"개별 수정 "+old3);return}
   if(!t.dataset.sel&&t.type!=="checkbox"&&t.closest&&t.closest(".row")){S.edit=t.closest(".row").dataset.id;render();return}
