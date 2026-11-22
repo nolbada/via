@@ -388,7 +388,7 @@ function rpCount(arr){var n=0;(arr||[]).forEach(function(v){if(v)n++});return n}
 function scoreCard(S){
   if(!S)return '';
   var cls=S.st==='보충'?'x':(S.st==='점검'?'t':'ok');
-  var h='<div class="rp-score"><div class="top"><span class="k">이번 주 숙제 종합</span><span class="pill '+cls+'">'+esc(S.st==='보충'?'토요일 보충':S.st)+'</span><span class="big">'+S.sc+'<small>점</small></span></div>';
+  var h='<div class="rp-score"><div class="top"><span class="k">이번 주 숙제 종합</span><span class="pill '+cls+'">'+esc(S.pl||(S.st==='보충'?'토요일 보충':S.st))+'</span><span class="big">'+S.sc+'<small>점</small></span></div>';
   var me=Math.max(2,Math.min(98,100-S.pct)),av=Math.max(2,Math.min(98,100-S.avgPct));
   h+='<div class="rp-pos"><i style="left:'+av+'%"><em>학원 평균 '+S.avg+'</em></i><i class="me" style="left:'+me+'%"><em>우리 아이</em></i></div>';
   h+='<div class="rp-pl"><span>하위</span><span>중간</span><span>상위</span></div>';
