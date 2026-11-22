@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="google" content="notranslate">
+<meta name="robots" content="noindex">
+<title>통합 명부</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:#f4f6f6;color:#1c2b2d;font-family:-apple-system,"Noto Sans KR","Malgun Gothic",sans-serif;font-size:15px}
+#app{max-width:760px;margin:0 auto;padding:12px 12px 120px}
+h1{font-size:19px;margin:6px 0 2px}
+.sub{color:#5b6b6e;font-size:13px;margin-bottom:10px}
+.bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:8px 0}
+button,select,input{font:inherit}
+button{border:1px solid #cfd8da;background:#fff;border-radius:9px;padding:8px 12px;color:#1c2b2d;font-weight:600}
+button.pri{background:#1F6F54;border-color:#1F6F54;color:#fff}
+button.warn{background:#fff;border-color:#c55;color:#b33}
+button:disabled{opacity:.4}
+input[type=search],input[type=text],select{border:1px solid #cfd8da;border-radius:9px;padding:8px 10px;background:#fff;min-width:0}
+.chip{padding:6px 11px;border-radius:999px;border:1px solid #cfd8da;background:#fff;font-size:13px;font-weight:600}
+.chip.on{background:#1F6F54;color:#fff;border-color:#1F6F54}
+.card{background:#fff;border:1px solid #e2e8e9;border-radius:12px;padding:10px 12px;margin:8px 0}
+.gh{font-weight:800;font-size:14px;color:#1F6F54;margin:14px 2px 4px}
+.row{display:flex;align-items:center;gap:8px;padding:9px 6px;border-bottom:1px solid #eef2f2}
+.row:last-child{border-bottom:0}
+.row input[type=checkbox]{width:20px;height:20px;flex:none}
+.nm{font-weight:700;min-width:64px}
+.meta{color:#5b6b6e;font-size:12.5px;flex:1}
+.tag{font-size:11.5px;border-radius:6px;padding:2px 6px;background:#e7f1ed;color:#1F6F54;font-weight:700}
+.tag.off{background:#eee;color:#777}
+.dock{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #dfe6e7;padding:10px 12px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -4px 14px rgba(0,0,0,.08)}
+.dock .in{max-width:760px;margin:0 auto;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.msg{font-size:13px;margin:6px 2px;color:#1F6F54;font-weight:700}
+.msg.err{color:#b33}
+.small{font-size:12.5px;color:#5b6b6e}
+</style>
+</head>
+<body>
+<div id="app"><div class="sub">불러오는 중</div></div>
+<script type="module">
+import {initializeApp,getApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {getFirestore,doc,getDoc,setDoc,runTransaction} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+var CFG={apiKey:"AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA",authDomain:"nolbada.github.io",projectId:"h-roadmap",appId:"1:575520405083:web:b9f40b64cb0ae3d1a9317e"};
+var OK=["nolbada727@gmail.com","ysbada@gmail.com"];
+var app;try{app=getApp("hwfs")}catch(e){app=initializeApp(CFG,"hwfs")}
+var auth=getAuth(app),db=getFirestore(app);
+var MASTER=doc(db,"hw_c","master"),HIST=doc(db,"hw_c","master_h");
+var S={user:null,m:null,sel:{},grp:"all",q:"",msg:"",err:false,merge:null,busy:false,hist:[],tab:"list"};
+
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function norm(n){return String(n||"").replace(/\s+/g,"")}
+function groupOf(x){var g=x.grade||"";if(x.cls==="관리형")return "관리형";if(/^초/.test(g))return "초등";if(/^중/.test(g))return "중등";if(/^고/.test(g)||/고등/.test(x.cls||""))return "고등";return "기타"}
+function gradeFromCls(c){c=c||"";var m=c.match(/(초6|초5|중1|중2|중3)/);if(m)return m[1];if(/고등/.test(c))return "고";return ""}
+function defSchool(g){return g==="초6"||g==="초5"?"용아초":g==="중2"?"용아중":""}
+function msg(t,err){S.msg=t;S.err=!!err;render()}
+function ko(a,b){return String(a).localeCompare(String(b),"ko")}
+
+async function readSources(){
+  var K=CFG.apiKey,B="https://firestore.googleapis.com/v1/projects/h-roadmap/databases/(default)/documents/";
+  var em={r:{},f:[]};
+  var r=await fetch(B+"board/2000-01-03%7C_%EC%84%A4%EC%A0%95?key="+K).then(function(x){return x.json()});
+  try{var cfg=JSON.parse(JSON.parse(r.fields.chk.stringValue).cfg.j);em.r=cfg.r||{};em.f=cfg.f||[]}catch(e){throw new Error("EM보드 명부를 읽지 못함")}
+  var hs=await getDoc(doc(db,"hw_c","main"));var hw=[];
+  try{hw=JSON.parse(hs.data().roster)}catch(e){throw new Error("숙제 REC 명단을 읽지 못함")}
+  var as=await getDoc(doc(db,"att","ros"));var att=[];
+  try{att=JSON.parse(as.data().j)}catch(e){throw new Error("출석부 명단을 읽지 못함")}
+  return {em:em,hw:hw,att:att};
+}
+var HWMAP={"M중3":"M중3A","T중3":"T중3B"};
+function buildMerge(src){
+  var by={},warn=[];
+  function get(n){var k=norm(n);if(!by[k])by[k]={name:k,cls:"",grade:"",school:"",fri:false,sat:false,status:"on",src:{}};return by[k]}
+  Object.keys(src.em.r).forEach(function(c){(src.em.r[c]||[]).forEach(function(n){if(!n||/^샘플/.test(n)||n==="열람")return;var o=get(n);o.cls=c;o.src.em=1})});
+  src.hw.forEach(function(h){if(!h||!h.name)return;var o=get(h.name);o.src.hw=1;o.id=h.id;o.tok=h.tok;o.hw={xs:h.xs||[],vocalink:h.vocalink,bidanDays:h.bidanDays,cls:h.cls};if(h.off)o.status="off";if(!o.cls){var c=h.cls;Object.keys(HWMAP).forEach(function(k){if(HWMAP[k]===c)c=k});o.cls=c}});
+  src.att.forEach(function(a){if(!a||!a.name||a.active==="N")return;var o=get(a.name);o.src.att=1;if(a.grade)o.grade=a.grade;if(a.group==="금")o.fri=true;if(a.group==="토")o.sat=true;if(norm(a.name)!==a.name)warn.push("출석부 이름에 띄어쓰기: \""+a.name+"\" 를 \""+norm(a.name)+"\" 로 통일")});
+  var out=Object.keys(by).map(function(k){var o=by[k];if(!o.grade)o.grade=gradeFromCls(o.cls);o.school=defSchool(o.grade);if(!o.id)o.id=Math.random().toString(36).slice(2,10);return o});
+  out.sort(function(a,b){return ko(a.name,b.name)});
+  var miss=[];out.forEach(function(o){var s=o.src;var m=[];if(!s.em)m.push("EM보드");if(!s.hw&&groupOf(o)!=="고등"&&o.cls!=="관리형")m.push("숙제 REC");if(!s.att&&o.cls!=="관리형")m.push("출석부");if(m.length)miss.push(o.name+": "+m.join(", ")+" 에 없음")});
+  return {students:out,warn:warn,miss:miss};
+}
+
+async function load(){
+  var s=await getDoc(MASTER);
+  if(!s.exists()){S.m=null;return}
+  var d=JSON.parse(s.data().j);S.m=d;
+  try{var h=await getDoc(HIST);S.hist=h.exists()?JSON.parse(h.data().j):[]}catch(e){S.hist=[]}
+}
+async function commit(next,desc){
+  if(S.busy)return false;S.busy=true;render();
+  try{
+    var old=S.m?JSON.parse(JSON.stringify(S.m)):null;
+    await runTransaction(db,async function(tx){
+      var cur=await tx.get(MASTER);
+      if(cur.exists()&&old){var cu=JSON.parse(cur.data().j).u;if(cu!==old.u)throw new Error("다른 기기에서 먼저 바뀜. 새로고침 후 다시 해 주세요")}
+      var nd={u:Date.now(),s:next};tx.set(MASTER,{j:JSON.stringify(nd)});S.m=nd;
+    });
+    var h=S.hist.slice(-14);if(old)h.push({t:Date.now(),d:desc,s:old.s});S.hist=h;
+    try{await setDoc(HIST,{j:JSON.stringify(h)})}catch(e){}
+    S.busy=false;S.sel={};msg(desc+" 완료");return true;
+  }catch(e){S.busy=false;msg(String(e&&e.message||e),true);return false}
+}
+function copy(a){return JSON.parse(JSON.stringify(a))}
+function selNames(){return Object.keys(S.sel).filter(function(k){return S.sel[k]})}
+function mutate(fn,desc){var n=selNames();if(!n.length){msg("학생을 먼저 선택해 주세요",true);return}var arr=copy(S.m.s);arr.forEach(function(x){if(S.sel[x.id])fn(x)});commit(arr,desc+" ("+n.length+"명)")}
+
+function classes(){var o={};(S.m?S.m.s:[]).forEach(function(x){if(x.cls&&x.status==="on")o[x.cls]=1});return Object.keys(o).sort(ko)}
+function visible(){
+  var q=norm(S.q);
+  return S.m.s.filter(function(x){
+    var off=x.status==="off";
+    if(S.grp==="퇴원")return off;
+    if(off)return false;
+    if(S.grp!=="all"&&groupOf(x)!==S.grp)return false;
+    if(q&&norm(x.name).indexOf(q)<0&&(x.cls||"").indexOf(S.q)<0)return false;
+    return true;
+  }).sort(function(a,b){return ko(a.name,b.name)});
+}
+function rowHtml(x){
+  var t="";if(x.fri)t+="<span class=tag>금</span> ";if(x.sat)t+="<span class=tag>토</span> ";if(x.status==="off")t+="<span class='tag off'>퇴원</span>";
+  return "<div class=row data-id=\""+x.id+"\"><input type=checkbox "+(S.sel[x.id]?"checked":"")+" data-sel=\""+x.id+"\"><span class=nm>"+esc(x.name)+"</span><span class=meta>"+esc(x.school||"-")+" · "+esc(x.grade||"-")+" · "+esc(x.cls||"반 없음")+"</span>"+t+"</div>";
+}
+function render(){
+  var A=document.getElementById("app");
+  if(!S.user){A.innerHTML="<h1>통합 명부</h1><div class=sub>선생님 구글 로그인이 필요합니다</div><button class=pri id=login>구글로 로그인</button><div class='msg "+(S.err?"err":"")+"'>"+esc(S.msg)+"</div>";return}
+  if(!OK.includes(String(S.user.email||"").toLowerCase())){A.innerHTML="<h1>통합 명부</h1><div class='msg err'>허용되지 않은 계정입니다</div><button id=logout>로그아웃</button>";return}
+  var h="<h1>통합 명부</h1><div class=sub>"+esc(S.user.email)+" · <a href=# id=logout>로그아웃</a></div>";
+  if(S.msg)h+="<div class='msg "+(S.err?"err":"")+"'>"+esc(S.msg)+"</div>";
+  if(!S.m){
+    if(!S.merge){h+="<div class=card>아직 통합 명부가 없습니다. EM보드, 출석부, 숙제 REC 명단을 합쳐 처음 명부를 만듭니다. 옛 명단은 바꾸지 않고 읽기만 합니다.</div><button class=pri id=mk "+(S.busy?"disabled":"")+">세 명단 합쳐서 미리보기</button>"}
+    else{
+      var m=S.merge;
+      h+="<div class=card><b>합친 결과 "+m.students.length+"명</b> (재원 "+m.students.filter(function(x){return x.status==="on"}).length+"명, 퇴원 "+m.students.filter(function(x){return x.status==="off"}).length+"명)</div>";
+      if(m.warn.length)h+="<div class=card><b>이름 통일</b><div class=small>"+m.warn.map(esc).join("<br>")+"</div></div>";
+      if(m.miss.length)h+="<div class=card><b>한쪽에만 있는 학생</b><div class=small>"+m.miss.map(esc).join("<br>")+"</div></div>";
+      h+="<div class=bar><button class=pri id=mkok "+(S.busy?"disabled":"")+">이대로 통합 명부 만들기</button><button id=mkno>취소</button></div>";
+    }
+    A.innerHTML=h;return;
+  }
+  var cnt={all:0,"초등":0,"중등":0,"고등":0,"관리형":0,"퇴원":0};
+  S.m.s.forEach(function(x){if(x.status==="off")cnt["퇴원"]++;else{cnt.all++;var g=groupOf(x);if(cnt[g]!=null)cnt[g]++}});
+  h+="<div class=bar>";["all","초등","중등","고등","관리형","퇴원"].forEach(function(g){h+="<button class='chip "+(S.grp===g?"on":"")+"' data-grp=\""+g+"\">"+(g==="all"?"전체":g)+" "+cnt[g]+"</button>"});h+="</div>";
+  h+="<div class=bar><input type=search id=q placeholder=\"이름·반 검색\" value=\""+esc(S.q)+"\" style=\"flex:1\"><button id=addb>신규 추가</button><button id=undo "+(S.hist.length?"":"disabled")+">되돌리기</button></div>";
+  if(S.tab==="add"){
+    h+="<div class=card><b>신규 학생</b><div class=bar><input type=text id=an placeholder=이름 style='width:90px'><select id=ag><option>초6</option><option>중1</option><option>중2</option><option>중3</option><option>고1</option><option>고2</option></select><input type=text id=as placeholder=학교 style='width:90px'><select id=ac>"+classes().map(function(c){return "<option>"+esc(c)+"</option>"}).join("")+"</select></div><div class=bar><button class=pri id=addok>추가</button><button id=addno>닫기</button></div></div>";
+  }
+  var list=visible(),grp={};
+  list.forEach(function(x){var k=x.cls||"반 없음";(grp[k]=grp[k]||[]).push(x)});
+  Object.keys(grp).sort(ko).forEach(function(k){h+="<div class=gh>"+esc(k)+" "+grp[k].length+"명</div><div class=card style='padding:2px 8px'>"+grp[k].map(rowHtml).join("")+"</div>"});
+  if(!list.length)h+="<div class=sub>해당하는 학생이 없습니다</div>";
+  var n=selNames().length;
+  h+="<div class=dock><div class=in><span class=small>선택 "+n+"명</span><button id=selall>보이는 학생 전체</button><button id=selno>해제</button>";
+  if(S.grp==="퇴원")h+="<button class=pri id=restore>재원으로 복귀</button>";
+  else h+="<select id=mvc><option value=''>반 이동</option>"+classes().map(function(c){return "<option>"+esc(c)+"</option>"}).join("")+"</select><select id=gr><option value=''>학년 변경</option><option>초5</option><option>초6</option><option>중1</option><option>중2</option><option>중3</option><option>고1</option><option>고2</option></select><select id=fs><option value=''>출석 그룹</option><option value='fri'>금요일</option><option value='sat'>토요일</option><option value='none'>없음</option></select><button class=warn id=out>퇴원</button>";
+  h+="</div></div>";
+  A.innerHTML=h;
+}
+
+document.addEventListener("click",function(e){
+  var t=e.target;
+  if(t.id==="login"){var p=new GoogleAuthProvider();p.setCustomParameters({prompt:"select_account"});signInWithPopup(auth,p).catch(function(er){var c=er&&er.code||"";if(c==="auth/popup-blocked"||c==="auth/operation-not-supported-in-this-environment")signInWithRedirect(auth,p);else msg("로그인 실패: "+c,true)});return}
+  if(t.id==="logout"){e.preventDefault();signOut(auth);return}
+  if(t.id==="mk"){S.busy=true;render();readSources().then(function(src){S.merge=buildMerge(src);S.busy=false;S.msg="";render()}).catch(function(er){S.busy=false;msg(String(er.message||er),true)});return}
+  if(t.id==="mkno"){S.merge=null;render();return}
+  if(t.id==="mkok"){var arr=S.merge.students;S.merge=null;S.m=null;commit(arr,"통합 명부 생성").then(function(ok){if(ok)load().then(render)});return}
+  if(t.dataset&&t.dataset.grp){S.grp=t.dataset.grp;S.sel={};render();return}
+  if(t.dataset&&t.dataset.sel){S.sel[t.dataset.sel]=t.checked;render();return}
+  if(t.id==="selall"){visible().forEach(function(x){S.sel[x.id]=true});render();return}
+  if(t.id==="selno"){S.sel={};render();return}
+  if(t.id==="addb"){S.tab="add";render();return}
+  if(t.id==="addno"){S.tab="list";render();return}
+  if(t.id==="addok"){
+    var n=norm(document.getElementById("an").value);if(!n){msg("이름을 입력해 주세요",true);return}
+    if(S.m.s.some(function(x){return x.name===n&&x.status==="on"})){msg("이미 재원생 중에 같은 이름이 있습니다",true);return}
+    var g=document.getElementById("ag").value,sc=document.getElementById("as").value.trim(),c=document.getElementById("ac").value;
+    var arr2=copy(S.m.s);arr2.push({id:Math.random().toString(36).slice(2,10),name:n,cls:c,grade:g,school:sc||defSchool(g),fri:false,sat:false,status:"on",src:{}});
+    S.tab="list";commit(arr2,"신규 추가 "+n);return}
+  if(t.id==="out"){if(!selNames().length){msg("학생을 먼저 선택해 주세요",true);return}if(!confirm("선택한 "+selNames().length+"명을 퇴원 처리할까요? 기록은 남고 되돌릴 수 있습니다"))return;mutate(function(x){x.status="off"},"퇴원");return}
+  if(t.id==="restore"){mutate(function(x){x.status="on"},"재원 복귀");return}
+  if(t.id==="undo"){var last=S.hist[S.hist.length-1];if(!last)return;if(!confirm("직전 변경을 되돌릴까요?"))return;var hh=S.hist.slice(0,-1);commit(last.s,"되돌리기").then(function(ok){if(ok){S.hist=hh;setDoc(HIST,{j:JSON.stringify(hh)}).catch(function(){});render()}});return}
+});
+document.addEventListener("change",function(e){
+  var t=e.target;
+  if(t.id==="mvc"&&t.value){var c=t.value;mutate(function(x){x.cls=c},"반 이동 → "+c);return}
+  if(t.id==="gr"&&t.value){var g=t.value;mutate(function(x){x.grade=g;if(!x.school)x.school=defSchool(g)},"학년 변경 → "+g);return}
+  if(t.id==="fs"&&t.value){var v=t.value;mutate(function(x){x.fri=v==="fri";x.sat=v==="sat"},"출석 그룹 → "+(v==="fri"?"금요일":v==="sat"?"토요일":"없음"));return}
+});
+document.addEventListener("input",function(e){if(e.target.id==="q"){S.q=e.target.value;var p=e.target.selectionStart;render();var q=document.getElementById("q");q.focus();try{q.setSelectionRange(p,p)}catch(x){}}});
+
+onAuthStateChanged(auth,function(u){
+  S.user=u;
+  if(u&&OK.includes(String(u.email||"").toLowerCase())){load().then(render).catch(function(er){msg("명부를 읽지 못함: "+(er&&er.code||er.message),true)})}else render();
+});
+</script>
+</body>
+</html>
