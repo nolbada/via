@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google" content="notranslate">
+<title>7과 말하기 테스트</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;background:#f6f5f1;color:#222}
+  .wrap{max-width:560px;margin:0 auto;padding:20px 16px 60px}
+  h1{font-size:20px;margin:8px 0 18px}
+  .card{background:#fff;border:1px solid #ddd9cf;border-radius:10px;padding:18px;margin-bottom:14px}
+  .tag{display:inline-block;font-size:13px;background:#2f4858;color:#fff;border-radius:4px;padding:2px 8px;margin-bottom:10px}
+  .q{font-size:22px;line-height:1.6;margin:6px 0 4px}
+  .q.en{font-size:21px}
+  input[type=text]{width:100%;font-size:18px;padding:12px;border:1px solid #bbb;border-radius:8px}
+  button{font-family:inherit;font-size:18px;border:0;border-radius:8px;padding:14px 18px;background:#2f4858;color:#fff;width:100%;margin-top:12px}
+  button.sub{background:#e4e1d8;color:#222}
+  button:disabled{opacity:.4}
+  .rec{background:#b3402f}
+  .timer{font-size:34px;text-align:center;margin:10px 0 0;font-variant-numeric:tabular-nums}
+  .heard{min-height:56px;margin-top:10px;padding:10px;border:1px dashed #bbb;border-radius:8px;font-size:17px;line-height:1.5;color:#444}
+  .res{font-size:17px;margin-top:10px}
+  .ok{color:#1f7a4d;font-weight:bold}
+  .no{color:#b3402f;font-weight:bold}
+  .prog{font-size:14px;color:#777;margin-bottom:6px}
+  .row{border-top:1px solid #eee;padding:12px 0;font-size:16px;line-height:1.6}
+  .row:first-child{border-top:0}
+  .small{font-size:14px;color:#666}
+  .hide{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>동아(윤) 7과 말하기 테스트</h1>
+
+  <div id="s-name" class="card">
+    <input type="text" id="name" placeholder="이름" autocomplete="off">
+    <button id="btn-start">시작</button>
+    <div id="nosupport" class="res no hide">이 브라우저는 음성인식을 지원하지 않습니다. 크롬으로 열어 주세요.</div>
+  </div>
+
+  <div id="s-q" class="card hide">
+    <div class="prog" id="prog"></div>
+    <span class="tag" id="tag"></span>
+    <div class="q" id="qtext"></div>
+    <div class="timer" id="timer">20</div>
+    <div class="heard" id="heard"></div>
+    <button id="btn-hear" class="sub">다시 듣기</button>
+    <button id="btn-rec">답하기</button>
+    <div class="res" id="res"></div>
+    <button id="btn-next" class="sub hide">다음</button>
+  </div>
+
+  <div id="s-end" class="card hide">
+    <div id="summary"></div>
+    <button id="btn-reset" class="sub">다음 학생</button>
+  </div>
+</div>
+
+<script>
+// ---------- 질문 은행 (주제별) ----------
+// keys: 핵심어 묶음(묶음 안은 같은 뜻의 허용 표현), need: 통과에 필요한 묶음 수
+const BANK = [
+  { topic:"Fallas", items:[
+    { type:"해석", en:"Surprisingly, the fallas are burned on the last day of the festival.",
+      keys:[["놀랍","놀라"],["불태","태워","태우","불에","소각"],["마지막","끝날","마지막날"]], need:2 },
+    { type:"지칭", en:"You can find hundreds of them all over the city.", mark:"them", q:"여기서 them은 무엇을 가리키나요?",
+      keys:[["파야","조각상","나무"]], need:1 },
+    { type:"어휘", en:"This festival takes place from March 15 to 19.", mark:"takes place", q:"여기서 takes place는 어떤 뜻인가요?",
+      keys:[["열린","열리","개최","일어나","진행","벌어"]], need:1 },
+    { type:"문법", en:"The fallas are burned on the last day of the festival.", mark:"are burned", q:"여기서 are burned는 능동인가요, 수동인가요?",
+      keys:[["수동"]], need:1 },
+    { type:"이유", q:"파야를 불태우는 것은 무엇을 상징하나요?",
+      keys:[["오래된","옛","낡은","묵은"],["새로운","새","새롭"],["작별","이별","보내","떠나","안녕"]], need:2 },
+    { type:"생각", free:true, min:14, q:"파야를 불태우는 축제를 어떻게 생각하나요? 아깝다고 생각하나요, 의미 있다고 생각하나요? 이유도 말해 보세요." }
+  ]},
+  { topic:"Midsummer", items:[
+    { type:"해석", en:"Because the sun hardly sets at this time of year in Sweden, people can enjoy the festival all night long.",
+      keys:[["해가","해는","태양"],["거의"],["지지","안지","않"],["밤새","밤내내","밤새도록"],["즐"]], need:3 },
+    { type:"지칭", en:"To celebrate the longest day of the year, they have a special festival. They call it the Midsummer festival.", mark:"it", q:"여기서 it은 무엇을 가리키나요?",
+      keys:[["축제"]], need:1 },
+    { type:"어휘", en:"They call it the Midsummer festival.", mark:"call", q:"여기서 call은 어떤 뜻인가요?",
+      keys:[["부르","부른","이름"]], need:1 },
+    { type:"문법", en:"Because the sun hardly sets at this time of year in Sweden, people can enjoy the festival all night long.", mark:"Because", q:"여기서 Because가 이끄는 부분은 어떤 뜻을 나타내나요?",
+      keys:[["이유","때문","원인"]], need:1 },
+    { type:"이유", q:"스웨덴 사람들이 여름을 특히 환영하는 이유는 무엇인가요?",
+      keys:[["겨울"],["길"],["어둡","어두"]], need:2 },
+    { type:"내용", q:"한여름 축제에서 사람들은 장대를 무엇으로 장식하고, 그 주위에서 무엇을 하나요?",
+      keys:[["꽃"],["잎","나뭇잎","초록"],["춤"]], need:2 },
+    { type:"생각", free:true, min:14, q:"밤새 해가 지지 않는 축제에 간다면 가장 해 보고 싶은 것은 무엇인가요? 이유도 말해 보세요." }
+  ]},
+  { topic:"Day of the Dead", items:[
+    { type:"해석", en:"They believe it is important to remember dead people.",
+      keys:[["믿"],["기억"],["중요"],["죽은","고인","망자"]], need:3 },
+    { type:"지칭", en:"They call this day the Day of the Dead.", mark:"They", q:"여기서 They는 누구를 가리키나요?",
+      keys:[["멕시코"]], need:1 },
+    { type:"어휘", en:"To welcome dead people, Mexicans hold a festival on November 1 and 2.", mark:"hold", q:"여기서 hold는 어떤 뜻인가요?",
+      keys:[["열","개최","벌"]], need:1 },
+    { type:"문법", en:"They believe it is important to remember dead people.", mark:"it", q:"여기서 it은 무슨 역할인가요?",
+      keys:[["가주어","가짜주어","가짜 주어"]], need:1 },
+    { type:"문법", en:"Many Mexicans believe that once a year dead people come back home.", mark:"that", q:"여기서 that은 무슨 문법인가요?",
+      keys:[["접속사","연결","명사절","목적어"]], need:1 },
+    { type:"이유", q:"멕시코 사람들은 왜 집에 제단을 차리고 묘지에서 큰 파티를 하나요?",
+      keys:[["기억"],["죽은","고인","망자","돌아가신"],["중요","믿"]], need:2 },
+    { type:"내용", q:"멕시코 사람들은 죽은 사람들이 일 년에 한 번 집으로 돌아와서 무엇을 한다고 믿나요?",
+      keys:[["가족"],["친구"],["만나","만남","만날"]], need:2 },
+    { type:"생각", free:true, min:12, q:"돌아가신 가족을 기억하기 위해 우리나라에는 어떤 풍습이 있나요? 한 가지만 말해 보세요." }
+  ]},
+  { topic:"Fur Rondy", items:[
+    { type:"해석", en:"People who participate in this race wear fun costumes and try to run faster than reindeer.",
+      keys:[["참가","참여"],["복장","의상","옷","코스튬"],["순록"],["빨리","빠르","더빨"],["달리","뛰"]], need:3 },
+    { type:"지칭", en:"Is it possible to do so? Not really, but it doesn't matter.", mark:"do so", q:"여기서 do so는 무엇을 하는 것을 가리키나요?",
+      keys:[["순록"],["빨리","빠르","달리","뛰","이기"]], need:2 },
+    { type:"어휘", en:"Not really, but it doesn't matter.", mark:"matter", q:"여기서 matter는 어떤 뜻인가요?",
+      keys:[["중요","상관"]], need:1 },
+    { type:"문법", en:"People who participate in this race wear fun costumes.", mark:"who", q:"여기서 who는 무슨 문법인가요?",
+      keys:[["관계대명사","관계사","주격"]], need:1 },
+    { type:"이유", q:"순록보다 빨리 달리기는 어려운데도 '중요하지 않다'고 한 이유는 무엇인가요?",
+      keys:[["즐","재미","신나","놀"],["모두","다같이","모든"]], need:1 },
+    { type:"내용", q:"알래스카의 퍼 론디 축제는 언제 열리고, 어떤 축제인가요?",
+      keys:[["2월","이월"],["겨울"],["큰","가장","세계"]], need:2 },
+    { type:"생각", free:true, min:14, q:"이길 수 없는 경주에 참가하는 것이 재미있을 것 같나요? 이유도 말해 보세요." }
+  ]}
+];
+const TOTAL = 3, LIMIT = 20, MAX_TRY = 2;
+
+// ---------- 유틸 ----------
+const $ = id => document.getElementById(id);
+const norm = s => (s||"").replace(/[\s.,!?'"“”‘’~·\-]/g,"");
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function judge(item, text){
+  const t = norm(text);
+  if(item.free){ return { pass: t.length >= item.min, hit:[] }; }
+  const hit = item.keys.map(g => g.some(w => t.includes(norm(w))));
+  return { pass: hit.filter(Boolean).length >= item.need, hit };
+}
+
+// ---------- 상태 ----------
+let name="", picks=[], idx=0, tries=0, text="", rec=null, timerId=null, left=LIMIT, results=[];
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+if(!SR){ $("nosupport").classList.remove("hide"); $("btn-start").disabled = true; }
+
+function draw(){
+  return shuffle(BANK).slice(0,TOTAL).map(t => t.items[Math.floor(Math.random()*t.items.length)]);
+}
+
+$("btn-start").onclick = () => {
+  name = $("name").value.trim();
+  if(!name){ $("name").focus(); return; }
+  picks = draw(); idx = 0; results = [];
+  $("s-name").classList.add("hide"); $("s-q").classList.remove("hide");
+  showQ();
+};
+
+function showQ(){
+  const it = picks[idx]; tries = 0; text = "";
+  $("prog").textContent = (idx+1) + " / " + TOTAL;
+  $("tag").textContent = it.type;
+  const q = $("qtext");
+  let h = "";
+  if(it.en){
+    let e = esc(it.en);
+    if(it.mark){ e = e.replace(esc(it.mark), "<b>" + esc(it.mark) + "</b>"); }
+    h += '<div lang="en" style="font-size:21px">' + e + '</div>';
+  }
+  if(it.q){ h += '<div lang="ko" style="margin-top:' + (it.en ? 10 : 0) + 'px">' + esc(it.q) + '</div>'; }
+  q.className = "q"; q.innerHTML = h;
+  speakQ(it);
+  $("heard").textContent = ""; $("res").textContent = "";
+  $("timer").textContent = LIMIT;
+  $("btn-rec").textContent = "답하기"; $("btn-rec").classList.remove("hide","rec"); $("btn-rec").disabled = false;
+  $("btn-next").classList.add("hide");
+}
+
+function speakQ(it){
+  if(!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const say = (t,l) => { const u = new SpeechSynthesisUtterance(t); u.lang = l; u.rate = l==="en-US" ? 0.9 : 1; speechSynthesis.speak(u); };
+  if(it.en) say(it.en, "en-US");
+  if(it.q) say(it.q, "ko-KR");
+}
+$("btn-hear").onclick = () => speakQ(picks[idx]);
+
+function startRec(){
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  text = ""; left = LIMIT; $("heard").textContent = ""; $("res").textContent = "";
+  rec = new SR(); rec.lang = "ko-KR"; rec.continuous = true; rec.interimResults = true;
+  rec.onresult = e => {
+    text = Array.from(e.results).map(r => r[0].transcript).join(" ");
+    $("heard").textContent = text;
+  };
+  rec.onerror = () => {};
+  rec.onend = finishTry;
+  try{ rec.start(); }catch(e){ return; }
+  $("btn-rec").textContent = "끝"; $("btn-rec").classList.add("rec");
+  $("timer").textContent = left;
+  timerId = setInterval(() => {
+    left--; $("timer").textContent = Math.max(left,0);
+    if(left<=0){ stopRec(); }
+  }, 1000);
+}
+function stopRec(){ if(rec){ try{ rec.stop(); }catch(e){} } }
+
+$("btn-rec").onclick = () => {
+  if($("btn-rec").classList.contains("rec")) stopRec(); else startRec();
+};
+
+function finishTry(){
+  clearInterval(timerId); timerId = null; rec = null;
+  const it = picks[idx];
+  tries++;
+  const r = judge(it, text);
+  const cur = results[idx] || (results[idx] = { item:it, tries:[], pass:false, hit:[] });
+  cur.tries.push(text);
+  $("btn-rec").classList.remove("rec");
+  if(r.pass){
+    cur.pass = true; cur.hit = r.hit;
+    $("res").innerHTML = it.free ? '<span class="ok">기록됨</span>' : '<span class="ok">통과</span>';
+    $("btn-rec").classList.add("hide"); $("btn-next").classList.remove("hide");
+  } else if(tries < MAX_TRY){
+    cur.hit = r.hit;
+    $("res").innerHTML = '<span class="no">다시 한 번</span>';
+    $("btn-rec").textContent = "답하기";
+  } else {
+    cur.hit = r.hit;
+    $("res").innerHTML = '<span class="no">미통과</span>';
+    $("btn-rec").classList.add("hide"); $("btn-next").classList.remove("hide");
+  }
+}
+
+$("btn-next").onclick = () => {
+  idx++;
+  if(idx >= TOTAL) showEnd(); else showQ();
+};
+
+function esc(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+function showEnd(){
+  $("s-q").classList.add("hide"); $("s-end").classList.remove("hide");
+  const graded = results.filter(r => !r.item.free);
+  const passN = graded.filter(r => r.pass).length;
+  let h = '<div style="font-size:20px;margin-bottom:8px">' + esc(name) + ' &nbsp; <span class="ok">' + passN + ' / ' + graded.length + '</span></div>';
+  results.forEach((r,i) => {
+    const it = r.item;
+    const shown = (it.en ? '<span lang="en">' + esc(it.en) + '</span>' : '') + (it.en && it.q ? '<br>' : '') + (it.q ? esc(it.q) : '');
+    const matched = it.keys.filter((g,k) => r.hit[k]).map(g => g[0]);
+    h += '<div class="row"><b>' + (i+1) + ". " + it.type + '</b> ' + (it.free ? '<span class="small">기록</span>' : (r.pass ? '<span class="ok">통과</span>' : '<span class="no">미통과</span>')) +
+         '<div class="small">' + shown + '</div>' +
+         r.tries.map((t,k) => '<div>' + (k+1) + '회: ' + (t ? esc(t) : '(인식 안 됨)') + '</div>').join("") +
+         (it.free ? '' : '<div class="small">확인된 핵심어: ' + (matched.length ? matched.map(esc).join(", ") : "없음") + '</div>') + '</div>';
+  });
+  $("summary").innerHTML = h;
+}
+
+$("btn-reset").onclick = () => {
+  $("s-end").classList.add("hide"); $("s-name").classList.remove("hide");
+  $("name").value = ""; name = ""; results = [];
+};
+</script>
+</body>
+</html>
