@@ -41,7 +41,7 @@ button.g{background:#3a4a5d;color:#eef1f4}
 <div class="sub">PINPOINT &middot; 8문항</div>
 
 <div id="s-name" class="card dark">
- <div class="crit">질문이 나오면 5초 뒤 자동으로 녹음이 시작됩니다. 한 문항에 한 번만 답할 수 있습니다.<br>
+ <div class="crit">질문이 나오면 10초 뒤 자동으로 녹음이 시작됩니다. 한 문항에 한 번만 답할 수 있습니다.<br>
  채점은 문장을 그대로 외웠는지가 아니라 핵심어가 들어 있는지를 봅니다. 한국어든 영어든 괜찮고, 핵심어가 같은 뜻이면 인정됩니다. 마지막 화면에서 내 해설지로 이동합니다.</div>
  <input type="text" id="name" placeholder="이름" autocomplete="off" style="margin-top:12px">
  <button id="btn-start">시작</button>
@@ -72,7 +72,7 @@ button.g{background:#3a4a5d;color:#eef1f4}
 </div>
 <script src="l7-data.js"></script>
 <script>
-const READY=5, LIMIT=20, SILENCE=2500;
+const READY=10, LIMIT=20, SILENCE=2500;
 const norm=s=>(s||"").toLowerCase().replace(/[\s.,!?'"“”‘’~·\-]/g,"");
 function judge(it,text){const t=norm(text);if(it.free)return{pass:t.length>=it.min,hit:[]};
  const hit=it.keys.map(g=>g.some(w=>t.includes(norm(w))));return{pass:hit.filter(Boolean).length>=it.need,hit};}
