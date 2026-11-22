@@ -49,6 +49,7 @@ var OK=["nolbada727@gmail.com","ysbada@gmail.com"];
 var app;try{app=getApp("hwfs")}catch(e){app=initializeApp(CFG,"hwfs")}
 var auth=getAuth(app),db=getFirestore(app);
 var MASTER=doc(db,"hw_c","master"),HIST=doc(db,"hw_c","master_h"),ATT=doc(db,"att","ros");
+var EMR=doc(db,"board","2000-01-03|_설정"),EMT=doc(db,"board","2000-01-05|_시간표");
 var S={user:null,m:null,sel:{},grp:"all",q:"",msg:"",err:false,merge:null,busy:false,hist:[],tab:"list",edit:null,up:false};
 
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
@@ -108,6 +109,54 @@ async function syncAtt(arr){
     return ch;
   }catch(e){return -1}
 }
+function todayStr(){var d=new Date();return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
+async function syncEM(old,next){
+  if(!old)return 0;
+  try{
+    var om={};old.forEach(function(x){om[x.id]=x});var ev=[];
+    next.forEach(function(x){
+      var o=om[x.id];
+      if(!o){if(x.status==="on"&&x.cls)ev.push({k:"add",n:x.name,c:x.cls,f:!!x.fri});return}
+      var on=o.status==="on",nn=x.status==="on";
+      if(on&&!nn){ev.push({k:"out",n:o.name});return}
+      if(!on&&nn){ev.push({k:"back",n:x.name,c:x.cls,f:!!x.fri});return}
+      if(!nn)return;
+      if(o.name!==x.name)ev.push({k:"ren",n:o.name,m:x.name});
+      if(o.cls!==x.cls&&x.cls)ev.push({k:"mv",n:x.name,c:x.cls});
+      if(!!o.fri!==!!x.fri)ev.push({k:"fri",n:x.name,v:!!x.fri});
+    });
+    if(!ev.length)return 0;
+    var cnt=0;
+    await runTransaction(db,async function(tx){
+      var d=await tx.get(EMR),dt=await tx.get(EMT);if(!d.exists())return;
+      var v=d.data(),c=JSON.parse(v.chk),j=JSON.parse(c.cfg.j);j.r=j.r||{};j.s=j.s||{};j.f=j.f||[];
+      var jt=null,ct=null,vt=null;if(dt.exists()){vt=dt.data();ct=JSON.parse(vt.chk);jt=JSON.parse(ct.tt.j);jt.o=jt.o||[]}
+      var k=0,outs=[],backs=[];
+      function find(n){for(var q in j.r){if(j.r[q].indexOf(n)>-1)return q}return ""}
+      function drop(n){for(var q in j.r){var i=j.r[q].indexOf(n);if(i>-1)j.r[q].splice(i,1)}}
+      function setF(n,on){var i=j.f.indexOf(n);if(on&&i<0)j.f.push(n);if(!on&&i>-1)j.f.splice(i,1)}
+      function put(n,q){if(!j.r[q])j.r[q]=[];if(j.r[q].indexOf(n)<0)j.r[q].push(n)}
+      ev.forEach(function(e){
+        if(e.k==="add"||e.k==="back"){if(!find(e.n)){put(e.n,e.c);k++}if(e.f&&j.f.indexOf(e.n)<0){setF(e.n,true);k++}if(e.k==="back")backs.push(e.n)}
+        else if(e.k==="out"){var q=find(e.n);if(q){outs.push({n:e.n,c:q,at:todayStr(),sk:(j.s[e.n]||[]).slice(),fr:j.f.indexOf(e.n)>-1});drop(e.n);delete j.s[e.n];setF(e.n,false);k++}}
+        else if(e.k==="ren"){var q2=find(e.n);if(q2){var ix=j.r[q2].indexOf(e.n);j.r[q2][ix]=e.m;if(j.s[e.n]){j.s[e.m]=j.s[e.n];delete j.s[e.n]}var fi=j.f.indexOf(e.n);if(fi>-1)j.f[fi]=e.m;k++}}
+        else if(e.k==="mv"){var q3=find(e.n);if(q3!==e.c){if(q3)drop(e.n);put(e.n,e.c);k++}}
+        else if(e.k==="fri"){var had=j.f.indexOf(e.n)>-1;if(had!==e.v){setF(e.n,e.v);k++}}
+      });
+      if(!k&&!backs.length)return;
+      cnt=k;
+      j.u=Date.now();c.cfg.j=JSON.stringify(j);
+      tx.update(EMR,{chk:JSON.stringify(c),seq:(v.seq||0)+1,t:new Date().toISOString()});
+      if(jt&&(outs.length||backs.length)){
+        jt.o=jt.o.filter(function(x){return backs.indexOf(x.n)<0});
+        outs.forEach(function(x){jt.o=jt.o.filter(function(y){return y.n!==x.n});jt.o.push(x)});
+        jt.u=Date.now();ct.tt.j=JSON.stringify(jt);
+        tx.update(EMT,{chk:JSON.stringify(ct),seq:(vt.seq||0)+1,t:new Date().toISOString()});
+      }
+    });
+    return cnt;
+  }catch(e){return -1}
+}
 async function commit(next,desc){
   if(S.busy)return false;S.busy=true;render();
   try{
@@ -119,7 +168,7 @@ async function commit(next,desc){
     });
     var h=S.hist.slice(-14);if(old)h.push({t:Date.now(),d:desc,s:old.s});S.hist=h;
     try{await setDoc(HIST,{j:JSON.stringify(h)})}catch(e){}
-    S.busy=false;S.sel={};var an=await syncAtt(next);msg(desc+" 완료"+(an>0?" · 출석부 "+an+"건 반영":"")+(an<0?" · 출석부 반영 실패(명부는 저장됨)":""));return true;
+    S.busy=false;S.sel={};var an=await syncAtt(next),em=await syncEM(old&&old.s,next);msg(desc+" 완료"+(an>0?" · 출석부 "+an+"건 반영":"")+(an<0?" · 출석부 반영 실패(명부는 저장됨)":"")+(em>0?" · EM보드 "+em+"건 반영":"")+(em<0?" · EM보드 반영 실패(명부는 저장됨)":""));return true;
   }catch(e){S.busy=false;msg(String(e&&e.message||e),true);return false}
 }
 function copy(a){return JSON.parse(JSON.stringify(a))}
