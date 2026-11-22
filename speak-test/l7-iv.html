@@ -32,19 +32,24 @@ button.g{background:#3a4a5d;color:#eef1f4}
 .row:first-child{border-top:0}
 .ok{color:#1f7a4d;font-weight:bold}.no{color:#b3402f;font-weight:bold}
 .small{font-size:14px;color:#666}
+.row2{display:flex;gap:10px}.row2 button{flex:1}
+button.lnk{background:none;color:#9fb0c0;font-size:15px;text-decoration:underline;padding:10px;margin-top:6px}
+.pg{height:6px;background:#e3e0d6;border-radius:3px;margin-top:10px;overflow:hidden}.pg i{display:block;height:100%;background:#2f4858}
 .hide{display:none}
 </style>
 </head>
 <body>
 <div class="wrap">
-<h1>중2 동아(윤) 7과 핀포인트 테스트</h1>
-<div class="sub">PINPOINT &middot; 8문항</div>
+<h1>PINPOINT</h1>
+<div class="sub">중2 동아(윤) 7과 &middot; 3회 &middot; 회당 10문항</div>
 
 <div id="s-name" class="card dark">
- <div class="crit">질문이 나오면 10초 뒤 자동으로 녹음이 시작됩니다. 한 문항에 한 번만 답할 수 있습니다.<br>
+ <div class="crit">질문이 나오면 글 길이에 따라 10~25초의 준비 시간이 주어지고, 끝나면 자동으로 녹음이 시작됩니다. 미리 준비가 되었으면 “지금 답하기”를 누르고, 시간이 모자라면 “+5초”를 누르세요. 한 문항에 한 번만 답할 수 있습니다.<br>
  채점은 문장을 그대로 외웠는지가 아니라 핵심어가 들어 있는지를 봅니다. 한국어든 영어든 괜찮고, 핵심어가 같은 뜻이면 인정됩니다. 마지막 화면에서 내 해설지로 이동합니다.</div>
  <input type="text" id="name" placeholder="이름" autocomplete="off" style="margin-top:12px">
- <button id="btn-start">시작</button>
+ <button id="btn-s0"></button>
+ <button id="btn-s1"></button>
+ <button id="btn-s2"></button>
  <div id="kakao" class="hide crit" style="margin-top:12px">카카오톡 안에서는 마이크가 막힐 수 있습니다.<button id="btn-ext" class="g">다른 브라우저로 열기</button></div>
  <div id="nosupport" class="hide crit" style="margin-top:12px;color:#ff9b8a">이 브라우저는 음성인식을 지원하지 않습니다. 크롬으로 열어 주세요.</div>
 </div>
@@ -52,6 +57,7 @@ button.g{background:#3a4a5d;color:#eef1f4}
 <div id="s-q" class="hide">
  <div class="card">
   <div><span class="tag" id="tag"></span><span class="small" id="prog"></span></div>
+  <div class="pg"><i id="pgf"></i></div>
   <div class="ctx" id="ctx"></div>
   <div class="q" id="qtext"></div>
  </div>
@@ -59,30 +65,40 @@ button.g{background:#3a4a5d;color:#eef1f4}
   <div class="state" id="state"></div>
   <div class="bar" id="bar"><i id="fill"></i></div>
   <div class="heard" id="heard"></div>
+  <div id="rbtns" class="row2 hide"><button id="btn-go">지금 답하기</button><button id="btn-plus" class="g">+5초</button></div>
   <button id="btn-done" class="g hide">답변 끝</button>
   <button id="btn-rec" class="hide">녹음 시작</button>
+  <button id="btn-skip" class="lnk">이 문항 넘기기</button>
  </div>
 </div>
 
 <div id="s-end" class="hide">
  <div class="card" id="summary"></div>
  <button id="btn-review">내 해설지 보기</button>
+ <button id="btn-next" class="g hide">다음 회차 하기</button>
  <button id="btn-reset" class="g">다음 학생</button>
 </div>
 </div>
 <script src="l7-data.js"></script>
 <script>
-const READY=10, LIMIT=20, SILENCE=2500;
+const LIMIT=20, SILENCE=2500;
+const SETS=[
+ {n:1,ids:["f2","n2","m3","n3","d3","r3","a1","c1","n9"],t:"t1"},
+ {n:2,ids:["f3","n1","d1","n4","n7","a3","n10","l1","n12"],t:"t2"},
+ {n:3,ids:["r1","r2","n5","n13","n14","d4","w1","a4","n11"],t:"t4"}];
 const norm=s=>(s||"").toLowerCase().replace(/[\s.,!?'"“”‘’~·\-]/g,"");
 function judge(it,text){const t=norm(text);if(it.free)return{pass:t.length>=it.min,hit:[]};
  const hit=it.keys.map(g=>g.some(w=>t.includes(norm(w))));return{pass:hit.filter(Boolean).length>=it.need,hit};}
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function pickDistinct(cat,n){const out=[],used={};shuffle(Q.filter(q=>q.cat===cat)).forEach(q=>{if(out.length<n&&!used[q.grp]){used[q.grp]=1;out.push(q);}});return out;}
-function draw(){const r=pickDistinct("본문",4),d=pickDistinct("대화문",3),t=shuffle(Q.filter(q=>q.cat==="생각"))[0];
- const mix=[];for(let i=0;i<4;i++){mix.push(r[i]);if(d[i])mix.push(d[i]);}return mix.concat([t]);}
+function draw(k){const S=SETS[k],byId={};Q.forEach(q=>byId[q.id]=q);
+ let a=shuffle(S.ids.map(id=>byId[id]));
+ for(let n=0;n<40;n++){let bad=false;for(let i=1;i<a.length;i++)if(a[i].p===a[i-1].p){bad=true;const j=Math.floor(Math.random()*a.length);const t=a[i];a[i]=a[j];a[j]=t;}if(!bad)break;}
+ return a.concat([byId[S.t]]);}
+function readySec(it){const L=P[it.p].slice(it.r[0],it.r[1]).join(" ").length+it.q.length;return Math.max(10,Math.min(25,Math.round(5+L/16)));}
 const $=id=>document.getElementById(id);
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-let name="",picks=[],idx=0,results=[],rec=null,heard="",tries=0,tReady=null,tRec=null,tSil=null,t0=0,finished=false;
+let setNo=0,name="",picks=[],idx=0,results=[],rec=null,heard="",tries=0,tReady=null,tRec=null,tSil=null,t0=0,finished=false;
 if(/KAKAOTALK/i.test(navigator.userAgent)){$("kakao").classList.remove("hide");}
 $("btn-ext").onclick=()=>{location.href="kakaotalk://web/openExternal?url="+encodeURIComponent(location.href);};
 if(!SR)$("nosupport").classList.remove("hide");
@@ -94,13 +110,16 @@ function showQ(){const it=picks[idx];heard="";tries=0;finished=false;
  let c=P[it.p].slice(it.r[0],it.r[1]).map(esc).join(it.cat==="대화문"?"<br>":" ");
  if(it.mk)c=c.split(esc(it.mk)).join("<b>"+esc(it.mk)+"</b>");
  $("ctx").innerHTML=c;$("qtext").textContent=it.q;$("heard").textContent="";
- $("btn-done").classList.add("hide");$("btn-rec").classList.add("hide");
+ $("btn-done").classList.add("hide");$("btn-rec").classList.add("hide");$("pgf").style.width=(idx/picks.length*100)+"%";
  ready();}
 function setBar(p,r){$("fill").style.width=p+"%";$("bar").className="bar"+(r?" rec":"");}
-function ready(){let s=READY;$("state").textContent="준비 "+s+"초 · 질문을 읽으세요";setBar(0,false);
- clearInterval(tReady);tReady=setInterval(()=>{s--;setBar((READY-s)/READY*100,false);
-  if(s<=0){clearInterval(tReady);startRec();}else $("state").textContent="준비 "+s+"초 · 질문을 읽으세요";},1000);}
+let rs=0,rt=0;
+function ready(){rt=rs=readySec(picks[idx]);$("rbtns").classList.remove("hide");$("btn-skip").classList.remove("hide");
+ const say=()=>{$("state").textContent="준비 "+rs+"초 · 질문을 읽으세요";};say();setBar(0,false);
+ clearInterval(tReady);tReady=setInterval(()=>{rs--;setBar((rt-rs)/rt*100,false);
+  if(rs<=0){clearInterval(tReady);startRec();}else say();},1000);}
 function startRec(){heard="";finished=false;$("heard").textContent="";
+ $("rbtns").classList.add("hide");
  try{rec=new SR();}catch(e){manual();return;}
  rec.lang="ko-KR";rec.continuous=true;rec.interimResults=true;
  rec.onresult=e=>{let t="";for(let i=0;i<e.results.length;i++)t+=e.results[i][0].transcript+" ";heard=t.trim();$("heard").textContent=heard;
@@ -112,10 +131,13 @@ function startRec(){heard="";finished=false;$("heard").textContent="";
  $("state").textContent="녹음 중 · 말씀하세요";setBar(0,true);
  clearInterval(tRec);tRec=setInterval(()=>{const p=(Date.now()-t0)/(LIMIT*1000)*100;setBar(Math.min(p,100),true);
   if(p>=100)finishTry();},200);}
-function manual(){clearInterval(tReady);$("state").textContent="녹음 시작 버튼을 눌러 주세요";$("btn-rec").classList.remove("hide");}
+function manual(){clearInterval(tReady);$("rbtns").classList.add("hide");$("state").textContent="녹음 시작 버튼을 눌러 주세요";$("btn-rec").classList.remove("hide");}
 $("btn-rec").onclick=()=>{$("btn-rec").classList.add("hide");startRec();};
 $("btn-done").onclick=()=>finishTry();
-function stopAll(){finished=true;clearInterval(tRec);clearInterval(tReady);clearTimeout(tSil);t0=0;try{rec&&rec.stop();}catch(e){}$("btn-done").classList.add("hide");}
+$("btn-go").onclick=()=>{clearInterval(tReady);startRec();};
+$("btn-plus").onclick=()=>{rs+=5;rt+=5;$("state").textContent="준비 "+rs+"초 · 질문을 읽으세요";};
+$("btn-skip").onclick=()=>{if(finished)return;heard="";tries=9;finishTry();};
+function stopAll(){finished=true;$("rbtns").classList.add("hide");$("btn-skip").classList.add("hide");clearInterval(tRec);clearInterval(tReady);clearTimeout(tSil);t0=0;try{rec&&rec.stop();}catch(e){}$("btn-done").classList.add("hide");}
 function finishTry(){if(finished)return;stopAll();
  if(!heard&&tries<1){tries++;$("state").textContent="소리가 인식되지 않았습니다. 다시 한 번 말씀하세요.";setTimeout(()=>{finished=false;startRec();},1500);return;}
  const it=picks[idx],j=judge(it,heard);
@@ -126,18 +148,20 @@ function reviewURL(){const d={n:name,a:results.map(r=>[r.id,r.pass,r.said,r.hit.
  return "l7-review.html#d="+btoa(unescape(encodeURIComponent(JSON.stringify(d))));}
 function showEnd(){$("s-q").classList.add("hide");$("s-end").classList.remove("hide");
  const scored=results.filter((r,i)=>picks[i].cat!=="생각"),ok=scored.filter(r=>r.pass).length;
- let h="<div style='font-size:20px;margin-bottom:8px'>"+esc(name)+" 핀포인트 결과 &nbsp; <b>"+ok+" / "+scored.length+"</b></div>";
+ let h="<div style='font-size:20px;margin-bottom:8px'>"+esc(name)+" 핀포인트 "+SETS[setNo].n+"회 결과 &nbsp; <b>"+ok+" / "+scored.length+"</b></div>";
  results.forEach((r,i)=>{const it=picks[i];let line;
   if(it.cat==="생각")line="<span class='small'>기록</span> "+esc(r.said||"(인식된 말 없음)");
   else{const m=it.keys.map((g,k)=>r.hit[k]?g[0]:null).filter(Boolean);
    line=(r.pass?"<span class='ok'>통과</span>":"<span class='no'>다시 확인</span>")+" <span class='small'>인정된 핵심어: "+(m.length?m.map(esc).join(", "):"없음")+"</span>";}
   h+="<div class='row'><div class='small'>"+(i+1)+". "+esc(it.cat+" · "+it.type)+"</div>"+esc(it.q)+"<br>"+line+"</div>";});
- $("summary").innerHTML=h;}
+ $("summary").innerHTML=h;$("btn-next").textContent=(SETS[(setNo+1)%SETS.length].n)+"회 이어서 하기";$("btn-next").classList.remove("hide");}
 $("btn-review").onclick=()=>{location.href=reviewURL();};
 $("btn-reset").onclick=()=>location.reload();
-$("btn-start").onclick=()=>{name=$("name").value.trim();if(!name){$("name").focus();return;}
- if(!SR)return;picks=draw();idx=0;results=[];$("s-name").classList.add("hide");
- navigator.mediaDevices&&navigator.mediaDevices.getUserMedia?navigator.mediaDevices.getUserMedia({audio:true}).then(s=>{s.getTracks().forEach(t=>t.stop());showQ();}).catch(()=>{showQ();}):showQ();};
+$("btn-next").onclick=()=>{setNo=(setNo+1)%SETS.length;begin(setNo);};
+function begin(k){if(!name)name=$("name").value.trim();if(!name){$("name").focus();return;}
+ if(!SR)return;setNo=k;picks=draw(k);idx=0;results=[];$("s-name").classList.add("hide");$("s-end").classList.add("hide");
+ navigator.mediaDevices&&navigator.mediaDevices.getUserMedia?navigator.mediaDevices.getUserMedia({audio:true}).then(s=>{s.getTracks().forEach(t=>t.stop());showQ();}).catch(()=>{showQ();}):showQ();}
+SETS.forEach((S,k)=>{$("btn-s"+k).textContent=S.n+"회 시작 (10문항)";$("btn-s"+k).onclick=()=>begin(k);});
 </script>
 </body>
 </html>
