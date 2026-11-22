@@ -150,11 +150,11 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 .rp-score .big small{font-size:16px;font-weight:600;margin-left:2px}
 .rp-score .pill{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px}
 .rp-score .pill.ok{background:var(--o-soft);color:var(--o)}.rp-score .pill.t{background:var(--t-soft);color:var(--t)}.rp-score .pill.x{background:var(--x-soft);color:var(--x)}
-.rp-pos{position:relative;height:10px;border-radius:999px;margin:26px 0 8px;background:linear-gradient(90deg,var(--x-soft) 0,var(--x-soft) 30%,var(--t-soft) 30%,var(--t-soft) 70%,var(--o-soft) 70%,var(--o-soft) 100%)}
+.rp-pos{position:relative;height:10px;border-radius:999px;margin:26px 0 34px;background:linear-gradient(90deg,var(--x-soft) 0,var(--x-soft) 30%,var(--t-soft) 30%,var(--t-soft) 70%,var(--o-soft) 70%,var(--o-soft) 100%)}
 .rp-pos i{position:absolute;top:-5px;width:4px;height:20px;border-radius:2px;background:var(--ink-soft);transform:translateX(-2px)}
 .rp-pos i em{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-style:normal;font-size:11px;font-weight:700;white-space:nowrap;color:var(--ink-soft)}
 .rp-pos i.me{background:var(--ink);width:6px;transform:translateX(-3px)}
-.rp-pos i.me em{color:var(--ink)}
+.rp-pos i.me em{color:var(--ink);bottom:auto;top:22px}
 .rp-pl{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-soft)}
 .rp-bars{display:grid;gap:7px;margin-top:14px}
 .rp-bars div{display:grid;grid-template-columns:78px 1fr 34px;gap:8px;align-items:center;font-size:12.5px}
@@ -391,7 +391,6 @@ function scoreCard(S){
   var h='<div class="rp-score"><div class="top"><span class="k">이번 주 숙제 종합</span><span class="pill '+cls+'">'+esc(S.pl||(S.st==='보충'?'토요일 보충':S.st))+'</span><span class="big">'+S.sc+'<small>점</small></span></div>';
   var me=Math.max(2,Math.min(98,100-S.pct)),av=Math.max(2,Math.min(98,100-S.avgPct));
   h+='<div class="rp-pos"><i style="left:'+av+'%"><em>학원 평균 '+S.avg+'</em></i><i class="me" style="left:'+me+'%"><em>우리 아이</em></i></div>';
-  h+='<div class="rp-pl"><span>하위</span><span>중간</span><span>상위</span></div>';
   h+='<div class="rp-bars">';
   (S.items||[]).forEach(function(it){h+='<div><span>'+esc(it[0])+'</span><span class="b"><i'+(it[1]<60?' class="lo"':'')+' style="width:'+it[1]+'%"></i></span><em>'+it[1]+'</em></div>'});
   h+='</div><p class="sm">'+esc(S.msg||'').split('\n').join('<br>')+'</p><p style="margin:8px 0 0;font-size:12px;color:var(--ink-soft)">구분 기준: 양호 80점 이상 · 점검 70~79점 · 보충 70점 미만</p></div>';
