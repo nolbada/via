@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google" content="notranslate">
+<title>7과 면접 해설지</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;background:#f6f5f1;color:#222;font-size:17px;line-height:1.75}
+.wrap{max-width:600px;margin:0 auto;padding:20px 14px 70px}
+h1{font-size:22px;margin:6px 0 4px}
+.card{background:#fff;border:1px solid #ddd9cf;border-radius:10px;padding:16px;margin-bottom:16px}
+.note{background:#fff8c9;border-radius:6px;padding:12px 14px;margin:10px 0;font-size:16px}
+.tag{display:inline-block;font-size:13px;background:#2f4858;color:#fff;border-radius:4px;padding:2px 8px}
+.ok{color:#1f7a4d;font-weight:bold}.no{color:#b3402f;font-weight:bold}
+.q{font-size:19px;margin:8px 0}
+.said{background:#f1efe8;border-radius:6px;padding:8px 10px;font-size:16px}
+.psg{border:1px solid #e3e0d6;border-radius:8px;padding:10px 12px;margin:10px 0;font-size:17px;line-height:1.9}
+.psg span.s{padding:1px 2px;border-radius:3px;cursor:pointer}
+.psg span.m{background:#ffe27a}
+.psg span.my{border-bottom:3px solid #2b6cb0}
+.psg span.p{border-bottom:2px dotted #888}
+.ko{color:#444;font-size:16px;margin:2px 0 8px}
+.ev{font-size:17px}
+.why{margin-top:10px}
+.why div{margin:4px 0}
+textarea{width:100%;font-family:inherit;font-size:16px;border:1px solid #c9c4b6;border-radius:8px;padding:10px;min-height:70px;background:#fffdf3}
+.lbl{font-size:14px;color:#777;margin-top:10px}
+.chip{display:inline-block;background:#eef3f7;border-radius:12px;padding:1px 10px;margin:2px 4px 2px 0;font-size:15px}
+a.btn{display:block;text-align:center;background:#2f4858;color:#fff;text-decoration:none;border-radius:8px;padding:14px;margin-top:10px}
+.small{font-size:14px;color:#666}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script src="l7-data.js"></script>
+<script>
+const $a=document.getElementById("app");
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+let D=null;
+try{const h=location.hash.replace(/^#d=/,"");D=JSON.parse(decodeURIComponent(escape(atob(h))));}catch(e){}
+if(!D||!D.a){$a.innerHTML="<div class='card'>면접을 본 뒤 결과 화면에서 이 해설지로 이동해 주세요.<a class='btn' href='l7-iv.html'>구술 면접으로</a></div>";}
+else{
+ const key="l7iv_"+D.n;let st={};try{st=JSON.parse(localStorage.getItem(key)||"{}");}catch(e){}
+ function save(){try{localStorage.setItem(key,JSON.stringify(st));}catch(e){}}
+ const sc=D.a.filter(x=>{const q=Q.find(z=>z.id===x[0]);return q&&q.cat!=="생각";}),ok=sc.filter(x=>x[1]).length;
+ let h="<h1>"+esc(D.n)+"의 7과 면접 해설지</h1><div class='small'>Lesson 7 Let's Enjoy Festivals</div>";
+ h+="<div class='card'><div style='font-size:20px'>결과 <b>"+ok+" / "+sc.length+"</b></div>"
+  +"<div class='note'>이 면접은 문장을 그대로 외웠는지가 아니라 <b>핵심어</b>가 들어 있는지를 봅니다. 핵심어는 한국어든 영어든 상관없고, 같은 뜻이면 인정됩니다. 그래서 아래에 문항마다 '이런 말이 들어가면 통과'를 알려 줍니다.</div>"
+  +"<div class='note' style='background:#eef3f7'>노란 형광펜은 답의 근거가 되는 문장입니다. 지문 문장을 누르면 내 형광펜(파란 밑줄)을 칠할 수 있고, 아래 칸에 memo를 적어 둘 수 있습니다.</div></div>";
+ D.a.forEach((x,i)=>{const q=Q.find(z=>z.id===x[0]);if(!q)return;
+  const pass=x[1],said=x[2],hit=(x[3]||"").split("");
+  h+="<div class='card' data-id='"+q.id+"'><span class='tag'>"+(i+1)+" · "+esc(q.cat+" · "+q.type)+"</span> ";
+  if(q.cat==="생각")h+="<span class='small'>기록</span>";else h+=pass?"<span class='ok'>통과</span>":"<span class='no'>다시 확인</span>";
+  h+="<div class='q'>"+esc(q.q)+"</div><div class='lbl'>내가 말한 답</div><div class='said'>"+esc(said||"(인식된 말 없음)")+"</div>";
+  if(q.cat!=="생각"){
+   h+="<div class='lbl'>핵심어 ("+q.need+"묶음 이상 들어가면 통과)</div><div>";
+   q.keys.forEach((g,k)=>{h+="<span class='chip'>"+(hit[k]==="1"?"[말함] ":"")+esc(g.slice(0,3).join(" / "))+"</span>";});
+   h+="</div>";}
+  h+="<div class='lbl'>본문에서 찾기 (지문 이름: "+esc(TITLE[q.p])+")</div><div class='psg'>";
+  P[q.p].forEach((s,k)=>{const isM=q.hl.some(w=>s.includes(w)),sid=q.p+"_"+k;
+   h+="<span class='s"+(isM?" m":"")+(st[sid]?" my":"")+"' data-s='"+sid+"'>"+esc(s)+"</span> "+(q.cat==="대화문"?"<br>":"");});
+  h+="</div><div class='ev'>"+esc(q.ev)+"</div><div class='ko'>"+esc(q.ko)+"</div>";
+  h+="<div class='why'><b>친절 설명</b><div>"+esc(q.why)+"</div></div>";
+  h+="<div class='lbl'>memo</div><textarea data-m='"+q.id+"' placeholder='헷갈린 점이나 기억할 것을 적어 두세요'>"+esc(st["m_"+q.id]||"")+"</textarea></div>";});
+ h+="<a class='btn' href='l7-iv.html'>구술 면접으로 돌아가기</a>";
+ $a.innerHTML=h;
+ $a.addEventListener("click",e=>{const s=e.target.closest("span.s");if(!s)return;const id=s.dataset.s;st[id]=!st[id];
+  document.querySelectorAll("span.s[data-s='"+id+"']").forEach(n=>n.classList.toggle("my",!!st[id]));save();});
+ $a.addEventListener("input",e=>{const t=e.target.closest("textarea");if(!t)return;st["m_"+t.dataset.m]=t.value;save();});
+}
+</script>
+</body>
+</html>
