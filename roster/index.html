@@ -48,7 +48,7 @@ var CFG={apiKey:"AIzaSyC88G-OjMJOqVqnIVqunzh7fvk91wtKKnA",authDomain:"nolbada.gi
 var OK=["nolbada727@gmail.com","ysbada@gmail.com"];
 var app;try{app=getApp("hwfs")}catch(e){app=initializeApp(CFG,"hwfs")}
 var auth=getAuth(app),db=getFirestore(app);
-var MASTER=doc(db,"hw_c","master"),HIST=doc(db,"hw_c","master_h");
+var MASTER=doc(db,"hw_c","master"),HIST=doc(db,"hw_c","master_h"),ATT=doc(db,"att","ros");
 var S={user:null,m:null,sel:{},grp:"all",q:"",msg:"",err:false,merge:null,busy:false,hist:[],tab:"list",edit:null,up:false};
 
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
@@ -89,6 +89,25 @@ async function load(){
   var d=JSON.parse(s.data().j);S.m=d;
   try{var h=await getDoc(HIST);S.hist=h.exists()?JSON.parse(h.data().j):[]}catch(e){S.hist=[]}
 }
+async function syncAtt(arr){
+  try{
+    var ch=0;
+    await runTransaction(db,async function(tx){
+      var r=await tx.get(ATT);if(!r.exists())return;var ros=JSON.parse(r.data().j),by={},c=0;
+      ros.forEach(function(a){var k=norm(a.name);if(!by[k]||(a.active!=="N"&&by[k].active==="N"))by[k]=a});
+      arr.forEach(function(x){
+        var a=by[norm(x.an||x.name)],grp=x.fri?"금":x.sat?"토":"",act=(x.status==="on"&&grp)?"Y":"N";
+        if(a){
+          if(x.grade&&a.grade!==x.grade){a.grade=x.grade;c++}
+          if(grp&&a.group!==grp){a.group=grp;c++}
+          if((a.active||"Y")!==act){a.active=act;c++}
+        }else if(x.status==="on"&&grp){var na={name:norm(x.name),group:grp,grade:x.grade||"",active:"Y"};ros.push(na);by[norm(na.name)]=na;c++}
+      });
+      ch=c;if(c)tx.set(ATT,Object.assign({},r.data(),{j:JSON.stringify(ros)}));
+    });
+    return ch;
+  }catch(e){return -1}
+}
 async function commit(next,desc){
   if(S.busy)return false;S.busy=true;render();
   try{
@@ -100,7 +119,7 @@ async function commit(next,desc){
     });
     var h=S.hist.slice(-14);if(old)h.push({t:Date.now(),d:desc,s:old.s});S.hist=h;
     try{await setDoc(HIST,{j:JSON.stringify(h)})}catch(e){}
-    S.busy=false;S.sel={};msg(desc+" 완료");return true;
+    S.busy=false;S.sel={};var an=await syncAtt(next);msg(desc+" 완료"+(an>0?" · 출석부 "+an+"건 반영":"")+(an<0?" · 출석부 반영 실패(명부는 저장됨)":""));return true;
   }catch(e){S.busy=false;msg(String(e&&e.message||e),true);return false}
 }
 function copy(a){return JSON.parse(JSON.stringify(a))}
@@ -190,7 +209,7 @@ document.addEventListener("click",function(e){
   if(t.id==="upno"){S.up=false;render();return}
   if(t.id==="upok"){var arr4=copy(S.m.s),n4=0;arr4.forEach(function(x){if(x.status!=="on")return;var g=x.grade;if(g==="고3"){x.status="off";n4++;return}if(NX[g]){x.grade=NX[g];if(g==="초6"||g==="중3")x.school="";n4++}});S.up=false;commit(arr4,"새 학년 올리기 ("+n4+"명)");return}
   if(t.id==="editno"){S.edit=null;render();return}
-  if(t.id==="editok"){var nn=norm(document.getElementById("en").value);if(!nn){msg("이름을 입력해 주세요",true);return}var arr3=copy(S.m.s),id3=S.edit,tg=arr3.filter(function(z){return z.id===id3})[0];if(!tg)return;if(arr3.some(function(z){return z.id!==id3&&z.name===nn&&z.status==="on"})){msg("이미 같은 이름의 재원생이 있습니다",true);return}var ef=document.getElementById("ef").value,old3=tg.name;tg.name=nn;tg.school=document.getElementById("es").value.trim();tg.grade=document.getElementById("eg").value;tg.cls=document.getElementById("ec").value;tg.fri=ef==="fri";tg.sat=ef==="sat";S.edit=null;commit(arr3,"개별 수정 "+old3);return}
+  if(t.id==="editok"){var nn=norm(document.getElementById("en").value);if(!nn){msg("이름을 입력해 주세요",true);return}var arr3=copy(S.m.s),id3=S.edit,tg=arr3.filter(function(z){return z.id===id3})[0];if(!tg)return;if(arr3.some(function(z){return z.id!==id3&&z.name===nn&&z.status==="on"})){msg("이미 같은 이름의 재원생이 있습니다",true);return}var ef=document.getElementById("ef").value,old3=tg.name;if(nn!==old3&&!tg.an)tg.an=old3;tg.name=nn;tg.school=document.getElementById("es").value.trim();tg.grade=document.getElementById("eg").value;tg.cls=document.getElementById("ec").value;tg.fri=ef==="fri";tg.sat=ef==="sat";S.edit=null;commit(arr3,"개별 수정 "+old3);return}
   if(!t.dataset.sel&&t.type!=="checkbox"&&t.closest&&t.closest(".row")){S.edit=t.closest(".row").dataset.id;render();return}
   if(t.id==="undo"){var last=S.hist[S.hist.length-1];if(!last)return;if(!confirm("직전 변경을 되돌릴까요?"))return;var hh=S.hist.slice(0,-1);commit(last.s,"되돌리기").then(function(ok){if(ok){S.hist=hh;setDoc(HIST,{j:JSON.stringify(hh)}).catch(function(){});render()}});return}
 });
