@@ -50,7 +50,7 @@ var app;try{app=getApp("hwfs")}catch(e){app=initializeApp(CFG,"hwfs")}
 var auth=getAuth(app),db=getFirestore(app);
 var MASTER=doc(db,"hw_c","master"),HIST=doc(db,"hw_c","master_h"),ATT=doc(db,"att","ros");
 var EMR=doc(db,"board","2000-01-03|_설정"),EMT=doc(db,"board","2000-01-05|_시간표");
-var S={user:null,m:null,sel:{},grp:"all",q:"",msg:"",err:false,merge:null,busy:false,hist:[],tab:"list",edit:null,up:false};
+var S={user:null,m:null,sel:{},grp:"all",q:"",msg:"",err:false,merge:null,busy:false,hist:[],tab:"list",edit:null,up:false,drift:null};
 
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function norm(n){return String(n||"").replace(/\s+/g,"")}
@@ -109,6 +109,38 @@ async function syncAtt(arr){
     return ch;
   }catch(e){return -1}
 }
+async function audit(){
+  S.drift=null;render();
+  try{
+    var m=S.m?S.m.s:[],by={},L=[];m.forEach(function(x){by[x.name]=x});
+    var on=m.filter(function(x){return x.status==="on"});
+    var d1=await getDoc(EMR),em=JSON.parse(JSON.parse(d1.data().chk).cfg.j).r||{};
+    var emMap={};Object.keys(em).forEach(function(c){em[c].forEach(function(n){if(!n||/^샘플/.test(n)||n==="열람")return;var k=norm(n);if(emMap[k])L.push("EM보드에 두 반에 있음: "+k);emMap[k]=c})});
+    on.forEach(function(x){if(x.cls==="관리형")return;if(!emMap[x.name])L.push("EM보드에 없음: "+x.name);else if(emMap[x.name]!==x.cls)L.push("EM보드 반 다름: "+x.name+" (EM보드 "+emMap[x.name]+" / 통합 명부 "+x.cls+")")});
+    Object.keys(emMap).forEach(function(n){if(!by[n]||by[n].status!=="on")L.push("EM보드에만 있음: "+n)});
+    var hw=JSON.parse((await getDoc(doc(db,"hw_c","main"))).data().roster),hn={};
+    hw.forEach(function(h){if(!h||!h.name)return;var k=norm(h.name);hn[k]=h;var x=by[k];
+      if(!x){if(!h.off)L.push("숙제 REC에만 있음: "+k);return}
+      if(x.status==="on"&&h.off)L.push("숙제 REC에서 퇴원 상태: "+k);
+      if(x.status!=="on"&&!h.off)L.push("숙제 REC에서 아직 재원: "+k);
+      if(x.status==="on"&&!h.off&&x.hw&&x.hw.cls&&x.hw.cls!==h.cls)L.push("숙제 REC 반 다름: "+k+" (숙제 REC "+h.cls+" / 통합 명부 "+x.hw.cls+")")});
+    on.forEach(function(x){if(groupOf(x)==="고등"||x.cls==="관리형")return;if(!hn[x.name])L.push("숙제 REC에 없음: "+x.name)});
+    var ros=JSON.parse((await getDoc(ATT)).data().j),ab={};
+    ros.forEach(function(a){var k=norm(a.name);if(a.active==="N")return;ab[k]=a;var x=by[k];
+      if(!x||x.status!=="on")L.push("출석부에만 있음: "+k);
+      else{if(x.grade&&a.grade!==x.grade)L.push("출석부 학년 다름: "+k);var g=x.fri?"금":x.sat?"토":"";if(g&&a.group!==g)L.push("출석부 요일 다름: "+k)}});
+    on.forEach(function(x){if((x.fri||x.sat)&&!ab[x.name])L.push("출석부에 없음: "+x.name)});
+    var n=new Date();S.drift={list:L,at:("0"+n.getHours()).slice(-2)+":"+("0"+n.getMinutes()).slice(-2)};
+  }catch(e){S.drift={err:String(e&&e.message||e),list:[]}}
+  render();
+}
+function driftHtml(){
+  var d=S.drift;
+  if(d===null)return "<div class=card><span class=small>옛 명단과 맞는지 점검 중</span></div>";
+  if(d.err)return "<div class=card><b style='color:#b33'>점검 실패</b> <span class=small>"+esc(d.err)+"</span> <button id=audb>다시 점검</button></div>";
+  if(!d.list.length)return "<div class=card><b style='color:#1F6F54'>옛 명단 3개와 모두 일치</b> <span class=small>"+esc(d.at)+" 확인</span> <button id=audb>다시 점검</button></div>";
+  return "<div class=card style='border-color:#c55'><b style='color:#b33'>옛 명단과 어긋난 곳 "+d.list.length+"건</b> <span class=small>"+esc(d.at)+" 확인</span> <button id=audb>다시 점검</button><div class=small style='margin-top:6px'>"+d.list.slice(0,30).map(esc).join("<br>")+"</div></div>";
+}
 function todayStr(){var d=new Date();return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
 async function syncEM(old,next){
   if(!old)return 0;
@@ -166,7 +198,7 @@ async function commit(next,desc){
     });
     var h=S.hist.slice(-14);if(old)h.push({t:Date.now(),d:desc,s:old.s});S.hist=h;
     try{await setDoc(HIST,{j:JSON.stringify(h)})}catch(e){}
-    S.busy=false;S.sel={};var an=await syncAtt(next),em=await syncEM(old&&old.s,next);msg(desc+" 완료"+(an>0?" · 출석부 "+an+"건 반영":"")+(an<0?" · 출석부 반영 실패(명부는 저장됨)":"")+(em>0?" · EM보드 "+em+"건 반영":"")+(em<0?" · EM보드 반영 실패(명부는 저장됨)":""));return true;
+    S.busy=false;S.sel={};var an=await syncAtt(next),em=await syncEM(old&&old.s,next);msg(desc+" 완료"+(an>0?" · 출석부 "+an+"건 반영":"")+(an<0?" · 출석부 반영 실패(명부는 저장됨)":"")+(em>0?" · EM보드 "+em+"건 반영":"")+(em<0?" · EM보드 반영 실패(명부는 저장됨)":""));audit();return true;
   }catch(e){S.busy=false;msg(String(e&&e.message||e),true);return false}
 }
 function copy(a){return JSON.parse(JSON.stringify(a))}
@@ -210,6 +242,7 @@ function render(){
     }
     A.innerHTML=h;return;
   }
+  h+=driftHtml();
   var cnt={all:0,"초등":0,"중등":0,"고등":0,"관리형":0,"퇴원":0};
   S.m.s.forEach(function(x){if(x.status==="off")cnt["퇴원"]++;else{cnt.all++;var g=groupOf(x);if(cnt[g]!=null)cnt[g]++}});
   h+="<div class=bar>";["all","초등","중등","고등","관리형","퇴원"].forEach(function(g){h+="<button class='chip "+(S.grp===g?"on":"")+"' data-grp=\""+g+"\">"+(g==="all"?"전체":g)+" "+cnt[g]+"</button>"});h+="</div>";
@@ -252,6 +285,7 @@ document.addEventListener("click",function(e){
     S.tab="list";commit(arr2,"신규 추가 "+n);return}
   if(t.id==="out"){if(!selNames().length){msg("학생을 먼저 선택해 주세요",true);return}if(!confirm("선택한 "+selNames().length+"명을 퇴원 처리할까요? 기록은 남고 되돌릴 수 있습니다"))return;mutate(function(x){x.status="off"},"퇴원");return}
   if(t.id==="restore"){mutate(function(x){x.status="on"},"재원 복귀");return}
+  if(t.id==="audb"){audit();return}
   if(t.id==="upb"){S.up=true;render();return}
   if(t.id==="upno"){S.up=false;render();return}
   if(t.id==="upok"){var arr4=copy(S.m.s),n4=0;arr4.forEach(function(x){if(x.status!=="on")return;var g=x.grade;if(g==="고3"){x.status="off";n4++;return}if(NX[g]){x.grade=NX[g];if(g==="초6"||g==="중3")x.school="";n4++}});S.up=false;commit(arr4,"새 학년 올리기 ("+n4+"명)");return}
@@ -271,7 +305,7 @@ document.addEventListener("input",function(e){if(e.target.id==="q"){S.q=e.target
 
 onAuthStateChanged(auth,function(u){
   S.user=u;
-  if(u&&OK.includes(String(u.email||"").toLowerCase())){load().then(render).catch(function(er){msg("명부를 읽지 못함: "+(er&&er.code||er.message),true)})}else render();
+  if(u&&OK.includes(String(u.email||"").toLowerCase())){load().then(function(){render();audit()}).catch(function(er){msg("명부를 읽지 못함: "+(er&&er.code||er.message),true)})}else render();
 });
 </script>
 </body>
