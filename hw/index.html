@@ -339,7 +339,7 @@ function parentView(meta,weeks){
   else if(jd&&pct<80)h+='<div class="praise warn">숙제 점검이 필요해요</div>';
   else if(ws==='done')h+='<div class="praise done">밀린 숙제까지 다 해냈어요</div>';
   h+='</div>';
-  FL.forEach(function(it){
+  FL.filter(function(it){return it.k!=='w'&&it.k!=='g'&&!/듣기|클카|단어/.test(it.label||'')}).forEach(function(it){
     var n=nOf(it),a=r[it.k],c=cntIt(r,it);
     h+='<div class="card"><div class="card-head"><div class="card-title">'+esc(it.label)+'<span class="card-sub">'+esc(it.sub||'')+'</span></div><div class="card-frac">'+c[0]+' / '+c[1]+' 완료</div></div><div class="'+rowCls(n)+'"'+rowSty(n)+'>';
     for(var i=0;i<n;i++){var si=slotInfo(it,i,start,false);h+=slot(si.lb,a[i],si.fut,!!r.lt[it.k+i])}
