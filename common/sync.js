@@ -32,13 +32,73 @@
           }).catch(function(){clearTimeout(tm);return null});
       }catch(e){return Promise.resolve(null)}
     }
+    /* 261123: 올리기(쓰기)도 Firebase 로 바로 보낸다. 서버가 하던 일(조각 정하기·합치기·충돌 확인)을 그대로 한다 —
+       한 기록 = 8조각, 키 → 조각은 서버와 같은 해시, 합치기는 키마다 더 나중 시각이 이김, 쓸 때는 읽은 시각(updateTime)을 조건으로 걸어 동시에 쓴 것을 덮지 않는다(어긋나면 다시 읽고 4번까지).
+       VIA| 기록만(내신 REC|·RECM| 은 명단 확인이 필요해 서버 그대로). 실패·시간 초과이거나 페이지를 닫는 중(keepalive)이면 원래대로 서버로 보낸다 */
+    function rh(k){var h=5381,i;k=String(k);for(i=0;i<k.length;i++)h=((h<<5)+h+k.charCodeAt(i))|0;return (h>>>0)%8}
+    var FSB='https://firestore.googleapis.com/v1/',DB='projects/h-roadmap/databases/(default)/documents';
+    function enc(id){return String(id).replace(/%/g,'%25').replace(/\//g,'%2F')}
+    function fsCall(op,body){
+      var ac=W.AbortController?new AbortController():null,tm=ac?setTimeout(function(){ac.abort()},4000):0;
+      return of.call(W,FSB+DB+':'+op,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:ac?ac.signal:undefined})
+        .then(function(r){clearTimeout(tm);return r.text().then(function(t){return{code:r.status,body:t}})},function(){clearTimeout(tm);return null});
+    }
+    function fsWrite(id,data){
+      var smp=/(^|[|:])샘플\d*([|:]|$)/.test(id),col=smp?'rec_s':'rec',need={},k,c,n=0,own=Object.prototype.hasOwnProperty;
+      for(k in data){if(own.call(data,k)&&data[k]){need[rh(k)]=1;n++}}
+      if(!n)return Promise.resolve(true);
+      var cs=Object.keys(need).map(Number);
+      function nmOf(c){return DB+'/'+col+'/'+enc(id)+'~'+c}
+      function attempt(left){
+        return fsCall('batchGet',{documents:cs.map(nmOf)}).then(function(r){
+          if(!r||r.code!==200)return false;
+          var a;try{a=JSON.parse(r.body)}catch(e){return false}
+          if(!Array.isArray(a)||a.length!==cs.length)return false;
+          var g={},i,x,nm,o,j;
+          for(i=0;i<a.length;i++){
+            x=a[i];
+            if(x.found){nm=x.found.name;j=x.found.fields&&x.found.fields.j&&x.found.fields.j.stringValue;try{o=j?JSON.parse(j):{}}catch(e){return false}g[nm.slice(nm.lastIndexOf('~')+1)]={ut:x.found.updateTime,d:o}}
+            else if(x.missing){nm=x.missing;g[nm.slice(nm.lastIndexOf('~')+1)]={ut:null,d:{}}}
+            else return false;
+          }
+          var dirty={},d,val;
+          for(k in data){
+            if(!own.call(data,k))continue;d=data[k];if(!d)continue;
+            val=JSON.stringify(d.v);if(val===undefined||val.length>45000)continue;
+            c=rh(k);if(!g[c])return false;
+            if(!own.call(g[c].d,k)||d.t>Number(g[c].d[k][1])){g[c].d[k]=[val,d.t===undefined?'':d.t];dirty[c]=1}
+          }
+          var ws=[],s;
+          for(c in dirty){
+            s=JSON.stringify(g[c].d);if(s.length>900000)return false;
+            ws.push({update:{name:nmOf(c),fields:{j:{stringValue:s},t:{integerValue:String(Date.now())},id:{stringValue:String(id)}}},currentDocument:g[c].ut?{updateTime:g[c].ut}:{exists:false}});
+          }
+          if(!ws.length)return true;
+          return fsCall('commit',{writes:ws}).then(function(r2){
+            if(!r2)return false;
+            if(r2.code===200)return true;
+            if(left>0&&(r2.code===409||/FAILED_PRECONDITION|ALREADY_EXISTS|ABORTED/.test(r2.body)))return attempt(left-1);
+            return false;
+          });
+        });
+      }
+      return attempt(4).catch(function(){return false});
+    }
+    var SRV_='AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A';
+    function okResp(r){return new W.Response(JSON.stringify(r),{status:200,headers:{'Content-Type':'application/json'}})}
     W.fetch=function(u,o){
       try{
-        if(typeof u==='string'&&u.indexOf('AKfycbw1YQfKsgAXNk8NYoxOfz4bsCSy66fiim7HoFAUk162ksxrEbmspMs2UifNZ-93sdf05A')>0&&o&&o.method==='POST'&&typeof o.body==='string'&&o.body.length<600){
-          var b=JSON.parse(o.body),k,n=0;
-          if(b&&b.act==='put'&&typeof b.id==='string'&&b.id.length>=3&&!/^RECM?\|/.test(b.id)&&b.data&&typeof b.data==='object'){
-            for(k in b.data)n++;
-            if(!n){var self=this,args=arguments;return fsRead(b.id).then(function(r){return r?new W.Response(JSON.stringify(r),{status:200,headers:{'Content-Type':'application/json'}}):of.apply(self,args)})}
+        if(typeof u==='string'&&u.indexOf(SRV_)>0&&o&&o.method==='POST'&&typeof o.body==='string'){
+          var self=this,args=arguments,b,k,n=0;
+          if(o.body.length<600000){
+            b=JSON.parse(o.body);
+            if(b&&b.act==='put'&&typeof b.id==='string'&&b.id.length>=3&&!/^RECM?\|/.test(b.id)&&b.data&&typeof b.data==='object'){
+              for(k in b.data)n++;
+              if(!n){if(o.body.length<600)return fsRead(b.id).then(function(r){return r?okResp(r):of.apply(self,args)})}
+              else if(b.nr&&!o.keepalive&&b.id.indexOf('VIA|')===0&&b.id.length>=5&&b.id.length<=60){
+                return fsWrite(b.id,b.data).then(function(ok){return ok?okResp({ok:1,fs:1}):of.apply(self,args)});
+              }
+            }
           }
         }
       }catch(e){}
