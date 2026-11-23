@@ -73,14 +73,14 @@ mark{background:var(--hl);color:inherit;border-radius:3px;padding:0 2px}
 .nm{text-align:center;padding:30px 6px}.nm p{color:var(--sub)}
 </style></head><body>
 <div id="app"></div>
-<script src="d/words.js?v=261123b"></script>
-<script src="d/words3.js?v=261123b"></script>
-<script src="d/topics.js?v=261123b"></script>
-<script src="d/ctx.js?v=261123b"></script>
+<script src="d/words.js?v=261123c"></script>
+<script src="d/words3.js?v=261123c"></script>
+<script src="d/topics.js?v=261123c"></script>
+<script src="d/ctx.js?v=261123c"></script>
 <script>
 (function(){
 "use strict";
-var APP='g2v1',VER='261123b',LAB='ⓐⓑⓒⓓⓔⓕⓖ',NUMS='①②③④⑤',SET=10;
+var APP='g2v1',VER='261123c',LAB='ⓐⓑⓒⓓⓔⓕⓖ',NUMS='①②③④⑤',SET=10;
 var ls=null;try{ls=window.localStorage;ls.getItem('x')}catch(e){ls=null}
 var mem={};
 function gs(k){try{return ls?ls.getItem(k):(mem[k]||null)}catch(e){return mem[k]||null}}
@@ -238,6 +238,8 @@ function stateCls(q,i){
 function fixLine(f){return f?'<div class="fix">고치면 <b><mark>'+enSpanKo(f)+'</mark></b></div>':''}
 var CURID='';
 function ctxOf(k){var c=(window.G2CTX||{})[CURID]||[];for(var i=0;i<c.length;i++)if(c[i].k===k)return c[i];return null}
+function nz(t){return String(t||'').replace(/[’‘]/g,"'").replace(/[“”]/g,'"').replace(/[\s.,?!"']+/g,' ').trim().toLowerCase()}
+function sameSen(a,b){a=nz(a);b=nz(b);return a===b||b.length>=a.length*0.9&&a.indexOf(b)>-1}
 function senHtml(c,target,ko){
   if(!c||!c.en)return'';
   var e=esc(c.en),t=target?esc(target.replace(/[,.?!]+$/,'')):'';
@@ -282,7 +284,7 @@ function explain(q,plain){
 function segCard(s,cls,isAns,isMine,num){
   var h='<div class="ex '+cls+'">'+badge(isAns,isMine)+'<div class="hd"><span class="n">'+(num?num+' ':'')+s.k+'</span><span class="t">'+enSpanKo(s.en)+'</span></div>';
   if(s.ko)h+='<div class="ko">'+esc(s.ko)+'</div>';
-  h+=senHtml(ctxOf(s.k),s.en,s.ko);
+  var cx=ctxOf(s.k);if(cx&&!sameSen(cx.en,s.en))h+=senHtml(cx,s.en,s.ko);
   h+='<span class="st '+(s.ok?'g':'r')+'">'+esc(s.lab||(s.ok?'바른 표현':'틀린 표현'))+'</span>';
   if(s.why)h+='<div class="why">'+why(s.why)+'</div>';
   if(!s.ok&&s.fix)h+=fixLine(s.fix);
