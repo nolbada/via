@@ -56,6 +56,7 @@ h1{font-size:22px;margin:6px 2px 2px}.sub{color:var(--sub);font-size:14px;margin
 .bdg{position:absolute;top:-10px;right:12px;font-size:12.5px;font-weight:800;padding:2px 10px;border-radius:999px;color:#fff}
 .bdg.g{background:#1f8f58}.bdg.r{background:#d2483c}
 .ex .hd{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.ex .hd .n{font-weight:800;color:var(--ac)}.ex .hd .t{font-weight:700;font-size:17px}
+.sen{margin:8px 0 2px;padding:8px 10px;background:var(--chip);border-radius:10px}.sen .se{font-size:15.5px;line-height:1.55}.sen .sk{color:var(--sub);font-size:13px;line-height:1.5;margin-top:3px}
 .ex .ko{color:var(--sub);font-size:15px;margin:2px 0 0}
 .st{display:inline-block;font-size:12.5px;font-weight:800;border-radius:6px;padding:1px 8px;margin-top:6px}.st.g{background:#d6f0e1;color:#14663d}.st.r{background:#fbdad6;color:#a12f26}
 @media (prefers-color-scheme:dark){.st.g{background:#1d4a34;color:#9be6bf}.st.r{background:#5a2824;color:#ffb3ab}}
@@ -72,13 +73,14 @@ mark{background:var(--hl);color:inherit;border-radius:3px;padding:0 2px}
 .nm{text-align:center;padding:30px 6px}.nm p{color:var(--sub)}
 </style></head><body>
 <div id="app"></div>
-<script src="d/words.js?v=261123a"></script>
-<script src="d/words3.js?v=261123a"></script>
-<script src="d/topics.js?v=261123a"></script>
+<script src="d/words.js?v=261123b"></script>
+<script src="d/words3.js?v=261123b"></script>
+<script src="d/topics.js?v=261123b"></script>
+<script src="d/ctx.js?v=261123b"></script>
 <script>
 (function(){
 "use strict";
-var APP='g2v1',VER='261123a',LAB='ⓐⓑⓒⓓⓔⓕⓖ',NUMS='①②③④⑤',SET=10;
+var APP='g2v1',VER='261123b',LAB='ⓐⓑⓒⓓⓔⓕⓖ',NUMS='①②③④⑤',SET=10;
 var ls=null;try{ls=window.localStorage;ls.getItem('x')}catch(e){ls=null}
 var mem={};
 function gs(k){try{return ls?ls.getItem(k):(mem[k]||null)}catch(e){return mem[k]||null}}
@@ -234,8 +236,18 @@ function stateCls(q,i){
   return isAns?'ok':(mine?'no':'');
 }
 function fixLine(f){return f?'<div class="fix">고치면 <b><mark>'+enSpanKo(f)+'</mark></b></div>':''}
+var CURID='';
+function ctxOf(k){var c=(window.G2CTX||{})[CURID]||[];for(var i=0;i<c.length;i++)if(c[i].k===k)return c[i];return null}
+function senHtml(c,target,ko){
+  if(!c||!c.en)return'';
+  var e=esc(c.en),t=target?esc(target.replace(/[,.?!]+$/,'')):'';
+  if(t&&e.indexOf(t)>-1)e=e.replace(t,'<mark>'+t+'</mark>');
+  var k=esc(c.ko||''),kp=ko?esc(ko.replace(/\s*[(（].*$/,'').replace(/^[（(].*?[)）]\s*/,'').trim()):'';
+  if(kp&&kp.length>1&&k.indexOf(kp)>-1)k=k.replace(kp,'<mark>'+kp+'</mark>');
+  return'<div class="sen"><div class="se">'+enWrap(e)+'</div>'+(k?'<div class="sk">'+k+'</div>':'')+'</div>';
+}
 function explain(q,plain){
-  var ok=S.ok;
+  var ok=S.ok;CURID=q.id;
   var h='<div class="res '+(ok?'g':'b')+'">'+(ok?'정답이에요':'오답이에요')+'</div>';
   if(q.core)h+='<span class="core">'+esc(q.core)+'</span>';
   if(q.bko)h+='<div class="box"><h4>본문 해석</h4><div class="p">'+esc(q.bko).replace(/\n/g,'<br>')+'</div></div>';
@@ -260,6 +272,7 @@ function explain(q,plain){
       h+='</div>';
     });
     if(q.blob)h+='<div class="box"><h4>해설</h4><div class="p">'+blobHtml(q.blob)+'</div></div>';
+    if(q.kind==='abc'){var cx=(window.G2CTX||{})[q.id]||[];if(cx.length)h+='<div class="box"><h4>본문 문장으로 확인</h4>'+cx.map(function(c){return'<div style="margin-top:8px"><b style="color:var(--ac)">'+esc(c.k)+'</b>'+senHtml(c,'','')+'</div>'}).join('')+'</div>'}
   }
   if(q.vb&&q.vb.length){
     h+='<div class="box"><h4>동사 원형</h4>'+q.vb.map(function(v){var p=v.split(' → ');return '<div class="vb">'+enWrap(esc(p[0]))+(p[1]?' : '+enWrap(esc(p[1])):'')+'</div>'}).join('')+'</div>';
@@ -269,18 +282,19 @@ function explain(q,plain){
 function segCard(s,cls,isAns,isMine,num){
   var h='<div class="ex '+cls+'">'+badge(isAns,isMine)+'<div class="hd"><span class="n">'+(num?num+' ':'')+s.k+'</span><span class="t">'+enSpanKo(s.en)+'</span></div>';
   if(s.ko)h+='<div class="ko">'+esc(s.ko)+'</div>';
+  h+=senHtml(ctxOf(s.k),s.en,s.ko);
   h+='<span class="st '+(s.ok?'g':'r')+'">'+esc(s.lab||(s.ok?'바른 표현':'틀린 표현'))+'</span>';
   if(s.why)h+='<div class="why">'+why(s.why)+'</div>';
   if(!s.ok&&s.fix)h+=fixLine(s.fix);
   return h+'</div>';
 }
 function blobHtml(t){
-  var parts=t.split(/(\((?:[A-E1-5])\))/);var out='';
+  var parts=t.split(/((?:^|(?<=[.?!”’"']\s))\([A-E1-5]\)(?=\s))/),out='',open=false;
   for(var i=0;i<parts.length;i++){
-    if(/^\([A-E1-5]\)$/.test(parts[i])){out+='<div style="margin-top:8px"><b style="color:var(--ac)">'+esc(parts[i])+'</b> '}
-    else{out+=why(parts[i]);if(i+1<parts.length&&/^\([A-E1-5]\)$/.test(parts[i+1]))out+='</div>'}
+    if(/^\([A-E1-5]\)$/.test(parts[i])){if(open)out+='</div>';out+='<div style="margin-top:8px"><b style="color:var(--ac)">'+esc(parts[i])+'</b> ';open=true}
+    else out+=why(parts[i]);
   }
-  return out+(/\([A-E1-5]\)/.test(t)?'</div>':'');
+  return out+(open?'</div>':'');
 }
 function resView(){
   var r=S.run,n=r.ids.length,c=r.ids.filter(function(id){return r.ok[id]}).length;
