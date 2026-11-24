@@ -3306,12 +3306,13 @@ let S;try{S=JSON.parse(localStorage.getItem(KEY))||fresh()}catch(e){S=fresh()}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 const $=s=>document.querySelector(s);
 let view="home",cur=null,curCh=0,sh=0,wrong=0,pinv="",tab="stuck";
+const Z={h:0,tries:0,ok:null,rev:0,pen:0};function pe(id){return S.it[id]||Z}
 function st(id){return S.it[id]||(S.it[id]={h:0,tries:0,ok:null,rev:0,pen:0})}
 function IT(id){return ITEMS.find(x=>x.id==id)}
 function R(h){document.getElementById("app").innerHTML=h;try{window.scrollTo(0,0)}catch(e){}}
 function go(v){view=v;render()}
 function render(){({home,chapter,item,unitend,pin,teacher})[view]()}
-const doneOf=L=>L.filter(x=>st(x.id).pen).length;
+const doneOf=L=>L.filter(x=>pe(x.id).pen).length;
 const chItems=c=>ITEMS.filter(x=>x.ch==c),unItems=uk=>ITEMS.filter(x=>x.uk==uk);
 const chList=()=>Object.keys(CHAPS).map(Number).sort((a,b)=>a-b);
 function pad2(n){return(n<10?"0":"")+n}
@@ -3327,12 +3328,12 @@ function chapter(){const c=curCh;
  CHAPS[c].units.forEach(k=>{const uk=c+"-"+k,L=unItems(uk),U=UN[uk];if(!L.length)return;const d=doneOf(L);
   h+='<button class="row" onclick="start(\''+uk+'\')"><span><b>'+U.n+'</b> '+U.t+'<span class="small"> · '+(U.cp?"개념 "+U.cp+" · ":"")+"문제 "+U.pp+'</span></span><span class="pill '+(d==L.length?"on":"")+'">'+d+' / '+L.length+'</span></button>'});
  R(h)}
-function strip(L,cid){const f=L.findIndex(x=>!st(x.id).pen),lim=f<0?L.length:f;
- return '<div class="strip" id="strip">'+L.map((x,i)=>{const on=x.id==cid,d=st(x.id).pen,ok=i<=lim;
+function strip(L,cid){const f=L.findIndex(x=>!pe(x.id).pen),lim=f<0?L.length:f;
+ return '<div class="strip" id="strip">'+L.map((x,i)=>{const on=x.id==cid,d=pe(x.id).pen,ok=i<=lim;
   return '<button class="chip'+(on?' cur':d?' dn':'')+(ok?'':' lk')+'"'+(ok?' onclick="open_(\''+x.id+'\')"':' disabled')+'>'+(i+1)+'</button>'}).join("")+'</div>'}
 function fixStrip(){try{const c=document.querySelector("#strip .cur");if(c)c.scrollIntoView({block:"nearest",inline:"center"})}catch(e){}}
-function start(uk){const L=unItems(uk),n=L.find(x=>!st(x.id).pen)||L[0];open_(n.id)}
-function open_(id){cur=id;sh=st(id).h||0;wrong=0;go("item")}
+function start(uk){const L=unItems(uk),n=L.find(x=>!pe(x.id).pen)||L[0];open_(n.id)}
+function open_(id){cur=id;sh=pe(id).h||0;T0=Date.now();wrong=0;go("item")}
 function item(){
  const it=IT(cur),s=st(cur),U=UN[it.uk],L=unItems(it.uk);
  let h='<div class="bk"><a onclick="openCh('+it.ch+')">목록</a><span class="small">CH'+pad2(it.ch)+' · '+U.n+' · '+SECLAB(it)+'</span></div>'+strip(L,cur);
@@ -3363,11 +3364,20 @@ function pick(i){const it=IT(cur),s=st(cur);s.tries++;s.my=it.opts[i];
  else{wrong++;if(wrong>=2){s.rev=1;s.ok=0}}save();render()}
 function wrote(){st(cur).rev=1;save();render()}
 function selfck(v){const s=st(cur);s.self=v;s.ok=v;save();render()}
-function penDone(){st(cur).pen=1;save();render()}
+function penDone(){const s=st(cur);if(!s.pen){s.pen=1;s.pt=Date.now();s.pd=tdy();s.sec=Math.min(900,Math.round((Date.now()-T0)/1000))}save();render()}
+let T0=Date.now();
+function tdy(){const d=new Date();return d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate())}
+function hmOf(t){const d=new Date(t);return pad2(d.getHours())+":"+pad2(d.getMinutes())}
+window.__gi=function(){try{const td=tdy(),by={};
+ ITEMS.forEach(x=>{const s=S.it[x.id];if(s&&s.pen&&s.pd==td)(by[x.uk]||(by[x.uk]=[])).push(x)});
+ return Object.keys(by).map(uk=>{const L=unItems(uk),D=by[uk],U=UN[uk];let hs=0,fast=0,t1=1e15,t2=0;const stuck=[];
+  D.forEach(x=>{const s=S.it[x.id];hs+=s.h||0;if(s.sec!=null&&s.sec<5)fast++;if(s.pt<t1)t1=s.pt;if(s.pt>t2)t2=s.pt;if((s.h||0)>=2||s.ok===0)stuck.push(L.findIndex(y=>y.id==x.id)+1)});
+  stuck.sort((a,b)=>a-b);const all=L.filter(x=>pe(x.id).pen).length;
+  return{uk:uk,w:"그래머인사이드 L1 CH"+pad2(L[0].ch)+" "+U.n+" · 오늘 연필 "+D.length+"줄 (전체 "+all+"/"+L.length+") · 힌트 "+hs+"회"+(stuck.length?" · 막힘 "+stuck.join(", ")+"번":"")+(fast?" · 5초 안에 넘김 "+fast+"개":"")+" · "+hmOf(t1)+"~"+hmOf(t2)}})}catch(e){return[]}};
 function nextItem(){const it=IT(cur),L=unItems(it.uk),i=L.findIndex(x=>x.id==cur);
  if(i==L.length-1){go("unitend");return}open_(L[i+1].id)}
 function unitend(){const it=IT(cur),L=unItems(it.uk),U=UN[it.uk];
- const ok=L.filter(x=>st(x.id).ok).length,hs=L.reduce((a,x)=>a+st(x.id).h,0);
+ const ok=L.filter(x=>pe(x.id).ok).length,hs=L.reduce((a,x)=>a+pe(x.id).h,0);
  R('<div class="bk"><a onclick="openCh('+it.ch+')">목록</a></div><h2>'+U.n+' 끝</h2>'+strip(L,null)+'<div class="small">처음에 바로 맞힌 문제 '+ok+' / '+L.length+' · 힌트 사용 '+hs+'회</div><div class="post"><div class="pt">'+PEN+' 오늘 쓴 줄 모아 보기</div>'+L.map(x=>'<div class="pl"><span class="small">'+SECSHORT(x)+'</span> '+x.pen+'</div>').join("")+'</div><button class="btn" onclick="openCh('+it.ch+')">목록으로</button>')}
 function pin(){pinv="";pinui()}
 function pinui(){R('<div class="bk"><a onclick="go(\'home\')">목록</a></div><h2>선생님 확인</h2><div class="dots">'+[0,1,2,3].map(i=>'<i class="'+(i<pinv.length?"f":"")+'"></i>').join("")+'</div><div class="pad">'+[1,2,3,4,5,6,7,8,9,"",0,"←"].map(k=>k===""?'<span></span>':'<button onclick="pk(\''+k+'\')">'+k+'</button>').join("")+'</div>')}
@@ -3375,10 +3385,10 @@ function pk(k){if(k=="←")pinv=pinv.slice(0,-1);else if(pinv.length<4)pinv+=k;i
 function teacher(){
  let h='<div class="bk"><a onclick="go(\'home\')">나가기</a><span class="small">선생님 화면</span></div><div class="tabs">'+[["stuck","막힌 문제"],["ctl","관리"]].map(([k,n])=>'<button class="'+(tab==k?"on":"")+'" onclick="tab=\''+k+'\';render()">'+n+'</button>').join("")+'</div>';
  if(tab=="stuck"){
-  const pen=ITEMS.filter(x=>st(x.id).pen).length;
+  const pen=ITEMS.filter(x=>pe(x.id).pen).length;
   h+='<div class="small">이 기기에서 푼 기록입니다. 실시간 연결은 EM보드에 넣을 때 붙입니다.</div><div class="card"><b>연필 한 줄 완료</b> '+pen+' / '+ITEMS.length+'</div>';
   chList().forEach(c=>{const L=chItems(c);h+='<div class="small">CHAPTER '+pad2(c)+' '+CHAPS[c].name+' : '+doneOf(L)+' / '+L.length+'</div>'});
-  const S2=ITEMS.filter(x=>st(x.id).h>=2||st(x.id).ok===0);
+  const S2=ITEMS.filter(x=>pe(x.id).h>=2||pe(x.id).ok===0);
   h+='<div class="small" style="margin-top:10px">막힌 문제 (힌트 2단계 이상 또는 바로 못 맞힘)</div>';
   if(!S2.length)h+='<div class="card small">아직 없어요.</div>';
   S2.forEach(x=>{const s=st(x.id);h+='<div class="card"><b>CH'+pad2(x.ch)+' · '+UN[x.uk].n+' · '+SECLAB(x)+'</b><div class="small">힌트 '+s.h+'단계 · 시도 '+s.tries+'회</div><div class="small">'+x.pen+'</div></div>'});
