@@ -929,27 +929,65 @@ function flyIn(){
 }
 function tile(ci,pos,placed){
   var bad=!placed&&C.flash&&C.flash.b===ci;
-  var good=false,hl=!placed&&C.step===2&&C.w3>=2&&!C.done1&&C.s.ch[ci].t===C.s.ch[C.placed.length].t;
+  var good=false,hl=false;
   return '<button class="tile'+(bad?' bad shake':'')+(hl?' hl':'')+(good?' good':'')+'" data-act="'+(placed?'unplace':'pick')+'" data-i="'+(placed?pos:ci)+'">'+esc(C.s.ch[ci].t)+'</button>';
 }
+function autoFill(){
+  var s=C.s,ch=true;
+  while(ch){
+    ch=false;
+    for(var k=0;k<C.n;k++){
+      if(!s.ch[k].k&&C.placed.indexOf(k)<0&&(k===0||C.placed.indexOf(k-1)>=0)){C.placed.push(k);C.k2[k]=true;ch=true;}
+    }
+  }
+  if(C.placed.length===C.n&&!C.done1){C.done1=true;C.sc[3]=score(C.mist[3],false,s.m?15:10);}
+}
+function placeK(k){
+  C.placed.push(k);C.k2[k]=true;C.lastDrop=k;C.dropShown=false;C.selK=null;C.cand=null;C.selW=0;
+  autoFill();
+}
+function cands(k){
+  var s=C.s,seen={},withK=[],noK=[],out=[k];
+  seen[s.ch[k].t]=1;
+  s.ch.forEach(function(c,i){
+    if(i===k||C.placed.indexOf(i)>=0||c.t===s.ch[k].t)return;
+    if(c.k)withK.push(i);else noK.push(i);
+  });
+  shuffle(withK).concat(shuffle(noK)).forEach(function(i){
+    if(out.length<3&&!seen[s.ch[i].t]){seen[s.ch[i].t]=1;out.push(i);}
+  });
+  return shuffle(out);
+}
+function kposN(ko,k,i){
+  var p=kpos(ko,k);
+  if(p<999)return p;
+  var k2=k.replace(/\([^)]*\)\s*/g,'').replace(/~/g,'').trim();
+  if(k2&&k2!==k){var q=kpos(ko,k2);if(q<999)return q;}
+  return 1000+i;
+}
 function stage3Html(){
-  var p=C.placed.length;
   return '<div class="stage">'+C.s.ch.map(function(c,k){
-    if(k<p)return '<div class="col3"><div class="sblk" data-st="'+k+'"><b>'+esc(c.t)+'</b></div><div class="kslot filled'+(k===C.lastDrop?' drop':'')+'">'+(c.k?esc(c.k):'')+'</div></div>';
-    return '<div class="col3"><div class="slot'+(k===p?' next':'')+'"></div><div class="kslot"></div></div>';
+    if(C.placed.indexOf(k)>=0)return '<div class="col3"><div class="sblk'+(C.s.m?'':' st2 role-'+CLS[c.r])+'" data-st="'+k+'"><b>'+esc(c.t)+'</b></div><div class="kslot filled'+(k===C.lastDrop?' drop':'')+'">'+(c.k?esc(c.k):'')+'</div></div>';
+    return '<div class="col3"><div class="slot"></div><div class="kslot"></div></div>';
   }).join('')+'</div>';
 }
 function kRow3(){
-  var idx=[];
-  C.s.ch.forEach(function(c,k){if(c.k&&!C.k2[k])idx.push(k);});
-  idx.sort(function(x,y){return kpos(C.s.ko,C.s.ch[x].k)-kpos(C.s.ko,C.s.ch[y].k);});
-  return '<div class="krow"><span class="klbl">우리말 해석</span><div class="kflow">'+(idx.length?idx.map(function(k){return '<span class="kblk">'+esc(C.s.ch[k].k)+'</span>';}).join(''):'<span class="kdone">해석이 모두 내려왔어요</span>')+'</div></div>';
+  var idx=[],left=0;
+  C.s.ch.forEach(function(c,k){if(c.k){idx.push(k);if(C.placed.indexOf(k)<0)left++;}});
+  idx.sort(function(x,y){return kposN(C.s.ko,C.s.ch[x].k,x)-kposN(C.s.ko,C.s.ch[y].k,y);});
+  return '<div class="krow"><span class="klbl">우리말 해석</span><div class="kflow">'+(left?idx.map(function(k){
+    if(C.placed.indexOf(k)>=0)return '<button class="kblk" style="visibility:hidden" disabled tabindex="-1" aria-hidden="true">'+esc(C.s.ch[k].k)+'</button>';
+    return '<button class="kblk'+(C.selK===k?' go':'')+'" data-act="selK" data-k="'+k+'">'+esc(C.s.ch[k].k)+'</button>';
+  }).join(''):'<span class="kdone">해석이 모두 내려왔어요</span>')+'</div></div>';
 }
 function v1(){
-  var h='<p class="ask">우리말 어순을 보고, 영어에서는 어떤 순서로 올지 찾아 쌓아요. 제자리를 찾으면 그 뜻이 아래로 내려와요</p>'+kRow3()+stage3Html();
-  h+='<div class="pool">'+C.pool.map(function(ci){return tile(ci,0,false);}).join('')+'</div>';
-  if(C.wrong)h+='<p class="msg no">그 블록은 다음 자리에 오지 않아요. 영어에서는 어떤 말이 올까요?</p>';
-  if(C.done1){var ms=sumArr(C.mist);h+='<p class="msg ok">이번 문장 '+(ms?'실수 '+ms+'개':'실수 없음')+'</p><button class="primary" data-act="next">'+(S.i+1<S.list.length?'다음 문장':'Day 결과 보기')+'</button>';}
+  autoFill();
+  var s=C.s,h='<p class="ask">우리말 뜻을 누르고, 알맞은 영어를 골라 문장을 쌓아요</p>'+kRow3()+stage3Html();
+  if(!C.done1){
+    h+='<div class="pool">'+((C.selK!=null&&C.cand)?C.cand.map(function(ci){return tile(ci,0,false);}).join(''):'')+'</div>';
+    if(C.wrong&&C.selK!=null)h+='<p class="msg no">이 뜻에 맞는 영어가 아니에요. 다시 골라 보세요</p>';
+  }
+  if(C.done1){var ms=sumArr(C.mist);h+='<p class="hint"><span style="font-family:var(--en)">'+esc(s.en)+'</span><br>'+esc(s.ko)+'</p><p class="msg ok">이번 문장 '+(ms?'실수 '+ms+'개':'실수 없음')+'</p><button class="primary" data-act="next">'+(S.i+1<S.list.length?'다음 문장':'Day 결과 보기')+'</button>';}
   return h;
 }
 function optsFor(){
@@ -1781,13 +1819,21 @@ app.addEventListener('click',function(e){
   var s=C.s;
   if(a==='memo'){C.memoOpen=!C.memoOpen;render();return;}
   if(a==='hint'){C.hint=true;}
-  else if(a==='pick'&&!C.done1){
-    var ci=Number(t.getAttribute('data-i')),pp=C.placed.length;
-    if(s.ch[ci].t===s.ch[pp].t){
-      C.flyFrom=t.getBoundingClientRect();C.fly=pp;
-      C.okc=(C.okc||0)+1;C.pool.splice(C.pool.indexOf(ci),1);C.placed.push(pp);C.wrong=false;C.w3=0;C.k2[pp]=true;C.lastDrop=pp;C.dropShown=false;
-      if(C.placed.length===C.n){C.done1=true;C.sc[3]=score(C.mist[3],false,s.m?15:10);}
-    }else{C.mist[3]++;logW({day:S.day,n:s.n,kind:'order',t:s.ch[pp].t});C.w3++;C.wrong=true;C.flash={b:ci};afterFlash();}
+  else if(a==='selK'&&!C.done1){
+    var kk=Number(t.getAttribute('data-k'));
+    if(C.selK===kk){C.selK=null;C.cand=null;}else{C.selK=kk;C.selW=0;C.cand=cands(kk);}
+    C.wrong=false;
+  }
+  else if(a==='pick'&&!C.done1&&C.selK!=null){
+    var ci=Number(t.getAttribute('data-i')),tg=C.selK;
+    if(s.ch[ci].t===s.ch[tg].t){
+      C.flyFrom=t.getBoundingClientRect();C.fly=tg;
+      C.okc=(C.okc||0)+1;C.wrong=false;placeK(tg);
+    }else{
+      C.mist[3]++;logW({day:S.day,n:s.n,kind:'order',t:s.ch[tg].t});C.selW=(C.selW||0)+1;
+      if(C.selW>=2){C.wrong=false;placeK(tg);}
+      else{C.wrong=true;C.flash={b:ci};afterFlash();}
+    }
   }
   else if(a==='pickK'&&!C.done2){
     var kk2=Number(t.getAttribute('data-k'));C.msg=null;
