@@ -111,10 +111,10 @@ P[2] = dict(
      [('c', '비교급', 'greater'), ('c', '강조 부사', 'even (훨씬)')],
      '<b>that on desktops or laptops</b>의 that은 앞의 usage time(사용 시간)을 대신 받는 말이에요.')),
    (5, D('Even if the bridge is very long, it is not [quite|very] <S>the longest</S> in the world.', 'quite',
-     '비록 그 다리가 매우 길지라도, 그것이 세계에서 단연코 가장 길지는 않다.',
-     '<b>the longest</b>(가장 긴)는 최상급이에요. 최상급 앞에는 &ldquo;단연코&rdquo;라는 뜻의 <b>quite</b>이 와요. (앞의 very long은 원급 long을 강조하는 very라서 맞아요.)',
-     [('c', '최상급', 'the longest'), ('c', '강조 부사', 'quite (단연코)')],
-     '<b>Even if ~</b>는 &ldquo;비록 ~일지라도&rdquo;예요. not quite the longest는 &ldquo;단연코 가장 길지는 않다&rdquo;라는 뜻이에요.')),
+     '비록 그 다리가 매우 길지라도, 그것이 세계에서 가장 긴 것이라고까지는 할 수 없다.',
+     '<b>the longest</b>(가장 긴)는 최상급이에요. 최상급 앞에는 very를 바로 쓰지 못하고, not과 함께 &ldquo;꼭 ~은 아닌&rdquo;이라는 뜻의 <b>quite</b>을 써요. (앞의 very long은 원급 long을 강조하는 very라서 맞아요.)',
+     [('c', '최상급', 'the longest'), ('c', '강조 부사', 'quite (꼭, 완전히)')],
+     '<b>Even if ~</b>는 &ldquo;비록 ~일지라도&rdquo;예요. not quite the longest는 &ldquo;가장 긴 것이라고까지는 할 수 없다&rdquo;라는 뜻이에요.')),
   ], '정답: 1 far &nbsp; 2 very &nbsp; 3 by far &nbsp; 4 even &nbsp; 5 quite'),
  ])
 
