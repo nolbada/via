@@ -1,0 +1,2319 @@
+[
+{
+"key": "c08p1|예제",
+"title": "POINT 1 · 동사 병렬",
+"chunks": [
+[
+"You can start working a month earlier",
+"당신은 한 달 일찍 일하기를 시작할 수 있다",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"receive a larger bonus for doing so.",
+"그렇게 함으로써 더 큰 보너스를 받을 수 있다.",
+"V"
+]
+],
+"tr": "당신은 한 달 일찍 일하는 것을 시작하고 그렇게 하는 것에 대해 더 큰 보너스를 받을 수 있다.",
+"ans": "receive",
+"pts": null
+},
+{
+"key": "c08p1|1",
+"title": "POINT 1 · 동사 병렬",
+"chunks": [
+[
+"I could see the fireworks",
+"나는 불꽃놀이를 볼 수 있었다",
+"S"
+],
+[
+"from the roof of my building",
+"내 건물 지붕에서",
+""
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"take pictures of them.",
+"그것들의 사진을 찍을 수 있었다.",
+"V"
+]
+],
+"tr": "나는 내 건물 지붕에서 불꽃놀이를 보고 사진을 찍을 수 있었다.",
+"ans": "take",
+"pts": null
+},
+{
+"key": "c08p1|2",
+"title": "POINT 1 · 동사 병렬",
+"chunks": [
+[
+"After an important exam,",
+"중요한 시험 후에,",
+""
+],
+[
+"Tim usually either gets some rest",
+"팀은 보통 휴식을 취한다",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"goes downtown to meet his friends.",
+"친구들을 만나러 시내에 간다.",
+"V"
+]
+],
+"tr": "중요한 시험 후에, Tim은 보통 휴식을 취하거나 친구들을 만나러 시내에 간다.",
+"ans": "goes",
+"pts": null
+},
+{
+"key": "c08p1|3",
+"title": "POINT 1 · 동사 병렬",
+"chunks": [
+[
+"The groups of workers accepted the new policy,",
+"노동자 집단들은 새 정책을 받아들이고,",
+"S"
+],
+[
+"asked the company to change it,",
+"회사에 그것을 바꾸라고 요청하고,",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"refused it.",
+"그것을 거부했다.",
+"V"
+]
+],
+"tr": "노동자 집단들은 새 정책을 받아들이거나, 회사에 그것을 바꾸라고 요청하거나, 그것을 거부했다.",
+"ans": "refused",
+"pts": null
+},
+{
+"key": "c08p1|4",
+"title": "POINT 1 · 동사 병렬",
+"chunks": [
+[
+"Brown lines run along the backs",
+"갈색 선들이 등을 따라 이어지고",
+"S"
+],
+[
+"of the amazing lizards",
+"그 놀라운 도마뱀들의",
+""
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"continue down their tails.",
+"꼬리 아래로 계속 이어진다.",
+"V"
+]
+],
+"tr": "갈색 선들이 그 놀라운 도마뱀들의 등을 따라 이어지고, 꼬리로 계속 내려간다.",
+"ans": "continue",
+"pts": null
+},
+{
+"key": "c08p1|5",
+"title": "POINT 1 · 동사 병렬",
+"chunks": [
+[
+"A person usually",
+"사람은 보통",
+""
+],
+[
+"makes a number of mistakes in life",
+"삶에서 많은 실수를 하고",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"learns lessons from them.",
+"그것들로부터 교훈을 배운다.",
+"V"
+]
+],
+"tr": "사람은 보통 삶에서 많은 실수를 하고 그것들로부터 교훈을 배운다.",
+"ans": "learns",
+"pts": null
+},
+{
+"key": "c08p1|6",
+"title": "POINT 1 · 동사 병렬",
+"chunks": [
+[
+"Some children do not speak often",
+"어떤 아이들은 자주 말하지 않는다",
+"S"
+],
+[
+"but",
+"하지만",
+"C"
+],
+[
+"express themselves clearly when they do.",
+"스스로를 분명하게 표현한다, 말할 때는.",
+"V"
+]
+],
+"tr": "어떤 아이들은 자주 말을 하지는 않지만 할 때는 스스로를 분명하게 표현한다.",
+"ans": "express",
+"pts": null
+},
+{
+"key": "c08p1|7",
+"title": "POINT 1 · 동사 병렬",
+"chunks": [
+[
+"Serene quickly turned on one foot",
+"세린은 재빨리 한 발로 돌았다",
+"S"
+],
+[
+"in front of her friends",
+"친구들 앞에서",
+""
+],
+[
+"but",
+"하지만",
+"C"
+],
+[
+"fell to the floor.",
+"바닥에 넘어졌다.",
+"V"
+]
+],
+"tr": "Serene은 친구들 앞에서 재빨리 한 발로 돌았지만 바닥에 넘어졌다.",
+"ans": "fell",
+"pts": null
+},
+{
+"key": "c08p1|8",
+"title": "POINT 1 · 동사 병렬",
+"chunks": [
+[
+"Cut unnecessary expenses",
+"불필요한 비용을 줄이고",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"start saving",
+"저축하기를 시작해라",
+"V"
+],
+[
+"if you want",
+"당신이 원한다면",
+""
+],
+[
+"to achieve your financial goals more quickly.",
+"재정적인 목표를 더 빨리 달성하기를.",
+""
+]
+],
+"tr": "당신의 재정적인 목표를 더 빨리 달성하기를 원한다면 불필요한 비용을 줄이고 저축을 시작해라.",
+"ans": "start",
+"pts": null
+},
+{
+"key": "c08p2|예제",
+"title": "POINT 2 · 동명사와 to부정사 병렬",
+"chunks": [
+[
+"An advertisement cannot meet its goal",
+"광고는 그 목표를 달성할 수 없다",
+""
+],
+[
+"to create an appealing image",
+"매력적인 이미지를 만들어 내는",
+""
+],
+[
+"by telling too many stories",
+"너무 많은 이야기를 함으로써",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"showing everything.",
+"모든 것을 보여줌으로써.",
+"V"
+]
+],
+"tr": "광고는 너무 많은 이야기를 하는 것이나 모든 것을 보여주는 것에 의해 매력적인 이미지를 만들어 내는 목표를 달성할 수 없다.",
+"ans": "showing",
+"pts": null
+},
+{
+"key": "c08p2|1",
+"title": "POINT 2 · 동명사와 to부정사 병렬",
+"chunks": [
+[
+"Kevin gave the old man enough money",
+"케빈은 그 노인에게 충분한 돈을 주었다",
+""
+],
+[
+"not only",
+"~뿐 아니라",
+"C"
+],
+[
+"to take a bus,",
+"버스를 탈",
+"S"
+],
+[
+"but",
+"또한",
+"C"
+],
+[
+"to get a warm meal.",
+"따뜻한 식사를 할.",
+"V"
+]
+],
+"tr": "Kevin은 그 노인에게 버스를 탈 뿐만 아니라 따뜻한 식사를 할 충분한 돈을 주었다.",
+"ans": "to get",
+"pts": null
+},
+{
+"key": "c08p2|2",
+"title": "POINT 2 · 동명사와 to부정사 병렬",
+"chunks": [
+[
+"To reduce paper waste,",
+"종이 낭비를 줄이기 위해,",
+""
+],
+[
+"digital reports are preferred",
+"디지털 보고서가 선호된다",
+""
+],
+[
+"instead of printing them",
+"그것들을 인쇄하는 것 대신에",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"making copies of them.",
+"그것들의 복사본을 만드는 것.",
+"V"
+]
+],
+"tr": "종이 낭비를 줄이기 위해, 인쇄하는 것이나 복사본을 만드는 것 대신에 디지털 보고서가 선호된다.",
+"ans": "making",
+"pts": null
+},
+{
+"key": "c08p2|3",
+"title": "POINT 2 · 동명사와 to부정사 병렬",
+"chunks": [
+[
+"Taking notes is a good way",
+"노트 필기를 하는 것은 좋은 방법이다",
+""
+],
+[
+"to understand,",
+"이해하기 위한,",
+"S"
+],
+[
+"remember,",
+"기억하기 위한,",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"review important information better.",
+"중요한 정보를 더 잘 복습하기 위한.",
+"V"
+]
+],
+"tr": "노트 필기를 하는 것은 중요한 정보를 더 잘 이해하고, 기억하고, 복습하기 위한 좋은 방법이다.",
+"ans": "review",
+"pts": null
+},
+{
+"key": "c08p2|4",
+"title": "POINT 2 · 동명사와 to부정사 병렬",
+"chunks": [
+[
+"Judy wakes up early in the morning",
+"주디는 아침에 일찍 일어난다",
+""
+],
+[
+"both",
+"둘 다",
+"C"
+],
+[
+"to drink a cup of tea",
+"차를 한 잔 마시기 위해",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"to do yoga.",
+"요가를 하기 위해.",
+"V"
+]
+],
+"tr": "Judy는 차를 한 잔 마시는 것과 요가를 하는 것 둘 다 하기 위해 아침에 일찍 일어난다.",
+"ans": "to do",
+"pts": null
+},
+{
+"key": "c08p2|5",
+"title": "POINT 2 · 동명사와 to부정사 병렬",
+"chunks": [
+[
+"I love cooking dishes with new flavors,",
+"나는 새로운 맛의 요리를 하는 것을 좋아하고,",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"sharing meals with my family",
+"가족들과 식사를 함께 하는 것을",
+"V"
+],
+[
+"to create happy memories.",
+"행복한 기억을 만들기 위해.",
+""
+]
+],
+"tr": "나는 새로운 맛의 요리를 하는 것과, 행복한 기억을 만들기 위해 가족들과 식사를 함께 하는 것을 좋아한다.",
+"ans": "sharing",
+"pts": null
+},
+{
+"key": "c08p3|예제",
+"title": "POINT 3 · 분사 병렬",
+"chunks": [
+[
+"You can train your brain",
+"당신은 당신의 뇌를 훈련시킬 수 있다",
+""
+],
+[
+"to become relaxed",
+"편안해지도록",
+"V"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"confident",
+"자신감 있게",
+"S"
+],
+[
+"by repeating experiences.",
+"경험을 반복함으로써.",
+""
+]
+],
+"tr": "당신은 경험을 반복함으로써 당신의 뇌가 편안하거나 자신감 있게 되도록 훈련시킬 수 있다.",
+"ans": "relaxed",
+"pts": null
+},
+{
+"key": "c08p3|1",
+"title": "POINT 3 · 분사 병렬",
+"chunks": [
+[
+"You look a little tired",
+"너는 약간 피곤해 보인다",
+"S"
+],
+[
+"but",
+"하지만",
+"C"
+],
+[
+"excited",
+"신나 보인다",
+"V"
+],
+[
+"after starting the project.",
+"그 프로젝트를 시작한 이후로.",
+""
+]
+],
+"tr": "그 프로젝트를 시작한 이후로 너는 약간 피곤하지만 신나 보인다.",
+"ans": "excited",
+"pts": null
+},
+{
+"key": "c08p3|2",
+"title": "POINT 3 · 분사 병렬",
+"chunks": [
+[
+"Close friends can provide comfort",
+"친한 친구들은 위안을 제공할 수 있다",
+""
+],
+[
+"to discouraged",
+"낙담한",
+"V"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"unhappy teenagers.",
+"불행한 십 대들에게.",
+"S"
+]
+],
+"tr": "가까운 친구들은 낙담하거나 불행한 십 대들에게 위안을 제공할 수 있다.",
+"ans": "discouraged",
+"pts": null
+},
+{
+"key": "c08p3|3",
+"title": "POINT 3 · 분사 병렬",
+"chunks": [
+[
+"The team’s research topic is very new",
+"그 팀의 연구 주제는 매우 새롭다",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"interesting,",
+"흥미롭다,",
+"V"
+],
+[
+"so it is receiving a lot of attention.",
+"그래서 그것은 많은 관심을 받고 있다.",
+""
+]
+],
+"tr": "그 팀의 연구 주제가 매우 새롭고 흥미로워서, 그것은 많은 관심을 받고 있다.",
+"ans": "interesting",
+"pts": null
+},
+{
+"key": "c08p3|4",
+"title": "POINT 3 · 분사 병렬",
+"chunks": [
+[
+"Noam will join a tennis club",
+"노암은 테니스 클럽에 가입할 것이다",
+""
+],
+[
+"even though he is",
+"비록 그가 ~이지만",
+""
+],
+[
+"neither",
+"둘 다 아닌",
+"C"
+],
+[
+"drawn to sports",
+"스포츠에 끌리는",
+"S"
+],
+[
+"nor",
+"~도",
+"C"
+],
+[
+"skilled at them.",
+"그것들에 능숙한.",
+"V"
+]
+],
+"tr": "Noam은 스포츠에 끌리거나 능숙한 것 둘 다 아니지만 테니스 클럽에 가입할 것이다.",
+"ans": "skilled",
+"pts": null
+},
+{
+"key": "c08p3|5",
+"title": "POINT 3 · 분사 병렬",
+"chunks": [
+[
+"Before I went up on stage to speak,",
+"내가 연설하기 위해 무대에 오르기 전에,",
+""
+],
+[
+"Ms. Miller gave me",
+"밀러 씨는 나에게 주었다",
+""
+],
+[
+"encouraging",
+"힘을 북돋아 주는",
+"V"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"useful advice.",
+"유용한 조언을.",
+"S"
+]
+],
+"tr": "내가 연설하기 위해 무대에 오르기 전에, Miller씨는 나에게 힘을 북돋아 주고 유용한 조언을 해주었다.",
+"ans": "encouraging",
+"pts": null
+},
+{
+"key": "c08q1|1",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"You must lock the doors",
+"당신은 문을 잠그고",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"turn off the lights",
+"불을 꺼야 한다",
+"V"
+],
+[
+"before you leave the house.",
+"집을 떠나기 전에.",
+""
+]
+],
+"tr": "당신은 집을 떠나기 전에 문을 잠그고 불을 꺼야 한다.",
+"ans": "turn",
+"pts": null
+},
+{
+"key": "c08q1|2",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"By exercising regularly",
+"규칙적으로 운동하는 것과",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"maintaining a balanced diet,",
+"균형 잡힌 식단을 유지하는 것에 의해,",
+"V"
+],
+[
+"she hoped to improve her overall health.",
+"그녀는 전반적인 건강을 개선하기를 희망했다.",
+""
+]
+],
+"tr": "규칙적으로 운동하는 것과 균형 잡힌 식단을 유지하는 것에 의해, 그녀는 전반적인 건강을 개선하기를 희망했다.",
+"ans": "maintaining",
+"pts": null
+},
+{
+"key": "c08q1|3",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"On weekends, my husband and I",
+"주말에, 나의 남편과 나는",
+""
+],
+[
+"either go hiking",
+"등산을 하거나",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"play board games at home.",
+"집에서 보드게임을 한다.",
+"V"
+]
+],
+"tr": "주말에, 나의 남편과 나는 등산을 하거나 집에서 보드게임을 하는 것 중 하나를 한다.",
+"ans": "play",
+"pts": null
+},
+{
+"key": "c08q1|4",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Marco travels to many places",
+"마르코는 많은 장소들을 여행하고",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"takes beautiful photographs as a travel blogger.",
+"여행 블로거로서 아름다운 사진을 찍는다.",
+"V"
+]
+],
+"tr": "Marco는 여행 블로거로서 많은 장소들을 여행하고 아름다운 사진을 찍는다.",
+"ans": "takes",
+"pts": null
+},
+{
+"key": "c08q1|5",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The key to success is not rushing",
+"성공의 열쇠는 서두르는 것이",
+"S"
+],
+[
+"to finish every task quickly",
+"모든 일을 빠르게 끝내려고",
+""
+],
+[
+"but",
+"아니라",
+"C"
+],
+[
+"carefully planning each one before starting.",
+"시작하기 전에 각각의 것을 신중하게 계획하는 것이다.",
+"V"
+]
+],
+"tr": "성공의 열쇠는 모든 일을 빠르게 끝내기 위해 서두르는 것이 아니라 시작하기 전에 각각의 것을 신중하게 계획하는 것이다.",
+"ans": "planning",
+"pts": null
+},
+{
+"key": "c08q1|6",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"We have gathered in this meeting room",
+"우리는 이 회의실에 모였다",
+""
+],
+[
+"to share ideas",
+"아이디어를 공유하기 위해",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"find the best solution.",
+"최선의 해결책을 찾기 위해.",
+"V"
+]
+],
+"tr": "우리는 아이디어를 공유하고 최선의 해결책을 찾기 위해 이 회의실에 모였다.",
+"ans": "find",
+"pts": null
+},
+{
+"key": "c08q1|7",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Take time to check your progress",
+"당신의 진행 상황을 점검할 시간을 갖고",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"set new goals for the future.",
+"미래를 위해 새로운 목표를 설정하라.",
+"V"
+]
+],
+"tr": "당신의 진행 상황을 점검할 시간을 갖고 미래를 위해 새로운 목표를 설정하라.",
+"ans": "set",
+"pts": null
+},
+{
+"key": "c08q1|8",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Mandy often shops for vegetables at the local market",
+"맨디는 종종 지역 시장에서 채소를 사거나",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"walks around her neighborhood when she is free.",
+"한가할 때 동네를 걸어 다닌다.",
+"V"
+]
+],
+"tr": "Mandy는 한가할 때 종종 지역 시장에서 채소를 사거나 동네를 걸어 다닌다.",
+"ans": "walks",
+"pts": null
+},
+{
+"key": "c08q1|9",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"I finished washing the dishes,",
+"나는 접시를 닦는 것을 끝냈지만,",
+"S"
+],
+[
+"but",
+"그러나",
+"C"
+],
+[
+"put off cleaning the bathroom until tomorrow.",
+"내일까지 화장실을 청소하는 것을 미뤘다.",
+"V"
+]
+],
+"tr": "나는 접시를 닦는 것은 끝냈지만, 화장실을 청소하는 것은 내일까지 미뤘다.",
+"ans": "put",
+"pts": null
+},
+{
+"key": "c08q1|10",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The hotel would like to hire",
+"그 호텔은 고용하고 싶어 한다",
+""
+],
+[
+"a professional",
+"전문적인",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"experienced manager",
+"경험 있는 매니저를",
+"V"
+],
+[
+"for better service.",
+"더 나은 서비스를 위해.",
+""
+]
+],
+"tr": "그 호텔은 더 나은 서비스를 위해 전문적이고 경험 있는 매니저를 고용하고 싶어 한다.",
+"ans": "experienced",
+"pts": null
+},
+{
+"key": "c08q1|11",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"People respond differently to life’s challenges,",
+"사람들은 삶의 도전들에 대해 다르게 반응한다,",
+""
+],
+[
+"like taking an exam to enter a school",
+"~와 같은, 학교에 입학하기 위해 시험을 치르는 것",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"getting surgery.",
+"수술을 받는 것.",
+"V"
+]
+],
+"tr": "사람들은 학교에 입학하기 위해 시험을 치르는 것이나 수술을 받는 것과 같은 삶의 도전들에 대해 다르게 반응한다.",
+"ans": "getting",
+"pts": null
+},
+{
+"key": "c08q1|12",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"In Greece, if a stranger appeared at your door,",
+"그리스에서는, 낯선 사람이 당신의 문 앞에 나타나면,",
+""
+],
+[
+"it was your duty",
+"그것은 당신의 의무였다",
+""
+],
+[
+"to show kindness,",
+"친절을 보이는 것,",
+"S"
+],
+[
+"to give him comforting shelter,",
+"그에게 편안한 쉴 곳을 주는 것,",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"to serve him food.",
+"그에게 음식을 대접하는 것.",
+"V"
+]
+],
+"tr": "그리스에서는, 낯선 사람이 당신의 문 앞에 나타나면, 친절을 보이는 것, 그에게 편안한 쉴 곳을 주는 것, 그리고 음식을 대접하는 것이 당신의 의무였다.",
+"ans": "to serve",
+"pts": null
+},
+{
+"key": "c08q2|1",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 O, 틀리면 고치기",
+"chunks": [
+[
+"Children are more capable of",
+"어린이들은 더 능력이 있다",
+""
+],
+[
+"learning multiple languages",
+"다수의 언어를 배우는 것",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"adapting to new environments",
+"새로운 환경에 적응하는 것",
+"V"
+],
+[
+"than adults.",
+"성인들보다.",
+""
+]
+],
+"tr": "어린이들은 성인들보다 다수의 언어를 배우거나 새로운 환경에 적응할 더 많은 능력이 있다.",
+"ans": "adapting",
+"pts": null
+},
+{
+"key": "c08q2|2",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 O, 틀리면 고치기",
+"chunks": [
+[
+"When you first meet a German host,",
+"당신이 독일인 행사 주최자를 처음 만날 때,",
+""
+],
+[
+"he will shake hands,",
+"그는 악수하고,",
+"S"
+],
+[
+"greet everyone standing there,",
+"거기에 서 있는 모든 사람들과 인사하고,",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"even bow his head slightly.",
+"심지어 고개를 약간 숙일 것이다.",
+"V"
+]
+],
+"tr": "당신이 독일인 행사 주최자를 처음 만날 때, 그는 악수하고, 거기에 서 있는 모든 사람들과 인사하고, 심지어 고개를 약간 숙일 것이다.",
+"ans": "bow",
+"pts": null
+},
+{
+"key": "c08q2|3",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 O, 틀리면 고치기",
+"chunks": [
+[
+"The artist spent hours",
+"그 예술가는 몇 시간을 썼다",
+""
+],
+[
+"painting colors on the canvas",
+"캔버스에 색깔을 칠하는 데",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"expressing strong emotions.",
+"강한 감정을 표현하는 데.",
+"V"
+]
+],
+"tr": "그 예술가는 캔버스에 색깔을 칠하고 강한 감정을 표현하는 데 몇 시간을 썼다.",
+"ans": "expressing",
+"pts": null
+},
+{
+"key": "c08q2|4",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 O, 틀리면 고치기",
+"chunks": [
+[
+"After a long day at work, Sally",
+"직장에서의 긴 하루 후에, 샐리는",
+""
+],
+[
+"goes for a run to clear her mind",
+"마음을 비우기 위해 달리기를 하러 가거나",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"takes a warm bath.",
+"따뜻한 목욕을 한다.",
+"V"
+]
+],
+"tr": "직장에서의 긴 하루 후에, Sally는 마음을 비우기 위해 달리기를 하러 가거나 따뜻한 목욕을 한다.",
+"ans": "takes",
+"pts": null
+},
+{
+"key": "c08q2|5",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 O, 틀리면 고치기",
+"chunks": [
+[
+"The book is filled with",
+"그 책은 가득 차 있다",
+""
+],
+[
+"both",
+"둘 다",
+"C"
+],
+[
+"inspiring",
+"영감을 주는",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"pleasing stories",
+"즐거운 이야기들로",
+"V"
+],
+[
+"for all kinds of readers.",
+"모든 종류의 독자들에게.",
+""
+]
+],
+"tr": "그 책은 모든 종류의 독자들에게 영감을 주고 즐거운 이야기로 가득 차 있다.",
+"ans": "pleasing",
+"pts": null
+},
+{
+"key": "c08q2|6",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 O, 틀리면 고치기",
+"chunks": [
+[
+"As soon as the teacher entered the room,",
+"선생님이 방에 들어오자마자,",
+""
+],
+[
+"the students stopped talking",
+"학생들은 이야기하는 것을 멈추고",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"sat quietly in their seats.",
+"조용히 그들의 자리에 앉았다.",
+"V"
+]
+],
+"tr": "선생님이 방에 들어오자마자, 학생들은 이야기하는 것을 멈추고 조용히 그들의 자리에 앉았다.",
+"ans": "sat",
+"pts": null
+},
+{
+"key": "c08q2|7",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 O, 틀리면 고치기",
+"chunks": [
+[
+"Put your plans down on paper",
+"당신의 계획을 종이에 적어라",
+""
+],
+[
+"not only",
+"~뿐만 아니라",
+"C"
+],
+[
+"to help with brainstorming",
+"브레인스토밍을 돕기 위해서",
+"S"
+],
+[
+"but also",
+"또한",
+"C"
+],
+[
+"to make your thoughts clear.",
+"당신의 생각을 분명하게 만들기 위해.",
+"V"
+]
+],
+"tr": "브레인스토밍을 돕기 위해서뿐만 아니라 당신의 생각을 분명하게 만들기 위해 당신의 계획을 종이에 적어라.",
+"ans": "to make",
+"pts": null
+},
+{
+"key": "c08q2|8",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 O, 틀리면 고치기",
+"chunks": [
+[
+"To become a good writer,",
+"좋은 작가가 되기 위해서,",
+""
+],
+[
+"practice writing daily",
+"매일 글쓰기를 연습하고",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"seek feedback from other people.",
+"다른 사람들에게 의견을 구하라.",
+"V"
+]
+],
+"tr": "좋은 작가가 되기 위해서, 매일 글쓰기를 연습하고 다른 사람들에게 의견을 구하라.",
+"ans": "seek",
+"pts": null
+},
+{
+"key": "c08q2|9",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 O, 틀리면 고치기",
+"chunks": [
+[
+"Listening to others allows you",
+"다른 사람의 말을 듣는 것은 당신에게 허락한다",
+""
+],
+[
+"to solve problems,",
+"문제를 해결하고,",
+"S"
+],
+[
+"gain new views,",
+"새로운 관점을 얻고,",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"learn from different experiences.",
+"다양한 경험을 통해 배우는 것을.",
+"V"
+]
+],
+"tr": "다른 사람의 말을 듣는 것은 당신이 문제를 해결하고, 새로운 관점을 얻고, 다양한 경험을 통해 배울 수 있도록 허락한다.",
+"ans": "learn",
+"pts": null
+},
+{
+"key": "c08q2|10",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 O, 틀리면 고치기",
+"chunks": [
+[
+"My cat tries to catch birds in the garden",
+"나의 고양이는 정원에서 새를 잡으려고 노력하지만",
+"S"
+],
+[
+"but",
+"그러나",
+"C"
+],
+[
+"fails every time.",
+"매번 실패한다.",
+"V"
+]
+],
+"tr": "나의 고양이는 정원에서 새를 잡으려고 노력하지만 매번 실패한다.",
+"ans": "fails",
+"pts": null
+},
+{
+"key": "c08q2|11",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 O, 틀리면 고치기",
+"chunks": [
+[
+"The CEO agrees with",
+"최고경영자는 ~에 동의한다",
+""
+],
+[
+"delaying the store opening",
+"상점 개장을 미루는 것",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"taking more time to prepare for the event.",
+"행사를 준비하기 위해 시간을 더 갖는 것에.",
+"V"
+]
+],
+"tr": "CEO는 상점 개장을 미루는 것과 행사를 준비하기 위해 시간을 더 갖는 것에 동의한다.",
+"ans": "taking",
+"pts": null
+},
+{
+"key": "c08q2|12",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 O, 틀리면 고치기",
+"chunks": [
+[
+"Dora cannot tell",
+"도라는 구분할 수 없다",
+""
+],
+[
+"if she is nervous",
+"그녀가 긴장한 건지",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"excited about taking her first plane ride.",
+"처음으로 비행기를 타는 것에 대해 흥분한 건지.",
+"V"
+]
+],
+"tr": "Dora는 처음으로 비행기를 타는 것에 대해 그녀가 긴장한 건지 또는 흥분한 건지 구분할 수 없다.",
+"ans": "excited",
+"pts": null
+},
+{
+"key": "c08s1|1-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Most people know that",
+"대부분의 사람들은 ~라는 것을 안다",
+""
+],
+[
+"wasting all their money",
+"모든 돈을 낭비하는 것",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"(A) forgetting to save for the future",
+"미래를 위해 저축하는 것을 잊는 것",
+"V"
+],
+[
+"is unwise.",
+"이 현명하지 않다는 것을.",
+""
+]
+],
+"tr": "대부분의 사람들은 모든 돈을 낭비하는 것이나 미래를 위해 저축하는 것을 잊는 것이 현명하지 않다는 것을 안다.",
+"ans": "forgetting",
+"pts": [
+"8.2",
+"8.1"
+]
+},
+{
+"key": "c08s1|1-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Make an effort to plan your spending carefully",
+"당신의 소비를 신중하게 계획하도록 노력하라",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"(B) leave some money in the bank.",
+"은행에 돈을 남겨두라.",
+"V"
+]
+],
+"tr": "당신의 소비를 신중하게 계획하도록 노력하고 은행에 돈을 남겨둬라.",
+"ans": "leave",
+"pts": [
+"8.1"
+]
+},
+{
+"key": "c08s1|2-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"It’s good to try and solve problems on your own, but you don’t always have to be",
+"스스로 노력해서 문제를 해결하는 것은 좋지만, 당신은 항상 ~일 필요는 없다",
+""
+],
+[
+"alone",
+"혼자인",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"(A) isolated from others.",
+"다른 사람들로부터 고립된.",
+"V"
+]
+],
+"tr": "스스로 노력해서 문제를 해결하는 것은 좋지만, 당신은 항상 혼자이고 다른 사람들로부터 고립될 필요는 없다.",
+"ans": "isolated",
+"pts": [
+"8.1"
+]
+},
+{
+"key": "c08s1|2-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"When making a difficult decision,",
+"어려운 결정을 내릴 때,",
+""
+],
+[
+"you can either trust your instincts",
+"당신은 본능을 믿을 수 있고",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"(B) get advice from a friend or family member.",
+"친구나 가족 구성원에게서 조언을 얻을 수 있다.",
+"V"
+]
+],
+"tr": "어려운 결정을 내릴 때, 당신은 자신의 본능을 믿거나 친구나 가족 구성원으로부터 조언을 얻는 것 중 하나를 할 수 있다.",
+"ans": "get",
+"pts": [
+"8.1"
+]
+},
+{
+"key": "c08s1|3-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"According to a study,",
+"한 연구에 따르면,",
+""
+],
+[
+"people prefer using text chat to voice chat",
+"사람들은 음성 채팅보다 문자 채팅 사용을 선호한다",
+""
+],
+[
+"to convey their feelings",
+"자신의 감정을 전달하기 위해",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"(A) make requests of others.",
+"다른 사람들에게 요청을 하기 위해.",
+"V"
+]
+],
+"tr": "한 연구에 따르면, 사람들은 자신의 감정을 전달하거나 다른 사람들에게 요청을 하기 위해 음성 채팅보다 문자 채팅을 사용하는 것을 선호한다.",
+"ans": "make",
+"pts": [
+"8.2"
+]
+},
+{
+"key": "c08s1|3-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Users say that",
+"사용자들은 ~라고 말한다",
+""
+],
+[
+"text chat is more enjoyable,",
+"문자 채팅이 더 즐겁고,",
+"S"
+],
+[
+"requires less effort,",
+"더 적은 노력을 요구하며,",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"(B) feels more polite than voice chat.",
+"음성 채팅보다 더 예의 바르게 느껴진다.",
+"V"
+]
+],
+"tr": "사용자들은 문자 채팅이 음성 채팅보다 더 즐겁고, 더 적은 노력을 요구하며, 더 예의 바르게 느껴진다고 말한다.",
+"ans": "feels",
+"pts": [
+"8.1"
+]
+},
+{
+"key": "c08s1|4-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"By emitting light, some sea creatures make themselves visible",
+"빛을 내뿜음으로써, 어떤 바다 생물들은 자신들을 보이게 만든다",
+""
+],
+[
+"to attract prey",
+"먹이를 유인하기 위해",
+"S"
+],
+[
+"or",
+"또는",
+"C"
+],
+[
+"to find mates.",
+"짝을 찾기 위해.",
+"V"
+]
+],
+"tr": "빛을 내뿜음으로써, 어떤 바다 생물들은 먹이를 유인하거나 짝을 찾기 위해 그들 자신을 보이게 만든다.",
+"ans": "to find",
+"pts": [
+"8.2"
+]
+},
+{
+"key": "c08s1|4-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"However, other sea creatures do not reveal themselves",
+"하지만, 다른 바다 생물들은 자신들을 드러내지 않고",
+"S"
+],
+[
+"but",
+"오히려",
+"C"
+],
+[
+"hide by using light",
+"빛을 이용해서 숨는다",
+"V"
+],
+[
+"to make themselves difficult to see.",
+"자신들을 보기 어렵게 만들기 위해.",
+""
+]
+],
+"tr": "하지만, 다른 바다 생물들은 자신들을 드러내지 않고 자신들을 보기 어렵게 하기 위해 빛을 이용해서 숨는다.",
+"ans": "hide",
+"pts": [
+"8.1",
+"8.2"
+]
+},
+{
+"key": "c08s1|5-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Doing volunteer work provides chances",
+"봉사활동을 하는 것은 기회들을 제공한다",
+""
+],
+[
+"to help the community,",
+"공동체를 돕는",
+"S"
+],
+[
+"meet various people,",
+"다양한 사람들을 만나는",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"experience positive emotions.",
+"긍정적인 감정을 경험하는.",
+"V"
+]
+],
+"tr": "봉사활동을 하는 것은 공동체를 돕고, 다양한 사람들을 만나고, 긍정적인 감정을 경험하는 기회를 제공한다.",
+"ans": "experience",
+"pts": [
+"8.2"
+]
+},
+{
+"key": "c08s1|5-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"In addition, it is helpful for both",
+"게다가, 그것은 둘 다에 도움이 된다",
+""
+],
+[
+"promoting personal growth",
+"개인적인 성장을 촉진하는 것",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"developing useful skills in many areas of life.",
+"삶의 많은 영역에서 유용한 기술을 개발하는 것.",
+"V"
+]
+],
+"tr": "게다가, 그것은 개인적인 성장을 촉진하는 것과 삶의 많은 부분에서 유용한 기술을 개발하는 것 둘 다에 도움이 된다.",
+"ans": "developing",
+"pts": [
+"8.2"
+]
+},
+{
+"key": "c08s1|6-1",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Jerry,",
+"제리는",
+"S"
+],
+[
+"who is a teacher,",
+"선생님인",
+"M"
+],
+[
+"once received a letter from a student.",
+"한 학생으로부터 편지를 한 통 받은 적이 있다.",
+"V"
+]
+],
+"tr": "선생님인 Jerry는 한 학생으로부터 편지를 한 통 받은 적이 있다.",
+"ans": "received",
+"pts": null
+},
+{
+"key": "c08s1|6-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"It consisted of",
+"그것은 구성되었다",
+"V"
+],
+[
+"14 unrelated",
+"14개의 서로 관련이 없는",
+"S"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"lengthy",
+"긴",
+"S"
+],
+[
+"questions on a variety of subjects.",
+"다양한 주제에 대한 질문들로.",
+""
+]
+],
+"tr": "그것은 다양한 주제에 대한 14개의 서로 관련이 없고 긴 질문들로 구성되었다.",
+"ans": "consisted",
+"pts": [
+"8.3"
+]
+},
+{
+"key": "c08s1|6-3",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"The teacher",
+"선생님은",
+"S"
+],
+[
+"wrote back a long reply,",
+"긴 답장을 써서 보냈고,",
+"V"
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"soon received a return letter.",
+"곧 답장을 받았다.",
+"V"
+]
+],
+"tr": "선생님은 긴 답장을 써서 보냈고, 곧 답장을 받았다.",
+"ans": "received",
+"pts": null
+},
+{
+"key": "c08s1|6-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"In the letter, the student not only noted his forgetting one question,",
+"편지에서, 그 학생은 그가 하나의 질문을 잊은 것을 언급했을 뿐만 아니라,",
+"S"
+],
+[
+"but",
+"또한",
+"C"
+],
+[
+"expressed no thanks for the effort he made.",
+"그가 한 노력에 대해 감사를 표현하지도 않았다.",
+"V"
+]
+],
+"tr": "편지에서, 그 학생은 그가 하나의 질문을 잊은 것을 언급했을 뿐만 아니라, 그가 한 노력에 대해 감사를 표현하지도 않았다.",
+"ans": "expressed",
+"pts": [
+"8.1"
+]
+},
+{
+"key": "add08|1-1",
+"title": "추가문제 POINT 1 동사 병렬",
+"chunks": [
+[
+"Neville",
+"네빌은",
+"S"
+],
+[
+"runs in the morning,",
+"아침에 달리고,",
+"C"
+],
+[
+"occasionally plays basketball,",
+"가끔 농구를 하고,",
+"C"
+],
+[
+"or goes",
+"또는 간다",
+"V"
+],
+[
+"to the gym to stay fit.",
+"건강을 유지하기 위해 체육관에.",
+""
+]
+],
+"tr": "Neville은 건강을 유지하기 위해 아침에 달리거나, 가끔 농구를 하거나, 체육관에 간다.",
+"ans": "goes",
+"pts": null
+},
+{
+"key": "add08|1-2",
+"title": "추가문제 POINT 1 동사 병렬",
+"chunks": [
+[
+"Participants",
+"참가자들은",
+"S"
+],
+[
+"can not only make friends",
+"친구들을 사귈 수 있을 뿐만 아니라",
+"C"
+],
+[
+"at the event",
+"그 행사에서",
+""
+],
+[
+"but also discover",
+"또한 발견할 수도 있다",
+"V"
+],
+[
+"new interests.",
+"새로운 관심사를.",
+""
+]
+],
+"tr": "참가자들은 그 행사에서 친구들을 사귈 수 있을 뿐만 아니라 새로운 관심사를 발견할 수도 있다.",
+"ans": "discover",
+"pts": null
+},
+{
+"key": "add08|1-3",
+"title": "추가문제 POINT 1 동사 병렬",
+"chunks": [
+[
+"The restaurant",
+"그 식당은",
+"S"
+],
+[
+"serves a lot of dishes",
+"많은 요리를 제공한다",
+"C"
+],
+[
+"but cooks few of them well.",
+"하지만 그것들 중 제대로 요리하는 것은 거의 없다.",
+"V"
+]
+],
+"tr": "그 식당은 많은 요리를 제공하지만 그것들 중 제대로 요리하는 것은 거의 없다.",
+"ans": "cooks",
+"pts": null
+},
+{
+"key": "add08|1-4",
+"title": "추가문제 POINT 1 동사 병렬",
+"chunks": [
+[
+"If you’re",
+"만약 당신이",
+"S"
+],
+[
+"worried about being sick,",
+"아픈 것에 대해 걱정되면,",
+""
+],
+[
+"call Dr. Sharma now",
+"지금 샤르마 박사에게 전화해라",
+"C"
+],
+[
+"and ask",
+"그리고 요청해라",
+"V"
+],
+[
+"him for advice.",
+"그에게 조언을.",
+""
+]
+],
+"tr": "만약 당신이 병에 걸리는 것에 대해 걱정이 되면, 지금 Sharma 박사에게 전화해서 조언을 요청해라.",
+"ans": "ask",
+"pts": null
+},
+{
+"key": "add08|1-5",
+"title": "추가문제 POINT 1 동사 병렬",
+"chunks": [
+[
+"The Titanic",
+"타이태닉호는",
+"S"
+],
+[
+"began to sink",
+"가라앉기 시작했고",
+"C"
+],
+[
+"soon after hitting an iceberg",
+"빙산에 부딪힌 직후",
+""
+],
+[
+"and disappeared completely",
+"그리고 완전히 사라졌다",
+"V"
+],
+[
+"in just a few hours.",
+"불과 몇 시간 만에.",
+""
+]
+],
+"tr": "타이태닉호는 빙산에 부딪힌 후 곧 가라앉기 시작했고 불과 몇 시간 만에 완전히 사라졌다.",
+"ans": "disappeared",
+"pts": null
+},
+{
+"key": "add08|2-1",
+"title": "추가문제 POINT 2 동명사와 to부정사 병렬",
+"chunks": [
+[
+"Let’s",
+"우리",
+"S"
+],
+[
+"go to the park",
+"공원에 가자",
+""
+],
+[
+"instead of sitting at home",
+"집에 앉아 있는 대신",
+"C"
+],
+[
+"and watching",
+"그리고 보는 것",
+"V"
+],
+[
+"television all day.",
+"하루 종일 텔레비전을.",
+""
+]
+],
+"tr": "하루 종일 집에 앉아서 텔레비전을 보는 것 대신에 공원에 가자.",
+"ans": "watching",
+"pts": null
+},
+{
+"key": "add08|2-2",
+"title": "추가문제 POINT 2 동명사와 to부정사 병렬",
+"chunks": [
+[
+"I",
+"나는",
+"S"
+],
+[
+"read books",
+"책을 읽는다",
+""
+],
+[
+"not to expand my knowledge",
+"내 지식을 넓히기 위해서가 아니라",
+"C"
+],
+[
+"but to pass the time.",
+"시간을 보내기 위해서.",
+"V"
+]
+],
+"tr": "나는 지식을 확장하기 위해서가 아니라 시간을 보내기 위해서 책을 읽는다.",
+"ans": "to pass",
+"pts": null
+},
+{
+"key": "add08|2-3",
+"title": "추가문제 POINT 2 동명사와 to부정사 병렬",
+"chunks": [
+[
+"I",
+"나는",
+"S"
+],
+[
+"don’t have time",
+"시간이 없다",
+""
+],
+[
+"to meet my friends",
+"친구들을 만날",
+"C"
+],
+[
+"or play mobile games",
+"또는 모바일 게임을 할",
+"V"
+],
+[
+"this week",
+"이번 주에",
+""
+],
+[
+"because I am studying",
+"나는 공부하고 있기 때문에",
+""
+],
+[
+"for my exams.",
+"시험을 위해.",
+""
+]
+],
+"tr": "시험을 위해 공부를 하는 중이기 때문에 나는 이번 주에 친구들을 만나거나 모바일 게임을 할 시간이 없다.",
+"ans": "play",
+"pts": null
+},
+{
+"key": "add08|2-4",
+"title": "추가문제 POINT 2 동명사와 to부정사 병렬",
+"chunks": [
+[
+"We",
+"우리는",
+"S"
+],
+[
+"can increase sales",
+"판매를 늘릴 수 있다",
+""
+],
+[
+"by either lowering our prices",
+"가격을 낮추는 것 또는",
+"C"
+],
+[
+"or offering a better service.",
+"더 나은 서비스를 제공하는 것 중 하나로.",
+"V"
+]
+],
+"tr": "우리는 가격을 낮추는 것이나 더 나은 서비스를 제공하는 것 중 하나를 통해 판매를 증가시킬 수 있다.",
+"ans": "offering",
+"pts": null
+},
+{
+"key": "add08|2-5",
+"title": "추가문제 POINT 2 동명사와 to부정사 병렬",
+"chunks": [
+[
+"When you get an apartment,",
+"아파트를 얻을 때,",
+""
+],
+[
+"you",
+"당신은",
+"S"
+],
+[
+"need to be a good neighbor,",
+"좋은 이웃이 되어야 하고,",
+"C"
+],
+[
+"keep it clean,",
+"그것을 깨끗하게 유지해야 하고,",
+""
+],
+[
+"and pay",
+"그리고 지불해야 한다",
+"V"
+],
+[
+"your bills on time.",
+"청구서를 제때.",
+""
+]
+],
+"tr": "아파트를 얻을 때, 당신은 좋은 이웃이 되어야 하고, 그것을 깨끗하게 유지해야 하며, 청구서를 제때 지불해야 할 필요가 있다.",
+"ans": "pay",
+"pts": null
+},
+{
+"key": "add08|3-1",
+"title": "추가문제 POINT 3 분사 병렬",
+"chunks": [
+[
+"Some passengers",
+"일부 승객들은",
+"S"
+],
+[
+"are growing impatient",
+"점점 조급해지고 있고",
+"C"
+],
+[
+"and annoyed",
+"그리고 짜증이 나고 있다",
+"V"
+],
+[
+"due to long flight delays.",
+"오랜 비행기 연착 때문에.",
+""
+]
+],
+"tr": "오랜 비행기 연착으로 인해 일부 승객들은 점점 더 조급해하고 짜증이 나고 있다.",
+"ans": "annoyed",
+"pts": null
+},
+{
+"key": "add08|3-2",
+"title": "추가문제 POINT 3 분사 병렬",
+"chunks": [
+[
+"Amy and her husband",
+"에이미와 그녀의 남편은",
+"S"
+],
+[
+"visit a local shelter",
+"지역 보호소를 방문한다",
+""
+],
+[
+"every weekend",
+"주말마다",
+""
+],
+[
+"to take care of",
+"돌보기 위해",
+""
+],
+[
+"injured or sick animals.",
+"다치거나 아픈 동물들을.",
+"V"
+]
+],
+"tr": "Amy와 그녀의 남편은 다치거나 아픈 동물들을 돌보기 위해 주말마다 지역 보호소를 방문한다.",
+"ans": "injured",
+"pts": null
+},
+{
+"key": "add08|3-3",
+"title": "추가문제 POINT 3 분사 병렬",
+"chunks": [
+[
+"You",
+"당신은",
+"S"
+],
+[
+"have to pay taxes",
+"세금을 내야 한다",
+""
+],
+[
+"on money",
+"돈에 대해",
+""
+],
+[
+"not only made through your job",
+"일을 통해 번 것뿐만 아니라",
+"C"
+],
+[
+"but also earned",
+"또한 얻은",
+"V"
+],
+[
+"through investments.",
+"투자를 통해.",
+""
+]
+],
+"tr": "당신은 일을 통해 번 것뿐만 아니라 투자를 통해 얻은 돈에 대해서도 세금을 내야 한다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add08|3-4",
+"title": "추가문제 POINT 3 분사 병렬",
+"chunks": [
+[
+"The camping trip",
+"캠핑 여행은",
+"S"
+],
+[
+"in the woods",
+"숲속에서의",
+"M"
+],
+[
+"seemed fun",
+"재미있어 보였다",
+"C"
+],
+[
+"and exciting",
+"그리고 신나 보였다",
+"V"
+],
+[
+"for the whole family.",
+"온 가족에게.",
+""
+]
+],
+"tr": "숲속에서의 캠핑 여행은 온 가족에게 재미있고 신나는 것처럼 보였다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add08|3-5",
+"title": "추가문제 POINT 3 분사 병렬",
+"chunks": [
+[
+"A product",
+"제품은",
+"S"
+],
+[
+"can no longer be returned",
+"더 이상 반품될 수 없다",
+""
+],
+[
+"if it is opened, altered,",
+"만약 개봉되거나 변질되거나,",
+"C"
+],
+[
+"or damaged",
+"또는 파손되었다면",
+"V"
+],
+[
+"in any way",
+"어떤 식으로든",
+""
+],
+[
+"due to a buyer’s carelessness.",
+"구매자의 부주의로 인해.",
+""
+]
+],
+"tr": "개봉되거나, 변질되거나, 구매자의 부주의로 인해 어떤 식으로든 파손되었다면, 제품은 더 이상 반품될 수 없다.",
+"ans": "damaged",
+"pts": null
+}
+]

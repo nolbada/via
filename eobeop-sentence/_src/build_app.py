@@ -14,6 +14,14 @@ for n in range(1,15):
     if os.path.exists(pq): sets+=json.load(open(pq,encoding='utf-8'))
     ps=f'{lib.BASE}/data/ch{n:02d}s.json'
     if os.path.exists(ps): sets+=json.load(open(ps,encoding='utf-8'))
+    px=f'{lib.BASE}/sx/out/ch{n:02d}.json'
+    if os.path.exists(px):
+        sx=json.load(open(px,encoding='utf-8'))
+        for st_ in sets:
+            if st_['id'].endswith('s2'): continue
+            for it in st_['items']:
+                v=sx.get(st_['id']+'|'+str(it['no']))
+                if v: it['sx']=v
     open(f'{out}/d/ch{n:02d}.js','w',encoding='utf-8').write('window.DB['+str(n)+']='+json.dumps(sets,ensure_ascii=False,separators=(',',':'))+';')
     files.append(f'./d/ch{n:02d}.js')
     meta.append(dict(n=n,t=CH[str(n)],sets=[dict(id=s['id'],title=s['title'],sub=s['sub'],page=s['page'],n=len(s['items'])) for s in sets]))

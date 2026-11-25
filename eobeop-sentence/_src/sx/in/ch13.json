@@ -1,0 +1,2203 @@
+[
+{
+"key": "c13p1|예제",
+"title": "POINT 1 · 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"We couldn’t have picked",
+"우리는 고를 수가 없었다",
+""
+],
+[
+"a better location for our company",
+"더 좋은 장소를 우리 회사에",
+"C"
+],
+[
+"than this warm and inviting city.",
+"이 따뜻하고 매력적인 도시보다.",
+"V"
+]
+],
+"tr": "우리는 이 따뜻하고 매력적인 도시보다 우리 회사에 더 좋은 장소를 고를 수가 없었다.",
+"ans": "than",
+"pts": null
+},
+{
+"key": "c13p1|1",
+"title": "POINT 1 · 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"The car was made 17 years ago,",
+"그 차는 17년 전에 만들어졌다,",
+""
+],
+[
+"so it’s as old",
+"그래서 그것은 나이가 들었다",
+"C"
+],
+[
+"as you.",
+"너만큼.",
+"V"
+]
+],
+"tr": "그 차는 17년 전에 만들어져서, 너만큼 나이가 들었다.",
+"ans": "as",
+"pts": null
+},
+{
+"key": "c13p1|2",
+"title": "POINT 1 · 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"The neighborhood",
+"그 동네는",
+""
+],
+[
+"is noisier in the daytime",
+"낮에 더 시끄럽다",
+"V"
+],
+[
+"than it is at night.",
+"밤보다.",
+"C"
+]
+],
+"tr": "그 동네는 밤보다 낮에 더 시끄럽다.",
+"ans": "noisier",
+"pts": null
+},
+{
+"key": "c13p1|3",
+"title": "POINT 1 · 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"Old houses",
+"오래된 주택들은",
+""
+],
+[
+"are usually less efficient at storing heat",
+"대개 열을 저장하는 데 덜 효율적이다",
+"C"
+],
+[
+"than modern ones.",
+"현대식 주택들보다.",
+"V"
+]
+],
+"tr": "오래된 주택들은 대개 현대식 주택들보다 열을 저장하는 데 덜 효율적이다.",
+"ans": "than",
+"pts": null
+},
+{
+"key": "c13p1|4",
+"title": "POINT 1 · 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"All the other contest participants",
+"다른 모든 대회 참가자들은",
+""
+],
+[
+"looked as uneasy",
+"불안해 보였다",
+"V"
+],
+[
+"as Zoe.",
+"조이만큼.",
+"C"
+]
+],
+"tr": "다른 모든 대회 참가자들은 Zoe만큼 불안해 보였다.",
+"ans": "uneasy",
+"pts": null
+},
+{
+"key": "c13p1|5",
+"title": "POINT 1 · 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"We don’t see each other",
+"우리는 서로를 보지 못한다",
+"S"
+],
+[
+"as frequently",
+"자주",
+"V"
+],
+[
+"as we used to",
+"우리가 그러곤 했던 만큼",
+"C"
+],
+[
+"when we were in school.",
+"학교에 다닐 때.",
+""
+]
+],
+"tr": "우리는 학교에 다닐 때 그랬던 것만큼 서로를 자주 보지 못한다.",
+"ans": "frequently",
+"pts": null
+},
+{
+"key": "c13p1|6",
+"title": "POINT 1 · 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"Recent inventions such as airplanes",
+"비행기와 같은 최근의 발명품들은",
+""
+],
+[
+"are surely not more important",
+"확실히 더 중요하지 않다",
+"V"
+],
+[
+"than ancient ones like the wheel.",
+"바퀴와 같은 고대의 발명품들보다.",
+"C"
+]
+],
+"tr": "비행기와 같은 최근의 발명품들은 확실히 바퀴와 같은 고대의 발명품들보다 더 중요하지 않다.",
+"ans": "important",
+"pts": null
+},
+{
+"key": "c13p1|7",
+"title": "POINT 1 · 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"In this area,",
+"이 지역에서,",
+""
+],
+[
+"you can enjoy scenery",
+"당신은 풍경을 즐길 수 있다",
+"S"
+],
+[
+"as various",
+"다양한",
+"C"
+],
+[
+"as deserts, seas, and mountains.",
+"사막, 바다, 그리고 산만큼.",
+"V"
+]
+],
+"tr": "이 지역에서, 당신은 사막, 바다, 그리고 산만큼 다양한 풍경을 즐길 수 있다.",
+"ans": "as",
+"pts": null
+},
+{
+"key": "c13p1|8",
+"title": "POINT 1 · 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"The store is far from my home,",
+"그 가게는 우리 집에서 멀다,",
+""
+],
+[
+"but it has",
+"하지만 그것은 가지고 있다",
+""
+],
+[
+"more kinds of items",
+"더 많은 종류의 물품을",
+"C"
+],
+[
+"than the store in my town.",
+"우리 동네에 있는 가게보다.",
+"V"
+]
+],
+"tr": "그 가게는 우리 집에서 멀지만, 그것은 우리 동네에 있는 가게보다 더 많은 종류의 물품을 가지고 있다.",
+"ans": "than",
+"pts": null
+},
+{
+"key": "c13p2|예제",
+"title": "POINT 2 · 비교급·최상급 강조 부사",
+"chunks": [
+[
+"Many studies have shown",
+"많은 연구들이 보여주었다",
+""
+],
+[
+"that drinking tea is",
+"차를 마시는 것이 ~이다",
+""
+],
+[
+"much",
+"훨씬",
+"V"
+],
+[
+"healthier than drinking coffee.",
+"커피를 마시는 것보다 더 건강하다는 것을.",
+"S"
+]
+],
+"tr": "많은 연구들이 차를 마시는 것이 커피를 마시는 것보다 훨씬 더 건강하다는 것을 보여주었다.",
+"ans": "much",
+"pts": null
+},
+{
+"key": "c13p2|1",
+"title": "POINT 2 · 비교급·최상급 강조 부사",
+"chunks": [
+[
+"With proper training,",
+"적절한 훈련으로,",
+""
+],
+[
+"my public-speaking skills have become",
+"나의 대중 연설 기술은 ~해졌다",
+""
+],
+[
+"far",
+"훨씬",
+"V"
+],
+[
+"better over time.",
+"시간이 지나면서 더 좋게.",
+"S"
+]
+],
+"tr": "적절한 훈련 덕에, 나의 대중 연설 기술은 시간이 지나면서 훨씬 더 좋아졌다.",
+"ans": "far",
+"pts": null
+},
+{
+"key": "c13p2|2",
+"title": "POINT 2 · 비교급·최상급 강조 부사",
+"chunks": [
+[
+"The two apartments look",
+"두 아파트는 ~ 보인다",
+""
+],
+[
+"very",
+"매우",
+"V"
+],
+[
+"similar,",
+"비슷해,",
+"S"
+],
+[
+"but one is slightly bigger than the other.",
+"하지만 하나가 다른 것보다 약간 더 크다.",
+""
+]
+],
+"tr": "두 아파트는 매우 비슷해 보이지만, 하나가 다른 것보다 약간 더 크다.",
+"ans": "very",
+"pts": null
+},
+{
+"key": "c13p2|3",
+"title": "POINT 2 · 비교급·최상급 강조 부사",
+"chunks": [
+[
+"The storm last night was",
+"어젯밤의 폭풍은 ~였다",
+""
+],
+[
+"by far",
+"단연코",
+"V"
+],
+[
+"the worst we’ve experienced in years.",
+"우리가 몇 년간 경험한 것 중 최악.",
+"S"
+]
+],
+"tr": "어젯밤의 폭풍은 우리가 몇 년간 경험한 것 중 단연코 최악이었다.",
+"ans": "by far",
+"pts": null
+},
+{
+"key": "c13p2|4",
+"title": "POINT 2 · 비교급·최상급 강조 부사",
+"chunks": [
+[
+"In 2014, Internet usage time on mobile phones was",
+"2014년에, 휴대폰에서 인터넷 사용 시간은 ~였다",
+""
+],
+[
+"even",
+"훨씬",
+"V"
+],
+[
+"greater than that on desktops or laptops.",
+"데스크톱 컴퓨터나 노트북 컴퓨터에서의 시간보다 더 많았다.",
+"S"
+]
+],
+"tr": "2014년에, 휴대폰에서 인터넷을 사용한 시간이 데스크톱 컴퓨터나 노트북 컴퓨터에서 인터넷을 사용한 시간보다 훨씬 더 많았다.",
+"ans": "even",
+"pts": null
+},
+{
+"key": "c13p2|5",
+"title": "POINT 2 · 비교급·최상급 강조 부사",
+"chunks": [
+[
+"Even if the bridge is very long,",
+"비록 그 다리가 매우 길지라도,",
+""
+],
+[
+"it is not",
+"그것은 ~이지 않다",
+""
+],
+[
+"quite",
+"단연코",
+"V"
+],
+[
+"the longest in the world.",
+"세계에서 가장 긴 것.",
+"S"
+]
+],
+"tr": "비록 그 다리가 매우 길지라도, 그것이 세계에서 단연코 가장 길지는 않다.",
+"ans": "quite",
+"pts": null
+},
+{
+"key": "c13p3|예제",
+"title": "POINT 3 · 비교구문 관련 표현",
+"chunks": [
+[
+"The older the male Chuckwallas lizards grow,",
+"수컷 척왈라 도마뱀이 더 나이가 들수록,",
+"C"
+],
+[
+"the lighter their body colors become.",
+"몸 색깔이 더 밝아진다.",
+"V"
+]
+],
+"tr": "수컷 척왈라 도마뱀은 더 나이가 들수록, 몸 색깔이 더 밝아진다.",
+"ans": "lighter",
+"pts": null
+},
+{
+"key": "c13p3|1",
+"title": "POINT 3 · 비교구문 관련 표현",
+"chunks": [
+[
+"My friends and I ran",
+"내 친구들과 나는 달렸다",
+"S"
+],
+[
+"as fast",
+"빠르게",
+"V"
+],
+[
+"as possible",
+"가능한 한",
+"C"
+],
+[
+"to get to the movie on time.",
+"제시간에 영화관에 도착하기 위해.",
+""
+]
+],
+"tr": "내 친구들과 나는 제시간에 영화관에 도착하기 위해 가능한 한 빠르게 달렸다.",
+"ans": "fast",
+"pts": null
+},
+{
+"key": "c13p3|2",
+"title": "POINT 3 · 비교구문 관련 표현",
+"chunks": [
+[
+"When people learn from their mistakes,",
+"사람들이 자신의 실수로부터 배울 때,",
+""
+],
+[
+"they get",
+"그들은 ~해진다",
+"C"
+],
+[
+"wiser and wiser",
+"점점 더 현명하게",
+"V"
+],
+[
+"at making decisions.",
+"결정을 내리는 데 있어서.",
+""
+]
+],
+"tr": "사람들이 그들의 실수로부터 배울 때, 그들은 결정을 내리는 데 있어서 점점 더 현명해진다.",
+"ans": "wiser and wiser",
+"pts": null
+},
+{
+"key": "c13p3|3",
+"title": "POINT 3 · 비교구문 관련 표현",
+"chunks": [
+[
+"This painting",
+"이 그림은",
+""
+],
+[
+"is older",
+"더 오래되었다",
+"V"
+],
+[
+"than any other artwork in this museum.",
+"이 박물관 안의 다른 어떤 예술 작품보다.",
+"C"
+]
+],
+"tr": "이 그림은 이 박물관 안의 다른 어떤 예술 작품보다 더 오래되었다.",
+"ans": "older",
+"pts": null
+},
+{
+"key": "c13p3|4",
+"title": "POINT 3 · 비교구문 관련 표현",
+"chunks": [
+[
+"Face-to-face conversation",
+"대면 대화는",
+"S"
+],
+[
+"is one of the",
+"~ 중 하나이다",
+"C"
+],
+[
+"best",
+"가장 좋은",
+"V"
+],
+[
+"ways to develop new thinking and ideas.",
+"새로운 사고와 아이디어를 개발하는 방법들.",
+""
+]
+],
+"tr": "대면 대화는 새로운 사고와 아이디어를 개발하는 가장 좋은 방법들 중 하나이다.",
+"ans": "best",
+"pts": null
+},
+{
+"key": "c13p3|5",
+"title": "POINT 3 · 비교구문 관련 표현",
+"chunks": [
+[
+"No other animal on the earth is",
+"지구상의 다른 어떤 동물도 ~이지 않다",
+"C"
+],
+[
+"as smart",
+"똑똑한",
+"V"
+],
+[
+"as the orangutan.",
+"오랑우탄만큼.",
+"C"
+]
+],
+"tr": "지구상의 다른 어떤 동물도 오랑우탄만큼 똑똑하지 않다.",
+"ans": "smart",
+"pts": null
+},
+{
+"key": "c13q1|1",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The singer is",
+"그 가수는 ~이다",
+""
+],
+[
+"more popular",
+"더 인기 있는",
+"C"
+],
+[
+"than",
+"~보다",
+"V"
+],
+[
+"any other artist currently on the radio.",
+"현재 라디오에서 다른 어떤 아티스트.",
+""
+]
+],
+"tr": "그 가수는 현재 라디오에서 다른 어떤 아티스트보다도 더 인기 있다.",
+"ans": "than",
+"pts": null
+},
+{
+"key": "c13q1|2",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The new recipe is healthier",
+"새 조리법은 더 건강하다",
+""
+],
+[
+"because it uses",
+"그것이 사용하기 때문에",
+""
+],
+[
+"even",
+"훨씬",
+"V"
+],
+[
+"less sugar",
+"더 적은 설탕을",
+"S"
+],
+[
+"than the previous one.",
+"이전 것보다.",
+""
+]
+],
+"tr": "새 조리법은 이전 것보다 훨씬 더 적은 설탕을 사용하기 때문에 더 건강하다.",
+"ans": "even",
+"pts": null
+},
+{
+"key": "c13q1|3",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Although flying",
+"비록 비행하는 것이",
+""
+],
+[
+"may seem",
+"~처럼 보일지 몰라도",
+"C"
+],
+[
+"more dangerous than driving,",
+"더 위험한 것으로, 운전하는 것보다,",
+"V"
+],
+[
+"car accidents happen more often",
+"자동차 사고가 더 자주 발생한다",
+""
+],
+[
+"than plane accidents.",
+"비행기 사고보다.",
+""
+]
+],
+"tr": "비록 비행하는 것이 운전하는 것보다 더 위험해 보일지 몰라도, 자동차 사고가 비행기 사고보다 더 자주 발생한다.",
+"ans": "dangerous",
+"pts": null
+},
+{
+"key": "c13q1|4",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"No other vehicle on the market is",
+"시중의 다른 어떤 자동차도 ~이 아니다",
+""
+],
+[
+"as",
+"~만큼",
+"S"
+],
+[
+"fast",
+"빠른",
+"V"
+],
+[
+"as this sports car.",
+"이 스포츠카만큼.",
+""
+]
+],
+"tr": "시중에 나와 있는 다른 어떤 자동차도 이 스포츠카만큼 빠르지 않다.",
+"ans": "fast",
+"pts": null
+},
+{
+"key": "c13q1|5",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"I think this navy dress makes me look",
+"이 남색 옷이 나를 보이게 만드는 것 같다",
+""
+],
+[
+"less",
+"덜",
+"C"
+],
+[
+"young",
+"어려",
+"V"
+],
+[
+"than that yellow one.",
+"저 노란색 옷보다.",
+""
+]
+],
+"tr": "이 남색 옷이 저 노란색 옷보다 나를 덜 어려 보이게 만드는 것 같다.",
+"ans": "young",
+"pts": null
+},
+{
+"key": "c13q1|6",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The darker",
+"더 어두운",
+"C"
+],
+[
+"the night sky becomes,",
+"밤하늘이 될수록,",
+""
+],
+[
+"the brighter",
+"더 밝게",
+"V"
+],
+[
+"the stars shine.",
+"별들은 빛난다.",
+""
+]
+],
+"tr": "밤하늘이 더 어두워질수록, 별들은 더 밝게 빛난다.",
+"ans": "brighter",
+"pts": null
+},
+{
+"key": "c13q1|7",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The fitness club is providing membership plans",
+"그 피트니스 클럽은 회원권 제도를 제공하고 있다",
+""
+],
+[
+"for as",
+"~만큼",
+"C"
+],
+[
+"little",
+"적은",
+"V"
+],
+[
+"as $14.99 a month.",
+"한 달에 14달러 99센트.",
+""
+]
+],
+"tr": "그 피트니스 클럽은 한 달에 14달러 99센트만큼 가격이 적은 회원권 제도를 제공하고 있다.",
+"ans": "little",
+"pts": null
+},
+{
+"key": "c13q1|8",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Will there ever be",
+"있을까",
+""
+],
+[
+"an English poet",
+"영국 시인이",
+"S"
+],
+[
+"as",
+"~만큼",
+"C"
+],
+[
+"famous",
+"유명한",
+"V"
+],
+[
+"as William Shakespeare?",
+"윌리엄 셰익스피어만큼?",
+""
+]
+],
+"tr": "윌리엄 셰익스피어만큼 유명한 영국 시인이 있을까?",
+"ans": "famous",
+"pts": null
+},
+{
+"key": "c13q1|9",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"My test score wasn’t",
+"내 시험 점수는 ~이 아니었다",
+""
+],
+[
+"quite",
+"단연코",
+"V"
+],
+[
+"the highest",
+"가장 높은",
+"S"
+],
+[
+"in the whole school,",
+"학교 전체에서,",
+""
+],
+[
+"but it was pretty high.",
+"하지만 꽤 높았다.",
+""
+]
+],
+"tr": "내 시험 점수는 학교 전체에서 단연코 가장 높지는 않았지만, 꽤 높았다.",
+"ans": "quite",
+"pts": null
+},
+{
+"key": "c13q1|10",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Last night,",
+"어젯밤에,",
+""
+],
+[
+"the wind blew",
+"바람이 불었다",
+"S"
+],
+[
+"as fiercely",
+"사납게",
+"C"
+],
+[
+"as a hurricane,",
+"허리케인만큼,",
+"V"
+],
+[
+"so many trees fell down.",
+"그래서 많은 나무들이 쓰러졌다.",
+""
+]
+],
+"tr": "어젯밤에, 바람이 허리케인만큼 사납게 불어서, 많은 나무들이 쓰러졌다.",
+"ans": "as",
+"pts": null
+},
+{
+"key": "c13q1|11",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Good communication is",
+"좋은 의사소통은 ~이다",
+""
+],
+[
+"a more essential tool for teamwork",
+"팀워크를 위한 더 필수적인 수단",
+"V"
+],
+[
+"than any other thing.",
+"다른 어떤 것보다.",
+"C"
+]
+],
+"tr": "좋은 의사소통은 팀워크를 위해 다른 어떤 것보다 더 필수적인 수단이다.",
+"ans": "more",
+"pts": null
+},
+{
+"key": "c13q1|12",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Once groups start to do several cooperative activities,",
+"일단 집단들이 여러 협력적인 활동들을 하기 시작하면,",
+""
+],
+[
+"group boundaries melt away",
+"집단 경계는 사라진다",
+"S"
+],
+[
+"as",
+"~만큼",
+"C"
+],
+[
+"rapidly",
+"빠르게",
+"V"
+],
+[
+"as they formed.",
+"그것들이 형성된 것만큼.",
+""
+]
+],
+"tr": "일단 집단들이 여러 협력적인 활동들을 하기 시작하면, 집단 경계는 그것들이 형성된 것만큼 빠르게 사라진다.",
+"ans": "rapidly",
+"pts": null
+},
+{
+"key": "c13q2|1",
+"title": "문장 연습 밑줄 · 밑줄 친 곳의 어법 고치기",
+"chunks": [
+[
+"The lake has already frozen",
+"호수가 벌써 얼었다",
+""
+],
+[
+"because the air these days",
+"요즘 공기가 ~하기 때문에",
+""
+],
+[
+"has become",
+"되었다",
+"C"
+],
+[
+"as cold",
+"차가운",
+"V"
+],
+[
+"as a winter’s day.",
+"겨울날만큼.",
+""
+]
+],
+"tr": "요즘 공기가 겨울날만큼 차가워져서 호수가 벌써 얼었다.",
+"ans": "cold",
+"pts": null
+},
+{
+"key": "c13q2|2",
+"title": "문장 연습 밑줄 · 밑줄 친 곳의 어법 고치기",
+"chunks": [
+[
+"Helen loves to exercise so much",
+"헬렌은 운동을 너무 좋아한다",
+""
+],
+[
+"that she trains",
+"그래서 그녀는 훈련한다",
+"S"
+],
+[
+"as hard",
+"열심히",
+"V"
+],
+[
+"as a professional athlete.",
+"전문적인 운동선수만큼.",
+""
+]
+],
+"tr": "Helen은 운동을 너무 좋아해서 전문적인 운동선수만큼 열심히 훈련한다.",
+"ans": "hard",
+"pts": null
+},
+{
+"key": "c13q2|3",
+"title": "문장 연습 밑줄 · 밑줄 친 곳의 어법 고치기",
+"chunks": [
+[
+"The company offers",
+"그 회사는 제시한다",
+""
+],
+[
+"more affordable prices",
+"더 알맞은 가격을",
+"S"
+],
+[
+"than",
+"~보다",
+"V"
+],
+[
+"its rivals in the market.",
+"시장 내 경쟁자들.",
+""
+]
+],
+"tr": "그 회사는 시장 내 경쟁자들보다 더 알맞은 가격을 제시한다.",
+"ans": "than",
+"pts": null
+},
+{
+"key": "c13q2|4",
+"title": "문장 연습 밑줄 · 밑줄 친 곳의 어법 고치기",
+"chunks": [
+[
+"Douglas has been feeling",
+"더글러스는 느끼고 있다",
+""
+],
+[
+"much",
+"훨씬",
+"V"
+],
+[
+"happier",
+"더 행복하게",
+"S"
+],
+[
+"and more stable",
+"그리고 더 안정적으로",
+""
+],
+[
+"since he moved to a new job.",
+"새 직장으로 옮긴 이래로.",
+""
+]
+],
+"tr": "Douglas는 새 직장으로 옮긴 이래로 훨씬 더 행복하고 더 안정적으로 느끼고 있다.",
+"ans": "much",
+"pts": null
+},
+{
+"key": "c13q2|5",
+"title": "문장 연습 밑줄 · 밑줄 친 곳의 어법 고치기",
+"chunks": [
+[
+"The second movie in the series is",
+"그 시리즈의 두 번째 영화는 ~이다",
+""
+],
+[
+"better",
+"더 나은",
+"C"
+],
+[
+"in some aspects such as special effects",
+"특수효과와 같은 어떤 면에서는",
+""
+],
+[
+"than",
+"~보다",
+"V"
+],
+[
+"the first one.",
+"첫 번째 것.",
+""
+]
+],
+"tr": "그 시리즈의 두 번째 영화는 특수효과와 같은 어떤 면에서는 첫 번째 것보다 더 낫다.",
+"ans": "than",
+"pts": null
+},
+{
+"key": "c13q2|6",
+"title": "문장 연습 밑줄 · 밑줄 친 곳의 어법 고치기",
+"chunks": [
+[
+"The Grand Canyon is considered",
+"그랜드 캐니언은 여겨진다",
+""
+],
+[
+"one of the",
+"~ 중 하나로",
+"S"
+],
+[
+"most impressive",
+"가장 인상적인",
+"V"
+],
+[
+"natural wonders in the world.",
+"세계의 자연의 불가사의.",
+""
+]
+],
+"tr": "그랜드 캐니언은 세계에서 가장 인상적인 자연의 불가사의 중 하나로 여겨진다.",
+"ans": "most impressive",
+"pts": null
+},
+{
+"key": "c13q2|7",
+"title": "문장 연습 밑줄 · 밑줄 친 곳의 어법 고치기",
+"chunks": [
+[
+"This new medicine works",
+"이 새로운 약은 작용한다",
+"S"
+],
+[
+"more effectively",
+"더 효과적으로",
+"V"
+],
+[
+"on a fever",
+"열에",
+""
+],
+[
+"than anything else that I’ve tried.",
+"내가 시도해 본 다른 어떤 것보다.",
+""
+]
+],
+"tr": "이 새로운 약은 내가 시도해 본 다른 어떤 것보다 열에 더 효과적으로 작용한다.",
+"ans": "effectively",
+"pts": null
+},
+{
+"key": "c13q2|8",
+"title": "문장 연습 밑줄 · 밑줄 친 곳의 어법 고치기",
+"chunks": [
+[
+"If we meet often and talk a lot,",
+"만약 우리가 자주 만나서 이야기를 많이 하면,",
+""
+],
+[
+"our relationship will get",
+"우리의 관계는 ~될 것이다",
+"C"
+],
+[
+"closer and closer.",
+"점점 더 가까워지게.",
+"V"
+]
+],
+"tr": "만약 우리가 자주 만나서 이야기를 많이 하면, 우리의 관계는 점점 더 가까워질 것이다.",
+"ans": "closer",
+"pts": null
+},
+{
+"key": "c13q2|9",
+"title": "문장 연습 밑줄 · 밑줄 친 곳의 어법 고치기",
+"chunks": [
+[
+"The painter thought that creativity was",
+"그 화가는 창의력이 ~이라고 생각했다",
+""
+],
+[
+"more valuable",
+"더 가치 있다",
+"V"
+],
+[
+"for the artist",
+"예술가에게",
+""
+],
+[
+"than any other skill.",
+"다른 어떤 기술보다도.",
+"C"
+]
+],
+"tr": "그 화가는 예술가에게 창의력이 다른 어떤 기술보다도 더 가치 있다고 생각했다.",
+"ans": "more valuable",
+"pts": null
+},
+{
+"key": "c13q2|10",
+"title": "문장 연습 밑줄 · 밑줄 친 곳의 어법 고치기",
+"chunks": [
+[
+"The doctor suggested starting treatment",
+"의사는 치료를 시작하는 것을 제안했다",
+""
+],
+[
+"as early",
+"일찍",
+"V"
+],
+[
+"as possible",
+"가능한 한",
+"C"
+],
+[
+"to prevent the disease from getting worse.",
+"병이 더 나빠지는 것을 막기 위해.",
+""
+]
+],
+"tr": "의사는 병이 더 나빠지는 것을 막기 위해 가능한 한 일찍 치료를 시작하는 것을 제안했다.",
+"ans": "early",
+"pts": null
+},
+{
+"key": "c13q2|11",
+"title": "문장 연습 밑줄 · 밑줄 친 곳의 어법 고치기",
+"chunks": [
+[
+"Reading this book will give you",
+"이 책을 읽는 것은 당신에게 줄 것이다",
+""
+],
+[
+"a more complete",
+"더 완벽한",
+"V"
+],
+[
+"explanation",
+"설명을",
+"S"
+],
+[
+"of the topic",
+"그 주제에 대한",
+""
+],
+[
+"than that short article.",
+"그 짧은 논문보다.",
+""
+]
+],
+"tr": "이 책을 읽는 것은 당신에게 그 짧은 논문보다 그 주제에 대해 더 완벽한 설명을 해줄 것이다.",
+"ans": "complete",
+"pts": null
+},
+{
+"key": "c13q2|12",
+"title": "문장 연습 밑줄 · 밑줄 친 곳의 어법 고치기",
+"chunks": [
+[
+"Students who formed one positive habit",
+"하나의 긍정적인 습관을 형성한 학생들은",
+""
+],
+[
+"reported less stress,",
+"더 적은 스트레스를 보고했다,",
+""
+],
+[
+"much",
+"훨씬",
+"V"
+],
+[
+"shorter",
+"더 짧은",
+"S"
+],
+[
+"hours of watching TV, and fewer dirty dishes.",
+"티브이 시청 시간, 그리고 더 적은 더러운 접시를.",
+""
+]
+],
+"tr": "하나의 긍정적인 습관을 형성한 학생들은 더 적은 스트레스, 훨씬 더 짧은 TV 시청 시간, 그리고 더 적은 더러운 접시를 보고했다.",
+"ans": "much",
+"pts": null
+},
+{
+"key": "c13s1|1-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"As one of my friends recommended,",
+"친구들 중 한 명이 추천해 준 대로,",
+""
+],
+[
+"I painted",
+"나는 칠했다",
+""
+],
+[
+"a brighter color",
+"더 밝은 색을",
+"C"
+],
+[
+"for the kitchen wall (A)",
+"주방 벽에",
+""
+],
+[
+"than the dark blue.",
+"진한 파란색보다.",
+"V"
+]
+],
+"tr": "친구들 중 한 명이 추천해 준 대로, 나는 주방 벽에 진한 파란색보다 더 밝은 색을 칠했다.",
+"ans": "than",
+"pts": [
+"13.1"
+]
+},
+{
+"key": "c13s1|1-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"I think",
+"나는 생각한다",
+""
+],
+[
+"it is more (B)",
+"그것이 더",
+"C"
+],
+[
+"practical,",
+"실용적이라고,",
+"V"
+],
+[
+"as it is easy to clean and feels warmer.",
+"청소하기 쉽고 더 따뜻하게 느껴지기 때문에.",
+""
+]
+],
+"tr": "청소하기가 쉽고 더 따뜻하게 느껴지기 때문에, 나는 그것이 더 실용적이라고 생각한다.",
+"ans": "practical",
+"pts": [
+"13.1",
+"12.2"
+]
+},
+{
+"key": "c13s1|2-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Although a balanced diet and rest are factors",
+"비록 균형 잡힌 식사와 휴식이 요소이지만",
+""
+],
+[
+"as (A) great",
+"중요한",
+"V"
+],
+[
+"as exercise",
+"운동만큼",
+"C"
+],
+[
+"for maintaining good health,",
+"좋은 건강을 유지하기 위한,",
+""
+],
+[
+"people often forget them.",
+"사람들은 종종 그것들을 잊어버린다.",
+""
+]
+],
+"tr": "균형 잡힌 식사와 휴식이 좋은 건강 유지를 위해 운동만큼 중요한 요소임에도 불구하고, 사람들은 종종 그것들을 잊어버린다.",
+"ans": "great",
+"pts": [
+"13.1"
+]
+},
+{
+"key": "c13s1|2-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"However, developing healthy eating and sleeping habits",
+"하지만, 건강한 식습관과 수면 습관을 기르는 것이",
+""
+],
+[
+"must be followed as (B) necessarily",
+"필수적으로 뒤따라야 한다,",
+"V"
+],
+[
+"as staying active",
+"활동적으로 유지하는 것만큼",
+"C"
+],
+[
+"to achieve overall well-being.",
+"전반적인 안녕을 이루기 위해.",
+""
+]
+],
+"tr": "하지만, 전반적인 안녕을 이루기 위해 활동적으로 유지하는 것만큼 필수적으로 건강한 식습관과 수면 습관을 기르는 것이 뒤따라야 한다.",
+"ans": "necessarily",
+"pts": [
+"13.1",
+"12.1"
+]
+},
+{
+"key": "c13s1|3-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Studies show that",
+"연구들은 보여준다",
+""
+],
+[
+"the benches and chairs",
+"벤치와 의자가",
+""
+],
+[
+"with the best view of city life",
+"도시 생활의 가장 좋은 전망을 가진",
+""
+],
+[
+"are used (A) far more frequently",
+"훨씬 더 자주 사용된다는 것을",
+"V"
+],
+[
+"than those without such views.",
+"그러한 전망이 없는 것들보다.",
+"C"
+]
+],
+"tr": "연구들은 도시 생활의 가장 좋은 전망을 가진 벤치나 의자가 그러한 전망이 없는 것들보다 훨씬 더 자주 사용된다는 것을 보여준다.",
+"ans": "far",
+"pts": [
+"13.2"
+]
+},
+{
+"key": "c13s1|3-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Similarly, the taller the buildings or towers in a city are,",
+"비슷하게, 도시에서 건물이나 탑이 더 높을수록,",
+"C"
+],
+[
+"the (B) more crowded they become",
+"그것들은 더 붐비게 된다",
+"V"
+],
+[
+"because people gather with expectations of splendid views.",
+"사람들이 멋진 전망에 대한 기대를 가지고 모이기 때문에.",
+""
+]
+],
+"tr": "비슷하게, 도시에서 건물이나 탑이 더 높을수록, 사람들이 멋진 전망에 대한 기대를 가지고 모이기 때문에 그것들은 더 붐비게 된다.",
+"ans": "more",
+"pts": [
+"13.3"
+]
+},
+{
+"key": "c13s1|4-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"The park in Irvine",
+"어바인에 있는 공원은",
+""
+],
+[
+"is not as close",
+"가깝지는 않다,",
+"V"
+],
+[
+"as the one in Tustin,",
+"터스틴에 있는 것만큼,",
+"C"
+],
+[
+"but it has a basketball court.",
+"그곳은 농구장이 있다.",
+""
+]
+],
+"tr": "Irvine에 있는 공원은 Tustin에 있는 것만큼 가깝지는 않지만, 그곳은 농구장이 있다.",
+"ans": "close",
+"pts": [
+"13.1",
+"12.2"
+]
+},
+{
+"key": "c13s1|4-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"However, I think",
+"하지만, 나는 생각한다",
+""
+],
+[
+"the one in Santa Ana",
+"산타아나에 있는 것이",
+""
+],
+[
+"is even",
+"훨씬",
+"V"
+],
+[
+"better",
+"더 좋다고",
+"C"
+],
+[
+"because it has three basketball courts.",
+"그곳은 3개의 농구장이 있기 때문에.",
+""
+]
+],
+"tr": "하지만, 나는 Santa Ana에 있는 공원이 3개의 농구장이 있기 때문에 훨씬 더 좋다고 생각한다.",
+"ans": "even",
+"pts": [
+"13.2"
+]
+},
+{
+"key": "c13s1|5-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"An image has a much larger impact",
+"이미지는 훨씬 더 큰 영향을 미친다",
+"C"
+],
+[
+"on your brain",
+"당신의 뇌에",
+""
+],
+[
+"than words.",
+"말보다.",
+"V"
+]
+],
+"tr": "이미지는 말보다 당신의 뇌에 훨씬 더 큰 영향을 미친다.",
+"ans": "than",
+"pts": [
+"13.1"
+]
+},
+{
+"key": "c13s1|5-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"The nerves from the eye to the brain",
+"눈에서 뇌까지의 신경은",
+""
+],
+[
+"are twenty-five times as thick",
+"25배만큼 두껍다",
+"V"
+],
+[
+"as the nerves from the ear to the brain.",
+"귀에서 뇌까지의 신경보다.",
+"C"
+]
+],
+"tr": "눈에서 뇌까지의 신경은 귀에서 뇌까지의 신경보다 25배만큼 두껍다.",
+"ans": "thick",
+"pts": [
+"13.1"
+]
+},
+{
+"key": "c13s1|6-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Leslie’s family went on vacation to the beach,",
+"레슬리의 가족은 해변으로 휴가를 갔지만,",
+""
+],
+[
+"but, throughout their holiday,",
+"휴가 내내,",
+""
+],
+[
+"it rained as much as",
+"많이 비가 내렸다",
+"V"
+],
+[
+"10 inches every day.",
+"매일 10인치만큼.",
+"C"
+]
+],
+"tr": "Leslie의 가족은 해변으로 휴가를 갔지만, 휴가 내내 매일 10인치만큼 비가 많이 내렸다.",
+"ans": "as",
+"pts": [
+"13.1",
+"13.3"
+]
+},
+{
+"key": "c13s1|6-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"As they left the hotel",
+"그들이 호텔을 떠나면서",
+""
+],
+[
+"after only playing board games",
+"보드게임만 한 후에",
+""
+],
+[
+"in their rooms for five days,",
+"5일 동안 그들의 방에서,",
+""
+],
+[
+"Leslie’s six-year-old daughter said,",
+"레슬리의 여섯 살 난 딸이 말했다,",
+""
+],
+[
+"“This was one of the",
+"“이번이 하나였어",
+"C"
+],
+[
+"best vacations",
+"가장 좋은 휴가들",
+"V"
+],
+[
+"of my life.”",
+"내 인생에서.”",
+""
+]
+],
+"tr": "5일 동안 그들의 방에서 보드게임만 한 후에 호텔을 떠나면서, Leslie의 여섯 살 난 딸은 “이번이 내 인생에서 가장 좋은 휴가 중 하나였어”라고 말했다.",
+"ans": "best",
+"pts": [
+"13.3"
+]
+},
+{
+"key": "add13|1-1",
+"title": "추가문제 POINT 1 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"Many",
+"많은 이들이",
+"S"
+],
+[
+"are wearing",
+"입고 있다",
+""
+],
+[
+"heavy coats",
+"두꺼운 코트를",
+""
+],
+[
+"with temperatures as low as 3 degree Celsius",
+"섭씨 3도만큼 낮은 온도 때문에",
+"V"
+],
+[
+"this morning.",
+"오늘 아침.",
+""
+]
+],
+"tr": "많은 이들이 오늘 아침 섭씨 3도만큼 낮은 온도 때문에 두꺼운 코트를 입고 있다.",
+"ans": "as",
+"pts": null
+},
+{
+"key": "add13|1-2",
+"title": "추가문제 POINT 1 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"My brother Eric",
+"나의 형제 에릭은",
+"S"
+],
+[
+"has traveled",
+"여행해 왔다",
+""
+],
+[
+"to more places",
+"더 많은 장소들로",
+"V"
+],
+[
+"around the world",
+"세계의",
+"M"
+],
+[
+"than anyone else in our family.",
+"우리 가족 중 다른 누구보다.",
+"C"
+]
+],
+"tr": "나의 형제 Eric은 우리 가족 중 다른 누구보다 세계의 더 많은 장소들을 여행해 왔다.",
+"ans": "more",
+"pts": null
+},
+{
+"key": "add13|1-3",
+"title": "추가문제 POINT 1 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"The surface",
+"표면은",
+"S"
+],
+[
+"of the ocean",
+"바다의",
+"M"
+],
+[
+"sometimes looks",
+"때때로 보인다",
+"C"
+],
+[
+"as smooth as a mirror",
+"거울만큼 매끄럽게",
+"V"
+],
+[
+"early in the morning.",
+"아침 일찍.",
+""
+]
+],
+"tr": "아침 일찍 바다의 표면은 때때로 거울만큼 매끄럽게 보인다.",
+"ans": "smooth",
+"pts": null
+},
+{
+"key": "add13|1-4",
+"title": "추가문제 POINT 1 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"Many American drivers",
+"많은 미국 운전자들은",
+"S"
+],
+[
+"like big trucks,",
+"큰 트럭을 좋아한다,",
+""
+],
+[
+"such as the Ford F-150,",
+"포드 에프-150 같은",
+"M"
+],
+[
+"more than small cars.",
+"작은 자동차보다 더.",
+"V"
+]
+],
+"tr": "많은 미국 운전자들은 작은 자동차보다 포드 F-150과 같은 큰 트럭을 더 좋아한다.",
+"ans": "than",
+"pts": null
+},
+{
+"key": "add13|1-5",
+"title": "추가문제 POINT 1 비교구문의 형태: 원급 vs. 비교급",
+"chunks": [
+[
+"As people get older,",
+"사람들이 나이가 들면,",
+""
+],
+[
+"their brains",
+"그들의 뇌는",
+"S"
+],
+[
+"do not learn",
+"학습하지 못한다",
+"C"
+],
+[
+"as efficiently as",
+"효과적으로",
+"V"
+],
+[
+"those of young people.",
+"젊은 사람들의 것만큼.",
+""
+]
+],
+"tr": "사람들이 나이가 들면, 그들의 뇌는 젊은 사람들의 것처럼 효과적으로 학습하지 못한다.",
+"ans": "efficiently",
+"pts": null
+},
+{
+"key": "add13|2-1",
+"title": "추가문제 POINT 2 비교급∙최상급 강조 부사",
+"chunks": [
+[
+"If you count",
+"만약 센다면",
+""
+],
+[
+"the number of accidents that occur,",
+"발생하는 사고의 수를,",
+""
+],
+[
+"airplanes",
+"비행기가",
+"S"
+],
+[
+"are much/even/far/still/a lot safer",
+"훨씬 더 안전하다",
+"V"
+],
+[
+"than cars.",
+"자동차보다.",
+"C"
+]
+],
+"tr": "만약 발생하는 사고의 수를 세어보면, 비행기가 자동차보다 훨씬 더 안전하다.",
+"ans": "much/even/far/still/a lot",
+"pts": null
+},
+{
+"key": "add13|2-2",
+"title": "추가문제 POINT 2 비교급∙최상급 강조 부사",
+"chunks": [
+[
+"For the second year in a row,",
+"2년 연속으로,",
+""
+],
+[
+"the businessman",
+"그 사업가는",
+"S"
+],
+[
+"remains",
+"남아 있다",
+"V"
+],
+[
+"by far the wealthiest person",
+"단연코 가장 부유한 사람으로",
+"C"
+],
+[
+"in the North America.",
+"북미에서.",
+"M"
+]
+],
+"tr": "2년 연속으로, 그 사업가는 북미에서 단연코 가장 부유한 사람으로 남아 있다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add13|2-3",
+"title": "추가문제 POINT 2 비교급∙최상급 강조 부사",
+"chunks": [
+[
+"The kids",
+"아이들은",
+"S"
+],
+[
+"are feeling",
+"느끼고 있다",
+""
+],
+[
+"very sad",
+"매우 슬프게",
+"V"
+],
+[
+"that summer has ended",
+"여름이 끝나서",
+""
+],
+[
+"and that school starts in a week.",
+"그리고 일주일 후면 학교가 시작해서.",
+""
+]
+],
+"tr": "아이들은 여름이 끝나고 일주일 후면 학교가 시작해서 매우 슬퍼하고 있다",
+"ans": "very",
+"pts": null
+},
+{
+"key": "add13|2-4",
+"title": "추가문제 POINT 2 비교급∙최상급 강조 부사",
+"chunks": [
+[
+"The country’s economic problems",
+"그 나라의 경제 문제는",
+"S"
+],
+[
+"appear to be",
+"~으로 보인다",
+""
+],
+[
+"much/even/far/still/a lot worse",
+"훨씬 더 나쁜 것",
+"V"
+],
+[
+"than what has been reported in the news.",
+"뉴스에 보도된 것보다.",
+""
+]
+],
+"tr": "그 나라의 경제 문제는 뉴스에 보도된 것보다 훨씬 더 나쁜 것으로 보인다.",
+"ans": "much/even/far/still/a lot",
+"pts": null
+},
+{
+"key": "add13|2-5",
+"title": "추가문제 POINT 2 비교급∙최상급 강조 부사",
+"chunks": [
+[
+"Alex",
+"알렉스는",
+"S"
+],
+[
+"has enjoyed",
+"즐겨 왔다",
+"V"
+],
+[
+"a clearer mind, more energy,",
+"더 맑은 정신, 더 많은 에너지,",
+""
+],
+[
+"and even better sleep",
+"그리고 훨씬 더 나은 수면을",
+"C"
+],
+[
+"since he started jogging in the morning.",
+"그가 아침에 조깅을 시작한 이래로.",
+""
+]
+],
+"tr": "Alex는 아침에 조깅을 시작한 이래로 더 맑은 정신, 더 많은 에너지, 그리고 훨씬 더 나은 수면을 즐기고 있다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add13|3-1",
+"title": "추가문제 POINT 3 비교구문 관련 표현",
+"chunks": [
+[
+"The sooner",
+"더 빨리",
+"C"
+],
+[
+"we",
+"우리가",
+"S"
+],
+[
+"finish our work",
+"우리의 일을 끝낼수록,",
+""
+],
+[
+"for the day,",
+"그날의",
+""
+],
+[
+"the earlier",
+"더 일찍",
+"V"
+],
+[
+"we",
+"우리는",
+"S"
+],
+[
+"can all leave",
+"모두 떠날 수 있다",
+""
+],
+[
+"the office.",
+"사무실을.",
+""
+]
+],
+"tr": "우리가 하루의 일을 더 빨리 끝낼수록, 우리는 모두 더 일찍 퇴근할 수 있다.",
+"ans": "earlier",
+"pts": null
+},
+{
+"key": "add13|3-2",
+"title": "추가문제 POINT 3 비교구문 관련 표현",
+"chunks": [
+[
+"According to one of my friends Keith,",
+"내 친구 중 한 명인 키스에 따르면,",
+""
+],
+[
+"the new video game",
+"그 새로운 비디오 게임은",
+"S"
+],
+[
+"is more fun",
+"더 재미있다",
+"C"
+],
+[
+"than any other game",
+"다른 어떤 게임보다",
+"V"
+],
+[
+"on the market right now.",
+"지금 시장에 나온.",
+"M"
+]
+],
+"tr": "내 친구 중 하나인 Keith에 따르면, 이 새로운 비디오 게임은 지금 시장에 있는 다른 어떤 게임보다 더 재미있다.",
+"ans": "than",
+"pts": null
+},
+{
+"key": "add13|3-3",
+"title": "추가문제 POINT 3 비교구문 관련 표현",
+"chunks": [
+[
+"Currently, the amount",
+"현재, 양은",
+"S"
+],
+[
+"of the electricity",
+"전기의",
+"M"
+],
+[
+"produced from oil, coal, and natural gas",
+"석유, 석탄, 천연가스로 생산된",
+"M"
+],
+[
+"is",
+"~이다",
+""
+],
+[
+"three times as large as",
+"세 배만큼 큰",
+"V"
+],
+[
+"that produced from other methods.",
+"다른 방법으로 생산된 것.",
+""
+]
+],
+"tr": "현재 석유, 석탄, 그리고 천연가스로 생산되는 전기의 양은 다른 수단으로 생산되는 양의 3배만큼 크다.",
+"ans": "large",
+"pts": null
+},
+{
+"key": "add13|3-4",
+"title": "추가문제 POINT 3 비교구문 관련 표현",
+"chunks": [
+[
+"The hummingbird",
+"벌새는",
+"S"
+],
+[
+"is less than six centimeters long,",
+"길이가 6센티미터도 채 되지 않는데,",
+"V"
+],
+[
+"which makes it one of the smallest animals",
+"이는 그것을 가장 작은 동물들 중 하나로 만든다",
+"C"
+],
+[
+"in the world.",
+"세계에서.",
+"M"
+]
+],
+"tr": "벌새는 길이가 6센티미터도 채 되지 않는데, 이는 그것을 세계에서 가장 작은 동물들 중 하나로 만든다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add13|3-5",
+"title": "추가문제 POINT 3 비교구문 관련 표현",
+"chunks": [
+[
+"No other island",
+"다른 어떤 섬도",
+"S"
+],
+[
+"inhabited by people",
+"사람들이 거주하는",
+"M"
+],
+[
+"is as remote as",
+"멀리 떨어져 있지 않다",
+"V"
+],
+[
+"the island of the island of Tristan da Cunha",
+"트리스탄 다쿠냐 섬만큼",
+""
+],
+[
+"in the Atlantic Ocean.",
+"대서양에 있는.",
+"M"
+]
+],
+"tr": "사람들에 의해 거주되는 다른 어떤 섬도 대서양에 있는 Tristan da Cunha 섬만큼 멀리 떨어져 있지 않다.",
+"ans": "as",
+"pts": null
+}
+]

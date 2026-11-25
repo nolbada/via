@@ -1,0 +1,2828 @@
+[
+{
+"key": "c10p1|예제",
+"title": "POINT 1 · 관계대명사 선택",
+"chunks": [
+[
+"Every political leader",
+"모든 정치 지도자들은",
+"S"
+],
+[
+"in history",
+"역사상의",
+"M"
+],
+[
+"who had an impact",
+"영향력을 가진",
+"V"
+],
+[
+"trained themselves to think and plan on their own.",
+"스스로 생각하고 계획하도록 그들 자신을 훈련시켰다.",
+""
+]
+],
+"tr": "역사상 영향력을 가진 모든 정치 지도자들은 스스로 생각하고 계획하도록 그들 자신을 훈련시켰다.",
+"ans": "who",
+"pts": null
+},
+{
+"key": "c10p1|1",
+"title": "POINT 1 · 관계대명사 선택",
+"chunks": [
+[
+"What was the name of",
+"제목은 무엇이었니 ~의",
+""
+],
+[
+"the book",
+"책",
+"S"
+],
+[
+"about Napoleon",
+"나폴레옹에 관한",
+"M"
+],
+[
+"which you borrowed from the library?",
+"네가 도서관에서 빌렸던",
+"V"
+]
+],
+"tr": "네가 도서관에서 빌렸던 나폴레옹에 관한 책의 제목은 무엇이었니?",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10p1|2",
+"title": "POINT 1 · 관계대명사 선택",
+"chunks": [
+[
+"I replaced my old TV with",
+"나는 내 오래된 텔레비전을 교체했다",
+""
+],
+[
+"a new one,",
+"새것으로,",
+"S"
+],
+[
+"the brand of which",
+"그것의 브랜드는",
+"V"
+],
+[
+"is Korean.",
+"한국산이다.",
+""
+]
+],
+"tr": "나는 내 오래된 TV를 새것으로 교체했는데, 그것의 브랜드는 한국산이다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10p1|3",
+"title": "POINT 1 · 관계대명사 선택",
+"chunks": [
+[
+"The company started to sell",
+"그 회사는 팔기 시작했다",
+""
+],
+[
+"a new product,",
+"새로운 제품을",
+"S"
+],
+[
+"which quickly became a bestseller.",
+"그것은 빠르게 베스트셀러가 되었다.",
+"V"
+]
+],
+"tr": "그 회사는 새로운 제품을 팔기 시작했는데, 그것은 빠르게 베스트셀러가 되었다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10p1|4",
+"title": "POINT 1 · 관계대명사 선택",
+"chunks": [
+[
+"Benjamin introduced me to",
+"벤저민은 나에게 소개했다",
+""
+],
+[
+"his cousin",
+"그의 사촌을",
+"S"
+],
+[
+"with the red hair,",
+"빨간색 머리를 가진",
+"M"
+],
+[
+"whom I had already met last night.",
+"내가 지난밤에 이미 만난 적 있는",
+"V"
+]
+],
+"tr": "Benjamin은 내가 지난밤에 이미 만난 적 있는 빨간색 머리를 가진 그의 사촌을 나에게 소개했다.",
+"ans": "whom",
+"pts": null
+},
+{
+"key": "c10p1|5",
+"title": "POINT 1 · 관계대명사 선택",
+"chunks": [
+[
+"This story is a Greek myth about",
+"이 이야기는 그리스 신화이다 ~에 대한",
+""
+],
+[
+"a captain",
+"선장",
+"S"
+],
+[
+"whose ship sailed past the island of the Sirens.",
+"배가 사이렌 섬을 지나 항해한",
+"V"
+]
+],
+"tr": "이 이야기는 배가 사이렌 섬을 지나 항해한 선장에 대한 그리스 신화이다.",
+"ans": "whose",
+"pts": null
+},
+{
+"key": "c10p2|예제",
+"title": "POINT 2 · 대명사 vs. 관계대명사",
+"chunks": [
+[
+"Oil comes from",
+"석유는 ~에서 나온다",
+""
+],
+[
+"solar energy,",
+"태양 에너지,",
+"S"
+],
+[
+"some of which",
+"그중 일부는",
+"V"
+],
+[
+"was preserved underground millions of years ago.",
+"수백만 년 전에 지하에 보존되었다.",
+""
+]
+],
+"tr": "석유는 태양 에너지에서 오는데, 그중 일부는 수백만 년 전에 지하에 보존되었다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10p2|1",
+"title": "POINT 2 · 대명사 vs. 관계대명사",
+"chunks": [
+[
+"I have collected",
+"나는 모았다",
+""
+],
+[
+"a lot of old coins,",
+"많은 오래된 동전들을",
+"S"
+],
+[
+"but",
+"하지만",
+"C"
+],
+[
+"unfortunately none of them",
+"불행히도 그것들 중 어떤 것도",
+"V"
+],
+[
+"are worth much.",
+"별로 가치 있지 않다.",
+""
+]
+],
+"tr": "나는 많은 오래된 동전들을 모았지만, 불행히도 그것들 중 어떤 것도 별로 가치 있지 않았다.",
+"ans": "them",
+"pts": null
+},
+{
+"key": "c10p2|2",
+"title": "POINT 2 · 대명사 vs. 관계대명사",
+"chunks": [
+[
+"Ethan owns",
+"에단은 소유하고 있다",
+""
+],
+[
+"two cars,",
+"두 대의 차를",
+"S"
+],
+[
+"both of which",
+"그것들 둘 다",
+"V"
+],
+[
+"he wants to sell as soon as possible.",
+"그는 가능한 한 빨리 팔고 싶어 한다.",
+""
+]
+],
+"tr": "Ethan은 두 대의 차를 소유하고 있는데, 그는 가능한 한 빨리 그것들 둘 다 팔고 싶어 한다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10p2|3",
+"title": "POINT 2 · 대명사 vs. 관계대명사",
+"chunks": [
+[
+"Olivia recently had to buy",
+"올리비아는 최근에 사야 했다",
+""
+],
+[
+"new furniture,",
+"새 가구를",
+"S"
+],
+[
+"which was delivered yesterday.",
+"그것은 어제 배송되었다.",
+"V"
+]
+],
+"tr": "Olivia는 최근에 새 가구를 사야 했는데, 그것은 어제 배송되었다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10p2|4",
+"title": "POINT 2 · 대명사 vs. 관계대명사",
+"chunks": [
+[
+"The dolphin",
+"돌고래는",
+"S"
+],
+[
+"is very smart,",
+"매우 영리하다,",
+""
+],
+[
+"and",
+"그리고",
+"C"
+],
+[
+"its brain",
+"그것의 뇌는",
+"V"
+],
+[
+"is surprisingly similar to the human brain.",
+"놀랍게도 인간의 뇌와 비슷하다.",
+""
+]
+],
+"tr": "돌고래는 매우 영리하고, 그것의 뇌는 놀랍게도 인간의 뇌와 비슷하다.",
+"ans": "its",
+"pts": null
+},
+{
+"key": "c10p2|5",
+"title": "POINT 2 · 대명사 vs. 관계대명사",
+"chunks": [
+[
+"Doctors can revive",
+"의사들은 되살릴 수 있다",
+""
+],
+[
+"patients",
+"환자들을",
+"S"
+],
+[
+"whose hearts have stopped beating",
+"심장이 뛰는 것을 멈춘",
+"V"
+],
+[
+"through CPR.",
+"심폐소생술을 통해.",
+""
+]
+],
+"tr": "의사들은 심폐소생술을 통해 심장이 뛰는 것이 멈춘 환자들을 되살릴 수 있다.",
+"ans": "whose",
+"pts": null
+},
+{
+"key": "c10p3|예제",
+"title": "POINT 3 · 관계대명사 vs. 관계부사 / 전치사 + which",
+"chunks": [
+[
+"Many thousands of years ago, humans lived in",
+"수천 년 전에, 인간들은 살았다",
+""
+],
+[
+"a world",
+"세상에",
+"S"
+],
+[
+"where they had to avoid",
+"그들이 피해야 하는",
+"V"
+],
+[
+"being killed by predators.",
+"포식자들에 의해 죽임을 당하는 것을.",
+""
+]
+],
+"tr": "수천 년 전에, 인간들은 그들이 포식자들에 의해 죽임을 당하는 것을 피해야 하는 세상에 살았다.",
+"ans": "where",
+"pts": null
+},
+{
+"key": "c10p3|1",
+"title": "POINT 3 · 관계대명사 vs. 관계부사 / 전치사 + which",
+"chunks": [
+[
+"Everyone stood up and cheered at",
+"모든 사람들이 일어나서 환호했다",
+""
+],
+[
+"the moment",
+"그 순간",
+"S"
+],
+[
+"when the final winner was announced.",
+"최종 우승자가 발표된",
+"V"
+]
+],
+"tr": "최종 우승자가 발표되었을 때 모든 사람들이 일어나서 환호했다.",
+"ans": "when",
+"pts": null
+},
+{
+"key": "c10p3|2",
+"title": "POINT 3 · 관계대명사 vs. 관계부사 / 전치사 + which",
+"chunks": [
+[
+"We live in",
+"우리는 산다",
+""
+],
+[
+"a small town,",
+"작은 마을에",
+"S"
+],
+[
+"which is surrounded by beautiful mountains and rivers.",
+"그것은 아름다운 산과 강으로 둘러싸여 있다.",
+"V"
+]
+],
+"tr": "우리는 작은 마을에 살고 있는데, 그것은 아름다운 산과 강으로 둘러싸여 있다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10p3|3",
+"title": "POINT 3 · 관계대명사 vs. 관계부사 / 전치사 + which",
+"chunks": [
+[
+"Amanda hopes to work for",
+"어맨다는 일하기를 희망한다",
+""
+],
+[
+"a company",
+"회사에서",
+"S"
+],
+[
+"in which she can develop medical robots.",
+"그곳에서 의료용 로봇을 개발할 수 있는",
+"V"
+]
+],
+"tr": "Amanda는 의료용 로봇을 개발할 수 있는 회사에서 일하기를 희망한다.",
+"ans": "in which",
+"pts": null
+},
+{
+"key": "c10p3|4",
+"title": "POINT 3 · 관계대명사 vs. 관계부사 / 전치사 + which",
+"chunks": [
+[
+"Kids don’t always understand",
+"아이들은 항상 이해하지는 못한다",
+""
+],
+[
+"the reason",
+"이유를",
+"S"
+],
+[
+"why their parents make certain rules.",
+"그들의 부모가 특정한 규칙들을 만드는",
+"V"
+]
+],
+"tr": "아이들은 그들의 부모가 특정한 규칙들을 만드는 이유를 항상 이해하지는 못한다.",
+"ans": "why",
+"pts": null
+},
+{
+"key": "c10p3|5",
+"title": "POINT 3 · 관계대명사 vs. 관계부사 / 전치사 + which",
+"chunks": [
+[
+"The road",
+"그 길은",
+"S"
+],
+[
+"which passes by the lake",
+"호수 옆을 지나가는",
+"V"
+],
+[
+"is a popular route",
+"인기 있는 경로이다",
+""
+],
+[
+"for many cyclists and joggers.",
+"많은 자전거 타는 사람들과 조깅하는 사람들에게.",
+""
+]
+],
+"tr": "호수 옆을 지나가는 그 길은 많은 자전거 타는 사람들과 조깅하는 사람들에게 인기 있는 경로이다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10p3|6",
+"title": "POINT 3 · 관계대명사 vs. 관계부사 / 전치사 + which",
+"chunks": [
+[
+"Edward drove into",
+"에드워드는 운전해 들어갔다",
+""
+],
+[
+"the tunnel,",
+"터널로",
+"S"
+],
+[
+"through which he reached",
+"그것을 통과하여 그는 도착했다",
+"V"
+],
+[
+"the city across the sea.",
+"바다 건너 도시에.",
+""
+]
+],
+"tr": "Edward는 터널로 운전해 들어갔고, 그것을 통과하여 그는 바다 건너 도시에 도착했다.",
+"ans": "through which",
+"pts": null
+},
+{
+"key": "c10p3|7",
+"title": "POINT 3 · 관계대명사 vs. 관계부사 / 전치사 + which",
+"chunks": [
+[
+"The 11th of September 2001 is",
+"2001년 9월 11일은 ~이다",
+""
+],
+[
+"a day",
+"날",
+"S"
+],
+[
+"which the people of New York will remember",
+"뉴욕의 사람들이 기억할",
+"V"
+],
+[
+"for a long time.",
+"오랫동안.",
+""
+]
+],
+"tr": "2001년 9월 11일은 뉴욕의 사람들이 오랫동안 기억할 날이다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10p3|8",
+"title": "POINT 3 · 관계대명사 vs. 관계부사 / 전치사 + which",
+"chunks": [
+[
+"Though there are",
+"비록 ~이 있지만",
+""
+],
+[
+"countries",
+"나라들이",
+"S"
+],
+[
+"where food is still scarce,",
+"식량이 아직 부족한",
+"V"
+],
+[
+"most people around the world",
+"세계의 대부분의 사람들은",
+""
+],
+[
+"have enough to eat.",
+"먹기에 충분히 가지고 있다.",
+""
+]
+],
+"tr": "비록 아직 식량이 부족한 나라들이 있지만, 세계의 대부분의 사람들은 먹기에 충분한 양이 있다.",
+"ans": "where",
+"pts": null
+},
+{
+"key": "c10p4|예제",
+"title": "POINT 4 · that vs. which vs. what",
+"chunks": [
+[
+"If you consider",
+"만약 당신이 고려해 보면",
+""
+],
+[
+"all the tasks",
+"모든 직무들을",
+"S"
+],
+[
+"that AI machines can actually perform,",
+"인공지능 기계가 실제로 수행할 수 있는",
+"V"
+],
+[
+"it is quite shocking.",
+"그것은 상당히 충격적이다.",
+""
+]
+],
+"tr": "만약 당신이 인공지능 기계가 실제로 수행할 수 있는 모든 직무들을 고려해 보면, 그것은 상당히 충격적이다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10p4|1",
+"title": "POINT 4 · that vs. which vs. what",
+"chunks": [
+[
+"The amazing thing about animals such as horses is",
+"말과 같은 동물들에 대해 놀라운 것은 ~이다",
+"S"
+],
+[
+"that they can walk",
+"그들이 걸을 수 있다는 것",
+"V"
+],
+[
+"as soon as they are born.",
+"태어나자마자.",
+""
+]
+],
+"tr": "말과 같은 동물들에 대해 놀라운 것은 그들이 태어나자마자 걸을 수 있다는 것이다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10p4|2",
+"title": "POINT 4 · that vs. which vs. what",
+"chunks": [
+[
+"Regardless of the situation, stay strong and",
+"상황에 상관없이, 굳세게 버티고",
+""
+],
+[
+"do",
+"~을 해라",
+"S"
+],
+[
+"what you have to do.",
+"당신이 해야 할 일을",
+"V"
+]
+],
+"tr": "상황에 상관없이, 굳세게 버텨서 당신이 해야 할 일을 해라.",
+"ans": "what",
+"pts": null
+},
+{
+"key": "c10p4|3",
+"title": "POINT 4 · that vs. which vs. what",
+"chunks": [
+[
+"Activities",
+"활동들이",
+"S"
+],
+[
+"which were scheduled for the last week of July",
+"7월 마지막 주에 예정되어 있던",
+"V"
+],
+[
+"have been moved to the first week of August.",
+"8월 첫째 주로 옮겨졌다.",
+""
+]
+],
+"tr": "7월 마지막 주에 예정되어 있던 활동들이 8월 첫째 주로 옮겨졌다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10p4|4",
+"title": "POINT 4 · that vs. which vs. what",
+"chunks": [
+[
+"Technology creates",
+"기술은 만들어 낸다",
+""
+],
+[
+"many new jobs",
+"많은 새로운 직업들을",
+"S"
+],
+[
+"that are certainly dangerous.",
+"확실히 위험한",
+"V"
+]
+],
+"tr": "기술은 확실히 위험한 많은 새로운 직업들을 만들어 낸다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10p4|5",
+"title": "POINT 4 · that vs. which vs. what",
+"chunks": [
+[
+"Salt is",
+"소금은 ~이다",
+""
+],
+[
+"the mineral",
+"광물",
+"S"
+],
+[
+"that people use most often",
+"사람들이 가장 자주 사용하는",
+"V"
+],
+[
+"in everyday life.",
+"일상생활에서.",
+""
+]
+],
+"tr": "소금은 사람들이 일상생활에서 가장 자주 사용하는 광물이다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10p4|6",
+"title": "POINT 4 · that vs. which vs. what",
+"chunks": [
+[
+"It was a huge disappointment",
+"큰 실망이었다",
+"S"
+],
+[
+"that we had to cancel the picnic",
+"우리가 소풍을 취소해야 했다는 것이",
+"V"
+],
+[
+"due to the bad weather.",
+"나쁜 날씨 때문에.",
+""
+]
+],
+"tr": "나쁜 날씨 때문에 우리가 소풍을 취소해야 했던 것은 큰 실망이었다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10p4|7",
+"title": "POINT 4 · that vs. which vs. what",
+"chunks": [
+[
+"Programs",
+"프로그램들이",
+"S"
+],
+[
+"which are currently still open to students",
+"현재 학생들에게 여전히 열려 있는",
+"V"
+],
+[
+"are listed on the school’s website.",
+"학교 웹사이트에 나열되어 있다.",
+""
+]
+],
+"tr": "현재 학생들에게 여전히 공개된 프로그램들이 학교의 웹사이트에 나열되어 있다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10p4|8",
+"title": "POINT 4 · that vs. which vs. what",
+"chunks": [
+[
+"If you want people to read and understand",
+"만약 당신이 사람들이 읽고 이해하기를 원한다면",
+"S"
+],
+[
+"what you write,",
+"당신이 쓴 것을,",
+"V"
+],
+[
+"write it in spoken language.",
+"그것을 구어로 써라.",
+""
+]
+],
+"tr": "만약 사람들이 당신이 쓴 것을 읽고 이해하기를 원한다면, 그것을 구어로 써라.",
+"ans": "what",
+"pts": null
+},
+{
+"key": "c10p5|예제",
+"title": "POINT 5 · that만 올 수 있는 경우",
+"chunks": [
+[
+"The monster approaching the gates of the palace was",
+"궁전의 문에 접근한 그 괴물은 ~였다",
+""
+],
+[
+"so",
+"너무",
+"C"
+],
+[
+"ugly and smelly",
+"못생기고 냄새가 나서",
+""
+],
+[
+"that the guards froze in shock.",
+"경비들이 충격으로 얼어붙었다.",
+"V"
+]
+],
+"tr": "궁전의 문에 접근한 그 괴물은 너무 못생기고 냄새가 나서 경비들이 충격으로 얼어붙었다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10p5|1",
+"title": "POINT 5 · that만 올 수 있는 경우",
+"chunks": [
+[
+"Clara was sad about moving, and",
+"클라라는 이사하는 것이 슬펐다, 그리고",
+""
+],
+[
+"the fact",
+"그 사실",
+"C"
+],
+[
+"that she had to leave all her friends",
+"그녀가 모든 친구들을 떠나야 한다는",
+"V"
+],
+[
+"broke her heart.",
+"그녀의 마음을 아프게 했다.",
+""
+]
+],
+"tr": "Clara는 이사하는 것이 슬펐고, 그녀의 모든 친구들을 떠나야 한다는 사실이 그녀의 마음을 아프게 했다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10p5|2",
+"title": "POINT 5 · that만 올 수 있는 경우",
+"chunks": [
+[
+"Focus on",
+"집중해라",
+"C"
+],
+[
+"what you can control,",
+"당신이 통제할 수 있는 것에,",
+"V"
+],
+[
+"and do not worry about",
+"그리고 걱정하지 마라 ~에 대해",
+""
+],
+[
+"things that you can’t.",
+"당신이 할 수 없는 일들.",
+""
+]
+],
+"tr": "당신이 통제할 수 있는 것에 집중하고, 당신이 할 수 없는 것에 대해서는 걱정하지 마라.",
+"ans": "what",
+"pts": null
+},
+{
+"key": "c10p5|3",
+"title": "POINT 5 · that만 올 수 있는 경우",
+"chunks": [
+[
+"We were surprised",
+"우리는 놀랐다",
+"C"
+],
+[
+"that Joshua had a great talent",
+"조슈아가 훌륭한 재능을 가졌다는 것에",
+"V"
+],
+[
+"for playing the piano.",
+"피아노 연주에 대한.",
+""
+]
+],
+"tr": "우리는 Joshua가 피아노를 연주하는 것에 뛰어난 재능이 있어서 놀랐다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10p5|4",
+"title": "POINT 5 · that만 올 수 있는 경우",
+"chunks": [
+[
+"The envelope",
+"봉투는",
+"C"
+],
+[
+"which is on my desk",
+"내 책상 위에 있는",
+"V"
+],
+[
+"contains a copy",
+"한 부를 담고 있다",
+""
+],
+[
+"of the letter from my sister in Canada.",
+"캐나다에 있는 나의 언니가 보낸 편지의.",
+""
+]
+],
+"tr": "내 책상 위에 있는 봉투는 캐나다에 있는 나의 언니가 보낸 편지 한 부를 담고 있다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10p5|5",
+"title": "POINT 5 · that만 올 수 있는 경우",
+"chunks": [
+[
+"It was",
+"그것은 ~였다",
+""
+],
+[
+"such an interesting movie",
+"너무 재미있는 영화",
+"C"
+],
+[
+"that I didn’t realize it was already midnight.",
+"그래서 나는 이미 자정이 되었다는 것을 깨닫지 못했다.",
+"V"
+]
+],
+"tr": "그것은 너무 재미있는 영화여서 나는 이미 자정이 되었다는 것을 깨닫지 못했다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10q1|1",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"For the group project,",
+"조별 과제를 위해서,",
+""
+],
+[
+"I worked with",
+"나는 함께 작업했다",
+""
+],
+[
+"team members",
+"팀원들과",
+"S"
+],
+[
+"whom I did not choose.",
+"내가 선택하지 않은.",
+"V"
+]
+],
+"tr": "조별 과제를 위해서, 나는 내가 선택하지 않은 팀원들과 함께 작업했다.",
+"ans": "whom",
+"pts": null
+},
+{
+"key": "c10q1|2",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Some people in the back of the hall",
+"홀의 뒤쪽에 있던 몇몇 사람들은",
+""
+],
+[
+"could not hear",
+"들을 수 없었다",
+""
+],
+[
+"what",
+"~한 것을",
+"V"
+],
+[
+"the speaker was saying.",
+"연설자가 말하고 있던",
+"C"
+]
+],
+"tr": "홀의 뒤쪽에 있던 몇몇 사람들은 연설자가 무엇을 말하는지 들을 수 없었다.",
+"ans": "what",
+"pts": null
+},
+{
+"key": "c10q1|3",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The king received",
+"왕은 받았다",
+""
+],
+[
+"many gifts",
+"많은 선물들을",
+"S"
+],
+[
+"for his birthday,",
+"그의 생일에,",
+""
+],
+[
+"one of which",
+"그중 하나는",
+"V"
+],
+[
+"was a beautiful necklace.",
+"아름다운 목걸이였다.",
+""
+]
+],
+"tr": "왕은 그의 생일에 많은 선물들을 받았는데, 그중 하나는 아름다운 목걸이였다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10q1|4",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"She published",
+"그녀는 발표했다",
+""
+],
+[
+"a paper on vitamin B12,",
+"비타민 비12에 대한 논문을",
+"S"
+],
+[
+"which won her the Nobel Prize.",
+"그녀에게 노벨상을 안겨 준.",
+"V"
+]
+],
+"tr": "그녀는 비타민 B12에 대한 논문을 발표했는데, 그것은 그녀에게 노벨상을 타게 해 주었다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10q1|5",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Sometimes, you find yourself in",
+"때때로, 당신은 처한 자신을 발견한다",
+""
+],
+[
+"a situation",
+"상황에",
+"S"
+],
+[
+"where you have to make a difficult decision.",
+"어려운 결정을 내려야 하는.",
+"V"
+]
+],
+"tr": "때때로, 당신은 어려운 결정을 내려야 하는 상황에 처한 자신을 발견한다.",
+"ans": "where",
+"pts": null
+},
+{
+"key": "c10q1|6",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The museum is displaying",
+"그 박물관은 전시하고 있다",
+""
+],
+[
+"photographs",
+"사진들을",
+"S"
+],
+[
+"that were taken during the nineteenth century.",
+"19세기 동안 찍힌.",
+"V"
+]
+],
+"tr": "그 박물관은 19세기 동안 찍힌 사진들을 전시하고 있다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10q1|7",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"What",
+"~한 것은",
+"V"
+],
+[
+"they discovered about the galaxy",
+"그들이 은하계에 대해 발견한",
+"C"
+],
+[
+"changed the field of astronomy.",
+"천문학 분야를 바꿨다.",
+""
+]
+],
+"tr": "그들이 은하계에 대해 발견한 것은 천문학 분야를 바꿨다.",
+"ans": "What",
+"pts": null
+},
+{
+"key": "c10q1|8",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The plant",
+"그 식물은",
+"S"
+],
+[
+"can grow in very dry weather,",
+"매우 건조한 날씨에서 자랄 수 있고,",
+""
+],
+[
+"and surprisingly,",
+"그리고 놀랍게도,",
+"C"
+],
+[
+"its flowers",
+"그것의 꽃들은",
+"V"
+],
+[
+"are very big and colorful.",
+"매우 크고 화려하다.",
+""
+]
+],
+"tr": "그 식물은 매우 건조한 날씨에도 자랄 수 있고, 놀랍게도, 그것의 꽃들은 매우 크고 화려하다.",
+"ans": "its",
+"pts": null
+},
+{
+"key": "c10q1|9",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"A big benefit of traveling outside your country",
+"당신의 나라 밖을 여행하는 것의 큰 이점은",
+"S"
+],
+[
+"is that",
+"~이다 ~라는 것",
+"V"
+],
+[
+"it opens your mind.",
+"그것이 당신의 마음을 열어 준다는.",
+"C"
+]
+],
+"tr": "당신의 나라 밖을 여행하는 것의 큰 이점은 그것이 당신의 마음을 열어 준다는 것이다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10q1|10",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Professor Lee advised me to read",
+"리 교수님은 내게 읽으라고 조언했다",
+""
+],
+[
+"a book,",
+"책을",
+"S"
+],
+[
+"from which",
+"그것으로부터",
+"V"
+],
+[
+"I developed a deeper understanding",
+"나는 더 깊은 이해를 발전시켰다",
+""
+],
+[
+"of the Middle Ages.",
+"중세 시대에 대한.",
+""
+]
+],
+"tr": "Lee 교수님이 나에게 책을 읽어 보라고 조언했는데, 그것으로부터 나는 중세 시대에 대한 더 깊은 이해를 발전시켰다.",
+"ans": "from which",
+"pts": null
+},
+{
+"key": "c10q1|11",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"One of the most powerful tools",
+"가장 강력한 도구 중 하나는",
+""
+],
+[
+"to find meaning in our lives",
+"우리의 삶에서 의미를 찾기 위한",
+""
+],
+[
+"is writing about",
+"~에 대해 글을 쓰는 것이다",
+""
+],
+[
+"what",
+"~한 것",
+"V"
+],
+[
+"has happened to us.",
+"우리에게 일어난",
+"C"
+]
+],
+"tr": "우리의 삶에서 의미를 찾기 위한 가장 강력한 도구 중 하나는 우리에게 일어난 것에 대해 글을 쓰는 것이다.",
+"ans": "what",
+"pts": null
+},
+{
+"key": "c10q1|12",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The items on sale were",
+"할인 중인 상품들은 ~였다",
+""
+],
+[
+"so cheap",
+"너무 싸서",
+"C"
+],
+[
+"that some customers bought several of them at once.",
+"몇몇 고객들은 그것들을 한 번에 몇 개씩 샀다.",
+"V"
+]
+],
+"tr": "할인 중인 상품들이 너무 싸서 몇몇 고객들은 그것들을 한 번에 몇 개씩 샀다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10q2|1",
+"title": "문장 연습 밑줄 · 어법상 틀린 곳 고치기",
+"chunks": [
+[
+"I’m really sorry",
+"나는 정말로 미안하다",
+"C"
+],
+[
+"that I didn’t reply to your text message earlier.",
+"내가 아까 너의 문자 메시지에 답장하지 못해서.",
+"V"
+]
+],
+"tr": "아까 너의 문자 메시지에 답장을 보내지 못해서 정말로 미안해.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10q2|2",
+"title": "문장 연습 밑줄 · 어법상 틀린 곳 고치기",
+"chunks": [
+[
+"Many historians believe that",
+"많은 역사학자들은 ~라고 믿는다",
+"V"
+],
+[
+"studying the past",
+"과거를 연구하는 것이",
+"S"
+],
+[
+"is crucial for predicting the future.",
+"미래를 예측하는 데 결정적이다.",
+""
+]
+],
+"tr": "많은 역사학자들은 과거를 연구하는 것이 미래를 예측하기 위해 결정적이라고 믿는다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10q2|3",
+"title": "문장 연습 밑줄 · 어법상 틀린 곳 고치기",
+"chunks": [
+[
+"Dorothy Hodgkin was born in",
+"도로시 호지킨은 태어났다",
+""
+],
+[
+"Cairo,",
+"카이로에서,",
+"S"
+],
+[
+"where her father worked in the Egyptian Education Service.",
+"그곳에서 그녀의 아버지는 이집트 교육청에서 일했다.",
+"V"
+]
+],
+"tr": "Dorothy Hodgkin은 카이로에서 태어났는데, 그곳에서 그녀의 아버지는 이집트 교육청에서 일했다.",
+"ans": "where",
+"pts": null
+},
+{
+"key": "c10q2|4",
+"title": "문장 연습 밑줄 · 어법상 틀린 곳 고치기",
+"chunks": [
+[
+"The mystery novel thrilled readers",
+"그 추리 소설은 독자들을 전율하게 했다",
+""
+],
+[
+"with what",
+"~한 것으로",
+"V"
+],
+[
+"was revealed in the final chapter.",
+"마지막 장에서 밝혀진.",
+"C"
+]
+],
+"tr": "그 추리 소설은 마지막 장에서 밝혀진 것으로 독자들을 전율하게 했다.",
+"ans": "what",
+"pts": null
+},
+{
+"key": "c10q2|5",
+"title": "문장 연습 밑줄 · 어법상 틀린 곳 고치기",
+"chunks": [
+[
+"The supermarket sells",
+"슈퍼마켓은 판매한다",
+""
+],
+[
+"a wide variety of fruits,",
+"다양한 과일을,",
+"S"
+],
+[
+"some of which",
+"그중 몇몇은",
+"V"
+],
+[
+"are exotic and unfamiliar.",
+"이국적이고 낯설다.",
+""
+]
+],
+"tr": "슈퍼마켓은 다양한 과일을 판매하는데, 그중 몇몇은 이국적이고 낯설다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10q2|6",
+"title": "문장 연습 밑줄 · 어법상 틀린 곳 고치기",
+"chunks": [
+[
+"The couple only hired",
+"그 부부는 고용했다",
+""
+],
+[
+"babysitters",
+"베이비시터만",
+"S"
+],
+[
+"from the neighborhood",
+"인근의",
+"M"
+],
+[
+"who had good recommendations.",
+"좋은 추천을 받은.",
+"V"
+]
+],
+"tr": "그 부부는 좋은 추천을 받은 인근의 베이비시터만 고용했다.",
+"ans": "who",
+"pts": null
+},
+{
+"key": "c10q2|7",
+"title": "문장 연습 밑줄 · 어법상 틀린 곳 고치기",
+"chunks": [
+[
+"In life, there are",
+"인생에는 ~이 있다",
+""
+],
+[
+"accidents",
+"사고들이",
+"S"
+],
+[
+"which we cannot control,",
+"우리가 통제할 수 없는,",
+"V"
+],
+[
+"such as natural disasters.",
+"자연재해와 같은.",
+""
+]
+],
+"tr": "인생에는, 자연재해와 같이 우리가 통제할 수 없는 사고들이 있다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10q2|8",
+"title": "문장 연습 밑줄 · 어법상 틀린 곳 고치기",
+"chunks": [
+[
+"Online video games have become",
+"온라인 비디오 게임은 되었다",
+""
+],
+[
+"a common method",
+"흔한 방법이",
+"S"
+],
+[
+"by which young people meet new friends.",
+"젊은 사람들이 새로운 친구들을 만나는.",
+"V"
+]
+],
+"tr": "온라인 비디오 게임은 젊은 사람들이 새로운 친구들을 만나는 흔한 방법이 되었다.",
+"ans": "by which",
+"pts": null
+},
+{
+"key": "c10q2|9",
+"title": "문장 연습 밑줄 · 어법상 틀린 곳 고치기",
+"chunks": [
+[
+"When you visit a restaurant,",
+"당신이 식당을 방문할 때,",
+""
+],
+[
+"a long line outside it is usually",
+"그 밖의 긴 줄은 보통 ~이다",
+""
+],
+[
+"a strong clue",
+"강력한 단서",
+"S"
+],
+[
+"that the food is good.",
+"음식이 맛있다는.",
+"V"
+]
+],
+"tr": "당신이 식당을 방문할 때, 그 밖의 긴 줄은 보통 음식이 맛있다는 강력한 단서이다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c10q2|10",
+"title": "문장 연습 밑줄 · 어법상 틀린 곳 고치기",
+"chunks": [
+[
+"Dog owners must be careful about",
+"개 소유주들은 주의해야 한다",
+""
+],
+[
+"what",
+"~하는 것에 대해",
+"V"
+],
+[
+"their pets eat,",
+"그들의 반려동물이 먹는",
+"C"
+],
+[
+"as some kinds of items may be harmful.",
+"어떤 종류의 품목들은 해로울 수 있으므로.",
+""
+]
+],
+"tr": "어떤 종류의 품목들은 해로울 수 있으므로, 개 소유주들은 그들의 반려동물이 먹는 것에 대해 주의해야 한다.",
+"ans": "what",
+"pts": null
+},
+{
+"key": "c10q2|11",
+"title": "문장 연습 밑줄 · 어법상 틀린 곳 고치기",
+"chunks": [
+[
+"Andrew attended",
+"앤드루는 참석했다",
+""
+],
+[
+"a management workshop,",
+"경영 워크숍에,",
+"S"
+],
+[
+"which helped him improve his business skills.",
+"그것은 그가 사업 기술을 향상시키는 것을 도왔다.",
+"V"
+]
+],
+"tr": "Andrew는 경영 워크숍에 참석했는데, 그것은 그의 사업 기술을 향상시키는 것을 도왔다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10q2|12",
+"title": "문장 연습 밑줄 · 어법상 틀린 곳 고치기",
+"chunks": [
+[
+"Can you give examples of",
+"예를 들어 줄 수 있니",
+""
+],
+[
+"social media platforms",
+"소셜 미디어 플랫폼의",
+"S"
+],
+[
+"which effectively protect user privacy?",
+"사용자의 사생활을 효과적으로 보호하는?",
+"V"
+]
+],
+"tr": "사용자의 사생활을 효과적으로 보호하는 소셜 미디어 플랫폼의 예를 들어 줄 수 있니?",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c10s1|1-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"We are looking for",
+"우리는 찾고 있다",
+""
+],
+[
+"a new manager,",
+"새로운 매니저를",
+"S"
+],
+[
+"(A) whose experience",
+"그의 경험이",
+"V"
+],
+[
+"can help us develop fresh ideas.",
+"우리가 신선한 아이디어를 개발하는 것을 도울 수 있는.",
+"C"
+]
+],
+"tr": "우리는 그의 경험이 우리가 신선한 아이디어를 개발하는 것을 도울 수 있는 새로운 매니저를 찾고 있다.",
+"ans": "whose",
+"pts": [
+"10.1"
+]
+},
+{
+"key": "c10s1|1-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"So far, many résumés have arrived,",
+"지금까지, 많은 이력서가 도착했지만,",
+"S"
+],
+[
+"but unfortunately,",
+"불행하게도,",
+"C"
+],
+[
+"none of (B) them",
+"그중 어떤 것도",
+"V"
+],
+[
+"seem to belong to someone right for the position.",
+"그 자리에 맞는 누군가의 것으로 보이지 않는다.",
+""
+]
+],
+"tr": "지금까지, 많은 이력서가 도착했지만, 불행하게도, 그중 어떤 것도 그 자리에 맞는 누군가의 것으로 보이지 않는다.",
+"ans": "them",
+"pts": [
+"10.2"
+]
+},
+{
+"key": "c10s1|2-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Mr. Smith runs",
+"스미스씨는 운영한다",
+""
+],
+[
+"a bookstore on the corner,",
+"모퉁이에 있는 서점을",
+"S"
+],
+[
+"(A) which",
+"그리고 그것은",
+"V"
+],
+[
+"is famous for selling rare books.",
+"희귀한 책을 파는 것으로 유명한.",
+""
+]
+],
+"tr": "Smith씨는 모퉁이에서 희귀한 책을 파는 것으로 유명한 서점을 운영한다.",
+"ans": "which",
+"pts": [
+"10.4"
+]
+},
+{
+"key": "c10s1|2-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"In fact, he sells",
+"실제로, 그는 판다",
+""
+],
+[
+"some books",
+"몇몇 책들을",
+"S"
+],
+[
+"(B) which",
+"~하는",
+"V"
+],
+[
+"cannot be found anywhere else in the country.",
+"나라의 다른 어디에서도 찾을 수 없는.",
+""
+]
+],
+"tr": "실제로, 그는 나라의 다른 어디에서도 찾을 수 없는 몇몇 책들을 판다.",
+"ans": "which",
+"pts": [
+"10.4"
+]
+},
+{
+"key": "c10s1|3-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Margaret Knight was",
+"마거릿 나이트는 ~였다",
+""
+],
+[
+"such a brilliant inventor",
+"너무 뛰어난 발명가",
+"C"
+],
+[
+"in the late 19th century",
+"19세기 후반에",
+""
+],
+[
+"(A) that",
+"~여서",
+"V"
+],
+[
+"journalists occasionally compared her to Thomas Edison by calling her “a woman Edison.”",
+"기자들은 “여성 에디슨”이라고 부름으로써 가끔 그녀를 토머스 에디슨과 비교했다.",
+""
+]
+],
+"tr": "Margaret Knight는 19세기 후반에 너무 뛰어난 발명가여서 기자들은 &ldquo;여성 에디슨&rdquo;이라고 부름으로써 가끔 그녀를 토머스 에디슨과 비교했다.",
+"ans": "that",
+"pts": [
+"10.5",
+"10.4"
+]
+},
+{
+"key": "c10s1|3-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"After her father died, Knight left school at age 12",
+"그녀의 아버지가 사망한 후에, 나이트는 12살에 학교를 떠났다",
+""
+],
+[
+"to earn money at a nearby textile factory,",
+"근처의 섬유 공장에서 돈을 벌기 위해",
+"S"
+],
+[
+"(B) where",
+"그곳에서",
+"V"
+],
+[
+"a faulty machine injured a coworker.",
+"결함이 있는 기계가 한 동료를 다치게 했다.",
+""
+]
+],
+"tr": "그녀의 아버지가 사망한 후에, Knight는 12살 나이에 근처의 섬유 공장에서 돈을 벌기 위해 학교를 떠났는데, 그곳에서 결함이 있는 기계가 한 동료를 다치게 했다.",
+"ans": "where",
+"pts": [
+"10.3"
+]
+},
+{
+"key": "c10s1|3-(C)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"This experience was",
+"이 경험이 ~이었다",
+""
+],
+[
+"(C) what",
+"~한 것",
+"V"
+],
+[
+"led her to create her first invention, a safety device for textile equipment.",
+"그녀가 섬유 설비를 위한 안전장치인 그녀의 첫 번째 발명품을 만들도록 이끈.",
+"C"
+]
+],
+"tr": "이 경험이 그녀가 섬유 설비를 위한 안전장치인 그녀의 첫 번째 발명품을 만들도록 이끈 것이었다.",
+"ans": "what",
+"pts": [
+"10.4"
+]
+},
+{
+"key": "c10s1|4-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"In New York City, there are",
+"뉴욕시에는 있다",
+""
+],
+[
+"a lot of galleries,",
+"많은 갤러리들이",
+"S"
+],
+[
+"where 또는 in which",
+"그곳에서",
+"V"
+],
+[
+"various impressive artworks are displayed.",
+"다양한 인상적인 예술작품들이 전시되어 있는.",
+"C"
+]
+],
+"tr": "뉴욕시에는 다양한 인상적인 예술작품들이 전시되어 있는 많은 갤러리들이 있다.",
+"ans": "where",
+"pts": [
+"10.3"
+]
+},
+{
+"key": "c10s1|4-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Visitors are often fascinated by",
+"방문객들은 종종 매료된다",
+""
+],
+[
+"the fact",
+"사실에",
+"S"
+],
+[
+"that",
+"~라는",
+"V"
+],
+[
+"they can appreciate works by renowned artists from different periods of history.",
+"그들이 다른 역사적 시대의 유명한 예술가들의 작품을 감상할 수 있는.",
+"C"
+]
+],
+"tr": "방문객들은 종종 그들이 다른 역사적 시대의 유명한 예술가들의 작품을 감상할 수 있다는 사실에 매료된다.",
+"ans": "that",
+"pts": [
+"9.3",
+"10.5"
+]
+},
+{
+"key": "c10s1|5-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Of all the parks in the city, most of the residents love",
+"도시 안의 모든 공원들 중, 대부분의 거주자들은 사랑한다",
+""
+],
+[
+"the one",
+"그것을",
+"S"
+],
+[
+"that",
+"~하는",
+"V"
+],
+[
+"is located in the heart of downtown.",
+"시내 중심부에 위치한.",
+"C"
+]
+],
+"tr": "도시 안의 모든 공원들 중, 대부분의 거주자들은 시내 중심부에 위치한 것을 사랑한다.",
+"ans": "that",
+"pts": [
+"10.4"
+]
+},
+{
+"key": "c10s1|5-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Many people find peace and comfort in",
+"많은 사람들이 평화와 위안을 발견한다",
+""
+],
+[
+"what",
+"~것에서",
+"V"
+],
+[
+"the park offers,",
+"그 공원이 제공하는",
+"C"
+],
+[
+"including beautiful gardens and a quiet atmosphere to escape the bustling city life.",
+"아름다운 정원과 부산스러운 도시 생활에서 벗어나기 위한 조용한 분위기를 포함하여.",
+""
+]
+],
+"tr": "아름다운 정원과 부산스러운 도시 생활에서 벗어나기 위한 조용한 분위기를 포함하여, 많은 사람들이 그 공원이 제공하는 것에서 평화와 위안을 발견한다.",
+"ans": "what",
+"pts": [
+"10.4"
+]
+},
+{
+"key": "c10s1|6-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"In a psychology experiment at the University of Virginia, college students were gathered",
+"버지니아 대학교의 한 심리학 실험에서, 대학생들은 모였는데",
+""
+],
+[
+"outdoors,",
+"야외에",
+"S"
+],
+[
+"where",
+"그곳에서",
+"V"
+],
+[
+"they started to climb a hill with heavy backpacks.",
+"그들은 무거운 배낭을 메고 언덕을 오르기 시작했다.",
+"C"
+]
+],
+"tr": "버지니아 대학교의 한 심리학 실험에서, 대학생들은 야외에 모였는데, 그곳에서 그들은 무거운 배낭을 메고 언덕을 오르기 시작했다.",
+"ans": "where",
+"pts": [
+"10.3"
+]
+},
+{
+"key": "c10s1|6-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Some participants climbed with",
+"어떤 참가자들은 함께 올랐다",
+""
+],
+[
+"close friends",
+"가까운 친구와",
+"S"
+],
+[
+"whom",
+"~하는",
+"V"
+],
+[
+"they had known a long time, and the others climbed with strangers.",
+"그들이 오랫동안 알아 왔던, 그리고 다른 나머지는 낯선 사람들과 함께 올라갔다.",
+"C"
+]
+],
+"tr": "어떤 참가자들은 오랫동안 알아 왔던 가까운 친구와 함께 올랐고, 다른 나머지는 낯선 사람들과 함께 올라갔다.",
+"ans": "whom",
+"pts": [
+"10.1"
+]
+},
+{
+"key": "c10s1|6-③",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Later, the participants who climbed with close friends guessed",
+"후에, 가까운 친구들과 함께 오른 참가자들은 추측했다",
+""
+],
+[
+"that",
+"~라고",
+"V"
+],
+[
+"the hill was lower than its actual height,",
+"그 언덕이 실제 높이보다 더 낮았다고",
+"C"
+],
+[
+"whereas those who were with strangers did not.",
+"반면에 낯선 사람들과 함께한 사람들은 그렇지 않았다.",
+""
+]
+],
+"tr": "후에, 가까운 친구들과 함께 오른 참가자들은 그 언덕이 실제 높이보다 더 낮았다고 추측했고, 반면에 낯선 사람들과 함께한 사람들은 그렇지 않았다.",
+"ans": "that",
+"pts": [
+"9.3"
+]
+},
+{
+"key": "add10|1-1",
+"title": "추가문제 POINT 1 관계대명사 선택",
+"chunks": [
+[
+"The school",
+"학교는",
+"S"
+],
+[
+"invited a speaker",
+"연사를 초대했다",
+"V"
+],
+[
+"to our graduation event",
+"우리 졸업식 행사에",
+"M"
+],
+[
+"who owns a successful business.",
+"성공적인 사업체를 소유한",
+"V"
+]
+],
+"tr": "학교는 우리 졸업식 행사에 성공적인 사업체를 소유하고 있는 연사를 초대했다.",
+"ans": "who",
+"pts": null
+},
+{
+"key": "add10|1-2",
+"title": "추가문제 POINT 1 관계대명사 선택",
+"chunks": [
+[
+"I",
+"나는",
+"S"
+],
+[
+"ordered several pizzas",
+"피자를 여러 판 주문했다",
+"V"
+],
+[
+"for the office yesterday,",
+"어제 사무실로,",
+""
+],
+[
+"which everyone enjoyed a lot.",
+"그런데 모두가 그것을 많이 즐겼다.",
+"V"
+]
+],
+"tr": "나는 어제 사무실로 피자를 여러 판 주문했는데, 모두가 그것을 많이 즐겼다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "add10|1-3",
+"title": "추가문제 POINT 1 관계대명사 선택",
+"chunks": [
+[
+"The local newspaper",
+"지역 신문은",
+"S"
+],
+[
+"interviewed a baseball coach",
+"야구 코치를 인터뷰했다",
+"V"
+],
+[
+"whose team just won a championship.",
+"그의 팀이 막 우승을 차지한",
+"V"
+]
+],
+"tr": "지역 신문은 그의 팀이 막 우승을 차지한 야구 코치를 인터뷰했다.",
+"ans": "whose",
+"pts": null
+},
+{
+"key": "add10|1-4",
+"title": "추가문제 POINT 1 관계대명사 선택",
+"chunks": [
+[
+"We",
+"우리는",
+"S"
+],
+[
+"watched a movie",
+"영화를 봤다",
+"V"
+],
+[
+"about Winston Churchill",
+"윈스턴 처칠에 관한",
+"M"
+],
+[
+"which I downloaded",
+"내가 다운받은",
+"V"
+],
+[
+"from a website.",
+"웹사이트에서.",
+""
+]
+],
+"tr": "우리는 내가 웹사이트에서 다운받은 윈스턴 처칠에 관한 영화를 봤다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "add10|1-5",
+"title": "추가문제 POINT 1 관계대명사 선택",
+"chunks": [
+[
+"The bank",
+"그 은행은",
+"S"
+],
+[
+"does not charge any fees",
+"어떤 수수료도 부과하지 않는다",
+"V"
+],
+[
+"to customers",
+"고객에게는",
+""
+],
+[
+"that use its mobile app.",
+"모바일 앱을 이용하는",
+"V"
+]
+],
+"tr": "그 은행은 모바일 앱을 이용하는 고객에게는 어떤 수수료도 부과하지 않는다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "add10|2-1",
+"title": "추가문제 POINT 2 대명사 vs. 관계대명사",
+"chunks": [
+[
+"The doctor",
+"의사는",
+"S"
+],
+[
+"gave Howard some medicine,",
+"하워드에게 약간의 약을 주었다,",
+"V"
+],
+[
+"which helped him get better right away.",
+"그런데 그것은 그가 바로 나아지도록 도왔다.",
+"V"
+]
+],
+"tr": "그 의사는 Howard에게 약간의 약을 주었는데, 그것은 그가 바로 나아지도록 도왔다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "add10|2-2",
+"title": "추가문제 POINT 2 대명사 vs. 관계대명사",
+"chunks": [
+[
+"The airline",
+"그 항공사는",
+"S"
+],
+[
+"will refund",
+"환불해 줄 것이다",
+"V"
+],
+[
+"all passengers",
+"모든 승객들에게",
+""
+],
+[
+"whose flights were canceled",
+"항공편이 취소된",
+"V"
+],
+[
+"last Tuesday night.",
+"지난 화요일 밤에.",
+""
+]
+],
+"tr": "그 항공사는 지난 화요일 밤에 그들의 항공편이 취소된 모든 승객들에게 환불을 해줄 것이다.",
+"ans": "whose",
+"pts": null
+},
+{
+"key": "add10|2-3",
+"title": "추가문제 POINT 2 대명사 vs. 관계대명사",
+"chunks": [
+[
+"I",
+"나는",
+"S"
+],
+[
+"tried different passwords for the computer",
+"컴퓨터에 여러 비밀번호를 시도해 보았다",
+"V"
+],
+[
+"and,",
+"그리고",
+"C"
+],
+[
+"thankfully, one of them",
+"다행스럽게도, 그것들 중 하나가",
+"V"
+],
+[
+"was correct.",
+"맞았다.",
+"V"
+]
+],
+"tr": "나는 컴퓨터에 여러 비밀번호를 시도해 보았고, 다행스럽게도, 그것들 중 하나가 맞았다.",
+"ans": "them",
+"pts": null
+},
+{
+"key": "add10|2-4",
+"title": "추가문제 POINT 2 대명사 vs. 관계대명사",
+"chunks": [
+[
+"The smartphone",
+"그 스마트폰은",
+"S"
+],
+[
+"may be expensive,",
+"비쌀지도 모른다,",
+"V"
+],
+[
+"but",
+"하지만",
+"C"
+],
+[
+"its functions",
+"그것의 기능은",
+"V"
+],
+[
+"are highly advanced",
+"매우 고급이다",
+"V"
+],
+[
+"compared to those of other models.",
+"다른 모델의 기능에 비해.",
+""
+]
+],
+"tr": "그 스마트폰은 비쌀지도 모르지만, 다른 모델의 기능에 비해 그것의 기능은 매우 고급이다.",
+"ans": "its",
+"pts": null
+},
+{
+"key": "add10|2-5",
+"title": "추가문제 POINT 2 대명사 vs. 관계대명사",
+"chunks": [
+[
+"The chef",
+"그 요리사는",
+"S"
+],
+[
+"owns two restaurants",
+"식당 두 개를 소유하고 있다",
+"V"
+],
+[
+"in the city of London,",
+"런던시에,",
+""
+],
+[
+"both of which",
+"그것들 둘 다는",
+"V"
+],
+[
+"he opened five years ago.",
+"그가 5년 전에 문을 열었다.",
+""
+]
+],
+"tr": "그 요리사는 런던시에 두 개의 식당을 소유하고 있는데, 그것들 둘 다 5년 전에 문을 열었다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "add10|3-1",
+"title": "추가문제 POINT 3 관계대명사 vs. 관계부사 /「전치사 + which」",
+"chunks": [
+[
+"Linda and I",
+"린다와 나는",
+"S"
+],
+[
+"stayed at a beautiful resort,",
+"아름다운 리조트에 묵었다,",
+"V"
+],
+[
+"which was on an island",
+"섬에 있는",
+"V"
+],
+[
+"between Turkey and Greece.",
+"튀르키예와 그리스 사이의.",
+"M"
+]
+],
+"tr": "Linda와 나는 튀르키예와 그리스 사이의 섬에 있는 아름다운 리조트에 묵었다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "add10|3-2",
+"title": "추가문제 POINT 3 관계대명사 vs. 관계부사 /「전치사 + which」",
+"chunks": [
+[
+"Many viewers",
+"많은 시청자들은",
+"S"
+],
+[
+"are unhappy",
+"불만족스러워한다",
+"V"
+],
+[
+"with the way",
+"그 방식에",
+""
+],
+[
+"in which the TV show ended.",
+"그 텔레비전 쇼가 끝난",
+"V"
+]
+],
+"tr": "많은 시청자들이 그 TV 쇼가 끝난 방식에 불만족스러워한다.",
+"ans": "in which",
+"pts": null
+},
+{
+"key": "add10|3-3",
+"title": "추가문제 POINT 3 관계대명사 vs. 관계부사 /「전치사 + which」",
+"chunks": [
+[
+"We",
+"우리는",
+"S"
+],
+[
+"only use the air conditioner",
+"에어컨만 사용한다",
+"V"
+],
+[
+"on days",
+"날들에",
+""
+],
+[
+"when the weather outside is extremely hot.",
+"밖의 날씨가 몹시 더운",
+"V"
+]
+],
+"tr": "우리는 밖의 날씨가 몹시 더운 날에만 에어컨을 사용한다.",
+"ans": "when",
+"pts": null
+},
+{
+"key": "add10|3-4",
+"title": "추가문제 POINT 3 관계대명사 vs. 관계부사 /「전치사 + which」",
+"chunks": [
+[
+"Students",
+"학생들은",
+"S"
+],
+[
+"will be asked",
+"요청받을 것이다",
+"V"
+],
+[
+"to give presentations",
+"발표를 하라고",
+""
+],
+[
+"on the books",
+"그 책들에 대해",
+""
+],
+[
+"which they read",
+"그들이 읽은",
+"V"
+],
+[
+"over the summer.",
+"여름 동안.",
+""
+]
+],
+"tr": "학생들은 그들이 여름 동안 읽은 책에 대해 발표를 할 것을 요청받을 것이다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "add10|3-5",
+"title": "추가문제 POINT 3 관계대명사 vs. 관계부사 /「전치사 + which」",
+"chunks": [
+[
+"Mr. Taylor",
+"테일러 씨는",
+"S"
+],
+[
+"has to give the manager",
+"매니저에게 설명해야 한다",
+"V"
+],
+[
+"the reason why his report is late.",
+"그의 보고서가 늦은 이유를.",
+"V"
+]
+],
+"tr": "Taylor씨는 그의 보고서가 늦은 이유를 매니저에게 설명해야 한다.",
+"ans": "why",
+"pts": null
+},
+{
+"key": "add10|4-1",
+"title": "추가문제 POINT 4 that vs. which vs. what",
+"chunks": [
+[
+"My friend",
+"내 친구는",
+"S"
+],
+[
+"recommended a new diet",
+"새로운 식단을 추천했다",
+"V"
+],
+[
+"that does not include any red meat.",
+"어떤 붉은색 육류도 포함하지 않는",
+"V"
+]
+],
+"tr": "나의 친구는 어떤 붉은색 육류도 포함하지 않는 새로운 식단을 추천했다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "add10|4-2",
+"title": "추가문제 POINT 4 that vs. which vs. what",
+"chunks": [
+[
+"Sandy",
+"샌디는",
+"S"
+],
+[
+"has not determined",
+"결정하지 못했다",
+"V"
+],
+[
+"what she wants to do",
+"무엇을 하기를 원하는지",
+"V"
+],
+[
+"after college,",
+"대학 졸업 후에,",
+""
+],
+[
+"but she",
+"하지만 그녀는",
+"S"
+],
+[
+"needs to find a job.",
+"일자리를 찾을 필요가 있다.",
+"V"
+]
+],
+"tr": "Sandy는 대학 졸업 후에 무엇을 하기를 원하는지 결정하지 못했지만, 그녀는 일자리를 찾을 필요가 있다.",
+"ans": "what",
+"pts": null
+},
+{
+"key": "add10|4-3",
+"title": "추가문제 POINT 4 that vs. which vs. what",
+"chunks": [
+[
+"One benefit",
+"한 가지 이점은",
+"S"
+],
+[
+"of getting eight hours of sleep a night",
+"하룻밤에 8시간을 자는",
+"M"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"that you can think clearly the next day.",
+"당신이 다음날 또렷하게 생각할 수 있다는 것.",
+"V"
+]
+],
+"tr": "하룻밤에 8시간을 자는 것의 한 가지 이점은 다음날 당신이 또렷하게 생각할 수 있다는 것이다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "add10|4-4",
+"title": "추가문제 POINT 4 that vs. which vs. what",
+"chunks": [
+[
+"Items",
+"품목들은",
+"S"
+],
+[
+"which are discounted this month",
+"이번 달에 할인되는",
+"V"
+],
+[
+"will have a bright green sticker",
+"밝은 녹색 스티커가 있을 것이다",
+"V"
+],
+[
+"showing the price.",
+"가격을 보여주는.",
+"M"
+]
+],
+"tr": "이번 달에 할인되는 품목들은 가격을 보여주는 밝은 녹색 스티커가 있을 것이다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "add10|4-5",
+"title": "추가문제 POINT 4 that vs. which vs. what",
+"chunks": [
+[
+"In the future,",
+"미래에,",
+""
+],
+[
+"what is learned",
+"알게 된 것이",
+"V"
+],
+[
+"by today’s cancer researchers",
+"오늘날의 암 연구자들에 의해",
+"S"
+],
+[
+"could save many lives.",
+"많은 생명을 구할 수도 있다.",
+"V"
+]
+],
+"tr": "미래에, 오늘날의 암 연구자들에 의해 알게 된 것이 많은 생명을 구할 수도 있다.",
+"ans": "what",
+"pts": null
+},
+{
+"key": "add10|5-1",
+"title": "추가문제 POINT 5 that만 올 수 있는 경우",
+"chunks": [
+[
+"Many citizens",
+"많은 시민들은",
+"S"
+],
+[
+"may be disappointed",
+"실망할지도 모른다",
+"V"
+],
+[
+"to hear the news",
+"그 소식을 듣고",
+""
+],
+[
+"that the library will be closing next month.",
+"도서관이 다음 달에 문을 닫을 것이라는",
+"V"
+]
+],
+"tr": "많은 시민들은 도서관이 다음 달에 문을 닫을 것이라는 소식을 듣고 실망할지도 모른다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "add10|5-2",
+"title": "추가문제 POINT 5 that만 올 수 있는 경우",
+"chunks": [
+[
+"No one",
+"아무도",
+"S"
+],
+[
+"in my family",
+"우리 가족 중에",
+"M"
+],
+[
+"could agree on",
+"동의할 수 없었다",
+"V"
+],
+[
+"what we should name our new pet.",
+"우리의 새 반려동물 이름을 무엇으로 지어야 하는지",
+"V"
+]
+],
+"tr": "우리 가족 중에 누구도 우리의 새 반려동물 이름을 무엇으로 지어야 하는지 동의할 수 없었다.",
+"ans": "what",
+"pts": null
+},
+{
+"key": "add10|5-3",
+"title": "추가문제 POINT 5 that만 올 수 있는 경우",
+"chunks": [
+[
+"Residents",
+"주민들은",
+"S"
+],
+[
+"were pleased",
+"기뻐했다",
+"V"
+],
+[
+"that the city added a new bus stop",
+"시가 새로운 버스 정류장을 추가해서",
+"V"
+],
+[
+"near their neighborhood.",
+"그들의 지역 근처에.",
+""
+]
+],
+"tr": "주민들은 시가 그들의 지역 근처에 새로운 버스 정류장을 추가해서 기뻐했다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "add10|5-4",
+"title": "추가문제 POINT 5 that만 올 수 있는 경우",
+"chunks": [
+[
+"Don’t worry",
+"걱정하지 마라",
+"V"
+],
+[
+"about situations",
+"상황에 대해",
+""
+],
+[
+"which are outside of your control,",
+"당신의 통제 밖에 있는",
+"S"
+],
+[
+"and focus",
+"그리고 집중해라",
+""
+],
+[
+"on what you can change instead.",
+"그 대신 당신이 바꿀 수 있는 것에.",
+""
+]
+],
+"tr": "당신의 통제 밖에 있는 상황에 대해 걱정하지 말고, 그 대신 당신이 바꿀 수 있는 것에 집중해라.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add10|5-5",
+"title": "추가문제 POINT 5 that만 올 수 있는 경우",
+"chunks": [
+[
+"We",
+"우리는",
+"S"
+],
+[
+"had such a wonderful time",
+"매우 멋진 시간을 보냈다",
+"V"
+],
+[
+"at dinner",
+"저녁 식사에서",
+""
+],
+[
+"that we made plans",
+"그래서 계획을 세웠다",
+"V"
+],
+[
+"to meet regularly once a month.",
+"한 달에 한 번씩 정기적으로 만날.",
+"M"
+]
+],
+"tr": "우리는 저녁 식사에서 매우 멋진 시간을 보내서 한 달에 한 번씩 정기적으로 만날 계획을 세웠다.",
+"ans": "that",
+"pts": null
+}
+]

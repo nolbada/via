@@ -1,0 +1,3037 @@
+[
+{
+"key": "c11p1|예제",
+"title": "POINT 1 · 명사-대명사 수 일치",
+"chunks": [
+[
+"Our brains",
+"우리의 뇌들은",
+"S"
+],
+[
+"today are perhaps more efficient",
+"오늘날 아마 더 효율적이다",
+""
+],
+[
+"than those of our ancestors.",
+"우리 조상들의 것들보다.",
+"V"
+]
+],
+"tr": "오늘날 우리의 뇌들은 아마 조상들의 것들보다 더 효율적일 것이다.",
+"ans": "those",
+"pts": null
+},
+{
+"key": "c11p1|1",
+"title": "POINT 1 · 명사-대명사 수 일치",
+"chunks": [
+[
+"I made some sandwiches for lunch,",
+"나는 점심으로 샌드위치를 조금 만들었다,",
+"S"
+],
+[
+"but someone ate them",
+"하지만 누군가가 그것들을 먹었다",
+"V"
+],
+[
+"without telling me.",
+"나에게 말도 하지 않고.",
+""
+]
+],
+"tr": "나는 점심으로 샌드위치를 조금 만들었지만, 누군가가 나에게 말도 하지 않고 그것들을 먹었다.",
+"ans": "them",
+"pts": null
+},
+{
+"key": "c11p1|2",
+"title": "POINT 1 · 명사-대명사 수 일치",
+"chunks": [
+[
+"As you can see,",
+"보다시피,",
+""
+],
+[
+"the view from this balcony",
+"이 발코니에서의 경치는",
+"S"
+],
+[
+"is more beautiful",
+"더 아름답다",
+""
+],
+[
+"than that from the tower downtown.",
+"도심에 있는 탑에서의 그것보다.",
+"V"
+]
+],
+"tr": "보다시피, 이 발코니에서의 경치는 도심에 있는 탑에서의 그것보다 더 아름답다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c11p1|3",
+"title": "POINT 1 · 명사-대명사 수 일치",
+"chunks": [
+[
+"The children",
+"어린이들이",
+"S"
+],
+[
+"gathered around the Christmas tree,",
+"크리스마스트리 주위에 모였다,",
+""
+],
+[
+"and they opened their gifts excitedly.",
+"그리고 그들은 신나게 선물을 열었다.",
+"V"
+]
+],
+"tr": "어린이들이 크리스마스트리 주위에 모였고, 그들은 신나게 선물을 열었다.",
+"ans": "they",
+"pts": null
+},
+{
+"key": "c11p1|4",
+"title": "POINT 1 · 명사-대명사 수 일치",
+"chunks": [
+[
+"Of all the good qualities",
+"모든 좋은 특징들 중에서",
+""
+],
+[
+"of the smartphone,",
+"스마트폰의",
+"S"
+],
+[
+"the best one is its light weight.",
+"가장 좋은 것은 그것의 가벼운 무게이다.",
+"V"
+]
+],
+"tr": "스마트폰의 모든 좋은 특징들 중에서, 가장 좋은 것은 그것의 가벼운 무게이다.",
+"ans": "its",
+"pts": null
+},
+{
+"key": "c11p1|5",
+"title": "POINT 1 · 명사-대명사 수 일치",
+"chunks": [
+[
+"Dorothy took one",
+"도로시는 하나를 꺼냈다",
+"S"
+],
+[
+"of the letters from the box,",
+"상자에 있는 편지들 중",
+""
+],
+[
+"and it was from a neighbor",
+"그리고 그것은 이웃으로부터 온 것이었다",
+"V"
+],
+[
+"a long time ago.",
+"오래전에.",
+""
+]
+],
+"tr": "Dorothy는 상자에서 편지들 중 하나를 꺼냈고, 그것은 오래전에 이웃으로부터 온 것이었다.",
+"ans": "it",
+"pts": null
+},
+{
+"key": "c11p1|6",
+"title": "POINT 1 · 명사-대명사 수 일치",
+"chunks": [
+[
+"Did you lose your keys?",
+"너는 열쇠들을 잃어버렸니?",
+"S"
+],
+[
+"I found these",
+"나는 이것들을 찾았어",
+"V"
+],
+[
+"near your mailbox.",
+"너의 우편함 근처에서.",
+""
+]
+],
+"tr": "너는 열쇠들을 잃어버렸니? 나는 이것들을 너의 우편함 근처에서 찾았어.",
+"ans": "these",
+"pts": null
+},
+{
+"key": "c11p1|7",
+"title": "POINT 1 · 명사-대명사 수 일치",
+"chunks": [
+[
+"At night, Joe and his brothers",
+"밤에, 조와 그의 형제들은",
+"S"
+],
+[
+"stopped the car",
+"차를 세웠다",
+""
+],
+[
+"and spent the night in their tents.",
+"그리고 그들의 텐트에서 밤을 보냈다.",
+"V"
+]
+],
+"tr": "밤에, Joe와 그의 형제들은 차를 세웠고 그들의 텐트에서 밤을 보냈다.",
+"ans": "their",
+"pts": null
+},
+{
+"key": "c11p1|8",
+"title": "POINT 1 · 명사-대명사 수 일치",
+"chunks": [
+[
+"Interestingly, when the price of rice",
+"흥미롭게도, 쌀의 가격이",
+"S"
+],
+[
+"falls in China,",
+"중국에서 떨어질 때,",
+""
+],
+[
+"people tend to buy less of it.",
+"사람들은 그것을 덜 사는 경향이 있다.",
+"V"
+]
+],
+"tr": "흥미롭게도, 중국에서 쌀의 가격이 떨어질 때, 사람들은 그것을 덜 사는 경향이 있다.",
+"ans": "it",
+"pts": null
+},
+{
+"key": "c11p2|예제",
+"title": "POINT 2 · 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"Clothes are part of how",
+"옷은 ~하는 방법의 일부이다",
+""
+],
+[
+"people",
+"사람들이",
+"S"
+],
+[
+"present themselves to the world.",
+"그들 자신을 세상에 드러내는.",
+"V"
+]
+],
+"tr": "옷은 사람들이 그들 자신을 세상에 드러내는 방법의 일부이다.",
+"ans": "themselves",
+"pts": null
+},
+{
+"key": "c11p2|1",
+"title": "POINT 2 · 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"(You) Express",
+"(너는) 표현하라",
+"S"
+],
+[
+"yourself freely",
+"너 자신을 자유롭게",
+"V"
+],
+[
+"and do not hide your true emotions.",
+"그리고 너의 진정한 감정을 숨기지 마라.",
+""
+]
+],
+"tr": "너 자신을 자유롭게 표현하고 너의 진정한 감정을 숨기지 마라.",
+"ans": "yourself",
+"pts": null
+},
+{
+"key": "c11p2|2",
+"title": "POINT 2 · 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"Larry said that",
+"래리는 ~라고 말했다",
+"S"
+],
+[
+"forgiving someone",
+"누군가를 용서하는 것이",
+"S"
+],
+[
+"makes him feel like a good person.",
+"그를 좋은 사람처럼 느끼게 만든다.",
+"V"
+]
+],
+"tr": "Larry는 누군가를 용서하는 것이 그를 좋은 사람처럼 느끼게 만든다고 말했다.",
+"ans": "him",
+"pts": null
+},
+{
+"key": "c11p2|3",
+"title": "POINT 2 · 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"The AI robot",
+"인공지능 로봇은",
+"S"
+],
+[
+"in the novel by Brian Aldiss",
+"브라이언 올디스의 소설에 나오는",
+""
+],
+[
+"thinks of itself as a human boy.",
+"그 자신을 인간 소년으로 생각한다.",
+"V"
+]
+],
+"tr": "Brian Aldiss의 소설에 나오는 인공 지능 로봇은 그 자신을 인간 소년으로 생각한다.",
+"ans": "itself",
+"pts": null
+},
+{
+"key": "c11p2|4",
+"title": "POINT 2 · 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"When traveling in a new country,",
+"새로운 나라에서 여행할 때,",
+""
+],
+[
+"we can often talk to strangers",
+"우리는 종종 낯선 사람들에게 이야기할 수 있다",
+"S"
+],
+[
+"about ourselves.",
+"우리 자신에 대해.",
+"V"
+]
+],
+"tr": "새로운 나라에서 여행할 때, 우리는 종종 낯선 사람들에게 우리 자신에 대해 이야기할 수 있다.",
+"ans": "ourselves",
+"pts": null
+},
+{
+"key": "c11p2|5",
+"title": "POINT 2 · 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"Most preschoolers do exactly what",
+"대부분의 미취학 아동들은 정확히 ~하는 것을 한다",
+""
+],
+[
+"their parents",
+"그들의 부모가",
+"S"
+],
+[
+"tell them to do.",
+"그들에게 하라고 말하는.",
+"V"
+]
+],
+"tr": "대부분의 미취학 아동들은 정확히 그들의 부모가 그들에게 하라고 말하는 것을 한다.",
+"ans": "them",
+"pts": null
+},
+{
+"key": "c11p2|6",
+"title": "POINT 2 · 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"Marina had only a salad for lunch,",
+"마리나는 점심으로 샐러드만 먹었다,",
+""
+],
+[
+"but Sharon was hungry",
+"하지만 샤론은 배가 고팠다",
+"S"
+],
+[
+"and got herself a three-course meal.",
+"그리고 그녀 자신에게 세 가지 코스의 식사를 샀다.",
+"V"
+]
+],
+"tr": "Marina는 점심으로 샐러드만 먹었지만, Sharon은 배가 고파서 그녀 자신에게 세 가지 코스의 식사를 샀다.",
+"ans": "herself",
+"pts": null
+},
+{
+"key": "c11p2|7",
+"title": "POINT 2 · 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"Harry and Liam play tennis on the weekends,",
+"해리와 리암은 주말에 테니스를 친다,",
+""
+],
+[
+"and Liam",
+"그리고 리암이",
+"S"
+],
+[
+"always beats him.",
+"항상 그를 이긴다.",
+"V"
+]
+],
+"tr": "Harry와 Liam은 주말에 테니스를 치고, Liam이 항상 그를 이긴다.",
+"ans": "him",
+"pts": null
+},
+{
+"key": "c11p2|8",
+"title": "POINT 2 · 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"The penguin,",
+"펭귄은,",
+"S"
+],
+[
+"when a whale attacks,",
+"고래가 공격할 때,",
+""
+],
+[
+"protects itself",
+"그 자신을 보호한다",
+"V"
+],
+[
+"by swimming away very quickly.",
+"매우 빠르게 헤엄쳐 달아남으로써.",
+""
+]
+],
+"tr": "펭귄은, 고래가 공격할 때, 매우 빠르게 헤엄쳐 달아남으로써 그 자신을 보호한다.",
+"ans": "itself",
+"pts": null
+},
+{
+"key": "c11p3|예제",
+"title": "POINT 3 · it/them vs. that/those",
+"chunks": [
+[
+"The core difference between",
+"~ 사이의 핵심적인 차이는",
+""
+],
+[
+"computers of the future",
+"미래의 컴퓨터들과",
+"S"
+],
+[
+"and those of the past",
+"과거의 것들",
+"V"
+],
+[
+"is self-learning ability.",
+"자체 학습 능력이다.",
+""
+]
+],
+"tr": "미래의 컴퓨터들과 과거의 것들 사이의 핵심적인 차이는 자체 학습 능력이다.",
+"ans": "those",
+"pts": null
+},
+{
+"key": "c11p3|1",
+"title": "POINT 3 · it/them vs. that/those",
+"chunks": [
+[
+"The length of Manhattan’s Broadway",
+"맨해튼의 브로드웨이의 길이는",
+"S"
+],
+[
+"is greater than that of any other street",
+"다른 어떤 거리의 그것보다 더 길다",
+"V"
+],
+[
+"in the city.",
+"그 도시의.",
+""
+]
+],
+"tr": "맨해튼의 브로드웨이의 길이는 그 도시의 다른 어떤 거리의 것보다 더 길다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c11p3|2",
+"title": "POINT 3 · it/them vs. that/those",
+"chunks": [
+[
+"Regular exercise is the most important habit",
+"규칙적인 운동은 가장 중요한 습관이다",
+""
+],
+[
+"for those",
+"사람들에게",
+"V"
+],
+[
+"who want to maintain good health.",
+"좋은 건강을 유지하기를 원하는.",
+"S"
+]
+],
+"tr": "규칙적인 운동은 좋은 건강을 유지하기를 원하는 사람들에게 가장 중요한 습관이다.",
+"ans": "those",
+"pts": null
+},
+{
+"key": "c11p3|3",
+"title": "POINT 3 · it/them vs. that/those",
+"chunks": [
+[
+"John left his mug",
+"존은 그의 머그잔을 두었다",
+"S"
+],
+[
+"next to some magazines,",
+"몇 권의 잡지 옆에,",
+""
+],
+[
+"and when he returned,",
+"그리고 그가 돌아왔을 때,",
+""
+],
+[
+"he found it in the same place.",
+"그는 같은 장소에서 그것을 발견했다.",
+"V"
+]
+],
+"tr": "John은 그의 머그잔을 몇 권의 잡지 옆에 두었고, 그가 돌아왔을 때, 그는 같은 장소에서 그것을 발견했다.",
+"ans": "it",
+"pts": null
+},
+{
+"key": "c11p3|4",
+"title": "POINT 3 · it/them vs. that/those",
+"chunks": [
+[
+"Please look over these new files",
+"이 새로운 파일들을 살펴봐 주세요",
+"S"
+],
+[
+"after you’re done",
+"네가 끝낸 후에",
+""
+],
+[
+"with those on your desk.",
+"책상 위에 있는 것들을.",
+"V"
+]
+],
+"tr": "책상 위에 있는 것들을 마친 후에 이 새로운 파일들을 살펴봐 주세요.",
+"ans": "those",
+"pts": null
+},
+{
+"key": "c11p3|5",
+"title": "POINT 3 · it/them vs. that/those",
+"chunks": [
+[
+"In 2021, the number of deaths",
+"2021년에는 사망자의 수가",
+"S"
+],
+[
+"was larger than that of births",
+"출생자의 수보다 더 많았다",
+"V"
+],
+[
+"for the first time in Korea.",
+"한국에서 처음으로.",
+""
+]
+],
+"tr": "2021년에는, 한국에서 최초로 사망자의 수가 출생자의 수보다 더 많았다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c11p4|예제",
+"title": "POINT 4 · it/them vs. one/ones",
+"chunks": [
+[
+"In the speaking or writing,",
+"말하기나 쓰기에서,",
+""
+],
+[
+"you uncover your bad ideas,",
+"당신은 당신의 나쁜 생각들을 발견하고,",
+"S"
+],
+[
+"and often, good ones too.",
+"종종 좋은 것들도 발견한다.",
+"V"
+]
+],
+"tr": "말하기나 쓰기에서, 당신은 당신의 나쁜 생각들을 발견하고, 종종 좋은 것들도 발견한다.",
+"ans": "ones",
+"pts": null
+},
+{
+"key": "c11p4|1",
+"title": "POINT 4 · it/them vs. one/ones",
+"chunks": [
+[
+"I lost my umbrella,",
+"나는 내 우산을 잃어버렸다,",
+"S"
+],
+[
+"so I had to buy one yesterday.",
+"그래서 어제 하나를 사야 했다.",
+"V"
+]
+],
+"tr": "나는 내 우산을 잃어버려서, 어제 하나를 사야 했다.",
+"ans": "one",
+"pts": null
+},
+{
+"key": "c11p4|2",
+"title": "POINT 4 · it/them vs. one/ones",
+"chunks": [
+[
+"The artist picked",
+"그 예술가는 골랐다",
+""
+],
+[
+"red and yellow paints,",
+"빨간색과 노란색 물감을",
+"S"
+],
+[
+"and he mixed them on his pallet.",
+"그리고 그는 팔레트 위에서 그것들을 섞었다.",
+"V"
+]
+],
+"tr": "그 예술가는 빨간색과 노란색 물감을 골랐고, 팔레트 위에서 그것들을 섞었다.",
+"ans": "them",
+"pts": null
+},
+{
+"key": "c11p4|3",
+"title": "POINT 4 · it/them vs. one/ones",
+"chunks": [
+[
+"The car had a flat tire,",
+"그 차는 펑크 난 타이어를 가지고 있었다,",
+"S"
+],
+[
+"so Martha changed it",
+"그래서 마사는 그것을 교체했다",
+"V"
+],
+[
+"before continuing the journey.",
+"여행을 계속하기 전에.",
+""
+]
+],
+"tr": "차의 타이어에 펑크가 나서, Martha는 여행을 계속하기 전에 그것을 교체했다.",
+"ans": "it",
+"pts": null
+},
+{
+"key": "c11p4|4",
+"title": "POINT 4 · it/them vs. one/ones",
+"chunks": [
+[
+"The shoes were too small,",
+"그 신발은 너무 작았다,",
+"S"
+],
+[
+"so the customer asked for",
+"그래서 그 고객은 요청했다",
+""
+],
+[
+"bigger ones.",
+"더 큰 것을.",
+"V"
+]
+],
+"tr": "그 신발은 너무 작아서, 그 고객은 더 큰 것을 요청했다.",
+"ans": "ones",
+"pts": null
+},
+{
+"key": "c11p4|5",
+"title": "POINT 4 · it/them vs. one/ones",
+"chunks": [
+[
+"Every person would agree",
+"모든 사람은 동의할 것이다",
+"S"
+],
+[
+"that one should always treat others with respect.",
+"누구나 항상 다른 사람들을 존중으로 대해야 한다는 것에.",
+"V"
+]
+],
+"tr": "모든 사람들은 누구나 항상 존중을 가지고 다른 사람들을 대해야 한다는 것에 동의할 것이다.",
+"ans": "one",
+"pts": null
+},
+{
+"key": "c11p5|예제",
+"title": "POINT 5 · 수량 표현-명사 수 일치",
+"chunks": [
+[
+"Eyes look red in photographs",
+"눈은 사진에서 빨갛게 보인다",
+""
+],
+[
+"when there is not much",
+"~이 많지 않을 때",
+"V"
+],
+[
+"light",
+"빛이",
+"S"
+],
+[
+"in the environment.",
+"주위에.",
+""
+]
+],
+"tr": "주위에 많은 빛이 없을 때 사진에서 눈이 빨갛게 보인다.",
+"ans": "much",
+"pts": null
+},
+{
+"key": "c11p5|1",
+"title": "POINT 5 · 수량 표현-명사 수 일치",
+"chunks": [
+[
+"I was nervous to make a decision",
+"나는 결정을 내리는 것이 불안했다",
+""
+],
+[
+"with little",
+"거의 없는",
+"V"
+],
+[
+"information.",
+"정보를 가지고.",
+"S"
+]
+],
+"tr": "나는 정보가 거의 없이 결정을 내리는 것이 불안했다.",
+"ans": "little",
+"pts": null
+},
+{
+"key": "c11p5|2",
+"title": "POINT 5 · 수량 표현-명사 수 일치",
+"chunks": [
+[
+"The traveler has visited",
+"그 여행객은 방문했다",
+""
+],
+[
+"almost every",
+"거의 모든",
+"V"
+],
+[
+"country",
+"나라를",
+"S"
+],
+[
+"in Europe, except for Finland and Norway.",
+"유럽에서, 핀란드와 노르웨이는 제외하고.",
+""
+]
+],
+"tr": "핀란드와 노르웨이를 제외하고, 그 여행객은 유럽의 거의 모든 나라를 방문했다.",
+"ans": "every",
+"pts": null
+},
+{
+"key": "c11p5|3",
+"title": "POINT 5 · 수량 표현-명사 수 일치",
+"chunks": [
+[
+"My name is Wilhemina Smiths,",
+"내 이름은 윌헤미나 스미스이고,",
+""
+],
+[
+"and Smiths has an “s”",
+"스미스에는 에스가 붙어 있다",
+""
+],
+[
+"at both",
+"양쪽",
+"V"
+],
+[
+"ends.",
+"끝에.",
+"S"
+]
+],
+"tr": "나의 이름은 Wilhemina Smiths이고, Smiths는 양쪽 끝에 ‘s’가 있다.",
+"ans": "both",
+"pts": null
+},
+{
+"key": "c11p5|4",
+"title": "POINT 5 · 수량 표현-명사 수 일치",
+"chunks": [
+[
+"Many of",
+"많은",
+"V"
+],
+[
+"the dishes in this restaurant",
+"이 식당의 음식들이",
+"S"
+],
+[
+"are made from fresh local vegetables.",
+"신선한 현지 채소로 만들어진다.",
+""
+]
+],
+"tr": "이 식당의 많은 음식들은 신선한 현지 채소로 만들어진다.",
+"ans": "Many",
+"pts": null
+},
+{
+"key": "c11p5|5",
+"title": "POINT 5 · 수량 표현-명사 수 일치",
+"chunks": [
+[
+"I have read",
+"나는 읽었다",
+""
+],
+[
+"a few",
+"몇 권의",
+"V"
+],
+[
+"books",
+"책들을",
+"S"
+],
+[
+"on the moon,",
+"달에 관한,",
+""
+],
+[
+"but I still have much to learn.",
+"하지만 나는 아직도 배울 것이 많다.",
+""
+]
+],
+"tr": "나는 달에 관한 몇 권의 책들을 읽었지만, 아직도 배울 것이 많이 있다.",
+"ans": "a few",
+"pts": null
+},
+{
+"key": "c11p5|6",
+"title": "POINT 5 · 수량 표현-명사 수 일치",
+"chunks": [
+[
+"All of",
+"모든",
+"V"
+],
+[
+"nature",
+"자연은",
+"S"
+],
+[
+"is constantly undergoing change",
+"끊임없이 변화를 겪고 있다",
+""
+],
+[
+"from one day to the next.",
+"하루하루.",
+""
+]
+],
+"tr": "자연의 모든 것은 하루하루 끊임없이 변화를 겪고 있다.",
+"ans": "All",
+"pts": null
+},
+{
+"key": "c11p5|7",
+"title": "POINT 5 · 수량 표현-명사 수 일치",
+"chunks": [
+[
+"You can’t truly love",
+"당신은 진정으로 사랑할 수 없다",
+""
+],
+[
+"other",
+"다른",
+"V"
+],
+[
+"people",
+"사람들을",
+"S"
+],
+[
+"if you don’t love yourself first.",
+"먼저 당신 자신을 사랑하지 않으면.",
+""
+]
+],
+"tr": "먼저 당신 자신을 사랑하지 않으면 당신은 진정으로 다른 사람들을 사랑할 수 없다.",
+"ans": "other",
+"pts": null
+},
+{
+"key": "c11p5|8",
+"title": "POINT 5 · 수량 표현-명사 수 일치",
+"chunks": [
+[
+"We have to wait a week",
+"우리는 일주일을 기다려야 한다",
+""
+],
+[
+"because neither of",
+"~ 때문에 어느 것도",
+"V"
+],
+[
+"the items",
+"물건들 중",
+"S"
+],
+[
+"we ordered from the store",
+"우리가 상점에서 주문한",
+""
+],
+[
+"is available right now.",
+"지금 당장 이용할 수 없다.",
+""
+]
+],
+"tr": "상점에서 주문한 물건 둘 다 지금 당장 이용할 수 없기 때문에 우리는 일주일을 기다려야 한다.",
+"ans": "neither",
+"pts": null
+},
+{
+"key": "c11q1|1",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The parents proudly said that",
+"그 부모는 자랑스럽게 말했다",
+""
+],
+[
+"their children",
+"그들의 아이들이",
+"S"
+],
+[
+"taught themselves",
+"자신들을 가르쳤다고",
+"V"
+],
+[
+"how to ride bicycles",
+"자전거 타는 법을",
+""
+],
+[
+"without any help.",
+"어떤 도움도 없이.",
+""
+]
+],
+"tr": "그 부모는 그들의 아이들이 어떤 도움도 없이 자전거 타는 법을 독학했다(그들 자신에게 가르쳤다)고 자랑스럽게 말했다.",
+"ans": "themselves",
+"pts": null
+},
+{
+"key": "c11q1|2",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"I found these colorful",
+"나는 발견했다 이 알록달록한",
+""
+],
+[
+"seashells",
+"조개껍데기들을",
+"S"
+],
+[
+"on the beach",
+"해변에서",
+""
+],
+[
+"and collected them",
+"그리고 그것들을 모았다",
+"V"
+],
+[
+"in my bucket.",
+"내 양동이에.",
+""
+]
+],
+"tr": "나는 해변에서 이 알록달록한 조개껍데기들을 발견했고 그것들을 내 양동이에 모았다.",
+"ans": "them",
+"pts": null
+},
+{
+"key": "c11q1|3",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The store offers",
+"그 상점은 제공한다",
+""
+],
+[
+"many",
+"많은",
+"V"
+],
+[
+"products,",
+"상품들을",
+"S"
+],
+[
+"which can satisfy",
+"그리고 그것은 만족시킬 수 있다",
+""
+],
+[
+"a variety of customer needs.",
+"다양한 고객의 요구를.",
+""
+]
+],
+"tr": "그 상점은 많은 상품들을 제공하는데, 그것은 다양한 고객의 요구를 만족시킬 수 있다.",
+"ans": "many",
+"pts": null
+},
+{
+"key": "c11q1|4",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The tree",
+"그 나무는",
+"S"
+],
+[
+"provides a lot of people",
+"제공한다 많은 사람들에게",
+""
+],
+[
+"with cool shade,",
+"시원한 그늘을",
+""
+],
+[
+"as its branches extend widely.",
+"그것의 가지가 넓게 뻗었기 때문에.",
+"V"
+]
+],
+"tr": "그것의 가지가 넓게 뻗었기 때문에, 그 나무는 많은 사람들에게 시원한 그늘을 제공한다.",
+"ans": "its",
+"pts": null
+},
+{
+"key": "c11q1|5",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The heart",
+"심장은",
+"S"
+],
+[
+"of a blue whale",
+"흰긴수염고래의",
+""
+],
+[
+"weighs about 180 kilograms",
+"약 180킬로그램의 무게가 나가고",
+""
+],
+[
+"and is much larger",
+"훨씬 더 크다",
+""
+],
+[
+"than that of an elephant.",
+"코끼리의 것보다.",
+"V"
+]
+],
+"tr": "흰긴수염고래의 심장은 약 180킬로그램 정도의 무게가 나가고 코끼리의 것보다 훨씬 크다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c11q1|6",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Recently, she has had",
+"최근에, 그녀는 가졌다",
+""
+],
+[
+"little",
+"거의 없는",
+"V"
+],
+[
+"time",
+"시간을",
+"S"
+],
+[
+"to spend on leisure activities",
+"여가 활동에 쓸",
+""
+],
+[
+"due to her busy work schedule.",
+"바쁜 업무 스케줄 때문에.",
+""
+]
+],
+"tr": "최근에, 그녀는 그녀의 바쁜 업무 스케줄로 인해서 여가 활동에 쓸 시간이 거의 없었다.",
+"ans": "little",
+"pts": null
+},
+{
+"key": "c11q1|7",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The guest admired",
+"그 손님은 감탄했고",
+""
+],
+[
+"the paintings",
+"그림들에",
+"S"
+],
+[
+"in the gallery,",
+"갤러리에 있는",
+""
+],
+[
+"and expressed an interest",
+"관심을 표현했다",
+""
+],
+[
+"in purchasing them.",
+"그것들을 구입하는 것에.",
+"V"
+]
+],
+"tr": "그 손님은 갤러리에 있는 그림들에 감탄했고, 그것들을 구입하는 것에 관심을 표현했다.",
+"ans": "them",
+"pts": null
+},
+{
+"key": "c11q1|8",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"After Ms. Gordon read Maria’s report,",
+"고든 씨는 마리아의 보고서를 읽은 후에,",
+""
+],
+[
+"she",
+"그녀는",
+"S"
+],
+[
+"praised her",
+"칭찬했다 그녀를",
+"V"
+],
+[
+"for finding the correct solution",
+"올바른 해결책을 찾은 것에 대해",
+""
+],
+[
+"to the problem.",
+"문제에 대한.",
+""
+]
+],
+"tr": "Gordon씨는 Maria의 보고서를 읽은 후에, 문제에 대한 올바른 해결책을 찾은 것에 대해 그녀를 칭찬했다.",
+"ans": "her",
+"pts": null
+},
+{
+"key": "c11q1|9",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"There are two types of memberships,",
+"두 종류의 회원권이 있다,",
+""
+],
+[
+"and you can select",
+"그리고 당신은 선택할 수 있다",
+""
+],
+[
+"either",
+"둘 중 하나의",
+"V"
+],
+[
+"option,",
+"선택지를",
+"S"
+],
+[
+"depending on your lifestyle.",
+"당신의 생활양식에 따라.",
+""
+]
+],
+"tr": "두 종류의 회원권이 있고, 당신의 생활양식에 따라 두 선택지 중 하나를 선택할 수 있다.",
+"ans": "either",
+"pts": null
+},
+{
+"key": "c11q1|10",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"When the coach was leaving the playground,",
+"코치가 운동장을 떠나려고 할 때,",
+""
+],
+[
+"a boy came up to him",
+"한 소년이 그에게 다가왔다",
+""
+],
+[
+"and asked the coach",
+"그리고 코치에게 부탁했다",
+""
+],
+[
+"to give him another",
+"그에게 주기를 또 다른",
+"V"
+],
+[
+"chance.",
+"기회를.",
+"S"
+]
+],
+"tr": "코치가 운동장을 떠나려고 할 때, 한 소년이 그에게 다가와서 코치에게 또 다른 기회를 달라고 부탁했다.",
+"ans": "another",
+"pts": null
+},
+{
+"key": "c11q1|11",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The flowers in Ruth’s garden",
+"루스의 정원에 있는 꽃들은",
+"S"
+],
+[
+"are fresher than those",
+"더 신선하다 것들보다",
+"V"
+],
+[
+"in the neighboring yards.",
+"이웃의 마당에 있는.",
+""
+]
+],
+"tr": "Ruth의 정원에 있는 꽃들은 이웃의 마당에 있는 것들보다 더 신선하다.",
+"ans": "those",
+"pts": null
+},
+{
+"key": "c11q1|12",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"If you’re looking for",
+"네가 찾고 있다면",
+""
+],
+[
+"a good movie to watch,",
+"볼 좋은 영화를",
+"S"
+],
+[
+"I can recommend one",
+"내가 하나 추천해 줄 수 있어",
+"V"
+],
+[
+"for you.",
+"너를 위해.",
+""
+]
+],
+"tr": "만약 네가 볼 좋은 영화를 찾고 있다면, 내가 너를 위해 하나 추천해 줄 수 있어.",
+"ans": "one",
+"pts": null
+},
+{
+"key": "c11q2|1",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"All",
+"모든",
+"V"
+],
+[
+"members of this sales department",
+"이 영업 부서의 구성원은",
+"S"
+],
+[
+"should attend the training session tomorrow.",
+"내일 교육 시간에 참석해야 한다.",
+""
+]
+],
+"tr": "이 영업 부서의 모든 구성원은 내일 교육 시간에 참석해야 한다.",
+"ans": "All",
+"pts": null
+},
+{
+"key": "c11q2|2",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"Two cities in Switzerland",
+"스위스의 두 도시는",
+"S"
+],
+[
+"were not attacked",
+"공격을 받지 않았다",
+""
+],
+[
+"during the war",
+"전쟁 동안",
+""
+],
+[
+"thanks to their locations.",
+"그것들의 위치 덕분에.",
+"V"
+]
+],
+"tr": "스위스의 두 도시는 그것들의 위치 덕분에 전쟁 동안 공격을 받지 않았다.",
+"ans": "their",
+"pts": null
+},
+{
+"key": "c11q2|3",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"You can borrow",
+"너는 빌릴 수 있다",
+""
+],
+[
+"the book",
+"그 책을",
+"S"
+],
+[
+"from the library,",
+"도서관에서,",
+""
+],
+[
+"but be sure to return it",
+"하지만 그것을 반납하는 것을 확실히 해라",
+"V"
+],
+[
+"on time.",
+"제때.",
+""
+]
+],
+"tr": "너는 도서관에서 그 책을 빌릴 수는 있지만, 제때 그것을 반납하는 것을 확실히 해라.",
+"ans": "it",
+"pts": null
+},
+{
+"key": "c11q2|4",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"Call me at this number",
+"이 번호로 나에게 전화해라",
+""
+],
+[
+"if you",
+"네가 ~하면",
+"S"
+],
+[
+"find yourself",
+"너 자신을 발견하면",
+"V"
+],
+[
+"in need of a ride",
+"차를 필요로 하고 있는",
+""
+],
+[
+"home late at night.",
+"늦은 밤에 집에 갈.",
+""
+]
+],
+"tr": "늦은 밤에 집에 갈 차를 필요로 하고 있는 너 자신을 발견하면 이 번호로 나에게 전화해라.",
+"ans": "yourself",
+"pts": null
+},
+{
+"key": "c11q2|5",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"We had to stop",
+"우리는 막아야 했다",
+""
+],
+[
+"people from entering",
+"사람들이 들어가는 것을",
+""
+],
+[
+"the park",
+"공원에",
+"S"
+],
+[
+"for a while",
+"잠시",
+""
+],
+[
+"because it had gotten too crowded.",
+"그것이 너무 혼잡해졌기 때문에.",
+"V"
+]
+],
+"tr": "공원이 너무 혼잡해졌기 때문에, 우리는 잠시 사람들이 들어가는 것을 막아야 했다.",
+"ans": "it",
+"pts": null
+},
+{
+"key": "c11q2|6",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"Although there were several",
+"비록 몇몇이 있을지라도",
+""
+],
+[
+"skilled workers",
+"숙련된 노동자들이",
+"S"
+],
+[
+"on the team,",
+"팀에,",
+""
+],
+[
+"the manager wanted to hire",
+"그 매니저는 고용하기를 원했다",
+""
+],
+[
+"new ones with more experience.",
+"더 많은 경력을 가진 새로운 사람들을.",
+"V"
+]
+],
+"tr": "비록 팀에 몇몇 숙련된 노동자들이 있을지라도, 그 매니저는 더 많은 경력을 가진 새로운 사람들을 고용하기를 원했다.",
+"ans": "ones",
+"pts": null
+},
+{
+"key": "c11q2|7",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"I needed to put",
+"나는 들일 필요가 있었다",
+""
+],
+[
+"a little",
+"약간의",
+"V"
+],
+[
+"effort",
+"노력을",
+"S"
+],
+[
+"into understanding the concept of goal setting.",
+"목표 설정의 개념을 이해하는 데.",
+""
+]
+],
+"tr": "나는 목표 설정의 개념을 이해하는 데 약간의 노력을 할 필요가 있었다.",
+"ans": "a little",
+"pts": null
+},
+{
+"key": "c11q2|8",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"A few houses, including mine,",
+"나의 집을 포함하여, 몇몇 집들은",
+"S"
+],
+[
+"were lucky to escape the fire,",
+"다행히 화재를 피했다",
+""
+],
+[
+"but it burned down",
+"하지만 그것은 태워 버렸다",
+""
+],
+[
+"those of many neighbors.",
+"많은 이웃들의 집들을.",
+"V"
+]
+],
+"tr": "나의 집을 포함하여, 몇몇 집들은 다행히 화재를 피했지만, 그것은 많은 이웃들의 집들을 태워 버렸다.",
+"ans": "those",
+"pts": null
+},
+{
+"key": "c11q2|9",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"Some people like",
+"어떤 사람들은 좋아한다",
+""
+],
+[
+"blue cheese,",
+"블루치즈를,",
+"S"
+],
+[
+"while others consider it",
+"반면 다른 이들은 그것을 여긴다",
+"V"
+],
+[
+"unpleasant because of the smell.",
+"냄새 때문에 불쾌하게.",
+""
+]
+],
+"tr": "어떤 사람들은 블루치즈를 좋아하는 반면, 다른 이들은 냄새 때문에 그것을 불쾌하게 여긴다.",
+"ans": "it",
+"pts": null
+},
+{
+"key": "c11q2|10",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"Giving children",
+"아이들에게 주는 것은",
+"S"
+],
+[
+"freedom to make mistakes",
+"실수할 자유를",
+""
+],
+[
+"allows them",
+"그들이 ~하게 허락한다",
+"V"
+],
+[
+"to grow and learn.",
+"성장하고 배우도록.",
+""
+]
+],
+"tr": "아이들에게 실수할 자유를 주는 것은 그들이 성장하고 배울 수 있게 허락한다.",
+"ans": "them",
+"pts": null
+},
+{
+"key": "c11q2|11",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"In a study on sleep,",
+"잠에 대한 한 연구에서,",
+""
+],
+[
+"those",
+"사람들이",
+"V"
+],
+[
+"who got enough sleep",
+"충분한 잠을 잔",
+"C"
+],
+[
+"showed faster reaction times",
+"더 빠른 반응 시간을 보였다",
+""
+],
+[
+"than the people with little sleep.",
+"적은 잠을 잔 사람들보다.",
+""
+]
+],
+"tr": "잠에 대한 한 연구에서, 충분한 잠을 잔 사람들이 적은 잠을 잔 사람들보다 더 빠른 반응 시간을 보였다.",
+"ans": "those",
+"pts": null
+},
+{
+"key": "c11q2|12",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"The countries of Indonesia and the Philippines are similar in many ways,",
+"인도네시아와 필리핀 두 국가는 많은 면에서 비슷하다,",
+""
+],
+[
+"but Indonesia’s population",
+"하지만 인도네시아의 인구가",
+"S"
+],
+[
+"is greater than that",
+"더 많다 것보다",
+"V"
+],
+[
+"of the Philippines.",
+"필리핀의.",
+""
+]
+],
+"tr": "인도네시아와 필리핀 두 국가는 많은 면에서 비슷하지만, 인도네시아의 인구가 필리핀의 것보다 더 많다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c11s1|1-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"The train from Philadelphia to New York",
+"필라델피아에서 뉴욕으로 가는 열차는",
+"S"
+],
+[
+"is temporarily out of service,",
+"일시적으로 운행하지 않지만,",
+""
+],
+[
+"but passengers can take other (A) ones",
+"하지만 승객들은 다른 열차들을 탈 수 있다",
+"V"
+],
+[
+"from New Jersey and nearby cities instead.",
+"대신 뉴저지와 근처의 도시에서.",
+""
+]
+],
+"tr": "필라델피아에서 뉴욕으로 가는 열차는 일시적으로 운행하지 않지만, 승객들은 대신 뉴저지와 근처의 도시에서 출발하는 다른 열차들을 탈 수 있다.",
+"ans": "ones",
+"pts": [
+"11.4"
+]
+},
+{
+"key": "c11s1|1-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"The line from Philadelphia",
+"필라델피아에서 출발하는 노선은",
+"S"
+],
+[
+"will remain closed",
+"폐쇄된 채로 남아 있을 것이다",
+""
+],
+[
+"while workers give (B) it",
+"노동자들이 그것에 주는 동안",
+"V"
+],
+[
+"some needed repairs.",
+"약간의 필요한 수리를.",
+""
+]
+],
+"tr": "필라델피아에서 출발하는 노선은 노동자들이 그것에 필요한 수리를 하는 동안 폐쇄된 채로 남아 있을 것이다.",
+"ans": "it",
+"pts": [
+"11.1",
+"11.4"
+]
+},
+{
+"key": "c11s1|2-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"After the storm,",
+"폭풍 이후에,",
+""
+],
+[
+"(A) much of",
+"많은",
+"V"
+],
+[
+"the sand on the beach",
+"해변에 있는 모래가",
+"S"
+],
+[
+"was washed away,",
+"씻겨 내려갔고,",
+""
+],
+[
+"so the beach was changed dramatically.",
+"그래서 해변이 극적으로 바뀌었다.",
+""
+]
+],
+"tr": "폭풍 이후에, 해변의 많은 모래들이 씻겨 내려가서, 해변이 극적으로 바뀌었다.",
+"ans": "much",
+"pts": [
+"11.5"
+]
+},
+{
+"key": "c11s1|2-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"As huge and rough rocks were exposed,",
+"거대하고 거친 바위들이 노출되면서,",
+""
+],
+[
+"the scenery now",
+"지금의 풍경은",
+"S"
+],
+[
+"is totally different from",
+"~와는 완전히 다르다",
+""
+],
+[
+"(B) that of the peaceful beach",
+"평화로운 해변의 풍경",
+"V"
+],
+[
+"before the storm.",
+"폭풍 이전의.",
+""
+]
+],
+"tr": "거대하고 거친 바위들이 노출되면서, 지금의 풍경은 폭풍 이전의 평화로운 해변의 풍경과는 완전히 다르다.",
+"ans": "that",
+"pts": [
+"11.3"
+]
+},
+{
+"key": "c11s1|3-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Timmy had a place",
+"티미는 자리를 얻었다",
+""
+],
+[
+"at the best school in town,",
+"마을에서 가장 좋은 학교에",
+"S"
+],
+[
+"and on the first morning,",
+"그리고 첫날 아침,",
+""
+],
+[
+"his granddad took him to (A) it.",
+"그의 할아버지가 그를 그곳으로 데리고 갔다.",
+"V"
+]
+],
+"tr": "Timmy는 마을에서 가장 좋은 학교에 자리를 얻었고, 첫날 아침, 그의 할아버지가 그를 그곳으로 데리고 갔다.",
+"ans": "it",
+"pts": [
+"11.4"
+]
+},
+{
+"key": "c11s1|3-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"When they arrived at the school,",
+"그들이 학교에 도착했을 때,",
+""
+],
+[
+"there were",
+"있었다",
+""
+],
+[
+"(B) a few",
+"약간의",
+"V"
+],
+[
+"children",
+"아이들이",
+"S"
+],
+[
+"in the playground.",
+"운동장에.",
+""
+]
+],
+"tr": "그들이 학교에 도착했을 때, 운동장에 약간의 아이들이 있었다.",
+"ans": "a few",
+"pts": [
+"11.5"
+]
+},
+{
+"key": "c11s1|3-3",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"“What a funny old man,”",
+"“정말 우스운 노인이야.”",
+""
+],
+[
+"one boy",
+"한 소년이",
+"S"
+],
+[
+"shouted.",
+"소리쳤다.",
+"V"
+]
+],
+"tr": "&ldquo;정말 우스운 노인이야.&rdquo;라고 한 소년이 소리쳤다.",
+"ans": "shouted",
+"pts": null
+},
+{
+"key": "c11s1|3-(C)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Some of the children",
+"아이들 중 몇몇은",
+"S"
+],
+[
+"pointed at the pair",
+"그 두 사람을 손가락질했고",
+""
+],
+[
+"and circled around (C) them.",
+"그들 주위를 빙빙 돌았다.",
+"V"
+]
+],
+"tr": "아이들 중 몇몇은 그 두 사람을 손가락질하며 그들 주위를 빙빙 돌았다.",
+"ans": "them",
+"pts": [
+"11.2"
+]
+},
+{
+"key": "c11s1|4-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Some of the chairs",
+"의자 중 몇몇이",
+"S"
+],
+[
+"Mr. Stanley prepared for today’s meeting",
+"스탠리 씨가 오늘 회의를 위해 준비한",
+"M"
+],
+[
+"got damaged,",
+"손상되었다,",
+""
+],
+[
+"so he needs to buy new ones quickly.",
+"그래서 그는 새로운 것들을 빨리 사야 한다.",
+"V"
+]
+],
+"tr": "Stanley씨가 오늘 회의를 위해 준비한 의자 중 몇몇이 손상되어서, 그는 빨리 새로운 것들을 사야 할 필요가 있다.",
+"ans": "ones",
+"pts": [
+"11.4"
+]
+},
+{
+"key": "c11s1|4-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"There is",
+"~가 있다",
+""
+],
+[
+"another",
+"다른",
+"V"
+],
+[
+"meeting",
+"회의가",
+"S"
+],
+[
+"scheduled for this afternoon.",
+"오늘 오후에 예정된.",
+""
+]
+],
+"tr": "오늘 오후에 예정된 다른 회의가 있다.",
+"ans": "another",
+"pts": [
+"11.5"
+]
+},
+{
+"key": "c11s1|5-1",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Benjamin",
+"벤저민은",
+"S"
+],
+[
+"learned several outdoor skills",
+"몇 가지 야외 기술들을 배웠다",
+"V"
+],
+[
+"while camping with a friend, Marco.",
+"친구 마코와 캠핑을 하는 동안.",
+""
+]
+],
+"tr": "Benjamin은 친구 Marco와 캠핑을 하는 동안 몇 가지 야외 기술들을 배웠다.",
+"ans": "learned",
+"pts": null
+},
+{
+"key": "c11s1|5-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"He",
+"그는",
+"S"
+],
+[
+"thought he would never use them,",
+"그것들을 절대 사용하지 않을 것이라고 생각했지만,",
+"V"
+],
+[
+"but when he was lost in the mountains,",
+"하지만 그가 산에서 길을 잃었을 때,",
+""
+],
+[
+"he remembered Marco’s teachings",
+"그는 마코의 가르침을 기억했고",
+""
+],
+[
+"and was able to protect himself from danger.",
+"위험으로부터 그 자신을 보호할 수 있었다.",
+""
+]
+],
+"tr": "그는 절대 그것들을 사용하지 않을 것이라고 생각했지만, 그가 산에서 길을 잃었을 때, 그는 Marco의 가르침을 기억했고 위험으로부터 그 자신을 보호할 수 있었다.",
+"ans": "them",
+"pts": [
+"11.1",
+"11.2"
+]
+},
+{
+"key": "c11s1|6-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"In any kind of society,",
+"어떤 종류의 사회에서든,",
+""
+],
+[
+"those",
+"사람들은",
+"V"
+],
+[
+"with a strong need to belong to a group",
+"집단에 속하려는 강한 욕구를 가진",
+"S"
+],
+[
+"have advantages.",
+"이점을 가진다.",
+""
+]
+],
+"tr": "어떤 종류의 사회에서든, 집단에 속하려는 강한 욕구를 가진 사람들이 이점을 가진다.",
+"ans": "those",
+"pts": [
+"11.3"
+]
+},
+{
+"key": "c11s1|6-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Survival and reproduction",
+"생존과 번식은",
+""
+],
+[
+"are crucial for all living things,",
+"모든 생물체에게 중대하며,",
+""
+],
+[
+"and forming a group with others",
+"다른 이들과 집단을 형성하는 것은",
+""
+],
+[
+"can be useful for",
+"유용할 수 있다",
+""
+],
+[
+"both",
+"둘 다의",
+"V"
+],
+[
+"areas.",
+"영역에.",
+"S"
+]
+],
+"tr": "생존과 번식은 모든 생물체에게 중대하며, 다른 이들과 집단을 형성하는 것은 두 영역 모두에 유용할 수 있다.",
+"ans": "both",
+"pts": [
+"11.5"
+]
+},
+{
+"key": "c11s1|6-③",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 대명사·수량 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"For example,",
+"예를 들어,",
+""
+],
+[
+"people in a group",
+"한 집단에 속한 사람들은",
+"S"
+],
+[
+"can share food,",
+"음식을 공유할 수 있고,",
+""
+],
+[
+"find their mates easily,",
+"그들의 짝을 쉽게 찾을 수 있으며,",
+"V"
+],
+[
+"and fight together against enemies.",
+"적에 대항해 함께 싸울 수 있다.",
+""
+]
+],
+"tr": "예를 들어, 한 집단에 속한 사람들은 음식을 공유할 수 있고, 그들의 짝을 쉽게 찾을 수 있으며, 적에 대항해 함께 싸울 수 있다.",
+"ans": "their",
+"pts": [
+"11.1"
+]
+},
+{
+"key": "add11|1-1",
+"title": "추가문제 POINT 1 명사-대명사 수 일치",
+"chunks": [
+[
+"If you don’t want",
+"당신이 원하지 않는다면",
+""
+],
+[
+"an ingredient in your dish,",
+"요리 속의 재료 하나를,",
+"C"
+],
+[
+"most restaurants",
+"대부분의 식당은",
+"S"
+],
+[
+"will replace it",
+"그것을 대신할 것이다",
+"V"
+],
+[
+"with something else.",
+"다른 무언가로.",
+""
+]
+],
+"tr": "당신이 요리에서 한 가지 재료를 원하지 않는다면, 대부분의 레스토랑은 그것을 다른 어떤 것으로 대신할 것이다.",
+"ans": "it",
+"pts": null
+},
+{
+"key": "add11|1-2",
+"title": "추가문제 POINT 1 명사-대명사 수 일치",
+"chunks": [
+[
+"We",
+"우리는",
+"S"
+],
+[
+"need four more chairs",
+"의자 네 개가 더 필요하다",
+"C"
+],
+[
+"for the meeting,",
+"회의를 위해,",
+""
+],
+[
+"so please take these",
+"그러니 이것들을 가져가 주세요",
+"V"
+],
+[
+"and I’ll take the other two.",
+"그러면 내가 나머지 둘을 가져가겠다.",
+""
+]
+],
+"tr": "우리는 회의를 위해 의자 4개가 더 필요해서, 이것들을 가져가면 내가 나머지 2개를 가져갈 것이다.",
+"ans": "these",
+"pts": null
+},
+{
+"key": "add11|1-3",
+"title": "추가문제 POINT 1 명사-대명사 수 일치",
+"chunks": [
+[
+"My parents",
+"나의 부모님은",
+"S"
+],
+[
+"just bought a house in San Diego,",
+"막 샌디에이고에 집을 샀지만,",
+""
+],
+[
+"but they",
+"그들은",
+"V"
+],
+[
+"used to live",
+"살곤 했다",
+""
+],
+[
+"in Las Vegas for years.",
+"라스베이거스에서 수년간.",
+""
+]
+],
+"tr": "나의 부모님은 이제 막 샌디에이고에 집을 샀지만, 그들은 라스베이거스에서 수년간 살았다.",
+"ans": "they",
+"pts": null
+},
+{
+"key": "add11|1-4",
+"title": "추가문제 POINT 1 명사-대명사 수 일치",
+"chunks": [
+[
+"The car",
+"그 자동차는",
+"S"
+],
+[
+"has some design problems,",
+"디자인상의 문제가 약간 있지만,",
+""
+],
+[
+"but its engine",
+"그것의 엔진은",
+"V"
+],
+[
+"is known",
+"알려져 있다",
+""
+],
+[
+"for being very powerful.",
+"매우 강력하다고.",
+""
+]
+],
+"tr": "그 자동차는 디자인상의 문제가 약간 있지만, 그것의 엔진은 매우 강력한 것으로 알려져 있다.",
+"ans": "its",
+"pts": null
+},
+{
+"key": "add11|1-5",
+"title": "추가문제 POINT 1 명사-대명사 수 일치",
+"chunks": [
+[
+"The number",
+"수는",
+"S"
+],
+[
+"of birds we have seen this summer",
+"이번 여름에 우리가 본 새들의",
+"M"
+],
+[
+"is lower",
+"더 적다",
+""
+],
+[
+"than that",
+"그것보다",
+"V"
+],
+[
+"in previous years.",
+"지난 수년간의.",
+""
+]
+],
+"tr": "이번 여름에 우리가 본 새들의 수는 지난 수년간 본 것보다 더 적다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "add11|2-1",
+"title": "추가문제 POINT 2 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"Alone in the fort,",
+"요새에서 외로이,",
+""
+],
+[
+"the 12 soldiers and their commander",
+"그 12명의 군인들과 그들의 지휘관은",
+"S"
+],
+[
+"defended themselves",
+"그들 자신을 방어했다",
+"V"
+],
+[
+"against the enemy",
+"적으로부터",
+""
+],
+[
+"for several weeks.",
+"몇 주 동안.",
+""
+]
+],
+"tr": "요새에서 외로이, 그 12명의 군인들과 그들의 지휘관은 몇 주 동안 적으로부터 그들 자신을 방어했다.",
+"ans": "themselves",
+"pts": null
+},
+{
+"key": "add11|2-2",
+"title": "추가문제 POINT 2 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"We",
+"우리는",
+"S"
+],
+[
+"tend to believe",
+"믿는 경향이 있다",
+"V"
+],
+[
+"that doing certain actions",
+"특정한 행동을 하는 것이",
+"C"
+],
+[
+"can bring us",
+"우리에게 가져올 수 있다고",
+"V"
+],
+[
+"good luck.",
+"행운을.",
+""
+]
+],
+"tr": "우리는 특정한 행동을 하는 것이 우리에게 행운을 가져올 수 있다고 믿는 경향이 있다.",
+"ans": "us",
+"pts": null
+},
+{
+"key": "add11|2-3",
+"title": "추가문제 POINT 2 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"The monkey",
+"그 원숭이는",
+"S"
+],
+[
+"ran away from the tiger",
+"호랑이를 피해 도망쳤고,",
+""
+],
+[
+"and saved itself",
+"그 자신을 구했다",
+"V"
+],
+[
+"by climbing up a tall tree.",
+"높은 나무 위로 올라감으로써.",
+""
+]
+],
+"tr": "그 원숭이는 호랑이를 피해 도망쳤고, 높은 나무 위로 올라감으로써 그 자신을 구했다.",
+"ans": "itself",
+"pts": null
+},
+{
+"key": "add11|2-4",
+"title": "추가문제 POINT 2 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"When Mr. Norwood called on Josh,",
+"노우드 씨가 조시를 방문했을 때,",
+"C"
+],
+[
+"he",
+"그는",
+"S"
+],
+[
+"asked him",
+"그에게 요청했다",
+"V"
+],
+[
+"to speak in front of the class.",
+"학생들 앞에서 발표해 달라고.",
+""
+]
+],
+"tr": "Norwood씨는 Josh를 방문했을 때, 그에게 학생들 앞에서 발표해달라고 요청했다.",
+"ans": "him",
+"pts": null
+},
+{
+"key": "add11|2-5",
+"title": "추가문제 POINT 2 목적격 대명사 vs. 재귀대명사",
+"chunks": [
+[
+"Always give yourself",
+"항상 너 자신에게 주어라",
+"V"
+],
+[
+"some time",
+"약간의 시간을",
+"S"
+],
+[
+"to rest",
+"휴식을 취할",
+"M"
+],
+[
+"in between workouts at the gym.",
+"체육관에서 운동하는 사이에.",
+""
+]
+],
+"tr": "체육관에서 운동하는 사이에 항상 너 자신에게 휴식을 취할 약간의 시간을 주어라.",
+"ans": "yourself",
+"pts": null
+},
+{
+"key": "add11|3-1",
+"title": "추가문제 POINT 3 it/ them vs. that/ those",
+"chunks": [
+[
+"The amount",
+"양은",
+"S"
+],
+[
+"of rain last August",
+"지난 8월의 비의",
+"M"
+],
+[
+"was higher",
+"더 많았다",
+""
+],
+[
+"than that",
+"그것보다",
+"V"
+],
+[
+"of all the previous months of the year.",
+"그 해의 이전 모든 달의.",
+""
+]
+],
+"tr": "지난 8월의 비의 양은 그 해의 이전 모든 달의 것보다 많았다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "add11|3-2",
+"title": "추가문제 POINT 3 it/ them vs. that/ those",
+"chunks": [
+[
+"The sales job",
+"판매직은",
+"S"
+],
+[
+"is perfect",
+"완벽하다",
+"V"
+],
+[
+"for those",
+"사람들에게",
+"C"
+],
+[
+"who enjoy traveling often and meeting new people.",
+"자주 여행하고 새로운 사람들을 만나는 것을 즐기는.",
+""
+]
+],
+"tr": "판매직은 자주 여행하는 것과 새로운 사람들을 만나는 것을 즐기는 사람들에게 완벽하다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add11|3-3",
+"title": "추가문제 POINT 3 it/ them vs. that/ those",
+"chunks": [
+[
+"Please ask",
+"요청해 주세요",
+""
+],
+[
+"Mark and Sophie",
+"마크와 소피에게",
+"S"
+],
+[
+"to check their email right away",
+"그들의 이메일을 바로 확인해 달라고",
+"M"
+],
+[
+"when you see them.",
+"당신이 그들을 볼 때.",
+"V"
+]
+],
+"tr": "Mark와 Sophie를 보면, 그들에게 이메일을 바로 확인해달라고 요청해 주세요.",
+"ans": "them",
+"pts": null
+},
+{
+"key": "add11|3-4",
+"title": "추가문제 POINT 3 it/ them vs. that/ those",
+"chunks": [
+[
+"Someone",
+"누군가",
+"S"
+],
+[
+"found your wallet",
+"당신의 지갑을 발견했고,",
+"V"
+],
+[
+"outside on the sidewalk",
+"밖의 인도에서",
+""
+],
+[
+"and left it",
+"그것을 두었다",
+"C"
+],
+[
+"at the desk in the lobby.",
+"로비에 있는 데스크에.",
+""
+]
+],
+"tr": "누군가 당신의 지갑을 밖의 인도에서 발견했고, 그것을 로비에 있는 데스크에 두었다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add11|3-5",
+"title": "추가문제 POINT 3 it/ them vs. that/ those",
+"chunks": [
+[
+"Many of the languages",
+"많은 언어들은",
+"S"
+],
+[
+"spoken in New Guinea",
+"뉴기니에서 말해지는",
+"M"
+],
+[
+"are very different",
+"매우 다르다",
+""
+],
+[
+"from those",
+"그것들과",
+"V"
+],
+[
+"of other countries in the region.",
+"그 지역의 다른 나라의.",
+""
+]
+],
+"tr": "뉴기니에서 말해지는 많은 언어들은 그 지역의 다른 나라의 것들과 매우 다르다.",
+"ans": "those",
+"pts": null
+},
+{
+"key": "add11|4-1",
+"title": "추가문제 POINT 4 it/ them vs. one/ ones",
+"chunks": [
+[
+"The new desks we got",
+"우리가 구입한 새 책상들이",
+"S"
+],
+[
+"are the wrong size,",
+"잘못된 크기여서,",
+""
+],
+[
+"so we need to order",
+"우리는 주문할 필요가 있다",
+""
+],
+[
+"larger ones.",
+"더 큰 것들을.",
+"V"
+]
+],
+"tr": "우리가 구입한 새 책상들이 잘못된 크기여서, 우리는 더 큰 것들을 주문할 필요가 있다.",
+"ans": "ones",
+"pts": null
+},
+{
+"key": "add11|4-2",
+"title": "추가문제 POINT 4 it/ them vs. one/ ones",
+"chunks": [
+[
+"If you",
+"만약 네가",
+"S"
+],
+[
+"are done with the science book,",
+"그 과학책을 다 읽는다면,",
+"C"
+],
+[
+"please return it",
+"그것을 반납하라",
+"V"
+],
+[
+"to the library immediately.",
+"즉시 도서관에.",
+""
+]
+],
+"tr": "만약 네가 그 과학책을 다 읽는다면, 그것을 즉시 도서관에 반납하라.",
+"ans": "it",
+"pts": null
+},
+{
+"key": "add11|4-3",
+"title": "추가문제 POINT 4 it/ them vs. one/ ones",
+"chunks": [
+[
+"Sharon",
+"샤론은",
+"S"
+],
+[
+"bought some seeds",
+"씨앗을 약간 샀고,",
+"C"
+],
+[
+"at the garden store,",
+"원예점에서,",
+""
+],
+[
+"and she planted them",
+"그것들을 심었다",
+"V"
+],
+[
+"in her backyard next to the fence.",
+"울타리 옆 그녀의 뒷마당에.",
+""
+]
+],
+"tr": "Sharon은 원예점에서 씨앗을 약간 샀고, 울타리 옆에 있는 그녀의 뒷마당에 그것들을 심었다.",
+"ans": "them",
+"pts": null
+},
+{
+"key": "add11|4-4",
+"title": "추가문제 POINT 4 it/ them vs. one/ ones",
+"chunks": [
+[
+"I",
+"나는",
+"S"
+],
+[
+"made a sandwich for lunch,",
+"점심으로 샌드위치를 만들었지만,",
+"C"
+],
+[
+"but left it at home,",
+"그것을 집에 두고 와서,",
+""
+],
+[
+"so I bought one",
+"하나를 샀다",
+"V"
+],
+[
+"at the cafeteria.",
+"구내식당에서.",
+""
+]
+],
+"tr": "나는 점심으로 샌드위치를 만들었지만, 그것을 집에 두고 와서, 구내식당에서 하나를 샀다.",
+"ans": "one",
+"pts": null
+},
+{
+"key": "add11|4-5",
+"title": "추가문제 POINT 4 it/ them vs. one/ ones",
+"chunks": [
+[
+"My friend",
+"내 친구가",
+"S"
+],
+[
+"won’t like these gloves,",
+"이 장갑을 좋아하지 않을 것이라서,",
+"C"
+],
+[
+"so I’d like to see",
+"나는 보고 싶다",
+""
+],
+[
+"some different ones.",
+"조금 다른 것들을.",
+"V"
+]
+],
+"tr": "내 친구가 이 장갑을 좋아하지 않을 것이라서, 나는 조금 다른 것들을 보고 싶다.",
+"ans": "ones",
+"pts": null
+},
+{
+"key": "add11|5-1",
+"title": "추가문제 POINT 5 수량표현-명사 수 일치",
+"chunks": [
+[
+"Because he practiced,",
+"연습을 했기 때문에,",
+""
+],
+[
+"the tennis player",
+"그 테니스 선수는",
+"S"
+],
+[
+"was able to win his match",
+"경기에서 이길 수 있었다",
+""
+],
+[
+"with little difficulty.",
+"약간의 어려움도 없이.",
+"V"
+]
+],
+"tr": "연습을 했기 때문에, 그 테니스 선수는 약간의 어려움도 없이 경기에서 이길 수 있었다.",
+"ans": "little",
+"pts": null
+},
+{
+"key": "add11|5-2",
+"title": "추가문제 POINT 5 수량표현-명사 수 일치",
+"chunks": [
+[
+"Much",
+"대부분은",
+"V"
+],
+[
+"of world history",
+"세계 역사의",
+"S"
+],
+[
+"is filled",
+"가득 차 있다",
+""
+],
+[
+"with stories",
+"이야기로",
+""
+],
+[
+"about people fighting over land and wealth.",
+"땅과 재물을 위해 싸운 사람들에 대한.",
+"M"
+]
+],
+"tr": "세계 역사의 대부분은 땅과 재물을 위해 싸운 사람들에 대한 이야기로 가득 차 있다.",
+"ans": "Much",
+"pts": null
+},
+{
+"key": "add11|5-3",
+"title": "추가문제 POINT 5 수량표현-명사 수 일치",
+"chunks": [
+[
+"John and Doreen",
+"존과 도린이",
+"S"
+],
+[
+"will be at the office today,",
+"오늘 사무실에 있을 것이므로,",
+""
+],
+[
+"so you can talk",
+"당신은 이야기할 수 있다",
+""
+],
+[
+"to either person",
+"둘 중 어느 한 사람과",
+"V"
+],
+[
+"if you need help.",
+"도움이 필요한 경우.",
+""
+]
+],
+"tr": "John과 Doreen이 오늘 사무실에 있을 것이므로, 당신이 도움이 필요한 경우 둘 중 어느 한 사람과 이야기 할 수 있다.",
+"ans": "either",
+"pts": null
+},
+{
+"key": "add11|5-4",
+"title": "추가문제 POINT 5 수량표현-명사 수 일치",
+"chunks": [
+[
+"The researcher",
+"그 연구원은",
+"S"
+],
+[
+"studied every word",
+"모든 단어를 연구하여,",
+"V"
+],
+[
+"in the old book,",
+"그 오래된 책의,",
+""
+],
+[
+"looking for clues",
+"단서를 찾았다",
+""
+],
+[
+"about who wrote it.",
+"누가 그것을 썼는지에 대한.",
+""
+]
+],
+"tr": "그 연구원은 그 오래된 책의 모든 단어를 연구하여, 그것을 누가 쓴 것인지에 대한 단서를 찾았다.",
+"ans": "every",
+"pts": null
+},
+{
+"key": "add11|5-5",
+"title": "추가문제 POINT 5 수량표현-명사 수 일치",
+"chunks": [
+[
+"Most insects",
+"대부분의 곤충들은",
+"S"
+],
+[
+"eat parts of plants and flowers,",
+"식물과 꽃의 일부를 먹지만,",
+""
+],
+[
+"but some",
+"어떤 것들은",
+"S"
+],
+[
+"eat other insects.",
+"다른 곤충들을 먹는다.",
+"V"
+]
+],
+"tr": "대부분의 곤충들은 식물과 꽃의 일부를 먹지만, 어떤 것들은 다른 곤충들을 먹는다.",
+"ans": "other",
+"pts": null
+}
+]

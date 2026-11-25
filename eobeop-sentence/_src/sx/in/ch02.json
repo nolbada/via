@@ -1,0 +1,2064 @@
+[
+{
+"key": "c02p1|예제",
+"title": "POINT 1 · 단순과거 vs. 현재완료",
+"chunks": [
+[
+"Lilian Bland",
+"릴리언 블랜드는",
+""
+],
+[
+"became",
+"되었다",
+"V"
+],
+[
+"the first woman",
+"최초의 여성이",
+""
+],
+[
+"to design, build, and fly her own airplane",
+"그녀 자신의 비행기를 설계하고, 만들고, 날린",
+""
+],
+[
+"in 1910.",
+"1910년에.",
+"C"
+]
+],
+"tr": "Lilian Bland는 1910년에 그녀 자신의 비행기를 설계하고, 만들고, 날린 최초의 여성이 되었다.",
+"ans": "became",
+"pts": null
+},
+{
+"key": "c02p1|1",
+"title": "POINT 1 · 단순과거 vs. 현재완료",
+"chunks": [
+[
+"We have solved",
+"우리는 풀어 왔다",
+"V"
+],
+[
+"many interesting puzzles together",
+"많은 재미있는 퍼즐들을 함께",
+""
+],
+[
+"since joining the puzzle club.",
+"퍼즐 동아리에 가입한 이래로.",
+"C"
+]
+],
+"tr": "우리는 퍼즐 동아리에 가입한 이래로 많은 재미있는 퍼즐들을 함께 풀어왔다.",
+"ans": "have solved",
+"pts": null
+},
+{
+"key": "c02p1|2",
+"title": "POINT 1 · 단순과거 vs. 현재완료",
+"chunks": [
+[
+"Lisa visited her grandparents",
+"리사는 그녀의 조부모님들을 방문했다",
+"V"
+],
+[
+"last summer",
+"지난여름에",
+"C"
+],
+[
+"before they moved to a different city.",
+"그들이 다른 도시로 이사 가기 전에.",
+""
+]
+],
+"tr": "Lisa는 지난여름에 그녀의 조부모님들이 다른 도시로 이사 가기 전에 그들을 방문했다.",
+"ans": "visited",
+"pts": null
+},
+{
+"key": "c02p1|3",
+"title": "POINT 1 · 단순과거 vs. 현재완료",
+"chunks": [
+[
+"The young man has worked",
+"그 젊은 남성은 작업해 왔다",
+"V"
+],
+[
+"on his novel",
+"그의 소설을",
+""
+],
+[
+"for several months now.",
+"지금까지 몇 달 동안.",
+"C"
+]
+],
+"tr": "그 젊은 남성은 지금까지 몇 달 동안 그의 소설을 작업해 왔다.",
+"ans": "has worked",
+"pts": null
+},
+{
+"key": "c02p1|4",
+"title": "POINT 1 · 단순과거 vs. 현재완료",
+"chunks": [
+[
+"Ms. Spadler purchased a toaster",
+"스패들러씨는 토스터를 구입했다",
+"V"
+],
+[
+"only three weeks ago,",
+"겨우 3주 전에,",
+"C"
+],
+[
+"but it’s already not working.",
+"하지만 그것은 벌써 작동이 안 된다.",
+""
+]
+],
+"tr": "Spadler씨는 겨우 3주 전에 토스터를 구입했지만, 그것은 벌써 작동이 안 된다.",
+"ans": "purchased",
+"pts": null
+},
+{
+"key": "c02p1|5",
+"title": "POINT 1 · 단순과거 vs. 현재완료",
+"chunks": [
+[
+"In the Old Stone Age,",
+"구석기 시대에는,",
+"C"
+],
+[
+"groups of 20 to 60 people",
+"20명에서 60명의 무리가",
+""
+],
+[
+"wandered from place to place",
+"이곳저곳을 떠돌아다녔다",
+"V"
+],
+[
+"to find food.",
+"식량을 찾기 위해.",
+""
+]
+],
+"tr": "구석기 시대에는, 20명에서 60명의 무리가 식량을 찾기 위해 이곳저곳을 떠돌아다녔다.",
+"ans": "wandered",
+"pts": null
+},
+{
+"key": "c02p1|6",
+"title": "POINT 1 · 단순과거 vs. 현재완료",
+"chunks": [
+[
+"We’re so excited",
+"우리는 너무 신난다",
+""
+],
+[
+"although we have waited in line",
+"비록 줄을 서서 기다려 왔지만",
+"V"
+],
+[
+"for the sale to start",
+"판매가 시작되기를",
+""
+],
+[
+"for hours.",
+"몇 시간 동안.",
+"C"
+]
+],
+"tr": "우리는 판매가 시작되기를 몇 시간 동안 줄을 서서 기다리긴 했지만 너무 신난다.",
+"ans": "have waited",
+"pts": null
+},
+{
+"key": "c02p1|7",
+"title": "POINT 1 · 단순과거 vs. 현재완료",
+"chunks": [
+[
+"He has been interested in stars",
+"그는 별들에 관심을 가져왔다",
+""
+],
+[
+"since he saw",
+"그가 본 이후",
+"V"
+],
+[
+"his first shooting star",
+"그의 첫 유성을",
+""
+],
+[
+"last year.",
+"작년에.",
+"C"
+]
+],
+"tr": "그는 작년에 처음으로 유성을 본 이후 별들에 관심을 가져왔다.",
+"ans": "saw",
+"pts": null
+},
+{
+"key": "c02p1|8",
+"title": "POINT 1 · 단순과거 vs. 현재완료",
+"chunks": [
+[
+"I closed the window",
+"나는 창문을 닫았다",
+"V"
+],
+[
+"when I felt a cold breeze coming in.",
+"차가운 바람이 들어오는 것을 느꼈을 때.",
+"C"
+]
+],
+"tr": "나는 차가운 바람이 들어오는 것을 느꼈을 때 창문을 닫았다.",
+"ans": "closed",
+"pts": null
+},
+{
+"key": "c02p2|예제",
+"title": "POINT 2 · 과거완료 vs. 현재완료",
+"chunks": [
+[
+"I discovered a speech",
+"나는 연설문을 발견했다",
+"C"
+],
+[
+"that my father had written",
+"아버지가 썼던",
+"V"
+],
+[
+"for his high school graduation.",
+"그의 고등학교 졸업식을 위해.",
+""
+]
+],
+"tr": "나는 아버지가 고등학교 졸업식을 위해 쓴 연설문을 발견했다.",
+"ans": "had written",
+"pts": null
+},
+{
+"key": "c02p2|1",
+"title": "POINT 2 · 과거완료 vs. 현재완료",
+"chunks": [
+[
+"The bakery has sold out",
+"그 빵집은 다 팔았다",
+"V"
+],
+[
+"of most of its products",
+"그것의 제품 대부분을",
+""
+],
+[
+"now",
+"지금",
+"C"
+],
+[
+"even though it opened only an hour ago.",
+"겨우 한 시간 전에 열었음에도 불구하고.",
+""
+]
+],
+"tr": "그 빵집은 겨우 한 시간 전에 열었음에도 불구하고 지금 대부분의 제품을 다 팔았다.",
+"ans": "has sold",
+"pts": null
+},
+{
+"key": "c02p2|2",
+"title": "POINT 2 · 과거완료 vs. 현재완료",
+"chunks": [
+[
+"Deborah realized",
+"데버라는 깨달았다",
+"C"
+],
+[
+"that she had forgotten",
+"그녀가 잊었다는 것을",
+"V"
+],
+[
+"to hand in her homework.",
+"숙제를 제출하는 것을.",
+""
+]
+],
+"tr": "Deborah는 그녀가 숙제를 제출하는 것을 잊었다는 것을 깨달았다.",
+"ans": "had forgotten",
+"pts": null
+},
+{
+"key": "c02p2|3",
+"title": "POINT 2 · 과거완료 vs. 현재완료",
+"chunks": [
+[
+"We were so embarrassed",
+"우리는 매우 당황했다",
+""
+],
+[
+"when we missed the train",
+"우리가 기차를 놓쳤을 때",
+"C"
+],
+[
+"that we had planned to take.",
+"우리가 타기로 계획했던.",
+"V"
+]
+],
+"tr": "우리는 타기로 계획했던 기차를 놓쳤을 때 매우 당황했다.",
+"ans": "had planned",
+"pts": null
+},
+{
+"key": "c02p2|4",
+"title": "POINT 2 · 과거완료 vs. 현재완료",
+"chunks": [
+[
+"I have made",
+"나는 사귀어 왔다",
+"V"
+],
+[
+"more than 10 new friends",
+"10명 이상의 새 친구들을",
+""
+],
+[
+"since I moved to Los Angeles.",
+"내가 로스앤젤레스로 이사 온 이래로.",
+"C"
+]
+],
+"tr": "나는 로스앤젤레스로 이사 온 이래로 10명 이상의 새 친구들을 사귀었다.",
+"ans": "have made",
+"pts": null
+},
+{
+"key": "c02p2|5",
+"title": "POINT 2 · 과거완료 vs. 현재완료",
+"chunks": [
+[
+"By the time some of the guests arrived at the party,",
+"손님들 중 몇몇이 파티에 도착했을 즈음,",
+"C"
+],
+[
+"all the food had been eaten.",
+"모든 음식은 이미 먹힌 상태였다.",
+"V"
+]
+],
+"tr": "손님들 중 몇몇이 파티에 도착했을 때, 모든 음식들이 먹어 버려졌다.",
+"ans": "had been",
+"pts": null
+},
+{
+"key": "c02p3|예제",
+"title": "POINT 3 · 미래시제를 대신하는 현재시제",
+"chunks": [
+[
+"If",
+"만약",
+"C"
+],
+[
+"you run away from risks and challenges,",
+"당신이 위험과 도전으로부터 도망치면,",
+"V"
+],
+[
+"you will be left behind",
+"당신은 뒤처질 것이다",
+""
+],
+[
+"in the race of life.",
+"인생의 경주에서.",
+""
+]
+],
+"tr": "당신은 위험과 도전으로부터 도망치면, 인생의 경주에서 뒤처질 것이다.",
+"ans": "run",
+"pts": null
+},
+{
+"key": "c02p3|1",
+"title": "POINT 3 · 미래시제를 대신하는 현재시제",
+"chunks": [
+[
+"When",
+"~할 때",
+"C"
+],
+[
+"winter comes,",
+"겨울이 오는",
+"V"
+],
+[
+"I will wear",
+"나는 입을 것이다",
+""
+],
+[
+"my favorite sweater.",
+"내가 가장 좋아하는 스웨터를.",
+""
+]
+],
+"tr": "겨울이 올 때, 나는 내가 가장 좋아하는 스웨터를 입을 것이다.",
+"ans": "comes",
+"pts": null
+},
+{
+"key": "c02p3|2",
+"title": "POINT 3 · 미래시제를 대신하는 현재시제",
+"chunks": [
+[
+"The children wonder",
+"아이들은 궁금해한다",
+""
+],
+[
+"if",
+"~인지",
+"C"
+],
+[
+"the rain will stop",
+"비가 그칠",
+"V"
+],
+[
+"before they go out for a picnic.",
+"그들이 소풍을 위해 나가기 전에.",
+""
+]
+],
+"tr": "아이들은 소풍을 위해 나가기 전에 비가 그칠지 궁금해한다.",
+"ans": "will stop",
+"pts": null
+},
+{
+"key": "c02p3|3",
+"title": "POINT 3 · 미래시제를 대신하는 현재시제",
+"chunks": [
+[
+"Unless",
+"~하지 않는다면",
+"C"
+],
+[
+"they save enough money,",
+"그들이 충분한 돈을 저축하는",
+"V"
+],
+[
+"they will not be able to go",
+"그들은 갈 수 없을 것이다",
+""
+],
+[
+"on vacation.",
+"휴가를.",
+""
+]
+],
+"tr": "그들이 충분한 돈을 저축하지 않는다면, 그들은 휴가를 갈 수 없을 것이다.",
+"ans": "save",
+"pts": null
+},
+{
+"key": "c02p3|4",
+"title": "POINT 3 · 미래시제를 대신하는 현재시제",
+"chunks": [
+[
+"The actors will continue to work",
+"그 배우들은 계속 노력할 것이다",
+""
+],
+[
+"until",
+"~할 때까지",
+"C"
+],
+[
+"their performance is perfect.",
+"그들의 연기가 완벽해지는.",
+"V"
+]
+],
+"tr": "그 배우들은 그들의 연기가 완벽할 때까지 계속 노력할 것이다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "c02p3|5",
+"title": "POINT 3 · 미래시제를 대신하는 현재시제",
+"chunks": [
+[
+"Ms. Connor wants to know",
+"코너씨는 알기 원한다",
+""
+],
+[
+"when",
+"언제 ~인지",
+"C"
+],
+[
+"the new employees will start working.",
+"신규 사원들이 일을 시작할지.",
+"V"
+]
+],
+"tr": "Connor씨는 언제 신규 사원들이 일을 시작할지 알기 원한다.",
+"ans": "will start",
+"pts": null
+},
+{
+"key": "c02q1|1",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 시제 고르기",
+"chunks": [
+[
+"Humans",
+"인간들은",
+""
+],
+[
+"first used coins",
+"최초로 동전을 사용했다",
+"V"
+],
+[
+"in the 5th or 6th century BC.",
+"기원전 5세기 혹은 6세기에.",
+"C"
+]
+],
+"tr": "인간들은 기원전 5세기 혹은 6세기에 최초로 동전을 사용했다.",
+"ans": "used",
+"pts": null
+},
+{
+"key": "c02q1|2",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 시제 고르기",
+"chunks": [
+[
+"I will feel motivated",
+"나는 동기부여 된 것처럼 느낄 것이다",
+""
+],
+[
+"when",
+"~할 때",
+"C"
+],
+[
+"I receive",
+"내가 받을",
+"V"
+],
+[
+"encouraging words from my friends.",
+"내 친구들로부터 격려하는 말을.",
+""
+]
+],
+"tr": "나는 내 친구들로부터 격려하는 말을 들을 때 동기부여 된 것처럼 느낄 것이다.",
+"ans": "receive",
+"pts": null
+},
+{
+"key": "c02q1|3",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 시제 고르기",
+"chunks": [
+[
+"When Columbus arrived in America,",
+"콜럼버스가 미국에 도착했을 때,",
+"C"
+],
+[
+"he discovered",
+"그는 발견했다",
+"V"
+],
+[
+"that people were already living there.",
+"사람들이 이미 그곳에 살고 있는 것을.",
+""
+]
+],
+"tr": "콜럼버스가 미국에 도착했을 때, 그는 사람들이 이미 그곳에 살고 있는 것을 발견했다.",
+"ans": "discovered",
+"pts": null
+},
+{
+"key": "c02q1|4",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 시제 고르기",
+"chunks": [
+[
+"Once",
+"일단 ~하면",
+"C"
+],
+[
+"the plane lands,",
+"비행기가 착륙하면,",
+"V"
+],
+[
+"I will check my phone for messages.",
+"나는 메시지가 왔는지 휴대폰을 확인할 것이다.",
+""
+]
+],
+"tr": "일단 비행기가 착륙하면, 나는 휴대폰 메시지를 확인할 것이다.",
+"ans": "lands",
+"pts": null
+},
+{
+"key": "c02q1|5",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 시제 고르기",
+"chunks": [
+[
+"Yesterday,",
+"어제,",
+"C"
+],
+[
+"Emily got a letter",
+"에밀리는 편지를 받았다",
+""
+],
+[
+"that her grandmother had written",
+"그녀의 할머니가 쓴",
+"V"
+],
+[
+"to her many years ago.",
+"수년 전에 그녀에게.",
+""
+]
+],
+"tr": "어제, Emily는 그녀의 할머니가 수년 전에 그녀에게 쓴 편지를 받았다.",
+"ans": "had written",
+"pts": null
+},
+{
+"key": "c02q1|6",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 시제 고르기",
+"chunks": [
+[
+"They were in Asia for a month,",
+"그들은 한 달 동안 아시아에 있었고,",
+""
+],
+[
+"and they came back home",
+"그들은 집으로 돌아왔다",
+"V"
+],
+[
+"a couple of days ago.",
+"며칠 전에.",
+"C"
+]
+],
+"tr": "그들은 한 달 동안 아시아에 있었고, 며칠 전에 집으로 돌아왔다.",
+"ans": "came",
+"pts": null
+},
+{
+"key": "c02q1|7",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 시제 고르기",
+"chunks": [
+[
+"Many visitors have asked",
+"많은 방문객들은 물어왔다",
+""
+],
+[
+"if",
+"~인지",
+"C"
+],
+[
+"the library will hold",
+"그 도서관이 열 것인지",
+"V"
+],
+[
+"any special events soon.",
+"곧 어떤 특별한 행사를.",
+""
+]
+],
+"tr": "많은 방문객들은 그 도서관이 곧 특별한 행사를 열 것인지 물어왔다.",
+"ans": "will hold",
+"pts": null
+},
+{
+"key": "c02q1|8",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 시제 고르기",
+"chunks": [
+[
+"We have known each other",
+"우리는 서로 알아 왔다",
+"V"
+],
+[
+"for a long time,",
+"오랫동안,",
+"C"
+],
+[
+"and now we are good friends.",
+"그리고 지금 우리는 좋은 친구이다.",
+"C"
+]
+],
+"tr": "우리는 오랫동안 서로 알아 왔고, 지금 우리는 좋은 친구이다.",
+"ans": "have known",
+"pts": null
+},
+{
+"key": "c02q1|9",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 시제 고르기",
+"chunks": [
+[
+"He has had a fear of heights",
+"그는 높은 곳에 대한 두려움을 가져왔다",
+""
+],
+[
+"since",
+"~한 이래로",
+"C"
+],
+[
+"he fell off a ladder",
+"그는 사다리에서 떨어졌다",
+"V"
+],
+[
+"when he was seven years old.",
+"그가 일곱 살이었을 때.",
+""
+]
+],
+"tr": "그는 일곱 살 때 사다리에서 떨어진 이래로 높은 곳에 대한 두려움을 가져왔다.",
+"ans": "fell",
+"pts": null
+},
+{
+"key": "c02q1|10",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 시제 고르기",
+"chunks": [
+[
+"I was alone in the deep mountains",
+"나는 깊은 산속에 혼자 있었다",
+"V"
+],
+[
+"when I got a terrible stomachache.",
+"끔찍한 복통을 겪었을 때.",
+"C"
+]
+],
+"tr": "끔찍한 복통을 겪었을 때 나는 깊은 산속에 혼자 있었다.",
+"ans": "was",
+"pts": null
+},
+{
+"key": "c02q1|11",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 시제 고르기",
+"chunks": [
+[
+"As soon as",
+"~하자마자",
+"C"
+],
+[
+"the weather improves,",
+"날씨가 나아지자마자,",
+"V"
+],
+[
+"the outdoor market will reopen.",
+"야외 시장이 다시 열릴 것이다.",
+""
+]
+],
+"tr": "날씨가 나아지자마자, 야외 시장이 다시 열릴 것이다.",
+"ans": "improves",
+"pts": null
+},
+{
+"key": "c02q1|12",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 시제 고르기",
+"chunks": [
+[
+"Casey was chosen as the MVP",
+"케이시는 최우수 선수로 선정되었다",
+""
+],
+[
+"because",
+"왜냐하면",
+"C"
+],
+[
+"she had scored",
+"그녀가 득점했다",
+"V"
+],
+[
+"all three goals during the match.",
+"경기 동안 세 골 모두를.",
+""
+]
+],
+"tr": "Casey는 경기 동안 세 골 모두를 득점했기 때문에 MVP로 선정되었다.",
+"ans": "had scored",
+"pts": null
+},
+{
+"key": "c02q2|1",
+"title": "문장 연습 밑줄 · 밑줄 친 시제 바르게 고치기",
+"chunks": [
+[
+"Gloria will take a break and relax",
+"글로리아는 휴식을 취하고 긴장을 풀 것이다",
+""
+],
+[
+"after",
+"~한 후에",
+"C"
+],
+[
+"she finishes",
+"그녀가 마친",
+"V"
+],
+[
+"her work for the day.",
+"하루의 일을.",
+""
+]
+],
+"tr": "Gloria는 하루의 일을 마친 후에 휴식을 취하고 긴장을 풀 것이다.",
+"ans": "finishes",
+"pts": null
+},
+{
+"key": "c02q2|2",
+"title": "문장 연습 밑줄 · 밑줄 친 시제 바르게 고치기",
+"chunks": [
+[
+"After locking the door,",
+"문을 잠근 후에,",
+""
+],
+[
+"I realized",
+"나는 깨달았다",
+"C"
+],
+[
+"that I had left",
+"내가 두었다는 것을",
+"V"
+],
+[
+"the key inside.",
+"열쇠를 안에.",
+""
+]
+],
+"tr": "문을 잠근 후에, 나는 열쇠를 안에 두었다는 것을 깨달았다.",
+"ans": "had left",
+"pts": null
+},
+{
+"key": "c02q2|3",
+"title": "문장 연습 밑줄 · 밑줄 친 시제 바르게 고치기",
+"chunks": [
+[
+"The use",
+"사용은",
+"S"
+],
+[
+"of smartphones",
+"스마트폰의",
+"M"
+],
+[
+"has become widespread",
+"널리 퍼져 왔다",
+"V"
+],
+[
+"since their introduction in the early 2000s.",
+"2000년대 초반의 도입 이래로.",
+"C"
+]
+],
+"tr": "스마트폰의 사용은 2000년대 초반의 도입 이래로 널리 퍼져 왔다.",
+"ans": "has become",
+"pts": null
+},
+{
+"key": "c02q2|4",
+"title": "문장 연습 밑줄 · 밑줄 친 시제 바르게 고치기",
+"chunks": [
+[
+"We will keep checking",
+"우리는 계속 확인할 것이다",
+""
+],
+[
+"when",
+"언제 ~할지",
+"C"
+],
+[
+"the concert tickets will go on sale",
+"콘서트 티켓이 판매될지",
+"V"
+],
+[
+"to get good seats.",
+"좋은 좌석을 얻기 위해.",
+""
+]
+],
+"tr": "우리는 좋은 좌석을 얻기 위해 콘서트 티켓이 언제 판매되는지 계속 확인할 것이다.",
+"ans": "will go",
+"pts": null
+},
+{
+"key": "c02q2|5",
+"title": "문장 연습 밑줄 · 밑줄 친 시제 바르게 고치기",
+"chunks": [
+[
+"The first automobile was invented",
+"최초의 자동차는 발명되었다",
+"V"
+],
+[
+"in 1886",
+"1886년에",
+"C"
+],
+[
+"by Karl Benz, a German engineer.",
+"독일인 기술자인 카를 벤츠에 의해.",
+""
+]
+],
+"tr": "최초의 자동차는 독일인 기술자인 Karl Benz에 의해 1886년에 발명되었다.",
+"ans": "was",
+"pts": null
+},
+{
+"key": "c02q2|6",
+"title": "문장 연습 밑줄 · 밑줄 친 시제 바르게 고치기",
+"chunks": [
+[
+"The beach will turn into a big party spot",
+"그 해변은 큰 파티 장소로 변할 것이다",
+""
+],
+[
+"when",
+"~할 때",
+"C"
+],
+[
+"the summer season arrives.",
+"여름철이 올.",
+"V"
+]
+],
+"tr": "그 해변은 여름철이 올 때 큰 파티 장소로 변할 것이다.",
+"ans": "arrives",
+"pts": null
+},
+{
+"key": "c02q2|7",
+"title": "문장 연습 밑줄 · 밑줄 친 시제 바르게 고치기",
+"chunks": [
+[
+"When Martin reached the empty bus stop,",
+"마틴이 텅 빈 버스 정류장에 도착했을 때,",
+"C"
+],
+[
+"he found that he had missed",
+"그는 그가 놓쳤다는 것을 알게 되었다",
+"V"
+],
+[
+"the bus.",
+"버스를.",
+""
+]
+],
+"tr": "Martin은 텅 빈 버스 정류장에 도착했을 때, 그가 버스를 놓쳤다는 것을 알게 되었다.",
+"ans": "had missed",
+"pts": null
+},
+{
+"key": "c02q2|8",
+"title": "문장 연습 밑줄 · 밑줄 친 시제 바르게 고치기",
+"chunks": [
+[
+"The students visited the museum",
+"학생들은 그 박물관을 방문했다",
+"V"
+],
+[
+"last month",
+"지난달에",
+"C"
+],
+[
+"to see famous works of modern art.",
+"유명한 현대 미술 작품들을 보기 위해.",
+""
+]
+],
+"tr": "학생들은 유명한 현대 미술 작품들을 보기 위해 지난달에 그 박물관을 방문했다.",
+"ans": "visited",
+"pts": null
+},
+{
+"key": "c02q2|9",
+"title": "문장 연습 밑줄 · 밑줄 친 시제 바르게 고치기",
+"chunks": [
+[
+"This restaurant is popular",
+"이 식당은 인기 있다",
+""
+],
+[
+"because it has served",
+"그곳이 제공해 왔기 때문에",
+"V"
+],
+[
+"customers high-quality dishes",
+"손님들에게 질 높은 요리를",
+""
+],
+[
+"for over 10 years.",
+"10년 이상 동안.",
+"C"
+]
+],
+"tr": "이 식당은 10년 이상 동안 손님들에게 질 높은 요리를 제공해 왔기 때문에 인기 있다.",
+"ans": "has served",
+"pts": null
+},
+{
+"key": "c02q2|10",
+"title": "문장 연습 밑줄 · 밑줄 친 시제 바르게 고치기",
+"chunks": [
+[
+"The car will run smoothly",
+"그 차는 매끄럽게 달릴 것이다",
+""
+],
+[
+"as long as",
+"~하는 한",
+"C"
+],
+[
+"you change",
+"당신이 교환하는",
+"V"
+],
+[
+"the engine oil regularly.",
+"엔진 오일을 정기적으로.",
+""
+]
+],
+"tr": "그 차는 당신이 엔진 오일을 정기적으로 교환하는 한 매끄럽게 달릴 것이다.",
+"ans": "change",
+"pts": null
+},
+{
+"key": "c02q2|11",
+"title": "문장 연습 밑줄 · 밑줄 친 시제 바르게 고치기",
+"chunks": [
+[
+"Since they first",
+"그것들이 처음",
+"C"
+],
+[
+"appeared,",
+"등장한 이래로,",
+"V"
+],
+[
+"communities have used dance",
+"공동체들은 춤을 사용해 왔다",
+""
+],
+[
+"to remember major events like birth and death.",
+"탄생과 죽음과 같은 중요한 사건들을 기억하기 위해.",
+""
+]
+],
+"tr": "처음 등장한 이래로, 공동체들은 춤을 탄생과 죽음과 같은 중요한 사건들을 기억하기 위해 사용해 왔다.",
+"ans": "appeared",
+"pts": null
+},
+{
+"key": "c02q2|12",
+"title": "문장 연습 밑줄 · 밑줄 친 시제 바르게 고치기",
+"chunks": [
+[
+"The road was closed",
+"그 도로는 폐쇄되었다",
+""
+],
+[
+"because an accident had occurred",
+"사고가 발생했기 때문에",
+"V"
+],
+[
+"earlier on the same day.",
+"같은 날 일찍.",
+"C"
+]
+],
+"tr": "그 도로는 같은 날 일찍 사고가 발생했기 때문에 폐쇄되었다.",
+"ans": "had occurred",
+"pts": null
+},
+{
+"key": "c02s1|1-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"The Eiffel Tower (A)",
+"에펠탑은",
+""
+],
+[
+"was built",
+"세워졌다",
+"V"
+],
+[
+"in Paris, France",
+"프랑스 파리에",
+""
+],
+[
+"in 1889.",
+"1889년에.",
+"C"
+]
+],
+"tr": "에펠탑은 1889년 프랑스 파리에 세워졌다.",
+"ans": "was",
+"pts": [
+"2.1"
+]
+},
+{
+"key": "c02s1|1-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"It (B)",
+"그것은",
+""
+],
+[
+"has stood tall",
+"우뚝 서 있었고",
+"V"
+],
+[
+"for over a century,",
+"한 세기 이상 동안,",
+"C"
+],
+[
+"and it is now a famous landmark",
+"지금은 유명한 랜드마크이다",
+""
+],
+[
+"that many tourists visit.",
+"많은 관광객들이 방문하는.",
+""
+]
+],
+"tr": "그것은 한 세기 이상 동안 우뚝 서 있었고, 지금은 많은 관광객들이 방문하는 유명한 랜드마크이다.",
+"ans": "has stood",
+"pts": [
+"2.1"
+]
+},
+{
+"key": "c02s1|2-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Email communication (A)",
+"이메일 통신은",
+"S"
+],
+[
+"has replaced paper mail",
+"종이 우편을 대체해 왔다",
+"V"
+],
+[
+"since the rise of the Internet.",
+"인터넷의 등장 이래로.",
+"C"
+]
+],
+"tr": "이메일 통신은 인터넷의 등장 이래로 종이 우편을 대체해 왔다.",
+"ans": "has replaced",
+"pts": [
+"2.1"
+]
+},
+{
+"key": "c02s1|2-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"If",
+"만약",
+"C"
+],
+[
+"you (B) send an email,",
+"당신이 이메일을 보낸다면,",
+"V"
+],
+[
+"it will deliver information almost instantly.",
+"그것은 거의 즉시 정보를 전달할 것이다.",
+""
+]
+],
+"tr": "만약 당신이 이메일을 보낸다면, 그것은 거의 즉시 정보를 전달할 것이다.",
+"ans": "send",
+"pts": [
+"2.3"
+]
+},
+{
+"key": "c02s1|3-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Dorothy suddenly (A)",
+"도러시는 갑자기",
+""
+],
+[
+"lost consciousness",
+"의식을 잃었다",
+"V"
+],
+[
+"while talking on the phone with Samantha",
+"사만다와 전화 통화를 하는 동안",
+""
+],
+[
+"last Sunday.",
+"지난 일요일에.",
+"C"
+]
+],
+"tr": "Dorothy는 지난 일요일에 Samantha와 전화 통화를 하는 동안 갑자기 의식을 잃었다.",
+"ans": "lost",
+"pts": [
+"2.1"
+]
+},
+{
+"key": "c02s1|3-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Dorothy’s parents",
+"도러시의 부모님은",
+""
+],
+[
+"rushed to her room and quickly found her",
+"그녀의 방으로 달려갔고 재빨리 그녀를 발견했다",
+"C"
+],
+[
+"because Samantha (B) had called them.",
+"사만다가 그들에게 전화했기 때문에.",
+"V"
+]
+],
+"tr": "Dorothy의 부모님은 Samantha가 그들에게 전화했기 때문에 Dorothy의 방으로 달려갔고 재빨리 그녀를 발견했다.",
+"ans": "had called",
+"pts": [
+"2.2"
+]
+},
+{
+"key": "c02s1|4-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Our farm",
+"우리 농장은",
+""
+],
+[
+"has produced healthy foods",
+"건강한 식품을 생산해 왔다",
+"V"
+],
+[
+"for over 30 years",
+"30년 이상 동안",
+"C"
+],
+[
+"in this neighborhood.",
+"이 인근에서.",
+""
+]
+],
+"tr": "우리 농장은 이 인근에서 30년 이상 동안 건강한 식품을 생산해 왔다.",
+"ans": "has produced",
+"pts": [
+"2.1"
+]
+},
+{
+"key": "c02s1|4-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Once",
+"일단",
+"C"
+],
+[
+"you taste our fresh fruits and vegetables,",
+"당신이 우리의 신선한 과일과 채소를 맛본다면,",
+"V"
+],
+[
+"you will understand",
+"당신은 이해할 수 있을 것이다",
+""
+],
+[
+"why our customers always come back for more.",
+"왜 고객들이 더 많은 것을 위해 항상 다시 오는지.",
+""
+]
+],
+"tr": "당신이 일단 우리의 신선한 과일과 채소를 맛본다면, 왜 고객들이 더 많은 것을 위해 항상 다시 오는지 이해할 수 있을 것이다.",
+"ans": "taste",
+"pts": [
+"2.3"
+]
+},
+{
+"key": "c02s1|5-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Dennis",
+"데니스는",
+""
+],
+[
+"has waited for the book signing event",
+"도서 사인 행사를 기다려 왔다",
+""
+],
+[
+"since",
+"~한 이래로",
+"C"
+],
+[
+"he missed it",
+"그가 그것을 놓친",
+"V"
+],
+[
+"last year.",
+"작년에.",
+""
+]
+],
+"tr": "Dennis는 작년에 도서 사인 행사를 놓친 이래로 그것을 기다려 왔다.",
+"ans": "missed",
+"pts": [
+"2.1"
+]
+},
+{
+"key": "c02s1|5-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"On that day,",
+"그날,",
+"C"
+],
+[
+"he was very disappointed",
+"그는 매우 실망했다",
+""
+],
+[
+"because he had wanted to meet his favorite writer.",
+"그가 가장 좋아하는 작가를 만나기를 원했기 때문에.",
+"V"
+]
+],
+"tr": "그날, 그는 그가 가장 좋아하는 작가를 만나기를 원했기 때문에 매우 실망했다.",
+"ans": "had wanted",
+"pts": [
+"2.2"
+]
+},
+{
+"key": "c02s1|6-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"You will never see great things",
+"당신은 결코 위대한 것들을 볼 수 없을 것이다",
+""
+],
+[
+"until",
+"~할 때까지",
+"C"
+],
+[
+"you step outside your home.",
+"당신이 집 밖으로 걸음을 내디딘다.",
+"V"
+]
+],
+"tr": "당신이 집 밖으로 걸음을 내디딜 때까지 당신은 결코 위대한 것들을 볼 수 없을 것이다.",
+"ans": "step",
+"pts": [
+"2.3"
+]
+},
+{
+"key": "c02s1|6-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Also, if you set your own path in life,",
+"또한, 당신이 스스로의 인생의 진로를 정한다면,",
+""
+],
+[
+"you will need to decide for yourself",
+"당신은 스스로 결정할 필요가 있을 것이다",
+""
+],
+[
+"if",
+"~인지",
+"C"
+],
+[
+"you will achieve great things.",
+"당신이 위대한 것들을 성취할.",
+"V"
+]
+],
+"tr": "또한, 당신이 스스로의 인생의 진로를 정한다면, 당신은 위대한 것들을 성취할지 스스로 결정할 필요가 있을 것이다.",
+"ans": "will achieve",
+"pts": [
+"2.3"
+]
+},
+{
+"key": "add02|1-1",
+"title": "추가문제 POINT 1 단순과거 vs. 현재완료",
+"chunks": [
+[
+"In 1959,",
+"1959년에,",
+"C"
+],
+[
+"Miles Davis",
+"마일스 데이비스는",
+"S"
+],
+[
+"released",
+"발표했다",
+"V"
+],
+[
+"his best-selling album Kind of Blue.",
+"그의 베스트셀러 앨범 카인드 오브 블루를.",
+""
+]
+],
+"tr": "1959년에, Miles Davis는 그의 베스트셀러 앨범 Kind of Blue를 발표했다.",
+"ans": "released",
+"pts": null
+},
+{
+"key": "add02|1-2",
+"title": "추가문제 POINT 1 단순과거 vs. 현재완료",
+"chunks": [
+[
+"Since they discovered a dinosaur bone last year,",
+"그들이 작년에 공룡 뼈를 발견한 이후,",
+"C"
+],
+[
+"scientists",
+"과학자들은",
+"S"
+],
+[
+"have found",
+"발견해 왔다",
+"V"
+],
+[
+"many more bones in the area.",
+"그 지역에서 훨씬 더 많은 뼈들을.",
+""
+]
+],
+"tr": "그들이 작년에 공룡 뼈를 발견한 이후, 과학자들은 그 지역에서 더 많은 뼈들을 발견했다.",
+"ans": "have found",
+"pts": null
+},
+{
+"key": "add02|1-3",
+"title": "추가문제 POINT 1 단순과거 vs. 현재완료",
+"chunks": [
+[
+"Sarah",
+"세라는",
+"S"
+],
+[
+"brought her dog",
+"그녀의 개를 데려갔다",
+"V"
+],
+[
+"to the animal hospital",
+"동물병원으로",
+""
+],
+[
+"last week",
+"지난주에",
+"C"
+],
+[
+"after it swallowed a toy.",
+"그것이 장난감을 삼킨 후에.",
+""
+]
+],
+"tr": "Sarah는 그녀의 개가 지난주에 장난감을 삼킨 후에 그것을 동물병원에 데리고 갔다.",
+"ans": "brought",
+"pts": null
+},
+{
+"key": "add02|1-4",
+"title": "추가문제 POINT 1 단순과거 vs. 현재완료",
+"chunks": [
+[
+"Scott",
+"스콧은",
+"S"
+],
+[
+"has exercised",
+"운동해 왔다",
+"V"
+],
+[
+"at this gym with me",
+"나와 함께 이 체육관에서",
+""
+],
+[
+"for several years now.",
+"지금까지 몇 년 동안.",
+"C"
+]
+],
+"tr": "Scott는 지금까지 몇 년 동안 나와 함께 이 체육관에서 운동을 해왔다.",
+"ans": "has exercised",
+"pts": null
+},
+{
+"key": "add02|1-5",
+"title": "추가문제 POINT 1 단순과거 vs. 현재완료",
+"chunks": [
+[
+"When the plane began to land,",
+"비행기가 착륙하기 시작했을 때,",
+"C"
+],
+[
+"the passengers",
+"승객들은",
+"S"
+],
+[
+"returned",
+"돌아갔다",
+"V"
+],
+[
+"to their seats.",
+"그들의 자리로.",
+""
+]
+],
+"tr": "비행기가 착륙하기 시작했을 때, 승객들은 그들의 자리로 돌아갔다.",
+"ans": "returned",
+"pts": null
+},
+{
+"key": "add02|2-1",
+"title": "추가문제 POINT 2 과거완료 vs. 현재완료",
+"chunks": [
+[
+"By the time the report finished printing,",
+"보고서가 인쇄를 마쳤을 때쯤,",
+"C"
+],
+[
+"we",
+"우리는",
+"S"
+],
+[
+"had used",
+"다 써 버렸다",
+"V"
+],
+[
+"nearly all of the paper in the office.",
+"사무실에 있는 거의 모든 종이를.",
+""
+]
+],
+"tr": "보고서가 인쇄를 마쳤을 때쯤, 우리는 사무실에 있는 거의 모든 종이를 사용했다.",
+"ans": "had used",
+"pts": null
+},
+{
+"key": "add02|2-2",
+"title": "추가문제 POINT 2 과거완료 vs. 현재완료",
+"chunks": [
+[
+"I was so worried earlier,",
+"나는 아까 너무 걱정했지만,",
+""
+],
+[
+"but I feel better now",
+"지금은 기분이 나아졌다",
+""
+],
+[
+"because",
+"왜냐하면",
+"C"
+],
+[
+"my cat",
+"내 고양이가",
+"S"
+],
+[
+"has been home",
+"집에 와 있고",
+"V"
+],
+[
+"and is with me.",
+"나와 함께 있기 때문에.",
+""
+]
+],
+"tr": "아까는 너무 걱정했었는데, 내 고양이가 집에 와서 나와 함께 있기 때문에 지금은 기분이 나아졌다.",
+"ans": "has been",
+"pts": null
+},
+{
+"key": "add02|2-3",
+"title": "추가문제 POINT 2 과거완료 vs. 현재완료",
+"chunks": [
+[
+"We",
+"우리는",
+"S"
+],
+[
+"arrived at the concert late",
+"콘서트에 늦게 도착했고",
+""
+],
+[
+"and missed the musician",
+"음악가를 놓쳤다",
+""
+],
+[
+"we",
+"우리가",
+"S"
+],
+[
+"had wanted to see.",
+"보고 싶어 했던.",
+"V"
+]
+],
+"tr": "우리는 콘서트에 늦게 도착했고, 우리가 보고 싶어 했던 음악가를 놓쳤다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add02|2-4",
+"title": "추가문제 POINT 2 과거완료 vs. 현재완료",
+"chunks": [
+[
+"We",
+"우리는",
+"S"
+],
+[
+"have practiced",
+"연습해 왔다",
+"V"
+],
+[
+"the play for several months,",
+"몇 달 동안 연극을,",
+"C"
+],
+[
+"so I think",
+"그래서 나는 생각한다",
+""
+],
+[
+"we are ready to perform now.",
+"우리가 이제 공연할 준비가 되었다고.",
+""
+]
+],
+"tr": "우리는 몇 달 동안 연극 연습을 해왔기 때문에, 나는 이제 우리가 공연을 할 준비가 되었다고 생각한다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add02|2-5",
+"title": "추가문제 POINT 2 과거완료 vs. 현재완료",
+"chunks": [
+[
+"I",
+"나는",
+"S"
+],
+[
+"only realized that",
+"비로소 깨달았다",
+""
+],
+[
+"I",
+"내가",
+"S"
+],
+[
+"had left",
+"두고 왔다는 것을",
+"V"
+],
+[
+"my brand-new smartphone in the taxi",
+"택시 안에 나의 최신 스마트폰을",
+""
+],
+[
+"when I got to my apartment.",
+"내가 아파트에 도착했을 때.",
+"C"
+]
+],
+"tr": "나는 내 아파트에 도착했을 때 택시 안에 나의 최신 스마트폰을 두고 왔다는 것을 비로소 깨달았다.",
+"ans": "had left",
+"pts": null
+},
+{
+"key": "add02|3-1",
+"title": "추가문제 POINT 3 미래시제를 대신하는 현재시제",
+"chunks": [
+[
+"If",
+"만약",
+"C"
+],
+[
+"you",
+"당신이",
+"S"
+],
+[
+"water",
+"물을 준다면",
+"V"
+],
+[
+"your plants too often,",
+"식물에 너무 자주,",
+""
+],
+[
+"they",
+"그것들은",
+"S"
+],
+[
+"will not survive.",
+"살아남지 못할 것이다.",
+""
+]
+],
+"tr": "만약 당신이 식물에 너무 자주 물을 주면, 그것들은 살아남지 못할 것이다.",
+"ans": "water",
+"pts": null
+},
+{
+"key": "add02|3-2",
+"title": "추가문제 POINT 3 미래시제를 대신하는 현재시제",
+"chunks": [
+[
+"We",
+"우리는",
+"S"
+],
+[
+"will move back into the house",
+"그 집으로 다시 이사 들어갈 것이다",
+""
+],
+[
+"as soon as",
+"~하자마자",
+"C"
+],
+[
+"the workers",
+"작업자들이",
+"S"
+],
+[
+"finish",
+"마치다",
+"V"
+],
+[
+"the repairs.",
+"수리를.",
+""
+]
+],
+"tr": "우리는 작업자들이 수리를 마치자마자 집으로 다시 돌아갈 것이다.",
+"ans": "finish",
+"pts": null
+},
+{
+"key": "add02|3-3",
+"title": "추가문제 POINT 3 미래시제를 대신하는 현재시제",
+"chunks": [
+[
+"Once",
+"일단",
+"C"
+],
+[
+"the economy",
+"경제가",
+"S"
+],
+[
+"improves,",
+"나아지면,",
+"V"
+],
+[
+"business",
+"사업은",
+"S"
+],
+[
+"will probably get better.",
+"아마도 더 좋아질 것이다.",
+""
+]
+],
+"tr": "일단 경제가 나아지면, 사업은 아마도 더 좋아질 것이다.",
+"ans": "improves",
+"pts": null
+},
+{
+"key": "add02|3-4",
+"title": "추가문제 POINT 3 미래시제를 대신하는 현재시제",
+"chunks": [
+[
+"Let me ask",
+"제가 물어보게 해 주세요",
+""
+],
+[
+"the restaurant manager",
+"식당 매니저에게",
+""
+],
+[
+"if",
+"~인지를",
+"C"
+],
+[
+"they",
+"그들이",
+"S"
+],
+[
+"will take",
+"받을지",
+"V"
+],
+[
+"my credit card",
+"제 신용카드를",
+""
+],
+[
+"before we sit down at a table.",
+"우리가 자리에 앉기 전에.",
+""
+]
+],
+"tr": "우리가 자리에 앉기 전에 식당 매니저에게 제 신용카드를 받는지 물어보게 해주세요.",
+"ans": "will take",
+"pts": null
+},
+{
+"key": "add02|3-5",
+"title": "추가문제 POINT 3 미래시제를 대신하는 현재시제",
+"chunks": [
+[
+"When",
+"~할 때",
+"C"
+],
+[
+"Fred",
+"프레드가",
+"S"
+],
+[
+"pays",
+"갚는",
+"V"
+],
+[
+"me back the $50",
+"나에게 50달러를",
+""
+],
+[
+"that I lent him,",
+"내가 그에게 빌려준,",
+"M"
+],
+[
+"I",
+"나는",
+"S"
+],
+[
+"will send you the $20",
+"너에게 20달러를 보낼 것이다",
+""
+],
+[
+"I owe.",
+"내가 빚진.",
+""
+]
+],
+"tr": "Fred가 내가 그에게 빌려준 50달러를 다시 갚을 때, 나는 내가 빚진 20달러를 너에게 보낼 것이다.",
+"ans": "pays",
+"pts": null
+}
+]

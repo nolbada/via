@@ -1,0 +1,2562 @@
+[
+{
+"key": "c04p1|예제",
+"title": "POINT 1 · 조동사 뒤 동사원형 vs. have p.p.",
+"chunks": [
+[
+"The students",
+"학생들은",
+""
+],
+[
+"should have received class schedules",
+"수업 일정을 받았어야 했다",
+"V"
+],
+[
+"while they were in the orientation.",
+"그들이 오리엔테이션에 있는 동안.",
+"M"
+]
+],
+"tr": "학생들은 오리엔테이션에 있는 동안 수업 일정을 받았어야 했다.",
+"ans": "have received",
+"pts": null
+},
+{
+"key": "c04p1|1",
+"title": "POINT 1 · 조동사 뒤 동사원형 vs. have p.p.",
+"chunks": [
+[
+"In the coming days,",
+"앞으로 며칠 안에,",
+"M"
+],
+[
+"we might visit",
+"우리는 방문할지도 모른다",
+"V"
+],
+[
+"the exhibition about modern art.",
+"현대 미술에 관한 전시회를.",
+""
+]
+],
+"tr": "앞으로 며칠 안에, 우리는 현대 미술에 관한 전시회를 방문할지도 모른다.",
+"ans": "visit",
+"pts": null
+},
+{
+"key": "c04p1|2",
+"title": "POINT 1 · 조동사 뒤 동사원형 vs. have p.p.",
+"chunks": [
+[
+"Kevin cannot have finished his report",
+"케빈은 그의 보고서를 끝냈을 리가 없다",
+"V"
+],
+[
+"last week",
+"지난주에",
+"M"
+],
+[
+"because he hasn’t even started it.",
+"그가 아직 시작도 하지 않았기 때문에.",
+""
+]
+],
+"tr": "Kevin은 보고서를 아직 시작도 하지 않았기 때문에 지난주에 끝냈을 리가 없다.",
+"ans": "have finished",
+"pts": null
+},
+{
+"key": "c04p1|3",
+"title": "POINT 1 · 조동사 뒤 동사원형 vs. have p.p.",
+"chunks": [
+[
+"Sandra",
+"샌드라는",
+""
+],
+[
+"lost her phone.",
+"휴대폰을 잃어버렸다.",
+"M"
+],
+[
+"She must have dropped",
+"그녀는 떨어뜨렸음이 틀림없다",
+"V"
+],
+[
+"it somewhere.",
+"그것을 어딘가에.",
+""
+]
+],
+"tr": "Sandra는 그녀의 휴대폰을 잃어버렸다. 그녀는 그것을 어딘가에 떨어뜨렸음이 틀림없다.",
+"ans": "have dropped",
+"pts": null
+},
+{
+"key": "c04p1|4",
+"title": "POINT 1 · 조동사 뒤 동사원형 vs. have p.p.",
+"chunks": [
+[
+"You should book a table",
+"당신은 테이블을 예약해야 한다",
+"V"
+],
+[
+"by tomorrow",
+"내일까지",
+"M"
+],
+[
+"if you’re going to the buffet this Friday.",
+"당신이 이번 주 금요일에 그 뷔페에 갈 거라면.",
+""
+]
+],
+"tr": "당신이 이번 주 금요일에 그 뷔페에 갈 거라면 내일까지 테이블을 예약해야 한다.",
+"ans": "book",
+"pts": null
+},
+{
+"key": "c04p1|5",
+"title": "POINT 1 · 조동사 뒤 동사원형 vs. have p.p.",
+"chunks": [
+[
+"I could have joined",
+"나는 들어갈 수 있었다",
+"V"
+],
+[
+"the basketball team,",
+"농구팀에,",
+""
+],
+[
+"but I chose to focus on my studies instead.",
+"하지만 나는 대신 공부에 집중하기를 선택했다.",
+"M"
+]
+],
+"tr": "나는 농구팀에 들어갈 수 있었지만, 대신 공부에 집중하는 것을 선택했다.",
+"ans": "have joined",
+"pts": null
+},
+{
+"key": "c04p2|예제",
+"title": "POINT 2 · 주장·제안·요구·명령 동사 뒤 that절의 should 생략",
+"chunks": [
+[
+"A nurse insisted that",
+"간호사는 주장했다",
+"C"
+],
+[
+"the tired soldier",
+"그 지친 군인이",
+"S"
+],
+[
+"take a rest,",
+"휴식을 취해야 한다고",
+"V"
+],
+[
+"but he politely said no.",
+"하지만 그는 예의 바르게 거절했다.",
+""
+]
+],
+"tr": "간호사는 그 지친 군인이 휴식을 취해야 한다고 주장했지만, 그는 예의 바르게 거절했다.",
+"ans": "take",
+"pts": null
+},
+{
+"key": "c04p2|1",
+"title": "POINT 2 · 주장·제안·요구·명령 동사 뒤 that절의 should 생략",
+"chunks": [
+[
+"Professor Albert suggested that",
+"앨버트 교수는 제안했다",
+"C"
+],
+[
+"Dominic",
+"도미닉이",
+"S"
+],
+[
+"look for a recent article",
+"최근 기사를 찾아봐야 한다고",
+"V"
+],
+[
+"to write his paper.",
+"그의 논문을 쓰기 위해.",
+""
+]
+],
+"tr": "Albert 교수는 Dominic이 그의 논문을 쓰기 위해 최근 기사를 찾아봐야 한다고 제안했다.",
+"ans": "look",
+"pts": null
+},
+{
+"key": "c04p2|2",
+"title": "POINT 2 · 주장·제안·요구·명령 동사 뒤 that절의 should 생략",
+"chunks": [
+[
+"The customer demanded that",
+"그 고객은 요구했다",
+"C"
+],
+[
+"delivery",
+"배송이",
+"S"
+],
+[
+"be completed",
+"완료되어야 한다고",
+"V"
+],
+[
+"within two weeks.",
+"2주 안에.",
+""
+]
+],
+"tr": "그 고객은 2주 안에 배송이 완료되어야 한다고 요구했다.",
+"ans": "be",
+"pts": null
+},
+{
+"key": "c04p2|3",
+"title": "POINT 2 · 주장·제안·요구·명령 동사 뒤 that절의 should 생략",
+"chunks": [
+[
+"Some people insist that",
+"어떤 사람들은 주장한다",
+"C"
+],
+[
+"they",
+"그들이",
+"S"
+],
+[
+"really saw",
+"정말로 봤다고",
+"V"
+],
+[
+"a UFO.",
+"미확인 비행 물체를.",
+""
+]
+],
+"tr": "어떤 사람들은 그들이 정말로 UFO를 봤다고 주장한다.",
+"ans": "saw",
+"pts": null
+},
+{
+"key": "c04p2|4",
+"title": "POINT 2 · 주장·제안·요구·명령 동사 뒤 that절의 should 생략",
+"chunks": [
+[
+"My doctor proposed that",
+"나의 의사는 제안했다",
+"C"
+],
+[
+"I",
+"내가",
+"S"
+],
+[
+"eat more vegetables",
+"더 많은 채소를 먹어야 한다고",
+"V"
+],
+[
+"with my meals.",
+"식사와 함께.",
+""
+]
+],
+"tr": "나의 의사는 내가 식사와 함께 더 많은 채소를 먹어야 한다고 제안했다.",
+"ans": "eat",
+"pts": null
+},
+{
+"key": "c04p2|5",
+"title": "POINT 2 · 주장·제안·요구·명령 동사 뒤 that절의 should 생략",
+"chunks": [
+[
+"Frequent delays of flights suggest that",
+"비행기의 잦은 지연은 시사한다",
+"C"
+],
+[
+"the airline",
+"항공사가",
+"S"
+],
+[
+"has financial or technical problems.",
+"재정적인 또는 기술적인 문제를 가지고 있다는 것을.",
+"V"
+]
+],
+"tr": "비행기의 잦은 지연은 항공사가 재정적인 또는 기술적인 문제를 가지고 있다는 것을 시사한다.",
+"ans": "has",
+"pts": null
+},
+{
+"key": "c04p3|예제",
+"title": "POINT 3 · 반복되는 동사 대신 쓰는 do/be/have동사",
+"chunks": [
+[
+"In the future,",
+"미래에,",
+""
+],
+[
+"your smart devices",
+"당신의 스마트 기기는",
+""
+],
+[
+"will know more about you",
+"당신에 대해 더 많이 알게 될 것이다",
+"C"
+],
+[
+"than your closest friends",
+"당신의 가장 가까운 친구들이",
+"S"
+],
+[
+"do.",
+"아는 것보다.",
+"V"
+]
+],
+"tr": "미래에, 당신의 스마트 기기는 가장 가까운 친구가 아는 것보다 당신에 대해 더 많이 알게 될 것이다.",
+"ans": "do",
+"pts": null
+},
+{
+"key": "c04p3|1",
+"title": "POINT 3 · 반복되는 동사 대신 쓰는 do/be/have동사",
+"chunks": [
+[
+"Don’t be afraid to try new things,",
+"새로운 것을 시도하는 것을 두려워하지 마라,",
+"C"
+],
+[
+"because if you",
+"왜냐하면 만약 당신이",
+"S"
+],
+[
+"are,",
+"두려워한다면,",
+"V"
+],
+[
+"you may miss great opportunities.",
+"당신은 좋은 기회들을 놓칠 수 있다.",
+""
+]
+],
+"tr": "만약 두려워한다면, 당신은 좋은 기회들을 놓칠 수 있기 때문에 새로운 것을 시도하는 것을 두려워하지 마라.",
+"ans": "are",
+"pts": null
+},
+{
+"key": "c04p3|2",
+"title": "POINT 3 · 반복되는 동사 대신 쓰는 do/be/have동사",
+"chunks": [
+[
+"From 2014 to 2016, Istanbul",
+"2014년부터 2016년까지, 이스탄불은",
+""
+],
+[
+"received more tourists",
+"더 많은 관광객을 받았다",
+"C"
+],
+[
+"than Antalya",
+"안탈리아가",
+"S"
+],
+[
+"did.",
+"받은 것보다.",
+"V"
+]
+],
+"tr": "2014년부터 2016년까지, 이스탄불은 안탈리아가 받은 것보다 더 많은 관광객을 받았다.",
+"ans": "did",
+"pts": null
+},
+{
+"key": "c04p3|3",
+"title": "POINT 3 · 반복되는 동사 대신 쓰는 do/be/have동사",
+"chunks": [
+[
+"The hot summer weather",
+"더운 여름 날씨는",
+""
+],
+[
+"has not affected the taste of the fruit,",
+"과일 맛에 영향을 미치지 않았지만,",
+"C"
+],
+[
+"but the lack of rainfall",
+"하지만 강수량의 부족은",
+"S"
+],
+[
+"has.",
+"영향을 미쳤다.",
+"V"
+]
+],
+"tr": "더운 여름 날씨는 과일 맛에 영향을 미치지 않았지만, 강수량의 부족은 영향을 미쳤다.",
+"ans": "has",
+"pts": null
+},
+{
+"key": "c04p3|4",
+"title": "POINT 3 · 반복되는 동사 대신 쓰는 do/be/have동사",
+"chunks": [
+[
+"The temperature outside",
+"바깥의 온도는",
+""
+],
+[
+"was much lower",
+"훨씬 낮았다",
+"C"
+],
+[
+"than it",
+"그것이",
+"S"
+],
+[
+"was earlier in the day.",
+"그날 더 이른 시간에 낮았던 것보다.",
+"V"
+]
+],
+"tr": "바깥의 온도는 그날 더 이른 시간에 낮았던 것보다 훨씬 낮았다.",
+"ans": "was",
+"pts": null
+},
+{
+"key": "c04p3|5",
+"title": "POINT 3 · 반복되는 동사 대신 쓰는 do/be/have동사",
+"chunks": [
+[
+"The company",
+"그 회사는",
+""
+],
+[
+"sells good products,",
+"좋은 제품을 판매하고,",
+"C"
+],
+[
+"and it",
+"그리고 그것은",
+"S"
+],
+[
+"does so",
+"그렇게 한다",
+"V"
+],
+[
+"with excellent customer service.",
+"우수한 고객 서비스와 함께.",
+""
+]
+],
+"tr": "그 회사는 좋은 제품을 판매하고, 우수한 고객 서비스와 함께 그렇게 한다.",
+"ans": "does",
+"pts": null
+},
+{
+"key": "c04p4|예제",
+"title": "POINT 4 · 일반동사의 의미를 강조하는 do동사",
+"chunks": [
+[
+"Both Mark and I",
+"마크와 나 둘 다",
+"S"
+],
+[
+"did finally solve the problem,",
+"결국 그 문제를 풀긴 했다,",
+"V"
+],
+[
+"but I needed more time than him.",
+"하지만 나는 그보다 더 많은 시간이 필요했다.",
+""
+]
+],
+"tr": "Mark와 나 둘 다 결국 그 문제를 풀긴 했지만, 나는 그보다 더 많은 시간이 필요했다.",
+"ans": "solve",
+"pts": null
+},
+{
+"key": "c04p4|1",
+"title": "POINT 4 · 일반동사의 의미를 강조하는 do동사",
+"chunks": [
+[
+"John",
+"존은",
+"S"
+],
+[
+"does always arrive",
+"항상 도착한다",
+"V"
+],
+[
+"on time for his appointments.",
+"약속 시간에 맞춰.",
+""
+]
+],
+"tr": "John은 항상 그의 약속에 시간 맞춰 도착한다.",
+"ans": "arrive",
+"pts": null
+},
+{
+"key": "c04p4|2",
+"title": "POINT 4 · 일반동사의 의미를 강조하는 do동사",
+"chunks": [
+[
+"The project team",
+"그 프로젝트팀은",
+"S"
+],
+[
+"did quickly finish their work",
+"그들의 일을 빠르게 마쳤다",
+"V"
+],
+[
+"ahead of last week’s deadline.",
+"지난주의 마감 기한보다 먼저.",
+"M"
+]
+],
+"tr": "그 프로젝트팀은 지난주의 마감 기한보다 먼저 그들의 일을 빠르게 마쳤다.",
+"ans": "did",
+"pts": null
+},
+{
+"key": "c04p4|3",
+"title": "POINT 4 · 일반동사의 의미를 강조하는 do동사",
+"chunks": [
+[
+"My dog",
+"나의 개는",
+"S"
+],
+[
+"does provide unconditional love",
+"무조건적인 사랑을 준다",
+"V"
+],
+[
+"to me and my family members.",
+"나와 내 가족 구성원들에게.",
+""
+]
+],
+"tr": "나의 개는 나와 내 가족 구성원들에게 무조건적인 사랑을 준다.",
+"ans": "provide",
+"pts": null
+},
+{
+"key": "c04p4|4",
+"title": "POINT 4 · 일반동사의 의미를 강조하는 do동사",
+"chunks": [
+[
+"When we feel sad,",
+"슬픔을 느낄 때,",
+""
+],
+[
+"we",
+"우리는",
+"S"
+],
+[
+"often do speak",
+"종종 말한다",
+"V"
+],
+[
+"slowly and in a low voice.",
+"천천히 그리고 낮은 목소리로.",
+""
+]
+],
+"tr": "슬픔을 느낄 때, 우리는 종종 천천히 그리고 낮은 목소리로 말한다.",
+"ans": "do",
+"pts": null
+},
+{
+"key": "c04p4|5",
+"title": "POINT 4 · 일반동사의 의미를 강조하는 do동사",
+"chunks": [
+[
+"Tim Marshall, an artist,",
+"예술가인 팀 마셜은",
+"S"
+],
+[
+"does regularly try different styles",
+"정기적으로 다양한 스타일을 시도한다",
+"V"
+],
+[
+"to develop his technique.",
+"그의 기법을 발전시키기 위해.",
+""
+]
+],
+"tr": "예술가인 Tim Marshall은 그의 기법을 발전시키기 위해 정기적으로 다양한 스타일을 시도한다.",
+"ans": "does",
+"pts": null
+},
+{
+"key": "c04q1|1",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Our rooms aren’t ready,",
+"우리의 방은 준비가 되지 않았지만,",
+""
+],
+[
+"but the hotel will call us",
+"호텔은 우리에게 전화할 것이다",
+""
+],
+[
+"when they",
+"방들이",
+"S"
+],
+[
+"are.",
+"준비되었을 때.",
+"V"
+]
+],
+"tr": "우리의 방은 준비가 되지 않았지만, 호텔은 준비가 되었을 때 우리에게 전화할 것이다.",
+"ans": "are",
+"pts": null
+},
+{
+"key": "c04q1|2",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"It was impossible to miss",
+"놓치는 것은 불가능했다",
+""
+],
+[
+"the $20 bill on the table.",
+"테이블 위의 그 20달러 지폐를.",
+""
+],
+[
+"Surely you",
+"확실히 너는",
+""
+],
+[
+"must",
+"틀림없이",
+"C"
+],
+[
+"have seen it!",
+"그것을 보았을 거야!",
+"V"
+]
+],
+"tr": "테이블 위의 그 20달러 지폐를 놓치는 것은 불가능했어. 확실히 너는 그것을 보았음이 틀림없어!",
+"ans": "have seen",
+"pts": null
+},
+{
+"key": "c04q1|3",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"I",
+"나는",
+"S"
+],
+[
+"did really",
+"정말",
+"C"
+],
+[
+"enjoy exploring new hiking trails",
+"새로운 등산로를 탐험하는 것을 즐겼다",
+"V"
+],
+[
+"in the mountains during the weekends.",
+"산에서 주말 동안.",
+""
+]
+],
+"tr": "나는 주말 동안 산에서 새로운 등산로를 탐험하는 것을 정말 즐겼다.",
+"ans": "enjoy",
+"pts": null
+},
+{
+"key": "c04q1|4",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Some people",
+"어떤 사람들은",
+""
+],
+[
+"urge",
+"촉구한다",
+"C"
+],
+[
+"that the government",
+"정부가",
+"S"
+],
+[
+"invest more funds in education",
+"교육에 더 많은 자금을 투자해야 한다고",
+"V"
+],
+[
+"than they do now.",
+"지금 하는 것보다.",
+""
+]
+],
+"tr": "어떤 사람들은 정부가 교육에 지금 하는 것보다 더 많은 자금을 투자해야 한다고 촉구한다.",
+"ans": "invest",
+"pts": null
+},
+{
+"key": "c04q1|5",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"All travelers",
+"모든 여행객들은",
+""
+],
+[
+"should",
+"~해야 한다",
+"C"
+],
+[
+"bring their passports",
+"그들의 여권을 가져가는 것",
+"V"
+],
+[
+"when they go to the airport.",
+"공항에 갈 때.",
+"M"
+]
+],
+"tr": "모든 여행객들은 공항에 갈 때 그들의 여권을 가져가야 한다.",
+"ans": "bring",
+"pts": null
+},
+{
+"key": "c04q1|6",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Computers process information quickly,",
+"컴퓨터는 정보를 빠르게 처리한다,",
+""
+],
+[
+"just like our brains",
+"꼭 우리의 뇌가",
+"S"
+],
+[
+"do",
+"그러하듯이",
+"V"
+],
+[
+"when we solve problems.",
+"우리가 문제를 풀 때.",
+""
+]
+],
+"tr": "우리가 문제를 풀 때 우리의 뇌가 처리하는 것처럼, 컴퓨터는 정보를 빠르게 처리한다.",
+"ans": "do",
+"pts": null
+},
+{
+"key": "c04q1|7",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Susan",
+"수잔은",
+"S"
+],
+[
+"could",
+"~할 수 있었다",
+"C"
+],
+[
+"have taken the bus",
+"버스를 탄 것",
+"V"
+],
+[
+"this morning,",
+"오늘 아침에",
+"M"
+],
+[
+"but she walked to work instead.",
+"하지만 그녀는 대신 걸어서 출근했다.",
+""
+]
+],
+"tr": "Susan은 오늘 아침에 버스를 탈 수 있었지만, 그 대신에 걸어서 출근했다.",
+"ans": "have taken",
+"pts": null
+},
+{
+"key": "c04q1|8",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"I",
+"나는",
+"S"
+],
+[
+"do have a key to the office",
+"사무실 열쇠를 가지고 있긴 하다",
+"V"
+],
+[
+"right now,",
+"지금",
+"M"
+],
+[
+"but it’s downstairs in my car.",
+"하지만 그것은 아래층의 내 차 안에 있다.",
+""
+]
+],
+"tr": "내가 지금 사무실 열쇠를 가지고 있긴 하지만, 그것은 아래층의 내 차 안에 있다.",
+"ans": "do",
+"pts": null
+},
+{
+"key": "c04q1|9",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The report",
+"그 보고서는",
+""
+],
+[
+"suggests",
+"시사한다",
+"C"
+],
+[
+"that the company’s profits",
+"그 회사의 수익이",
+"S"
+],
+[
+"dropped sharply",
+"급격하게 떨어졌다는 것을",
+"V"
+],
+[
+"in the past year.",
+"전년도에.",
+"M"
+]
+],
+"tr": "그 보고서는 그 회사의 수익이 전년도에 급격하게 떨어졌다는 것을 시사한다.",
+"ans": "dropped",
+"pts": null
+},
+{
+"key": "c04q1|10",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Many beaches",
+"많은 해변이",
+""
+],
+[
+"have not reopened",
+"다시 열지 않고 있다",
+""
+],
+[
+"since last week’s typhoon,",
+"지난주 태풍 이래로,",
+""
+],
+[
+"but this beach",
+"하지만 이 해수욕장은",
+"S"
+],
+[
+"has.",
+"다시 열었다.",
+"V"
+]
+],
+"tr": "지난주 태풍 이래로 많은 해변이 다시 열지 않고 있지만, 이 해수욕장은 다시 열었다.",
+"ans": "has",
+"pts": null
+},
+{
+"key": "c04q1|11",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Every mammal",
+"모든 포유류는",
+"S"
+],
+[
+"does eventually leave its parents",
+"결국 부모를 떠난다",
+"V"
+],
+[
+"at some point.",
+"어느 시점에.",
+""
+]
+],
+"tr": "모든 포유류는 결국에는 어느 시점에 부모를 떠난다.",
+"ans": "leave",
+"pts": null
+},
+{
+"key": "c04q1|12",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The amount of snowfall this December",
+"올해 12월 강설량은",
+""
+],
+[
+"will be significantly higher",
+"상당히 더 높을 것이다",
+""
+],
+[
+"than it",
+"~보다 그것이",
+"S"
+],
+[
+"was in December of last year.",
+"지난해 12월에 높았던 것.",
+"V"
+]
+],
+"tr": "올해 12월 강설량은 지난해 12월에 높았던 것보다 상당히 더 높을 것이다.",
+"ans": "was",
+"pts": null
+},
+{
+"key": "c04q2|1",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 어법에 맞는지 판단하고 고치기",
+"chunks": [
+[
+"I",
+"나는",
+"S"
+],
+[
+"should",
+"~했어야 했다",
+"C"
+],
+[
+"have said sorry to Tanya sooner,",
+"타냐에게 좀 더 빨리 미안하다고 말한 것,",
+"V"
+],
+[
+"but she left the party",
+"하지만 그녀는 파티를 떠났다",
+""
+],
+[
+"before I got a chance.",
+"내가 기회를 잡기 전에.",
+""
+]
+],
+"tr": "나는 Tanya에게 미안하다고 좀 더 빨리 말했어야 했지만, 그녀는 내가 기회를 잡기 전에 파티를 떠났다.",
+"ans": "have said",
+"pts": null
+},
+{
+"key": "c04q2|2",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 어법에 맞는지 판단하고 고치기",
+"chunks": [
+[
+"Reading books",
+"책을 읽는 것은",
+"S"
+],
+[
+"does widen one’s knowledge",
+"한 사람의 지식을 넓힌다",
+"V"
+],
+[
+"and expand one’s view of the world.",
+"그리고 세상에 대한 관점을 확장한다.",
+""
+]
+],
+"tr": "책을 읽는 것은 한 사람의 지식을 넓히고 세상에 대한 관점을 확장한다.",
+"ans": "widen",
+"pts": null
+},
+{
+"key": "c04q2|3",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 어법에 맞는지 판단하고 고치기",
+"chunks": [
+[
+"I’ve never been",
+"나는 가 본 적이 없다",
+""
+],
+[
+"to any country in South America,",
+"남미에 있는 어떤 나라에도,",
+""
+],
+[
+"but my brother",
+"하지만 내 형제는",
+"S"
+],
+[
+"has.",
+"가 봤다.",
+"V"
+]
+],
+"tr": "나는 남미에 있는 어떤 나라에도 가본 적이 없지만, 내 형제는 가 봤다.",
+"ans": "has",
+"pts": null
+},
+{
+"key": "c04q2|4",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 어법에 맞는지 판단하고 고치기",
+"chunks": [
+[
+"Focusing on studying",
+"공부에 집중하는 것은",
+"S"
+],
+[
+"could be tough",
+"힘들 수 있다",
+"V"
+],
+[
+"when there are so many distractions.",
+"산만하게 하는 것이 너무 많을 때.",
+""
+]
+],
+"tr": "산만하게 하는 것이 너무 많이 있을 때 공부에 집중하는 것이 힘들 수 있다.",
+"ans": "be",
+"pts": null
+},
+{
+"key": "c04q2|5",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 어법에 맞는지 판단하고 고치기",
+"chunks": [
+[
+"Because his financial advisor",
+"그의 재정 고문이",
+"S"
+],
+[
+"suggests",
+"제안하기 때문에",
+"C"
+],
+[
+"that he",
+"그가",
+"S"
+],
+[
+"prepare changes in economy,",
+"경제적 변화에 대비해야 한다고,",
+"V"
+],
+[
+"Mr. Davidson is saving more cash.",
+"데이비슨 씨는 더 많은 현금을 저축하고 있다.",
+""
+]
+],
+"tr": "그의 재정 고문이 경제적 변화에 대비해야 한다고 제안하기 때문에, Davidson씨는 더 많은 현금을 저축하고 있다.",
+"ans": "prepare",
+"pts": null
+},
+{
+"key": "c04q2|6",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 어법에 맞는지 판단하고 고치기",
+"chunks": [
+[
+"Children usually hate eating carrots,",
+"아이들은 보통 당근 먹는 것을 싫어하고,",
+""
+],
+[
+"and when they",
+"그리고 그들이",
+"S"
+],
+[
+"do eat them,",
+"그것들을 정말 먹을 때는,",
+"V"
+],
+[
+"they often make funny faces.",
+"그들은 종종 우스운 표정을 짓는다.",
+""
+]
+],
+"tr": "아이들은 보통 당근을 먹는 것을 싫어하고, 그것들을 먹을 때는, 종종 우스운 표정을 짓는다.",
+"ans": "do",
+"pts": null
+},
+{
+"key": "c04q2|7",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 어법에 맞는지 판단하고 고치기",
+"chunks": [
+[
+"The people in the city",
+"도시의 사람들은",
+""
+],
+[
+"usually have easier access to diverse cultures",
+"보통 다양한 문화에 대한 더 쉬운 접근 기회를 가지고 있다",
+""
+],
+[
+"than the people in the countryside",
+"시골 사람들이",
+"S"
+],
+[
+"do.",
+"가진 것보다.",
+"V"
+]
+],
+"tr": "도시의 사람들은 보통 시골 사람들이 가진 것보다 다양한 문화에 대한 더 쉬운 접근 기회를 가지고 있다.",
+"ans": "do",
+"pts": null
+},
+{
+"key": "c04q2|8",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 어법에 맞는지 판단하고 고치기",
+"chunks": [
+[
+"The players",
+"선수들이",
+"S"
+],
+[
+"might",
+"~일지도 모르지만",
+"C"
+],
+[
+"have been hurt,",
+"다친 것,",
+"V"
+],
+[
+"but fortunately the referee called a time-out",
+"하지만 다행히 심판이 타임아웃을 선언했다",
+""
+],
+[
+"to stop the match.",
+"경기를 멈추기 위해.",
+""
+]
+],
+"tr": "선수들이 다쳤을지도 모르지만, 다행히 심판이 경기를 멈추기 위해 타임아웃을 선언했다.",
+"ans": "have been",
+"pts": null
+},
+{
+"key": "c04q2|9",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 어법에 맞는지 판단하고 고치기",
+"chunks": [
+[
+"The buyer",
+"구매자는",
+"S"
+],
+[
+"insists",
+"주장한다",
+"C"
+],
+[
+"that he paid for the order,",
+"그가 주문품에 대해 돈을 지불했다고,",
+"V"
+],
+[
+"but he doesn’t have a receipt.",
+"하지만 그는 영수증을 가지고 있지 않다.",
+""
+]
+],
+"tr": "구매자는 주문품에 대해 돈을 지불했다고 주장하지만, 그는 영수증을 가지고 있지 않다.",
+"ans": "paid",
+"pts": null
+},
+{
+"key": "c04q2|10",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 어법에 맞는지 판단하고 고치기",
+"chunks": [
+[
+"I don’t know",
+"나는 알지 못한다",
+""
+],
+[
+"if the customers were satisfied with our service,",
+"고객들이 우리 서비스에 만족했는지는,",
+""
+],
+[
+"but I hope",
+"하지만 나는 바란다",
+""
+],
+[
+"they",
+"그들이",
+"S"
+],
+[
+"were.",
+"만족했기를.",
+"V"
+]
+],
+"tr": "나는 고객들이 우리 서비스에 만족했는지는 알지 못하지만, 그들이 만족했기를 바란다.",
+"ans": "were",
+"pts": null
+},
+{
+"key": "c04q2|11",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 어법에 맞는지 판단하고 고치기",
+"chunks": [
+[
+"He",
+"그는",
+"S"
+],
+[
+"did",
+"실제로",
+"C"
+],
+[
+"confidently show the scientists his new invention,",
+"과학자들에게 그의 새로운 발명품을 자신 있게 보여 주었고,",
+"V"
+],
+[
+"and it surprised everyone.",
+"그것은 모두를 놀라게 했다.",
+""
+]
+],
+"tr": "그는 과학자들에게 자신 있게 그의 새로운 발명품을 보여주었고, 그것은 모두를 놀라게 했다.",
+"ans": "show",
+"pts": null
+},
+{
+"key": "c04q2|12",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 어법에 맞는지 판단하고 고치기",
+"chunks": [
+[
+"The doctor strongly",
+"의사는 강하게",
+"S"
+],
+[
+"recommends",
+"권고한다",
+"C"
+],
+[
+"that patients be careful about their diet",
+"환자들이 식단에 조심해야 한다고",
+"V"
+],
+[
+"and exercise regularly.",
+"그리고 규칙적으로 운동해야 한다고.",
+""
+]
+],
+"tr": "의사는 환자들이 식단에 조심하고 규칙적으로 운동해야 한다고 강하게 권고한다.",
+"ans": "be",
+"pts": null
+},
+{
+"key": "c04s1|1-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"I",
+"나는",
+"S"
+],
+[
+"could",
+"~할 수 있었다",
+"C"
+],
+[
+"(A) have called for help,",
+"도움을 요청해 보다,",
+"V"
+],
+[
+"but I decided",
+"하지만 나는 결정했다",
+"M"
+],
+[
+"to handle the situation on my own.",
+"스스로 그 상황을 처리하기로.",
+""
+]
+],
+"tr": "나는 도움을 요청할 수 있었지만, 스스로 그 상황을 처리하기로 결정했다.",
+"ans": "have called",
+"pts": [
+"4.1"
+]
+},
+{
+"key": "c04s1|1-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"No one on my team had solved that kind of problem before,",
+"우리 팀의 누구도 이전에 그런 종류의 문제를 해결해 본 적이 없었지만,",
+"M"
+],
+[
+"but I",
+"나는",
+"S"
+],
+[
+"(B) had",
+"해결해 본 적이 있었다",
+"V"
+],
+[
+"once before.",
+"전에 한 번.",
+""
+]
+],
+"tr": "우리 팀의 누구도 이전에 그런 종류의 문제를 해결해 본 적이 없었지만, 나는 전에 한 번 해결해 본 적이 있었다.",
+"ans": "had",
+"pts": [
+"4.3"
+]
+},
+{
+"key": "c04s1|2-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"The office’s Internet",
+"사무실의 인터넷이",
+"S"
+],
+[
+"should",
+"~해야 한다",
+"C"
+],
+[
+"(A) be connected normally",
+"정상적으로 연결되어",
+"V"
+],
+[
+"now,",
+"이제,",
+"M"
+],
+[
+"as the repairs have been completed.",
+"수리가 완료되었기 때문에.",
+""
+]
+],
+"tr": "수리가 완료되었기 때문에, 이제 사무실의 인터넷이 정상적으로 연결되어야 한다.",
+"ans": "be",
+"pts": [
+"4.1"
+]
+},
+{
+"key": "c04s1|2-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"The management",
+"관리자는",
+"S"
+],
+[
+"requests",
+"요청한다",
+"C"
+],
+[
+"that anyone",
+"누구든지",
+"S"
+],
+[
+"(B) report",
+"보고해야 한다고",
+"V"
+],
+[
+"within the day if there’s any problem.",
+"문제가 있으면 당일 내로.",
+"M"
+]
+],
+"tr": "관리자는 문제가 있으면 누구든지 당일 내로 보고해야 한다고 요청한다.",
+"ans": "report",
+"pts": [
+"4.2"
+]
+},
+{
+"key": "c04s1|3-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"The demand for freshness",
+"신선함에 대한 요구는",
+"S"
+],
+[
+"does",
+"정말로",
+"C"
+],
+[
+"(A) hide",
+"숨긴다",
+"V"
+],
+[
+"huge environmental costs.",
+"막대한 환경적 비용을.",
+""
+]
+],
+"tr": "신선함에 대한 요구는 막대한 환경적 비용을 숨긴다.",
+"ans": "hide",
+"pts": [
+"4.4"
+]
+},
+{
+"key": "c04s1|3-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Even in cold seasons, farmers have to use a lot of fuel",
+"심지어 추운 계절에도, 농부들은 많은 연료를 사용해야 한다",
+"M"
+],
+[
+"to make their crops grow",
+"그들의 농작물이 자라게 만들기 위해",
+"M"
+],
+[
+"as well as",
+"~만큼 잘",
+""
+],
+[
+"they",
+"그것들이",
+"S"
+],
+[
+"(B) do",
+"자란다",
+"V"
+],
+[
+"in warm climates.",
+"따뜻한 기후에서.",
+""
+]
+],
+"tr": "심지어 추운 계절에도, 농부들은 그들의 농작물이 따뜻한 기후에서 잘 자라는 것만큼 잘 자라게 만들기 위해 많은 연료를 사용해야 한다.",
+"ans": "do",
+"pts": [
+"4.3"
+]
+},
+{
+"key": "c04s1|3-(C)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"In addition, Tristram Stuart, an anti-waste campaigner,",
+"게다가, 낭비 방지 운동가인 트리스트럼 스튜어트는",
+"S"
+],
+[
+"insists",
+"주장한다",
+"C"
+],
+[
+"that many stores",
+"많은 상점들이",
+"S"
+],
+[
+"(C) are throwing away",
+"버리고 있다고",
+"V"
+],
+[
+"a lot of food in good condition just to emphasize freshness.",
+"좋은 상태에 있는 많은 음식을 단지 신선함을 강조하기 위해.",
+""
+]
+],
+"tr": "게다가, 낭비 방지 운동가인 Tristram Stuart는 많은 상점들이 단지 신선함을 강조하기 위해 좋은 상태에 있는 많은 음식을 버리고 있다고 주장한다.",
+"ans": "are throwing away",
+"pts": [
+"4.2"
+]
+},
+{
+"key": "c04s1|4-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"The number of participants in the event",
+"그 행사의 참가자 수는",
+"M"
+],
+[
+"is greater",
+"더 많다",
+"M"
+],
+[
+"than it",
+"~보다 그것이",
+"S"
+],
+[
+"was",
+"많았던 것",
+"V"
+],
+[
+"in the previous year.",
+"이전 해에.",
+""
+]
+],
+"tr": "그 행사의 참가자 수는 이전 해에 많았던 것보다 더 많다.",
+"ans": "was",
+"pts": [
+"4.3"
+]
+},
+{
+"key": "c04s1|4-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Fewer people",
+"더 적은 사람들이",
+"S"
+],
+[
+"may",
+"~일지도 모른다",
+"C"
+],
+[
+"have visited",
+"방문했을",
+"V"
+],
+[
+"the previous events",
+"이전의 행사를",
+"M"
+],
+[
+"because tickets were more expensive then.",
+"그때는 표가 더 비쌌기 때문에.",
+"M"
+]
+],
+"tr": "그때는 표가 더 비쌌기 때문에 더 적은 사람들이 이전의 행사를 방문했을지도 모른다.",
+"ans": "have visited",
+"pts": [
+"4.1"
+]
+},
+{
+"key": "c04s1|5-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Owls are known for their cute looks,",
+"올빼미는 귀여운 외모로 알려져 있지만,",
+"M"
+],
+[
+"but when they",
+"하지만 그들이",
+"S"
+],
+[
+"do hunt,",
+"정말로 사냥할 때,",
+"V"
+],
+[
+"they turn into really scary predators.",
+"그들은 정말 무서운 포식자로 변한다.",
+""
+]
+],
+"tr": "올빼미는 귀여운 외모로 알려져 있지만, 사냥할 때, 그들은 정말 무서운 포식자로 변한다.",
+"ans": "do",
+"pts": [
+"4.4"
+]
+},
+{
+"key": "c04s1|5-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Animal experts",
+"동물 전문가들은",
+"S"
+],
+[
+"suggest",
+"제안한다",
+"C"
+],
+[
+"that everyone",
+"모든 이들이",
+"S"
+],
+[
+"stay away from owls",
+"올빼미로부터 떨어져 있어야 한다고",
+"V"
+],
+[
+"because they are also known to attack people.",
+"사람들을 공격하는 것으로도 알려져 있기 때문에.",
+""
+]
+],
+"tr": "사람들을 공격하는 것으로도 알려져 있기 때문에 동물 전문가들은 모든 이들이 올빼미로부터 떨어져 있어야 한다고 제안한다.",
+"ans": "stay",
+"pts": [
+"4.2"
+]
+},
+{
+"key": "c04s1|6-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Fast-fashion items are created and sold to consumers much more quickly",
+"패스트 패션 아이템들은 훨씬 더 빨리 만들어지고 소비자들에게 판매된다",
+"M"
+],
+[
+"than traditional clothes",
+"~보다 전통적인 옷들이",
+"S"
+],
+[
+"are.",
+"그렇게 되는 것.",
+"V"
+]
+],
+"tr": "패스트 패션 아이템들은 전통적인 옷들이 만들어지고 판매되는 것보다 훨씬 더 빨리 만들어지고 소비자들에게 판매된다.",
+"ans": "are",
+"pts": [
+"4.3"
+]
+},
+{
+"key": "c04s1|6-2",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"They",
+"그것들은",
+"S"
+],
+[
+"are",
+"~이다",
+"V"
+],
+[
+"extremely low in price and quality.",
+"가격과 품질이 매우 낮은.",
+"M"
+]
+],
+"tr": "그것들은 가격과 품질이 매우 낮다.",
+"ans": "are",
+"pts": null
+},
+{
+"key": "c04s1|6-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"If a person buys a shirt,",
+"만약 한 사람이 셔츠를 산다면,",
+"M"
+],
+[
+"he",
+"그는",
+"S"
+],
+[
+"does",
+"정말로",
+"C"
+],
+[
+"really feel",
+"느낀다",
+"V"
+],
+[
+"like he saved money at the cash register.",
+"계산대에서는 돈을 아낀 것처럼.",
+""
+]
+],
+"tr": "만약 한 사람이 셔츠를 산다면, 그는 계산대에서는 정말로 돈을 아낀 것처럼 느낀다.",
+"ans": "feel",
+"pts": [
+"4.4"
+]
+},
+{
+"key": "c04s1|6-③",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"But he",
+"하지만 그는",
+"S"
+],
+[
+"may",
+"~일지도 모른다",
+"C"
+],
+[
+"spend",
+"쓸",
+"V"
+],
+[
+"more money",
+"더 많은 돈을",
+""
+],
+[
+"because he has to buy another shirt soon after.",
+"곧 다른 셔츠를 사야 하기 때문에.",
+"M"
+]
+],
+"tr": "하지만 그는 곧 다른 셔츠를 사야 하기 때문에 더 많은 돈을 쓸지도 모른다.",
+"ans": "spend",
+"pts": [
+"4.1"
+]
+},
+{
+"key": "add04|1-1",
+"title": "추가문제 POINT 1 조동사 뒤 동사원형 vs. have p.p.",
+"chunks": [
+[
+"I don’t see Jackie anywhere.",
+"어디에서도 재키가 보이지 않는다.",
+""
+],
+[
+"She",
+"그녀는",
+"S"
+],
+[
+"must have left",
+"떠난 것이 틀림없다",
+"V"
+],
+[
+"the party already.",
+"파티를 이미.",
+""
+]
+],
+"tr": "어디에서도 Jackie가 보이지 않는다. 그녀는 이미 파티를 떠난 것이 틀림없다.",
+"ans": "have left",
+"pts": null
+},
+{
+"key": "add04|1-2",
+"title": "추가문제 POINT 1 조동사 뒤 동사원형 vs. have p.p.",
+"chunks": [
+[
+"The train",
+"기차는",
+"S"
+],
+[
+"arriving now",
+"지금 도착하고 있는",
+"M"
+],
+[
+"cannot be",
+"우리의 것일 리가 없다",
+"V"
+],
+[
+"ours.",
+"우리의 것.",
+"C"
+],
+[
+"It’s 15 minutes early.",
+"15분 일찍이다.",
+""
+]
+],
+"tr": "지금 도착하고 있는 기차가 우리의 것 일리가 없다. 15분이 이르다.",
+"ans": "be",
+"pts": null
+},
+{
+"key": "add04|1-3",
+"title": "추가문제 POINT 1 조동사 뒤 동사원형 vs. have p.p.",
+"chunks": [
+[
+"I’m sorry I missed dinner.",
+"저녁 식사를 놓쳐서 미안해.",
+""
+],
+[
+"I",
+"나는",
+"S"
+],
+[
+"should have called",
+"전화했어야 했어",
+"V"
+],
+[
+"to say",
+"말하기 위해",
+"C"
+],
+[
+"that I would be coming home late.",
+"내가 집에 늦게 올 것이라고.",
+""
+]
+],
+"tr": "저녁 식사를 놓쳐서 미안해. 나는 집에 늦게 온다고 말하기 위해 전화했어야 했어.",
+"ans": "have called",
+"pts": null
+},
+{
+"key": "add04|1-4",
+"title": "추가문제 POINT 1 조동사 뒤 동사원형 vs. have p.p.",
+"chunks": [
+[
+"You",
+"당신은",
+"S"
+],
+[
+"could catch a cold",
+"감기에 걸릴 수 있다",
+"V"
+],
+[
+"in this weather,",
+"이런 날씨에는,",
+"C"
+],
+[
+"so be sure to bring",
+"그러니 꼭 가져가라",
+""
+],
+[
+"an umbrella and a coat.",
+"우산과 외투를.",
+""
+]
+],
+"tr": "이런 날씨에는 감기에 걸릴 수 있으니, 꼭 우산과 외투를 가져가라.",
+"ans": "catch",
+"pts": null
+},
+{
+"key": "add04|1-5",
+"title": "추가문제 POINT 1 조동사 뒤 동사원형 vs. have p.p.",
+"chunks": [
+[
+"Tanya",
+"타냐는",
+"S"
+],
+[
+"might have hurt",
+"다쳤을지도 몰라서",
+"V"
+],
+[
+"her knee",
+"그녀의 무릎을",
+""
+],
+[
+"during soccer practice last Thursday,",
+"지난 목요일 축구 연습 중에,",
+"C"
+],
+[
+"so she could miss tomorrow’s game.",
+"내일 경기에 빠질 수도 있다.",
+""
+]
+],
+"tr": "Tanya는 지난 목요일의 축구 연습 중에 무릎을 다쳤을지도 몰라서, 내일 경기에 빠질 수도 있다.",
+"ans": "have hurt",
+"pts": null
+},
+{
+"key": "add04|2-1",
+"title": "추가문제 POINT 2 주장/제안/요구/명령 동사 뒤 that절의 should 생략",
+"chunks": [
+[
+"Angela",
+"앤젤라는",
+"S"
+],
+[
+"proposed",
+"제안했다",
+"C"
+],
+[
+"that we",
+"우리가",
+""
+],
+[
+"hold",
+"열어야 한다고",
+"V"
+],
+[
+"the office Christmas party",
+"회사 크리스마스 파티를",
+""
+],
+[
+"at a Mexican restaurant.",
+"멕시코 음식점에서.",
+""
+]
+],
+"tr": "Angela는 우리가 회사 크리스마스 파티를 멕시코 음식점에서 열어야 한다고 제안했다.",
+"ans": "hold",
+"pts": null
+},
+{
+"key": "add04|2-2",
+"title": "추가문제 POINT 2 주장/제안/요구/명령 동사 뒤 that절의 should 생략",
+"chunks": [
+[
+"Low sales",
+"저조한 판매는",
+"S"
+],
+[
+"in South America",
+"남미에서의",
+"M"
+],
+[
+"suggest",
+"시사한다",
+"C"
+],
+[
+"that the company’s marketing plan",
+"회사의 마케팅 계획이",
+""
+],
+[
+"for that region",
+"그 지역에 대한",
+"M"
+],
+[
+"is bad.",
+"형편없다는 것을.",
+"V"
+]
+],
+"tr": "남미에서의 저조한 판매는 그 지역에 대한 회사의 마케팅 계획이 형편없다는 것을 시사한다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "add04|2-3",
+"title": "추가문제 POINT 2 주장/제안/요구/명령 동사 뒤 that절의 should 생략",
+"chunks": [
+[
+"Jerry’s mother",
+"제리의 어머니는",
+"S"
+],
+[
+"insists",
+"주장한다",
+"C"
+],
+[
+"that he",
+"그가",
+""
+],
+[
+"clean his room",
+"그의 방을 청소해야 한다고",
+"V"
+],
+[
+"before playing any video games",
+"비디오 게임을 하기 전에",
+""
+],
+[
+"even if he doesn’t want to do it.",
+"비록 그것을 하는 것을 원치 않을지라도.",
+""
+]
+],
+"tr": "Jerry의 어머니는 그가 비록 그것을 하는 것을 원치 않을지라도 비디오 게임을 하기 전에 그의 방을 청소해야 한다고 주장한다.",
+"ans": "clean",
+"pts": null
+},
+{
+"key": "add04|2-4",
+"title": "추가문제 POINT 2 주장/제안/요구/명령 동사 뒤 that절의 should 생략",
+"chunks": [
+[
+"The bank",
+"그 은행은",
+"S"
+],
+[
+"recommended",
+"권고했다",
+"C"
+],
+[
+"that all online customers",
+"모든 온라인 고객들이",
+""
+],
+[
+"change",
+"바꿔야 한다고",
+"V"
+],
+[
+"their passwords regularly.",
+"정기적으로 그들의 비밀번호를.",
+""
+]
+],
+"tr": "그 은행은 모든 온라인 고객들이 정기적으로 그들의 비밀번호를 바꿔야 한다고 권고했다.",
+"ans": "change",
+"pts": null
+},
+{
+"key": "add04|2-5",
+"title": "추가문제 POINT 2 주장/제안/요구/명령 동사 뒤 that절의 should 생략",
+"chunks": [
+[
+"Residents",
+"주민들은",
+"S"
+],
+[
+"urge",
+"촉구한다",
+"C"
+],
+[
+"that the mayor",
+"시장이",
+""
+],
+[
+"repair",
+"수리해야 한다고",
+"V"
+],
+[
+"the city’s damaged roads.",
+"도시의 파손된 도로들을.",
+""
+]
+],
+"tr": "주민들은 시장이 도시의 파손된 도로들을 수리해야 한다고 촉구한다.",
+"ans": "repair",
+"pts": null
+},
+{
+"key": "add04|3-1",
+"title": "추가문제 POINT 3 반복되는 동사 대신 쓰는 do/be/have동사",
+"chunks": [
+[
+"The artist",
+"그 예술가는",
+"S"
+],
+[
+"creates scenes from nature,",
+"자연을 배경으로 한 장면들을 창작하는데,",
+"C"
+],
+[
+"but he",
+"그는",
+""
+],
+[
+"does so",
+"그렇게 한다",
+"V"
+],
+[
+"with rocks and leaves instead of paint.",
+"물감 대신 바위와 나뭇잎으로.",
+""
+]
+],
+"tr": "그 예술가는 자연을 배경으로 한 장면들을 창작하는데, 그는 물감 대신 바위와 나뭇잎으로 그렇게 한다.",
+"ans": "does",
+"pts": null
+},
+{
+"key": "add04|3-2",
+"title": "추가문제 POINT 3 반복되는 동사 대신 쓰는 do/be/have동사",
+"chunks": [
+[
+"Homes",
+"주택들은",
+"S"
+],
+[
+"in the area",
+"이 지역의",
+"M"
+],
+[
+"are much more expensive today",
+"오늘날 훨씬 더 비싸다",
+""
+],
+[
+"than they were",
+"그들이 그랬던 것보다",
+"V"
+],
+[
+"five years ago.",
+"5년 전에.",
+"C"
+]
+],
+"tr": "이 지역의 주택들은 5년 전에 그랬던 것보다 오늘날 훨씬 더 비싸다.",
+"ans": "were",
+"pts": null
+},
+{
+"key": "add04|3-3",
+"title": "추가문제 POINT 3 반복되는 동사 대신 쓰는 do/be/have동사",
+"chunks": [
+[
+"High temperatures",
+"높은 온도는",
+"S"
+],
+[
+"have not stopped many people",
+"많은 사람들을 막지 못했지만,",
+"C"
+],
+[
+"from traveling this summer,",
+"이번 여름에 여행하는 것으로부터,",
+""
+],
+[
+"but, since last month,",
+"하지만 지난달 이래로,",
+""
+],
+[
+"high gas prices",
+"높은 기름값은",
+"S"
+],
+[
+"have.",
+"그렇게 해왔다.",
+"V"
+]
+],
+"tr": "높은 온도는 이번 여름에 많은 사람들이 여행하는 것을 막지 못했지만, 지난달 이래로, 높은 기름값은 그렇게 해왔다.",
+"ans": "have",
+"pts": null
+},
+{
+"key": "add04|3-4",
+"title": "추가문제 POINT 3 반복되는 동사 대신 쓰는 do/be/have동사",
+"chunks": [
+[
+"During the last election,",
+"지난 선거 동안,",
+""
+],
+[
+"the new president",
+"새로운 대통령은",
+"S"
+],
+[
+"got six million more votes",
+"600만 표를 더 얻었다",
+""
+],
+[
+"than the other candidate did",
+"다른 후보자가 얻은 것보다.",
+"V"
+]
+],
+"tr": "지난 선거 동안, 새로운 대통령은 다른 후보자가 얻은 것보다 600만 표를 더 얻었다.",
+"ans": "did",
+"pts": null
+},
+{
+"key": "add04|3-5",
+"title": "추가문제 POINT 3 반복되는 동사 대신 쓰는 do/be/have동사",
+"chunks": [
+[
+"You",
+"당신은",
+"S"
+],
+[
+"don’t have to go to college,",
+"대학에 갈 필요는 없지만,",
+"C"
+],
+[
+"but if you do,",
+"만약 간다면,",
+"V"
+],
+[
+"you will have a better career.",
+"더 좋은 직업을 가질 것이다.",
+""
+]
+],
+"tr": "당신은 대학에 갈 필요는 없지만, 만약 간다면, 더 좋은 직업을 가질 것이다.",
+"ans": "do",
+"pts": null
+},
+{
+"key": "add04|4-1",
+"title": "추가문제 POINT 4 일반동사의 의미를 강조하는 do동사",
+"chunks": [
+[
+"The job",
+"그 일은",
+"S"
+],
+[
+"does require",
+"정말 필요로 한다",
+"V"
+],
+[
+"someone",
+"누군가를",
+""
+],
+[
+"with five years of work experience",
+"5년간의 업무 경험을 가진",
+"M"
+],
+[
+"in the computer industry.",
+"컴퓨터 산업에서.",
+""
+]
+],
+"tr": "그 일은 컴퓨터 산업에서 5년간의 업무 경험을 가진 누군가를 필요로 한다.",
+"ans": "require",
+"pts": null
+},
+{
+"key": "add04|4-2",
+"title": "추가문제 POINT 4 일반동사의 의미를 강조하는 do동사",
+"chunks": [
+[
+"The climbers",
+"그 등산가들은",
+"S"
+],
+[
+"did eventually succeed",
+"마침내 성공했다",
+"V"
+],
+[
+"in reaching the top of the mountain",
+"산의 정상에 도달하는 데",
+""
+],
+[
+"after climbing for 18 hours.",
+"18시간 동안 등산한 끝에.",
+""
+]
+],
+"tr": "그 등산가들은 18시간에 걸친 등산 끝에 마침내 산의 정상에 도달하는 데 성공했다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add04|4-3",
+"title": "추가문제 POINT 4 일반동사의 의미를 강조하는 do동사",
+"chunks": [
+[
+"When we try",
+"우리가 노력할 때,",
+"C"
+],
+[
+"to keep positive thoughts",
+"긍정적인 생각을 가지려고",
+""
+],
+[
+"in our minds,",
+"마음속에,",
+""
+],
+[
+"we",
+"우리는",
+"S"
+],
+[
+"often do feel better",
+"종종 정말 더 좋게 느낀다",
+"V"
+],
+[
+"about ourselves.",
+"우리 자신에 대해.",
+""
+]
+],
+"tr": "우리가 마음속에 긍정적인 생각을 가지려고 노력할 때, 우리는 종종 우리 자신에 대해 더 좋게 느낀다.",
+"ans": "do",
+"pts": null
+},
+{
+"key": "add04|4-4",
+"title": "추가문제 POINT 4 일반동사의 의미를 강조하는 do동사",
+"chunks": [
+[
+"Chef Samuels,",
+"요리사 새뮤얼스는,",
+"S"
+],
+[
+"the owner of the restaurant,",
+"그 식당의 소유주인,",
+"M"
+],
+[
+"does usually work",
+"보통 일한다",
+"V"
+],
+[
+"in the kitchen on most nights.",
+"대부분의 밤에 부엌에서.",
+""
+]
+],
+"tr": "그 식당의 소유주인 요리사 Samuels는 보통 대부분의 밤에 부엌에서 일한다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add04|4-5",
+"title": "추가문제 POINT 4 일반동사의 의미를 강조하는 do동사",
+"chunks": [
+[
+"Before she became a pilot,",
+"조종사가 되기 전에,",
+"C"
+],
+[
+"Beth",
+"베스는",
+"S"
+],
+[
+"did always dream",
+"항상 꿈꾸었다",
+"V"
+],
+[
+"of flying an airplane one day.",
+"언젠가 비행기를 조종하는 것을.",
+""
+]
+],
+"tr": "조종사가 되기 전에, Beth는 항상 언젠가 비행기를 조종하는 것을 꿈꾸었다.",
+"ans": "dream",
+"pts": null
+}
+]

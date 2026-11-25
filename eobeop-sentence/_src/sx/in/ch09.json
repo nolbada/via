@@ -1,0 +1,2067 @@
+[
+{
+"key": "c09p1|예제",
+"title": "POINT 1 · 부사절 접속사 vs. 전치사",
+"chunks": [
+[
+"Early humans lost their hair",
+"초기 인류는 털을 잃었다",
+""
+],
+[
+"because",
+"~때문에",
+"V"
+],
+[
+"less hair meant effective running.",
+"더 적은 털이 효과적인 달리기를 의미했다.",
+"C"
+]
+],
+"tr": "초기 인류는 더 적은 털이 효과적인 달리기를 의미했기 때문에 털을 잃었다.",
+"ans": "because",
+"pts": null
+},
+{
+"key": "c09p1|1",
+"title": "POINT 1 · 부사절 접속사 vs. 전치사",
+"chunks": [
+[
+"The concert was canceled",
+"그 콘서트는 취소되었다",
+""
+],
+[
+"because of",
+"~때문에",
+"V"
+],
+[
+"a thunderstorm hitting the country.",
+"나라를 강타한 폭풍우.",
+"C"
+]
+],
+"tr": "나라를 강타한 폭풍우 때문에 그 콘서트는 취소되었다.",
+"ans": "because of",
+"pts": null
+},
+{
+"key": "c09p1|2",
+"title": "POINT 1 · 부사절 접속사 vs. 전치사",
+"chunks": [
+[
+"The parents sat and enjoyed a conversation",
+"부모들은 앉아서 대화를 즐겼다",
+""
+],
+[
+"while",
+"~하는 동안",
+"V"
+],
+[
+"their children played in the park.",
+"아이들이 공원에서 놀았다.",
+"C"
+]
+],
+"tr": "아이들이 공원에서 놀고 있는 동안 부모들은 앉아서 대화를 즐겼다.",
+"ans": "while",
+"pts": null
+},
+{
+"key": "c09p1|3",
+"title": "POINT 1 · 부사절 접속사 vs. 전치사",
+"chunks": [
+[
+"Despite",
+"~에도 불구하고",
+"V"
+],
+[
+"heavy traffic on the city roads,",
+"도시 도로의 심한 교통체증,",
+"C"
+],
+[
+"Sarah arrived at the meeting on time.",
+"사라는 제때 회의에 도착했다.",
+""
+]
+],
+"tr": "도시 도로의 심한 교통체증에도 불구하고, Sarah는 제때 회의에 도착했다.",
+"ans": "Despite",
+"pts": null
+},
+{
+"key": "c09p1|4",
+"title": "POINT 1 · 부사절 접속사 vs. 전치사",
+"chunks": [
+[
+"Though",
+"비록 ~이지만",
+"V"
+],
+[
+"the dog barked loudly,",
+"개가 큰 소리로 짖었다,",
+"C"
+],
+[
+"it didn’t bother the neighbors.",
+"그것은 이웃들을 괴롭히지는 않았다.",
+""
+]
+],
+"tr": "비록 개가 큰 소리로 짖었을지라도, 그것은 이웃들을 괴롭히지는 않았다.",
+"ans": "Though",
+"pts": null
+},
+{
+"key": "c09p1|5",
+"title": "POINT 1 · 부사절 접속사 vs. 전치사",
+"chunks": [
+[
+"Ms. Undset escaped Norway",
+"언더셋 씨는 노르웨이에서 탈출했다",
+""
+],
+[
+"during",
+"~동안",
+"V"
+],
+[
+"the German attack,",
+"독일의 공격,",
+"C"
+],
+[
+"but she returned after WWII.",
+"하지만 그녀는 제2차 세계 대전이 끝난 후에 돌아왔다.",
+""
+]
+],
+"tr": "Undset씨는 독일의 공격 동안 노르웨이에서 탈출했지만, 제2차 세계 대전이 끝난 후에 다시 돌아왔다.",
+"ans": "during",
+"pts": null
+},
+{
+"key": "c09p2|예제",
+"title": "POINT 2 · 접속사·전치사 둘 다 되는 단어",
+"chunks": [
+[
+"When rice prices fall,",
+"쌀 가격이 떨어질 때,",
+""
+],
+[
+"people have more money for items",
+"사람들은 제품들을 살 더 많은 돈을 가지게 되어",
+""
+],
+[
+"like",
+"~ 같은",
+"V"
+],
+[
+"meat and dairy,",
+"고기와 유제품,",
+"C"
+],
+[
+"changing their spending.",
+"그들의 소비를 바꾼다.",
+""
+]
+],
+"tr": "쌀 가격이 떨어질 때, 사람들은 고기와 유제품 같은 제품들을 살 더 많은 돈을 가지게 되어, 그들의 소비를 바꾼다.",
+"ans": "like",
+"pts": null
+},
+{
+"key": "c09p2|1",
+"title": "POINT 2 · 접속사·전치사 둘 다 되는 단어",
+"chunks": [
+[
+"I moved to this city in 2010,",
+"나는 2010년에 이 도시로 이사를 왔고,",
+""
+],
+[
+"and since",
+"그리고 ~ 이래로",
+"V"
+],
+[
+"that year,",
+"그해,",
+"C"
+],
+[
+"I have witnessed its remarkable growth.",
+"나는 그 도시의 놀랄 만한 성장을 목격해 왔다.",
+""
+]
+],
+"tr": "나는 2010년에 이 도시로 이사를 왔고, 그해 이래로 그것의 놀랄 만한 성장을 목격해 왔다.",
+"ans": "since",
+"pts": null
+},
+{
+"key": "c09p2|2",
+"title": "POINT 2 · 접속사·전치사 둘 다 되는 단어",
+"chunks": [
+[
+"The students celebrated by going out for dinner",
+"학생들은 저녁 식사를 하러 나감으로써 축하했다",
+""
+],
+[
+"after",
+"~한 후에",
+"V"
+],
+[
+"they finished the college entrance exams.",
+"그들이 대학 입학시험을 마쳤다.",
+"C"
+]
+],
+"tr": "학생들은 대학 입학시험을 마친 후에 저녁 식사를 하러 나감으로써 축하했다.",
+"ans": "after",
+"pts": null
+},
+{
+"key": "c09p2|3",
+"title": "POINT 2 · 접속사·전치사 둘 다 되는 단어",
+"chunks": [
+[
+"With the same green eyes and red hair,",
+"똑같은 초록색 눈과 빨간 머리를 가지고 있어서,",
+""
+],
+[
+"Natalie looks",
+"나탈리는 보인다",
+""
+],
+[
+"like",
+"~와 같이",
+"V"
+],
+[
+"her mother.",
+"그녀의 엄마.",
+"C"
+]
+],
+"tr": "똑같은 초록색 눈과 빨간 머리를 가지고 있어서, Natalie는 그녀의 엄마와 같이 보인다.",
+"ans": "like",
+"pts": null
+},
+{
+"key": "c09p2|4",
+"title": "POINT 2 · 접속사·전치사 둘 다 되는 단어",
+"chunks": [
+[
+"We worked hard",
+"우리는 열심히 일했다",
+""
+],
+[
+"until",
+"~까지",
+"V"
+],
+[
+"the late hours of the night",
+"밤늦은 시간",
+"C"
+],
+[
+"to complete the project successfully.",
+"프로젝트를 성공적으로 마치기 위해.",
+""
+]
+],
+"tr": "우리는 프로젝트를 성공적으로 마치기 위해 밤늦은 시간까지 열심히 일했다.",
+"ans": "until",
+"pts": null
+},
+{
+"key": "c09p2|5",
+"title": "POINT 2 · 접속사·전치사 둘 다 되는 단어",
+"chunks": [
+[
+"People naturally get used to things around them",
+"사람들은 자연스럽게 그들 주변의 것들에 익숙해진다",
+""
+],
+[
+"as",
+"~함에 따라",
+"V"
+],
+[
+"time passes.",
+"시간이 지난다.",
+"C"
+]
+],
+"tr": "사람들은 시간이 지남에 따라 자연스럽게 그들 주변의 것들에 익숙해진다.",
+"ans": "as",
+"pts": null
+},
+{
+"key": "c09p3|예제",
+"title": "POINT 3 · 명사절 접속사: 완전한 절 vs. 불완전한 절",
+"chunks": [
+[
+"When you enjoy music, just forget",
+"음악을 즐길 때, 그냥 잊어버려라",
+""
+],
+[
+"whether",
+"~인지 아닌지를",
+"V"
+],
+[
+"you have musical talent.",
+"당신이 음악적인 재능을 가지고 있는지.",
+"C"
+]
+],
+"tr": "음악을 즐길 때, 당신이 음악적인 재능을 가지고 있는지를 그냥 잊어버려라.",
+"ans": "whether",
+"pts": null
+},
+{
+"key": "c09p3|1",
+"title": "POINT 3 · 명사절 접속사: 완전한 절 vs. 불완전한 절",
+"chunks": [
+[
+"Duke asked Morris",
+"듀크는 모리스에게 물었다",
+""
+],
+[
+"when",
+"언제 ~하는지",
+"V"
+],
+[
+"the meeting would end,",
+"회의가 끝날지,",
+"C"
+],
+[
+"as he needed to go to the restroom.",
+"화장실에 갈 필요가 있었기 때문에.",
+""
+]
+],
+"tr": "화장실에 갈 필요가 있었기 때문에, Duke는 Morris에게 회의가 언제 끝나는지 물었다.",
+"ans": "when",
+"pts": null
+},
+{
+"key": "c09p3|2",
+"title": "POINT 3 · 명사절 접속사: 완전한 절 vs. 불완전한 절",
+"chunks": [
+[
+"Considering the world market,",
+"세계 시장을 고려하면,",
+""
+],
+[
+"we can only guess",
+"우리는 추측할 수밖에 없다",
+""
+],
+[
+"that",
+"~라고",
+"V"
+],
+[
+"our business will suffer for a while.",
+"우리 사업이 한동안 나빠질 것이다.",
+"C"
+]
+],
+"tr": "세계 시장을 고려하면, 우리 사업이 한동안 나빠질 것이라고 추측할 수밖에 없다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c09p3|3",
+"title": "POINT 3 · 명사절 접속사: 완전한 절 vs. 불완전한 절",
+"chunks": [
+[
+"I was curious about",
+"나는 궁금했다",
+""
+],
+[
+"who",
+"누가 ~했는지",
+"V"
+],
+[
+"made Maya change her mind at the last moment.",
+"마야가 마지막 순간에 마음을 바꾸도록 만들었는지.",
+"C"
+]
+],
+"tr": "나는 누가 마지막 순간에 Maya가 마음을 바꾸게 만들었는지 궁금했다.",
+"ans": "who",
+"pts": null
+},
+{
+"key": "c09p3|4",
+"title": "POINT 3 · 명사절 접속사: 완전한 절 vs. 불완전한 절",
+"chunks": [
+[
+"She wanted to know",
+"그녀는 알기를 원했다",
+""
+],
+[
+"if",
+"~인지 아닌지",
+"V"
+],
+[
+"her grandmother had ever actually seen an angel.",
+"할머니가 실제로 천사를 본 적이 있는지.",
+"C"
+]
+],
+"tr": "그녀는 할머니가 실제로 천사를 본 적이 있는지 아닌지 알기를 원했다.",
+"ans": "if",
+"pts": null
+},
+{
+"key": "c09p3|5",
+"title": "POINT 3 · 명사절 접속사: 완전한 절 vs. 불완전한 절",
+"chunks": [
+[
+"Mr. Williams was unaware of",
+"윌리엄스 씨는 알지 못했다",
+""
+],
+[
+"what",
+"무엇을 ~하는지",
+"V"
+],
+[
+"his family was planning for his birthday.",
+"그의 가족이 그의 생일을 위해 계획하고 있는지.",
+"C"
+]
+],
+"tr": "Williams씨는 그의 가족이 그의 생일에 무엇을 계획하고 있는지 알지 못했다.",
+"ans": "what",
+"pts": null
+},
+{
+"key": "c09p3|6",
+"title": "POINT 3 · 명사절 접속사: 완전한 절 vs. 불완전한 절",
+"chunks": [
+[
+"One of the most essential decisions we can make",
+"우리가 내릴 수 있는 가장 중요한 결정 중 하나는",
+""
+],
+[
+"is",
+"~이다",
+""
+],
+[
+"how",
+"어떻게 ~하는지",
+"V"
+],
+[
+"we should invest our time every day.",
+"우리가 매일 우리의 시간을 투자해야 하는지.",
+"C"
+]
+],
+"tr": "우리가 내릴 수 있는 가장 중요한 결정 중 하나는 우리가 매일 우리의 시간을 어떻게 투자해야 하는지이다.",
+"ans": "how",
+"pts": null
+},
+{
+"key": "c09p3|7",
+"title": "POINT 3 · 명사절 접속사: 완전한 절 vs. 불완전한 절",
+"chunks": [
+[
+"I really wonder",
+"나는 정말 궁금하다",
+""
+],
+[
+"where",
+"어디에서 ~했는지",
+"V"
+],
+[
+"they found such a wonderful sofa for their living room.",
+"그들이 거실을 위한 그렇게 멋진 소파를 찾았는지.",
+"C"
+]
+],
+"tr": "나는 그들이 거실을 위한 그렇게 멋진 소파를 어디에서(또는 어떻게) 찾았는지 정말 궁금하다.",
+"ans": "where",
+"pts": null
+},
+{
+"key": "c09p3|8",
+"title": "POINT 3 · 명사절 접속사: 완전한 절 vs. 불완전한 절",
+"chunks": [
+[
+"Close your eyes and imagine",
+"눈을 감고 상상해 봐라",
+""
+],
+[
+"that",
+"~라고",
+"V"
+],
+[
+"you are standing on top of a mountain.",
+"네가 산꼭대기에 서 있다.",
+"C"
+]
+],
+"tr": "눈을 감고 네가 산꼭대기에 서 있다고 상상해 봐라.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c09q1|1",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 접속사·전치사 고르기",
+"chunks": [
+[
+"You need to decide soon whether",
+"당신은 빨리 결정할 필요가 있다 ~인지 아닌지를",
+"V"
+],
+[
+"you will accept the job offer from the company.",
+"당신이 그 회사의 일자리 제안을 받아들일지.",
+"C"
+]
+],
+"tr": "당신은 그 회사의 일자리 제안을 받아들일지 아닐지를 빨리 결정할 필요가 있다.",
+"ans": "whether",
+"pts": null
+},
+{
+"key": "c09q1|2",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 접속사·전치사 고르기",
+"chunks": [
+[
+"As",
+"~하듯이",
+"V"
+],
+[
+"the old proverb goes,",
+"옛 속담이 이르는 대로,",
+"C"
+],
+[
+"you never miss the water until the well runs dry.",
+"당신은 우물이 마를 때까지 결코 물을 그리워하지 않는다.",
+""
+]
+],
+"tr": "옛 속담이 이르듯이, 당신은 우물이 마를 때까지 결코 물을 그리워하지 않는다.",
+"ans": "As",
+"pts": null
+},
+{
+"key": "c09q1|3",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 접속사·전치사 고르기",
+"chunks": [
+[
+"The judges will announce which",
+"심사위원들은 발표할 것이다 어떤 것이",
+"V"
+],
+[
+"is the best among the 12 teams",
+"최고인지 12개 팀들 중에서",
+"C"
+],
+[
+"in the contest.",
+"대회에서.",
+""
+]
+],
+"tr": "심사위원들은 대회의 12개 팀들 사이에서 어떤 팀이 최고인지 발표할 것이다.",
+"ans": "which",
+"pts": null
+},
+{
+"key": "c09q1|4",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 접속사·전치사 고르기",
+"chunks": [
+[
+"While",
+"~하는 동안",
+"V"
+],
+[
+"the band performed on stage,",
+"밴드가 무대 위에서 공연하는,",
+"C"
+],
+[
+"the crowd sang along.",
+"관중들은 노래를 따라 불렀다.",
+""
+]
+],
+"tr": "밴드가 무대 위에서 공연하는 동안, 관중들은 노래를 따라 불렀다.",
+"ans": "While",
+"pts": null
+},
+{
+"key": "c09q1|5",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 접속사·전치사 고르기",
+"chunks": [
+[
+"It is important that",
+"~라는 것은 중요하다",
+"V"
+],
+[
+"we find a solution before the problem becomes more serious.",
+"문제가 더 심각해지기 전에 우리가 해결책을 찾는 것이.",
+"C"
+]
+],
+"tr": "문제가 더 심각해지기 전에 우리가 해결책을 찾는 것이 중요하다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c09q1|6",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 접속사·전치사 고르기",
+"chunks": [
+[
+"Darrell’s father advised him to think of when",
+"대럴의 아버지는 그에게 생각해 보라고 조언했다 언제",
+"V"
+],
+[
+"he wants to see the dentist.",
+"그가 치과 진료를 보기를 원하는지.",
+"C"
+]
+],
+"tr": "Darrell의 아버지는 그에게 언제 치과 진료를 보기를 원하는지 생각해 보라고 조언했다.",
+"ans": "when",
+"pts": null
+},
+{
+"key": "c09q1|7",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 접속사·전치사 고르기",
+"chunks": [
+[
+"The children had to build another sandcastle because",
+"아이들은 또 다른 모래성을 지어야 했다 ~때문에",
+"V"
+],
+[
+"a large wave washed the first one away.",
+"큰 파도가 첫 번째 것을 쓸어 갔기.",
+"C"
+]
+],
+"tr": "큰 파도가 첫 번째 것을 쓸어 갔기 때문에 아이들은 또 다른 모래성을 지어야 했다.",
+"ans": "because",
+"pts": null
+},
+{
+"key": "c09q1|8",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 접속사·전치사 고르기",
+"chunks": [
+[
+"What",
+"~것은",
+"V"
+],
+[
+"Dr. Johnson discovered",
+"존슨 박사가 발견한",
+"C"
+],
+[
+"made an important contribution to scientific research.",
+"과학 연구에 중요한 기여를 했다.",
+""
+]
+],
+"tr": "Johnson 박사가 발견한 것은 과학 연구에 중요한 기여를 했다.",
+"ans": "What",
+"pts": null
+},
+{
+"key": "c09q1|9",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 접속사·전치사 고르기",
+"chunks": [
+[
+"Reading a book is like",
+"책을 읽는 것은 ~와 같다",
+"V"
+],
+[
+"traveling to a new place",
+"새로운 장소로 여행하는 것",
+"C"
+],
+[
+"or a different time in history.",
+"또는 역사 속 다른 시대로.",
+"C"
+]
+],
+"tr": "책을 읽는 것은 새로운 장소나 역사 속의 다른 시대를 여행하는 것과 같다.",
+"ans": "like",
+"pts": null
+},
+{
+"key": "c09q1|10",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 접속사·전치사 고르기",
+"chunks": [
+[
+"Have you ever wondered why",
+"당신은 궁금해한 적이 있니 왜",
+"V"
+],
+[
+"dogs don’t fall over when they suddenly change direction?",
+"개들이 갑자기 방향을 바꿀 때 넘어지지 않는지?",
+"C"
+]
+],
+"tr": "개들이 갑자기 방향을 바꿀 때 왜 넘어지지 않는지 궁금해해 본 적이 있니?",
+"ans": "why",
+"pts": null
+},
+{
+"key": "c09q1|11",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 접속사·전치사 고르기",
+"chunks": [
+[
+"Though",
+"비록 ~이지만",
+"V"
+],
+[
+"the boy’s eyes hurt very much,",
+"그 소년의 눈은 매우 아팠지만,",
+"C"
+],
+[
+"he tried to focus on finishing his puzzle.",
+"그는 퍼즐을 완성하는 데 집중하려고 노력했다.",
+""
+]
+],
+"tr": "비록 그 소년의 눈은 매우 아팠지만, 그는 퍼즐을 완성하는 데 집중하려고 노력했다.",
+"ans": "Though",
+"pts": null
+},
+{
+"key": "c09q1|12",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 접속사·전치사 고르기",
+"chunks": [
+[
+"Could you tell me if",
+"제게 말해 주실 수 있나요 ~인지 아닌지를",
+"V"
+],
+[
+"you are coming to visit next week",
+"당신이 다음 주에 방문하러 올지",
+"C"
+],
+[
+"so I can make plans?",
+"제가 계획을 세울 수 있도록?",
+""
+]
+],
+"tr": "제가 계획을 세울 수 있도록 당신이 다음 주에 방문하러 올지 아닐지를 말씀해 주실 수 있나요?",
+"ans": "if",
+"pts": null
+},
+{
+"key": "c09q2|1",
+"title": "문장 연습 밑줄 · 밑줄 친 접속사·전치사 바르게 고치기",
+"chunks": [
+[
+"The company is having difficulties because of",
+"그 회사는 어려움을 겪고 있다 ~ 때문에",
+"V"
+],
+[
+"the highly competitive situation in the market.",
+"시장의 몹시 경쟁이 심한 상황.",
+"C"
+]
+],
+"tr": "시장의 몹시 경쟁이 심한 상황 때문에 그 회사는 어려움을 겪고 있다.",
+"ans": "because of",
+"pts": null
+},
+{
+"key": "c09q2|2",
+"title": "문장 연습 밑줄 · 밑줄 친 접속사·전치사 바르게 고치기",
+"chunks": [
+[
+"Pamela asked her dad whether",
+"파멜라는 아빠에게 물었다 ~인지 아닌지를",
+"V"
+],
+[
+"she should choose to major in medicine or art.",
+"그녀가 의학이나 예술을 전공하는 것을 선택해야 할지.",
+"C"
+]
+],
+"tr": "Pamela는 아빠에게 그녀가 의학이나 예술을 전공하는 것을 선택해야 할지 아닐지 물었다.",
+"ans": "whether",
+"pts": null
+},
+{
+"key": "c09q2|3",
+"title": "문장 연습 밑줄 · 밑줄 친 접속사·전치사 바르게 고치기",
+"chunks": [
+[
+"The patient,",
+"그 환자는,",
+""
+],
+[
+"as",
+"~하듯이",
+"V"
+],
+[
+"the doctor emphasized,",
+"의사가 강조했듯이,",
+"C"
+],
+[
+"must have meals and take medicine at fixed times.",
+"고정된 시간에 식사를 하고 약을 먹어야 한다.",
+""
+]
+],
+"tr": "의사가 강조했듯이, 그 환자는 고정된 시간에 식사를 하고 약을 먹어야 한다.",
+"ans": "as",
+"pts": null
+},
+{
+"key": "c09q2|4",
+"title": "문장 연습 밑줄 · 밑줄 친 접속사·전치사 바르게 고치기",
+"chunks": [
+[
+"Some days, you might not understand why",
+"어느 날, 당신은 이해하지 못할지도 모른다 왜",
+"V"
+],
+[
+"the people around you act so strangely.",
+"당신 주변의 사람들이 그렇게 이상하게 행동하는지.",
+"C"
+]
+],
+"tr": "어느 날, 당신은 당신 주변의 사람들이 왜 그렇게 이상하게 행동하는지를 이해하지 못할지도 모른다.",
+"ans": "why",
+"pts": null
+},
+{
+"key": "c09q2|5",
+"title": "문장 연습 밑줄 · 밑줄 친 접속사·전치사 바르게 고치기",
+"chunks": [
+[
+"It is perhaps surprising how",
+"~는 아마도 놀랍다 어떻게",
+"V"
+],
+[
+"music can trigger strong emotions and memories.",
+"음악이 강한 감정과 기억을 유발할 수 있는지.",
+"C"
+]
+],
+"tr": "음악이 어떻게 강한 감정과 기억을 유발할 수 있는지는 아마도 놀라울 것이다.",
+"ans": "how",
+"pts": null
+},
+{
+"key": "c09q2|6",
+"title": "문장 연습 밑줄 · 밑줄 친 접속사·전치사 바르게 고치기",
+"chunks": [
+[
+"Molly received a phone call from a mysterious person",
+"몰리는 의문스러운 사람으로부터 전화를 받았다",
+""
+],
+[
+"during",
+"~ 동안",
+"V"
+],
+[
+"her lunch break at work.",
+"회사에서 점심시간.",
+"C"
+]
+],
+"tr": "Molly는 회사에서 점심시간 동안 의문스러운 사람으로부터 전화를 받았다.",
+"ans": "during",
+"pts": null
+},
+{
+"key": "c09q2|7",
+"title": "문장 연습 밑줄 · 밑줄 친 접속사·전치사 바르게 고치기",
+"chunks": [
+[
+"Looking at the view from the top of the mountain,",
+"산꼭대기에서 경치를 보면서,",
+""
+],
+[
+"we couldn’t believe where",
+"우리는 믿을 수 없었다 어디에",
+"V"
+],
+[
+"we stood.",
+"우리가 서 있는지.",
+"C"
+]
+],
+"tr": "산꼭대기에서 경치를 보면서, 우리는 우리가 어디에 서 있는지 믿을 수 없었다.",
+"ans": "where",
+"pts": null
+},
+{
+"key": "c09q2|8",
+"title": "문장 연습 밑줄 · 밑줄 친 접속사·전치사 바르게 고치기",
+"chunks": [
+[
+"My parents and I don’t agree whether",
+"나의 부모님과 나는 의견이 일치하지 않는다 ~인지 아닌지",
+"V"
+],
+[
+"I should go to college in another city.",
+"내가 다른 도시의 대학에 가야 할지.",
+"C"
+]
+],
+"tr": "나의 부모님과 나는 내가 다른 도시의 대학에 가야 할지 아닐지 의견이 일치하지 않는다.",
+"ans": "whether",
+"pts": null
+},
+{
+"key": "c09q2|9",
+"title": "문장 연습 밑줄 · 밑줄 친 접속사·전치사 바르게 고치기",
+"chunks": [
+[
+"At dinner, Justin said that he would join the army,",
+"저녁 식사에서, 저스틴은 육군에 입대하겠다고 말했고,",
+""
+],
+[
+"and what",
+"그리고 ~것은",
+"V"
+],
+[
+"he said",
+"그가 말한",
+"C"
+],
+[
+"surprised his family.",
+"가족들을 놀라게 했다.",
+""
+]
+],
+"tr": "저녁 식사에서, Justin은 육군에 입대하겠다고 말했고, 그가 말한 것은 가족들을 놀라게 했다.",
+"ans": "what",
+"pts": null
+},
+{
+"key": "c09q2|10",
+"title": "문장 연습 밑줄 · 밑줄 친 접속사·전치사 바르게 고치기",
+"chunks": [
+[
+"Bees do well in the suburbs since",
+"벌들은 교외에서 잘 산다 ~ 때문에",
+"V"
+],
+[
+"flowers in people’s gardens provide a constant supply of honey.",
+"사람들의 정원에 있는 꽃들이 일정한 공급량의 꿀을 제공하기.",
+"C"
+]
+],
+"tr": "사람들의 정원에 있는 꽃들이 일정한 공급량의 꿀을 제공하기 때문에 벌들은 교외에서 잘 산다.",
+"ans": "since",
+"pts": null
+},
+{
+"key": "c09q2|11",
+"title": "문장 연습 밑줄 · 밑줄 친 접속사·전치사 바르게 고치기",
+"chunks": [
+[
+"Although",
+"비록 ~이지만",
+"V"
+],
+[
+"the weather was windy and rainy,",
+"날씨가 바람이 불고 비가 왔을지라도,",
+"C"
+],
+[
+"the athletes continued training for the upcoming game.",
+"그 선수들은 다가오는 경기를 위해 훈련을 계속했다.",
+""
+]
+],
+"tr": "비록 날씨가 바람이 불고 비가 왔을지라도, 그 선수들은 다가오는 경기를 위해 훈련을 계속했다.",
+"ans": "Although",
+"pts": null
+},
+{
+"key": "c09q2|12",
+"title": "문장 연습 밑줄 · 밑줄 친 접속사·전치사 바르게 고치기",
+"chunks": [
+[
+"Environmental groups argue that",
+"환경 단체들은 주장한다 ~라고",
+"V"
+],
+[
+"European customers are making water shortages worse in Africa.",
+"유럽 고객들이 아프리카의 물 부족을 더 악화시키고 있다.",
+"C"
+]
+],
+"tr": "환경 단체들은 유럽 고객들이 아프리카의 물 부족을 더 악화시키고 있다고 주장한다.",
+"ans": "that",
+"pts": null
+},
+{
+"key": "c09s1|1-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"A 10-year-old boy lost his left arm in a car accident, but,",
+"10살 소년이 자동차 사고로 그의 왼쪽 팔을 잃었지만,",
+""
+],
+[
+"(A) in spite of",
+"~에도 불구하고",
+"V"
+],
+[
+"his disability,",
+"그의 장애에",
+"C"
+],
+[
+"he decided to learn taekwondo.",
+"그는 태권도를 배우기로 결심했다.",
+""
+]
+],
+"tr": "10살 소년이 자동차 사고로 그의 왼쪽 팔을 잃었지만, 장애에도 불구하고, 그는 태권도를 배우기로 결심했다.",
+"ans": "in spite of",
+"pts": [
+"9.1"
+]
+},
+{
+"key": "c09s1|1-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"No one knew",
+"아무도 몰랐다",
+""
+],
+[
+"(B) what",
+"무엇을",
+"V"
+],
+[
+"the boy would accomplish,",
+"그 소년이 이루어 낼지",
+"C"
+],
+[
+"but he believed in himself.",
+"하지만 그는 그 자신을 믿었다.",
+""
+]
+],
+"tr": "아무도 그 소년이 무엇을 이루어 낼지 몰랐지만, 그는 그 자신을 믿었다.",
+"ans": "what",
+"pts": [
+"9.3"
+]
+},
+{
+"key": "c09s1|2-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"My younger sister Nadia often wonders",
+"내 여동생 나디아는 종종 궁금해한다",
+""
+],
+[
+"(A) when",
+"언제",
+"V"
+],
+[
+"she will meet someone, fall in love, and get married.",
+"그녀가 누군가를 만나 사랑에 빠지고 결혼을 할지.",
+"C"
+]
+],
+"tr": "내 여동생 Nadia는 그녀가 언제 누군가를 만나 사랑에 빠지고 결혼을 할지 종종 궁금해한다.",
+"ans": "when",
+"pts": [
+"9.3"
+]
+},
+{
+"key": "c09s1|2-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"She hopes to meet someone",
+"그녀는 누군가를 만나길 희망한다",
+""
+],
+[
+"(B) like",
+"~와 같이",
+"V"
+],
+[
+"our father,",
+"우리 아버지",
+"C"
+],
+[
+"who is smart, kind, and funny, but she has not had much luck so far.",
+"똑똑하고, 친절하고, 재미있는, 하지만 지금까지 운이 별로 없었다.",
+""
+]
+],
+"tr": "그녀는 우리 아버지와 같이 똑똑하고, 친절하고, 재미있는 누군가를 만나길 희망하지만, 지금까지 운이 별로 없었다.",
+"ans": "like",
+"pts": [
+"9.1"
+]
+},
+{
+"key": "c09s1|3-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Often, it makes us tired",
+"종종, 그것은 우리를 피곤하게 만든다",
+""
+],
+[
+"(A) that",
+"~라는 것은",
+"V"
+],
+[
+"we should do things while we are processing constant calls and messages on mobile phones.",
+"휴대폰으로 끊임없는 통화와 메시지를 처리하는 동안 우리가 무언가를 해야 한다는.",
+"C"
+]
+],
+"tr": "종종, 휴대폰으로 끊임없는 통화와 메시지를 처리하는 동안 우리가 무언가를 해야 한다는 것은 우리를 피곤하게 만든다.",
+"ans": "that",
+"pts": [
+"9.3"
+]
+},
+{
+"key": "c09s1|3-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"This is",
+"이것이 ~이다",
+""
+],
+[
+"(B) why",
+"이유",
+"V"
+],
+[
+"some people still go to cinemas to watch films.",
+"일부 사람들이 여전히 영화를 보기 위해 영화관에 가는.",
+"C"
+]
+],
+"tr": "이것이 일부 사람들이 여전히 영화를 보기 위해 영화관에 가는 이유이다.",
+"ans": "why",
+"pts": [
+"9.3"
+]
+},
+{
+"key": "c09s1|3-(C)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"It provides a peaceful experience",
+"그것은 평화로운 경험을 제공한다",
+""
+],
+[
+"(C) because",
+"~때문에",
+"V"
+],
+[
+"all mobile phones have to be switched off.",
+"모든 휴대 전화가 꺼져야 한다.",
+"C"
+]
+],
+"tr": "모든 휴대 전화가 꺼져야 하기 때문에 그것은 평화로운 경험을 제공한다.",
+"ans": "because",
+"pts": [
+"9.1"
+]
+},
+{
+"key": "c09s1|4-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"My friends and I were talking about",
+"내 친구들과 나는 이야기하고 있었다",
+""
+],
+[
+"where",
+"어디에서",
+"V"
+],
+[
+"we would like to spend our summer holidays this year.",
+"올해의 여름휴가를 보내고 싶은지에 대해.",
+"C"
+]
+],
+"tr": "내 친구들과 나는 올해의 여름휴가를 어디에서 보내고 싶은지에 대해 이야기하고 있었다.",
+"ans": "where",
+"pts": [
+"9.3"
+]
+},
+{
+"key": "c09s1|4-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"We haven’t decided on a place yet because we need to know",
+"우리는 누가 ~인지 알아야 하기 때문에 아직 장소를 정하지 못했다",
+""
+],
+[
+"who",
+"누가",
+"V"
+],
+[
+"is interested in joining us on the trip.",
+"그 여행에 우리와 함께하는 데 관심 있는지.",
+"C"
+]
+],
+"tr": "누가 그 여행에 우리와 함께하는 데 관심 있는지를 알아야 할 필요가 있기 때문에 우리는 아직 장소를 정하지 못했다.",
+"ans": "who",
+"pts": [
+"9.3"
+]
+},
+{
+"key": "c09s1|5-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Researchers studied the effects of a smile",
+"연구원들은 미소의 효과를 연구했다",
+""
+],
+[
+"while",
+"~하는 동안",
+"V"
+],
+[
+"individuals were experiencing a stressful event.",
+"개인이 스트레스받는 사건을 경험하는.",
+"C"
+]
+],
+"tr": "연구원들은 개인이 스트레스받는 사건을 경험하는 동안 미소의 효과를 연구했다.",
+"ans": "while",
+"pts": [
+"9.2",
+"9.1"
+]
+},
+{
+"key": "c09s1|5-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"The results of the study showed that people could recover from stress more quickly,",
+"연구 결과는 사람들이 더 빨리 스트레스에서 회복할 수 있다는 것을 보여주었다,",
+""
+],
+[
+"as",
+"~하기 때문에",
+"V"
+],
+[
+"smiling produces feel-good chemicals in the brain.",
+"미소 짓는 것이 뇌에서 기분 좋게 하는 화학 물질을 만들어 내기.",
+"C"
+]
+],
+"tr": "연구 결과는 미소 짓는 것이 뇌에서 기분 좋게 하는 화학 물질을 만들어 내기 때문에, 사람들이 더 빨리 스트레스에서 회복할 수 있다는 것을 보여주었다.",
+"ans": "as",
+"pts": [
+"9.1"
+]
+},
+{
+"key": "c09s1|6-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Early humans had to distinguish very quickly",
+"초기 인류는 매우 빠르게 구분해야 했다",
+""
+],
+[
+"whether (또는 if)",
+"~인지 아닌지",
+"V"
+],
+[
+"an animal was dangerous when they walked through the jungle.",
+"정글을 통과해 걸을 때 한 동물이 위험한.",
+"C"
+]
+],
+"tr": "초기 인류는 정글을 통과해 걸을 때 한 동물이 위험한지 아닌지를 매우 빠르게 구분해야 했다.",
+"ans": "whether",
+"pts": [
+"9.3"
+]
+},
+{
+"key": "c09s1|6-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Their survival depended on",
+"그들의 생존은 달려 있었다",
+""
+],
+[
+"how",
+"어떻게",
+"V"
+],
+[
+"they reacted in the first few seconds.",
+"처음 몇 초 이내에 반응하는지에.",
+"C"
+]
+],
+"tr": "그들의 생존은 처음 몇 초 이내에 어떻게 반응하는지에 달려 있었다.",
+"ans": "how",
+"pts": [
+"9.3"
+]
+},
+{
+"key": "c09s1|6-③",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"It was important for them to make the right choice quickly",
+"올바른 선택을 빠르게 하는 것은 그들에게 중요했다",
+""
+],
+[
+"since",
+"~하기 때문에",
+"V"
+],
+[
+"an animal could attack them if they took too long to decide.",
+"결정하는 데 너무 오래 걸리면 동물이 그들을 공격할 수 있기.",
+"C"
+]
+],
+"tr": "결정하는 데 너무 오래 걸리면 동물이 그들을 공격할 수 있기 때문에 올바른 선택을 빠르게 하는 것은 그들에게 중요했다.",
+"ans": "since",
+"pts": [
+"9.1"
+]
+},
+{
+"key": "add09|1-1",
+"title": "추가문제 POINT 1 부사절 접속사 vs. 전치사",
+"chunks": [
+[
+"Apollo 13",
+"아폴로 13호는",
+"S"
+],
+[
+"was damaged",
+"파손되었고",
+""
+],
+[
+"during its trip",
+"여행 중에",
+"V"
+],
+[
+"to the moon",
+"달로 향하는",
+"M"
+],
+[
+"and had to return to Earth.",
+"지구로 돌아와야 했다.",
+""
+]
+],
+"tr": "아폴로 13호는 달로 향하는 여행 중에 파손되었고 지구로 돌아와야 했다.",
+"ans": "during",
+"pts": null
+},
+{
+"key": "add09|1-2",
+"title": "추가문제 POINT 1 부사절 접속사 vs. 전치사",
+"chunks": [
+[
+"The project",
+"그 프로젝트는",
+"S"
+],
+[
+"will be delayed",
+"미뤄질 것이다",
+""
+],
+[
+"because",
+"~때문에",
+"V"
+],
+[
+"the company",
+"회사가",
+"S"
+],
+[
+"doesn’t have",
+"가지고 있지 않기",
+""
+],
+[
+"enough money to continue.",
+"계속하기 위한 충분한 돈을.",
+""
+]
+],
+"tr": "회사가 계속하기 위한 충분한 돈이 없기 때문에 그 프로젝트는 미뤄질 것이다.",
+"ans": "because",
+"pts": null
+},
+{
+"key": "add09|1-3",
+"title": "추가문제 POINT 1 부사절 접속사 vs. 전치사",
+"chunks": [
+[
+"Although",
+"비록 ~일지라도,",
+"V"
+],
+[
+"the country’s economy",
+"국가의 경제가",
+"S"
+],
+[
+"has improved,",
+"나아졌을지라도,",
+""
+],
+[
+"many people",
+"많은 사람들은",
+"S"
+],
+[
+"are still",
+"여전히 ~이다",
+""
+],
+[
+"without jobs.",
+"일자리가 없는.",
+""
+]
+],
+"tr": "비록 국가의 경제가 나아졌을지라도, 많은 사람들은 여전히 일자리가 없다.",
+"ans": "Although",
+"pts": null
+},
+{
+"key": "add09|1-4",
+"title": "추가문제 POINT 1 부사절 접속사 vs. 전치사",
+"chunks": [
+[
+"A Texas beach",
+"텍사스 해변은",
+"S"
+],
+[
+"was shut down today",
+"오늘 폐쇄되었다",
+""
+],
+[
+"because of",
+"~ 때문에",
+"V"
+],
+[
+"pollution",
+"오염",
+"C"
+],
+[
+"from the oil spill",
+"기름 유출로 인한",
+"M"
+],
+[
+"last week.",
+"지난주의.",
+""
+]
+],
+"tr": "지난주의 기름 유출로 인한 오염 때문에 텍사스 해변은 오늘 폐쇄되었다.",
+"ans": "because of",
+"pts": null
+},
+{
+"key": "add09|1-5",
+"title": "추가문제 POINT 1 부사절 접속사 vs. 전치사",
+"chunks": [
+[
+"The region’s farmers",
+"그 지역의 농부들은",
+"S"
+],
+[
+"were able to grow",
+"재배할 수 있었다",
+""
+],
+[
+"some crops",
+"약간의 작물을",
+""
+],
+[
+"in spite of",
+"~에도 불구하고",
+"V"
+],
+[
+"the low rainfall",
+"낮은 강우량",
+"C"
+],
+[
+"this year.",
+"올해.",
+""
+]
+],
+"tr": "그 지역의 농부들은 올해 낮은 강우량에도 불구하고 약간의 작물을 재배할 수 있었다.",
+"ans": "in spite of",
+"pts": null
+},
+{
+"key": "add09|2-1",
+"title": "추가문제 POINT 2 부사절 접속사와 전치사 둘 다로 쓰이는 단어",
+"chunks": [
+[
+"The book",
+"그 책은",
+"S"
+],
+[
+"was first published",
+"처음 출판되었고",
+""
+],
+[
+"in 2014",
+"2014년에",
+""
+],
+[
+"and, since then,",
+"그때 이래로,",
+"V"
+],
+[
+"it",
+"그것은",
+"S"
+],
+[
+"has sold",
+"팔렸다",
+""
+],
+[
+"millions of copies around the world.",
+"전 세계적으로 수백만 부가.",
+""
+]
+],
+"tr": "그 책은 2014년에 처음 출판되었고, 그때 이래로, 전 세계적으로 수백만 부가 팔렸다.",
+"ans": "since",
+"pts": null
+},
+{
+"key": "add09|2-2",
+"title": "추가문제 POINT 2 부사절 접속사와 전치사 둘 다로 쓰이는 단어",
+"chunks": [
+[
+"Many people these days",
+"요즘 많은 사람들이",
+"S"
+],
+[
+"will send you",
+"당신에게 보낼 것이다",
+"V"
+],
+[
+"a text message",
+"문자 메시지를",
+""
+],
+[
+"before",
+"~하기 전에",
+"C"
+],
+[
+"they",
+"그들이",
+"S"
+],
+[
+"call you",
+"당신에게 전화하다",
+"V"
+],
+[
+"on the phone.",
+"전화로.",
+""
+]
+],
+"tr": "요즘 많은 사람들이 당신에게 전화하기 전에 문자 메시지를 보낼 것이다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add09|2-3",
+"title": "추가문제 POINT 2 부사절 접속사와 전치사 둘 다로 쓰이는 단어",
+"chunks": [
+[
+"Fake leather",
+"가짜 가죽은",
+"S"
+],
+[
+"feels",
+"느껴지지만",
+""
+],
+[
+"like",
+"~처럼",
+"V"
+],
+[
+"real leather,",
+"진짜 가죽,",
+""
+],
+[
+"but it",
+"그러나 그것은",
+"S"
+],
+[
+"is made",
+"만들어진다",
+""
+],
+[
+"with plastic and not the skin of an animal.",
+"동물의 피부가 아니라 합성수지로.",
+""
+]
+],
+"tr": "가짜 가죽은 진짜 가죽처럼 느껴지지만, 그것은 동물의 피부가 아니라 합성수지로 만들어진다.",
+"ans": "like",
+"pts": null
+},
+{
+"key": "add09|2-4",
+"title": "추가문제 POINT 2 부사절 접속사와 전치사 둘 다로 쓰이는 단어",
+"chunks": [
+[
+"AI",
+"인공지능은",
+"S"
+],
+[
+"will be used more",
+"더 많이 사용될 것이다",
+"V"
+],
+[
+"in everyday life",
+"일상생활에서",
+""
+],
+[
+"as",
+"~함에 따라",
+"C"
+],
+[
+"the technology",
+"기술이",
+"S"
+],
+[
+"develops",
+"발전한다",
+"V"
+],
+[
+"over time.",
+"시간이 지나면서.",
+""
+]
+],
+"tr": "AI는 시간이 지나면서 기술이 발전함에 따라 일상생활에서 더 많이 사용될 것이다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add09|2-5",
+"title": "추가문제 POINT 2 부사절 접속사와 전치사 둘 다로 쓰이는 단어",
+"chunks": [
+[
+"After living 12 years in Japan,",
+"일본에서 12년 동안 산 후에,",
+"M"
+],
+[
+"Steve",
+"스티브는",
+"S"
+],
+[
+"speaks",
+"구사한다",
+""
+],
+[
+"the language",
+"그 언어를",
+""
+],
+[
+"like",
+"~처럼",
+"V"
+],
+[
+"a Japanese person.",
+"일본 사람.",
+""
+]
+],
+"tr": "일본에서 12년 동안 산 후에, Steve는 일본 사람처럼 그 언어를 구사한다.",
+"ans": "like",
+"pts": null
+},
+{
+"key": "add09|3-1",
+"title": "추가문제 POINT 3 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞",
+"chunks": [
+[
+"What",
+"~하는 것은",
+"V"
+],
+[
+"I",
+"내가",
+"S"
+],
+[
+"prepared",
+"준비한",
+""
+],
+[
+"for the picnic this weekend",
+"이번 주말 소풍을 위해",
+"M"
+],
+[
+"should be",
+"충분할 것이다",
+""
+],
+[
+"enough for everyone to enjoy.",
+"모두가 즐기기에.",
+""
+]
+],
+"tr": "내가 이번 주말 소풍을 위해 준비한 것은 모두가 즐기기에 충분할 것이다.",
+"ans": "What",
+"pts": null
+},
+{
+"key": "add09|3-2",
+"title": "추가문제 POINT 3 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞",
+"chunks": [
+[
+"Edna",
+"에드나는",
+"S"
+],
+[
+"couldn’t decide",
+"결정할 수 없었다",
+""
+],
+[
+"if",
+"~인지",
+"V"
+],
+[
+"she",
+"그녀가",
+"S"
+],
+[
+"wanted",
+"원하는지",
+""
+],
+[
+"the brown coat or the red one,",
+"갈색 코트를 아니면 빨간 코트를,",
+""
+],
+[
+"so she bought both.",
+"그래서 그녀는 둘 다 샀다.",
+""
+]
+],
+"tr": "Edna는 그녀가 갈색 코트를 원하는지 빨간색 코트를 원하는지 결정할 수 없었고, 그래서 그녀는 둘 다 샀다.",
+"ans": "if",
+"pts": null
+},
+{
+"key": "add09|3-3",
+"title": "추가문제 POINT 3 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞",
+"chunks": [
+[
+"The two boys",
+"그 두 소년은",
+"S"
+],
+[
+"are fighting",
+"싸우고 있다",
+""
+],
+[
+"about",
+"~를 두고",
+""
+],
+[
+"who",
+"누가",
+"V"
+],
+[
+"should be",
+"되어야 하는지",
+""
+],
+[
+"the leader of the speech club.",
+"연설 동아리의 대표가.",
+""
+]
+],
+"tr": "그 두 소년은 누가 연설 동아리의 대표가 되어야 하는지를 두고 싸우고 있다.",
+"ans": "who",
+"pts": null
+},
+{
+"key": "add09|3-4",
+"title": "추가문제 POINT 3 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞",
+"chunks": [
+[
+"Amanda",
+"아만다는",
+"S"
+],
+[
+"thinks",
+"생각해서",
+""
+],
+[
+"she didn’t study enough,",
+"그녀가 충분히 공부하지 못했다고,",
+""
+],
+[
+"so her biggest worry right now",
+"그래서 바로 지금 그녀의 가장 큰 고민은",
+"S"
+],
+[
+"is",
+"~이다",
+""
+],
+[
+"how",
+"어떻게",
+"V"
+],
+[
+"she will pass the test.",
+"그녀가 시험을 통과할지.",
+""
+]
+],
+"tr": "Amanda는 그녀가 충분히 공부하지 못했다고 생각해서, 바로 지금 그녀의 가장 큰 고민은 그녀가 어떻게 시험을 통과할지이다.",
+"ans": "how",
+"pts": null
+},
+{
+"key": "add09|3-5",
+"title": "추가문제 POINT 3 명사절 접속사: 완전한 절 앞 vs. 불완전한 절 앞",
+"chunks": [
+[
+"The coach",
+"그 코치는",
+"S"
+],
+[
+"wants to know",
+"알기를 원한다",
+""
+],
+[
+"whether",
+"~인지 아닌지",
+"V"
+],
+[
+"you",
+"당신이",
+"S"
+],
+[
+"are coming",
+"오는지",
+""
+],
+[
+"to the game on Thursday.",
+"목요일에 경기에.",
+""
+]
+],
+"tr": "그 코치는 당신이 목요일에 경기에 오는지 아닌지 알기를 원한다.",
+"ans": "whether",
+"pts": null
+}
+]

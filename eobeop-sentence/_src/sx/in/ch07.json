@@ -1,0 +1,2848 @@
+[
+{
+"key": "c07p1|예제",
+"title": "POINT 1 · 동사 자리 vs. 분사 자리",
+"chunks": [
+[
+"A good smell",
+"좋은 냄새가",
+"S"
+],
+[
+"for one person",
+"한 사람에게",
+"M"
+],
+[
+"can be unpleasant for another",
+"다른 사람에게는 불쾌할 수 있다",
+""
+],
+[
+"due to differences in the genes",
+"유전자의 차이로 인해",
+""
+],
+[
+"controlling our sense of smell.",
+"우리의 후각을 조절하는.",
+"V"
+]
+],
+"tr": "우리의 후각을 조절하는 유전자의 차이로 인해 한 사람에게 좋은 냄새가 다른 사람에게는 불쾌할 수 있다.",
+"ans": "controlling",
+"pts": null
+},
+{
+"key": "c07p1|1",
+"title": "POINT 1 · 동사 자리 vs. 분사 자리",
+"chunks": [
+[
+"The dancers",
+"무용수들은",
+"S"
+],
+[
+"wearing colorful costumes",
+"화려한 의상을 입은",
+"M"
+],
+[
+"moved gracefully across the stage.",
+"무대를 가로질러 우아하게 움직였다.",
+"V"
+]
+],
+"tr": "화려한 의상을 입은 무용수들은 무대를 가로질러 우아하게 움직였다.",
+"ans": "moved",
+"pts": null
+},
+{
+"key": "c07p1|2",
+"title": "POINT 1 · 동사 자리 vs. 분사 자리",
+"chunks": [
+[
+"The road ahead",
+"앞에 있는 도로가",
+"S"
+],
+[
+"is heavily flooded,",
+"심하게 물에 잠겨 있다,",
+"V"
+],
+[
+"so many drivers are turning around.",
+"그래서 많은 운전자들이 돌아가고 있다.",
+""
+]
+],
+"tr": "앞에 있는 도로가 심하게 물에 잠기면서, 많은 운전자들이 돌아가고 있다.",
+"ans": "flooded",
+"pts": null
+},
+{
+"key": "c07p1|3",
+"title": "POINT 1 · 동사 자리 vs. 분사 자리",
+"chunks": [
+[
+"There are",
+"있다",
+""
+],
+[
+"a lot of people",
+"많은 사람들이",
+"S"
+],
+[
+"waiting",
+"기다리는",
+"V"
+],
+[
+"for their families and friends",
+"가족들과 친구들이",
+""
+],
+[
+"to arrive at the airport.",
+"공항에 도착하기를.",
+""
+]
+],
+"tr": "공항에 가족들과 친구들이 도착하기를 기다리는 많은 사람들이 있다.",
+"ans": "waiting",
+"pts": null
+},
+{
+"key": "c07p1|4",
+"title": "POINT 1 · 동사 자리 vs. 분사 자리",
+"chunks": [
+[
+"Even if an apology is not accepted,",
+"비록 사과가 받아들여지지 않더라도,",
+"C"
+],
+[
+"thank the other person",
+"다른 사람에게 감사해라",
+"V"
+],
+[
+"for listening to you.",
+"당신의 말을 들어준 것에 대해.",
+""
+]
+],
+"tr": "비록 사과가 받아들여지지 않더라도, 당신의 말을 들어준 것에 대해 다른 사람에게 감사해라.",
+"ans": "thank",
+"pts": null
+},
+{
+"key": "c07p1|5",
+"title": "POINT 1 · 동사 자리 vs. 분사 자리",
+"chunks": [
+[
+"In general, calmness",
+"일반적으로, 침착함은",
+"S"
+],
+[
+"is one of the first things",
+"가장 먼저인 것들 중 하나이다",
+""
+],
+[
+"lost in many arguments.",
+"많은 논쟁에서 잃어버리는.",
+"V"
+]
+],
+"tr": "일반적으로, 침착함은 많은 논쟁에서 가장 먼저 잃어버리는 것들 중 하나이다.",
+"ans": "lost",
+"pts": null
+},
+{
+"key": "c07p1|6",
+"title": "POINT 1 · 동사 자리 vs. 분사 자리",
+"chunks": [
+[
+"The newly renovated art gallery",
+"새로 수리된 미술관은",
+"S"
+],
+[
+"became a popular meeting place",
+"인기 있는 만남의 장소가 되었다",
+"V"
+],
+[
+"for the city’s top artists.",
+"그 도시 최고의 예술가들에게.",
+""
+]
+],
+"tr": "새로 수리된 미술관은 그 도시 최고의 예술가들에게 인기 있는 만남의 장소가 되었다.",
+"ans": "became",
+"pts": null
+},
+{
+"key": "c07p1|7",
+"title": "POINT 1 · 동사 자리 vs. 분사 자리",
+"chunks": [
+[
+"She",
+"그녀는",
+"S"
+],
+[
+"walked down the street to school,",
+"거리를 따라 학교로 걸어갔다,",
+""
+],
+[
+"putting earphones in her ears.",
+"이어폰을 귀에 꽂고.",
+"V"
+]
+],
+"tr": "그녀는 이어폰을 귀에 꽂고, 학교로 걸어갔다.",
+"ans": "putting",
+"pts": null
+},
+{
+"key": "c07p1|8",
+"title": "POINT 1 · 동사 자리 vs. 분사 자리",
+"chunks": [
+[
+"According to a study,",
+"한 연구에 의하면,",
+""
+],
+[
+"players",
+"선수들이",
+"S"
+],
+[
+"wearing red uniforms",
+"빨간색 유니폼을 입은",
+"M"
+],
+[
+"won the games more often.",
+"경기에서 더 자주 이겼다.",
+"V"
+]
+],
+"tr": "한 연구에 의하면, 빨간색 유니폼을 입은 선수들이 경기에서 더 자주 이겼다.",
+"ans": "won",
+"pts": null
+},
+{
+"key": "c07p2|예제",
+"title": "POINT 2 · 목적격보어 자리: to부정사·동사원형·분사",
+"chunks": [
+[
+"A lack of information leads",
+"정보의 부족은 이끈다",
+"S"
+],
+[
+"us",
+"우리가",
+"C"
+],
+[
+"to make wrong decisions",
+"잘못된 결정을 내리도록",
+"V"
+],
+[
+"about the economy, business, and our careers.",
+"경제, 사업, 그리고 우리의 직업에 대해.",
+""
+]
+],
+"tr": "정보의 부족은 우리가 경제, 사업, 그리고 우리의 직업에 대해 잘못된 결정을 내리도록 이끈다.",
+"ans": "to make",
+"pts": null
+},
+{
+"key": "c07p2|1",
+"title": "POINT 2 · 목적격보어 자리: to부정사·동사원형·분사",
+"chunks": [
+[
+"The new policy allows",
+"그 새로운 정책은 허락한다",
+"S"
+],
+[
+"employees",
+"직원들이",
+"C"
+],
+[
+"to work from home every Friday.",
+"금요일마다 집에서 일할 수 있게.",
+"V"
+]
+],
+"tr": "그 새로운 정책은 직원들이 금요일마다 집에서 일할 수 있게 허락한다.",
+"ans": "to work",
+"pts": null
+},
+{
+"key": "c07p2|2",
+"title": "POINT 2 · 목적격보어 자리: to부정사·동사원형·분사",
+"chunks": [
+[
+"Over the past 30 years, I have seen",
+"지난 30년 동안, 나는 보아왔다",
+"S"
+],
+[
+"many of the city’s beautiful old buildings",
+"그 도시의 많은 아름다운 오래된 건물들이",
+"C"
+],
+[
+"destroyed.",
+"파괴되는 것을.",
+"V"
+]
+],
+"tr": "지난 30년 동안, 나는 그 도시의 많은 아름다운 오래된 건물들이 파괴되는 것을 보아왔다.",
+"ans": "destroyed",
+"pts": null
+},
+{
+"key": "c07p2|3",
+"title": "POINT 2 · 목적격보어 자리: to부정사·동사원형·분사",
+"chunks": [
+[
+"If there are any errors in my report,",
+"만약 제 보고서에 오류가 있다면,",
+""
+],
+[
+"I would appreciate it",
+"저는 감사하겠습니다",
+""
+],
+[
+"if you would let",
+"당신이 하게 해 주신다면",
+""
+],
+[
+"me",
+"제가",
+"C"
+],
+[
+"know.",
+"알게.",
+"V"
+]
+],
+"tr": "만약 제 보고서에 오류가 있다면, 제가 알게 해주시면 감사하겠습니다.",
+"ans": "know",
+"pts": null
+},
+{
+"key": "c07p2|4",
+"title": "POINT 2 · 목적격보어 자리: to부정사·동사원형·분사",
+"chunks": [
+[
+"Usually, you will find",
+"보통, 당신은 발견할 것이다",
+"S"
+],
+[
+"Charlie",
+"찰리가",
+"C"
+],
+[
+"reading a book in his room.",
+"그의 방에서 책을 읽고 있는 것을.",
+"V"
+]
+],
+"tr": "보통, 당신은 Charlie가 그의 방에서 책을 읽고 있는 것을 발견할 것이다.",
+"ans": "reading",
+"pts": null
+},
+{
+"key": "c07p2|5",
+"title": "POINT 2 · 목적격보어 자리: to부정사·동사원형·분사",
+"chunks": [
+[
+"My knee hurts, so I need to get",
+"무릎이 아파서, 나는 만들 필요가 있다",
+"S"
+],
+[
+"it",
+"그것이",
+"C"
+],
+[
+"checked",
+"검사받게",
+"V"
+],
+[
+"before I can play any sports.",
+"내가 어떤 운동이든 하기 전에.",
+""
+]
+],
+"tr": "무릎이 아파서, 나는 어떤 운동을 하기 전에 먼저 그것이 검사받게 할 필요가 있다.",
+"ans": "checked",
+"pts": null
+},
+{
+"key": "c07p2|6",
+"title": "POINT 2 · 목적격보어 자리: to부정사·동사원형·분사",
+"chunks": [
+[
+"Taking slow and deep breaths can help",
+"느리고 깊은 호흡을 하는 것은 도울 수 있다",
+"S"
+],
+[
+"people",
+"사람들이",
+"C"
+],
+[
+"to calm their minds.",
+"그들의 마음을 진정시키도록.",
+"V"
+]
+],
+"tr": "느리고 깊은 호흡을 하는 것은 사람들이 마음을 진정시키도록 도울 수 있다.",
+"ans": "to calm",
+"pts": null
+},
+{
+"key": "c07p2|7",
+"title": "POINT 2 · 목적격보어 자리: to부정사·동사원형·분사",
+"chunks": [
+[
+"Sophia felt",
+"소피아는 느꼈다",
+"S"
+],
+[
+"a breeze",
+"바람이",
+"C"
+],
+[
+"touch her neck",
+"그녀의 목에 닿는 것을",
+"V"
+],
+[
+"and put on her coat.",
+"그리고 코트를 입었다.",
+""
+]
+],
+"tr": "Sophia는 바람이 목에 닿는 것을 느꼈고 코트를 입었다.",
+"ans": "touch",
+"pts": null
+},
+{
+"key": "c07p2|8",
+"title": "POINT 2 · 목적격보어 자리: to부정사·동사원형·분사",
+"chunks": [
+[
+"Curiosity often makes",
+"호기심은 종종 만든다",
+"S"
+],
+[
+"us",
+"우리가",
+"C"
+],
+[
+"view a tough problem",
+"어려운 문제를 보게",
+"V"
+],
+[
+"as an interesting challenge.",
+"흥미로운 도전으로.",
+""
+]
+],
+"tr": "호기심은 종종 우리가 어려운 문제를 흥미로운 도전으로 보게 만든다.",
+"ans": "view",
+"pts": null
+},
+{
+"key": "c07p3|예제",
+"title": "POINT 3 · 명사 수식: 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Hot, melted rock",
+"뜨겁고 녹은 암석은",
+"S"
+],
+[
+"called magma",
+"마그마라고 불리는",
+"V"
+],
+[
+"cools when it reaches the surface of the earth.",
+"땅의 표면에 도달할 때 식는다.",
+""
+]
+],
+"tr": "마그마라고 불리는 뜨겁고 녹은 암석은 땅의 표면에 도달할 때 식는다.",
+"ans": "called",
+"pts": null
+},
+{
+"key": "c07p3|1",
+"title": "POINT 3 · 명사 수식: 현재분사 vs. 과거분사",
+"chunks": [
+[
+"No one has read",
+"아무도 읽지 않았다",
+""
+],
+[
+"the newspapers",
+"신문을",
+"S"
+],
+[
+"delivered in the past few days.",
+"지난 며칠간 배달된.",
+"V"
+]
+],
+"tr": "아무도 지난 며칠간 배달된 신문을 읽지 않았다.",
+"ans": "delivered",
+"pts": null
+},
+{
+"key": "c07p3|2",
+"title": "POINT 3 · 명사 수식: 현재분사 vs. 과거분사",
+"chunks": [
+[
+"The number of",
+"~의 수는",
+""
+],
+[
+"working",
+"일하는",
+"V"
+],
+[
+"women",
+"여성들",
+"S"
+],
+[
+"has increased in the last decade.",
+"지난 10년간 증가해 왔다.",
+""
+]
+],
+"tr": "일하는 여성의 수가 지난 10년간 증가해 왔다.",
+"ans": "working",
+"pts": null
+},
+{
+"key": "c07p3|3",
+"title": "POINT 3 · 명사 수식: 현재분사 vs. 과거분사",
+"chunks": [
+[
+"You can choose",
+"당신은 선택할 수 있다",
+""
+],
+[
+"any one of the five desserts",
+"다섯 가지 디저트 중 어느 하나든",
+"S"
+],
+[
+"listed on the restaurant’s menu.",
+"식당 메뉴에 나열된.",
+"V"
+]
+],
+"tr": "당신은 식당 메뉴에 나열된 다섯 가지 디저트 중 어느 하나든 선택할 수 있다.",
+"ans": "listed",
+"pts": null
+},
+{
+"key": "c07p3|4",
+"title": "POINT 3 · 명사 수식: 현재분사 vs. 과거분사",
+"chunks": [
+[
+"English is the most",
+"영어는 가장 ~인",
+""
+],
+[
+"spoken",
+"많이 말해지는",
+"V"
+],
+[
+"language worldwide,",
+"언어이다, 전 세계적으로,",
+"S"
+],
+[
+"with millions of total speakers.",
+"총 수백만 명의 말하는 사람들이 있어서.",
+""
+]
+],
+"tr": "총 수백만 명의 말하는 사람들이 있어서, 영어는 전 세계적으로 가장 많이 말해지는 언어이다.",
+"ans": "spoken",
+"pts": null
+},
+{
+"key": "c07p3|5",
+"title": "POINT 3 · 명사 수식: 현재분사 vs. 과거분사",
+"chunks": [
+[
+"The tour guide",
+"여행 가이드는",
+"S"
+],
+[
+"showing us the castle",
+"우리에게 성을 보여준",
+"V"
+],
+[
+"explained its long history.",
+"그것의 오랜 역사를 설명했다.",
+""
+]
+],
+"tr": "우리에게 성을 보여준 여행 가이드는 그것의 오랜 역사를 설명했다.",
+"ans": "showing",
+"pts": null
+},
+{
+"key": "c07p4|예제",
+"title": "POINT 4 · 감정동사의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"On my seventh birthday,",
+"일곱 번째 생일에,",
+""
+],
+[
+"I",
+"나는",
+"S"
+],
+[
+"was surprised",
+"놀랐다",
+"V"
+],
+[
+"to find a puppy waiting on a leash.",
+"목줄을 매고 기다리는 강아지를 발견해서.",
+""
+]
+],
+"tr": "일곱 번째 생일에, 나는 목줄을 매고 기다리는 강아지를 발견해서 놀랐다.",
+"ans": "surprised",
+"pts": null
+},
+{
+"key": "c07p4|1",
+"title": "POINT 4 · 감정동사의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Claude Bolling",
+"클로드 볼링은",
+"S"
+],
+[
+"became interested in Fats Waller,",
+"패츠 월러에 흥미를 느끼게 되었다,",
+"V"
+],
+[
+"an excellent jazz musician of his time.",
+"그의 시대의 뛰어난 재즈 음악가인.",
+""
+]
+],
+"tr": "Claude Bolling은 그의 시대에 가장 뛰어난 재즈 음악가인 Fats Waller에 흥미를 느끼게 되었다.",
+"ans": "interested",
+"pts": null
+},
+{
+"key": "c07p4|2",
+"title": "POINT 4 · 감정동사의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Depressed",
+"우울해하는",
+"V"
+],
+[
+"teenagers",
+"십 대들은",
+"S"
+],
+[
+"usually seek comfort",
+"보통 위안을 찾는다",
+""
+],
+[
+"by talking to their close friends.",
+"가까운 친구들과 대화함으로써.",
+""
+]
+],
+"tr": "우울해하는 십 대들은 보통 그들의 가까운 친구들과 대화함으로써 위안을 찾는다.",
+"ans": "Depressed",
+"pts": null
+},
+{
+"key": "c07p4|3",
+"title": "POINT 4 · 감정동사의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Driving for a long time",
+"긴 시간 동안 운전하는 것은",
+"S"
+],
+[
+"requires continuous attention",
+"지속적인 주의를 필요로 한다",
+""
+],
+[
+"and can be very tiring.",
+"그리고 매우 지치게 할 수 있다.",
+"V"
+]
+],
+"tr": "긴 시간 동안 운전하는 것은 지속적인 주의를 필요로 하고 매우 지치게 할 수 있다.",
+"ans": "tiring",
+"pts": null
+},
+{
+"key": "c07p4|4",
+"title": "POINT 4 · 감정동사의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"A sudden loud noise left",
+"갑작스러운 큰 소음은 만들었다",
+"S"
+],
+[
+"the baby",
+"아기가",
+"C"
+],
+[
+"shocked",
+"충격받게",
+"V"
+],
+[
+"and she started to cry.",
+"그리고 그녀는 울기 시작했다.",
+""
+]
+],
+"tr": "갑작스러운 큰 소음은 아기가 충격을 받게 했고 그녀는 울기 시작했다.",
+"ans": "shocked",
+"pts": null
+},
+{
+"key": "c07p4|5",
+"title": "POINT 4 · 감정동사의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"The baseball game",
+"그 야구 경기가",
+"S"
+],
+[
+"was discouraging,",
+"실망스러웠다,",
+"V"
+],
+[
+"so many fans left",
+"그래서 많은 팬들이 떠났다",
+""
+],
+[
+"before it was over.",
+"그것이 끝나기 전에.",
+""
+]
+],
+"tr": "그 야구 경기가 실망하게 해서, 많은 팬들이 그것이 끝나기 전에 떠났다.",
+"ans": "discouraging",
+"pts": null
+},
+{
+"key": "c07p5|예제",
+"title": "POINT 5 · 분사구문의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Non-verbal communication",
+"비언어적 의사소통은",
+"S"
+],
+[
+"functions as a supplement,",
+"보충물로서 기능한다,",
+""
+],
+[
+"enhancing the richness of the content of the message.",
+"메시지 내용의 풍부함을 강화하면서.",
+"V"
+]
+],
+"tr": "메시지 내용의 풍부함을 강화하기 때문에, 비언어적 의사소통은 보충물로서 기능한다.",
+"ans": "enhancing",
+"pts": null
+},
+{
+"key": "c07p5|1",
+"title": "POINT 5 · 분사구문의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Jason",
+"제이슨은",
+"S"
+],
+[
+"suddenly woke up in the middle of the night,",
+"한밤중에 갑자기 깨어났다,",
+""
+],
+[
+"sensing something was terribly wrong.",
+"무언가 끔찍하게 잘못되었다는 것을 느끼고.",
+"V"
+]
+],
+"tr": "무언가 끔찍하게 잘못된 것을 느끼고, Jason은 한밤중에 갑자기 깨어났다.",
+"ans": "sensing",
+"pts": null
+},
+{
+"key": "c07p5|2",
+"title": "POINT 5 · 분사구문의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Surrounded by high mountains,",
+"높은 산으로 둘러싸여,",
+"V"
+],
+[
+"the quiet village",
+"그 조용한 마을은",
+"S"
+],
+[
+"offers amazing views to its visitors.",
+"방문객들에게 멋진 경치를 제공한다.",
+""
+]
+],
+"tr": "높은 산으로 둘러싸였기 때문에, 그 조용한 마을은 방문객들에게 멋진 경치를 제공한다.",
+"ans": "Surrounded",
+"pts": null
+},
+{
+"key": "c07p5|3",
+"title": "POINT 5 · 분사구문의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Walking through the park,",
+"공원을 거닐면서,",
+"V"
+],
+[
+"I saw",
+"나는 보았다",
+"S"
+],
+[
+"a group of children playing and laughing joyfully.",
+"즐겁게 놀며 웃고 있는 한 무리의 아이들을.",
+""
+]
+],
+"tr": "공원을 거니는 동안, 나는 한 무리의 아이들이 놀면서 즐겁게 웃고 있는 것을 보았다.",
+"ans": "Walking",
+"pts": null
+},
+{
+"key": "c07p5|4",
+"title": "POINT 5 · 분사구문의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"The sun",
+"태양이",
+"S"
+],
+[
+"colored the sky beautifully,",
+"하늘을 아름답게 물들였다,",
+""
+],
+[
+"setting between the buildings.",
+"건물들 사이로 지면서.",
+"V"
+]
+],
+"tr": "건물들 사이로 지는 동안, 태양이 하늘을 아름답게 물들였다.",
+"ans": "setting",
+"pts": null
+},
+{
+"key": "c07p5|5",
+"title": "POINT 5 · 분사구문의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Some of the employees",
+"직원들 중 일부는",
+"S"
+],
+[
+"went home earlier than usual,",
+"평소보다 일찍 집에 갔다,",
+""
+],
+[
+"pleased",
+"기뻐하면서",
+"V"
+],
+[
+"with finishing their work for the day quickly.",
+"그날 업무를 빨리 마친 것에.",
+""
+]
+],
+"tr": "직원들 중 일부는 그날 업무를 빨리 마친 것에 기뻐하면서, 평소보다 일찍 집에 갔다.",
+"ans": "pleased",
+"pts": null
+},
+{
+"key": "c07p5|6",
+"title": "POINT 5 · 분사구문의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Julian",
+"줄리안은",
+"S"
+],
+[
+"started to run,",
+"뛰기 시작했다,",
+""
+],
+[
+"realizing that he was late for his meeting.",
+"회의에 늦었다는 것을 깨닫고.",
+"V"
+]
+],
+"tr": "회의에 늦었다는 것을 깨닫고서, Julian은 뛰기 시작했다.",
+"ans": "realizing",
+"pts": null
+},
+{
+"key": "c07p5|7",
+"title": "POINT 5 · 분사구문의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"When covered in fresh snow,",
+"신선한 눈으로 덮일 때,",
+"V"
+],
+[
+"the garden",
+"그 정원은",
+"S"
+],
+[
+"looks like a winter wonderland.",
+"겨울 동화의 나라처럼 보인다.",
+""
+]
+],
+"tr": "신선한 눈으로 덮일 때, 그 정원은 겨울 동화의 나라처럼 보인다.",
+"ans": "covered",
+"pts": null
+},
+{
+"key": "c07p5|8",
+"title": "POINT 5 · 분사구문의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Selecting products like carpets,",
+"카펫과 같은 상품들을 선택하는 동안,",
+"V"
+],
+[
+"consumers",
+"소비자들은",
+"S"
+],
+[
+"prefer touching the goods directly",
+"직접 제품을 만지는 것을 선호한다",
+""
+],
+[
+"rather than just seeing them in catalogs.",
+"카탈로그에서 보기만 하는 것보다는.",
+""
+]
+],
+"tr": "카펫과 같은 상품들을 선택하는 동안, 소비자들은 카탈로그에서 보기만 하는 것보다는 직접 제품을 만지는 것을 선호한다.",
+"ans": "Selecting",
+"pts": null
+},
+{
+"key": "c07q1|1",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The workers",
+"노동자들은",
+"S"
+],
+[
+"repairing the bridge",
+"다리를 수리하는",
+"M"
+],
+[
+"worked hard",
+"열심히 일했다",
+"V"
+],
+[
+"to restore it quickly.",
+"그것을 빠르게 복구하기 위해.",
+""
+]
+],
+"tr": "다리를 수리하는 노동자들은 그것을 빠르게 복구하기 위해 열심히 일했다.",
+"ans": "worked",
+"pts": null
+},
+{
+"key": "c07q1|2",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"In the past,",
+"과거에,",
+""
+],
+[
+"teachers",
+"교사들은",
+"S"
+],
+[
+"did not actively encourage",
+"적극적으로 장려하지 않았다",
+""
+],
+[
+"students",
+"학생들이",
+"C"
+],
+[
+"to acquire communication skills.",
+"의사소통 능력을 습득하는 것을.",
+"V"
+]
+],
+"tr": "과거에, 교사들은 학생들이 의사소통 능력을 습득하는 것을 적극적으로 장려하지 않았다.",
+"ans": "to acquire",
+"pts": null
+},
+{
+"key": "c07q1|3",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Susan and Raymond",
+"수잔과 레이먼드는",
+"S"
+],
+[
+"are good research partners",
+"좋은 연구 파트너이다",
+"C"
+],
+[
+"sharing their ideas with each other.",
+"아이디어를 서로 공유하는.",
+"V"
+]
+],
+"tr": "Susan과 Raymond는 서로 아이디어를 공유하는 좋은 연구 파트너이다.",
+"ans": "sharing",
+"pts": null
+},
+{
+"key": "c07q1|4",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Back in 1996,",
+"지난 1996년에,",
+""
+],
+[
+"an American airline",
+"미국의 한 항공사는",
+"S"
+],
+[
+"was faced with",
+"직면했다",
+""
+],
+[
+"an annoying problem.",
+"성가신 문제에.",
+"V"
+]
+],
+"tr": "지난 1996년에, 미국의 한 항공사는 성가신 문제에 직면했다.",
+"ans": "annoying",
+"pts": null
+},
+{
+"key": "c07q1|5",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The company will have",
+"그 회사는 ~하게 할 것이다",
+"S"
+],
+[
+"its website",
+"웹사이트가",
+"C"
+],
+[
+"designed by a team of three web developers.",
+"3명의 웹 개발자로 구성된 팀에 의해 디자인되도록.",
+"V"
+]
+],
+"tr": "그 회사는 3명의 웹 개발자로 구성된 팀에 의해 웹사이트가 디자인되게 할 것이다.",
+"ans": "designed",
+"pts": null
+},
+{
+"key": "c07q1|6",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"I",
+"나는",
+"S"
+],
+[
+"felt the cool ocean breeze",
+"시원한 바닷바람을 느꼈다",
+""
+],
+[
+"and the sand beneath my feet,",
+"그리고 발밑의 모래도,",
+""
+],
+[
+"running along the beach.",
+"해변을 따라 달리는 동안.",
+"V"
+]
+],
+"tr": "해변을 따라 달리는 동안, 나는 시원한 바닷바람과 발밑의 모래를 느꼈다.",
+"ans": "running",
+"pts": null
+},
+{
+"key": "c07q1|7",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The man",
+"그 남자는",
+"S"
+],
+[
+"playing the guitar on the street",
+"길에서 기타를 연주하는",
+"V"
+],
+[
+"dreams of becoming a famous musician someday.",
+"언젠가 유명한 음악가가 되는 것을 꿈꾼다.",
+""
+]
+],
+"tr": "길에서 기타를 연주하는 그 남자는 언젠가 유명한 음악가가 되는 것을 꿈꾼다.",
+"ans": "playing",
+"pts": null
+},
+{
+"key": "c07q1|8",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Rita was very happy",
+"리타는 매우 행복했다",
+""
+],
+[
+"when she watched",
+"그녀가 지켜봤을 때",
+"S"
+],
+[
+"her daughter",
+"자신의 딸이",
+"C"
+],
+[
+"finish her first marathon.",
+"첫 마라톤을 끝마치는 것을.",
+"V"
+]
+],
+"tr": "Rita는 그녀의 딸이 첫 마라톤을 끝마치는 것을 보았을 때 매우 행복했다.",
+"ans": "finish",
+"pts": null
+},
+{
+"key": "c07q1|9",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Do you know",
+"너는 아니",
+""
+],
+[
+"that person",
+"저 사람을",
+"C"
+],
+[
+"waving his hand to us",
+"우리에게 손을 흔드는",
+"V"
+],
+[
+"across the street?",
+"길 건너에서?",
+""
+]
+],
+"tr": "너는 길 건너에서 우리에게 손을 흔드는 저 사람을 아니?",
+"ans": "waving",
+"pts": null
+},
+{
+"key": "c07q1|10",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Located in the center of the city,",
+"시내 중심에 위치해 있어서,",
+"V"
+],
+[
+"the restaurant",
+"그 식당은",
+"S"
+],
+[
+"is always full of customers.",
+"항상 손님들로 가득 차 있다.",
+""
+]
+],
+"tr": "시내 중심에 위치해 있어서, 그 식당은 항상 손님들로 가득 차 있다.",
+"ans": "Located",
+"pts": null
+},
+{
+"key": "c07q1|11",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"In the morning,",
+"아침에,",
+""
+],
+[
+"Sandro",
+"산드로는",
+"S"
+],
+[
+"felt so cold",
+"매우 춥게 느꼈다",
+"V"
+],
+[
+"because of the window left open overnight.",
+"밤새 열려 있던 창문 때문에.",
+""
+]
+],
+"tr": "아침에, Sandro는 밤새 열려 있던 창문 때문에 매우 춥게 느꼈다.",
+"ans": "felt",
+"pts": null
+},
+{
+"key": "c07q1|12",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Every item",
+"모든 품목이",
+"S"
+],
+[
+"displayed in the store",
+"매장에 진열된",
+"V"
+],
+[
+"is on sale this week,",
+"이번 주에 할인 중이다,",
+""
+],
+[
+"so we have to go there.",
+"그래서 우리는 거기에 가야 한다.",
+""
+]
+],
+"tr": "매장에 진열된 모든 품목이 이번 주에 할인 중이어서, 우리는 거기에 가야 한다.",
+"ans": "displayed",
+"pts": null
+},
+{
+"key": "c07q2|1",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 바르게 고치기",
+"chunks": [
+[
+"Some people worry",
+"어떤 사람들은 걱정한다",
+""
+],
+[
+"that building large muscles could cause",
+"큰 근육을 만드는 것이 ~하게 할 수 있다고",
+""
+],
+[
+"them",
+"그들이",
+"C"
+],
+[
+"to lose their flexibility.",
+"유연성을 잃도록.",
+"V"
+]
+],
+"tr": "어떤 사람들은 큰 근육을 만드는 것이 그들이 유연성을 잃게 할 수 있다고 걱정한다.",
+"ans": "to lose",
+"pts": null
+},
+{
+"key": "c07q2|2",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 바르게 고치기",
+"chunks": [
+[
+"The boats",
+"그 배들은",
+"S"
+],
+[
+"moving across the water",
+"물 위를 가로질러 이동하는",
+"M"
+],
+[
+"look like toys",
+"장난감처럼 보인다",
+"V"
+],
+[
+"from a distance.",
+"먼 거리에서는.",
+""
+]
+],
+"tr": "물 위를 가로질러 이동하는 배들은 먼 거리에서는 장난감처럼 보인다(보였다).",
+"ans": "look",
+"pts": null
+},
+{
+"key": "c07q2|3",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 바르게 고치기",
+"chunks": [
+[
+"Decorated with colorful lights,",
+"화려한 불빛으로 장식되어서,",
+"V"
+],
+[
+"the city streets",
+"도시의 거리는",
+"S"
+],
+[
+"create a magical atmosphere",
+"마법 같은 분위기를 자아낸다",
+""
+],
+[
+"during the holiday season.",
+"휴가철 동안.",
+""
+]
+],
+"tr": "화려한 불빛으로 장식되어서, 도시의 거리는 휴가철 동안 마법 같은 분위기를 자아낸다.",
+"ans": "Decorated",
+"pts": null
+},
+{
+"key": "c07q2|4",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 바르게 고치기",
+"chunks": [
+[
+"Billy",
+"빌리는",
+"S"
+],
+[
+"can’t play football",
+"축구를 할 수 없다",
+""
+],
+[
+"for over a month",
+"한 달 넘게",
+""
+],
+[
+"because of his broken arm.",
+"그의 부러진 팔 때문에.",
+"V"
+]
+],
+"tr": "Billy는 부러진 팔 때문에 한 달 넘게 축구를 할 수 없다.",
+"ans": "broken",
+"pts": null
+},
+{
+"key": "c07q2|5",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 바르게 고치기",
+"chunks": [
+[
+"One of the big questions",
+"큰 질문 중 하나는",
+""
+],
+[
+"is how to keep",
+"어떻게 계속 ~하게 할지",
+""
+],
+[
+"people",
+"사람들이",
+"C"
+],
+[
+"pursuing innovation when they work remotely.",
+"원격으로 일할 때 혁신을 추구하게.",
+"V"
+]
+],
+"tr": "큰 질문 중 하나는 사람들이 원격으로 일할 때 어떻게 계속 혁신을 추구하게 할 것인가이다.",
+"ans": "pursuing",
+"pts": null
+},
+{
+"key": "c07q2|6",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 바르게 고치기",
+"chunks": [
+[
+"There is",
+"있다",
+""
+],
+[
+"a glass jar",
+"유리병이",
+"S"
+],
+[
+"filled with candy and jelly",
+"사탕과 젤리로 가득 채워진",
+"V"
+],
+[
+"on the shelf in our kitchen.",
+"우리 부엌 선반 위에.",
+""
+]
+],
+"tr": "우리 부엌 선반 위에 사탕과 젤리로 가득 채워진 유리병이 있다.",
+"ans": "filled",
+"pts": null
+},
+{
+"key": "c07q2|7",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 바르게 고치기",
+"chunks": [
+[
+"When asked about her hobby,",
+"그녀의 취미에 관해 질문받았을 때,",
+"V"
+],
+[
+"she",
+"그녀는",
+"S"
+],
+[
+"proudly showed her collection of coins",
+"자랑스럽게 동전 수집품을 보여주었다",
+""
+],
+[
+"from all over the world.",
+"전 세계의.",
+""
+]
+],
+"tr": "그녀의 취미에 관해 질문받았을 때, 그녀는 전 세계의 동전 수집품을 자랑스럽게 보여주었다.",
+"ans": "asked",
+"pts": null
+},
+{
+"key": "c07q2|8",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 바르게 고치기",
+"chunks": [
+[
+"You",
+"당신은",
+"S"
+],
+[
+"can feel the daily stress melt away,",
+"일상의 스트레스가 서서히 사라지는 것을 느낄 수 있다,",
+""
+],
+[
+"dipping your tired feet into warm water.",
+"지친 발을 따뜻한 물에 담그면서.",
+"V"
+]
+],
+"tr": "지친 발을 따뜻한 물에 담그면, 당신은 일상의 스트레스가 서서히 사라지는 것을 느낄 수 있다.",
+"ans": "dipping",
+"pts": null
+},
+{
+"key": "c07q2|9",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 바르게 고치기",
+"chunks": [
+[
+"A lot of audience members",
+"많은 관객들은",
+"S"
+],
+[
+"were overwhelmed with emotion",
+"감정에 압도되었고",
+"V"
+],
+[
+"and left the movie in tears.",
+"눈물을 흘리며 영화관을 떠났다.",
+""
+]
+],
+"tr": "많은 관객들은 감정에 압도되었고 눈물을 흘리며 영화관을 떠났다.",
+"ans": "overwhelmed",
+"pts": null
+},
+{
+"key": "c07q2|10",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 바르게 고치기",
+"chunks": [
+[
+"The people",
+"그 사람들은",
+"S"
+],
+[
+"wearing white caps and red T-shirts",
+"흰색 모자를 쓰고 빨간 티셔츠를 입은",
+"V"
+],
+[
+"are volunteers at the event.",
+"그 행사에서 자원봉사자들이다.",
+""
+]
+],
+"tr": "흰색 모자를 쓰고 빨간 티셔츠를 입은 사람들이 그 행사에서 자원봉사자들이다.",
+"ans": "wearing",
+"pts": null
+},
+{
+"key": "c07q2|11",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 바르게 고치기",
+"chunks": [
+[
+"Christmas cards from their grandchildren made",
+"손주들로부터 온 크리스마스카드가 만들었다",
+""
+],
+[
+"the old couple",
+"그 노부부가",
+"C"
+],
+[
+"smile with joy.",
+"기쁨으로 미소 짓게.",
+"V"
+]
+],
+"tr": "손주들로부터 온 크리스마스카드가 그 노부부를 기쁨으로 미소 짓게 만들었다.",
+"ans": "smile",
+"pts": null
+},
+{
+"key": "c07q2|12",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 바르게 고치기",
+"chunks": [
+[
+"The necklace",
+"그 목걸이는",
+"S"
+],
+[
+"stolen a week ago at a jewelry store downtown",
+"시내의 한 보석 상점에서 일주일 전에 훔쳐진",
+"V"
+],
+[
+"costs millions of dollars.",
+"수백만 달러의 가격이 나간다.",
+""
+]
+],
+"tr": "시내의 한 보석 상점에서 일주일 전에 훔쳐진 목걸이는 수백만 달러의 가격이 나간다.",
+"ans": "stolen",
+"pts": null
+},
+{
+"key": "c07s1|1-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"A long time ago,",
+"오래전에,",
+""
+],
+[
+"a farmer in a small town",
+"작은 마을의 한 농부는",
+"S"
+],
+[
+"saw a neighbor’s dog",
+"이웃의 개를 보았다",
+""
+],
+[
+"(A) attacking his lambs.",
+"자신의 양들을 공격하는 것을.",
+"V"
+]
+],
+"tr": "오래전에, 작은 마을의 한 농부는 이웃의 개가 자신의 양들을 공격하는 것을 보았다.",
+"ans": "attacking",
+"pts": [
+"7.2"
+]
+},
+{
+"key": "c07s1|1-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"(B) Bitten by the dog,",
+"개에게 물려서,",
+"V"
+],
+[
+"one of the lambs",
+"그 양들 중 한 마리가",
+"S"
+],
+[
+"was crying in pain.",
+"고통 속에 울고 있었다.",
+""
+]
+],
+"tr": "개에게 물려서, 그 양들 중 한 마리가 고통 속에 울고 있었다.",
+"ans": "Bitten",
+"pts": [
+"7.5"
+]
+},
+{
+"key": "c07s1|2-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Repetition",
+"반복은",
+"S"
+],
+[
+"gives us a sense of safety,",
+"우리에게 안전한 느낌을 주기 때문에,",
+""
+],
+[
+"so we",
+"그래서 우리는",
+"S"
+],
+[
+"organize our lives",
+"우리의 삶을 구성한다",
+""
+],
+[
+"in largely (A) repeated schedules.",
+"대체로 반복되는 일정으로.",
+"V"
+]
+],
+"tr": "반복은 우리에게 안전한 느낌을 주기 때문에, 우리는 대체로 반복되는 일정으로 우리의 삶을 구성한다.",
+"ans": "repeated",
+"pts": [
+"7.3"
+]
+},
+{
+"key": "c07s1|2-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"With unplanned events,",
+"계획되지 않은 사건들이 생기면,",
+""
+],
+[
+"we",
+"우리는",
+"S"
+],
+[
+"get (B) confused",
+"혼란스러워진다",
+"V"
+],
+[
+"because we have to change our schedules again and again.",
+"일정을 계속해서 바꿔야 하기 때문에.",
+""
+]
+],
+"tr": "계획되지 않은 사건들이 생기면, 우리는 계속해서 우리의 일정을 바꿔야 하기 때문에 혼란스러워진다.",
+"ans": "confused",
+"pts": [
+"7.4"
+]
+},
+{
+"key": "c07s1|3-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Sometimes the person",
+"때로 그 사람은",
+"S"
+],
+[
+"arguing with you",
+"당신과 논쟁하는",
+"M"
+],
+[
+"(A) tries to make you angry",
+"당신을 화나게 하려고 노력한다",
+"V"
+],
+[
+"to win.",
+"이기기 위해서.",
+""
+]
+],
+"tr": "때로 당신과 논쟁하는 사람은 이기기 위해서 당신을 화나게 하려고 노력한다.",
+"ans": "tries",
+"pts": [
+"7.1"
+]
+},
+{
+"key": "c07s1|3-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"They",
+"그들은",
+"S"
+],
+[
+"may say",
+"말할지도 모른다",
+""
+],
+[
+"things (B) designed to annoy you.",
+"당신을 짜증 나게 하기 위해 계획된 것들을.",
+"V"
+]
+],
+"tr": "그들은 당신을 짜증 나게 하기 위해 계획된 것들을 말할지도 모른다.",
+"ans": "designed",
+"pts": [
+"7.3"
+]
+},
+{
+"key": "c07s1|3-(C)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Those words",
+"그런 말들은",
+"S"
+],
+[
+"may even be (C) humiliating,",
+"심지어 굴욕감을 줄 수도 있지만,",
+"V"
+],
+[
+"but remember that you can’t win an argument",
+"하지만 논쟁에서 이길 수 없다는 것을 기억하라",
+""
+],
+[
+"if you’re upset.",
+"당신이 화가 나면.",
+""
+]
+],
+"tr": "그런 말들은 심지어 굴욕감을 줄 수도 있지만, 당신이 화가 나면 논쟁에서 이길 수 없다는 것을 기억하라.",
+"ans": "humiliating",
+"pts": [
+"7.4"
+]
+},
+{
+"key": "c07s1|4-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Playing with the stove,",
+"난로를 가지고 노는 중에,",
+"V"
+],
+[
+"Nolan’s younger brother",
+"놀런의 남동생은",
+"S"
+],
+[
+"almost set the tent on fire.",
+"텐트에 불을 낼 뻔했다.",
+""
+]
+],
+"tr": "난로를 가지고 노는 중에, Nolan의 남동생은 텐트에 불을 낼 뻔했다.",
+"ans": "Playing",
+"pts": [
+"7.5"
+]
+},
+{
+"key": "c07s1|4-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"As he let his younger brother out of the tent,",
+"그가 동생을 텐트 밖으로 내보내면서,",
+""
+],
+[
+"Nolan",
+"놀런은",
+"S"
+],
+[
+"yelled, “Don’t come back in",
+"소리쳤다, “다시 들어오지 마",
+""
+],
+[
+"until I get this tent",
+"내가 이 텐트를 ~할 때까지",
+""
+],
+[
+"cleaned up!”",
+"다 치워진 상태로!”",
+"V"
+]
+],
+"tr": "동생을 텐트 밖으로 내보내면서, Nolan은 “내가 이 텐트를 다 치울 때까지 다시 들어오지 마!”라고 소리쳤다.",
+"ans": "cleaned",
+"pts": [
+"7.2"
+]
+},
+{
+"key": "c07s1|5-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Before mailing any items for return,",
+"반품을 위해 물건들을 우편으로 보내기 전에,",
+""
+],
+[
+"you",
+"당신은",
+"S"
+],
+[
+"must place them",
+"그것들을 넣어야 한다",
+""
+],
+[
+"inside a closed envelope or box.",
+"닫힌 봉투나 상자 안에.",
+"V"
+]
+],
+"tr": "반품을 위해 물건들을 우편으로 보내기 전에, 당신은 그것들을 닫힌 봉투나 상자 안에 넣어야 합니다.",
+"ans": "closed",
+"pts": [
+"7.3"
+]
+},
+{
+"key": "c07s1|5-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"When received at our office,",
+"우리의 사무실에 접수될 때,",
+"V"
+],
+[
+"the items",
+"상품들은",
+"S"
+],
+[
+"will be checked for damage",
+"손상이 있는지 확인될 것입니다",
+""
+],
+[
+"before we send a refund payment to your credit card.",
+"우리가 당신의 신용카드로 환불 금액을 보내기 전에.",
+""
+]
+],
+"tr": "우리의 사무실에 접수될 때, 우리가 당신의 신용카드로 환불 금액을 보내기 전에 상품들은 손상이 있는지 확인될 것입니다.",
+"ans": "received",
+"pts": [
+"7.5"
+]
+},
+{
+"key": "c07s1|6-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"As a form of expression,",
+"표현의 한 형태로서,",
+""
+],
+[
+"fashion",
+"패션은",
+"S"
+],
+[
+"enables individuals",
+"개인들이 ~하게 해 준다",
+""
+],
+[
+"to recreate their own image.",
+"자신만의 이미지를 재창조할 수 있도록.",
+"V"
+]
+],
+"tr": "표현의 한 형태로서, 패션은 개인들이 자신만의 이미지를 재창조할 수 있게 해준다.",
+"ans": "to recreate",
+"pts": [
+"7.2"
+]
+},
+{
+"key": "c07s1|6-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Clothes",
+"옷은",
+"S"
+],
+[
+"can have a variety of forms,",
+"다양한 형태를 가질 수 있다,",
+""
+],
+[
+"showing one’s status or beliefs.",
+"누군가의 신분이나 신념을 보여 주면서.",
+"V"
+]
+],
+"tr": "누군가의 신분이나 신념을 보여주면서, 옷은 다양한 형태를 가질 수 있다.",
+"ans": "showing",
+"pts": [
+"7.5"
+]
+},
+{
+"key": "c07s1|6-③",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"People",
+"사람들은",
+"S"
+],
+[
+"wanting to protect nature,",
+"자연을 보호하기를 원하는",
+"V"
+],
+[
+"for example,",
+"예를 들어,",
+""
+],
+[
+"may choose to wear clothes made of recycled cloth.",
+"재활용된 천으로 만들어진 옷을 입는 것을 선택할 수도 있다.",
+""
+]
+],
+"tr": "예를 들어, 자연을 보호하기를 원하는 사람들은 재활용된 천으로 만들어진 옷을 입는 것을 선택할 수도 있다.",
+"ans": "wanting",
+"pts": [
+"7.3"
+]
+},
+{
+"key": "add07|1-1",
+"title": "추가문제 POINT 1 동사 vs. 분사",
+"chunks": [
+[
+"There are",
+"~이 있다",
+""
+],
+[
+"many economic problems",
+"많은 경제적인 문제들이",
+"S"
+],
+[
+"affecting the country",
+"나라에 영향을 미치는",
+"V"
+],
+[
+"right now.",
+"지금.",
+""
+]
+],
+"tr": "지금 나라에 영향을 미치는 많은 경제적인 문제들이 있다.",
+"ans": "affecting",
+"pts": null
+},
+{
+"key": "add07|1-2",
+"title": "추가문제 POINT 1 동사 vs. 분사",
+"chunks": [
+[
+"When someone",
+"누군가가",
+"S"
+],
+[
+"greets you,",
+"당신에게 인사할 때,",
+""
+],
+[
+"respond",
+"응답하라",
+"V"
+],
+[
+"the person",
+"그 사람에게",
+""
+],
+[
+"with a smile.",
+"미소로.",
+""
+]
+],
+"tr": "누군가가 당신에게 인사할 때, 그 사람에게 미소로 응답하라.",
+"ans": "respond",
+"pts": null
+},
+{
+"key": "add07|1-3",
+"title": "추가문제 POINT 1 동사 vs. 분사",
+"chunks": [
+[
+"The company",
+"그 회사는",
+"S"
+],
+[
+"is extremely satisfied",
+"몹시 만족한다",
+"V"
+],
+[
+"with Mr. Howell’s results",
+"하웰씨의 성과에",
+""
+],
+[
+"and would like to give him a bonus.",
+"그리고 그에게 상여금을 주고 싶어 한다.",
+""
+]
+],
+"tr": "그 회사는 Howell씨의 성과에 몹시 만족하고 그에게 상여금을 주고 싶어 한다.",
+"ans": "satisfied",
+"pts": null
+},
+{
+"key": "add07|1-4",
+"title": "추가문제 POINT 1 동사 vs. 분사",
+"chunks": [
+[
+"I",
+"나는",
+"S"
+],
+[
+"couldn’t fall asleep last night,",
+"지난밤에 잠에 들 수 없었다,",
+"C"
+],
+[
+"thinking",
+"생각하느라",
+"V"
+],
+[
+"about all my plans for the weekend.",
+"주말을 위한 나의 모든 계획에 대해서.",
+""
+]
+],
+"tr": "나는 지난밤에 주말을 위한 나의 모든 계획에 대해서 생각하느라 잠에 들 수 없었다.",
+"ans": "thinking",
+"pts": null
+},
+{
+"key": "add07|1-5",
+"title": "추가문제 POINT 1 동사 vs. 분사",
+"chunks": [
+[
+"The special items",
+"특별한 물품들이",
+"S"
+],
+[
+"ordered for tomorrow’s school festival",
+"내일의 학교 축제를 위해 주문된",
+"M"
+],
+[
+"arrived",
+"도착했다",
+"V"
+],
+[
+"this morning.",
+"오늘 아침에.",
+""
+]
+],
+"tr": "내일의 학교 축제를 위해 주문된 특별한 물품들이 오늘 아침에 도착했다.",
+"ans": "arrived",
+"pts": null
+},
+{
+"key": "add07|2-1",
+"title": "추가문제 POINT 2 목적격보어 자리: to부정사 vs. 동사원형 vs. 분사",
+"chunks": [
+[
+"The support and encouragement",
+"지지와 격려는",
+"S"
+],
+[
+"of parents and teachers",
+"부모와 교사의",
+"M"
+],
+[
+"usually make children perform",
+"보통 아이들이 성취하게 한다",
+"V"
+],
+[
+"better in school.",
+"학교에서 더 잘.",
+""
+]
+],
+"tr": "부모와 교사의 지지와 격려는 보통 아이들이 학교에서 더 잘 성취하게 한다.",
+"ans": "perform",
+"pts": null
+},
+{
+"key": "add07|2-2",
+"title": "추가문제 POINT 2 목적격보어 자리: to부정사 vs. 동사원형 vs. 분사",
+"chunks": [
+[
+"Most people",
+"대부분의 사람들은",
+"S"
+],
+[
+"expect the government to protect them",
+"정부가 그들을 보호하기를 기대한다",
+"V"
+],
+[
+"from harmful or dangerous situations.",
+"해롭거나 위험한 상황으로부터.",
+""
+]
+],
+"tr": "대부분의 사람들은 정부가 해롭거나 위험한 상황으로부터 그들을 보호하기를 기대한다.",
+"ans": "to protect",
+"pts": null
+},
+{
+"key": "add07|2-3",
+"title": "추가문제 POINT 2 목적격보어 자리: to부정사 vs. 동사원형 vs. 분사",
+"chunks": [
+[
+"I",
+"나는",
+"S"
+],
+[
+"sometimes hear",
+"때때로 듣는다",
+"C"
+],
+[
+"my upstairs neighbors walk",
+"나의 위층 이웃들이 걷는 것을",
+"V"
+],
+[
+"loudly in their apartment at night.",
+"밤에 그들의 아파트에서 큰 소리로.",
+""
+]
+],
+"tr": "나는 때때로 나의 위층 이웃들이 밤에 그들의 아파트에서 큰 소리로 걷는 것을 듣는다.",
+"ans": "walk 또는 walking",
+"pts": null
+},
+{
+"key": "add07|2-4",
+"title": "추가문제 POINT 2 목적격보어 자리: to부정사 vs. 동사원형 vs. 분사",
+"chunks": [
+[
+"Practicing a new language often",
+"새로운 언어를 자주 연습하는 것은",
+"S"
+],
+[
+"with other people",
+"다른 사람들과 함께",
+"M"
+],
+[
+"will help you to speak",
+"당신이 말하도록 도울 것이다",
+"V"
+],
+[
+"it more naturally.",
+"그것을 더 자연스럽게.",
+""
+]
+],
+"tr": "다른 사람들과 함께 새로운 언어를 자주 연습하는 것은 당신이 그것을 더 자연스럽게 말하도록 도울 것이다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add07|2-5",
+"title": "추가문제 POINT 2 목적격보어 자리: to부정사 vs. 동사원형 vs. 분사",
+"chunks": [
+[
+"Roy",
+"로이는",
+"S"
+],
+[
+"left his bicycle tied",
+"그의 자전거를 묶어 둔 채로 남겨 두었다",
+"V"
+],
+[
+"outside the store",
+"가게 밖에",
+""
+],
+[
+"while he went in to buy something.",
+"무언가를 사러 들어가는 동안.",
+""
+]
+],
+"tr": "Roy는 무언가를 사러 들어가는 동안 그의 자전거를 가게 밖에 묶어 둔 채로 남겨 두었다.",
+"ans": "tied",
+"pts": null
+},
+{
+"key": "add07|3-1",
+"title": "추가문제 POINT 3 명사 수식: 현재분사 vs. 과거분사",
+"chunks": [
+[
+"The restaurant",
+"식당이",
+"S"
+],
+[
+"is very busy today,",
+"오늘 매우 바빠서,",
+""
+],
+[
+"so there is a long line",
+"긴 줄이 있다",
+""
+],
+[
+"of waiting customers",
+"기다리는 손님들의",
+"V"
+],
+[
+"outside.",
+"밖에.",
+""
+]
+],
+"tr": "오늘은 식당이 매우 바빠서, 밖에 기다리는 손님들의 긴 줄이 있다.",
+"ans": "waiting",
+"pts": null
+},
+{
+"key": "add07|3-2",
+"title": "추가문제 POINT 3 명사 수식: 현재분사 vs. 과거분사",
+"chunks": [
+[
+"When you argue with one of your family members,",
+"당신이 가족 구성원 중 한 명과 말다툼을 할 때,",
+""
+],
+[
+"some of the things",
+"것들 중 일부가",
+"S"
+],
+[
+"said in anger",
+"홧김에 말해진",
+"V"
+],
+[
+"can be hurtful.",
+"마음을 아프게 할 수 있다.",
+""
+]
+],
+"tr": "당신이 가족 구성원 중 한 명과 말다툼을 할 때, 홧김에 말해지는 것들 중 일부가 마음을 아프게 할 수 있다.",
+"ans": "said",
+"pts": null
+},
+{
+"key": "add07|3-3",
+"title": "추가문제 POINT 3 명사 수식: 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Scientists",
+"과학자들은",
+"S"
+],
+[
+"have warned",
+"경고해 왔다",
+""
+],
+[
+"about sea levels rising",
+"상승하는 해수면에 대해",
+"V"
+],
+[
+"for several decades now.",
+"지금까지 수십 년 동안.",
+""
+]
+],
+"tr": "과학자들은 지금까지 수십 년 동안 상승하는 해수면에 대해 경고해 왔다.",
+"ans": "rising",
+"pts": null
+},
+{
+"key": "add07|3-4",
+"title": "추가문제 POINT 3 명사 수식: 현재분사 vs. 과거분사",
+"chunks": [
+[
+"The news show",
+"그 뉴스 프로그램은",
+"S"
+],
+[
+"provides detailed reports",
+"상세한 보도를 제공한다",
+""
+],
+[
+"on the most discussed issues",
+"가장 많이 논의된 이슈들에 대해",
+"V"
+],
+[
+"of the day.",
+"그날의.",
+""
+]
+],
+"tr": "그 뉴스 프로그램은 그날 가장 많이 논의된 이슈들에 대해 상세한 보도를 제공한다.",
+"ans": "discussed",
+"pts": null
+},
+{
+"key": "add07|3-5",
+"title": "추가문제 POINT 3 명사 수식: 현재분사 vs. 과거분사",
+"chunks": [
+[
+"The program",
+"그 프로그램은",
+"S"
+],
+[
+"teaches participants skills",
+"참가자들에게 기술들을 가르친다",
+""
+],
+[
+"considered important",
+"중요하게 고려되는",
+"V"
+],
+[
+"in today’s job market.",
+"오늘날의 취업 시장에서.",
+""
+]
+],
+"tr": "그 프로그램은 참가자들에게 오늘날의 취업 시장에서 중요하게 고려되는 기술들을 가르친다.",
+"ans": "considered",
+"pts": null
+},
+{
+"key": "add07|4-1",
+"title": "추가문제 POINT 4 감정동사의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Dr. Yates and her team",
+"예이츠 박사와 그녀의 팀은",
+"S"
+],
+[
+"made a surprising discovery",
+"놀라운 발견을 했다",
+"V"
+],
+[
+"when they studied the insect closely.",
+"그들이 그 곤충을 면밀히 연구했을 때.",
+""
+]
+],
+"tr": "Yates 박사와 그녀의 팀은 그 곤충을 면밀히 연구했을 때 놀라운 발견을 했다.",
+"ans": "surprising",
+"pts": null
+},
+{
+"key": "add07|4-2",
+"title": "추가문제 POINT 4 감정동사의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"The driver",
+"운전사가",
+"S"
+],
+[
+"seemed confused",
+"혼란스러워하는 것 같았다",
+"V"
+],
+[
+"about where to go,",
+"어디로 가야 할지에 대해,",
+""
+],
+[
+"so I showed him the directions on my phone.",
+"그래서 나는 내 전화로 그에게 길을 보여주었다.",
+""
+]
+],
+"tr": "운전사가 어디로 가야 할지에 대해 혼란스러워하는 것 같아서, 나는 내 전화로 그에게 길을 보여주었다.",
+"ans": "confused",
+"pts": null
+},
+{
+"key": "add07|4-3",
+"title": "추가문제 POINT 4 감정동사의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"The noises",
+"소음은",
+"S"
+],
+[
+"coming from the refrigerator",
+"냉장고에서 나는",
+"M"
+],
+[
+"are annoying,",
+"성가시다,",
+"V"
+],
+[
+"but there is no way to stop them.",
+"하지만 그것들을 막을 방법이 없다.",
+""
+]
+],
+"tr": "냉장고에서 나는 소음은 성가시지만, 그것들을 막을 방법이 없다.",
+"ans": "annoying",
+"pts": null
+},
+{
+"key": "add07|4-4",
+"title": "추가문제 POINT 4 감정동사의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"We",
+"우리는",
+"S"
+],
+[
+"have received several positive reviews",
+"몇몇 긍정적인 평가를 받았다",
+""
+],
+[
+"from people pleased",
+"기뻐한 사람들로부터",
+"V"
+],
+[
+"with our products and services.",
+"우리의 제품과 서비스에.",
+""
+]
+],
+"tr": "우리는 우리의 제품과 서비스에 기뻐한 사람들로부터 몇몇 긍정적인 평가를 받았다.",
+"ans": "pleased",
+"pts": null
+},
+{
+"key": "add07|4-5",
+"title": "추가문제 POINT 4 감정동사의 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Don’t feel discouraged",
+"낙담스럽게 느끼지 마라",
+"V"
+],
+[
+"if you",
+"당신이",
+"S"
+],
+[
+"fail at something",
+"무언가에 실패하더라도",
+""
+],
+[
+"because you can always try again",
+"언제나 다시 시도할 수 있기 때문에",
+""
+],
+[
+"until you succeed.",
+"당신이 성공할 때까지.",
+""
+]
+],
+"tr": "당신이 성공할 때까지 항상 다시 시도할 수 있기 때문에 무언가에 실패하더라도 낙담스럽게 느끼지 마라.",
+"ans": "discouraged",
+"pts": null
+},
+{
+"key": "add07|5-1",
+"title": "추가문제 POINT 5 분사구문에서 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Waiting for the bus,",
+"버스를 기다리는 동안,",
+"V"
+],
+[
+"I",
+"나는",
+"S"
+],
+[
+"suddenly realized",
+"갑자기 깨달았다",
+""
+],
+[
+"I had left my wallet at home.",
+"지갑을 집에 두고 왔다는 것을.",
+""
+]
+],
+"tr": "버스를 기다리는 동안, 나는 갑자기 지갑을 집에 두고 왔다는 것을 깨달았다.",
+"ans": "Waiting",
+"pts": null
+},
+{
+"key": "add07|5-2",
+"title": "추가문제 POINT 5 분사구문에서 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Constructed in 1610,",
+"1610년에 건설되었기 때문에,",
+"V"
+],
+[
+"the palace",
+"그 궁전은",
+"S"
+],
+[
+"in New Mexico",
+"뉴멕시코에 있는",
+"M"
+],
+[
+"is the oldest public building",
+"가장 오래된 공공건물이다",
+""
+],
+[
+"in the U.S.",
+"미국에서.",
+""
+]
+],
+"tr": "1610년에 건설되었기 때문에, 뉴멕시코에 있는 그 궁전은 미국에서 가장 오래된 공공건물이다.",
+"ans": "Constructed",
+"pts": null
+},
+{
+"key": "add07|5-3",
+"title": "추가문제 POINT 5 분사구문에서 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Dave",
+"데이브는",
+"S"
+],
+[
+"meets a lot of people every day",
+"매일 많은 사람들을 만난다",
+""
+],
+[
+"working",
+"일하면서",
+"V"
+],
+[
+"at a busy coffee shop in the city.",
+"도시의 바쁜 커피숍에서.",
+""
+]
+],
+"tr": "도시의 바쁜 커피숍에서 일하면서 Dave는 매일 많은 사람들을 만난다.",
+"ans": "working",
+"pts": null
+},
+{
+"key": "add07|5-4",
+"title": "추가문제 POINT 5 분사구문에서 현재분사 vs. 과거분사",
+"chunks": [
+[
+"Your money",
+"당신의 돈은",
+"S"
+],
+[
+"will continue to grow each month",
+"매달 계속 증가할 것이다",
+""
+],
+[
+"kept",
+"보관되는 동안",
+"V"
+],
+[
+"in a savings account at our bank.",
+"우리 은행의 예금 계좌에.",
+""
+]
+],
+"tr": "우리 은행의 예금 계좌에 보관되는 동안 당신의 돈은 매달 계속 증가할 것이다.",
+"ans": "kept",
+"pts": null
+},
+{
+"key": "add07|5-5",
+"title": "추가문제 POINT 5 분사구문에서 현재분사 vs. 과거분사",
+"chunks": [
+[
+"While clearing out the basement,",
+"지하실을 청소하는 동안,",
+"V"
+],
+[
+"I",
+"나는",
+"S"
+],
+[
+"came across",
+"우연히 발견했다",
+""
+],
+[
+"some old letters and photographs.",
+"몇몇 오래된 편지들과 사진들을.",
+""
+]
+],
+"tr": "지하실을 청소하는 동안, 나는 몇몇 오래된 편지들과 사진들을 우연히 발견했다.",
+"ans": "clearing",
+"pts": null
+}
+]

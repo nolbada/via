@@ -1,0 +1,2202 @@
+[
+{
+"key": "c14p1|예제",
+"title": "POINT 1 · 동사 도치",
+"chunks": [
+[
+"According to professor Jacqueline Olds,",
+"재클린 올즈 교수에 따르면,",
+""
+],
+[
+"there",
+"거기에는",
+"C"
+],
+[
+"is a way",
+"방법이 있다",
+"V"
+],
+[
+"for lonely patients to make a friend.",
+"외로운 환자들이 친구를 사귈 수 있는.",
+""
+]
+],
+"tr": "Jacqueline Olds 교수에 따르면, 외로운 환자들이 친구를 사귈 수 있는 방법이 있다.",
+"ans": "is a way",
+"pts": null
+},
+{
+"key": "c14p1|1",
+"title": "POINT 1 · 동사 도치",
+"chunks": [
+[
+"Under the old oak tree",
+"늙은 오크 나무 아래에",
+"C"
+],
+[
+"stood a boy",
+"한 소년이 서 있었다",
+"V"
+],
+[
+"with a worried look on his face.",
+"얼굴에 걱정스러운 표정을 하고.",
+""
+]
+],
+"tr": "늙은 오크 나무 아래에 한 소년이 얼굴에 걱정스러운 표정을 하고 서 있었다.",
+"ans": "stood a boy",
+"pts": null
+},
+{
+"key": "c14p1|2",
+"title": "POINT 1 · 동사 도치",
+"chunks": [
+[
+"Important",
+"중요한",
+"C"
+],
+[
+"was the work",
+"그 일은 ~였다",
+"V"
+],
+[
+"done by our employees around the world.",
+"전 세계의 우리 직원들에 의해 행해진.",
+""
+]
+],
+"tr": "전 세계에서 우리 직원들에 의해 행해진 일은 중요했다.",
+"ans": "was the work",
+"pts": null
+},
+{
+"key": "c14p1|3",
+"title": "POINT 1 · 동사 도치",
+"chunks": [
+[
+"At the table for lunch,",
+"점심 식탁에서,",
+"C"
+],
+[
+"the girl sat",
+"그 소녀는 앉았다",
+"V"
+],
+[
+"between her two best friends.",
+"가장 친한 두 친구 사이에.",
+""
+]
+],
+"tr": "점심 식탁에서, 그 소녀는 가장 친한 두 친구 사이에 앉았다.",
+"ans": "the girl sat",
+"pts": null
+},
+{
+"key": "c14p1|4",
+"title": "POINT 1 · 동사 도치",
+"chunks": [
+[
+"In the park,",
+"공원 안에,",
+""
+],
+[
+"there",
+"거기에는",
+"C"
+],
+[
+"are families",
+"가족들이 있다",
+"V"
+],
+[
+"having picnics and enjoying the sunny day.",
+"소풍을 하면서 화창한 날을 즐기는.",
+""
+]
+],
+"tr": "공원 안에, 소풍을 하면서 화창한 날을 즐기는 가족들이 있다.",
+"ans": "are families",
+"pts": null
+},
+{
+"key": "c14p1|5",
+"title": "POINT 1 · 동사 도치",
+"chunks": [
+[
+"At the center of the art gallery",
+"미술관 중앙에",
+"C"
+],
+[
+"hang paintings",
+"그림들이 걸려 있다",
+"V"
+],
+[
+"by a renowned artist, Pablo Picasso.",
+"유명한 화가 파블로 피카소가 그린.",
+""
+]
+],
+"tr": "미술관 중앙에 유명 화가 파블로 피카소의 그림이 걸려 있다.",
+"ans": "hang paintings",
+"pts": null
+},
+{
+"key": "c14p1|6",
+"title": "POINT 1 · 동사 도치",
+"chunks": [
+[
+"Here",
+"이곳에서",
+"C"
+],
+[
+"I spent",
+"나는 보냈다",
+"V"
+],
+[
+"most of my early childhood",
+"어린 시절의 대부분을",
+""
+],
+[
+"playing with my friends.",
+"친구들과 놀면서.",
+""
+]
+],
+"tr": "이곳에서 나는 초기 어린 시절의 대부분을 친구들과 놀면서 보냈다.",
+"ans": "I spent",
+"pts": null
+},
+{
+"key": "c14p1|7",
+"title": "POINT 1 · 동사 도치",
+"chunks": [
+[
+"Remarkably talented",
+"놀랍도록 재능 있는",
+"C"
+],
+[
+"is the pianist",
+"그 피아니스트는 ~이다",
+"V"
+],
+[
+"who just played Beethoven’s song onstage.",
+"막 베토벤의 곡을 무대 위에서 연주한.",
+""
+]
+],
+"tr": "막 베토벤의 곡을 무대 위에서 연주한 그 피아니스트는 놀랍도록 재능이 있다.",
+"ans": "is the pianist",
+"pts": null
+},
+{
+"key": "c14p1|8",
+"title": "POINT 1 · 동사 도치",
+"chunks": [
+[
+"Once upon a time,",
+"옛날 옛적에,",
+""
+],
+[
+"there",
+"거기에는",
+"C"
+],
+[
+"lived a king",
+"왕이 살았다",
+"V"
+],
+[
+"in a beautiful palace at the top of a hill.",
+"언덕 꼭대기의 아름다운 궁전에.",
+""
+]
+],
+"tr": "옛날 옛적에, 언덕 꼭대기에 있는 아름다운 궁전에 왕이 살았다.",
+"ans": "lived a king",
+"pts": null
+},
+{
+"key": "c14p2|예제",
+"title": "POINT 2 · 조동사 도치",
+"chunks": [
+[
+"Not only",
+"~뿐만 아니라",
+"C"
+],
+[
+"did Sarah sell the hair product,",
+"세라는 모발 제품을 판매했고,",
+"V"
+],
+[
+"but she also trained women",
+"그녀는 또한 여성들을 훈련시켰다",
+""
+],
+[
+"as sales agents.",
+"판매 대리인으로.",
+""
+]
+],
+"tr": "Sarah는 모발 제품을 판매했을 뿐만 아니라, 여성들을 판매 대리인으로도 훈련시켰다.",
+"ans": "did Sarah",
+"pts": null
+},
+{
+"key": "c14p2|1",
+"title": "POINT 2 · 조동사 도치",
+"chunks": [
+[
+"Rarely",
+"거의",
+"C"
+],
+[
+"could John express his emotions,",
+"존은 자신의 감정을 표현할 수 없었지만,",
+"V"
+],
+[
+"but now, true happiness has appeared",
+"하지만 지금, 진정한 행복이 나타났다",
+""
+],
+[
+"on his face.",
+"그의 얼굴에.",
+""
+]
+],
+"tr": "John은 자신의 감정을 거의 표현할 수 없었지만, 지금, 진정한 행복이 그의 얼굴에 나타났다.",
+"ans": "could John",
+"pts": null
+},
+{
+"key": "c14p2|2",
+"title": "POINT 2 · 조동사 도치",
+"chunks": [
+[
+"Actually, never",
+"실은 한 번도",
+"C"
+],
+[
+"had we seen a whale so close,",
+"우리는 고래를 그렇게 가까이에서 본 적이 없었다,",
+"V"
+],
+[
+"until we took that trip to Alaska.",
+"알래스카로 그 여행을 가기 전까지.",
+""
+]
+],
+"tr": "실은, 알래스카로 그 여행을 가기 전까지, 우리는 고래를 그렇게 가까이에서 본 적이 결코 없었다.",
+"ans": "had we",
+"pts": null
+},
+{
+"key": "c14p2|3",
+"title": "POINT 2 · 조동사 도치",
+"chunks": [
+[
+"I don’t like broccoli,",
+"나는 브로콜리를 좋아하지 않고,",
+""
+],
+[
+"and neither",
+"그리고 ~도",
+"C"
+],
+[
+"do all my family members,",
+"모든 우리 가족 구성원이 그렇지 않다,",
+"V"
+],
+[
+"even if it’s good for our health.",
+"비록 그것이 건강에 좋더라도.",
+""
+]
+],
+"tr": "나는 브로콜리를 좋아하지 않고, 비록 그것이 건강에 좋다고 해도, 모든 우리 가족 구성원 역시 그렇지 않다.",
+"ans": "do all my family members",
+"pts": null
+},
+{
+"key": "c14p2|4",
+"title": "POINT 2 · 조동사 도치",
+"chunks": [
+[
+"Emma finished all her homework early,",
+"에마는 모든 숙제를 일찍 끝내서,",
+""
+],
+[
+"so",
+"그래서",
+"C"
+],
+[
+"she is having a good time",
+"그녀는 좋은 시간을 보내고 있다",
+"V"
+],
+[
+"with her friends.",
+"친구들과 함께.",
+""
+]
+],
+"tr": "Emma는 모든 숙제를 일찍 끝내서, 친구들과 좋은 시간을 보내고 있다.",
+"ans": "she is",
+"pts": null
+},
+{
+"key": "c14p2|5",
+"title": "POINT 2 · 조동사 도치",
+"chunks": [
+[
+"Only when Newton placed two prisms",
+"뉴턴이 두 개의 프리즘을 놓았을 때에야",
+"C"
+],
+[
+"in the path of the sunlight,",
+"햇빛의 진로 위에,",
+""
+],
+[
+"did he find something new.",
+"그는 새로운 무언가를 발견했다.",
+"V"
+]
+],
+"tr": "뉴턴이 햇빛의 진로에 두 개의 프리즘을 놓았을 때에야, 그는 새로운 무언가를 발견했다.",
+"ans": "did he",
+"pts": null
+},
+{
+"key": "c14p3|예제",
+"title": "POINT 3 · 간접의문문의 어순",
+"chunks": [
+[
+"If you ask unhappy people",
+"당신이 불행한 사람들에게 물어보면",
+""
+],
+[
+"what",
+"무엇에 대해",
+"C"
+],
+[
+"they think about,",
+"그들이 생각하는지를,",
+"V"
+],
+[
+"you will find",
+"당신은 알게 될 것이다",
+""
+],
+[
+"that they think about problems in their lives.",
+"그들이 삶의 문제들에 대해 생각한다는 것을.",
+""
+]
+],
+"tr": "만약 당신이 불행한 사람들에게 그들이 무엇에 대해 생각하는지를 물어보면, 당신은 그들이 삶의 문제들에 대해 생각한다는 것을 알게 될 것이다.",
+"ans": "they think",
+"pts": null
+},
+{
+"key": "c14p3|1",
+"title": "POINT 3 · 간접의문문의 어순",
+"chunks": [
+[
+"I can stop by your house tomorrow morning,",
+"나는 내일 아침에 너희 집에 들를 수 있다,",
+""
+],
+[
+"but",
+"하지만",
+"C"
+],
+[
+"are you going to be home at that time?",
+"너는 그 시간에 집에 있을 거니?",
+"V"
+]
+],
+"tr": "나는 내일 아침에 너희 집에 들를 수 있는데, 너는 그 시간에 집에 있을 거니?",
+"ans": "are you",
+"pts": null
+},
+{
+"key": "c14p3|2",
+"title": "POINT 3 · 간접의문문의 어순",
+"chunks": [
+[
+"Jeremy wants to know",
+"제러미는 알고 싶어 한다",
+""
+],
+[
+"if",
+"~인지",
+"C"
+],
+[
+"anyone saw a $20 bill on the counter",
+"누군가가 계산대 위의 20달러 지폐를 보았는지를",
+"V"
+],
+[
+"earlier this morning.",
+"오늘 아침 일찍.",
+""
+]
+],
+"tr": "Jeremy는 오늘 아침 일찍 누군가가 계산대에 있는 20달러 지폐를 보았는지 알기를 원한다.",
+"ans": "anyone saw",
+"pts": null
+},
+{
+"key": "c14p3|3",
+"title": "POINT 3 · 간접의문문의 어순",
+"chunks": [
+[
+"What",
+"무엇을",
+"C"
+],
+[
+"the tourists would see",
+"관광객들이 볼 것인지는",
+"V"
+],
+[
+"during their visit to the town",
+"그 마을을 방문하는 동안",
+""
+],
+[
+"was not shown in any guide books.",
+"어떤 안내 책자에도 나와 있지 않았다.",
+""
+]
+],
+"tr": "관광객들이 그 마을을 방문하는 동안 무엇을 볼 것인지는 안내 책자에 나와 있지 않았다.",
+"ans": "the tourists would",
+"pts": null
+},
+{
+"key": "c14p3|4",
+"title": "POINT 3 · 간접의문문의 어순",
+"chunks": [
+[
+"If your car isn’t in the parking garage,",
+"만약 네 자동차가 주차장에 없다면,",
+""
+],
+[
+"where",
+"어디에",
+"C"
+],
+[
+"did you leave it?",
+"너는 그것을 두었니?",
+"V"
+]
+],
+"tr": "만약 네 자동차가 주차장에 없다면, 너는 그것을 어디에 두었니?",
+"ans": "did you",
+"pts": null
+},
+{
+"key": "c14p3|5",
+"title": "POINT 3 · 간접의문문의 어순",
+"chunks": [
+[
+"Before visiting the restaurant,",
+"그 식당을 방문하기 전에,",
+""
+],
+[
+"they want to know",
+"그들은 알고 싶어 한다",
+""
+],
+[
+"whether",
+"~인지 아닌지",
+"C"
+],
+[
+"it has a vegetarian menu.",
+"그곳에 채식 메뉴가 있는지.",
+"V"
+]
+],
+"tr": "그 식당에 방문하기 전에, 그들은 그곳에 채식 메뉴가 있는지 아닌지 알기를 원한다.",
+"ans": "it has",
+"pts": null
+},
+{
+"key": "c14q1|1",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"To the top of the stairs",
+"계단 꼭대기로",
+"C"
+],
+[
+"climbed the group",
+"올라갔다 그 일행이",
+"V"
+],
+[
+"for a picture.",
+"사진을 찍기 위해.",
+""
+]
+],
+"tr": "사진을 찍기 위해 그 일행은 계단 꼭대기로 올라갔다.",
+"ans": "climbed the group",
+"pts": null
+},
+{
+"key": "c14q1|2",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"During the interview,",
+"면접 동안,",
+""
+],
+[
+"the interviewer may ask",
+"면접관은 물어볼지도 모른다",
+"S"
+],
+[
+"how",
+"어떻게",
+"C"
+],
+[
+"you handle",
+"당신이 처리하는지",
+"V"
+],
+[
+"stressful situations.",
+"스트레스받는 상황들을.",
+""
+]
+],
+"tr": "면접 동안, 면접관은 당신이 어떻게 스트레스받는 상황을 처리하는지 물어볼지도 모른다.",
+"ans": "you handle",
+"pts": null
+},
+{
+"key": "c14q1|3",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Never",
+"결코",
+"C"
+],
+[
+"have I seen",
+"나는 본 적이 없다",
+"V"
+],
+[
+"such an amazing view",
+"그렇게 놀라운 전망을",
+""
+],
+[
+"as the one from this tower.",
+"이 탑에서 보는 것만큼.",
+""
+]
+],
+"tr": "나는 이 탑에서 보는 것만큼 그렇게 놀라운 전망은 결코 본 적이 없다.",
+"ans": "have I",
+"pts": null
+},
+{
+"key": "c14q1|4",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"In the universe,",
+"우주에는,",
+""
+],
+[
+"there",
+"거기",
+"C"
+],
+[
+"must be galaxies",
+"있음이 틀림없다 은하들이",
+"V"
+],
+[
+"waiting to be discovered and explored.",
+"발견되고 탐험되기를 기다리는.",
+"M"
+]
+],
+"tr": "우주에는, 발견되고 탐험되기를 기다리는 은하들이 있는 것이 틀림없다.",
+"ans": "must be galaxies",
+"pts": null
+},
+{
+"key": "c14q1|5",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"If Ms. Bennet went out to lunch,",
+"베넷 씨가 점심 식사를 하러 나갔다면,",
+"M"
+],
+[
+"when does she return",
+"언제 그녀는 돌아올까",
+"V"
+],
+[
+"to the office?",
+"사무실로?",
+""
+]
+],
+"tr": "만약 Bennet씨가 점심 식사를 하러 나갔다면, 그녀는 언제 사무실로 돌아올까?",
+"ans": "does she return",
+"pts": null
+},
+{
+"key": "c14q1|6",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"My parents think",
+"나의 부모님은 생각한다",
+""
+],
+[
+"I should start doing ballet every day,",
+"내가 매일 발레를 하기 시작해야 한다고,",
+""
+],
+[
+"and so",
+"그리고 ~도 역시",
+"C"
+],
+[
+"does my teacher.",
+"그렇다 나의 선생님도.",
+"V"
+]
+],
+"tr": "나의 부모님은 내가 매일 발레를 하기 시작해야 한다고 생각하고, 나의 선생님도 역시 그렇다.",
+"ans": "does my teacher",
+"pts": null
+},
+{
+"key": "c14q1|7",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"With a big smile on her face,",
+"얼굴에 큰 미소를 지으며,",
+""
+],
+[
+"here",
+"여기로",
+"C"
+],
+[
+"she came,",
+"그녀가 왔다,",
+"V"
+],
+[
+"running down the hill.",
+"언덕을 뛰어 내려오며.",
+""
+]
+],
+"tr": "얼굴에 큰 미소를 지으며, 그녀는 언덕을 뛰어 내려왔다.",
+"ans": "she came",
+"pts": null
+},
+{
+"key": "c14q1|8",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The food of the restaurant is delicious,",
+"그 식당의 음식은 맛있다,",
+"S"
+],
+[
+"but even more excellent",
+"하지만 훨씬 더 훌륭한",
+"C"
+],
+[
+"is the interior.",
+"것은 인테리어이다.",
+"V"
+]
+],
+"tr": "그 식당의 음식은 맛있지만, 인테리어는 훨씬 더 훌륭하다.",
+"ans": "is the interior",
+"pts": null
+},
+{
+"key": "c14q1|9",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Hardly",
+"거의 ~않았다",
+"C"
+],
+[
+"had I walked",
+"나는 걸어 나갔다",
+"V"
+],
+[
+"out the door with my dogs",
+"문밖으로 나의 개들과 함께",
+""
+],
+[
+"when it began to rain.",
+"비가 내리기 시작했을 때.",
+""
+]
+],
+"tr": "비가 내리기 시작했을 때 나는 나의 개들과 함께 문밖으로 거의 걸어 나가지 않았다.",
+"ans": "had I",
+"pts": null
+},
+{
+"key": "c14q1|10",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"It is not clear",
+"명확하지 않다",
+"S"
+],
+[
+"if",
+"~인지",
+"C"
+],
+[
+"the new product will be",
+"그 새로운 제품이 ~이",
+"V"
+],
+[
+"successful in the market.",
+"시장에서 성공적일지.",
+""
+]
+],
+"tr": "그 새로운 제품이 시장에서 성공적일지 아닐지는 명확하지 않다.",
+"ans": "the new product will",
+"pts": null
+},
+{
+"key": "c14q1|11",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Near the dried-up pond",
+"바싹 마른 연못 근처에",
+"C"
+],
+[
+"sat a traveler,",
+"앉아 있었다 한 여행자가,",
+"V"
+],
+[
+"being tired of heat and thirst.",
+"더위와 갈증에 지쳐서.",
+"M"
+]
+],
+"tr": "더위와 갈증에 지쳐서, 한 여행자가 바싹 마른 연못 근처에 앉아 있었다.",
+"ans": "sat a traveler",
+"pts": null
+},
+{
+"key": "c14q1|12",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Not only",
+"~뿐만 아니라",
+"C"
+],
+[
+"does motivation create energy,",
+"동기부여는 에너지를 만들어 낸다,",
+"V"
+],
+[
+"but it also helps",
+"그러나 그것은 또한 돕는다",
+""
+],
+[
+"people achieve their goals sooner.",
+"사람들이 그들의 목표를 더 빨리 달성하도록.",
+""
+]
+],
+"tr": "동기부여는 에너지를 만들어 낼 뿐만 아니라, 사람들이 그들의 목표를 더 빨리 달성하도록 돕는다.",
+"ans": "does motivation create",
+"pts": null
+},
+{
+"key": "c14q2|1",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 고치기",
+"chunks": [
+[
+"As the hikers walked",
+"등산객들이 걸어가면서",
+"M"
+],
+[
+"deeper and deeper into the forest,",
+"숲속으로 점점 더 깊이,",
+"M"
+],
+[
+"they wondered",
+"그들은 궁금해했다",
+"S"
+],
+[
+"where",
+"어디로",
+"C"
+],
+[
+"the trail would lead.",
+"그 산길이 이어질지.",
+"V"
+]
+],
+"tr": "등산객들은 숲속으로 점점 더 깊이 걸어 들어가면서, 그 산길이 어디로 이어질지 궁금해했다.",
+"ans": "the trail would",
+"pts": null
+},
+{
+"key": "c14q2|2",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 고치기",
+"chunks": [
+[
+"Under the bed,",
+"침대 아래에,",
+"M"
+],
+[
+"there",
+"거기",
+"C"
+],
+[
+"remain boxes",
+"남아 있다 상자들이",
+"V"
+],
+[
+"full of old memories",
+"옛 추억으로 가득 찬",
+"M"
+],
+[
+"such as diaries, letters, and pictures.",
+"다이어리, 편지, 그리고 사진과 같은.",
+""
+]
+],
+"tr": "침대 아래에, 다이어리, 편지, 그리고 사진과 같은 옛 추억으로 가득 찬 상자들이 남아 있다.",
+"ans": "remain boxes",
+"pts": null
+},
+{
+"key": "c14q2|3",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 고치기",
+"chunks": [
+[
+"Only when the sun sets",
+"해가 질 때에야",
+"C"
+],
+[
+"does the city come",
+"그 도시는 ~해진다",
+"V"
+],
+[
+"alive with bright lights",
+"활기차게, 밝은 불빛으로",
+""
+],
+[
+"and people moving about.",
+"그리고 돌아다니는 사람들로.",
+""
+]
+],
+"tr": "해가 질 때에야 그 도시는 밝은 불빛과 돌아다니는 사람들로 활기를 띤다.",
+"ans": "does the city",
+"pts": null
+},
+{
+"key": "c14q2|4",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 고치기",
+"chunks": [
+[
+"Very skilled",
+"매우 능숙한",
+"C"
+],
+[
+"was the magician,",
+"~였다 그 마술사는,",
+"V"
+],
+[
+"so he surprised the crowd",
+"그래서 그는 군중을 놀라게 했다",
+""
+],
+[
+"with every trick that he performed.",
+"그가 공연하는 모든 마술로.",
+""
+]
+],
+"tr": "그 마술사는 매우 능숙해서, 그가 공연하는 모든 마술로 군중을 놀라게 했다.",
+"ans": "was the magician",
+"pts": null
+},
+{
+"key": "c14q2|5",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 고치기",
+"chunks": [
+[
+"Before you transfer to another college,",
+"다른 대학으로 전학하기 전에,",
+"M"
+],
+[
+"have you",
+"너는 ~했니",
+"V"
+],
+[
+"considered changing your major instead?",
+"대신 전공을 바꾸는 것을 고려해 봤니?",
+""
+]
+],
+"tr": "너는 다른 대학으로 전학하기 전에, 대신 전공을 바꾸는 것을 고려해 봤니?",
+"ans": "have you",
+"pts": null
+},
+{
+"key": "c14q2|6",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 고치기",
+"chunks": [
+[
+"Daniel prefers to focus on the present,",
+"대니얼은 현재에 집중하는 것을 선호한다,",
+""
+],
+[
+"so",
+"그래서",
+"C"
+],
+[
+"he hates",
+"그는 싫어한다",
+"V"
+],
+[
+"to talk about his childhood.",
+"자신의 어린 시절에 대해 말하는 것을.",
+""
+]
+],
+"tr": "Daniel은 현재에 집중하는 것을 선호해서, 자신의 어린 시절에 대해 말하는 것을 싫어한다.",
+"ans": "he hates",
+"pts": null
+},
+{
+"key": "c14q2|7",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 고치기",
+"chunks": [
+[
+"Little",
+"거의",
+"C"
+],
+[
+"did Robert realize",
+"로버트는 깨닫지 못했다",
+"V"
+],
+[
+"that his simple act of kindness",
+"그의 단순한 친절한 행동이",
+""
+],
+[
+"would have a great impact",
+"큰 영향을 미칠 것이라는 것을",
+""
+],
+[
+"on someone else’s life.",
+"다른 누군가의 삶에.",
+""
+]
+],
+"tr": "Robert는 그의 단순한 친절한 행동이 다른 누군가의 삶에 큰 영향을 미칠 것이라는 것을 거의 깨닫지 못했다.",
+"ans": "did Robert realize",
+"pts": null
+},
+{
+"key": "c14q2|8",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 고치기",
+"chunks": [
+[
+"Under the soil",
+"토양 아래에",
+"C"
+],
+[
+"lie creatures",
+"있다 생물들이",
+"V"
+],
+[
+"that feed on dead plants and animals",
+"죽은 동식물을 먹고 사는",
+"M"
+],
+[
+"and keep the forest clean.",
+"그리고 숲을 깨끗하게 유지하는.",
+"M"
+]
+],
+"tr": "토양 아래에는 죽은 동식물을 먹고 살며 숲을 깨끗하게 유지하는 생물들이 있다.",
+"ans": "lie creatures",
+"pts": null
+},
+{
+"key": "c14q2|9",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 고치기",
+"chunks": [
+[
+"Whether",
+"~인지",
+"C"
+],
+[
+"the client received Rebecca’s email",
+"그 고객이 레베카의 이메일을 받았는가는",
+"V"
+],
+[
+"is uncertain because she didn’t receive any reply.",
+"확실하지 않다, 그녀가 아무 답도 받지 못했기 때문에.",
+""
+]
+],
+"tr": "그녀는 아무 답도 받지 못했기 때문에 그 고객이 Rebecca의 이메일을 받았는지는 확실하지 않다.",
+"ans": "the client received",
+"pts": null
+},
+{
+"key": "c14q2|10",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 고치기",
+"chunks": [
+[
+"At the traffic light on the corner,",
+"모퉁이에 있는 신호등에서,",
+"C"
+],
+[
+"two drivers were having",
+"두 명의 운전자가 하고 있었다",
+"V"
+],
+[
+"an angry discussion.",
+"성난 논쟁을.",
+""
+]
+],
+"tr": "모퉁이에 있는 신호등에서, 두 명의 운전자가 성난 논쟁을 하고 있었다.",
+"ans": "two drivers were",
+"pts": null
+},
+{
+"key": "c14q2|11",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 고치기",
+"chunks": [
+[
+"Rarely",
+"거의",
+"C"
+],
+[
+"can I reach",
+"나는 연락할 수 없다",
+"V"
+],
+[
+"Melissa over the phone,",
+"멜리사에게 전화로,",
+""
+],
+[
+"so I usually send her a text message.",
+"그래서 나는 보통 그녀에게 문자 메시지를 보낸다.",
+""
+]
+],
+"tr": "나는 Melissa와 전화로는 거의 연락할 수 없어서, 보통 그녀에게 문자 메시지를 보낸다.",
+"ans": "can I",
+"pts": null
+},
+{
+"key": "c14q2|12",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 고치기",
+"chunks": [
+[
+"When you face difficult challenges,",
+"당신이 어려운 도전에 직면할 때,",
+"M"
+],
+[
+"are you honest",
+"당신은 정직한가",
+"V"
+],
+[
+"with yourself about your weaknesses?",
+"스스로에게 당신의 약점에 대해?",
+""
+]
+],
+"tr": "당신은 어려운 도전에 직면할 때, 당신의 약점에 대해 스스로에게 정직한가?",
+"ans": "are you",
+"pts": null
+},
+{
+"key": "c14s1|1-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"If you could move to any city in the world,",
+"만약 당신이 세계의 어느 도시든 이사할 수 있다면,",
+""
+],
+[
+"where (A)",
+"어디로",
+"C"
+],
+[
+"would you go?",
+"당신은 갈 것인가?",
+"V"
+]
+],
+"tr": "만약 당신이 세계의 어느 도시든 이사할 수 있다면, 당신은 어디로 갈 것인가?",
+"ans": "would you",
+"pts": [
+"14.3"
+]
+},
+{
+"key": "c14s1|1-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Little (B)",
+"거의 ~않다",
+"C"
+],
+[
+"do some people know",
+"어떤 사람들은 안다",
+"V"
+],
+[
+"that every city has problems and no place on Earth is perfect.",
+"모든 도시에 문제가 있고 지구상의 어떤 곳도 완벽하지 않다는 것을.",
+""
+]
+],
+"tr": "어떤 사람들은 모든 도시에 문제가 있고 지구상의 어떤 곳도 완벽하지 않다는 것을 거의 알지 못한다.",
+"ans": "do some people",
+"pts": [
+"14.2"
+]
+},
+{
+"key": "c14s1|2-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"So embarrassed (A)",
+"매우 당황한",
+"C"
+],
+[
+"was Catherine",
+"캐서린은 ~했다",
+"V"
+],
+[
+"when she learned that the meeting had been canceled.",
+"그 회의가 취소되었다는 것을 알았을 때.",
+""
+]
+],
+"tr": "Catherine은 그 회의가 취소되었다는 것을 알았을 때 매우 당황했다.",
+"ans": "was Catherine",
+"pts": [
+"14.1"
+]
+},
+{
+"key": "c14s1|2-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"She couldn’t understand",
+"그녀는 이해할 수 없었다",
+""
+],
+[
+"why (B)",
+"왜",
+"C"
+],
+[
+"nobody had informed her",
+"누구도 그녀에게 알려 주지 않았는지",
+"V"
+],
+[
+"about the sudden change in the schedule.",
+"갑작스러운 일정 변경에 대해.",
+""
+]
+],
+"tr": "그녀는 갑작스러운 일정 변경에 대해 왜 누구도 그녀에게 알려 주지 않았는지 이해할 수 없었다.",
+"ans": "nobody had",
+"pts": [
+"14.3"
+]
+},
+{
+"key": "c14s1|3-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"In many countries, (A)",
+"많은 나라에서,",
+"C"
+],
+[
+"oil is imported",
+"석유는 수입된다",
+"V"
+],
+[
+"from other places rather than produced locally.",
+"지역에서 생산되기보다는 다른 곳에서.",
+""
+]
+],
+"tr": "많은 나라에서, 석유는 그 지역에서 생산되기보다는 다른 곳에서 수입된다.",
+"ans": "oil is",
+"pts": [
+"14.1"
+]
+},
+{
+"key": "c14s1|3-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"When world oil prices rise, the cost of transportation in these countries goes up, and",
+"세계 석유 가격이 오르면, 이런 나라들의 운송비용은 올라가고,",
+""
+],
+[
+"so (B)",
+"~도 역시",
+"C"
+],
+[
+"does the price",
+"가격이 그렇다",
+"V"
+],
+[
+"of electricity, which is produced using oil.",
+"석유를 사용해 생산되는 전기의.",
+""
+]
+],
+"tr": "세계 석유 가격이 오를 때, 이런 나라들의 운송비용은 올라가고, 석유를 사용해서 생산되는 전기의 가격 역시 그렇다.",
+"ans": "does the price",
+"pts": [
+"14.2"
+]
+},
+{
+"key": "c14s1|4-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"At the end of the dark hallway of the house",
+"집의 어두운 복도 끝에",
+"C"
+],
+[
+"stood a locked door,",
+"잠겨진 문이 있었다,",
+"V"
+],
+[
+"leaving Edgar curious.",
+"에드거를 궁금하게 하면서.",
+""
+]
+],
+"tr": "집의 어두운 복도 끝에 잠겨진 문이 있어서, Edgar를 궁금하게 했다.",
+"ans": "stood a locked door",
+"pts": [
+"14.1"
+]
+},
+{
+"key": "c14s1|4-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"He wondered",
+"그는 궁금했다",
+""
+],
+[
+"whether",
+"~인지 아닌지",
+"C"
+],
+[
+"his sister knew",
+"그의 여동생이 아는지",
+"V"
+],
+[
+"the secret behind it and decided to ask her about it.",
+"그것 뒤의 비밀을, 그리고 그녀에게 그것에 대해 물어보기로 결심했다.",
+""
+]
+],
+"tr": "그는 그의 여동생이 그것 뒤의 비밀을 아는지 궁금했고 그녀에게 그것에 대해 물어보기로 결심했다.",
+"ans": "his sister knew",
+"pts": [
+"14.3"
+]
+},
+{
+"key": "c14s1|5-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"If you keep working on one habit long enough,",
+"하나의 습관에 충분히 오래 계속 공을 들이면,",
+""
+],
+[
+"not only",
+"~뿐만 아니라",
+"C"
+],
+[
+"does it become",
+"그것은 ~해진다",
+"V"
+],
+[
+"easier, but you can do other things more easily as well.",
+"쉬워질, 당신은 다른 것들도 더 쉽게 할 수 있다.",
+""
+]
+],
+"tr": "하나의 습관에 충분히 오래 계속 공을 들이면 그것은 쉬워질 뿐만 아니라, 당신은 다른 것들 또한 더 쉽게 할 수 있다.",
+"ans": "does it become",
+"pts": [
+"14.2"
+]
+},
+{
+"key": "c14s1|5-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Additionally,",
+"추가로,",
+""
+],
+[
+"there",
+"거기에는",
+"C"
+],
+[
+"can be a feeling",
+"느낌이 있을 수 있다",
+"V"
+],
+[
+"of achievement as you experience the positive impact of this one habit on various aspects of your life.",
+"성취의, 이 하나의 습관이 당신 삶의 다양한 측면에 미치는 긍정적인 영향을 경험함에 따라.",
+""
+]
+],
+"tr": "추가로, 이 하나의 습관이 당신 삶의 다양한 측면에 미치는 긍정적인 영향을 경험함에 따라 성취감이 있을 수 있다.",
+"ans": "can be a feeling",
+"pts": [
+"14.1"
+]
+},
+{
+"key": "c14s1|6-1",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"My friends and I",
+"나의 친구들과 나는",
+"S"
+],
+[
+"drove up",
+"운전해서 올라갔다",
+"V"
+],
+[
+"to a mountain last summer.",
+"지난여름에 산으로.",
+""
+]
+],
+"tr": "나의 친구들과 나는 지난여름에 운전해서 산에 올라갔다.",
+"ans": "drove up",
+"pts": null
+},
+{
+"key": "c14s1|6-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Only when we got to the top of the mountain",
+"우리가 산 정상에 도착했을 때에야",
+"C"
+],
+[
+"did I remember",
+"나는 기억했다",
+"V"
+],
+[
+"that I had been there before.",
+"전에 내가 그곳에 가 본 적이 있다는 것을.",
+""
+]
+],
+"tr": "우리가 산 정상에 도착했을 때야 나는 전에 내가 그곳에 가 본 적이 있다는 것을 기억했다.",
+"ans": "did I remember",
+"pts": [
+"14.2"
+]
+},
+{
+"key": "c14s1|6-3",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"However,",
+"하지만,",
+""
+],
+[
+"the last time I was at the mountain,",
+"지난번에 내가 산에 갔을 때,",
+"M"
+],
+[
+"it",
+"그때는",
+"S"
+],
+[
+"was",
+"~였다",
+"V"
+],
+[
+"winter.",
+"겨울.",
+""
+]
+],
+"tr": "하지만, 지난번에 내가 산에 갔을 때는 겨울이었다.",
+"ans": "was",
+"pts": null
+},
+{
+"key": "c14s1|6-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"In fact,",
+"사실,",
+""
+],
+[
+"there",
+"그곳에서",
+"C"
+],
+[
+"I saw",
+"나는 보았다",
+"V"
+],
+[
+"snow for the very first time in my life.",
+"살면서 처음으로 눈을.",
+""
+]
+],
+"tr": "사실, 나는 그곳에서 살면서 처음으로 눈을 보았다.",
+"ans": "I saw",
+"pts": [
+"14.1"
+]
+},
+{
+"key": "add14|1-1",
+"title": "추가문제 POINT 1 동사 도치",
+"chunks": [
+[
+"Along the Silk Road",
+"실크로드를 따라",
+"C"
+],
+[
+"traveled",
+"여행했다",
+"V"
+],
+[
+"people",
+"사람들이",
+"S"
+],
+[
+"from across Asia and Europe,",
+"아시아와 유럽 전역에서 온,",
+"M"
+],
+[
+"buying and selling various goods.",
+"다양한 상품을 사고팔며.",
+""
+]
+],
+"tr": "실크로드를 따라 아시아와 유럽 전역에서 온 사람들이 여행을 하며, 다양한 상품을 사고팔았다.",
+"ans": "traveled people",
+"pts": null
+},
+{
+"key": "add14|1-2",
+"title": "추가문제 POINT 1 동사 도치",
+"chunks": [
+[
+"Brigham Young and his group",
+"브리검 영과 그의 일행은",
+"S"
+],
+[
+"arrived in Salt Lake Valley in 1847,",
+"1847년에 솔트레이크 밸리에 도착했고,",
+""
+],
+[
+"and here",
+"그리고 여기에서",
+""
+],
+[
+"they",
+"그들은",
+"S"
+],
+[
+"built",
+"건설했다",
+"V"
+],
+[
+"Salt Lake City.",
+"솔트레이크시티를.",
+""
+]
+],
+"tr": "Brigham Young과 그의 일행은 1847년에 솔트레이크 밸리에 도착했고, 그들은 이곳에 솔트레이크시티를 건설했다.",
+"ans": "they built",
+"pts": null
+},
+{
+"key": "add14|1-3",
+"title": "추가문제 POINT 1 동사 도치",
+"chunks": [
+[
+"Outside the concert hall,",
+"공연장 밖에서,",
+"C"
+],
+[
+"fans",
+"팬들은",
+"S"
+],
+[
+"waited",
+"기다렸다",
+"V"
+],
+[
+"for hours",
+"몇 시간 동안",
+""
+],
+[
+"for the singer to arrive.",
+"그 가수가 도착하기를.",
+""
+]
+],
+"tr": "공연장 밖에서, 팬들은 그 가수가 도착하기를 몇 시간 동안 기다렸다.",
+"ans": "fans waited",
+"pts": null
+},
+{
+"key": "add14|1-4",
+"title": "추가문제 POINT 1 동사 도치",
+"chunks": [
+[
+"Over 200 million years ago in Argentina,",
+"2억 년도 더 전에 아르헨티나에서,",
+""
+],
+[
+"there",
+"거기에",
+"C"
+],
+[
+"lived",
+"살았다",
+"V"
+],
+[
+"a dinosaur",
+"공룡이",
+"S"
+],
+[
+"with a long neck and tail.",
+"긴 목과 꼬리를 가진.",
+"M"
+]
+],
+"tr": "2억 년 전의 아르헨티나에는, 긴 목과 꼬리를 가진 공룡이 살았다.",
+"ans": "lived a dinosaur",
+"pts": null
+},
+{
+"key": "add14|1-5",
+"title": "추가문제 POINT 1 동사 도치",
+"chunks": [
+[
+"Incredibly skilled",
+"믿을 수 없을 만큼 숙련된",
+"C"
+],
+[
+"were",
+"~였다",
+"V"
+],
+[
+"the pilots,",
+"조종사들은,",
+"S"
+],
+[
+"thanks to their training",
+"그들의 훈련 덕분에",
+""
+],
+[
+"in NASA’s early space program.",
+"나사의 초기 우주 프로그램에서의.",
+"M"
+]
+],
+"tr": "NASA의 초기 우주 프로그램에서의 훈련 덕분에, 그 조종사들은 믿을 수 없을 만큼 숙련되었다.",
+"ans": "were the pilots",
+"pts": null
+},
+{
+"key": "add14|2-1",
+"title": "추가문제 POINT 2 조동사 도치",
+"chunks": [
+[
+"Throughout last week,",
+"지난주 내내,",
+""
+],
+[
+"most boats",
+"대부분의 배들이",
+"S"
+],
+[
+"could not go out to sea",
+"바다로 나갈 수 없었고,",
+""
+],
+[
+"because of the bad weather,",
+"나쁜 날씨 때문에,",
+""
+],
+[
+"so",
+"그래서",
+""
+],
+[
+"neither",
+"~도 아니다",
+"C"
+],
+[
+"could",
+"~할 수 없었다",
+"V"
+],
+[
+"ours.",
+"우리 배들도.",
+"S"
+]
+],
+"tr": "지난주 내내, 나쁜 날씨 때문에 대부분의 배들이 바다로 나갈 수 없었고, 우리 배들도 역시 그럴 수 없었다.",
+"ans": "could ours",
+"pts": null
+},
+{
+"key": "add14|2-2",
+"title": "추가문제 POINT 2 조동사 도치",
+"chunks": [
+[
+"Hardly",
+"거의 ~않다",
+"C"
+],
+[
+"have",
+"~했다",
+"V"
+],
+[
+"we",
+"우리는",
+"S"
+],
+[
+"seen Monica around lately",
+"최근에 모니카를 보지 못했다",
+""
+],
+[
+"since she started a job in the city.",
+"그녀가 도시에서 일을 시작한 이래로.",
+""
+]
+],
+"tr": "Monica가 도시에서 일을 시작한 이래로 우리는 최근에 그녀를 거의 보지 못했다.",
+"ans": "have we",
+"pts": null
+},
+{
+"key": "add14|2-3",
+"title": "추가문제 POINT 2 조동사 도치",
+"chunks": [
+[
+"Brandon’s restaurant",
+"브랜든의 식당은",
+"S"
+],
+[
+"is not usually busy after lunchtime,",
+"점심시간 이후에는 보통 바쁘지 않아서,",
+""
+],
+[
+"so",
+"그래서",
+"C"
+],
+[
+"he",
+"그는",
+"S"
+],
+[
+"closes",
+"닫는다",
+"V"
+],
+[
+"it most afternoons.",
+"그것을 대부분의 오후에.",
+""
+]
+],
+"tr": "Brandon의 식당은 점심시간 이후에는 보통 바쁘지 않아서, 그는 대부분의 오후에 그것의 문을 닫는다.",
+"ans": "he closes",
+"pts": null
+},
+{
+"key": "add14|2-4",
+"title": "추가문제 POINT 2 조동사 도치",
+"chunks": [
+[
+"Never",
+"결코 ~않다",
+"C"
+],
+[
+"did",
+"~했다",
+"V"
+],
+[
+"anyone",
+"아무도",
+"S"
+],
+[
+"think",
+"생각하지 못했다",
+""
+],
+[
+"that our team would actually win the national hockey championship.",
+"우리 팀이 실제로 전국 하키 선수권대회에서 우승할 것이라고는.",
+""
+]
+],
+"tr": "우리 팀이 실제로 전국 하키 선수권대회에서 우승할 것이라고는 그 누구도 생각하지 못했다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add14|2-5",
+"title": "추가문제 POINT 2 조동사 도치",
+"chunks": [
+[
+"Only if their parents agree",
+"부모들이 동의하는 경우에만",
+"C"
+],
+[
+"will",
+"~할 것이다",
+"V"
+],
+[
+"the school",
+"학교는",
+"S"
+],
+[
+"allow the students",
+"학생들이 허락받도록 해 줄",
+""
+],
+[
+"to plan a camping trip.",
+"캠핑 여행을 계획하는 것을.",
+""
+]
+],
+"tr": "부모들이 동의하는 경우에만 학교는 학생들이 캠핑 여행을 계획하는 것을 허락할 것이다.",
+"ans": "will the school",
+"pts": null
+},
+{
+"key": "add14|3-1",
+"title": "추가문제 POINT 3 간접의문문의 어순",
+"chunks": [
+[
+"We",
+"우리는",
+"S"
+],
+[
+"missed the last train of the night,",
+"그날 밤의 마지막 기차를 놓쳤고,",
+""
+],
+[
+"so our biggest concern",
+"그래서 우리의 가장 큰 고민은",
+"S"
+],
+[
+"was",
+"~였다",
+""
+],
+[
+"how",
+"어떻게",
+"C"
+],
+[
+"we would",
+"우리가 ~할지",
+"V"
+],
+[
+"get home.",
+"집에 갈지.",
+""
+]
+],
+"tr": "우리는 그날 밤의 마지막 기차를 놓쳤고, 그래서 우리의 가장 큰 고민은 어떻게 우리가 집에 갈지였다.",
+"ans": "we would",
+"pts": null
+},
+{
+"key": "add14|3-2",
+"title": "추가문제 POINT 3 간접의문문의 어순",
+"chunks": [
+[
+"I’m wondering",
+"나는 궁금하다",
+"S"
+],
+[
+"whether",
+"~인지",
+"C"
+],
+[
+"you have",
+"당신이 가지고 있는지",
+"V"
+],
+[
+"a towel I could borrow,",
+"내가 빌릴 수 있는 수건을,",
+"M"
+],
+[
+"since I didn’t bring one.",
+"나는 수건을 가져오지 않았기 때문에.",
+""
+]
+],
+"tr": "나는 수건을 가져오지 않았기 때문에, 당신이 내가 빌릴 수 있는 수건을 가지고 있는지 궁금하다.",
+"ans": "you have",
+"pts": null
+},
+{
+"key": "add14|3-3",
+"title": "추가문제 POINT 3 간접의문문의 어순",
+"chunks": [
+[
+"If you’re going away this weekend,",
+"만약 네가 이번 주말에 떠난다면,",
+""
+],
+[
+"when",
+"언제",
+"C"
+],
+[
+"should",
+"~해야 할까",
+"V"
+],
+[
+"I",
+"내가",
+"S"
+],
+[
+"come to see you?",
+"너를 보러 와야.",
+""
+]
+],
+"tr": "만약 네가 이번 주말에 떠난다면, 나는 언제 너를 보러 와야 할까?",
+"ans": "should I",
+"pts": null
+},
+{
+"key": "add14|3-4",
+"title": "추가문제 POINT 3 간접의문문의 어순",
+"chunks": [
+[
+"Because it was our first time in Berlin,",
+"베를린이 처음이었기 때문에,",
+""
+],
+[
+"we",
+"우리는",
+"S"
+],
+[
+"asked the hotel manager",
+"호텔 매니저에게 물었다",
+""
+],
+[
+"what",
+"무엇을",
+"C"
+],
+[
+"he might",
+"그가 ~할지",
+"V"
+],
+[
+"recommend as places to visit.",
+"방문할 장소로 추천할지.",
+""
+]
+],
+"tr": "베를린이 처음이었기 때문에, 우리는 호텔 매니저에게 그가 방문할 장소로 무엇을 추천할지 물었다.",
+"ans": "he might",
+"pts": null
+},
+{
+"key": "add14|3-5",
+"title": "추가문제 POINT 3 간접의문문의 어순",
+"chunks": [
+[
+"Until there is an announcement,",
+"발표가 있기 전까지,",
+""
+],
+[
+"no one",
+"아무도",
+"S"
+],
+[
+"can know",
+"알 수 없다",
+""
+],
+[
+"if",
+"~인지",
+"C"
+],
+[
+"the event starts",
+"그 행사가 시작하는지",
+"V"
+],
+[
+"as scheduled.",
+"일정대로.",
+""
+]
+],
+"tr": "발표가 있기 전까지, 그 행사가 일정대로 시작하는지 아무도 알 수 없다.",
+"ans": "the event starts",
+"pts": null
+}
+]

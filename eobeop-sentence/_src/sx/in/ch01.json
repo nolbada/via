@@ -1,0 +1,3343 @@
+[
+{
+"key": "p1|예제",
+"title": "POINT 1 · 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"In this study,",
+"이 연구에서,",
+""
+],
+[
+"a group",
+"한 무리가",
+"S"
+],
+[
+"of six strangers",
+"여섯 명의 낯선 사람들의",
+"M"
+],
+[
+"sits down",
+"앉는다",
+"V"
+],
+[
+"in a room",
+"한 방에",
+""
+],
+[
+"and chats",
+"그리고 이야기한다",
+"V"
+],
+[
+"for 15 minutes.",
+"15분 동안.",
+""
+]
+],
+"tr": "이 연구에서는, 여섯 명의 낯선 사람들이 한 방에 앉아서 15분 동안 이야기를 나눈다.",
+"ans": "sits",
+"pts": null
+},
+{
+"key": "p1|1",
+"title": "POINT 1 · 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"The children",
+"그 아이들이",
+"S"
+],
+[
+"playing in the street",
+"거리에서 놀고 있는",
+"M"
+],
+[
+"make",
+"낸다",
+"V"
+],
+[
+"a lot of noises.",
+"많은 소음을.",
+""
+]
+],
+"tr": "거리에서 놀고 있는 어린이들이 많은 소음을 낸다.",
+"ans": "make",
+"pts": null
+},
+{
+"key": "p1|2",
+"title": "POINT 1 · 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"Usually,",
+"보통,",
+""
+],
+[
+"clothes",
+"옷들은",
+"S"
+],
+[
+"that have a zipper",
+"지퍼가 있는",
+"M"
+],
+[
+"are",
+"~이다",
+"V"
+],
+[
+"easy to wear and take off.",
+"입고 벗기 쉬운.",
+""
+]
+],
+"tr": "보통, 지퍼가 있는 옷들은 입고 벗기 쉽다.",
+"ans": "are",
+"pts": null
+},
+{
+"key": "p1|3",
+"title": "POINT 1 · 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"The first step",
+"첫 번째 단계는",
+"S"
+],
+[
+"to take in the mastery of new skills",
+"새로운 기술의 숙달에서 취할",
+"M"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"to practice consistently.",
+"꾸준히 연습하는 것.",
+""
+]
+],
+"tr": "새로운 기술의 숙달에 있어서 취할 첫 번째 단계는 꾸준히 연습하는 것이다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "p1|4",
+"title": "POINT 1 · 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"Most days,",
+"대부분의 날에,",
+""
+],
+[
+"the students",
+"학생들은",
+"S"
+],
+[
+"at this school",
+"이 학교의",
+"M"
+],
+[
+"eat",
+"먹는다",
+"V"
+],
+[
+"lunch",
+"점심을",
+""
+],
+[
+"in the school cafeteria.",
+"학교 식당에서.",
+""
+]
+],
+"tr": "대부분의 날에, 이 학교 학생들은 학교 식당에서 점심을 먹는다.",
+"ans": "eat",
+"pts": null
+},
+{
+"key": "p1|5",
+"title": "POINT 1 · 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"During the summer,",
+"여름 동안,",
+""
+],
+[
+"the city's air,",
+"도시의 공기는",
+"S"
+],
+[
+"full of smog and harmful gases,",
+"스모그와 해로운 가스로 가득 찬",
+"M"
+],
+[
+"causes",
+"일으킨다",
+"V"
+],
+[
+"various health problems.",
+"다양한 건강 문제를.",
+""
+]
+],
+"tr": "여름 동안에, 스모그와 해로운 가스로 가득 찬 도시의 공기는 다양한 건강 문제를 일으킨다.",
+"ans": "causes",
+"pts": null
+},
+{
+"key": "p1|6",
+"title": "POINT 1 · 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"The vegetables",
+"채소들은",
+"S"
+],
+[
+"sold at the market",
+"시장에서 팔리는",
+"M"
+],
+[
+"come",
+"온다",
+"V"
+],
+[
+"from nearby farms.",
+"근처의 농장에서.",
+""
+]
+],
+"tr": "시장에서 팔리는 채소들은 근처의 농장에서 온다.",
+"ans": "come",
+"pts": null
+},
+{
+"key": "p1|7",
+"title": "POINT 1 · 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"The purpose",
+"목적은",
+"S"
+],
+[
+"of traffic lights",
+"신호등의",
+"M"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"to control the movement of cars.",
+"자동차들의 움직임을 통제하는 것.",
+""
+]
+],
+"tr": "신호등의 목적은 자동차들의 움직임을 통제하는 것이다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "p1|8",
+"title": "POINT 1 · 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"Conveniently for me,",
+"나에게 편리하게도,",
+""
+],
+[
+"the bus",
+"버스는",
+"S"
+],
+[
+"that I take every morning to go to work",
+"내가 출근하려고 매일 아침 타는",
+"M"
+],
+[
+"stops",
+"선다",
+"V"
+],
+[
+"one block away from here.",
+"여기서 한 블록 떨어진 곳에.",
+""
+]
+],
+"tr": "나에게 편리하게도, 내가 매일 아침 출근하기 위해 타는 버스는 여기에서 한 블록 떨어진 곳에 선다.",
+"ans": "stops",
+"pts": null
+},
+{
+"key": "p2|예제",
+"title": "POINT 2 · of 앞 표현에 수 일치",
+"chunks": [
+[
+"One",
+"하나는",
+"S"
+],
+[
+"of the key features",
+"핵심 특징들 중의",
+"M"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"that this AI program enables machines to learn new things.",
+"이 인공지능 프로그램이 기계가 새로운 것들을 배울 수 있게 한다는 것.",
+""
+]
+],
+"tr": "핵심 특징들 중의 하나는 이 인공지능 프로그램이 기계가 새로운 것들을 배울 수 있게 한다는 것이다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "p2|1",
+"title": "POINT 2 · of 앞 표현에 수 일치",
+"chunks": [
+[
+"A number of people",
+"많은 사람들이",
+"S"
+],
+[
+"are worried",
+"걱정한다",
+"V"
+],
+[
+"about the recent increase in crime.",
+"최근의 범죄 증가에 대해.",
+""
+]
+],
+"tr": "많은 사람들이 최근의 범죄 증가에 대해 걱정한다.",
+"ans": "are",
+"pts": null
+},
+{
+"key": "p2|2",
+"title": "POINT 2 · of 앞 표현에 수 일치",
+"chunks": [
+[
+"In many parts of the world,",
+"세계의 많은 지역에서,",
+""
+],
+[
+"much of the forest",
+"많은 숲이",
+"S"
+],
+[
+"has been destroyed",
+"파괴되었다",
+"V"
+],
+[
+"by wildfires.",
+"산불에 의해.",
+""
+]
+],
+"tr": "세계의 많은 지역에서, 많은 숲이 산불에 의해 파괴되었다.",
+"ans": "has",
+"pts": null
+},
+{
+"key": "p2|3",
+"title": "POINT 2 · of 앞 표현에 수 일치",
+"chunks": [
+[
+"Many of the buildings",
+"많은 건물들이",
+"S"
+],
+[
+"in this city",
+"이 도시의",
+"M"
+],
+[
+"are",
+"~이다",
+"V"
+],
+[
+"over 100 years old.",
+"100년이 넘은.",
+""
+]
+],
+"tr": "이 도시의 많은 건물들은 100년이 넘었다.",
+"ans": "are",
+"pts": null
+},
+{
+"key": "p2|4",
+"title": "POINT 2 · of 앞 표현에 수 일치",
+"chunks": [
+[
+"At our school,",
+"우리 학교에서는,",
+""
+],
+[
+"one of the teachers",
+"선생님들 중 한 분이",
+"S"
+],
+[
+"trains",
+"훈련시킨다",
+"V"
+],
+[
+"the soccer team.",
+"축구팀을.",
+""
+]
+],
+"tr": "우리 학교에서는, 선생님들 중 한 분이 축구팀을 훈련시킨다.",
+"ans": "trains",
+"pts": null
+},
+{
+"key": "p2|5",
+"title": "POINT 2 · of 앞 표현에 수 일치",
+"chunks": [
+[
+"The number of native English speakers",
+"영어가 모국어인 화자들의 수는",
+"S"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"smaller than the number of native Spanish speakers.",
+"스페인어가 모국어인 화자들의 수보다 더 적은.",
+""
+]
+],
+"tr": "영어가 모국어인 화자의 수는 스페인어가 모국어인 화자의 수보다 더 적다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "p3|예제",
+"title": "POINT 3 · of 뒤 명사에 수 일치",
+"chunks": [
+[
+"After searching for the missing dog for hours,",
+"사라진 개를 몇 시간 동안 찾아다닌 후에,",
+""
+],
+[
+"most of the children",
+"대부분의 아이들은",
+"S"
+],
+[
+"were tired",
+"지쳤다",
+"V"
+],
+[
+"and gave up.",
+"그리고 포기했다.",
+""
+]
+],
+"tr": "사라진 개를 몇 시간 동안 찾아다닌 후에, 대부분의 아이들은 지쳐서 포기했다.",
+"ans": "were",
+"pts": null
+},
+{
+"key": "p3|1",
+"title": "POINT 3 · of 뒤 명사에 수 일치",
+"chunks": [
+[
+"Some of the food",
+"음식 중 일부는",
+"S"
+],
+[
+"served in this restaurant",
+"이 식당에서 제공되는",
+"M"
+],
+[
+"smells delicious,",
+"맛있는 냄새가 난다,",
+"V"
+],
+[
+"but most of it",
+"하지만 그중 대부분은",
+"S"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"too spicy for me.",
+"나에게는 너무 매운.",
+""
+]
+],
+"tr": "이 식당에서 제공되는 음식 중 일부는 맛있는 냄새가 나지만, 그중 대부분은 나에게 너무 맵다.",
+"ans": "smells",
+"pts": null
+},
+{
+"key": "p3|2",
+"title": "POINT 3 · of 뒤 명사에 수 일치",
+"chunks": [
+[
+"A lot of information",
+"많은 정보는",
+"S"
+],
+[
+"on social media",
+"소셜 미디어에 있는",
+"M"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"false.",
+"사실이 아닌.",
+""
+]
+],
+"tr": "소셜 미디어에 있는 많은 정보는 사실이 아니다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "p3|3",
+"title": "POINT 3 · of 뒤 명사에 수 일치",
+"chunks": [
+[
+"In a survey,",
+"한 조사에서,",
+""
+],
+[
+"30 percent of the employees",
+"직원들의 30퍼센트는",
+"S"
+],
+[
+"prefer",
+"선호한다",
+"V"
+],
+[
+"to work from home.",
+"집에서 일하는 것을.",
+""
+]
+],
+"tr": "한 조사에서, 직원들의 30%는 집에서 일하는 것을 선호한다.",
+"ans": "prefer",
+"pts": null
+},
+{
+"key": "p3|4",
+"title": "POINT 3 · of 뒤 명사에 수 일치",
+"chunks": [
+[
+"More than half of the students",
+"학생들의 절반 넘게가",
+"S"
+],
+[
+"in my class",
+"우리 반의",
+"M"
+],
+[
+"use",
+"사용한다",
+"V"
+],
+[
+"desktops",
+"데스크톱 컴퓨터를",
+""
+],
+[
+"to access the Internet.",
+"인터넷에 접속하려고.",
+""
+]
+],
+"tr": "우리 반 학생들의 절반 이상이 인터넷에 접속하기 위해 데스크톱 컴퓨터를 사용한다.",
+"ans": "use",
+"pts": null
+},
+{
+"key": "p3|5",
+"title": "POINT 3 · of 뒤 명사에 수 일치",
+"chunks": [
+[
+"All of the money",
+"모든 돈은",
+"S"
+],
+[
+"collected from the event",
+"그 행사에서 모인",
+"M"
+],
+[
+"goes",
+"간다",
+"V"
+],
+[
+"to a children's hospital.",
+"어린이 병원으로.",
+""
+]
+],
+"tr": "그 행사에서 모인 모든 돈은 어린이 병원으로 간다.",
+"ans": "goes",
+"pts": null
+},
+{
+"key": "p4|예제",
+"title": "POINT 4 · 동명사구·명사절 주어와 동사의 수 일치",
+"chunks": [
+[
+"Accepting your mistakes",
+"자신의 실수를 인정하는 것은",
+"S"
+],
+[
+"means",
+"의미한다",
+"V"
+],
+[
+"that you are taking the first step towards personal growth.",
+"당신이 개인적인 성장을 향한 첫걸음을 내딛고 있다는 것을.",
+""
+]
+],
+"tr": "자신의 실수를 인정하는 것은 당신이 개인적인 성장을 위한 첫걸음을 내딛고 있다는 것을 의미한다.",
+"ans": "means",
+"pts": null
+},
+{
+"key": "p4|1",
+"title": "POINT 4 · 동명사구·명사절 주어와 동사의 수 일치",
+"chunks": [
+[
+"How often you choose to exercise",
+"당신이 얼마나 자주 운동하기를 선택하는지는",
+"S"
+],
+[
+"greatly affects",
+"크게 영향을 미친다",
+"V"
+],
+[
+"your health.",
+"당신의 건강에.",
+""
+]
+],
+"tr": "당신이 얼마나 자주 운동하기를 선택하는지는 당신의 건강에 크게 영향을 미친다.",
+"ans": "affects",
+"pts": null
+},
+{
+"key": "p4|2",
+"title": "POINT 4 · 동명사구·명사절 주어와 동사의 수 일치",
+"chunks": [
+[
+"Traveling to new places",
+"새로운 곳으로 여행하는 것은",
+"S"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"a fun and exciting way",
+"재미있고 신나는 방법",
+""
+],
+[
+"to learn about different cultures.",
+"다른 문화들에 대해 배우는.",
+""
+]
+],
+"tr": "새로운 곳으로 여행을 가는 것은 다른 문화들에 대해 배우는 재미있고 신나는 방법이다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "p4|3",
+"title": "POINT 4 · 동명사구·명사절 주어와 동사의 수 일치",
+"chunks": [
+[
+"According to the data,",
+"자료에 따르면,",
+""
+],
+[
+"laptops",
+"노트북 컴퓨터가",
+"S"
+],
+[
+"with a touch screen",
+"터치스크린이 있는",
+"M"
+],
+[
+"were",
+"~였다",
+"V"
+],
+[
+"very popular last year.",
+"작년에 매우 인기 있는.",
+""
+]
+],
+"tr": "자료에 따르면, 터치스크린이 있는 노트북 컴퓨터가 작년에 매우 인기 있었다.",
+"ans": "were",
+"pts": null
+},
+{
+"key": "p4|4",
+"title": "POINT 4 · 동명사구·명사절 주어와 동사의 수 일치",
+"chunks": [
+[
+"What you wear to the interview",
+"면접에서 당신이 입는 것은",
+"S"
+],
+[
+"creates",
+"준다",
+"V"
+],
+[
+"a strong impression on the hiring manager.",
+"강한 인상을 채용 담당자에게.",
+""
+]
+],
+"tr": "면접에서 당신이 무엇을 입는지는 채용 매니저에게 강한 인상을 준다.",
+"ans": "creates",
+"pts": null
+},
+{
+"key": "p4|5",
+"title": "POINT 4 · 동명사구·명사절 주어와 동사의 수 일치",
+"chunks": [
+[
+"When customers return a broken product,",
+"고객들이 고장 난 제품을 반품할 때,",
+"M"
+],
+[
+"most electronics companies",
+"대부분의 전자 제품 회사들은",
+"S"
+],
+[
+"replace",
+"교환해 준다",
+"V"
+],
+[
+"it with a new one.",
+"그것을 새것으로.",
+""
+]
+],
+"tr": "고객들이 고장 난 제품을 반품할 때, 대부분의 전자 제품 회사들은 그것을 새것으로 교환해 준다.",
+"ans": "replace",
+"pts": null
+},
+{
+"key": "p5|예제",
+"title": "POINT 5 · 주격 관계대명사절 동사와 선행사의 수 일치",
+"chunks": [
+[
+"Certain herbs have",
+"어떤 약초들은 가지고 있다",
+""
+],
+[
+"amazing powers",
+"놀라운 힘을",
+"S"
+],
+[
+"that cure specific diseases.",
+"특정한 질병을 치료하는.",
+"V"
+]
+],
+"tr": "어떤 약초들은 특정한 질병을 치료하는 놀라운 힘을 가지고 있다.",
+"ans": "cure",
+"pts": null
+},
+{
+"key": "p5|1",
+"title": "POINT 5 · 주격 관계대명사절 동사와 선행사의 수 일치",
+"chunks": [
+[
+"The man",
+"그 남자는",
+"S"
+],
+[
+"who runs the store downtown",
+"시내에서 가게를 운영하는",
+"V"
+],
+[
+"is always friendly and helpful to his customers.",
+"손님들에게 항상 친절하고 도움이 된다.",
+""
+]
+],
+"tr": "시내에서 가게를 운영하는 그 남자는 항상 손님들에게 친절하고 도움이 된다.",
+"ans": "runs",
+"pts": null
+},
+{
+"key": "p5|2",
+"title": "POINT 5 · 주격 관계대명사절 동사와 선행사의 수 일치",
+"chunks": [
+[
+"Trees,",
+"나무들은",
+"S"
+],
+[
+"which naturally provide clean air,",
+"자연적으로 깨끗한 공기를 제공하는",
+"V"
+],
+[
+"are important for the environment.",
+"환경에 중요하다.",
+""
+]
+],
+"tr": "자연적으로 깨끗한 공기를 제공하는 나무들은 환경에 중요하다.",
+"ans": "provide",
+"pts": null
+},
+{
+"key": "p5|3",
+"title": "POINT 5 · 주격 관계대명사절 동사와 선행사의 수 일치",
+"chunks": [
+[
+"A lot of money is spent",
+"많은 돈이 쓰인다",
+""
+],
+[
+"on items",
+"물건에",
+"S"
+],
+[
+"that are not used and eventually thrown away.",
+"사용되지 않고 결국 버려지는.",
+"V"
+]
+],
+"tr": "사용되지 않고 결국 버려지는 물건에 많은 돈이 쓰인다.",
+"ans": "are",
+"pts": null
+},
+{
+"key": "p5|4",
+"title": "POINT 5 · 주격 관계대명사절 동사와 선행사의 수 일치",
+"chunks": [
+[
+"I have",
+"나는 가지고 있다",
+""
+],
+[
+"some friends",
+"몇몇 친구들을",
+"S"
+],
+[
+"from my university",
+"내 대학교의",
+"M"
+],
+[
+"who like to study in the café",
+"카페에서 공부하기를 좋아하는",
+"V"
+],
+[
+"despite the noise.",
+"소음에도 불구하고.",
+""
+]
+],
+"tr": "나는 소음에도 불구하고 카페에서 공부하는 것을 좋아하는 몇몇 대학교 친구들이 있다.",
+"ans": "like",
+"pts": null
+},
+{
+"key": "p5|5",
+"title": "POINT 5 · 주격 관계대명사절 동사와 선행사의 수 일치",
+"chunks": [
+[
+"To fix the problem,",
+"문제를 해결하기 위해,",
+""
+],
+[
+"she tried",
+"그녀는 시도했다",
+""
+],
+[
+"everything",
+"모든 것을",
+"S"
+],
+[
+"that was available,",
+"가능한",
+"V"
+],
+[
+"but nothing worked.",
+"하지만 아무것도 효과가 없었다.",
+""
+]
+],
+"tr": "문제를 해결하기 위해, 그녀는 가능한 모든 것을 시도했지만, 어떤 것도 효과가 없었다.",
+"ans": "was",
+"pts": null
+},
+{
+"key": "p6|예제",
+"title": "POINT 6 · 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"There is usually",
+"보통 ~이 있다",
+"V"
+],
+[
+"a correct way",
+"올바른 방법이",
+"S"
+],
+[
+"of holding and playing the guitar.",
+"기타를 잡고 연주하는.",
+""
+]
+],
+"tr": "보통 기타를 잡고 연주하는 올바른 방법이 있다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "p6|1",
+"title": "POINT 6 · 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"Rarely does",
+"좀처럼 ~하지 않는다",
+"V"
+],
+[
+"a cat",
+"고양이는",
+"S"
+],
+[
+"refuse a warm lap",
+"따뜻한 무릎을 거부하지",
+""
+],
+[
+"on a cold winter’s night.",
+"추운 겨울밤에.",
+""
+]
+],
+"tr": "고양이는 추운 겨울밤에 따뜻한 무릎을 좀처럼 거부하지 않는다.",
+"ans": "does",
+"pts": null
+},
+{
+"key": "p6|2",
+"title": "POINT 6 · 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"Through the airport pass",
+"그 공항을 통해 지나간다",
+"V"
+],
+[
+"thousands of passengers",
+"수천 명의 승객들이",
+"S"
+],
+[
+"daily.",
+"매일.",
+""
+]
+],
+"tr": "그 공항을 통해 매일 수천 명의 승객들이 지나간다.",
+"ans": "pass",
+"pts": null
+},
+{
+"key": "p6|3",
+"title": "POINT 6 · 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"Look,",
+"봐,",
+""
+],
+[
+"here comes",
+"여기 온다",
+"V"
+],
+[
+"the teacher.",
+"선생님이.",
+"S"
+],
+[
+"We’d better return to our seats.",
+"우리는 자리로 돌아가는 게 좋겠다.",
+""
+]
+],
+"tr": "봐, 선생님이 여기로 오고 계셔. 우리는 자리로 돌아가는 게 좋겠다.",
+"ans": "comes",
+"pts": null
+},
+{
+"key": "p6|4",
+"title": "POINT 6 · 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"Little do",
+"거의 ~하지 않는다",
+"V"
+],
+[
+"the children",
+"아이들은",
+"S"
+],
+[
+"realize the impact of their actions on others.",
+"자신의 행동이 다른 사람들에게 미치는 영향을 깨닫지.",
+""
+]
+],
+"tr": "아이들은 자신의 행동이 다른 사람들에게 미치는 영향을 거의 깨닫지 못한다.",
+"ans": "do",
+"pts": null
+},
+{
+"key": "p6|5",
+"title": "POINT 6 · 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"There are",
+"~이 있다",
+"V"
+],
+[
+"lots of people",
+"많은 사람들이",
+"S"
+],
+[
+"in the park",
+"공원에",
+""
+],
+[
+"and, they are enjoying picnics and playing games.",
+"그리고, 그들은 소풍을 즐기고 게임을 하고 있다.",
+""
+]
+],
+"tr": "공원에 많은 사람들이 있고, 그들은 소풍을 즐기고 게임을 하고 있다.",
+"ans": "are",
+"pts": null
+},
+{
+"key": "p6|6",
+"title": "POINT 6 · 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"Never do",
+"결코 ~하지 않는다",
+"V"
+],
+[
+"employees",
+"직원들은",
+"S"
+],
+[
+"forget the value of teamwork in achieving success.",
+"성공을 이루는 데 팀워크의 가치를 잊지.",
+""
+]
+],
+"tr": "직원들은 성공을 이루는 것에서 팀워크의 가치를 결코 잊지 않는다.",
+"ans": "do",
+"pts": null
+},
+{
+"key": "p6|7",
+"title": "POINT 6 · 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"In the kitchen was cooking",
+"부엌에서 요리하고 있었다",
+"V"
+],
+[
+"a famous chef,",
+"유명한 요리사가,",
+"S"
+],
+[
+"who prepared our delicious meal.",
+"우리의 맛있는 식사를 준비한.",
+""
+]
+],
+"tr": "부엌에서 우리의 맛있는 식사를 준비한 유명한 요리사가 요리하는 중이다.",
+"ans": "was",
+"pts": null
+},
+{
+"key": "p6|8",
+"title": "POINT 6 · 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"Not only does",
+"~뿐만 아니라",
+"V"
+],
+[
+"music",
+"음악은",
+"S"
+],
+[
+"entertain us,",
+"우리를 즐겁게 해 줄 뿐 아니라,",
+""
+],
+[
+"but it also has the power to evoke strong feelings.",
+"그것은 또한 강한 감정을 일으키는 힘을 가지고 있다.",
+""
+]
+],
+"tr": "음악은 우리를 즐겁게 해줄 뿐만 아니라, 또한 강한 감정을 일으키는 힘을 가지고 있다.",
+"ans": "does",
+"pts": null
+},
+{
+"key": "c01q1|1",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"All of the flowers",
+"모든 꽃들이",
+"S"
+],
+[
+"in the garden",
+"정원에 있는",
+"M"
+],
+[
+"are blooming",
+"활짝 피고 있다",
+"V"
+],
+[
+"in the spring sunshine.",
+"봄 햇살 속에.",
+""
+]
+],
+"tr": "정원의 모든 꽃들이 봄 햇살 속에 활짝 피고 있다.",
+"ans": "are",
+"pts": null
+},
+{
+"key": "c01q1|2",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Writing a novel",
+"소설을 쓰는 것은",
+"S"
+],
+[
+"based on the lives of her parents",
+"부모님의 삶을 바탕으로 한",
+"M"
+],
+[
+"was",
+"~였다",
+"V"
+],
+[
+"her old dream.",
+"그녀의 오랜 꿈.",
+""
+]
+],
+"tr": "부모님의 삶을 바탕으로 소설을 쓰는 것은 그녀의 오랜 꿈이었다.",
+"ans": "was",
+"pts": null
+},
+{
+"key": "c01q1|3",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Douglas is",
+"더글러스는 ~이다",
+""
+],
+[
+"a quiet boy,",
+"조용한 소년",
+"S"
+],
+[
+"who usually stays in the classroom",
+"보통 교실에 머무르는",
+"V"
+],
+[
+"while all his classmates go outside during break time.",
+"그의 모든 반 친구들이 쉬는 시간에 밖에 나가는 동안.",
+""
+]
+],
+"tr": "Douglas는 그의 모든 반 친구들이 쉬는 시간에 밖에 나가는 동안 보통 교실에 머무르는 조용한 소년이다.",
+"ans": "stays",
+"pts": null
+},
+{
+"key": "c01q1|4",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The skills",
+"기술들은",
+"S"
+],
+[
+"to become a good painter",
+"훌륭한 화가가 되기 위한",
+"M"
+],
+[
+"include",
+"포함한다",
+"V"
+],
+[
+"creativity and effort.",
+"창의력과 노력을.",
+""
+]
+],
+"tr": "훌륭한 화가가 되기 위한 기술들은 창의력과 노력을 포함한다.",
+"ans": "include",
+"pts": null
+},
+{
+"key": "c01q1|5",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Around 60 percent of the guests",
+"약 60%의 손님들이",
+"S"
+],
+[
+"staying at the hotel",
+"그 호텔에 머무는",
+"M"
+],
+[
+"come",
+"온다",
+"V"
+],
+[
+"from overseas.",
+"해외에서.",
+""
+]
+],
+"tr": "그 호텔에 머무는 손님들의 약 60%가 해외에서 온다.",
+"ans": "come",
+"pts": null
+},
+{
+"key": "c01q1|6",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Mobile phones,",
+"휴대폰은",
+"S"
+],
+[
+"which have many useful functions,",
+"많은 유용한 기능들을 가진",
+"V"
+],
+[
+"are essential tools",
+"필수적인 도구이다",
+""
+],
+[
+"for modern life.",
+"현대 생활에.",
+""
+]
+],
+"tr": "많은 유용한 기능들을 가진 휴대폰은 현대 생활에 필수적인 도구이다.",
+"ans": "have",
+"pts": null
+},
+{
+"key": "c01q1|7",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"How we communicate with each other",
+"우리가 서로 어떻게 의사소통하는지가",
+"S"
+],
+[
+"influences",
+"영향을 미친다",
+"V"
+],
+[
+"the success of our project.",
+"우리 프로젝트의 성공에.",
+""
+]
+],
+"tr": "우리가 서로 어떻게 의사소통하는지가 우리 프로젝트의 성공에 영향을 미친다.",
+"ans": "influences",
+"pts": null
+},
+{
+"key": "c01q1|8",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Nearly all the tourists",
+"거의 모든 관광객들은",
+"S"
+],
+[
+"in the city",
+"도시에 있는",
+"M"
+],
+[
+"take",
+"찍는다",
+"V"
+],
+[
+"photos of famous landmarks.",
+"유명한 랜드마크의 사진을.",
+""
+]
+],
+"tr": "도시에 있는 거의 모든 관광객들은 유명한 랜드마크에서 사진을 찍는다.",
+"ans": "take",
+"pts": null
+},
+{
+"key": "c01q1|9",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"At every entrance to the building",
+"그 건물의 모든 입구에",
+"C"
+],
+[
+"stands",
+"서 있다",
+"V"
+],
+[
+"a security guard",
+"보안 요원이",
+"S"
+],
+[
+"wearing a uniform.",
+"유니폼을 입은.",
+"M"
+]
+],
+"tr": "그 건물의 모든 입구에 유니폼을 입은 보안 요원이 서 있다.",
+"ans": "stands",
+"pts": null
+},
+{
+"key": "c01q1|10",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"In the past,",
+"과거에,",
+""
+],
+[
+"a number of things",
+"여러 가지 것들이",
+"S"
+],
+[
+"that we easily enjoy today",
+"오늘날 우리가 쉽게 즐기는",
+"M"
+],
+[
+"were not possible",
+"가능하지 않았다",
+"V"
+],
+[
+"for many reasons.",
+"많은 이유로.",
+""
+]
+],
+"tr": "과거에, 오늘날 우리가 쉽게 즐기는 여러 가지 것들이 많은 이유로 가능하지 않았다.",
+"ans": "were",
+"pts": null
+},
+{
+"key": "c01q1|11",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Reading books",
+"책을 읽는 것은",
+"S"
+],
+[
+"on a variety of topics",
+"다양한 주제에 관한",
+"M"
+],
+[
+"helps",
+"돕는다",
+"V"
+],
+[
+"to expand your knowledge.",
+"당신의 지식을 확장하는 것을.",
+""
+]
+],
+"tr": "다양한 주제의 책을 읽는 것은 당신의 지식을 확장하는 것을 돕는다.",
+"ans": "helps",
+"pts": null
+},
+{
+"key": "c01q1|12",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The pressure",
+"부담감은",
+"S"
+],
+[
+"to maintain a good image among friends",
+"친구들 사이에서 좋은 이미지를 유지하려는",
+"M"
+],
+[
+"often leads",
+"종종 이어진다",
+"V"
+],
+[
+"to anxiety and stress.",
+"불안과 스트레스로.",
+""
+]
+],
+"tr": "친구들 사이에서 좋은 이미지를 유지하려는 부담감은 종종 불안과 스트레스로 이어진다.",
+"ans": "leads",
+"pts": null
+},
+{
+"key": "c01q2|1",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 ○, 틀리면 고치기",
+"chunks": [
+[
+"The engineers",
+"기술자들은",
+"S"
+],
+[
+"that invented the machine",
+"그 기계를 발명한",
+"M"
+],
+[
+"were praised",
+"칭찬을 받았다",
+"V"
+],
+[
+"for the safety of their design.",
+"디자인의 안전성 때문에.",
+""
+]
+],
+"tr": "그 기계를 발명한 기술자들은 디자인의 안전성 때문에 칭찬을 받았다.",
+"ans": "were",
+"pts": null
+},
+{
+"key": "c01q2|2",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 ○, 틀리면 고치기",
+"chunks": [
+[
+"Even in",
+"심지어 ~에서도",
+""
+],
+[
+"a society",
+"사회",
+"S"
+],
+[
+"that rejects the idea of eating insects,",
+"곤충을 먹는다는 생각을 거부하는",
+"V"
+],
+[
+"some people may be open to the idea.",
+"어떤 사람들은 그 생각에 열려 있을 수 있다.",
+""
+]
+],
+"tr": "곤충을 먹는다는 생각을 거부하는 사회에서도, 어떤 사람들은 그 생각에 열려 있을 수 있다.",
+"ans": "rejects",
+"pts": null
+},
+{
+"key": "c01q2|3",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 ○, 틀리면 고치기",
+"chunks": [
+[
+"At the University of Iowa,",
+"아이오와 대학에서,",
+""
+],
+[
+"one",
+"한 명은",
+"S"
+],
+[
+"of the first three students to earn art degrees",
+"예술 학위를 받은 최초의 세 학생 중",
+"M"
+],
+[
+"was",
+"~이었다",
+"V"
+],
+[
+"Elizabeth Catlett.",
+"엘리자베스 캐틀릿.",
+""
+]
+],
+"tr": "아이오와 대학에서, 예술 학위를 받은 최초의 세 학생 중 한 명은 Elizabeth Catlett이었다.",
+"ans": "was",
+"pts": null
+},
+{
+"key": "c01q2|4",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 ○, 틀리면 고치기",
+"chunks": [
+[
+"Who will lead the company from now on",
+"누가 지금부터 회사를 이끌지가",
+"S"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"the top concern at this meeting.",
+"이번 회의에서 가장 중요한 관심사.",
+""
+]
+],
+"tr": "누가 지금부터 회사를 이끌지가 이번 회의에서 가장 중요한 관심사다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "c01q2|5",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 ○, 틀리면 고치기",
+"chunks": [
+[
+"Everyone wants to have",
+"모든 사람들은 가지기를 원한다",
+""
+],
+[
+"friends",
+"친구들을",
+"S"
+],
+[
+"who always understand them",
+"항상 그들을 이해해 주고",
+"V"
+],
+[
+"and share their joys and sorrows.",
+"기쁨과 슬픔을 공유하는.",
+""
+]
+],
+"tr": "모든 사람들은 항상 그들을 이해해 주고 기쁨과 슬픔을 공유하는 친구들을 가지기를 원한다.",
+"ans": "understand",
+"pts": null
+},
+{
+"key": "c01q2|6",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 ○, 틀리면 고치기",
+"chunks": [
+[
+"There exist",
+"~이 존재한다",
+"V"
+],
+[
+"many solutions",
+"많은 해결책이",
+"S"
+],
+[
+"to our problems,",
+"우리의 문제들에 대한",
+""
+],
+[
+"if we see them with an open mind.",
+"만약 우리가 열린 마음으로 그것들을 본다면.",
+""
+]
+],
+"tr": "만약 우리가 열린 마음으로 본다면, 우리의 문제들에는 많은 해결책이 존재한다.",
+"ans": "exist",
+"pts": null
+},
+{
+"key": "c01q2|7",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 ○, 틀리면 고치기",
+"chunks": [
+[
+"Much",
+"많은 부분은",
+"S"
+],
+[
+"of the information you receive from newspapers",
+"신문으로부터 당신이 받는 정보 중",
+"M"
+],
+[
+"provides",
+"제공한다",
+"V"
+],
+[
+"valuable knowledge about the world.",
+"세계에 대한 귀중한 지식을.",
+""
+]
+],
+"tr": "당신이 신문으로부터 받는 많은 정보는 세계에 대한 귀중한 지식을 제공한다.",
+"ans": "provides",
+"pts": null
+},
+{
+"key": "c01q2|8",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 ○, 틀리면 고치기",
+"chunks": [
+[
+"Running marathons",
+"마라톤을 뛰는 것은",
+"S"
+],
+[
+"remains",
+"남아 있다",
+"V"
+],
+[
+"a popular form of exercise and personal achievement.",
+"운동과 개인적인 성취의 인기 있는 형태로.",
+""
+]
+],
+"tr": "마라톤을 뛰는 것은 운동과 개인적인 성취의 인기 있는 형태로 남아 있다.",
+"ans": "remains",
+"pts": null
+},
+{
+"key": "c01q2|9",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 ○, 틀리면 고치기",
+"chunks": [
+[
+"In recent surveys,",
+"최근의 설문조사에서,",
+""
+],
+[
+"half",
+"절반은",
+"S"
+],
+[
+"of the students in the class",
+"반 학생들 중",
+"M"
+],
+[
+"prefer",
+"선호한다",
+"V"
+],
+[
+"studying in groups rather than alone.",
+"혼자보다는 그룹으로 공부하는 것을.",
+""
+]
+],
+"tr": "최근의 설문조사에서, 반 학생들의 절반은 혼자보다는 그룹으로 공부하는 것을 선호한다.",
+"ans": "prefer",
+"pts": null
+},
+{
+"key": "c01q2|10",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 ○, 틀리면 고치기",
+"chunks": [
+[
+"Sometimes,",
+"때로,",
+""
+],
+[
+"what people eat for breakfast",
+"사람들이 아침으로 먹는 것은",
+"S"
+],
+[
+"influences",
+"영향을 준다",
+"V"
+],
+[
+"their mood for the rest of the day.",
+"그날의 나머지 동안 그들의 기분에.",
+""
+]
+],
+"tr": "때로, 사람들이 아침으로 무엇을 먹는지는 그날의 나머지 동안 그들의 기분에 영향을 준다.",
+"ans": "influences",
+"pts": null
+},
+{
+"key": "c01q2|11",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 ○, 틀리면 고치기",
+"chunks": [
+[
+"Hardly do",
+"거의 ~하지 않는다",
+"V"
+],
+[
+"children",
+"어린이들은",
+"S"
+],
+[
+"refuse to eat candies",
+"사탕을 먹는 것을 거부하지",
+""
+],
+[
+"when their grandparents offer some.",
+"그들의 조부모님들이 줄 때.",
+""
+]
+],
+"tr": "어린이들은 그들의 조부모님들이 줄 때 사탕을 먹는 것을 거의 거부하지 않는다.",
+"ans": "do",
+"pts": null
+},
+{
+"key": "c01q2|12",
+"title": "문장 연습 밑줄 · 밑줄 친 부분이 맞으면 ○, 틀리면 고치기",
+"chunks": [
+[
+"Today,",
+"오늘날,",
+""
+],
+[
+"the problem",
+"문제는",
+"S"
+],
+[
+"discussed most frequently by world leaders",
+"세계 지도자들에 의해 가장 자주 논의되는",
+"M"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"how to prevent climate change.",
+"어떻게 기후 변화를 막을 것인지.",
+""
+]
+],
+"tr": "오늘날, 세계 지도자들에 의해 가장 자주 논의되는 문제는 어떻게 기후 변화를 막을 것인지이다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "c01s1|1-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"At the Greenview Museum (A)",
+"그린뷰 박물관에",
+"C"
+],
+[
+"is",
+"있다",
+"V"
+],
+[
+"a large collection",
+"큰 소장품이",
+"S"
+],
+[
+"of different types of paintings.",
+"여러 종류의 그림들의",
+"M"
+]
+],
+"tr": "Greenview 박물관에는 여러 종류의 그림들의 큰 소장품이 있다.",
+"ans": "is",
+"pts": [
+"1.6"
+]
+},
+{
+"key": "c01s1|1-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Most of the paintings",
+"대부분의 그림들이",
+"S"
+],
+[
+"in this museum (B)",
+"이 박물관에 있는",
+"M"
+],
+[
+"were created",
+"창작되었다",
+"V"
+],
+[
+"by talented local artists.",
+"재능 있는 지역 예술가들에 의해.",
+""
+]
+],
+"tr": "이 박물관에 있는 대부분의 그림들은 재능 있는 지역 예술가들에 의해 창작되었다.",
+"ans": "were",
+"pts": [
+"1.3",
+"1.1"
+]
+},
+{
+"key": "c01s1|2-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"The number",
+"수는",
+"S"
+],
+[
+"of college students (A)",
+"대학생들의",
+"M"
+],
+[
+"continues to decrease",
+"계속 줄어들고 있다",
+"V"
+],
+[
+"every year.",
+"매년.",
+""
+]
+],
+"tr": "대학 학생들의 수는 매년 계속 감소하고 있다.",
+"ans": "continues",
+"pts": [
+"1.2"
+]
+},
+{
+"key": "c01s1|2-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Colleges",
+"대학들은",
+"S"
+],
+[
+"in most places around the country (B)",
+"전국 대부분의 지역에 있는",
+"M"
+],
+[
+"have",
+"가지고 있다",
+"V"
+],
+[
+"fewer students today",
+"오늘날 더 적은 학생들을",
+""
+],
+[
+"than they did 10 years ago.",
+"10년 전에 그들이 가졌던 것보다.",
+""
+]
+],
+"tr": "전국 대부분의 지역에 있는 대학들은 10년 전에 그들이 가졌던 것보다 오늘날 더 적은 학생들을 가지고 있다.",
+"ans": "have",
+"pts": [
+"1.1"
+]
+},
+{
+"key": "c01s1|3-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Nowadays, there are",
+"오늘날, 있다",
+""
+],
+[
+"many companies",
+"많은 회사들이",
+"S"
+],
+[
+"that (A) recycle plastic bottles",
+"플라스틱병들을 재활용하는",
+"V"
+],
+[
+"to make clothes or sneakers.",
+"옷이나 운동화를 만들기 위해.",
+""
+]
+],
+"tr": "오늘날, 옷이나 운동화를 만들기 위해 플라스틱병들을 재활용하는 많은 회사들이 있다.",
+"ans": "recycle",
+"pts": [
+"1.5"
+]
+},
+{
+"key": "c01s1|3-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"This way",
+"이 방식은",
+"S"
+],
+[
+"of recycling plastic products (B)",
+"플라스틱 제품들을 재활용하는",
+"M"
+],
+[
+"helps",
+"돕는다",
+"V"
+],
+[
+"to protect the environment by reducing waste.",
+"쓰레기를 줄임으로써 환경을 보호하는 것을.",
+""
+]
+],
+"tr": "플라스틱 제품들을 재활용하는 이 방식은 쓰레기를 줄임으로써 환경을 보호하는 것을 돕는다.",
+"ans": "helps",
+"pts": [
+"1.1"
+]
+},
+{
+"key": "c01s1|4-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"What type of ball you choose",
+"어떤 종류의 공을 선택하느냐는",
+"S"
+],
+[
+"depends",
+"달려 있다",
+"V"
+],
+[
+"on the kind of sport you play.",
+"당신이 하는 운동의 종류에.",
+""
+]
+],
+"tr": "당신이 어떤 종류의 공을 선택하느냐는 당신이 하는 운동의 종류에 달려 있다.",
+"ans": "depends",
+"pts": [
+"1.4"
+]
+},
+{
+"key": "c01s1|4-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Many",
+"많은 것들은",
+"S"
+],
+[
+"of the sports people play, like soccer,",
+"사람들이 하는, 축구와 같은 운동들 중",
+"M"
+],
+[
+"require",
+"필요로 한다",
+"V"
+],
+[
+"balls with a certain level of bounce.",
+"일정 수준의 튕김을 가진 공들을.",
+""
+]
+],
+"tr": "축구와 같이, 사람들이 하는 많은 운동들은, 일정 수준의 튕김을 가진 공들을 필요로 한다.",
+"ans": "require",
+"pts": [
+"1.2"
+]
+},
+{
+"key": "c01s1|4-③",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Solid rubber balls are great for such games, while",
+"단단한 고무공들은 그런 경기에 좋은 반면",
+""
+],
+[
+"balls",
+"공들은",
+"S"
+],
+[
+"made of clay",
+"점토로 만들어진",
+"M"
+],
+[
+"do not bounce",
+"튀지 않는다",
+"V"
+],
+[
+"at all, so they are not.",
+"전혀, 그래서 그렇지 않다.",
+""
+]
+],
+"tr": "단단한 고무공들은 그런 경기에 좋은 반면, 점토로 만들어진 공들은 전혀 튀지 않아서, 그렇지 않다.",
+"ans": "do",
+"pts": [
+"1.1"
+]
+},
+{
+"key": "c01s1|5-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"About one-third of workers",
+"근로자의 약 3분의 1이",
+"S"
+],
+[
+"travel",
+"이동한다",
+"V"
+],
+[
+"from suburban homes to workplaces in the city every day.",
+"매일 교외의 집에서 도시의 직장으로.",
+""
+]
+],
+"tr": "근로자의 약 3분의 1이 매일 교외의 집에서 도시의 직장으로 이동한다.",
+"ans": "travel",
+"pts": [
+"1.3"
+]
+},
+{
+"key": "c01s1|5-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"However,",
+"그러나,",
+""
+],
+[
+"the highways,",
+"고속도로는",
+"S"
+],
+[
+"which are busy at normal times,",
+"평소에 혼잡한",
+"V"
+],
+[
+"become more crowded during rush hour.",
+"출퇴근 시간 동안 더 혼잡해진다.",
+""
+]
+],
+"tr": "그러나, 평소에 혼잡한 고속도로는 출퇴근 시간 동안 더 혼잡해진다.",
+"ans": "are",
+"pts": [
+"1.5"
+]
+},
+{
+"key": "c01s1|5-③",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"As a result,",
+"결과적으로,",
+""
+],
+[
+"a train service",
+"열차 서비스가",
+"S"
+],
+[
+"running on schedule",
+"스케줄에 따라 운행하는",
+"M"
+],
+[
+"looks",
+"보인다",
+"V"
+],
+[
+"more practical to some people.",
+"일부 사람들에게 더 실용적으로.",
+""
+]
+],
+"tr": "결과적으로, 스케줄에 따라 운행하는 열차 서비스가 일부 사람들에게 더 실용적으로 보인다.",
+"ans": "looks",
+"pts": [
+"1.1"
+]
+},
+{
+"key": "c01s1|6-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"A general strategy",
+"일반적인 전략은",
+"S"
+],
+[
+"that is used to create attractive animal characters",
+"매력적인 동물 캐릭터를 창작하기 위해 사용되는",
+"M"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"to make them look like babies.",
+"그들을 아기처럼 보이게 만드는 것.",
+""
+]
+],
+"tr": "매력적인 동물 캐릭터를 창작하기 위해 사용되는 일반적인 전략은 그들을 아기처럼 보이게 만드는 것이다.",
+"ans": "is",
+"pts": [
+"1.1"
+]
+},
+{
+"key": "c01s1|6-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"In fact,",
+"사실,",
+""
+],
+[
+"many animators",
+"많은 만화 제작자들은",
+"S"
+],
+[
+"who regularly work on such characters",
+"정기적으로 그러한 캐릭터를 작업하는",
+"V"
+],
+[
+"prefer to design them this way.",
+"이러한 방식으로 그것들을 디자인하는 것을 선호한다.",
+""
+]
+],
+"tr": "사실, 정기적으로 그러한 캐릭터를 작업하는 많은 만화 제작자들은 이러한 방식으로 그것들을 디자인하는 것을 선호한다.",
+"ans": "work",
+"pts": [
+"1.5"
+]
+},
+{
+"key": "c01s1|6-③",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Using this technique",
+"이 기법을 사용하는 것은",
+"S"
+],
+[
+"with their characters",
+"그들의 캐릭터에",
+"M"
+],
+[
+"allows",
+"~하게 해 준다",
+"V"
+],
+[
+"them to appeal to people’s emotions more easily.",
+"그들이 사람들의 감정에 더 쉽게 호소할 수 있게.",
+""
+]
+],
+"tr": "그들의 캐릭터에 이 기법을 사용하는 것은 그들이 사람들의 감정에 더 쉽게 호소할 수 있게 해준다.",
+"ans": "allows",
+"pts": [
+"1.4",
+"1.1"
+]
+},
+{
+"key": "add01|1-1",
+"title": "추가문제 POINT 1 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"In this town,",
+"이 도시에서,",
+""
+],
+[
+"the people",
+"사람들은",
+"S"
+],
+[
+"on our street",
+"우리 거리의",
+"M"
+],
+[
+"walk",
+"산책시킨다",
+"V"
+],
+[
+"their dogs at the park.",
+"공원에서 그들의 개를.",
+""
+]
+],
+"tr": "이 도시에서, 우리 거리의 사람들은 공원에서 그들의 개를 산책시킨다.",
+"ans": "walk",
+"pts": null
+},
+{
+"key": "add01|1-2",
+"title": "추가문제 POINT 1 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"A good way",
+"한 가지 좋은 방법은",
+"S"
+],
+[
+"to make new friends",
+"새로운 친구를 만드는",
+"M"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"to join a social group with people your age.",
+"당신 또래의 사람들과 함께 사교 단체에 가입하는 것.",
+""
+]
+],
+"tr": "새로운 친구를 만드는 한 가지 좋은 방법은 당신 또래의 사람들과 함께 사교 단체에 가입하는 것이다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "add01|1-3",
+"title": "추가문제 POINT 1 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"The hikers",
+"등산객들은",
+"S"
+],
+[
+"climbing up the mountain",
+"산을 오르는",
+"M"
+],
+[
+"look",
+"보인다",
+"V"
+],
+[
+"like ants from a distance.",
+"멀리서 보면 개미처럼.",
+""
+]
+],
+"tr": "산을 오르는 등산객들은 멀리서 보면 개미처럼 보인다.",
+"ans": "look",
+"pts": null
+},
+{
+"key": "add01|1-4",
+"title": "추가문제 POINT 1 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"Typically,",
+"일반적으로,",
+""
+],
+[
+"a house",
+"집은",
+"S"
+],
+[
+"that has a swimming pool",
+"수영장이 있는",
+"M"
+],
+[
+"costs",
+"든다",
+"V"
+],
+[
+"a lot of money.",
+"많은 돈이.",
+""
+]
+],
+"tr": "일반적으로, 수영장이 있는 집은 많은 돈이 든다.",
+"ans": "costs",
+"pts": null
+},
+{
+"key": "add01|1-5",
+"title": "추가문제 POINT 1 수식어가 사이에 있는 주어와 동사의 수 일치",
+"chunks": [
+[
+"Every year,",
+"매년,",
+""
+],
+[
+"symptoms",
+"증상들이",
+"S"
+],
+[
+"similar to those of the flu",
+"독감의 증상과 비슷한",
+"M"
+],
+[
+"affect",
+"발생한다",
+"V"
+],
+[
+"millions of people around the world.",
+"전 세계 수백만 명의 사람들에게.",
+""
+]
+],
+"tr": "매년, 독감의 증상과 비슷한 증상들이 전 세계 수백만 명의 사람들에게 발생한다.",
+"ans": "affect",
+"pts": null
+},
+{
+"key": "add01|2-1",
+"title": "추가문제 POINT 2 부분/수량표현을 포함한 주어와 동사의 수 일치 (1): of 앞 표현에 수 일치",
+"chunks": [
+[
+"At the office,",
+"사무실에서,",
+""
+],
+[
+"one",
+"한 명이",
+"S"
+],
+[
+"of my coworkers",
+"내 동료들 중",
+"M"
+],
+[
+"fixes",
+"고친다",
+"V"
+],
+[
+"everyone’s computers.",
+"모든 사람의 컴퓨터를.",
+""
+]
+],
+"tr": "사무실에서, 내 동료들 중 한 명이 모든 사람의 컴퓨터를 고친다.",
+"ans": "fixes",
+"pts": null
+},
+{
+"key": "add01|2-2",
+"title": "추가문제 POINT 2 부분/수량표현을 포함한 주어와 동사의 수 일치 (1): of 앞 표현에 수 일치",
+"chunks": [
+[
+"Many",
+"많은 것들은",
+"S"
+],
+[
+"of the chapters in our science textbook",
+"우리 과학 교과서의 챕터들 중",
+"M"
+],
+[
+"are",
+"~이다",
+"V"
+],
+[
+"around 20 pages long.",
+"대략 20페이지 길이.",
+""
+]
+],
+"tr": "우리 과학 교과서의 많은 챕터들은 대략 20페이지 길이이다.",
+"ans": "are",
+"pts": null
+},
+{
+"key": "add01|2-3",
+"title": "추가문제 POINT 2 부분/수량표현을 포함한 주어와 동사의 수 일치 (1): of 앞 표현에 수 일치",
+"chunks": [
+[
+"During winter,",
+"겨울 중에,",
+""
+],
+[
+"a number",
+"많은 수의",
+"S"
+],
+[
+"of towns in the area",
+"그 지역의 마을이",
+"M"
+],
+[
+"experience",
+"경험한다",
+"V"
+],
+[
+"very bad weather.",
+"몹시 나쁜 날씨를.",
+""
+]
+],
+"tr": "겨울 중에, 그 지역의 많은 마을이 몹시 나쁜 날씨를 경험한다.",
+"ans": "experience",
+"pts": null
+},
+{
+"key": "add01|2-4",
+"title": "추가문제 POINT 2 부분/수량표현을 포함한 주어와 동사의 수 일치 (1): of 앞 표현에 수 일치",
+"chunks": [
+[
+"Much",
+"많은 부분이",
+"S"
+],
+[
+"of the preparation for the weekend’s sports activities",
+"주말의 스포츠 활동을 위한 준비 중",
+"M"
+],
+[
+"was done",
+"행해졌다",
+"V"
+],
+[
+"by volunteers.",
+"자원봉사자들에 의해.",
+""
+]
+],
+"tr": "주말의 스포츠 활동을 위한 많은 준비가 자원봉사자들에 의해 행해졌다.",
+"ans": "was",
+"pts": null
+},
+{
+"key": "add01|2-5",
+"title": "추가문제 POINT 2 부분/수량표현을 포함한 주어와 동사의 수 일치 (1): of 앞 표현에 수 일치",
+"chunks": [
+[
+"The number",
+"수는",
+"S"
+],
+[
+"of fish in rivers and lakes",
+"강과 호수에 있는 물고기의",
+"M"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"about the same as the number in the ocean.",
+"바다에 있는 수와 거의 같은.",
+""
+]
+],
+"tr": "강과 호수에 있는 물고기의 수는 바다에 있는 수와 거의 같다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "add01|3-1",
+"title": "추가문제 POINT 3 부분/수량표현을 포함한 주어와 동사의 수 일치 (2): of 뒤 명사에 수 일치",
+"chunks": [
+[
+"Most of",
+"대부분의",
+"C"
+],
+[
+"the questions",
+"문제들은",
+"S"
+],
+[
+"on the college entrance exam",
+"대학 입학시험의",
+"M"
+],
+[
+"were",
+"~였다",
+"V"
+],
+[
+"quite difficult to answer.",
+"답하기가 상당히 어려운.",
+""
+]
+],
+"tr": "대부분의 그 대학 입학시험 문제들은 답하기가 상당히 어려웠다.",
+"ans": "were",
+"pts": null
+},
+{
+"key": "add01|3-2",
+"title": "추가문제 POINT 3 부분/수량표현을 포함한 주어와 동사의 수 일치 (2): of 뒤 명사에 수 일치",
+"chunks": [
+[
+"We took a short trip in June,",
+"우리는 6월에 짧은 여행을 했지만,",
+""
+],
+[
+"but the rest of",
+"그러나 나머지는",
+"C"
+],
+[
+"last summer",
+"지난여름의",
+"S"
+],
+[
+"was spent",
+"보냈다",
+"V"
+],
+[
+"at home.",
+"집에서.",
+""
+]
+],
+"tr": "우리는 6월에 짧은 여행을 했지만, 지난여름의 나머지는 집에서 보냈다.",
+"ans": "was",
+"pts": null
+},
+{
+"key": "add01|3-3",
+"title": "추가문제 POINT 3 부분/수량표현을 포함한 주어와 동사의 수 일치 (2): of 뒤 명사에 수 일치",
+"chunks": [
+[
+"Only some of",
+"몇몇만",
+"C"
+],
+[
+"the rooms",
+"방들에",
+"S"
+],
+[
+"in this hotel",
+"이 호텔의",
+"M"
+],
+[
+"come",
+"딸려 있다",
+"V"
+],
+[
+"with balconies.",
+"발코니가.",
+""
+]
+],
+"tr": "이 호텔의 몇몇 방들에만 발코니가 딸려 있다.",
+"ans": "come",
+"pts": null
+},
+{
+"key": "add01|3-4",
+"title": "추가문제 POINT 3 부분/수량표현을 포함한 주어와 동사의 수 일치 (2): of 뒤 명사에 수 일치",
+"chunks": [
+[
+"Half of",
+"절반이",
+"C"
+],
+[
+"the homes",
+"주택 중",
+"S"
+],
+[
+"in our neighborhood",
+"우리 지역의",
+"M"
+],
+[
+"use",
+"사용한다",
+"V"
+],
+[
+"solar power to make electricity.",
+"전기를 만들기 위해 태양열 발전을.",
+""
+]
+],
+"tr": "우리 지역의 주택 중 절반이 전기를 만들기 위해 태양열 발전을 사용한다.",
+"ans": "use",
+"pts": null
+},
+{
+"key": "add01|3-5",
+"title": "추가문제 POINT 3 부분/수량표현을 포함한 주어와 동사의 수 일치 (2): of 뒤 명사에 수 일치",
+"chunks": [
+[
+"Around 40 to 60 percent of",
+"약 40~60%는",
+"C"
+],
+[
+"soil",
+"토양의",
+"S"
+],
+[
+"on earth",
+"지구에서",
+"M"
+],
+[
+"consists",
+"이루어져 있다",
+"V"
+],
+[
+"of water and air.",
+"물과 공기로.",
+""
+]
+],
+"tr": "지구에서 토양의 약 40~60%는 물과 공기로 이루어져 있다.",
+"ans": "consists",
+"pts": null
+},
+{
+"key": "add01|4-1",
+"title": "추가문제 POINT 4 동명사구/ 명사절 주어와 동사의 수 일치",
+"chunks": [
+[
+"Eating fried food and sweet snacks",
+"튀긴 음식과 달콤한 간식들을 먹는 것은",
+"S"
+],
+[
+"is",
+"~이다",
+"V"
+],
+[
+"a fast way to gain lots of weight.",
+"살을 많이 찌우는 빠른 방법.",
+""
+]
+],
+"tr": "튀긴 음식과 달콤한 간식들을 먹는 것은 살을 많이 찌우는 빠른 방법이다.",
+"ans": "is",
+"pts": null
+},
+{
+"key": "add01|4-2",
+"title": "추가문제 POINT 4 동명사구/ 명사절 주어와 동사의 수 일치",
+"chunks": [
+[
+"Usually,",
+"보통,",
+""
+],
+[
+"emptying your mind of thoughts",
+"당신의 머리에서 생각들을 비우는 것은",
+"S"
+],
+[
+"reduces",
+"줄인다",
+"V"
+],
+[
+"feelings of stress and anxiety.",
+"스트레스와 불안의 감정을.",
+""
+]
+],
+"tr": "보통, 당신의 머리에서 생각들을 비우는 것은 스트레스와 불안의 감정을 줄인다.",
+"ans": "reduces",
+"pts": null
+},
+{
+"key": "add01|4-3",
+"title": "추가문제 POINT 4 동명사구/ 명사절 주어와 동사의 수 일치",
+"chunks": [
+[
+"When couples get married today,",
+"오늘날 연인들이 결혼을 할 때,",
+""
+],
+[
+"both families",
+"양쪽 집안이",
+"S"
+],
+[
+"often share",
+"보통 분담한다",
+"V"
+],
+[
+"the cost of the wedding.",
+"결혼식 비용을.",
+""
+]
+],
+"tr": "오늘날 연인들이 결혼을 할 때, 보통 양쪽 집안이 결혼식 비용을 분담한다.",
+"ans": "share",
+"pts": null
+},
+{
+"key": "add01|4-4",
+"title": "추가문제 POINT 4 동명사구/ 명사절 주어와 동사의 수 일치",
+"chunks": [
+[
+"Sometimes,",
+"때때로,",
+""
+],
+[
+"what you watch on television",
+"당신이 텔레비전에서 보는 것은",
+"S"
+],
+[
+"helps",
+"돕는다",
+"V"
+],
+[
+"you become a smarter person.",
+"당신이 더 똑똑한 사람이 되도록.",
+""
+]
+],
+"tr": "때때로, 당신이 텔레비전에서 보는 것은 당신이 더 똑똑한 사람이 되도록 돕는다.",
+"ans": "helps",
+"pts": null
+},
+{
+"key": "add01|4-5",
+"title": "추가문제 POINT 4 동명사구/ 명사절 주어와 동사의 수 일치",
+"chunks": [
+[
+"According to the rules,",
+"규칙에 따르면,",
+""
+],
+[
+"the eight teams",
+"8개 팀이",
+"S"
+],
+[
+"with the most points",
+"가장 많은 점수를 얻은",
+"M"
+],
+[
+"move on",
+"나아간다",
+"V"
+],
+[
+"to the next round.",
+"다음 라운드로.",
+""
+]
+],
+"tr": "규칙에 따르면, 가장 많은 점수를 얻은 8개 팀이 다음 라운드로 나아간다.",
+"ans": "move",
+"pts": null
+},
+{
+"key": "add01|5-1",
+"title": "추가문제 POINT 5 주격 관계대명사절 동사와 선행사의 수 일치",
+"chunks": [
+[
+"We watched",
+"우리는 봤다",
+"S"
+],
+[
+"a movie",
+"영화를",
+"C"
+],
+[
+"about robots",
+"로봇에 대한",
+"M"
+],
+[
+"that has",
+"~이 있는",
+"V"
+],
+[
+"many famous actors in it.",
+"유명한 배우들이 많이 나오는.",
+""
+]
+],
+"tr": "우리는 유명한 배우들이 많이 나오는 로봇에 대한 영화를 봤다.",
+"ans": "has",
+"pts": null
+},
+{
+"key": "add01|5-2",
+"title": "추가문제 POINT 5 주격 관계대명사절 동사와 선행사의 수 일치",
+"chunks": [
+[
+"Insects,",
+"곤충들은,",
+"S"
+],
+[
+"which normally serve",
+"보통 역할을 하는",
+"V"
+],
+[
+"a useful purpose in nature,",
+"자연에서 유용한,",
+""
+],
+[
+"are in danger",
+"위기에 처해 있다",
+""
+],
+[
+"due to climate change.",
+"기후 변화 때문에.",
+""
+]
+],
+"tr": "보통 자연에서 유용한 역할을 하는 곤충들은 기후 변화 때문에 위기에 처해 있다.",
+"ans": "serve",
+"pts": null
+},
+{
+"key": "add01|5-3",
+"title": "추가문제 POINT 5 주격 관계대명사절 동사와 선행사의 수 일치",
+"chunks": [
+[
+"For the last 25 years,",
+"지난 25년 동안,",
+""
+],
+[
+"the woman",
+"그 여성은",
+"S"
+],
+[
+"who drives the school bus",
+"통학 버스를 운전한",
+"V"
+],
+[
+"has always made sure",
+"언제나 확인해 왔다",
+""
+],
+[
+"the students are safe.",
+"학생들이 안전한지.",
+""
+]
+],
+"tr": "지난 25년 동안, 통학 버스를 운전한 그 여성은 언제나 학생들이 안전한지 확인해 왔다.",
+"ans": "drives",
+"pts": null
+},
+{
+"key": "add01|5-4",
+"title": "추가문제 POINT 5 주격 관계대명사절 동사와 선행사의 수 일치",
+"chunks": [
+[
+"The book",
+"그 책은",
+"S"
+],
+[
+"contains",
+"담고 있다",
+""
+],
+[
+"stories",
+"이야기들을",
+"C"
+],
+[
+"that are written",
+"쓰인",
+"V"
+],
+[
+"for very young children.",
+"매우 어린아이들을 위해.",
+""
+]
+],
+"tr": "그 책은 매우 어린아이들을 위해 쓰인 이야기들을 담고 있다.",
+"ans": "are",
+"pts": null
+},
+{
+"key": "add01|5-5",
+"title": "추가문제 POINT 5 주격 관계대명사절 동사와 선행사의 수 일치",
+"chunks": [
+[
+"The road",
+"그 길은",
+"S"
+],
+[
+"to the mountains,",
+"산으로 향하는,",
+"M"
+],
+[
+"which passes",
+"지나는",
+"V"
+],
+[
+"several towns",
+"여러 마을을",
+""
+],
+[
+"was shut down",
+"폐쇄되었다",
+""
+],
+[
+"during the snowstorm.",
+"눈보라가 치는 동안.",
+""
+]
+],
+"tr": "여러 마을을 지나 산으로 향하는 그 길은 눈보라가 치는 동안 폐쇄되었다.",
+"ans": "passes",
+"pts": null
+},
+{
+"key": "add01|6-1",
+"title": "추가문제 POINT 6 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"There are",
+"~가 있다",
+"V"
+],
+[
+"a lot of buses",
+"많은 버스가",
+"S"
+],
+[
+"you can take",
+"네가 탈 수 있는",
+"M"
+],
+[
+"into the city from the suburbs.",
+"교외에서 도시로.",
+""
+]
+],
+"tr": "교외에서 도시로 네가 타고 들어갈 수 있는 많은 버스가 있다.",
+"ans": "are",
+"pts": null
+},
+{
+"key": "add01|6-2",
+"title": "추가문제 POINT 6 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"During important games,",
+"중요한 경기 동안,",
+""
+],
+[
+"rarely does",
+"좀처럼 하지 않는다",
+"V"
+],
+[
+"the athlete",
+"그 운동선수는",
+"S"
+],
+[
+"miss any of his shots.",
+"그의 슛을 하나도 놓치는 것을.",
+""
+]
+],
+"tr": "중요한 경기 동안, 그 운동선수는 어떤 슛도 거의 놓치지 않는다.",
+"ans": "does",
+"pts": null
+},
+{
+"key": "add01|6-3",
+"title": "추가문제 POINT 6 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"Near the coast of California",
+"캘리포니아 해안 근처에서",
+"C"
+],
+[
+"swim",
+"헤엄친다",
+"V"
+],
+[
+"many whales, sharks, and dolphins",
+"많은 고래, 상어, 돌고래들이",
+"S"
+],
+[
+"every year.",
+"매년.",
+""
+]
+],
+"tr": "캘리포니아 해안 근처에서 매년 많은 고래, 상어, 그리고 돌고래들이 헤엄친다.",
+"ans": "swim",
+"pts": null
+},
+{
+"key": "add01|6-4",
+"title": "추가문제 POINT 6 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"Never have",
+"결코 ~한 적이 없다",
+"V"
+],
+[
+"the people of the village",
+"마을 사람들은",
+"S"
+],
+[
+"entered the forest at night.",
+"밤에 그 숲에 들어간.",
+""
+]
+],
+"tr": "마을 사람들은 밤에 그 숲에 결코 들어간 적이 없다.",
+"ans": "have",
+"pts": null
+},
+{
+"key": "add01|6-5",
+"title": "추가문제 POINT 6 도치된 주어와 동사의 수 일치",
+"chunks": [
+[
+"On the driveway",
+"진입로에",
+"C"
+],
+[
+"was parked",
+"주차되어 있었다",
+"V"
+],
+[
+"a new red car,",
+"빨간색 새 자동차가",
+"S"
+],
+[
+"and it was a gift",
+"그리고 그것은 선물이었다",
+""
+],
+[
+"from Harrison to his son.",
+"해리슨이 그의 아들에게 준.",
+""
+]
+],
+"tr": "진입로에 빨간색 새 자동차가 주차되어 있었고, 그것은 Harrison이 그의 아들에게 준 선물이었다.",
+"ans": "was",
+"pts": null
+}
+]

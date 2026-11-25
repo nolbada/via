@@ -1,0 +1,2120 @@
+[
+{
+"key": "c03p1|예제",
+"title": "POINT 1 · 능동태 vs. 수동태",
+"chunks": [
+[
+"Very old trees can offer clues",
+"매우 오래된 나무들은 단서를 제공할 수 있다",
+""
+],
+[
+"about the climate before",
+"기후에 대해, ~ 전",
+""
+],
+[
+"data",
+"자료가",
+"S"
+],
+[
+"was recorded.",
+"기록되기.",
+"V"
+]
+],
+"tr": "매우 나이 든 나무들은 자료가 기록되기 전의 기후에 대한 단서를 제공할 수 있다.",
+"ans": "was recorded",
+"pts": null
+},
+{
+"key": "c03p1|1",
+"title": "POINT 1 · 능동태 vs. 수동태",
+"chunks": [
+[
+"The sun",
+"태양은",
+"S"
+],
+[
+"provides",
+"제공한다",
+"V"
+],
+[
+"light and warmth to the Earth.",
+"지구에 빛과 따뜻함을.",
+""
+]
+],
+"tr": "태양은 지구에 빛과 따뜻함을 제공한다.",
+"ans": "provides",
+"pts": null
+},
+{
+"key": "c03p1|2",
+"title": "POINT 1 · 능동태 vs. 수동태",
+"chunks": [
+[
+"The broken window",
+"깨진 창문은",
+"S"
+],
+[
+"will be replaced",
+"교체될 것이다",
+"V"
+],
+[
+"with a new one tomorrow.",
+"내일 새것으로.",
+""
+]
+],
+"tr": "깨진 창문은 내일 새것으로 교체될 것이다.",
+"ans": "be replaced",
+"pts": null
+},
+{
+"key": "c03p1|3",
+"title": "POINT 1 · 능동태 vs. 수동태",
+"chunks": [
+[
+"The trophy",
+"트로피가",
+"S"
+],
+[
+"was being awarded to Zoe",
+"조이에게 수여되고 있었다",
+"V"
+],
+[
+"when I arrived at the ceremony.",
+"내가 그 행사에 도착했을 때.",
+"C"
+]
+],
+"tr": "내가 그 행사에 도착했을 때 Zoe에게 트로피가 수여되고 있었다.",
+"ans": "being awarded",
+"pts": null
+},
+{
+"key": "c03p1|4",
+"title": "POINT 1 · 능동태 vs. 수동태",
+"chunks": [
+[
+"The workers",
+"노동자들이",
+"S"
+],
+[
+"have been repairing the building",
+"그 건물을 수리해 오고 있다",
+"V"
+],
+[
+"since last month.",
+"지난달 이래로.",
+"C"
+]
+],
+"tr": "노동자들이 지난달 이래로 그 건물을 수리해 오고 있다.",
+"ans": "repairing",
+"pts": null
+},
+{
+"key": "c03p1|5",
+"title": "POINT 1 · 능동태 vs. 수동태",
+"chunks": [
+[
+"In the classical fairy tale,",
+"고전적인 동화에서는,",
+""
+],
+[
+"solutions to the conflict",
+"갈등에 대한 해결책이",
+"S"
+],
+[
+"are found",
+"찾아진다",
+"V"
+],
+[
+"too easily.",
+"너무 쉽게.",
+""
+]
+],
+"tr": "고전적인 동화에서는, 갈등에 대한 해결책이 너무 쉽게 찾아진다.",
+"ans": "found",
+"pts": null
+},
+{
+"key": "c03p1|6",
+"title": "POINT 1 · 능동태 vs. 수동태",
+"chunks": [
+[
+"The earthquake",
+"지진이",
+"S"
+],
+[
+"caused",
+"일으켰다",
+"V"
+],
+[
+"a lot of damage",
+"많은 피해를",
+""
+],
+[
+"throughout the city last week.",
+"지난주에 도시 전체에.",
+""
+]
+],
+"tr": "지난주에 지진이 도시 전체에 많은 피해를 일으켰다.",
+"ans": "caused",
+"pts": null
+},
+{
+"key": "c03p1|7",
+"title": "POINT 1 · 능동태 vs. 수동태",
+"chunks": [
+[
+"The church",
+"그 교회는",
+"S"
+],
+[
+"has been maintained",
+"관리되고 있다",
+"V"
+],
+[
+"by a team of experts",
+"전문가들의 팀에 의해",
+""
+],
+[
+"since it was reopened to the public.",
+"대중에 다시 공개된 이래로.",
+"C"
+]
+],
+"tr": "그 교회는 대중에 다시 공개된 이래로 전문가들의 팀에 의해 관리되고 있다.",
+"ans": "has been maintained",
+"pts": null
+},
+{
+"key": "c03p1|8",
+"title": "POINT 1 · 능동태 vs. 수동태",
+"chunks": [
+[
+"Many people in the playground",
+"운동장에 있는 많은 사람들이",
+"S"
+],
+[
+"were happily enjoying",
+"행복하게 즐기고 있었다",
+"V"
+],
+[
+"the sunny weather.",
+"화창한 날씨를.",
+""
+]
+],
+"tr": "운동장에 있는 많은 사람들이 화창한 날씨를 행복하게 즐기고 있었다.",
+"ans": "enjoying",
+"pts": null
+},
+{
+"key": "c03p2|예제",
+"title": "POINT 2 · 수동태로 쓸 수 없는 자동사",
+"chunks": [
+[
+"From the looks of him,",
+"그의 외모로 보기에,",
+""
+],
+[
+"the man",
+"그 남자는",
+"S"
+],
+[
+"seemed",
+"~로 보였다",
+"V"
+],
+[
+"to have no home and no money.",
+"집도 없고 돈도 없는 것으로.",
+""
+]
+],
+"tr": "그의 외모로 보기에, 그 남자는 집도 없고 돈도 없는 것처럼 보였다.",
+"ans": "seemed",
+"pts": null
+},
+{
+"key": "c03p2|1",
+"title": "POINT 2 · 수동태로 쓸 수 없는 자동사",
+"chunks": [
+[
+"The meeting",
+"회의는",
+"S"
+],
+[
+"will occur",
+"열릴 것이다",
+"V"
+],
+[
+"in the conference room on the second floor.",
+"2층에 있는 회의실에서.",
+""
+]
+],
+"tr": "회의는 2층에 있는 회의실에서 열릴 것이다.",
+"ans": "will occur",
+"pts": null
+},
+{
+"key": "c03p2|2",
+"title": "POINT 2 · 수동태로 쓸 수 없는 자동사",
+"chunks": [
+[
+"The flowers in the garden",
+"정원에 있는 꽃들은",
+"S"
+],
+[
+"are watered",
+"물을 받는다",
+"V"
+],
+[
+"every morning at around 7 a.m.",
+"매일 아침 7시쯤에.",
+""
+]
+],
+"tr": "정원의 꽃에 매일 아침 7시쯤에 물이 뿌려진다.",
+"ans": "are watered",
+"pts": null
+},
+{
+"key": "c03p2|3",
+"title": "POINT 2 · 수동태로 쓸 수 없는 자동사",
+"chunks": [
+[
+"When learning how to speak,",
+"말하는 법을 배울 때,",
+""
+],
+[
+"babies",
+"아기들은",
+"S"
+],
+[
+"appear",
+"~로 보인다",
+"V"
+],
+[
+"to pay attention to language patterns.",
+"언어 패턴에 주의를 기울이는 것으로.",
+""
+]
+],
+"tr": "말하는 법을 배울 때, 아기들은 언어 패턴에 주의를 기울이는 것으로 보인다.",
+"ans": "appear",
+"pts": null
+},
+{
+"key": "c03p2|4",
+"title": "POINT 2 · 수동태로 쓸 수 없는 자동사",
+"chunks": [
+[
+"The secret of this cookie flavor",
+"이 쿠키 맛의 비밀은",
+"S"
+],
+[
+"was passed to Jenny",
+"제니에게 전해졌다",
+"V"
+],
+[
+"from her grandmother.",
+"할머니로부터.",
+""
+]
+],
+"tr": "이 쿠키 맛의 비밀은 할머니로부터 Jenny에게 전해졌다.",
+"ans": "was passed",
+"pts": null
+},
+{
+"key": "c03p2|5",
+"title": "POINT 2 · 수동태로 쓸 수 없는 자동사",
+"chunks": [
+[
+"The right to freedom",
+"자유에 대한 권리는",
+"S"
+],
+[
+"belongs",
+"속한다",
+"V"
+],
+[
+"to every man, woman, and child in the world.",
+"세계의 모든 남성, 여성, 그리고 어린이에게.",
+""
+]
+],
+"tr": "자유에 대한 권리는 세계의 모든 남성, 여성, 그리고 어린이의 것이다.",
+"ans": "belongs",
+"pts": null
+},
+{
+"key": "c03p3|예제",
+"title": "POINT 3 · 주격 관계대명사절 동사의 능동·수동",
+"chunks": [
+[
+"The Warblers Choir has been invited",
+"워블러스 합창단은 초청받아 왔다",
+""
+],
+[
+"to the international competition,",
+"국제적인 대회에",
+"S"
+],
+[
+"which is held in London every year.",
+"매년 런던에서 열리는.",
+"V"
+]
+],
+"tr": "Warblers 합창단은 매년 런던에서 개최하는 국제적인 대회에 초청받아 왔다.",
+"ans": "is held",
+"pts": null
+},
+{
+"key": "c03p3|1",
+"title": "POINT 3 · 주격 관계대명사절 동사의 능동·수동",
+"chunks": [
+[
+"I visited",
+"나는 방문했다",
+""
+],
+[
+"the museum,",
+"박물관을",
+"S"
+],
+[
+"which was filled with interesting objects from ancient Egypt.",
+"고대 이집트의 흥미로운 물건들로 가득 채워진.",
+"V"
+]
+],
+"tr": "나는 고대 이집트의 흥미로운 물건들로 가득 채워진 박물관을 방문했다.",
+"ans": "was filled",
+"pts": null
+},
+{
+"key": "c03p3|2",
+"title": "POINT 3 · 주격 관계대명사절 동사의 능동·수동",
+"chunks": [
+[
+"A smartphone is",
+"스마트폰은 ~이다",
+""
+],
+[
+"a device",
+"장치",
+"S"
+],
+[
+"that allows",
+"허락하는",
+"V"
+],
+[
+"you to make calls and access the Internet.",
+"당신이 전화를 걸고 인터넷에 접속하도록.",
+""
+]
+],
+"tr": "스마트폰은 당신이 전화를 걸고 인터넷에 접속하게 허락하는 장치이다.",
+"ans": "allows",
+"pts": null
+},
+{
+"key": "c03p3|3",
+"title": "POINT 3 · 주격 관계대명사절 동사의 능동·수동",
+"chunks": [
+[
+"The umbrella has",
+"그 우산에는 있다",
+""
+],
+[
+"a button,",
+"버튼이",
+"S"
+],
+[
+"which can be pressed",
+"눌러질 수 있는",
+"V"
+],
+[
+"to automatically open or close it.",
+"자동으로 펴거나 닫기 위해.",
+""
+]
+],
+"tr": "그 우산에는 자동으로 펴거나 닫기 위해 눌러질 수 있는 버튼이 있다.",
+"ans": "be pressed",
+"pts": null
+},
+{
+"key": "c03p3|4",
+"title": "POINT 3 · 주격 관계대명사절 동사의 능동·수동",
+"chunks": [
+[
+"The children",
+"아이들은",
+"S"
+],
+[
+"who were playing baseball in the park",
+"공원에서 야구를 하고 있던",
+"V"
+],
+[
+"invited Tim to join their game.",
+"팀을 그들의 게임에 참여하도록 초대했다.",
+""
+]
+],
+"tr": "공원에서 야구를 하고 있던 아이들은 Tim을 그들의 게임에 참여하도록 초대했다.",
+"ans": "playing",
+"pts": null
+},
+{
+"key": "c03p3|5",
+"title": "POINT 3 · 주격 관계대명사절 동사의 능동·수동",
+"chunks": [
+[
+"An Italian scientist found",
+"이탈리아의 한 과학자가 발견했다",
+""
+],
+[
+"a star",
+"별을",
+"S"
+],
+[
+"that has never been seen by anyone before.",
+"누구에게도 이전에 보인 적이 없는.",
+"V"
+]
+],
+"tr": "이탈리아의 한 과학자가 이전에 누구에게도 보인 적이 없는 별을 발견했다.",
+"ans": "been seen",
+"pts": null
+},
+{
+"key": "c03q1|1",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The message",
+"메시지는",
+"S"
+],
+[
+"on the whiteboard",
+"화이트보드에 있는",
+"M"
+],
+[
+"is erased",
+"지워진다",
+"V"
+],
+[
+"at the end of every day.",
+"매일 마지막에.",
+"C"
+]
+],
+"tr": "화이트보드에 있는 메시지는 매일 마지막에 지워진다.",
+"ans": "is erased",
+"pts": null
+},
+{
+"key": "c03q1|2",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The problems",
+"문제는",
+"S"
+],
+[
+"of the car",
+"그 차의",
+"M"
+],
+[
+"appeared more complex",
+"더 복잡해 보였다",
+"V"
+],
+[
+"than the engineers thought.",
+"기술자들이 생각했던 것보다.",
+""
+]
+],
+"tr": "그 차의 문제는 기술자들이 생각했던 것보다 더 복잡해 보였다.",
+"ans": "appeared",
+"pts": null
+},
+{
+"key": "c03q1|3",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"For the winter months,",
+"겨울의 여러 달들을 위해,",
+""
+],
+[
+"the farmers",
+"농부들은",
+"S"
+],
+[
+"had harvested potatoes",
+"감자를 수확했다",
+"V"
+],
+[
+"and stored them.",
+"그리고 그것들을 저장했다.",
+""
+]
+],
+"tr": "겨울의 여러 달들을 위해, 농부들은 감자를 수확해서 저장했다.",
+"ans": "harvested",
+"pts": null
+},
+{
+"key": "c03q1|4",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The clothes",
+"그 옷들은",
+"S"
+],
+[
+"in the store,",
+"상점에 있는",
+"M"
+],
+[
+"which are made of soft fabric,",
+"부드러운 천으로 만들어진,",
+"V"
+],
+[
+"are comfortable to wear.",
+"입기에 편안하다.",
+""
+]
+],
+"tr": "부드러운 천으로 만들어진 그 상점의 옷들은 입기에 편안하다.",
+"ans": "are made",
+"pts": null
+},
+{
+"key": "c03q1|5",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Caution signs",
+"주의 표지판은",
+"S"
+],
+[
+"must be placed",
+"놓여야 한다",
+"V"
+],
+[
+"in dangerous areas",
+"위험한 지역에",
+""
+],
+[
+"to prevent accidents.",
+"사고를 예방하기 위해.",
+""
+]
+],
+"tr": "사고를 예방하기 위해 위험한 지역에는 주의 표지판이 놓여야 한다.",
+"ans": "be placed",
+"pts": null
+},
+{
+"key": "c03q1|6",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Sarah enjoyed exploring",
+"사라는 탐험하는 것을 즐겼다",
+""
+],
+[
+"the old books",
+"오래된 책들을",
+"S"
+],
+[
+"that lay",
+"놓여 있는",
+"V"
+],
+[
+"on dusty shelves in used bookstores.",
+"중고 책방의 먼지투성이 선반 위에.",
+""
+]
+],
+"tr": "Sarah는 중고 책방의 먼지투성이 선반 위에 놓여 있는 오래된 책들을 탐험하는 것을 즐겼다.",
+"ans": "lay",
+"pts": null
+},
+{
+"key": "c03q1|7",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The printer",
+"프린터가",
+"S"
+],
+[
+"in our office",
+"우리 사무실에 있는",
+"M"
+],
+[
+"is producing strange noises again.",
+"또 이상한 소음을 내고 있다.",
+"V"
+]
+],
+"tr": "우리 사무실에 있는 프린터가 또 이상한 소음을 내고 있다.",
+"ans": "producing",
+"pts": null
+},
+{
+"key": "c03q1|8",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The invitations",
+"초대장이",
+"S"
+],
+[
+"for the art exhibit",
+"미술 전시회의",
+"M"
+],
+[
+"have been sent out to all the guests.",
+"모든 손님들에게 보내졌다.",
+"V"
+]
+],
+"tr": "미술 전시회 초대장이 모든 손님들에게 보내졌다.",
+"ans": "sent",
+"pts": null
+},
+{
+"key": "c03q1|9",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Some of the worst performances",
+"최악의 공연들 중 일부는",
+"S"
+],
+[
+"happen",
+"일어난다",
+"V"
+],
+[
+"when the performers lose focus.",
+"공연자들이 집중력을 잃을 때.",
+""
+]
+],
+"tr": "최악의 공연들 중 일부는 공연자들이 집중력을 잃을 때 일어난다.",
+"ans": "happen",
+"pts": null
+},
+{
+"key": "c03q1|10",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"The magician",
+"그 마술사는",
+"S"
+],
+[
+"will show",
+"보여 줄 것이다",
+""
+],
+[
+"a trick",
+"마술을",
+"S"
+],
+[
+"which has never been tried",
+"결코 시도된 적이 없는",
+"V"
+],
+[
+"in the history of magic.",
+"마술의 역사에서.",
+""
+]
+],
+"tr": "그 마술사는 마술의 역사에서 결코 시도된 적이 없는 마술을 보여 줄 것이다.",
+"ans": "been tried",
+"pts": null
+},
+{
+"key": "c03q1|11",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Yesterday,",
+"어제,",
+"C"
+],
+[
+"a lifeguard",
+"한 구조대원이",
+"S"
+],
+[
+"saved three swimmers",
+"세 명의 수영객들을 구했다",
+"V"
+],
+[
+"by pulling them out of the deep water.",
+"깊은 물 밖으로 그들을 끌어냄으로써.",
+""
+]
+],
+"tr": "어제, 한 구조대원이 깊은 물 밖으로 그들을 끌어냄으로써 세 명의 수영객들을 구했다.",
+"ans": "saved",
+"pts": null
+},
+{
+"key": "c03q1|12",
+"title": "문장 연습 네모 · 둘 중 어법에 맞는 것 고르기",
+"chunks": [
+[
+"Baby chickens can eat by themselves",
+"새끼 닭은 스스로 먹을 수 있다",
+""
+],
+[
+"earlier than",
+"더 일찍",
+""
+],
+[
+"crows,",
+"까마귀들보다,",
+"S"
+],
+[
+"which receive",
+"받는",
+"V"
+],
+[
+"food from a parent bird for a month.",
+"먹이를 부모 새로부터 한 달 동안.",
+""
+]
+],
+"tr": "새끼 닭은 부모 새로부터 한 달 동안 먹이를 받는 까마귀보다 더 일찍 스스로 먹을 수 있다.",
+"ans": "receive",
+"pts": null
+},
+{
+"key": "c03q2|1",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"The team",
+"그 팀은",
+"S"
+],
+[
+"scored a goal in the final minutes of the game",
+"경기 마지막 몇 분에 한 골을 득점했다",
+"V"
+],
+[
+"and won the championship.",
+"그리고 우승을 차지했다.",
+""
+]
+],
+"tr": "그 팀은 경기 마지막 몇 분에 한 골을 득점했고 우승을 차지했다.",
+"ans": "scored",
+"pts": null
+},
+{
+"key": "c03q2|2",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"We recommend",
+"우리는 추천한다",
+""
+],
+[
+"this new television model,",
+"이 새로운 텔레비전 모델을",
+"S"
+],
+[
+"which can be controlled",
+"조종될 수 있는",
+"V"
+],
+[
+"through a smartphone app.",
+"스마트폰 앱으로.",
+""
+]
+],
+"tr": "우리는 스마트폰 앱으로 조종될 수 있는 이 새로운 텔레비전 모델을 추천한다.",
+"ans": "be controlled",
+"pts": null
+},
+{
+"key": "c03q2|3",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"The biologist Peter Medawar said that",
+"생물학자 피터 메더워는 말했다",
+""
+],
+[
+"most of his time",
+"그의 시간 대부분이",
+"S"
+],
+[
+"was wasted",
+"낭비되었다",
+"V"
+],
+[
+"because his research didn’t get many results.",
+"그의 연구가 많은 결과를 얻지 못했기 때문에.",
+""
+]
+],
+"tr": "생물학자 Peter Medawar는 그의 연구가 많은 결과를 얻지 못했기 때문에 그의 시간 대부분이 낭비되었다고 말했다.",
+"ans": "was wasted",
+"pts": null
+},
+{
+"key": "c03q2|4",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"Misunderstandings",
+"오해는",
+"S"
+],
+[
+"can occur",
+"생길 수 있다",
+"V"
+],
+[
+"when there is a lack of clear communication.",
+"명확한 의사소통의 결핍이 있을 때.",
+""
+]
+],
+"tr": "명확한 의사소통의 결핍이 있을 때 오해가 생길 수 있다.",
+"ans": "occur",
+"pts": null
+},
+{
+"key": "c03q2|5",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"The newly opened park",
+"새로 연 공원은",
+"S"
+],
+[
+"has been decorated with colorful flowers",
+"다채로운 꽃들로 장식되었다",
+"V"
+],
+[
+"for the spring festival this week.",
+"이번 주의 봄 축제를 위해.",
+""
+]
+],
+"tr": "새로 연 공원은 이번 주의 봄 축제를 위해 다채로운 꽃들로 장식되었다.",
+"ans": "decorated",
+"pts": null
+},
+{
+"key": "c03q2|6",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"The woman",
+"그 여성이",
+"S"
+],
+[
+"who was cutting the grass in her backyard",
+"뒷마당에서 잔디를 자르고 있던",
+"V"
+],
+[
+"waved at me",
+"나에게 손을 흔들었다",
+""
+],
+[
+"as I walked by.",
+"내가 지나갈 때.",
+""
+]
+],
+"tr": "뒷마당에서 잔디를 자르고 있던 여성이 내가 지나갈 때 나에게 손을 흔들었다.",
+"ans": "was cutting",
+"pts": null
+},
+{
+"key": "c03q2|7",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"Mr. Turner",
+"터너 씨는",
+"S"
+],
+[
+"has always encouraged his students",
+"그의 학생들을 항상 격려해 왔다",
+"V"
+],
+[
+"to follow their dreams.",
+"그들의 꿈을 좇도록.",
+""
+]
+],
+"tr": "Turner씨는 그의 학생들이 그들의 꿈을 좇도록 항상 격려해 왔다.",
+"ans": "encouraged",
+"pts": null
+},
+{
+"key": "c03q2|8",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"The missing keys",
+"잃어버린 열쇠는",
+"S"
+],
+[
+"might be hidden",
+"숨겨져 있을지도 모른다",
+"V"
+],
+[
+"under the sofa in the living room.",
+"거실의 소파 밑에.",
+""
+]
+],
+"tr": "잃어버린 열쇠는 거실의 소파 밑에 숨겨져 있을지도 모른다.",
+"ans": "be hidden",
+"pts": null
+},
+{
+"key": "c03q2|9",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"Cleaning the whole house",
+"집 전체를 청소하는 것은",
+"S"
+],
+[
+"seems hard and time-consuming",
+"힘들고 시간이 많이 걸리는 것처럼 보인다",
+"V"
+],
+[
+"to the children.",
+"아이들에게.",
+""
+]
+],
+"tr": "집 전체를 청소하는 것은 아이들에게 힘들고 시간이 많이 걸리는 것처럼 보인다.",
+"ans": "seems",
+"pts": null
+},
+{
+"key": "c03q2|10",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"The books",
+"그 책들은",
+"S"
+],
+[
+"that were borrowed from the library",
+"도서관에서 대여된",
+"V"
+],
+[
+"were all popular bestsellers.",
+"모두 인기 있는 베스트셀러였다.",
+""
+]
+],
+"tr": "도서관에서 대여된 그 책들은 모두 인기 있는 베스트셀러였다.",
+"ans": "were borrowed",
+"pts": null
+},
+{
+"key": "c03q2|11",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"My sister and I",
+"내 여동생과 나는",
+"S"
+],
+[
+"have been sharing a single large bedroom",
+"하나의 큰 침실을 공유해 오고 있다",
+"V"
+],
+[
+"since we were young.",
+"우리가 어렸을 때부터.",
+""
+]
+],
+"tr": "내 여동생과 나는 우리가 어렸을 때 이래로 하나의 큰 침실을 공유해 오고 있다.",
+"ans": "sharing",
+"pts": null
+},
+{
+"key": "c03q2|12",
+"title": "문장 연습 밑줄 · 밑줄 친 부분 어법 고치기",
+"chunks": [
+[
+"Gustave Eiffel designed",
+"구스타브 에펠이 디자인했다",
+""
+],
+[
+"the famous Eiffel Tower,",
+"유명한 에펠탑을",
+"S"
+],
+[
+"which became a landmark in Paris, France.",
+"프랑스 파리의 명소가 된.",
+"V"
+]
+],
+"tr": "구스타브 에펠이 프랑스 파리의 명소가 된 유명한 에펠탑을 디자인했다.",
+"ans": "became",
+"pts": null
+},
+{
+"key": "c03s1|1-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"People",
+"사람들은",
+"S"
+],
+[
+"who are unable to sleep well",
+"잠을 잘 잘 수 없는",
+"M"
+],
+[
+"may be (A) suffering",
+"겪고 있을지도 모른다",
+"V"
+],
+[
+"from “insomnia.”",
+"“불면증”을.",
+""
+]
+],
+"tr": "잠을 잘 잘 수 없는 사람들은 “불면증”을 겪고 있을지도 모른다.",
+"ans": "suffering",
+"pts": [
+"3.1"
+]
+},
+{
+"key": "c03s1|1-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"This problem",
+"이 문제는",
+"S"
+],
+[
+"can often (B) be observed",
+"종종 관찰될 수 있다",
+"V"
+],
+[
+"in older people",
+"나이 든 사람들에게서",
+""
+],
+[
+"or in those under a lot of stress.",
+"혹은 스트레스가 많은 사람들에게서.",
+""
+]
+],
+"tr": "이 문제는 나이 든 사람들이나 스트레스가 많은 사람들에게서 종종 관찰될 수 있다.",
+"ans": "be observed",
+"pts": [
+"3.1"
+]
+},
+{
+"key": "c03s1|2-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Paul and Mario",
+"폴과 마리오는",
+"S"
+],
+[
+"have been (A) raised",
+"길러져 왔다",
+"V"
+],
+[
+"in the same neighborhood",
+"같은 동네에서",
+""
+],
+[
+"for years.",
+"수년 동안.",
+""
+]
+],
+"tr": "Paul과 Mario는 수년 동안 같은 동네에서 길러졌다.",
+"ans": "raised",
+"pts": [
+"3.1"
+]
+},
+{
+"key": "c03s1|2-2",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Even their families",
+"심지어 그들의 가족들도",
+"S"
+],
+[
+"are very close",
+"매우 가깝다",
+"V"
+],
+[
+"to each other.",
+"서로.",
+""
+]
+],
+"tr": "심지어 그들의 가족들도 서로 매우 가깝다.",
+"ans": "are",
+"pts": null
+},
+{
+"key": "c03s1|2-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"This is why",
+"이것이 ~하는 이유이다",
+""
+],
+[
+"their friendship",
+"그들의 우정이",
+"S"
+],
+[
+"(B) remains strong and unbreakable.",
+"강하고 깨지지 않은 채 남아 있다.",
+"V"
+]
+],
+"tr": "이것이 그들의 우정이 강하고 깨지지 않은 채 남아 있는 이유이다.",
+"ans": "remains",
+"pts": [
+"3.2"
+]
+},
+{
+"key": "c03s1|3-(A)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Most of the students",
+"대부분의 학생들이",
+"S"
+],
+[
+"in class",
+"수업에 있는",
+"M"
+],
+[
+"are (A) experiencing difficulty",
+"어려움을 겪고 있다",
+"V"
+],
+[
+"because they can’t find old newspapers",
+"오래된 신문을 찾을 수 없기 때문에",
+""
+],
+[
+"for their reports online.",
+"그들의 보고서를 위해 온라인에서.",
+""
+]
+],
+"tr": "수업에 있는 대부분의 학생들이 보고서에 필요한 오래된 신문을 온라인에서 찾을 수 없기 때문에 어려움을 겪고 있습니다.",
+"ans": "experiencing",
+"pts": [
+"3.1"
+]
+},
+{
+"key": "c03s1|3-(B)",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"It is therefore my humble request",
+"따라서 저의 겸손한 요청은 ~이다",
+""
+],
+[
+"that you allow us to use",
+"당신이 저희가 사용하도록 허락해 주는 것",
+""
+],
+[
+"old newspapers",
+"오래된 신문을",
+"S"
+],
+[
+"that have (B) been stored",
+"보관되어 온",
+"V"
+],
+[
+"in the school library.",
+"학교 도서관에.",
+""
+]
+],
+"tr": "따라서 학교 도서관에 보관되어 온 오래된 신문을 저희가 사용할 수 있게 해달라는 것이 저의 겸손한 요청입니다.",
+"ans": "been stored",
+"pts": [
+"3.3"
+]
+},
+{
+"key": "c03s1|4-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Jeremy’s car had a minor accident this morning,",
+"제레미의 차가 오늘 아침 작은 사고를 당했다,",
+""
+],
+[
+"so it",
+"그래서 그것은",
+"S"
+],
+[
+"should be repaired.",
+"수리되어야 한다.",
+"V"
+]
+],
+"tr": "오늘 아침에 Jeremy의 차가 작은 사고를 당해서, 그것은 수리되어야 한다.",
+"ans": "be repaired",
+"pts": [
+"3.1"
+]
+},
+{
+"key": "c03s1|4-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Fortunately, a mechanic,",
+"다행히도, 정비사가",
+"S"
+],
+[
+"who has specialized",
+"전문으로 해 온",
+"V"
+],
+[
+"in repairing electric cars for more than a decade,",
+"10년 넘게 전기 자동차 수리를",
+""
+],
+[
+"will handle it.",
+"그것을 처리할 것이다.",
+""
+]
+],
+"tr": "다행히도, 10년 이상 동안 전기 자동차 수리를 전문으로 해온 정비사가 그것을 처리할 것이다.",
+"ans": "specialized",
+"pts": [
+"3.2",
+"3.3"
+]
+},
+{
+"key": "c03s1|5-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Even though there are errors of fact,",
+"비록 사실의 오류가 있을지라도,",
+""
+],
+[
+"rude comments, obvious lies in it,",
+"무례한 의견과 명백한 거짓말이 그 안에,",
+""
+],
+[
+"if an email",
+"만약 이메일이",
+"S"
+],
+[
+"has not been sent,",
+"보내지지 않았다면,",
+"V"
+],
+[
+"it doesn’t matter.",
+"그것은 문제가 되지 않는다.",
+""
+]
+],
+"tr": "비록 사실의 오류, 무례한 의견, 명백한 거짓말이 그 안에 있을지라도, 만약 이메일이 보내지지 않았다면, 그것은 문제가 되지 않는다.",
+"ans": "been sent",
+"pts": [
+"3.1"
+]
+},
+{
+"key": "c03s1|5-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Nothing bad",
+"어떤 나쁜 일도",
+"S"
+],
+[
+"can happen",
+"일어날 수 없다",
+"V"
+],
+[
+"if you haven’t hit the Send key,",
+"만약 당신이 보내기 키를 누르지 않았다면,",
+""
+],
+[
+"and you still have time to fix it.",
+"당신은 여전히 그것을 고칠 시간이 있다.",
+""
+]
+],
+"tr": "만약 당신이 보내기 키를 누르지 않았다면, 어떤 나쁜 일도 일어날 수 없고, 당신은 여전히 그것을 고칠 시간이 있다.",
+"ans": "happen",
+"pts": [
+"3.2"
+]
+},
+{
+"key": "c03s1|6-①",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"A high school",
+"한 고등학교는",
+"S"
+],
+[
+"in Boulder, Colorado,",
+"콜로라도 볼더에 있는",
+"M"
+],
+[
+"is currently experimenting",
+"현재 실험하고 있다",
+"V"
+],
+[
+"with different ways of presenting historical material",
+"역사적 자료를 제시하는 다양한 방법을",
+""
+],
+[
+"in class.",
+"수업에서.",
+""
+]
+],
+"tr": "현재 콜로라도 Boulder의 한 고등학교는 수업에서 역사적 자료를 제시하는 다양한 방법을 실험하고 있다.",
+"ans": "experimenting",
+"pts": [
+"3.1"
+]
+},
+{
+"key": "c03s1|6-②",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"In the storytelling method, students first hear",
+"스토리텔링 방식에서, 학생들은 먼저 듣는다",
+""
+],
+[
+"a dramatic story,",
+"극적인 이야기를",
+"S"
+],
+[
+"which is followed",
+"뒤이어지는",
+"V"
+],
+[
+"by a group discussion.",
+"그룹 토론에 의해.",
+""
+]
+],
+"tr": "스토리텔링 방식에서, 학생들은 그룹 토론으로 이어지는 극적인 이야기를 먼저 듣는다.",
+"ans": "is followed",
+"pts": [
+"3.3"
+]
+},
+{
+"key": "c03s1|6-③",
+"title": "짧은 지문 연습 제대로 · 각 네모 안에서 어법에 맞는 표현 고르기 · 틀린 것 찾기",
+"chunks": [
+[
+"Then, academic materials",
+"그런 다음, 학술 자료가",
+"S"
+],
+[
+"are given",
+"주어진다",
+"V"
+],
+[
+"to the students",
+"학생들에게",
+""
+],
+[
+"as reading assignments.",
+"읽기 과제로.",
+""
+]
+],
+"tr": "그리고 나서, 읽기 과제로 학생들에게 학술 자료가 주어진다.",
+"ans": "are given",
+"pts": [
+"3.1"
+]
+},
+{
+"key": "add03|1-1",
+"title": "추가문제 POINT 1 능동태 vs. 수동태",
+"chunks": [
+[
+"Historians",
+"역사학자들은",
+"S"
+],
+[
+"learned to read ancient Egyptian",
+"고대 이집트어를 읽는 법을 알게 되었다",
+""
+],
+[
+"after a stone",
+"~한 후에 돌이",
+"C"
+],
+[
+"with writing on it",
+"글이 적힌",
+"M"
+],
+[
+"was discovered",
+"발견되었다",
+"V"
+],
+[
+"in 1799.",
+"1799년에.",
+""
+]
+],
+"tr": "1799년에 표면에 글이 적힌 돌이 발견된 후에 역사학자들은 고대 이집트어를 읽는 법을 알게 되었다.",
+"ans": "was discovered",
+"pts": null
+},
+{
+"key": "add03|1-2",
+"title": "추가문제 POINT 1 능동태 vs. 수동태",
+"chunks": [
+[
+"Workers",
+"노동자들이",
+"S"
+],
+[
+"are slowly removing",
+"천천히 치우고 있다",
+"V"
+],
+[
+"the tree",
+"나무를",
+""
+],
+[
+"that fell in the road.",
+"도로에 쓰러진.",
+"M"
+]
+],
+"tr": "노동자들이 도로에 쓰러진 나무를 천천히 치우고 있다.",
+"ans": "removing",
+"pts": null
+},
+{
+"key": "add03|1-3",
+"title": "추가문제 POINT 1 능동태 vs. 수동태",
+"chunks": [
+[
+"A job advertisement",
+"구인 광고가",
+"S"
+],
+[
+"for a salesperson",
+"영업사원에 대한",
+"M"
+],
+[
+"has been posted",
+"게시되어 있다",
+"V"
+],
+[
+"at the store",
+"그 상점에",
+""
+],
+[
+"since last week.",
+"지난주 이래로.",
+"C"
+]
+],
+"tr": "지난주 이래로 그 상점에 영업사원에 대한 구인 광고가 게시되어 있다.",
+"ans": "been posted",
+"pts": null
+},
+{
+"key": "add03|1-4",
+"title": "추가문제 POINT 1 능동태 vs. 수동태",
+"chunks": [
+[
+"Many of the employees",
+"많은 직원들이",
+"S"
+],
+[
+"pay",
+"낸다",
+"V"
+],
+[
+"a small portion of their income",
+"그들 수입의 작은 부분을",
+""
+],
+[
+"in taxes.",
+"세금으로.",
+""
+]
+],
+"tr": "많은 직원들이 그들 수입의 작은 부분을 세금으로 납부한다.",
+"ans": "pay",
+"pts": null
+},
+{
+"key": "add03|1-5",
+"title": "추가문제 POINT 1 능동태 vs. 수동태",
+"chunks": [
+[
+"A large fire",
+"큰불이",
+"S"
+],
+[
+"in the mountains",
+"산속의",
+"M"
+],
+[
+"has been spreading",
+"번지고 있다",
+"V"
+],
+[
+"for several days now.",
+"지금 며칠 동안.",
+"C"
+]
+],
+"tr": "산속의 큰불이 지금 며칠 동안 번지고 있다.",
+"ans": "spreading",
+"pts": null
+},
+{
+"key": "add03|2-1",
+"title": "추가문제 POINT 2 수동태로 쓸 수 없는 자동사",
+"chunks": [
+[
+"The weather",
+"날씨가",
+"S"
+],
+[
+"seemed clear",
+"맑아 보였다",
+"V"
+],
+[
+"when I looked out the window this morning.",
+"오늘 아침에 내가 창밖을 보았을 때.",
+"C"
+]
+],
+"tr": "오늘 아침에 내가 창밖을 보았을 때 날씨가 맑아 보였다.",
+"ans": "seemed",
+"pts": null
+},
+{
+"key": "add03|2-2",
+"title": "추가문제 POINT 2 수동태로 쓸 수 없는 자동사",
+"chunks": [
+[
+"The morning class",
+"아침 수업은",
+"S"
+],
+[
+"at the yoga studio",
+"그 요가 강습실의",
+"M"
+],
+[
+"is intended",
+"계획된 것이다",
+"V"
+],
+[
+"for beginners only,",
+"초보자들만을 위해,",
+""
+],
+[
+"but anyone can join.",
+"하지만 누구나 참여할 수 있다.",
+""
+]
+],
+"tr": "그 요가 강습실의 아침 수업은 초보자들만을 위해 계획된 것이지만, 누구나 참여할 수 있다.",
+"ans": "is intended",
+"pts": null
+},
+{
+"key": "add03|2-3",
+"title": "추가문제 POINT 2 수동태로 쓸 수 없는 자동사",
+"chunks": [
+[
+"Before our guests arrived,",
+"손님들이 도착하기 전에,",
+""
+],
+[
+"we",
+"우리는",
+"S"
+],
+[
+"had to clean the living room",
+"거실을 청소해야만 했다",
+""
+],
+[
+"because toys",
+"때문에 장난감들이",
+"S"
+],
+[
+"lay",
+"놓여 있었다",
+"V"
+],
+[
+"all over the floor.",
+"바닥 곳곳에.",
+""
+]
+],
+"tr": "손님들이 도착하기 전에, 장난감들이 바닥 곳곳에 놓여 있었기 때문에 우리는 거실을 청소해야만 했다.",
+"ans": "○",
+"pts": null
+},
+{
+"key": "add03|2-4",
+"title": "추가문제 POINT 2 수동태로 쓸 수 없는 자동사",
+"chunks": [
+[
+"Mr. Robinson",
+"로빈슨 씨는",
+"S"
+],
+[
+"has remained",
+"남아 있다",
+"V"
+],
+[
+"the principal of Roosevelt High School",
+"루스벨트 고등학교의 교장으로",
+""
+],
+[
+"for over 40 years",
+"40년 넘게.",
+"C"
+]
+],
+"tr": "Robinson씨는 40년 넘게 Roosevelt 고등학교의 교장인 채로 남아있다.",
+"ans": "remained",
+"pts": null
+},
+{
+"key": "add03|2-5",
+"title": "추가문제 POINT 2 수동태로 쓸 수 없는 자동사",
+"chunks": [
+[
+"A schedule",
+"일정은",
+"S"
+],
+[
+"of the band’s upcoming shows in the U.S.",
+"그 밴드의 미국에서의 다가오는 공연",
+"M"
+],
+[
+"may be viewed",
+"볼 수 있을지도 모른다",
+"V"
+],
+[
+"on their website.",
+"그들의 웹사이트에서.",
+""
+]
+],
+"tr": "그 밴드의 미국에서의 다가오는 공연 일정은 그들의 웹사이트에서 보일지도 모른다.",
+"ans": "be viewed",
+"pts": null
+},
+{
+"key": "add03|3-1",
+"title": "추가문제 POINT 3 주격 관계대명사절 동사의 능동태 vs. 수동태",
+"chunks": [
+[
+"Anthony",
+"앤서니는",
+"S"
+],
+[
+"lives in",
+"살고 있다",
+""
+],
+[
+"a building",
+"건물에",
+"C"
+],
+[
+"that requires",
+"요구하는",
+"V"
+],
+[
+"everyone to separate their trash",
+"모든 사람에게 쓰레기를 분리하도록",
+""
+],
+[
+"for recycling.",
+"재활용을 위해.",
+""
+]
+],
+"tr": "Anthony는 재활용을 위해 모든 사람에게 쓰레기를 분리할 것을 요구하는 건물에 산다.",
+"ans": "requires",
+"pts": null
+},
+{
+"key": "add03|3-2",
+"title": "추가문제 POINT 3 주격 관계대명사절 동사의 능동태 vs. 수동태",
+"chunks": [
+[
+"The test",
+"시험은",
+"S"
+],
+[
+"will contain",
+"포함할 것이다",
+""
+],
+[
+"only material",
+"자료만을",
+"C"
+],
+[
+"which has been explained",
+"설명되어 온",
+"V"
+],
+[
+"before.",
+"이전에.",
+""
+]
+],
+"tr": "시험은 이전에 설명된 자료만을 포함할 것이다.",
+"ans": "been explained",
+"pts": null
+},
+{
+"key": "add03|3-3",
+"title": "추가문제 POINT 3 주격 관계대명사절 동사의 능동태 vs. 수동태",
+"chunks": [
+[
+"Cassandra’s team",
+"캐산드라의 팀이",
+"S"
+],
+[
+"will be training",
+"교육할 것이다",
+""
+],
+[
+"the new employee",
+"새로운 직원을",
+"C"
+],
+[
+"who was hired",
+"고용된",
+"V"
+],
+[
+"last week.",
+"지난주에.",
+""
+]
+],
+"tr": "Cassandra의 팀이 지난주에 고용된 새로운 직원을 교육할 것이다.",
+"ans": "hired",
+"pts": null
+},
+{
+"key": "add03|3-4",
+"title": "추가문제 POINT 3 주격 관계대명사절 동사의 능동태 vs. 수동태",
+"chunks": [
+[
+"We",
+"우리는",
+"S"
+],
+[
+"took part in",
+"참여했다",
+""
+],
+[
+"a government program",
+"정부 프로그램에",
+"C"
+],
+[
+"which provided",
+"제공하는",
+"V"
+],
+[
+"help with starting a business.",
+"사업을 시작하는 것에 도움을.",
+""
+]
+],
+"tr": "우리는 사업을 시작하는 것에 도움을 제공하는 정부 프로그램에 참여했다.",
+"ans": "provided",
+"pts": null
+},
+{
+"key": "add03|3-5",
+"title": "추가문제 POINT 3 주격 관계대명사절 동사의 능동태 vs. 수동태",
+"chunks": [
+[
+"The students",
+"학생들은",
+"S"
+],
+[
+"have to choose",
+"선택해야 한다",
+""
+],
+[
+"a topic",
+"주제를",
+"C"
+],
+[
+"that can be discussed",
+"논의될 수 있는",
+"V"
+],
+[
+"during class.",
+"수업 중에.",
+""
+]
+],
+"tr": "학생들은 수업 중에 논의될 수 있는 주제를 선택해야 한다.",
+"ans": "be discussed",
+"pts": null
+}
+]
