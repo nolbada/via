@@ -5628,6 +5628,7 @@ W("CH","SC",5,IU+"<br>네가 나에게 이야기했다면, 내가 너를 도왔�
 
 }
 
+function WP(it){const m=/p\.(\d+)(?:-(\d+))?/.exec((UN[it.uk]||{}).pp||"");return m?(it.sec.length>1&&m[2]?m[2]:m[1]):""}
 const KEY="link2-wb-v1",PIN="7372";
 const PEN='<svg class="pen" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4L16.5 4.5a2 2 0 0 1 2.8 0l.2.2a2 2 0 0 1 0 2.8L8 19z"/><path d="M14.5 6.5l3 3"/></svg>';
 function fresh(){return{it:{},last:0}}
@@ -5665,7 +5666,7 @@ function start(uk){const L=unItems(uk),n=L.find(x=>!pe(x.id).pen)||L[0];open_(n.
 function open_(id){cur=id;sh=pe(id).h||0;T0=Date.now();wrong=0;go("item")}
 function item(){
  const it=IT(cur),s=pe(cur),U=UN[it.uk],L=unItems(it.uk),op=s.h>0,un=akOpen(L);
- let h='<div class="bk"><a onclick="openCh('+it.ch+')">목록</a><span class="small">CH'+pad2(it.ch)+' · '+U.n+' · '+SECLAB(it)+'</span></div>'+strip(L,cur);
+ let h='<div class="bk"><a onclick="openCh('+it.ch+')">목록</a><span class="small"><b>워크북 p.'+WP(it)+'</b> · CH'+pad2(it.ch)+' · '+U.n+' · '+SECLAB(it)+'</span></div>'+strip(L,cur);
  h+='<div class="ak"><button class="btn mini" '+(un?'onclick="showAns()"':'disabled')+'>전체정답</button></div>';
  h+='<div class="q">'+it.q.replace(/___/g,'<span class="blank"></span>')+'</div>';
  if(it.bank)h+='<div class="small">보기 : '+it.bank.join(" · ")+' (한 번씩만)</div>';
@@ -5674,7 +5675,7 @@ function item(){
   h+='<div class="small">워크북에 먼저 풀어 보고, 막히면 힌트를 열어요.</div><button class="btn" onclick="openHints()">힌트 보기</button>';
  }else{
   h+='<div class="hint">'+[0,1,2].map(i=>'<div class="hp"><b>힌트 '+(i+1)+'</b> '+it.h[i]+'</div>').join("")+'</div>';
-  h+='<div class="post"><div class="pt">'+PEN+' 책에 쓰기 · 워크북 '+U.pp+' 이 문제 옆 여백에 한 줄</div><div class="pl">답과 그 이유를 내 말로 한 줄 써요.</div><div class="pt2">맞혔어도 이 한 줄은 꼭 써요.</div></div>';
+  h+='<div class="post"><div class="pt">'+PEN+' 책에 쓰기 · 워크북 p.'+WP(it)+' 이 문제 옆 여백에 한 줄</div><div class="pl">답과 그 이유를 내 말로 한 줄 써요.</div><div class="pt2">맞혔어도 이 한 줄은 꼭 써요.</div></div>';
   if(!s.pen)h+='<button class="btn pencil" onclick="penDone()">'+PEN+' 다 썼어요</button>';
   else{const last=L[L.length-1].id==cur;h+='<div class="small ok">연필 한 줄 완료</div>'+(L[0].id==cur?'<button class="btn" onclick="nextItem()">'+(last?"이 파트 마무리":"다음 문제")+'</button>':'<div class="two"><button class="btn ghost" onclick="prevItem()">이전 문제</button><button class="btn" onclick="nextItem()">'+(last?"이 파트 마무리":"다음 문제")+'</button></div>')}
  }
