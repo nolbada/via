@@ -276,7 +276,7 @@ function render(){
     if(!S.merge){h+="<div class=card>아직 통합 명부가 없습니다. EM보드, 출석부, 숙제 REC 명단을 합쳐 처음 명부를 만듭니다. 옛 명단은 바꾸지 않고 읽기만 합니다.</div><button class=pri id=mk "+(S.busy?"disabled":"")+">세 명단 합쳐서 미리보기</button>"}
     else{
       var m=S.merge;
-      h+="<div class=card><b>합친 결과 "+m.students.length+"명</b> (재원 "+m.students.filter(function(x){return x.status==="on"}).length+"명, 퇴원 "+m.students.filter(function(x){return x.status==="off"}).length+"명)</div>";
+      h+="<div class=card><b>합친 결과 "+m.students.length+"명</b> (재원 "+m.students.filter(function(x){return x.status==="on"}).length+"명)</div>";
       if(m.warn.length)h+="<div class=card><b>이름 통일</b><div class=small>"+m.warn.map(esc).join("<br>")+"</div></div>";
       if(m.miss.length)h+="<div class=card><b>한쪽에만 있는 학생</b><div class=small>"+m.miss.map(esc).join("<br>")+"</div></div>";
       h+="<div class=bar><button class=pri id=mkok "+(S.busy?"disabled":"")+">이대로 통합 명부 만들기</button><button id=mkno>취소</button></div>";
@@ -286,7 +286,7 @@ function render(){
   h+=driftHtml();
   var cnt={all:0,"초등":0,"중등":0,"고등":0,"관리형":0,"퇴원":0};
   S.m.s.forEach(function(x){if(x.status==="off")cnt["퇴원"]++;else{cnt.all++;var g=groupOf(x);if(cnt[g]!=null)cnt[g]++}});
-  h+="<div class=bar>";["all","초등","중등","고등","관리형","퇴원"].forEach(function(g){h+="<button class='chip "+(S.grp===g?"on":"")+"' data-grp=\""+g+"\">"+(g==="all"?"전체":g)+" "+cnt[g]+"</button>"});h+="</div>";
+  h+="<div class=bar>";["all","초등","중등","고등","관리형","퇴원"].forEach(function(g){h+="<button class='chip "+(S.grp===g?"on":"")+"' data-grp=\""+g+"\">"+(g==="all"?"전체":g)+(g==="퇴원"?"":" "+cnt[g])+"</button>"});h+="</div>";
   h+="<div class=bar><input type=search id=q placeholder=\"이름·반 검색\" value=\""+esc(S.q)+"\" style=\"flex:1\"><button id=addb>신규 추가</button><button id=undo "+(S.hist.length?"":"disabled")+">되돌리기</button><button id=upb>새 학년 올리기</button><button id=lnkb>개인 링크</button></div>";
   if(S.tab==="add"){
     h+="<div class=card><b>신규 학생</b><div class=bar><input type=text id=an placeholder=이름 style='width:90px'><select id=ag><option>초6</option><option>중1</option><option>중2</option><option>중3</option><option>고1</option><option>고2</option></select><input type=text id=as placeholder=학교 style='width:90px'><select id=ac>"+classes().map(function(c){return "<option>"+esc(c)+"</option>"}).join("")+"</select></div><div class=bar><button class=pri id=addok>추가</button><button id=addno>닫기</button></div></div>";
