@@ -260,7 +260,7 @@ function visible(){
   }).sort(function(a,b){return ko(a.name,b.name)});
 }
 function rowHtml(x){
-  var t="";if(x.fri)t+="<span class=tag>금</span> ";if(x.sat)t+="<span class=tag>토</span> ";if(x.status==="off")t+="<span class='tag off'>퇴원</span>";
+  var t="";if(x.status==="off")t+="<span class='tag off'>퇴원</span>";
   return "<div class=row data-id=\""+x.id+"\"><input type=checkbox "+(S.sel[x.id]?"checked":"")+" data-sel=\""+x.id+"\"><span class=nm>"+esc(x.name)+"</span><span class=meta>"+esc(x.school||"-")+" · "+esc(x.grade||"-")+" · "+esc(x.cls||"반 없음")+"</span>"+t+"</div>";
 }
 var NX={"초5":"초6","초6":"중1","중1":"중2","중2":"중3","중3":"고1","고1":"고2","고2":"고3"};
