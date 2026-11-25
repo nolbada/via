@@ -120,7 +120,7 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 .colh{border:0;background:none;cursor:pointer;font-size:12px;color:var(--ink-soft);padding:2px 4px;border-radius:6px}
 .colh:hover{background:var(--surface-2)}
 .colh b{display:block;color:var(--ink);font-size:13px}
-.savest{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0));font-size:12px;padding:5px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--border);color:var(--ink-soft);box-shadow:var(--shadow);z-index:20}
+.savest{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0));font-size:15px;font-weight:700;padding:11px 28px;border-radius:999px;background:var(--surface);border:1px solid var(--border);color:var(--ink-soft);box-shadow:var(--shadow);z-index:50}body{padding-bottom:84px}
 .savest.err{background:var(--x);color:#fff;border-color:var(--x)}
 .pnb{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:#ffe3ec;color:#c2185b}.pnb:empty{display:none}
 .savest.dirty{background:#00A1A7;color:#fff;border-color:#00A1A7;font-size:16px;font-weight:700;padding:11px 26px;cursor:pointer}
@@ -214,7 +214,7 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 </head>
 <body>
 <div id="app"></div>
-<div id="savest" class="savest" hidden></div>
+<div id="savest" class="savest">저장됨</div>
 <script>
 (function(){
 'use strict';
@@ -310,7 +310,7 @@ function putKeys(id,map){return id.indexOf('HWP|')===0?HWFS.writeP(id.slice(4),m
 /* 공통 상태 */
 var app=document.getElementById('app'),stEl=document.getElementById('savest');
 var viewKey=curKey(),showOld=false;
-function setSt(txt,err){if(!txt){stEl.hidden=true;return}stEl.hidden=false;stEl.textContent=txt;stEl.className='savest'+(err?' err':'')}
+function setSt(txt,err){if(!txt){txt='저장됨'}stEl.hidden=false;stEl.textContent=txt;stEl.className='savest'+(err?' err':'')}
 function randTok(n){var a='abcdefghjkmnpqrstuvwxyz23456789',o='';var u=new Uint8Array(n);(window.crypto||window.msCrypto).getRandomValues(u);for(var i=0;i<n;i++)o+=a[u[i]%a.length];return o}
 
 /* ================= 학부모(조회) ================= */
