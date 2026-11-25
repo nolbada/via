@@ -3347,7 +3347,7 @@ function item(){
   h+='<div class="small">본책에 먼저 풀어 보고, 막히면 힌트를 열어요.</div><button class="btn" onclick="openHints()">힌트 보기</button>';
  }else{
   h+='<div class="hint">'+[0,1,2].map(i=>'<div class="hp"><b>힌트 '+(i+1)+'</b> '+it.h[i]+'</div>').join("")+'</div>';
-  h+='<div class="post"><div class="pt">'+PEN+' 책에 쓰기 · 본책 '+U.pp+' 이 문제 옆 여백에 한 줄</div><div class="pl">답과 그 이유를 내 말로 한 줄 써요.</div><div class="pt2">맞혔어도 이 한 줄은 꼭 써요.</div></div>';
+  h+='<div class="post"><div class="pt">'+PEN+' 책에 쓰기 · 본책 '+U.pp+' 이 문제 옆 여백에 한 줄</div><div class="pl">'+penQ(it)+'</div><div class="pt2">맞혔어도 이 한 줄은 꼭 써요.</div></div>';
   if(!s.pen)h+='<button class="btn pencil" onclick="penDone()">'+PEN+' 다 썼어요</button>';
   else{const last=L[L.length-1].id==cur;h+='<div class="small ok">연필 한 줄 완료</div>'+(L[0].id==cur?'<button class="btn" onclick="nextItem()">'+(last?"이 파트 마무리":"다음 문제")+'</button>':'<div class="two"><button class="btn ghost" onclick="prevItem()">이전 문제</button><button class="btn" onclick="nextItem()">'+(last?"이 파트 마무리":"다음 문제")+'</button></div>')}
  }
@@ -3371,6 +3371,13 @@ window.__gi=function(){try{const td=tdy(),by={};
   D.forEach(x=>{const e=S.it[x.id];if(e.sec!=null&&e.sec<8)fast++;if(e.t1!=null&&e.t1<5)q.push(SECSHORT(x));if(e.pt<t1)t1=e.pt;if(e.pt>t2)t2=e.pt});
   const all=L.filter(x=>pe(x.id).pen).length,ak=S.ak&&S.ak[uk]&&S.ak[uk].d==td?S.ak[uk].t:0;
   return{uk:uk,w:"그래머인사이드 L1 CH"+pad2(L[0].ch)+" "+U.n+" · 오늘 연필 "+D.length+"줄 (전체 "+all+"/"+L.length+")"+(q.length?" · 5초 안에 힌트 연 문제 "+q.length+"개 ("+q.slice(0,6).join(", ")+(q.length>6?" 외":"")+")":"")+(fast?" · 8초 안에 넘김 "+fast+"개":"")+(ak?" · 전체정답 "+hmOf(ak)+" 확인":" · 전체정답 아직")+" · "+hmOf(t1)+"~"+hmOf(t2)}})}catch(e){return[]}};
+/* 연필 한 줄 쓰는 틀: 근거는 보이고 결과는 빈칸. 정답이 새는 줄은 안내만 보인다. 완성된 줄은 유닛 끝 화면에서 */
+function penNorm(x){return String(x).replace(/[①-⑤]\s*/g,"").replace(/<[^>]+>/g,"").toLowerCase().trim()}
+function penLeaks(it,t){const n=penNorm(t);return(it.ans+" / "+it.full).split(/\s*\/\s*/).map(penNorm).filter(a=>a.length>2).some(a=>n.includes(a))}
+function penQ(it){const GEN='배운 규칙을 \u2018조건 → 답\u2019 꼴로 한 줄 써요.',i=it.pen.lastIndexOf("→");
+ if(i>=0){const left=it.pen.slice(0,i).trim();if(left&&!penLeaks(it,left))return left+' → <span class="blank"></span><div class="small">빈칸을 채워서 한 줄로 써요.</div>';return GEN}
+ if(!penLeaks(it,it.pen))return it.pen+'<div class="small">이 규칙을 내 말로 한 줄 써요.</div>';
+ return GEN}
 function nextItem(){const it=IT(cur),L=unItems(it.uk),i=L.findIndex(x=>x.id==cur);
  if(i==L.length-1){go("unitend");return}open_(L[i+1].id)}
 function unitend(){const it=IT(cur),L=unItems(it.uk),U=UN[it.uk];
