@@ -25,7 +25,6 @@
 .dots{display:flex;gap:10px;justify-content:center;margin:14px 0}.dots i{width:14px;height:14px;border:2px solid var(--pri);border-radius:50%}.dots i.f{background:var(--pri)}
 .pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:260px;margin:0 auto}.pad button{padding:14px;font:inherit;font-size:20px;border:1px solid var(--line);background:#fff;border-radius:10px}
 </style></head><body><div id="app"></div><script>
-/*@@FILE core/core.js@@*/
 // 공통 데이터 도우미. 각 챕터 파일(ch/chNN.js)이 BEGIN → A(...) 순서로 항목을 넣는다.
 const ITEMS=[],CHAPS={},UN={};let CURCH=0;
 function BEGIN(ch,name,units){CURCH=ch;CHAPS[ch]={name:name,units:Object.keys(units)};Object.keys(units).forEach(k=>{UN[ch+"-"+k]=Object.assign({ch:ch,k:k},units[k])})}
@@ -34,7 +33,6 @@ function A(u,sec,n,kind,o){const it=Object.assign({ch:CURCH,u:String(u),sec:sec,
 function TRADD(o){for(const k in o){const it=ITEMS.find(x=>x.id==k);if(!it){console.warn("TRADD 없는 id",k);continue}it.tr=o[k].tr;if(o[k].ex&&o[k].ex.length)it.ex=o[k].ex}}
 function SECLAB(it){const s=it.sec;if(s=="CU")return"CHECK UP";if(/^S\d$/.test(s))return"STEP "+s[1]+" · "+it.n+"번";if(/^[A-E]$/.test(s))return"GRAMMAR FOR WRITING "+s+" · "+it.n+"번";if(s=="RT")return"REVIEW TEST · "+it.n+"번";if(s=="LR")return"LET’S REVIEW · "+it.n+"번";return s+" · "+it.n+"번"}
 function SECSHORT(it){const s=it.sec;if(s=="CU")return"CU";if(/^S\d$/.test(s))return"S"+s[1]+"-"+it.n;if(/^[A-E]$/.test(s))return s+"-"+it.n;if(s=="LR")return"LR-"+it.n;return"RT-"+it.n}
-/*@@FILE ch/ch01.js@@*/
 {
 // CH01 be동사 (2021 본책 pp.11-21). 정답: 21년판 해설지 p.2
 BEGIN(1,"be동사",{1:{n:"UNIT 01",t:"be동사의 현재형과 과거형",cp:"p.12",pp:"p.13"},2:{n:"UNIT 02",t:"be동사의 부정문과 의문문",cp:"p.14",pp:"p.15"},GW:{n:"GRAMMAR FOR WRITING",t:"쓰기 연습",cp:"",pp:"p.16-17"},RT:{n:"REVIEW TEST",t:"챕터 마무리 테스트",cp:"",pp:"p.18-21"},LR:{n:"LET’S REVIEW",t:"주요 예문 다시 확인",cp:"",pp:"p.22"}});
@@ -146,7 +144,6 @@ A(2,"CU",2,"c",{q:"___ they in the room?",opts:["Be","Are","Is"],ans:"Are",full:
 ITEMS.filter(x=>x.ch==1&&x.u=="1"&&x.sec=="S2").forEach(x=>x.bank=["is","am","are","was","were"]);
 
 }
-/*@@FILE ch/ch01b.js@@*/
 {
 // CH01 be동사 (2021 본책 pp.16-22) 나머지: GRAMMAR FOR WRITING / REVIEW TEST / LET’S REVIEW. 정답: 21년판 해설지 p.2
 // ---------- GRAMMAR FOR WRITING A ----------
@@ -349,7 +346,6 @@ A("LR","LR",9,"w",{q:"___ a bank near here? (이 근처에 은행이 있나요?)
  pen:"There is ~ → Is there ~?  (의문문은 순서 바꾸기)"});
 
 }
-/*@@FILE ch/ch02.js@@*/
 {
 // CH02 일반동사 (2021 본책 pp.23-38). 정답: 21년판 해설지 p.3-4
 BEGIN(2,"일반동사",{1:{n:"UNIT 01",t:"일반동사의 현재형",cp:"p.24",pp:"p.25"},2:{n:"UNIT 02",t:"일반동사의 과거형",cp:"p.26",pp:"p.27"},3:{n:"UNIT 03",t:"일반동사의 부정문",cp:"p.28",pp:"p.29"},4:{n:"UNIT 04",t:"일반동사의 의문문",cp:"p.30",pp:"p.31"},GW:{n:"GRAMMAR FOR WRITING",t:"쓰기 연습",cp:"",pp:"p.32-33"},RT:{n:"REVIEW TEST",t:"챕터 마무리 테스트",cp:"",pp:"p.34-37"},LR:{n:"LET’S REVIEW",t:"주요 예문 다시 확인",cp:"",pp:"p.38"}});
@@ -593,7 +589,6 @@ A("RT","RT",33,"w",{q:"A: Do you have a blog, Dave?<br>B: Yes, I do. I writes my
 ].forEach((r,i)=>A("LR","LR",i+1,"w",{q:r[0],ans:r[1],full:r[2],ko:r[3],h:[r[5],r[6],r[7]],pen:r[4]}));
 
 }
-/*@@FILE ch/ch03.js@@*/
 {
 // CH03 조동사 (2021 본책 pp.39-50). 정답: 21년판 해설지 p.4-5
 BEGIN(3,"조동사",{1:{n:"UNIT 01",t:"can, may",cp:"p.40",pp:"p.41"},2:{n:"UNIT 02",t:"must, have to, should",cp:"p.42",pp:"p.43"},GW:{n:"GRAMMAR FOR WRITING",t:"쓰기 연습",cp:"",pp:"p.44-45"},RT:{n:"REVIEW TEST",t:"챕터 마무리 테스트",cp:"",pp:"p.46-49"},LR:{n:"LET’S REVIEW",t:"주요 예문 다시 확인",cp:"",pp:"p.50"}});
@@ -870,7 +865,6 @@ R(34,{kind:"w",q:"A: Amy didn’t come to school today. She may is sick.<br>B: O
  h:["본책 p."+(r[4].indexOf("Unit 01")==0?"40":"42")+" ‘"+r[4]+"’ 부분을 펴세요.",r[6],r[7]],pen:r[5]}));
 
 }
-/*@@FILE ch/ch04.js@@*/
 {
 // CH04 진행형과 미래시제 (2021 본책 pp.51-62). 정답: 21년판 해설지 p.6-7
 BEGIN(4,"진행형과 미래시제",{1:{n:"UNIT 01",t:"진행형",cp:"p.52",pp:"p.53"},2:{n:"UNIT 02",t:"will, be going to",cp:"p.54",pp:"p.55"},GW:{n:"GRAMMAR FOR WRITING",t:"쓰기 연습",cp:"",pp:"p.56-57"},RT:{n:"REVIEW TEST",t:"챕터 마무리 테스트",cp:"",pp:"p.58-61"},LR:{n:"LET’S REVIEW",t:"주요 예문 다시 확인",cp:"",pp:"p.62"}});
@@ -1080,7 +1074,6 @@ const LR=[
 LR.forEach((r,i)=>A("LR","LR",i+1,"w",{q:r[0],ans:r[1],full:r[2],ko:r[3],h:[r[4],r[5],r[6]],pen:r[7]}));
 
 }
-/*@@FILE ch/ch05.js@@*/
 {
 // CH05 동사의 종류 (2021 본책 pp.63-76). 정답: 21년판 해설지 p.8
 BEGIN(5,"동사의 종류",{
@@ -1306,7 +1299,6 @@ W("RT","RT",33,"A: Melany asked me come to her birthday party.<br>B: Did you buy
 ].forEach((r,i)=>W("LR","LR",i+1,r[0],r[1],r[2],r[3],r[4],r[5],r[6],r[7]));
 
 }
-/*@@FILE ch/ch06.js@@*/
 {
 // CH06 명사와 관사 (2021 본책 pp.77-88). 정답: 21년판 해설지 p.9-10
 BEGIN(6,"명사와 관사",{1:{n:"UNIT 01",t:"셀 수 있는 명사 vs. 셀 수 없는 명사",cp:"p.78",pp:"p.79"},2:{n:"UNIT 02",t:"관사",cp:"p.80",pp:"p.81"},GW:{n:"GRAMMAR FOR WRITING",t:"쓰기 연습",cp:"",pp:"p.82-83"},RT:{n:"REVIEW TEST",t:"챕터 마무리 테스트",cp:"",pp:"p.84-87"},LR:{n:"LET’S REVIEW",t:"주요 예문 다시 확인",cp:"",pp:"p.88"}});
@@ -1536,7 +1528,6 @@ const LRQ=[["I have two ___ .","brothers","I have two brothers.","나는 남자 
 LRQ.forEach((r,i)=>W("LR","LR",i+1,r[0],r[1],r[2],r[3],r[4],r[5],r[6],r[7]));
 
 }
-/*@@FILE ch/ch07.js@@*/
 {
 // CH07 대명사 (2021 본책 pp.89-102). 정답: 21년판 해설지 p.11-12
 BEGIN(7,"대명사",{1:{n:"UNIT 01",t:"인칭대명사, 재귀대명사",cp:"p.90",pp:"p.91"},2:{n:"UNIT 02",t:"this, that, it",cp:"p.92",pp:"p.93"},3:{n:"UNIT 03",t:"one, some, any",cp:"p.94",pp:"p.95"},GW:{n:"GRAMMAR FOR WRITING",t:"쓰기 연습",cp:"",pp:"p.96-97"},RT:{n:"REVIEW TEST",t:"챕터 마무리 테스트",cp:"",pp:"p.98-101"},LR:{n:"LET’S REVIEW",t:"주요 예문 다시 확인",cp:"",pp:"p.102"}});
@@ -1893,7 +1884,6 @@ A("LR","LR",10,"w",{q:"We don’t have ___ homework today.",ans:"any",full:"We d
  pen:"don’t have(부정문) → any"});
 
 }
-/*@@FILE ch/ch08.js@@*/
 {
 // CH08 형용사와 부사 (2021 본책 pp.103-116). 정답: 21년판 해설지 p.12-13
 BEGIN(8,"형용사와 부사",{1:{n:"UNIT 01",t:"형용사",cp:"p.104",pp:"p.105"},2:{n:"UNIT 02",t:"부사",cp:"p.106",pp:"p.107"},3:{n:"UNIT 03",t:"원급, 비교급, 최상급",cp:"p.108",pp:"p.109"},GW:{n:"GRAMMAR FOR WRITING",t:"쓰기 연습",cp:"",pp:"p.110-111"},RT:{n:"REVIEW TEST",t:"챕터 마무리 테스트",cp:"",pp:"p.112-115"},LR:{n:"LET’S REVIEW",t:"주요 예문 다시 확인",cp:"",pp:"p.116"}});
@@ -2034,7 +2024,6 @@ P("LR","LR",10,"w","It’s the ___ camera in this shop. (이것이 이 가게에
 ITEMS.filter(x=>x.ch==8&&x.u=="RT"&&x.n>=14&&x.n<=16).forEach(x=>x.bank=["a few","much","little"]);
 
 }
-/*@@FILE ch/ch09.js@@*/
 {
 // CH09 to부정사와 동명사 (2021 본책 pp.117-130). 정답: 21년판 해설지 p.14
 BEGIN(9,"to부정사와 동명사",{1:{n:"UNIT 01",t:"to부정사의 명사적 용법",cp:"p.118",pp:"p.119"},2:{n:"UNIT 02",t:"to부정사의 형용사적, 부사적 용법",cp:"p.120",pp:"p.121"},3:{n:"UNIT 03",t:"동명사의 역할",cp:"p.122",pp:"p.123"},GW:{n:"GRAMMAR FOR WRITING",t:"쓰기 연습",cp:"",pp:"p.124-125"},RT:{n:"REVIEW TEST",t:"챕터 마무리 테스트",cp:"",pp:"p.126-129"},LR:{n:"LET’S REVIEW",t:"주요 예문 다시 확인",cp:"",pp:"p.130"}});
@@ -2366,7 +2355,6 @@ A("RT","RT",33,"w",{q:"어법상 틀린 부분을 찾아 바르게 고치시오.
  pen:r[7]}));
 
 }
-/*@@FILE ch/ch10.js@@*/
 {
 // CH10 전치사 (2021 본책 pp.131-144). 정답: 21년판 해설지 p.15-16
 BEGIN(10,"전치사",{1:{n:"UNIT 01",t:"장소를 나타내는 전치사",cp:"p.132",pp:"p.133"},2:{n:"UNIT 02",t:"시간을 나타내는 전치사",cp:"p.134",pp:"p.135"},3:{n:"UNIT 03",t:"기타 전치사",cp:"p.136",pp:"p.137"},GW:{n:"GRAMMAR FOR WRITING",t:"쓰기 연습",cp:"",pp:"p.138-139"},RT:{n:"REVIEW TEST",t:"챕터 마무리 테스트",cp:"",pp:"p.140-143"},LR:{n:"LET’S REVIEW",t:"주요 예문 다시 확인",cp:"",pp:"p.144"}});
@@ -2625,7 +2613,6 @@ LR.forEach((r,i)=>W("LR","LR",i+1,r[0],r[1],r[2],r[3],[r[4],r[5],r[6]],r[7]));
 }
 
 }
-/*@@FILE ch/ch11.js@@*/
 {
 // CH11 접속사 (2021 본책 pp.145-158). 정답: 21년판 해설지 p.17-18
 BEGIN(11,"접속사",{1:{n:"UNIT 01",t:"and, but, or, so",cp:"p.146",pp:"p.147"},2:{n:"UNIT 02",t:"when, before, after, until",cp:"p.148",pp:"p.149"},3:{n:"UNIT 03",t:"because, if, that",cp:"p.150",pp:"p.151"},GW:{n:"GRAMMAR FOR WRITING",t:"쓰기 연습",cp:"",pp:"p.152-153"},RT:{n:"REVIEW TEST",t:"챕터 마무리 테스트",cp:"",pp:"p.154-157"},LR:{n:"LET’S REVIEW",t:"주요 예문 다시 확인",cp:"",pp:"p.158"}});
@@ -2923,7 +2910,6 @@ const LR="본책 p.158 ‘LET’S REVIEW’ 문장 끝에 적힌 Unit 번호와 
 ].forEach((r,i)=>A("LR","LR",i+1,"w",{q:r[0],ans:r[1],full:r[2],ko:r[3],h:["본책 "+r[4]+"를 펴세요. 책 p.158 문장 끝에 쓰인 Unit 번호와 같아요.",r[5],r[6]],pen:r[7]}));
 
 }
-/*@@FILE ch/ch12.js@@*/
 {
 // CH12 의문문, 명령문, 감탄문 (2021 본책 pp.159-176). 정답: 21년판 해설지 p.18-20
 BEGIN(12,"의문문, 명령문, 감탄문",{1:{n:"UNIT 01",t:"의문사 who, what, which",cp:"p.160",pp:"p.161"},2:{n:"UNIT 02",t:"의문사 when, where, why, how",cp:"p.162",pp:"p.163"},3:{n:"UNIT 03",t:"부가의문문",cp:"p.164",pp:"p.165"},4:{n:"UNIT 04",t:"부정의문문, 선택의문문",cp:"p.166",pp:"p.167"},5:{n:"UNIT 05",t:"명령문, 감탄문",cp:"p.168",pp:"p.169"},GW:{n:"GRAMMAR FOR WRITING",t:"쓰기 연습",cp:"",pp:"p.170-171"},RT:{n:"REVIEW TEST",t:"챕터 마무리 테스트",cp:"",pp:"p.172-175"},LR:{n:"LET’S REVIEW",t:"주요 예문 다시 확인",cp:"",pp:"p.176"}});
@@ -3318,7 +3304,6 @@ A("RT","RT",33,"w",{q:"A: Looked at the sky! It’s so lovely, is it?<br>B: Yes,
 ].forEach((r,i)=>A("LR","LR",i+1,"w",{q:r[0],ans:r[1],full:r[2],ko:r[3],h:[r[4],r[5],r[6]],pen:r[7]}));
 
 }
-/*@@FILE tr/tr01.js@@*/
 {
 // CH01 해석
 TRADD({
@@ -3427,7 +3412,6 @@ TRADD({
 });
 
 }
-/*@@FILE tr/tr02.js@@*/
 {
 // CH02 해석
 TRADD({
@@ -3583,7 +3567,6 @@ TRADD({
 });
 
 }
-/*@@FILE tr/tr03.js@@*/
 {
 // CH03 해석
 TRADD({
@@ -3695,7 +3678,6 @@ TRADD({
 });
 
 }
-/*@@FILE tr/tr04.js@@*/
 {
 // CH04 해석
 TRADD({
@@ -3805,7 +3787,6 @@ TRADD({
 });
 
 }
-/*@@FILE tr/tr05.js@@*/
 {
 // CH05 해석
 TRADD({
@@ -3933,7 +3914,6 @@ TRADD({
 });
 
 }
-/*@@FILE tr/tr06.js@@*/
 {
 // CH06 해석
 TRADD({
@@ -4053,7 +4033,6 @@ TRADD({
 });
 
 }
-/*@@FILE tr/tr07.js@@*/
 {
 // CH07 해석
 TRADD({
@@ -4182,7 +4161,6 @@ TRADD({
 });
 
 }
-/*@@FILE tr/tr08.js@@*/
 {
 // CH08 해석
 TRADD({
@@ -4310,7 +4288,6 @@ TRADD({
 });
 
 }
-/*@@FILE tr/tr09.js@@*/
 {
 // CH09 해석
 TRADD({
@@ -4442,7 +4419,6 @@ TRADD({
 });
 
 }
-/*@@FILE tr/tr10.js@@*/
 {
 // CH10 해석
 TRADD({
@@ -4571,7 +4547,6 @@ TRADD({
 });
 
 }
-/*@@FILE tr/tr11.js@@*/
 {
 // CH11 해석
 TRADD({
@@ -4699,7 +4674,6 @@ TRADD({
 });
 
 }
-/*@@FILE tr/tr12.js@@*/
 {
 // CH12 해석
 TRADD({
@@ -4862,7 +4836,6 @@ TRADD({
 });
 
 }
-/*@@FILE core/app.js@@*/
 const KEY="gi-l1-2021-v2",PIN="7372";
 const PEN='<svg class="pen" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4L16.5 4.5a2 2 0 0 1 2.8 0l.2.2a2 2 0 0 1 0 2.8L8 19z"/><path d="M14.5 6.5l3 3"/></svg>';
 function fresh(){return{it:{},last:0}}
