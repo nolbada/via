@@ -187,8 +187,21 @@ function reviewList(){
   }
   app.innerHTML=h+'</div><button class="rs2" id="rvback">돌아가기</button>'+backBtn();
   var bs=app.querySelectorAll("[data-r]");
-  for(var k=0;k<bs.length;k++)bs[k].onclick=function(){showWrong(Q[+this.getAttribute("data-r")],-1,true,true)};
+  for(var k=0;k<bs.length;k++)bs[k].onclick=function(){var q=Q[+this.getAttribute("data-r")];if(st.wr.indexOf(q.id)>=0)retryView(q);else showWrong(q,-1,true,true)};
   document.getElementById("rvback").onclick=function(){showQ()};
+}
+function retryView(q){
+  window.scrollTo(0,0);
+  var h=head(q)+'<div class="ins">'+fmt(q.ins,true)+'</div>'+dlHtml(q)+'<div class="chs">';
+  q.ch.forEach(function(c,i){
+    h+='<button class="ch" data-i="'+i+'"><span class="cn">'+NUMS[i]+'</span><span class="ct">'+choiceText(q,c)+tagOf(c)+'</span></button>';
+  });
+  h+='</div><button class="rs2" id="rvsee">해설 먼저 보기</button><button class="rs2" id="rvback2">풀었던 문제 목록</button>'+backBtn();
+  app.innerHTML=h;
+  var bs=app.querySelectorAll(".ch");
+  for(var k=0;k<bs.length;k++)bs[k].onclick=function(){var i=+this.getAttribute("data-i");showWrong(q,i,i+1===q.ans,true,true)};
+  document.getElementById("rvsee").onclick=function(){showWrong(q,-1,true,true)};
+  document.getElementById("rvback2").onclick=function(){reviewList()};
 }
 var CNT=[7,10,15,20];
 function chooseView(){
@@ -206,15 +219,13 @@ function showQ(){
   if(st.run&&(idx<st.run.a||idx>st.run.a+st.run.n))st.run=null;
   if(st.run&&idx>=st.run.a+st.run.n){
     var r=st.run;st.run=null;save();
-    app.innerHTML='<div class="end"><b>No. '+(r.a+1)+' – No. '+(r.a+r.n)+' 완료</b><div>오답 '+(r.w||0)+'개</div></div>'+(idx<Q.length?'<button class="rs2" id="more">다음 문제 이어서 풀기</button>':'')+'<button class="rs2" id="again2">처음부터 다시</button>'+revBtn()+backBtn();revBind();
+    app.innerHTML='<div class="end"><b>No. '+(r.a+1)+' – No. '+(r.a+r.n)+' 완료</b><div>오답 '+(r.w||0)+'개</div></div>'+(idx<Q.length?'<button class="rs2" id="more">다음 문제 이어서 풀기</button>':'')+revBtn()+backBtn();revBind();
     var mo=document.getElementById("more");if(mo)mo.onclick=function(){showQ()};
-    document.getElementById("again2").onclick=function(){st.last="";st.run=null;save();pushReset();idx=0;showQ()};
     return;
   }
   if(!st.run&&idx<Q.length){chooseView();return}
   if(idx>=Q.length){
-    app.innerHTML='<div class="end"><b>여기까지 모두 풀었습니다</b></div><button class="rs2" id="again">처음부터</button>'+revBtn()+backBtn();revBind();
-    document.getElementById("again").onclick=function(){st.last="";st.run=null;save();pushReset();idx=0;showQ()};
+    app.innerHTML='<div class="end"><b>여기까지 모두 풀었습니다</b></div>'+revBtn()+backBtn();revBind();
     return;
   }
   var q=Q[idx],h=head(q)+'<div class="ins">'+fmt(q.ins,true)+'</div>'+dlHtml(q)+'<div class="chs">';
@@ -240,11 +251,11 @@ function pick(i,el){
     showWrong(q,i);
   }
 }
-function showWrong(q,i,okc,rev){
+function showWrong(q,i,okc,rev,rt){
   window.scrollTo(0,0);
   var a=q.ch[q.ans-1];
   var h=head(q);
-  h+='<div class="bn'+(okc?' o':'')+'">'+(rev?'다시 보기':(okc?'정답':'오답'))+'<small>정답 '+NUMS[q.ans-1]+'</small></div>';
+  h+='<div class="bn'+(okc?' o':'')+'">'+(rev?(rt?(okc?'다시 풀기 · 정답':'다시 풀기 · 오답'):'다시 보기'):(okc?'정답':'오답'))+'<small>정답 '+NUMS[q.ans-1]+'</small></div>';
   h+='<div class="bnb'+(okc?' o':'')+'">'+choiceText(q,a)+(!q.ek&&a[1]?'<div class="ko">'+fmt(a[1])+'</div>':"")+'</div>';
   h+='<div class="rev">';
   h+='<div class="ins">'+fmt(q.ins,true)+'</div>'+dlHtml(q);
