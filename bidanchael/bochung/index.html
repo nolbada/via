@@ -184,7 +184,7 @@ function wordFor(c,j){
   const vp=c.vw||ws;
   return vp[j]||ws[j]||'';
 }
-home();
+(function(){var q=(location.search.match(/[?&]s=([a-z]+)/)||[])[1];if(q&&DATA.sets.some(function(s){return s.id===q&&s.group==='book'}))rounds(q);else home()})();
 </script>
 <script src="https://nolbada.github.io/board/link.js" data-app="bd"></script>
 </body>
