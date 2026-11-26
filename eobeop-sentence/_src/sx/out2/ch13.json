@@ -1,0 +1,1142 @@
+{
+"c13p1|예제": {
+"pt": [
+"as",
+"비교급 better 뒤 : than (as 아님)"
+],
+"rel": [
+[
+2,
+1,
+"mod",
+"비교 대상"
+]
+],
+"st": [
+"부정어 + 비교급 = 최상급",
+[
+"① couldn’t have p.p. + 비교급 + than : 이보다 더 좋을 수 없다",
+"② 곧 이것이 가장 좋다는 뜻 (최상급 의미)"
+]
+]
+},
+"c13p1|1": {
+"pt": [
+"than",
+"as ~ as 동등 비교 : than 아님"
+],
+"rel": [
+[
+2,
+1,
+"eq",
+"~만큼"
+]
+]
+},
+"c13p1|2": {
+"pt": [
+"more noisy",
+"noisy는 -ier형 : more 안 붙임"
+],
+"rel": [
+[
+2,
+1,
+"mod",
+"비교 대상"
+]
+],
+"st": [
+"비교급 만들기",
+[
+"① 1음절 : -er (tall, taller)",
+"② 자음 + y : y를 i로 (noisy, noisier)",
+"③ 3음절 이상 : more + 원급 (more important)"
+]
+]
+},
+"c13p1|3": {
+"pt": [
+"as",
+"less + 원급 + than : as 아님"
+],
+"rel": [
+[
+2,
+0,
+"eq",
+"ones = houses"
+]
+]
+},
+"c13p1|4": {
+"pt": [
+"uneasily",
+"look 뒤 보어 : 형용사 uneasy"
+],
+"rel": [
+[
+2,
+1,
+"eq",
+"as ~ as"
+]
+],
+"st": [
+"감각동사 + 형용사",
+[
+"① look, feel, sound, smell, taste + 형용사 보어",
+"② as ~ as 사이도 원급 : as uneasy as Zoe"
+]
+]
+},
+"c13p1|5": {
+"pt": [
+"frequent",
+"see(동사)를 꾸밈 : 부사 frequently"
+],
+"rel": [
+[
+2,
+1,
+"eq",
+"as ~ as"
+],
+[
+1,
+0,
+"mod",
+""
+]
+],
+"st": [
+"as ~ as 사이의 품사",
+[
+"① 동사를 꾸미면 부사 (as frequently as)",
+"② be·감각동사 뒤 보어면 형용사 (as old as)"
+]
+]
+},
+"c13p1|6": {
+"pt": [
+"importantly",
+"be동사 뒤 보어 : 형용사 important"
+],
+"rel": [
+[
+2,
+1,
+"mod",
+"비교 대상"
+]
+]
+},
+"c13p1|7": {
+"pt": [
+"so",
+"as ~ as : 앞 as가 짝 (so 아님)"
+],
+"rel": [
+[
+3,
+2,
+"eq",
+"~만큼"
+]
+]
+},
+"c13p1|8": {
+"pt": [
+"then",
+"비교급 more 뒤 : than (then 아님)"
+],
+"rel": [
+[
+3,
+2,
+"mod",
+"비교 대상"
+]
+],
+"st": [
+"than과 then 구별",
+[
+"① than : 비교 (more ~ than)",
+"② then : 그때, 그러고 나서 (시간)"
+]
+]
+},
+"c13p2|예제": {
+"pt": [
+"very",
+"비교급 healthier : very 강조 불가"
+],
+"rel": [
+[
+2,
+3,
+"mod",
+"비교급 강조"
+]
+],
+"st": [
+"비교급 강조 부사",
+[
+"① much, far, even, still, a lot + 비교급",
+"② very, so, too는 원급 강조 : very healthy"
+]
+]
+},
+"c13p2|1": {
+"pt": [
+"very",
+"비교급 better : very 강조 불가"
+],
+"rel": [
+[
+2,
+3,
+"mod",
+"비교급 강조"
+]
+]
+},
+"c13p2|2": {
+"pt": [
+"much",
+"원급 similar : much 강조 불가"
+],
+"rel": [
+[
+1,
+2,
+"mod",
+"원급 강조"
+]
+],
+"st": [
+"원급 강조 vs 비교급 강조",
+[
+"① 원급 : very, so, quite (very similar)",
+"② 비교급 : much, far, even, still, a lot, slightly"
+]
+]
+},
+"c13p2|3": {
+"pt": [
+"very",
+"최상급 강조 by far : very the worst 아님"
+],
+"rel": [
+[
+1,
+2,
+"mod",
+"최상급 강조"
+]
+]
+},
+"c13p2|4": {
+"pt": [
+"very",
+"비교급 greater : very 강조 불가"
+],
+"rel": [
+[
+1,
+2,
+"mod",
+"비교급 강조"
+]
+]
+},
+"c13p2|5": {
+"pt": [
+"very",
+"최상급 앞 not quite : not very the 어색"
+],
+"rel": [
+[
+2,
+3,
+"mod",
+"강조"
+]
+]
+},
+"c13p3|예제": {
+"pt": [
+"lightest",
+"the + 비교급 짝 : 최상급 아님"
+],
+"rel": [
+[
+0,
+1,
+"par",
+"~할수록 더"
+]
+],
+"st": [
+"the + 비교급, the + 비교급",
+[
+"① The + 비교급 + S + V, the + 비교급 + S + V",
+"② 두 비교급 모두 the 바로 뒤에 둔다",
+"③ 최상급(the lightest)이 아니라 비교급(the lighter)"
+]
+]
+},
+"c13p3|1": {
+"pt": [
+"fastly",
+"fast는 형용사·부사 같은 모양"
+],
+"rel": [
+[
+2,
+1,
+"eq",
+"as ~ as"
+]
+],
+"st": [
+"as ~ as possible",
+[
+"① as + 원급 + as possible = as + 원급 + as + 주어 + can",
+"② ran을 꾸미므로 원급은 부사 fast"
+]
+]
+},
+"c13p3|2": {
+"pt": [
+"wise and wise",
+"비교급 and 비교급 : 원급 반복 아님"
+],
+"rel": [
+[
+2,
+1,
+"eq",
+"보어"
+]
+],
+"st": [
+"점점 더 ~해지다",
+[
+"① 비교급 and 비교급 : wiser and wiser",
+"② 3음절 이상 : more and more important"
+]
+]
+},
+"c13p3|3": {
+"pt": [
+"oldest",
+"than이 있으므로 비교급 older"
+],
+"rel": [
+[
+2,
+1,
+"mod",
+"비교 대상"
+]
+]
+},
+"c13p3|4": {
+"pt": [
+"better",
+"one of the + 최상급 : better 아님"
+],
+"rel": [
+[
+2,
+3,
+"mod",
+""
+]
+],
+"st": [
+"one of the + 최상급",
+[
+"① one of the + 최상급 + 복수명사 : 가장 ~한 것들 중 하나",
+"② 동사는 one에 맞춘다 : is"
+]
+]
+},
+"c13p3|5": {
+"pt": [
+"smarter",
+"as ~ as 사이 : 원급 smart"
+],
+"rel": [
+[
+2,
+1,
+"eq",
+"as ~ as"
+]
+]
+},
+"c13q1|1": {
+"pt": [
+"that",
+"비교급 more popular 뒤 : than"
+],
+"rel": [
+[
+2,
+1,
+"mod",
+"비교 대상"
+]
+]
+},
+"c13q1|2": {
+"pt": [
+"very",
+"비교급 less : very 강조 불가"
+],
+"rel": [
+[
+2,
+3,
+"mod",
+"비교급 강조"
+]
+],
+"st": [
+"less + 비교 대상",
+[
+"① less + 불가산명사 : less sugar (더 적은 설탕)",
+"② 가산 복수명사는 fewer : fewer dishes",
+"③ 강조 : even less, much less"
+]
+]
+},
+"c13q1|3": {
+"pt": [
+"dangerously",
+"seem 뒤 보어 : 형용사 dangerous"
+],
+"rel": [
+[
+4,
+3,
+"mod",
+"비교 대상"
+]
+],
+"st": [
+"seem + 형용사",
+[
+"① seem, look, become + 형용사 보어",
+"② 부사(dangerously)는 보어 자리에 쓰지 않는다"
+]
+]
+},
+"c13q1|4": {
+"pt": [
+"faster",
+"as ~ as 사이 : 원급 fast"
+],
+"rel": [
+[
+3,
+2,
+"eq",
+"as ~ as"
+]
+]
+},
+"c13q1|5": {
+"pt": [
+"younger",
+"less 뒤 : 원급 young (younger 아님)"
+],
+"rel": [
+[
+3,
+2,
+"mod",
+"비교 대상"
+]
+]
+},
+"c13q1|6": {
+"pt": [
+"the brightest",
+"the + 비교급 짝 : 최상급 아님"
+],
+"rel": [
+[
+0,
+2,
+"par",
+"~할수록 더"
+]
+],
+"st": [
+"비교급이 앞으로 나온다",
+[
+"① 원래 문장 : the stars shine brighter",
+"② 구문에서는 the brighter를 절 맨 앞에 둔다"
+]
+]
+},
+"c13q1|7": {
+"pt": [
+"few",
+"금액은 양의 개념 : little (few 아님)"
+],
+"rel": [
+[
+3,
+2,
+"eq",
+"as ~ as"
+]
+]
+},
+"c13q1|8": {
+"pt": [
+"famously",
+"poet을 꾸밈 : 형용사 famous"
+],
+"rel": [
+[
+3,
+1,
+"mod",
+""
+]
+]
+},
+"c13q1|9": {
+"pt": [
+"very",
+"최상급 앞 not quite : not very the 어색"
+],
+"rel": [
+[
+1,
+2,
+"mod",
+"강조"
+]
+]
+},
+"c13q1|10": {
+"pt": [
+"so",
+"as ~ as 동등 비교 : so ~ as는 옛 표현"
+],
+"rel": [
+[
+3,
+2,
+"eq",
+"as ~ as"
+]
+]
+},
+"c13q1|11": {
+"pt": [
+"most",
+"than 앞 : 비교급 more (most 아님)"
+],
+"rel": [
+[
+2,
+1,
+"mod",
+"비교 대상"
+]
+]
+},
+"c13q1|12": {
+"pt": [
+"rapid",
+"melt away(동사)를 꾸밈 : 부사 rapidly"
+],
+"rel": [
+[
+4,
+3,
+"eq",
+"as ~ as"
+]
+]
+},
+"c13q2|1": {
+"pt": [
+"colder",
+"as ~ as 사이 : 원급 cold"
+],
+"rel": [
+[
+4,
+3,
+"eq",
+"as ~ as"
+]
+]
+},
+"c13q2|2": {
+"pt": [
+"harder",
+"as ~ as 사이 : 원급 hard"
+],
+"rel": [
+[
+3,
+2,
+"eq",
+"as ~ as"
+]
+],
+"st": [
+"hard와 hardly",
+[
+"① hard : 열심히 (형용사·부사 같은 모양)",
+"② hardly : 거의 ~않다 (뜻이 전혀 다름)"
+]
+]
+},
+"c13q2|3": {
+"pt": [
+"that",
+"비교급 more 뒤 : than (that 아님)"
+],
+"rel": [
+[
+2,
+1,
+"mod",
+"비교 대상"
+]
+]
+},
+"c13q2|4": {
+"pt": [
+"very",
+"비교급 happier : very 강조 불가"
+],
+"rel": [
+[
+1,
+2,
+"mod",
+"비교급 강조"
+],
+[
+3,
+2,
+"par",
+"병렬"
+]
+]
+},
+"c13q2|5": {
+"pt": [
+"that",
+"비교급 better 뒤 : than"
+],
+"rel": [
+[
+3,
+1,
+"mod",
+"비교 대상"
+]
+]
+},
+"c13q2|6": {
+"pt": [
+"more impressive",
+"one of the + 최상급 : most impressive"
+],
+"rel": [
+[
+2,
+3,
+"mod",
+""
+]
+],
+"st": [
+"긴 형용사의 최상급",
+[
+"① 3음절 이상 : the most + 원급 (most impressive)",
+"② 짧은 형용사 : the + -est (the tallest)"
+]
+]
+},
+"c13q2|7": {
+"pt": [
+"more effective",
+"동사 works 꾸밈 : 부사 effectively"
+],
+"rel": [
+[
+1,
+0,
+"mod",
+""
+],
+[
+3,
+1,
+"mod",
+"비교 대상"
+]
+]
+},
+"c13q2|8": {
+"pt": [
+"close and close",
+"비교급 and 비교급 : closer and closer"
+],
+"rel": [
+[
+2,
+1,
+"eq",
+"보어"
+]
+]
+},
+"c13q2|9": {
+"pt": [
+"most valuable",
+"than이 있으므로 비교급 more valuable"
+],
+"rel": [
+[
+3,
+1,
+"mod",
+"비교 대상"
+]
+]
+},
+"c13q2|10": {
+"pt": [
+"earlier",
+"as ~ as 사이 : 원급 early"
+],
+"rel": [
+[
+2,
+1,
+"eq",
+"as ~ as"
+]
+],
+"st": [
+"suggest + 동명사",
+[
+"① suggest + 동명사 : ~하는 것을 제안하다",
+"② suggest + to V는 쓰지 않는다"
+]
+]
+},
+"c13q2|11": {
+"pt": [
+"completely",
+"명사 explanation 꾸밈 : 형용사 complete"
+],
+"rel": [
+[
+4,
+1,
+"mod",
+"비교 대상"
+]
+]
+},
+"c13q2|12": {
+"pt": [
+"very",
+"비교급 shorter : very 강조 불가"
+],
+"rel": [
+[
+2,
+3,
+"mod",
+"비교급 강조"
+]
+]
+},
+"c13s1|1-(A)": {
+"pt": [
+"as",
+"비교급 brighter 뒤 : than"
+],
+"rel": [
+[
+4,
+2,
+"mod",
+"비교 대상"
+]
+]
+},
+"c13s1|1-(B)": {
+"pt": [
+"practically",
+"be동사 보어 : 형용사 practical"
+],
+"rel": [
+[
+2,
+1,
+"eq",
+"보어"
+]
+]
+},
+"c13s1|2-(A)": {
+"pt": [
+"greatly",
+"factors 꾸밈 : 형용사 great"
+],
+"rel": [
+[
+2,
+1,
+"eq",
+"~만큼"
+]
+]
+},
+"c13s1|2-(B)": {
+"pt": [
+"necessary",
+"followed(동사) 꾸밈 : 부사 necessarily"
+],
+"rel": [
+[
+2,
+1,
+"eq",
+"as ~ as"
+]
+]
+},
+"c13s1|3-(A)": {
+"pt": [
+"very",
+"비교급 more frequently : very 불가"
+],
+"rel": [
+[
+4,
+3,
+"mod",
+"비교 대상"
+],
+[
+2,
+1,
+"mod",
+""
+]
+]
+},
+"c13s1|3-(B)": {
+"pt": [
+"most",
+"the + 비교급 짝 : most 아님"
+],
+"rel": [
+[
+0,
+1,
+"par",
+"~할수록 더"
+]
+]
+},
+"c13s1|4-①": {
+"pt": [
+"closer",
+"not as ~ as 사이 : 원급 close"
+],
+"rel": [
+[
+2,
+1,
+"eq",
+"~만큼"
+]
+],
+"st": [
+"not as ~ as",
+[
+"① A is not as 원급 as B : A는 B만큼 ~않다",
+"② 같은 뜻 : A is less 원급 than B"
+]
+]
+},
+"c13s1|4-②": {
+"pt": [
+"very",
+"비교급 better : very 강조 불가"
+],
+"rel": [
+[
+2,
+3,
+"mod",
+"비교급 강조"
+]
+]
+},
+"c13s1|5-①": {
+"pt": [
+"as",
+"비교급 larger 뒤 : than"
+],
+"rel": [
+[
+2,
+0,
+"mod",
+"비교 대상"
+]
+]
+},
+"c13s1|5-②": {
+"pt": [
+"thicker",
+"배수사 + as + 원급 + as : thick"
+],
+"rel": [
+[
+2,
+1,
+"eq",
+"배수 비교"
+]
+]
+},
+"c13s1|6-①": {
+"pt": [
+"so",
+"as much as + 수치 : as ~ as 짝"
+],
+"rel": []
+},
+"c13s1|6-②": {
+"pt": [
+"better",
+"one of the + 최상급 : best (better 아님)"
+],
+"rel": [
+[
+5,
+4,
+"eq",
+""
+]
+]
+},
+"add13|1-1": {
+"pt": [
+"so",
+"as low as + 수치 : as ~ as 짝"
+],
+"rel": []
+},
+"add13|1-2": {
+"pt": [
+"most",
+"than이 있으므로 비교급 more"
+],
+"rel": [
+[
+4,
+2,
+"mod",
+"비교 대상"
+]
+]
+},
+"add13|1-3": {
+"pt": [
+"smoothly",
+"look 뒤 보어 : 형용사 smooth"
+],
+"rel": [
+[
+3,
+2,
+"eq",
+"보어"
+]
+]
+},
+"add13|1-4": {
+"pt": [
+"then",
+"비교 : more than (then 아님)"
+],
+"rel": [
+[
+3,
+1,
+"mod",
+"비교 대상"
+]
+]
+},
+"add13|1-5": {
+"pt": [
+"efficient",
+"learn(동사) 꾸밈 : 부사 efficiently"
+],
+"rel": [
+[
+3,
+2,
+"mod",
+""
+],
+[
+4,
+1,
+"eq",
+"those = brains"
+]
+]
+},
+"add13|2-1": {
+"pt": [
+"very",
+"비교급 safer : very 강조 불가"
+],
+"rel": [
+[
+4,
+3,
+"mod",
+"비교 대상"
+]
+]
+},
+"add13|2-2": {
+"rel": []
+},
+"add13|2-3": {
+"pt": [
+"much",
+"원급 sad : much 강조 불가"
+],
+"rel": [
+[
+4,
+3,
+"par",
+"병렬"
+]
+]
+},
+"add13|2-4": {
+"pt": [
+"very",
+"비교급 worse : very 강조 불가"
+],
+"rel": [
+[
+3,
+2,
+"mod",
+"비교 대상"
+]
+]
+},
+"add13|2-5": {
+"rel": [
+[
+3,
+2,
+"par",
+"병렬"
+]
+]
+},
+"add13|3-1": {
+"pt": [
+"more early",
+"early는 -ier형 : more 안 붙임"
+],
+"rel": [
+[
+0,
+4,
+"par",
+"~할수록 더"
+]
+]
+},
+"add13|3-2": {
+"pt": [
+"as",
+"비교급 more fun 뒤 : than"
+],
+"rel": [
+[
+3,
+2,
+"mod",
+"비교 대상"
+]
+]
+},
+"add13|3-3": {
+"pt": [
+"larger",
+"배수사 + as + 원급 + as : large"
+],
+"rel": [
+[
+2,
+1,
+"mod",
+""
+],
+[
+5,
+0,
+"eq",
+"that = amount"
+]
+]
+},
+"add13|3-4": {
+"rel": [
+[
+2,
+1,
+"mod",
+"앞 내용 전체"
+]
+]
+},
+"add13|3-5": {
+"pt": [
+"more",
+"no other ~ as 원급 as : more 아님"
+],
+"rel": [
+[
+1,
+0,
+"mod",
+""
+]
+]
+}
+}

@@ -1,0 +1,1451 @@
+{
+ "c06p1|예제": {
+  "pt": [
+   "recognizes",
+   "진주어는 to부정사 : 동사 자리 아님"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "impacts 꾸밈"
+   ],
+   [
+    1,
+    0,
+    "eq",
+    "진주어"
+   ]
+  ],
+  "st": [
+   "가주어 It과 진주어",
+   [
+    "① It is + 형용사 + to V : to V가 진짜 주어 (~하는 것은)",
+    "② 진주어 자리에 3인칭 동사(recognizes)는 올 수 없다"
+   ]
+  ]
+ },
+ "c06p1|1": {
+  "pt": [
+   "prevents",
+   "본동사 wear가 이미 있다 : 목적은 to V"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "목적"
+   ]
+  ],
+  "st": [
+   "한 문장의 본동사",
+   [
+    "① 본동사는 접속사 없이 두 개 쓸 수 없다",
+    "② 목적(~하기 위해)은 to V로 나타낸다 : wear ~ to prevent"
+   ]
+  ]
+ },
+ "c06p1|2": {
+  "pt": [
+   "playing",
+   "문장의 본동사 자리 : -ing는 동사 불가"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "동사 자리 찾기",
+   [
+    "① 주어 뒤 전치사구(in the park)를 지우면 동사 자리가 보인다",
+    "② 동사 자리에는 시제와 수가 있는 동사(play)를 쓴다",
+    "③ -ing나 to V는 혼자서는 동사가 될 수 없다"
+   ]
+  ]
+ },
+ "c06p1|3": {
+  "pt": [
+   "soaking",
+   "pouring이 수식어라 본동사가 따로 필요"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c06p1|4": {
+  "pt": [
+   "restrict",
+   "동사 increases가 있다 : 주어는 동명사"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "items 꾸밈"
+   ]
+  ]
+ },
+ "c06p1|5": {
+  "pt": [
+   "remember",
+   "a helpful way 뒤 : 형용사적 to부정사"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "way 꾸밈"
+   ]
+  ],
+  "st": [
+   "명사를 꾸미는 to부정사",
+   [
+    "① 명사 + to V : ~할 (명사) (a way to remember : 기억할 방법)",
+    "② 명사 바로 뒤에 동사원형이 오면 어법상 틀리다"
+   ]
+  ]
+ },
+ "c06p1|6": {
+  "pt": [
+   "support",
+   "전치사 of 뒤 : 동명사 (원형 불가)"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "par",
+    "병렬"
+   ]
+  ],
+  "st": [
+   "전치사 뒤의 형태",
+   [
+    "① 전치사 + 동명사 : proud of(자랑스러운) supporting",
+    "② 전치사 뒤에 동사원형·to V는 쓰지 않는다"
+   ]
+  ]
+ },
+ "c06p1|7": {
+  "pt": [
+   "kills",
+   "주어 The diseases가 복수 : s 안 붙임"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ],
+   [
+    4,
+    3,
+    "par",
+    "A뿐 아니라 B도"
+   ]
+  ]
+ },
+ "c06p1|8": {
+  "pt": [
+   "improves",
+   "이미 동사 is가 있다 : 보어는 동명사"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "benefit 꾸밈"
+   ]
+  ]
+ },
+ "c06p2|예제": {
+  "pt": [
+   "to use",
+   "stop + 동명사 : ~하는 것을 멈추다"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "mod",
+    "조건"
+   ]
+  ],
+  "st": [
+   "stop의 두 가지 목적어",
+   [
+    "① stop + 동명사 : ~하는 것을 멈추다 (stop using)",
+    "② stop + to V : ~하려고 멈추다 (stop to rest : 쉬려고 멈추다)"
+   ]
+  ]
+ },
+ "c06p2|1": {
+  "pt": [
+   "going",
+   "decide + to V : ~하기로 결정하다"
+  ],
+  "rel": [],
+  "st": [
+   "to V만 취하는 동사",
+   [
+    "① decide(결정하다) hope(바라다) plan(계획하다) want(원하다)",
+    "② 이 동사 뒤에 동명사는 쓸 수 없다 : decided going (X)"
+   ]
+  ]
+ },
+ "c06p2|2": {
+  "pt": [
+   "to clean",
+   "finish + 동명사 : ~하는 것을 끝내다"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "동명사만 취하는 동사",
+   [
+    "① finish(끝내다) enjoy(즐기다) avoid(피하다) mind(꺼리다)",
+    "② give up(포기하다) put off(미루다) consider(고려하다)",
+    "③ 이 동사들 뒤에 to V는 쓰지 않는다"
+   ]
+  ]
+ },
+ "c06p2|3": {
+  "pt": [
+   "eating",
+   "refuse + to V : ~하기를 거부하다"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    "이유"
+   ]
+  ]
+ },
+ "c06p2|4": {
+  "pt": [
+   "to play",
+   "quit + 동명사 : ~하기를 그만두다"
+  ],
+  "rel": [],
+  "st": [
+   "그만두다·포기하다 + 동명사",
+   [
+    "① quit(그만두다) give up(포기하다) stop(멈추다) + 동명사",
+    "② 그만두는 대상이 동작이면 동명사 : quit playing (노는 것을 그만두다)"
+   ]
+  ]
+ },
+ "c06p2|5": {
+  "pt": [
+   "getting",
+   "stop to V : ~하려고 멈추다 (목적)"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c06p2|6": {
+  "pt": [
+   "starting",
+   "choose + to V : ~하기로 선택하다"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c06p2|7": {
+  "pt": [
+   "to renovate",
+   "consider + 동명사 : ~을 고려하다"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    "목적"
+   ]
+  ],
+  "st": [
+   "consider의 목적어",
+   [
+    "① consider(고려하다) + 동명사 : ~하는 것을 고려하다",
+    "② to V는 뒤에서 목적(~하기 위해)을 나타내는 부사적 용법이다"
+   ]
+  ]
+ },
+ "c06p2|8": {
+  "pt": [
+   "to wait",
+   "mind + 동명사 : ~을 꺼리다"
+  ],
+  "rel": []
+ },
+ "c06p3|예제": {
+  "pt": [
+   "taking",
+   "forget + to V : 앞으로 할 일을 잊다"
+  ],
+  "rel": [
+   [
+    4,
+    2,
+    "mod",
+    "양보"
+   ]
+  ],
+  "st": [
+   "forget의 두 가지 의미",
+   [
+    "① forget + to V : ~할 것을 잊다 (아직 안 한 일)",
+    "② forget + 동명사 : ~한 것을 잊다 (이미 한 일)",
+    "③ 문장은 사진을 찍지 않았다는 뜻이라 to V"
+   ]
+  ]
+ },
+ "c06p3|1": {
+  "pt": [
+   "to watch",
+   "remember + 동명사 : 이미 한 일을 기억"
+  ],
+  "rel": [],
+  "st": [
+   "remember의 두 가지 의미",
+   [
+    "① remember + 동명사 : ~한 것을 기억하다 (이미 한 일)",
+    "② remember + to V : ~할 것을 기억하다 (앞으로 할 일)"
+   ]
+  ]
+ },
+ "c06p3|2": {
+  "pt": [
+   "plan",
+   "start 뒤 : to V나 동명사 (원형 불가)"
+  ],
+  "rel": []
+ },
+ "c06p3|3": {
+  "pt": [
+   "informing",
+   "regret + to V : 알리게 되어 유감 (공손)"
+  ],
+  "rel": [],
+  "st": [
+   "regret의 두 가지 의미",
+   [
+    "① regret + to V : ~하게 되어 유감이다 (지금 하는 말)",
+    "② regret + 동명사 : ~한 것을 후회하다 (이미 한 일)"
+   ]
+  ]
+ },
+ "c06p3|4": {
+  "pt": [
+   "to make",
+   "약속을 이미 한 일 : forget + 동명사"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c06p3|5": {
+  "pt": [
+   "listening",
+   "try + to V : ~하려고 노력하다"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "par",
+    "병렬"
+   ]
+  ],
+  "st": [
+   "try의 두 가지 의미",
+   [
+    "① try + to V : ~하려고 노력하다 (애쓰다)",
+    "② try + 동명사 : 시험 삼아 ~해 보다 (try eating : 먹어 보다)"
+   ]
+  ]
+ },
+ "c06p4|예제": {
+  "pt": [
+   "expressing",
+   "be used to V : ~하는 데 쓰이다"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "목적"
+   ]
+  ],
+  "st": [
+   "be used to의 두 모양",
+   [
+    "① be used to + 동사원형 : ~하는 데 쓰이다 (수동태 + 목적)",
+    "② be used to + 동명사 : ~에 익숙하다 (to는 전치사)"
+   ]
+  ]
+ },
+ "c06p4|1": {
+  "pt": [
+   "meet",
+   "look forward to의 to는 전치사 : 동명사"
+  ],
+  "rel": [],
+  "st": [
+   "to 뒤의 형태 구별",
+   [
+    "① to 뒤에 동사원형 : to부정사 (want to go)",
+    "② to 뒤에 명사·동명사 : 전치사 (look forward to going)",
+    "③ 구별법 : 명사(예: the trip)를 넣어 보아 자연스러우면 전치사"
+   ]
+  ]
+ },
+ "c06p4|2": {
+  "pt": [
+   "hearing",
+   "like to의 to는 to부정사 : 뒤는 동사원형"
+  ],
+  "rel": []
+ },
+ "c06p4|3": {
+  "pt": [
+   "speak",
+   "be used to의 to는 전치사 : 동명사"
+  ],
+  "rel": []
+ },
+ "c06p4|4": {
+  "pt": [
+   "showing",
+   "fail + to V : ~하지 못하다"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "Anyone 꾸밈"
+   ]
+  ],
+  "st": [
+   "fail의 목적어",
+   [
+    "① fail + to V : ~하지 못하다, ~을 못 하다",
+    "② fail 뒤에 동명사는 쓰지 않는다 : fail showing (X)"
+   ]
+  ]
+ },
+ "c06p4|5": {
+  "pt": [
+   "break",
+   "close to의 to는 전치사 : 동명사"
+  ],
+  "rel": []
+ },
+ "c06p5|예제": {
+  "pt": [
+   "to be built",
+   "houses를 짓는 주체가 사람 : 능동"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "campaign 꾸밈"
+   ]
+  ],
+  "st": [
+   "능동형 vs 수동형 to V",
+   [
+    "① to V 뒤에 목적어(houses)가 있으면 능동형 : to build",
+    "② 목적어가 없고 주어가 당하는 대상이면 수동형 : to be built"
+   ]
+  ]
+ },
+ "c06p5|1": {
+  "pt": [
+   "evaluating",
+   "직원이 평가를 받는 대상 : 수동형"
+  ],
+  "rel": [],
+  "st": [
+   "동명사의 수동형",
+   [
+    "① being p.p. : ~되는 것 (being evaluated : 평가받는 것)",
+    "② 동명사의 의미상 주어가 동작을 받으면 being p.p. 형태"
+   ]
+  ]
+ },
+ "c06p5|2": {
+  "pt": [
+   "to be reduced",
+   "목적어 stress가 있다 : 능동형 to V"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "목적"
+   ]
+  ]
+ },
+ "c06p5|3": {
+  "pt": [
+   "to clean",
+   "put off의 off 뒤 : 목적어는 동명사"
+  ],
+  "rel": [],
+  "st": [
+   "put off의 목적어",
+   [
+    "① put off(미루다) + 동명사 : ~하는 것을 미루다",
+    "② put off 뒤에 to V는 쓰지 않는다 : put off to clean (X)"
+   ]
+  ]
+ },
+ "c06p5|4": {
+  "pt": [
+   "to find",
+   "고양이가 발견되는 대상 : 수동형 to V"
+  ],
+  "rel": [
+   [
+    5,
+    4,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c06p5|5": {
+  "pt": [
+   "Selecting",
+   "지도자로 선택되는 것 : 수동형 동명사"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "동명사 주어의 수동형",
+   [
+    "① Being p.p. ~ is + 보어 : ~되는 것은 …이다",
+    "② 주어가 동작을 받으면 being p.p., 하면 -ing"
+   ]
+  ]
+ },
+ "c06p6|예제": {
+  "pt": [
+   "expressing",
+   "a tool 뒤 : 형용사적 to V (의미상 주어 for people)"
+  ],
+  "rel": [
+   [
+    4,
+    2,
+    "mod",
+    "tool 꾸밈"
+   ]
+  ]
+ },
+ "c06p6|1": {
+  "pt": [
+   "accepting",
+   "Amy가 받아들여지는 대상 : 수동형"
+  ],
+  "rel": []
+ },
+ "c06p6|2": {
+  "pt": [
+   "to leave",
+   "prevent 뒤 목적어 자리 : 동명사 leaving"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    "의미상 주어"
+   ]
+  ]
+ },
+ "c06p6|3": {
+  "pt": [
+   "promoting",
+   "승진되는 대상 : being p.p. (수동형)"
+  ],
+  "rel": [],
+  "st": [
+   "동명사의 의미상 주어",
+   [
+    "① 동명사 앞에 소유격(his)이나 목적격을 쓴다 : his being promoted",
+    "② 소유격 + being p.p. : 그가 승진된 것을 축하하다"
+   ]
+  ]
+ },
+ "c06p6|4": {
+  "pt": [
+   "understanding",
+   "too ~ for A to V : A가 이해하기에 너무 어려운"
+  ],
+  "rel": [
+   [
+    5,
+    3,
+    "mod",
+    "too ~ to"
+   ]
+  ],
+  "st": [
+   "too ~ to V 구문",
+   [
+    "① too + 형용사 + (for A) + to V : 너무 ~해서 (A가) …할 수 없다",
+    "② to V 앞에 for A는 의미상 주어이다 : for them to understand"
+   ]
+  ]
+ },
+ "c06p6|5": {
+  "pt": [
+   "to release",
+   "영화가 개봉되는 대상 : 수동형"
+  ],
+  "rel": [],
+  "st": [
+   "wait for A to V",
+   [
+    "① wait for A to V : A가 ~하기를 기다리다 (A는 의미상 주어)",
+    "② A가 동작을 받으면 to be p.p. : to be released"
+   ]
+  ]
+ },
+ "c06q1|1": {
+  "pt": [
+   "dancing",
+   "문장의 본동사 자리 : -ing는 동사 불가"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c06q1|2": {
+  "pt": [
+   "to answer",
+   "put off + 동명사 : ~을 미루다"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c06q1|3": {
+  "pt": [
+   "informing",
+   "need + to V : ~할 필요가 있다"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c06q1|4": {
+  "pt": [
+   "taking",
+   "remember + to V : ~할 것을 기억하다"
+  ],
+  "rel": [],
+  "st": [
+   "remember + to V / 동명사",
+   [
+    "① remember + to V : ~할 것을 기억하다 (앞으로 할 일)",
+    "② 명령문에서 약을 먹을 일은 아직 안 했으므로 to V"
+   ]
+  ]
+ },
+ "c06q1|5": {
+  "pt": [
+   "eat",
+   "be accustomed to의 to는 전치사 : 동명사"
+  ],
+  "rel": []
+ },
+ "c06q1|6": {
+  "pt": [
+   "check",
+   "전치사 by 뒤 : 동명사"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "방법"
+   ]
+  ]
+ },
+ "c06q1|7": {
+  "pt": [
+   "disturbing",
+   "방해받는 대상 Mark : 수동형 being p.p."
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "without + 동명사",
+   [
+    "① 전치사 without 뒤에는 동명사 : without being disturbed",
+    "② 주어가 동작을 받으면 being p.p. (방해받는 것)"
+   ]
+  ]
+ },
+ "c06q1|8": {
+  "pt": [
+   "to finish",
+   "delay + 동명사 : ~을 미루다"
+  ],
+  "rel": [],
+  "st": [
+   "동명사의 의미상 주어",
+   [
+    "① 동명사 앞 소유격은 의미상 주어 : your finishing (네가 끝내는 것)",
+    "② delay(미루다)는 동명사만 목적어로 취한다"
+   ]
+  ]
+ },
+ "c06q1|9": {
+  "pt": [
+   "finding",
+   "hope + to V : ~하기를 바라다"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "babysitter 꾸밈"
+   ]
+  ]
+ },
+ "c06q1|10": {
+  "pt": [
+   "making",
+   "주어 The oil의 본동사 자리 : 과거형 made"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c06q1|11": {
+  "pt": [
+   "to buy",
+   "regret + 동명사 : ~한 것을 후회하다"
+  ],
+  "rel": [],
+  "st": [
+   "후회 구별 팁",
+   [
+    "① 이미 한 일(집을 산 것)을 후회 : regret + 동명사",
+    "② 단서 : 이유로 now I have no money (이제 돈이 없다)"
+   ]
+  ]
+ },
+ "c06q1|12": {
+  "pt": [
+   "promote",
+   "permission 뒤 : to V (동사원형 불가)"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "목적"
+   ]
+  ]
+ },
+ "c06q2|1": {
+  "pt": [
+   "Eat",
+   "동사 is의 주어 : 동명사 Eating (원형 불가)"
+  ],
+  "rel": []
+ },
+ "c06q2|2": {
+  "pt": [
+   "keeping",
+   "agree + to V : ~하기로 동의하다"
+  ],
+  "rel": [],
+  "st": [
+   "to V만 취하는 동사 2",
+   [
+    "① agree(동의하다) afford(~할 여유가 되다) manage(해내다)",
+    "② 이 동사 뒤에 동명사는 쓰지 않는다 : agreed keeping (X)"
+   ]
+  ]
+ },
+ "c06q2|3": {
+  "pt": [
+   "persuading",
+   "be used to + 동사원형 : ~하는 데 쓰이다"
+  ],
+  "rel": [],
+  "st": [
+   "be used to 구별",
+   [
+    "① 사물 주어 + be used to V : ~하는 데 쓰인다 (수동태)",
+    "② 사람 주어 + be used to -ing : ~에 익숙하다",
+    "③ 이 문장은 광고(사물)가 주어라 to persuade"
+   ]
+  ]
+ },
+ "c06q2|4": {
+  "pt": [
+   "to experience",
+   "forget + 동명사 : ~한 것을 잊다"
+  ],
+  "rel": []
+ },
+ "c06q2|5": {
+  "pt": [
+   "includes",
+   "주어 The items가 복수 : s 안 붙임"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "items 꾸밈"
+   ]
+  ]
+ },
+ "c06q2|6": {
+  "pt": [
+   "to talk",
+   "stop + 동명사 : ~하는 것을 멈추다"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c06q2|7": {
+  "pt": [
+   "lock",
+   "문은 잠기는 대상 : to be locked (수동형)"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c06q2|8": {
+  "pt": [
+   "succeeding",
+   "ability 뒤 : 형용사적 to부정사"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "ability 꾸밈"
+   ]
+  ]
+ },
+ "c06q2|9": {
+  "pt": [
+   "provide",
+   "전치사 on 뒤 : 동명사"
+  ],
+  "rel": []
+ },
+ "c06q2|10": {
+  "pt": [
+   "spend",
+   "prefer 뒤 : to V (동사원형 불가)"
+  ],
+  "rel": []
+ },
+ "c06q2|11": {
+  "pt": [
+   "says",
+   "주어 Tourists가 복수 : s 안 붙임"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "수식어구 뒤의 진짜 동사",
+   [
+    "① 주어 + 관계사절 + 동사 : 관계사절을 지우고 주어와 수일치",
+    "② who have visited the island(섬을 방문한)을 빼면 Tourists say"
+   ]
+  ]
+ },
+ "c06q2|12": {
+  "pt": [
+   "design",
+   "project는 설계되는 대상 : to be p.p."
+  ],
+  "rel": [
+   [
+    4,
+    1,
+    "eq",
+    "진주어"
+   ]
+  ]
+ },
+ "c06s1|1-(A)": {
+  "pt": [
+   "think",
+   "관계사절 뒤 진짜 동사 : 주어 Musk(단수)에 일치"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "Musk 꾸밈"
+   ]
+  ],
+  "st": [
+   "관계사절 뒤의 동사",
+   [
+    "① 주어 + , who ~, + 동사 : 삽입된 관계사절을 지우고 일치",
+    "② Elon Musk(단수)이므로 thinks (3인칭 단수 -s)"
+   ]
+  ]
+ },
+ "c06s1|1-(B)": {
+  "pt": [
+   "bringing",
+   "plan + to V : ~할 계획이다"
+  ],
+  "rel": []
+ },
+ "c06s1|2-(A)": {
+  "pt": [
+   "deal",
+   "be used to의 to는 전치사 : 동명사"
+  ],
+  "rel": [],
+  "st": [
+   "be used to 뒤의 모양",
+   [
+    "① I was used to + 동명사 : 나는 ~에 익숙했다",
+    "② 동사원형이 오면 be used to V (~하는 데 쓰이다)로 뜻이 달라진다"
+   ]
+  ]
+ },
+ "c06s1|2-(B)": {
+  "pt": [
+   "move",
+   "전치사 by 뒤 : 동명사"
+  ],
+  "rel": []
+ },
+ "c06s1|3-(A)": {
+  "pt": [
+   "to take",
+   "suggest + 동명사 : ~을 제안하다"
+  ],
+  "rel": [],
+  "st": [
+   "suggest의 목적어",
+   [
+    "① suggest(제안하다) + 동명사 : suggest taking",
+    "② suggest + to V는 쓰지 않는다",
+    "③ 같은 부류 : recommend(추천하다) 등 동명사 목적어"
+   ]
+  ]
+ },
+ "c06s1|3-(B)": {
+  "pt": [
+   "inspire",
+   "you가 영감을 받는 대상 : to be inspired"
+  ],
+  "rel": [
+   [
+    5,
+    4,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c06s1|4-①": {
+  "pt": [
+   "living",
+   "문장의 본동사 자리 : 과거형 lived"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c06s1|4-②": {
+  "pt": [
+   "coming",
+   "ability 뒤 : 형용사적 to부정사"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "ability 꾸밈"
+   ]
+  ]
+ },
+ "c06s1|4-③": {
+  "pt": [
+   "to return",
+   "keep + 동명사 : 계속 ~하다"
+  ],
+  "rel": [
+   [
+    4,
+    2,
+    "mod",
+    "목적"
+   ]
+  ]
+ },
+ "c06s1|5-①": {
+  "pt": [
+   "resemble",
+   "소유격 뒤 : 명사 역할의 동명사"
+  ],
+  "rel": []
+ },
+ "c06s1|5-②": {
+  "pt": [
+   "Change",
+   "is의 주어 : 동명사 Changing"
+  ],
+  "rel": []
+ },
+ "c06s1|5-③": {
+  "pt": [
+   "making",
+   "want + to V : ~하기를 원하다"
+  ],
+  "rel": []
+ },
+ "c06s1|6-1": {
+  "pt": [
+   "contains",
+   "주어 vaccines가 복수 : s 안 붙임"
+  ],
+  "rel": []
+ },
+ "c06s1|6-①": {
+  "pt": [
+   "fight",
+   "react 뒤 목적 : to V (원형 불가)"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "목적"
+   ]
+  ]
+ },
+ "c06s1|6-②": {
+  "pt": [
+   "attacking",
+   "몸이 공격당하는 대상 : being p.p."
+  ],
+  "rel": []
+ },
+ "c06s1|6-③": {
+  "pt": [
+   "to meet",
+   "remember + 동명사 : ~한 것을 기억하다"
+  ],
+  "rel": [
+   [
+    4,
+    2,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "add06|1-1": {
+  "pt": [
+   "Add",
+   "동명사 Adding : 문장의 주어 역할"
+  ],
+  "rel": []
+ },
+ "add06|1-2": {
+  "pt": [
+   "provides",
+   "본동사 planted가 이미 있다 : 목적은 to V"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    "목적"
+   ]
+  ]
+ },
+ "add06|1-3": {
+  "pt": [
+   "eating",
+   "주어 뒤 본동사 자리 : 복수 eat"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add06|1-4": {
+  "pt": [
+   "go",
+   "전치사 about 뒤 : 동명사"
+  ],
+  "rel": []
+ },
+ "add06|1-5": {
+  "pt": [
+   "owning",
+   "가주어 It : 진주어는 to V"
+  ],
+  "rel": [
+   [
+    3,
+    0,
+    "eq",
+    "진주어"
+   ]
+  ]
+ },
+ "add06|2-1": {
+  "pt": [
+   "advertising",
+   "decide + to V : ~하기로 결정하다"
+  ],
+  "rel": []
+ },
+ "add06|2-2": {
+  "pt": [
+   "to take",
+   "stop + 동명사 : ~하는 것을 그만두다"
+  ],
+  "rel": [
+   [
+    4,
+    1,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "stop 뒤 판단하기",
+   [
+    "① 이미 하던 일을 그만두면 stop + 동명사",
+    "② 단서 : 기름값이 비싸져서 차를 타고 가는 일을 그만두었다"
+   ]
+  ]
+ },
+ "add06|2-3": {
+  "pt": [
+   "to pay",
+   "avoid + 동명사 : ~을 피하다"
+  ],
+  "rel": []
+ },
+ "add06|2-4": {
+  "pt": [
+   "learning",
+   "choose + to V : ~하기로 선택하다"
+  ],
+  "rel": []
+ },
+ "add06|2-5": {
+  "pt": [
+   "to see",
+   "put off + 동명사 : ~을 미루다"
+  ],
+  "rel": []
+ },
+ "add06|3-1": {
+  "pt": [
+   "closing",
+   "forget + to V : ~할 것을 잊다"
+  ],
+  "rel": []
+ },
+ "add06|3-2": {
+  "pt": [
+   "visit",
+   "love 뒤 : 동명사나 to V (원형 불가)"
+  ],
+  "rel": []
+ },
+ "add06|3-3": {
+  "pt": [
+   "to experience",
+   "remember + 동명사 : ~한 것을 기억하다"
+  ],
+  "rel": []
+ },
+ "add06|3-4": {
+  "pt": [
+   "to arrive",
+   "regret + 동명사 : ~한 것을 후회하다"
+  ],
+  "rel": []
+ },
+ "add06|3-5": {
+  "rel": [],
+  "st": [
+   "try + to V 판단 단서",
+   [
+    "① 단서 : until we finally asked for directions (결국 길을 물었다)",
+    "② 찾으려고 애썼지만 못 찾았다는 뜻이라 to find"
+   ]
+  ]
+ },
+ "add06|4-1": {
+  "pt": [
+   "removing",
+   "be used to + 동사원형 : ~하는 데 쓰이다"
+  ],
+  "rel": []
+ },
+ "add06|4-2": {
+  "pt": [
+   "build",
+   "object to의 to는 전치사 : 동명사"
+  ],
+  "rel": []
+ },
+ "add06|4-3": {
+  "pt": [
+   "entering",
+   "목적 ~하기 위해 : to V (to 뒤는 원형)"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    "목적"
+   ]
+  ]
+ },
+ "add06|4-4": {
+  "pt": [
+   "stop",
+   "contribute to의 to는 전치사 : 동명사"
+  ],
+  "rel": []
+ },
+ "add06|4-5": {
+  "pt": [
+   "exercise",
+   "be used to의 to는 전치사 : 동명사"
+  ],
+  "rel": [
+   [
+    4,
+    1,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "add06|5-1": {
+  "pt": [
+   "to give",
+   "staff가 받는 대상 : 수동형 to be given"
+  ],
+  "rel": []
+ },
+ "add06|5-2": {
+  "pt": [
+   "join",
+   "전치사 in 뒤 : 동명사"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add06|5-3": {
+  "pt": [
+   "releasing",
+   "동물이 풀려나는 대상 : being p.p."
+  ],
+  "rel": []
+ },
+ "add06|5-4": {
+  "pt": [
+   "improving",
+   "목적 ~하기 위해 : to부정사"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    "목적"
+   ]
+  ]
+ },
+ "add06|5-5": {
+  "pt": [
+   "employing",
+   "일자리를 얻는 것 : 수동형 being p.p."
+  ],
+  "rel": []
+ },
+ "add06|6-1": {
+  "pt": [
+   "to publish",
+   "책이 출판되는 대상 : to be p.p."
+  ],
+  "rel": []
+ },
+ "add06|6-2": {
+  "pt": [
+   "removing",
+   "제거되는 대상 : 수동형 being p.p."
+  ],
+  "rel": []
+ },
+ "add06|6-3": {
+  "pt": [
+   "knowing",
+   "for users : to부정사의 의미상 주어"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "information 꾸밈"
+   ]
+  ]
+ },
+ "add06|6-4": {
+  "pt": [
+   "learn",
+   "소유격 the boy’s 뒤 : 동명사 learning"
+  ],
+  "rel": []
+ },
+ "add06|6-5": {
+  "pt": [
+   "clear",
+   "거리가 치워지는 대상 : to be p.p."
+  ],
+  "rel": []
+ }
+}

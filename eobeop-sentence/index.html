@@ -55,7 +55,18 @@ html,body{margin:0;background:#eef2f9;font-family:'Malgun Gothic','Noto Sans KR'
 .chip2{border-radius:8px;padding:3px 10px;font-size:15px}
 .chip2 em{font-style:normal;font-weight:700;font-size:12px;margin-right:6px;opacity:.8}
 .chip2.s{background:#cfe3ff;color:#173a6b}.chip2.m{background:#e6e6e6;color:#555}.chip2.v{background:#d6f0d2;color:#1b5e3a}.chip2.c{background:#ffe3c2;color:#8a4a00}
-.sxw{margin-top:12px;background:#fff;border:1.5px solid #cfe0d6;border-radius:12px;padding:10px 10px 6px}.sxh{font-size:12px;font-weight:700;color:#0a7a2f;margin-bottom:6px}.sxf{display:flex;flex-wrap:wrap;gap:12px 3px;align-items:flex-start}.sxs{display:inline-flex;flex-direction:column;min-width:0}.sxs .nt2{font-size:11px;color:#0a7a2f;font-weight:700;line-height:1.3;max-width:200px;border-top:2px solid #86c99a;padding-top:1px;margin-bottom:1px}.sxs .en2{font-size:17px;line-height:1.5;color:#1c1f26}.sxs .ko2{font-size:12px;color:#6a6e78;line-height:1.35}.sxsl{color:#b9b4a4;font-size:17px;align-self:flex-end;padding-bottom:16px}.sxw b.v,.sxw b.a{font-weight:800;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}.sxw b.a{background:#fff1a8;border-radius:3px;padding:0 2px}.sxw b.c{font-weight:800;border:1.6px solid #222;border-radius:3px;padding:0 3px}.sxw b.p{font-weight:800;color:#0b6b3a}.sxw i.br{font-style:normal;color:#0a7a2f;font-weight:800;font-size:19px}.sxlg{font-size:11.5px;color:#6a6e78;margin:2px 0 6px}
+.sxw{margin-top:12px;background:#fff;border:1.5px solid #cfe0d6;border-radius:12px;padding:10px 10px 8px}.sxh{font-size:12px;font-weight:700;color:#0a7a2f;margin-bottom:2px}.sxlg{font-size:11.5px;color:#6a6e78;margin:0 0 8px;line-height:1.5}
+.sxpt{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:14px;margin:2px 0 8px}.sxpt .tag{background:#2f6fd0;color:#fff;border-radius:4px;font-size:11.5px;font-weight:700;padding:1px 7px}.sxpt .wr{color:#c0211b;font-weight:800}
+.sxf{position:relative;display:flex;flex-wrap:wrap;gap:12px 3px;align-items:flex-end}.sxs{display:inline-flex;flex-direction:column;min-width:0}
+.sxs .nt2{font-size:11px;color:#0a7a2f;font-weight:700;line-height:1.3;max-width:210px;border-top:2px solid #86c99a;padding-top:1px;margin-bottom:1px}.sxs .nt2.red{color:#c0211b;border-top-color:#e9a39f}
+.sxs .en2{font-size:17px;line-height:1.5;color:#1c1f26}.sxs .ko2{font-size:12px;color:#6a6e78;line-height:1.35}.sxsl{color:#b9b4a4;font-size:17px;align-self:flex-end;padding-bottom:16px}
+.sxf.hasrel .sxs .en2{margin-top:18px}
+.sxw b{font-weight:800}.sxw b.v,.sxw b.a,.sxw b.k{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.sxw b.a{background:#fff1a8;border-radius:3px;padding:0 2px}.sxw b.k{color:#c0211b}
+.sxw b.c{border:1.6px solid #222;border-radius:3px;padding:0 3px}.sxw b.p{color:#0b6b3a}
+.sxw i.br{font-style:normal;color:#0a7a2f;font-weight:800;font-size:19px}.sxw .o{font-size:12px;color:#c0211b;font-weight:600;margin:0 1px}
+.sxst{margin-top:8px;border:1.5px solid #2f8a4a;border-radius:8px;padding:6px 10px;font-size:13.5px;line-height:1.65}.sxst .tag{background:#2f6fd0;color:#fff;border-radius:4px;font-size:11px;font-weight:700;padding:0 6px;margin-right:6px}.sxst .tt{font-weight:700;color:#14532d}
+.sxsvg{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
 .exb{background:#fff8e8;color:#5b4a2a;border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.6;margin-top:8px}
 .note{border:2px solid #1f3b73;border-radius:14px;padding:12px 14px;margin-top:14px;background:#fff}
 .note .nt{display:inline-block;background:#1f3b73;color:#fff;border-radius:6px;font-size:13px;font-weight:700;padding:1px 9px}
@@ -161,16 +172,49 @@ function mk(en,h){
   h.forEach(function(x){var i=en.indexOf(x[0],pos);if(i<0)return;out+=esc(en.slice(pos,i))+'<span class="m'+x[1]+'">'+esc(x[0])+'</span>';pos=i+x[0].length});
   return out+esc(en.slice(pos));
 }
-function sxMk(t){return esc(t).replace(/\{([avcp])\|([^}]*)\}/g,'<b class="$1">$2</b>').replace(/【/g,'<i class="br">【</i>').replace(/】/g,'<i class="br">】</i>')}
-function sxBlock(it){
-  if(!it.sx||it.sx.length!=it.chunks.length)return null;
-  var w=el('div','sxw');w.appendChild(el('div','sxh','문장 구조 분석'));
-  w.appendChild(el('div','sxlg','굵은 밑줄 동사 · 노란 형광 정답 · 상자 접속사/관계사 · 【 】 절/준동사구 · 초록 글씨 구조 메모'));
-  var f=el('div','sxf');
-  it.sx.forEach(function(x,i){if(i)f.appendChild(el('span','sxsl','/'));
-    var sg=el('span','sxs');if(x[1])sg.appendChild(el('span','nt2',esc(x[1])));
-    sg.appendChild(el('span','en2',sxMk(x[0])));sg.appendChild(el('span','ko2',esc(it.chunks[i].ko)));f.appendChild(sg)});
-  w.appendChild(f);return w}
+/* 구조 분석(sx) 공용 렌더러 — 앱·추가문제 공통 */
+function sxEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+function sxMk(t){var s=sxEsc(t);
+  s=s.replace(/\{o\|([^}]*)\}/g,'<span class="o">($1)</span>');
+  s=s.replace(/\{([avcpk])\|([^}]*)\}/g,'<b class="$1">$2</b>');
+  return s.replace(/【/g,'<i class="br">【</i>').replace(/】/g,'<i class="br">】</i>')}
+function sxHtml(sx,kos,x2){
+  if(!sx||sx.length!=kos.length)return '';
+  x2=x2||{};var rel=x2.rel||[];
+  var h='<div class="sxw"><div class="sxh">문장 구조 분석</div>';
+  if(x2.pt)h+='<div class="sxpt"><span class="tag">어법분석</span><span class="wr">'+sxEsc(x2.pt[0])+' (✖)</span><span>'+sxEsc(x2.pt[1])+'</span></div>';
+  h+='<div class="sxlg">굵은 밑줄 동사 · 노란 형광 정답 · 빨강 출제 포인트 · 상자 접속사/관계사 · 【 】 절/준동사구 · 빨간 (괄호) 생략된 말 · 초록 메모</div>';
+  h+='<div class="sxf'+(rel.length?' hasrel':'')+'" data-rel="'+sxEsc(JSON.stringify(rel))+'">';
+  sx.forEach(function(x,i){if(i)h+='<span class="sxsl">/</span>';var n=x[1]||'',red=n.charAt(0)=='!';if(red)n=n.slice(1);
+    h+='<span class="sxs" data-i="'+i+'">'+(n?'<span class="nt2'+(red?' red':'')+'">'+sxEsc(n)+'</span>':'')+'<span class="en2">'+sxMk(x[0])+'</span><span class="ko2">'+sxEsc(kos[i])+'</span></span>'});
+  h+='</div>';
+  if(x2.st)h+='<div class="sxst"><span class="tag">Study</span><span class="tt">'+sxEsc(x2.st[0])+'</span>'+x2.st[1].map(function(l){return '<div>'+sxEsc(l)+'</div>'}).join('')+'</div>';
+  return h+'</div>'}
+function sxArcs(root){
+  var NS='http://www.w3.org/2000/svg';
+  (root||document).querySelectorAll('.sxf.hasrel').forEach(function(f){
+    var old=f.querySelector('.sxsvg');if(old)f.removeChild(old);
+    var rel;try{rel=JSON.parse(f.getAttribute('data-rel'))}catch(e){return}
+    var fr=f.getBoundingClientRect();if(!fr.width)return;
+    var svg=document.createElementNS(NS,'svg');svg.setAttribute('class','sxsvg');svg.setAttribute('width',fr.width);svg.setAttribute('height',fr.height);
+    svg.innerHTML='<defs><marker id="sxah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#0a7a2f"/></marker></defs>';
+    var drawn=0;
+    rel.forEach(function(r){
+      var a=f.querySelector('.sxs[data-i="'+r[0]+'"] .en2'),b=f.querySelector('.sxs[data-i="'+r[1]+'"] .en2');if(!a||!b)return;
+      var ra=a.getBoundingClientRect(),rb=b.getBoundingClientRect();
+      if(Math.abs(ra.top-rb.top)>8)return;
+      var y=ra.top-fr.top-2,xa=ra.left+ra.width/2-fr.left,xb=rb.left+rb.width/2-fr.left,xm=(xa+xb)/2,k=r[2],lab=r[3]||'';
+      var p=document.createElementNS(NS,'path');p.setAttribute('fill','none');p.setAttribute('stroke','#0a7a2f');p.setAttribute('stroke-width','1.6');
+      if(k=='par'){p.setAttribute('stroke','#222');p.setAttribute('d','M'+xa+' '+y+' L'+xa+' '+(y-7)+' L'+xb+' '+(y-7)+' L'+xb+' '+y)}
+      else{p.setAttribute('d','M'+xa+' '+y+' Q'+xm+' '+(y-20)+' '+xb+' '+(y-1));p.setAttribute('marker-end','url(#sxah)');if(k=='eq')p.setAttribute('stroke-dasharray','4 3')}
+      svg.appendChild(p);drawn++;
+      if(lab||k=='par'||k=='eq'){var t=document.createElementNS(NS,'text');t.setAttribute('x',xm);t.setAttribute('y',y-(k=='par'?9:12));t.setAttribute('text-anchor','middle');t.setAttribute('font-size','10.5');t.setAttribute('font-weight','700');t.setAttribute('fill',k=='par'?'#222':'#0a7a2f');t.textContent=lab||(k=='par'?'병렬':'동격');svg.appendChild(t)}
+    });
+    if(drawn)f.appendChild(svg)});
+}
+window.addEventListener('resize',function(){sxArcs()});
+
+function sxBlock(it){if(!it.sx||it.sx.length!=it.chunks.length)return null;var d=el('div','',sxHtml(it.sx,it.chunks.map(function(c){return c.ko}),it.sx2));setTimeout(function(){sxArcs(d)},80);return d}
 function noteBox(nt,key,label,where){
   var box=el('div','note');
   box.appendChild(el('span','nt',label));

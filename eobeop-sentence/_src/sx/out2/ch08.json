@@ -1,0 +1,1269 @@
+{
+ "c08p1|예제": {
+  "pt": [
+   "receiving",
+   "can start와 병렬 : 조동사 뒤 동사원형"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "동사 병렬"
+   ]
+  ],
+  "st": [
+   "동사 병렬과 조동사 공유",
+   [
+    "① A and B : 같은 형태끼리 연결 (can start, (can) receive)",
+    "② 병렬 동사는 앞 조동사를 함께 쓰므로 동사원형"
+   ]
+  ]
+ },
+ "c08p1|1": {
+  "pt": [
+   "taking",
+   "could see와 병렬 : 조동사 뒤 동사원형"
+  ],
+  "rel": [
+   [
+    0,
+    3,
+    "par",
+    "동사 병렬"
+   ]
+  ]
+ },
+ "c08p1|2": {
+  "pt": [
+   "go",
+   "주어 Tim(3인칭 단수) : gets와 같은 -es"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "either A or B"
+   ]
+  ],
+  "st": [
+   "either A or B 병렬",
+   [
+    "① either A or B : A와 B는 같은 형태",
+    "② 동사끼리 이으면 시제·수를 맞춘다 : gets / goes"
+   ]
+  ]
+ },
+ "c08p1|3": {
+  "pt": [
+   "refuse",
+   "accepted, asked와 병렬 : 과거형 refused"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c08p1|4": {
+  "pt": [
+   "continues",
+   "주어 lines(복수) : 동사도 복수형"
+  ],
+  "rel": [
+   [
+    0,
+    3,
+    "par",
+    "run과 continue"
+   ]
+  ],
+  "st": [
+   "병렬 동사와 주어 수일치",
+   [
+    "① 병렬 동사는 같은 주어를 공유 : lines run and continue",
+    "② 주어 lines가 복수 : 둘 다 -s 없는 복수형"
+   ]
+  ]
+ },
+ "c08p1|5": {
+  "pt": [
+   "learn",
+   "주어 A person(단수) : makes와 같이 -s"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "makes와 learns"
+   ]
+  ]
+ },
+ "c08p1|6": {
+  "pt": [
+   "expresses",
+   "복수 주어 children : 동사 복수형 express"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "동사 병렬"
+   ]
+  ],
+  "st": [
+   "대동사 do",
+   [
+    "① 앞에 나온 일반동사 반복을 피해 do/does/did 사용",
+    "② when they do = when they speak (말할 때는)"
+   ]
+  ]
+ },
+ "c08p1|7": {
+  "pt": [
+   "falling",
+   "turned와 병렬 : 같은 과거 시제 fell"
+  ],
+  "rel": [
+   [
+    0,
+    3,
+    "par",
+    "과거형 병렬"
+   ]
+  ]
+ },
+ "c08p1|8": {
+  "pt": [
+   "starting",
+   "명령문 Cut과 병렬 : 동사원형 start"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "명령문 병렬"
+   ]
+  ],
+  "st": [
+   "명령문의 병렬",
+   [
+    "① 명령문은 동사원형 : Cut and start",
+    "② and 뒤 동사도 원형으로 맞춘다 (starting 아님)"
+   ]
+  ]
+ },
+ "c08p2|예제": {
+  "pt": [
+   "to show",
+   "전치사 by 뒤 : telling과 병렬 동명사"
+  ],
+  "rel": [
+   [
+    2,
+    4,
+    "par",
+    "동명사 병렬"
+   ],
+   [
+    1,
+    0,
+    "mod",
+    "goal 꾸밈"
+   ]
+  ],
+  "st": [
+   "전치사 뒤 병렬 동명사",
+   [
+    "① 전치사의 목적어는 동명사 : by telling or showing",
+    "② or 앞뒤 형태를 같게 : telling / showing"
+   ]
+  ]
+ },
+ "c08p2|1": {
+  "pt": [
+   "getting",
+   "to take와 병렬 : to부정사 형태 맞춤"
+  ],
+  "rel": [
+   [
+    2,
+    4,
+    "par",
+    "to V 병렬"
+   ]
+  ],
+  "st": [
+   "not only A but (also) B",
+   [
+    "① A와 B는 같은 형태 : to take / to get",
+    "② also는 생략될 수 있다"
+   ]
+  ]
+ },
+ "c08p2|2": {
+  "pt": [
+   "to make",
+   "전치사 of 뒤 : printing과 병렬 동명사"
+  ],
+  "rel": [
+   [
+    2,
+    4,
+    "par",
+    "동명사 병렬"
+   ]
+  ],
+  "st": [
+   "instead of + 동명사",
+   [
+    "① instead of 뒤에는 명사·동명사 : ~ 대신에",
+    "② or로 이으면 두 동명사의 형태를 맞춘다"
+   ]
+  ]
+ },
+ "c08p2|3": {
+  "pt": [
+   "reviewing",
+   "to understand와 병렬 : to 뒤 동사원형"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "way 꾸밈"
+   ],
+   [
+    1,
+    4,
+    "par",
+    "원형 병렬"
+   ]
+  ],
+  "st": [
+   "to부정사 병렬에서 to 생략",
+   [
+    "① to A, B, and C : 두 번째부터 to 생략 가능",
+    "② 생략해도 동사원형 (reviewing 아님)"
+   ]
+  ]
+ },
+ "c08p2|4": {
+  "pt": [
+   "doing",
+   "both A and B : to drink와 같은 to V"
+  ],
+  "rel": [
+   [
+    2,
+    4,
+    "par",
+    "both A and B"
+   ]
+  ]
+ },
+ "c08p2|5": {
+  "pt": [
+   "to share",
+   "love의 목적어 : cooking과 같은 동명사"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "동명사 병렬"
+   ]
+  ]
+ },
+ "c08p3|예제": {
+  "pt": [
+   "relaxing",
+   "brain은 편안함을 느끼는 쪽 : p.p."
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "보어 병렬"
+   ]
+  ],
+  "st": [
+   "보어 자리의 형용사 병렬",
+   [
+    "① become + 형용사 : ~해지다 (relaxed or confident)",
+    "② 병렬은 같은 품사끼리 : relaxed / confident"
+   ]
+  ]
+ },
+ "c08p3|1": {
+  "pt": [
+   "exciting",
+   "주어 You가 신난 것 : 과거분사 excited"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "보어 병렬"
+   ]
+  ]
+ },
+ "c08p3|2": {
+  "pt": [
+   "discouraging",
+   "teenagers가 낙담한 것 : 과거분사"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "형용사 병렬"
+   ]
+  ]
+ },
+ "c08p3|3": {
+  "pt": [
+   "interested",
+   "주어 topic이 흥미를 일으킴 : -ing"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "보어 병렬"
+   ]
+  ],
+  "st": [
+   "감정 분사 : 사물 주어는 -ing",
+   [
+    "① 사물이 감정을 일으킴 : interesting, exciting",
+    "② 사람이 감정을 느낌 : interested, excited"
+   ]
+  ]
+ },
+ "c08p3|4": {
+  "pt": [
+   "skill",
+   "nor 뒤도 drawn처럼 분사·형용사 형태"
+  ],
+  "rel": [
+   [
+    3,
+    5,
+    "par",
+    "neither~nor"
+   ]
+  ],
+  "st": [
+   "neither A nor B",
+   [
+    "① neither A nor B : A도 B도 아니다",
+    "② A와 B는 같은 형태·품사로 맞춘다 (drawn / skilled)"
+   ]
+  ]
+ },
+ "c08p3|5": {
+  "pt": [
+   "encouraged",
+   "advice가 용기를 줌 : 현재분사 -ing"
+  ],
+  "rel": [
+   [
+    2,
+    4,
+    "par",
+    "형용사 병렬"
+   ]
+  ]
+ },
+ "c08q1|1": {
+  "pt": [
+   "turns",
+   "조동사 must 공유 : 동사원형 turn"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "동사 병렬"
+   ]
+  ]
+ },
+ "c08q1|2": {
+  "pt": [
+   "maintain",
+   "전치사 by 뒤 : exercising과 병렬 동명사"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "동명사 병렬"
+   ]
+  ]
+ },
+ "c08q1|3": {
+  "pt": [
+   "plays",
+   "주어 my husband and I(복수) : play"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "either A or B"
+   ]
+  ]
+ },
+ "c08q1|4": {
+  "pt": [
+   "take",
+   "주어 Marco(3인칭 단수) : travels와 같은 -s"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "동사 병렬"
+   ]
+  ]
+ },
+ "c08q1|5": {
+  "pt": [
+   "to plan",
+   "not A but B : A와 같은 동명사 planning"
+  ],
+  "rel": [
+   [
+    0,
+    3,
+    "par",
+    "not A but B"
+   ]
+  ],
+  "st": [
+   "not A but B 병렬",
+   [
+    "① not A but B : A가 아니라 B",
+    "② A와 B는 같은 형태 : not rushing but planning"
+   ]
+  ]
+ },
+ "c08q1|6": {
+  "pt": [
+   "finding",
+   "to share와 병렬 : (to) 뒤 동사원형"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "to V 병렬"
+   ]
+  ]
+ },
+ "c08q1|7": {
+  "pt": [
+   "setting",
+   "to check와 병렬 : (to) 뒤 동사원형"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "to V 병렬"
+   ]
+  ]
+ },
+ "c08q1|8": {
+  "pt": [
+   "walk",
+   "주어 Mandy(단수) : shops와 같은 -s"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "동사 병렬"
+   ]
+  ]
+ },
+ "c08q1|9": {
+  "pt": [
+   "puts",
+   "finished와 병렬 : 과거형 put"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "과거형 병렬"
+   ]
+  ],
+  "st": [
+   "형태가 같은 과거형",
+   [
+    "① put, cut, set, hit : 현재·과거 형태가 같다",
+    "② 앞 동사가 과거(finished)이면 과거로 판단"
+   ]
+  ]
+ },
+ "c08q1|10": {
+  "pt": [
+   "experiencing",
+   "manager가 경험을 쌓은 : 과거분사 -ed"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "형용사 병렬"
+   ]
+  ]
+ },
+ "c08q1|11": {
+  "pt": [
+   "to get",
+   "전치사 like 뒤 : taking과 병렬 동명사"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "동명사 병렬"
+   ]
+  ]
+ },
+ "c08q1|12": {
+  "pt": [
+   "serving",
+   "to show, to give와 병렬 : to부정사"
+  ],
+  "rel": [
+   [
+    2,
+    5,
+    "par",
+    "to V 병렬"
+   ],
+   [
+    2,
+    1,
+    "eq",
+    "가주어-진주어"
+   ]
+  ],
+  "st": [
+   "가주어 it과 진주어 to V",
+   [
+    "① it ~ to V : to V가 진짜 주어 (~하는 것은)",
+    "② 진주어가 여럿이면 to V, to V, and to V로 병렬"
+   ]
+  ]
+ },
+ "c08q2|1": {
+  "pt": [
+   "to adapt",
+   "전치사 of 뒤 : learning과 병렬 동명사"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "동명사 병렬"
+   ]
+  ],
+  "st": [
+   "be capable of + 동명사",
+   [
+    "① of는 전치사 : 뒤에 동명사 (to V 아님)",
+    "② or로 이은 것도 동명사끼리 : learning / adapting"
+   ]
+  ]
+ },
+ "c08q2|2": {
+  "pt": [
+   "bows",
+   "조동사 will 공유 : 동사원형 bow"
+  ],
+  "rel": [
+   [
+    1,
+    4,
+    "par",
+    "will 공유"
+   ]
+  ],
+  "st": [
+   "조동사를 공유하는 병렬",
+   [
+    "① will shake, (will) greet, (will) bow : 조동사 공유",
+    "② 공유하는 조동사 뒤는 모두 동사원형 (bows 아님)"
+   ]
+  ]
+ },
+ "c08q2|3": {
+  "pt": [
+   "to express",
+   "spend + 시간 + -ing : painting과 병렬"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "동명사 병렬"
+   ]
+  ]
+ },
+ "c08q2|4": {
+  "pt": [
+   "take",
+   "주어 Sally(단수) : goes와 같은 -s"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "동사 병렬"
+   ]
+  ]
+ },
+ "c08q2|5": {
+  "pt": [
+   "pleased",
+   "stories가 즐거움을 줌 : 현재분사 -ing"
+  ],
+  "rel": [
+   [
+    2,
+    4,
+    "par",
+    "both A and B"
+   ]
+  ]
+ },
+ "c08q2|6": {
+  "pt": [
+   "sit",
+   "stopped와 병렬 : 과거형 sat"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "과거형 병렬"
+   ]
+  ],
+  "st": [
+   "불규칙 과거형 병렬",
+   [
+    "① 병렬 동사는 시제를 맞춘다 : stopped / sat",
+    "② sit - sat - sat : 앞이 과거이면 sat"
+   ]
+  ]
+ },
+ "c08q2|7": {
+  "pt": [
+   "making",
+   "to help와 병렬 : not only A but also B"
+  ],
+  "rel": [
+   [
+    2,
+    4,
+    "par",
+    "not only~also"
+   ]
+  ]
+ },
+ "c08q2|8": {
+  "pt": [
+   "seeks",
+   "명령문 : 동사원형 practice와 병렬"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "명령문 병렬"
+   ]
+  ]
+ },
+ "c08q2|9": {
+  "pt": [
+   "learning",
+   "to solve, (to) gain과 병렬 : 동사원형"
+  ],
+  "rel": [
+   [
+    1,
+    4,
+    "par",
+    "to V 병렬"
+   ]
+  ],
+  "st": [
+   "allow + O + to V",
+   [
+    "① allow, enable, encourage + O + to V (5형식)",
+    "② to V가 여럿이면 두 번째부터 to 생략 가능"
+   ]
+  ]
+ },
+ "c08q2|10": {
+  "pt": [
+   "fail",
+   "주어 My cat(단수) : tries와 같은 -s"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "동사 병렬"
+   ]
+  ]
+ },
+ "c08q2|11": {
+  "pt": [
+   "to take",
+   "전치사 with 뒤 : delaying과 병렬 동명사"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "동명사 병렬"
+   ]
+  ]
+ },
+ "c08q2|12": {
+  "pt": [
+   "exciting",
+   "주어 she가 흥분을 느낌 : 과거분사 excited"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "보어 병렬"
+   ]
+  ],
+  "st": [
+   "if = ~인지 (명사절)",
+   [
+    "① tell, know, ask + if ~ : ~인지 아닌지 (목적어)",
+    "② 조건 if(~라면)와 구별 : 뜻이 안 맞으면 명사절"
+   ]
+  ]
+ },
+ "c08s1|1-(A)": {
+  "pt": [
+   "forget",
+   "wasting과 병렬 : 동명사 forgetting"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "동명사 병렬"
+   ]
+  ]
+ },
+ "c08s1|1-(B)": {
+  "pt": [
+   "leaving",
+   "명령문 Make와 병렬 : 동사원형 leave"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "명령문 병렬"
+   ]
+  ]
+ },
+ "c08s1|2-(A)": {
+  "pt": [
+   "isolating",
+   "주어 you가 고립됨 : 과거분사 isolated"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "보어 병렬"
+   ]
+  ]
+ },
+ "c08s1|2-(B)": {
+  "pt": [
+   "getting",
+   "either A or B : trust와 같은 동사원형"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "either A or B"
+   ]
+  ],
+  "st": [
+   "접속사를 남긴 분사구문",
+   [
+    "① When + 분사 : When (you are) making ~ (주어·be 생략)",
+    "② 생략된 주어는 주절의 주어(you)와 같다"
+   ]
+  ]
+ },
+ "c08s1|3-(A)": {
+  "pt": [
+   "making",
+   "to convey와 병렬 : to 뒤 동사원형"
+  ],
+  "rel": [
+   [
+    2,
+    4,
+    "par",
+    "to V 병렬"
+   ]
+  ]
+ },
+ "c08s1|3-(B)": {
+  "pt": [
+   "feel",
+   "주어 text chat(단수) : is, requires와 -s"
+  ],
+  "rel": [
+   [
+    1,
+    4,
+    "par",
+    "동사 병렬"
+   ]
+  ]
+ },
+ "c08s1|4-①": {
+  "pt": [
+   "finding",
+   "to attract와 병렬 : to부정사 형태"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "to V 병렬"
+   ]
+  ],
+  "st": [
+   "make + O + 형용사",
+   [
+    "① make A visible : A를 보이게 만들다 (5형식)",
+    "② 보어 자리는 부사가 아니라 형용사 : visibly 아님"
+   ]
+  ]
+ },
+ "c08s1|4-②": {
+  "pt": [
+   "hides",
+   "주어 creatures(복수) : 동사원형 hide"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "not A but B"
+   ]
+  ]
+ },
+ "c08s1|5-①": {
+  "pt": [
+   "experiencing",
+   "to help와 병렬 : 동사원형 experience"
+  ],
+  "rel": [
+   [
+    1,
+    4,
+    "par",
+    "to V 병렬"
+   ],
+   [
+    1,
+    0,
+    "mod",
+    "chances 꾸밈"
+   ]
+  ]
+ },
+ "c08s1|5-②": {
+  "pt": [
+   "to develop",
+   "for 뒤 : promoting과 병렬 동명사"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "both A and B"
+   ]
+  ]
+ },
+ "c08s1|6-1": {
+  "pt": [
+   "receives",
+   "과거의 일화 : 과거형 received"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "Jerry 꾸밈"
+   ]
+  ],
+  "st": [
+   "계속적 용법 관계대명사 who",
+   [
+    "① 콤마 + who : 앞 사람에 대한 보충 설명 (그런데 그는)",
+    "② 관계절 안 동사는 선행사에 맞춘다 : Jerry is"
+   ]
+  ]
+ },
+ "c08s1|6-①": {
+  "pt": [
+   "was consisted",
+   "consist of는 자동사 : 수동태 불가"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "형용사 병렬"
+   ]
+  ],
+  "st": [
+   "수동태가 안 되는 동사",
+   [
+    "① consist of, happen, arrive는 자동사 : 수동태 불가",
+    "② consist of : ~로 구성되다 (be consisted of 아님)"
+   ]
+  ]
+ },
+ "c08s1|6-3": {
+  "pt": [
+   "receives",
+   "wrote back과 병렬 : 과거형 received"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "과거형 병렬"
+   ]
+  ]
+ },
+ "c08s1|6-②": {
+  "pt": [
+   "expressing",
+   "noted와 병렬 : 과거형 expressed"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "not only~but"
+   ]
+  ],
+  "st": [
+   "동명사의 의미상 주어",
+   [
+    "① his forgetting : 소유격 + 동명사 (그가 잊은 것)",
+    "② 동명사 앞 소유격이 의미상 주어를 나타낸다"
+   ]
+  ]
+ },
+ "add08|1-1": {
+  "pt": [
+   "go",
+   "주어 Neville(단수) : runs, plays와 같은 -es"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "동사 3개 병렬"
+   ]
+  ]
+ },
+ "add08|1-2": {
+  "pt": [
+   "discovers",
+   "조동사 can 뒤 : 동사원형 discover"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "can 공유"
+   ]
+  ],
+  "st": [
+   "not only A but also B : 동사",
+   [
+    "① can not only V1 but also V2 : 조동사 하나를 공유",
+    "② V1과 V2는 같은 형태(동사원형)"
+   ]
+  ]
+ },
+ "add08|1-3": {
+  "pt": [
+   "cook",
+   "주어 The restaurant(단수) : serves와 -s"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "par",
+    "동사 병렬"
+   ]
+  ]
+ },
+ "add08|1-4": {
+  "pt": [
+   "asks",
+   "명령문 call과 병렬 : 동사원형 ask"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "par",
+    "명령문 병렬"
+   ]
+  ]
+ },
+ "add08|1-5": {
+  "pt": [
+   "disappearing",
+   "began과 병렬 : 과거형 disappeared"
+  ],
+  "rel": [
+   [
+    1,
+    3,
+    "par",
+    "과거형 병렬"
+   ]
+  ]
+ },
+ "add08|2-1": {
+  "pt": [
+   "watch",
+   "전치사 of 뒤 : sitting과 병렬 동명사"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "par",
+    "동명사 병렬"
+   ]
+  ]
+ },
+ "add08|2-2": {
+  "pt": [
+   "passing",
+   "not to expand와 병렬 : to부정사 to pass"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "par",
+    "not A but B"
+   ]
+  ]
+ },
+ "add08|2-3": {
+  "pt": [
+   "playing",
+   "to meet와 병렬 : (to) 뒤 동사원형"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "par",
+    "to V 병렬"
+   ],
+   [
+    2,
+    1,
+    "mod",
+    "time 꾸밈"
+   ]
+  ]
+ },
+ "add08|2-4": {
+  "pt": [
+   "offer",
+   "전치사 by 뒤 : lowering과 병렬 동명사"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "par",
+    "either A or B"
+   ]
+  ]
+ },
+ "add08|2-5": {
+  "pt": [
+   "paying",
+   "need to be와 병렬 : (to) 뒤 동사원형"
+  ],
+  "rel": [
+   [
+    2,
+    4,
+    "par",
+    "to V 병렬"
+   ]
+  ],
+  "st": [
+   "keep + O + 형용사",
+   [
+    "① keep it clean : it을 깨끗하게 유지하다 (5형식)",
+    "② 보어 자리는 형용사 : cleanly 아님"
+   ]
+  ]
+ },
+ "add08|3-1": {
+  "pt": [
+   "annoying",
+   "승객이 짜증을 느낌 : 과거분사 annoyed"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "par",
+    "보어 병렬"
+   ]
+  ]
+ },
+ "add08|3-2": {
+  "pt": [
+   "injuring",
+   "animals가 다친 : 수동 의미 -ed"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    "visit의 목적"
+   ]
+  ]
+ },
+ "add08|3-3": {
+  "rel": [
+   [
+    3,
+    4,
+    "par",
+    "not only~also"
+   ],
+   [
+    3,
+    2,
+    "mod",
+    "money 꾸밈"
+   ]
+  ],
+  "st": [
+   "not only A but also B + 분사",
+   [
+    "① 분사구 둘이 money를 꾸밈 : made / earned",
+    "② 병렬이므로 둘 다 과거분사 (둘 다 수동)"
+   ]
+  ]
+ },
+ "add08|3-4": {
+  "rel": [
+   [
+    2,
+    3,
+    "par",
+    "보어 병렬"
+   ]
+  ]
+ },
+ "add08|3-5": {
+  "pt": [
+   "damaging",
+   "it(제품)이 손상됨 : 수동 과거분사"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "par",
+    "수동 병렬"
+   ]
+  ],
+  "st": [
+   "수동태 병렬 : be 공유",
+   [
+    "① it is opened, (is) altered, or (is) damaged",
+    "② be동사를 공유하면 뒤는 모두 과거분사"
+   ]
+  ]
+ }
+}

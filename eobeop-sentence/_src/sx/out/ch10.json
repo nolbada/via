@@ -1,8 +1,8 @@
 {
  "c10p1|예제": [
   [
-   "Every political leader",
-   ""
+   "{k|Every} political leader",
+   "!Every + 단수 명사 : 단수 취급"
   ],
   [
    "in history",
@@ -13,8 +13,8 @@
    "주격 관계대명사절 : leader를 꾸밈"
   ],
   [
-   "{v|trained} themselves {p|to} think {c|and} plan on their own.",
-   "병렬 : think와 plan 연결"
+   "{v|trained} themselves 【{p|to} think {c|and} plan】 on their own.",
+   "병렬 : think와 plan (to 공유)"
   ]
  ],
  "c10p1|1": [
@@ -28,7 +28,7 @@
   ],
   [
    "about Napoleon",
-   ""
+   "전치사구 : the book을 꾸밈"
   ],
   [
    "【{a|which} you {v|borrowed} from the library?】",
@@ -37,8 +37,8 @@
  ],
  "c10p1|2": [
   [
-   "I {v|replaced} my old TV with",
-   ""
+   "I {v|replaced} my old TV {k|with}",
+   "!replace A with B : A를 B로 교체하다"
   ],
   [
    "a new one,",
@@ -46,7 +46,7 @@
   ],
   [
    "【the brand of {a|which}",
-   "전치사 + 관계대명사 : of which"
+   "전치사 + 관계대명사 : of which (= its)"
   ],
   [
    "{v|is} Korean.】",
@@ -56,7 +56,7 @@
  "c10p1|3": [
   [
    "The company {v|started} {p|to} sell",
-   ""
+   "start + to부정사 : ~하기 시작하다"
   ],
   [
    "a new product,",
@@ -69,8 +69,8 @@
  ],
  "c10p1|4": [
   [
-   "Benjamin {v|introduced} me to",
-   ""
+   "Benjamin {v|introduced} me {k|to}",
+   "!introduce A to B : A를 B에게 소개하다"
   ],
   [
    "his cousin",
@@ -78,7 +78,7 @@
   ],
   [
    "with the red hair,",
-   ""
+   "with + 명사 : ~을 가진 (cousin 꾸밈)"
   ],
   [
    "【{a|whom} I {v|had already met} last night.】",
@@ -88,7 +88,7 @@
  "c10p1|5": [
   [
    "This story {v|is} a Greek myth about",
-   ""
+   "about + 명사 : ~에 대한"
   ],
   [
    "a captain",
@@ -102,7 +102,7 @@
  "c10p2|예제": [
   [
    "Oil {v|comes} from",
-   ""
+   "come from : ~에서 나오다"
   ],
   [
    "solar energy,",
@@ -114,13 +114,13 @@
   ],
   [
    "{v|was preserved} underground millions of years ago.】",
-   ""
+   "!some of which의 동사 : which(= energy)의 수에 맞춤"
   ]
  ],
  "c10p2|1": [
   [
    "I {v|have collected}",
-   ""
+   "현재완료 : have + p.p."
   ],
   [
    "a lot of old coins,",
@@ -153,18 +153,18 @@
    "계속적 용법 : two cars 보충 설명"
   ],
   [
-   "he {v|wants} {p|to} sell as soon as possible.】",
-   ""
+   "he {v|wants} {p|to} sell {k|as soon as possible}.】",
+   "as soon as possible : 가능한 한 빨리"
   ]
  ],
  "c10p2|3": [
   [
    "Olivia recently {v|had to buy}",
-   ""
+   "had to + 동사원형 : ~해야 했다"
   ],
   [
-   "new furniture,",
-   ""
+   "new {k|furniture},",
+   "!furniture : 셀 수 없는 명사 (furnitures 불가)"
   ],
   [
    "【{a|which} {v|was delivered} yesterday.】",
@@ -186,7 +186,7 @@
   ],
   [
    "{a|its} brain",
-   ""
+   "!접속사 and가 있다 : 소유격 its (whose 아님)"
   ],
   [
    "{v|is} surprisingly similar to the human brain.",
@@ -196,7 +196,7 @@
  "c10p2|5": [
   [
    "Doctors {v|can revive}",
-   ""
+   "can + 동사원형 : ~할 수 있다"
   ],
   [
    "patients",
@@ -222,7 +222,7 @@
   ],
   [
    "【{a|where} they {v|had to avoid}",
-   "관계부사절 : a world를 꾸밈"
+   "관계부사 where + 완전한 문장 : world 꾸밈"
   ],
   [
    "【{p|being} killed by predators】.】",
@@ -232,7 +232,7 @@
  "c10p3|1": [
   [
    "Everyone {v|stood} up {c|and} {v|cheered} at",
-   ""
+   "병렬 : stood와 cheered 연결"
   ],
   [
    "the moment",
@@ -240,13 +240,13 @@
   ],
   [
    "【{a|when} the final winner {v|was announced}.】",
-   "관계부사절 : the moment를 꾸밈"
+   "관계부사 when + 완전한 문장 : moment 꾸밈"
   ]
  ],
  "c10p3|2": [
   [
    "We {v|live} in",
-   ""
+   "live in : ~에 살다"
   ],
   [
    "a small town,",
@@ -260,7 +260,7 @@
  "c10p3|3": [
   [
    "Amanda {v|hopes} {p|to} work for",
-   ""
+   "hope + to부정사 : ~하기를 희망하다"
   ],
   [
    "a company",
@@ -268,13 +268,13 @@
   ],
   [
    "【{a|in which} she {v|can develop} medical robots.】",
-   "전치사 + 관계대명사 : a company를 꾸밈"
+   "전치사 + 관계대명사 + 완전한 문장"
   ]
  ],
  "c10p3|4": [
   [
    "Kids {v|don’t always understand}",
-   ""
+   "!not always : 항상 ~한 것은 아니다 (부분부정)"
   ],
   [
    "the reason",
@@ -282,7 +282,7 @@
   ],
   [
    "【{a|why} their parents {v|make} certain rules.】",
-   "관계부사절 : the reason을 꾸밈"
+   "관계부사 why + 완전한 문장 : reason 꾸밈"
   ]
  ],
  "c10p3|5": [
@@ -296,17 +296,17 @@
   ],
   [
    "{v|is} a popular route",
-   ""
+   "!관계절은 수식어 : 본동사 is는 The road에 일치"
   ],
   [
    "for many cyclists {c|and} joggers.",
-   ""
+   "병렬 : cyclists와 joggers"
   ]
  ],
  "c10p3|6": [
   [
    "Edward {v|drove} into",
-   ""
+   "drive into : ~로 운전해 들어가다"
   ],
   [
    "the tunnel,",
@@ -318,7 +318,7 @@
   ],
   [
    "the city across the sea.】",
-   ""
+   "!reach는 타동사 : 바로 목적어 (reach at 아님)"
   ]
  ],
  "c10p3|7": [
@@ -336,7 +336,7 @@
   ],
   [
    "for a long time.】",
-   ""
+   "for a long time : 오랫동안"
   ]
  ],
  "c10p3|8": [
@@ -350,11 +350,11 @@
   ],
   [
    "【{a|where} food {v|is} still scarce,】】",
-   "관계부사절 : countries를 꾸밈"
+   "관계부사 where + 완전한 문장 : countries 꾸밈"
   ],
   [
    "most people around the world",
-   ""
+   "most + 복수 명사 : 대부분의 ~"
   ],
   [
    "{v|have} enough 【{p|to} eat】.",
@@ -376,13 +376,13 @@
   ],
   [
    "it {v|is} quite shocking.",
-   ""
+   "주절 : if절의 결과"
   ]
  ],
  "c10p4|1": [
   [
    "The amazing thing about animals such as horses {v|is}",
-   ""
+   "!that + 완전한 절 : 보어 자리 명사절 (what 아님)"
   ],
   [
    "【{a|that} they {v|can walk}",
@@ -400,11 +400,11 @@
   ],
   [
    "{v|do}",
-   ""
+   "병렬 : stay와 do (명령문)"
   ],
   [
    "【{a|what} you {v|have to do}.】",
-   "명사절 : do의 목적어"
+   "명사절 : do의 목적어 (the thing which)"
   ]
  ],
  "c10p4|3": [
@@ -418,7 +418,7 @@
   ],
   [
    "{v|have been moved} to the first week of August.",
-   ""
+   "현재완료 수동태 : have been p.p."
   ]
  ],
  "c10p4|4": [
@@ -428,7 +428,7 @@
   ],
   [
    "many new jobs",
-   ""
+   "!관계절 동사 are는 선행사 jobs(복수)에 일치"
   ],
   [
    "【{a|that} {v|are} certainly dangerous.】",
@@ -456,7 +456,7 @@
  "c10p4|6": [
   [
    "It {v|was} a huge disappointment",
-   ""
+   "!가주어 It + 진주어 that절 (that절은 완전한 문장)"
   ],
   [
    "【{a|that} we {v|had to cancel} the picnic",
@@ -464,7 +464,7 @@
   ],
   [
    "due to the bad weather.】",
-   ""
+   "due to + 명사 : ~ 때문에"
   ]
  ],
  "c10p4|7": [
@@ -478,13 +478,13 @@
   ],
   [
    "{v|are listed} on the school’s website.",
-   ""
+   "!관계절 뒤 본동사 are listed : Programs(복수)에 일치"
   ]
  ],
  "c10p4|8": [
   [
    "【{c|If} you {v|want} people {p|to} read {c|and} understand",
-   "병렬 : read와 understand 연결"
+   "want + O + to V : read, understand 병렬"
   ],
   [
    "【{a|what} you {v|write}】,】",
@@ -492,7 +492,7 @@
   ],
   [
    "{v|write} it in spoken language.",
-   ""
+   "명령문 : 주절 (If절의 결과)"
   ]
  ],
  "c10p5|예제": [
@@ -501,8 +501,8 @@
    "현재분사구 : The monster를 꾸밈"
   ],
   [
-   "so",
-   ""
+   "{k|so}",
+   "!so ~ that : that만 가능 (which, what 불가)"
   ],
   [
    "ugly {c|and} smelly",
@@ -528,13 +528,13 @@
   ],
   [
    "{v|broke} her heart.",
-   ""
+   "break one’s heart : 마음을 아프게 하다"
   ]
  ],
  "c10p5|2": [
   [
    "{v|Focus} on",
-   ""
+   "focus on : ~에 집중하다"
   ],
   [
    "【{a|what} you {v|can control}】,",
@@ -545,14 +545,14 @@
    "병렬 : 명령문 두 개 연결"
   ],
   [
-   "things 【{c|that} you {v|can’t}】.",
-   "목적격 관계대명사절 : things를 꾸밈"
+   "things 【{c|that} you {v|can’t} {o|control}.】",
+   "목적격 관계대명사절 : things 꾸밈 (control 생략)"
   ]
  ],
  "c10p5|3": [
   [
    "We {v|were} surprised",
-   ""
+   "!감정 형용사 surprised + that + 완전한 절"
   ],
   [
    "【{a|that} Joshua {v|had} a great talent",
@@ -560,7 +560,7 @@
   ],
   [
    "for {p|playing} the piano.】",
-   "전치사 + 동명사"
+   "전치사 for + 동명사 : ~에 대한 재능"
   ]
  ],
  "c10p5|4": [
@@ -574,7 +574,7 @@
   ],
   [
    "{v|contains} a copy",
-   ""
+   "!관계절 뒤 본동사 contains : The envelope에 일치"
   ],
   [
    "of the letter from my sister in Canada.",
@@ -587,11 +587,11 @@
    ""
   ],
   [
-   "such an interesting movie",
-   ""
+   "{k|such} an interesting movie",
+   "!such + a(n) + 형용사 + 명사 : 어순 주의"
   ],
   [
-   "【{a|that} I {v|didn’t realize} 【it {v|was} already midnight】.】",
+   "【{a|that} I {v|didn’t realize} {o|that} 【it {v|was} already midnight】.】",
    "such ~ that 구문 : 아주 ~해서 …하다"
   ]
  ],
@@ -602,7 +602,7 @@
   ],
   [
    "I {v|worked} with",
-   ""
+   "work with : ~와 함께 일하다"
   ],
   [
    "team members",
@@ -620,7 +620,7 @@
   ],
   [
    "{v|could not hear}",
-   ""
+   "could not + 동사원형 : ~할 수 없었다"
   ],
   [
    "【{a|what}",
@@ -650,7 +650,7 @@
   ],
   [
    "{v|was} a beautiful necklace.】",
-   ""
+   "!one of which의 동사 : one(단수)에 일치 : was"
   ]
  ],
  "c10q1|4": [
@@ -670,7 +670,7 @@
  "c10q1|5": [
   [
    "Sometimes, you {v|find} yourself in",
-   ""
+   "find oneself in : ~에 처하다"
   ],
   [
    "a situation",
@@ -684,7 +684,7 @@
  "c10q1|6": [
   [
    "The museum {v|is displaying}",
-   ""
+   "현재진행형 : is + -ing"
   ],
   [
    "photographs",
@@ -706,7 +706,7 @@
   ],
   [
    "{v|changed} the field of astronomy.",
-   ""
+   "what절 전체가 주어 : 본동사는 changed"
   ]
  ],
  "c10q1|8": [
@@ -724,7 +724,7 @@
   ],
   [
    "{a|its} flowers",
-   ""
+   "!접속사 and가 있다 : whose 아니라 its"
   ],
   [
    "{v|are} very big {c|and} colorful.",
@@ -760,7 +760,7 @@
   ],
   [
    "I {v|developed} a deeper understanding",
-   ""
+   "from which + 완전한 문장"
   ],
   [
    "of the Middle Ages.】",
@@ -770,7 +770,7 @@
  "c10q1|11": [
   [
    "One of the most powerful tools",
-   ""
+   "!One of + 복수 명사 : 동사는 단수(One)에 일치"
   ],
   [
    "【{p|to} find meaning in our lives】",
@@ -786,17 +786,17 @@
   ],
   [
    "{v|has happened} to us.】】",
-   ""
+   "happen to : ~에게 일어나다 (자동사)"
   ]
  ],
  "c10q1|12": [
   [
    "The items on sale {v|were}",
-   ""
+   "on sale : 할인 중인"
   ],
   [
-   "so cheap",
-   ""
+   "{k|so} cheap",
+   "!so + 형용사 + that절 : 결과를 나타냄"
   ],
   [
    "【{a|that} some customers {v|bought} several of them at once.】",
@@ -806,7 +806,7 @@
  "c10q2|1": [
   [
    "I{v|’m} really sorry",
-   ""
+   "!sorry 뒤 이유를 설명하는 that절 (which 아님)"
   ],
   [
    "【{a|that} I {v|didn’t reply} to your text message earlier.】",
@@ -820,7 +820,7 @@
   ],
   [
    "【{p|studying} the past】",
-   ""
+   "동명사구 : that절의 주어 (~하는 것)"
   ],
   [
    "{v|is} crucial for 【{p|predicting} the future】.】",
@@ -830,7 +830,7 @@
  "c10q2|3": [
   [
    "Dorothy Hodgkin {v|was born} in",
-   ""
+   "수동태 : be born (태어나다)"
   ],
   [
    "Cairo,",
@@ -838,7 +838,7 @@
   ],
   [
    "【{a|where} her father {v|worked} in the Egyptian Education Service.】",
-   "계속적 용법 : Cairo 보충 설명"
+   "계속적 용법 : Cairo 보충 (= and there)"
   ]
  ],
  "c10q2|4": [
@@ -848,11 +848,11 @@
   ],
   [
    "with 【{a|what}",
-   "명사절 : with의 목적어 (~한 것)"
+   "!전치사 뒤에는 that절 불가 : what절 (with의 목적어)"
   ],
   [
    "{v|was revealed} in the final chapter.】",
-   ""
+   "수동태 : was revealed (밝혀졌다)"
   ]
  ],
  "c10q2|5": [
@@ -862,7 +862,7 @@
   ],
   [
    "a wide variety of fruits,",
-   ""
+   "a wide variety of : 다양한"
   ],
   [
    "【some of {a|which}",
@@ -884,7 +884,7 @@
   ],
   [
    "from the neighborhood",
-   ""
+   "전치사구 : babysitters를 꾸밈"
   ],
   [
    "【{a|who} {v|had} good recommendations.】",
@@ -894,7 +894,7 @@
  "c10q2|7": [
   [
    "In life, there {v|are}",
-   ""
+   "there are + 복수 명사 : ~이 있다"
   ],
   [
    "accidents",
@@ -906,13 +906,13 @@
   ],
   [
    "such as natural disasters.",
-   ""
+   "such as : ~와 같은 (예시)"
   ]
  ],
  "c10q2|8": [
   [
    "Online video games {v|have become}",
-   ""
+   "become + 명사 : ~이 되다 (현재완료)"
   ],
   [
    "a common method",
@@ -920,7 +920,7 @@
   ],
   [
    "【{a|by which} young people {v|meet} new friends.】",
-   "전치사 + 관계대명사 : method를 꾸밈"
+   "전치사 + 관계대명사 : by which (= 수단)"
   ]
  ],
  "c10q2|9": [
@@ -930,11 +930,11 @@
   ],
   [
    "a long line outside it {v|is} usually",
-   ""
+   "주절 : a long line이 주어"
   ],
   [
    "a strong clue",
-   ""
+   "!동격 명사 clue + that절 (완전한 문장)"
   ],
   [
    "【{a|that} the food {v|is} good.】",
@@ -952,7 +952,7 @@
   ],
   [
    "their pets {v|eat},】",
-   ""
+   "eat의 목적어 없음 : 불완전한 절"
   ],
   [
    "【{c|as} some kinds of items {v|may be} harmful.】",
@@ -962,7 +962,7 @@
  "c10q2|11": [
   [
    "Andrew {v|attended}",
-   ""
+   "!attend는 타동사 : 전치사 없이 목적어"
   ],
   [
    "a management workshop,",
@@ -976,11 +976,11 @@
  "c10q2|12": [
   [
    "{v|Can} you {v|give} examples of",
-   ""
+   "의문문 : Can you ~? (~해 줄 수 있니)"
   ],
   [
    "social media platforms",
-   ""
+   "!관계절 동사 protect는 platforms(복수)에 일치"
   ],
   [
    "【{a|which} effectively {v|protect} user privacy?】",
@@ -990,7 +990,7 @@
  "c10s1|1-(A)": [
   [
    "We {v|are looking} for",
-   ""
+   "look for : ~을 찾다 (진행형)"
   ],
   [
    "a new manager,",
@@ -1002,13 +1002,13 @@
   ],
   [
    "{v|can help} us develop fresh ideas.】",
-   ""
+   "!help + O + 동사원형 : to 없이 원형 가능"
   ]
  ],
  "c10s1|1-(B)": [
   [
    "So far, many résumés {v|have arrived},",
-   ""
+   "!So far : 현재완료와 함께 쓰는 표현"
   ],
   [
    "{c|but} unfortunately,",
@@ -1026,7 +1026,7 @@
  "c10s1|2-(A)": [
   [
    "Mr. Smith {v|runs}",
-   ""
+   "run : 운영하다"
   ],
   [
    "a bookstore on the corner,",
@@ -1056,7 +1056,7 @@
   ],
   [
    "{v|cannot be found} anywhere else in the country.】",
-   ""
+   "수동태 : cannot be found (찾을 수 없다)"
   ]
  ],
  "c10s1|3-(A)": [
@@ -1065,8 +1065,8 @@
    ""
   ],
   [
-   "such a brilliant inventor",
-   ""
+   "{k|such} a brilliant inventor",
+   "!such + a(n) + 형용사 + 명사 ~ that 구문"
   ],
   [
    "in the late 19th century",
@@ -1078,7 +1078,7 @@
   ],
   [
    "journalists occasionally {v|compared} her to Thomas Edison by 【{p|calling} her “a woman Edison.”】】",
-   ""
+   "by + 동명사 : ~함으로써 (수단)"
   ]
  ],
  "c10s1|3-(B)": [
@@ -1092,11 +1092,11 @@
   ],
   [
    "【(B) {a|where}",
-   "계속적 용법 : factory 보충 설명"
+   "계속적 관계부사 : factory 보충 (= and there)"
   ],
   [
    "a faulty machine {v|injured} a coworker.】",
-   ""
+   "where 뒤는 완전한 문장"
   ]
  ],
  "c10s1|3-(C)": [
@@ -1106,7 +1106,7 @@
   ],
   [
    "【(C) {a|what}",
-   "명사절 : 보어"
+   "명사절 : 보어 (what이 led의 주어)"
   ],
   [
    "{v|led} her {p|to} create her first invention, a safety device for textile equipment.】",
@@ -1116,7 +1116,7 @@
  "c10s1|4-①": [
   [
    "In New York City, there {v|are}",
-   ""
+   "there are + 복수 명사 : ~이 있다"
   ],
   [
    "a lot of galleries,",
@@ -1124,17 +1124,17 @@
   ],
   [
    "【{a|where 또는 in which}",
-   "계속적 관계부사절 : galleries 보충 설명"
+   "계속적 용법 : where = in which (완전한 절)"
   ],
   [
    "various impressive artworks {v|are displayed}.】",
-   ""
+   "수동태 : are displayed (전시되어 있다)"
   ]
  ],
  "c10s1|4-②": [
   [
    "Visitors {v|are often fascinated} by",
-   ""
+   "be fascinated by : ~에 매료되다"
   ],
   [
    "the fact",
@@ -1146,17 +1146,17 @@
   ],
   [
    "they {v|can appreciate} works by renowned artists from different periods of history.】",
-   ""
+   "that + 완전한 절 : the fact의 내용"
   ]
  ],
  "c10s1|5-①": [
   [
    "Of all the parks in the city, most of the residents {v|love}",
-   ""
+   "most of + 명사 : ~의 대부분"
   ],
   [
-   "the one",
-   ""
+   "{k|the one}",
+   "!the one = the park : 앞 명사의 대용"
   ],
   [
    "【{a|that}",
@@ -1178,7 +1178,7 @@
   ],
   [
    "the park {v|offers},】",
-   ""
+   "offer의 목적어 없음 : 불완전한 절"
   ],
   [
    "including beautiful gardens {c|and} a quiet atmosphere 【{p|to} escape the bustling city life】.",
@@ -1196,7 +1196,7 @@
   ],
   [
    "【{a|where}",
-   "계속적 용법 : outdoors 보충 설명"
+   "계속적 관계부사 : outdoors (= and there)"
   ],
   [
    "they {v|started} {p|to} climb a hill with heavy backpacks.】",
@@ -1210,7 +1210,7 @@
   ],
   [
    "close friends",
-   ""
+   "!whom은 had known의 목적어 (사람 선행사)"
   ],
   [
    "【{a|whom}",
@@ -1235,8 +1235,8 @@
    ""
   ],
   [
-   "【{c|whereas} those 【{c|who} {v|were} with strangers】 {v|did not}.】",
-   "whereas : ~인 반면에 (대조)"
+   "【{c|whereas} those 【{c|who} {v|were} with strangers】 {v|did not} {o|guess}.】",
+   "whereas : 대조 (did not 뒤 guess 생략)"
   ]
  ],
  "add10|1-1": [
@@ -1246,7 +1246,7 @@
   ],
   [
    "{v|invited} a speaker",
-   ""
+   "invite : 초대하다"
   ],
   [
    "to our graduation event",
@@ -1300,7 +1300,7 @@
   ],
   [
    "about Winston Churchill",
-   ""
+   "전치사구 : a movie를 꾸밈"
   ],
   [
    "【{a|which} I {v|downloaded}",
@@ -1318,7 +1318,7 @@
   ],
   [
    "{v|does not charge} any fees",
-   ""
+   "not ~ any : 어떤 ~도 아니다"
   ],
   [
    "to customers",
@@ -1336,7 +1336,7 @@
   ],
   [
    "{v|gave} Howard some medicine,",
-   ""
+   "give + 간접목적어 + 직접목적어 (4형식)"
   ],
   [
    "【{a|which} {v|helped} him get better right away.】",
@@ -1358,7 +1358,7 @@
   ],
   [
    "【{a|whose} flights {v|were canceled}",
-   ""
+   "수동태 : were canceled (취소되었다)"
   ],
   [
    "last Tuesday night.】",
@@ -1380,11 +1380,11 @@
   ],
   [
    "thankfully, one of {a|them}",
-   ""
+   "!and가 절을 연결 : 관계대명사 아니라 them"
   ],
   [
    "{v|was} correct.",
-   ""
+   "one of + 복수 : 동사는 one에 맞춰 단수"
   ]
  ],
  "add10|2-4": [
@@ -1402,15 +1402,15 @@
   ],
   [
    "{a|its} functions",
-   ""
+   "!but이 두 절을 연결 : whose 아니라 its"
   ],
   [
    "{v|are} highly advanced",
    ""
   ],
   [
-   "【{p|compared} to those of other models】.",
-   "분사구문 : ~와 비교하면"
+   "【{p|compared} to {k|those} of other models】.",
+   "!분사구문 compared to ~ / those = the functions"
   ]
  ],
  "add10|2-5": [
@@ -1432,13 +1432,13 @@
   ],
   [
    "he {v|opened} five years ago.】",
-   ""
+   "!five years ago : 과거 시제 opened (현재완료 불가)"
   ]
  ],
  "add10|3-1": [
   [
    "Linda {c|and} I",
-   ""
+   "병렬 : Linda와 I (복수 주어)"
   ],
   [
    "{v|stayed} at a beautiful resort,",
@@ -1450,7 +1450,7 @@
   ],
   [
    "between Turkey {c|and} Greece.】",
-   ""
+   "between A and B : A와 B 사이"
   ]
  ],
  "add10|3-2": [
@@ -1460,11 +1460,11 @@
   ],
   [
    "{v|are} unhappy",
-   ""
+   "be unhappy with : ~에 불만족하다"
   ],
   [
-   "with the way",
-   ""
+   "with the {k|way}",
+   "!the way (in which / that) : the way how 불가"
   ],
   [
    "【{a|in which} the TV show {v|ended}.】",
@@ -1486,7 +1486,7 @@
   ],
   [
    "【{a|when} the weather outside {v|is} extremely hot.】",
-   "관계부사절 : days를 꾸밈"
+   "관계부사 when + 완전한 문장 : days 꾸밈"
   ]
  ],
  "add10|3-4": [
@@ -1504,7 +1504,7 @@
   ],
   [
    "on the books",
-   ""
+   "presentation on ~ : ~에 대한 발표"
   ],
   [
    "【{a|which} they {v|read}",
@@ -1522,7 +1522,7 @@
   ],
   [
    "{v|has to give} the manager",
-   ""
+   "give + 간접O + 직접O (4형식)"
   ],
   [
    "the reason 【{a|why} his report {v|is} late】.",
@@ -1536,7 +1536,7 @@
   ],
   [
    "{v|recommended} a new diet",
-   ""
+   "!관계절 동사 does는 선행사 a new diet(단수)에 일치"
   ],
   [
    "【{a|that} {v|does not include} any red meat.】",
@@ -1550,7 +1550,7 @@
   ],
   [
    "{v|has not determined}",
-   ""
+   "have not p.p. : 현재완료 부정"
   ],
   [
    "【{a|what} she {v|wants} {p|to} do",
@@ -1580,7 +1580,7 @@
   ],
   [
    "{v|is}",
-   ""
+   "!One benefit(단수)가 주어 : is : of getting은 수식어"
   ],
   [
    "【{a|that} you {v|can think} clearly the next day.】",
@@ -1598,7 +1598,7 @@
   ],
   [
    "{v|will have} a bright green sticker",
-   ""
+   "본동사 : 주어 Items, 관계절은 수식어"
   ],
   [
    "【{p|showing} the price】.",
@@ -1620,7 +1620,7 @@
   ],
   [
    "{v|could save} many lives.",
-   ""
+   "what절 전체가 주어 : 본동사 could save"
   ]
  ],
  "add10|5-1": [
@@ -1630,7 +1630,7 @@
   ],
   [
    "{v|may be} disappointed",
-   ""
+   "may : 추측 (~할지도 모른다)"
   ],
   [
    "【{p|to} hear the news",
@@ -1656,7 +1656,7 @@
   ],
   [
    "【{a|what} we {v|should name} our new pet.】",
-   "명사절 : on의 목적어"
+   "명사절 : on의 목적어 (name의 보어가 what)"
   ]
  ],
  "add10|5-3": [
@@ -1674,7 +1674,7 @@
   ],
   [
    "near their neighborhood.】",
-   ""
+   "near + 명사 : ~근처에"
   ]
  ],
  "add10|5-4": [
@@ -1684,7 +1684,7 @@
   ],
   [
    "about situations",
-   ""
+   "!관계절 동사 are는 situations(복수)에 일치"
   ],
   [
    "【{c|which} {v|are} outside of your control,】",
@@ -1705,8 +1705,8 @@
    ""
   ],
   [
-   "{v|had} such a wonderful time",
-   ""
+   "{v|had} {k|such} a wonderful time",
+   "!such + a + 형용사 + 명사 : 어순 주의"
   ],
   [
    "at dinner",

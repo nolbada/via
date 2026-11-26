@@ -6,21 +6,21 @@
   ],
   [
    "【{a|because}",
-   "이유의 부사절 접속사"
+   "!because + 절(주어 + 동사) : ~ 때문에"
   ],
   [
    "less hair {v|meant} effective running.】",
-   ""
+   "mean + 목적어 : ~을 의미하다"
   ]
  ],
  "c09p1|1": [
   [
    "The concert {v|was canceled}",
-   ""
+   "수동태 : 취소되었다"
   ],
   [
    "{a|because of}",
-   "because of + 명사구 : ~ 때문에"
+   "!because of + 명사구 : 뒤가 절이면 because"
   ],
   [
    "a thunderstorm 【{p|hitting} the country】.",
@@ -30,11 +30,11 @@
  "c09p1|2": [
   [
    "The parents {v|sat} {c|and} {v|enjoyed} a conversation",
-   "병렬 : 동사 두 개 연결"
+   "병렬 : sat과 enjoyed 연결"
   ],
   [
    "【{a|while}",
-   "시간의 부사절 접속사"
+   "!while + 절 : ~하는 동안 (명사 앞은 during)"
   ],
   [
    "their children {v|played} in the park.】",
@@ -44,21 +44,21 @@
  "c09p1|3": [
   [
    "{a|Despite}",
-   "Despite + 명사구 : ~에도 불구하고"
+   "!Despite + 명사구 : 뒤가 절이면 Although"
   ],
   [
    "heavy traffic on the city roads,",
-   ""
+   "명사구 : Despite의 목적어"
   ],
   [
    "Sarah {v|arrived} at the meeting on time.",
-   ""
+   "on time : 제때"
   ]
  ],
  "c09p1|4": [
   [
    "【{a|Though}",
-   "양보의 부사절 접속사"
+   "!Though + 절 : 양보 (명사 앞은 Despite)"
   ],
   [
    "the dog {v|barked} loudly,】",
@@ -66,17 +66,17 @@
   ],
   [
    "it {v|didn’t bother} the neighbors.",
-   ""
+   "주절 : it = the dog"
   ]
  ],
  "c09p1|5": [
   [
    "Ms. Undset {v|escaped} Norway",
-   ""
+   "escape + 장소 : ~에서 탈출하다"
   ],
   [
    "{a|during}",
-   "during + 명사구 : ~ 동안"
+   "!during + 명사 : ~ 동안 (while은 절 앞)"
   ],
   [
    "the German attack,",
@@ -84,21 +84,21 @@
   ],
   [
    "{c|but} she {v|returned} after WWII.",
-   "병렬 : 두 절 연결 (대등)"
+   "병렬 : 두 절 연결 (after는 전치사)"
   ]
  ],
  "c09p2|예제": [
   [
    "【{c|When} rice prices {v|fall},】",
-   ""
+   "when절 : 시간의 부사절"
   ],
   [
    "people {v|have} more money for items",
-   ""
+   "have + 목적어 : ~을 가지다"
   ],
   [
    "{a|like}",
-   "like + 명사 : ~ 같은"
+   "!like + 명사 : ~ 같은 (전치사)"
   ],
   [
    "meat {c|and} dairy,",
@@ -120,21 +120,21 @@
   ],
   [
    "that year,",
-   "since + 명사 : ~ 이래로"
+   "!since + 명사(that year) : ~ 이래로"
   ],
   [
    "I {v|have witnessed} its remarkable growth.",
-   ""
+   "have p.p. : 현재완료 (since와 호응)"
   ]
  ],
  "c09p2|2": [
   [
    "The students {v|celebrated} by {p|going} out for dinner",
-   "전치사 + 동명사"
+   "by + 동명사 : ~함으로써"
   ],
   [
    "【{a|after}",
-   "접속사 after + 절"
+   "!after + 절 : 접속사 / after + 명사 : 전치사"
   ],
   [
    "they {v|finished} the college entrance exams.】",
@@ -152,7 +152,7 @@
   ],
   [
    "{a|like}",
-   "look like + 명사 : ~처럼 보이다"
+   "!look like + 명사 : ~처럼 보이다 (전치사 like)"
   ],
   [
    "her mother.",
@@ -166,7 +166,7 @@
   ],
   [
    "{a|until}",
-   "until + 명사구 : ~까지"
+   "!until : 계속되는 동작의 끝 시점 (~까지)"
   ],
   [
    "the late hours of the night",
@@ -179,12 +179,12 @@
  ],
  "c09p2|5": [
   [
-   "People naturally {v|get} used to things around them",
-   "get used to + 명사 : ~에 익숙해지다"
+   "People naturally {v|get} {k|used to} things around them",
+   "!get used to + 명사 : to는 전치사 (used to V와 구별)"
   ],
   [
    "【{a|as}",
-   "접속사 as : ~함에 따라"
+   "!as + 절 : ~함에 따라 (비례)"
   ],
   [
    "time {v|passes}.】",
@@ -194,15 +194,15 @@
  "c09p3|예제": [
   [
    "【{c|When} you {v|enjoy} music,】 just {v|forget}",
-   ""
+   "!명령문 : 주어 없이 동사원형 forget"
   ],
   [
    "【{a|whether}",
-   "명사절 : forget의 목적어"
+   "!whether + 완전한 절 : ~인지 아닌지"
   ],
   [
    "you {v|have} musical talent.】",
-   ""
+   "명사절 : forget의 목적어"
   ]
  ],
  "c09p3|1": [
@@ -212,11 +212,11 @@
   ],
   [
    "【{a|when}",
-   "간접의문문 : asked의 목적어"
+   "!간접의문문 : when + 주어 + 동사 어순"
   ],
   [
    "the meeting {v|would end},】",
-   ""
+   "would end : 과거 asked에 맞춘 시제"
   ],
   [
    "【{c|as} he {v|needed} {p|to} go to the restroom.】",
@@ -230,11 +230,11 @@
   ],
   [
    "we {v|can only guess}",
-   ""
+   "can only + 동사 : ~할 수밖에 없다"
   ],
   [
    "【{a|that}",
-   "명사절 : guess의 목적어"
+   "!that + 완전한 절 : guess의 목적어"
   ],
   [
    "our business {v|will suffer} for a while.】",
@@ -244,15 +244,15 @@
  "c09p3|3": [
   [
    "I {v|was} curious about",
-   ""
+   "전치사 about + 명사절이 온다"
   ],
   [
    "【{a|who}",
-   "의문사 who가 절의 주어 역할"
+   "!who가 절의 주어 : 뒤에 주어가 없다"
   ],
   [
-   "{v|made} Maya change her mind at the last moment.】",
-   "make + 목적어 + 동사원형"
+   "{v|made} Maya {k|change} her mind at the last moment.】",
+   "!사역동사 make + O + 동사원형 : O가 ~하게 하다"
   ]
  ],
  "c09p3|4": [
@@ -262,39 +262,39 @@
   ],
   [
    "【{a|if}",
-   "if : ~인지 아닌지 (명사절)"
+   "!if : ~인지 아닌지 (know의 목적어절)"
   ],
   [
    "her grandmother {v|had ever actually seen} an angel.】",
-   ""
+   "과거완료 : wanted보다 앞선 일"
   ]
  ],
  "c09p3|5": [
   [
    "Mr. Williams {v|was} unaware of",
-   ""
+   "전치사 of + 명사절 : ~을 알지 못하다"
   ],
   [
    "【{a|what}",
-   "전치사 of + 명사절"
+   "!what + 불완전한 절 : planning의 목적어 없음"
   ],
   [
    "his family {v|was planning} for his birthday.】",
-   ""
+   "was planning : 과거진행"
   ]
  ],
  "c09p3|6": [
   [
-   "One of the most essential decisions 【we {v|can make}】",
-   "목적격 관계대명사 생략 : decisions 꾸밈"
+   "One of the most essential decisions {o|that} 【we {v|can make}】",
+   "!목적격 관계대명사 that 생략 : decisions를 꾸밈"
   ],
   [
    "{v|is}",
-   ""
+   "주어 One(단수) : 본동사 is"
   ],
   [
    "【{a|how}",
-   "명사절 : 보어"
+   "!how + 완전한 절 : 보어 자리의 명사절"
   ],
   [
    "we {v|should invest} our time every day.】",
@@ -304,15 +304,15 @@
  "c09p3|7": [
   [
    "I really {v|wonder}",
-   ""
+   "wonder + 의문사절 : ~인지 궁금하다"
   ],
   [
    "【{a|where}",
-   "간접의문문 : wonder의 목적어"
+   "!where + 완전한 절 : 장소를 묻는 간접의문문"
   ],
   [
-   "they {v|found} such a wonderful sofa for their living room.】",
-   ""
+   "they {v|found} {k|such} a wonderful sofa for their living room.】",
+   "!such + a + 형용사 + 명사 : 어순 주의"
   ]
  ],
  "c09p3|8": [
@@ -322,55 +322,55 @@
   ],
   [
    "【{a|that}",
-   "명사절 : imagine의 목적어"
+   "!imagine + (that) + 완전한 절 : 목적어절"
   ],
   [
    "you {v|are standing} on top of a mountain.】",
-   ""
+   "are standing : 현재진행 (서 있는 중)"
   ]
  ],
  "c09q1|1": [
   [
    "You {v|need} {p|to} decide soon 【{a|whether}",
-   "whether : ~인지 아닌지 (명사절)"
+   "!decide whether : ~인지 아닌지 결정하다"
   ],
   [
    "you {v|will accept} the job offer from the company.】",
-   ""
+   "명사절 : decide의 목적어"
   ]
  ],
  "c09q1|2": [
   [
    "【{a|As}",
-   "접속사 as : ~하듯이"
+   "!접속사 as + 절 : ~하듯이"
   ],
   [
    "the old proverb {v|goes},】",
-   ""
+   "the proverb goes : 속담이 이르듯이"
   ],
   [
    "you never {v|miss} the water 【{c|until} the well {v|runs} dry.】",
-   "until : ~할 때까지"
+   "until + 절 : ~할 때까지 (run dry 마르다)"
   ]
  ],
  "c09q1|3": [
   [
    "The judges {v|will announce} 【{a|which}",
-   "명사절 : announce의 목적어"
+   "!which가 주어 : 뒤에 주어가 없다"
   ],
   [
    "{v|is} the best among the 12 teams",
-   ""
+   "최상급 : the best among + 복수명사"
   ],
   [
    "in the contest.】",
-   ""
+   "명사절 : announce의 목적어"
   ]
  ],
  "c09q1|4": [
   [
    "【{a|While}",
-   "시간의 부사절 접속사"
+   "!While + 절 : ~하는 동안"
   ],
   [
    "the band {v|performed} on stage,】",
@@ -378,71 +378,71 @@
   ],
   [
    "the crowd {v|sang} along.",
-   ""
+   "sing along : 따라 부르다"
   ]
  ],
  "c09q1|5": [
   [
    "It {v|is} important 【{a|that}",
-   "진주어 that절 : It은 가주어"
+   "!가주어 It + 진주어 that절 : ~라는 것은 중요하다"
   ],
   [
-   "we {v|find} a solution 【{c|before} the problem {v|becomes} more serious】.】",
-   "before : ~하기 전에"
+   "we {o|should} {v|find} a solution 【{c|before} the problem {v|becomes} more serious】.】",
+   "!(should) 생략 : 중요함을 뜻하는 형용사 뒤 that절"
   ]
  ],
  "c09q1|6": [
   [
    "Darrell’s father {v|advised} him {p|to} think of 【{a|when}",
-   "advise + 목적어 + to부정사"
+   "!advise + O + to V : O에게 ~하라고 조언하다"
   ],
   [
    "he {v|wants} {p|to} see the dentist.】",
-   "명사절 : of의 목적어"
+   "전치사 of + 명사절 : 언제 ~할지"
   ]
  ],
  "c09q1|7": [
   [
    "The children {v|had to build} another sandcastle 【{a|because}",
-   "because : 이유의 부사절"
+   "!because + 절 : ~ 때문에 (뒤에 완전한 절)"
   ],
   [
    "a large wave {v|washed} the first one away.】",
-   ""
+   "wash ~ away : 쓸어 가다 (구동사)"
   ]
  ],
  "c09q1|8": [
   [
    "【{a|What}",
-   "명사절 : 문장의 주어"
+   "!What + 불완전한 절 : 주어가 되는 명사절"
   ],
   [
    "Dr. Johnson {v|discovered}】",
-   ""
+   "discovered의 목적어가 빠진 절"
   ],
   [
    "{v|made} an important contribution to scientific research.",
-   ""
+   "make a contribution to : ~에 기여하다"
   ]
  ],
  "c09q1|9": [
   [
    "{p|Reading} a book {v|is} {a|like}",
-   "동명사 : 문장의 주어"
+   "동명사 Reading : 주어 (단수 취급)"
   ],
   [
    "{p|traveling} to a new place",
-   "like + 동명사 : ~하는 것과 같다"
+   "!전치사 like 뒤 동명사 : ~하는 것과 같다"
   ],
   [
    "{c|or} a different time in history.",
-   "병렬 : 장소와 시대 연결"
+   "병렬 : place와 time 두 명사 연결"
   ]
  ],
  "c09q1|10": [
   [
    "{v|Have} you ever {v|wondered} 【{a|why}",
-   "간접의문문 : wondered의 목적어"
+   "!why + 완전한 절 : wondered의 목적어"
   ],
   [
    "dogs {v|don’t fall} over 【{c|when} they suddenly {v|change} direction】?】",
@@ -452,55 +452,55 @@
  "c09q1|11": [
   [
    "【{a|Though}",
-   "양보의 부사절 접속사"
+   "양보 : 주절과 반대되는 내용"
   ],
   [
    "the boy’s eyes {v|hurt} very much,】",
-   ""
+   "hurt : 아프다 (과거형도 hurt)"
   ],
   [
    "he {v|tried} {p|to} focus on {p|finishing} his puzzle.",
-   "focus on + 동명사 : ~에 집중하다"
+   "!try to V(노력하다) · focus on + ~ing(~에 집중)"
   ]
  ],
  "c09q1|12": [
   [
    "{v|Could} you {v|tell} me 【{a|if}",
-   "if : ~인지 아닌지 (명사절)"
+   "!tell + me + if절 : ~인지 알려 주다 (4형식)"
   ],
   [
    "you {v|are coming} {p|to} visit next week】",
-   ""
+   "come to V : ~하러 오다 (to V는 목적)"
   ],
   [
-   "【{c|so} I {v|can make} plans?】",
-   "so : ~하도록 (목적)"
+   "【{c|so} {o|that} I {v|can make} plans?】",
+   "!so (that) + S + can : ~하도록 (목적)"
   ]
  ],
  "c09q2|1": [
   [
    "The company {v|is having} difficulties {a|because of}",
-   "because of + 명사구 : ~ 때문에"
+   "!because of + 명사구 : 뒤가 절이 아니다"
   ],
   [
    "the highly competitive situation in the market.",
-   ""
+   "highly : 형용사 competitive를 꾸미는 부사"
   ]
  ],
  "c09q2|2": [
   [
    "Pamela {v|asked} her dad 【{a|whether}",
-   "whether : ~인지 아닌지 (명사절)"
+   "!ask + O + whether절 : ~인지 아닌지 묻다"
   ],
   [
    "she {v|should choose} {p|to} major in medicine {c|or} art.】",
-   "병렬 : 두 전공 연결"
+   "병렬 : medicine과 art 연결"
   ]
  ],
  "c09q2|3": [
   [
    "The patient,",
-   ""
+   "!The patient : 주어 (동사는 must have)"
   ],
   [
    "【{a|as}",
@@ -512,65 +512,65 @@
   ],
   [
    "{v|must have} meals {c|and} {v|take} medicine at fixed times.",
-   "병렬 : 동사 두 개 연결"
+   "병렬 : must 뒤 동사 have와 take"
   ]
  ],
  "c09q2|4": [
   [
    "Some days, you {v|might not understand} 【{a|why}",
-   "명사절 : understand의 목적어"
+   "!why + 완전한 절 : 이유를 묻는 명사절"
   ],
   [
    "the people around you {v|act} so strangely.】",
-   ""
+   "act + 부사 : 행동하는 방식 (strangely)"
   ]
  ],
  "c09q2|5": [
   [
    "It {v|is} perhaps surprising 【{a|how}",
-   "진주어 how절 : It은 가주어"
+   "!가주어 It + 진주어 how절 : how 이하가 놀라운 것"
   ],
   [
    "music {v|can trigger} strong emotions {c|and} memories.】",
-   "병렬 : 명사 두 개 연결"
+   "병렬 : emotions와 memories 연결"
   ]
  ],
  "c09q2|6": [
   [
    "Molly {v|received} a phone call from a mysterious person",
-   ""
+   "receive a phone call : 전화를 받다"
   ],
   [
    "{a|during}",
-   "during + 명사구 : ~ 동안"
+   "!during + 명사구 : ~ 동안 (뒤에 절이 아님)"
   ],
   [
    "her lunch break at work.",
-   ""
+   "명사구 : during의 목적어"
   ]
  ],
  "c09q2|7": [
   [
    "【{p|Looking} at the view from the top of the mountain,】",
-   "분사구문 : 동시 동작"
+   "분사구문 : 주어 we 생략 (동시 동작)"
   ],
   [
    "we {v|couldn’t believe} 【{a|where}",
-   "명사절 : believe의 목적어"
+   "!where + 완전한 절 : 장소를 뜻하는 명사절"
   ],
   [
    "we {v|stood}.】",
-   ""
+   "명사절 : believe의 목적어"
   ]
  ],
  "c09q2|8": [
   [
    "My parents {c|and} I {v|don’t agree} 【{a|whether}",
-   "whether : ~인지 아닌지"
+   "!whether + 완전한 절 : ~인지 아닌지"
   ],
   [
    "I {v|should go} to college in another city.】",
-   ""
+   "whether절 안 should : ~해야 할지"
   ]
  ],
  "c09q2|9": [
@@ -580,49 +580,49 @@
   ],
   [
    "{c|and} 【{a|what}",
-   "병렬 : 두 절 연결"
+   "병렬 : 두 문장을 대등하게 연결"
   ],
   [
    "he {v|said}】",
-   "what절 : 문장의 주어"
+   "!what + 불완전한 절 : said의 목적어 없음"
   ],
   [
    "{v|surprised} his family.",
-   ""
+   "what절이 주어 : 본동사 surprised"
   ]
  ],
  "c09q2|10": [
   [
    "Bees {v|do} well in the suburbs 【{a|since}",
-   "since : ~ 때문에 (이유)"
+   "!since + 절 : ~ 때문에 (이유 접속사)"
   ],
   [
    "flowers in people’s gardens {v|provide} a constant supply of honey.】",
-   ""
+   "주어 flowers : 동사는 provide"
   ]
  ],
  "c09q2|11": [
   [
    "【{a|Although}",
-   "양보의 부사절 접속사"
+   "양보 : 주절과 반대되는 내용"
   ],
   [
    "the weather {v|was} windy {c|and} rainy,】",
-   "병렬 : 형용사 두 개 연결"
+   "병렬 : windy와 rainy가 was의 보어"
   ],
   [
    "the athletes {v|continued} {p|training} for the upcoming game.",
-   "continue + 동명사"
+   "continue + 동명사 : ~하는 것을 계속하다"
   ]
  ],
  "c09q2|12": [
   [
    "Environmental groups {v|argue} 【{a|that}",
-   "명사절 : argue의 목적어"
+   "!argue + that절 : ~라고 주장하다"
   ],
   [
-   "European customers {v|are making} water shortages worse in Africa.】",
-   ""
+   "European customers {v|are making} water shortages {k|worse} in Africa.】",
+   "!make + O + 형용사(OC) : O를 ~하게 만들다"
   ]
  ],
  "c09s1|1-(A)": [
@@ -632,15 +632,15 @@
   ],
   [
    "(A) {a|in spite of}",
-   "in spite of + 명사구 : ~에도 불구하고"
+   "!in spite of + 명사구 : 뒤에 절이 아니다"
   ],
   [
    "his disability,",
-   ""
+   "명사구 : in spite of의 목적어"
   ],
   [
    "he {v|decided} {p|to} learn taekwondo.",
-   "decide + to부정사"
+   "decide + to V : ~하기로 결심하다"
   ]
  ],
  "c09s1|1-(B)": [
@@ -650,15 +650,15 @@
   ],
   [
    "(B) 【{a|what}",
-   "명사절 : knew의 목적어"
+   "!what + 불완전한 절 : accomplish의 목적어 없음"
   ],
   [
    "the boy {v|would accomplish},】",
-   ""
+   "would accomplish : 과거에서 본 미래"
   ],
   [
    "{c|but} he {v|believed} in himself.",
-   "병렬 : 두 절 연결"
+   "병렬 : 두 절 연결 (believe in 믿다)"
   ]
  ],
  "c09s1|2-(A)": [
@@ -668,21 +668,21 @@
   ],
   [
    "(A) 【{a|when}",
-   "명사절 : wonders의 목적어"
+   "!when + 완전한 절 : wonders의 목적어절"
   ],
   [
    "she {v|will meet} someone, {v|fall} in love, {c|and} {v|get} married.】",
-   "병렬 : will 뒤 동사 세 개"
+   "병렬 : meet · fall · get (will 뒤 세 동사)"
   ]
  ],
  "c09s1|2-(B)": [
   [
    "She {v|hopes} {p|to} meet someone",
-   ""
+   "hope + to V : ~하기를 바라다"
   ],
   [
    "(B) {a|like}",
-   "like + 명사 : ~와 같이"
+   "!like + 명사 : ~와 같이 (전치사)"
   ],
   [
    "our father,",
@@ -690,13 +690,13 @@
   ],
   [
    "【{c|who} {v|is} smart, kind, {c|and} funny】, {c|but} she {v|has not had} much luck so far.",
-   "계속적 용법 : father 보충 설명"
+   "계속적 용법 : our father 보충 설명"
   ]
  ],
  "c09s1|3-(A)": [
   [
    "Often, it {v|makes} us tired",
-   ""
+   "!make + O + 형용사 : us를 피곤하게 만든다"
   ],
   [
    "(A) 【{a|that}",
@@ -704,17 +704,17 @@
   ],
   [
    "we {v|should do} things 【{c|while} we {v|are processing} constant calls {c|and} messages on mobile phones】.】",
-   "while : ~하는 동안"
+   "while + 절 : ~하는 동안 (and는 calls와 messages)"
   ]
  ],
  "c09s1|3-(B)": [
   [
-   "This {v|is}",
-   ""
+   "This {v|is} {o|the reason}",
+   "!This is (the reason) why : the reason 생략"
   ],
   [
    "(B) 【{a|why}",
-   "명사절 : 보어"
+   "why + 완전한 절 : 관계부사 (이유)"
   ],
   [
    "some people still {v|go} to cinemas {p|to} watch films.】",
@@ -728,21 +728,21 @@
   ],
   [
    "(C) 【{a|because}",
-   "because : 이유의 부사절"
+   "!because + 절 : ~ 때문에 (because of와 구별)"
   ],
   [
    "all mobile phones {v|have to be switched off}.】",
-   "수동태 : 꺼져야 한다"
+   "have to be p.p. : ~되어야 한다 (수동태)"
   ]
  ],
  "c09s1|4-①": [
   [
    "My friends {c|and} I {v|were talking} about",
-   ""
+   "병렬 : 주어 My friends와 I 연결"
   ],
   [
    "【{a|where}",
-   "전치사 about + 명사절"
+   "!where + 완전한 절 : 전치사 about의 목적어"
   ],
   [
    "we {v|would like} {p|to} spend our summer holidays this year.】",
@@ -752,11 +752,11 @@
  "c09s1|4-②": [
   [
    "We {v|haven’t decided} on a place yet 【{c|because} we {v|need} {p|to} know",
-   "because : 이유의 부사절"
+   "because : 이유 (decide on 정하다)"
   ],
   [
    "【{a|who}",
-   "명사절 : know의 목적어"
+   "!who가 주어 : know의 목적어인 명사절"
   ],
   [
    "{v|is} interested in {p|joining} us on the trip.】】",
@@ -770,11 +770,11 @@
   ],
   [
    "【{a|while}",
-   "while : ~하는 동안"
+   "!while + 절 : ~하는 동안 (during은 명사 앞)"
   ],
   [
    "individuals {v|were experiencing} a stressful event.】",
-   ""
+   "과거진행 : 그동안 경험하고 있던"
   ]
  ],
  "c09s1|5-②": [
@@ -784,21 +784,21 @@
   ],
   [
    "【{a|as}",
-   "as : ~ 때문에 (이유)"
+   "!as + 절 : ~ 때문에 (이유)"
   ],
   [
    "{p|smiling} {v|produces} feel-good chemicals in the brain.】",
-   "동명사 : 절의 주어"
+   "동명사 smiling : 주어 (단수 취급)"
   ]
  ],
  "c09s1|6-①": [
   [
    "Early humans {v|had to distinguish} very quickly",
-   ""
+   "have to + 동사원형 : ~해야 한다"
   ],
   [
    "【{a|whether} (또는 if)",
-   "명사절 : distinguish의 목적어"
+   "!whether(= if) + 절 : ~인지 아닌지"
   ],
   [
    "an animal {v|was} dangerous 【{c|when} they {v|walked} through the jungle】.】",
@@ -808,11 +808,11 @@
  "c09s1|6-②": [
   [
    "Their survival {v|depended} on",
-   ""
+   "depend on + 명사절 : ~에 달려 있다"
   ],
   [
    "【{a|how}",
-   "전치사 on + 명사절"
+   "!how + 완전한 절 : 어떻게 ~하는지"
   ],
   [
    "they {v|reacted} in the first few seconds.】",
@@ -826,11 +826,11 @@
   ],
   [
    "【{a|since}",
-   "since : ~ 때문에 (이유)"
+   "!since + 절 : ~ 때문에 (이유)"
   ],
   [
    "an animal {v|could attack} them 【{c|if} they {v|took} too long {p|to} decide】.】",
-   "if : 만약 ~라면"
+   "if : 만약 ~라면 (take long to V)"
   ]
  ],
  "add09|1-1": [
@@ -840,11 +840,11 @@
   ],
   [
    "{v|was damaged}",
-   ""
+   "수동태 : 파손되었다"
   ],
   [
    "{a|during} its trip",
-   "during + 명사 : ~ 동안"
+   "!during + 명사 : ~ 동안 (while은 절 앞)"
   ],
   [
    "to the moon",
@@ -852,7 +852,7 @@
   ],
   [
    "{c|and} {v|had to return} to Earth.",
-   "병렬 : 동사 두 개 연결"
+   "병렬 : was damaged와 had to return"
   ]
  ],
  "add09|1-2": [
@@ -862,11 +862,11 @@
   ],
   [
    "{v|will be delayed}",
-   ""
+   "수동태 : 미뤄질 것이다"
   ],
   [
    "【{a|because}",
-   "이유의 부사절 접속사"
+   "!because + 절 : ~ 때문에 (뒤에 주어 + 동사)"
   ],
   [
    "the company",
@@ -878,13 +878,13 @@
   ],
   [
    "enough money {p|to} continue.】",
-   "to부정사 (형용사적) : money 꾸밈"
+   "enough + 명사 + to V : ~할 충분한 ~"
   ]
  ],
  "add09|1-3": [
   [
    "【{a|Although}",
-   "양보의 부사절 접속사"
+   "!Although + 절 : 양보 (명사 앞은 Despite)"
   ],
   [
    "the country’s economy",
@@ -892,7 +892,7 @@
   ],
   [
    "{v|has improved},】",
-   ""
+   "has p.p. : 현재완료 (경제가 나아졌다)"
   ],
   [
    "many people",
@@ -904,7 +904,7 @@
   ],
   [
    "without jobs.",
-   ""
+   "without + 명사 : ~이 없는"
   ]
  ],
  "add09|1-4": [
@@ -914,11 +914,11 @@
   ],
   [
    "{v|was shut down} today",
-   ""
+   "수동태 shut down : 폐쇄되었다"
   ],
   [
    "{a|because of}",
-   "because of + 명사구 : ~ 때문에"
+   "!because of + 명사구 : 뒤가 절이 아니다"
   ],
   [
    "pollution",
@@ -926,7 +926,7 @@
   ],
   [
    "from the oil spill",
-   ""
+   "전치사구 : pollution을 꾸밈"
   ],
   [
    "last week.",
@@ -940,7 +940,7 @@
   ],
   [
    "{v|were able to grow}",
-   ""
+   "be able to + 동사원형 : ~할 수 있다"
   ],
   [
    "some crops",
@@ -948,11 +948,11 @@
   ],
   [
    "{a|in spite of}",
-   "in spite of + 명사구 : ~에도 불구하고"
+   "!in spite of + 명사구 : ~에도 불구하고"
   ],
   [
    "the low rainfall",
-   ""
+   "명사구 : in spite of의 목적어"
   ],
   [
    "this year.",
@@ -966,7 +966,7 @@
   ],
   [
    "{v|was first published}",
-   ""
+   "수동태 : 처음 출판되었다"
   ],
   [
    "in 2014",
@@ -974,7 +974,7 @@
   ],
   [
    "{c|and}, {a|since} then,",
-   "since then : 그때 이래로"
+   "병렬 : 두 절 연결 (since then 그때 이래)"
   ],
   [
    "it",
@@ -982,7 +982,7 @@
   ],
   [
    "{v|has sold}",
-   ""
+   "!since와 호응 : 현재완료 has p.p."
   ],
   [
    "millions of copies around the world.",
@@ -996,7 +996,7 @@
   ],
   [
    "{v|will send} you",
-   ""
+   "send + 간접목적어 + 직접목적어 : 4형식"
   ],
   [
    "a text message",
@@ -1004,7 +1004,7 @@
   ],
   [
    "【{a|before}",
-   "접속사 before : ~하기 전에"
+   "!before + 절 : 접속사 / + 명사면 전치사"
   ],
   [
    "they",
@@ -1012,7 +1012,7 @@
   ],
   [
    "{v|call} you",
-   ""
+   "!시간 부사절 : 미래 뜻도 현재시제 call"
   ],
   [
    "on the phone.】",
@@ -1026,11 +1026,11 @@
   ],
   [
    "{v|feels}",
-   ""
+   "feel like + 명사 : ~처럼 느껴지다"
   ],
   [
    "{a|like}",
-   "feel like + 명사 : ~처럼 느껴지다"
+   "!like + 명사 : 전치사 (뒤에 real leather)"
   ],
   [
    "real leather,",
@@ -1038,15 +1038,15 @@
   ],
   [
    "{c|but} it",
-   "병렬 : 두 절 연결 (대등)"
+   "병렬 : 두 절 연결"
   ],
   [
    "{v|is made}",
-   ""
+   "수동태 : 만들어진다"
   ],
   [
    "with plastic {c|and} not the skin of an animal.",
-   "병렬 : 명사 두 개 연결"
+   "!A and not B : B가 아니라 A"
   ]
  ],
  "add09|2-4": [
@@ -1056,7 +1056,7 @@
   ],
   [
    "{v|will be used} more",
-   ""
+   "수동태 : 더 많이 사용될 것이다"
   ],
   [
    "in everyday life",
@@ -1064,7 +1064,7 @@
   ],
   [
    "【{a|as}",
-   "접속사 as : ~함에 따라"
+   "!as + 절 : ~함에 따라 (비례)"
   ],
   [
    "the technology",
@@ -1076,7 +1076,7 @@
   ],
   [
    "over time.】",
-   ""
+   "over time : 시간이 지나면서"
   ]
  ],
  "add09|2-5": [
@@ -1098,7 +1098,7 @@
   ],
   [
    "{a|like}",
-   "like + 명사 : ~처럼"
+   "!like + 명사 : ~처럼 (전치사)"
   ],
   [
    "a Japanese person.",
@@ -1108,7 +1108,7 @@
  "add09|3-1": [
   [
    "【{a|What}",
-   "명사절 : 문장의 주어"
+   "!What + 불완전한 절 : 주어 역할의 명사절"
   ],
   [
    "I",
@@ -1116,7 +1116,7 @@
   ],
   [
    "{v|prepared}】",
-   ""
+   "prepared의 목적어가 빠져 있다"
   ],
   [
    "for the picnic this weekend",
@@ -1124,11 +1124,11 @@
   ],
   [
    "{v|should be}",
-   ""
+   "주어는 What절 : 동사 should be"
   ],
   [
    "enough for everyone {p|to} enjoy.",
-   "for everyone : 의미상 주어"
+   "enough + for A + to V : A가 ~하기에 충분한"
   ]
  ],
  "add09|3-2": [
@@ -1138,11 +1138,11 @@
   ],
   [
    "{v|couldn’t decide}",
-   ""
+   "decide + if절 : ~인지 아닌지 결정하다"
   ],
   [
    "【{a|if}",
-   "if : ~인지 아닌지 (명사절)"
+   "!if + 절 : ~인지 아닌지 (명사절)"
   ],
   [
    "she",
@@ -1154,11 +1154,11 @@
   ],
   [
    "the brown coat {c|or} the red one,】",
-   "병렬 : 두 코트 연결"
+   "병렬 : coat 두 개 연결 (one = coat)"
   ],
   [
    "{c|so} she {v|bought} both.",
-   "so : 그래서 (결과)"
+   "so : 그래서 (결과를 이끄는 등위접속사)"
   ]
  ],
  "add09|3-3": [
@@ -1176,11 +1176,11 @@
   ],
   [
    "【{a|who}",
-   "전치사 about + 명사절"
+   "전치사 about + 명사절 (who가 주어)"
   ],
   [
    "{v|should be}",
-   ""
+   "should be : ~이어야 한다"
   ],
   [
    "the leader of the speech club.】",
@@ -1197,8 +1197,8 @@
    ""
   ],
   [
-   "【she {v|didn’t study} enough,】",
-   "that 생략 : thinks의 목적어절"
+   "【{o|that} she {v|didn’t study} enough,】",
+   "!that 생략 : thinks의 목적어절"
   ],
   [
    "{c|so} her biggest worry right now",
@@ -1206,11 +1206,11 @@
   ],
   [
    "{v|is}",
-   ""
+   "주어 worry(단수) : 동사 is"
   ],
   [
    "【{a|how}",
-   "명사절 : 보어"
+   "!how + 완전한 절 : is의 보어 (명사절)"
   ],
   [
    "she {v|will pass} the test.】",
@@ -1224,11 +1224,11 @@
   ],
   [
    "{v|wants} {p|to} know",
-   "to부정사 (명사적) : 목적어"
+   "want의 목적어 : to부정사 (명사적)"
   ],
   [
    "【{a|whether}",
-   "명사절 : know의 목적어"
+   "!whether + 완전한 절 : know의 목적어절"
   ],
   [
    "you",
@@ -1236,7 +1236,7 @@
   ],
   [
    "{v|are coming}",
-   ""
+   "are coming : 이미 정해진 가까운 미래"
   ],
   [
    "to the game on Thursday.】",

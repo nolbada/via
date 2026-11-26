@@ -6,39 +6,39 @@
   ],
   [
    "{v|should} {a|have received} class schedules",
-   "조동사 + have p.p. : ~했어야 했다"
+   "!should have p.p. : ~했어야 했는데 못 했다"
   ],
   [
    "【{c|while} they {v|were} in the orientation.】",
-   "접속사 while : ~하는 동안"
+   "while : ~하는 동안 (시간 부사절)"
   ]
  ],
  "c04p1|1": [
   [
    "In the coming days,",
-   ""
+   "미래 시간 표현 : 과거 have p.p. 쓰지 않음"
   ],
   [
    "we {v|might} {a|visit}",
-   "might + 동사원형 : ~할지도 모른다"
+   "!might + 동사원형 : ~할지도 모른다 (미래 추측)"
   ],
   [
    "the exhibition about modern art.",
-   ""
+   "about modern art : exhibition을 꾸밈"
   ]
  ],
  "c04p1|2": [
   [
-   "Kevin {v|cannot} {a|have finished} his report",
-   "cannot have p.p. : ~했을 리 없다"
+   "Kevin {k|cannot} {a|have finished} his report",
+   "!cannot have p.p. : ~했을 리가 없다 (과거 추측)"
   ],
   [
    "last week",
-   ""
+   "last week : 과거 시간 표현"
   ],
   [
    "【{c|because} he {v|hasn’t even started} it.】",
-   "이유 부사절 : ~ 때문에"
+   "이유 부사절 : ~ 때문에 / 현재완료 부정"
   ]
  ],
  "c04p1|3": [
@@ -48,11 +48,11 @@
   ],
   [
    "{v|lost} her phone.",
-   ""
+   "과거 사실 : 앞 문장이 이유가 되는 상황"
   ],
   [
-   "She {v|must} {a|have dropped}",
-   "must have p.p. : ~했음이 틀림없다"
+   "She {k|must} {a|have dropped}",
+   "!must have p.p. : ~했음이 틀림없다 (과거 확신)"
   ],
   [
    "it somewhere.",
@@ -66,7 +66,7 @@
   ],
   [
    "by tomorrow",
-   ""
+   "by + 시점 : ~까지 (기한)"
   ],
   [
    "【{c|if} you{v|’re going} to the buffet this Friday.】",
@@ -76,7 +76,7 @@
  "c04p1|5": [
   [
    "I {v|could} {a|have joined}",
-   "could have p.p. : ~할 수 있었는데 못 했다"
+   "!could have p.p. : ~할 수 있었는데 못 했다"
   ],
   [
    "the basketball team,",
@@ -84,39 +84,39 @@
   ],
   [
    "{c|but} I {v|chose} 【{p|to} focus on my studies】 instead.",
-   "to부정사 (명사적) : chose의 목적어"
+   "but : 앞 내용과 대조 / to부정사 : chose의 목적어"
   ]
  ],
  "c04p2|예제": [
   [
    "A nurse {v|insisted} 【{c|that}",
-   "명사절 : insisted의 목적어"
+   "명사절 : insisted(주장했다)의 목적어"
   ],
   [
    "the tired soldier",
    ""
   ],
   [
-   "{a|take} a rest,】",
-   "주장 동사 뒤 : should 생략"
+   "{o|should} {a|take} a rest,】",
+   "!주장 동사 뒤 that절 : (should) + 동사원형"
   ],
   [
    "{c|but} he politely {v|said} no.",
-   "but : 두 문장을 대조해 연결"
+   "but : 앞 내용과 대조"
   ]
  ],
  "c04p2|1": [
   [
    "Professor Albert {v|suggested} 【{c|that}",
-   "명사절 : suggested의 목적어"
+   "명사절 : suggested(제안했다)의 목적어"
   ],
   [
    "Dominic",
    ""
   ],
   [
-   "{a|look} for a recent article",
-   "제안 동사 뒤 : should 생략"
+   "{o|should} {a|look} for a recent article",
+   "!suggest 뒤 that절 : (should) + 동사원형"
   ],
   [
    "【{p|to} write his paper.】】",
@@ -126,25 +126,25 @@
  "c04p2|2": [
   [
    "The customer {v|demanded} 【{c|that}",
-   "명사절 : demanded의 목적어"
+   "명사절 : demanded(요구했다)의 목적어"
   ],
   [
    "delivery",
    ""
   ],
   [
-   "{a|be} completed",
-   "수동태 : be + p.p."
+   "{o|should} {a|be} completed",
+   "!요구 동사 뒤 : (should) be + p.p. 수동"
   ],
   [
    "within two weeks.】",
-   ""
+   "within : ~ 이내에"
   ]
  ],
  "c04p2|3": [
   [
    "Some people {v|insist} 【{c|that}",
-   "명사절 : insist의 목적어"
+   "명사절 : insist(주장하다)의 목적어"
   ],
   [
    "they",
@@ -152,7 +152,7 @@
   ],
   [
    "really {a|saw}",
-   "사실을 주장할 때는 일반 시제 사용"
+   "!insist + 사실 : should 없이 일반 시제 (과거)"
   ],
   [
    "a UFO.】",
@@ -162,15 +162,15 @@
  "c04p2|4": [
   [
    "My doctor {v|proposed} 【{c|that}",
-   "명사절 : proposed의 목적어"
+   "명사절 : proposed(제안했다)의 목적어"
   ],
   [
    "I",
    ""
   ],
   [
-   "{a|eat} more vegetables",
-   "제안 동사 뒤 : should 생략"
+   "{o|should} {a|eat} more vegetables",
+   "!propose 뒤 that절 : (should) + 동사원형"
   ],
   [
    "with my meals.】",
@@ -180,7 +180,7 @@
  "c04p2|5": [
   [
    "Frequent delays of flights {v|suggest} 【{c|that}",
-   "명사절 : suggest(시사하다)의 목적어"
+   "!suggest = 시사하다 : 사실이라 should 가 없음"
   ],
   [
    "the airline",
@@ -188,7 +188,7 @@
   ],
   [
    "{a|has} financial {c|or} technical problems.】",
-   "or : 형용사 두 개 연결"
+   "병렬 : financial과 technical (형용사)"
   ]
  ],
  "c04p3|예제": [
@@ -202,15 +202,15 @@
   ],
   [
    "{v|will know} more about you",
-   ""
+   "will + 동사원형 : 미래"
   ],
   [
    "【{c|than} your closest friends",
-   "비교 : than ~보다"
+   "비교 : more ~ than 뒤의 절"
   ],
   [
-   "{a|do}.】",
-   "do = know (앞 동사 대신)"
+   "{a|do} {o|know about you}.】",
+   "!대동사 do = know (앞 동사 대신)"
   ]
  ],
  "c04p3|1": [
@@ -220,15 +220,15 @@
   ],
   [
    "【{c|because} 【{c|if} you",
-   "because : 이유 / if : 조건"
+   "because : 이유 / if : 조건 (겹친 절)"
   ],
   [
-   "{a|are},】",
-   "are = afraid (반복 생략)"
+   "{a|are} {o|afraid},】",
+   "!afraid 반복 생략 : are 뒤의 afraid가 앞과 같아 빠짐"
   ],
   [
    "you {v|may miss} great opportunities.】",
-   ""
+   "may + 동사원형 : ~할 수도 있다"
   ]
  ],
  "c04p3|2": [
@@ -238,15 +238,15 @@
   ],
   [
    "{v|received} more tourists",
-   ""
+   "more + 명사 : 더 많은 ~ (비교)"
   ],
   [
    "【{c|than} Antalya",
-   "비교 : than ~보다"
+   "than : ~보다"
   ],
   [
-   "{a|did}.】",
-   "did = received (앞 동사 대신)"
+   "{a|did} {o|receive tourists}.】",
+   "!대동사 did = received tourists"
   ]
  ],
  "c04p3|3": [
@@ -256,15 +256,15 @@
   ],
   [
    "{v|has not affected} the taste of the fruit,",
-   ""
+   "현재완료 부정 : has not p.p."
   ],
   [
    "{c|but} the lack of rainfall",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조"
   ],
   [
-   "{a|has}.",
-   "has = has affected (반복 생략)"
+   "{a|has} {o|affected the taste}.",
+   "!has 뒤 affected the taste 생략 : 반복 생략, 단수 주어"
   ]
  ],
  "c04p3|4": [
@@ -273,16 +273,16 @@
    ""
   ],
   [
-   "{v|was} much lower",
-   ""
+   "{v|was} {k|much} lower",
+   "!비교급 강조 부사 much : 훨씬 (very 아님)"
   ],
   [
    "【{c|than} it",
-   "비교 : than ~보다"
+   "비교 : lower than ~보다 낮은"
   ],
   [
-   "{a|was} earlier in the day.】",
-   "than 뒤의 lower가 생략됨"
+   "{a|was} {o|low} earlier in the day.】",
+   "was 뒤 low 생략 : be동사 반복"
   ]
  ],
  "c04p3|5": [
@@ -296,15 +296,15 @@
   ],
   [
    "{c|and} it",
-   "and : 두 문장 연결"
+   "and : 두 절을 대등하게 연결"
   ],
   [
    "{a|does} so",
-   "does so = sells good products"
+   "!does so = sells good products"
   ],
   [
    "with excellent customer service.",
-   ""
+   "with : ~와 함께 (수단)"
   ]
  ],
  "c04p4|예제": [
@@ -313,12 +313,12 @@
    "both A and B : A와 B 둘 다"
   ],
   [
-   "{v|did} finally {a|solve} the problem,",
-   "did + 동사원형 : 동사 강조"
+   "{k|did} finally {a|solve} the problem,",
+   "!did + 동사원형 : 동사 강조 (정말 풀었다)"
   ],
   [
    "{c|but} I {v|needed} more time than him.",
-   "but : 대조 / than him : ~보다"
+   "but : 앞 내용과 대조 / more ~ than : ~보다 많은"
   ]
  ],
  "c04p4|1": [
@@ -327,12 +327,12 @@
    ""
   ],
   [
-   "{v|does} always {a|arrive}",
-   "does + 동사원형 : 동사 강조"
+   "{k|does} always {a|arrive}",
+   "!does + 동사원형 : 동사 강조 (정말 도착한다)"
   ],
   [
    "on time for his appointments.",
-   ""
+   "on time : 정시에, 제시간에"
   ]
  ],
  "c04p4|2": [
@@ -342,11 +342,11 @@
   ],
   [
    "{a|did} quickly {v|finish} their work",
-   "did + 동사원형 : 동사 강조"
+   "!did + 동사원형 : 동사 강조 (정말 마쳤다)"
   ],
   [
    "ahead of last week’s deadline.",
-   ""
+   "ahead of : ~보다 앞서"
   ]
  ],
  "c04p4|3": [
@@ -355,18 +355,18 @@
    ""
   ],
   [
-   "{v|does} {a|provide} unconditional love",
-   "does + 동사원형 : 동사 강조"
+   "{k|does} {a|provide} unconditional love",
+   "!does + 동사원형 : 동사 강조 (정말 준다)"
   ],
   [
    "to me {c|and} my family members.",
-   ""
+   "병렬 : me와 my family members"
   ]
  ],
  "c04p4|4": [
   [
    "【{c|When} we {v|feel} sad,】",
-   "접속사 when : ~할 때"
+   "when : ~할 때 / feel + 형용사"
   ],
   [
    "we",
@@ -374,7 +374,7 @@
   ],
   [
    "often {a|do} {v|speak}",
-   "do + 동사원형 : 동사 강조"
+   "!do + 동사원형 : 동사 강조 (정말 말한다)"
   ],
   [
    "slowly {c|and} in a low voice.",
@@ -384,11 +384,11 @@
  "c04p4|5": [
   [
    "Tim Marshall, an artist,",
-   "동격 : Tim Marshall = an artist"
+   "동격 : Tim Marshall = an artist (삽입)"
   ],
   [
    "{a|does} regularly {v|try} different styles",
-   "does + 동사원형 : 동사 강조"
+   "!does + 동사원형 : 동사 강조 (정말 시도한다)"
   ],
   [
    "【{p|to} develop his technique.】",
@@ -402,21 +402,21 @@
   ],
   [
    "{c|but} the hotel {v|will call} us",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조"
   ],
   [
    "【{c|when} they",
-   "접속사 when : ~할 때"
+   "!시간 부사절 : 미래 뜻도 현재시제 (are)"
   ],
   [
-   "{a|are}.】",
-   "are = ready (반복 생략)"
+   "{a|are} {o|ready}.】",
+   "are 뒤 ready 생략 : 형용사 반복"
   ]
  ],
  "c04q1|2": [
   [
    "It {v|was} impossible 【{p|to} miss",
-   "가주어 It : to miss 이하가 진주어"
+   "!가주어 It : to miss 이하가 진주어"
   ],
   [
    "the $20 bill on the table.】",
@@ -441,16 +441,16 @@
    ""
   ],
   [
-   "{v|did} really",
-   "did + 동사원형 : 동사 강조"
+   "{k|did} really",
+   "!did + 동사원형 : 동사 강조 (정말 즐겼다)"
   ],
   [
    "{a|enjoy} 【{p|exploring} new hiking trails】",
-   "동명사 : enjoy의 목적어"
+   "enjoy + 동명사 : ~하는 것을 즐기다"
   ],
   [
    "in the mountains during the weekends.",
-   ""
+   "during + 기간 명사 : ~ 동안"
   ]
  ],
  "c04q1|4": [
@@ -460,19 +460,19 @@
   ],
   [
    "{v|urge}",
-   ""
+   "urge : 촉구하다 (당위의 동사)"
   ],
   [
    "【{c|that} the government",
    "명사절 : urge의 목적어"
   ],
   [
-   "{a|invest} more funds in education",
-   "urge 뒤 : should 생략"
+   "{o|should} {a|invest} more funds in education",
+   "!urge 뒤 that절 : (should) + 동사원형"
   ],
   [
-   "【{c|than} they {v|do}】 now.】",
-   "than절 : do = invest"
+   "【{c|than} they {v|do} now.】】",
+   "than절 : do = invest (대동사)"
   ]
  ],
  "c04q1|5": [
@@ -490,7 +490,7 @@
   ],
   [
    "【{c|when} they {v|go} to the airport.】",
-   "접속사 when : ~할 때"
+   "when : ~할 때 (시간 부사절)"
   ]
  ],
  "c04q1|6": [
@@ -499,16 +499,16 @@
    ""
   ],
   [
-   "just {c|like} our brains",
-   ""
+   "just 【{c|like} our brains",
+   "!접속사 like + 절 : ~하는 것처럼"
   ],
   [
-   "{a|do}",
-   "do = process information (대동사)"
+   "{a|do} {o|process information}】",
+   "!대동사 do = process information"
   ],
   [
    "【{c|when} we {v|solve} problems.】",
-   "접속사 when : ~할 때"
+   "when : ~할 때"
   ]
  ],
  "c04q1|7": [
@@ -522,15 +522,15 @@
   ],
   [
    "{a|have taken} the bus",
-   "could have p.p. : ~할 수 있었는데 못 했다"
+   "!could have p.p. : ~할 수 있었는데 못 했다"
   ],
   [
    "this morning,",
-   ""
+   "this morning : 이미 지난 시간"
   ],
   [
    "{c|but} she {v|walked} to work instead.",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조"
   ]
  ],
  "c04q1|8": [
@@ -540,15 +540,15 @@
   ],
   [
    "{a|do} {v|have} a key to the office",
-   "do + 동사원형 : 동사 강조"
+   "!do + 동사원형 : 동사 강조 (정말 가지고 있다)"
   ],
   [
    "right now,",
-   ""
+   "right now : 지금 (현재 시제)"
   ],
   [
    "{c|but} it{v|’s} downstairs in my car.",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조"
   ]
  ],
  "c04q1|9": [
@@ -558,19 +558,19 @@
   ],
   [
    "{v|suggests}",
-   ""
+   "suggests : 시사하다 (사실을 말함)"
   ],
   [
    "【{c|that} the company’s profits",
-   "명사절 : suggests(시사하다)의 목적어"
+   "명사절 : suggests의 목적어"
   ],
   [
    "{a|dropped} sharply",
-   "시사하다 : should 없이 일반 시제"
+   "!시사하다 뒤 : should 없이 과거 시제"
   ],
   [
    "in the past year.】",
-   ""
+   "in the past year : 지난 1년 동안"
   ]
  ],
  "c04q1|10": [
@@ -580,29 +580,29 @@
   ],
   [
    "{v|have not reopened}",
-   ""
+   "현재완료 부정 : have not p.p."
   ],
   [
    "since last week’s typhoon,",
-   ""
+   "since + 과거 시점 : ~ 이래로"
   ],
   [
    "{c|but} this beach",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조"
   ],
   [
-   "{a|has}.",
-   "has = has reopened (반복 생략)"
+   "{a|has} {o|reopened}.",
+   "!has 뒤 reopened 생략 : this beach(단수)"
   ]
  ],
  "c04q1|11": [
   [
    "Every mammal",
-   ""
+   "Every + 단수명사 : 단수 취급"
   ],
   [
-   "{v|does} eventually {a|leave} its parents",
-   "does + 동사원형 : 동사 강조"
+   "{k|does} eventually {a|leave} its parents",
+   "!does + 동사원형 : 동사 강조 (결국 떠난다)"
   ],
   [
    "at some point.",
@@ -612,19 +612,19 @@
  "c04q1|12": [
   [
    "The amount of snowfall this December",
-   ""
+   "!the amount of + 불가산 : 단수 취급"
   ],
   [
    "{v|will be} significantly higher",
-   ""
+   "significantly : higher를 강조 (훨씬)"
   ],
   [
    "【{c|than} it",
-   "비교 : than ~보다"
+   "than절 : it = The amount of snowfall"
   ],
   [
-   "{a|was} in December of last year.】",
-   "than절 : 뒤의 higher가 생략됨"
+   "{a|was} {o|high} in December of last year.】",
+   "was 뒤 high 생략 : be동사 반복"
   ]
  ],
  "c04q2|1": [
@@ -638,47 +638,47 @@
   ],
   [
    "{a|have said} sorry to Tanya sooner,",
-   "should have p.p. : ~했어야 했는데 못 했다"
+   "!should have p.p. : ~했어야 했는데 못 했다"
   ],
   [
    "{c|but} she {v|left} the party",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조"
   ],
   [
    "【{c|before} I {v|got} a chance.】",
-   "접속사 before : ~하기 전에"
+   "before : ~하기 전에 (시간 부사절)"
   ]
  ],
  "c04q2|2": [
   [
    "{p|Reading} books",
-   "동명사 : 주어 역할"
+   "동명사 주어 : 단수 취급"
   ],
   [
-   "{v|does} {a|widen} one’s knowledge",
-   "does + 동사원형 : 동사 강조"
+   "{k|does} {a|widen} one’s knowledge",
+   "!does + 동사원형 : 동사 강조 (정말 넓힌다)"
   ],
   [
    "{c|and} {v|expand} one’s view of the world.",
-   "병렬 : widen과 expand 연결"
+   "병렬 : does 뒤 widen과 expand 연결"
   ]
  ],
  "c04q2|3": [
   [
    "I{v|’ve never been}",
-   ""
+   "현재완료 부정 : have never been"
   ],
   [
    "to any country in South America,",
-   ""
+   "have been to : ~에 가 본 적이 있다"
   ],
   [
    "{c|but} my brother",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조"
   ],
   [
-   "{a|has}.",
-   "has = has been (반복 생략)"
+   "{a|has} {o|been}.",
+   "!has 뒤 been 생략 : my brother(단수)"
   ]
  ],
  "c04q2|4": [
@@ -688,17 +688,17 @@
   ],
   [
    "{v|could} {a|be} tough",
-   "could + 동사원형 : ~할 수 있다"
+   "could + 동사원형 : ~일 수 있다 (가능성)"
   ],
   [
    "【{c|when} there {v|are} so many distractions.】",
-   "접속사 when : ~할 때"
+   "when : ~할 때 / There are + 복수 주어"
   ]
  ],
  "c04q2|5": [
   [
    "【{c|Because} his financial advisor",
-   "접속사 because : ~ 때문에"
+   "because : ~ 때문에 (이유 부사절)"
   ],
   [
    "{v|suggests}",
@@ -706,21 +706,21 @@
   ],
   [
    "【{c|that} he",
-   "명사절 : suggests의 목적어"
+   "명사절 : suggests(제안하다)의 목적어"
   ],
   [
-   "{a|prepare} changes in economy,】】",
-   "제안 동사 뒤 : should 생략"
+   "{o|should} {a|prepare} changes in economy,】】",
+   "!제안 동사 뒤 : (should) + 동사원형"
   ],
   [
    "Mr. Davidson {v|is saving} more cash.",
-   ""
+   "현재진행 : is + -ing"
   ]
  ],
  "c04q2|6": [
   [
    "Children usually {v|hate} {p|eating} carrots,",
-   "동명사 : hate의 목적어"
+   "hate + 동명사 : ~하는 것을 싫어하다"
   ],
   [
    "{c|and} 【{c|when} they",
@@ -728,29 +728,29 @@
   ],
   [
    "{a|do} {v|eat} them,】",
-   "do + 동사원형 : 동사 강조"
+   "!do + 동사원형 : 동사 강조 (정말 먹는다)"
   ],
   [
    "they often {v|make} funny faces.",
-   ""
+   "make a face : 표정을 짓다"
   ]
  ],
  "c04q2|7": [
   [
    "The people in the city",
-   ""
+   "in the city : people을 꾸밈"
   ],
   [
    "usually {v|have} easier access to diverse cultures",
-   ""
+   "have access to : ~에 접근하다"
   ],
   [
    "【{c|than} the people in the countryside",
-   "비교 : than ~보다"
+   "비교급 easier ~ than : ~보다 쉬운"
   ],
   [
-   "{a|do}.】",
-   "do = have (앞 동사 대신)"
+   "{a|do} {o|have easier access}.】",
+   "!대동사 do = have easier access"
   ]
  ],
  "c04q2|8": [
@@ -764,11 +764,11 @@
   ],
   [
    "{a|have been} hurt,",
-   "might have p.p. : ~했을지도 모른다"
+   "!might have been p.p. : 과거 추측의 수동"
   ],
   [
    "{c|but} fortunately the referee {v|called} a time-out",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조"
   ],
   [
    "【{p|to} stop the match.】",
@@ -782,15 +782,15 @@
   ],
   [
    "{v|insists}",
-   ""
+   "insist : 주장하다"
   ],
   [
    "【{c|that} he {a|paid} for the order,】",
-   "명사절 : insists의 목적어"
+   "!insist + 사실 : should 없이 일반 시제"
   ],
   [
    "{c|but} he {v|doesn’t have} a receipt.",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조"
   ]
  ],
  "c04q2|10": [
@@ -800,19 +800,19 @@
   ],
   [
    "【{c|if} the customers {v|were} satisfied with our service,】",
-   "명사절 if : ~인지 아닌지"
+   "명사절 if : ~인지 아닌지 (know의 목적어)"
   ],
   [
    "{c|but} I {v|hope}",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조"
   ],
   [
-   "【they",
-   "명사절 : hope 뒤 that 생략"
+   "【{o|that} they",
+   "!hope 뒤 명사절 : that 생략"
   ],
   [
-   "{a|were}.】",
-   "were = were satisfied (반복 생략)"
+   "{a|were} {o|satisfied}.】",
+   "were 뒤 satisfied 생략 : 반복"
   ]
  ],
  "c04q2|11": [
@@ -821,12 +821,12 @@
    ""
   ],
   [
-   "{v|did}",
-   "did + 동사원형 : 동사 강조"
+   "{k|did}",
+   "!did + 동사원형 : 동사 강조 (실제로 보여 줌)"
   ],
   [
    "confidently {a|show} the scientists his new invention,",
-   ""
+   "show A B : A에게 B를 보여 주다"
   ],
   [
    "{c|and} it {v|surprised} everyone.",
@@ -840,15 +840,15 @@
   ],
   [
    "{v|recommends}",
-   ""
+   "recommend : 권고하다 (당위의 동사)"
   ],
   [
-   "【{c|that} patients {a|be} careful about their diet",
-   "권고 동사 뒤 : should 생략"
+   "【{c|that} patients {o|should} {a|be} careful about their diet",
+   "!recommend 뒤 that절 : (should) + 동사원형"
   ],
   [
    "{c|and} {v|exercise} regularly.】",
-   "병렬 : be와 exercise 연결"
+   "병렬 : be와 exercise (둘 다 should 아래)"
   ]
  ],
  "c04s1|1-(A)": [
@@ -862,11 +862,11 @@
   ],
   [
    "(A) {a|have called} for help,",
-   "could have p.p. : ~할 수 있었는데 못 했다"
+   "!could have p.p. : ~할 수 있었는데 못 했다"
   ],
   [
    "{c|but} I {v|decided}",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조"
   ],
   [
    "【{p|to} handle the situation on my own.】",
@@ -876,19 +876,19 @@
  "c04s1|1-(B)": [
   [
    "No one on my team {v|had solved} that kind of problem before,",
-   "과거완료 : 과거보다 앞선 일"
+   "had p.p. : 과거보다 앞선 경험"
   ],
   [
    "{c|but} I",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조"
   ],
   [
-   "(B) {a|had}",
-   "had = had solved (반복 생략)"
+   "(B) {a|had} {o|solved}",
+   "!had 뒤 solved 생략 : 과거완료 반복"
   ],
   [
    "once before.",
-   ""
+   "once before : 전에 한 번 (경험)"
   ]
  ],
  "c04s1|2-(A)": [
@@ -902,7 +902,7 @@
   ],
   [
    "(A) {a|be} connected normally",
-   "조동사 + be + p.p. : 수동태"
+   "!should be p.p. : ~되어야 한다 (수동)"
   ],
   [
    "now,",
@@ -910,7 +910,7 @@
   ],
   [
    "【{c|as} the repairs {v|have been completed}.】",
-   "접속사 as : ~ 때문에"
+   "as : ~ 때문에 (이유) / 현재완료 수동"
   ]
  ],
  "c04s1|2-(B)": [
@@ -920,19 +920,19 @@
   ],
   [
    "{v|requests}",
-   ""
+   "request : 요구하다 (당위의 동사)"
   ],
   [
    "【{c|that} anyone",
    "명사절 : requests의 목적어"
   ],
   [
-   "(B) {a|report}",
-   "요청 동사 뒤 : should 생략"
+   "(B) {o|should} {a|report}",
+   "!request 뒤 that절 : (should) + 동사원형"
   ],
   [
    "within the day 【{c|if} there{v|’s} any problem.】】",
-   "조건 부사절 : ~라면"
+   "if : 조건 부사절 (~라면)"
   ]
  ],
  "c04s1|3-(A)": [
@@ -941,12 +941,12 @@
    ""
   ],
   [
-   "{v|does}",
-   ""
+   "{k|does}",
+   "!does + 동사원형 : 동사 강조 (정말 숨긴다)"
   ],
   [
    "(A) {a|hide}",
-   "does + 동사원형 : 동사 강조"
+   ""
   ],
   [
    "huge environmental costs.",
@@ -956,11 +956,11 @@
  "c04s1|3-(B)": [
   [
    "Even in cold seasons, farmers {v|have to use} a lot of fuel",
-   "have to : ~해야 한다"
+   "have to + 동사원형 : ~해야 한다"
   ],
   [
    "【{p|to} make their crops grow",
-   "to부정사 (부사적) : ~하기 위해"
+   "!to부정사(목적) / make + O + 동사원형 : O가 ~하게 하다"
   ],
   [
    "as well 【{c|as}",
@@ -971,8 +971,8 @@
    ""
   ],
   [
-   "(B) {a|do}",
-   "do = grow (앞 동사 대신)"
+   "(B) {a|do} {o|grow}",
+   "!대동사 do = grow (앞 동사 대신)"
   ],
   [
    "in warm climates.】】",
@@ -982,11 +982,11 @@
  "c04s1|3-(C)": [
   [
    "In addition, Tristram Stuart, an anti-waste campaigner,",
-   "삽입 동격 : Tristram Stuart 설명"
+   "동격 삽입 : Stuart = an anti-waste campaigner"
   ],
   [
    "{v|insists}",
-   ""
+   "insist : 주장하다"
   ],
   [
    "【{c|that} many stores",
@@ -994,7 +994,7 @@
   ],
   [
    "(C) {a|are throwing away}",
-   "현재진행 : be + -ing"
+   "!insist + 사실 : should 없이 일반 시제"
   ],
   [
    "a lot of food in good condition just 【{p|to} emphasize freshness.】】",
@@ -1004,19 +1004,19 @@
  "c04s1|4-①": [
   [
    "The number of participants in the event",
-   ""
+   "!the number of ~ : 단수 취급 (is)"
   ],
   [
    "{v|is} greater",
-   ""
+   "비교급 greater : than 과 짝"
   ],
   [
    "【{c|than} it",
-   "비교 : than ~보다"
+   "than절 : it = The number of participants"
   ],
   [
-   "{a|was}",
-   "than절 : 뒤의 great가 생략됨"
+   "{a|was} {o|great}",
+   "was 뒤 great 생략 : be동사 반복"
   ],
   [
    "in the previous year.】",
@@ -1026,7 +1026,7 @@
  "c04s1|4-②": [
   [
    "Fewer people",
-   ""
+   "fewer + 복수명사 : 더 적은 ~"
   ],
   [
    "{v|may}",
@@ -1034,7 +1034,7 @@
   ],
   [
    "{a|have visited}",
-   "may have p.p. : ~했을지도 모른다"
+   "!may have p.p. : ~했을지도 모른다"
   ],
   [
    "the previous events",
@@ -1042,7 +1042,7 @@
   ],
   [
    "【{c|because} tickets {v|were} more expensive then.】",
-   "접속사 because : ~ 때문에"
+   "because : 이유 / then : 그때 (과거)"
   ]
  ],
  "c04s1|5-①": [
@@ -1052,11 +1052,11 @@
   ],
   [
    "{c|but} 【{c|when} they",
-   "but : 대조 / when : ~할 때"
+   "but : 앞 내용과 대조 / when : ~할 때"
   ],
   [
    "{a|do} {v|hunt},】",
-   "do + 동사원형 : 동사 강조"
+   "!do + 동사원형 : 동사 강조 (정말 사냥한다)"
   ],
   [
    "they {v|turn} into really scary predators.",
@@ -1070,33 +1070,33 @@
   ],
   [
    "{v|suggest}",
-   ""
+   "suggest : 제안하다 (당위의 동사)"
   ],
   [
    "【{c|that} everyone",
    "명사절 : suggest의 목적어"
   ],
   [
-   "{a|stay} away from owls",
-   "제안 동사 뒤 : should 생략"
+   "{o|should} {a|stay} away from owls",
+   "!suggest 뒤 that절 : (should) + 동사원형"
   ],
   [
    "【{c|because} they {v|are also known} {p|to} attack people.】】",
-   "be known to + 동사원형 : ~하는 것으로 알려지다"
+   "be known to V : ~하는 것으로 알려지다"
   ]
  ],
  "c04s1|6-①": [
   [
-   "Fast-fashion items {v|are created} {c|and} {v|sold} to consumers much more quickly",
-   "병렬 : created와 sold 연결"
+   "Fast-fashion items {v|are created} {c|and} {v|sold} to consumers {k|much} more quickly",
+   "병렬 : created와 sold (둘 다 수동태)"
   ],
   [
    "【{c|than} traditional clothes",
-   "비교 : than ~보다"
+   "than : ~보다 (비교)"
   ],
   [
-   "{a|are}.】",
-   "are = created and sold (반복 생략)"
+   "{a|are} {o|created and sold}.】",
+   "!are = are created and sold : 반복 생략"
   ]
  ],
  "c04s1|6-2": [
@@ -1110,7 +1110,7 @@
   ],
   [
    "extremely low in price {c|and} quality.",
-   "병렬 : price와 quality 연결"
+   "!전치사 in 의 목적어 병렬 : price와 quality"
   ]
  ],
  "c04s1|6-②": [
@@ -1123,22 +1123,22 @@
    ""
   ],
   [
-   "{v|does}",
-   ""
+   "{k|does}",
+   "!does + 동사원형 : 동사 강조 (정말 느낀다)"
   ],
   [
    "really {a|feel}",
-   "does + 동사원형 : 동사 강조"
+   ""
   ],
   [
    "【{c|like} he {v|saved} money at the cash register.】",
-   "feel like + 절 : ~한 것처럼 느끼다"
+   "feel like + 절 : ~인 것처럼 느끼다"
   ]
  ],
  "c04s1|6-③": [
   [
    "{c|But} he",
-   ""
+   "But : 앞 내용과 반대되는 내용 연결"
   ],
   [
    "{v|may}",
@@ -1146,7 +1146,7 @@
   ],
   [
    "{a|spend}",
-   "may + 동사원형 : ~할지도 모른다"
+   "may + 동사원형 : ~일지도 모른다"
   ],
   [
    "more money",
@@ -1154,13 +1154,13 @@
   ],
   [
    "【{c|because} he {v|has to buy} another shirt soon after.】",
-   "접속사 because : ~ 때문에"
+   "because : 이유 / have to : ~해야 한다"
   ]
  ],
  "add04|1-1": [
   [
    "I {v|don’t see} Jackie anywhere.",
-   ""
+   "현재 상황 : 눈에 보이지 않음"
   ],
   [
    "She",
@@ -1168,11 +1168,11 @@
   ],
   [
    "{v|must} {a|have left}",
-   "must have p.p. : ~했음이 틀림없다"
+   "!must have p.p. : ~했음이 틀림없다 (과거 확신)"
   ],
   [
    "the party already.",
-   ""
+   "already : 이미 (완료된 일)"
   ]
  ],
  "add04|1-2": [
@@ -1186,11 +1186,11 @@
   ],
   [
    "{v|cannot} {a|be}",
-   "cannot + 동사원형 : ~일 리 없다"
+   "!cannot + 동사원형 : ~일 리 없다 (현재 추측)"
   ],
   [
    "ours.",
-   ""
+   "ours : 우리의 것 (= our train)"
   ],
   [
    "It{v|’s} 15 minutes early.",
@@ -1199,8 +1199,8 @@
  ],
  "add04|1-3": [
   [
-   "I{v|’m} sorry 【I {v|missed} dinner.】",
-   "sorry 뒤 that 생략 : 이유를 말함"
+   "I{v|’m} sorry {o|that} 【I {v|missed} dinner.】",
+   "!sorry 뒤 that 생략 : 미안한 이유를 말하는 절"
   ],
   [
    "I",
@@ -1208,7 +1208,7 @@
   ],
   [
    "{v|should} {a|have called}",
-   "should have p.p. : ~했어야 했는데 못 했다"
+   "!should have p.p. : ~했어야 했는데 못 했다"
   ],
   [
    "【{p|to} say",
@@ -1216,7 +1216,7 @@
   ],
   [
    "【{c|that} I {v|would be coming} home late.】】",
-   "명사절 : say의 목적어"
+   "명사절 : say의 목적어 / would be -ing"
   ]
  ],
  "add04|1-4": [
@@ -1226,19 +1226,19 @@
   ],
   [
    "{v|could} {a|catch} a cold",
-   "could + 동사원형 : ~할 수 있다"
+   "could + 동사원형 : ~할 수도 있다 (가능성)"
   ],
   [
    "in this weather,",
-   ""
+   "지금 날씨에 대한 가능성 : 현재 추측"
   ],
   [
    "{c|so} {v|be} sure {p|to} bring",
-   "be sure to + 동사원형 : 꼭 ~해라"
+   "be sure to V : 꼭 ~해라 (명령문)"
   ],
   [
    "an umbrella {c|and} a coat.",
-   "병렬 : umbrella와 coat 연결"
+   "병렬 : an umbrella와 a coat"
   ]
  ],
  "add04|1-5": [
@@ -1248,7 +1248,7 @@
   ],
   [
    "{v|might} {a|have hurt}",
-   "might have p.p. : ~했을지도 모른다"
+   "!might have p.p. : ~했을지도 모른다 (과거 추측)"
   ],
   [
    "her knee",
@@ -1256,11 +1256,11 @@
   ],
   [
    "during soccer practice last Thursday,",
-   ""
+   "last Thursday : 과거 시간 표현"
   ],
   [
    "{c|so} she {v|could miss} tomorrow’s game.",
-   "so : 그래서 (결과)"
+   "so : 그래서 (결과) / could + 동사원형"
   ]
  ],
  "add04|2-1": [
@@ -1270,15 +1270,15 @@
   ],
   [
    "{v|proposed}",
-   ""
+   "propose : 제안하다 (당위의 동사)"
   ],
   [
    "【{c|that} we",
    "명사절 : proposed의 목적어"
   ],
   [
-   "{a|hold}",
-   "제안 동사 뒤 : should 생략"
+   "{o|should} {a|hold}",
+   "!propose 뒤 that절 : (should) + 동사원형"
   ],
   [
    "the office Christmas party",
@@ -1292,27 +1292,27 @@
  "add04|2-2": [
   [
    "Low sales",
-   ""
+   "Low sales : 주어 (복수)"
   ],
   [
    "in South America",
-   ""
+   "in South America : Low sales를 꾸밈"
   ],
   [
    "{v|suggest}",
-   ""
+   "!suggest = 시사하다 : 사실이라 should 없음"
   ],
   [
    "【{c|that} the company’s marketing plan",
-   "명사절 : suggest(시사하다)의 목적어"
+   "명사절 : suggest의 목적어"
   ],
   [
    "for that region",
-   ""
+   "for that region : plan을 꾸밈"
   ],
   [
    "{a|is} bad.】",
-   "시사하다 : should 없이 일반 시제"
+   ""
   ]
  ],
  "add04|2-3": [
@@ -1322,23 +1322,23 @@
   ],
   [
    "{v|insists}",
-   ""
+   "insist : 주장하다 (여기서는 요구)"
   ],
   [
    "【{c|that} he",
    "명사절 : insists의 목적어"
   ],
   [
-   "{a|clean} his room",
-   "주장 동사 뒤 : should 생략"
+   "{o|should} {a|clean} his room",
+   "!insist(당위) : (should) + 동사원형"
   ],
   [
    "before {p|playing} any video games",
-   "전치사 before + 동명사"
+   "전치사 before + 동명사 : ~하기 전에"
   ],
   [
    "【{c|even if} he {v|doesn’t want} {p|to} do it.】】",
-   "even if : 비록 ~일지라도"
+   "even if : 비록 ~일지라도 / want to V"
   ]
  ],
  "add04|2-4": [
@@ -1348,15 +1348,15 @@
   ],
   [
    "{v|recommended}",
-   ""
+   "recommend : 권고하다 (당위의 동사)"
   ],
   [
    "【{c|that} all online customers",
    "명사절 : recommended의 목적어"
   ],
   [
-   "{a|change}",
-   "권고 동사 뒤 : should 생략"
+   "{o|should} {a|change}",
+   "!recommend 뒤 that절 : (should) + 동사원형"
   ],
   [
    "their passwords regularly.】",
@@ -1370,15 +1370,15 @@
   ],
   [
    "{v|urge}",
-   ""
+   "urge : 촉구하다 (당위의 동사)"
   ],
   [
    "【{c|that} the mayor",
    "명사절 : urge의 목적어"
   ],
   [
-   "{a|repair}",
-   "촉구 동사 뒤 : should 생략"
+   "{o|should} {a|repair}",
+   "!urge 뒤 that절 : (should) + 동사원형"
   ],
   [
    "the city’s {p|damaged} roads.】",
@@ -1396,37 +1396,37 @@
   ],
   [
    "{c|but} he",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조"
   ],
   [
    "{a|does} so",
-   "does so = creates scenes (대신 표현)"
+   "!does so = creates scenes from nature"
   ],
   [
    "with rocks {c|and} leaves instead of paint.",
-   "병렬 : rocks와 leaves 연결"
+   "병렬 : rocks와 leaves / instead of : ~ 대신"
   ]
  ],
  "add04|3-2": [
   [
    "Homes",
-   ""
+   "Homes : 주어 (복수)"
   ],
   [
    "in the area",
-   ""
+   "in the area : Homes를 꾸밈"
   ],
   [
-   "{v|are} much more expensive today",
-   ""
+   "{v|are} {k|much} more expensive today",
+   "!much + 비교급 : 훨씬 더 비싼"
   ],
   [
-   "【{c|than} they {a|were}",
-   "than절 : were = were expensive"
+   "【{c|than} they {a|were} {o|expensive}",
+   "than절 : were 뒤 expensive 생략"
   ],
   [
    "five years ago.】",
-   ""
+   "five years ago : 과거 시간 표현"
   ]
  ],
  "add04|3-3": [
@@ -1436,7 +1436,7 @@
   ],
   [
    "{v|have not stopped} many people",
-   ""
+   "현재완료 부정 : have not p.p."
   ],
   [
    "from {p|traveling} this summer,",
@@ -1444,15 +1444,15 @@
   ],
   [
    "{c|but}, since last month,",
-   "but : 대조되는 두 절 연결"
+   "but : 앞 내용과 대조 / 삽입 부사구"
   ],
   [
    "high gas prices",
    ""
   ],
   [
-   "{a|have}.",
-   "have = have stopped (반복 생략)"
+   "{a|have} {o|stopped many people from traveling}.",
+   "!have = have stopped : 반복 생략, 복수 주어"
   ]
  ],
  "add04|3-4": [
@@ -1466,11 +1466,11 @@
   ],
   [
    "{v|got} six million more votes",
-   ""
+   "more votes : 더 많은 표 (비교)"
   ],
   [
-   "【{c|than} the other candidate {a|did}】",
-   "than절 : did = got (앞 동사 대신)"
+   "【{c|than} the other candidate {a|did} {o|get}】",
+   "!than절 : did = got (앞 동사 대신)"
   ]
  ],
  "add04|3-5": [
@@ -1483,12 +1483,12 @@
    "don’t have to : ~할 필요 없다"
   ],
   [
-   "{c|but} 【{c|if} you {a|do},】",
-   "do = go to college (반복 생략)"
+   "{c|but} 【{c|if} you {a|do} {o|go to college},】",
+   "!if you do = if you go to college (대동사)"
   ],
   [
    "you {v|will have} a better career.",
-   ""
+   "will + 동사원형 : 미래 (조건절의 결과)"
   ]
  ],
  "add04|4-1": [
@@ -1497,8 +1497,8 @@
    ""
   ],
   [
-   "{v|does} {a|require}",
-   "does + 동사원형 : 동사 강조"
+   "{k|does} {a|require}",
+   "!does + 동사원형 : 동사 강조 (정말 필요로 한다)"
   ],
   [
    "someone",
@@ -1506,7 +1506,7 @@
   ],
   [
    "with five years of work experience",
-   ""
+   "with ~ experience : someone을 꾸밈"
   ],
   [
    "in the computer industry.",
@@ -1520,7 +1520,7 @@
   ],
   [
    "{a|did} eventually {v|succeed}",
-   "did + 동사원형 : 동사 강조"
+   "!did + 동사원형 : 동사 강조 (마침내 성공했다)"
   ],
   [
    "in {p|reaching} the top of the mountain",
@@ -1534,7 +1534,7 @@
  "add04|4-3": [
   [
    "【{c|When} we {v|try}",
-   "접속사 when : ~할 때"
+   "when : ~할 때 / try to V : ~하려고 노력하다"
   ],
   [
    "【{p|to} keep positive thoughts",
@@ -1550,7 +1550,7 @@
   ],
   [
    "often {a|do} {v|feel} better",
-   "do + 동사원형 : 동사 강조"
+   "!do + 동사원형 : 동사 강조 (정말 느낀다)"
   ],
   [
    "about ourselves.",
@@ -1564,11 +1564,11 @@
   ],
   [
    "the owner of the restaurant,",
-   "동격 : Samuels = the owner"
+   "동격 : Samuels = the owner (삽입)"
   ],
   [
    "{a|does} usually {v|work}",
-   "does + 동사원형 : 동사 강조"
+   "!does + 동사원형 : 동사 강조 (보통 일한다)"
   ],
   [
    "in the kitchen on most nights.",
@@ -1578,15 +1578,15 @@
  "add04|4-5": [
   [
    "【{c|Before} she {v|became} a pilot,】",
-   "접속사 before : ~하기 전에"
+   "before : ~하기 전에 (시간 부사절)"
   ],
   [
    "Beth",
    ""
   ],
   [
-   "{v|did} always {a|dream}",
-   "did + 동사원형 : 동사 강조"
+   "{k|did} always {a|dream}",
+   "!did + 동사원형 : 동사 강조 (늘 꿈꿨다)"
   ],
   [
    "of {p|flying} an airplane one day.",

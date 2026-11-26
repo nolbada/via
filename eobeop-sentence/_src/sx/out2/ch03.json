@@ -1,0 +1,1101 @@
+{
+ "c03p1|예제": {
+  "pt": [
+   "recorded",
+   "data는 기록되는 대상 : was recorded"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c03p1|1": {
+  "pt": [
+   "is provided",
+   "목적어가 뒤에 있으면 능동태"
+  ],
+  "st": [
+   "능동태 vs 수동태 구별",
+   [
+    "① 뒤에 목적어(명사)가 있으면 능동태",
+    "② 뒤에 목적어가 없고 by나 전치사구면 수동태"
+   ]
+  ]
+ },
+ "c03p1|2": {
+  "pt": [
+   "will replace",
+   "창문은 교체되는 대상 : will be replaced"
+  ],
+  "st": [
+   "조동사 + 수동태",
+   [
+    "① will / can / must + be + p.p.",
+    "② 조동사 뒤에는 항상 동사원형 be가 온다"
+   ]
+  ]
+ },
+ "c03p1|3": {
+  "pt": [
+   "awarding",
+   "트로피는 수여되는 대상 : was being awarded"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "when절"
+   ]
+  ],
+  "st": [
+   "진행형 수동태",
+   [
+    "① 능동 진행 : was awarding (~하고 있었다)",
+    "② 수동 진행 : was being awarded (~되고 있었다)"
+   ]
+  ]
+ },
+ "c03p1|4": {
+  "pt": [
+   "repaired",
+   "목적어 the building이 있어 능동 : repairing"
+  ],
+  "st": [
+   "완료진행 vs 완료 수동",
+   [
+    "① have been -ing : ~해 오고 있다 (능동)",
+    "② have been p.p. : ~되어 왔다 (수동)"
+   ]
+  ]
+ },
+ "c03p1|5": {
+  "pt": [
+   "find",
+   "solutions는 발견되는 대상 : are found"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c03p1|6": {
+  "pt": [
+   "was caused",
+   "뒤에 목적어 damage가 있어 능동 : caused"
+  ],
+  "st": [
+   "cause의 쓰임",
+   [
+    "① cause(일으키다) + 목적어 : 능동 caused",
+    "② 수동은 be caused by ~ : ~에 의해 일어나다"
+   ]
+  ]
+ },
+ "c03p1|7": {
+  "pt": [
+   "has maintained",
+   "by a team of experts가 있어 수동태"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    "since절"
+   ]
+  ],
+  "st": [
+   "since + 과거절 + 현재완료",
+   [
+    "① 주절 : 현재완료 (has been maintained)",
+    "② since절 : 과거 시제 (was reopened)"
+   ]
+  ]
+ },
+ "c03p1|8": {
+  "pt": [
+   "being enjoyed",
+   "목적어 the sunny weather가 있어 능동"
+  ]
+ },
+ "c03p2|예제": {
+  "pt": [
+   "was seemed",
+   "seem은 자동사 : 수동태 불가"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "eq",
+    "보어"
+   ]
+  ],
+  "st": [
+   "수동태가 안 되는 자동사",
+   [
+    "① seem(~처럼 보이다) appear(~로 보이다) happen(일어나다)",
+    "② 목적어가 없어서 be p.p.로 바꿀 수 없다"
+   ]
+  ]
+ },
+ "c03p2|1": {
+  "pt": [
+   "be occurred",
+   "occur는 자동사 : 수동태 불가"
+  ],
+  "st": [
+   "자동사 vs 타동사",
+   [
+    "① 타동사 : 목적어 필요, 수동태 가능",
+    "② 자동사 : 목적어 없음, 수동태 불가"
+   ]
+  ]
+ },
+ "c03p2|2": {
+  "pt": [
+   "water",
+   "꽃은 물을 받는 대상 : are watered (수동)"
+  ]
+ },
+ "c03p2|3": {
+  "pt": [
+   "are appeared",
+   "appear는 자동사 : 수동태 불가"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "eq",
+    "보어"
+   ]
+  ]
+ },
+ "c03p2|4": {
+  "pt": [
+   "passed",
+   "비밀은 전해지는 대상 : was passed"
+  ],
+  "st": [
+   "pass의 두 가지 쓰임",
+   [
+    "① 타동사 : ~을 전해 주다 (was passed to ~)",
+    "② 자동사 : 지나가다 (time passes)"
+   ]
+  ]
+ },
+ "c03p2|5": {
+  "pt": [
+   "is belonged",
+   "belong은 자동사 : 수동태 불가"
+  ],
+  "st": [
+   "belong to : 수동태 불가",
+   [
+    "① belong to + 명사 : ~에 속하다",
+    "② 이미 상태를 뜻해서 be belonged to는 틀리다"
+   ]
+  ]
+ },
+ "c03p3|예제": {
+  "pt": [
+   "holds",
+   "competition은 열리는 대상 : is held (수동)"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "which 보충"
+   ]
+  ],
+  "st": [
+   "계속적 용법 관계대명사",
+   [
+    "① , which + 동사 : 앞 명사에 보충 설명 (that 불가)",
+    "② 관계사절 동사의 능동·수동은 선행사와의 관계로 판단"
+   ]
+  ]
+ },
+ "c03p3|1": {
+  "pt": [
+   "filled",
+   "박물관은 채워지는 대상 : was filled with"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "보충 설명"
+   ]
+  ]
+ },
+ "c03p3|2": {
+  "pt": [
+   "allow",
+   "선행사 a device가 단수 : allows"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "that절"
+   ]
+  ],
+  "st": [
+   "allow류 동사 + O + to V",
+   [
+    "① allow(허락하다) A to V : A가 V하도록 허락하다",
+    "② 같은 구조 : enable(가능하게 하다) require(요구하다)"
+   ]
+  ]
+ },
+ "c03p3|3": {
+  "pt": [
+   "press",
+   "버튼은 눌러지는 대상 : can be pressed"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "목적"
+   ]
+  ],
+  "st": [
+   "조동사 + 수동태 + 목적",
+   [
+    "① which can be p.p. : 조동사 뒤에 be가 꼭 필요",
+    "② 목적(~하기 위해)은 to V로 쓴다 : to open (펴기 위해)"
+   ]
+  ]
+ },
+ "c03p3|4": {
+  "pt": [
+   "were played",
+   "뒤에 목적어 baseball이 있어 능동 진행"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "who절"
+   ]
+  ]
+ },
+ "c03p3|5": {
+  "pt": [
+   "seeing",
+   "star는 보여지는 대상 : been seen"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "that절"
+   ]
+  ],
+  "st": [
+   "by + 행위자 : 수동의 신호",
+   [
+    "① 뒤에 by ~가 있으면 수동태 가능성이 높다",
+    "② 능동 -ing 뒤에는 목적어(명사)가 온다"
+   ]
+  ]
+ },
+ "c03q1|1": {
+  "pt": [
+   "erases",
+   "message는 지워지는 대상 : is erased"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c03q1|2": {
+  "pt": [
+   "was appeared",
+   "appear는 자동사 : 수동태 불가"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ],
+   [
+    3,
+    2,
+    "mod",
+    "than 비교"
+   ]
+  ]
+ },
+ "c03q1|3": {
+  "pt": [
+   "been harvested",
+   "목적어 potatoes가 있어 능동 : had harvested"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c03q1|4": {
+  "pt": [
+   "make",
+   "clothes는 만들어지는 대상 : are made of"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "mod",
+    "which절"
+   ]
+  ],
+  "st": [
+   "be comfortable to V",
+   [
+    "① 형용사 + to V : ~하기에 …한 (comfortable to wear)",
+    "② made of(재료가 그대로 보임) / made from(변함)"
+   ]
+  ]
+ },
+ "c03q1|5": {
+  "pt": [
+   "place",
+   "표지판은 놓이는 대상 : must be placed"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    "목적"
+   ]
+  ]
+ },
+ "c03q1|6": {
+  "pt": [
+   "laid",
+   "lie(놓여 있다)의 과거는 lay : laid는 다른 뜻"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "that절"
+   ]
+  ],
+  "st": [
+   "lie / lay 구별",
+   [
+    "① lie-lay-lain : 놓여 있다 (자동사)",
+    "② lay-laid-laid : ~을 놓다 (타동사, 목적어 필요)",
+    "③ lie-lied-lied : 거짓말하다"
+   ]
+  ]
+ },
+ "c03q1|7": {
+  "pt": [
+   "is produced",
+   "목적어 strange noises가 있어 능동"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c03q1|8": {
+  "pt": [
+   "sending",
+   "invitations는 보내지는 대상 : been sent"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "현재완료 수동 : have been p.p.",
+   [
+    "① 주어가 복수(invitations)면 have been",
+    "② send out(발송하다)은 out이 뒤에 붙는 구동사"
+   ]
+  ]
+ },
+ "c03q1|9": {
+  "pt": [
+   "are happened",
+   "happen은 자동사 : 수동태 불가"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "때"
+   ]
+  ],
+  "st": [
+   "자동사 happen / take place",
+   [
+    "① happen = take place : ~이 일어나다",
+    "② 둘 다 자동사라서 수동태로 쓰지 않는다"
+   ]
+  ]
+ },
+ "c03q1|10": {
+  "pt": [
+   "trying",
+   "trick은 시도되는 대상 : been tried"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "which절"
+   ]
+  ]
+ },
+ "c03q1|11": {
+  "pt": [
+   "was saved",
+   "목적어 three swimmers가 있어 능동 : saved"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "수단"
+   ]
+  ]
+ },
+ "c03q1|12": {
+  "pt": [
+   "receives",
+   "선행사 crows가 복수 : receive"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "which절"
+   ]
+  ]
+ },
+ "c03q2|1": {
+  "pt": [
+   "scoring",
+   "and 뒤 won과 같은 과거형 : scored"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c03q2|2": {
+  "pt": [
+   "control",
+   "model은 조종되는 대상 : can be controlled"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "which절"
+   ]
+  ]
+ },
+ "c03q2|3": {
+  "pt": [
+   "wasted",
+   "time은 낭비되는 대상 : was wasted"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "이유"
+   ]
+  ]
+ },
+ "c03q2|4": {
+  "pt": [
+   "be occurred",
+   "occur는 자동사 : 수동태 불가"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "때"
+   ]
+  ]
+ },
+ "c03q2|5": {
+  "pt": [
+   "decorating",
+   "공원은 장식되는 대상 : has been decorated"
+  ],
+  "st": [
+   "현재완료 수동태",
+   [
+    "① have/has + been + p.p. : ~되어 있다 / ~되어 왔다",
+    "② 주어가 단수(park)면 has been"
+   ]
+  ]
+ },
+ "c03q2|6": {
+  "pt": [
+   "was cut",
+   "목적어 the grass가 있어 능동 : was cutting"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "who절"
+   ]
+  ]
+ },
+ "c03q2|7": {
+  "pt": [
+   "encourage",
+   "현재완료 has + p.p. : has encouraged"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "eq",
+    "목적격보어"
+   ]
+  ],
+  "st": [
+   "encourage류 5형식 동사",
+   [
+    "① 동사 + O + to V : encourage(격려하다) allow(허락하다)",
+    "② 목적어 뒤에는 동사원형이 아니라 to V가 온다"
+   ]
+  ]
+ },
+ "c03q2|8": {
+  "pt": [
+   "hide",
+   "열쇠는 숨겨진 대상 : might be hidden"
+  ]
+ },
+ "c03q2|9": {
+  "pt": [
+   "seem",
+   "동명사구 주어는 단수 : seems"
+  ],
+  "st": [
+   "동명사 주어는 단수 취급",
+   [
+    "① Cleaning the house (동명사구) + 단수 동사",
+    "② 근처에 복수 명사(children)가 있어도 영향 없다"
+   ]
+  ]
+ },
+ "c03q2|10": {
+  "pt": [
+   "borrowing",
+   "책은 빌려지는 대상 : were borrowed"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "that절"
+   ]
+  ],
+  "st": [
+   "관계사절이 낀 문장의 동사 두 개",
+   [
+    "① that절 안 동사 : were borrowed",
+    "② 주절 동사 : were (The books에 맞춤)"
+   ]
+  ]
+ },
+ "c03q2|11": {
+  "pt": [
+   "shared",
+   "목적어 a bedroom이 있어 능동 : been sharing"
+  ]
+ },
+ "c03q2|12": {
+  "pt": [
+   "was become",
+   "become + 명사 보어 : 수동태 불가"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "which절"
+   ]
+  ]
+ },
+ "c03s1|1-(A)": {
+  "pt": [
+   "suffered",
+   "may be + -ing : 진행 (수동 아님)"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "who절"
+   ]
+  ]
+ },
+ "c03s1|1-(B)": {
+  "pt": [
+   "observe",
+   "problem은 관찰되는 대상 : can be observed"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c03s1|2-(A)": {
+  "pt": [
+   "raising",
+   "두 사람은 길러진 대상 : have been raised"
+  ],
+  "st": [
+   "raise vs rise",
+   [
+    "① raise(~을 기르다·올리다) : 타동사, 수동태 가능",
+    "② rise(오르다) : 자동사, 수동태 불가"
+   ]
+  ]
+ },
+ "c03s1|2-2": {
+  "pt": [
+   "is",
+   "복수 주어 families : are"
+  ]
+ },
+ "c03s1|2-(B)": {
+  "pt": [
+   "remain",
+   "주어 friendship이 단수 : remains"
+  ],
+  "st": [
+   "관계부사 why",
+   [
+    "① the reason (why) + 완전한 문장 : 이유를 설명",
+    "② the reason이나 why 중 하나는 생략할 수 있다"
+   ]
+  ]
+ },
+ "c03s1|3-(A)": {
+  "pt": [
+   "experienced",
+   "are 뒤 진행형 -ing : are experiencing"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "이유"
+   ]
+  ]
+ },
+ "c03s1|3-(B)": {
+  "pt": [
+   "storing",
+   "newspapers는 보관되는 대상 : been stored"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "eq",
+    "진주어"
+   ],
+   [
+    3,
+    2,
+    "mod",
+    "that절"
+   ]
+  ]
+ },
+ "c03s1|4-①": {
+  "pt": [
+   "repair",
+   "should 뒤 수동 : be repaired"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "so 연결"
+   ]
+  ]
+ },
+ "c03s1|4-②": {
+  "pt": [
+   "been specialized",
+   "specialize는 자동사 : 수동태 불가"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "who절"
+   ]
+  ],
+  "st": [
+   "삽입된 관계사절 속 동사",
+   [
+    "① 주절 : a mechanic + will handle (주어-동사)",
+    "② 쉼표 사이 who절 : 주어와 동사 사이에 삽입됨"
+   ]
+  ]
+ },
+ "c03s1|5-①": {
+  "pt": [
+   "sending",
+   "email은 보내지는 대상 : has not been sent"
+  ],
+  "st": [
+   "양보 vs 조건 접속사",
+   [
+    "① even though(비록 ~이지만) : 사실을 인정하는 양보",
+    "② if(만약 ~라면) : 가정·조건. 둘 다 뒤에 S + V"
+   ]
+  ]
+ },
+ "c03s1|5-②": {
+  "pt": [
+   "be happened",
+   "happen은 자동사 : 수동태 불가"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "조건"
+   ]
+  ]
+ },
+ "c03s1|6-①": {
+  "pt": [
+   "experiments",
+   "is 뒤 진행형 -ing : is experimenting"
+  ]
+ },
+ "c03s1|6-②": {
+  "pt": [
+   "follows",
+   "story는 뒤이어지는 대상 : is followed by"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "which절"
+   ]
+  ],
+  "st": [
+   "be followed by",
+   [
+    "① A is followed by B : A 다음에 B가 이어진다",
+    "② A follows B : A가 B를 뒤따른다 (순서가 반대)"
+   ]
+  ]
+ },
+ "c03s1|6-③": {
+  "pt": [
+   "give",
+   "materials는 주어지는 대상 : are given"
+  ]
+ },
+ "add03|1-1": {
+  "pt": [
+   "discovered",
+   "stone은 발견되는 대상 : was discovered"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add03|1-2": {
+  "pt": [
+   "removed",
+   "진행형 are + -ing : are removing"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "that절"
+   ]
+  ]
+ },
+ "add03|1-3": {
+  "pt": [
+   "posting",
+   "광고는 게시되는 대상 : has been posted"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add03|1-4": {
+  "pt": [
+   "are paid",
+   "뒤에 목적어 a small portion : 능동 pay"
+  ]
+ },
+ "add03|1-5": {
+  "pt": [
+   "spread",
+   "has been 뒤 자동사는 -ing : been spreading"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "spread : 세 형태가 같다",
+   [
+    "① spread-spread-spread (현재·과거·p.p.가 같음)",
+    "② 자동사(번지다)면 수동태 불가 : has been spreading"
+   ]
+  ]
+ },
+ "add03|2-1": {
+  "pt": [
+   "was seemed",
+   "seem은 자동사 : 수동태 불가"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "때"
+   ]
+  ]
+ },
+ "add03|2-2": {
+  "pt": [
+   "intends",
+   "수업은 의도되는 대상 : is intended for"
+  ],
+  "rel": [
+   [
+    2,
+    4,
+    "par",
+    "but 연결"
+   ]
+  ]
+ },
+ "add03|2-3": {
+  "pt": [
+   "laid",
+   "lie(놓여 있다)의 과거는 lay : laid 아님"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "mod",
+    "때"
+   ]
+  ]
+ },
+ "add03|2-4": {
+  "pt": [
+   "been remained",
+   "remain은 자동사 : 수동태 불가"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "보어"
+   ]
+  ]
+ },
+ "add03|2-5": {
+  "pt": [
+   "view",
+   "schedule은 보여지는 대상 : may be viewed"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add03|3-1": {
+  "pt": [
+   "is required",
+   "뒤에 목적어 everyone이 있어 능동 : requires"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "that절"
+   ]
+  ],
+  "st": [
+   "동사 + O + to V (요구·허락류)",
+   [
+    "① require(요구하다) A to V : A가 V하도록 요구하다",
+    "② 수동태가 되면 be required to V"
+   ]
+  ]
+ },
+ "add03|3-2": {
+  "pt": [
+   "explaining",
+   "material은 설명되는 대상 : has been explained"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "which절"
+   ]
+  ]
+ },
+ "add03|3-3": {
+  "pt": [
+   "hiring",
+   "직원은 고용된 대상 : was hired"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "who절"
+   ]
+  ]
+ },
+ "add03|3-4": {
+  "pt": [
+   "was provided",
+   "뒤에 목적어 help가 있어 능동 : provided"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "which절"
+   ]
+  ]
+ },
+ "add03|3-5": {
+  "pt": [
+   "discuss",
+   "topic은 논의되는 대상 : can be discussed"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "that절"
+   ]
+  ],
+  "st": [
+   "can be p.p. : 조동사 수동태",
+   [
+    "① 조동사 + be + p.p. : can be discussed (논의될 수 있다)",
+    "② 능동은 조동사 + 동사원형 : can discuss + 목적어"
+   ]
+  ]
+ }
+}

@@ -6,7 +6,7 @@
   ],
   [
    "a group",
-   ""
+   "!주어 a group(단수) : of six strangers는 수식어"
   ],
   [
    "of six strangers",
@@ -14,7 +14,7 @@
   ],
   [
    "{a|sits} down",
-   ""
+   "sit down : 앉다 (구동사)"
   ],
   [
    "in a room",
@@ -22,7 +22,7 @@
   ],
   [
    "{c|and} {v|chats}",
-   "병렬 : 동사 두 개 연결"
+   "병렬 : sits와 chats 연결"
   ],
   [
    "for 15 minutes.",
@@ -35,12 +35,12 @@
    ""
   ],
   [
-   "【{p|playing} in the street】",
+   "【{o|who are} {p|playing} in the street】",
    "현재분사구 : The children을 꾸밈"
   ],
   [
    "{a|make}",
-   ""
+   "!바로 앞 street(단수)에 속지 말 것 : 주어는 children"
   ],
   [
    "a lot of noises.",
@@ -62,11 +62,11 @@
   ],
   [
    "{a|are}",
-   ""
+   "본동사 : 주어 clothes(복수)에 맞춘 복수형"
   ],
   [
    "easy 【{p|to} wear {c|and} take off】.",
-   "to부정사 (부사적) : easy를 꾸밈"
+   "to부정사 (부사적) : easy 꾸밈, 병렬 2개"
   ]
  ],
  "p1|3": [
@@ -80,7 +80,7 @@
   ],
   [
    "{a|is}",
-   ""
+   "!주어는 step(단수) : skills(복수)에 속지 말 것"
   ],
   [
    "【{p|to} practice consistently】.",
@@ -90,7 +90,7 @@
  "p1|4": [
   [
    "Most days,",
-   ""
+   "부사적 명사구 : 대부분의 날에"
   ],
   [
    "the students",
@@ -98,11 +98,11 @@
   ],
   [
    "at this school",
-   ""
+   "전치사구 : students를 꾸밈"
   ],
   [
    "{a|eat}",
-   ""
+   "!주어 students(복수) : school(단수)과 무관"
   ],
   [
    "lunch",
@@ -124,11 +124,11 @@
   ],
   [
    "【full of smog {c|and} harmful gases,】",
-   "형용사구 (삽입) : air를 꾸밈"
+   "형용사구 : air를 꾸밈, smog와 gases 병렬"
   ],
   [
    "{a|causes}",
-   ""
+   "!주어 air(단수) : gases(복수)에 속지 말 것"
   ],
   [
    "various health problems.",
@@ -141,16 +141,16 @@
    ""
   ],
   [
-   "【{p|sold} at the market】",
+   "【{o|which are} {p|sold} at the market】",
    "과거분사구 : vegetables를 꾸밈"
   ],
   [
    "{a|come}",
-   ""
+   "!주어 vegetables(복수) : market(단수)에 속지 말 것"
   ],
   [
    "from nearby farms.",
-   ""
+   "come from : ~에서 오다"
   ]
  ],
  "p1|7": [
@@ -164,7 +164,7 @@
   ],
   [
    "{a|is}",
-   ""
+   "!주어 The purpose(단수) : lights(복수)에 속지 말 것"
   ],
   [
    "【{p|to} control the movement of cars】.",
@@ -182,21 +182,21 @@
   ],
   [
    "【{c|that} I {v|take} every morning 【{p|to} go to work】】",
-   "목적격 관계대명사절 : the bus를 꾸밈"
+   "목적격 관계절 : bus 꾸밈 (to go : 목적)"
   ],
   [
    "{a|stops}",
-   ""
+   "!주어 the bus(단수) : 사이의 that절은 수식어"
   ],
   [
    "one block away from here.",
-   ""
+   "away from : ~에서 떨어진"
   ]
  ],
  "p2|예제": [
   [
    "One",
-   ""
+   "!주어 One(단수) : of 뒤 복수명사에 속지 말 것"
   ],
   [
    "of the key features",
@@ -208,17 +208,17 @@
   ],
   [
    "【{c|that} this AI program {v|enables} machines 【{p|to} learn new things】】.",
-   "명사절 : 보어 (~라는 것)"
+   "!that절 = 보어 / enable + O + to V (5형식)"
   ]
  ],
  "p2|1": [
   [
    "A number of people",
-   "a number of + 복수명사 : 많은 ~"
+   "!a number of + 복수명사 : 복수 취급"
   ],
   [
    "{a|are} worried",
-   ""
+   "be worried about : ~을 걱정하다"
   ],
   [
    "about the recent increase in crime.",
@@ -232,7 +232,7 @@
   ],
   [
    "much of the forest",
-   ""
+   "!much of + 단수명사 : 단수 취급 (of 뒤에 맞춤)"
   ],
   [
    "{a|has} been destroyed",
@@ -240,17 +240,17 @@
   ],
   [
    "by wildfires.",
-   ""
+   "by + 행위자 : ~에 의해"
   ]
  ],
  "p2|3": [
   [
    "Many of the buildings",
-   ""
+   "!Many of + 복수명사 : 복수 취급"
   ],
   [
    "in this city",
-   ""
+   "전치사구 : buildings를 꾸밈"
   ],
   [
    "{a|are}",
@@ -258,7 +258,7 @@
   ],
   [
    "over 100 years old.",
-   ""
+   "100 years old : 나이 표현 (years 복수)"
   ]
  ],
  "p2|4": [
@@ -268,11 +268,11 @@
   ],
   [
    "one of the teachers",
-   ""
+   "!one of + 복수명사 : 주어 one이 단수"
   ],
   [
    "{a|trains}",
-   ""
+   "train + 목적어 : ~를 훈련시키다"
   ],
   [
    "the soccer team.",
@@ -282,7 +282,7 @@
  "p2|5": [
   [
    "The number of native English speakers",
-   ""
+   "!the number of + 복수 : 수 자체가 주어(단수)"
   ],
   [
    "{a|is}",
@@ -300,24 +300,24 @@
   ],
   [
    "most of the children",
-   ""
+   "!most of + 복수명사 : of 뒤 children에 맞춤"
   ],
   [
    "{a|were} tired",
-   ""
+   "were tired : 지쳤다 (형용사 보어)"
   ],
   [
    "{c|and} {v|gave} up.",
-   "병렬 : 동사 두 개 연결"
+   "병렬 : were와 gave 연결 / give up : 포기하다"
   ]
  ],
  "p3|1": [
   [
    "Some of the food",
-   ""
+   "!some of + 불가산 food : 단수 동사"
   ],
   [
-   "【{p|served} in this restaurant】",
+   "【{o|which is} {p|served} in this restaurant】",
    "과거분사구 : food를 꾸밈"
   ],
   [
@@ -340,11 +340,11 @@
  "p3|2": [
   [
    "A lot of information",
-   ""
+   "!a lot of + 불가산 information : 단수 취급"
   ],
   [
    "on social media",
-   ""
+   "전치사구 : information을 꾸밈"
   ],
   [
    "{a|is}",
@@ -362,7 +362,7 @@
   ],
   [
    "30 percent of the employees",
-   ""
+   "!퍼센트 of + 복수명사 : of 뒤에 맞춰 복수"
   ],
   [
    "{a|prefer}",
@@ -370,17 +370,17 @@
   ],
   [
    "【{p|to} work from home】.",
-   "to부정사 (명사적) : 목적어"
+   "prefer + to V : ~하기를 선호 (목적어)"
   ]
  ],
  "p3|4": [
   [
    "More than half of the students",
-   ""
+   "!half of + 복수명사 : of 뒤 students에 맞춤"
   ],
   [
    "in my class",
-   ""
+   "전치사구 : students를 꾸밈"
   ],
   [
    "{a|use}",
@@ -392,21 +392,21 @@
   ],
   [
    "【{p|to} access the Internet】.",
-   "to부정사 (부사적) : 목적"
+   "to부정사 (부사적) : 목적 (~하려고)"
   ]
  ],
  "p3|5": [
   [
    "All of the money",
-   ""
+   "!all of + 불가산 money : 단수 동사"
   ],
   [
-   "【{p|collected} from the event】",
+   "【{o|which is} {p|collected} from the event】",
    "과거분사구 : money를 꾸밈"
   ],
   [
    "{a|goes}",
-   ""
+   "go to : ~로 가다"
   ],
   [
    "to a children's hospital.",
@@ -416,7 +416,7 @@
  "p4|예제": [
   [
    "【{p|Accepting} your mistakes】",
-   "동명사구 : 주어"
+   "!동명사구 주어 : 단수 취급 (mistakes에 속지 말 것)"
   ],
   [
    "{a|means}",
@@ -424,17 +424,17 @@
   ],
   [
    "【{c|that} you {v|are taking} the first step towards personal growth】.",
-   "명사절 : means의 목적어"
+   "명사절 : means의 목적어 (~라는 것)"
   ]
  ],
  "p4|1": [
   [
    "【{c|How} often you {v|choose} 【{p|to} exercise】】",
-   "의문사절 (명사절) : 주어"
+   "의문사절 (명사절) : 주어, choose + to V"
   ],
   [
    "greatly {a|affects}",
-   ""
+   "affect + 목적어 : ~에 영향을 미치다"
   ],
   [
    "your health.",
@@ -444,15 +444,15 @@
  "p4|2": [
   [
    "【{p|Traveling} to new places】",
-   "동명사구 : 주어"
+   "동명사구 : 주어 (단수 취급)"
   ],
   [
    "{a|is}",
    ""
   ],
   [
-   "a fun {c|and} exciting way",
-   "병렬 : 형용사 두 개 연결"
+   "a fun {c|and} {p|exciting} way",
+   "병렬 : fun과 exciting (way 꾸밈)"
   ],
   [
    "【{p|to} learn about different cultures】.",
@@ -462,7 +462,7 @@
  "p4|3": [
   [
    "According to the data,",
-   ""
+   "according to : ~에 따르면"
   ],
   [
    "laptops",
@@ -470,11 +470,11 @@
   ],
   [
    "with a touch screen",
-   ""
+   "전치사구 : laptops를 꾸밈"
   ],
   [
    "{a|were}",
-   ""
+   "!주어 laptops(복수) : screen(단수)에 속지 말 것"
   ],
   [
    "very popular last year.",
@@ -484,15 +484,15 @@
  "p4|4": [
   [
    "【{c|What} you {v|wear} to the interview】",
-   "명사절 : 주어 (~하는 것)"
+   "명사절 : 주어 (~하는 것, 단수 취급)"
   ],
   [
    "{a|creates}",
-   ""
+   "create + 목적어 : ~을 만들어 내다"
   ],
   [
    "a strong impression on the hiring manager.",
-   ""
+   "impression on : ~에게 주는 인상"
   ]
  ],
  "p4|5": [
@@ -502,15 +502,15 @@
   ],
   [
    "most electronics companies",
-   ""
+   "!most + 복수명사 : 복수 동사"
   ],
   [
    "{a|replace}",
-   ""
+   "replace A with B : A를 B로 교체하다"
   ],
   [
    "it with a new one.",
-   ""
+   "one : product를 대신하는 대명사"
   ]
  ],
  "p5|예제": [
@@ -520,11 +520,11 @@
   ],
   [
    "{p|amazing} powers",
-   ""
+   "have + 목적어 : ~을 가지고 있다"
   ],
   [
    "【{c|that} {a|cure} specific diseases】.",
-   "주격 관계대명사절 : powers를 꾸밈"
+   "!주격 관계절 : 선행사 powers(복수)에 동사 일치"
   ]
  ],
  "p5|1": [
@@ -534,11 +534,11 @@
   ],
   [
    "【{c|who} {a|runs} the store downtown】",
-   "주격 관계대명사절 : The man을 꾸밈"
+   "!선행사 The man(단수) : 관계절 동사도 단수 runs"
   ],
   [
    "{v|is} always friendly {c|and} helpful to his customers.",
-   "병렬 : 형용사 두 개 연결"
+   "병렬 : friendly와 helpful (보어 2개)"
   ]
  ],
  "p5|2": [
@@ -548,25 +548,25 @@
   ],
   [
    "【{c|which} naturally {a|provide} clean air,】",
-   "계속적 용법 : Trees 보충 설명"
+   "!계속적 용법 which : 선행사 Trees(복수)에 일치"
   ],
   [
    "{v|are} important for the environment.",
-   ""
+   "be important for : ~에 중요하다"
   ]
  ],
  "p5|3": [
   [
    "A lot of money {v|is} spent",
-   ""
+   "수동태 : be + p.p. (money는 불가산)"
   ],
   [
    "on items",
    ""
   ],
   [
-   "【{c|that} {a|are} not used {c|and} eventually thrown away】.",
-   "주격 관계대명사절 : items를 꾸밈"
+   "【{c|that} {a|are} not used {c|and} eventually {v|thrown} away】.",
+   "!선행사 items(복수)에 are / used와 thrown 병렬"
   ]
  ],
  "p5|4": [
@@ -580,11 +580,11 @@
   ],
   [
    "from my university",
-   ""
+   "전치사구 : friends를 꾸밈"
   ],
   [
    "【{c|who} {a|like} 【{p|to} study in the café】】",
-   "주격 관계대명사절 : friends를 꾸밈"
+   "!선행사 friends(복수) : 관계절 동사 like"
   ],
   [
    "despite the noise.",
@@ -606,7 +606,7 @@
   ],
   [
    "【{c|that} {a|was} available,】",
-   "주격 관계대명사절 : everything을 꾸밈"
+   "!선행사 everything(단수) : 관계절 동사 was"
   ],
   [
    "{c|but} nothing {v|worked}.",
@@ -616,7 +616,7 @@
  "p6|예제": [
   [
    "There {a|is} usually",
-   "There is 구문 : 뒤 명사가 주어"
+   "!There is + 단수 주어 : 뒤 a correct way에 일치"
   ],
   [
    "a correct way",
@@ -624,13 +624,13 @@
   ],
   [
    "of 【{p|holding} {c|and} {p|playing} the guitar】.",
-   "전치사 + 동명사 (병렬)"
+   "of + 동명사 : holding과 playing 병렬"
   ]
  ],
  "p6|1": [
   [
-   "Rarely {a|does}",
-   "부정어 도치 : does + 주어 + 동사원형"
+   "{k|Rarely} {a|does}",
+   "!부정어 Rarely 문두 : does + 주어 + 동사원형"
   ],
   [
    "a cat",
@@ -638,7 +638,7 @@
   ],
   [
    "{v|refuse} a warm lap",
-   ""
+   "does 뒤 : 동사원형 (refuses 아님)"
   ],
   [
    "on a cold winter’s night.",
@@ -648,11 +648,11 @@
  "p6|2": [
   [
    "Through the airport {a|pass}",
-   "장소 부사구 도치 : 주어가 동사 뒤"
+   "!장소 부사구 도치 : 동사는 뒤 주어에 일치"
   ],
   [
    "thousands of passengers",
-   ""
+   "thousands of + 복수명사 : 수천의 ~"
   ],
   [
    "daily.",
@@ -662,11 +662,11 @@
  "p6|3": [
   [
    "{v|Look},",
-   ""
+   "명령문 : 동사원형으로 시작"
   ],
   [
-   "here {a|comes}",
-   "Here + 동사 + 주어 : 도치"
+   "{k|here} {a|comes}",
+   "!Here + 동사 + 주어 : 뒤 the teacher(단수)에 일치"
   ],
   [
    "the teacher.",
@@ -679,8 +679,8 @@
  ],
  "p6|4": [
   [
-   "Little {a|do}",
-   "부정어 도치 : do + 주어 + 동사원형"
+   "{k|Little} {a|do}",
+   "!부정어 Little 문두 : do + 주어 + 동사원형"
   ],
   [
    "the children",
@@ -688,17 +688,17 @@
   ],
   [
    "{v|realize} the impact of their actions on others.",
-   ""
+   "impact of A on B : A가 B에 미치는 영향"
   ]
  ],
  "p6|5": [
   [
    "There {a|are}",
-   "There are 구문 : 뒤 명사가 주어"
+   "There are + 복수 주어 : 뒤 lots of people"
   ],
   [
    "lots of people",
-   ""
+   "lots of + 복수명사 : 많은 ~"
   ],
   [
    "in the park",
@@ -706,13 +706,13 @@
   ],
   [
    "{c|and}, they {v|are enjoying} picnics {c|and} {v|playing} games.",
-   "병렬 : 진행형 동사 두 개 연결"
+   "병렬 : enjoying과 playing (are 공유)"
   ]
  ],
  "p6|6": [
   [
-   "Never {a|do}",
-   "부정어 도치 : do + 주어 + 동사원형"
+   "{k|Never} {a|do}",
+   "!부정어 Never 문두 : do + 주어 + 동사원형"
   ],
   [
    "employees",
@@ -720,13 +720,13 @@
   ],
   [
    "{v|forget} the value of teamwork in {p|achieving} success.",
-   "전치사 + 동명사"
+   "in + 동명사 : ~하는 데 (전치사 + 동명사)"
   ]
  ],
  "p6|7": [
   [
    "In the kitchen {a|was cooking}",
-   "장소 부사구 도치 : 주어가 동사 뒤"
+   "!장소 부사구 도치 : 주어 a famous chef(단수)에 일치"
   ],
   [
    "a famous chef,",
@@ -740,7 +740,7 @@
  "p6|8": [
   [
    "{c|Not only} {a|does}",
-   "Not only 도치 : does + 주어 + 동사원형"
+   "!Not only 문두 : does + 주어 + 동사원형 (도치)"
   ],
   [
    "music",
@@ -748,25 +748,25 @@
   ],
   [
    "{v|entertain} us,",
-   ""
+   "does 뒤 : 동사원형 entertain"
   ],
   [
    "{c|but} it also {v|has} the power 【{p|to} evoke strong feelings】.",
-   "not only A but also B : A뿐 아니라 B도"
+   "but also : B도 (to evoke는 power 꾸밈)"
   ]
  ],
  "c01q1|1": [
   [
    "All of the flowers",
-   ""
+   "!all of + 복수명사 : 복수 취급"
   ],
   [
    "in the garden",
-   ""
+   "전치사구 : flowers를 꾸밈"
   ],
   [
    "{a|are blooming}",
-   ""
+   "현재진행형 : be + -ing"
   ],
   [
    "in the spring sunshine.",
@@ -779,12 +779,12 @@
    "동명사구 : 주어"
   ],
   [
-   "【{p|based} on the lives of her parents】】",
+   "【{o|which is} {p|based} on the lives of her parents】】",
    "과거분사구 : novel을 꾸밈"
   ],
   [
    "{a|was}",
-   ""
+   "!동명사구 주어 : 단수 was (parents에 속지 말 것)"
   ],
   [
    "her old dream.",
@@ -802,11 +802,11 @@
   ],
   [
    "【{c|who} usually {a|stays} in the classroom",
-   "계속적 용법 : a quiet boy 보충 설명"
+   "!계속적 용법 who : 선행사 a quiet boy(단수) : stays"
   ],
   [
    "【{c|while} all his classmates {v|go} outside during break time】】.",
-   "while : ~하는 동안"
+   "while : ~하는 동안 (시간 부사절)"
   ]
  ],
  "c01q1|4": [
@@ -820,20 +820,20 @@
   ],
   [
    "{a|include}",
-   ""
+   "본동사 : 주어 skills(복수)"
   ],
   [
    "creativity {c|and} effort.",
-   "병렬 : 명사 두 개 연결"
+   "병렬 : 명사 두 개 (include의 목적어)"
   ]
  ],
  "c01q1|5": [
   [
    "Around 60 percent of the guests",
-   ""
+   "!퍼센트 of + 복수 guests : 복수 동사"
   ],
   [
-   "【{p|staying} at the hotel】",
+   "【{o|who are} {p|staying} at the hotel】",
    "현재분사구 : guests를 꾸밈"
   ],
   [
@@ -852,11 +852,11 @@
   ],
   [
    "【{c|which} {a|have} many useful functions,】",
-   "계속적 용법 : Mobile phones 보충 설명"
+   "!계속적 용법 which : 선행사 Mobile phones(복수)"
   ],
   [
    "{v|are} essential tools",
-   ""
+   "보어 : tools (phones = tools)"
   ],
   [
    "for modern life.",
@@ -866,11 +866,11 @@
  "c01q1|7": [
   [
    "【{c|How} we {v|communicate} with each other】",
-   "의문사절 (명사절) : 주어"
+   "의문사절 (명사절) : 주어 (단수 취급)"
   ],
   [
    "{a|influences}",
-   ""
+   "influence + 목적어 : ~에 영향을 주다"
   ],
   [
    "the success of our project.",
@@ -880,15 +880,15 @@
  "c01q1|8": [
   [
    "Nearly all the tourists",
-   ""
+   "!all the + 복수명사 : 복수 취급"
   ],
   [
    "in the city",
-   ""
+   "전치사구 : tourists를 꾸밈"
   ],
   [
    "{a|take}",
-   ""
+   "take photos : 사진을 찍다"
   ],
   [
    "photos of famous landmarks.",
@@ -898,7 +898,7 @@
  "c01q1|9": [
   [
    "At every entrance to the building",
-   "장소 부사구 도치 : 주어가 동사 뒤"
+   "!장소 부사구 도치 : 동사는 뒤 주어에 일치"
   ],
   [
    "{a|stands}",
@@ -909,7 +909,7 @@
    ""
   ],
   [
-   "【{p|wearing} a uniform】.",
+   "【{o|who is} {p|wearing} a uniform】.",
    "현재분사구 : guard를 꾸밈"
   ]
  ],
@@ -920,7 +920,7 @@
   ],
   [
    "a number of things",
-   "a number of + 복수명사 : 많은 ~"
+   "!a number of + 복수명사 : 복수 취급"
   ],
   [
    "【{c|that} we easily {v|enjoy} today】",
@@ -928,7 +928,7 @@
   ],
   [
    "{a|were} not possible",
-   ""
+   "!주어 a number of things(복수) : were"
   ],
   [
    "for many reasons.",
@@ -938,11 +938,11 @@
  "c01q1|11": [
   [
    "【{p|Reading} books",
-   "동명사구 : 주어"
+   "동명사구 : 주어 (단수 취급)"
   ],
   [
    "on a variety of topics】",
-   ""
+   "a variety of + 복수명사 : 다양한 ~"
   ],
   [
    "{a|helps}",
@@ -964,11 +964,11 @@
   ],
   [
    "often {a|leads}",
-   "lead to + 명사 : ~로 이어지다"
+   "!주어 The pressure(단수) : friends에 속지 말 것"
   ],
   [
    "to anxiety {c|and} stress.",
-   ""
+   "lead to + 명사 : ~로 이어지다 (병렬)"
   ]
  ],
  "c01q2|1": [
@@ -982,11 +982,11 @@
   ],
   [
    "{a|were} praised",
-   ""
+   "수동태 : be + p.p. / 주어 engineers(복수)"
   ],
   [
    "for the safety of their design.",
-   ""
+   "praise A for B : B 때문에 A를 칭찬하다"
   ]
  ],
  "c01q2|2": [
@@ -1000,11 +1000,11 @@
   ],
   [
    "【{c|that} {a|rejects} the idea of {p|eating} insects,】",
-   "주격 관계대명사절 : a society를 꾸밈"
+   "!선행사 a society(단수) : 관계절 동사 rejects"
   ],
   [
    "some people {v|may be} open to the idea.",
-   ""
+   "may be : ~일 수도 있다 (조동사 may)"
   ]
  ],
  "c01q2|3": [
@@ -1014,7 +1014,7 @@
   ],
   [
    "one",
-   ""
+   "!one of + 복수명사 : 주어 one(단수)"
   ],
   [
    "of the first three students 【{p|to} earn art degrees】",
@@ -1022,7 +1022,7 @@
   ],
   [
    "{a|was}",
-   ""
+   "보어 : Elizabeth Catlett (one = 그녀)"
   ],
   [
    "Elizabeth Catlett.",
@@ -1032,7 +1032,7 @@
  "c01q2|4": [
   [
    "【{c|Who} {v|will lead} the company from now on】",
-   "의문사절 (명사절) : 주어"
+   "의문사절 (명사절) : 주어 (단수 취급)"
   ],
   [
    "{a|is}",
@@ -1040,13 +1040,13 @@
   ],
   [
    "the top concern at this meeting.",
-   ""
+   "보어 : 단수명사 concern"
   ]
  ],
  "c01q2|5": [
   [
    "Everyone {v|wants} 【{p|to} have",
-   "want + to부정사 : ~하기를 원하다"
+   "!Everyone은 단수 취급 : wants / want + to V"
   ],
   [
    "friends",
@@ -1054,17 +1054,17 @@
   ],
   [
    "【{c|who} always {a|understand} them",
-   "주격 관계대명사절 : friends를 꾸밈"
+   "!선행사 friends(복수) : 관계절 동사 understand"
   ],
   [
    "{c|and} {v|share} their joys {c|and} sorrows】】.",
-   "병렬 : 동사 두 개 연결"
+   "병렬 : understand와 share 연결"
   ]
  ],
  "c01q2|6": [
   [
    "There {a|exist}",
-   "There + 동사 + 주어 : 뒤 명사가 주어"
+   "!There + 동사 + 주어 : 뒤 many solutions(복수)"
   ],
   [
    "many solutions",
@@ -1072,7 +1072,7 @@
   ],
   [
    "to our problems,",
-   ""
+   "solutions to : ~에 대한 해결책"
   ],
   [
    "【{c|if} we {v|see} them with an open mind】.",
@@ -1082,11 +1082,11 @@
  "c01q2|7": [
   [
    "Much",
-   ""
+   "!Much of + 단수 information : 단수 취급"
   ],
   [
-   "of the information 【you {v|receive} from newspapers】",
-   "목적격 관계대명사 생략 : information 꾸밈"
+   "of the information {o|that} 【you {v|receive} from newspapers】",
+   "!목적격 관계대명사 that 생략 : information 꾸밈"
   ],
   [
    "{a|provides}",
@@ -1100,15 +1100,15 @@
  "c01q2|8": [
   [
    "【{p|Running} marathons】",
-   "동명사구 : 주어"
+   "동명사구 : 주어 (단수 취급)"
   ],
   [
    "{a|remains}",
-   ""
+   "remain + 명사 : ~로 남아 있다 (2형식)"
   ],
   [
    "a popular form of exercise {c|and} personal achievement.",
-   ""
+   "병렬 : exercise와 achievement"
   ]
  ],
  "c01q2|9": [
@@ -1118,7 +1118,7 @@
   ],
   [
    "half",
-   ""
+   "!half of + 복수명사 : of 뒤 students에 맞춤"
   ],
   [
    "of the students in the class",
@@ -1130,7 +1130,7 @@
   ],
   [
    "【{p|studying} in groups rather than alone】.",
-   "동명사구 : prefer의 목적어"
+   "동명사구 : 목적어, rather than : ~보다"
   ]
  ],
  "c01q2|10": [
@@ -1140,7 +1140,7 @@
   ],
   [
    "【{c|what} people {v|eat} for breakfast】",
-   "명사절 : 주어 (~하는 것)"
+   "명사절 : 주어 (~하는 것, 단수 취급)"
   ],
   [
    "{a|influences}",
@@ -1148,13 +1148,13 @@
   ],
   [
    "their mood for the rest of the day.",
-   ""
+   "the rest of the day : 그날의 나머지"
   ]
  ],
  "c01q2|11": [
   [
-   "Hardly {a|do}",
-   "부정어 도치 : do + 주어 + 동사원형"
+   "{k|Hardly} {a|do}",
+   "!부정어 Hardly 문두 : do + 주어 + 동사원형"
   ],
   [
    "children",
@@ -1162,11 +1162,11 @@
   ],
   [
    "{v|refuse} 【{p|to} eat candies】",
-   "to부정사 (명사적) : refuse의 목적어"
+   "refuse + to V : ~하기를 거부하다"
   ],
   [
    "【{c|when} their grandparents {v|offer} some】.",
-   "부사절 : ~할 때"
+   "부사절 : ~할 때 (some = 사탕 몇 개)"
   ]
  ],
  "c01q2|12": [
@@ -1179,12 +1179,12 @@
    ""
   ],
   [
-   "【{p|discussed} most frequently by world leaders】",
+   "【{o|which is} {p|discussed} most frequently by world leaders】",
    "과거분사구 : problem을 꾸밈"
   ],
   [
    "{a|is}",
-   ""
+   "!주어 the problem(단수) : leaders에 속지 말 것"
   ],
   [
    "【{c|how} {p|to} prevent climate change】.",
@@ -1194,7 +1194,7 @@
  "c01s1|1-(A)": [
   [
    "At the Greenview Museum (A)",
-   "장소 부사구 도치 : 주어가 동사 뒤"
+   "!장소 부사구 도치 : 동사는 뒤 주어에 일치"
   ],
   [
    "{a|is}",
@@ -1202,21 +1202,21 @@
   ],
   [
    "a large collection",
-   ""
+   "주어 : a large collection (단수)"
   ],
   [
    "of different types of paintings.",
-   ""
+   "collection of : ~의 모음 (of 뒤는 수식)"
   ]
  ],
  "c01s1|1-(B)": [
   [
    "Most of the paintings",
-   ""
+   "!most of + 복수명사 : 복수 취급"
   ],
   [
    "in this museum (B)",
-   ""
+   "전치사구 : paintings를 꾸밈"
   ],
   [
    "{a|were} created",
@@ -1224,13 +1224,13 @@
   ],
   [
    "by talented local artists.",
-   ""
+   "by + 행위자 : ~에 의해"
   ]
  ],
  "c01s1|2-(A)": [
   [
    "The number",
-   ""
+   "!the number of ~ : 수 자체가 주어(단수)"
   ],
   [
    "of college students (A)",
@@ -1242,17 +1242,17 @@
   ],
   [
    "every year.",
-   ""
+   "every year : 매년"
   ]
  ],
  "c01s1|2-(B)": [
   [
    "Colleges",
-   ""
+   "!주어 Colleges(복수) : 전치사구 뒤 동사 have"
   ],
   [
    "in most places around the country (B)",
-   ""
+   "전치사구 : Colleges를 꾸밈"
   ],
   [
    "{a|have}",
@@ -1260,17 +1260,17 @@
   ],
   [
    "fewer students today",
-   ""
+   "fewer + 복수명사 : 더 적은 ~ (비교급)"
   ],
   [
    "【{c|than} they {v|did} 10 years ago】.",
-   "대동사 did : had를 대신함"
+   "!대동사 did : 앞 동사 have(과거 had)를 대신함"
   ]
  ],
  "c01s1|3-(A)": [
   [
    "Nowadays, there {v|are}",
-   "There are 구문 : 뒤 명사가 주어"
+   "There are + 복수 주어 : many companies"
   ],
   [
    "many companies",
@@ -1278,11 +1278,11 @@
   ],
   [
    "【{c|that} (A) {a|recycle} plastic bottles】",
-   "주격 관계대명사절 : companies를 꾸밈"
+   "!선행사 companies(복수) : 관계절 동사 recycle"
   ],
   [
    "【{p|to} make clothes {c|or} sneakers】.",
-   "to부정사 (부사적) : 목적"
+   "to부정사 (부사적) : 목적 (clothes or sneakers)"
   ]
  ],
  "c01s1|3-(B)": [
@@ -1292,39 +1292,39 @@
   ],
   [
    "of {p|recycling} plastic products (B)",
-   "전치사 + 동명사"
+   "전치사 + 동명사 : way를 꾸밈"
   ],
   [
    "{a|helps}",
-   ""
+   "!주어 This way(단수) : products(복수)에 속지 말 것"
   ],
   [
    "【{p|to} protect the environment by {p|reducing} waste】.",
-   "by + 동명사 : ~함으로써"
+   "help + to V / by + 동명사 : ~함으로써"
   ]
  ],
  "c01s1|4-①": [
   [
    "【{c|What} type of ball you {v|choose}】",
-   "의문사절 (명사절) : 주어"
+   "의문사절 (명사절) : 주어 (단수 취급)"
   ],
   [
    "{a|depends}",
    "depend on : ~에 달려 있다"
   ],
   [
-   "on the kind of sport 【you {v|play}】.",
+   "on the kind of sport {o|that} 【you {v|play}】.",
    "목적격 관계대명사 생략 : sport를 꾸밈"
   ]
  ],
  "c01s1|4-②": [
   [
    "Many",
-   ""
+   "!Many of + 복수명사 : 복수 취급 (require)"
   ],
   [
-   "of the sports 【people {v|play}】, like soccer,",
-   "목적격 관계대명사 생략 : sports를 꾸밈"
+   "of the sports {o|that} 【people {v|play}】, like soccer,",
+   "목적격 관계대명사 생략 : sports 꾸밈"
   ],
   [
    "{a|require}",
@@ -1332,7 +1332,7 @@
   ],
   [
    "balls with a certain level of bounce.",
-   ""
+   "require + 목적어 : ~을 필요로 하다"
   ]
  ],
  "c01s1|4-③": [
@@ -1349,18 +1349,18 @@
    "과거분사구 : balls를 꾸밈"
   ],
   [
-   "{a|do not bounce}",
-   ""
+   "{a|do} not {v|bounce}",
+   "!부정문 do not : 주어 balls(복수) 일치"
   ],
   [
-   "at all】, {c|so} they {v|are} not.",
-   "so : 그래서 (결과)"
+   "at all】, {c|so} they {v|are} not {o|great for such games}.",
+   "so : 그래서 (결과) / not 뒤 보어 생략"
   ]
  ],
  "c01s1|5-①": [
   [
    "About one-third of workers",
-   ""
+   "!분수 of + 복수명사 : of 뒤 workers에 맞춤"
   ],
   [
    "{a|travel}",
@@ -1368,13 +1368,13 @@
   ],
   [
    "from suburban homes to workplaces in the city every day.",
-   ""
+   "from A to B : A에서 B로"
   ]
  ],
  "c01s1|5-②": [
   [
    "{c|However},",
-   ""
+   "접속부사 : 그러나"
   ],
   [
    "the highways,",
@@ -1382,11 +1382,11 @@
   ],
   [
    "【{c|which} {a|are} busy at normal times,】",
-   "계속적 용법 : the highways 보충 설명"
+   "!계속적 용법 which : 선행사 highways(복수)"
   ],
   [
    "{v|become} more crowded during rush hour.",
-   ""
+   "become + 비교급 : 더 ~해지다"
   ]
  ],
  "c01s1|5-③": [
@@ -1396,15 +1396,15 @@
   ],
   [
    "a train service",
-   ""
+   "!주어 a train service(단수) : schedule에 속지 말 것"
   ],
   [
-   "【{p|running} on schedule】",
+   "【{o|which is} {p|running} on schedule】",
    "현재분사구 : service를 꾸밈"
   ],
   [
    "{a|looks}",
-   "look + 형용사 : ~해 보이다"
+   "look + 형용사 : ~해 보이다 (2형식)"
   ],
   [
    "more practical to some people.",
@@ -1417,16 +1417,16 @@
    ""
   ],
   [
-   "【{c|that} {a|is} used 【{p|to} create attractive animal characters】】",
-   "주격 관계대명사절 : strategy를 꾸밈"
+   "【{c|that} {v|is} used 【{p|to} create attractive animal characters】】",
+   "주격 관계절 : strategy 꾸밈 / to create : 목적"
   ],
   [
-   "{v|is}",
-   ""
+   "{a|is}",
+   "!주어 A general strategy(단수) : 관계절 뒤 본동사"
   ],
   [
    "【{p|to} make them look like babies】.",
-   "to부정사 (명사적) : 보어"
+   "명사적 보어 / make + O + 동사원형(look)"
   ]
  ],
  "c01s1|6-②": [
@@ -1440,7 +1440,7 @@
   ],
   [
    "【{c|who} regularly {a|work} on such characters】",
-   "주격 관계대명사절 : animators를 꾸밈"
+   "!선행사 animators(복수) : 관계절 동사 work"
   ],
   [
    "{v|prefer} 【{p|to} design them this way】.",
@@ -1458,11 +1458,11 @@
   ],
   [
    "{a|allows}",
-   ""
+   "!allow + O + to V : 5형식 (O가 ~하게 허락)"
   ],
   [
    "them 【{p|to} appeal to people’s emotions more easily】.",
-   "allow + 목적어 + to부정사"
+   "appeal to : ~에 호소하다 (to V : 목적보어)"
   ]
  ],
  "add01|1-1": [
@@ -1476,15 +1476,15 @@
   ],
   [
    "on our street",
-   ""
+   "전치사구 : people을 꾸밈"
   ],
   [
    "{a|walk}",
-   ""
+   "!주어 the people(복수) : street에 속지 말 것"
   ],
   [
    "their dogs at the park.",
-   ""
+   "walk + 목적어 : ~를 산책시키다"
   ]
  ],
  "add01|1-2": [
@@ -1498,11 +1498,11 @@
   ],
   [
    "{a|is}",
-   ""
+   "be동사 : 보어 to V와 연결"
   ],
   [
-   "【{p|to} join a social group with people your age】.",
-   "to부정사 (명사적) : 보어"
+   "【{p|to} join a social group with people {o|who are} 【your age】】.",
+   "to V (명사적) 보어 / people (who are) 생략"
   ]
  ],
  "add01|1-3": [
@@ -1511,12 +1511,12 @@
    ""
   ],
   [
-   "【{p|climbing} up the mountain】",
+   "【{o|who are} {p|climbing} up the mountain】",
    "현재분사구 : hikers를 꾸밈"
   ],
   [
    "{a|look}",
-   ""
+   "!주어 The hikers(복수) : mountain에 속지 말 것"
   ],
   [
    "like ants from a distance.",
@@ -1538,7 +1538,7 @@
   ],
   [
    "{a|costs}",
-   ""
+   "!that절 동사 has와 별개로 본동사 costs 필요"
   ],
   [
    "a lot of money.",
@@ -1555,16 +1555,16 @@
    ""
   ],
   [
-   "similar to those of the flu",
-   "similar to + 명사 : ~와 비슷한"
+   "similar to {k|those} of the flu",
+   "!those = symptoms : 앞 복수명사를 대신하는 말"
   ],
   [
    "{a|affect}",
-   ""
+   "본동사 : 주어 symptoms(복수)"
   ],
   [
    "millions of people around the world.",
-   ""
+   "millions of + 복수명사 : 수백만의 ~"
   ]
  ],
  "add01|2-1": [
@@ -1574,7 +1574,7 @@
   ],
   [
    "one",
-   ""
+   "!one of + 복수명사 : 주어 one(단수)"
   ],
   [
    "of my coworkers",
@@ -1582,7 +1582,7 @@
   ],
   [
    "{a|fixes}",
-   ""
+   "fix + 목적어 : ~를 고치다"
   ],
   [
    "everyone’s computers.",
@@ -1592,7 +1592,7 @@
  "add01|2-2": [
   [
    "Many",
-   ""
+   "!Many of + 복수명사 : 복수 취급"
   ],
   [
    "of the chapters in our science textbook",
@@ -1604,7 +1604,7 @@
   ],
   [
    "around 20 pages long.",
-   ""
+   "20 pages long : 숫자 + 단위 + 형용사"
   ]
  ],
  "add01|2-3": [
@@ -1614,11 +1614,11 @@
   ],
   [
    "a number",
-   "a number of + 복수명사 : 많은 ~"
+   "!a number of + 복수명사 : 복수 취급"
   ],
   [
    "of towns in the area",
-   ""
+   "전치사구 : towns를 꾸밈"
   ],
   [
    "{a|experience}",
@@ -1626,17 +1626,17 @@
   ],
   [
    "very bad weather.",
-   ""
+   "weather : 셀 수 없는 명사"
   ]
  ],
  "add01|2-4": [
   [
    "Much",
-   ""
+   "!Much of + 단수 preparation : 단수 was"
   ],
   [
    "of the preparation for the weekend’s sports activities",
-   ""
+   "for + 명사 : preparation을 꾸밈"
   ],
   [
    "{a|was} done",
@@ -1650,11 +1650,11 @@
  "add01|2-5": [
   [
    "The number",
-   ""
+   "!The number of : 수 자체가 주어(단수)"
   ],
   [
-   "of fish in rivers and lakes",
-   ""
+   "of fish in rivers {c|and} lakes",
+   "병렬 : rivers와 lakes (in 뒤)"
   ],
   [
    "{a|is}",
@@ -1672,11 +1672,11 @@
   ],
   [
    "the questions",
-   ""
+   "!most of + 복수 questions : 복수 취급"
   ],
   [
    "on the college entrance exam",
-   ""
+   "전치사구 : questions를 꾸밈"
   ],
   [
    "{a|were}",
@@ -1684,13 +1684,13 @@
   ],
   [
    "quite difficult 【{p|to} answer】.",
-   "to부정사 (부사적) : difficult를 꾸밈"
+   "to부정사 (부사적) : difficult 꾸밈 (~하기에)"
   ]
  ],
  "add01|3-2": [
   [
    "We {v|took} a short trip in June,",
-   ""
+   "take a trip : 여행하다"
   ],
   [
    "{c|but} the rest of",
@@ -1698,11 +1698,11 @@
   ],
   [
    "last summer",
-   ""
+   "!the rest of + 단수 summer : 단수 동사 was"
   ],
   [
    "{a|was} spent",
-   "수동태 : be + p.p."
+   "수동태 : be + p.p. (spend : 보내다)"
   ],
   [
    "at home.",
@@ -1716,11 +1716,11 @@
   ],
   [
    "the rooms",
-   ""
+   "!some of + 복수 rooms : 복수 취급"
   ],
   [
    "in this hotel",
-   ""
+   "전치사구 : rooms를 꾸밈"
   ],
   [
    "{a|come}",
@@ -1738,11 +1738,11 @@
   ],
   [
    "the homes",
-   ""
+   "!half of + 복수 homes : 복수 취급"
   ],
   [
    "in our neighborhood",
-   ""
+   "전치사구 : homes를 꾸밈"
   ],
   [
    "{a|use}",
@@ -1760,11 +1760,11 @@
   ],
   [
    "soil",
-   ""
+   "!percent of + 불가산 soil : 단수 취급"
   ],
   [
    "on earth",
-   ""
+   "전치사구 : soil을 꾸밈"
   ],
   [
    "{a|consists}",
@@ -1772,13 +1772,13 @@
   ],
   [
    "of water {c|and} air.",
-   "consist of : ~로 이루어지다"
+   "consist of : ~로 이루어지다 (병렬)"
   ]
  ],
  "add01|4-1": [
   [
-   "【{p|Eating} fried food {c|and} sweet snacks】",
-   "동명사구 : 주어"
+   "【{p|Eating} {p|fried} food {c|and} sweet snacks】",
+   "!동명사구 주어 : 단수 취급 (food, snacks는 목적어)"
   ],
   [
    "{a|is}",
@@ -1796,7 +1796,7 @@
   ],
   [
    "【{p|emptying} your mind of thoughts】",
-   "동명사구 : 주어"
+   "동명사구 주어 / empty A of B : A에서 B 비우다"
   ],
   [
    "{a|reduces}",
@@ -1804,17 +1804,17 @@
   ],
   [
    "feelings of stress {c|and} anxiety.",
-   ""
+   "병렬 : stress와 anxiety (of 뒤)"
   ]
  ],
  "add01|4-3": [
   [
    "【{c|When} couples {v|get} married today,】",
-   "부사절 : ~할 때"
+   "부사절 : ~할 때 / get married : 결혼하다"
   ],
   [
    "both families",
-   ""
+   "!both + 복수명사 : 복수 동사 share"
   ],
   [
    "often {a|share}",
@@ -1832,29 +1832,29 @@
   ],
   [
    "【{c|what} you {v|watch} on television】",
-   "명사절 : 주어 (~하는 것)"
+   "명사절 : 주어 (~하는 것, 단수 취급)"
   ],
   [
    "{a|helps}",
    ""
   ],
   [
-   "you become a smarter person.",
-   "help + 목적어 + 동사원형"
+   "you {k|become} a smarter person.",
+   "!help + O + 동사원형 : 5형식 (to 생략 가능)"
   ]
  ],
  "add01|4-5": [
   [
    "According to the rules,",
-   ""
+   "according to : ~에 따르면"
   ],
   [
    "the eight teams",
-   ""
+   "!주어 teams(복수) : 사이 with구는 수식어"
   ],
   [
    "with the most points",
-   ""
+   "전치사구 : teams를 꾸밈 (the most : 가장 많은)"
   ],
   [
    "{a|move} on",
@@ -1876,7 +1876,7 @@
   ],
   [
    "about robots",
-   ""
+   "!robots(복수)에 속지 말 것 : 선행사는 a movie"
   ],
   [
    "【{c|that} {a|has}",
@@ -1884,7 +1884,7 @@
   ],
   [
    "many famous actors in it】.",
-   ""
+   "have + 목적어 : ~이 나오다 (있다)"
   ]
  ],
  "add01|5-2": [
@@ -1894,7 +1894,7 @@
   ],
   [
    "【{c|which} normally {a|serve}",
-   "계속적 용법 : Insects 보충 설명"
+   "!계속적 용법 which : 선행사 Insects(복수) : serve"
   ],
   [
    "a useful purpose in nature,】",
@@ -1902,7 +1902,7 @@
   ],
   [
    "{v|are} in danger",
-   ""
+   "본동사 : 주어 Insects (복수)"
   ],
   [
    "due to climate change.",
@@ -1912,7 +1912,7 @@
  "add01|5-3": [
   [
    "For the last 25 years,",
-   ""
+   "for + 기간 : ~ 동안 (현재완료와 함께)"
   ],
   [
    "the woman",
@@ -1920,15 +1920,15 @@
   ],
   [
    "【{c|who} {a|drives} the school bus】",
-   "주격 관계대명사절 : the woman을 꾸밈"
+   "!선행사 the woman(단수) : 관계절 동사 drives"
   ],
   [
    "{v|has always made} sure",
-   ""
+   "make sure (that) : 확실히 하다"
   ],
   [
-   "【the students {v|are} safe】.",
-   "접속사 that 생략 : make sure 뒤 절"
+   "【{o|that} the students {v|are} safe】.",
+   "접속사 that 생략 : make sure 뒤 명사절"
   ]
  ],
  "add01|5-4": [
@@ -1938,7 +1938,7 @@
   ],
   [
    "{v|contains}",
-   ""
+   "contain + 목적어 : ~을 담고 있다"
   ],
   [
    "stories",
@@ -1946,11 +1946,11 @@
   ],
   [
    "【{c|that} {a|are} written",
-   "주격 관계대명사절 : stories를 꾸밈"
+   "!선행사 stories(복수) : 관계절 동사 are"
   ],
   [
    "for very young children】.",
-   ""
+   "수동태 : be + p.p. (written for ~)"
   ]
  ],
  "add01|5-5": [
@@ -1960,15 +1960,15 @@
   ],
   [
    "to the mountains,",
-   ""
+   "전치사구 : The road를 꾸밈"
   ],
   [
    "【{c|which} {a|passes}",
-   "계속적 용법 : The road 보충 설명"
+   "!계속적 용법 which : 선행사 The road(단수)"
   ],
   [
    "several towns】",
-   ""
+   "pass + 목적어 : ~을 지나다"
   ],
   [
    "{v|was shut} down",
@@ -1982,14 +1982,14 @@
  "add01|6-1": [
   [
    "There {a|are}",
-   "There are 구문 : 뒤 명사가 주어"
+   "!There are + 복수 : 뒤 a lot of buses에 일치"
   ],
   [
    "a lot of buses",
    ""
   ],
   [
-   "【you {v|can take}",
+   "【{o|that} you {v|can take}",
    "목적격 관계대명사 생략 : buses를 꾸밈"
   ],
   [
@@ -2003,8 +2003,8 @@
    ""
   ],
   [
-   "rarely {a|does}",
-   "부정어 도치 : does + 주어 + 동사원형"
+   "{k|rarely} {a|does}",
+   "!부정어 rarely : does + 주어 + 동사원형"
   ],
   [
    "the athlete",
@@ -2012,13 +2012,13 @@
   ],
   [
    "{v|miss} any of his shots.",
-   ""
+   "does 뒤 : 동사원형 miss (misses 아님)"
   ]
  ],
  "add01|6-3": [
   [
    "Near the coast of California",
-   ""
+   "!장소 부사구 도치 : 동사는 뒤 주어에 일치"
   ],
   [
    "{a|swim}",
@@ -2026,7 +2026,7 @@
   ],
   [
    "many whales, sharks, {c|and} dolphins",
-   "병렬 : 명사 세 개 연결"
+   "병렬 : 명사 세 개 (swim의 주어)"
   ],
   [
    "every year.",
@@ -2035,8 +2035,8 @@
  ],
  "add01|6-4": [
   [
-   "Never {a|have}",
-   "부정어 도치 : have + 주어 + p.p."
+   "{k|Never} {a|have}",
+   "!부정어 Never 문두 : have + 주어 + p.p. (현재완료 도치)"
   ],
   [
    "the people of the village",
@@ -2044,17 +2044,17 @@
   ],
   [
    "{v|entered} the forest at night.",
-   ""
+   "have ... entered : 현재완료 (도치로 분리)"
   ]
  ],
  "add01|6-5": [
   [
    "On the driveway",
-   "장소 부사구 도치 : 주어가 동사 뒤"
+   "!장소 부사구 도치 : 동사 + 주어 (a new red car)"
   ],
   [
    "{a|was} parked",
-   ""
+   "수동태 : be + p.p."
   ],
   [
    "a new red car,",
@@ -2066,7 +2066,7 @@
   ],
   [
    "from Harrison to his son.",
-   ""
+   "a gift from A to B : A가 B에게 준 선물"
   ]
  ]
 }

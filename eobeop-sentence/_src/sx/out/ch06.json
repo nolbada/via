@@ -1,8 +1,8 @@
 {
  "c06p1|예제": [
   [
-   "It {v|is} so important",
-   ""
+   "{k|It} {v|is} so important",
+   "가주어 It : to recognize ~가 진짜 주어"
   ],
   [
    "【{a|to recognize} the impacts",
@@ -10,7 +10,7 @@
   ],
   [
    "【{c|that} new technologies {v|will have} for our world.】】",
-   "목적격 관계대명사절 : impacts를 꾸밈"
+   "!목적격 관계대명사 + 불완전한 문장 (have 뒤 목적어 없음)"
   ]
  ],
  "c06p1|1": [
@@ -20,11 +20,11 @@
   ],
   [
    "{v|wear} masks {c|and} gloves",
-   ""
+   "병렬 : masks와 gloves 연결"
   ],
   [
    "【{a|to prevent}",
-   "to부정사 (부사적) : 목적"
+   "!동사 wear가 이미 있다 : 목적은 to V"
   ],
   [
    "the spread of viruses.】",
@@ -46,7 +46,7 @@
   ],
   [
    "happily on the swings {c|and} slides.",
-   ""
+   "병렬 : swings와 slides 연결"
   ]
  ],
  "c06p1|3": [
@@ -60,21 +60,21 @@
   ],
   [
    "{a|soaked}",
-   ""
+   "!pouring은 수식어 : 본동사는 따로 필요"
   ],
   [
    "everyone at the bus stop.",
-   ""
+   "soak + 목적어 : ~을 흠뻑 적시다"
   ]
  ],
  "c06p1|4": [
   [
    "Sometimes, 【{a|restricting} the number of items",
-   "동명사구 : 문장의 주어"
+   "동명사구 : 문장의 주어 (단수 취급)"
   ],
   [
    "【{c|that} customers {v|can buy}】】",
-   "목적격 관계대명사절 : items를 꾸밈"
+   "!목적격 관계대명사 + 불완전한 문장 (buy 뒤 목적어 없음)"
   ],
   [
    "{v|increases} sales.",
@@ -84,7 +84,7 @@
  "c06p1|5": [
   [
    "{p|Taking} notes",
-   "동명사 : 주어 역할"
+   "동명사 : 주어 역할 (~하는 것)"
   ],
   [
    "{v|is} a helpful way",
@@ -96,7 +96,7 @@
   ],
   [
    "during a lecture.】",
-   ""
+   "during + 명사 : ~ 동안"
   ]
  ],
  "c06p1|6": [
@@ -114,7 +114,7 @@
   ],
   [
    "{c|and} {p|giving} back to the community.】",
-   "병렬 : 동명사 두 개 연결"
+   "병렬 : supporting과 giving back 연결"
   ]
  ],
  "c06p1|7": [
@@ -128,7 +128,7 @@
   ],
   [
    "{a|kill}",
-   ""
+   "!주어는 복수 diseases : 동사 kill"
   ],
   [
    "not just the fish in the farms,",
@@ -136,7 +136,7 @@
   ],
   [
    "{c|but} wild fish too.",
-   ""
+   "병렬 : the fish와 wild fish 연결"
   ]
  ],
  "c06p1|8": [
@@ -150,13 +150,13 @@
   ],
   [
    "{v|is} 【{a|improving} cultural understanding.】",
-   "동명사구 : 보어 역할"
+   "동명사구 : 보어 역할 (~하는 것)"
   ]
  ],
  "c06p2|예제": [
   [
    "【{c|If} we {v|continue} 【{p|to} destroy natural habitats with roads,】】",
-   "조건절 : continue + to부정사"
+   "조건 부사절 : continue + to V (계속 ~하다)"
   ],
   [
    "the wildlife there",
@@ -168,7 +168,7 @@
   ],
   [
    "{a|using} the areas.",
-   "stop + 동명사 : ~하는 것을 멈추다"
+   "!stop + 동명사 : ~하는 것을 멈추다"
   ]
  ],
  "c06p2|1": [
@@ -178,7 +178,7 @@
   ],
   [
    "{v|decided}",
-   ""
+   "decide + to V : ~하기로 결정하다"
   ],
   [
    "【{a|to go}",
@@ -186,7 +186,7 @@
   ],
   [
    "to a music school in New York.】",
-   ""
+   "전치사 to + 명사 (to V의 to 아님)"
   ]
  ],
  "c06p2|2": [
@@ -204,7 +204,7 @@
   ],
   [
    "【{c|before} the guests {v|arrive} for the party.】",
-   "시간 부사절 : ~하기 전에"
+   "!시간 부사절은 미래 대신 현재형 arrive"
   ]
  ],
  "c06p2|3": [
@@ -214,7 +214,7 @@
   ],
   [
    "always {v|refuses}",
-   "refuse + to부정사 : ~하기를 거부하다"
+   "refuse + to V : ~하기를 거부하다"
   ],
   [
    "{a|to eat} onions",
@@ -227,8 +227,8 @@
  ],
  "c06p2|4": [
   [
-   "【{p|Based} on a 2019 survey,】",
-   "Based on : ~에 근거하면"
+   "【{o|Being} {p|Based} on a 2019 survey,】",
+   "분사구문 : (Being) Based on ~에 근거하면"
   ],
   [
    "children",
@@ -254,7 +254,7 @@
   ],
   [
    "{v|should stop}",
-   "stop + to부정사 : ~하기 위해 멈추다"
+   "!stop + to V : ~하기 위해 멈추다 (목적)"
   ],
   [
    "{a|to get} some gasoline",
@@ -262,7 +262,7 @@
   ],
   [
    "【{c|before} you {v|enter} the highway.】",
-   ""
+   "시간 부사절 : before + 주어 + 동사"
   ]
  ],
  "c06p2|6": [
@@ -272,7 +272,7 @@
   ],
   [
    "{v|chose}",
-   "choose + to부정사 : ~하기로 선택하다"
+   "choose + to V : ~하기로 선택하다"
   ],
   [
    "{a|to start} her own business",
@@ -280,7 +280,7 @@
   ],
   [
    "{c|rather than} {p|to} work for someone else.",
-   "rather than : ~보다는, ~ 대신에"
+   "rather than : ~보다는 (to start와 병렬)"
   ]
  ],
  "c06p2|7": [
@@ -298,7 +298,7 @@
   ],
   [
    "【{p|to} create more living space.】",
-   "to부정사 (부사적) : 목적"
+   "to부정사 (부사적) : 목적 ~하기 위해"
   ]
  ],
  "c06p2|8": [
@@ -308,7 +308,7 @@
   ],
   [
    "{v|don’t mind}",
-   "mind + 동명사 : ~을 꺼리다"
+   "mind + 동명사 : ~하는 것을 꺼리다"
   ],
   [
    "{a|waiting} a few more minutes",
@@ -316,7 +316,7 @@
   ],
   [
    "for Steve {p|to} arrive.",
-   "wait for A to부정사 : A가 ~하기를 기다리다"
+   "for A to V : A가 ~하기를 (의미상 주어)"
   ]
  ],
  "c06p3|예제": [
@@ -330,7 +330,7 @@
   ],
   [
    "{v|forgot}",
-   "forget + to부정사 : ~할 것을 잊다"
+   "forget + to V : ~할 것을 잊다"
   ],
   [
    "{a|to take} pictures of you,",
@@ -338,7 +338,7 @@
   ],
   [
    "【{c|even though} they {v|took} many 【{c|when} you {v|were born}.】】",
-   "양보 부사절 : ~에도 불구하고"
+   "양보 부사절 : 안에 시간절 when you were born"
   ]
  ],
  "c06p3|1": [
@@ -356,7 +356,7 @@
   ],
   [
    "repeatedly as a child.",
-   ""
+   "repeatedly : 반복해서"
   ]
  ],
  "c06p3|2": [
@@ -366,7 +366,7 @@
   ],
   [
    "{v|started}",
-   "start : 동명사·to부정사 모두 가능"
+   "start : 동명사·to부정사 둘 다 가능"
   ],
   [
    "{a|to plan} a birthday party",
@@ -384,7 +384,7 @@
   ],
   [
    "{v|regret}",
-   "regret + to부정사 : ~하게 되어 유감이다"
+   "regret + to V : ~하게 되어 유감이다"
   ],
   [
    "{a|to inform} you,",
@@ -392,7 +392,7 @@
   ],
   [
    "{c|but} your flight {v|will be delayed} by two hours.",
-   "but : 앞뒤 절을 대등하게 연결"
+   "but : 앞뒤 절을 대등하게 연결 (절 + 절)"
   ]
  ],
  "c06p3|4": [
@@ -410,7 +410,7 @@
   ],
   [
    "{c|and} {v|didn’t show up}.",
-   "병렬 : 동사 두 개 연결"
+   "병렬 : forgot과 didn’t show up 연결"
   ]
  ],
  "c06p3|5": [
@@ -428,17 +428,17 @@
   ],
   [
    "{c|and} {v|tried}",
-   "병렬 : 동사 두 개 연결"
+   "병렬 : sat down과 tried 연결"
   ],
   [
    "{a|to listen} for its sound.",
-   "try + to부정사 : ~하려고 노력하다"
+   "try + to V : ~하려고 노력하다"
   ]
  ],
  "c06p4|예제": [
   [
    "In {p|speaking},",
-   "전치사 + 동명사"
+   "전치사 In + 동명사 : 말할 때"
   ],
   [
    "more words",
@@ -449,12 +449,12 @@
    ""
   ],
   [
-   "{a|to express} the same idea",
-   "to부정사 (부사적) : 목적"
+   "{p|to} {a|express} the same idea",
+   "to부정사 (부사적) : 목적 ~하기 위해"
   ],
   [
    "【{c|than} in writing.】",
-   "more ~ than : ~보다 더 많은"
+   "more ~ than : ~보다 더 많은 (비교급)"
   ]
  ],
  "c06p4|1": [
@@ -463,12 +463,12 @@
    ""
   ],
   [
-   "{v|look forward}",
-   ""
+   "{v|look} forward",
+   "look forward to + 동명사 : ~을 고대하다"
   ],
   [
    "to {a|meeting} you",
-   "look forward to + 동명사 : ~을 고대하다"
+   "!to는 전치사 : 뒤에 동명사"
   ],
   [
    "at the seminar next week.",
@@ -489,12 +489,12 @@
    ""
   ],
   [
-   "{a|to hear} the opinions",
+   "{p|to} {a|hear} the opinions",
    ""
   ],
   [
-   "of people 【they {v|know}.】",
-   "목적격 관계대명사 생략 : people을 꾸밈"
+   "of people {o|whom} 【they {v|know}.】",
+   "목적격 관계대명사 (생략) : people을 꾸밈"
   ]
  ],
  "c06p4|3": [
@@ -512,7 +512,7 @@
   ],
   [
    "{c|so} she {v|felt} nervous during her speech.",
-   "so : 그래서 (결과)"
+   "so : 그래서 (결과를 이끄는 접속사)"
   ]
  ],
  "c06p4|4": [
@@ -522,11 +522,11 @@
   ],
   [
    "【{c|who} {v|fails} {p|to} {a|show} ID】",
-   "주격 관계대명사절 : Anyone을 꾸밈"
+   "!fail to V : ~하지 못하다 (to부정사만)"
   ],
   [
    "{v|will not be allowed} {p|to} enter the building.",
-   "be allowed + to부정사 : ~하도록 허락되다"
+   "be allowed to V : ~하도록 허락되다 (수동태)"
   ]
  ],
  "c06p4|5": [
@@ -535,12 +535,12 @@
    ""
   ],
   [
-   "{v|came close}",
-   ""
+   "{v|came} {k|close}",
+   "come close to + 동명사 : ~에 근접하다"
   ],
   [
    "to {a|breaking} the world record",
-   "전치사 to + 동명사"
+   "!이 to는 전치사 : 뒤에 동명사"
   ],
   [
    "for the high jump.",
@@ -554,11 +554,11 @@
   ],
   [
    "{v|was} part of the international group’s campaign",
-   ""
+   "be동사 + part of ~ : ~의 일부이다"
   ],
   [
    "【{a|to build}",
-   "to부정사 (형용사적) : campaign을 꾸밈"
+   "to부정사 (형용사적) : campaign을 꾸밈 (능동)"
   ],
   [
    "houses",
@@ -580,7 +580,7 @@
   ],
   [
    "{a|being evaluated}",
-   "동명사 수동형 : 평가되는 것"
+   "!동명사 수동형 : employees가 평가받는 대상"
   ],
   [
    "for their performance.",
@@ -594,11 +594,11 @@
   ],
   [
    "{v|are taking} yoga classes",
-   ""
+   "be -ing : 현재진행형 (are taking)"
   ],
   [
    "【{a|to reduce}",
-   "to부정사 (부사적) : 목적"
+   "to부정사 (부사적) : 목적 ~하기 위해"
   ],
   [
    "stress.】",
@@ -612,7 +612,7 @@
   ],
   [
    "{v|decided} {p|to} put off",
-   "decide + to부정사 : ~하기로 결정하다"
+   "decide + to V : ~하기로 결정하다"
   ],
   [
    "{a|cleaning} the house",
@@ -626,7 +626,7 @@
  "c06p5|4": [
   [
    "【{p|Feeling} worried,】",
-   "분사구문 : 걱정하면서"
+   "분사구문 : 걱정하면서 (동시 상황)"
   ],
   [
    "I",
@@ -642,17 +642,17 @@
   ],
   [
    "{v|was} nowhere",
-   "to부정사 (형용사적) : nowhere를 꾸밈"
+   ""
   ],
   [
-   "{a|to be found}.",
-   "수동형 to부정사 : 발견될"
+   "{p|to} {a|be found}.",
+   "to부정사 (형용사적) : nowhere를 꾸밈"
   ]
  ],
  "c06p5|5": [
   [
    "【{a|Being selected}",
-   "동명사구 (수동형) : 주어 역할"
+   "동명사구 (수동형) : 주어 ~로 선택되는 것"
   ],
   [
    "as the leader of a group】",
@@ -660,7 +660,7 @@
   ],
   [
    "{v|is} a great honor for anyone.",
-   ""
+   "!주어가 동명사구 : 동사 is (단수)"
   ]
  ],
  "c06p6|예제": [
@@ -678,7 +678,7 @@
   ],
   [
    "【for people",
-   "for A : to부정사의 의미상 주어"
+   "for A : to부정사의 의미상 주어 (A가 ~하는)"
   ],
   [
    "{a|to express} important personal beliefs.】",
@@ -692,7 +692,7 @@
   ],
   [
    "{v|hoped}",
-   ""
+   "hope for A to V : A가 ~하기를 바라다"
   ],
   [
    "for her",
@@ -714,11 +714,11 @@
   ],
   [
    "{v|should not prevent}",
-   ""
+   "prevent + 목적어 : ~을 막다"
   ],
   [
    "our flight’s",
-   "소유격 : 동명사의 의미상 주어"
+   "소유격 our flight’s : 동명사 의미상 주어"
   ],
   [
    "{a|leaving}",
@@ -736,7 +736,7 @@
   ],
   [
    "{v|congratulated}",
-   ""
+   "congratulate + 목적어 : ~을 축하하다"
   ],
   [
    "his",
@@ -762,11 +762,11 @@
   ],
   [
    "{c|but} some concepts",
-   ""
+   "but : 앞뒤 절을 대등하게 연결 (절 + 절)"
   ],
   [
    "{v|are} too difficult",
-   "too ~ to 구문 : 너무 ~해서 …못하다"
+   "too ~ to V : 너무 ~해서 …할 수 없다"
   ],
   [
    "for them",
@@ -784,15 +784,15 @@
   ],
   [
    "{v|are patiently waiting}",
-   ""
+   "be -ing : 현재진행형 (are waiting)"
   ],
   [
    "for the new version of the movie",
-   "for A : to부정사의 의미상 주어"
+   "wait for A to V : A가 ~하기를 기다리다"
   ],
   [
-   "{a|to be released}.",
-   "수동형 to부정사 : 개봉되다"
+   "{p|to} {a|be released}.",
+   "수동형 to부정사 : 영화가 개봉되다"
   ]
  ],
  "c06q1|1": [
@@ -810,7 +810,7 @@
   ],
   [
    "passionately to the lively music.",
-   ""
+   "전치사 to + 명사 : ~에 맞춰"
   ]
  ],
  "c06q1|2": [
@@ -844,7 +844,7 @@
  "c06q1|4": [
   [
    "Please {v|remember}",
-   "remember + to부정사 : ~할 것을 기억하다"
+   "!remember + to V : 앞으로 할 일을 기억"
   ],
   [
    "{a|to take} your medicine",
@@ -852,7 +852,7 @@
   ],
   [
    "every six hours for the next three days.",
-   ""
+   "every + 숫자 + 복수명사 : ~마다"
   ]
  ],
  "c06q1|5": [
@@ -861,7 +861,7 @@
    ""
   ],
   [
-   "{v|is} accustomed to {a|eating} spicy food",
+   "{v|is} {k|accustomed to} {a|eating} spicy food",
    "be accustomed to + 동명사 : ~에 익숙하다"
   ],
   [
@@ -880,7 +880,7 @@
   ],
   [
    "{v|can avoid} the spread of negative reviews about your product",
-   ""
+   "avoid + 동명사 : ~을 피하다 (the spread가 목적어)"
   ],
   [
    "by {a|checking} your customer’s satisfaction after a sale.",
@@ -897,11 +897,11 @@
    ""
   ],
   [
-   "【{c|so} he {v|could work}】",
-   "so : ~하도록 (목적)"
+   "【{c|so} {o|that} he {v|could work}",
+   "so (that) : ~하도록 (목적)"
   ],
   [
-   "without {a|being disturbed}.",
+   "without {a|being disturbed}.】",
    "전치사 + 동명사 수동형 : 방해받는 것 없이"
   ]
  ],
@@ -940,7 +940,7 @@
   ],
   [
    "from the {p|fallen} truck",
-   "전치사구 : The oil을 꾸밈"
+   "from + 명사 : The oil을 꾸밈 (fallen 쓰러진)"
   ],
   [
    "{a|made} the road dirty, slippery, {c|and} dangerous.",
@@ -1044,7 +1044,7 @@
   ],
   [
    "It {v|was} so {p|thrilling}!",
-   ""
+   "현재분사형 형용사 : 짜릿한 (감정을 주는)"
   ]
  ],
  "c06q2|5": [
@@ -1058,7 +1058,7 @@
   ],
   [
    "{a|include} milk, eggs, {c|and} bread.",
-   ""
+   "!주어 items(복수) : 동사 include"
   ]
  ],
  "c06q2|6": [
@@ -1094,7 +1094,7 @@
   ],
   [
    "{c|so} we {v|cannot get} inside",
-   ""
+   "so : 그래서 (결과)"
   ],
   [
    "【{c|until} someone {v|brings} the key.】",
@@ -1152,7 +1152,7 @@
   ],
   [
    "with a good book {c|and} a cup of tea at home.",
-   ""
+   "병렬 : a good book과 a cup of tea"
   ]
  ],
  "c06q2|11": [
@@ -1166,7 +1166,7 @@
   ],
   [
    "{a|say} 【{c|that} it {v|is} absolutely beautiful.】",
-   "that절 : say의 목적어"
+   "!주어 Tourists(복수) : 동사 say"
   ]
  ],
  "c06q2|12": [
@@ -1176,7 +1176,7 @@
   ],
   [
    "it",
-   "가주어 it"
+   "가주어 it : for A to V가 진짜 주어"
   ],
   [
    "{v|will be} necessary",
@@ -1187,7 +1187,7 @@
    "for A : to부정사의 의미상 주어"
   ],
   [
-   "{a|to be designed} very well.】",
+   "{p|to} {a|be designed} very well.】",
    "수동형 to부정사 : 진짜 주어"
   ]
  ],
@@ -1224,7 +1224,7 @@
   ],
   [
    "a million people to Mars by 2050.",
-   ""
+   "by + 시점 : ~까지"
   ]
  ],
  "c06s1|2-(A)": [
@@ -1246,7 +1246,7 @@
   ],
   [
    "with the constant noise.",
-   ""
+   "deal with : ~을 다루다 (처리하다)"
   ]
  ],
  "c06s1|2-(B)": [
@@ -1260,7 +1260,7 @@
   ],
   [
    "to a peaceful home in the countryside,",
-   ""
+   "to a peaceful home : 전치사 to + 명사"
   ],
   [
    "I",
@@ -1294,7 +1294,7 @@
   ],
   [
    "a {p|cooking} class.",
-   ""
+   "동명사 cooking : ~용 (a cooking class)"
   ]
  ],
  "c06s1|3-(B)": [
@@ -1316,7 +1316,7 @@
   ],
   [
    "(B) {a|be inspired}",
-   ""
+   "수동형 to부정사 : be inspired (영감을 받다)"
   ],
   [
    "in the kitchen {c|and} discover new flavors.",
@@ -1342,7 +1342,7 @@
   ],
   [
    "in the water like fish.",
-   ""
+   "like + 명사 : ~처럼 (전치사)"
   ]
  ],
  "c06s1|4-②": [
@@ -1388,7 +1388,7 @@
  "c06s1|5-①": [
   [
    "A funny {c|and} interesting characteristic",
-   ""
+   "병렬 : funny와 interesting 연결"
   ],
   [
    "of cartoon animals",
@@ -1399,8 +1399,8 @@
    ""
   ],
   [
-   "their",
-   "소유격 : 동명사의 의미상 주어"
+   "{k|their}",
+   "소유격 their : 동명사의 의미상 주어"
   ],
   [
    "{a|resembling}",
@@ -1418,15 +1418,15 @@
   ],
   [
    "the cartoon animal’s face {c|or} feet】",
-   ""
+   "병렬 : face와 feet 연결"
   ],
   [
    "{v|is}",
    ""
   ],
   [
-   "something 【cartoonists often {v|do}.】",
-   "목적격 관계대명사 생략 : something을 꾸밈"
+   "something {o|that} 【cartoonists often {v|do}.】",
+   "목적격 관계대명사 (생략) : something 꾸밈"
   ]
  ],
  "c06s1|5-③": [
@@ -1448,7 +1448,7 @@
   ],
   [
    "the characters friendly to kids.】",
-   ""
+   "make + O + 형용사 : …을 ~하게 만들다"
   ]
  ],
  "c06s1|6-1": [
@@ -1519,7 +1519,7 @@
    ""
   ],
   [
-   "{c|and} {v|can respond} quickly and effectively.",
+   "{c|and} {v|can respond} quickly {c|and} effectively.",
    "병렬 : remembers와 can respond 연결"
   ]
  ],
@@ -1538,7 +1538,7 @@
   ],
   [
    "{v|can lower}",
-   ""
+   "!조동사 can + 동사원형 lower"
   ],
   [
    "your monthly electricity costs.",
@@ -1570,7 +1570,7 @@
  "add06|1-3": [
   [
    "The cows {c|and} goats",
-   ""
+   "병렬 : cows와 goats 연결"
   ],
   [
    "on the farm",
@@ -1617,7 +1617,7 @@
  ],
  "add06|1-5": [
   [
-   "It",
+   "{k|It}",
    "가주어 It"
   ],
   [
@@ -1670,7 +1670,7 @@
   ],
   [
    "her car to work",
-   ""
+   "take A to work : A를 타고 출근하다"
   ],
   [
    "【{c|when} gasoline prices {v|became} too expensive.】",
@@ -1846,7 +1846,7 @@
  "add06|3-5": [
   [
    "My friends {c|and} I",
-   ""
+   "병렬 : My friends와 I 연결"
   ],
   [
    "{v|tried}",
@@ -1884,7 +1884,7 @@
   ],
   [
    "{p|unwanted} files from a computer.",
-   ""
+   "unwanted : 원치 않는 (과거분사 형용사)"
   ]
  ],
  "add06|4-2": [
@@ -1920,7 +1920,7 @@
   ],
   [
    "a passport {c|and} a visa",
-   ""
+   "병렬 : a passport와 a visa 연결"
   ],
   [
    "{p|to} {a|enter}",
@@ -1985,8 +1985,8 @@
    "need + to부정사 : ~할 필요가 있다"
   ],
   [
-   "{a|to be given}",
-   "수동형 to부정사 : ~을 받을"
+   "{p|to} {a|be given}",
+   "!4형식 수동태 : be given 뒤에 something이 남음"
   ],
   [
    "something 【{p|to} do】",
@@ -2016,13 +2016,13 @@
   ],
   [
    "the army after high school.",
-   ""
+   "after + 명사 : ~ 후에"
   ]
  ],
  "add06|5-3": [
   [
    "The {p|injured} animals",
-   ""
+   "과거분사 : 다친 (animals를 꾸밈)"
   ],
   [
    "{v|receive}",
@@ -2078,7 +2078,7 @@
   ],
   [
    "{v|is}",
-   ""
+   "!주어가 동명사구 : 동사 is (단수)"
   ],
   [
    "better than {p|having} no job at all.",
@@ -2099,12 +2099,12 @@
    "for A : to부정사의 의미상 주어"
   ],
   [
-   "{a|to be published}",
+   "{p|to} {a|be published}",
    "수동형 to부정사 : 출판되다"
   ],
   [
    "before the end of the year.",
-   ""
+   "before + 명사 : ~ 전에"
   ]
  ],
  "add06|6-2": [
@@ -2139,12 +2139,12 @@
    ""
   ],
   [
-   "【important for users {p|to} {a|know}】",
-   "important ~ to know : information을 꾸밈"
+   "【{o|which is} important for users {p|to} {a|know}】",
+   "주격 관계대명사 + be 생략 : information 꾸밈"
   ],
   [
    "{v|can be found}",
-   ""
+   "can + be p.p. : ~될 수 있다"
   ],
   [
    "on the front page of the website.",
@@ -2179,20 +2179,20 @@
    ""
   ],
   [
-   "【it {v|could take} weeks",
-   "said 뒤 that이 생략됨"
+   "【{o|that} {k|it} {v|could take} weeks",
+   "that 생략 : said의 목적어 (명사절)"
   ],
   [
    "for the city streets",
    "for A : to부정사의 의미상 주어"
   ],
   [
-   "{a|to be cleared}",
-   "수동형 to부정사 : be cleared of ~"
+   "{p|to} {a|be cleared}",
+   "수동형 to부정사 : 거리가 치워짐"
   ],
   [
    "of {p|fallen} trees after the storm.】",
-   ""
+   "clear A of B : A에서 B를 치우다"
   ]
  ]
 }

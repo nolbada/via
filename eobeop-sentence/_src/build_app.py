@@ -17,15 +17,19 @@ for n in range(1,15):
     px=f'{lib.BASE}/sx/out/ch{n:02d}.json'
     if os.path.exists(px):
         sx=json.load(open(px,encoding='utf-8'))
+        p2=f'{lib.BASE}/sx/out2/ch{n:02d}.json'
+        sx2=json.load(open(p2,encoding='utf-8')) if os.path.exists(p2) else {}
         for st_ in sets:
             if st_['id'].endswith('s2'): continue
             for it in st_['items']:
                 v=sx.get(st_['id']+'|'+str(it['no']))
                 if v: it['sx']=v
+                v2=sx2.get(st_['id']+'|'+str(it['no']))
+                if v2: it['sx2']=v2
     open(f'{out}/d/ch{n:02d}.js','w',encoding='utf-8').write('window.DB['+str(n)+']='+json.dumps(sets,ensure_ascii=False,separators=(',',':'))+';')
     files.append(f'./d/ch{n:02d}.js')
     meta.append(dict(n=n,t=CH[str(n)],sets=[dict(id=s['id'],title=s['title'],sub=s['sub'],page=s['page'],n=len(s['items'])) for s in sets]))
-t=open(f'{lib.BASE}/template3.html',encoding='utf-8').read().replace('__META__',json.dumps(meta,ensure_ascii=False,separators=(',',':')))
+t=open(f'{lib.BASE}/template3.html',encoding='utf-8').read().replace('/*__SXR_CSS__*/',open(f'{lib.BASE}/sx/sxr.css',encoding='utf-8').read()).replace('/*__SXR_JS__*/',open(f'{lib.BASE}/sx/sxr.js',encoding='utf-8').read()).replace('__META__',json.dumps(meta,ensure_ascii=False,separators=(',',':')))
 open(out+'/index.html','w',encoding='utf-8').write(t)
 ver=sys.argv[2] if len(sys.argv)>2 else 'v6'
 sw=f"""var C='eobeop-sent-{ver}';

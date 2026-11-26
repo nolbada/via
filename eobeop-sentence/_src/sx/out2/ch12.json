@@ -1,0 +1,1509 @@
+{
+ "c12p1|예제": {
+  "pt": [
+   "analytic",
+   "동사 think를 꾸미는 말은 부사"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ],
+   [
+    1,
+    3,
+    "par",
+    "병렬"
+   ]
+  ],
+  "st": [
+   "동사를 꾸미면 부사, 명사를 꾸미면 형용사",
+   [
+    "① 동사 수식 : 부사 (think analytically, 분석적으로 생각하다)",
+    "② 명사 수식 : 형용사 (analytical thinking, 분석적 사고)"
+   ]
+  ]
+ },
+ "c12p1|1": {
+  "pt": [
+   "fully",
+   "명사 basket 뒤에서 꾸미는 말은 형용사"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ],
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12p1|2": {
+  "pt": [
+   "relative",
+   "형용사 positive를 꾸미는 말은 부사"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ],
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "부사 + 형용사 + 명사",
+   [
+    "① 부사 + 형용사 : relatively positive (비교적 긍정적인)",
+    "② 그 덩어리가 명사 reviews(평가)를 꾸민다"
+   ]
+  ]
+ },
+ "c12p1|3": {
+  "pt": [
+   "strongly",
+   "명사 emotions 앞은 형용사 자리"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12p1|4": {
+  "pt": [
+   "inexpensive",
+   "동사 사이의 수식어는 부사"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12p1|5": {
+  "pt": [
+   "importantly",
+   "명사 discoveries 앞은 형용사 자리"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12p1|6": {
+  "pt": [
+   "main",
+   "be동사와 about 사이 수식어는 부사"
+  ],
+  "rel": [],
+  "st": [
+   "be동사 뒤 : 형용사 vs 부사",
+   [
+    "① be + 형용사 : 보어 (The lesson was easy. 쉬웠다)",
+    "② be + 부사 + 전치사구 : 부사가 꾸밈 (were mainly about)"
+   ]
+  ]
+ },
+ "c12p1|7": {
+  "pt": [
+   "creative",
+   "동사 think를 꾸미는 말은 부사"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12p1|8": {
+  "pt": [
+   "similarly",
+   "명사 salary 뒤에서 꾸미는 말은 형용사"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "one이 가리키는 것",
+   [
+    "① the one = the + 단수명사 (여기서는 the salary, 급여)",
+    "② the ones = the + 복수명사 (복수일 때)"
+   ]
+  ]
+ },
+ "c12p2|예제": {
+  "pt": [
+   "comfortably",
+   "remain 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "par",
+    "병렬"
+   ],
+   [
+    3,
+    2,
+    "eq",
+    "보어"
+   ]
+  ],
+  "st": [
+   "보어 자리에는 형용사",
+   [
+    "① remain / stay / keep + 형용사 : ~한 채로 있다",
+    "② 부사는 보어가 될 수 없다 (remain comfortably 아님)"
+   ]
+  ]
+ },
+ "c12p2|1": {
+  "pt": [
+   "pleasantly",
+   "seem 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "보어"
+   ]
+  ]
+ },
+ "c12p2|2": {
+  "pt": [
+   "hasty",
+   "be동사와 과거분사 사이는 부사 자리"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "be + 부사 + 과거분사",
+   [
+    "① 수동태 사이의 수식어 : 부사 (was hastily typed)",
+    "② 형용사는 명사·보어 자리 (a hasty decision, 성급한 결정)"
+   ]
+  ]
+ },
+ "c12p2|3": {
+  "pt": [
+   "unhappily",
+   "make + 목적어 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "eq",
+    "목적보어"
+   ]
+  ],
+  "st": [
+   "5형식 make + O + 형용사",
+   [
+    "① make / keep / find / leave + O + 형용사 : O를 ~하게 하다",
+    "② 목적보어는 목적어의 상태를 설명 : us = unhappy"
+   ]
+  ]
+ },
+ "c12p2|4": {
+  "pt": [
+   "warmly",
+   "keep 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "eq",
+    ""
+   ]
+  ],
+  "st": [
+   "keep + 형용사",
+   [
+    "① keep + 형용사 : ~한 상태로 있다 (keep warm)",
+    "② keep + O + 형용사 : O를 ~하게 유지 (keep it warm)"
+   ]
+  ]
+ },
+ "c12p2|5": {
+  "pt": [
+   "softly",
+   "be동사 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12p2|6": {
+  "pt": [
+   "difficultly",
+   "find + it 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "진목적어"
+   ]
+  ],
+  "st": [
+   "가목적어 it 구문",
+   [
+    "① find + it + 형용사 + to V : V하기가 ~하다고 여기다",
+    "② it은 가목적어, to V가 진목적어 (해석은 to V부터)"
+   ]
+  ]
+ },
+ "c12p2|7": {
+  "pt": [
+   "slow",
+   "형용사 darker를 꾸미는 말은 부사"
+  ],
+  "rel": [
+   [
+    1,
+    4,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c12p2|8": {
+  "pt": [
+   "fairly",
+   "sound 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    1,
+    4,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c12p3|예제": {
+  "pt": [
+   "deeply",
+   "명사 breath 앞은 형용사"
+  ],
+  "rel": [
+   [
+    3,
+    4,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "deep / deeply, hard / hardly",
+   [
+    "① deep, hard, close, late : 형용사·부사 모양이 같다",
+    "② deeply(깊이), hardly(거의 ~않다) : 뜻이 달라진다"
+   ]
+  ]
+ },
+ "c12p3|1": {
+  "pt": [
+   "shortly",
+   "make + O 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "eq",
+    "목적보어"
+   ]
+  ],
+  "st": [
+   "명령문 + and / or",
+   [
+    "① 명령문, and ~ : ~해라, 그러면 …할 것이다",
+    "② 명령문, or ~ : ~해라, 그렇지 않으면 …할 것이다"
+   ]
+  ]
+ },
+ "c12p3|2": {
+  "pt": [
+   "hardly",
+   "hardly는 '거의 ~않다'라는 다른 뜻"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12p3|3": {
+  "pt": [
+   "such",
+   "형용사 앞의 그렇게는 that·so (such 아님)"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "that도 부사로 쓰인다",
+   [
+    "① that + 형용사/부사 : 그렇게 ~한 (not that common)",
+    "② so 대신 쓰는 구어체 표현이며 주로 부정문에 쓴다"
+   ]
+  ]
+ },
+ "c12p3|4": {
+  "pt": [
+   "closely",
+   "명사 café 뒤에서 꾸미는 말은 형용사"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ],
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12p3|5": {
+  "pt": [
+   "friendlier",
+   "원급 보어 자리 : -ly여도 friendly는 형용사"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "eq",
+    ""
+   ]
+  ]
+ },
+ "c12p4|예제": {
+  "pt": [
+   "almost",
+   "almost는 부사라서 명사 앞에 못 씀"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "most / almost",
+   [
+    "① most + 명사 : 대부분의 ~ (most coaches)",
+    "② most of the + 명사 : ~의 대부분",
+    "③ almost all / every / any : 거의 ~ (almost는 부사)"
+   ]
+  ]
+ },
+ "c12p4|1": {
+  "pt": [
+   "so",
+   "명사 앞 '그런'은 such (so 아님)"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "such a(n) + 명사 / so + 형용사",
+   [
+    "① such + a(n) + (형용사) + 명사 : such a good idea",
+    "② so + 형용사 + a(n) + 명사 : so good an idea (형용사가 앞)"
+   ]
+  ]
+ },
+ "c12p4|2": {
+  "pt": [
+   "most",
+   "most는 '대부분의' : 부사 앞은 almost"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12p4|3": {
+  "pt": [
+   "such",
+   "such는 명사 앞, 형용사만 꾸미면 so"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "so와 such의 짝",
+   [
+    "① so + 형용사 : so aggressive (그렇게 공격적인)",
+    "② such + (a) + 형용사 + 명사 : such an aggressive person"
+   ]
+  ]
+ },
+ "c12p4|4": {
+  "pt": [
+   "almost",
+   "almost of 형태는 없다 : most of + 명사"
+  ],
+  "rel": [],
+  "st": [
+   "most of / almost all",
+   [
+    "① most of + the/소유격 + 명사 : ~의 대부분",
+    "② almost all (of) + 명사 : 거의 모든 ~"
+   ]
+  ]
+ },
+ "c12p4|5": {
+  "pt": [
+   "so",
+   "형용사 + 명사 앞 '그런'은 such (so 아님)"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12p5|예제": {
+  "pt": [
+   "money enough",
+   "명사를 꾸밀 땐 enough가 명사 앞"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "enough의 자리",
+   [
+    "① enough + 명사 : enough money (충분한 돈)",
+    "② 형용사·부사 + enough : tall enough (충분히 큰)",
+    "③ enough + to부정사 : ~할 만큼 충분한"
+   ]
+  ]
+ },
+ "c12p5|1": {
+  "pt": [
+   "slowly too",
+   "too는 꾸미는 부사 앞에 둔다"
+  ],
+  "rel": []
+ },
+ "c12p5|2": {
+  "pt": [
+   "enough tall",
+   "enough는 형용사 뒤에서 꾸민다"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "~ enough to V 구문",
+   [
+    "① 형용사/부사 + enough + to V : V할 만큼 충분히 ~한",
+    "② not + 형용사 + enough + to V : V하기에 ~하지 않다"
+   ]
+  ]
+ },
+ "c12p5|3": {
+  "pt": [
+   "time enough",
+   "명사를 꾸밀 땐 enough가 명사 앞"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12p5|4": {
+  "pt": [
+   "informal too",
+   "too는 형용사 앞에 쓴다"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "too의 부정적 의미",
+   [
+    "① too + 형용사 : 너무 ~한 (지나쳐서 좋지 않은 뜻)",
+    "② very + 형용사 : 매우 ~한 (정도만 강조)"
+   ]
+  ]
+ },
+ "c12p5|5": {
+  "pt": [
+   "enough fast",
+   "enough는 형용사·부사 뒤에 온다"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12q1|1": {
+  "pt": [
+   "visibly",
+   "명사 peaks를 뒤에서 꾸미는 말은 형용사"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12q1|2": {
+  "pt": [
+   "most",
+   "every 앞의 거의는 almost (most 아님)"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "almost + all / every / any",
+   [
+    "① almost all + 복수명사 / almost every + 단수명사",
+    "② most + 복수명사 : 대부분의 ~ (almost는 앞에 못 둠)"
+   ]
+  ]
+ },
+ "c12q1|3": {
+  "pt": [
+   "fluent",
+   "동사 speak를 꾸미는 말은 부사"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12q1|4": {
+  "pt": [
+   "experience enough",
+   "명사를 꾸밀 땐 enough가 명사 앞"
+  ],
+  "rel": []
+ },
+ "c12q1|5": {
+  "pt": [
+   "freely",
+   "feel 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c12q1|6": {
+  "pt": [
+   "remarkably",
+   "consider + O 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "eq",
+    "목적보어"
+   ]
+  ]
+ },
+ "c12q1|7": {
+  "pt": [
+   "late",
+   "late는 '늦게' : '최근에'는 lately"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "late / lately, hard / hardly",
+   [
+    "① late 늦은·늦게 / lately 최근에",
+    "② hard 열심히 / hardly 거의 ~않다",
+    "③ near 가까운 / nearly 거의"
+   ]
+  ]
+ },
+ "c12q1|8": {
+  "pt": [
+   "easy",
+   "동사 사이의 수식어는 부사"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12q1|9": {
+  "pt": [
+   "confidently",
+   "look 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    0,
+    1,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c12q1|10": {
+  "pt": [
+   "such",
+   "부사 joyfully 앞은 so (such 아님)"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12q1|11": {
+  "pt": [
+   "loud enough",
+   "'~하기엔 너무 ~'는 too + 형용사 + to V"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "too ~ to V / ~ enough to V",
+   [
+    "① too + 형용사 + to V : 너무 ~해서 V할 수 없다 (부정 뜻)",
+    "② 형용사 + enough + to V : V할 만큼 충분히 ~하다 (긍정 뜻)"
+   ]
+  ]
+ },
+ "c12q1|12": {
+  "pt": [
+   "simple",
+   "simply가 by 이하를 꾸미는 부사"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12q2|1": {
+  "pt": [
+   "gentle",
+   "동사 moved를 꾸미는 말은 부사"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12q2|2": {
+  "pt": [
+   "enough big",
+   "enough는 형용사 뒤에 둔다"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12q2|3": {
+  "pt": [
+   "visually",
+   "명사 information 앞은 형용사"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12q2|4": {
+  "pt": [
+   "so",
+   "명사 puzzle이 있어 such a(n) + 형용사 + 명사"
+  ],
+  "rel": [],
+  "st": [
+   "so ~ that / such ~ that",
+   [
+    "① so + 형용사 + that : so difficult that (너무 어려워서)",
+    "② such + a + 형용사 + 명사 + that : such a hard puzzle that"
+   ]
+  ]
+ },
+ "c12q2|5": {
+  "pt": [
+   "nearly",
+   "nearly는 '거의' : '가까이'는 near"
+  ],
+  "rel": [],
+  "st": [
+   "near / nearly",
+   [
+    "① near : 가까이 (부사·전치사·형용사)",
+    "② nearly : 거의 (= almost)"
+   ]
+  ]
+ },
+ "c12q2|6": {
+  "pt": [
+   "total",
+   "형용사 new를 꾸미는 말은 부사"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12q2|7": {
+  "pt": [
+   "close",
+   "동사 사이의 수식어는 부사"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12q2|8": {
+  "pt": [
+   "calmly",
+   "remain 뒤 보어는 형용사"
+  ],
+  "rel": []
+ },
+ "c12q2|9": {
+  "pt": [
+   "almost",
+   "almost는 부사 : 명사 앞에는 most"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12q2|10": {
+  "pt": [
+   "quickly too",
+   "too는 꾸미는 부사 앞에 둔다"
+  ],
+  "rel": []
+ },
+ "c12q2|11": {
+  "pt": [
+   "direct",
+   "동사 speak를 꾸미는 말은 부사"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12q2|12": {
+  "pt": [
+   "openly",
+   "keep + O 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "eq",
+    "목적보어"
+   ]
+  ],
+  "st": [
+   "keep + O + 형용사",
+   [
+    "① keep + O + 형용사 : O를 ~한 상태로 유지하다",
+    "② 목적보어는 목적어의 상태를 설명 : the libraries = open"
+   ]
+  ]
+ },
+ "c12s1|1-(A)": {
+  "pt": [
+   "recent",
+   "동사 updated를 꾸미는 말은 부사"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "recently / recent",
+   [
+    "① recently : 최근에 (부사, 동사를 꾸밈)",
+    "② recent : 최근의 (형용사, recent changes 최근 변화)"
+   ]
+  ]
+ },
+ "c12s1|1-(B)": {
+  "pt": [
+   "totally",
+   "명사 access 앞은 형용사"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12s1|2-1": {
+  "pt": [
+   "have",
+   "last weekend가 있어 과거시제를 쓴다"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12s1|2-(A)": {
+  "pt": [
+   "chairs enough",
+   "명사를 꾸밀 땐 enough가 명사 앞"
+  ],
+  "rel": []
+ },
+ "c12s1|2-(B)": {
+  "pt": [
+   "pleasantly",
+   "be동사 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12s1|3-(A)": {
+  "pt": [
+   "conveniently",
+   "consider + it 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    4,
+    2,
+    "eq",
+    "진목적어"
+   ]
+  ],
+  "st": [
+   "consider + it + 형용사 + to V",
+   [
+    "① consider A B : A를 B라고 여기다",
+    "② A가 긴 to V이면 it으로 대신하고 뒤로 보낸다"
+   ]
+  ]
+ },
+ "c12s1|3-(B)": {
+  "pt": [
+   "most",
+   "all 앞의 거의는 almost (most 아님)"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12s1|4-①": {
+  "pt": [
+   "usefully",
+   "명사 tools를 뒤에서 꾸미는 말은 형용사"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12s1|4-②": {
+  "pt": [
+   "so",
+   "형용사 + 명사 앞의 그런은 such"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c12s1|5-①": {
+  "pt": [
+   "healthily",
+   "seem 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    4,
+    1,
+    "par",
+    "병렬"
+   ],
+   [
+    2,
+    1,
+    "eq",
+    "보어"
+   ]
+  ]
+ },
+ "c12s1|5-②": {
+  "pt": [
+   "elder",
+   "people 앞 '나이 든'은 elderly (elder 아님)"
+  ],
+  "rel": [
+   [
+    3,
+    4,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "-ly로 끝나는 형용사",
+   [
+    "① friendly, lovely, elderly, lonely : 형용사",
+    "② 명사 people 앞에서 꾸미므로 형용사 elderly"
+   ]
+  ]
+ },
+ "c12s1|6-①": {
+  "pt": [
+   "high",
+   "형용사 likely를 꾸미는 말은 부사"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "be likely to V",
+   [
+    "① be (highly) likely to V : ~할 가능성이 높다",
+    "② likely는 형용사, highly가 그것을 꾸미는 부사"
+   ]
+  ]
+ },
+ "c12s1|6-②": {
+  "pt": [
+   "particular",
+   "형용사 comfortable을 꾸미는 말은 부사"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add12|1-1": {
+  "pt": [
+   "particular",
+   "형용사 important를 꾸미는 말은 부사"
+  ],
+  "rel": []
+ },
+ "add12|1-2": {
+  "pt": [
+   "perfectly",
+   "명사 Spanish 앞은 형용사"
+  ],
+  "rel": []
+ },
+ "add12|1-3": {
+  "pt": [
+   "common",
+   "동사 사이의 수식어는 부사"
+  ],
+  "rel": []
+ },
+ "add12|1-4": {
+  "pt": [
+   "comfortably",
+   "명사 guide 뒤에서 꾸미는 말은 형용사"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "명사 뒤에서 꾸미는 형용사구",
+   [
+    "① 명사 + 형용사 + 전치사구 : a guide comfortable with ~",
+    "② 형용사구가 길면 명사 뒤에 둔다 (앞에는 형용사 하나만)"
+   ]
+  ]
+ },
+ "add12|1-5": {
+  "pt": [
+   "direct",
+   "동사 went를 꾸미는 말은 부사"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "direct / directly",
+   [
+    "① directly : 곧장, 직접적으로 (부사)",
+    "② direct : 직접적인 (형용사, a direct flight 직항편)"
+   ]
+  ]
+ },
+ "add12|2-1": {
+  "pt": [
+   "responsibly",
+   "be동사 뒤 보어는 형용사"
+  ],
+  "rel": []
+ },
+ "add12|2-2": {
+  "pt": [
+   "neatly",
+   "keep + O 뒤 보어는 형용사"
+  ],
+  "rel": []
+ },
+ "add12|2-3": {
+  "pt": [
+   "poor",
+   "동사 사이의 수식어는 부사"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add12|2-4": {
+  "pt": [
+   "actively",
+   "remain 뒤 보어는 형용사"
+  ],
+  "rel": [],
+  "st": [
+   "important that + (should) 동사원형",
+   [
+    "① 이성적 판단 형용사 + that절 : (should) + 동사원형",
+    "② important(중요한), necessary(필요한), essential(필수적인) 등"
+   ]
+  ]
+ },
+ "add12|2-5": {
+  "pt": [
+   "correctly",
+   "consider + it 뒤 보어는 형용사"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "eq",
+    "진목적어"
+   ]
+  ]
+ },
+ "add12|3-1": {
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "lovely처럼 -ly 형용사 구별",
+   [
+    "① 명사 + ly : 형용사 (friend 친구 : friendly, love 사랑 : lovely)",
+    "② 형용사 + ly : 부사 (quick : quickly)"
+   ]
+  ]
+ },
+ "add12|3-2": {
+  "pt": [
+   "late",
+   "late는 '늦게' : '최근에'는 lately"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add12|3-3": {
+  "pt": [
+   "deeply",
+   "be동사 뒤 보어는 형용사"
+  ],
+  "rel": []
+ },
+ "add12|3-4": {
+  "pt": [
+   "hardly",
+   "hardly는 '거의 ~않다'라는 다른 뜻"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add12|3-5": {
+  "rel": [],
+  "st": [
+   "long + before / after",
+   [
+    "① long before ~ : ~보다 훨씬 전에",
+    "② long after ~ : ~한 지 한참 뒤에 (long은 부사)"
+   ]
+  ]
+ },
+ "add12|4-1": {
+  "pt": [
+   "most",
+   "부사 fully를 꾸밀 땐 almost (most 아님)"
+  ],
+  "rel": []
+ },
+ "add12|4-2": {
+  "pt": [
+   "such",
+   "형용사만 꾸밀 땐 so (such + 명사)"
+  ],
+  "rel": [
+   [
+    4,
+    5,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add12|4-3": {
+  "pt": [
+   "so",
+   "good friends(형용사 + 명사) 앞은 such"
+  ],
+  "rel": []
+ },
+ "add12|4-4": {
+  "pt": [
+   "almost",
+   "almost는 부사 : 명사 families 앞은 most"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "관계부사 where",
+   [
+    "① 장소 명사 + where + 완전한 문장",
+    "② 관계대명사는 뒤가 불완전, 관계부사는 뒤가 완전"
+   ]
+  ]
+ },
+ "add12|4-5": {
+  "pt": [
+   "so",
+   "a wide range(형용사 + 명사) 앞은 such a"
+  ],
+  "rel": []
+ },
+ "add12|5-1": {
+  "pt": [
+   "enough often",
+   "enough는 부사 뒤에서 꾸민다"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "often enough",
+   [
+    "① 부사 + enough : often enough (충분히 자주)",
+    "② enough는 꾸미는 말 뒤에 둔다 (enough often 아님)"
+   ]
+  ]
+ },
+ "add12|5-2": {
+  "rel": []
+ },
+ "add12|5-3": {
+  "pt": [
+   "information enough",
+   "명사를 꾸밀 땐 enough가 명사 앞"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add12|5-4": {
+  "pt": [
+   "early too",
+   "too는 꾸미는 부사 앞에 둔다"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "add12|5-5": {
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "not old enough to V",
+   [
+    "① not + 형용사 + enough + to V : V할 만큼 ~하지 않다",
+    "② old enough to V : V할 수 있는 나이가 된"
+   ]
+  ]
+ }
+}

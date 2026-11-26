@@ -1,0 +1,1579 @@
+{
+ "c11p1|예제": {
+  "pt": [
+   "that",
+   "복수 brains 대신 : those (that 아님)"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "those = brains"
+   ]
+  ]
+ },
+ "c11p1|1": {
+  "pt": [
+   "it",
+   "앞 sandwiches가 복수 : them"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "par",
+    "대조"
+   ],
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11p1|2": {
+  "pt": [
+   "those",
+   "the view(단수) 대신 : that (those 아님)"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "that = view"
+   ]
+  ],
+  "st": [
+   "that과 those의 구별",
+   [
+    "① that = the + 단수명사 (the view 대신 that)",
+    "② those = the + 복수명사 (the views 대신 those)"
+   ]
+  ]
+ },
+ "c11p1|3": {
+  "pt": [
+   "them",
+   "주어 자리 : 주격 they (them 아님)"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "they=children"
+   ]
+  ]
+ },
+ "c11p1|4": {
+  "pt": [
+   "it",
+   "명사 weight 앞 소유격 : its"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11p1|5": {
+  "pt": [
+   "they",
+   "편지 한 통(one) : 단수 it (they 아님)"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "it = one"
+   ]
+  ]
+ },
+ "c11p1|6": {
+  "pt": [
+   "this",
+   "앞 keys가 복수 : these (this는 단수)"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "eq",
+    "these = keys"
+   ]
+  ]
+ },
+ "c11p1|7": {
+  "pt": [
+   "his",
+   "주어가 복수(Joe and brothers) : their"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "par",
+    "병렬"
+   ]
+  ],
+  "st": [
+   "소유격은 주어에 맞춘다",
+   [
+    "① 주어가 복수 (Joe and his brothers) : their tents (그들의 텐트)",
+    "② 주어가 단수 (Joe) : his tent (그의 텐트)"
+   ]
+  ]
+ },
+ "c11p1|8": {
+  "pt": [
+   "them",
+   "rice는 셀 수 없는 단수 : it (them 아님)"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "it = rice"
+   ]
+  ]
+ },
+ "c11p2|예제": {
+  "pt": [
+   "them",
+   "주어 people과 같은 대상 : themselves"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "eq",
+    "재귀 = 주어"
+   ]
+  ],
+  "st": [
+   "재귀대명사를 쓰는 때",
+   [
+    "① 목적어가 같은 절의 주어와 같은 대상 : themselves",
+    "② 다른 대상이면 목적격 : present them (그들을 보여 주다)"
+   ]
+  ]
+ },
+ "c11p2|1": {
+  "pt": [
+   "you",
+   "명령문의 주어 You와 같은 대상 : yourself"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "par",
+    "명령문 병렬"
+   ]
+  ]
+ },
+ "c11p2|2": {
+  "pt": [
+   "himself",
+   "makes의 주어는 forgiving ~ : 다른 대상 him"
+  ],
+  "st": [
+   "make + O + 동사원형",
+   [
+    "① make + O + 동사원형 : O가 ~하게 만들다",
+    "② O가 행동의 주체 : him이 feel 하는 것 (to feel 아님)"
+   ]
+  ]
+ },
+ "c11p2|3": {
+  "pt": [
+   "it",
+   "주어 The AI robot과 같은 대상 : itself"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "재귀대명사 vs 목적격",
+   [
+    "① 주어와 같은 대상 : thinks of itself (자기 자신을)",
+    "② 주어와 다른 대상이면 목적격 : thinks of it (그것을 생각하다)"
+   ]
+  ]
+ },
+ "c11p2|4": {
+  "pt": [
+   "us",
+   "주어 we와 같은 대상 : ourselves"
+  ],
+  "rel": [
+   [
+    0,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11p2|5": {
+  "pt": [
+   "themselves",
+   "tell의 주어는 their parents : 다른 대상 them"
+  ]
+ },
+ "c11p2|6": {
+  "pt": [
+   "her",
+   "간접목적어가 주어 Sharon과 동일 : herself"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "par",
+    "병렬"
+   ]
+  ],
+  "st": [
+   "get A B : A에게 B를 사 주다",
+   [
+    "① 주어와 같은 대상에게 : got herself a meal",
+    "② 다른 사람에게 : got her a meal (그녀에게 사 줬다)"
+   ]
+  ]
+ },
+ "c11p2|7": {
+  "pt": [
+   "himself",
+   "주어 Liam과 다른 사람(Harry) : him"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "him = Harry"
+   ]
+  ]
+ },
+ "c11p2|8": {
+  "pt": [
+   "it",
+   "주어 The penguin과 같은 대상 : itself"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "방법"
+   ]
+  ]
+ },
+ "c11p3|예제": {
+  "pt": [
+   "that",
+   "앞 computers(복수) 대신 : those"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "par",
+    "A and B"
+   ]
+  ],
+  "st": [
+   "비교 대상은 같은 종류로",
+   [
+    "① computers (복수)와 비교 : those = the computers",
+    "② 단수 명사와 비교하면 that (the difference 대용)"
+   ]
+  ]
+ },
+ "c11p3|1": {
+  "pt": [
+   "those",
+   "the length(단수) 대신 : that"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "eq",
+    "that = length"
+   ]
+  ],
+  "st": [
+   "비교 대상은 같은 종류로",
+   [
+    "① 길이와 길이를 비교 : The length ~ than that(= the length)",
+    "② 길이와 거리를 비교 (×) : than any other street (거리) 는 어색"
+   ]
+  ]
+ },
+ "c11p3|2": {
+  "pt": [
+   "them",
+   "관계사절의 꾸밈을 받는 '사람들' : those"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "those who ~ 표현",
+   [
+    "① those who + 동사 : ~하는 사람들 (복수 취급)",
+    "② those 뒤에는 관계사절·분사구·전치사구가 와서 꾸민다"
+   ]
+  ]
+ },
+ "c11p3|3": {
+  "pt": [
+   "one",
+   "앞의 his mug(특정) 가리킴 : it"
+  ],
+  "rel": [
+   [
+    3,
+    0,
+    "eq",
+    "it = mug"
+   ]
+  ],
+  "st": [
+   "it과 one의 차이",
+   [
+    "① it : 앞에 나온 바로 그 명사 (his mug 자체)",
+    "② one : 같은 종류의 불특정한 것 (buy one : 하나 사다)"
+   ]
+  ]
+ },
+ "c11p3|4": {
+  "pt": [
+   "that",
+   "앞 files(복수) 대신 : those"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "those = files"
+   ]
+  ]
+ },
+ "c11p3|5": {
+  "pt": [
+   "those",
+   "the number(단수) 대신 : that"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "eq",
+    "that = number"
+   ]
+  ]
+ },
+ "c11p4|예제": {
+  "pt": [
+   "one",
+   "복수 ideas 대신 : ones (one 아님)"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c11p4|1": {
+  "pt": [
+   "it",
+   "잃은 우산이 아닌 새것 : one"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "eq",
+    "one = umbrella"
+   ]
+  ],
+  "st": [
+   "one은 불특정한 것",
+   [
+    "① 잃어버린 그 우산 자체는 it",
+    "② 같은 종류의 다른 하나 (새 우산) 는 one"
+   ]
+  ]
+ },
+ "c11p4|2": {
+  "pt": [
+   "it",
+   "앞 paints(복수) 가리킴 : them"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "eq",
+    "them = paints"
+   ]
+  ]
+ },
+ "c11p4|3": {
+  "pt": [
+   "one",
+   "펑크 난 그 타이어 자체 : it"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "eq",
+    "it = tire"
+   ]
+  ]
+ },
+ "c11p4|4": {
+  "pt": [
+   "them",
+   "그 신발이 아닌 더 큰 같은 종류 : ones"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "ones = shoes"
+   ]
+  ]
+ },
+ "c11p4|5": {
+  "pt": [
+   "it",
+   "일반적인 사람을 뜻하는 주어 : one"
+  ],
+  "st": [
+   "일반인을 뜻하는 one",
+   [
+    "① one = 일반적인 사람 (격식체) : one should ~",
+    "② 'a/an 명사' 대신 쓰는 one (buy one : 하나 사다) 과 구분"
+   ]
+  ]
+ },
+ "c11p5|예제": {
+  "pt": [
+   "many",
+   "light는 셀 수 없는 명사 : much"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11p5|1": {
+  "pt": [
+   "few",
+   "information은 셀 수 없음 : little"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11p5|2": {
+  "pt": [
+   "all",
+   "뒤에 단수 country : every (all은 복수)"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "all / every 의 뒤 명사",
+   [
+    "① every + 단수명사 : every country (모든 나라)",
+    "② all + 복수명사 : all countries"
+   ]
+  ]
+ },
+ "c11p5|3": {
+  "pt": [
+   "each",
+   "뒤에 복수 ends : both (each는 단수명사)"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11p5|4": {
+  "pt": [
+   "Much",
+   "dishes는 셀 수 있는 복수 : Many"
+  ],
+  "st": [
+   "many / much",
+   [
+    "① many (of) + 셀 수 있는 복수 : many of the dishes",
+    "② much (of) + 셀 수 없는 명사 : much of the food"
+   ]
+  ]
+ },
+ "c11p5|5": {
+  "pt": [
+   "a little",
+   "books가 복수 : a few (a little 아님)"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11p5|6": {
+  "pt": [
+   "Every",
+   "every of ~는 불가 : All of nature"
+  ]
+ },
+ "c11p5|7": {
+  "pt": [
+   "another",
+   "people이 복수 : other (another는 단수명사)"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11p5|8": {
+  "pt": [
+   "either",
+   "'둘 다 ~않다'는 neither (either는 둘 중 하나)"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "neither of + 복수명사",
+   [
+    "① neither of + 복수명사 + 단수 동사 : 둘 다 ~ 않다",
+    "② neither = not either : 이미 부정이라 not은 같이 쓰지 않는다"
+   ]
+  ]
+ },
+ "c11q1|1": {
+  "pt": [
+   "them",
+   "주어 children과 같은 대상 : themselves"
+  ],
+  "rel": [],
+  "st": [
+   "how to + 동사원형",
+   [
+    "① how to ride : 타는 방법 (의문사 + to부정사 = 명사구)",
+    "② taught A B : A에게 B를 가르치다 (themselves = A)"
+   ]
+  ]
+ },
+ "c11q1|2": {
+  "pt": [
+   "themselves",
+   "collected의 목적어는 seashells : them"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "them=seashells"
+   ]
+  ]
+ },
+ "c11q1|3": {
+  "pt": [
+   "much",
+   "products는 셀 수 있는 복수 : many"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "many / much 구별",
+   [
+    "① many + 셀 수 있는 복수명사 : many products",
+    "② much + 셀 수 없는 명사 : much information"
+   ]
+  ]
+ },
+ "c11q1|4": {
+  "pt": [
+   "it’s",
+   "명사 앞 소유격은 its (it’s = it is)"
+  ]
+ },
+ "c11q1|5": {
+  "pt": [
+   "those",
+   "the heart(단수) 대신 : that"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "par",
+    "병렬"
+   ],
+   [
+    4,
+    0,
+    "eq",
+    "that = heart"
+   ]
+  ],
+  "st": [
+   "비교급을 강조하는 말",
+   [
+    "① much, far, even, still, a lot + 비교급 : 훨씬 ~한",
+    "② very는 비교급을 강조하지 못한다 (very larger ×)"
+   ]
+  ]
+ },
+ "c11q1|6": {
+  "pt": [
+   "few",
+   "time은 셀 수 없음 : little"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11q1|7": {
+  "pt": [
+   "themselves",
+   "purchasing의 목적어는 paintings : them"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ],
+   [
+    4,
+    1,
+    "eq",
+    "them=paintings"
+   ]
+  ]
+ },
+ "c11q1|8": {
+  "pt": [
+   "herself",
+   "주어 she와 다른 사람(Maria) : her"
+  ],
+  "rel": [
+   [
+    4,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11q1|9": {
+  "pt": [
+   "both",
+   "both는 복수명사 앞 : 단수 option엔 either"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "either / both 구별",
+   [
+    "① either + 단수명사 : 둘 중 하나의 ~",
+    "② both + 복수명사 : 둘 다의 ~"
+   ]
+  ]
+ },
+ "c11q1|10": {
+  "pt": [
+   "other",
+   "단수 chance 앞 : another (an + other)"
+  ],
+  "rel": [
+   [
+    3,
+    4,
+    "mod",
+    ""
+   ],
+   [
+    2,
+    1,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c11q1|11": {
+  "pt": [
+   "that",
+   "the flowers(복수) 대신 : those"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "eq",
+    "those=flowers"
+   ]
+  ]
+ },
+ "c11q1|12": {
+  "pt": [
+   "it",
+   "불특정한 영화 하나 : one (it은 특정)"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "eq",
+    "one = movie"
+   ]
+  ]
+ },
+ "c11q2|1": {
+  "pt": [
+   "Every",
+   "members가 복수 : All (every는 단수명사)"
+  ],
+  "rel": [
+   [
+    0,
+    1,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "all / every / each",
+   [
+    "① all + 복수명사 : All members",
+    "② every + 단수명사 : Every member (동사도 단수)"
+   ]
+  ]
+ },
+ "c11q2|2": {
+  "pt": [
+   "its",
+   "주어 Two cities가 복수 : their"
+  ]
+ },
+ "c11q2|3": {
+  "pt": [
+   "them",
+   "the book은 단수 : it"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "it = book"
+   ]
+  ]
+ },
+ "c11q2|4": {
+  "pt": [
+   "you",
+   "find의 목적어가 주어 you와 같음 : yourself"
+  ]
+ },
+ "c11q2|5": {
+  "pt": [
+   "them",
+   "it = the park(단수) : them 아님"
+  ],
+  "rel": [
+   [
+    4,
+    2,
+    "eq",
+    "it = park"
+   ]
+  ],
+  "st": [
+   "stop A from -ing",
+   [
+    "① stop A from -ing : A가 ~하지 못하게 막다",
+    "② prevent(막다), keep(막다) + A from -ing 도 같은 뜻"
+   ]
+  ]
+ },
+ "c11q2|6": {
+  "pt": [
+   "one",
+   "workers 복수 대신 : ones (new + 복수)"
+  ],
+  "rel": [
+   [
+    4,
+    1,
+    "eq",
+    "ones=workers"
+   ]
+  ]
+ },
+ "c11q2|7": {
+  "pt": [
+   "a few",
+   "effort는 셀 수 없음 : a little"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "a little / little",
+   [
+    "① a little + 불가산명사 : 약간 있는 (긍정)",
+    "② little + 불가산명사 : 거의 없는 (부정)"
+   ]
+  ]
+ },
+ "c11q2|8": {
+  "pt": [
+   "that",
+   "앞 houses(복수) 대신 : those"
+  ],
+  "rel": [
+   [
+    3,
+    0,
+    "eq",
+    "those=houses"
+   ]
+  ]
+ },
+ "c11q2|9": {
+  "pt": [
+   "them",
+   "blue cheese는 단수 : it"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "eq",
+    "it = cheese"
+   ],
+   [
+    3,
+    2,
+    "eq",
+    "보어"
+   ]
+  ]
+ },
+ "c11q2|10": {
+  "pt": [
+   "themselves",
+   "주어는 동명사구라 다른 대상 : them"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "eq",
+    "목적보어"
+   ]
+  ],
+  "st": [
+   "allow + O + to V",
+   [
+    "① allow + 목적어 + to V : ~가 …하도록 허락하다",
+    "② 같은 틀 : enable(가능하게 하다), force(강요하다) + O + to V"
+   ]
+  ]
+ },
+ "c11q2|11": {
+  "pt": [
+   "them",
+   "who절의 꾸밈을 받는 '사람들' : those"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11q2|12": {
+  "pt": [
+   "those",
+   "population(단수) 대신 : that"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "that = 인구"
+   ]
+  ]
+ },
+ "c11s1|1-(A)": {
+  "pt": [
+   "one",
+   "복수 trains 대신 : ones (other + 복수)"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "ones = trains"
+   ]
+  ]
+ },
+ "c11s1|1-(B)": {
+  "pt": [
+   "them",
+   "the line은 단수 : it"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "it = line"
+   ]
+  ]
+ },
+ "c11s1|2-(A)": {
+  "pt": [
+   "many",
+   "sand는 셀 수 없음 : much of"
+  ],
+  "st": [
+   "much of / many of",
+   [
+    "① much of + 셀 수 없는 명사 : much of the sand",
+    "② many of + 셀 수 있는 복수 : many of the rocks"
+   ]
+  ]
+ },
+ "c11s1|2-(B)": {
+  "pt": [
+   "those",
+   "the scenery(단수) 대신 : that"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "that=scenery"
+   ],
+   [
+    4,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11s1|3-(A)": {
+  "pt": [
+   "them",
+   "the best school(단수) 가리킴 : it"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "it = school"
+   ]
+  ]
+ },
+ "c11s1|3-(B)": {
+  "pt": [
+   "a little",
+   "children은 셀 수 있는 복수 : a few"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11s1|3-3": {
+  "pt": [
+   "shouting",
+   "완결된 문장의 본동사 : 과거형 shouted"
+  ]
+ },
+ "c11s1|3-(C)": {
+  "pt": [
+   "themselves",
+   "the pair는 주어 Some과 다른 대상 : them"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c11s1|4-①": {
+  "pt": [
+   "one",
+   "chairs 복수 대신 : ones"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11s1|4-②": {
+  "pt": [
+   "other",
+   "단수명사 meeting 앞 : another"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "another / other",
+   [
+    "① another + 단수명사 : another meeting (또 다른 회의)",
+    "② other + 복수명사 : other meetings"
+   ]
+  ]
+ },
+ "c11s1|5-1": {
+  "pt": [
+   "learning",
+   "완결된 문장의 본동사 : 과거형 learned"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11s1|5-①": {
+  "pt": [
+   "themselves",
+   "use의 목적어는 skills(주어와 다름) : them"
+  ],
+  "rel": [
+   [
+    3,
+    4,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c11s1|6-①": {
+  "pt": [
+   "that",
+   "'~하는 사람들'은 복수 : those"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11s1|6-②": {
+  "pt": [
+   "either",
+   "두 영역(복수) 모두 : both (either는 단수)"
+  ],
+  "rel": [
+   [
+    4,
+    5,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c11s1|6-③": {
+  "pt": [
+   "its",
+   "주어 people이 복수 : their (its 아님)"
+  ],
+  "rel": [
+   [
+    2,
+    4,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "add11|1-1": {
+  "pt": [
+   "them",
+   "an ingredient(단수) 가리킴 : it"
+  ],
+  "rel": [
+   [
+    3,
+    0,
+    "eq",
+    "it=ingredient"
+   ]
+  ]
+ },
+ "add11|1-2": {
+  "pt": [
+   "this",
+   "앞 chairs가 복수 : these (this는 단수)"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "these=chairs"
+   ]
+  ],
+  "st": [
+   "명령문 + and",
+   [
+    "① 명령문, and + 주어 + 동사 : ~해라, 그러면 ~할 것이다",
+    "② 명령문, or + 주어 + 동사 : ~해라, 그렇지 않으면 ~"
+   ]
+  ]
+ },
+ "add11|1-3": {
+  "pt": [
+   "them",
+   "주어 자리 : 주격 they"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "they=parents"
+   ]
+  ]
+ },
+ "add11|1-4": {
+  "pt": [
+   "it’s",
+   "명사 engine 앞 소유격 : its"
+  ],
+  "st": [
+   "its / it’s",
+   [
+    "① its + 명사 : 그것의 ~ (소유격)",
+    "② it’s = it is / it has (줄임말)"
+   ]
+  ]
+ },
+ "add11|1-5": {
+  "pt": [
+   "those",
+   "the number(단수) 대신 : that"
+  ],
+  "rel": [
+   [
+    3,
+    0,
+    "eq",
+    "that = number"
+   ],
+   [
+    4,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add11|2-1": {
+  "pt": [
+   "them",
+   "주어와 같은 대상 : themselves"
+  ]
+ },
+ "add11|2-2": {
+  "pt": [
+   "ourselves",
+   "bring의 주어는 동명사구 : 다른 대상 us"
+  ]
+ },
+ "add11|2-3": {
+  "pt": [
+   "it",
+   "주어 The monkey와 같은 대상 : itself"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "add11|2-4": {
+  "pt": [
+   "himself",
+   "he(Norwood)와 him(Josh)은 다른 사람"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "eq",
+    "목적보어"
+   ]
+  ]
+ },
+ "add11|2-5": {
+  "pt": [
+   "you",
+   "명령문의 주어 You와 같은 대상 : yourself"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    ""
+   ]
+  ],
+  "st": [
+   "give A B",
+   [
+    "① give + 간접목적어 + 직접목적어 : A에게 B를 주다",
+    "② 주어와 같은 대상이면 간접목적어 : yourself"
+   ]
+  ]
+ },
+ "add11|3-1": {
+  "pt": [
+   "those",
+   "the amount(단수) 대신 : that"
+  ],
+  "rel": [
+   [
+    3,
+    0,
+    "eq",
+    "that = amount"
+   ],
+   [
+    4,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add11|3-2": {
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add11|3-3": {
+  "pt": [
+   "themselves",
+   "see의 주어 you와 다른 대상 : them"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "eq",
+    "목적보어"
+   ]
+  ]
+ },
+ "add11|3-4": {
+  "rel": [
+   [
+    3,
+    1,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "add11|3-5": {
+  "pt": [
+   "that",
+   "languages(복수) 대신 : those"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    ""
+   ],
+   [
+    3,
+    0,
+    "eq",
+    "those=언어"
+   ]
+  ]
+ },
+ "add11|4-1": {
+  "pt": [
+   "one",
+   "복수 desks 대신 : ones"
+  ],
+  "rel": [
+   [
+    3,
+    0,
+    "eq",
+    "ones = desks"
+   ]
+  ]
+ },
+ "add11|4-2": {
+  "pt": [
+   "them",
+   "the science book은 단수 : it"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "eq",
+    "it = book"
+   ]
+  ]
+ },
+ "add11|4-3": {
+  "pt": [
+   "it",
+   "앞 seeds(복수) 가리킴 : them"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "them = seeds"
+   ]
+  ]
+ },
+ "add11|4-4": {
+  "pt": [
+   "it",
+   "두고 온 그 샌드위치가 아닌 새것 : one"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "par",
+    "병렬"
+   ],
+   [
+    3,
+    1,
+    "eq",
+    "one=sandwich"
+   ]
+  ],
+  "st": [
+   "it과 one",
+   [
+    "① left it : 만들어 둔 바로 그 샌드위치 (특정)",
+    "② bought one : 같은 종류의 다른 하나 (불특정)"
+   ]
+  ]
+ },
+ "add11|4-5": {
+  "pt": [
+   "one",
+   "복수 gloves 대신 : ones"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "ones=gloves"
+   ]
+  ]
+ },
+ "add11|5-1": {
+  "pt": [
+   "few",
+   "difficulty는 셀 수 없음 : little"
+  ]
+ },
+ "add11|5-2": {
+  "pt": [
+   "Many",
+   "world history는 불가산 : Much"
+  ],
+  "rel": [
+   [
+    4,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add11|5-3": {
+  "pt": [
+   "both",
+   "뒤에 단수 person : either (both는 복수)"
+  ],
+  "st": [
+   "either / neither / both",
+   [
+    "① either / neither + 단수명사 : 둘 중 하나 / 어느 쪽도 ~않다",
+    "② both + 복수명사 : 둘 다"
+   ]
+  ]
+ },
+ "add11|5-4": {
+  "pt": [
+   "all",
+   "뒤에 단수 word : every (all은 복수)"
+  ],
+  "rel": [
+   [
+    3,
+    0,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add11|5-5": {
+  "pt": [
+   "another",
+   "insects가 복수 : other (another는 단수)"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "some=insects"
+   ]
+  ]
+ }
+}

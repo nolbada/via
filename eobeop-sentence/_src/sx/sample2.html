@@ -1,0 +1,54 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>구조 분석 보충(상세) 샘플</title><style>body{margin:0;background:#f6f4ee;font:16px/1.6 "Noto Sans KR","Malgun Gothic",sans-serif;padding:14px}.wrap{max-width:720px;margin:0 auto}.card{background:#fff;border:1px solid #e3dfd3;border-radius:16px;padding:14px;margin:12px 0}.num{display:inline-block;background:#2b5aa8;color:#fff;border-radius:999px;padding:0 10px;font-weight:700;font-size:13px}.sxw{margin-top:12px;background:#fff;border:1.5px solid #cfe0d6;border-radius:12px;padding:10px 10px 8px}.sxh{font-size:12px;font-weight:700;color:#0a7a2f;margin-bottom:2px}.sxlg{font-size:11.5px;color:#6a6e78;margin:0 0 8px;line-height:1.5}
+.sxpt{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:14px;margin:2px 0 8px}.sxpt .tag{background:#2f6fd0;color:#fff;border-radius:4px;font-size:11.5px;font-weight:700;padding:1px 7px}.sxpt .wr{color:#c0211b;font-weight:800}
+.sxf{position:relative;display:flex;flex-wrap:wrap;gap:12px 3px;align-items:flex-end}.sxs{display:inline-flex;flex-direction:column;min-width:0}
+.sxs .nt2{font-size:11px;color:#0a7a2f;font-weight:700;line-height:1.3;max-width:210px;border-top:2px solid #86c99a;padding-top:1px;margin-bottom:1px}.sxs .nt2.red{color:#c0211b;border-top-color:#e9a39f}
+.sxs .en2{font-size:17px;line-height:1.5;color:#1c1f26}.sxs .ko2{font-size:12px;color:#6a6e78;line-height:1.35}.sxsl{color:#b9b4a4;font-size:17px;align-self:flex-end;padding-bottom:16px}
+.sxf.hasrel .sxs .en2{margin-top:18px}
+.sxw b{font-weight:800}.sxw b.v,.sxw b.a,.sxw b.k{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.sxw b.a{background:#fff1a8;border-radius:3px;padding:0 2px}.sxw b.k{color:#c0211b}
+.sxw b.c{border:1.6px solid #222;border-radius:3px;padding:0 3px}.sxw b.p{color:#0b6b3a}
+.sxw i.br{font-style:normal;color:#0a7a2f;font-weight:800;font-size:19px}.sxw .o{font-size:12px;color:#c0211b;font-weight:600;margin:0 1px}
+.sxst{margin-top:8px;border:1.5px solid #2f8a4a;border-radius:8px;padding:6px 10px;font-size:13.5px;line-height:1.65}.sxst .tag{background:#2f6fd0;color:#fff;border-radius:4px;font-size:11px;font-weight:700;padding:0 6px;margin-right:6px}.sxst .tt{font-weight:700;color:#14532d}
+.sxsvg{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+</style><div class=wrap><h1 style="font-size:19px">구조 분석 상세 샘플 (아이카 상세분석 표기 반영)</h1><div id=root></div></div><script>/* 구조 분석(sx) 공용 렌더러 — 앱·추가문제 공통 */
+function sxEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+function sxMk(t){var s=sxEsc(t);
+  s=s.replace(/\{o\|([^}]*)\}/g,'<span class="o">($1)</span>');
+  s=s.replace(/\{([avcpk])\|([^}]*)\}/g,'<b class="$1">$2</b>');
+  return s.replace(/【/g,'<i class="br">【</i>').replace(/】/g,'<i class="br">】</i>')}
+function sxHtml(sx,kos,x2){
+  if(!sx||sx.length!=kos.length)return '';
+  x2=x2||{};var rel=x2.rel||[];
+  var h='<div class="sxw"><div class="sxh">문장 구조 분석</div>';
+  if(x2.pt)h+='<div class="sxpt"><span class="tag">어법분석</span><span class="wr">'+sxEsc(x2.pt[0])+' (✖)</span><span>'+sxEsc(x2.pt[1])+'</span></div>';
+  h+='<div class="sxlg">굵은 밑줄 동사 · 노란 형광 정답 · 빨강 출제 포인트 · 상자 접속사/관계사 · 【 】 절/준동사구 · 빨간 (괄호) 생략된 말 · 초록 메모</div>';
+  h+='<div class="sxf'+(rel.length?' hasrel':'')+'" data-rel="'+sxEsc(JSON.stringify(rel))+'">';
+  sx.forEach(function(x,i){if(i)h+='<span class="sxsl">/</span>';var n=x[1]||'',red=n.charAt(0)=='!';if(red)n=n.slice(1);
+    h+='<span class="sxs" data-i="'+i+'">'+(n?'<span class="nt2'+(red?' red':'')+'">'+sxEsc(n)+'</span>':'')+'<span class="en2">'+sxMk(x[0])+'</span><span class="ko2">'+sxEsc(kos[i])+'</span></span>'});
+  h+='</div>';
+  if(x2.st)h+='<div class="sxst"><span class="tag">Study</span><span class="tt">'+sxEsc(x2.st[0])+'</span>'+x2.st[1].map(function(l){return '<div>'+sxEsc(l)+'</div>'}).join('')+'</div>';
+  return h+'</div>'}
+function sxArcs(root){
+  var NS='http://www.w3.org/2000/svg';
+  (root||document).querySelectorAll('.sxf.hasrel').forEach(function(f){
+    var old=f.querySelector('.sxsvg');if(old)f.removeChild(old);
+    var rel;try{rel=JSON.parse(f.getAttribute('data-rel'))}catch(e){return}
+    var fr=f.getBoundingClientRect();if(!fr.width)return;
+    var svg=document.createElementNS(NS,'svg');svg.setAttribute('class','sxsvg');svg.setAttribute('width',fr.width);svg.setAttribute('height',fr.height);
+    svg.innerHTML='<defs><marker id="sxah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#0a7a2f"/></marker></defs>';
+    var drawn=0;
+    rel.forEach(function(r){
+      var a=f.querySelector('.sxs[data-i="'+r[0]+'"] .en2'),b=f.querySelector('.sxs[data-i="'+r[1]+'"] .en2');if(!a||!b)return;
+      var ra=a.getBoundingClientRect(),rb=b.getBoundingClientRect();
+      if(Math.abs(ra.top-rb.top)>8)return;
+      var y=ra.top-fr.top-2,xa=ra.left+ra.width/2-fr.left,xb=rb.left+rb.width/2-fr.left,xm=(xa+xb)/2,k=r[2],lab=r[3]||'';
+      var p=document.createElementNS(NS,'path');p.setAttribute('fill','none');p.setAttribute('stroke','#0a7a2f');p.setAttribute('stroke-width','1.6');
+      if(k=='par'){p.setAttribute('stroke','#222');p.setAttribute('d','M'+xa+' '+y+' L'+xa+' '+(y-7)+' L'+xb+' '+(y-7)+' L'+xb+' '+y)}
+      else{p.setAttribute('d','M'+xa+' '+y+' Q'+xm+' '+(y-20)+' '+xb+' '+(y-1));p.setAttribute('marker-end','url(#sxah)');if(k=='eq')p.setAttribute('stroke-dasharray','4 3')}
+      svg.appendChild(p);drawn++;
+      if(lab||k=='par'||k=='eq'){var t=document.createElementNS(NS,'text');t.setAttribute('x',xm);t.setAttribute('y',y-(k=='par'?9:12));t.setAttribute('text-anchor','middle');t.setAttribute('font-size','10.5');t.setAttribute('font-weight','700');t.setAttribute('fill',k=='par'?'#222':'#0a7a2f');t.textContent=lab||(k=='par'?'병렬':'동격');svg.appendChild(t)}
+    });
+    if(drawn)f.appendChild(svg)});
+}
+window.addEventListener('resize',function(){sxArcs()});
+var S=[{"no": "1-2", "ko": ["한 가지 좋은 방법은", "새로운 친구를 만드는", "~이다", "사교 단체에 가입하는 것", "당신 또래의 사람들과"], "sx": [["A good way", ""], ["【{p|to} make new friends】", "to부정사 (형용사적) : way를 꾸밈"], ["{a|is}", ""], ["{p|to} {v|join} a social group", "to부정사 (명사적) : 보어"], ["with people 【your age】.", ""]], "x2": {"pt": ["are", "주어는 A good way(단수) : to make ~는 수식어"], "rel": [[1, 0, "mod", ""], [3, 2, "eq", "보어"]], "st": ["주어 뒤 수식어는 지운다", ["① 주어 + (to부정사구 / 분사구 / 관계사절) + 동사", "② 동사는 진짜 주어에 맞춘다 : way(단수) is"]]}}, {"no": "1-4", "ko": ["일반적으로,", "집은", "수영장이 있는", "든다", "많은 돈이."], "sx": [["Typically,", ""], ["a house", ""], ["【{c|that} {v|has} a swimming pool】", "주격 관계대명사절"], ["{a|costs}", "본동사"], ["a lot of money.", "cost + 돈 : 돈이 ~ 든다"]], "x2": {"pt": ["cost", "has는 that절 동사, costs가 본동사"], "rel": [[2, 1, "mod", ""]]}}, {"no": "6-2", "ko": ["그 선생님은", "학생들에게", "그만두라고", "수다 떠는 것을", "그리고 집중하라고"], "sx": [["The teacher", ""], ["{v|asked} the students", "ask A to부정사 : A에게 ~하라고 요구하다"], ["【{p|to} stop", "병렬 : to + 동사원형 2개"], ["{a|talking}", "stop + 동명사 : ~하는 것을 그만두다"], ["{c|and} pay attention】 {o|to} the lesson.", ""]], "x2": {"pt": ["to talk", "stop + to V는 '~하려고 멈추다' : 뜻이 다름"], "rel": [[2, 4, "par", "병렬"]], "st": ["stop + 동명사 vs to부정사", ["① stop + ~ing : ~하는 것을 그만두다", "② stop + to V : ~하기 위해 멈추다 (to V는 목적)"]]}}, {"no": "10-8", "ko": ["나는 바란다", "당신이", "고려해 주기를", "저의 요청을"], "sx": [["I {v|hope}", ""], ["【{o|that} you {v|will}", "!that 생략 : 명사절이 hope의 목적어"], ["{k|consider}", "hope + (that) S + V : 일반시제"], ["my request positively】.", ""]], "x2": {"pt": ["considers", "hope 뒤 that절은 조동사 will 뒤 동사원형"], "st": ["요구·제안 동사 + (that)절", ["① + that + S + (should) 동사원형 : ~해야 한다 (should 생략 가능)", "② hope 같은 소망 동사 + that + S + 일반시제"]]}}];document.getElementById("root").innerHTML=S.map(function(s){return "<div class=card><span class=num>"+s.no+"</span>"+sxHtml(s.sx,s.ko,s.x2)+"</div>"}).join("");setTimeout(function(){sxArcs()},50);window.addEventListener("load",function(){sxArcs()});</script>

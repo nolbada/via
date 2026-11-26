@@ -1,0 +1,928 @@
+{
+ "c09p1|예제": {
+  "pt": [
+   "because of",
+   "뒤에 절(주어 + 동사)이 오면 because"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "이유"
+   ]
+  ],
+  "st": [
+   "접속사 because vs. because of",
+   [
+    "① because + 주어 + 동사 : 절을 이끈다 (접속사)",
+    "② because of + 명사(구) : 구를 이끈다 (전치사구)"
+   ]
+  ]
+ },
+ "c09p1|1": {
+  "pt": [
+   "because",
+   "뒤가 명사구(a thunderstorm ~)이면 because of"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "이유"
+   ]
+  ]
+ },
+ "c09p1|2": {
+  "pt": [
+   "during",
+   "뒤에 절(their children played)이 오면 while"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "시간"
+   ]
+  ],
+  "st": [
+   "while 과 during 구별",
+   [
+    "① while + 주어 + 동사 : ~하는 동안 (접속사)",
+    "② during + 명사(구) : ~ 동안 (전치사)"
+   ]
+  ]
+ },
+ "c09p1|3": {
+  "pt": [
+   "Although",
+   "뒤가 명사구(heavy traffic ~)이면 Despite"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "mod",
+    "양보"
+   ]
+  ],
+  "st": [
+   "양보 표현 짝 정리",
+   [
+    "① 접속사 : Although(비록 ~이지만) + 절",
+    "② 전치사 : Despite(~에도 불구하고) + 명사(구)"
+   ]
+  ]
+ },
+ "c09p1|4": {
+  "pt": [
+   "Despite",
+   "뒤에 절(the dog barked)이 오면 Though"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    "양보"
+   ]
+  ]
+ },
+ "c09p1|5": {
+  "pt": [
+   "while",
+   "뒤가 명사구(the German attack) : during"
+  ],
+  "rel": [
+   [
+    3,
+    0,
+    "par",
+    "대등 연결"
+   ]
+  ],
+  "st": [
+   "during vs. while 구별법",
+   [
+    "① 뒤에 명사 : during the vacation (휴가 동안)",
+    "② 뒤에 절 : while we were on vacation (우리가 휴가 중인 동안)"
+   ]
+  ]
+ },
+ "c09p2|예제": {
+  "pt": [
+   "as",
+   "'~ 같은'은 like : as는 자격(~로서)"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    "예시"
+   ]
+  ],
+  "st": [
+   "like : 전치사 와 동사",
+   [
+    "① 전치사 like + 명사 : ~ 같은, ~처럼 (like meat : 고기 같은)",
+    "② 동사 like : ~을 좋아하다 (I like meat : 고기를 좋아한다)"
+   ]
+  ]
+ },
+ "c09p2|1": {
+  "pt": [
+   "for",
+   "'~ 이래로'는 since : for 뒤엔 기간(for 10 years)"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    "기점"
+   ]
+  ],
+  "st": [
+   "since 의 쓰임 두 가지",
+   [
+    "① since + 명사 : ~ 이래로 (since 2010 : 2010년 이래로)",
+    "② since + 절 : ~ 이래로 / ~ 때문에 (since he left : 그가 떠난 이래로)"
+   ]
+  ]
+ },
+ "c09p2|2": {
+  "pt": [
+   "during",
+   "뒤에 절(they finished ~)이 있어 접속사 after"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "시간"
+   ]
+  ],
+  "st": [
+   "접속사·전치사 겸용 단어",
+   [
+    "① after(~ 후) · before(~ 전) · since(~ 이래) : 접속사·전치사 모두 가능",
+    "② 뒤가 절이면 접속사, 명사(구)이면 전치사로 본다"
+   ]
+  ]
+ },
+ "c09p2|3": {
+  "pt": [
+   "as",
+   "명사 her mother 앞에서 '~처럼'은 like"
+  ],
+  "st": [
+   "like 와 alike 구별",
+   [
+    "① A look like B : A가 B처럼 보이다 (like + 명사)",
+    "② A and B look alike : A와 B가 닮았다 (alike는 형용사)"
+   ]
+  ]
+ },
+ "c09p2|4": {
+  "pt": [
+   "by",
+   "계속된 동작(worked)은 until : by는 완료 시점"
+  ],
+  "rel": [
+   [
+    3,
+    0,
+    "mod",
+    "목적"
+   ]
+  ],
+  "st": [
+   "until 과 by 의 차이",
+   [
+    "① until + 시점 : 그때까지 계속됨 (work until 10 : 10시까지 일하다)",
+    "② by + 시점 : 그때까지 완료됨 (finish by 10 : 10시까지 끝내다)"
+   ]
+  ]
+ },
+ "c09p2|5": {
+  "pt": [
+   "during",
+   "뒤에 절(time passes)이 있어 접속사 as"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "~함에 따라"
+   ]
+  ],
+  "st": [
+   "as 의 여러 뜻",
+   [
+    "① as + 절 : ~함에 따라 / ~할 때 / ~하듯이 / ~ 때문에",
+    "② as + 명사 : ~로서 (as a teacher : 선생님으로서, 전치사)"
+   ]
+  ]
+ },
+ "c09p3|예제": {
+  "pt": [
+   "what",
+   "뒤가 완전한 절 : 불완전한 절에 쓰는 what 아님"
+  ],
+  "st": [
+   "명사절 접속사 고르는 순서",
+   [
+    "① 뒤가 불완전한 절 : what(무엇) · who(누구) · which(어느 것)",
+    "② 뒤가 완전한 절 : that(~라는 것) · whether(~인지) · how(어떻게)"
+   ]
+  ]
+ },
+ "c09p3|1": {
+  "pt": [
+   "what",
+   "the meeting would end는 완전한 절 : what 아님"
+  ],
+  "rel": [
+   [
+    3,
+    0,
+    "mod",
+    "이유"
+   ]
+  ]
+ },
+ "c09p3|2": {
+  "pt": [
+   "what",
+   "our business will suffer는 완전한 절 : what 아님"
+  ],
+  "rel": [
+   [
+    0,
+    1,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "c09p3|3": {
+  "pt": [
+   "whom",
+   "주어 자리가 비어 있다 : 주격 who (whom 아님)"
+  ]
+ },
+ "c09p3|4": {
+  "pt": [
+   "that",
+   "'~인지 아닌지'는 if/whether : that은 '~라는 것'"
+  ],
+  "st": [
+   "if 의 두 가지 뜻",
+   [
+    "① if + 절 : 명사절이면 ~인지 아닌지 (know if ~ : ~인지 안다)",
+    "② if + 절 : 부사절이면 만약 ~라면 (if it rains : 비가 오면)"
+   ]
+  ]
+ },
+ "c09p3|5": {
+  "pt": [
+   "that",
+   "plan의 목적어가 빠진 불완전한 절 : what"
+  ]
+ },
+ "c09p3|6": {
+  "pt": [
+   "what",
+   "invest의 목적어 our time이 있어 완전 : what 아님"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "S = C"
+   ]
+  ],
+  "st": [
+   "how + 완전한 절",
+   [
+    "① how + 주어 + 동사 : 방법 · 정도를 묻는 명사절",
+    "② how 뒤에 형용사·부사가 오기도 한다 (how fast : 얼마나 빨리)"
+   ]
+  ]
+ },
+ "c09p3|7": {
+  "pt": [
+   "what",
+   "found의 목적어(sofa)가 있는 완전한 절 : what 아님"
+  ]
+ },
+ "c09p3|8": {
+  "pt": [
+   "what",
+   "you are standing ~은 완전한 절 : what 아님"
+  ]
+ },
+ "c09q1|1": {
+  "pt": [
+   "that",
+   "'~인지 아닌지'는 whether : that은 '~라는 것'"
+  ],
+  "st": [
+   "whether 의 쓰임",
+   [
+    "① whether + 절 : ~인지 아닌지 (decide 결정하다 · ask 묻다 뒤)",
+    "② whether A or B : A인지 B인지 (or not과 함께 쓰기도 한다)"
+   ]
+  ]
+ },
+ "c09q1|2": {
+  "pt": [
+   "Like",
+   "절(the old proverb goes) 앞 '~하듯이'는 As"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    "방식"
+   ]
+  ],
+  "st": [
+   "as : 접속사 vs. 전치사",
+   [
+    "① as + 절 : ~하듯이 (as you know : 네가 알듯이)",
+    "② as + 명사 : ~로서 (as a teacher : 선생님으로서)"
+   ]
+  ]
+ },
+ "c09q1|3": {
+  "pt": [
+   "that",
+   "'어느 팀이'라는 의문의 뜻은 which : that 아님"
+  ],
+  "st": [
+   "의문대명사 which 와 who",
+   [
+    "① which : 정해진 범위 안에서 '어느 것(어느 팀)'을 묻는다",
+    "② who : 사람을 '누구'로 묻는다 (which : 어느 것)"
+   ]
+  ]
+ },
+ "c09q1|4": {
+  "pt": [
+   "During",
+   "뒤에 절(the band performed)이 오면 While"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    "시간"
+   ]
+  ]
+ },
+ "c09q1|5": {
+  "pt": [
+   "what",
+   "가주어 It의 진주어는 완전한 절 that절"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "eq",
+    "진주어"
+   ]
+  ],
+  "st": [
+   "가주어 it + that절",
+   [
+    "① It is + 형용사 + that + S + V : that절이 진짜 주어",
+    "② 진주어 that절은 완전한 절이어야 한다 (what 불가)"
+   ]
+  ]
+ },
+ "c09q1|6": {
+  "pt": [
+   "that",
+   "'언제'라는 시기를 묻는 말은 when : that 아님"
+  ]
+ },
+ "c09q1|7": {
+  "pt": [
+   "because of",
+   "뒤에 절(a large wave washed ~)이 오면 because"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "이유"
+   ]
+  ]
+ },
+ "c09q1|8": {
+  "pt": [
+   "That",
+   "discovered 뒤 목적어가 없다 : 불완전한 절 What"
+  ],
+  "st": [
+   "What 과 That 의 차이",
+   [
+    "① What + 불완전한 절 : '~하는 것' (목적어가 빠짐)",
+    "② That + 완전한 절 : '~라는 것' (빠진 자리가 없음)"
+   ]
+  ]
+ },
+ "c09q1|9": {
+  "pt": [
+   "as",
+   "'~와 같다'는 전치사 like : as는 자격"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "par",
+    "place or time"
+   ]
+  ]
+ },
+ "c09q1|10": {
+  "pt": [
+   "how",
+   "'왜'를 묻는 말은 why : how는 방법"
+  ]
+ },
+ "c09q1|11": {
+  "pt": [
+   "Because",
+   "양보(아팠지만 노력했다) : Because는 이유"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    "양보"
+   ]
+  ]
+ },
+ "c09q1|12": {
+  "pt": [
+   "that",
+   "'~인지 아닌지'를 묻는 뜻은 if/whether"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "mod",
+    "목적"
+   ]
+  ],
+  "st": [
+   "whether 와 if 의 차이",
+   [
+    "① 둘 다 '~인지 아닌지' (명사절 목적어일 때 서로 바꿔 쓴다)",
+    "② 주어·보어 자리, 전치사 뒤, to부정사 앞은 whether만 가능"
+   ]
+  ]
+ },
+ "c09q2|1": {
+  "pt": [
+   "because",
+   "뒤가 명사구(the ~ situation) : because of"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "이유"
+   ]
+  ]
+ },
+ "c09q2|2": {
+  "pt": [
+   "that",
+   "여부(~인지 아닌지)를 뜻하므로 whether"
+  ]
+ },
+ "c09q2|3": {
+  "pt": [
+   "like",
+   "절(the doctor emphasized) 앞 '~하듯이'는 as"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    "방식"
+   ]
+  ],
+  "st": [
+   "as 가 만드는 절",
+   [
+    "① as + 주어 + 동사 : ~하듯이 / ~대로 (양태)",
+    "② as the doctor said : 의사가 말한 대로 (삽입으로도 쓴다)"
+   ]
+  ]
+ },
+ "c09q2|4": {
+  "pt": [
+   "how",
+   "'이상하게 행동하는 이유'는 why : how는 방법"
+  ]
+ },
+ "c09q2|5": {
+  "pt": [
+   "what",
+   "trigger의 목적어가 있는 완전한 절 : what 아님"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "eq",
+    "진주어"
+   ]
+  ],
+  "st": [
+   "가주어 it + 의문사절",
+   [
+    "① It + be + 형용사 + 의문사절 : 의문사절이 진주어",
+    "② how + 주어 + 동사 : '어떻게 ~하는지'는 완전한 절"
+   ]
+  ]
+ },
+ "c09q2|6": {
+  "pt": [
+   "while",
+   "뒤가 명사구(her lunch break) : during"
+  ]
+ },
+ "c09q2|7": {
+  "pt": [
+   "what",
+   "we stood는 완전한 절 : what 아님"
+  ]
+ },
+ "c09q2|8": {
+  "pt": [
+   "that",
+   "여부(~인지 아닌지)를 뜻하므로 whether"
+  ]
+ },
+ "c09q2|9": {
+  "pt": [
+   "that",
+   "said 뒤 목적어가 없어 불완전한 절 : what"
+  ]
+ },
+ "c09q2|10": {
+  "pt": [
+   "because of",
+   "뒤에 절(flowers ~ provide ~)이 오면 since"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "이유"
+   ]
+  ],
+  "st": [
+   "since 의 이유 용법",
+   [
+    "① since + 절 : ~ 때문에 (상대도 아는 이유를 가볍게 말할 때)",
+    "② since + 과거 시점 : ~ 이래로 (주절은 현재완료)"
+   ]
+  ]
+ },
+ "c09q2|11": {
+  "pt": [
+   "In spite of",
+   "뒤에 절이 있어 전치사구 In spite of 불가"
+  ],
+  "rel": [
+   [
+    1,
+    2,
+    "mod",
+    "양보"
+   ]
+  ]
+ },
+ "c09q2|12": {
+  "pt": [
+   "what",
+   "making의 목적어 shortages가 있어 완전한 절"
+  ]
+ },
+ "c09s1|1-(A)": {
+  "pt": [
+   "although",
+   "뒤가 명사구(his disability) : in spite of"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    "양보"
+   ]
+  ],
+  "st": [
+   "양보 전치사 in spite of",
+   [
+    "① in spite of + 명사(구) : ~에도 불구하고 (= despite)",
+    "② 절은 in spite of the fact that + 절 (~라는 사실에도)"
+   ]
+  ]
+ },
+ "c09s1|1-(B)": {
+  "pt": [
+   "that",
+   "accomplish의 목적어가 없다 : 불완전한 절엔 what"
+  ]
+ },
+ "c09s1|2-(A)": {
+  "pt": [
+   "that",
+   "'언제 ~할지'(시기)는 when : that 아님"
+  ]
+ },
+ "c09s1|2-(B)": {
+  "pt": [
+   "alike",
+   "명사(our father) 앞은 전치사 like"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "계속적"
+   ]
+  ]
+ },
+ "c09s1|3-(A)": {
+  "pt": [
+   "what",
+   "가주어 it : 진주어는 완전한 절 that"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "eq",
+    "진주어"
+   ]
+  ]
+ },
+ "c09s1|3-(B)": {
+  "pt": [
+   "what",
+   "뒤가 완전한 절(some people still go ~) : why"
+  ]
+ },
+ "c09s1|3-(C)": {
+  "pt": [
+   "because of",
+   "뒤에 절(all mobile phones have to ~)이라 because"
+  ]
+ },
+ "c09s1|4-①": {
+  "pt": [
+   "which",
+   "spend의 목적어(holidays)가 있어 완전한 절"
+  ]
+ },
+ "c09s1|4-②": {
+  "pt": [
+   "whom",
+   "뒤에 주어가 없다(is ~) : 주격 who"
+  ],
+  "st": [
+   "의문사 who 의 격",
+   [
+    "① who + 동사 : who가 주어 (누가 ~하는지)",
+    "② who(m) + 주어 + 동사 : 목적어 (누구를 ~하는지)"
+   ]
+  ]
+ },
+ "c09s1|5-①": {
+  "pt": [
+   "during",
+   "뒤에 주어 + 동사가 있다 : 접속사 while"
+  ]
+ },
+ "c09s1|5-②": {
+  "pt": [
+   "because of",
+   "뒤가 절(smiling produces ~)이라 접속사 as"
+  ]
+ },
+ "c09s1|6-①": {
+  "pt": [
+   "that",
+   "'~인지 아닌지'는 whether(if) : that은 '~라는 것'"
+  ]
+ },
+ "c09s1|6-②": {
+  "pt": [
+   "that",
+   "전치사 on 뒤에 that절 불가 : how는 가능"
+  ],
+  "st": [
+   "전치사 뒤 명사절",
+   [
+    "① 전치사 + 의문사절 · whether절 가능 (depend on how ~ : ~에 달렸다)",
+    "② 전치사 + that절 : 대부분 불가 (예외 : in that ~ 때문에)"
+   ]
+  ]
+ },
+ "c09s1|6-③": {
+  "pt": [
+   "because of",
+   "뒤가 절이라 접속사 since (이유)"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "이유"
+   ]
+  ]
+ },
+ "add09|1-1": {
+  "pt": [
+   "while",
+   "뒤가 명사구(its trip) : during"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "시간"
+   ],
+   [
+    1,
+    4,
+    "par",
+    "동사 병렬"
+   ]
+  ]
+ },
+ "add09|1-2": {
+  "pt": [
+   "because of",
+   "뒤에 절(the company doesn’t have)이 오면 because"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "이유"
+   ]
+  ]
+ },
+ "add09|1-3": {
+  "pt": [
+   "Despite",
+   "뒤에 절(economy has improved)이 오면 Although"
+  ]
+ },
+ "add09|1-4": {
+  "pt": [
+   "because",
+   "뒤가 명사(pollution ~) : because of"
+  ],
+  "rel": [
+   [
+    4,
+    3,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add09|1-5": {
+  "pt": [
+   "although",
+   "뒤가 명사구(the low rainfall) : in spite of"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "mod",
+    "양보"
+   ]
+  ]
+ },
+ "add09|2-1": {
+  "pt": [
+   "for",
+   "'그때 이래로'는 since then : for 뒤엔 기간"
+  ],
+  "rel": [
+   [
+    3,
+    5,
+    "mod",
+    ""
+   ]
+  ]
+ },
+ "add09|2-2": {
+  "st": [
+   "before 의 두 얼굴",
+   [
+    "① before + 절 : 접속사 (before they call you : 그들이 전화하기 전에)",
+    "② before + 명사 : 전치사 (before dinner : 저녁 식사 전에)"
+   ]
+  ]
+ },
+ "add09|2-3": {
+  "pt": [
+   "as",
+   "feel like + 명사 : ~처럼 느껴지다 (as 아님)"
+  ]
+ },
+ "add09|2-4": {},
+ "add09|2-5": {
+  "pt": [
+   "as",
+   "'~처럼'은 like : as + 명사는 '~로서'"
+  ],
+  "rel": [
+   [
+    4,
+    2,
+    "mod",
+    "방식"
+   ]
+  ],
+  "st": [
+   "like 와 as 비교",
+   [
+    "① speak like a Japanese person : 일본 사람처럼 (비유·비교)",
+    "② speak as a Japanese person : 일본 사람으로서 (자격)"
+   ]
+  ]
+ },
+ "add09|3-1": {
+  "pt": [
+   "That",
+   "prepared의 목적어가 없다 : 불완전한 절 What"
+  ]
+ },
+ "add09|3-2": {
+  "pt": [
+   "that",
+   "'~인지 아닌지'는 if(whether) : that은 뜻이 다름"
+  ]
+ },
+ "add09|3-3": {
+  "pt": [
+   "whom",
+   "주어가 빠져 있다 : 주격 who (whom 아님)"
+  ]
+ },
+ "add09|3-4": {
+  "pt": [
+   "what",
+   "pass의 목적어 the test가 있어 완전한 절"
+  ],
+  "rel": [
+   [
+    5,
+    3,
+    "eq",
+    "worry = how절"
+   ]
+  ]
+ },
+ "add09|3-5": {
+  "pt": [
+   "that",
+   "know의 목적어 '~인지 아닌지'는 whether"
+  ]
+ }
+}

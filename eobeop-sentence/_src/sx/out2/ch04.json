@@ -1,0 +1,1078 @@
+{
+ "c04p1|예제": {
+  "pt": [
+   "receive",
+   "지난 일에 대한 아쉬움 : should have p.p."
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "시간"
+   ]
+  ],
+  "st": [
+   "조동사 + have p.p. 의 뜻",
+   [
+    "① should have p.p. : ~했어야 했다 (안 해서 아쉬움)",
+    "② 뒤에 과거 상황이 오면 have p.p. 를 먼저 의심"
+   ]
+  ]
+ },
+ "c04p1|1": {
+  "pt": [
+   "have visited",
+   "미래 시간 표현(coming days) : might + 동사원형"
+  ],
+  "rel": []
+ },
+ "c04p1|2": {
+  "pt": [
+   "finish",
+   "과거(last week) 일의 추측 : cannot have p.p."
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "mod",
+    "이유"
+   ]
+  ],
+  "st": [
+   "cannot 뒤 동사 형태 구별",
+   [
+    "① cannot + 동사원형 : ~일 리 없다 (현재 추측)",
+    "② cannot have p.p. : ~였을 리 없다 (과거 추측)"
+   ]
+  ]
+ },
+ "c04p1|3": {
+  "pt": [
+   "drop",
+   "앞 문장이 과거(lost) : must have p.p."
+  ],
+  "rel": [],
+  "st": [
+   "must 의 두 가지 쓰임",
+   [
+    "① must + 동사원형 : ~해야 한다 (의무)",
+    "② must have p.p. : ~했음이 틀림없다 (과거에 대한 확신)"
+   ]
+  ]
+ },
+ "c04p1|4": {
+  "pt": [
+   "have booked",
+   "미래 기한(by tomorrow) : should + 동사원형"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "mod",
+    "조건"
+   ]
+  ]
+ },
+ "c04p1|5": {
+  "pt": [
+   "join",
+   "하지 못한 과거 일 : could have p.p."
+  ],
+  "rel": [],
+  "st": [
+   "could 뒤 동사 형태 구별",
+   [
+    "① could + 동사원형 : ~할 수 있다 (능력·가능성)",
+    "② could have p.p. : ~할 수 있었는데 안 했다 (아쉬움)"
+   ]
+  ]
+ },
+ "c04p2|예제": {
+  "pt": [
+   "takes",
+   "주장·요구 동사 뒤 that절 : (should) + 동사원형"
+  ],
+  "rel": [],
+  "st": [
+   "should 가 생략되는 동사",
+   [
+    "① 주장 insist / 제안 suggest, propose / 요구 demand",
+    "② 이 동사들 뒤 that절 : (should) + 동사원형"
+   ]
+  ]
+ },
+ "c04p2|1": {
+  "pt": [
+   "looks",
+   "제안 동사 뒤 that절 : 3인칭 -s 를 붙이지 않음"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "목적"
+   ]
+  ]
+ },
+ "c04p2|2": {
+  "pt": [
+   "is",
+   "요구 동사 demand 뒤 : (should) be + p.p."
+  ],
+  "rel": [],
+  "st": [
+   "that절 안이 수동태일 때",
+   [
+    "① 주어가 동작을 받으면 (should) be + p.p.",
+    "② delivery(배송)는 완료되는 쪽 : be completed"
+   ]
+  ]
+ },
+ "c04p2|3": {
+  "pt": [
+   "see",
+   "사실을 말하는 insist : 시제 그대로 (과거 saw)"
+  ],
+  "rel": [],
+  "st": [
+   "insist 뒤 동사 형태 구별",
+   [
+    "① 당위(~해야 한다) 주장 : (should) + 동사원형",
+    "② 사실(~했다) 주장 : 주어와 시제에 맞는 일반 동사"
+   ]
+  ]
+ },
+ "c04p2|4": {
+  "pt": [
+   "ate",
+   "제안 동사 뒤 that절 : 과거형이 아닌 동사원형"
+  ],
+  "rel": []
+ },
+ "c04p2|5": {
+  "pt": [
+   "have",
+   "시사하다 뒤 : 주어(단수)에 수일치 has"
+  ],
+  "rel": [],
+  "st": [
+   "suggest 의 두 가지 뜻",
+   [
+    "① 제안하다 : that절에 (should) + 동사원형",
+    "② 시사하다·암시하다 : that절에 일반 시제 (수일치)"
+   ]
+  ]
+ },
+ "c04p3|예제": {
+  "pt": [
+   "does",
+   "복수 주어 friends : do (does 아님)"
+  ],
+  "rel": [
+   [
+    4,
+    2,
+    "eq",
+    "do = know"
+   ]
+  ]
+ },
+ "c04p3|1": {
+  "pt": [
+   "do",
+   "앞에 be동사(be afraid) : 대동사도 are"
+  ],
+  "rel": [],
+  "st": [
+   "대동사는 앞 동사의 종류를 따른다",
+   [
+    "① be동사 반복 : be동사 (are, is, was)",
+    "② 일반동사 : do/does/did, 현재완료 : have/has"
+   ]
+  ]
+ },
+ "c04p3|2": {
+  "pt": [
+   "does",
+   "앞 동사 received가 과거 : did (does 아님)"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "did = 받다"
+   ]
+  ]
+ },
+ "c04p3|3": {
+  "pt": [
+   "does",
+   "앞이 현재완료 has not affected : has"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "대동사"
+   ]
+  ],
+  "st": [
+   "현재완료 문장의 생략",
+   [
+    "① have/has p.p. 가 반복되면 have/has 만 남긴다",
+    "② 일반동사 현재형이 반복되면 does/do 로 받는다"
+   ]
+  ]
+ },
+ "c04p3|4": {
+  "pt": [
+   "did",
+   "앞이 be동사 was : 대동사도 was"
+  ],
+  "rel": [],
+  "st": [
+   "비교급을 강조하는 말",
+   [
+    "① much, far, even, still, a lot + 비교급 : 훨씬 ~한",
+    "② very 는 비교급 앞에 쓰지 않는다 (very lower X)"
+   ]
+  ]
+ },
+ "c04p3|5": {
+  "pt": [
+   "do",
+   "주어 it(단수) · 현재 : does so"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "do so = 판매"
+   ]
+  ],
+  "st": [
+   "do so 의 쓰임",
+   [
+    "① do so : 앞에 나온 동사구를 통째로 대신 받음",
+    "② 시제와 수는 do 에서 맞춘다 : it does / they do / it did"
+   ]
+  ]
+ },
+ "c04p4|예제": {
+  "pt": [
+   "solved",
+   "강조 did 뒤에는 동사원형 solve"
+  ],
+  "rel": [],
+  "st": [
+   "강조 do 의 구조",
+   [
+    "① do/does/did + 동사원형 : 동사를 강조 (정말 ~하다)",
+    "② 과거 강조 did 뒤에도 동사원형 : did solve (solved X)"
+   ]
+  ]
+ },
+ "c04p4|1": {
+  "pt": [
+   "arrives",
+   "does 뒤에는 3인칭 -s 없이 동사원형"
+  ],
+  "rel": []
+ },
+ "c04p4|2": {
+  "pt": [
+   "was",
+   "뒤에 동사원형 finish : 강조의 did"
+  ],
+  "rel": []
+ },
+ "c04p4|3": {
+  "pt": [
+   "provides",
+   "does 뒤에는 동사원형 provide (-s 없음)"
+  ],
+  "rel": [],
+  "st": [
+   "강조 do 와 다른 do 구별",
+   [
+    "① 일반동사 앞의 do/does/did : 강조 (정말 ~하다)",
+    "② 뒤에 동사원형이 없으면 do 는 본동사 또는 대동사"
+   ]
+  ]
+ },
+ "c04p4|4": {
+  "pt": [
+   "does",
+   "복수 주어 we : do (does 아님)"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "mod",
+    "시간"
+   ]
+  ]
+ },
+ "c04p4|5": {
+  "pt": [
+   "do",
+   "주어 Tim Marshall(단수) : does"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "목적"
+   ]
+  ],
+  "st": [
+   "동격 삽입이 있는 문장",
+   [
+    "① 주어 , 동격 , 동사 : 쉼표 사이 말은 빼고 수일치",
+    "② Tim Marshall(단수) + does + 동사원형 try"
+   ]
+  ]
+ },
+ "c04q1|1": {
+  "pt": [
+   "do",
+   "앞이 be동사 aren’t ready : be동사 are"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "시간"
+   ]
+  ]
+ },
+ "c04q1|2": {
+  "pt": [
+   "see",
+   "지나간 일에 대한 확신 : must have p.p."
+  ],
+  "rel": []
+ },
+ "c04q1|3": {
+  "pt": [
+   "enjoyed",
+   "강조 did 뒤에는 동사원형 enjoy"
+  ],
+  "rel": [],
+  "st": [
+   "동명사만 목적어로 쓰는 동사",
+   [
+    "① enjoy, avoid, finish, mind(꺼리다) + 동명사",
+    "② enjoy exploring (O) / enjoy to explore (X) : 탐험하다"
+   ]
+  ]
+ },
+ "c04q1|4": {
+  "pt": [
+   "invests",
+   "촉구 동사 뒤 that절 : 3인칭 -s 없이 동사원형"
+  ],
+  "rel": [
+   [
+    4,
+    3,
+    "eq",
+    "do = invest"
+   ]
+  ]
+ },
+ "c04q1|5": {
+  "pt": [
+   "brings",
+   "조동사 뒤에는 주어와 상관없이 동사원형"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "시간"
+   ]
+  ]
+ },
+ "c04q1|6": {
+  "pt": [
+   "does",
+   "주어 our brains(복수) : do (does 아님)"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "do = process"
+   ]
+  ],
+  "st": [
+   "as/like 뒤의 대동사",
+   [
+    "① 접속사 as / like + 주어 + 대동사 : ~하는 것처럼",
+    "② 앞 동사 process(일반동사) 는 do 로 받는다"
+   ]
+  ]
+ },
+ "c04q1|7": {
+  "pt": [
+   "take",
+   "못 한 과거 일 : could have p.p."
+  ],
+  "rel": []
+ },
+ "c04q1|8": {
+  "pt": [
+   "does",
+   "주어 I : do have (does 아님)"
+  ],
+  "rel": []
+ },
+ "c04q1|9": {
+  "pt": [
+   "drop",
+   "시사하다 뒤 : 동사원형이 아니라 일반 시제"
+  ],
+  "rel": []
+ },
+ "c04q1|10": {
+  "pt": [
+   "have",
+   "주어 this beach(단수) : has (have 아님)"
+  ],
+  "rel": [
+   [
+    4,
+    1,
+    "eq",
+    "has = reopened"
+   ]
+  ],
+  "st": [
+   "현재완료의 반복 생략",
+   [
+    "① have/has p.p. 가 반복되면 have/has 만 남긴다",
+    "② 남은 have/has 는 새 주어의 수에 맞춘다"
+   ]
+  ]
+ },
+ "c04q1|11": {
+  "pt": [
+   "leaves",
+   "does 뒤에는 동사원형 leave (-s 없음)"
+  ],
+  "rel": []
+ },
+ "c04q1|12": {
+  "pt": [
+   "did",
+   "앞이 be동사 : 대동사도 be동사 (was)"
+  ],
+  "rel": []
+ },
+ "c04q2|1": {
+  "pt": [
+   "say",
+   "지나간 일에 대한 후회 : should have p.p."
+  ],
+  "rel": [
+   [
+    4,
+    3,
+    "mod",
+    "시간"
+   ]
+  ]
+ },
+ "c04q2|2": {
+  "pt": [
+   "widens",
+   "does 뒤에는 동사원형 widen (-s 없음)"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "par",
+    "병렬"
+   ]
+  ],
+  "st": [
+   "강조 does 뒤의 병렬 동사",
+   [
+    "① does widen A and expand B : 두 동사 모두 does 아래",
+    "② and 뒤 expand 도 동사원형 (expands X)"
+   ]
+  ]
+ },
+ "c04q2|3": {
+  "pt": [
+   "have",
+   "주어 my brother(단수) : has (have 아님)"
+  ],
+  "rel": []
+ },
+ "c04q2|4": {
+  "pt": [
+   "been",
+   "조동사 could 뒤 : 동사원형 be (been 아님)"
+  ],
+  "rel": [
+   [
+    2,
+    1,
+    "mod",
+    "시간"
+   ]
+  ]
+ },
+ "c04q2|5": {
+  "pt": [
+   "prepares",
+   "제안 동사 뒤 that절 : he 에도 -s 없이 원형"
+  ],
+  "rel": []
+ },
+ "c04q2|6": {
+  "pt": [
+   "does",
+   "복수 주어 they : do eat (does 아님)"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    "시간"
+   ]
+  ],
+  "st": [
+   "강조 do 는 접속사 뒤에서도 쓴다",
+   [
+    "① when they do eat : 접속사 + 주어 + do + 동사원형",
+    "② 강조 do 는 주어의 수·시제에 맞춘다 (they do / he does)"
+   ]
+  ]
+ },
+ "c04q2|7": {
+  "pt": [
+   "does",
+   "복수 주어 the people : do (does 아님)"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "do = have"
+   ]
+  ]
+ },
+ "c04q2|8": {
+  "pt": [
+   "be",
+   "과거 추측 + 수동 : might have been p.p."
+  ],
+  "rel": [
+   [
+    4,
+    3,
+    "mod",
+    "목적"
+   ]
+  ],
+  "st": [
+   "조동사 + have p.p. 의 수동",
+   [
+    "① 조동사 + have been + p.p. : 지난 일의 수동 추측",
+    "② might have been hurt : 다쳤을지도 모른다"
+   ]
+  ]
+ },
+ "c04q2|9": {
+  "pt": [
+   "pay",
+   "사실을 말하는 insist : should 없이 일반 시제"
+  ],
+  "rel": []
+ },
+ "c04q2|10": {
+  "pt": [
+   "did",
+   "앞이 be동사 were satisfied : 대동사도 were"
+  ],
+  "rel": []
+ },
+ "c04q2|11": {
+  "pt": [
+   "showed",
+   "강조 did 뒤에는 동사원형 show"
+  ],
+  "rel": [],
+  "st": [
+   "did 와 동사 사이에 부사가 올 때",
+   [
+    "① did + 부사 + 동사원형 : did confidently show",
+    "② 강조 did 와 과거형 동사는 함께 쓰지 않는다 (did showed X)"
+   ]
+  ]
+ },
+ "c04q2|12": {
+  "pt": [
+   "are",
+   "권고 동사 뒤 that절 : (should) be (are 아님)"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "par",
+    "병렬"
+   ]
+  ]
+ },
+ "c04s1|1-(A)": {
+  "pt": [
+   "call",
+   "못 한 과거 일 : could have p.p."
+  ],
+  "rel": []
+ },
+ "c04s1|1-(B)": {
+  "pt": [
+   "did",
+   "앞이 과거완료 had solved : 대동사도 had"
+  ],
+  "rel": []
+ },
+ "c04s1|2-(A)": {
+  "pt": [
+   "have",
+   "연결되는 대상 : be + p.p. (have p.p. 아님)"
+  ],
+  "rel": [
+   [
+    4,
+    2,
+    "mod",
+    "이유"
+   ]
+  ],
+  "st": [
+   "should 뒤 수동 / 완료 구별",
+   [
+    "① should be p.p. : ~되어야 한다 (수동)",
+    "② should have p.p. : ~했어야 했다 (과거 후회)"
+   ]
+  ]
+ },
+ "c04s1|2-(B)": {
+  "pt": [
+   "reports",
+   "요구 동사 뒤 that절 : 단수 주어도 동사원형"
+  ],
+  "rel": []
+ },
+ "c04s1|3-(A)": {
+  "pt": [
+   "hides",
+   "강조 does 뒤에는 동사원형 hide"
+  ],
+  "rel": [],
+  "st": [
+   "강조 does 의 주어 확인",
+   [
+    "① 주어 The demand(단수) : does 를 쓴다",
+    "② does 가 3인칭 -s 를 맡으므로 동사는 원형 hide"
+   ]
+  ]
+ },
+ "c04s1|3-(B)": {
+  "pt": [
+   "does",
+   "주어 they(복수 crops) : do (does 아님)"
+  ],
+  "rel": []
+ },
+ "c04s1|3-(C)": {
+  "pt": [
+   "throw",
+   "사실 주장 : 일반 시제 (현재진행 are -ing)"
+  ],
+  "rel": [
+   [
+    4,
+    3,
+    "mod",
+    "목적"
+   ]
+  ]
+ },
+ "c04s1|4-①": {
+  "pt": [
+   "did",
+   "앞이 be동사 is : 대동사도 be동사 was"
+  ],
+  "rel": [],
+  "st": [
+   "the number of / a number of",
+   [
+    "① the number of + 복수명사 : ~의 수 (단수 취급)",
+    "② a number of + 복수명사 : 많은 ~ (복수 취급)"
+   ]
+  ]
+ },
+ "c04s1|4-②": {
+  "pt": [
+   "visit",
+   "지난 일(previous, then) : may have p.p."
+  ],
+  "rel": [
+   [
+    4,
+    2,
+    "mod",
+    "이유"
+   ]
+  ]
+ },
+ "c04s1|5-①": {
+  "pt": [
+   "does",
+   "복수 주어 they : do hunt (does 아님)"
+  ],
+  "rel": [
+   [
+    2,
+    3,
+    "mod",
+    "시간"
+   ]
+  ],
+  "st": [
+   "강조 do 가 쓰이는 문맥",
+   [
+    "① but 과 함께 : ~하긴 하지만 (대조) 의 느낌",
+    "② when they do hunt : 정말 사냥을 할 때는"
+   ]
+  ]
+ },
+ "c04s1|5-②": {
+  "pt": [
+   "stays",
+   "제안 동사 뒤 that절 : 단수 everyone도 원형"
+  ],
+  "rel": [
+   [
+    4,
+    3,
+    "mod",
+    "이유"
+   ]
+  ]
+ },
+ "c04s1|6-①": {
+  "pt": [
+   "do",
+   "앞이 수동태 are created : be동사 are"
+  ],
+  "rel": [
+   [
+    2,
+    0,
+    "eq",
+    "반복 생략"
+   ]
+  ]
+ },
+ "c04s1|6-2": {
+  "pt": [
+   "is",
+   "주어 They(복수) : are"
+  ],
+  "rel": []
+ },
+ "c04s1|6-②": {
+  "pt": [
+   "feels",
+   "does 뒤에는 동사원형 feel (-s 없음)"
+  ],
+  "rel": [],
+  "st": [
+   "feel like 의 두 가지 쓰임",
+   [
+    "① feel like + 절 : ~인 것처럼 느끼다",
+    "② feel like + -ing : ~하고 싶다 (다른 뜻)"
+   ]
+  ]
+ },
+ "c04s1|6-③": {
+  "pt": [
+   "spends",
+   "조동사 may 뒤 : 동사원형 spend"
+  ],
+  "rel": [
+   [
+    4,
+    2,
+    "mod",
+    "이유"
+   ]
+  ]
+ },
+ "add04|1-1": {
+  "pt": [
+   "leave",
+   "이미 떠난 일에 대한 확신 : must have p.p."
+  ],
+  "rel": []
+ },
+ "add04|1-2": {
+  "pt": [
+   "have been",
+   "현재 추측 : cannot be (have been 아님)"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "수식"
+   ]
+  ],
+  "st": [
+   "cannot 의 시제 구별",
+   [
+    "① cannot be : 지금 ~일 리 없다 (현재 추측)",
+    "② cannot have been : (그때) ~였을 리 없다 (과거 추측)"
+   ]
+  ]
+ },
+ "add04|1-3": {
+  "pt": [
+   "call",
+   "지나간 일에 대한 후회 : should have p.p."
+  ],
+  "rel": [],
+  "st": [
+   "sorry 뒤에 오는 절",
+   [
+    "① be sorry (that) + 주어 + 동사 : ~해서 미안하다",
+    "② that 은 생략 가능 : I’m sorry I missed dinner (놓쳐서 미안)"
+   ]
+  ]
+ },
+ "add04|1-4": {
+  "pt": [
+   "have caught",
+   "지금 날씨의 가능성 : could + 동사원형"
+  ],
+  "rel": []
+ },
+ "add04|1-5": {
+  "pt": [
+   "hurt",
+   "과거(last Thursday) 추측 : might have p.p."
+  ],
+  "rel": []
+ },
+ "add04|2-1": {
+  "pt": [
+   "held",
+   "제안 동사 뒤 that절 : 과거형이 아닌 동사원형"
+  ],
+  "rel": [],
+  "st": [
+   "제안 동사 뒤 that절의 should",
+   [
+    "① propose(제안하다) suggest recommend + that절 + (should) 원형",
+    "② 주절이 과거(proposed)여도 that절은 원형 그대로"
+   ]
+  ]
+ },
+ "add04|2-2": {
+  "pt": [
+   "be",
+   "시사하다 뒤 : 주어 plan(단수)에 맞춰 is"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "수식"
+   ],
+   [
+    4,
+    3,
+    "mod",
+    "수식"
+   ]
+  ]
+ },
+ "add04|2-3": {
+  "pt": [
+   "cleans",
+   "주장·요구 동사 뒤 that절 : he 에도 -s 없음"
+  ],
+  "rel": [
+   [
+    5,
+    3,
+    "mod",
+    "양보"
+   ]
+  ]
+ },
+ "add04|2-4": {
+  "pt": [
+   "changed",
+   "주절이 과거여도 that절은 동사원형"
+  ],
+  "rel": [],
+  "st": [
+   "주절 시제와 that절 동사",
+   [
+    "① 주절 recommended(과거)라도 that절은 원형 change",
+    "② 시제를 맞춘 것이 아니라 (should)를 생략한 것"
+   ]
+  ]
+ },
+ "add04|2-5": {
+  "pt": [
+   "repairs",
+   "촉구 동사 뒤 that절 : 단수 the mayor도 원형"
+  ],
+  "rel": []
+ },
+ "add04|3-1": {
+  "pt": [
+   "do",
+   "주어 he(단수) : does so"
+  ],
+  "rel": [
+   [
+    3,
+    1,
+    "eq",
+    "do so = 창작"
+   ]
+  ],
+  "st": [
+   "do so 의 so 는 무엇인가",
+   [
+    "① so 는 목적어가 아니라 앞 동사구 전체를 가리킨다",
+    "② does so = creates scenes from nature (자연 풍경을 창작한다)"
+   ]
+  ]
+ },
+ "add04|3-2": {
+  "pt": [
+   "are",
+   "five years ago(과거) : than절은 과거 were"
+  ],
+  "rel": [
+   [
+    1,
+    0,
+    "mod",
+    "수식"
+   ]
+  ]
+ },
+ "add04|3-3": {
+  "pt": [
+   "has",
+   "주어 high gas prices(복수) : have (has 아님)"
+  ],
+  "rel": [],
+  "st": [
+   "삽입 부사구가 끼어 있을 때",
+   [
+    "① but, since last month, high gas prices have : 삽입구",
+    "② 삽입을 지우고 주어(prices, 복수)에 맞춰 have"
+   ]
+  ]
+ },
+ "add04|3-4": {
+  "pt": [
+   "does",
+   "앞 동사 got이 과거 : 대동사도 did"
+  ],
+  "rel": []
+ },
+ "add04|3-5": {
+  "pt": [
+   "does",
+   "주어 you : do (does 아님)"
+  ],
+  "rel": []
+ },
+ "add04|4-1": {
+  "pt": [
+   "requires",
+   "does 뒤에는 동사원형 require (-s 없음)"
+  ],
+  "rel": [
+   [
+    3,
+    2,
+    "mod",
+    "수식"
+   ]
+  ]
+ },
+ "add04|4-2": {
+  "rel": [],
+  "st": [
+   "succeed in -ing",
+   [
+    "① succeed in + 동명사 : ~하는 데 성공하다",
+    "② 전치사 뒤에는 to부정사가 아닌 동명사 (reaching)"
+   ]
+  ]
+ },
+ "add04|4-3": {
+  "pt": [
+   "does",
+   "복수 주어 we : do feel (does 아님)"
+  ],
+  "rel": []
+ },
+ "add04|4-4": {
+  "rel": [
+   [
+    1,
+    0,
+    "eq",
+    "동격"
+   ]
+  ]
+ },
+ "add04|4-5": {
+  "pt": [
+   "dreamed",
+   "강조 did 뒤에는 동사원형 dream"
+  ],
+  "rel": [
+   [
+    0,
+    2,
+    "mod",
+    "시간"
+   ]
+  ]
+ }
+}
