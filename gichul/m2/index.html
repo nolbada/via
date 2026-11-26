@@ -39,6 +39,8 @@ u{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:
 .ch.okc{border-color:var(--ok);background:linear-gradient(90deg,var(--okb),#fff)}
 .ch[disabled]{opacity:1}
 .bn{background:var(--no);color:#fff;border-radius:14px 14px 0 0;padding:10px 14px;font-weight:800;font-size:15px}
+.bn.o{background:var(--ac)}
+.bnb.o{background:#fff;border-color:var(--ac)}
 .bn small{display:block;font-weight:500;font-size:12.5px;opacity:.9;margin-top:2px}
 .bnb{background:var(--nob);border:1.5px solid var(--no);border-top:0;border-radius:0 0 14px 14px;padding:10px 14px;margin:0 0 12px;font-size:16px;font-weight:700}
 .bnb .ko{display:block;font-weight:500}
@@ -78,8 +80,8 @@ function lget(k){try{return ls?ls.getItem(k):null}catch(e){return null}}
 function lset(k,v){try{if(ls)ls.setItem(k,v)}catch(e){}}
 var NAME=lget("bd-name")||"guest";
 var KEY="gk-"+GRADE+"|"+NAME;
-var st={last:"",wr:[]};
-try{var o=JSON.parse(lget(KEY)||"null");if(o&&typeof o==="object"){st.last=o.last||"";st.wr=o.wr||[]}}catch(e){}
+var st={last:"",wr:[],run:null};
+try{var o=JSON.parse(lget(KEY)||"null");if(o&&typeof o==="object"){st.last=o.last||"";st.wr=o.wr||[];st.run=o.run||null}}catch(e){}
 function save(){lset(KEY,JSON.stringify(st))}
 var SRV="https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec";
 var APPID=GRADE==="m1"?"gk1":"gk2",LABEL="대화문 기출 중"+(GRADE==="m1"?"1":"2");
@@ -100,8 +102,12 @@ function send(rec){
     }),new Promise(function(r){setTimeout(function(){dead=true;r()},8000)})]);
   }).catch(function(){});
 }
+function runTail(){
+  var r=st.run;if(!r||idx+1<r.a+r.n)return"";
+  return " · No."+(r.a+1)+"-"+(r.a+r.n)+" "+r.n+"문제 완료 · 오답 "+(r.w||0)+"개";
+}
 function pushRec(q,ok){
-  send({w:LABEL+" No."+(idx+1)+(ok?" 정답":" 오답"),nx:(idx+2<=Q.length?LABEL+" No."+(idx+2):""),t:hmT(),d:isoD(),id:q.id,wr:st.wr.slice()});
+  send({w:LABEL+" No."+(idx+1)+(ok?" 정답":" 오답")+runTail(),nx:(idx+2<=Q.length?LABEL+" No."+(idx+2):""),t:hmT(),d:isoD(),id:q.id,wr:st.wr.slice(),run:st.run||null});
 }
 function pushReset(){
   send({w:LABEL+" 처음부터 다시",nx:LABEL+" No.1",t:hmT(),d:isoD(),id:"",wr:st.wr.slice()});
@@ -120,6 +126,7 @@ function pullRec(){
     for(i=0;i<Q.length;i++){if(Q[i].id===rec.id)si=i;if(Q[i].id===st.last)li=i}
     if(si>li)st.last=rec.id;
     (rec.wr||[]).forEach(function(x){if(st.wr.indexOf(x)<0)st.wr.push(x)});
+    if(rec.run&&(!st.run||rec.run.a!==st.run.a||(rec.run.w||0)>(st.run.w||0)))st.run=rec.run;
     save();
   }).catch(function(){});
   return Promise.race([g,tm]).then(function(){pulled=true});
@@ -168,11 +175,29 @@ function noteLines(arr){
   return h;
 }
 function backBtn(){return '<a class="bk" href="/board/?back=1" target="_top">‹ 목록으로</a>'}
+var CNT=[7,10,15,20];
+function chooseView(){
+  var h='<div class="ins">다음은 <b>No. '+(idx+1)+'</b>부터</div><div class="chs">';
+  CNT.forEach(function(n){h+='<button class="ch" data-n="'+n+'"><span class="cn">'+n+'</span><span class="ct">'+n+'문제</span></button>'});
+  app.innerHTML=h+'</div>'+backBtn();
+  var bs=app.querySelectorAll(".ch");
+  for(var k=0;k<bs.length;k++)bs[k].onclick=function(){
+    var n=Math.min(+this.getAttribute("data-n"),Q.length-idx);
+    st.run={a:idx,n:n,w:0};save();showQ();
+  };
+}
 function showQ(){
   window.scrollTo(0,0);
+  if(st.run&&(idx<st.run.a||idx>st.run.a+st.run.n))st.run=null;
+  if(st.run&&idx>=st.run.a+st.run.n){
+    var r=st.run;st.run=null;save();
+    app.innerHTML='<div class="end"><b>No. '+(r.a+1)+' – No. '+(r.a+r.n)+' 완료</b><div>오답 '+(r.w||0)+'개</div></div>'+backBtn();
+    return;
+  }
+  if(!st.run&&idx<Q.length){chooseView();return}
   if(idx>=Q.length){
     app.innerHTML='<div class="end"><b>여기까지 모두 풀었습니다</b></div><button class="rs2" id="again">처음부터</button>'+backBtn();
-    document.getElementById("again").onclick=function(){st.last="";save();pushReset();idx=0;showQ()};
+    document.getElementById("again").onclick=function(){st.last="";st.run=null;save();pushReset();idx=0;showQ()};
     return;
   }
   var q=Q[idx],h=head(q)+'<div class="ins">'+fmt(q.ins,true)+'</div>'+dlHtml(q)+'<div class="chs">';
@@ -190,19 +215,20 @@ function pick(i,el){
   if(i+1===q.ans){
     el.className="ch okc";
     st.last=q.id;save();pushRec(q,true);blScore(true);
-    setTimeout(function(){idx++;showQ()},700);
+    showWrong(q,i,true);
   }else{
     if(st.wr.indexOf(q.id)<0)st.wr.push(q.id);
+    if(st.run)st.run.w=(st.run.w||0)+1;
     st.last=q.id;save();pushRec(q,false);blScore(false);
     showWrong(q,i);
   }
 }
-function showWrong(q,i){
+function showWrong(q,i,okc){
   window.scrollTo(0,0);
   var a=q.ch[q.ans-1];
   var h=head(q);
-  h+='<div class="bn">오답<small>정답 '+NUMS[q.ans-1]+'</small></div>';
-  h+='<div class="bnb">'+choiceText(q,a)+(!q.ek&&a[1]?'<div class="ko">'+fmt(a[1])+'</div>':"")+'</div>';
+  h+='<div class="bn'+(okc?' o':'')+'">'+(okc?'정답':'오답')+'<small>정답 '+NUMS[q.ans-1]+'</small></div>';
+  h+='<div class="bnb'+(okc?' o':'')+'">'+choiceText(q,a)+(!q.ek&&a[1]?'<div class="ko">'+fmt(a[1])+'</div>':"")+'</div>';
   h+='<div class="rev">';
   h+='<div class="ins">'+fmt(q.ins,true)+'</div>'+dlHtml(q);
   h+='<div class="sh">보기 풀이</div>';
