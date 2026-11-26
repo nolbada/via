@@ -1,0 +1,504 @@
+[
+ {
+  "dk": [
+   [
+    "What was the name of the book about Napoleon",
+    "나폴레옹에 관한 책의 제목은 무엇이었고"
+   ],
+   [
+    "which you borrowed from the library,",
+    "네가 도서관에서 빌린,"
+   ],
+   [
+    "and do you remember",
+    "기억하니"
+   ],
+   [
+    "where you put it?",
+    "그것을 어디에 두었는지?"
+   ]
+  ],
+  "ko": "네가 도서관에서 빌렸던 나폴레옹에 관한 책의 제목은 무엇이었고, 그 책을 어디에 두었는지 기억하니?",
+  "gist": "빌린 책의 제목과 그 책을 둔 곳을 기억하는지 묻는 얘기예요.",
+  "fm": "의문사 + 주어 + 동사 (did 없음)",
+  "mp": [
+   [
+    "의문사절",
+    "where he lives",
+    "where you put it"
+   ]
+  ],
+  "ex": "Do you know where he lives?",
+  "exko": "그가 어디에 사는지 아니?(know 알다, live 살다)",
+  "tko": "그것을 어디에 두었는지",
+  "bad": "Do you know where does he live?",
+  "badko": "(know(알다) 뒤의 where절은 문장 속에 들어간 질문이라서 does를 또 쓰지 않고 where he lives로 써요)",
+  "altw": "where did you",
+  "alt": "Where did you put it?",
+  "altko": "그것을 어디에 두었니?(혼자 따로 묻는 질문일 때는 did you 순서가 맞아요).",
+  "why": "remember(기억하다) 뒤의 where절은 큰 문장 안에 들어간 질문이에요. 이럴 때는 질문 모양(did you)으로 뒤집지 않고 where you put(두다)처럼 '의문사 + 주어 + 동사' 순서로 말해요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>질문이 다른 문장 안에 들어가면 의문사 + 주어 + 동사 순서예요",
+  "d": {
+   "name": "name(이름, 제목)",
+   "book": "책",
+   "borrowed": "borrow(빌리다)의 과거형",
+   "library": "도서관",
+   "remember": "기억하다",
+   "put": "put(두다)의 과거형",
+   "napoleon": "나폴레옹(사람 이름)"
+  }
+ },
+ {
+  "dk": [
+   [
+    "I replaced my old TV with a new one,",
+    "나는 내 오래된 TV를 새것으로 교체했는데,"
+   ],
+   [
+    "the brand of which is Korean,",
+    "그것의 브랜드는 한국산이고,"
+   ],
+   [
+    "and I enjoy watching movies on it.",
+    "나는 그것으로 영화를 보는 것을 즐긴다."
+   ]
+  ],
+  "ko": "나는 내 오래된 TV를 새것으로 교체했는데, 그것의 브랜드는 한국산이고, 나는 그것으로 영화를 보는 것을 즐긴다.",
+  "gist": "새 TV로 영화 보는 것을 좋아한다는 얘기예요.",
+  "fm": "enjoy + -ing (to V 안 돼요)",
+  "mp": [
+   [
+    "enjoy 뒤",
+    "enjoy playing",
+    "enjoy watching"
+   ]
+  ],
+  "ex": "I enjoy playing games.",
+  "exko": "나는 게임하는 것을 즐겨요(play 놀다, 게임하다).",
+  "tko": "영화를 보는 것을",
+  "bad": "I enjoy to play games.",
+  "badko": "(enjoy(즐기다) 뒤에는 to play가 아니라 playing(-ing)만 올 수 있어요)",
+  "altw": "to",
+  "alt": "I want to play games.",
+  "altko": "나는 게임하고 싶어요(want 원하다 뒤에는 to play가 와요).",
+  "why": "enjoy(즐기다)는 '~하는 것을 즐기다'라고 할 때 꼭 -ing를 붙여서 말해요. to watch(보다)는 enjoy 뒤에 올 수 없어요. 그래서 watching movies(영화를 보는 것)가 맞아요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>enjoy, finish, mind 뒤에는 -ing만 와요",
+  "d": {
+   "replaced": "replace(바꾸다)의 과거형",
+   "brand": "상표, 브랜드",
+   "korean": "한국의",
+   "enjoy": "즐기다",
+   "watching": "watch(보다)의 -ing형",
+   "movies": "movie(영화)의 복수형",
+   "old": "오래된",
+   "new": "새로운"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The company started to sell a new product,",
+    "그 회사는 새로운 제품을 팔기 시작했는데,"
+   ],
+   [
+    "which quickly became a bestseller,",
+    "그것은 빠르게 베스트셀러가 되었고,"
+   ],
+   [
+    "and the customers loved what they got.",
+    "고객들은 자신들이 받은 것을 좋아했다."
+   ]
+  ],
+  "ko": "그 회사는 새로운 제품을 팔기 시작했는데, 그것은 빠르게 베스트셀러가 되었고, 고객들은 자신들이 받은 것을 좋아했다.",
+  "gist": "새 제품이 잘 팔렸고 손님들이 받은 것을 좋아했다는 얘기예요.",
+  "fm": "what = the thing which (뒤 문장에 빈자리)",
+  "mp": [
+   [
+    "~하는 것",
+    "what I need",
+    "what they got"
+   ]
+  ],
+  "ex": "I like what you made.",
+  "exko": "나는 네가 만든 것이 마음에 들어요(like 좋아하다, make 만들다).",
+  "tko": "그들이 받은 것",
+  "bad": "I like that you made.",
+  "badko": "(that 앞에 꾸밀 명사가 없고 made 뒤 목적어 자리도 비어서, '~하는 것'이라는 뜻의 what이어야 해요)",
+  "altw": "that",
+  "alt": "I know that you made it.",
+  "altko": "나는 네가 그것을 만들었다는 걸 알아요(that 뒤에 it까지 다 있는 문장이 오면 that이에요).",
+  "why": "they got(받다의 과거형) 뒤에는 받은 '것'이 빠져 있어요. 이럴 때 '~하는 것'이라는 뜻을 가진 말이 what이에요. that은 뒤에 빠진 것이 없는 완전한 문장이 올 때 써요.",
+  "trend": "<b>출제 3위 · that[which] vs what</b><br>31년간 71회 나왔어요.<br>뒤 문장에 빈자리가 있으면 what, 꾸밀 명사가 있으면 which나 that이에요",
+  "d": {
+   "company": "회사",
+   "started": "start(시작하다)의 과거형",
+   "sell": "팔다",
+   "product": "제품",
+   "quickly": "빠르게",
+   "became": "become(되다)의 과거형",
+   "bestseller": "베스트셀러, 가장 잘 팔리는 것",
+   "customers": "customer(손님)의 복수형",
+   "loved": "love(아주 좋아하다)의 과거형",
+   "got": "get(받다)의 과거형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Benjamin introduced me to his cousin with the red hair,",
+    "Benjamin은 나를 빨간 머리를 가진 그의 사촌에게 소개했고,"
+   ],
+   [
+    "whom I had already met last night,",
+    "내가 지난밤에 이미 만난 적 있는,"
+   ],
+   [
+    "and then he took me to Café Moca,",
+    "그러고 나서 그는 나를 Café Moca로 데려갔다,"
+   ],
+   [
+    "which he loves.",
+    "그가 아주 좋아하는."
+   ]
+  ],
+  "ko": "Benjamin은 내가 지난밤에 이미 만난 적 있는 빨간색 머리를 가진 그의 사촌을 나에게 소개했고, 그러고 나서 그가 아주 좋아하는 Café Moca로 나를 데려갔다.",
+  "gist": "사촌을 소개해 주고 자기가 좋아하는 카페에 데려갔다는 얘기예요.",
+  "fm": "which + 주어 + 동사 (목적어 빈자리)",
+  "mp": [
+   [
+    "관계사 뒤",
+    "which I like",
+    "which he loves"
+   ]
+  ],
+  "ex": "This is the cake which I like.",
+  "exko": "이것은 내가 좋아하는 케이크예요(cake 케이크, like 좋아하다).",
+  "tko": "그가 아주 좋아하는",
+  "bad": "This is the park where I like.",
+  "badko": "(like(좋아하다) 뒤에 목적어가 비어 있어서 where가 아니라 which가 와요)",
+  "altw": "where",
+  "alt": "This is the park where I play.",
+  "altko": "여기는 내가 노는 공원이에요(play 놀다 뒤에 빠진 것이 없어서 where가 맞아요).",
+  "why": "he loves(아주 좋아하다)를 보면 loves 뒤에 '무엇을'이 빠져 있어요. 빠진 자리를 채우면서 Café Moca를 꾸며 주는 말이 which예요. where는 뒤 문장이 빠진 것 없이 완전할 때만 써요.",
+  "trend": "<b>출제 2위 · 관계대명사와 관계부사</b><br>31년간 99회 나왔어요.<br>뒤 문장에 빈자리가 있으면 which, 없이 완전하면 where예요",
+  "d": {
+   "introduced": "introduce(소개하다)의 과거형",
+   "cousin": "사촌",
+   "hair": "머리카락",
+   "already": "이미",
+   "met": "meet(만나다)의 과거분사",
+   "last": "지난",
+   "night": "밤",
+   "took": "take(데려가다)의 과거형",
+   "loves": "love(아주 좋아하다)의 3인칭 단수형"
+  }
+ },
+ {
+  "dk": [
+   [
+    "This story is a Greek myth about a captain",
+    "이 이야기는 선장에 대한 그리스 신화이고"
+   ],
+   [
+    "whose ship sailed past the island of the Sirens,",
+    "그의 배가 사이렌 섬을 지나 항해한,"
+   ],
+   [
+    "and the events happened long ago.",
+    "그 사건들은 오래전에 일어났다."
+   ]
+  ],
+  "ko": "이 이야기는 배가 사이렌 섬을 지나 항해한 선장에 대한 그리스 신화이고, 그 사건들은 오래전에 일어났다.",
+  "gist": "오래전에 있었던 선장의 신화라는 얘기예요.",
+  "fm": "happen 같은 자동사 (수동태 X)",
+  "mp": [
+   [
+    "자동사",
+    "The accident happened",
+    "the events happened"
+   ]
+  ],
+  "ex": "The accident happened yesterday.",
+  "exko": "그 사고는 어제 일어났어요(accident 사고).",
+  "tko": "그 사건들은 일어났다",
+  "bad": "The accident was happened yesterday.",
+  "badko": "(happen(일어나다)은 목적어가 필요 없는 말이라서 was happened처럼 쓰지 않아요)",
+  "altw": "was",
+  "alt": "The window was broken yesterday.",
+  "altko": "그 창문은 어제 깨졌어요(break 깨다는 목적어가 있는 말이라서 was broken이 가능해요).",
+  "why": "happen(일어나다)은 '누가 무엇을'처럼 대상을 받지 않고 '저절로 일어나다'라는 뜻이에요. 대상이 없으니 '~당하다'라는 모양(were + 과거분사)으로 쓸 수 없어요. 그냥 happened(일어났다)라고 해요.",
+  "trend": "<b>출제 7위 · 능동태 vs 수동태</b><br>31년간 52회 나왔어요.<br>happen, appear, occur처럼 저절로 하는 말은 수동태로 안 써요",
+  "d": {
+   "story": "이야기",
+   "greek": "그리스의",
+   "myth": "신화",
+   "captain": "선장",
+   "ship": "배",
+   "sailed": "sail(항해하다)의 과거형",
+   "past": "~을 지나서",
+   "island": "섬",
+   "sirens": "사이렌(그리스 신화 속 노래하는 바다 요정)",
+   "events": "event(사건)의 복수형",
+   "happened": "happen(일어나다)의 과거형",
+   "ago": "~ 전에"
+  }
+ },
+ {
+  "dk": [
+   [
+    "I have collected a lot of old coins,",
+    "나는 많은 오래된 동전들을 모았지만,"
+   ],
+   [
+    "but unfortunately none of them are worth much,",
+    "불행히도 그것들 중 어떤 것도 별로 가치가 없었고,"
+   ],
+   [
+    "so I showed them to my uncle,",
+    "그래서 나는 그것들을 삼촌께 보여 드렸다,"
+   ],
+   [
+    "who loves old things.",
+    "오래된 물건을 좋아하는."
+   ]
+  ],
+  "ko": "나는 많은 오래된 동전들을 모았지만, 불행히도 그것들 중 어떤 것도 별로 가치 있지 않았고, 그래서 나는 그것들을 오래된 물건을 좋아하는 삼촌께 보여 드렸다.",
+  "gist": "모은 동전을 옛것을 좋아하는 삼촌께 보여 드렸다는 얘기예요.",
+  "fm": "사람 + , who (콤마 뒤 that X)",
+  "mp": [
+   [
+    "사람 + 관계사",
+    "my friend, who",
+    "my uncle, who"
+   ]
+  ],
+  "ex": "I called my friend, who lives here.",
+  "exko": "나는 여기 사는 내 친구에게 전화했어요(call 전화하다, live 살다).",
+  "tko": "오래된 물건을 좋아하는 삼촌",
+  "bad": "I called my friend, which lives here.",
+  "badko": "(friend(친구)는 사람이라서 which가 아니라 who를 써요)",
+  "altw": "which",
+  "alt": "I have a dog, which lives here.",
+  "altko": "나는 개가 한 마리 있는데, 그 개는 여기 살아요(dog 개는 사람이 아니라서 which가 맞아요).",
+  "why": "my uncle(삼촌)은 사람이에요. 사람을 설명하는 말을 이어 줄 때는 who를 써요. which는 사람이 아닌 것에 써요. 콤마(,) 뒤에서는 that을 쓸 수 없다는 점도 같이 기억해요.",
+  "trend": "<b>출제 2위 · 관계대명사와 관계부사</b><br>31년간 99회 나왔어요.<br>사람이면 who, 사물이면 which예요. 콤마 뒤에는 that을 못 써요",
+  "d": {
+   "collected": "collect(모으다)의 과거분사",
+   "coins": "coin(동전)의 복수형",
+   "unfortunately": "불행히도",
+   "worth": "가치가 있는",
+   "showed": "show(보여 주다)의 과거형",
+   "uncle": "삼촌",
+   "loves": "love(좋아하다)의 3인칭 단수형",
+   "things": "thing(물건)의 복수형",
+   "lot": "a lot of: 많은"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Ethan owns two cars,",
+    "Ethan은 두 대의 차를 가지고 있는데,"
+   ],
+   [
+    "both of which he wants to sell as soon as possible,",
+    "그는 그 둘 다를 가능한 한 빨리 팔고 싶어 한다,"
+   ],
+   [
+    "although they are still in good condition.",
+    "비록 그것들이 아직 상태가 좋지만."
+   ]
+  ],
+  "ko": "Ethan은 두 대의 차를 소유하고 있는데, 비록 그것들이 아직 상태가 좋지만 그는 그것들 둘 다 가능한 한 빨리 팔고 싶어 한다.",
+  "gist": "차 상태가 좋은데도 둘 다 빨리 팔고 싶어 한다는 얘기예요.",
+  "fm": "although + 문장 / despite + 명사",
+  "mp": [
+   [
+    "접속사",
+    "Although",
+    "Although"
+   ],
+   [
+    "이어지는 절",
+    "it rained",
+    "they are still in good condition"
+   ]
+  ],
+  "ex": "Although it rained, we played.",
+  "exko": "비가 왔지만 우리는 놀았어요(rain 비가 오다, play 놀다).",
+  "tko": "그것들이 아직 상태가 좋지만",
+  "bad": "Despite it rained, we played.",
+  "badko": "(Despite(~에도 불구하고) 뒤에는 명사만 와요. it rained는 문장이라서 Although예요)",
+  "altw": "Despite",
+  "alt": "Despite the rain, we played.",
+  "altko": "비에도 불구하고 우리는 놀았어요(the rain은 명사라서 Despite).",
+  "why": "they are still in good condition은 주어(they)와 동사(are)가 있는 문장이에요. despite(~에도 불구하고)는 명사만 받을 수 있어서 안 맞아요. 문장을 받아서 '비록 ~이지만'이라고 할 때는 although를 써요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>명사 앞은 despite, 문장 앞은 although예요",
+  "d": {
+   "owns": "own(가지고 있다)의 3인칭 단수형",
+   "wants": "want(원하다)의 3인칭 단수형",
+   "sell": "팔다",
+   "soon": "as soon as possible: 가능한 한 빨리",
+   "possible": "가능한",
+   "still": "아직도",
+   "condition": "상태",
+   "good": "좋은"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Olivia recently had to buy new furniture,",
+    "Olivia는 최근에 새 가구를 사야 했는데,"
+   ],
+   [
+    "which was delivered yesterday,",
+    "그것은 어제 배송되었고,"
+   ],
+   [
+    "and she thanked her brother,",
+    "그녀는 오빠에게 감사했다,"
+   ],
+   [
+    "who helped her carry it.",
+    "그녀가 그것을 나르는 것을 도와준."
+   ]
+  ],
+  "ko": "Olivia는 최근에 새 가구를 사야 했는데, 그것은 어제 배송되었고, 그녀는 그것을 나르는 것을 도와준 오빠에게 감사했다.",
+  "gist": "새 가구를 옮기도록 도와준 오빠에게 고마워했다는 얘기예요.",
+  "fm": "사람 + , who + 동사 (he X)",
+  "mp": [
+   [
+    "사람 + 이어 주는 말",
+    "my friend, who",
+    "her brother, who"
+   ]
+  ],
+  "ex": "I thanked my friend, who helped me.",
+  "exko": "나는 나를 도와준 친구에게 고마워했어요(thank 감사하다, help 돕다).",
+  "tko": "그녀를 도와준 오빠",
+  "bad": "I thanked my friend, he helped me.",
+  "badko": "(콤마만으로는 두 문장을 이을 수 없어요. he 대신 이어 주는 who가 필요해요)",
+  "altw": "he",
+  "alt": "I thanked my friend. He helped me.",
+  "altko": "나는 친구에게 고마워했어요. 그는 나를 도와줬어요(마침표로 문장을 끊으면 He를 쓸 수 있어요).",
+  "why": "her brother, he helped처럼 쓰면 문장 두 개가 이어 주는 말 없이 콤마로만 붙어 버려요. 이럴 때는 '오빠 + 그 오빠가 ~했다'를 한 번에 이어 주는 who(~하는)를 써요.",
+  "trend": "<b>출제 2위 · 관계대명사와 관계부사</b><br>31년간 99회 나왔어요.<br>콤마만으로 문장 둘을 못 이어요. 이어 줄 who나 which가 필요해요",
+  "d": {
+   "recently": "최근에",
+   "furniture": "가구",
+   "delivered": "deliver(배달하다)의 과거분사: 배달된",
+   "yesterday": "어제",
+   "thanked": "thank(감사하다)의 과거형",
+   "brother": "오빠, 형, 남동생",
+   "helped": "help(돕다)의 과거형",
+   "carry": "나르다"
+  }
+ },
+ {
+  "dk": [
+   [
+    "The dolphin is very smart,",
+    "돌고래는 매우 영리하고,"
+   ],
+   [
+    "and its brain is surprisingly similar to the human brain,",
+    "그것의 뇌는 놀랍게도 인간의 뇌와 비슷해서,"
+   ],
+   [
+    "so it can learn new tricks quickly.",
+    "새로운 묘기를 빠르게 배울 수 있다."
+   ]
+  ],
+  "ko": "돌고래는 매우 영리하고, 그것의 뇌는 놀랍게도 인간의 뇌와 비슷해서, 새로운 묘기를 빠르게 배울 수 있다.",
+  "gist": "똑똑한 돌고래가 새 묘기를 빨리 배운다는 얘기예요.",
+  "fm": "동사를 꾸미는 말 = -ly 부사",
+  "mp": [
+   [
+    "동사 꾸미는 말",
+    "run quickly",
+    "learn new tricks quickly"
+   ]
+  ],
+  "ex": "The boy can run quickly.",
+  "exko": "그 소년은 빠르게 달릴 수 있어요(boy 소년, run 달리다).",
+  "tko": "새로운 묘기를 빠르게 배울 수 있다",
+  "bad": "The boy can run quick.",
+  "badko": "(run(달리다)이 어떻게 달리는지 꾸며 주는 말은 quick이 아니라 quickly예요)",
+  "altw": "quick",
+  "alt": "He is a quick boy.",
+  "altko": "그는 빠른 소년이에요(quick 빠른은 boy(소년) 명사를 꾸밀 때 써요).",
+  "why": "quick(빠른)은 명사를 꾸미는 말이에요. 여기서는 learn(배우다)이 어떻게 배우는지 꾸며 줘야 해요. 동사를 꾸밀 때는 quickly(빠르게)처럼 -ly를 붙인 부사를 써요.",
+  "trend": "<b>출제 8위 · 형용사 자리 vs 부사 자리</b><br>31년간 50회 나왔어요.<br>동사를 꾸미면 부사(-ly), 명사를 꾸미면 형용사예요",
+  "d": {
+   "dolphin": "돌고래",
+   "smart": "영리한",
+   "brain": "뇌",
+   "surprisingly": "놀랍게도",
+   "similar": "비슷한",
+   "human": "인간의",
+   "learn": "배우다",
+   "tricks": "trick(묘기)의 복수형",
+   "quickly": "빠르게",
+   "quick": "빠른"
+  }
+ },
+ {
+  "dk": [
+   [
+    "Doctors can revive patients",
+    "의사들은 환자들을 되살릴 수 있고"
+   ],
+   [
+    "whose hearts have stopped beating through CPR,",
+    "심폐소생술을 통해 심장이 뛰는 것이 멈춘,"
+   ],
+   [
+    "and the sooner they start,",
+    "그들이 더 빨리 시작할수록,"
+   ],
+   [
+    "the better the result will be.",
+    "결과는 더 좋아질 것이다."
+   ]
+  ],
+  "ko": "의사들은 심폐소생술을 통해 심장이 뛰는 것이 멈춘 환자들을 되살릴 수 있고, 더 빨리 시작할수록 결과는 더 좋아질 것이다.",
+  "gist": "심폐소생술은 빨리 시작할수록 결과가 좋아진다는 얘기예요.",
+  "fm": "the + 비교급, the + 비교급",
+  "mp": [
+   [
+    "앞부분",
+    "the more",
+    "the sooner"
+   ],
+   [
+    "뒷부분",
+    "the smarter",
+    "the better"
+   ]
+  ],
+  "ex": "The more you read, the smarter you get.",
+  "exko": "더 많이 읽을수록 더 똑똑해져요(read 읽다, smart 똑똑한).",
+  "tko": "더 빨리 ~할수록, 더 좋은",
+  "bad": "The more you read, the smartest you get.",
+  "badko": "('~할수록 더 ~해요'는 두 곳 모두 비교급이라서 smartest(가장 똑똑한)가 아니라 smarter예요)",
+  "altw": "best",
+  "alt": "He is the best player.",
+  "altko": "그는 최고의 선수예요(best 가장 좋은, the와 함께 가장 ~한 사람을 말해요).",
+  "why": "'~할수록 더 ~하다'는 the sooner(더 빨리), the better(더 좋은)처럼 앞과 뒤 모두 비교급(-er 모양)으로 말해요. best(가장 좋은)는 셋 이상 중 1등을 말할 때 써서 여기에는 안 맞아요.",
+  "trend": "<b>출제 순위</b> · 상위 10위 밖 유형이에요.<br>the + 비교급, the + 비교급은 한 쌍으로 외워요",
+  "d": {
+   "doctors": "doctor(의사)의 복수형",
+   "revive": "되살리다",
+   "patients": "patient(환자)의 복수형",
+   "hearts": "heart(심장)의 복수형",
+   "stopped": "stop(멈추다)의 과거분사",
+   "beating": "beat(뛰다)의 -ing형",
+   "cpr": "심폐소생술",
+   "sooner": "soon(빨리)의 비교급: 더 빨리",
+   "start": "시작하다",
+   "result": "결과",
+   "better": "good(좋은)의 비교급: 더 좋은"
+  }
+ }
+]
