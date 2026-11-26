@@ -2853,28 +2853,38 @@
 "title": "추가문제 POINT 3 동명사와 to부정사 둘 다 목적어로 취하는 동사",
 "chunks": [
 [
-"My family used to travel abroad, but",
-"우리 가족은 해외여행을 다니곤 했지만,",
+"I",
+"나는",
+"S"
+],
+[
+"love visiting",
+"방문하는 것을 좋아한다",
+"V"
+],
+[
+"Italy with my family every summer.",
+"여름마다 가족과 함께 이탈리아를.",
 ""
 ],
 [
-"we",
+"We",
 "우리는",
 "S"
 ],
 [
-"stopped visiting",
-"방문하는 것을 그만두었다",
+"go there",
+"그곳에 간다",
 "V"
 ],
 [
-"Italy last year because tickets were too expensive.",
-"작년에 이탈리아를, 항공권이 너무 비쌌기 때문에.",
+"every year for two weeks.",
+"매년 2주 동안.",
 ""
 ]
 ],
-"tr": "우리 가족은 해외여행을 다니곤 했지만, 항공권이 너무 비싸서 작년에 이탈리아를 방문하는 것을 그만두었다.",
-"ans": "visiting",
+"tr": "나는 여름마다 가족과 함께 이탈리아에 방문하는 것을 좋아한다. 우리는 매년 2주 동안 그곳에 간다.",
+"ans": "visiting 또는 to visit",
 "pts": null
 },
 {
