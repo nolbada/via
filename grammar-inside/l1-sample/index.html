@@ -4887,7 +4887,7 @@ function gk(it){if(GK[it.id])return GK[it.id];let k;
   if(/\([a-d]\)|[\u2460-\u2464\u24d0-\u24d3\u2192]/i.test(it.ans)||a0.split(/\s+/).length>4)k="self";else if(nz(it.full).includes(nz(a0))||!/\//.test(it.ans))k="type";else k="self"}
  return GK[it.id]=k}
 function isFull(){return S.mode=="full"}
-function needPen(it,s){if(isFull())return true;const k=gk(it);if(k=="self")return s.h>0||s.self===0;return s.ok1===0}
+function needPen(it,s){if(isFull())return true;const k=gk(it);if(k=="self")return s.self===0;return s.ok1===0}
 function done(it){const s=pe(it.id);return !!s.sub&&(!needPen(it,s)||!!s.pen)}
 /* ---- 문제 화면 ---- */
 function answerUI(it,s){const k=gk(it),dis=s.ok==1;let h="";
@@ -4901,33 +4901,34 @@ function answerUI(it,s){const k=gk(it),dis=s.ok==1;let h="";
   if(!dis)h+='<button class="btn" onclick="submit()">제출</button>'}
  return h}
 function item(){
- const it=IT(cur),s=pe(cur),U=UN[it.uk],L=unItems(it.uk),k=gk(it),un=akOpen(L),dn=done(it),need=needPen(it,s);
+ const it=IT(cur),s=pe(cur),U=UN[it.uk],L=unItems(it.uk),k=gk(it),un=akOpen(L),dn=done(it),need=needPen(it,s),hv=s.sub?3:(s.h1?1:0);
  let h='<div class="bk"><a onclick="openCh('+it.ch+')">목록</a><span class="small">CH'+pad2(it.ch)+' · '+U.n+' · '+SECLAB(it)+'</span></div>'+strip(L,cur);
  h+='<div class="ak"><button class="btn mini" '+(un?'onclick="showAns()"':'disabled')+'>전체정답</button></div>';
  h+='<div class="q">'+it.q.replace(/___/g,'<span class="blank"></span>')+'</div>';
  h+=trBlock(it);
  if(!s.sub){
-  if(k=="self"){h+='<div class="small">이 문제는 책에 쓰고 와요. 정답은 이 유닛이 끝나면 열려요.'+(it.kind=="c"&&it.opts?'<br>보기 : '+it.opts.join(" / "):'')+'</div>'+(s.h?'':'<button class="btn ghost" onclick="openHints()">막히면 힌트 보기</button>')}
+  if(k=="self")h+='<div class="small">이 문제는 책에 쓰고 와요. 정답은 이 유닛이 끝나면 열려요.'+(it.kind=="c"&&it.opts?'<br>보기 : '+it.opts.join(" / "):'')+'</div><button class="btn" onclick="selfDone()">책에 다 썼어요</button>';
   else h+=answerUI(it,s);
+  if(!s.h1)h+='<button class="btn ghost" onclick="openH1()">막히면 힌트 1 보기</button>';
  }else{
   if(k!="self"){
    if(s.ok==1)h+='<div class="res ok">'+(s.ok1==1?'정답이에요':'이번엔 맞았어요')+'</div>';
-   else h+='<div class="res no">아쉬워요. 힌트를 보고 다시 해 봐요.</div>';
+   else h+='<div class="res no">아쉬워요. 힌트를 읽고 다시 해 봐요.</div>';
    h+=answerUI(it,s);
-  }else h+='<div class="small ok">책에 쓰기 완료'+(s.self===0?' · 틀린 문제예요. 힌트를 보고 연필 한 줄을 써요.':'')+'</div>';
+  }else h+='<div class="small ok">책에 쓰기 완료'+(s.self===0?' · 틀린 문제예요. 힌트를 읽고 연필 한 줄을 써요.':'')+'</div>';
  }
- if(s.sub&&!s.h&&!need)h+='<button class="btn ghost" onclick="openHints()">힌트와 연필 한 줄 써 보기 (선택)</button>';
- if(s.h>0){
-  h+='<div class="hint">'+[0,1,2].map(i=>'<div class="hp"><b>힌트 '+(i+1)+'</b> '+it.h[i]+'</div>').join("")+'</div>';
-  h+='<div class="post"><div class="pt">'+PEN+' 책에 쓰기 · 본책 '+U.pp+' 이 문제 옆 여백에 한 줄</div><div class="pl">'+penQ(it)+'</div><div class="pt2">'+(need?(isFull()?'모든 문제에서 이 한 줄을 써요.':'틀린 문제는 이 한 줄을 꼭 써요.'):'쓰고 싶을 때만 써요.')+'</div></div>';
-  if(!s.pen&&s.sub)h+='<button class="btn pencil" onclick="penDone()">'+PEN+' 다 썼어요</button>';
+ if(hv>0)h+='<div class="hint">'+[0,1,2].slice(0,hv).map(i=>'<div class="hp"><b>힌트 '+(i+1)+'</b> '+it.h[i]+'</div>').join("")+'</div>';
+ if(s.sub){
+  const read=(k!="self"&&s.ok1==1&&!isFull());
+  h+='<div class="post"><div class="pt">'+PEN+' 연필 한 줄 · 본책 '+U.pp+' 이 문제 옆 여백</div><div class="pl">'+(read?it.pen:penQ(it))+'</div><div class="pt2">'+(need?(isFull()?'모든 문제에서 이 한 줄을 써요.':'틀린 문제는 이 한 줄을 꼭 써요.'):(read?'읽고, 책 여백에 한 줄 따라 써 두면 더 오래 기억해요.':'책에 쓰고 와요.'))+'</div></div>';
+  if(need&&!s.pen)h+='<button class="btn pencil" onclick="penDone()">'+PEN+' 다 썼어요</button>';
   else if(s.pen)h+='<div class="small ok">연필 한 줄 완료</div>';
  }
- if(k=="self"&&!s.sub)h+='<button class="btn" onclick="selfDone()">책에 다 썼어요</button>';
  const last=L[L.length-1].id==cur;
  if(dn)h+=(L[0].id==cur?'<button class="btn" onclick="nextItem()">'+(last?"이 파트 마무리":"다음 문제")+'</button>':'<div class="two"><button class="btn ghost" onclick="prevItem()">이전 문제</button><button class="btn" onclick="nextItem()">'+(last?"이 파트 마무리":"다음 문제")+'</button></div>');
  else if(L[0].id!=cur)h+='<button class="btn ghost" onclick="prevItem()">이전 문제</button>';
  R(h);fixStrip();if(inp&&!s.sub){const e=document.getElementById("inp");if(e)e.value=inp}}
+function openH1(){cap();const s=st(cur);if(!s.h1){s.h1=1;s.t1=Math.min(900,Math.round((Date.now()-T0)/1000))}save();render()}
 function pick(i){sel=i;render()}
 function addW(b){const e=document.getElementById("inp");if(!e)return;e.value=(e.value?e.value+" ":"")+b.textContent;inp=e.value}
 function submit(){const it=IT(cur),s=st(cur),k=gk(it);let a,ok;cap();
@@ -4937,9 +4938,9 @@ function submit(){const it=IT(cur),s=st(cur),k=gk(it);let a,ok;cap();
  if(s.ok1==null){s.ok1=ok?1:0;s.a1=String(a).slice(0,60);s.ts=Math.min(900,Math.round((Date.now()-T0)/1000));s.sub=1;s.sd=tdy();s.st=Date.now()}
  s.ok=ok?1:0;
  if(!ok){s.wr=(s.wr||[]);if(s.wr.indexOf(a)<0)s.wr.push(a);sel=-1}
- if((!ok||isFull())&&!s.h){s.h=3;s.hs=Date.now()}
+ if(!s.h){s.h=3;s.hs=Date.now()}
  save();render()}
-function selfDone(){const s=st(cur);if(!s.sub){s.sub=1;s.ts=Math.min(900,Math.round((Date.now()-T0)/1000));s.sd=tdy();s.st=Date.now()}save();render()}
+function selfDone(){const s=st(cur);if(!s.sub){s.h=3;s.hs=Date.now();s.sub=1;s.ts=Math.min(900,Math.round((Date.now()-T0)/1000));s.sd=tdy();s.st=Date.now()}save();render()}
 function selfMark(id,v){const s=st(id);s.self=v;save();render()}
 function akOpen(L){return L.every(x=>done(x))||!!(S.ak&&S.ak[L[0].uk])}
 function showAns(){const it=IT(cur),L=unItems(it.uk);if(!akOpen(L))return;S.ak=S.ak||{};S.ak[it.uk]={t:Date.now(),d:tdy()};save();go("answers")}
