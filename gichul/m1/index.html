@@ -81,7 +81,7 @@ function lset(k,v){try{if(ls)ls.setItem(k,v)}catch(e){}}
 var NAME=lget("bd-name")||"guest";
 var KEY="gk-"+GRADE+"|"+NAME;
 var st={last:"",wr:[],run:null};
-try{var o=JSON.parse(lget(KEY)||"null");if(o&&typeof o==="object"){st.last=o.last||"";st.wr=o.wr||[];st.run=o.run||null}}catch(e){}
+try{var o=JSON.parse(lget(KEY)||"null");if(o&&typeof o==="object"){st.last=o.last||"";st.wr=o.wr||[];st.run=o.run||null;st.lr=o.lr||null}}catch(e){}
 function save(){lset(KEY,JSON.stringify(st))}
 var SRV="https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec";
 var APPID=GRADE==="m1"?"gk1":"gk2",LABEL="대화문 기출 중"+(GRADE==="m1"?"1":"2");
@@ -176,32 +176,32 @@ function noteLines(arr){
 }
 function backBtn(){return '<a class="bk" href="/board/?back=1" target="_top">‹ 목록으로</a>'}
 function solvedN(){return startIndex()}
-function revBtn(){return solvedN()>0?'<button class="rs2" id="rvb">풀었던 문제 보기</button>':''}
-function revBind(){var b=document.getElementById("rvb");if(b)b.onclick=function(){reviewList()}}
-function reviewList(){
-  window.scrollTo(0,0);
-  var n=solvedN(),h='<div class="ins">풀었던 문제 <b>'+n+'</b>개</div><div class="chs">';
-  for(var i=0;i<n&&i<Q.length;i++){
-    var w=st.wr.indexOf(Q[i].id)>=0;
-    h+='<button class="ch" data-r="'+i+'"><span class="cn">'+(i+1)+'</span><span class="ct">'+esc(Q[i].src||"")+(w?'<span class="tg">오답</span>':'')+'</span></button>';
-  }
-  app.innerHTML=h+'</div><button class="rs2" id="rvback">돌아가기</button>'+backBtn();
-  var bs=app.querySelectorAll("[data-r]");
-  for(var k=0;k<bs.length;k++)bs[k].onclick=function(){var q=Q[+this.getAttribute("data-r")];if(st.wr.indexOf(q.id)>=0)retryView(q);else showWrong(q,-1,true,true)};
-  document.getElementById("rvback").onclick=function(){showQ()};
-}
-function retryView(q){
-  window.scrollTo(0,0);
-  var h=head(q)+'<div class="ins">'+fmt(q.ins,true)+'</div>'+dlHtml(q)+'<div class="chs">';
-  q.ch.forEach(function(c,i){
-    h+='<button class="ch" data-i="'+i+'"><span class="cn">'+NUMS[i]+'</span><span class="ct">'+choiceText(q,c)+tagOf(c)+'</span></button>';
+function revBtn(){return solvedN()>0?'<button class="rs2" id="rvb">푼 문제 정답·해설 보기</button>':''}
+function revBind(){var b=document.getElementById("rvb");if(b)b.onclick=function(){answerBook(false)}}
+function bookItem(q){
+  var w=st.wr.indexOf(q.id)>=0,a=q.ch[q.ans-1];
+  var h='<div class="bki">'+head(q);
+  h+='<div class="bn'+(w?'':' o')+'">'+(w?'오답':'정답')+'<small>정답 '+NUMS[q.ans-1]+'</small></div>';
+  h+='<div class="bnb'+(w?'':' o')+'">'+choiceText(q,a)+(!q.ek&&a[1]?'<div class="ko">'+fmt(a[1])+'</div>':"")+'</div>';
+  h+='<div class="rev"><div class="ins">'+fmt(q.ins,true)+'</div>'+dlHtml(q)+'<div class="sh">보기 풀이</div>';
+  q.ch.forEach(function(c,k){
+    var cls=(k+1===q.ans)?"cd a":"cd",lb=(k+1===q.ans)?'<span class="lb">정답</span>':"";
+    h+='<div class="'+cls+'"><div class="ch2"><span class="cn">'+NUMS[k]+'</span><span class="ct">'+choiceText(q,c)+tagOf(c)+koOf(q,c)+'</span>'+lb+'</div>'+(c[2]?'<div class="rs">'+fmt(c[2])+'</div>':"")+'</div>';
   });
-  h+='</div><button class="rs2" id="rvsee">해설 먼저 보기</button><button class="rs2" id="rvback2">풀었던 문제 목록</button>'+backBtn();
-  app.innerHTML=h;
-  var bs=app.querySelectorAll(".ch");
-  for(var k=0;k<bs.length;k++)bs[k].onclick=function(){var i=+this.getAttribute("data-i");showWrong(q,i,i+1===q.ans,true,true)};
-  document.getElementById("rvsee").onclick=function(){showWrong(q,-1,true,true)};
-  document.getElementById("rvback2").onclick=function(){reviewList()};
+  var n1=noteLines(q.pn);
+  if(n1)h+='<div class="pit"><h4>이것만은 노트에 쓰자 · 정답의 근거</h4>'+n1+'</div>';
+  return h+'</div></div>';
+}
+function answerBook(all){
+  window.scrollTo(0,0);
+  var n=solvedN(),a=0,b=n;
+  if(!all&&st.lr&&st.lr.a>=0&&st.lr.a<n){a=st.lr.a;b=Math.min(n,st.lr.a+st.lr.n)}
+  var h='<div class="ins">'+(a===0&&b===n?'지금까지 푼 문제':'No. '+(a+1)+' – No. '+b)+'</div>';
+  for(var i=a;i<b&&i<Q.length;i++)h+=bookItem(Q[i]);
+  if(!(a===0&&b===n))h+='<button class="rs2" id="bkall">지금까지 푼 전체 보기</button>';
+  app.innerHTML=h+'<button class="rs2" id="bkback">돌아가기</button>'+backBtn();
+  var x=document.getElementById("bkall");if(x)x.onclick=function(){answerBook(true)};
+  document.getElementById("bkback").onclick=function(){showQ()};
 }
 var CNT=[7,10,15,20];
 function chooseView(){
@@ -218,7 +218,7 @@ function showQ(){
   window.scrollTo(0,0);
   if(st.run&&(idx<st.run.a||idx>st.run.a+st.run.n))st.run=null;
   if(st.run&&idx>=st.run.a+st.run.n){
-    var r=st.run;st.run=null;save();
+    var r=st.run;st.run=null;st.lr={a:r.a,n:r.n};save();
     app.innerHTML='<div class="end"><b>No. '+(r.a+1)+' – No. '+(r.a+r.n)+' 완료</b><div>오답 '+(r.w||0)+'개</div></div>'+(idx<Q.length?'<button class="rs2" id="more">다음 문제 이어서 풀기</button>':'')+revBtn()+backBtn();revBind();
     var mo=document.getElementById("more");if(mo)mo.onclick=function(){showQ()};
     return;
@@ -251,11 +251,11 @@ function pick(i,el){
     showWrong(q,i);
   }
 }
-function showWrong(q,i,okc,rev,rt){
+function showWrong(q,i,okc){
   window.scrollTo(0,0);
   var a=q.ch[q.ans-1];
   var h=head(q);
-  h+='<div class="bn'+(okc?' o':'')+'">'+(rev?(rt?(okc?'다시 풀기 · 정답':'다시 풀기 · 오답'):'다시 보기'):(okc?'정답':'오답'))+'<small>정답 '+NUMS[q.ans-1]+'</small></div>';
+  h+='<div class="bn'+(okc?' o':'')+'">'+(okc?'정답':'오답')+'<small>정답 '+NUMS[q.ans-1]+'</small></div>';
   h+='<div class="bnb'+(okc?' o':'')+'">'+choiceText(q,a)+(!q.ek&&a[1]?'<div class="ko">'+fmt(a[1])+'</div>':"")+'</div>';
   h+='<div class="rev">';
   h+='<div class="ins">'+fmt(q.ins,true)+'</div>'+dlHtml(q);
@@ -269,7 +269,6 @@ function showWrong(q,i,okc,rev,rt){
   var n2=q.wn&&q.wn[i]?noteLines(q.wn[i]):"";
   if(n2)h+='<div class="pit"><h4>이것만은 노트에 쓰자 2 · 내가 고른 답이 틀린 이유</h4>'+n2+'</div>';
   h+='</div>';
-  if(rev){h+='<button class="nx" id="nx">풀었던 문제 목록</button>'+backBtn();app.innerHTML=h;document.getElementById("nx").onclick=function(){reviewList()};return}
   h+='<button class="nx" id="nx">다음 문제</button>'+backBtn();
   app.innerHTML=h;
   document.getElementById("nx").onclick=function(){idx++;showQ()};
