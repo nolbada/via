@@ -124,7 +124,7 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 .savest.err{background:var(--x);color:#fff;border-color:var(--x)}
 #savebar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0));display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;width:max-content;max-width:94vw;z-index:50}
 #savebar[hidden]{display:none}
-#savebar .savest{position:static;transform:none;left:auto;bottom:auto;max-width:none;flex:none;white-space:nowrap}
+#savebar .savest{position:static;transform:none;left:auto;bottom:auto;max-width:none;flex:none;white-space:nowrap;display:none}
 #savebar .savest{cursor:default;pointer-events:none}#savebar .savest.dirty{background:#fff3cd;color:#8a5a00;border-color:#f0c36d;font-size:14px;padding:11px 16px;cursor:default;white-space:nowrap}#savebar .savest{font-size:14px;padding:11px 16px}
 .savebtn{font:inherit;font-size:16px;font-weight:800;padding:11px 26px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink-soft);box-shadow:var(--shadow);cursor:pointer;white-space:nowrap}
 .savebtn.on{background:#00A1A7;color:#fff;border-color:#00A1A7}
@@ -625,7 +625,7 @@ function runTeacher(code){
   function setDirtySt(){var n=Object.keys(dirty).filter(function(k){return k.indexOf('w:')===0}).length;if(!n)return;setSt('저장 안 됨 · '+n+'명');stEl.className='savest dirty'}
   stEl.onclick=function(){if(Object.keys(dirty).length&&!saving){mainN=0;flush()}else if(Object.keys(pend).length&&!mirRun){mirN=0;runMirrors()}};
   var sbt=document.getElementById('savebtn'),sbar=document.getElementById('savebar');
-  function svb(){var n=Object.keys(dirty).length,w=Object.keys(dirty).filter(function(k){return k.indexOf('w:')===0}).length,er=stEl.className.indexOf('err')>=0;sbt.className='savebtn'+(er?' err':(n||Object.keys(pend).length)?' on':'');sbt.textContent=saving?'저장 중…':(w?w+'명 저장하기':'저장하기')}
+  function svb(){var n=Object.keys(dirty).length,w=Object.keys(dirty).filter(function(k){return k.indexOf('w:')===0}).length,tx=stEl.textContent||'',er=stEl.className.indexOf('err')>=0||tx.indexOf('부모 화면')===0,dt=n||Object.keys(pend).length;sbt.className='savebtn'+(er?' err':dt?' on':'');sbt.textContent=saving?'저장 중…':er?tx:(w?w+'명 저장하기':dt?'저장하기':(tx.indexOf('저장됨')===0?tx:'저장됨'))}
   window.__svb=svb;sbar.hidden=false;svb();
   sbt.onclick=function(){if(saving)return;if(Object.keys(dirty).length){mainN=0;flush()}else if(Object.keys(pend).length&&!mirRun){mirN=0;runMirrors()}else{setSt('저장할 내용 없음 · 모두 저장됨')}};
   function mark(k){lastAct=Date.now();dirty[k]=(dirty[k]||0)+1;if(k.indexOf('w:')===0){setDirtySt()}else{setSt('저장 대기…');clearTimeout(ft);ft=setTimeout(flush,900)}}
