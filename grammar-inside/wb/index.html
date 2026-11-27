@@ -3324,7 +3324,7 @@ let sel=-1,inp="";
 function open_(id){cur=id;sh=pe(id).h||0;T0=Date.now();wrong=0;trOn=0;sel=-1;inp="";go("item")}
 function cap(){const e=document.getElementById("inp");if(e)inp=e.value}
 function toggleTr(){cap();trOn=trOn?0:1;render()}
-function trBlock(it){if(!it.tr)return"";return'<div class="ak"><button class="btn mini ghost" onclick="toggleTr()">해석 '+(trOn?"닫기":"보기")+'</button></div>'+(trOn?'<div class="trbox">'+it.tr+(it.ex?'<div class="trx">'+it.ex.map(x=>"<div>"+x+"</div>").join("")+"</div>":"")+"</div>":"")}
+function trBlock(it,force){if(!it.tr)return"";const on=force||trOn;return'<div class="ak"><button class="btn mini ghost" onclick="toggleTr()">해석 '+(on?"닫기":"보기")+'</button></div>'+(on?'<div class="trbox">'+it.tr+(it.ex?'<div class="trx">'+it.ex.map(x=>"<div>"+x+"</div>").join("")+"</div>":"")+"</div>":"")}
 /* ---- 채점 규칙 ---- */
 function nz(x){return String(x).replace(/<[^>]+>/g,"").replace(/[’‘`´]/g,"'").replace(/[.,!?;:"“”]/g,"").replace(/\s+/g," ").trim().toLowerCase()}
 function altsOf(it){return it.ans.split(/\s*\/\s*/).map(x=>x.trim()).filter(Boolean)}
@@ -3350,16 +3350,16 @@ function answerUI(it,s){const k=gk(it),dis=s.ok==1;let h="";
   if(!dis)h+='<button class="btn" onclick="submit()">제출</button>'}
  return h}
 function item(){
- const it=IT(cur),s=pe(cur),U=UN[it.uk],L=unItems(it.uk),k=gk(it),un=akOpen(L),dn=done(it),need=needPen(it,s),hv=s.sub?3:(s.h1?1:0);
+ const it=IT(cur),s=pe(cur),U=UN[it.uk],L=unItems(it.uk),k=gk(it),un=akOpen(L),dn=done(it),need=needPen(it,s),rt=it.sec=="RT",hv=s.sub?3:((s.h1||rt)?1:0);
  let h='<div class="bk"><a onclick="openCh('+it.ch+')">목록</a><span class="small">CH'+pad2(it.ch)+' · '+U.n+' · '+(it.sec=="RT"?it.n+"번":SECLAB(it))+'</span></div>'+strip(L,cur);
  h+='<div class="ak"><button class="btn mini" '+(un?'onclick="showAns()"':'disabled')+'>전체정답</button></div>';
  if(k=="wb")h+=wbBody(it,s);else{
 h+='<div class="q">'+it.q.replace(/___/g,'<span class="blank"></span>')+'</div>';
- h+=trBlock(it);
+ h+=(rt&&!s.sub)?trOnly(it):trBlock(it);
  if(!s.sub){
   if(k=="self")h+='<div class="small">이 문제는 책에 쓰고 와요. 정답은 이 유닛이 끝나면 열려요.'+(it.kind=="c"&&it.opts?'<br>보기 : '+it.opts.join(" / "):'')+'</div><button class="btn" onclick="selfDone()">책에 다 썼어요</button>';
   else h+=answerUI(it,s);
-  if(!s.h1)h+='<button class="btn ghost" onclick="openH1()">막히면 힌트 1 보기</button>';
+  if(!s.h1&&!rt)h+='<button class="btn ghost" onclick="openH1()">막히면 힌트 1 보기</button>';
  }else{
   if(k!="self"){
    if(s.ok==1)h+='<div class="res ok">'+(s.ok1==1?'정답이에요':'이번엔 맞았어요')+'</div>';
@@ -3367,7 +3367,7 @@ h+='<div class="q">'+it.q.replace(/___/g,'<span class="blank"></span>')+'</div>'
    h+=answerUI(it,s);
   }else h+='<div class="small ok">책에 쓰기 완료'+(s.self===0?' · 틀린 문제예요. 힌트를 읽고 연필 한 줄을 써요.':'')+'</div>';
  }
- if(hv>0)h+='<div class="hint">'+[0,1,2].slice(0,hv).map(i=>'<div class="hp"><b>힌트 '+(i+1)+'</b> '+it.h[i]+'</div>').join("")+'</div>';
+ if(hv>0)h+='<div class="hint">'+[0,1,2].slice(0,hv).map(i=>'<div class="hp"><b>'+(i==0&&rt&&!s.sub?'개념 · 힌트 1':'힌트 '+(i+1))+'</b> '+it.h[i]+'</div>').join("")+'</div>';
  if(s.sub){
   const read=(k!="self"&&s.ok1==1&&!isFull());
   h+='<div class="post"><div class="pt">'+PEN+' 연필 한 줄 · 본책 '+U.pp+' 이 문제 옆 여백</div><div class="pl">'+(read?it.pen:penQ(it))+'</div><div class="pt2">'+(need?(isFull()?'모든 문제에서 이 한 줄을 써요.':'틀린 문제는 이 한 줄을 꼭 써요.'):(read?'읽고, 책 여백에 한 줄 따라 써 두면 더 오래 기억해요.':'책에 쓰고 와요.'))+'</div></div>';
@@ -3380,6 +3380,7 @@ h+='<div class="q">'+it.q.replace(/___/g,'<span class="blank"></span>')+'</div>'
  else if(L[0].id!=cur)h+='<button class="btn ghost" onclick="prevItem()">이전 문제</button>';
  R(h);fixStrip();if(inp&&!s.sub){const e=document.getElementById("inp");if(e)e.value=inp}}
 
+function trOnly(it){if(!it.tr)return"";return'<div class="trbox">'+it.tr+(it.ex&&it.ex.length?'<div class="trx">'+it.ex.map(x=>"<div>"+x+"</div>").join("")+"</div>":"")+"</div>"}
 function wbBody(it,s){let h='';
  if(it.ins)h+='<div class="ins">'+it.ins+'</div>';
  h+='<div class="q">'+it.q.replace(/___/g,'<span class="blank"></span>')+'</div>';
