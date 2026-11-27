@@ -125,7 +125,7 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 #savebar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0));display:flex;gap:10px;align-items:center;z-index:50}
 #savebar[hidden]{display:none}
 #savebar .savest{position:static;transform:none;left:auto;bottom:auto;max-width:56vw}
-#savebar .savest.dirty{background:#fff3cd;color:#8a5a00;border-color:#f0c36d}
+#savebar .savest{cursor:default;pointer-events:none}#savebar .savest.dirty{background:#fff3cd;color:#8a5a00;border-color:#f0c36d;font-size:15px;padding:11px 28px;cursor:default}
 .savebtn{font:inherit;font-size:16px;font-weight:800;padding:11px 26px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink-soft);box-shadow:var(--shadow);cursor:pointer;white-space:nowrap}
 .savebtn.on{background:#00A1A7;color:#fff;border-color:#00A1A7}
 .savebtn.err{background:var(--x);color:#fff;border-color:var(--x)}
@@ -586,7 +586,7 @@ function runTeacher(code){
       if(Object.keys(pend).length)runMirrors();
     },function(){
       mirRun=false;var left=Object.keys(pend).length;
-      if(mirN>=6){setSt('저장하기 · 부모 화면 반영 '+left+'명 안 됨',true);stEl.className='savest dirty';return}
+      if(mirN>=6){setSt('부모 화면 반영 '+left+'명 안 됨',true);stEl.className='savest dirty';return}
       clearTimeout(mirRetry);mirRetry=setTimeout(runMirrors,Math.min(60000,4000*Math.pow(2,mirN++)));
     });
   }
@@ -622,7 +622,7 @@ function runTeacher(code){
     });
   }
   var ft=null,pchg=false,lastAct=0,lastMeta={},metaNew={},lastInit=0,retryN=0;
-  function setDirtySt(){var n=Object.keys(dirty).filter(function(k){return k.indexOf('w:')===0}).length;if(!n)return;setSt('저장하기 · '+n+'명 저장 안 됨');stEl.className='savest dirty'}
+  function setDirtySt(){var n=Object.keys(dirty).filter(function(k){return k.indexOf('w:')===0}).length;if(!n)return;setSt('저장 안 됨 · '+n+'명');stEl.className='savest dirty'}
   stEl.onclick=function(){if(Object.keys(dirty).length&&!saving){mainN=0;flush()}else if(Object.keys(pend).length&&!mirRun){mirN=0;runMirrors()}};
   var sbt=document.getElementById('savebtn'),sbar=document.getElementById('savebar');
   function svb(){var n=Object.keys(dirty).length,w=Object.keys(dirty).filter(function(k){return k.indexOf('w:')===0}).length,er=stEl.className.indexOf('err')>=0;sbt.className='savebtn'+(er?' err':(n||Object.keys(pend).length)?' on':'');sbt.textContent=saving?'저장 중…':(w?w+'명 저장하기':'저장하기')}
