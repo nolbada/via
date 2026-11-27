@@ -122,6 +122,13 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 .colh b{display:block;color:var(--ink);font-size:13px}
 .savest{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0));font-size:15px;font-weight:700;padding:11px 28px;border-radius:999px;background:var(--surface);border:1px solid var(--border);color:var(--ink-soft);box-shadow:var(--shadow);z-index:50}body{padding-bottom:84px}
 .savest.err{background:var(--x);color:#fff;border-color:var(--x)}
+#savebar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0));display:flex;gap:10px;align-items:center;z-index:50}
+#savebar[hidden]{display:none}
+#savebar .savest{position:static;transform:none;left:auto;bottom:auto;max-width:56vw}
+#savebar .savest.dirty{background:#fff3cd;color:#8a5a00;border-color:#f0c36d}
+.savebtn{font:inherit;font-size:16px;font-weight:800;padding:11px 26px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink-soft);box-shadow:var(--shadow);cursor:pointer;white-space:nowrap}
+.savebtn.on{background:#00A1A7;color:#fff;border-color:#00A1A7}
+.savebtn.err{background:var(--x);color:#fff;border-color:var(--x)}
 .pnb{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:#ffe3ec;color:#c2185b}.pnb:empty{display:none}
 .savest.dirty{background:#00A1A7;color:#fff;border-color:#00A1A7;font-size:16px;font-weight:700;padding:11px 26px;cursor:pointer}
 .mgr{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:10px 14px}
@@ -214,7 +221,7 @@ table.grid{border-collapse:separate;border-spacing:0;min-width:100%}
 </head>
 <body>
 <div id="app"></div>
-<div id="savest" class="savest">저장됨</div>
+<div id="savebar" hidden><div id="savest" class="savest">저장됨</div><button id="savebtn" class="savebtn" type="button">저장하기</button></div>
 <script>
 (function(){
 'use strict';
@@ -310,7 +317,7 @@ function putKeys(id,map){return id.indexOf('HWP|')===0?HWFS.writeP(id.slice(4),m
 /* 공통 상태 */
 var app=document.getElementById('app'),stEl=document.getElementById('savest');
 var viewKey=curKey(),showOld=false;
-function setSt(txt,err){if(!txt){txt='저장됨'}stEl.hidden=false;stEl.textContent=txt;stEl.className='savest'+(err?' err':'')}
+function setSt(txt,err){if(!txt){txt='저장됨'}stEl.hidden=false;stEl.textContent=txt;stEl.className='savest'+(err?' err':'');if(window.__svb)window.__svb()}
 function randTok(n){var a='abcdefghjkmnpqrstuvwxyz23456789',o='';var u=new Uint8Array(n);(window.crypto||window.msCrypto).getRandomValues(u);for(var i=0;i<n;i++)o+=a[u[i]%a.length];return o}
 
 /* ================= 학부모(조회) ================= */
@@ -617,6 +624,10 @@ function runTeacher(code){
   var ft=null,pchg=false,lastAct=0,lastMeta={},metaNew={},lastInit=0,retryN=0;
   function setDirtySt(){var n=Object.keys(dirty).filter(function(k){return k.indexOf('w:')===0}).length;if(!n)return;setSt('저장하기 · '+n+'명 저장 안 됨');stEl.className='savest dirty'}
   stEl.onclick=function(){if(Object.keys(dirty).length&&!saving){mainN=0;flush()}else if(Object.keys(pend).length&&!mirRun){mirN=0;runMirrors()}};
+  var sbt=document.getElementById('savebtn'),sbar=document.getElementById('savebar');
+  function svb(){var n=Object.keys(dirty).length,w=Object.keys(dirty).filter(function(k){return k.indexOf('w:')===0}).length,er=stEl.className.indexOf('err')>=0;sbt.className='savebtn'+(er?' err':(n||Object.keys(pend).length)?' on':'');sbt.textContent=saving?'저장 중…':(w?w+'명 저장하기':'저장하기')}
+  window.__svb=svb;sbar.hidden=false;svb();
+  sbt.onclick=function(){if(saving)return;if(Object.keys(dirty).length){mainN=0;flush()}else if(Object.keys(pend).length&&!mirRun){mirN=0;runMirrors()}else{setSt('저장할 내용 없음 · 모두 저장됨')}};
   function mark(k){lastAct=Date.now();dirty[k]=(dirty[k]||0)+1;if(k.indexOf('w:')===0){setDirtySt()}else{setSt('저장 대기…');clearTimeout(ft);ft=setTimeout(flush,900)}}
 
   var BSRV='https://script.google.com/macros/s/AKfycbyGjwU2UXP8hoRLn0VThkus7bj_ZnGc12ByvFXuFDVtPSz-GmyumnDd2CkLSBWJw81I/exec',penS={},penT={},penO={};
