@@ -3350,7 +3350,7 @@ function answerUI(it,s){const k=gk(it),dis=s.ok==1;let h="";
   if(!dis)h+='<button class="btn" onclick="submit()">제출</button>'}
  return h}
 function item(){
- const it=IT(cur),s=pe(cur),U=UN[it.uk],L=unItems(it.uk),k=gk(it),un=akOpen(L),dn=done(it),need=needPen(it,s),rt=it.sec=="RT",hv=s.sub?3:((s.h1||rt)?1:0);
+ const it=IT(cur),s=pe(cur),U=UN[it.uk],L=unItems(it.uk),k=gk(it),un=akOpen(L),dn=done(it),need=needPen(it,s),rt=it.sec=="RT",hv=s.sub?3:(s.h1?(rt?2:1):0);
  let h='<div class="bk"><a onclick="openCh('+it.ch+')">목록</a><span class="small">CH'+pad2(it.ch)+' · '+U.n+' · '+(it.sec=="RT"?it.n+"번":SECLAB(it))+'</span></div>'+strip(L,cur);
  h+='<div class="ak"><button class="btn mini" '+(un?'onclick="showAns()"':'disabled')+'>전체정답</button></div>';
  if(k=="wb")h+=wbBody(it,s);else{
@@ -3359,7 +3359,7 @@ h+='<div class="q">'+it.q.replace(/___/g,'<span class="blank"></span>')+'</div>'
  if(!s.sub){
   if(k=="self")h+='<div class="small">이 문제는 책에 쓰고 와요. 정답은 이 유닛이 끝나면 열려요.'+(it.kind=="c"&&it.opts?'<br>보기 : '+it.opts.join(" / "):'')+'</div><button class="btn" onclick="selfDone()">책에 다 썼어요</button>';
   else h+=answerUI(it,s);
-  if(!s.h1&&!rt)h+='<button class="btn ghost" onclick="openH1()">막히면 힌트 1 보기</button>';
+  if(!s.h1)h+='<button class="btn ghost" onclick="openH1()">'+(rt?'힌트 보기':'막히면 힌트 1 보기')+'</button>';
  }else{
   if(k!="self"){
    if(s.ok==1)h+='<div class="res ok">'+(s.ok1==1?'정답이에요':'이번엔 맞았어요')+'</div>';
