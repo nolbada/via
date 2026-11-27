@@ -24,7 +24,7 @@
 .tabs{display:flex;gap:6px;margin-bottom:8px}.tabs button{flex:1;padding:9px;border:1px solid var(--line);background:#fff;border-radius:8px;font:inherit}.tabs .on{background:var(--pri);color:#fff}
 .dots{display:flex;gap:10px;justify-content:center;margin:14px 0}.dots i{width:14px;height:14px;border:2px solid var(--pri);border-radius:50%}.dots i.f{background:var(--pri)}
 .pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:260px;margin:0 auto}.pad button{padding:14px;font:inherit;font-size:20px;border:1px solid var(--line);background:#fff;border-radius:10px}
-.opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:10px;padding:12px;margin:6px 0;font:inherit;color:var(--ink)}.opt.sel{border-color:var(--pri);background:#eaf5f0}.opt.bad{background:#f3f4f6;color:#9ca3af;text-decoration:line-through}.opt.good{background:#d9efe6;border-color:#8fcab1}.inp{width:100%;box-sizing:border-box;font:inherit;font-size:18px;padding:12px;border:1px solid var(--line);border-radius:10px;margin:6px 0}.res{border-radius:10px;padding:10px 12px;margin:8px 0;font-weight:600}.res.ok{background:#d9efe6;color:#1f5e4b}.res.no{background:#fdecec;color:#c0392b}.bchip{display:inline-block;border:1px solid var(--line);background:#fff;border-radius:16px;padding:6px 12px;margin:3px 4px 3px 0;font:inherit;font-size:15px}.chip.wg{background:#fdecec;color:#c0392b;border-color:#f3c0c0}.mk{display:flex;gap:6px;margin-top:6px}.mk .btn.mini{margin:0}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:10px;padding:12px;margin:6px 0;font:inherit;color:var(--ink)}.opt.sel{border-color:var(--pri);background:#eaf5f0}.opt.bad{background:#f3f4f6;color:#9ca3af;text-decoration:line-through}.opt.good{background:#d9efe6;border-color:#8fcab1}.inp{width:100%;box-sizing:border-box;font:inherit;font-size:18px;padding:12px;border:1px solid var(--line);border-radius:10px;margin:6px 0}.res{border-radius:10px;padding:10px 12px;margin:8px 0;font-weight:600}.res.ok{background:#d9efe6;color:#1f5e4b}.res.no{background:#fdecec;color:#c0392b}.bchip{display:inline-block;border:1px solid var(--line);background:#fff;border-radius:16px;padding:6px 12px;margin:3px 4px 3px 0;font:inherit;font-size:15px}.chip.wg{background:#fdecec;color:#c0392b;border-color:#f3c0c0}.oxrow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}.opt.ox{text-align:center;font-size:26px;font-weight:700;padding:14px 0;margin:0}.mk{display:flex;gap:6px;margin-top:6px}.mk .btn.mini{margin:0}
 .ins{font-size:13px;color:#666;margin:6px 0}.ko{margin:6px 0;font-weight:600}.eo{background:#fff8e1;border-left:3px solid #f0b400;border-radius:8px;padding:10px 12px;margin:10px 0}.eo .eol{font-size:17px;font-weight:700;margin:6px 0;line-height:1.5}.wbo div{margin:2px 0}.kk{color:#888}
 </style></head><body><div id="app"></div><script>
 // 공통 데이터 도우미. 각 챕터 파일(ch/chNN.js)이 BEGIN → A(...) 순서로 항목을 넣는다.
@@ -3320,8 +3320,10 @@ function strip(L,cid){const f=L.findIndex(x=>!done(x)),lim=f<0?L.length:f;
   return '<button class="chip'+(on?' cur':d?(e.ok1===0?' wg':' dn'):'')+(ok?'':' lk')+'"'+(ok?' onclick="open_(\''+x.id+'\')"':' disabled')+'>'+(i+1)+'</button>'}).join("")+'</div>'}
 function fixStrip(){try{const c=document.querySelector("#strip .cur");if(c)c.scrollIntoView({block:"nearest",inline:"center"})}catch(e){}}
 function start(uk){const L=unItems(uk),n=L.find(x=>!pe(x.id).pen)||L[0];open_(n.id)}
-let sel=-1,inp="";
-function open_(id){cur=id;sh=pe(id).h||0;T0=Date.now();wrong=0;trOn=0;sel=-1;inp="";go("item")}
+let sel=-1,inp="",ox="";
+function isOX(it){return it.kind=="w"&&gk(it)=="type"&&/^\s*(O|X)\s*(,|$)/.test(it.ans)&&!/필요 없음/.test(it.q)}
+function pickOX(v){cap();ox=v;render()}
+function open_(id){cur=id;sh=pe(id).h||0;T0=Date.now();wrong=0;trOn=0;sel=-1;inp="";ox="";go("item")}
 function cap(){const e=document.getElementById("inp");if(e)inp=e.value}
 function toggleTr(){cap();trOn=trOn?0:1;render()}
 function trBlock(it,force){if(!it.tr)return"";const on=force||trOn;return'<div class="ak"><button class="btn mini ghost" onclick="toggleTr()">해석 '+(on?"닫기":"보기")+'</button></div>'+(on?'<div class="trbox">'+it.tr+(it.ex?'<div class="trx">'+it.ex.map(x=>"<div>"+x+"</div>").join("")+"</div>":"")+"</div>":"")}
@@ -3344,6 +3346,10 @@ function answerUI(it,s){const k=gk(it),dis=s.ok==1;let h="";
   h+=it.opts.map((o,i)=>{const isBad=bad.indexOf(o)>=0,g=dis&&o==it.ans;
    return '<button class="opt'+(g?' good':isBad?' bad':sel==i?' sel':'')+'"'+((dis||isBad)?' disabled':' onclick="pick('+i+')"')+'>'+"①②③④⑤"[i]+' '+o+'</button>'}).join("");
   if(!dis)h+='<button class="btn" '+(sel<0?'disabled':'onclick="submit()"')+'>제출</button>';
+ }else if(isOX(it)){
+  h+='<div class="small">밑줄 친 부분이 올바르면 O, 틀리면 X를 눌러요.</div><div class="oxrow">'+['O','X'].map(v=>'<button class="opt ox'+(ox==v?' sel':'')+'"'+(dis?' disabled':' onclick="pickOX(\''+v+'\')"')+'>'+v+'</button>').join("")+'</div>';
+  if(ox=="X")h+='<div class="small">틀렸다면 바르게 고친 말을 써요.</div><input id="inp" class="inp" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="고친 말" value="'+inp.replace(/"/g,"&quot;")+'" '+(dis?'disabled':'onkeydown="if(event.key==\'Enter\')submit()"')+'>';
+  if(!dis)h+='<button class="btn" '+((!ox)?'disabled':'onclick="submit()"')+'>제출</button>'
  }else{
   if(it.bank)h+='<div class="small">보기 : '+it.bank.map(b=>'<button class="bchip" onclick="addW(this)">'+b+'</button>').join("")+' (눌러서 넣어도 돼요)</div>';
   h+='<div class="small">빈칸에 들어갈 말을 순서대로 이어서 써요.</div><input id="inp" class="inp" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="정답을 써요" value="'+inp.replace(/"/g,"&quot;")+'" '+(dis?'disabled':'onkeydown="if(event.key==\'Enter\')submit()"')+'>';
@@ -3401,6 +3407,7 @@ function pick(i){sel=i;render()}
 function addW(b){const e=document.getElementById("inp");if(!e)return;e.value=(e.value?e.value+" ":"")+b.textContent;inp=e.value}
 function submit(){const it=IT(cur),s=st(cur),k=gk(it);let a,ok;cap();
  if(k=="pick"){if(sel<0)return;a=it.opts[sel];ok=a==it.ans}
+ else if(isOX(it)){if(!ox)return;if(ox=="X"&&!nz(inp))return;a=ox=="O"?"O":"X, "+inp.trim();ok=altsOf(it).some(x=>nz(x)==nz(a))}
  else{a=inp;if(!nz(a))return;ok=altsOf(it).some(x=>nz(x)==nz(a))}
  s.n=(s.n||0)+1;
  if(s.ok1==null){s.ok1=ok?1:0;s.a1=String(a).slice(0,60);s.ts=Math.min(900,Math.round((Date.now()-T0)/1000));s.sub=1;s.sd=tdy();s.st=Date.now()}
