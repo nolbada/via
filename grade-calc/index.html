@@ -284,6 +284,11 @@ function render(){
 
 function clearAll(){ ['n','r','t'].forEach(id=>{ $(id).value=''; }); render(); }
 window.addEventListener('pageshow',clearAll);
+let hiddenAt=0;
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){ hiddenAt=Date.now(); }
+  else if(hiddenAt && Date.now()-hiddenAt>8000){ hiddenAt=0; clearAll(); }
+});
 $('n').addEventListener('input',render);
 $('r').addEventListener('input',render);
 $('t').addEventListener('input',render);
