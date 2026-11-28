@@ -432,11 +432,11 @@ function friPick(C,cls,n,d){
 }
 function friBox(){
   try{
-    var n=name();if(!n||isAdm(n)||new Date().getDay()!==5)return;
+    var n=name(),wd=new Date().getDay();if(!n||isAdm(n)||(wd!==5&&wd!==6))return;
     var hero=$.querySelector('.hero');if(!hero||document.getElementById('frb'))return;
     var box=document.createElement('div');box.id='frb';hero.parentNode.insertBefore(box,hero.nextSibling);
     if(FRS&&FRS.n===n){friDraw(box);return}
-    var ti=iso(new Date());
+    var tdy=new Date();if(wd===6)tdy.setDate(tdy.getDate()-1);var ti=iso(tdy);
     Promise.all([friGet('2000-01-03','_설정'),friGet('2000-01-04','_카드'),friGet(ti,n)]).then(function(R){
       var cf=R[0]&&R[0].chk&&R[0].chk.cfg&&R[0].chk.cfg.j,cd=R[1]&&R[1].chk&&R[1].chk.cards&&R[1].chk.cards.j;
       if(!cf||!cd)return;
@@ -451,7 +451,7 @@ function friBox(){
       var m=(R[2]&&R[2].ok&&R[2].chk&&R[2].chk.fri)||{},lm={};
       try{lm=JSON.parse(ls('wn_fri|'+n+'|'+ti)||'{}')}catch(e){}
       Object.keys(lm).forEach(function(k){if(!m[k])m[k]=lm[k]});
-      FRS={n:n,cls:cls,ti:ti,items:items,m:m};
+      FRS={n:n,cls:cls,ti:ti,items:items,m:m,late:wd===6};
       var b=document.getElementById('frb');if(b)friDraw(b);
     }).catch(function(){});
   }catch(e){}
@@ -459,7 +459,7 @@ function friBox(){
 function friDraw(box){
   var S=FRS,dn=S.items.filter(function(i){return S.m[i.id]}).length,h='';
   h+='<style>#frb{margin:10px 0}.frh{width:100%;display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-size:15px;font-weight:800;color:var(--ink);cursor:pointer}.frh b{color:var(--pri)}.frb{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-top:6px;padding:6px 10px}.fri{width:100%;display:flex;align-items:center;gap:10px;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:12px 4px;font-size:14px;color:var(--ink)}.fri:last-child{border-bottom:0}.fri i{flex:0 0 24px;height:24px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:12px;font-weight:800;color:var(--sub)}.fri.d i{background:var(--ok);border-color:var(--ok);color:#fff}.fri.d span{color:var(--sub);text-decoration:line-through}.fri small{display:block;color:var(--sub);font-size:12px}</style>';
-  h+='<button class="frh" id="frt"><span>금요일 학습</span><b>'+dn+'/'+S.items.length+'</b></button>';
+  h+='<button class="frh" id="frt"><span>'+(S.late?'지난 금요일 학습 · '+(+S.ti.slice(5,7))+'/'+(+S.ti.slice(8))+'(금)':'금요일 학습')+'</span><b>'+dn+'/'+S.items.length+'</b></button>';
   if(FRO){h+='<div class="frb">';S.items.forEach(function(it,ix){var d=!!S.m[it.id];h+='<button class="fri'+(d?' d':'')+'" data-fi="'+esc(it.id)+'"><i>'+(d?'✓':(ix+1))+'</i><span>'+esc(it.t)+(it.sub?'<small>'+esc(it.sub)+'</small>':'')+'</span></button>'});h+='</div>'}
   box.innerHTML=h;
   document.getElementById('frt').onclick=function(){FRO=!FRO;friDraw(box)};
