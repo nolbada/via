@@ -35,6 +35,8 @@
   .err{color:#b91c1c}
   .me-top{font-size:17px;font-weight:700}
   .me-top b{color:var(--me)}
+  .me-top .pos{display:block;font-size:13px;font-weight:400;color:var(--sub);margin-top:2px}
+  .me-top .pos b{color:var(--ink)}
   .meta{font-size:12.5px;color:var(--sub)}
   .calc{font-size:13px;line-height:1.8;margin:8px 0 2px}
   .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
@@ -180,15 +182,15 @@ function barHtml(rows, hit, pos, tagText){
     <div class="lbl">${lbls}</div></div>`;
 }
 // 표시용: eq = 내 등수(동점자 무리면 가운데 등수), row = 판정된 등급 행
-function posLine(n, eq, row, dec){
+function posText(n, eq, row, dec){
   const lo = row.grade>1 ? SCHEMES[mode][row.grade-2] : 0;
-  const up = (eq/n*100).toFixed(dec);
-  let inGrade = '';
-  if(row.count>0){
-    const y = Math.min(100, Math.max(0, (eq-row.start+1)/row.count*100));
-    inGrade = `<br>${row.grade}등급(상위 ${lo}% ~ ${row.cumPct}%) 중 위에서 <b>${y.toFixed(dec)}%</b>`;
-  }
-  return `<div class="calc">전체 상위 <b>${up}%</b>${inGrade}</div>`;
+  const raw = eq/n*100;
+  if(!(row.count>0)) return '전체 상위 '+raw.toFixed(dec)+'%';
+  const w = row.cumPct - lo;
+  const y = Math.min(w, Math.max(0, raw - lo));
+  let t = `${row.grade}등급 ${w}% 중에서 <b>${y.toFixed(dec)}%</b>`;
+  if(row.grade>1) t += ` &middot; 전체 상위 <b>${raw.toFixed(dec)}%</b>`;
+  return `(${t})`;
 }
 const $ = id => document.getElementById(id);
 
@@ -231,16 +233,16 @@ function render(){
       detail = `<div class="calc">${cutTxt}에 걸림 · 동점자 ${t}명이 ${r}등 ~ ${tie.last}등 자리<br>
         무리의 가운데 등수 = (${r} + ${tie.last}) ÷ 2 = <b>${mid}</b>등<br>
         ${mid} ÷ ${n} × 100 = <b>${pct}%</b><br>
-        ${verdict} &rarr; 동점자 ${t}명 전원 <b>${hit.grade}등급</b></div>` + posLine(n, mid, hit, 2);
+        ${verdict} &rarr; 동점자 ${t}명 전원 <b>${hit.grade}등급</b></div>`;
       if(tie.base && tie.base.grade!==hit.grade) detail += `<div class="note">동점자가 없다면 ${tie.base.grade}등급</div>`;
     } else {
-      detail = `<div class="calc">동점자 ${t}명이 등급 경계에 걸리지 않아 등수 그대로 판정</div>` + posLine(n, r, hit, 1);
+      detail = `<div class="calc">동점자 ${t}명이 등급 경계에 걸리지 않아 등수 그대로 판정</div>`;
     }
     $('me').style.display = '';
     const gLast = r + t - 1;
     const tFront = Math.max(0, r - hit.start), tBack = Math.max(0, hit.end - gLast);
     const tPos = (((r + gLast)/2 - 0.5)/n*100).toFixed(2);
-    $('me').innerHTML = `<div class="me-top">${n}명 중 <b>${r}등</b> (동점자 ${t}명) &rarr; <b>${hit.grade}등급</b></div>${detail}
+    $('me').innerHTML = `<div class="me-top">${n}명 중 <b>${r}등</b> (동점자 ${t}명) &rarr; <b>${hit.grade}등급</b><span class="pos">${posText(n, (r+gLast)/2, hit, tie.straddle?2:1)}</span></div>${detail}
       ${barHtml(rows, hit, tPos, r+'~'+gLast+'등')}
       <div class="stats s3">
         <div class="stat"><div class="t">같은 등급<br>나보다 앞</div><div class="v">${tFront}명</div></div>
@@ -269,9 +271,8 @@ function render(){
 
   $('me').style.display = '';
   $('me').innerHTML = `
-    <div class="me-top">${n}명 중 <b>${r}등</b> &rarr; <b>${hit.grade}등급</b></div>
+    <div class="me-top">${n}명 중 <b>${r}등</b> &rarr; <b>${hit.grade}등급</b><span class="pos">${posText(n, r, hit, 1)}</span></div>
     <div class="meta">${hit.grade}등급: ${hit.start}등 ~ ${hit.end}등 (${hit.count}명)</div>
-    ${posLine(n, r, hit, 1)}
     ${tl}
     <div class="stats">
       <div class="stat"><div class="t">같은 등급, 나보다 앞</div><div class="v">${front}명</div></div>
