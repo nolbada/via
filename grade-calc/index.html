@@ -192,6 +192,16 @@ function posText(n, eq, row, dec){
   if(row.grade>1) t += ` &middot; 전체 상위 <b>${raw.toFixed(dec)}%</b>`;
   return `(${t})`;
 }
+const BUILD='20261128b';
+(function(){
+  try{
+    if(location.protocol==='file:') return;
+    fetch(location.pathname+'?c='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(t=>{
+      const m=t.match(/const BUILD='([^']+)'/);
+      if(m && m[1]!==BUILD){ location.replace(location.pathname+'?v='+m[1]); }
+    }).catch(()=>{});
+  }catch(e){}
+})();
 const $ = id => document.getElementById(id);
 
 function render(){
