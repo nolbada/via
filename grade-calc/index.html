@@ -25,7 +25,8 @@
   .seg button{border:0;background:#fff;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer;color:var(--sub)}
   .seg button.on{background:var(--accent);color:#fff}
   label{display:block;font-size:12.5px;color:var(--sub);margin-bottom:4px}
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .three input[type=number]{font-size:17px;padding:7px 6px}
   .row{display:flex;gap:6px;align-items:center}
   input[type=number]{flex:1;min-width:0;width:100%;font:inherit;font-size:18px;padding:7px 9px;border:1.5px solid var(--line);border-radius:9px;outline:none}
   input[type=number]:focus{border-color:var(--accent)}
@@ -85,14 +86,15 @@
   </div>
 
   <div class="card">
-    <div class="two">
+    <div class="three">
       <div><label for="n">전체 학생 수</label>
         <div class="row"><input id="n" type="number" min="1" max="2000" inputmode="numeric" placeholder="258"><span class="unit">명</span></div></div>
       <div><label for="r">내 등수</label>
         <div class="row"><input id="r" type="number" min="1" inputmode="numeric" placeholder="32"><span class="unit">등</span></div></div>
+      <div><label for="t">동점자 수</label>
+        <div class="row"><input id="t" type="number" min="1" inputmode="numeric" placeholder="1"><span class="unit">명</span></div></div>
     </div>
-    <div style="margin-top:10px"><label for="t">같은 등수 학생 수 (나 포함, 없으면 1)</label>
-      <div class="row"><input id="t" type="number" min="1" inputmode="numeric" placeholder="1"><span class="unit">명</span></div></div>
+    <p class="note">동점자 수 = 나와 같은 등수인 학생 수(나 포함)<br>없으면 비워 두기</p>
     <div id="rerr" class="note err"></div>
   </div>
 
@@ -106,10 +108,15 @@
   <div class="card">
     <details>
       <summary>동점자가 있을 때 등급 계산</summary>
-      <p class="note">같은 점수의 무리가 등급 경계에 걸리면, 무리 전체에 중간석차를 적용해 같은 등급을 부여. 경계에 걸리지 않는 동점자는 등수 그대로.</p>
-      <p class="note">중간석차 = 석차 + (같은 등수 인원 − 1) ÷ 2<br>중간석차백분율 = 중간석차 ÷ 전체 학생 수 × 100 (소수 둘째 자리 반올림)</p>
-      <p class="note">예) 96명 중 1등이 19명 &rarr; 중간석차 10등, 10.42%로 10%를 넘어 19명 모두 2등급 (5등급제)</p>
-      <p class="note">학교 학업성적관리규정에 따라 달라질 수 있으며 최종 등급은 성적표 기준.</p>
+      <p class="note">동점자가 등급 컷에 걸리면 무리 전원이 같은 등급을 받아서<br>등수만으로는 등급이 정해지지 않음</p>
+      <p class="note"><b>예시 (200명, 5등급제, 1등급 컷 20등)</b></p>
+      <table>
+        <tr><th>100점 인원</th><th>가운데 등수</th><th>퍼센트</th><th>판정</th></tr>
+        <tr><td>39명</td><td>(1+39) &divide; 2 = 20</td><td>10.00%</td><td>1등급</td></tr>
+        <tr><td>40명</td><td>(1+40) &divide; 2 = 20.5</td><td>10.25%</td><td>2등급</td></tr>
+      </table>
+      <p class="note">내 등수와 동점자 수만 넣으면 자동 계산</p>
+      <p class="note">같은 인원이라도 9등급제는 컷이 달라 등급이 다를 수 있음<br>학교 학업성적관리규정에 따라 달라질 수 있으며 최종 등급은 성적표 기준</p>
     </details>
   </div>
 
@@ -153,12 +160,13 @@ function judge(n, r, t, m){
   const base = rows.find(x=>x.count>0 && r>=x.start && r<=x.end);
   if(!(t>1)) return {row:base, base:base, tie:false, straddle:false};
   const last = r + t - 1;
-  const straddle = rows.some(x=>x.count>0 && x.end>=r && x.end<last);
+  const cuts = rows.filter(x=>x.count>0 && x.end>=r && x.end<last);
+  const straddle = cuts.length>0;
   if(!straddle) return {row:base, base:base, tie:true, straddle:false};
   const m2 = 2*r + t - 1;                               // 중간석차의 2배
   const pctX100 = Math.floor((m2*10000 + n)/(2*n));     // 중간석차백분율 x100 (소수 둘째 자리 반올림)
   const gi = SCHEMES[m].findIndex(c=>pctX100 <= c*100);
-  return {row:rows[gi], base:base, tie:true, straddle:true, m2:m2, pctX100:pctX100};
+  return {row:rows[gi], base:base, tie:true, straddle:true, m2:m2, pctX100:pctX100, cuts:cuts, last:last};
 }
 // ==/CORE==
 let mode = 5;
@@ -178,8 +186,8 @@ function render(){
   let hit = null, tie = null;
   if(Number.isFinite(r)){
     if(r<1||r>n) $('rerr').textContent = '등수는 1 ~ '+n+' 사이로 입력하세요.';
-    else if(t<1) $('rerr').textContent = '같은 등수 학생 수는 1 이상으로 입력하세요.';
-    else if(r+t-1>n) $('rerr').textContent = '등수와 같은 등수 학생 수가 전체 학생 수를 넘습니다.';
+    else if(t<1) $('rerr').textContent = '동점자 수는 1 이상으로 입력하세요.';
+    else if(r+t-1>n) $('rerr').textContent = '등수와 동점자 수가 전체 학생 수를 넘습니다.';
     else { const j = judge(n, r, t, mode); hit = j.row; if(j.tie) tie = j; }
   }
   $('grades').innerHTML = rows.map(x=>{
@@ -198,16 +206,18 @@ function render(){
     if(tie.straddle){
       const mid = tie.m2/2;
       const pct = (tie.pctX100/100).toFixed(2);
-      detail = `<div class="calc">같은 등수 ${t}명(${r}등 ~ ${r+t-1}등 자리)이 등급 경계에 걸림<br>
-        중간석차 = ${r} + (${t} − 1) ÷ 2 = <b>${mid}</b>등<br>
-        중간석차백분율 = ${mid} ÷ ${n} × 100 = <b>${pct}%</b><br>
-        ${hit.grade>1 ? SCHEMES[mode][hit.grade-2]+'% 초과 ' : ''}${hit.cumPct}% 이하 구간 &rarr; <b>${hit.grade}등급</b></div>`;
+      const cutTxt = tie.cuts.map(c=>`${c.grade}등급 컷(${c.end}등)`).join(', ');
+      const verdict = hit.grade===1 ? `1등급 컷 ${hit.cumPct}% 이내` : `${SCHEMES[mode][hit.grade-2]}% 초과 ${hit.cumPct}% 이하`;
+      detail = `<div class="calc">${cutTxt}에 걸림 · 동점자 ${t}명이 ${r}등 ~ ${tie.last}등 자리<br>
+        무리의 가운데 등수 = (${r} + ${tie.last}) ÷ 2 = <b>${mid}</b>등<br>
+        ${mid} ÷ ${n} × 100 = <b>${pct}%</b><br>
+        ${verdict} &rarr; 동점자 ${t}명 전원 <b>${hit.grade}등급</b></div>`;
       if(tie.base && tie.base.grade!==hit.grade) detail += `<div class="note">동점자가 없다면 ${tie.base.grade}등급</div>`;
     } else {
-      detail = `<div class="calc">같은 등수 ${t}명이 등급 경계에 걸리지 않아 등수 그대로 판정</div>`;
+      detail = `<div class="calc">동점자 ${t}명이 등급 경계에 걸리지 않아 등수 그대로 판정</div>`;
     }
     $('me').style.display = '';
-    $('me').innerHTML = `<div class="me-top">${n}명 중 <b>${r}등</b> (같은 등수 ${t}명) &rarr; <b>${hit.grade}등급</b></div>${detail}`;
+    $('me').innerHTML = `<div class="me-top">${n}명 중 <b>${r}등</b> (동점자 ${t}명) &rarr; <b>${hit.grade}등급</b></div>${detail}`;
     return;
   }
 
