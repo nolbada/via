@@ -41,6 +41,8 @@
   .stat{border:1px solid var(--line);border-radius:10px;padding:7px 10px}
   .stat .t{font-size:11.5px;color:var(--sub)}
   .stat .v{font-size:18px;font-weight:700}
+  .stats.s3{grid-template-columns:repeat(3,1fr)}
+  .stats.s3 .stat{padding:7px 8px}
   /* 전체 막대 + 빨간 점 */
   .tl{position:relative;margin:26px 4px 4px}
   .tl .bars{display:flex;height:16px;border-radius:8px;overflow:hidden;gap:2px}
@@ -170,6 +172,24 @@ function judge(n, r, t, m){
 }
 // ==/CORE==
 let mode = 5;
+function barHtml(rows, hit, pos, tagText){
+  const bars = rows.map(x=>`<i class="${x.grade===hit.grade?'on':''}" style="flex:${Math.max(x.count,0.0001)}"></i>`).join('');
+  const lbls = rows.map(x=>`<span style="flex:${Math.max(x.count,0.0001)}">${x.count>0?x.grade:''}</span>`).join('');
+  return `<div class="tl"><div class="tag" style="left:clamp(30px,${pos}%,calc(100% - 30px))">${tagText}</div>
+    <div class="bars">${bars}</div><div class="dot" style="left:${pos}%"></div>
+    <div class="lbl">${lbls}</div></div>`;
+}
+// 표시용: eq = 내 등수(동점자 무리면 가운데 등수), row = 판정된 등급 행
+function posLine(n, eq, row, dec){
+  const lo = row.grade>1 ? SCHEMES[mode][row.grade-2] : 0;
+  const up = (eq/n*100).toFixed(dec);
+  let inGrade = '';
+  if(row.count>0){
+    const y = Math.min(100, Math.max(0, (eq-row.start+1)/row.count*100));
+    inGrade = `<br>${row.grade}등급(상위 ${lo}% ~ ${row.cumPct}%) 중 위에서 <b>${y.toFixed(dec)}%</b>`;
+  }
+  return `<div class="calc">전체 상위 <b>${up}%</b>${inGrade}</div>`;
+}
 const $ = id => document.getElementById(id);
 
 function render(){
@@ -211,25 +231,29 @@ function render(){
       detail = `<div class="calc">${cutTxt}에 걸림 · 동점자 ${t}명이 ${r}등 ~ ${tie.last}등 자리<br>
         무리의 가운데 등수 = (${r} + ${tie.last}) ÷ 2 = <b>${mid}</b>등<br>
         ${mid} ÷ ${n} × 100 = <b>${pct}%</b><br>
-        ${verdict} &rarr; 동점자 ${t}명 전원 <b>${hit.grade}등급</b></div>`;
+        ${verdict} &rarr; 동점자 ${t}명 전원 <b>${hit.grade}등급</b></div>` + posLine(n, mid, hit, 2);
       if(tie.base && tie.base.grade!==hit.grade) detail += `<div class="note">동점자가 없다면 ${tie.base.grade}등급</div>`;
     } else {
-      detail = `<div class="calc">동점자 ${t}명이 등급 경계에 걸리지 않아 등수 그대로 판정</div>`;
+      detail = `<div class="calc">동점자 ${t}명이 등급 경계에 걸리지 않아 등수 그대로 판정</div>` + posLine(n, r, hit, 1);
     }
     $('me').style.display = '';
-    $('me').innerHTML = `<div class="me-top">${n}명 중 <b>${r}등</b> (동점자 ${t}명) &rarr; <b>${hit.grade}등급</b></div>${detail}`;
+    const gLast = r + t - 1;
+    const tFront = Math.max(0, r - hit.start), tBack = Math.max(0, hit.end - gLast);
+    const tPos = (((r + gLast)/2 - 0.5)/n*100).toFixed(2);
+    $('me').innerHTML = `<div class="me-top">${n}명 중 <b>${r}등</b> (동점자 ${t}명) &rarr; <b>${hit.grade}등급</b></div>${detail}
+      ${barHtml(rows, hit, tPos, r+'~'+gLast+'등')}
+      <div class="stats s3">
+        <div class="stat"><div class="t">같은 등급<br>나보다 앞</div><div class="v">${tFront}명</div></div>
+        <div class="stat"><div class="t">나와 동점<br>(나 제외)</div><div class="v">${t-1}명</div></div>
+        <div class="stat"><div class="t">같은 등급<br>나보다 뒤</div><div class="v">${tBack}명</div></div>
+      </div>`;
     return;
   }
 
   const front = r - hit.start, back = hit.end - r;
   const pos = ((r-0.5)/n*100).toFixed(2);
 
-  // 전체 막대: 등급별 구간 + 빨간 점
-  const bars = rows.map(x=>`<i class="${x.grade===hit.grade?'on':''}" style="flex:${Math.max(x.count,0.0001)}"></i>`).join('');
-  const lbls = rows.map(x=>`<span style="flex:${Math.max(x.count,0.0001)}">${x.count>0?x.grade:''}</span>`).join('');
-  const tl = `<div class="tl"><div class="tag" style="left:clamp(22px,${pos}%,calc(100% - 22px))">${r}등</div>
-    <div class="bars">${bars}</div><div class="dot" style="left:${pos}%"></div>
-    <div class="lbl">${lbls}</div></div>`;
+  const tl = barHtml(rows, hit, pos, r+'등');
 
   // 같은 등급 안 점
   let inner;
@@ -247,6 +271,7 @@ function render(){
   $('me').innerHTML = `
     <div class="me-top">${n}명 중 <b>${r}등</b> &rarr; <b>${hit.grade}등급</b></div>
     <div class="meta">${hit.grade}등급: ${hit.start}등 ~ ${hit.end}등 (${hit.count}명)</div>
+    ${posLine(n, r, hit, 1)}
     ${tl}
     <div class="stats">
       <div class="stat"><div class="t">같은 등급, 나보다 앞</div><div class="v">${front}명</div></div>
