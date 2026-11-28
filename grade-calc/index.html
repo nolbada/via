@@ -194,7 +194,7 @@ function posText(n, eq, row, dec){
   if(row.grade>1) t += ` &middot; 전체 상위 <b>${raw.toFixed(dec)}%</b>`;
   return `(${t})`;
 }
-const BUILD='20261128c';
+const BUILD='20261128d';
 (function(){
   try{
     if(location.protocol==='file:') return;
@@ -294,10 +294,16 @@ function render(){
     <div class="note">${up} · ${down}</div>`;
 }
 
-function clearAll(){ ['n','r','t'].forEach(id=>{ $(id).value=''; }); render(); }
+let touched=false;
+function clearAll(){ ['n','r','t'].forEach(id=>{ $(id).value=''; }); touched=false; render(); }
+['n','r','t'].forEach(id=>$(id).addEventListener('input',()=>{ touched=true; }));
 window.addEventListener('pageshow',clearAll);
 window.addEventListener('pagehide',clearAll);
-document.addEventListener('visibilitychange',()=>{ if(document.hidden) clearAll(); });
+document.addEventListener('visibilitychange',clearAll);
+document.addEventListener('resume',clearAll);
+[0,300,1000,2500].forEach(ms=>setTimeout(()=>{ if(!touched) clearAll(); },ms));
+let lastTick=Date.now();
+setInterval(()=>{ const now=Date.now(); if(now-lastTick>4000) clearAll(); lastTick=now; },1000);
 $('clr').addEventListener('click',()=>{ clearAll(); $('n').focus(); });
 $('n').addEventListener('input',render);
 $('r').addEventListener('input',render);
