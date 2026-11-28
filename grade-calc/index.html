@@ -92,11 +92,11 @@
   <div class="card">
     <div class="three">
       <div><label for="n">전체 학생 수</label>
-        <div class="row"><input id="n" type="number" min="1" max="2000" inputmode="numeric" placeholder="258"><span class="unit">명</span></div></div>
+        <div class="row"><input id="n" type="number" autocomplete="off" min="1" max="2000" inputmode="numeric" placeholder="258"><span class="unit">명</span></div></div>
       <div><label for="r">내 등수</label>
-        <div class="row"><input id="r" type="number" min="1" inputmode="numeric" placeholder="32"><span class="unit">등</span></div></div>
+        <div class="row"><input id="r" type="number" autocomplete="off" min="1" inputmode="numeric" placeholder="32"><span class="unit">등</span></div></div>
       <div><label for="t">동점자 수</label>
-        <div class="row"><input id="t" type="number" min="1" inputmode="numeric" placeholder="1"><span class="unit">명</span></div></div>
+        <div class="row"><input id="t" type="number" autocomplete="off" min="1" inputmode="numeric" placeholder="1"><span class="unit">명</span></div></div>
     </div>
     <p class="note">동점자 수 = 나와 같은 등수인 학생 수(나 포함)<br>없으면 비워 두기</p>
     <div id="rerr" class="note err"></div>
@@ -282,6 +282,8 @@ function render(){
     <div class="note">${up} · ${down}</div>`;
 }
 
+function clearAll(){ ['n','r','t'].forEach(id=>{ $(id).value=''; }); render(); }
+window.addEventListener('pageshow',clearAll);
 $('n').addEventListener('input',render);
 $('r').addEventListener('input',render);
 $('t').addEventListener('input',render);
