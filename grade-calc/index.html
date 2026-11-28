@@ -32,7 +32,6 @@
   input[type=number]:focus{border-color:var(--accent)}
   .unit{font-size:13px;color:var(--sub)}
   .note{font-size:12px;color:var(--sub);margin:6px 0 0}
-  .clr{margin-top:8px;border:1px solid var(--line);background:#fff;color:var(--sub);border-radius:9px;padding:6px 14px;font:inherit;font-size:13px;cursor:pointer}
   .err{color:#b91c1c}
   .me-top{font-size:17px;font-weight:700}
   .me-top b{color:var(--me)}
@@ -93,14 +92,13 @@
   <div class="card">
     <div class="three">
       <div><label for="n">전체 학생 수</label>
-        <div class="row"><input id="n" type="number" autocomplete="off" min="1" max="2000" inputmode="numeric" placeholder="258"><span class="unit">명</span></div></div>
+        <div class="row"><input id="n" type="number" min="1" max="2000" inputmode="numeric" placeholder="258"><span class="unit">명</span></div></div>
       <div><label for="r">내 등수</label>
-        <div class="row"><input id="r" type="number" autocomplete="off" min="1" inputmode="numeric" placeholder="32"><span class="unit">등</span></div></div>
+        <div class="row"><input id="r" type="number" min="1" inputmode="numeric" placeholder="32"><span class="unit">등</span></div></div>
       <div><label for="t">동점자 수</label>
-        <div class="row"><input id="t" type="number" autocomplete="off" min="1" inputmode="numeric" placeholder="1"><span class="unit">명</span></div></div>
+        <div class="row"><input id="t" type="number" min="1" inputmode="numeric" placeholder="1"><span class="unit">명</span></div></div>
     </div>
     <p class="note">동점자 수 = 나와 같은 등수인 학생 수(나 포함)<br>없으면 비워 두기</p>
-    <button type="button" id="clr" class="clr">비우기</button>
     <div id="rerr" class="note err"></div>
   </div>
 
@@ -194,7 +192,7 @@ function posText(n, eq, row, dec){
   if(row.grade>1) t += ` &middot; 전체 상위 <b>${raw.toFixed(dec)}%</b>`;
   return `(${t})`;
 }
-const BUILD='20261128d';
+const BUILD='20261128e';
 (function(){
   try{
     if(location.protocol==='file:') return;
@@ -294,17 +292,6 @@ function render(){
     <div class="note">${up} · ${down}</div>`;
 }
 
-let touched=false;
-function clearAll(){ ['n','r','t'].forEach(id=>{ $(id).value=''; }); touched=false; render(); }
-['n','r','t'].forEach(id=>$(id).addEventListener('input',()=>{ touched=true; }));
-window.addEventListener('pageshow',clearAll);
-window.addEventListener('pagehide',clearAll);
-document.addEventListener('visibilitychange',clearAll);
-document.addEventListener('resume',clearAll);
-[0,300,1000,2500].forEach(ms=>setTimeout(()=>{ if(!touched) clearAll(); },ms));
-let lastTick=Date.now();
-setInterval(()=>{ const now=Date.now(); if(now-lastTick>4000) clearAll(); lastTick=now; },1000);
-$('clr').addEventListener('click',()=>{ clearAll(); $('n').focus(); });
 $('n').addEventListener('input',render);
 $('r').addEventListener('input',render);
 $('t').addEventListener('input',render);
